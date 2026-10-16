@@ -1,0 +1,158 @@
+--- sealed_corrected_v3/native_assess_worker.py
++++ corrected_v4/native_assess_worker.py
+@@ -44,16 +44,19 @@
+ def execute(control_path):
+     g.validate_python_startup(os.environ)
+     # No fixture entry point invokes this function.
+-    control = loads(regular(control_path.absolute()) and control_path.read_bytes())
++    require(regular(control_path.absolute()).st_size<=128*1024,'Worker control read cap')
++    control = loads(control_path.read_bytes())
+     require(control['schema'] == 'pr108-native-assess-control/v3' and control['fixture'] is False, 'Actual worker control required')
+     policy = control['worker_policy']; validate_policy(policy)
+     output = control_path.absolute().parent
+     require(output.parent==D and control_path.name=='WORKER_CONTROL.json' and
+         output.name=='candidate_'+control['execution_inputs_sha256'][:16], 'Worker control outside its sole reviewed candidate root')
++    require(regular(output/'EXECUTION_INPUTS.json').st_size<=128*1024,'Worker immutable input read cap')
+     execution_bytes=(output/'EXECUTION_INPUTS.json').read_bytes();execution=g.loads(execution_bytes)
+     g.validate_execution_manifest(execution,execution_bytes)
+     g.validate_environment_policy(execution['effective']['environment_policy'])
+     require(sha(execution_bytes)==control['execution_inputs_sha256'],'Worker immutable execution manifest changed')
++    require(regular(output/'CONFIG.json').st_size<=128*1024,'Worker thin config read cap')
+     config=g.loads((output/'CONFIG.json').read_bytes());g.validate_thin_config(config)
+     require(config['execution_inputs']['sha256']==sha(execution_bytes) and config['execution_inputs']['bytes']==len(execution_bytes),'Worker thin config correspondence')
+     programs={}
+@@ -71,11 +74,15 @@
+         not any(final.get(x) is True for x in ['fixture','simulated','dry_run']),'Worker lacks final actual manifest-bound native clearance')
+     backend = output/'private_native_backend'
+     require(str(backend) == control['ROOT'] and backend.is_dir() and not backend.is_symlink(), 'Private backend root')
++    g.require(g.regular(backend/'manifest.json').st_size<=32*1024*1024,'Worker native manifest read cap')
++    validated_control=g.validate_worker_control(control,execution,execution_bytes,output,(backend/'manifest.json').read_bytes())
++    policy=validated_control['worker_policy'];validate_policy(policy)
+     began = now(); result = {'schema':'pr108-native-assess-worker-receipt/v3','actual_operator_PID':os.getpid(),
+         'UTC_start':began, 'fixture':False, 'native_function':'queue.py:assess', 'ROOT':str(backend),
+         'SQL_connection':'mode=ro&immutable=1', 'native_status_command_called':False,
+         'queue_py_sha256':control['queue_py_sha256'], 'execution_inputs_sha256':control['execution_inputs_sha256'],
+-        'requested_resource_policy':policy, 'applied_limits':{}, 'hard_memory_limit_claimed':False}
++        'requested_resource_policy':policy, 'applied_limits':{}, 'hard_memory_limit_claimed':False,
++        'validated_worker_control':validated_control,'worker_control_binding_sha256':sha(canonical(validated_control))}
+     try:
+         setup=apply_resource_policy(policy)
+         result['applied_limits']=setup['enforced_limit_readbacks'];result['memory_policy']=setup['memory_policy']
+--- sealed_corrected_v3/prepare_review_bundle.py
++++ corrected_v4/prepare_review_bundle.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""UNEXECUTED V3: commissioned future review bundle; no install/export/Git/service writes.
++"""UNEXECUTED corrected_v4 (compatible v3 schemas): commissioned future review bundle; no install/export/Git/service writes.
+ 
+ Templates intentionally reject before any external read. Current tests never call prepare.
+ """
+@@ -146,7 +146,7 @@
+ 
+ def prepare(config_path):
+     g.validate_python_startup(os.environ)
+-    require(config_path.absolute().is_relative_to(D),'Future actual thin config must reside in V3')
++    require(config_path.absolute().is_relative_to(D),'Future actual thin config must reside in corrected_v4')
+     require(regular(config_path.absolute()).st_size<=128*1024,'Config cap')
+     cfg_bytes=config_path.read_bytes();thin=g.loads(cfg_bytes);g.validate_thin_config(thin)
+     _,inputs_bytes=bounded_local_pin(thin['execution_inputs'],D)
+@@ -333,17 +333,17 @@
+         assessment.update(original_budget='2/5',new_central_proof_search_turns=0,original_structured_ledger_present=False,
+             publication_DOI=doi,package_manifest_sha256=package_sha)
+         put('private_native_backend/assessment.json',encode(assessment))
+-        control={'schema':'pr108-native-assess-control/v3','fixture':False,'ROOT':str(backend),'SQL_cache':str(source_cache),
+-            'dataset_revision':REV,'record_count':manifest['records'],'queue_py_sha256':cfg['queue_py_sha256'],
+-            'execution_inputs_sha256':inputs_sha,'worker_policy':cfg['worker_policy'],
+-            'backend_file_caps':{Path(path).name:cap for path,cap in allowed.items() if path.startswith('private_native_backend/')}}
++        control=g.derive_worker_control(inputs,inputs_bytes,output,before['manifest.json'])
++        require(control['backend_file_caps']=={Path(path).name:cap for path,cap in allowed.items() if path.startswith('private_native_backend/')},
++            'Reviewed capacity inventory and derived worker caps disagree')
+         put('WORKER_CONTROL.json',encode(control));watch()
+         _,_,proc=runner.run([runtime['python_executable'],*g.PYTHON_PREFIX,str(D/'native_assess_worker.py'),'--control',str(output/'WORKER_CONTROL.json')],
+             stdout_cap=65536,deadline=cfg['worker_policy']['deadline_seconds'],watchdog=watch,allow_failure=True)
+         require(proc['exit_code']==0 and proc['termination_reason'] is None and (output/'WORKER_RESULT.json').exists(),'Native worker failed; actual process receipt retained')
+         result=g.loads((output/'WORKER_RESULT.json').read_bytes())
+-        require(result.get('outcome')=='success' and result.get('native_assess_returned_without_exception') is True and
+-            result.get('actual_operator_PID')==proc['PID'] and result.get('execution_inputs_sha256')==inputs_sha,'Actual worker success receipt')
++        expected_control=g.derive_worker_control(inputs,inputs_bytes,output,before['manifest.json'])
++        require((output/'WORKER_CONTROL.json').read_bytes()==encode(expected_control),'Derived control bytes changed during worker execution')
++        g.validate_worker_result(result,expected_control,proc)
+         watch()
+         afterass,afterstate=g.loads((backend/'assessments.json').read_bytes()),g.loads((backend/'state.json').read_bytes())
+         require({k:v for k,v in afterass.items() if k!=K}=={k:v for k,v in oldass.items() if k!=K} and afterstate==states,'Unrelated assessment/state changed')
+--- sealed_corrected_v3/v3_guards.py
++++ corrected_v4/v3_guards.py
+@@ -1,4 +1,4 @@
+-"""Review-only PR108 V3 guards. No Git, SQL, native assess or service invocation."""
++"""Review-only PR108 corrected_v4 guards (compatible v3 schemas). No Git, SQL, native assess or service invocation."""
+ from pathlib import Path, PurePosixPath
+ import collections, configparser, csv, datetime, hashlib, io, json, os, re, stat, sys
+ from urllib.parse import urlsplit
+@@ -450,3 +450,67 @@
+             'future_commit_overhead_bytes':policy['future_commit_overhead_bytes'],'runtime_overhead_bytes':policy['runtime_overhead_bytes'],
+             'required_free_bytes': materialized + policy['headroom_bytes']+policy['future_commit_overhead_bytes']+policy['runtime_overhead_bytes'], 'file_count_cap': len(entries) + 1,
+             'no_SQL_copy_or_download': True}
++
++WORKER_NATIVE_NAMES=['queue.py','manifest.json','policy.json','catalog.json','assessments.json','state.json',
++    'history.jsonl','assessment_history.jsonl','ranking.csv','summary.json','SHORTLIST.md','QUEUE.md']
++WORKER_MUTABLE_NAMES={'catalog.json','assessments.json','state.json','history.jsonl','assessment_history.jsonl',
++    'ranking.csv','summary.json','SHORTLIST.md','QUEUE.md'}
++WORKER_DATASET_REVISION='37e53eabe540fb458758e198be61634bd02ee008'
++WORKER_SQL_PATH='/Users/alec/Documents/Math/unsolved_math_prioritization/cache/catalog.sqlite'
++
++def derive_worker_control(execution,execution_bytes,output,native_manifest_bytes):
++    """Pure derivation from reviewed choices plus the byte-pinned native manifest."""
++    validate_execution_manifest(execution,execution_bytes);effective=execution['effective'];inputs_sha=sha(execution_bytes)
++    output=Path(output)
++    require(output.is_absolute() and output.parent==Path(__file__).resolve().parent and
++        output.name=='candidate_'+inputs_sha[:16],'Derived worker candidate anchor')
++    native={}
++    for pin in effective['native_baseline_pins']:
++        pin_shape(pin);name=Path(pin['path']).name
++        require(pin['path']=='unsolved_math_prioritization/'+name and name in WORKER_NATIVE_NAMES and name not in native,
++            'Derived worker exact native baseline map');native[name]=pin
++    require(set(native)==set(WORKER_NATIVE_NAMES),'Derived worker native baseline inventory')
++    pin=native['manifest.json']
++    require(len(native_manifest_bytes)==pin['bytes'] and sha(native_manifest_bytes)==pin['sha256'],'Derived worker native manifest byte pin')
++    manifest=loads(native_manifest_bytes)
++    require(manifest['revision']==WORKER_DATASET_REVISION and type(manifest['records']) is int and manifest['records']>0,
++        'Derived worker immutable dataset revision/record count')
++    require(native['queue.py']['sha256']==effective['queue_py_sha256'],'Derived worker queue code input correspondence')
++    capacity=effective['capacity_policy'];growth=capacity['per_native_growth_bytes'];receipt=capacity['receipt_json_bytes_cap']
++    require(type(growth) is int and 1<=growth<=512*1024 and receipt==128*1024 and type(receipt) is int,
++        'Derived worker reviewed capacity values')
++    caps={name:pin['bytes']+(growth if name in WORKER_MUTABLE_NAMES else 0) for name,pin in native.items()}
++    caps['assessment.json']=receipt
++    # Canonical round trip detaches nested policy references and distinguishes bool/int/float values.
++    return loads(canonical({'schema':'pr108-native-assess-control/v3','fixture':False,'ROOT':str(output/'private_native_backend'),
++        'SQL_cache':WORKER_SQL_PATH,'dataset_revision':manifest['revision'],'record_count':manifest['records'],
++        'queue_py_sha256':effective['queue_py_sha256'],'execution_inputs_sha256':inputs_sha,
++        'worker_policy':effective['worker_policy'],'backend_file_caps':caps}))
++
++def validate_worker_control(control,execution,execution_bytes,output,native_manifest_bytes):
++    expected=derive_worker_control(execution,execution_bytes,output,native_manifest_bytes)
++    require(canonical(control)==canonical(expected),'Worker control differs from frozen reviewed derivation')
++    return expected
++
++def validate_worker_result(result,expected_control,process):
++    """Parent pure verification against its own frozen derivation and actual custody."""
++    require(process['exit_code']==0 and process['termination_reason'] is None and process['child_reaped'] is True and
++        process['deadline_seconds']==expected_control['worker_policy']['deadline_seconds'],'Worker actual process/deadline correspondence')
++    require(result.get('schema')=='pr108-native-assess-worker-receipt/v3' and result.get('fixture') is False and
++        result.get('outcome')=='success' and result.get('native_assess_returned_without_exception') is True and
++        result.get('actual_operator_PID')==process['PID'] and result.get('execution_inputs_sha256')==expected_control['execution_inputs_sha256'],
++        'Actual worker success identity/immutable inputs')
++    require(canonical(result.get('validated_worker_control'))==canonical(expected_control) and
++        result.get('worker_control_binding_sha256')==sha(canonical(expected_control)), 'Returned exact derived worker control binding')
++    policy=expected_control['worker_policy']
++    require(canonical(result.get('requested_resource_policy'))==canonical(policy) and result.get('ROOT')==expected_control['ROOT'] and
++        result.get('queue_py_sha256')==expected_control['queue_py_sha256'] and result.get('native_function')=='queue.py:assess' and
++        result.get('SQL_connection')=='mode=ro&immutable=1' and result.get('native_status_command_called') is False,
++        'Worker requested policy/native input correspondence')
++    limits={name:[policy[key],policy[key]] for name,key in [('RLIMIT_CPU','cpu_seconds'),('RLIMIT_FSIZE','file_size_bytes'),('RLIMIT_NOFILE','open_files')]}
++    require(canonical(result.get('applied_limits'))==canonical(limits),'Worker enforced CPU/file/open-file limits differ from reviewed choices')
++    memory=result.get('memory_policy',{})
++    require(result.get('hard_memory_limit_claimed') is False and memory.get('hard_memory_limit_claimed') is False and
++        memory.get('platform')==sys.platform and memory.get('requested_advisory_bytes')==policy['address_space_bytes'] and
++        memory.get('RLIMIT_RSS_used') is False and memory.get('RLIMIT_AS_enforcement_certified') is False,'Worker advisory memory policy correspondence')
++    if sys.platform=='darwin':require(memory.get('RLIMIT_AS_requested') is False,'Darwin hard address-space limit must not be claimed')

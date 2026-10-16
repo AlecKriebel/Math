@@ -1,0 +1,41 @@
+"""Own-folder inert templates/documentation only. No prepare or native calls."""
+import sys
+sys.dont_write_bytecode=True
+from pathlib import Path
+import json,datetime,hashlib
+import v3_guards as g
+import prepare_review_bundle as h
+D=Path(__file__).resolve().parent;A=D.parent.parent;C=A.parents[2]
+now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+def write(name,obj):(D/name).write_bytes(g.canonical(obj))
+def pin(path):
+    data=path.read_bytes();return {'path':str(path.relative_to(C)),'bytes':len(data),'sha256':g.sha(data)}
+programs=[pin(D/name) for name in g.PROGRAMS]
+effective={name:None for name in g.CHOICES}
+effective.update(execution_mode='review_bundle_only',scoped_rank_interpretation='preserve_baseline_labels_and_positions_not_global_rerank',
+    package={'root':None,'manifest':None},publication={'receipt':None},google_sheet={'receipt':None,'row_index':None,'values':[None,'',None,None],'existing_chat_authorized':False},
+    original_authentication_pins={'blob_manifest':None,'queue_projection':None,'sourcepair':None,'selected_prior':None,'original_files':[]},
+    effective_diagnostics_pins=[],native_baseline_pins=[],raw_source_pins={'problems.json':None,'research_results.json':None},
+    runtime={'python_executable':None,'python_version':None,'python_binary':None,'git_executable':None,'git_binary':None,'gh_executable':None,'gh_binary':None},
+    process_policy={'max_process_count':64,'retain_bytes_per_stream':4096,'max_stdout_bytes':32*1024*1024,'max_stderr_bytes':65536,'deadline_seconds':30,'terminate_grace_seconds':1},
+    worker_policy={'deadline_seconds':120,'cpu_seconds':90,'address_space_bytes':512*1024*1024,'file_size_bytes':32*1024*1024,'open_files':32,'memory_limit_mode':'advisory_no_hard_memory_claim'},
+    environment_policy={'schema':'pr108-reviewed-process-environment/v3','ambient_inheritance':False,
+        'python':{'argv_prefix':g.PYTHON_PREFIX,'environment':g.COMMON_ENV},
+        'initial_launcher':{'program':'launch_review_bundle.sh','shell':'/bin/sh','environment':g.COMMON_ENV},
+        'git':{'environment':g.GIT_ENV,'repository_directory':str(C),'repository_location_pins':[],'repository_config_pins':[{'path':None,'bytes':None,'sha256':None}]},
+        'gh':{'environment':{**g.GH_ENV_FIXED,'GH_CONFIG_DIR':None},'config_pins':[{'path':None,'bytes':None,'sha256':None}],'expected_login':None},
+        'credentials_in_environment_or_receipts':False},
+    capacity_policy={'headroom_bytes':32*1024*1024,'max_artifact_count':512,'max_materialized_bytes':160*1024*1024,
+        'wrapper_bytes_cap':65536,'receipt_json_bytes_cap':128*1024,'per_native_growth_bytes':512*1024,'max_package_files':64,
+        'future_commit_overhead_bytes':8*1024*1024,'runtime_overhead_bytes':8*1024*1024})
+execution={'schema':'pr108-immutable-execution-inputs/v3','template_only':True,'effective':effective,'program_files':programs,'input_files':[]}
+write('EXECUTION_INPUTS_TEMPLATE_DO_NOT_RUN.json',execution)
+write('CONFIG_TEMPLATE_DO_NOT_RUN.json',{'schema':'pr108-native-publication-integration-config/v3','template_only':True,
+    'commissioned_after_independent_review':False,'execution_inputs':pin(D/'EXECUTION_INPUTS_TEMPLATE_DO_NOT_RUN.json'),
+    'gates':{role:{'path':None,'bytes':None,'sha256':None} for role in g.GATE_ROLES}})
+fields={'mathematics':['mathematical_clearance'],'priority':['priority_clearance','bounded_substantive_resolution_note_clearance','attribution_checked','no_concrete_antecedent_in_recorded_search'],
+    'package':['package_clearance','metadata_and_attribution_checked'],'whole_package_R1':['independent_whole_package_review','zero_blocking_findings'],
+    'whole_package_R2':['independent_whole_package_review','zero_blocking_findings'],'pre_execution_adversary':['native_scope_and_invariants_checked'],
+    'final':['mathematical_clearance','priority_clearance','package_clearance','whole_package_R1_clearance','whole_package_R2_clearance','native_integration_clearance',
+        'pre_execution_adversary_clearance','actual_Zenodo_service_authenticated','actual_Google_Sheet_service_authenticated']}
+gates

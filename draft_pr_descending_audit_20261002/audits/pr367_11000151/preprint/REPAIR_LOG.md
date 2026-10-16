@@ -1,0 +1,5 @@
+# Repair after fresh preprint review 01
+
+2026-10-03T15:17:18.884586+00:00 — estimated 70% of publication workflow. Preserved the exact initial four-file reviewed package and verifier/manifest privately. Repaired the single P2 finding by distributing the exact second backward implementation and complete expected receipt, retaining all rank1..5 record bytes, and requiring isolated execution plus literal rank-six/810-action comparisons. Named both controls in the paper and README. The immutable original candidate remains unchanged. Corrected math in three PDF bookmark headings. New compilation, complete replay, ZIP sealing and a new fresh reviewer remain pending.
+
+2026-10-03T15:19:55.428086+00:00 — estimated75% of publication workflow. Complete repaired package verifier PASS, both backward graphs and all full records replayed. Built-in compilation and PDF export PASS; all six pages visually inspected. Rebuilt60-member ZIP and sealed four exact submission files for a new reviewer. No Zenodo deposit, publication or sheet write yet.

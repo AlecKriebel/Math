@@ -1,0 +1,5 @@
+# Clean complete partial acceptance scope
+
+The exact edited science and source qualification passed NEW whole-package review: current manifest19b7bd6152f9291814f321a38b7d1ab344da0c39ef060d5c030bbed84c32831c; NEW gate manifest6761a3dc31e7c1ffd287cc58dbaf89142800eac4504ae3520b536ba5fbe285c4. Root verified34+27+72 bindings and reproduced the actual independently written new code byte-exact (28,956 controls). See the root audit folder for complete closure and reproduction. No full3D or4D theorem is certified.
+
+Only accepted administration changes after the verdict; reviewed pending fields and their manifest are archived. Science, source qualification, original ledger and proof dependency closure retain exact reviewed hashes. The original1/5 is not reset. QUEUE changes only named Status/Turns/Findings, preserving target Chat/DOI and every unrelated field/line. Original no-merge wording is archived and superseded by explicit human authorization. Exact remote merge is verified before the present accepted-state event; no legacy generator or invented historical transitions.

@@ -1,0 +1,11 @@
+# Bounded queue semantics correction — version 2
+
+This is inert proposed text only. Version 1 remains immutable; this version corrects queue state wording and authorized target cells without changing the mathematics, source credit, scientific support files or any actual queue state.
+
+1. **Original submitted state:** HEAD b9a399eeac816dbb8f0e50e81b498c26e5acef81 records target 30004563 as claimed_solved, recovered author effort 2/5. Earlier historical effort is unknown. This remains immutable claim/eligibility provenance.
+2. **Actual shared MAIN preimage:** separate from the submitted HEAD. Root reports MAIN currently and legitimately queued, 0/5 before original PR integration. The earlier v1 characterization of this as drift is withdrawn for this current proposal. This preparation has not read actual MAIN. Root MUST freshly read/authenticate the exact parent, queue row and schema at the eventual merge gate. Those fresh values remain UNRESOLVED_FRESH_MAIN_PARENT_AND_QUEUE_PREIMAGE here.
+3. **Proposed integrated state:** at the later gated merge restore this target's status and effort from the original submitted claim to claimed_solved, 2/5; retain that integrated state through publication. This does not claim MAIN already has those values.
+4. **Authorized target cells:** status, effort/turns, PR/reference, claim/findings and DOI only. Root's established queue-parser slots are 8,9,10,11,12 respectively; authenticate the fresh schema before applying them. Every other target field and every foreign row/content must remain exact from the freshly authenticated parent. Do not restore a stale entire row.
+5. **Timing:** no actual queue patch before actual DOI/publication, tracker verification and Root's merge gate. This owned folder produces no patch or mutation. Final package review, exact package hashes, DOI/upload, tracker, merge and current-main receipts remain explicitly unresolved until verified.
+
+The complete CURRENT_PROOF.md is byte-identical to v1. Older 10^17 candidate/checker/certificate/review evidence remains historical; the proposed current publication presentation uses 10^16. No new scientific result, code-independence claim, historical-priority claim, lifecycle success or outreach is introduced by this correction.

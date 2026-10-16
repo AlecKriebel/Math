@@ -1,0 +1,385 @@
+--- original/pr40_guards.py
++++ revision/pr40_guards.py
+@@ -10,7 +10,7 @@
+ from pathlib import Path, PurePosixPath
+ 
+ HERE = Path(__file__).resolve().parent
+-A = HERE.parent
++A = HERE.parents[1]
+ R = A.parents[2]
+ B = R / 'draft_pr_publication_program_20260930'
+ C = A / 'reviewed_candidate'
+@@ -158,7 +158,13 @@
+     if exclusive: require(not p.exists(),'Existing output: inspect before retry')
+     tmp=p.with_name(p.name+'.pr40-tmp')
+     with tmp.open('xb') as s: s.write(raw); s.flush(); os.fsync(s.fileno())
+-    os.replace(tmp,p)
++    if exclusive:
++        # Atomic absent-only publication of complete fsynced bytes. On failure
++        # retain the completed temp and any intervening target for inspection.
++        os.link(tmp,p,follow_symlinks=False)
++        tmp.unlink()
++    else:
++        os.replace(tmp,p)
+     fd=os.open(p.parent,os.O_RDONLY)
+     try: os.fsync(fd)
+     finally: os.close(fd)
+@@ -186,7 +192,26 @@
+     require(type(load(base/'duplicate_prior_report.json')) is dict and bool(load(base/'duplicate_prior_report.json')),'Complete imported duplicate prior required')
+ 
+ 
++def utc_clock(value,context):
++    require(type(value) is str and value and value==value.strip(),context+': ISO UTC clock required')
++    try:
++        clock=dt.datetime.fromisoformat(value[:-1]+'+00:00' if value.endswith('Z') else value)
++    except (TypeError,ValueError):
++        raise ValueError(context+': invalid ISO UTC clock')
++    require(clock.tzinfo is not None and clock.utcoffset()==dt.timedelta(0),context+': timezone-aware UTC required')
++    return clock
++
++
++def revision_basis():
++    revision=load(HERE/'REVISION_BINDINGS.json')
++    required(revision,{'schema':'pr40-acceptance-source-revision-bindings/v1','original_preparation_manifest_sha256':'a7bbde5e024a6e432d7456586651208b3f365170cfc80112e0b98de1cae4c39b','closed_static_audit_manifest_sha256':'84b0e1c5364fac20617c1242e36c0d5b9130ea2784de81d3557ae8cbe94ab526','original_preparation_members':12,'closed_static_audit_members':22,'prepared_helpers_imported_or_executed':False,'actual_execution_pending':True},'Closed source revision inputs')
++    check(R,revision['immutable_revision_inputs'])
++    manifest(A/'acceptance_preparation_family','PREPARATION_MANIFEST.json',revision['original_preparation_manifest_sha256'],12)
++    manifest(A/'acceptance_static_adversary_family','FIRST_PARTY_MANIFEST.json',revision['closed_static_audit_manifest_sha256'],22)
++
++
+ def basis():
++    revision_basis()
+     inputs=load(HERE/'INPUT_BINDINGS.json')
+     for v in inputs['pins'].values(): bound(v)
+     for c in inputs['closures']:
+@@ -259,18 +284,31 @@
+     require(equal(load(ps['final_manifest'].parent/'ROOT_REVIEWED_SCOPE.json'),scope),'Final complete scope copy differs')
+     cap=load(ps['reconciliation_capture']); required(cap,{'actual_execution':True,'completed':True,'exit_code':0,'status':'PASS','source_sha256':sha((HERE/'seal_final_evidence.py').read_bytes()),'cwd':str(A)},'Genuine actual final capture')
+     require(type(cap['pid']) is int and cap['pid']>0 and type(cap['argv']) is list and str(HERE/'seal_final_evidence.py') in cap['argv'],'Actual PID/argv required')
+-    require(type(cap['started_utc']) is str and cap['started_utc'] and type(cap['finished_utc']) is str and cap['finished_utc'],'Actual clocks required')
++    started=utc_clock(cap['started_utc'],'Actual capture start')
++    finished=utc_clock(cap['finished_utc'],'Actual capture finish')
++    require(started<=finished,'Actual capture clocks reversed')
++    require(started<=utc_clock(receipt['utc'],'Actual final reconciliation clock')<=finished,'Reconciliation clock outside genuine capture interval')
+     for flag,v in [('--plan',a.final_plan),('--plan-sha256',a.final_plan_sha256),('--preparation-manifest-sha256',a.preparation_manifest_sha256),('--output',ps['final_manifest'].parent.relative_to(A).as_posix())]:
+         require(cap['argv'].count(flag)==1 and cap['argv'][cap['argv'].index(flag)+1]==v,'Actual final argv pin differs')
+     require(cap['argv'].count('--execute')==1,'Actual execution flag required')
+-    cb=ps['reconciliation_capture'].parent; check(cb,[cap['stdout'],cap['stderr']]); require(sha(regular(cb,'prelaunch_source.py').read_bytes())==cap['source_sha256'],'Actual prelaunch source changed')
++    cb=ps['reconciliation_capture'].parent
++    require(ps['reconciliation_capture'].name=='CAPTURE.json' and cb.parent==A,'Literal CAPTURE.json in a new adjacent root capture required')
++    streams=rows([cap['stdout'],cap['stderr']])
++    stream_names={z['path'] for z in streams}
++    require(len(stream_names)==2 and all(len(relative(n).parts)==1 and n not in {'CAPTURE.json','prelaunch_source.py'} for n in stream_names),'Two distinct declared root stream basenames disjoint from capture/source required')
++    require(len({'CAPTURE.json','prelaunch_source.py'}|stream_names)==4,'Exactly four distinct capture members required')
++    check(cb,streams); require(sha(regular(cb,'prelaunch_source.py').read_bytes())==cap['source_sha256'],'Actual prelaunch source changed')
+     required(parse(regular(cb,cap['stdout']['path']).read_bytes()),{'status':'PASS','final_receipt_sha256':a.final_receipt_sha256,'final_manifest_sha256':a.final_manifest_sha256},'Entire actual child stdout')
+-    exact(cb,{ps['reconciliation_capture'].name,'prelaunch_source.py',cap['stdout']['path'],cap['stderr']['path']})
++    exact(cb,{'CAPTURE.json','prelaunch_source.py'}|stream_names)
+     require(not ps['fresh_preimage'].resolve().is_relative_to(C.resolve()) and not ps['fresh_preimage'].resolve().is_relative_to(HERE.resolve()),'Fresh root preimage must be adjacent new evidence')
+     require(ps['previous_mirror']==B/'audits/pr39_9500008/state_mirror_bindings.json','Actual completed PR39 proposal required')
+     previous=load(ps['previous_mirror']); require(len(previous['entries'])==29 and 39 in previous['required_completed_prs'] and 40 not in previous['required_completed_prs'],'Require completed PR39 prior scope')
+     fresh=load(ps['fresh_preimage']); required(fresh,{'approved_by_root':True},'Fresh actual native preimage')
+-    require(type(fresh['reason']) is str and fresh['reason'] and type(fresh['current_head']) is str and re.fullmatch('[0-9a-f]{40}',fresh['current_head']),'Explicit dated root rebase reason/HEAD required')
++    created=utc_clock(fresh['created_utc'],'Actual root fresh preimage creation')
++    require(created<=dt.datetime.now(dt.timezone.utc),'Fresh root preimage creation clock is in the future')
++    require(type(fresh['reason_date_utc']) is str and fresh['reason_date_utc']==created.date().isoformat(),'Root rebase reason date must match the actual UTC creation date')
++    require(type(fresh['reason']) is str and fresh['reason']==fresh['reason'].strip() and len(fresh['reason'])>=40 and len(fresh['reason'].split())>=6,'Substantive root-reviewed rebase reason required; a token such as yes is insufficient')
++    require(type(fresh['current_head']) is str and re.fullmatch('[0-9a-f]{40}',fresh['current_head']),'Explicit fresh main HEAD required, independently of archived replay HEAD')
+     rr=rows(fresh['files']); require({z['path'] for z in rr}==NATIVE and len(rr)==13,'Exact13 fresh full native/inventory pins required')
+     snap=load(A/'snapshot_manifest.json'); required(snap,{'head':HEAD,'base':ORIGINAL_BASE},'Original13/14 snapshot'); require(len(snap['files'])==13 and len(snap['changed_paths'])==14,'Original13/14 counts')
+     raw=git_bytes('diff',ORIGINAL_BASE,HEAD); require(len(raw)==snap['diff_bytes'] and sha(raw)==snap['diff_sha256'] and raw==(A/'pr_input/diff.patch').read_bytes(),'Entire original Git diff changed')
+--- original/integrate_reviewed_partial.py
++++ revision/integrate_reviewed_partial.py
+@@ -95,7 +95,7 @@
+     g.require((g.K/'acceptance.json').read_bytes()==(g.C/'acceptance.json').read_bytes() and not (g.K/'ACCEPTANCE.md').exists() and not (g.A/'acceptance.json').exists(),'Only exact pending lowercase receipt may be replaced once')
+     before_inv=g.load(g.A/'integration_inventory_before.json'); inv=copy.deepcopy(before_inv); chosen=next(z for z in inv['items'] if z['number']==40)
+     chosen.update(stage='complete',outcome='unsolved_accepted_partial',queue_status='unsolved',audited_head=g.HEAD,merge_commit=merge,merged_at=observation['mergedAt'],workflow_completion_estimate_percent=100,original_attempts='0/5',new_substantive_attempts=0,cumulative_attempts='0/5',paper_or_new_doi_or_tracker=False)
+-    done=sum(z.get('stage')=='complete' for z in inv['items']); g.require(done==30,'Expected30 primary completions after40'); inv.update(updated_at_utc=now,last_checkpoint_utc=now,completed_count=30,program_completion_estimate_percent=30/180*100,completion_estimate_percent=30/180*100,current_pr=40); inventory_guard(before_inv,inv)
++    done=sum(z.get('stage')=='complete' for z in inv['items']); g.require(done==30,'Expected30 primary completions after40'); inv.update(updated_at_utc=now,last_checkpoint_utc=now,completed_count=30,program_completion_estimate_percent=30/180*100,completion_estimate_percent=30/180*100,current_pr=41); inventory_guard(before_inv,inv)
+     g.dump(g.A/'remote_merge_receipt.json',observation,exclusive=True)
+     for n in g.ADMIN-{'acceptance.json'}:
+         value=g.load(g.K/n); value.update(status='unsolved_accepted_partial_merged',merge_commit=merge,merge_tree=tree,merged_at=observation['mergedAt']); g.dump(g.K/n,value)
+--- original/state_mirror_reconciliation.py
++++ revision/state_mirror_reconciliation.py
+@@ -22,7 +22,7 @@
+     patch=g.load(g.K/'ACCEPTED_QUEUE_PATCH.json'); g.required(patch,{'header_names':g.HEADER,'column_count':12,'named_changes':['Status','Turns','Findings'],'whole_before_sha256':g.sha(queue),'whole_after_sha256':g.sha(after),'row_before':g.selected(queue),'row_after':row,'all_other_bytes_preserved':True,'selected_chat_DOI_preserved':True},'Exact accepted queue receipt')
+     overlay=g.load(g.A/'integration_check.json'); g.required(overlay,pins,'Exact overlay gate pins'); tree=g.tree(canonical['merge_commit'],pre,overlay,after)
+     push=g.load(g.A/'integration_prepush.json'); g.required(push,pins,'Exact prepush gate pins'); g.require(tree==canonical['merge_tree']==push['merge_tree'] and push['merge_commit']==canonical['merge_commit'],'Actual original-head tree/parents/prepush differ')
+-    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv); g.require(inv['completed_count']==30 and sum(z.get('stage')=='complete' for z in inv['items'])==30,'Exactly30 primary completions')
++    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv); g.required(inv,{'current_pr':41,'completed_count':30},'PostPR40 next-target metadata'); g.require(inv['completed_count']==30 and sum(z.get('stage')=='complete' for z in inv['items'])==30,'Exactly30 primary completions')
+     item=next(z for z in inv['items'] if z['number']==40); g.required(item,{'stage':'complete','outcome':'unsolved_accepted_partial','queue_status':'unsolved','audited_head':g.HEAD,'merge_commit':canonical['merge_commit'],'merged_at':canonical['merged_at'],'original_attempts':'0/5','cumulative_attempts':'0/5','new_substantive_attempts':0,'paper_or_new_doi_or_tracker':False},'Exact selected accepted inventory')
+     g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md','draft_pr_publication_program_20260930/inventory.json','unsolved_math_prioritization/state.json','unsolved_math_prioritization/history.jsonl'})
+     return pre,canonical
+--- original/SCIENTIFIC_SCOPE.json
++++ revision/SCIENTIFIC_SCOPE.json
+@@ -1,29 +1,30 @@
+ {
+-  "schema": "pr40-bounded-scientific-scope/v1",
+-  "project_disposition": "UNSOLVED_SOURCE_HOLD_VALID_PARTIAL",
+-  "literal_target": "Every finite-volume hyperbolic3-manifold contains infinitely many distinct embedded once-around closed geodesic images. Powers, phase and reversal do not count as new images; pairwise disjointness is not required.",
++  "SQL_qualification": "Actual original read-only query used mode=ro. No immutable=1 or query_only assertion; full adjacent five-member correction and bindings preserved.",
+   "credited_existing_coverage": [
+     "closed orientable: Luo-Markovic operative theorem/proof with retained local repairs and standard inputs",
+     "closed nonorientable: direct dimension-three argument and retained qualifications; no invalid cover descent",
+-    "cusped orientable and nonorientable: published Kuhlmann operative full proof with retained lattice/point-selection qualifications"
++    "cusped orientable: published Kuhlmann2006 Theorem1.1 operative full proof with retained lattice/point-selection qualifications",
++    "cusped nonorientable: Xia2110.14376v1 Theorems1.2/4.1 direct cusp argument with retained qualifications; credited preprint, no cover-descent shortcut or peer-review claim"
+   ],
+-  "full_problem_solved": false,
+-  "partial_valid": true,
+-  "novelty_claimed": false,
+-  "new_project_theorem_claimed": false,
+-  "full_recursive_external_proof_certification_claimed": false,
+-  "local_qualifications": "Complete PROOF_QUALIFICATIONS.md and GEOMETRIC_AUDIT.md, root operative read certificate and whole-current reconstruction remain authoritative. Explicit constant, interval, coordinate and fixed-point repairs are credited without rewriting the original SOURCE_STATUS.",
+-  "source_first_independence": "Qualified by disclosed initial dated raw-background exposure; no claim of fully unexposed identity-only reading. Primary reconstruction was sealed before submitted/source-status/old-review/sibling/root/current interpretations. Root direct reading is post exposure and is separately recorded.",
+-  "root_optional_Han_Yang_direct_reading_claimed": false,
+-  "primary_problem_collection_reading": "K3 conventions and Problem3.16 operative pages; AIM5.6.1 and operative definitions/context, not whole books.",
+-  "duplicate20001896": "Complete original source and nonempty imported prior remain exact. They share original0/5; no additional native acceptance, historical state, event, or independent research effort is inferred.",
+-  "original_prior": "Literal null is preserved; raw absent prior and SQL empty-object fallback are explicitly qualified, never equated as retrieved evidence.",
+-  "original_ledger": "Exact DICT id2814,count0,substantive_attempts[]; original0/5,new0,audit0.",
+-  "SQL_qualification": "Actual original read-only query used mode=ro. No immutable=1 or query_only assertion; full adjacent five-member correction and bindings preserved.",
+-  "no_original_verification_program_or_generated_original_program_output_claimed": true,
+-  "historical_PASS_is_archival": true,
++  "current_deadline_utc": null,
+   "current_model": null,
+   "current_reasoning_effort": null,
+-  "current_deadline_utc": null,
+-  "paper_or_new_doi_or_tracker": false
++  "duplicate20001896": "Complete original source and nonempty imported prior remain exact. They share original0/5; no additional native acceptance, historical state, event, or independent research effort is inferred.",
++  "full_problem_solved": false,
++  "full_recursive_external_proof_certification_claimed": false,
++  "historical_PASS_is_archival": true,
++  "literal_target": "Every finite-volume hyperbolic3-manifold contains infinitely many distinct embedded once-around closed geodesic images. Powers, phase and reversal do not count as new images; pairwise disjointness is not required.",
++  "local_qualifications": "Complete PROOF_QUALIFICATIONS.md and GEOMETRIC_AUDIT.md, root operative read certificate and whole-current reconstruction remain authoritative. Explicit constant, interval, coordinate and fixed-point repairs are credited without rewriting the original SOURCE_STATUS.",
++  "new_project_theorem_claimed": false,
++  "no_original_verification_program_or_generated_original_program_output_claimed": true,
++  "novelty_claimed": false,
++  "original_ledger": "Exact DICT id2814,count0,substantive_attempts[]; original0/5,new0,audit0.",
++  "original_prior": "Literal null is preserved; raw absent prior and SQL empty-object fallback are explicitly qualified, never equated as retrieved evidence.",
++  "paper_or_new_doi_or_tracker": false,
++  "partial_valid": true,
++  "primary_problem_collection_reading": "K3 conventions and Problem3.16 operative pages; AIM5.6.1 and operative definitions/context, not whole books.",
++  "project_disposition": "UNSOLVED_SOURCE_HOLD_VALID_PARTIAL",
++  "root_optional_Han_Yang_direct_reading_claimed": false,
++  "schema": "pr40-bounded-scientific-scope/v1",
++  "source_first_independence": "Qualified by disclosed initial dated raw-background exposure; no claim of fully unexposed identity-only reading. Primary reconstruction was sealed before submitted/source-status/old-review/sibling/root/current interpretations. Root direct reading is post exposure and is separately recorded."
+ }
+--- original/DRAFT_FINAL_PLAN.json
++++ revision/DRAFT_FINAL_PLAN.json
+@@ -1,113 +1,114 @@
+ {
+-  "schema": "pr40-root-reviewed-final-plan/v1",
+-  "plan_status": "DRAFT_REQUIRES_GENUINE_ROOT_REVIEW",
+-  "pr": 40,
+-  "problem_id": 2814,
+-  "original_head": "163e34d566d6cbaee3a2a8fdc6394fbb9e49a539",
+-  "original_base": "c6975ca76f9f667f1250ba403d0e6da2aafe14d0",
+-  "reviewed_candidate_manifest_sha256": "8de92d903edaec7471f4ecc3df443b7e779732b0ee83cdec507c22025bfae25f",
++  "audit_turns": 0,
++  "current_deadline_utc": null,
++  "current_model": null,
+   "current_proof_dependencies_sha256": "b2c6d31f3e7230e132761322bef9d3b99e1b0f53521fbefc5a281e6682199a37",
+-  "whole_manifest_sha256": "90fbc21a211e29a3ba7a385c68479ff5effd864af6247f224d0b7843a447dabc",
+-  "preparation_manifest_sha256": null,
+-  "root_full_current_read_completed": false,
+-  "root_full_whole_read_completed": false,
+-  "independent_whole_current_pass": false,
+-  "mandatory_corrections": [],
+-  "science_reexecution_of_current": false,
++  "current_reasoning_effort": null,
++  "draft_prepared_utc": "2026-10-02T21:30:56.669783+00:00",
++  "full_problem_solved": false,
+   "historical_PASS_transferred": false,
+-  "full_problem_solved": false,
+-  "partial_valid": true,
+-  "novelty_claimed": false,
+-  "source_hold": true,
+-  "original_substantive_attempts": 0,
+-  "turn_limit": 5,
+-  "new_substantive_attempts": 0,
+-  "audit_turns": 0,
+-  "verification_attempts_added": 0,
+-  "current_model": null,
+-  "current_reasoning_effort": null,
+-  "current_deadline_utc": null,
+-  "paper_or_new_doi_or_tracker": false,
+   "immutable_evidence_references": [
+     {
++      "bytes": 37388,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/ROOT_ACTUAL_EVIDENCE_INSPECTION.json",
+-      "bytes": 37388,
+       "sha256": "b7ddba101a11683a1aa6a5a32eee8b1d4897fc1d2f66acf1bdc5898e26935b5e"
+     },
+     {
++      "bytes": 4182,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/ROOT_CURRENT_PACKET_INSPECTION.json",
+-      "bytes": 4182,
+       "sha256": "719b08f8227c3d2f522d7e6f083842280f53c2b6add550fde1d6a1c41a0937f2"
+     },
+     {
++      "bytes": 667,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/ROOT_CURRENT_SOURCE_REVIEW.json",
+-      "bytes": 667,
+       "sha256": "92358def2301f1b6a1929a069e0050b055a4d3562790764890d2cc118616b571"
+     },
+     {
++      "bytes": 8125,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/ROOT_PARTIAL_SCOPE_CERTIFICATE.md",
+-      "bytes": 8125,
+       "sha256": "c8f4ff0c373073e313de3c9ead16937117134d384560dbacfb499e1333561ac4"
+     },
+     {
++      "bytes": 2794,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/ROOT_PRIMARY_READ_LEDGER.json",
+-      "bytes": 2794,
+       "sha256": "0a2da801b4f214435be7fea1ec55b5d47124bc6bcadcafd8b16a9d76839a1bd6"
+     },
+     {
++      "bytes": 8306,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/ROOT_WHOLE_CURRENT_REVIEW.json",
+-      "bytes": 8306,
+       "sha256": "5ce4f40fff3b086f876d9f8fb9478704b4dc74760b3b3129209ae87b8fe49423"
+     },
+     {
++      "bytes": 52351,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/reviewed_candidate/CURRENT_PROOF_DEPENDENCIES.json",
+-      "bytes": 52351,
+       "sha256": "b2c6d31f3e7230e132761322bef9d3b99e1b0f53521fbefc5a281e6682199a37"
+     },
+     {
++      "bytes": 58541,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/reviewed_candidate/MANIFEST.json",
+-      "bytes": 58541,
+       "sha256": "8de92d903edaec7471f4ecc3df443b7e779732b0ee83cdec507c22025bfae25f"
+     },
+     {
++      "bytes": 4095,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/root_current_freeze_actual_capture/CAPTURE.json",
+-      "bytes": 4095,
+       "sha256": "0b0fd559bd5d339d8686f3f2ff42f9074b3dba173c787aa09f46d839ae75e70d"
+     },
+     {
++      "bytes": 4630,
+       "path": "draft_pr_publication_program_20260930/audits/pr40_2814/snapshot_manifest.json",
+-      "bytes": 4630,
+       "sha256": "781f7df1f6a2e3d8e5041b555097f1765a44c1e2080c034971fd802d65e332d5"
+     }
+   ],
++  "independent_whole_current_pass": false,
++  "mandatory_corrections": [],
++  "new_substantive_attempts": 0,
++  "novelty_claimed": false,
++  "original_base": "c6975ca76f9f667f1250ba403d0e6da2aafe14d0",
++  "original_head": "163e34d566d6cbaee3a2a8fdc6394fbb9e49a539",
++  "original_substantive_attempts": 0,
++  "paper_or_new_doi_or_tracker": false,
++  "partial_valid": true,
++  "plan_status": "DRAFT_REQUIRES_GENUINE_ROOT_REVIEW",
++  "pr": 40,
++  "preparation_manifest_sha256": null,
++  "problem_id": 2814,
++  "reviewed_candidate_manifest_sha256": "8de92d903edaec7471f4ecc3df443b7e779732b0ee83cdec507c22025bfae25f",
++  "root_full_current_read_completed": false,
++  "root_full_whole_read_completed": false,
++  "schema": "pr40-root-reviewed-final-plan/v1",
++  "science_reexecution_of_current": false,
+   "scientific_scope": {
+-    "schema": "pr40-bounded-scientific-scope/v1",
+-    "project_disposition": "UNSOLVED_SOURCE_HOLD_VALID_PARTIAL",
+-    "literal_target": "Every finite-volume hyperbolic3-manifold contains infinitely many distinct embedded once-around closed geodesic images. Powers, phase and reversal do not count as new images; pairwise disjointness is not required.",
++    "SQL_qualification": "Actual original read-only query used mode=ro. No immutable=1 or query_only assertion; full adjacent five-member correction and bindings preserved.",
+     "credited_existing_coverage": [
+       "closed orientable: Luo-Markovic operative theorem/proof with retained local repairs and standard inputs",
+       "closed nonorientable: direct dimension-three argument and retained qualifications; no invalid cover descent",
+-      "cusped orientable and nonorientable: published Kuhlmann operative full proof with retained lattice/point-selection qualifications"
++      "cusped orientable: published Kuhlmann2006 Theorem1.1 operative full proof with retained lattice/point-selection qualifications",
++      "cusped nonorientable: Xia2110.14376v1 Theorems1.2/4.1 direct cusp argument with retained qualifications; credited preprint, no cover-descent shortcut or peer-review claim"
+     ],
+-    "full_problem_solved": false,
+-    "partial_valid": true,
+-    "novelty_claimed": false,
+-    "new_project_theorem_claimed": false,
+-    "full_recursive_external_proof_certification_claimed": false,
+-    "local_qualifications": "Complete PROOF_QUALIFICATIONS.md and GEOMETRIC_AUDIT.md, root operative read certificate and whole-current reconstruction remain authoritative. Explicit constant, interval, coordinate and fixed-point repairs are credited without rewriting the original SOURCE_STATUS.",
+-    "source_first_independence": "Qualified by disclosed initial dated raw-background exposure; no claim of fully unexposed identity-only reading. Primary reconstruction was sealed before submitted/source-status/old-review/sibling/root/current interpretations. Root direct reading is post exposure and is separately recorded.",
+-    "root_optional_Han_Yang_direct_reading_claimed": false,
+-    "primary_problem_collection_reading": "K3 conventions and Problem3.16 operative pages; AIM5.6.1 and operative definitions/context, not whole books.",
+-    "duplicate20001896": "Complete original source and nonempty imported prior remain exact. They share original0/5; no additional native acceptance, historical state, event, or independent research effort is inferred.",
+-    "original_prior": "Literal null is preserved; raw absent prior and SQL empty-object fallback are explicitly qualified, never equated as retrieved evidence.",
+-    "original_ledger": "Exact DICT id2814,count0,substantive_attempts[]; original0/5,new0,audit0.",
+-    "SQL_qualification": "Actual original read-only query used mode=ro. No immutable=1 or query_only assertion; full adjacent five-member correction and bindings preserved.",
+-    "no_original_verification_program_or_generated_original_program_output_claimed": true,
+-    "historical_PASS_is_archival": true,
++    "current_deadline_utc": null,
+     "current_model": null,
+     "current_reasoning_effort": null,
+-    "current_deadline_utc": null,
+-    "paper_or_new_doi_or_tracker": false
++    "duplicate20001896": "Complete original source and nonempty imported prior remain exact. They share original0/5; no additional native acceptance, historical state, event, or independent research effort is inferred.",
++    "full_problem_solved": false,
++    "full_recursive_external_proof_certification_claimed": false,
++    "historical_PASS_is_archival": true,
++    "literal_target": "Every finite-volume hyperbolic3-manifold contains infinitely many distinct embedded once-around closed geodesic images. Powers, phase and reversal do not count as new images; pairwise disjointness is not required.",
++    "local_qualifications": "Complete PROOF_QUALIFICATIONS.md and GEOMETRIC_AUDIT.md, root operative read certificate and whole-current reconstruction remain authoritative. Explicit constant, interval, coordinate and fixed-point repairs are credited without rewriting the original SOURCE_STATUS.",
++    "new_project_theorem_claimed": false,
++    "no_original_verification_program_or_generated_original_program_output_claimed": true,
++    "novelty_claimed": false,
++    "original_ledger": "Exact DICT id2814,count0,substantive_attempts[]; original0/5,new0,audit0.",
++    "original_prior": "Literal null is preserved; raw absent prior and SQL empty-object fallback are explicitly qualified, never equated as retrieved evidence.",
++    "paper_or_new_doi_or_tracker": false,
++    "partial_valid": true,
++    "primary_problem_collection_reading": "K3 conventions and Problem3.16 operative pages; AIM5.6.1 and operative definitions/context, not whole books.",
++    "project_disposition": "UNSOLVED_SOURCE_HOLD_VALID_PARTIAL",
++    "root_optional_Han_Yang_direct_reading_claimed": false,
++    "schema": "pr40-bounded-scientific-scope/v1",
++    "source_first_independence": "Qualified by disclosed initial dated raw-background exposure; no claim of fully unexposed identity-only reading. Primary reconstruction was sealed before submitted/source-status/old-review/sibling/root/current interpretations. Root direct reading is post exposure and is separately recorded."
+   },
+-  "draft_prepared_utc": "2026-10-02T13:14:06.390697+00:00"
++  "source_hold": true,
++  "turn_limit": 5,
++  "verification_attempts_added": 0,
++  "whole_manifest_sha256": "90fbc21a211e29a3ba7a385c68479ff5effd864af6247f224d0b7843a447dabc"
+ }
+--- original/CONTRACT.md
++++ revision/CONTRACT.md
+@@ -1,12 +1,12 @@
+ # PR40 source-only acceptance contract
+ 
+-This NEW preparation family contains proposed sources, not an actual acceptance or an execution result. Every prepared helper remains unimported and unexecuted by its author. Original13/SOURCE_STATUS, primary97, geometry38, qualification5, current-preparation7, current239/dependencies216, whole25 and all existing captures remain closed and byte unchanged. Scientific discovery completion0%; administrative preparation completion100%; actual integration remains pending. Original0/5,new0,audit0. No external communication, shared/Git/native/remote mutation, paper, new DOI, tracker or release was performed here.
++This NEW adjacent source revision supersedes the original source-only preparation for future execution. It contains proposed sources, not an actual acceptance or an execution result. Original closed preparation12+self and closed static audit22+self remain exact and are checked on every immutable-basis reconciliation through REVISION_BINDINGS.json. The revision path is acceptance_execution_preparation_family/integration_source_revision; HERE.parents[1] is the PR40 audit anchor. Every prepared helper remains unimported and unexecuted by its author. Original13/SOURCE_STATUS, primary97, geometry38, qualification5, current-preparation7, current239/dependencies216, whole25 and all existing captures remain closed and byte unchanged. Scientific discovery completion0%; administrative preparation completion100%; actual integration remains pending. Original0/5,new0,audit0. No external communication, shared/Git/native/remote mutation, paper, new DOI, tracker or release was performed here.
+ 
+ `pr40_guards.py` is shared by all four entry points. JSON parsing rejects duplicate keys and nonfinite values. Required fields require presence and exact recursive type/value equality, including present-null runtime metadata and integer0 rather than boolFalse. Complete row inventories reject duplicate/noncanonical paths, bool sizes, conflicting sizes and symlinks. Recursive closure retains historical nested root-manifest names and negative fixtures. Only the originally declared root foreign/private trees are qualified; whole review foreign21 and the original foreign inventories are separately exactly checked. Current/canonical membership has zero exclusions.
+ 
+ The immutable basis verifies complete authored closed families through exact manifest references, all216 audit-relative dependencies, all13 original files both at root and in original_archive, exact source/prior/duplicate/zero ledger, root actual source/family captures with all42 retained members, the genuine current freeze with all four retained members, the full25-member whole assessment closure and21 foreign inventory, root current inspection, actual source inspection, root reading ledger/certificate and full whole-review record. `INPUT_BINDINGS.json` stores complete manifest references and complete actual-capture rows, rather than duplicating large manifest arrays. Hash binding of retained raw streams establishes retention, not independent reexecution or additional theorem reading.
+ 
+-The exact scientific scope is `SCIENTIFIC_SCOPE.json`. SOURCE_STATUS stays unchanged. Existing theorem coverage, full retained local repairs and standard-input qualifications are credited. The project remains UNSOLVED/source hold with no novel theorem or complete recursive external-proof certification. Initial raw-background exposure qualifies whole-review independence; root reading is post exposure. Optional Han-Yang operative proof was not directly read by root. Original literal null prior stays distinct from the raw absent key and SQL empty-object fallback; the complete imported duplicate prior stays present with the same zero budget. Actual original SQL mode is ro only; the entire adjacent qualification is bound. There was no original verification.py or original generated-program-output artifact.
++The exact scientific scope is `SCIENTIFIC_SCOPE.json`. Published Kuhlmann2006 Theorem1.1 covers orientable cusps; Xia2110.14376v1 Theorems1.2/4.1 supplies the direct nonorientable cusped scope as a credited preprint. Both matching complete scope copies carry this distinction. SOURCE_STATUS stays unchanged. Existing theorem coverage, full retained local repairs and standard-input qualifications are credited. The project remains UNSOLVED/source hold with no novel theorem or complete recursive external-proof certification. Initial raw-background exposure qualifies whole-review independence; root reading is post exposure. Optional Han-Yang operative proof was not directly read by root. Original literal null prior stays distinct from the raw absent key and SQL empty-object fallback; the complete imported duplicate prior stays present with the same zero budget. Actual original SQL mode is ro only; the entire adjacent qualification is bound. There was no original verification.py or original generated-program-output artifact.
+ 
+ ## Root final plan and actual reconciliation
+ 
+@@ -14,15 +14,15 @@
+ 
+ Root invokes `seal_final_evidence.py` with explicit `--execute`, `--plan REPOSITORY_RELATIVE_PATH`, `--plan-sha256`, `--preparation-manifest-sha256` and `--output NEW_SINGLE_AUDIT_DIRECTORY_NAME`. It only reconciles full immutable bytes/types/source scope before and after. It imports no scientific helper, runs no research code/SQL/Git/network and writes only its new adjacent three-file final directory: ROOT_REVIEWED_SCOPE.json, ROOT_FINAL_RECONCILIATION.json, and self-excluding FINAL_MANIFEST.json. Output files become0444. A failure/partial directory must be retained and inspected, never overwritten or automatically retried.
+ 
+-Root genuinely launches/captures this sealer. Capture is a NEW adjacent exact four-file directory containing CAPTURE.json (or another explicit capture filename), prelaunch_source.py identical to the sealed sealer, and full stdout/stderr regular files. Capture fields: actual_execution true; completed true; integerpositive pid; integer exit_code0; status PASS; source_sha256; argv array; cwd exactly the absolute PR40 audit path; nonempty started_utc/finished_utc; stdout/stderr typed path/size-or-bytes/SHA bindings. Exact argv includes the absolute sealer path and unique --execute/--plan/--plan-sha256/--preparation-manifest-sha256/--output values. Child stdout is the complete JSON output with PASS and actual final receipt/manifest hashes. Gates require this genuine capture and its full streams/source closure, not a synthesized future PASS.
++Root genuinely launches/captures this sealer. Capture is a NEW adjacent exact four-file directory containing literal CAPTURE.json, literal prelaunch_source.py identical to the sealed sealer, and two declared root stream basenames for complete stdout/stderr. Both names must be distinct from each other and disjoint from the capture/source reserved names; no nested stream paths are allowed. The capture directory is a NEW direct child of the PR40 audit folder and its exact recursive membership is four regular files, without extra directories. Capture fields: actual_execution true; completed true; integerpositive pid; integer exit_code0; status PASS; source_sha256; argv array; cwd exactly the absolute PR40 audit path; parseable timezone-aware UTC started_utc/finished_utc with start at or before finish and the final reconciliation receipt UTC inside that interval; stdout/stderr typed path/size-or-bytes/SHA bindings. Exact argv includes the absolute sealer path and unique --execute/--plan/--plan-sha256/--preparation-manifest-sha256/--output values. Child stdout is the complete JSON output with PASS and actual final receipt/manifest hashes. Gates require this genuine capture and its full streams/source closure, not a synthesized future PASS.
+ 
+ ## Fresh main rebase and integration
+ 
+-Every integration/mirror/post invocation requires `--execute`, `--preparation-manifest-sha256` and six pairs of explicit repository-relative path/SHA arguments: --final-plan, --final-receipt, --final-manifest, --reconciliation-capture, --previous-mirror, --fresh-preimage. The previous proposal must be the actually completed PR39 `state_mirror_bindings.json`; its unknown future SHA is never guessed. The fresh root-authored preimage must be new adjacent PR40 evidence: approved_by_root true, nonempty dated reason, actual current_head40hex and13 unique full typed path/size/SHA rows covering all native files and inventory listed by NATIVE. Root independently supplies actual HEAD and the full fresh queue/native/inventory bytes. Frozen c7da preimages are not rewritten and are not claimed live.
++Every integration/mirror/post invocation requires `--execute`, `--preparation-manifest-sha256` and six pairs of explicit repository-relative path/SHA arguments: --final-plan, --final-receipt, --final-manifest, --reconciliation-capture, --previous-mirror, --fresh-preimage. The previous proposal must be the actually completed PR39 `state_mirror_bindings.json`; its unknown future SHA is never guessed. The fresh root-authored preimage must be new adjacent PR40 evidence: approved_by_root true, actual created_utc as an aware UTC ISO clock no later than the invocation clock, reason_date_utc equal to created_utc's YYYY-MM-DD UTC date, and a substantive stripped reason of at least40 characters and six whitespace-separated words. This lexical guard rejects a token such as yes; root's explicit approved review and pin provide the substantive justification, rather than claiming an automated semantic proof. Include actual current_head40hex and13 unique full typed path/size/SHA rows covering all native files and inventory listed by NATIVE. The fresh HEAD is checked against actual current main at preflight, separately from the older dated replay/freeze HEAD; routine checkpoint publication does not rewrite or require equality to that older head. Root independently supplies actual HEAD and the full fresh queue/native/inventory bytes. Frozen c7da preimages are not rewritten and are not claimed live.
+ 
+ Run preflight on main before PR40 merge, after PR39 acceptance/checkpoint, with primary and duplicate native paths/state absent. Expect native30targets/37turns and29 completed primaries. Fresh13 must exactly match the live files and HEAD blobs; index must be clean; only the two exact already tracked foreign logs may be dirty. Their working bytes and exact HEAD/index modes/blob IDs are captured and preserved. Root then makes PR40 ready with exact accepted_pr_body.md, merges exact original head with no-ff/no-commit, and independently inspects/pins the entire automatic/conflicted queue bytes. Overlay additionally requires `--merge-queue-preimage-sha256`; only the queue can conflict, with exact original/main conflict stages. It preserves all13 original canonical files, overlays reviewed239, archives the four pending administrative files and old current MANIFEST, writes separate acceptance scope, and replaces only named Status/Turns/Findings in the unique12-column primary row. Chat/DOI, all unselected queue bytes and all duplicate rows stay unchanged. Turns remains0/5.
+ 
+-Root stages only exact canonical/queue paths and commits. Prepush verifies actual two-parent [freshmain, originalhead] merge, all nonexecutable regular canonical tree bytes, entire queue, unchanged native/inventory preimages, foreign log modes/blobs, and a whole-tree changed-path whitelist. Root performs the actual main push. Finalize requires fresh actual GitHub MERGED/nondraft/original-head/date/exact body and actual prepush merge commit/tree. It archives the old pending receipt before replacing the literal lowercase acceptance.json, updates only current administration, creates full canonical self-excluding manifest and audit receipt, and marks only PR40 complete in inventory. Original13/SOURCE_STATUS/code/source/prior/duplicate/zero ledger and current239 remain byte exact. All canonical files become0444. The committed merge tree is the reviewed overlay; later final receipts are explicitly post-merge administrative artifacts for root's subsequent checkpoint.
++Root stages only exact canonical/queue paths and commits. Prepush verifies actual two-parent [freshmain, originalhead] merge, all nonexecutable regular canonical tree bytes, entire queue, unchanged native/inventory preimages, foreign log modes/blobs, and a whole-tree changed-path whitelist. Root performs the actual main push. Finalize requires fresh actual GitHub MERGED/nondraft/original-head/date/exact body and actual prepush merge commit/tree. It archives the old pending receipt before replacing the literal lowercase acceptance.json, updates only current administration, creates full canonical self-excluding manifest and audit receipt, and marks only PR40 complete in inventory, with completed_count30 and current_pr41 for the next target. Mirror/post additionally require those exact typed values. Original13/SOURCE_STATUS/code/source/prior/duplicate/zero ledger and current239 remain byte exact. All canonical files become0444. The committed merge tree is the reviewed overlay; later final receipts are explicitly post-merge administrative artifacts for root's subsequent checkpoint.
+ 
+ ## Present native mirror and final verification
+ 
+@@ -31,3 +31,7 @@
+ Expected poststate31targets/37turns/30primary/one preserved prior duplicate; every30 prior state objects is identical and the complete history byte prefix is preserved. An existing cooperative advisory lock guards the history-first then state write. A durable PREPARED intent retains complete before bytes and planned hashes; only known exact outputs are written, then COMPLETED is recorded. Any interruption/unknown intent requires manual inspection. Noncooperating writers remain outside this lock protocol.
+ 
+ Post verifies all final typed acceptance/science/null/budget fields, actual remote merge/body/date/tree/prepush, exact canonical closure and old pending bytes, current239/all216deps, full original source13/zero ledger, named queue edit, unchanged unselected inventory and native13, preserved full history prefix/all30 prior states, exact one event, no duplicate acceptance and a fresh native mirror byte-preserving no-op. It writes only a new adjacent post verification receipt. Root owns checkpoint/commit/push and broader project log publication separately.
++
++## Exclusive evidence publication
++
++For exclusive=True, every complete temp is opened exclusively, fully written, flushed and fsynced before atomic os.link(tmp,target,follow_symlinks=False) publication in the same directory. An intervening target causes atomic failure; the existing target and completed temp remain for inspection. The temp is unlinked only after successful publication, then the directory is fsynced. The preliminary absence check is an early diagnostic, not the atomic guarantee. Nonexclusive administration keeps explicit os.replace semantics. Partial final directories and failed temps are retained; no automatic cleanup or retry is claimed. None of the prepared sources was imported or executed in producing this source revision.

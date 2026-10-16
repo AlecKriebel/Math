@@ -1,0 +1,11 @@
+# Independent whole-package review 02
+
+2026-10-14T04:32:00.596432+00:00 — 2% complete. Began fresh review; read project instructions; read CURRENT_TEMPLATE file map only, no prior review opinion. All review artifacts confined here; no Git or remote mutation.
+
+2026-10-14T04:33:14.487903+00:00 — 25% complete. Entire manuscript and relevant primary statements independently read; initial assessment and read-depth ledger SHA-sealed read-only before any prior opinion. No mathematical defect detected at this stage; archive, executions, PDF, metadata and native consistency remain.
+
+2026-10-14T04:37:44.802307+00:00 — 75% complete. Actual four-page PDF visually inspected in full. Exact packet/native/ZIP hashes and all179 archive entries verified; all17 original native files byte-preserved. Eight fresh baseline runs and22 negative mutations behaved correctly under ordinary/optimized modes using reused existing interpreters. Independently counted120/360/50 distinct polynomial cases. Full current native and metadata prose reviewed; historical mathematical/priority reports read only after initial independence seal. No mandatory defect found. Final exclusions/field-by-field metadata/read-depth seal remain.
+
+2026-10-14T04:42:25.003991+00:00 — 95% complete. Final adversarial cross-source check found R02-F1: current supplement and native exact README misname Mizutani–Morita–Tsuboi1981 as Mather–Moussu–Tsuboi. Publisher metadata independently confirms correct three authors; archived addendum already correct. Required small global bibliographic repair and regenerated hashes; theorem and30 fresh execution outcomes unaffected. Parent informed; package not edited.
+
+2026-10-14T04:45:44.345107+00:00 — 100% of assigned whole-package review completed. Final verdict REPAIR_REQUIRED for original v1/pending01, soleP2 R02-F1 source-gap author misidentification. Mathematical proof passes with cited accepted classical inputs;8fresh baselines and22intended RuntimeError negative controls verified. Root prepared correctedv2/pending02; exact old pointer recovered and final v1/pending01 rehash confirms no drift. Successor not reviewed here. Final own public-safe allowlist and SHA seal frozen0444. No package edits or outside-person communication.

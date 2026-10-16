@@ -1,6 +1,6 @@
-# The center-pedal area product for the outer polygon, k303,b
+# The outer center-pedal area product, k303,b
 
-**5100015 / AMR-050-0015. Full candidate, author turn1; separate independent review pending.** This is an AI-assisted proof candidate with credited classical inputs; historical novelty is not certified.
+Current mathematical presentation, 16 October 2026. Full strict-ellipse theorem; classical and exact contemporary work credited. No novelty, first-proof or historical-independence claim.
 
 ## 1. Exact claim and conventions
 
@@ -170,20 +170,18 @@ where the phase-independent coefficient is explicitly
 
 All displayed real denominators are nonzero under(2). Equations(20)–(21) prove the full required constancy, including the odd-period part not present in the parallel k303,a target.
 
-## 7. Boundaries, attribution and verification scope
+## 7. Current scope, credits and review status
 
-- Primitive stars are included because the only arithmetic requirement is gcd(tau,N)=1 with0<tau<N/2. Neither a spatial re-sorting of vertices nor convex-polygon area is used.
-- A repeated traversal of a primitive orbit multiplies both signed areas by its repetition count, hence the product by its square. Moreover, if a listed length N is not divisible by4, its primitive divisor N_0 cannot be divisible by4 either. Thus repeated orbits satisfying the literal listed-period condition follow from the primitive theorem by this scaling; no parity gap is hidden.
-- N=2 is impossible with a finite outer ellipse and strictly interior nondegenerate elliptical caustic. The two-bounce chord would pass through O. The source assumes a>b; the separate circular case consists of rigid rotations of fixed-step regular stars and follows directly.
-- The proof is specifically for M=O. No arbitrary-M assertion or the separate k303,a proof is needed. Hyperbolic or degenerate caustics, clamped projection to finite segments, and unsigned areas of filled star lobes are different questions.
-- Stachel's canonical theorem, classical Jacobi addition/period facts and elementary conic polarity are credited inputs. The dn-trace lemma is proved here as a classical elliptic-function argument, not claimed as a new special-function identity.
-- The complete mechanism was saved in TURN1_DERIVATION_CHECKPOINT.md before this author read the parallel k203,a candidate during an assigned review. That candidate independently uses the same universal dn-area identity and a different two-pole proportionality argument. This overlap is disclosed; neither it nor the parallel k303,a candidate supplies an unproved step here. A reviewer uninvolved in this author derivation is required before promotion.
-- A bounded exact-target/source search did not locate a published full k303,b proof. This is not a guarantee of historical novelty. Exact algebra and finite/high-precision controls support the written analytic proof and must not be represented as proving all phases by numerical sampling.
+Reversal changes both signed areas' signs. A fixed d-fold traversal multiplies both areas by d and their product by d²; a listed period not divisible by four has primitive divisor not divisible by four. Nondegenerate one/two-bounce strict-ellipse orbits are impossible. Circles follow separately by rigid rotation of fixed-step regular stars. Hyperbolic, focal, collapsed, arbitrary-reference-point and unsigned filled-lobe assertions are not included.
 
-## Primary references
+The odd trace lemma is classical: Khare-Lakshminarayan-Sukhatme, arXiv:math-ph/0207019v1 (2002), AppendixA Eq86, product dn=C_q U_q with C_q=product cs²(2Kj/q), gives U_q(z)U_q(z+K)=(k')^q/C_q². Generalized Landen formulas of Khare-Sukhatme (2003/2004) provide another old route. The complete explicit constant is coefficient(21) times r²(k')^q/C_q². The analytic proof above is a reproof of prior elliptic-function facts, not a new identity or method.
 
-1. Reznik, Garcia, Koiller, *Eighty New Invariants of N-Periodics in the Elliptic Billiard*, arXiv:2004.12497v11, Table4 p.6 and Sections2/3.4: https://arxiv.org/pdf/2004.12497v11
-2. Same authors, *Fifty New Invariants of N-Periodics in the Elliptic Billiard*, Arnold Math.J.7(2021),341–355, Table4 p.346: https://armj.math.stonybrook.edu/pdf-Springer-final/021-0174.pdf
-3. H. Stachel, *On the motion of billiards in ellipses*, European J.Math.8(2022),1602–1622, Theorem4.3/(4.9), p.1614: https://doi.org/10.1007/s40879-021-00524-2 and https://link.springer.com/content/pdf/10.1007/s40879-021-00524-2.pdf
-4. NIST DLMF22.4, especially Tables22.4.1–22.4.3 (periods, simple poles, quarter shifts): https://dlmf.nist.gov/22.4
-5. NIST DLMF22.8.1–22.8.3 (addition theorems): https://dlmf.nist.gov/22.8
+Akopyan-Schwartz-Tabachnikov, arXiv:2001.02934v2, Theorem4 proof and Lemma3.1/Remark3.2, already give the unit-velocity/center-foot mechanism and skew hodograph; Bialy-Tabachnikov, arXiv:2001.08469v2, Theorem4.1, gives the actual-foot telescope. This proof makes the same-caustic canonical phase and signed-area normalization explicit. Stachel's canonical theorem, Jacobi identities, conic polarity, and the established complex Poncelet/pole-cancellation method are credited. Chavez-Caliz's Theorem6 concerns the different original/outer area product; an explicit auxiliary-family bridge to trace constancy is in the supplement.
+
+A. Ferudun, *Outer-Pedal Area Products in Elliptic Billiards*, v1.1, DOI10.5281/zenodo.23088516, Theorem2/Section6, proves the exact complete target, including odd and2mod4 lengths and signed repetitions. v1.0 (DOI10.5281/zenodo.23087221) only gives the primitive even arbitrary-point result and hence its centered even subset. The bounded priority audit authenticates earlier GitHub server receipt of this unchanged candidate tree than either Zenodo record, but does not establish historical public availability, exclude earlier website posting, or certify independent non-derivation. Historical ordering and novelty remain undetermined. No exclusive/currently-open/first theorem claim is made.
+
+Original conjecture: Reznik-Garcia-Koiller arXiv2004.12497 (2020; v11Table4p6), published *Fifty New Invariants*, AMJ7(2021),341-355, Table4p346, DOI10.1007/s40598-021-00174-y. The2021 source-year is the journal edition. Source Section2 specifies signed areas and Section3.4 the outer polygon.
+
+Three new mathematical/source families, two priority families, exact original-checker replays and actual Cartesian physical controls have been checked. Finite high-precision diagnostics are not universal or interval proofs. Extensive AI use supported discovery, derivation, source investigation, programming, writing and internal adversarial review. This is unrefereed; no independent human peer review or formal proof verification is claimed. Required whole-package reviews and actual publication outcomes are recorded separately, not self-certified by this dated preparation snapshot.
+
+All23 original files and dated inherited reviews remain byte-exact under history/original_submission_20261016/. Current presentation manifests bind current files; historical manifests and historical receipts bind that archive, not this edited proof. The original author budget remains one of five substantive turns.

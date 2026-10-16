@@ -1,0 +1,7 @@
+# Renewal/probability audit research log
+
+2026-10-04T14:13:47.878267+00:00 — Source-only first assessment frozen. Candidate unread; mathematical verification 0%; source-stage workflow 100%; overall assigned workflow 10%. Original author turn count preserved at 1/5. Source authentication limited to supplied imported record and indexed primary text reported by root; primary binary pending. First call failed because assigned directory was absent; exact body/arguments/streams retained in FAILED_EXECUTIONS.jsonl. Awaiting explicit candidate release.
+
+2026-10-04T14:16:41.343679+00:00 — Explicit root candidate release received; read only TURN_1.md. First candidate assessment/attack table frozen. Probability verification20%; overall assigned workflow30%; no rejection yet/no acceptance. Awaiting separate code/review release. Source held files unchanged; author count1/5.
+
+2026-10-04T14:26:09.699682+00:00 — Probability scoped closure PASS: independent count-of-failures proof gives P(D_(a_n/2) != a_n)<=p_n+2^(-4^(n-1)); candidate Tonelli/Markov proof independently verified; all law, endpoint, tail and truncated-mean requirements proved. Fresh263 exact assertions/12 law-time cases; author7852 and inherited646 replays byte-identical. Math100%/assigned workflow100%; original author1/5. Source binary and historical priority remain outside this scoped clearance. Single complete current receipt retained, only initial process-launch failure recorded. No other fresh-family/root scientific result read. Held source/candidate assessments unchanged. Final evidence frozen.

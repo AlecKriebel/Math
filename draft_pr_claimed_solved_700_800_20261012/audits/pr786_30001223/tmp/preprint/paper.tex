@@ -1,0 +1,279 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\soc}{\operatorname{soc}}
+\newcommand{\topmod}{\operatorname{top}}
+\newcommand{\Span}{\operatorname{span}}
+\title{Simple Young modules with nonprojective\\ polynomial injective hulls}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID:
+\href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{16 October 2026\quad (version 1.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+For every odd prime \(p\), the Young module labelled by
+\(\lambda=(2p-2,1)\) in characteristic \(p\) is simple, whereas its corresponding
+polynomial injective hull \(I_n(\lambda)\) is nonprojective for every \(n\ge2\).
+At parameter \(q=1\), this gives a negative answer to the unrestricted
+formulation of Miyachi's Conjecture~7 in the 2009 Oberwolfach report.
+The proof combines classical representation theory with a labelled
+rank-truncation argument. We include explicit proofs of the local calculations
+and reproducible supporting checks. Historical priority remains unresolved;
+no firstness claim is made.
+\end{abstract}
+
+\section{The printed question}
+Let \(k\) be algebraically closed. In degree \(r\), write \(I_n(\nu)\) for the
+injective hull of the simple polynomial \(\GL_n(k)\)-module \(L_n(\nu)\),
+equivalently its injective hull for the Schur algebra \(S(n,r)\).
+At stable rank \(N\ge r\), the Schur functor \(\mathsf F\) defines
+\(Y^\nu=\mathsf F I_N(\nu)\), the Young module in the convention of
+\cite[pp.~945--946]{M}. Here the parameter is \(q=1\), so the Hecke algebra is
+\(k\mathfrak S_r\); in characteristic \(p\), its quantum characteristic is \(p\).
+
+The first proposal in \cite[Conjecture~7, p.~946]{M} asks whether simplicity of
+\(\topmod(Y^\nu)\) is equivalent to projectivity of \(I_n(\nu)\) for
+\emph{some} \(n\ge\ell(\nu)\). The index-set criterion involving
+\(\Lambda_n^i\) is presented there as a stronger proposal.
+The characteristic-zero assumption in the subsequent subsection~0.5 concerns
+a different method for simple Specht modules; it is not attached to the
+displayed Conjecture~7.
+
+\begin{theorem}\label{main}
+Let \(p\) be any odd prime and let \(k\) be algebraically closed of
+characteristic \(p\). Put \(r=2p-1\) and \(\lambda=(2p-2,1)\).
+Then \(Y^\lambda\) is simple of dimension \(2p-2\), but \(I_n(\lambda)\)
+is not projective for any integer \(n\ge2\).
+\end{theorem}
+
+Thus \(p=3,\lambda=(4,1)\) already refutes the broad printed proposal.
+The theorem does not address a characteristic-zero variant with a nontrivial
+root-of-unity parameter, nor the separate De Visscher--Donkin classification
+of projective-injective polynomial modules. In particular, being row
+\(p\)-regular is not being \(p\)-restricted (column \(p\)-regular), and no
+projectivity inference from row regularity is used.
+
+\section{Established structural inputs}
+We use the following standard facts from \cite[Sections~2.2--2.4 and~3]{DD}.
+Page locators here refer to the manuscript dated 12 January 2005
+(printed pp.~7--12), whose repository cover is not counted.
+Costandard reciprocity gives
+\begin{equation}\label{reciprocity}
+ (I_n(\nu):\nabla_n(\mu))=[\nabla_n(\mu):L_n(\nu)].
+\end{equation}
+A nonzero right side requires \(\mu\) to dominate \(\nu\).
+An indecomposable polynomial injective is projective only if it is
+contravariantly self-dual and an indecomposable tilting module.
+Conversely, an injective tilting module is projective.
+Contravariant duality fixes simple labels.
+
+For \(N\ge n\), exact rank truncation takes \(I_N(\nu)\) to \(I_n(\nu)\)
+and \(T_N(\mu)\) to \(T_n(\mu)\) when the respective labels have at most
+\(n\) parts. We apply these labelled statements, not preservation of
+projectivity for arbitrary modules under an idempotent functor.
+Finally, \(\nabla_n(r)=\Sym^r(k^n)\) and
+\(\nabla_2(a,b)=\det^b\otimes\Sym^{a-b}(k^2)\).
+The tensor products of symmetric powers are injective, with injective
+multiplicities given by the corresponding weight multiplicities of simples
+\cite[Section~3, printed p.~12]{DD}.
+None of these inputs assumes either conjecture. The stable Schur conventions
+also appear in \cite[printed p.~3]{CP}.
+
+\section{The Young module and its label}
+Let \(V=k^r\) be the natural permutation module and put
+\(A=\{(a_1,\ldots,a_r):\sum_i a_i=0\}\).
+Since \(p\nmid r\), the constant line splits off and \(V=k\oplus A\).
+For a nonzero submodule \(U\subseteq A\), choose \(0\ne v\in U\).
+Its coordinates cannot all agree. If \(v_i\ne v_j\), then
+\[
+ v-(ij)v=(v_i-v_j)(e_i-e_j)\in U.
+\]
+Permuting the coordinates supplies all differences \(e_i-e_j\), which span
+\(A\). Hence \(A\) is simple of dimension \(r-1\).
+This is the classical natural permutation/augmentation calculation.
+
+For clarity, we check the label in the source's \(\mathsf F I\) convention.
+Take \(N\ge r\), \(E_N=k^N\) and
+\(H=\Sym^{r-1}E_N\otimes E_N\).
+Its injective multiplicities are the \((r-1,1,0,\ldots,0)\)-weight
+multiplicities of simples. Dominance leaves only labels \((r)\) and
+\(\lambda\), each with multiplicity one. For \(\lambda\) this is the highest
+weight. For \(L_N(r)\), the weight occurs in the simple socle \(L_N(r)\) of
+\(\nabla_N(r)=\Sym^r E_N\), which contains \(x_1^r\): the coefficient of \(t\) in
+\((x_1+t x_2)^r\) is \(r x_1^{r-1}x_2\ne0\).
+The ambient weight space is one-dimensional.
+Thus
+\[
+ H\cong I_N(r)\oplus I_N(\lambda).
+\]
+Reciprocity at the maximal label gives \(I_N(r)=\Sym^r E_N\).
+Multiplication \(m:H\to\Sym^r E_N\) splits: the polarization map
+\[
+ \delta(f)=\sum_i \frac{\partial f}{\partial x_i}\otimes x_i
+ \quad\text{satisfies}\quad m\delta=r\,\mathrm{id}.
+\]
+Cancellation of indecomposable summands yields \(\ker m\cong I_N(\lambda)\).
+On multilinear weight spaces, \(H\) has basis
+\((\prod_{j\ne i}x_j)\otimes x_i\) for \(1\le i\le r\), and \(m\) is
+coordinate summation onto \(k\prod_jx_j\). Exactness of \(\mathsf F\)
+therefore gives \(\mathsf F I_N(\lambda)\cong A\), as required.
+The stable Schur functor is never applied at rank \(2<r\).
+
+\section{The rank-two obstruction}
+Write \(E=k^2\), with basis \(x,y\). In a fixed symmetric power,
+the monomials \(v_i=x^{m-i}y^i\) have distinct algebraic-torus weights.
+An invariant subspace contains individual weight components.
+It also contains every coefficient in \(t\) of a unipotent translate:
+Vandermonde inversion over the infinite field \(k\) extracts those
+coefficients from evaluations. This is a statement about rational
+\(\GL_2(k)\)-modules, not just the finite group \(\GL_2(\mathbb F_p)\).
+
+\begin{lemma}\label{local}
+The module \(\Sym^{2p-1}E\) is simple. The module
+\(B=\Sym^{2p-3}E\) is a nonsplit extension of two distinct simple modules:
+its socle has highest weight \((2p-3,0)\) and dimension \(2p-4\);
+its top has highest weight \((p-1,p-2)\) and dimension \(2\).
+\end{lemma}
+\begin{proof}
+From any monomial, the substitution \(y\mapsto y+t x\) extracts the
+highest monomial. Translating that highest monomial in the opposite
+direction extracts the binomial-coefficient multiples of all monomials.
+For degree \(2p-1\), every coefficient is nonzero, since in characteristic \(p\)
+\[
+ (1+t)^{2p-1}=(1+t^p)(1+t)^{p-1},
+\]
+and the coefficients of \((1+t)^{p-1}\) are alternating units.
+This proves the first assertion.
+
+For \(m=2p-3\), let
+\[
+ W=\Span\{v_i:0\le i\le p-3\text{ or }p\le i\le2p-3\}\subset B.
+\]
+It is the image of the injective equivariant multiplication
+\(E^{(1)}\otimes\Sym^{p-3}E\to B\), where \(E^{(1)}\) denotes Frobenius
+twist, via \(x^{(1)}\otimes f\mapsto x^p f\) and
+\(y^{(1)}\otimes f\mapsto y^p f\). The two monomial ranges are disjoint. The same highest-monomial
+argument, now using
+\[
+ (1+t)^{2p-3}=(1+t^p)(1+t)^{p-3},
+\]
+shows that every nonzero submodule of \(W\) contains all its displayed
+monomials. Hence \(W\) is simple with the stated highest weight and dimension.
+
+The quotient has the two weight lines represented by \(v_{p-2},v_{p-1}\).
+The opposite unipotents connect them with coefficient \(p-1\ne0\), so the
+quotient is simple of highest weight \((p-1,p-2)\).
+Any invariant complement to \(W\) must be a sum of torus weight spaces,
+hence must equal \(\Span(v_{p-2},v_{p-1})\).
+But the translate of \(v_{p-2}\) under \(y\mapsto y+t x\) has the
+nonzero coefficient \(x^{2p-3}\in W\) at \(t^{p-2}\).
+There is no complement. A nonsplit extension of two distinct simples
+has precisely the asserted socle and top.
+\end{proof}
+
+These rank-two structures are established representation theory;
+for published formulas yielding them by duality and determinant twist, see
+\cite[Proposition~3.1, classical analogue, and Theorem~3.3]{EL}.
+The explicit proof makes their use here checkable.
+
+Only \((r)\) strictly dominates \(\lambda=(r-1,1)\).
+By Lemma~\ref{local}, \(\nabla_2(r)=\Sym^r E\) is simple and does not
+contain \(L_2(\lambda)\). Equation~\eqref{reciprocity} therefore gives
+\[
+ I_2(\lambda)=\nabla_2(\lambda)=\det\otimes B.
+\]
+Its socle and top are \(L_2(2p-2,1)\) and \(L_2(p,p-1)\), respectively.
+Their highest weights differ, including when \(p=3\) and both dimensions
+are \(2\). Thus \(I_2(\lambda)\) is not contravariantly self-dual and
+is not projective.
+
+\section{Excluding every permitted rank}
+Suppose \(I_N(\lambda)\) were projective for some \(N\ge2\).
+It would be \(T_N(\mu)\) for a partition \(\mu\) of \(r\).
+Since \(L_N(\lambda)\) is a composition factor, \(\mu\) dominates \(\lambda\).
+Consequently \(\mu=(r)\) or \(\lambda\); both labels have at most two parts.
+Labelled rank truncation gives
+\[
+ I_2(\lambda)\cong T_2(\mu).
+\]
+This would be an injective tilting module, hence projective, contradicting
+the rank-two calculation. This proves Theorem~\ref{main} for every \(N\ge2\).
+
+\begin{corollary}
+The stronger simple-top/\(\Lambda_n^i\) criterion in the same printed
+Conjecture~7 is false in this setting.
+\end{corollary}
+\begin{proof}
+Membership in the constructed \(\Lambda_n^i\) family is already a sufficient
+condition for \(I_n(\lambda)\) to be projective \cite{DD,M}.
+Theorem~\ref{main} excludes membership at every allowed rank.
+No completeness assertion about that family is needed.
+\end{proof}
+
+\section{Verification, attribution and status}
+The companion archive preserves the frozen candidate, independent
+mathematical and priority reviews, source identities and reproducible exact
+checks. Formal polynomial-coefficient calculations in characteristics
+\(3\) and \(5\) verify the local constituents and nonsplitting.
+A separate tensor-orbit computation constructs all \(56\) basis elements
+of \(S(2,5)\), checks its \(3136\) products and independently finds
+\(\dim P_2(3,2)=6\), whereas \(\dim I_2(4,1)=4\).
+That optional computation uses NumPy; the core checks use Python's standard
+library. Finite computations support the argument, and do not prove its
+all-prime or all-rank assertions.
+
+The Young/augmentation calculation, rank-two structure and Schur-algebra
+inputs are classical. The note's purpose is their explicit assembly into
+a counterexample to the broad printed 2009 proposal.
+An extensive but bounded literature audit on 16 October 2026 did not
+verify an earlier complete bridge refutation. Priority remains unresolved:
+some older two-row papers, tables and later endomorphism-algebra papers
+were not available in full, and citation coverage is incomplete.
+No claim of firstness, certified novelty, or current worldwide open status
+is made. The source archive records exact read scopes and gaps.
+
+AI tools were used extensively in developing and checking the argument,
+literature investigation, computations, drafting, reproduction and
+adversarial review. This is an unrefereed preprint without external human
+peer review or proof-assistant certification. The note and authored
+companion material are licensed under CC BY 4.0.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{M}
+H.~Miyachi,
+Dipper's hypothesis and self-injective endomorphism rings,
+in \emph{Representations of Finite Groups},
+Oberwolfach Reports \textbf{6} (2009), report~17, pp.~944--947.
+\href{https://doi.org/10.4171/OWR/2009/17}{doi:10.4171/OWR/2009/17}.
+
+\bibitem{DD}
+M.~De Visscher and S.~Donkin,
+On projective and injective polynomial modules,
+\emph{Math. Z.} \textbf{251} (2005), 333--358.
+\href{https://doi.org/10.1007/s00209-005-0805-x}{doi:10.1007/s00209-005-0805-x}.
+Specific manuscript locators refer to the version dated 12 January 2005:
+\url{https://openaccess.city.ac.uk/id/eprint/969/1/prinjjan12.pdf}.
+
+\bibitem{CP}
+A.~Cox and A.~Parker,
+Homomorphisms and higher extensions for Schur algebras and symmetric groups,
+\emph{J. Algebra Appl.} \textbf{4} (2005), 645--670.
+\href{https://doi.org/10.1142/S0219498805001460}{doi:10.1142/S0219498805001460}.
+The cited printed p.~3 is in the institutional accepted version:
+\url{https://openaccess.city.ac.uk/id/eprint/373/2/coxparker2final.pdf}.
+
+\bibitem{EL}
+K.~Erdmann and S.~Law,
+Torsion pairs and Ringel duality for Schur algebras,
+\href{https://arxiv.org/abs/2104.05317v1}{arXiv:2104.05317v1} (12 April 2021),
+pp.~5--6.
+\end{thebibliography}
+\end{document}

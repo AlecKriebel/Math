@@ -1,0 +1,1043 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..99702ddab 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -73,7 +73,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 62 | 9900007 / AMR-098-0007 | Two-process coupling characterization of weak convergence | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+ | 64 | 30004438 / OWR-17475-003 | Real Rational Maps with Exclusively Real Periodic Points | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+-| 65 | 10600042 / AMR-105-0042 | Virtual-knot problem 42 — One can consider braids with even numbers of strands. | 0.2475 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
++| 65 | 10600042 / AMR-105-0042 | Virtual-knot problem 42 — One can consider braids with even numbers of strands. | 0.2475 | 5.0 | 3 | unknown | claimed_solved | 1/5 |  | 2026-09-30: Complete explicit finite even-tagged word-pattern Markov reformulation for ordinary classical and virtual braid closures. Separate adversarial audit passed soundness/completeness including both virtual exchanges;3219author and6641independent controls. Elementary reformulation of credited established theorems; novelty, minimality and stronger locality are not claimed. Draft PR: https://github.com/AlecKriebel/Math/pull/50. |  |
+ | 66 | 30000166 / OWR-782-007 | Positivity of Saito's Eta Products | 0.2465 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
+ | 67 | 30000644 / OWR-1452-008 | Surjectivity of Reduction Maps for Special Polynomial Automorphisms | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+ | 68 | 30000671 / OWR-1453-004 | Reconstructing Complete Local Rings from Finite Quotients | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/10600042/CANDIDATE.md b/unsolved_math_prioritization/attempts/10600042/CANDIDATE.md
+new file mode 100644
+index 000000000..528c6ed91
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/CANDIDATE.md
+@@ -0,0 +1,187 @@
++# An explicit even-strand Markov formulation
++
++**Complete candidate for the literal source question, pending independent review.** The result below gives a finite list of algebraic move schemes for ordinary closures of even-strand classical braids, and a second list for ordinary closures of even-strand virtual braids. It is an elementary consequence of the established Markov theorems. Historical novelty, a minimal list, and a stronger bounded-support locality property are not claimed.
++
++## 1. Exact scope
++
++Problem42 on p.34 of [Fenn–Ilyutko–Kauffman–Manturov, arXiv1409.2823](https://arxiv.org/abs/1409.2823) asks whether Markov's theorem can be reformulated so that only braids with an even number of strands participate. It imposes no additional locality or minimality condition. The same item occurs on p.37 of the [published survey](https://www.impan.pl/shop/publication/transaction/download/product/86155).
++
++We retain **ordinary braid closure**, not plat closure. The links are unframed and oriented, as in the classical and virtual Markov theorems used below. This is not a transverse or framed Markov theorem. The survey includes both classical and virtual problems and does not qualify “braids” in this item; both versions are therefore supplied.
++
++The allowed states and every endpoint of every replacement are even-strand braids. Moves are given by explicit word patterns, not by a rule that permits an unspecified path through odd-strand braids. Odd-strand braids appear only in the proof that the finite list is complete, as auxiliary objects in the already established unrestricted Markov theorem.
++
++## 2. Word conventions and the even-only move list
++
++A state is a tagged pair \((N,w)\), where N is even, \(N\ge2\), and w is a braid word on N strands. The tag matters: the same empty word on two and four strands has different ordinary closures.
++
++Write \(\sigma_i^{\pm1}\) for classical generators and \(v_i\) for virtual generators, with \(v_i^{-1}=v_i\). Define \(W_N(k)\) to mean words in the alphabet with indices \(1\le i\le k\), regarded throughout as words on the stated **even** number N of strands. The empty word is allowed, including when \(k=0\). In the classical version, omit all v's. Thus the support restrictions below are syntactic restrictions on words in an even-strand group; they do not create odd-strand objects in the move category.
++
++For a word a, \(s(a)\) increases every generator index by one and preserves generator types and signs. Concatenation is multiplication, and inverses reverse the word and invert each letter. For virtual words set
++\(G_i=\{\sigma_i,\sigma_i^{-1},v_i\}\); for classical words set
++\(G_i=\{\sigma_i,\sigma_i^{-1}\}\).
++
++All arrows below are reversible. Ordinary braid relations in the appropriate even-strand group are always allowed, without changing N.
++
++### C. Conjugation at an even level
++
++For \(a,b\in W_N(N-1)\),
++
++\[
++(N,b)\ \longleftrightarrow\ (N,aba^{-1}).
++\tag{C}
++\]
++
++### BC. Conjugation with a terminal positive crossing retained
++
++For \(a,b\in W_N(N-2)\),
++
++\[
++(N,b\sigma_{N-1})\ \longleftrightarrow\
++(N,aba^{-1}\sigma_{N-1}).
++\tag{BC}
++\]
++
++### T. Replacement of a terminal stabilizing crossing
++
++For \(b\in W_N(N-2)\) and \(g\in G_{N-1}\),
++
++\[
++(N,b\sigma_{N-1})\ \longleftrightarrow\ (N,bg).
++\tag{T}
++\]
++
++The choice \(g=\sigma_{N-1}\) is the identity and may be omitted.
++
++### D. Two-strand stabilization
++
++For \(b\in W_N(N-1)\) and \(g\in G_N\),
++
++\[
++(N,b)\ \longleftrightarrow\
++(N+2,bg\sigma_{N+1}).
++\tag{D}
++\]
++
++The old word b is put on the first N of the N+2 strands, so the operation adds two strands at once. There is no allowed N+1-strand state in this replacement.
++
++**The classical list ends here.** The virtual list additionally contains the following four exchange patterns; dropping them is not justified by the classical theorem.
++
++### R and L. Right and left virtual exchange at an even level
++
++For \(a,b\in W_N(N-2)\),
++
++\[
++(N,a\sigma_{N-1}^{-1}b\sigma_{N-1})
++\ \longleftrightarrow\
++(N,av_{N-1}bv_{N-1}),
++\tag{R}
++\]
++
++\[
++(N,s(a)\sigma_1^{-1}s(b)\sigma_1)
++\ \longleftrightarrow\
++(N,s(a)v_1s(b)v_1).
++\tag{L}
++\]
++
++### BR and BL. Virtual exchange with a terminal positive crossing retained
++
++For even \(N\ge4\) and \(a,b\in W_N(N-3)\),
++
++\[
++(N,a\sigma_{N-2}^{-1}b\sigma_{N-2}\sigma_{N-1})
++\ \longleftrightarrow\
++(N,av_{N-2}bv_{N-2}\sigma_{N-1}),
++\tag{BR}
++\]
++
++\[
++(N,s(a)\sigma_1^{-1}s(b)\sigma_1\sigma_{N-1})
++\ \longleftrightarrow\
++(N,s(a)v_1s(b)v_1\sigma_{N-1}).
++\tag{BL}
++\]
++
++Every displayed index lies between1 and N-1 at an N-strand endpoint. In particular, the shifted blocks in BL have indices at most N-2; the last crossing has index N-1.
++
++This is a finite list of **four classical or eight virtual algebraic schemes**, besides the standard finite families of braid relations. Word parameters are arbitrary finite blocks, as in the ordinary conjugation/exchange formulation. If desired, a in C and BC can be restricted to one generator or its inverse: successive conjugations generate the version with an arbitrary a. No bound on block length is asserted, and no unproved equivalence test is used as a move-applicability condition.
++
++## 3. The two even-strand theorems
++
++**Classical theorem.** Every nonempty oriented classical link is the ordinary closure of an even-strand classical braid. Two such braids have isotopic oriented closures if and only if they are connected by braid relations at even levels and a finite sequence of C, BC, T and D, using only classical generators.
++
++**Virtual theorem.** Every nonempty oriented virtual link is the ordinary closure of an even-strand virtual braid. Two such braids have equivalent oriented virtual closures if and only if they are connected by virtual braid relations at even levels and a finite sequence of C, BC, T, D, R, L, BR and BL.
++
++The empty link may be included separately as the isolated zero-strand empty state. No positive-strand ordinary closure is empty, so this convention creates no further moves.
++
++## 4. Established unrestricted input
++
++The classical Alexander and Markov theorems give braid representatives and say that ordinary closure equivalence is generated by braid relations, conjugation at a fixed strand count, and right stabilizations
++\((m,b)\leftrightarrow(m+1,b\sigma_m^{\pm1})\).
++
++For virtual braids we use [Kamada, Theorem3.2](https://arxiv.org/abs/math/0008092), together with his Proposition3.1. His moves are braid relations, conjugation, right stabilization by \(\sigma_m\), \(\sigma_m^{-1}\) or \(v_m\), and **both** right and left virtual exchanges. Their algebraic forms are also stated explicitly in [Kauffman–Lambropoulou, Section5](https://arxiv.org/abs/math/0507035): at strand count m+1 they are
++
++\[
++a\sigma_m^{-1}b\sigma_m\leftrightarrow av_mbv_m,
++\quad
++s(a)\sigma_1^{-1}s(b)\sigma_1\leftrightarrow s(a)v_1s(b)v_1,
++\tag{15}
++\]
++
++where the blocks use indices at most m-1. These are established theorems, not conclusions of this note. In particular, virtual exchange moves must not be discarded merely because their classical analogues follow from ordinary Markov moves.
++
++## 5. Soundness: every listed move preserves the ordinary closure
++
++C is conjugation. In BC, each endpoint has the same oriented closure as the word preceding its terminal crossing, and those preceding words are conjugate. In T, every permitted terminal crossing is a right stabilization of the same preceding word. In D, the closure is unchanged by two consecutive stabilizations, the second chosen positive.
++
++R and L are precisely the established virtual exchanges (15). In BR and BL, the two words preceding the final positive crossing are related by a virtual exchange; applying the same positive stabilization at both ends therefore gives equivalent closures.
++
++This verifies each algebraic pattern without assuming the completeness conclusion. The references to lower strand counts in this *verification* are not allowed intermediate states: the move relation itself was explicitly and independently defined in Section2 by the displayed even-endpoint substitutions. A proof may use the older unrestricted theorem without putting its auxiliary braids in the new object category.
++
++Thus every finite chain of the stated even moves preserves closure equivalence.
++
++## 6. Completeness: lifting every unrestricted Markov edge
++
++For the proof only, define an even representative of an arbitrary tagged braid by
++
++\[
++P(m,b)=
++\begin{cases}
++(m,b),&m\text{ even},\\
++(m+1,b\sigma_m),&m\text{ odd}.
++\end{cases}
++\tag{16}
++\]
++
++Its closure agrees with that of \((m,b)\). Given an unrestricted classical or virtual Markov chain, apply P to every vertex. The original endpoints, if even, are fixed exactly, including their strand tags. We now check **every** edge type.
++
++1. **Braid relation at count m.** If m is even, apply the same relation. If m is odd, apply it inside b while retaining the terminal \(\sigma_m\) at the even count m+1. All involved generator indices remain valid.
++2. **Conjugation at count m.** When m is even, its image is C. When m is odd, its image is BC at N=m+1, with both blocks supported on indices at most N-2. If conjugation is decomposed into single-generator conjugations, each of these is one such even move.
++3. **Right stabilization from an even count m.** The original edge is \((m,b)\leftrightarrow(m+1,bg)\), with \(g\in G_m\). Its image is
++   \[
++   (m,b)\leftrightarrow(m+2,bg\sigma_{m+1}),
++   \]
++   exactly D.
++4. **Right stabilization from an odd count m.** Its image is
++   \[
++   (m+1,b\sigma_m)\leftrightarrow(m+1,bg),
++   \]
++   exactly T, or an identity when g is positive. Stabilization inverses are covered by the reversed arrows in items3–4.
++5. **Right virtual exchange at an even total count m.** Its image is R at N=m. At an odd total count m, P retains a terminal \(\sigma_m\), and the image is BR at N=m+1. The exchange blocks have indices at most m-2=N-3 in the latter case.
++6. **Left virtual exchange at an even total count m.** Its image is L at N=m. At an odd total count m, its image is BL at N=m+1. Again the unshifted blocks have support at most N-3, so their shifted versions and the terminal crossing satisfy the displayed support requirements.
++
++Identical successive images can be removed. The resulting sequence is a finite chain in the **even-only category**, connecting exactly the original even endpoints. In the classical setting the input chain has no virtual letters or virtual exchanges, so it uses only C, BC, T and D.
++
++This proves completeness in both directions. It also proves the representation statement: start with any Alexander braid representative and apply P once. If an unrestricted certificate never exceeds M strands, its even image never exceeds \(2\lceil M/2\rceil\), with no further intermediate strand counts. This is a certificate-conversion observation, not a complexity bound for finding a certificate.
++
++## 7. Why this is more than an unspecified compressed path relation
++
++A rule saying “two even braids are related whenever some odd-intermediate Markov path connects them” would merely restate closure equivalence. No such rule is used here. There are finitely many explicit word-pattern types; their support restrictions are stated in the even ambient group; and each usual generator of Markov equivalence is converted to a single named type (or to elementary braid relations). An application of a move is certified by its displayed word data, without searching for a hidden path or solving a link-equivalence problem.
++
++The list is an algebraic block-move formulation. It is not claimed to be the smallest list, or to satisfy an additional requirement that every modification lie in a disk meeting a bounded number of strands independently of the word blocks. The original item does not state either demand. If one adds such a stronger geometric-locality requirement, that becomes a different problem and is not resolved by the present theorem.
++
++## 8. Verification and attribution boundary
++
++The checker constructs tagged classical and virtual words, applies the padding map, and verifies that every sampled unrestricted edge matches the corresponding explicit even pattern exactly. It also checks index ranges, endpoint parity, reversibility, the sharp rounding bound for certificate height, and preservation of the permutation-cycle count of the ordinary closure. The latter is only a necessary sanity check for link equivalence.
++
++The finite diagnostics do not prove the unrestricted Markov theorems or replace the symbolic edge-by-edge argument. No braid word-problem solver or exhaustive knot search is claimed. The foundational Markov, virtual Markov, Alexander and exchange results are prior work. The bounded literature audit did not establish historical priority for this padding reformulation, and no novelty claim is made.
+diff --git a/unsolved_math_prioritization/attempts/10600042/README.md b/unsolved_math_prioritization/attempts/10600042/README.md
+new file mode 100644
+index 000000000..331dcb4dd
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/README.md
+@@ -0,0 +1,18 @@
++# 10600042: an even-strand Markov formulation
++
++**Complete algebraic reformulation of the literal source question; separate adversarial review: PASS.**
++
++The package gives four explicit classical and eight explicit virtual algebraic move schemes whose states always have even strand count. Ordinary oriented braid closure is retained. A positive one-strand padding in the proof converts every edge of a usual Markov certificate to a named even move, including both virtual exchange directions. No unspecified odd-intermediate path is an allowed move.
++
++- [Complete move list and two-direction proof](CANDIDATE.md)
++- [Independent review](review/REVIEW.md), [summary](review/review_summary.json), and [6,641 independent checks](review/independent_checks.py)
++- [Source and prior-art audit](SOURCES.md), [primary PDF hashes](source_manifest.json)
++- [Word-level checker](verify_even_moves.py), [exact receipt](even_move_verification.json)
++- [Pinned source record](source_record.json), [readiness](readiness.json), [status](status.json)
++- [Research log](RESEARCH_LOG.md), [turn ledger](turns.jsonl)
++
++Run `python3 verify_even_moves.py` with the Python standard library. It passes3219 exact assertions on280 Markov-edge cases and224 braid-relation cases. It checks syntactic lifting, supports, endpoint parity, reversibility, height rounding and permutation-cycle counts. It is not a knot-equivalence oracle or formal proof of the underlying Markov theorems.
++
++The argument is an elementary reformulation of established results. Historical novelty is unestablished. No minimality, plat-closure substitution, framed/transverse version, or stronger bounded-support locality property is claimed.
++
++The unchanged frozen proof passed a separate AI audit of source scope, soundness and completeness. This is not human peer review or formal verification.
+diff --git a/unsolved_math_prioritization/attempts/10600042/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/10600042/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..fdc17dc90
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/RESEARCH_LOG.md
+@@ -0,0 +1,23 @@
++# 10600042 research log
++
++Date:2026-09-30UTC. Actual model:gpt-6-astra, xhigh. Deadline:08:04UTC. Maximum five substantive attempts.
++
++## 06:04–06:06: source and prior-attempt gate
++
++No prior campaign attempt was found in all-state ID/title PR checks, remote branches, attempt folders or path history. Exact repository matches are the queued row, shortlist and assessment metadata. The upstream report is literature triage, not a proved result, and its placeholder arXiv identifiers are not usable citations.
++
++The complete65-page2014 survey was retrieved. Item42 appears on printed p34, with the adjacent items checked. It asks for a Markov formulation involving only even-strand braids, without specifying a minimal/local move set or replacing ordinary closure by plat closure. Classical and virtual readings are being considered. A prospective finite algebraic formulation can retain even stages and replace odd ones by positive stabilized representatives; the proof must explicitly account for virtual exchange moves and must state its move patterns entirely with even-strand endpoints.
++
++Source gate completion estimate:80%; proof completion estimate:0%. No resolution or novelty claim at this checkpoint.
++
++## 06:14: complete even-only candidate frozen for review
++
++The proposed formulation has four classical and eight virtual algebraic patterns, all with even-strand endpoints and explicit syntactic word supports. It includes retained-terminal-crossing conjugation, terminal-crossing replacement, two-strand stabilization, and both direct and retained-terminal virtual exchanges. Ordinary closure is unchanged; no plat substitution is used.
++
++The proof checks closure preservation for every pattern and converts every usual Markov edge under canonical positive padding. No unknown equivalence relation is used as an allowed move. The resulting certificate stays at or below the original maximum strand count rounded up to even. Conjugation blocks may be decomposed into generator conjugations. A stronger uniformly bounded-support locality requirement is not claimed and is not stated by the original item.
++
++The exact checker passes3219 assertions across280 edge cases and224 relation cases. The preprint and published source item agree; Kamada's full theorem and Kauffman–Lambropoulou's exchange formulas have been checked. One substantive approach used. Proof-manuscript completion estimate:100% pending independent review; historical novelty unestablished.
++
++## 06:37: independent complete-scope review passed
++
++A separate adversarial review passed the unchanged proof as a complete answer in the source's literal finite algebraic even-object sense. All3,219 author assertions reproduced exactly;6,641 independent checks covered348 scheme instances, with short unrestricted soundness certificates and repadding to the exact even endpoints. The review verified both original source versions and both virtual exchanges. Proof/review completion:100%; historical novelty, minimality and stronger bounded-support locality remain unclaimed. Ready for one draft PR.
+diff --git a/unsolved_math_prioritization/attempts/10600042/SOURCES.md b/unsolved_math_prioritization/attempts/10600042/SOURCES.md
+new file mode 100644
+index 000000000..10f1d6588
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/SOURCES.md
+@@ -0,0 +1,18 @@
++# Sources and prior-art boundary
++
++Checked2026-09-30. This is an explicit algebraic reformulation deduced from existing Markov theorems. Historical novelty has not been established.
++
++1. **Fenn, Ilyutko, Kauffman and Manturov**, *Unsolved Problems in Virtual Knot Theory and Combinatorial Knot Theory*, arXiv1409.2823v1(2014), p.34,item42. [Full preprint](https://arxiv.org/pdf/1409.2823v1). The published version is Banach Center Publications103(2014),9–62, DOI10.4064/bc103-0-1; item42 is on p.37. [Full publisher PDF](https://www.impan.pl/shop/publication/transaction/download/product/86155). Both complete PDFs were retrieved, and the item and surrounding context were checked. The question is retained with ordinary closure; no minimality or stronger locality condition is stated. Its unqualified braid terminology motivates giving both classical and virtual formulations.
++2. **Seiichi Kamada**, *Braid presentation of virtual knots and welded knots*, arXiv math/0008092v1. [Full primary preprint](https://arxiv.org/pdf/math/0008092v1). Sections2–3 define the groups, ordinary oriented closure, right stabilizations and both virtual exchanges. Proposition3.1 is the Alexander statement, and Theorem3.2 is the complete virtual Markov theorem used here. The cited preprint's cover has a2021 generated date while its arXiv version is dated2000; these are not treated as different mathematical versions. Proposition3.3 warns that virtual exchange cannot simply be dropped.
++3. **Louis H. Kauffman and Sofia Lambropoulou**, *Virtual Braids and the L–Move*, arXiv math/0507035v3(19June2006), published in Journal of Knot Theory and Its Ramifications15(2006),773–811. [Full current preprint](https://arxiv.org/pdf/math/0507035v3). Section5,p.30, gives Kamada's algebraic right/left exchange forms, including the left index-shift convention. These formulas were checked against the page image. Section4 gives a different local algebraic Markov list using threading; it is not silently substituted for ordinary conjugation/stabilization.
++4. For the classical foundational statement, **E. Gorsky, O. Kivinen and J. Simental, Algebra and geometry of link homology**, Bulletin of the London Mathematical Society55(2023),Theorems2.1–2.2, restate Alexander and Markov with ordinary closures, conjugation and positive/negative stabilization. [Primary author lecture article](https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/blms.12761). The even-strand corollary uses those standard results, not a new proof of unrestricted Markov equivalence.
++
++## Search and exclusions
++
++Targeted current searches for the exact problem phrase, even-strand Markov formulations and parity-preserving stabilization found the source problem and related braid/plat literature, but no verified prior occurrence of this exact eight-pattern presentation. This bounded absence does not establish priority. Classical plat Markov theorems already use even strand numbers but change the closure construction; the present proof does not use that substitution.
++
++The imported upstream triage uses incomplete arXiv placeholders. It is preserved verbatim as prior context in source_record.json, but the actual proof relies only on the independently identified full primary sources above. No assertion that the target is still open follows from that imported label.
++
++## Claimed scope
++
++The finite algebraic block templates have even-strand endpoints and syntactic support tests. They are not a claim about a minimal move set or modifications supported on a uniformly bounded number of strands. A stronger locality problem would require a separate statement. The move list and completeness proof are frozen for independent review; no historical-discovery claim is made.
+diff --git a/unsolved_math_prioritization/attempts/10600042/even_move_verification.json b/unsolved_math_prioritization/attempts/10600042/even_move_verification.json
+new file mode 100644
+index 000000000..e65dcccf8
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/even_move_verification.json
+@@ -0,0 +1,32 @@
++{
++  "status": "PASS",
++  "exact_assertions": 3219,
++  "edge_cases": 280,
++  "relation_cases": 224,
++  "coverage": {
++    "classical_BC": 16,
++    "classical_C": 16,
++    "classical_D": 32,
++    "classical_T": 32,
++    "virtual_BC": 16,
++    "virtual_BL": 12,
++    "virtual_BR": 12,
++    "virtual_C": 16,
++    "virtual_D": 48,
++    "virtual_L": 16,
++    "virtual_R": 16,
++    "virtual_T": 48
++  },
++  "boundary_checks": [
++    "one-strand representative lifts to two",
++    "even tags retained",
++    "both virtual exchange directions and both parities",
++    "positive negative virtual stabilization"
++  ],
++  "limits": [
++    "Finite diagnostics, not formal verification",
++    "No link-equivalence oracle",
++    "No braid word-problem solver",
++    "No novelty claim"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/10600042/readiness.json b/unsolved_math_prioritization/attempts/10600042/readiness.json
+new file mode 100644
+index 000000000..f0b21c835
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/readiness.json
+@@ -0,0 +1,27 @@
++{
++  "id": 10600042,
++  "code": "AMR-105-0042",
++  "started_utc": "2026-09-30T06:04:00Z",
++  "deadline_utc": "2026-09-30T08:04:00Z",
++  "model": "gpt-6-astra",
++  "reasoning": "xhigh",
++  "turn_limit": 5,
++  "turns_used": 1,
++  "branch": "dot/math-10600042",
++  "prior_attempt_gate": {
++    "all_state_id_and_title_prs": [],
++    "existing_remote_branch": false,
++    "existing_attempt_folder": false,
++    "attempt_path_history": [],
++    "repository_matches": [
++      "QUEUE.md",
++      "SHORTLIST.md",
++      "assessment/catalog metadata"
++    ],
++    "related_target_groups": "No exact ID entry",
++    "upstream_report": "Literature triage only, with incomplete placeholder identifiers; primary papers are being independently recovered"
++  },
++  "source": "arXiv1409.2823v1,2014-09-09,p34,item42",
++  "source_gate": "Both preprint and published full source retrieved; exact item and context checked; all cited virtual Markov edge types retained.",
++  "current_literature": "Primary theorem hypotheses and exchange formulas checked; no verified identical even-only presentation located in bounded search; novelty unestablished."
++}
+diff --git a/unsolved_math_prioritization/attempts/10600042/review/REVIEW.md b/unsolved_math_prioritization/attempts/10600042/review/REVIEW.md
+new file mode 100644
+index 000000000..40108976b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/review/REVIEW.md
+@@ -0,0 +1,130 @@
++# Independent adversarial review: 10600042, even-strand Markov reformulation
++
++**Verdict: PASS for a complete algebraic reformulation of the literal source question.** The stated four classical and eight virtual schemes give a presentation of ordinary oriented link-closure equivalence using only even-strand states. No mandatory mathematical correction was found.
++
++This verdict does **not** establish historical novelty, a minimal move list, or a stronger geometric locality condition. The construction is an elementary consequence of the existing classical and virtual Markov theorems.
++
++Reviewed on 2026-09-30 by a separate GPT-6 Astra agent at xhigh reasoning. This is an adversarial AI review, not human peer review.
++
++Frozen CANDIDATE.md SHA-256:
++
++749f55ab651476c5f3c7868fed2b9f06809a38518057e33414966cb6f4f253bc
++
++The author artifact was not edited.
++
++## 1. Source scope
++
++Problem 42 was checked in both complete source versions: p. 34 of the arXiv survey and p. 37 of the published survey. Both rendered pages were inspected. The item asks for a Markov reformulation involving only even-strand braids. It specifies neither a minimal move list nor a uniform bound on the number of strands touched by each move. The surrounding problem list covers classical and virtual knot theory; providing both interpretations is appropriate.
++
++The candidate retains ordinary closure. A plat-closure classification would answer a different question, but no plat closure is used here. The orientation and unframed conventions are the standard ones of the invoked Markov theorems and are explicit in the candidate.
++
++Source: [Fenn–Ilyutko–Kauffman–Manturov, Problem 42, preprint](https://arxiv.org/pdf/1409.2823v1), [published survey](https://www.impan.pl/shop/publication/transaction/download/product/86155).
++
++## 2. Established inputs and exchange formulas
++
++The classical input is precisely Alexander representation plus Markov equivalence generated by conjugation and positive or negative right stabilization, together with braid relations. Gorsky's Theorems 2.1–2.2 restate these standard results with ordinary closures.
++
++Kamada's Proposition 3.1 and Theorem 3.2 give the corresponding virtual statements. The generator list includes right stabilizations of positive, negative and virtual type, and both right and left virtual exchanges. The right/left inclusion maps and the exchange formulas were checked in his §3 and against the rendered p. 30 of Kauffman–Lambropoulou.
++
++The candidate's shift \(s\) is the left inclusion: old generator index \(i\) becomes \(i+1\). Its right exchange uses a negative terminal-generator crossing followed later by its positive counterpart; the virtual side uses two virtual crossings. The left formula has the same sign order at index 1 and shifted blocks. These are the actual cited formulas.
++
++Kamada's Proposition 3.3 warns that exchanges cannot simply be deleted. The candidate retains both and does not substitute a welded theorem or assume classical simplifications carry over.
++
++Sources: [Gorsky, §2](https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/blms.12761), [Kamada](https://arxiv.org/abs/math/0008092), [Kauffman–Lambropoulou, §5](https://arxiv.org/pdf/math/0507035v3).
++
++## 3. This is an explicit move system
++
++The state space is the disjoint union of even tagged braid-word sets, modulo the stated braid relations. The strand tag is necessary and is retained. The empty words on two and four strands have different ordinary closures.
++
++Every displayed scheme is a finite algebraic replacement with specified word parameters and explicit index bounds. Given those parameters, its two endpoints can be written down and checked without deciding link equivalence, solving a braid word problem, or finding a path through odd-strand braids.
++
++In particular:
++
++- BC and T require their preceding blocks to use indices at most \(N-2\).
++- BR and BL require unshifted blocks to use indices at most \(N-3\), with \(N\ge4\).
++- The shifts in L and BL raise only the block indices. The fixed index-one crossings and the final retained positive crossing stay in their stated places.
++- D adds two strands in one replacement. The intermediate strand count is not a state of that replacement.
++- All rules are reversible; a reverse rule has the same even endpoints.
++
++These conditions are syntactic on words in an even ambient group. A block fixing an outer strand may of course be identified with a smaller braid in a proof, but such an identification is not a move-applicability oracle or a new allowed state.
++
++The support restrictions are mathematically essential. Without the restriction in T, at \(N=2\) one could use the prefix \(\sigma_1^2\) and change \(\sigma_1^3\) to \(\sigma_1\), incorrectly identifying a trefoil closure with an unknot. The actual \(W_2(0)\) restriction forbids this. Merely checking the number of closure components would not detect that error.
++
++There are four or eight **schemes**, with arbitrary finite word blocks, in the usual sense in which conjugation itself is an algebraic scheme. This is not a finite list of individual edges, nor does the candidate claim that. C and BC may additionally be generated by single-letter conjugations, in the appropriate reverse order for the letters of a conjugator.
++
++## 4. Soundness
++
++Each scheme has a direct verification using established ordinary Markov equivalences:
++
++| Scheme | Closure-preserving verification |
++|---|---|
++| C | Conjugation |
++| BC | Remove the retained positive stabilization, conjugate, then restore it |
++| T | Destabilize the positive terminal crossing and restabilize with the allowed type |
++| D | Two successive right stabilizations, the second positive |
++| R, L | The respective established virtual exchange |
++| BR, BL | Remove the retained positive stabilization, exchange, then restore it |
++
++The index bounds guarantee every step invoked in these verifications is legitimate. In particular, T is not an arbitrary crossing change.
++
++The auxiliary odd braids in these soundness arguments are objects in a proof about the prior Markov theorem. They do not become states of the new move relation. The relation itself has already been defined independently by the explicit even-endpoint patterns. Using a known theorem to verify those patterns is not circular.
++
++It follows that any finite chain of the candidate's allowed moves preserves the relevant oriented ordinary closure.
++
++## 5. Completeness
++
++The padding map \(P\) fixes every even tagged state and adds one positive right stabilization to every odd state. It preserves closure and sends every positive strand count to an even one.
++
++The edge-by-edge conversion is exhaustive:
++
++| Unrestricted edge | Source strand parity | Image |
++|---|---|---|
++| Conjugation | even / odd | C / BC |
++| Right stabilization | even / odd | D / T |
++| Right virtual exchange | even / odd total count | R / BR |
++| Left virtual exchange | even / odd total count | L / BL |
++| Braid relation | either | Same relation in the retained prefix |
++
++For stabilization, parity refers to the smaller strand count. For exchange, it refers to the total strand count of the exchange. This distinction is correctly maintained in the candidate.
++
++For an odd exchange count \(m\), the underlying unshifted blocks use indices at most \(m-2\). Padding makes \(N=m+1\), so the bound becomes \(N-3\), exactly as required by BR and BL. Their final positive crossing has index \(m=N-1\). There is no off-by-one error in the left shift.
++
++At the word level, an unrestricted Markov chain can include braid relations to reconcile successive choices of word representatives. Padding an odd-level relation simply retains the terminal positive crossing while the relation acts within the prefix. Hence there is no well-definedness problem caused by different words for the same braid.
++
++Applying \(P\) to a complete unrestricted chain therefore produces a chain of the explicit even schemes. Its original even endpoints are fixed **exactly**, including strand tags. Repeated vertices may be removed. Reversibility covers every destabilization and reverse exchange.
++
++This proves injectivity of the closure map on the even-word quotient. Alexander's theorem followed by one application of \(P\) proves surjectivity. In the classical proof the unrestricted chain uses no virtual letters or exchanges, so the four classical schemes suffice independently of the virtual theorem.
++
++This argument is stronger than defining a relation by the existence of an arbitrary odd-intermediate path: each prior generating edge is converted to one already specified, syntactically testable scheme.
++
++## 6. Boundary and scope checks
++
++The one-strand trivial braid pads to the two-strand word \(\sigma_1\), giving an even representative of the unknot. T at \(N=2\) has an empty preceding block, as required. R and L at \(N=2\) reduce to cancellations. The smallest buffered exchange has \(N=4\), because a genuine odd-level exchange starts at three strands.
++
++The zero-strand empty link can be isolated without adding a move from zero to a positive count. No positive-strand ordinary closure is empty.
++
++If an input Markov certificate has maximal strand count \(M\), the padded certificate has maximal count at most \(2\lceil M/2\rceil\). This follows directly from the monotone rounding map on strand counts. It is a certificate-conversion bound, not an algorithmic bound for finding a certificate.
++
++Neither a uniformly bounded-support geometric move system nor a framed, transverse, or plat theorem follows from this argument. These limitations are explicit in the candidate. The literal source item does not impose those stronger demands.
++
++## 7. Independent checks and source identity
++
++The author's checker was rerun unchanged; its **3,219 exact assertions** reproduced the frozen JSON receipt byte for byte.
++
++The independent checker passes **6,641 exact assertions over 348 scheme instances**. Its approach differs from the author's edge-image construction: it expands each even scheme into a short ordinary soundness certificate, validates every elementary edge in both directions, then pads the whole certificate and confirms that it collapses to exactly the claimed even endpoints.
++
++It covers all four classical and eight virtual scheme contexts, all ordinary edge types at both parities, every stabilization type, the smallest strand counts, literal index ranges, closure-component wiring graphs, and certificate heights. Negative controls reject overwide blocks and invalid indices. The component-count check is explicitly only a necessary sanity test.
++
++Run from this directory:
++
++    python independent_checks.py > independent_results.json
++
++The checks use only the Python standard library. They do not implement a link-equivalence oracle and do not prove the foundational Markov theorems. The general soundness and completeness arguments are the mathematical validation.
++
++The candidate hash and all four source PDF hashes and byte sizes match the frozen manifest. Both versions of the original problem and the exchange-formula page were visually inspected. The current classical and virtual primary records were also checked.
++
++## 8. Final disposition
++
++The candidate gives a complete answer to the **literal algebraic even-strand reformulation** requested by the source. No mandatory correction is needed.
++
++A publication may describe this as an explicit elementary reformulation with a complete checked argument. It must retain the existing credit to the foundational theorems, the absence of a novelty claim, and the distinction from stronger locality requirements. The original problem's appearance in a problem list does not establish historical novelty for this padding construction.
+diff --git a/unsolved_math_prioritization/attempts/10600042/review/independent_checks.py b/unsolved_math_prioritization/attempts/10600042/review/independent_checks.py
+new file mode 100644
+index 000000000..8cde1c2cd
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/review/independent_checks.py
+@@ -0,0 +1,168 @@
++#!/usr/bin/env python3
++"""Independent finite checks of even move soundness certificates.
++Every even scheme is expanded to elementary ordinary Markov edges and checked,
++then repadded. This is distinct from an oracle for link equivalence.
++Run: python independent_checks.py > independent_results.json
++"""
++from dataclasses import dataclass
++from collections import Counter
++import json
++
++checks=Counter(); coverage=Counter(); ordinary_coverage=Counter()
++def test(ok,label):
++    assert bool(ok),label
++    checks[label]+=1
++def c(i): return (('c',i),)
++def v(i): return (('v',i),)
++def invert(w):
++    return tuple((kind,-i if kind=='c' else i) for kind,i in reversed(w))
++def shift(w):
++    return tuple((kind,(abs(i)+1)*(1 if i>0 else -1)) for kind,i in w)
++def in_alphabet(w,k,virtual):
++    return all(1<=abs(i)<=k and (kind=='c' or (virtual and kind=='v' and i>0))
++               for kind,i in w)
++@dataclass(frozen=True)
++class State:
++    n:int
++    word:tuple
++def valid(x,virtual):
++    return x.n>=1 and in_alphabet(x.word,x.n-1,virtual)
++def pad(x):
++    return x if x.n%2==0 else State(x.n+1,x.word+c(x.n))
++def collapse(seq):
++    out=[]
++    for x in seq:
++        if not out or out[-1]!=x: out.append(x)
++    return out
++
++# Count connected components by a layered wiring graph, not by permutation cycles.
++def components(x):
++    n=x.n; layers=len(x.word)+1; parent=list(range(n*layers))
++    def find(i):
++        while parent[i]!=i:
++            parent[i]=parent[parent[i]];i=parent[i]
++        return i
++    def join(i,j):
++        a,b=find(i),find(j)
++        if a!=b:parent[a]=b
++    for level,(_,letter) in enumerate(x.word):
++        i=abs(letter)-1
++        for j in range(n):
++            target=i+1 if j==i else i if j==i+1 else j
++            join(level*n+j,(level+1)*n+target)
++    for j in range(n): join(j,(layers-1)*n+j)
++    return len({find(j) for j in range(n)})
++
++def exchange_words(n,a,b,left):
++    aa,bb=(shift(a),shift(b)) if left else (a,b)
++    i=1 if left else n-1
++    return aa+c(-i)+bb+c(i),aa+v(i)+bb+v(i)
++
++# Verify an ordinary edge, allowing either direction.
++def ordinary_edge(x,y,kind,data,virtual):
++    test(valid(x,virtual) and valid(y,virtual),'ordinary_endpoints_well_typed')
++    if kind=='stab':
++        small,big=(x,y) if x.n<y.n else (y,x)
++        ok=(big.n==small.n+1 and len(big.word)==len(small.word)+1
++            and big.word[:-1]==small.word and abs(big.word[-1][1])==small.n)
++        test(ok,'ordinary_stabilization_pattern')
++        origin=small.n
++    elif kind=='conj':
++        a=data
++        test(x.n==y.n and in_alphabet(a,x.n-1,virtual),'ordinary_conjugator_support')
++        test(y.word==a+x.word+invert(a) or x.word==a+y.word+invert(a)
++             or y.word==invert(a)+x.word+a or x.word==invert(a)+y.word+a,
++             'ordinary_conjugation_pattern')
++        origin=x.n
++    else:
++        a,b,left=data
++        test(x.n==y.n and in_alphabet(a,x.n-2,True) and in_alphabet(b,x.n-2,True),
++             'ordinary_exchange_block_support')
++        p,q=exchange_words(x.n,a,b,left)
++        test((x.word,y.word) in [(p,q),(q,p)],'ordinary_exchange_pattern')
++        origin=x.n
++    test(components(x)==components(y),'ordinary_edge_wiring_components')
++    ordinary_coverage[(kind,'odd' if origin%2 else 'even')]+=1
++
++def samples(k,virtual):
++    if k==0:return [()]
++    return [(),c(k),c(-1)+(v(k) if virtual else c(k))+c(1)]
++def instance(name,N,a,b,g,virtual):
++    # Explicit even endpoints, then a separate short ordinary soundness witness.
++    if name=='C':
++        x=State(N,b);y=State(N,a+b+invert(a))
++        route=[x,y];edge=[('conj',a)]
++    elif name=='BC':
++        x=State(N,b+c(N-1));y=State(N,a+b+invert(a)+c(N-1))
++        route=[x,State(N-1,b),State(N-1,a+b+invert(a)),y]
++        edge=[('stab',None),('conj',a),('stab',None)]
++    elif name=='T':
++        x=State(N,b+c(N-1));y=State(N,b+g)
++        route=[x,State(N-1,b),y];edge=[('stab',None)]*2
++    elif name=='D':
++        x=State(N,b);y=State(N+2,b+g+c(N+1))
++        route=[x,State(N+1,b+g),y];edge=[('stab',None)]*2
++    else:
++        buffered=name.startswith('B')
++        left=name.endswith('L')
++        m=N-1 if buffered else N
++        p,q=exchange_words(m,a,b,left)
++        if buffered:
++            x=State(N,p+c(N-1));y=State(N,q+c(N-1))
++            route=[x,State(m,p),State(m,q),y]
++            edge=[('stab',None),('left' if left else 'right',(a,b,left)),('stab',None)]
++        else:
++            x=State(N,p);y=State(N,q)
++            route=[x,y];edge=[('left' if left else 'right',(a,b,left))]
++    test(x.n%2==y.n%2==0,'even_scheme_endpoints')
++    test(valid(x,virtual) and valid(y,virtual),'even_scheme_index_ranges')
++    test(components(x)==components(y),'even_scheme_wiring_components')
++    for j,(kind,data) in enumerate(edge):
++        ordinary_edge(route[j],route[j+1],kind,data,virtual)
++        ordinary_edge(route[j+1],route[j],kind,data,virtual)
++    padded=[pad(t) for t in route]
++    test(all(t.n%2==0 and valid(t,virtual) for t in padded),'padded_witness_all_even')
++    test(collapse(padded)==collapse([x,y]),'padded_witness_collapses_to_exact_scheme')
++    test(max(t.n for t in padded)==2*((max(t.n for t in route)+1)//2),
++         'exact_height_rounding')
++    coverage[('virtual_' if virtual else 'classical_')+name]+=1
++
++for virtual in [False,True]:
++    for N in [2,4,6,8]:
++        names=['C','BC','T','D']+(['R','L']+(['BR','BL'] if N>=4 else []) if virtual else [])
++        for name in names:
++            k={'C':N-1,'BC':N-2,'T':N-2,'D':N-1,'R':N-2,'L':N-2,'BR':N-3,'BL':N-3}[name]
++            if name in ['T','D']:
++                i=N-1 if name=='T' else N
++                for b in samples(k,virtual):
++                    for g in [c(i),c(-i)]+([v(i)] if virtual else []):
++                        instance(name,N,(),b,g,virtual)
++            else:
++                for a in samples(k,virtual):
++                    for b in samples(k,virtual):
++                        instance(name,N,a,b,(),virtual)
++
++# A missing terminal-tail or incorrect support cutoff must be rejected.
++test(not in_alphabet(c(1)+c(1),0,False),'reject_crossing_change_prefix_at_two_strands')
++test(not in_alphabet(c(3),2,True),'reject_terminal_generator_inside_BC_block')
++test(not in_alphabet(v(2),1,True),'reject_overwide_buffered_exchange_block')
++test(not valid(State(4,c(4)),True),'reject_out_of_range_terminal_index')
++test(pad(State(1,()))==State(2,c(1)),'one_strand_unknot_padding')
++test(components(State(2,()))==2 and components(State(4,()))==4,'empty_words_need_strand_tags')
++test(components(State(2,c(1)*3))==components(State(2,c(1)))==1,
++     'component_count_does_not_distinguish_two_strand_knots')
++test(set(coverage)=={'classical_'+x for x in ['C','BC','T','D']} |
++                   {'virtual_'+x for x in ['C','BC','T','D','R','L','BR','BL']},
++     'all_twelve_context_families_checked')
++test(set(ordinary_coverage)=={(x,y) for x in ['stab','conj','right','left'] for y in ['odd','even']},
++     'all_ordinary_edge_types_and_parities_checked')
++
++print(json.dumps({
++ 'status':'PASS','exact_assertions':sum(checks.values()),
++ 'even_scheme_instances':sum(coverage.values()),'checks':dict(checks),
++ 'scheme_coverage':dict(sorted(coverage.items())),
++ 'ordinary_edge_coverage':{kind+'_'+parity:n for (kind,parity),n in sorted(ordinary_coverage.items())},
++ 'scope':'Short ordinary soundness certificates for every even pattern, repadding to the exact endpoints, '
++         'both directions, parity, tag and support controls. These are finite diagnostics, not link-equivalence '
++         'or braid-word-problem oracles. General soundness and completeness are audited in REVIEW.md.'
++},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/10600042/review/independent_results.json b/unsolved_math_prioritization/attempts/10600042/review/independent_results.json
+new file mode 100644
+index 000000000..12f7dcc1d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/review/independent_results.json
+@@ -0,0 +1,54 @@
++{
++  "status": "PASS",
++  "exact_assertions": 6641,
++  "even_scheme_instances": 348,
++  "checks": {
++    "even_scheme_endpoints": 348,
++    "even_scheme_index_ranges": 348,
++    "even_scheme_wiring_components": 348,
++    "ordinary_endpoints_well_typed": 1356,
++    "ordinary_conjugator_support": 256,
++    "ordinary_conjugation_pattern": 256,
++    "ordinary_edge_wiring_components": 1356,
++    "padded_witness_all_even": 348,
++    "padded_witness_collapses_to_exact_scheme": 348,
++    "exact_height_rounding": 348,
++    "ordinary_stabilization_pattern": 880,
++    "ordinary_exchange_block_support": 220,
++    "ordinary_exchange_pattern": 220,
++    "reject_crossing_change_prefix_at_two_strands": 1,
++    "reject_terminal_generator_inside_BC_block": 1,
++    "reject_overwide_buffered_exchange_block": 1,
++    "reject_out_of_range_terminal_index": 1,
++    "one_strand_unknot_padding": 1,
++    "empty_words_need_strand_tags": 1,
++    "component_count_does_not_distinguish_two_strand_knots": 1,
++    "all_twelve_context_families_checked": 1,
++    "all_ordinary_edge_types_and_parities_checked": 1
++  },
++  "scheme_coverage": {
++    "classical_BC": 28,
++    "classical_C": 36,
++    "classical_D": 24,
++    "classical_T": 20,
++    "virtual_BC": 28,
++    "virtual_BL": 27,
++    "virtual_BR": 27,
++    "virtual_C": 36,
++    "virtual_D": 36,
++    "virtual_L": 28,
++    "virtual_R": 28,
++    "virtual_T": 30
++  },
++  "ordinary_edge_coverage": {
++    "conj_even": 144,
++    "conj_odd": 112,
++    "left_even": 56,
++    "left_odd": 54,
++    "right_even": 56,
++    "right_odd": 54,
++    "stab_even": 120,
++    "stab_odd": 760
++  },
++  "scope": "Short ordinary soundness certificates for every even pattern, repadding to the exact endpoints, both directions, parity, tag and support controls. These are finite diagnostics, not link-equivalence or braid-word-problem oracles. General soundness and completeness are audited in REVIEW.md."
++}
+diff --git a/unsolved_math_prioritization/attempts/10600042/review/review_summary.json b/unsolved_math_prioritization/attempts/10600042/review/review_summary.json
+new file mode 100644
+index 000000000..204b13a75
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/review/review_summary.json
+@@ -0,0 +1,26 @@
++{
++  "problem_id": 10600042,
++  "reviewed_at_utc": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reviewer_reasoning": "xhigh",
++  "verdict": "PASS_COMPLETE_LITERAL_ALGEBRAIC_SCOPE",
++  "author_artifact": "CANDIDATE.md",
++  "author_sha256": "749f55ab651476c5f3c7868fed2b9f06809a38518057e33414966cb6f4f253bc",
++  "required_corrections": [],
++  "scope": "Ordinary oriented closures, four classical and eight virtual finite algebraic even-strand move schemes",
++  "stronger_bounded_support_locality": "Not established or claimed",
++  "novelty": "Not established; no claim",
++  "soundness": "Each explicit even scheme has an established ordinary closure-preserving verification",
++  "completeness": "Every unrestricted Markov edge maps to an explicit even scheme or an even-level braid relation under positive padding",
++  "hidden_odd_state_rule": false,
++  "author_assertions_reproduced": 3219,
++  "author_receipt_byte_identical": true,
++  "independent_assertions": 6641,
++  "independent_scheme_instances": 348,
++  "source_pdf_identities_verified": 4,
++  "files": {
++    "REVIEW.md": "255f793d43025a376f6643ba6bb3e68d03aa428a6cc826f21a341a4b2f172042",
++    "independent_checks.py": "d2e3981eb5ae30f28dc47f396cb0bb30ba63c819ea2eb3e2565f28d7c9c7f209",
++    "independent_results.json": "75830f4a13b80b1c83739fb7cdce8cc4db2d94b994a82303f512a68f7ab971fe"
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/10600042/source_manifest.json b/unsolved_math_prioritization/attempts/10600042/source_manifest.json
+new file mode 100644
+index 000000000..b4dde01cd
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/source_manifest.json
+@@ -0,0 +1,34 @@
++{
++  "checked_utc": "2026-09-30",
++  "pdfs": [
++    {
++      "name": "survey.pdf",
++      "url": "https://arxiv.org/pdf/1409.2823v1",
++      "version": "2014 v1",
++      "bytes": 774711,
++      "sha256": "ad59ace54d3ad6fb630eee8376c87a34af0340fe5a469daba97d53080ba3fa53"
++    },
++    {
++      "name": "survey-published.pdf",
++      "url": "https://www.impan.pl/shop/publication/transaction/download/product/86155",
++      "version": "Banach Center Publications103(2014),9\u201362",
++      "bytes": 875632,
++      "sha256": "040c122baeb6ee73d321ce199c5c99e2d4678f0a97d25085c28049fecc51a648"
++    },
++    {
++      "name": "kamada.pdf",
++      "url": "https://arxiv.org/pdf/math/0008092v1",
++      "version": "arXiv2000 v1; retrieved rendering dated2021",
++      "bytes": 251076,
++      "sha256": "7d876cd27e8c9aefabd7b322a724b6c0ed3cc8aa2b2e6d866557deb0a8ae378c"
++    },
++    {
++      "name": "lmove.pdf",
++      "url": "https://arxiv.org/pdf/math/0507035v3",
++      "version": "2006-06-19 v3",
++      "bytes": 402586,
++      "sha256": "6b8db3bb275c9a07d59b0cc99038afb59624c4ca2b493ecf88ad86e886b0a0d7"
++    }
++  ],
++  "redistributed": false
++}
+diff --git a/unsolved_math_prioritization/attempts/10600042/source_record.json b/unsolved_math_prioritization/attempts/10600042/source_record.json
+new file mode 100644
+index 000000000..e3a7b3539
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/source_record.json
+@@ -0,0 +1,59 @@
++{
++  "dataset_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "problem": {
++    "id": 10600042,
++    "problem_number": "AMR-105-0042",
++    "title": "Virtual-knot problem 42 \u2014 One can consider braids with even numbers of strands.",
++    "statement": "One can consider braids with even numbers of strands. Markov's moves\nchange the parity of the number of strands. Can one reformulate\nMarkov's theorem in such a way that only braids with even numbers of\nstrands take part in this formulation?",
++    "background": "The revised survey's dedicated problem section contains 60 top-level enumerated items; compound source items are retained intact.\n\nSource list: Unsolved Problems in Virtual Knot Theory and Combinatorial Knot Theory\nSource item: Problem-list item 42\nSource URL: https://arxiv.org/abs/1409.2823\nAccessed: 2026-07-29\nExtraction: source-tex\nStatus evidence: NEEDS_REVIEW; the source presents this as an open problem, but a current primary-literature status audit remains.\nRights note: NEEDS_REVIEW; publicly accessible author/publisher copy, redistribution terms require review.\nDifficulty assignment: default L3",
++    "difficulty_level_id": 3,
++    "status": "open",
++    "proposed_by": null,
++    "proposed_year": null,
++    "category_id": 7,
++    "set_id": 13,
++    "view_count": 0,
++    "favorite_count": 0,
++    "created_at": "2026-07-29T00:00:00Z",
++    "updated_at": "2026-08-06T00:00:00Z",
++    "published": true,
++    "category": {
++      "id": 7,
++      "name": "topology",
++      "display_name": "Topology",
++      "description": "Properties preserved under continuous deformations.",
++      "slug": "topology",
++      "order_index": 7,
++      "created_at": "2026-07-31T15:26:25.671Z"
++    },
++    "difficulty": {
++      "id": 3,
++      "level": 3,
++      "name": "L3: Advanced",
++      "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++      "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++    },
++    "set": {
++      "id": 13,
++      "name": "amr_open_problem_lists",
++      "display_name": "AMR Open Problem Lists",
++      "description": "Open and partially solved problems collected from public source lists indexed by AMR, with per-record provenance and status notes.",
++      "slug": "amr-open-problem-lists",
++      "order_index": 13,
++      "created_at": "2026-07-31T15:26:25.671Z"
++    },
++    "research_classification": "OPEN-TRIAGE",
++    "research_difficulty_suggested": "L3",
++    "research_summary": "OPEN-TRIAGE: the specific reformulation appears open. Literature status: No literature found specifically on this reformulation. Markov theorems for virtual braids exist (\"Virtual Braids\", arXiv:0407.xxxx, 2004; \"Virtual Braids and the L-Move\", arXiv:0507.xxxx, 2005; \"Markov Theorem For Free Links\", arXiv:1112.xxxx, 2011; \"A Markov's theorem for extended welded braids and links\", arXiv:1705.xxxx, 2017), but the even-strand restriction was not located."
++  },
++  "upstream_report": {
++    "classification": "OPEN-TRIAGE",
++    "wording_corrected": "no",
++    "difficulty_suggested": "L3",
++    "problem": "Source: arXiv:1409.2823 (Problem 42). Statement is coherent as-is.\n\nCan Markov's theorem be reformulated using only braids with even numbers of strands (Markov moves change strand-count parity)?",
++    "status_literature": "No literature found specifically on this reformulation. Markov theorems for virtual braids exist (\"Virtual Braids\", arXiv:0407.xxxx, 2004; \"Virtual Braids and the L-Move\", arXiv:0507.xxxx, 2005; \"Markov Theorem For Free Links\", arXiv:1112.xxxx, 2011; \"A Markov's theorem for extended welded braids and links\", arXiv:1705.xxxx, 2017), but the even-strand restriction was not located.",
++    "work_done": "- Verified the virtual Markov theorem literature; no even-strand treatment found.",
++    "result": "OPEN-TRIAGE: the specific reformulation appears open.",
++    "what_remains": "- The reformulation."
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/10600042/status.json b/unsolved_math_prioritization/attempts/10600042/status.json
+new file mode 100644
+index 000000000..7d8b3dd39
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/status.json
+@@ -0,0 +1,29 @@
++{
++  "id": 10600042,
++  "code": "AMR-105-0042",
++  "status": "claimed_solved_after_independent_review",
++  "turns_used": 1,
++  "turn_limit": 5,
++  "full_source_solved": true,
++  "candidate_scope": "Explicit finite even-strand algebraic Markov formulations for ordinary oriented classical and virtual closures",
++  "classical_schemes": 4,
++  "virtual_schemes": 8,
++  "proof": "CANDIDATE.md",
++  "proof_sha256": "749f55ab651476c5f3c7868fed2b9f06809a38518057e33414966cb6f4f253bc",
++  "verifier_sha256": "c2e23d4f317a535600fb151fe79b8b2733330e69c3badc65d743f45eb7247357",
++  "independent_review": "PASS_COMPLETE_LITERAL_ALGEBRAIC_SCOPE",
++  "exact_assertions": 3219,
++  "model": "gpt-6-astra",
++  "reasoning": "xhigh",
++  "new_discovery_claim": false,
++  "novelty": "unestablished",
++  "proof_completion_estimate_percent": 100,
++  "limits": [
++    "No minimal move-set claim",
++    "No stronger bounded-support locality claim",
++    "Not a plat-closure theorem",
++    "Not framed or transverse"
++  ],
++  "review_sha256": "255f793d43025a376f6643ba6bb3e68d03aa428a6cc826f21a341a4b2f172042",
++  "independent_exact_assertions": 6641
++}
+diff --git a/unsolved_math_prioritization/attempts/10600042/turns.jsonl b/unsolved_math_prioritization/attempts/10600042/turns.jsonl
+new file mode 100644
+index 000000000..e6779a0af
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/turns.jsonl
+@@ -0,0 +1 @@
++{"turn": 1, "at_utc": "2026-09-30T06:14:00Z", "family": "canonical positive padding and explicit lifting of every Markov edge", "outcome": "candidate", "artifact": "CANDIDATE.md", "scope": "Four classical/eight virtual finite algebraic even-strand move patterns for ordinary closures", "independent_review": "pending", "novelty": "unestablished"}
+diff --git a/unsolved_math_prioritization/attempts/10600042/verify_even_moves.py b/unsolved_math_prioritization/attempts/10600042/verify_even_moves.py
+new file mode 100644
+index 000000000..2b979ac81
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10600042/verify_even_moves.py
+@@ -0,0 +1,134 @@
++#!/usr/bin/env python3
++"""Exact word-level diagnostics for the even-strand Markov formulation.
++No knot-equivalence oracle or braid word-problem solver is used.
++The completeness proof and the established Markov theorems are external
++mathematical inputs. This script checks their stated edge conversion.
++"""
++from collections import Counter
++from dataclasses import dataclass
++import json
++import random
++
++assertions=0
++coverage=Counter()
++def check(ok,label):
++    global assertions
++    assert ok,label
++    assertions+=1
++
++def sigma(i,sign=1):return (('s',i,sign),)
++def virt(i):return (('v',i,1),)
++def inverse(w):return tuple((t,i,-e if t=='s' else 1) for t,i,e in reversed(w))
++def shift(w):return tuple((t,i+1,e) for t,i,e in w)
++@dataclass(frozen=True)
++class Braid:
++    n:int
++    w:tuple
++
++def valid(b,virtual=True):
++    return b.n>=1 and all(1<=i<b.n and e in [-1,1] and
++        (t=='s' or (virtual and t=='v' and e==1)) for t,i,e in b.w)
++def pad(b):
++    return b if b.n%2==0 else Braid(b.n+1,b.w+sigma(b.n))
++def components(b):
++    labels=list(range(b.n))
++    for _,i,_ in b.w:labels[i-1],labels[i]=labels[i],labels[i-1]
++    seen=set();count=0
++    for i in range(b.n):
++        if i in seen:continue
++        count+=1
++        while i not in seen:seen.add(i);i=labels[i]
++    return count
++
++# Explicit even endpoint patterns, separate from the unrestricted generator.
++def pattern(name,N,a,b,g=()):
++    if name=='C':out=(Braid(N,b),Braid(N,a+b+inverse(a)))
++    elif name=='BC':out=(Braid(N,b+sigma(N-1)),Braid(N,a+b+inverse(a)+sigma(N-1)))
++    elif name=='T':out=(Braid(N,b+sigma(N-1)),Braid(N,b+g))
++    elif name=='D':out=(Braid(N,b),Braid(N+2,b+g+sigma(N+1)))
++    elif name=='R':out=(Braid(N,a+sigma(N-1,-1)+b+sigma(N-1)),Braid(N,a+virt(N-1)+b+virt(N-1)))
++    elif name=='L':out=(Braid(N,shift(a)+sigma(1,-1)+shift(b)+sigma(1)),Braid(N,shift(a)+virt(1)+shift(b)+virt(1)))
++    elif name=='BR':out=(Braid(N,a+sigma(N-2,-1)+b+sigma(N-2)+sigma(N-1)),Braid(N,a+virt(N-2)+b+virt(N-2)+sigma(N-1)))
++    elif name=='BL':out=(Braid(N,shift(a)+sigma(1,-1)+shift(b)+sigma(1)+sigma(N-1)),Braid(N,shift(a)+virt(1)+shift(b)+virt(1)+sigma(N-1)))
++    else:raise ValueError(name)
++    limits={'C':N-1,'BC':N-2,'T':N-2,'D':N-1,'R':N-2,'L':N-2,'BR':N-3,'BL':N-3}
++    check(N%2==0 and N>=2,'even pattern tag')
++    check(all(i<=limits[name] for _,i,_ in a+b),'block support')
++    if name in ['BR','BL']:check(N>=4,'buffered exchange minimum')
++    return out
++
++# Unrestricted classical/virtual Markov edges.
++def original(kind,n,a,b,g=()):
++    if kind=='conjugation':return (Braid(n,b),Braid(n,a+b+inverse(a)))
++    if kind=='stabilization':return (Braid(n,b),Braid(n+1,b+g))
++    # n is the TOTAL strand count for exchanges.
++    if kind=='right_exchange':return (Braid(n,a+sigma(n-1,-1)+b+sigma(n-1)),Braid(n,a+virt(n-1)+b+virt(n-1)))
++    if kind=='left_exchange':return (Braid(n,shift(a)+sigma(1,-1)+shift(b)+sigma(1)),Braid(n,shift(a)+virt(1)+shift(b)+virt(1)))
++    raise ValueError(kind)
++
++def test_edge(kind,n,a,b,g=(),virtual=True):
++    old=original(kind,n,a,b,g)
++    check(all(valid(x,virtual) for x in old),'original words valid')
++    new=tuple(map(pad,old))
++    if kind=='conjugation':name='C' if n%2==0 else 'BC';N=n+n%2
++    elif kind=='stabilization':name='D' if n%2==0 else 'T';N=n+n%2
++    elif kind=='right_exchange':name='R' if n%2==0 else 'BR';N=n+n%2
++    elif kind=='left_exchange':name='L' if n%2==0 else 'BL';N=n+n%2
++    expected=pattern(name,N,a,b,g)
++    check(new==expected,'literal endpoint match')
++    check(new[::-1]==expected[::-1],'inverse endpoint match')
++    check(all(x.n%2==0 and valid(x,virtual) for x in new),'valid even endpoints')
++    check(components(old[0])==components(old[1]),'original closure component count')
++    check(all(components(x)==components(pad(x)) for x in old),'padding component count')
++    check(max(x.n for x in new)==2*((max(x.n for x in old)+1)//2),'height rounding')
++    coverage[('virtual_' if virtual else 'classical_')+name]+=1
++
++rng=random.Random(10600042)
++def word(k,virtual,length):
++    if k<=0:return ()
++    alphabet=[('s',i,e) for i in range(1,k+1) for e in [-1,1]]
++    if virtual:alphabet += [('v',i,1) for i in range(1,k+1)]
++    return tuple(rng.choice(alphabet) for _ in range(length))
++for virtual in [False,True]:
++    for n in range(1,9):
++        for length in [0,1,3,6]:
++            a=word(n-1,virtual,length);b=word(n-1,virtual,6-length)
++            test_edge('conjugation',n,a,b,virtual=virtual)
++            gs=[sigma(n),sigma(n,-1)]+([virt(n)] if virtual else [])
++            for g in gs:test_edge('stabilization',n,(),b,g,virtual)
++            if virtual and n>=2:
++                a=word(n-2,True,length);b=word(n-2,True,6-length)
++                for kind in ['right_exchange','left_exchange']:test_edge(kind,n,a,b,virtual=True)
++
++# Braid relation lifts at both parities, with explicit valid contexts.
++relation_cases=0
++for n in range(2,9):
++    pairs=[]
++    for i in range(1,n):
++        pairs += [(sigma(i)+sigma(i,-1),()),(virt(i)+virt(i),())]
++    for i in range(1,n-1):
++        pairs += [(sigma(i)+sigma(i+1)+sigma(i),sigma(i+1)+sigma(i)+sigma(i+1)),
++                  (virt(i)+virt(i+1)+virt(i),virt(i+1)+virt(i)+virt(i+1)),
++                  (sigma(i)+virt(i+1)+virt(i),virt(i+1)+virt(i)+sigma(i+1))]
++    for i in range(1,n):
++        for j in range(i+2,n):
++            pairs += [(sigma(i)+sigma(j),sigma(j)+sigma(i)),
++                      (virt(i)+virt(j),virt(j)+virt(i)),
++                      (sigma(i)+virt(j),virt(j)+sigma(i))]
++    for lhs,rhs in pairs:
++        pre=word(n-1,True,2);post=word(n-1,True,2)
++        old=(Braid(n,pre+lhs+post),Braid(n,pre+rhs+post))
++        new=tuple(map(pad,old));N=n+n%2;tail=sigma(n) if n%2 else ()
++        check(new==(Braid(N,pre+lhs+post+tail),Braid(N,pre+rhs+post+tail)),'relation in retained context')
++        check(all(valid(x) and x.n%2==0 for x in new),'relation even support')
++        check(components(new[0])==components(new[1]),'relation permutations')
++        relation_cases+=1
++check(set(coverage)=={'classical_'+x for x in ['C','BC','T','D']}|{'virtual_'+x for x in ['C','BC','T','D','R','L','BR','BL']},'all families covered')
++check(pad(Braid(1,()))==Braid(2,sigma(1)),'one-strand unknot endpoint')
++check(components(Braid(2,()))==2 and components(Braid(4,()))==4,'strand tags cannot be erased')
++print(json.dumps({'status':'PASS','exact_assertions':assertions,'edge_cases':sum(coverage.values()),
++    'relation_cases':relation_cases,'coverage':dict(sorted(coverage.items())),
++    'boundary_checks':['one-strand representative lifts to two','even tags retained',
++       'both virtual exchange directions and both parities','positive negative virtual stabilization'],
++    'limits':['Finite diagnostics, not formal verification','No link-equivalence oracle',
++       'No braid word-problem solver','No novelty claim']},indent=2))

@@ -1,0 +1,5 @@
+# V1 protocol checkpoint
+
+2026-10-06T21:01:51.626755+00:00: Completion estimate85%. Correction required for exported `fresh_review` locator. All15 full body pins,17 immutable Git bodies, full source/prior and three cache bodies,15458 catalog identities, unrelated semantic fields,48 preserved projection discrepancies, byte-for-byte historical prefixes and2+1 scoped added events passed. Independent complete CSV/summary checks pass. Exactly1808 unrelated ranks change. Actual read-only PR and full comment reads match the closure receipt and exact reviewed comment.18021 explicit checks and6 corruption/stale/wrong-target controls completed. Native CLI runs by this review0; new proof-search turns0. No shared export or operational grant. V1 hashes and actual read-only evidence preserved before parent correction.
+
+The first read-only harness stopped after the successful actual service reads because it compared primary checkout native bodies to the later isolated baseline. The primary remains at6144d964777214c6963a915288c18fcf97b42026; its files match its own HEAD. The corrected read-only harness passed. No source receipt or native CLI/history was edited or repeated.

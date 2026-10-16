@@ -1,12 +1,12 @@
-# 5100015 / k303,b: outer center-pedal area product
+# Current reviewed center-pedal theorem
 
-Full proof candidate, author turn1; separate independent review pending.
+The signed outer tangent/center-pedal area product k303,b is proved for a strictly nested nondegenerate confocal elliptical caustic and periods not divisible by four, with admissible stars, reversal and fixed-repeat scaling. Actual feet lie on the boundary tangent side lines. Hyperbolic/focal/collapsed caustics and unsigned filled-lobe areas are outside scope.
 
-- PROOF.md proves the signed product for every primitive period not divisible by4, including odd and star cases
-- SOURCE_CHECKPOINT.md is the historical intake source gate; SOURCES.md is the full current source/contribution audit
-- TURN1_DERIVATION_CHECKPOINT.md preserves the independently derived mechanism before reading adjacent candidates
-- verify.py and verification.json contain exact controls and separately labeled high-precision diagnostics
-- source_manifest.json and sources/record_receipt.json identify the primary and immutable imported sources
-- RESEARCH_LOG.md and queue_turn_receipt.json preserve the single author turn and the separate-review pause
+Classical KLS2002 odd Jacobi product-to-sum, KS2003/2004 Landen, AST2020 velocity/foot and skew-hodograph, BT2020 telescope, Stachel canonical and standard conic/Jacobi/pole methods are credited. Ferudun2026v1.1 Theorem2/Section6 (DOI10.5281/zenodo.23088516) is an exact contemporary full proof; v1.0 covers only the primitive even centered subset via its arbitrary-point result. Historical ordering, independent non-derivation and novelty are undetermined. No first-proof, current-worldwide-open, new-identity or exclusive-resolution claim is made.
 
-The center pedal is a fixed linear image of a quarter-shifted edge-vector polygon. A classical odd-order Jacobi dn trace product then supplies the full invariant. No historical novelty or human-review claim is made. Source PDFs/text/images are local-only reading copies and are not included in publication.
+Extensive AI assistance; unrefereed, with no independent human peer review or formal proof verification. Full mathematical/source and qualified bounded priority audit are accepted. Whole-package sequential review, final clearance and actual release outcomes are separate later records; this preparation snapshot does not authorize or predict them.
+
+See PROOF.md, SOURCES.md and PUBLICATION_STATUS.md. All23 original files, old pending assessments and hash bindings remain verbatim in history/original_submission_20261016/. Unchanged verification scripts can overwrite adjacent receipts; use the portable harness in the accompanying source archive, which executes isolated copies. Current verification.json labels the historical author result.
+
+
+Actual publication: https://doi.org/10.5281/zenodo.23413614; one verified four-cell tracker row 'Math Puzzles'!A121:D121. Required sequential whole-package and source reviews and all required repairs are complete under the bound final clearance. Dated preparation text is historical. Exact contemporary/classical credits, priority limitations, extensive AI assistance and unrefereed status remain. All 23 originals and reviewed mathematical proof bytes are unchanged. The native merge is pending its separate verified event. See RELEASE_RECEIPT.json.

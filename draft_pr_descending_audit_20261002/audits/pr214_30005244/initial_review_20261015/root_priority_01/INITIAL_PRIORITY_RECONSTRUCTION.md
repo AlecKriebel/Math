@@ -1,0 +1,15 @@
+# Parent priority reconstruction and provisional evidence
+
+2026-10-15T08:10:47.866112+00:00
+
+Target novelty is a hypothesis. The accepted analytical claims require DDA-specific static strong consistency, bounded selfadjoint lattice control and sampled dynamic Hilbert–Schmidt convergence. Once these are in hand, the off-interval Fredholm/Riesz conclusion is classical compact-operator spectral approximation, not a new abstract theorem. Kernel differentiation, cubic symmetry, volume-mask arguments, rational-point deletion, ball Hodge/spherical harmonics, radiation sign and rank-three perturbation are likewise not each automatically novel.
+
+The original2022 contribution and full2023 static arXivv3 introduction explicitly leave accurate discrete-eigenvalue approximation open. This proves only their dated stated gap, not an absence of every later or older covering result. Three independent families challenge same-team subsequent work, classical approximation/DDA sources and the counterexample's ingredients.
+
+Parent exact-title, off-interval/eigenvalue, strong/regular-convergence and year2024–2026 searches have not located an exact later proof. Search failures alone are not priority clearance. A dynamic same-team manuscript is named in2023 and must be acknowledged; its full text has not yet been located by the parent. The2021 Valenciennes slides contain the2D dynamic stability conjecture and3D static overshoot conjecture, rather than a proof of the submitted3D spectral theorem. Parent directly read the final Ewald/stability/conjecture slides.
+
+Parent independently read Costabel's full2023 Hilbert manuscript introduction, §2.1 stability proof and §3.2–3.4 full convergence proofs: it treats a1D interval, scalar Hilbert kernel and solution error, and explicitly discusses the unfinished compact-perturbation framework question. This is relevant earlier consistency and stability work but it does not itself verify the3D actual matrix premises or the off-interval nonreal spectral conclusion. Its dates/version are explicit; search-engine crawl dates are not publication dates.
+
+The counterexample-priority family located the full2020 Ammari–Li–Zou ETH report. Parent directly read its operator(2.2), Theorem3.2 full radiation/sign proof and Theorem3.7 finite-type spectral argument. Their T_D^k equals−Aκ here, so all their nontrivial lower-sign poles and spherical Mie information are earlier continuum work and require credit. Existence of nonreal ball poles is not our discovery; the elementary explicitκ certificate and transport to a grid-avoiding compact support are the possible model-specific assembly. No verdict about global priority is yet promoted.
+
+Direct old Rennes URLs now404, new university domain403 and one guessed cnrs URL returned non-PDF. Actual accessible source copies from primary arXiv and the current author page were retrieved by the independent families and then read by the parent in place, with hashes pinned below, avoiding duplicate downloads. Exact readscope, failed attempts and current URLs must remain distinguishable.

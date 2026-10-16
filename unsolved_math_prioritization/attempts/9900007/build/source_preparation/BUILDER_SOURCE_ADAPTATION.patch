@@ -1,0 +1,406 @@
+--- PR44 reviewed administrative basis
++++ PR45 source-only builder
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""SOURCE ONLY. ROOT may freeze an absent PR44 packet after genuine source reading.
++"""SOURCE ONLY. ROOT may freeze an absent PR45 packet after genuine source reading.
+ 
+ This program performs administrative copying and read-only Git queries. It never
+ imports, compiles or executes any candidate or family mathematical helper. It
+@@ -20,11 +20,12 @@
+ import sys
+ import traceback
+ 
+-HEAD = 'c772dc5b851ec91da9d46d534577609e5d3ca389'
+-BASE = '01358d66fc67d1c462bddf31c0d4ee5b120e6737'
+-SCIENCE = '69a3ffb7b6c2ba3bf1a4df8d7d83960d66095db9d175d78cfe49e2324aac1a71'
++HEAD = 'd9b4acf5d070d1f04ffac86a4f08916a5629ff16'
++BASE = 'c6975ca76f9f667f1250ba403d0e6da2aafe14d0'
++MERGE_BASE = '01358d66fc67d1c462bddf31c0d4ee5b120e6737'
++SCIENCE = '7123c345d3ecdf4fecb8941596687da54c44e169831eb23177ea485fa8386722'
+ GATE = 'PENDING_NEW_WHOLE_CURRENT_SOURCE_FIRST_ADVERSARY'
+-FLAGS = ['original18_science_helpers_results_metadata_and_complete19_path_diff_fully_read', 'operative_primary_target_categories_and_relevant_proofs_fully_read', 'both_realization_gaps_and_no_novelty_disposition_accepted', 'whole_raw_SQL_and_prior_presence_actual_evidence_fully_read', 'unchanged_author507_and_independent29933_actual_reproductions_fully_read', 'both_closed_independent_families_fully_read', 'first_party_closures_and_individual_foreign_exclusions_mechanically_checked', 'standard_conditional_deductions_only_scoped_partial_accepted', 'new_source_adversary_closed_clean_complete_report_personally_read']
++FLAGS = ['original18_science_helpers_results_metadata_and_complete19_path_diff_fully_read', 'operative_primary_target_and_scoped_prior_work_comparisons_fully_read', 'arbitrary_fixed_coupling_metric_and_tight_offset_proof_accepted', 'whole_raw_SQL_and_prior_presence_actual_evidence_fully_read', 'unchanged_author885_and_independent3044_actual_reproductions_fully_read', 'both_closed_independent_families_fully_read', 'first_party_closures_and_individual_foreign_exclusions_mechanically_checked', 'unsolved_illustrative_obstruction_only_no_novelty_scope_accepted', 'new_source_adversary_closed_clean_complete_report_personally_read']
+ HEADER = ['Rank', 'ID / code', 'Problem', 'EV', 'Impact (/10)', 'Difficulty',
+           'Proposed', 'Status', 'Turns', 'Chat', 'Findings', 'DOI']
+ NATIVE = {'unsolved_math_prioritization/' + name for name in [
+@@ -33,7 +34,7 @@
+     'cache/research_results.json', 'cache/catalog.sqlite',
+     'review_v2/related_target_groups.json']}
+ NATIVE.add('draft_pr_publication_program_20260930/inventory.json')
+-IMMUTABLE = ['OBSTRUCTION.md', 'SOURCES.md', 'group_block_verification.json', 'source_manifest.json', 'source_record.json', 'turns.jsonl', 'verify_group_block.py', 'review/submitted_verifier.py', 'review/submitted_results.json', 'review/reviewed_obstruction.md', 'review/independent_checks.py', 'review/independent_results.json']
++IMMUTABLE = ['PARTIAL.md','SOURCES.md','binary_verification.json','source_manifest.json','source_record.json','turns.jsonl','verify_binary_process.py','review/verify_binary_process.py','review/submitted_results.json','review/PARTIAL.md','review/independent_checks.py','review/independent_results.json']
+ 
+ def require(value, message):
+     if not value:
+@@ -219,7 +220,7 @@
+ 
+     prep_raw = bind('current_preparation_family/PREPARATION_MANIFEST.json', 'closed_source_preparation')
+     prep = load(prep_raw)
+-    require(prep['schema'] == 'PR44_CURRENT_SOURCE_ONLY_CLOSURE_v1' and
++    require(prep['schema'] == 'PR45_CURRENT_SOURCE_ONLY_CLOSURE_v1' and
+             prep['status'] == 'CLOSED_SOURCE_ONLY_CURRENT_PREPARATION' and
+             prep['self_excluded'] == ['PREPARATION_MANIFEST.json'] and
+             type(prep['files_count']) is int and prep['files_count'] == len(prep['files']),
+@@ -235,64 +236,67 @@
+             dict(row, path='current_preparation_family/' + row['path']), 'reviewed_source_preparation')
+     outputs['build/source_preparation/PREPARATION_MANIFEST.json'] = prep_raw
+     pins = load(bind('current_preparation_family/STATIC_INPUT_BINDINGS.json', 'fixed_input_contract'))
+-    require(pins['schema'] == 'PR44_FIXED_CURRENT_SOURCE_INPUTS_v1' and
++    require(pins['schema'] == 'PR45_FIXED_CURRENT_SOURCE_INPUTS_v1' and
+             pins['status'] == 'SOURCE_ONLY_ROOT_PREREQUISITES_PENDING', 'SOURCEONLY status required')
+     require(git('branch', '--show-current').strip() == b'main', 'Stay on main')
+     snapshot_raw = checked(pins['snapshot_manifest'], 'original18_snapshot')
+     snapshot = load(snapshot_raw)
+-    require(snapshot['schema'] == 'pr44-root-readonly-original-snapshot/v1' and
+-            snapshot['head'] == HEAD and snapshot['base'] == BASE and
+-            type(snapshot['pr']) is int and snapshot['pr'] == 44 and
+-            type(snapshot['id']) is int and snapshot['id'] == 2912 and
+-            len(snapshot['files']) == 18 and len(snapshot['changed_paths']) == 19,
+-            'Exact original18/diff19 identities required')
++    require(snapshot['schema'] == 'pr45-original-source-snapshot/v1' and
++            snapshot['head'] == HEAD and snapshot['github_base'] == BASE and
++            snapshot['merge_base'] == MERGE_BASE and snapshot['original_files'] == 18 and
++            len(snapshot['files']) == 18, 'Exact original18 and distinct bases required')
+     original = {}
+     for row in snapshot['files']:
+-        name = relative(row['path'])
+-        require(name not in original and type(row['size']) is int and row['size'] >= 0 and
+-                hex64(row['sha256']) and row['mode'] == '100644' and
+-                type(row['git_blob']) is str and re.fullmatch('[0-9a-f]{40}', row['git_blob']),
+-                'Typed unique original Git file required')
+-        raw = bind('source_snapshot_v2/' + name, 'immutable_original18', row['sha256'])
+-        require(len(raw) == row['size'], 'Original size changed')
+-        native = 'unsolved_math_prioritization/attempts/2912/' + name
+-        require(git('show', HEAD + ':' + native) == raw, 'Original Git object bytes differ')
++        name = relative(row['relative_path'])
++        require(name not in original and type(row['bytes']) is int and row['bytes'] >= 0 and
++                hex64(row['sha256']) and row['git_mode'] == '100644' and row['snapshot_mode'] == '0444' and
++                type(row['git_object']) is str and re.fullmatch('[0-9a-f]{40}', row['git_object']),
++                'Typed unique original Git body required')
++        raw = bind('source_snapshot/' + name, 'immutable_original18', row['sha256'])
++        require(len(raw) == row['bytes'] and stat.S_IMODE((audit/'source_snapshot'/name).stat().st_mode) == 0o444,
++                'Original full bytes/mode changed')
++        native = 'unsolved_math_prioritization/attempts/9900007/' + name
++        require(row['path'] == native and git('show', HEAD + ':' + native) == raw,
++                'Original Git/path body differs')
+         require(git('ls-tree', HEAD, '--', native).decode().strip() ==
+-                row['mode'] + ' blob ' + row['git_blob'] + '\t' + native, 'Original mode/blob differs')
++                '100644 blob ' + row['git_object'] + '\t' + native, 'Original mode/blob differs')
+         original[name] = raw
+-    require(inventory(audit / 'source_snapshot_v2') == set(original) and
+-            sha(original['OBSTRUCTION.md']) == SCIENCE, 'Complete original science required')
+-    tree = git('ls-tree', '-r', '-z', HEAD, '--', 'unsolved_math_prioritization/attempts/2912/').decode().split('\0')
+-    require({entry.split('\t', 1)[1] for entry in tree if entry} ==
+-            {'unsolved_math_prioritization/attempts/2912/' + name for name in original}, 'Complete original Git tree required')
+-    diff = bind('original_diff_v2.patch', 'whole_original19_path_diff', snapshot['diff_sha256'])
+-    require(type(snapshot['diff_bytes']) is int and len(diff) == snapshot['diff_bytes'] == 75046 and
+-            git('diff', BASE, HEAD) == diff and git('diff', '--name-only', BASE, HEAD).decode().splitlines() ==
+-            snapshot['changed_paths'], 'Full original diff/tree binding required')
++    require(inventory(audit/'source_snapshot') == set(original) and sha(original['PARTIAL.md']) == SCIENCE,
++            'Complete original science required')
++    tree = git('ls-tree', '-r', '-z', HEAD, '--', 'unsolved_math_prioritization/attempts/9900007/').decode().split('\0')
++    require({entry.split('\t',1)[1] for entry in tree if entry} ==
++            {'unsolved_math_prioritization/attempts/9900007/'+name for name in original}, 'Complete original Git tree required')
++    metadata = load(checked(pins['original_metadata'], 'original_distinct_base_and_diff_metadata'))
++    require(metadata['head'] == HEAD and metadata['github_base'] == BASE and metadata['merge_base'] == MERGE_BASE and
++            metadata['changed_files'] == 19 and git('rev-parse', BASE) == (BASE+'\n').encode(), 'Actual distinct original bases required')
++    diff = checked(metadata['full_diff'], 'whole_original19_path_diff')
++    require(len(diff) == 183402 and sha(diff) == 'e35d109f694c8abb0a83c3b5604ede674a14d33025ae124340d4102829c3e6ba' and
++            git('diff','--no-ext-diff','--no-textconv','--binary',MERGE_BASE,HEAD,'--') == diff and
++            git('diff','--name-only',MERGE_BASE,HEAD).decode().splitlines() == [r['path'] for r in metadata['all_changed_paths']],
++            'Whole original19-path diff and merge-base binding required')
+     ledger = [load(line) for line in original['turns.jsonl'].splitlines()]
+-    require(len(ledger) == 2 and all(type(row['turn']) is int for row in ledger) and
+-            [row['turn'] for row in ledger] == [1, 2] and all(row['outcome'] == 'stalled' for row in ledger),
+-            'Exact original two-turn stopped ledger required')
+-    require(original['verify_group_block.py'] == original['review/submitted_verifier.py'] and
+-            original['group_block_verification.json'] == original['review/submitted_results.json'] and
+-            original['OBSTRUCTION.md'] == original['review/reviewed_obstruction.md'], 'Original duplicate bindings differ')
+-    saved, independent = load(original['group_block_verification.json']), load(original['review/independent_results.json'])
+-    require(saved['status'] == independent['status'] == 'PASS' and
+-            type(saved['exact_assertions']) is int and saved['exact_assertions'] == 507 and
+-            type(independent['exact_assertions']) is int and independent['exact_assertions'] == 29933 and
+-            all(type(n) is int and n > 0 for n in independent['categories'].values()) and
+-            sum(independent['categories'].values()) == 29933, 'Whole saved arithmetic scope required')
++    require(len(ledger) == 1 and type(ledger[0]['turn']) is int and ledger[0]['turn'] == 1 and
++            ledger[0]['outcome'] == 'partial', 'Exact original one-turn partial ledger required')
++    require(original['verify_binary_process.py'] == original['review/verify_binary_process.py'] and
++            original['binary_verification.json'] == original['review/submitted_results.json'] and
++            original['PARTIAL.md'] == original['review/PARTIAL.md'], 'Original duplicate bindings differ')
++    saved, independent = load(original['binary_verification.json']), load(original['review/independent_results.json'])
++    require(saved['status'] == 'PASS' and type(saved['exact_assertions']) is int and saved['exact_assertions'] == 885 and
++            type(independent['passed']) is int and independent['passed'] == 3044 and independent['failed'] == 0 and
++            type(independent['checks']) is dict and len(independent['checks']) == 3044 and
++            all(value == 'PASS' for value in independent['checks'].values()) and independent['reviewed_sha256'] == SCIENCE,
++            'Whole saved receipts only; fresh ROOT reproduction still required')
+     for row in pins['auxiliary']:
+         outputs['root_historical_exports/' + row['path']] = checked(row, 'retained_ROOT_export_or_failure_evidence')
+     family_pins = {}
+     for family, info in pins['families'].items():
+-        require(family in {'duality_algebra_family', 'literal_realization_family'}, 'Exact family identities required')
++        require(family in {'probability_metric_family', 'literal_priority_family'}, 'Exact family identities required')
+         own, foreign = rows(info['copied_members']), rows(info['foreign_members'])
+         manifest_name = relative(info['manifest']['path'])
+         require(not own.intersection(foreign) and inventory(audit / family) == own | foreign | {manifest_name},
+                 'Exact disjoint independent-family closure required')
+         directories = {p.relative_to(audit / family).as_posix() for p in (audit / family).rglob('*') if p.is_dir()}
+-        require(directories == set(info['directories']), 'Independent family directory topology changed')
++        require(directories == set(info['directories']) and all(stat.S_IMODE((audit/family/name).stat().st_mode) == mode for name,mode in info['directory_modes'].items()), 'Independent family directory topology/modes changed')
+         mf = checked(dict(info['manifest'], path=family + '/' + manifest_name), 'closed_independent_manifest')
+         require(stat.S_IMODE((audit / family / manifest_name).stat().st_mode) == 0o444, 'Family manifest full0444 required')
+         family_pins[family] = sha(mf)
+@@ -305,14 +309,14 @@
+                 outputs['family_evidence/' + family + '/' + row['path']] = body
+         for row in info['external_inputs']:
+             checked(row, 'individual_foreign_parent_input_not_fresh_native_authority')
+-    require(set(family_pins) == {'duality_algebra_family', 'literal_realization_family'}, 'Both independent families required')
+-    dual = load(bind('duality_algebra_family/VERDICT.json', 'full_scoped_duality_verdict'))
+-    lit = load(bind('literal_realization_family/verdict.json', 'full_scoped_literal_verdict'))
+-    require(dual['verdict'] == 'PASS_SCOPED_DUALITY_AND_ALGEBRA_DEDUCTIONS' and
+-            dual['mandatory_mathematical_corrections'] == [] and dual['original_target_solved'] is False and
+-            dual['no_novelty_claim'] is True and lit['verdict'] == 'PASS_SCOPED_PARTIAL_DEDUCTIONS' and
+-            lit['mandatory_corrections'] == [] and lit['full_target_solved'] is False and lit['novelty_verified'] is False,
+-            'Independent scoped reports only; no full solution')
++    require(set(family_pins) == {'probability_metric_family', 'literal_priority_family'}, 'Both independent families required')
++    probability = load(bind('probability_metric_family/VERDICT.json','scoped_probability_verdict'))
++    literal = load(bind('literal_priority_family/VERDICT.json','scoped_literal_verdict'))
++    require(probability['mathematical_determination'] == 'original_partial_claim_valid_with_stated_boundaries' and
++            probability['mandatory_mathematical_corrections'] == [] and probability['full_target_characterization_resolved'] is False and
++            probability['historical_novelty_certified'] is False and literal['verdict'] == 'PASS_SCOPED_PARTIAL_OBSTRUCTION' and
++            literal['mandatory_mathematical_corrections'] == [] and literal['full_source_solved'] is False and
++            literal['historical_novelty'] == 'unestablished', 'Scoped UNSOLVED reports only; no full solution or novelty')
+ 
+     future = {}
+     for name, option in [('ROOT_CURRENT_PARTIAL_SCOPE_CERTIFICATE.md', 'root_scope_certificate_sha256'),
+@@ -323,7 +327,7 @@
+         future[name] = bind(name, 'genuine_separate_ROOT_prerequisite', getattr(args, option))
+     evidence = load(future['ROOT_EVIDENCE_BINDINGS.json'])
+     require(set(evidence) == {'schema', 'approved_by_root', 'created_utc', 'notes', 'manifest', 'proof_notes', 'summary'} and
+-            evidence['schema'] == 'PR44_ROOT_EVIDENCE_BINDINGS_v1' and evidence['approved_by_root'] is True and
++            evidence['schema'] == 'PR45_ROOT_EVIDENCE_BINDINGS_v1' and evidence['approved_by_root'] is True and
+             type(evidence['notes']) is str and len(evidence['notes'].strip()) >= 40 and
+             clock(prep['utc']) <= clock(evidence['created_utc']) <= dt.datetime.now(dt.timezone.utc),
+             'Genuine ROOT evidence binding required; drafts rejected')
+@@ -332,12 +336,12 @@
+             evidence['summary']['path'].startswith('root_original_actual_reproduction/'), 'Exact ROOT evidence anchors required')
+     actual_manifest_raw = checked(evidence['manifest'], 'genuine_ROOT_reproduction_self_manifest')
+     actual_manifest = load(actual_manifest_raw)
+-    require(actual_manifest['schema'] == 'pr44-root-original-reproduction/v1' and
++    require(actual_manifest['schema'] == 'pr45-root-original-reproduction/v1' and
+             actual_manifest['self_excluded'] == ['MANIFEST.json'] and
+             type(actual_manifest['files_count']) is int and actual_manifest['files_count'] == len(actual_manifest['files']) and
+             actual_manifest['original_head'] == HEAD and actual_manifest['source_snapshot_manifest_sha256'] == sha(snapshot_raw) and
+             all(type(actual_manifest[key]) is int and actual_manifest[key] == expected for key, expected in
+-                [('original_substantive_attempts', 2), ('new_substantive_attempts', 0), ('audit_turns', 0)]),
++                [('original_substantive_attempts', 1), ('new_substantive_attempts', 0), ('audit_turns', 0)]),
+             'Exact genuine ROOT original reproduction closure required')
+     actual_names = rows(actual_manifest['files'])
+     require(inventory(audit / 'root_original_actual_reproduction') == actual_names | {'MANIFEST.json'}, 'ROOT reproduction topology changed')
+@@ -347,17 +351,17 @@
+             dict(row, path='root_original_actual_reproduction/' + row['path']), 'full_ROOT_actual_reproduction_member')
+     summary_raw = checked(evidence['summary'], 'ROOT_full_actual_reproduction_summary')
+     summary = load(summary_raw)
+-    require(summary['schema'] == 'PR44_ROOT_CURRENT_REPRODUCTION_SUMMARY_v1' and
++    require(summary['schema'] == 'PR45_ROOT_CURRENT_REPRODUCTION_SUMMARY_v1' and
+             summary['actual_reproductions_completed'] is True and
+             equal(summary['entire_author_result'], saved) and equal(summary['entire_independent_result'], independent) and
+             summary['author_receipt_byte_exact'] is True and summary['independent_receipt_byte_exact'] is True and
+             summary['full_original18_verified'] is True and equal(summary['whole_original_ledger'], ledger) and
+-            summary['finite_checks_do_not_prove_geometric_realization_or_full_problem'] is True and
++            summary['finite_checks_do_not_prove_universal_coupling_or_full_problem'] is True and
+             type(summary['whole_raw_bytes']) is int and summary['whole_raw_bytes'] == 149266659 and
+             type(summary['whole_SQL_rows']) is int and summary['whole_SQL_rows'] == 15458 and
+             type(summary['prior_raw_key_present']) is bool and
+             all(type(summary[key]) is int and summary[key] == expected for key, expected in
+-                [('original_substantive_attempts', 2), ('new_substantive_attempts', 0), ('audit_turns', 0)]),
++                [('original_substantive_attempts', 1), ('new_substantive_attempts', 0), ('audit_turns', 0)]),
+             'Whole actual results, source inputs and original accounting required')
+     require(type(summary['actual_replay_captures']) is list and len(summary['actual_replay_captures']) == 2,
+             'Two genuine complete ROOT evidence captures required')
+@@ -387,16 +391,16 @@
+     require(notes.decode().strip() and not notes.decode().lstrip().startswith('# DRAFT'), 'Completed ROOT proof notes required')
+ 
+     certificate = future['ROOT_CURRENT_PARTIAL_SCOPE_CERTIFICATE.md'].decode()
+-    require(certificate.splitlines()[0] == '# ROOT PR44 scoped standard-partial acceptance' and
+-            certificate.splitlines().count('ROOT_SCOPE_ACCEPTED_STANDARD_PARTIAL_ONLY') == 1 and 'DRAFT' not in certificate,
++    require(certificate.splitlines()[0] == '# ROOT PR45 scoped synchronous-obstruction acceptance' and
++            certificate.splitlines().count('ROOT_SCOPE_ACCEPTED_SYNCHRONOUS_OBSTRUCTION_ONLY') == 1 and 'DRAFT' not in certificate,
+             'Completed separate ROOT certificate required')
+-    for literal in ['PR44 / 2912 / KP-4.36', HEAD, BASE, 'Status: unsolved',
+-                    'Original turns: 2/5; new: 0; audit: 0', 'Full problem solved: false',
++    for literal in ['PR45 / 9900007 / AMR-098-0007', HEAD, BASE, MERGE_BASE, 'Status: unsolved',
++                    'Original turns: 1/5; new: 0; audit: 0', 'Full problem solved: false',
+                     'Novelty: false', 'NEW whole-current review: PENDING', 'Paper/new DOI/tracker: false']:
+         require(literal in certificate, 'Missing literal ROOT scope: ' + literal)
+     reading, science = load(future['ROOT_PRIMARY_READ_LEDGER.json']), load(future['ROOT_SCIENCE_CARD.json'])
+     qualification = bind('current_preparation_family/SOURCE_PRECISION_QUALIFICATIONS.md', 'global_qualification')
+-    for obj, schema in [(reading, 'PR44_ROOT_PRIMARY_READ_LEDGER_v1'), (science, 'PR44_ROOT_SCIENCE_CARD_v1')]:
++    for obj, schema in [(reading, 'PR45_ROOT_PRIMARY_READ_LEDGER_v1'), (science, 'PR45_ROOT_SCIENCE_CARD_v1')]:
+         require(obj['schema'] == schema and obj['reading_completed'] is True and
+                 equal(obj['root_flags'], {flag: True for flag in FLAGS}) and
+                 type(obj['reading_notes']) is str and len(obj['reading_notes'].strip()) >= 40 and
+@@ -406,7 +410,7 @@
+                 obj['evidence_bindings_sha256'] == args.root_evidence_bindings_sha256 and
+                 equal(obj['family_manifest_sha256'], family_pins) and
+                 all(type(obj[key]) is int and obj[key] == expected for key, expected in
+-                    [('original_substantive_attempts', 2), ('new_substantive_attempts', 0), ('audit_turns', 0)]), 'ROOT reading identities/pins/accounting differ')
++                    [('original_substantive_attempts', 1), ('new_substantive_attempts', 0), ('audit_turns', 0)]), 'ROOT reading identities/pins/accounting differ')
+     require(science['status'] == 'unsolved' and science['partial_valid'] is True and
+             science['full_problem_solved'] is False and science['novelty_claimed'] is False and
+             type(science['turn_limit']) is int and science['turn_limit'] == 5 and
+@@ -415,10 +419,10 @@
+             science['current_input_manifest_sha256'] == args.root_current_input_manifest_sha256 and
+             science['new_whole_current_gate'] == 'PENDING' and all(science[key] is None for key in
+                 ['current_model', 'current_reasoning_effort', 'current_deadline_utc', 'current_verdict']),
+-            'Only scoped unsolved standard-partial acceptance with explicit unknown runtime')
++            'Only scoped unsolved synchronous-obstruction acceptance with explicit unknown runtime')
+     current = load(future['ROOT_CURRENT_INPUT_PREIMAGES.json'])
+     require(set(current) == {'schema', 'approved_by_root', 'created_utc', 'reason', 'current_head', 'files'} and
+-            current['schema'] == 'PR44_ROOT_FRESH13_INPUT_PREIMAGES_v1' and current['approved_by_root'] is True and
++            current['schema'] == 'PR45_ROOT_FRESH13_INPUT_PREIMAGES_v1' and current['approved_by_root'] is True and
+             type(current['reason']) is str and len(current['reason'].strip()) >= 40 and
+             clock(prep['utc']) <= clock(current['created_utc']) <= dt.datetime.now(dt.timezone.utc) and
+             rows(current['files']) == NATIVE and len(current['files']) == 13 and
+@@ -432,11 +436,11 @@
+             require(len(body) == row['bytes'] and sha(body) == row['sha256'], 'Fresh native preimage changed')
+             structured(row['path'], body)
+     validate_native()
+-    outer_name = relative(os.environ.get('PR44_ROOT_OUTER_CAPTURE', ''))
+-    require(re.fullmatch(r'tmp/root_pr44_current_outer_[0-9]{8}T[0-9]{6}\.[0-9]{6}Z', outer_name), 'Reviewed real ROOT outer prelaunch required')
++    outer_name = relative(os.environ.get('PR45_ROOT_OUTER_CAPTURE', ''))
++    require(re.fullmatch(r'tmp/root_pr45_current_outer_[0-9]{8}T[0-9]{6}\.[0-9]{6}Z', outer_name), 'Reviewed real ROOT outer prelaunch required')
+     outer_raw = bind(outer_name + '/OPERATION_PRELAUNCH.json', 'actual_ROOT_outer_prelaunch')
+     outer = load(outer_raw)
+-    require(outer['schema'] == 'PR44_ROOT_BUILDER_PRELAUNCH_v1' and
++    require(outer['schema'] == 'PR45_ROOT_BUILDER_PRELAUNCH_v1' and
+             type(outer['operator_pid']) is int and outer['operator_pid'] == os.getppid() and
+             outer['builder_sha256'] == sha(regular(script)) and
+             outer['operator_sha256'] == sha(regular(script.parent / 'capture_root_builder_operation.py')) and
+@@ -457,16 +461,16 @@
+     require(sum(line.startswith(b'|') and [v.strip() for v in line.decode().split('|')[1:-1]] == HEADER for line in lines) == 1,
+             'Unique named queue header required')
+     hits = [(line, line.decode().split('|')) for line in lines if line.startswith(b'|') and
+-            len(line.decode().split('|')) == len(HEADER) + 2 and line.decode().split('|')[2].strip() == '2912 / KP-4.36']
++            len(line.decode().split('|')) == len(HEADER) + 2 and line.decode().split('|')[2].strip() == '9900007 / AMR-098-0007']
+     require(len(hits) == 1, 'Exact unique target queue row required')
+     before, fields = hits[0]
+     indexes = {name: HEADER.index(name) + 1 for name in HEADER}
+     require(fields[indexes['Status']].strip() == 'queued' and fields[indexes['Turns']].strip() == '0/5', 'Expected queued0/5 preimage')
+     after_fields = list(fields)
+-    finding = ('Standard meridional duality kernel, sufficient degree-one pair map and conditional integral amalgam block verified; '
+-               'unmarked full2type pair-map and actual equal2type exterior realization gaps remain. '
+-               'UNSOLVED original2/5,new0,audit0; no novelty/paper/new DOI/tracker. NEW whole-current review PENDING.')
+-    for name, value in [('Status', 'unsolved'), ('Turns', '2/5'), ('Findings', finding)]:
++    finding = ('Verified original synchronous-coupling obstruction: weak shifted laws but mismatch tends to1/2 under every fixed joining; '
++               'stated metric law and tight nonnegative-offset scope retained. Broader two-process characterization unresolved. '
++               'UNSOLVED original1/5,new0,audit0; no novelty/paper/new DOI/tracker. Current Asmussen primary access qualified; NEW whole-current review PENDING.')
++    for name, value in [('Status', 'unsolved'), ('Turns', '1/5'), ('Findings', finding)]:
+         after_fields[indexes[name]] = ' ' + value + ' '
+     allowed = {indexes[name] for name in ['Status', 'Turns', 'Findings']}
+     require(all(left == right for index, (left, right) in enumerate(zip(fields, after_fields)) if index not in allowed), 'Preserve all other fields/Chat/DOI')
+@@ -480,7 +484,7 @@
+     outputs.update({name: original[name] for name in IMMUTABLE})
+     outputs['review/REVIEW.md'] = qualification + b'\n' + notice + original['review/REVIEW.md']
+     outputs.update({'README.md': overview + b'\n' + qualification,
+-        'CURRENT_OBSTRUCTION_CONTEXT.md': qualification + b'\n' + notice + original['OBSTRUCTION.md'],
++        'CURRENT_PARTIAL_CONTEXT.md': qualification + b'\n' + notice + original['PARTIAL.md'],
+         'CURRENT_LITERATURE_STATUS.md': qualification + b'\n' + notice + original['SOURCES.md'],
+         'CURRENT_CONTEXT.md': overview + b'\n' + qualification, 'pr_body.md': overview + b'\n' + qualification,
+         'SOURCE_PRECISION_QUALIFICATIONS.md': qualification, 'HISTORICAL_ORIGINAL_NOTICE.md': notice,
+@@ -488,36 +492,37 @@
+         'queue_proposal/QUEUE_PREIMAGE.md': queue, 'queue_proposal/QUEUE_PROSPECTIVE.md': prospective,
+         'root_evidence/ROOT_SOURCE_MATCH_AND_PROOF_NOTES.md': notes})
+     outputs.update({'root_approval/' + name: body for name, body in future.items()})
+-    common = {'id': 2912, 'problem_number': 'KP-4.36', 'status': 'unsolved',
++    common = {'id': 9900007, 'problem_number': 'AMR-098-0007', 'status': 'unsolved',
+         'partial_valid_from_ROOT_source_reading': True, 'full_problem_solved': False, 'novelty_claimed': False,
+         'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None,
+-        'current_verdict': None, 'current_gate': GATE, 'original_substantive_attempts': 2,
++        'current_verdict': None, 'current_gate': GATE, 'original_substantive_attempts': 1,
+         'substantive_attempt_limit': 5, 'new_substantive_attempts': 0, 'audit_turns': 0,
+         'historical_runtime_certified': False, 'historical_verdict_transferred': False, 'human_referee_review_claimed': False,
+         'paper_created': False, 'new_DOI_created': False, 'tracker_row_created': False,
+         'global_qualification': 'SOURCE_PRECISION_QUALIFICATIONS.md', 'archived_original_metadata': 'original_archive',
+-        'exact_remaining_scientific_gaps': ['No degree-one pair map from unmarked complete2type',
+-            'No two actual source-category exteriors with equal complete2types and different homotopytypes'],
++        'exact_remaining_scientific_gaps': ['No alternative general two-process characterization has been given or excluded',
++            'Exhaustive historical priority and full published-original source comparison remain unestablished'],
+         'exact_remaining_publication_gap': 'NEW whole-current adversary and ROOT final reconciliation/integration'}
+     for name in ['status.json', 'readiness.json', 'review/verdict.json', 'review/review_summary.json']:
+         outputs[name] = encode(common)
+     outputs['CURRENT_PRECISION_RECEIPT.json'] = encode({'original18_archive_byte_exact': True,
+         'current_immutable_science_code_source_results_ledger_exact': True,
+-        'actual_now_author507_and_old_independent29933_entire_results_byte_exact': True,
+-        'finite_checks_are_not_duality_group_cohomology_geometric_realization_or_full_problem_proof': True,
++        'actual_now_author885_and_old_independent3044_entire_results_byte_exact': True,
++        'finite_checks_do_not_prove_arbitrary_infinite_couplings_or_full_problem': True,
+         'genuine_September30_runtime_certified': False, 'current_runtime_fields_explicit_null': True,
+-        'original_V1_failed_filename_guess_retained_V2_operative': True,
+-        'all_source_proof_and_geometric_qualifications_apply_globally': True,
++        'genuine_original_export_queue_selector_failure_retained_separate_repair': True,
++        'current_Asmussen_primary_access_comparison_retained_historical_access_bytes_unchanged': True,
++        'all_source_proof_metric_offset_and_access_qualifications_apply_globally': True,
+         'no_exhaustive_priority_or_current_literature_absence_certified': True,
+         'foreign_PDF_text_pixels_individually_bound_not_copied': True,
+         'dated_foreign_native_bindings_are_historical_not_fresh_authority': True, 'NEW_whole_current_gate': 'PENDING'})
+-    outputs['CURRENT_QUEUE_PATCH.json'] = encode({'phase': 'Local prospective proposal only; no native write', 'id': 2912,
++    outputs['CURRENT_QUEUE_PATCH.json'] = encode({'phase': 'Local prospective proposal only; no native write', 'id': 9900007,
+         'allowed_named_changes': ['Status', 'Turns', 'Findings'], 'whole_preimage_sha256': sha(queue),
+         'whole_prospective_sha256': sha(prospective), 'row_before': before.decode(), 'row_prospective': after.decode(),
+         'other_rows_columns_Chat_DOI_byte_preserved': True})
+     outputs['RESEARCH_LOG.md'] = (utc() + ' — actual administrative freeze; publication workflow75%, discovery0%. '
+-        'Scoped standard partial deductions accepted by genuine ROOT reading; full problem UNSOLVED. '
+-        'Original2/5,new0,audit0. NEW whole-current review PENDING. No paper/new DOI/tracker.\n').encode()
++        'Scoped original synchronous obstruction accepted by genuine ROOT reading; full problem UNSOLVED. '
++        'Original1/5,new0,audit0. NEW whole-current review PENDING. No paper/new DOI/tracker.\n').encode()
+     for row in dependencies.values():
+         body = regular(audit / row['path'])
+         require(len(body) == row['bytes'] and sha(body) == row['sha256'], 'Dependency changed before staging')
+@@ -529,7 +534,7 @@
+         'foreign_primary_and_derivative_members_individually_hash_bound_not_copied': True,
+         'current_native13': current['files'], 'current_main_head': current['current_head']})
+     trees = []
+-    for previous in sorted((audit / 'tmp').glob('root_pr44_current_build_*')):
++    for previous in sorted((audit / 'tmp').glob('root_pr45_current_build_*')):
+         require(previous.is_dir() and not previous.is_symlink(), 'Regular retained attempt required')
+         previous_files, previous_dirs = [], []
+         for path in sorted(previous.rglob('*')):
+@@ -563,9 +568,9 @@
+         require(regular(stage / name) == original[name], 'Immutable science/code/source/results/ledger changed')
+     members = [{'path': name, 'bytes': len(regular(stage / name)), 'sha256': sha(regular(stage / name))}
+                for name in sorted(inventory(stage))]
+-    manifest = {'schema': 'PR44_STRICT_CURRENT_PACKET_v1', 'self_excluded': ['MANIFEST.json'],
++    manifest = {'schema': 'PR45_STRICT_CURRENT_PACKET_v1', 'self_excluded': ['MANIFEST.json'],
+         'files_count': len(members), 'files': members, 'current_gate': GATE, 'status': 'unsolved',
+-        'full_problem_solved': False, 'novelty_claimed': False, 'original_substantive_attempts': 2,
++        'full_problem_solved': False, 'novelty_claimed': False, 'original_substantive_attempts': 1,
+         'new_substantive_attempts': 0, 'audit_turns': 0, 'full_permission_mode': '0444'}
+     with (stage / 'MANIFEST.json').open('xb') as handle:
+         handle.write(encode(manifest)); handle.flush(); os.fsync(handle.fileno())
+@@ -585,7 +590,7 @@
+     publish_absent(stage, destination)
+     print(json.dumps({'status': 'ACTUAL_CURRENT_FREEZE_NEW_WHOLE_GATE_PENDING', 'destination': str(destination),
+         'manifest_sha256': sha(regular(destination / 'MANIFEST.json')), 'full_problem_solved': False,
+-        'original_attempts': '2/5', 'new_attempts': 0, 'audit_turns': 0, 'native_writes': 0, 'current_whole_verdict': None}, indent=2))
++        'original_attempts': '1/5', 'new_attempts': 0, 'audit_turns': 0, 'native_writes': 0, 'current_whole_verdict': None}, indent=2))
+ 
+ 
+ def main():
+@@ -600,13 +605,13 @@
+             'Optimization must not suppress checks')
+     script = Path(__file__).absolute()
+     regular(script)
+-    require(script.parent.name == 'current_preparation_family' and script.parent.parent.name == 'pr44_2912',
+-            'Exact PR44 audit anchor required')
++    require(script.parent.name == 'current_preparation_family' and script.parent.parent.name == 'pr45_9900007',
++            'Exact PR45 audit anchor required')
+     audit, repo = script.parent.parent, script.parent.parent.parents[2]
+     require(repo == Path('/Users/alec/Documents/Math'), 'Exact repository root required')
+     (audit / 'tmp').mkdir(exist_ok=True)
+     require(not (audit / 'tmp').is_symlink(), 'Regular audit-local tmp required')
+-    attempt = audit / 'tmp' / ('root_pr44_current_build_' + dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ'))
++    attempt = audit / 'tmp' / ('root_pr45_current_build_' + dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ'))
+     attempt.mkdir(exist_ok=False)
+     (attempt / 'PRELAUNCH_BUILDER_SOURCE.py').write_bytes(regular(script))
+     (attempt / 'INVOCATION.json').write_bytes(encode({'argv': sys.argv, 'cwd': str(Path.cwd()),

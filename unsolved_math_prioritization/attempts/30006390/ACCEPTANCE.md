@@ -1,0 +1,11 @@
+# Accepted unresolved partial result — PR19
+
+Accepted 2026-10-01T19:39:16.585178+00:00 on the exact original head f1053196b6405623d5f5d8611289939765918d72. The two original substantive attempts and imported source records remain unchanged. Three independent mathematical families, root reproduction, and a new complete final adversary validate the annotated partial candidate, with zero outstanding mathematical corrections. Historical review files remain bound to the original baseline; the current reviewed manifest is retained as REVIEWED_CANDIDATE_MANIFEST.json.
+
+The elementary classical lower bound, standard alteration upper bound, exact minimal-blocker reduction, model-dependence controls and specifically scoped direct container obstructions are accepted. Neither growing-ratio nor logarithmic lower-bound conjecture is proved. The exact remaining gap is weighted enumeration or exclusion of all small nontrivial minimal blockers, or another growing-lower-bound mechanism. No general container impossibility is claimed. Source-domain and empty-section discrepancies are qualified in CURRENT_SOURCE_SCOPE.md.
+
+The canonical proof differs from the reviewed baseline only in its acceptance header; the complete mathematical text beginning “Reduction to ordinary blocking sets” is byte-identical. Original diagnostics reproduce exactly. Root reproduced the fresh final controls over 2,102,288 cases, including all 2,097,152 GF(4) retained sets. Finite computations are falsification controls and do not establish an asymptotic theorem.
+
+Fresh report SHA256: c3a088e55b25809e25fb08958a461a100e2893c9dcbe85fe749cf61aa037e0ab. Fresh manifest SHA256: 5ac7e39ef050d582da9da69956d7ae51258605bc60640db064540f9ab4f4eb1d. Full evidence: draft_pr_publication_program_20260930/audits/pr19_30006390/ on main.
+
+QUEUE status is unsolved, original budget2/5; duplicate30006391 is the same problem. This acceptance is an unrefereed partial research checkpoint using extensive AI assistance, without a human peer-review claim. No paper, new deposit, DOI, or publication-tracker row is created. Independent unresolved gates on PR18 and PR20 remain pending. Remote merge receipt is recorded separately in the program audit after push.

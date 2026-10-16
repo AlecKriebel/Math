@@ -1,0 +1,29 @@
+{
+  "checked_utc": "2026-10-16T05:49:12.917129+00:00",
+  "discovery": "Root reported; this reviewer independently physically extracted compressed streams and compared zlib levels before reading root receipt.",
+  "issue": "PP02-001: README promises DEFLATE level9 but custom ZipInfo leaves its compression level unset, so writestr uses default compression.",
+  "paper_tex": {
+    "member": "paper.tex",
+    "actual_compressed_bytes": 7411,
+    "levels": {
+      "-1": {
+        "bytes": 7411,
+        "actual_stream_equal": true
+      },
+      "6": {
+        "bytes": 7411,
+        "actual_stream_equal": true
+      },
+      "9": {
+        "bytes": 7409,
+        "actual_stream_equal": false
+      }
+    }
+  },
+  "member_count": 120,
+  "members_differing_from_level9": 39,
+  "all_members_match_default": true,
+  "stdlib": "Custom ZipInfo bypasses the non-ZipInfo branch assigning self.compresslevel; explicit compresslevel argument sets zinfo.compress_level.",
+  "required_fix": "Pass compresslevel=9 explicitly to writestr(info, raw, compresslevel=9); regenerate all dependent archives/identities and independently compare raw streams.",
+  "effect": "Description/reproducibility configuration mismatch; no mathematical or input-preservation effect."
+}

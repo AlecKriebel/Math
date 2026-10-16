@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-16T05:40:47.143277+00:00: Created audit shard and initial risks before source or earlier review intake. Case estimate 45%; helper audit 0%.
+- 2026-10-16T05:40:47.143277+00:00: First freeze attempt using a shell here-document failed before Python ran: zsh could not create temporary file (no space left on device). Corrected by direct Python -c; retained this failed-probe account.
+
+- 2026-10-16T05:54:47.427295+00:00: Independent baseline and exact-source caller probes completed. Important failures: counter-only review clearance; unbound final receipts; post-append duplicates; unsealed .env/addition upload; editable prepared receipt authorizes missing science; stale/uncertain PR body still merges; current-main/result-tree omission. Case estimate remains45%; helper audit95% before sealing.
+- 2026-10-16T05:54:47.427295+00:00: Corrected the initial harness lock-lifetime artifact and preserved v1 source/results plus all initial fixtures. Three final probe suites reproduced29 expected outcomes with no final probe errors. Actual lifecycle unknown-outcome, fsync failure, optimized-Python, DOI/public-SHA, all4cell, exact-queue and failed-merge controls passed expected rejections/recovery.
+- 2026-10-16T05:54:47.427295+00:00: Corrected overstrong local-main inference after parent supplied actual remote checkpoint evidence:470 selected paths are not a remote delta; >300 robustness limitation retained, current-package blockage withdrawn. No remote state was queried by this shard.
+- 2026-10-16T05:54:47.427295+00:00: REPORT.md and machine-readable ASSESSMENT.json record7 mandatory and3 optional actionable findings. Audit completion100%; case estimate45%. No release authority; no candidate edits, Git writes, provider mutations or individual outreach. Findings require repairs and a NEW independent source review.

@@ -1,0 +1,412 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\area}{\mathcal A}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\pp}{\pi}
+\DeclareMathOperator{\diag}{diag}
+\title{A flag-curve proof of an outer-pedal area invariant}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a noncircular ellipse and a proper nested confocal elliptical caustic with
+least billiard period \(N\equiv2\pmod4\), the signed area of the outer tangent
+polygon times that of its pedal polygon is independent of phase, for every
+fixed pedal point. We give a flag-curve proof: on the quotient by the
+Poncelet translation, the original area and the pedal area have at most the
+same two simple poles. Riemann--Roch and reversal make them proportional;
+the credited original/outer area-product law finishes the argument.
+A short verification of that law in the required parity is included.
+The theorem, the six-period formula, and the repeated-triangle qualification
+also occur in Ferudun's contemporary preprint, which is explicitly credited.
+This note offers an alternative presentation, without claiming theorem
+novelty, first disclosure, or verified independence. Exact and numerical
+controls accompany the analytic proof.
+\end{abstract}
+
+\section{Statement and relation to prior work}
+Fix
+\[
+ E:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad
+ C:\frac{x^2}{\alpha^2}+\frac{y^2}{\beta^2}=1,\qquad
+ a>b>0,\quad \alpha^2=a^2-\lambda,\quad\beta^2=b^2-\lambda,\quad
+ 0<\lambda<b^2 .
+\]
+Suppose the oriented Poncelet billiard map has \emph{least} period
+\(N=2m\), where \(m\geq3\) is odd. Write \(P_i\) for its boundary vertices
+in traversal order, \(\ell_i\) for the tangent to \(E\) at \(P_i\), and
+\(V_i=\ell_i\cap\ell_{i+1}\), with indices modulo \(N\).
+For a fixed finite \(M\in\RR^2\), let \(Q_i(M)\) be the perpendicular foot
+from \(M\) to the entire line \(\ell_i\). Define
+\[
+ \area(Z)=\frac12\sum_{i=0}^{N-1}\det(Z_i,Z_{i+1}),\qquad
+ A=\area(P),\quad A'=\area(V),\quad B_M=\area(Q(M)).
+\]
+Thus the feet are on the sides of the \emph{outer tangent polygon},
+not on the original billiard chords. These are signed areas; for a star
+polygon they are not the areas of its filled faces.
+
+\begin{theorem}\label{thm}
+For the fixed conic pair and every fixed \(M\), \(A'B_M\) is independent
+of the initial billiard phase. All admitted coprime star windings and
+their reversals are included, and zero or negative \(B_M\) is allowed.
+\end{theorem}
+
+This is the least-period interpretation of the invariant \(k_{303,a}\)
+tabulated by Reznik--Garcia--Koiller \cite[Section 3.4, Table 4]{rgk}
+and in their arXiv edition \cite[Table 4, p.~6]{rgkarxiv}.
+The rows specify \(N\equiv2\pmod4\) and every pedal point, but do not
+literally print \emph{least period}. Their historical proof question marks
+do not establish current openness. The repetition caveat below explains
+why that convention matters.
+
+Ferudun \cite[Theorem 1]{ferudun10}, retained in \cite{ferudun11}, states
+the same theorem with the same signed, least-period and arbitrary-point
+scope. That work also gives radial dependence on \(M\), the general
+six-period constant, and a repeated-triangle countercontrol. Its Jacobi
+coordinate proof uses complementary reversal zeros and pole cancellation.
+The present quotient-divisor formulation differs in presentation; both
+use central symmetry, isotropic projection poles, parallel residues, and
+reversal. Neither the theorem nor those mechanisms are claimed new here.
+Even the proportionality \(B_M=c_M A\) below follows from the product
+theorem together with the nonzero real original/outer area product, so
+rewriting it as a proportionality does not establish theorem novelty.
+
+The flag-curve framework and the original/outer area-product law are
+credited to the established Poncelet theory used by Ch\'avez-Caliz
+\cite[Section 2 and Theorems 3, 6]{chavez}. We supply the required local
+pole checks explicitly, and verify the latter law in the present parity
+in Section~\ref{aa}. The proof is analytic, not an inference from sampled
+periods.
+
+\section{The flag curve and the two original-area poles}
+Let \(X\) be the smooth complex projective flag curve of pairs \((P,L)\)
+with \(P\in E\) and \(L\) a tangent to \(C\) through \(P\).
+Its projection \(\pp:X\to E\) has degree two and branches at \(E\cap C\).
+Putting \(c^2=a^2-b^2\), those intersections satisfy
+\[
+ x^2=\frac{a^2\alpha^2}{c^2},\qquad
+ y^2=-\frac{b^2\beta^2}{c^2}.
+\]
+They are four distinct finite transverse intersections: all coordinates
+are nonzero, and
+\(1/(a^2\beta^2)-1/(b^2\alpha^2)
+=\lambda c^2/(a^2b^2\alpha^2\beta^2)\ne0\).
+The double cover is smooth and connected, so Riemann--Hurwitz gives
+genus one.
+
+Let \(\sigma\) exchange the two \(E\)-intersections of \(L\), and let
+\(\tau\) exchange the two \(C\)-tangents through \(P\).
+Use right-to-left composition and put \(T=\tau\sigma\). These are the
+standard Poncelet involutions \cite[Section 2]{chavez}; their composition
+is a translation of exact order \(N\). Equivalently, on a genus-one curve
+each branched deck involution acts as minus the identity on holomorphic
+differentials, so their composition is a translation; closure and least
+period make its order exactly \(N\). We have
+\[
+ \tau T^j=T^{-j}\tau,\qquad \sigma T^j=T^{-j}\sigma .
+\]
+
+Central inversion of the plane lifts to an involution \(I\) commuting
+with \(T\). On either real component specified by a fixed direction of
+traversal around the inner ellipse, \(I\) and \(T\) preserve orientation.
+That component is a circle. Average a metric over the finite abelian
+group they generate: it acts by rotations of the resulting metric
+circle, which has just one nonidentity rotation of order two.
+Both \(I\) and \(T^m\) have that order and act nontrivially. They coincide
+on the real circle, and therefore on connected \(X\):
+\begin{equation}\label{central}
+ I=T^m,\qquad P_{i+m}=-P_i .
+\end{equation}
+This includes primitive stars; their winding numerator is odd for even
+least period. Nonidentity translations of \(X\) have no fixed point.
+
+The quotient \(Y=X/\langle T\rangle\) is again a smooth compact genus-one
+curve, and \(X\to Y\) is unramified. Cyclic area sums descend meromorphically
+to \(Y\). Orientation reversal is induced by \(\tau\), with \(M\) held
+fixed, so
+\begin{equation}\label{reverse}
+ A\circ\tau=-A,\qquad B_M\circ\tau=-B_M .
+\end{equation}
+
+\begin{lemma}\label{two}
+On \(Y\), \(A\) has exactly two distinct simple poles.
+If their sum is \(D\), then \(1,A\) is a basis of \(L(D)\).
+\end{lemma}
+\begin{proof}
+The only coordinate poles of \(P\) are above the two infinite points
+\([a:\pm ib:0]\) of \(E\). Neither belongs to \(C\); each has two
+unramified flag preimages with simple coordinate poles. Inversion fixes
+the base point and, being a nonidentity translation by \eqref{central},
+exchanges its two flags. Thus their images on \(Y\) form a set \(S\)
+of at most two points.
+
+Consecutive original vertices cannot both be infinite. If distinct,
+their chord is the line at infinity, not a tangent to the nondegenerate
+\(C\). If they coincide, the chord is tangent to \(E\) there. Its normal
+is proportional to \((1/a,\pm i/b)\), whose \(C\)-dual value is
+\(\alpha^2/a^2-\beta^2/b^2=\lambda(1/b^2-1/a^2)\ne0\);
+it is not tangent to \(C\). Each shoelace summand therefore has at most
+one simple-pole factor. All poles of \(A\) are simple and supported on \(S\).
+
+Choose a real orientation with \(C\) on the left of each side.
+Since the origin is strictly inside \(C\),
+\(\det(P_i,P_{i+1})>0\), also for a star, and \(A>0\).
+By \eqref{reverse} it cannot be globally constant. A genus-one curve has
+no nonconstant function with at most one simple pole. Hence \(S\) has
+two distinct points, and neither possible pole of \(A\) disappears.
+Riemann--Roch gives \(\dim L(D)=2\), proving the assertion.
+\end{proof}
+
+\section{The pedal trace has the same pole bound}
+Write \(H=\diag(a^{-2},b^{-2})\), \(R(P)=HP\), and
+\(d(P)=R(P)\cdot R(P)\), where after complexification the dot product is
+bilinear, not Hermitian. The foot map is rational:
+\begin{equation}\label{foot}
+ Q(P;M)=M+\frac{(1-R(P)\cdot M)R(P)}{d(P)} .
+\end{equation}
+At \(E\)'s infinite points, \(R\) has simple leading pole direction
+\((1/a,\pm i/b)\) of nonzero squared norm \(1/a^2-1/b^2\).
+The quotient in \eqref{foot} is bounded, including for nonzero \(M\).
+
+The remaining possible poles lie at four distinct finite points:
+\begin{equation}\label{iso}
+ d(P)=0,\qquad x^2=\frac{a^4}{c^2},\qquad y^2=-\frac{b^4}{c^2}.
+\end{equation}
+The zeros of \(d|_E\) are simple. The tangent \(R\cdot Z=1\) is
+also tangent to \(C\), since
+\[
+ \alpha^2R_x^2+\beta^2R_y^2
+ =a^2R_x^2+b^2R_y^2-\lambda d(P)=1 .
+\]
+Conversely, subtracting the two dual tangent equations forces \(d=0\).
+Moreover
+\[
+ \frac{x^2}{\alpha^2}+\frac{y^2}{\beta^2}-1
+ =-\frac{\lambda^2}{\alpha^2\beta^2}\ne0 .
+\]
+Thus \(\pp\) is unramified at these contacts and every individual foot
+has at most a simple pole.
+
+Let \(z\) be the common-tangent flag at one of these points; then
+\(\sigma z=z\). Its other flag is \(Tz=\tau z\).
+Because \(m\) is odd, choose \(k\) with \(2k\equiv1-m\pmod{2m}\).
+For \(w=T^kz\),
+\[
+ \tau w=T^{1-k}z=T^{m+k}z=Iw .
+\]
+Since \(\pp\tau=\pp\), \(\pp(w)\) is fixed by planar inversion.
+The only such points on projective \(E\) are its infinite points.
+Every possible pedal pole is therefore in an orbit above \(S\).
+
+It remains to exclude a double pole in the area trace. In the orbit
+of a \(\sigma\)-fixed \(z\), another \(T^jz\) is \(\sigma\)-fixed exactly
+when \(2j\equiv0\pmod N\), namely \(j=0,m\).
+Every flag over a contact \eqref{iso} is either such a fixed flag or
+\(T\) times one. The complete possible list of singular foot indices
+is therefore
+\[
+ 0,\ 1,\ m,\ m+1 .
+\]
+The first two original vertices tend to the same \(P\); the latter two
+tend to \(-P\). Since \(m\geq3\), the only adjacent singular pairs are
+\((0,1)\) and \((m,m+1)\). In a local parameter \(t\), the residues in
+each pair are scalar multiples of the same vector \(R(P)\), respectively
+\(R(-P)\), by \eqref{foot}. Their determinant is zero. Thus
+\(\det(Q_i,Q_{i+1})\) has no \(t^{-2}\) term, even if a residue vanishes
+for a special \(M\). Every other determinant has at most one singular
+factor. Consequently \(B_M\) has at most simple poles above \(S\).
+Unramified descent proves \(B_M\in L(D)\).
+
+Lemma~\ref{two} gives \(B_M=c_M A+d_M\) for phase-independent constants.
+Apply \eqref{reverse} and compare with the negative of this identity:
+\(d_M=-d_M\), hence
+\begin{equation}\label{proportional}
+ B_M=c_M A .
+\end{equation}
+No area has been divided by. The parity congruence is essential: it
+has no solution for even \(m\), and this argument asserts no converse
+or other-parity classification.
+
+\section{The credited original/outer product in the required parity}
+\label{aa}
+Ch\'avez-Caliz's even-period product theorem \cite[Theorems 3, 6]{chavez}
+already supplies \(AA'=\text{constant}\). The following verification
+under our narrower hypotheses makes its local application explicit.
+
+Let \(\rho:X\to C^*\) remember the chord \(L\), so \(\rho\sigma=\rho\).
+For \(L=[u:v:w]\), meaning \(ux+vy-wz=0\), its pole relative to \(E\) is
+\[
+ W=[a^2u:b^2v:w],\qquad
+ \alpha^2u^2+\beta^2v^2=w^2 .
+\]
+It is the intersection of the \(E\)-tangents at the two chord endpoints,
+so the area trace of \(W(T^i x)\) is exactly \(A'\).
+
+A possible infinite \(W\) has \(w=0\): its line is one of the two complex
+tangents to \(C\) through the origin. Its direction
+\((\pm i\alpha,-\beta)\) has nonzero \(E\)-quadratic value
+\[
+ -\alpha^2/a^2+\beta^2/b^2=\lambda(1/a^2-1/b^2)\ne0.
+\]
+It meets \(E\) at two distinct finite opposite points, so \(\rho\)
+is unramified there. The dual conic meets \(w=0\) transversely;
+therefore \(W\) has only simple coordinate poles.
+Consecutive \(W\)'s cannot both be infinite: different such chord lines
+meet at the origin, which is not on \(E\); coincident successive lines
+would force their intermediate endpoint to be their \(C\)-contact
+at infinity, which is not on \(E\).
+Thus \(A'\) has at most simple poles. Call their possible quotient
+support \(R_0\).
+
+Every orbit of \(S\) contains a \(\sigma\)-fixed flag. Indeed above
+an original infinity, \(\tau x=Ix=T^m x\), so
+\(\sigma x=T^{m-1}x\); solve \(2k\equiv m-1\pmod{2m}\).
+Every orbit of \(R_0\) contains a \(\tau\)-fixed flag:
+its two finite opposite endpoints give \(\sigma x=Ix=T^mx\),
+hence \(\tau x=T^{m+1}x\); solve \(2k\equiv m+1\pmod{2m}\).
+These congruences are soluble because \(m\) is odd.
+
+The two supports are disjoint. An orbit containing \(\sigma z=z\)
+has \(\tau T^jz=T^{1-j}z\); a \(\tau\)-fixed flag there would require
+\(2j\equiv1\pmod N\), impossible for even \(N\).
+At a \(\tau\)-fixed flag the original vertex list is palindromic,
+\(\pp(T^jz)=\pp(T^{-j}z)\); its finite signed area is zero.
+Thus \(A\), regular on \(R_0\), cancels every possible simple pole of \(A'\).
+At a \(\sigma\)-fixed flag the same statement holds for
+\(\rho(T^jz)=\rho(T^{-j}z)\) and \(W\).
+Hence \(A'\), regular on \(S\), cancels every possible simple pole of \(A\).
+All remaining points are regular, so \(AA'\) is holomorphic on compact
+\(Y\), and constant. Multiplying \eqref{proportional} by \(A'\)
+proves Theorem~\ref{thm}.
+
+For real phases all outer intersections are finite: parallel boundary
+tangents would have antipodal contacts and a center-crossing chord,
+which cannot be tangent to the proper inner ellipse.
+Also \(d(P)>0\) for real boundary points, so every real \(M\) is allowed.
+Reversal negates both factors. Signed zero pedal areas, crossings,
+and feet outside side segments create no exception.
+
+\section{Classical reduction, exact controls, and limits}
+If \(\psi_i\) is an outward unit-normal angle, central pairing gives the
+classical Steiner-type identity
+\begin{equation}\label{radial}
+ B_M=B_0+\frac{|M|^2}{8}\sum_i\sin\bigl(2(\psi_{i+1}-\psi_i)\bigr).
+\end{equation}
+For completeness, in complex notation write a line as
+\(\operatorname{Re}(z\overline n_i)=h_i\), \(|n_i|=1\).
+Its foot is \(q_i=m/2+h_in_i-\overline m n_i^2/2\).
+Expand its signed area. Translation removes \(m/2\); central pairing
+changes \(h_in_i\) to its negative and leaves \(n_i^2\) unchanged,
+so the linear terms cancel, leaving \eqref{radial}.
+The radial fixed-polygon theorem is classical, not a discovery here;
+see Steiner \cite[Sections XV--XVI, printed pp.~19--21]{steiner}
+and Ferudun \cite[Section 6]{ferudun10}.
+Radiality alone does not prove phase invariance: both \(A'B_0\) and
+\(A'\sum_i\sin(2(\psi_{i+1}-\psi_i))\) must be constant.
+
+As a check, when \(a=2,b=1,\lambda=4/9\), two symmetry-axis hexagons give
+\[
+ A'B_{(u,v)}=40\left(1+\frac{u^2+v^2}{9}\right).
+\]
+The general constant \(ab(a+2b)(2a+b)(1+|M|^2/(a+b)^2)\) already appears
+in \cite[Proposition 4]{ferudun10}; it is not an additional new result.
+
+Least period cannot be replaced by the number of listed entries.
+For \(a=2,b=1,\lambda=4(2\sqrt{13}-5)/9\), the triangle starting at
+\((2,0)\) and the triangle starting at \((0,1)\) are physical billiards
+with the same caustic. Traverse each twice and set \(M=(1,0)\).
+Their six-entry products, checked exactly in the supplement, are
+\[
+ \frac{1166+322\sqrt{13}}9,\qquad
+ \frac{956+244\sqrt{13}}9.
+\]
+They differ and have least period three. This exemplifies the same
+qualification already made in \cite[Section 7]{ferudun10}.
+Odd repetitions of an eligible even primitive orbit multiply each area
+by the repetition count and preserve its invariant; this does not
+justify even repetitions of odd primitive orbits.
+
+The supplied verification package contains exact reflection, caustic
+tangency, general-axis hexagon and repeated-triangle controls, and an
+independent high-precision physical-orbit sweep over least periods
+\(6,10,14,18,22\), all tested coprime windings and several aspect ratios.
+The numerical checks are finite, noninterval diagnostics, not a universal
+proof. Original assertion-based checks enforce their conditions only in
+ordinary Python; optimized output is not independent validation.
+The later explicit-exception controls reject deliberate false identities
+in both modes. Neither computations nor automated adversarial reviews
+constitute formal proof-assistant verification.
+
+The theorem excludes circular boundary ellipses, hyperbolic or degenerate
+caustics, arbitrary repeated lists and unsigned filled-face areas.
+The exact nonconfocal controls in the package show why a general
+concentric-pair extension also requires a different argument.
+
+\section{Chronology and disclosure}
+The observed GitHub record for \href{https://github.com/AlecKriebel/Math/pull/201}
+{PR 201}, with its original submitted head preserved in the supplement,
+has creation time 1 October 2026, 05:18:49 UTC.
+The currently exposed Zenodo record-creation times for Ferudun's v1.0
+and v1.1 are respectively 1 October 2026, 16:56:14.316216 UTC and
+18:12:36.529602 UTC; DataCite registration fields give 16:56:15 and
+18:12:37 UTC. These establish contemporaneous separate records on that
+date, not either proof's first public visibility or derivational
+independence. Earlier website disclosure and other prior work are not
+excluded. No first-proof, new-method, or absolute-priority claim is made.
+The bounded primary-source audit and its access/coverage limits are
+recorded in the supplement.
+
+The original submission records one substantive author turn
+(QUEUE \(1/5\)); the actual model and reasoning effort are unverified.
+The expanded checks, source correction and this manuscript were prepared
+during the October 16 audit and are not backdated.
+AI tools were used extensively in the derivation, checking, literature
+audit, coding and writing. This is an unrefereed research note; it has
+not undergone conventional independent human peer review. Automated
+adversarial audits are disclosed as such, without claiming guaranteed
+correctness or historical independence.
+
+\begin{thebibliography}{9}
+\bibitem{rgk}
+D. Reznik, R. Garcia and J. Koiller,
+\emph{Fifty new invariants of \(N\)-periodics in the elliptic billiard},
+Arnold Math. J. \textbf{7} (2021), 341--355.
+\href{https://doi.org/10.1007/s40598-021-00174-y}{doi:10.1007/s40598-021-00174-y}.
+\bibitem{rgkarxiv}
+D. Reznik, R. Garcia and J. Koiller,
+\emph{Eighty New Invariants of N-Periodics in the Elliptic Billiard},
+arXiv:2004.12497v11 (2020).
+\href{https://arxiv.org/abs/2004.12497v11}{arXiv record}.
+Registered title; the v11 PDF has the shorter title
+\emph{Eighty New Invariants in the Elliptic Billiard}.
+\bibitem{chavez}
+A. C. Ch\'avez-Caliz,
+\emph{More about areas and centers of Poncelet polygons},
+Arnold Math. J. \textbf{7} (2021), 91--106.
+\href{https://doi.org/10.1007/s40598-020-00154-8}{doi:10.1007/s40598-020-00154-8}.
+\bibitem{ferudun10}
+A. Ferudun, \emph{Outer-Pedal Area Products in Elliptic Billiards},
+unrefereed preprint, version 1.0, 1 October 2026.
+\href{https://doi.org/10.5281/zenodo.23087221}{doi:10.5281/zenodo.23087221}.
+\bibitem{ferudun11}
+A. Ferudun, \emph{Outer-Pedal Area Products in Elliptic Billiards},
+unrefereed preprint, version 1.1, 1 October 2026.
+\href{https://doi.org/10.5281/zenodo.23088516}{doi:10.5281/zenodo.23088516}.
+\bibitem{steiner}
+J. Steiner, \emph{\"Uber den Kr\"ummungs-Schwerpunkt ebener Curven},
+offprint of the memoir read 5 April 1838, printed pp.~19--21.
+ETH-Bibliothek Z\"urich, Rar 5481.
+\href{https://doi.org/10.3931/e-rara-3816}{doi:10.3931/e-rara-3816}.
+\end{thebibliography}
+\end{document}

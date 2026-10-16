@@ -1,0 +1,14 @@
+--- f38b229e4ff6e03c00cfc3e05ce537c2f63b7834/record_publication_main.py
++++ working/record_publication_main.py
+@@ -57,7 +57,10 @@
+         '--json', 'state,mergeCommit'], text=True))
+     if merged['state'] != 'MERGED':
+         raise RuntimeError('PR is not merged')
+-    prefix = 'unsolved_math_prioritization/attempts/' + str(pid) + '/'
++    # Keep PR872's verified legacy root; other targets retain the default scope.
++    # This literal exception never permits arbitrary caller-selected prefixes.
++    prefix = ('random_property_t_30006628/' if (pr, pid) == (872, 30006628)
++              else 'unsolved_math_prioritization/attempts/' + str(pid) + '/')
+     seen = set()
+     for entry in mapping['files']:
+         name, local = entry['repo_path'], Path(entry['local_path'])

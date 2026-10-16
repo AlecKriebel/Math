@@ -1,0 +1,19 @@
+# PR57 current scientific preparation
+
+The research note is `integer_endpoint_discontinuity.tex`. This is the operative scientific and manuscript preparation for 30003354 / OWR-15208-008 at original head 4ecc453d6f9ec2e64cdb2d4b41c018fffbe85b29. Scientific disposition is **claimed_solved 1/5**, extensively AI-assisted, unrefereed, with no human peer review. Editorial preparation and audit add zero substantive proof attempts.
+
+The exact theorem is inverse discontinuity at every fixed finite integer r>=0 for the specified point-normalized uniformization parametrization, on plane and sphere, with smooth complete strictly positive-curvature metrics. Ordinary compact-open C^r metric convergence and C^(r+1) normalized-map failure are the topologies. Each r has its own sequence; no smooth-topology, noninteger Hölder, RP2, abstract classification or prescribed planar global positive lower curvature bound claim.
+
+A bounded primary-source search through 3 October 2026 located no verified earlier full geometric resolution. Classical logarithmic and twisting mechanisms are credited; possible earlier unindexed geometric realizations remain a priority gap. The potential contribution is the exact geometric realization, especially the critical r=1 curvature correction. AIM2009/BGR2013 are credited indirectly through MSS2022, not represented as directly read books. OWR report/volume2017 was published3January2018; the curated2018 date is compatible.
+
+Original17 scientific objects remain unchanged and are bound in place; old status/wording is historical. The operative ROOT adjudication is ../ROOT_PRIORITY_ADJUDICATION_20261003.json. Existing accepted-snapshot accounting remains37, according to ROOT's instruction; this preparation does not manufacture a new38th acceptance. Raw prior report ABSENT, SQL non-NULL TEXT {}, flat upstream-report ABSENT.
+
+ROOT priority custody has genuinely occurred and is bound separately. This new packet has **not** been ROOT closed/read back by the preparer. The three ROOT helpers are source-only and unexecuted here; use separate ROOT-owned captures with full prelaunch operator source, actual PID/UTC and complete stdout/stderr. The verification helper checks packet bytes, topology and full07777 modes only. The closer writes a new exclusive receipt outside this fixed packet; a separate reader takes that receipt's actual SHA. None of these helpers certifies mathematical approval, compilation or submission readiness.
+
+Compilation, ROOT visual PDF read, and **new** independent adversarial preprint revision loops remain required before submission. ROOT will use the built-in LaTeX editor/compiler. This version claims neither compiled PDF nor those future reviews. Frozen sources should be revised in a separately versioned preparation packet, preserving this one as historical evidence.
+
+Historical analytic340 and geometric5 controls support their universal proofs; this preparation does not rerun them or relabel them as new tests. Its new control checks manuscript/reference/metadata/source-binding consistency only. Universal all-r deductions are in the proof itself. Preparer continuity: PR57 geometric/topology audit then PR58 tangent-cone audit; current editorial work adds no independent-review credit.
+
+Third-party full PDFs/text/images remain in the ignored private reading cache outside this packet. Only URLs, measured metadata and selected reading locators are included. ROOT packet helpers require no private primary cache. No raw corpus copies, native queue/catalog/state/inventory changes, Git/remote action, upload, DOI assignment or external contact occurred in this task.
+
+Prose and manuscript: CC-BY-4.0. Verification code: MIT. Zenodo metadata is a draft; future final version1.0 and actual upload date are not preclaimed. No DOI has been reserved or assigned.

@@ -1,0 +1,7 @@
+# Priority-gap bibliographic correction
+
+The unread 1981 Annals paper is by Tadayoshi Mizutani, Shigeyuki Morita and Takashi Tsuboi, *The Godbillon-Vey classes of codimension one foliations which are almost without holonomy*, Annals of Mathematics 113(3) (1981), 515--527, DOI https://doi.org/10.2307/2006995. Primary publisher metadata: https://annals.math.princeton.edu/1981/113-3/p04 (its page heading spells the title "Goldbillon-Vey"). Only publisher metadata was checked for this correction; no access to or reading of the article body is asserted.
+
+The version1 current supplement README mistakenly expanded MMT as Mather--Moussu--Tsuboi. Version2 corrects that expansion to Mizutani--Morita--Tsuboi and provides the exact DOI. This is distinct from the correctly credited classical Mather--Thurston realization theory used in the proof. The archived suspension-priority report/addendum had already identified the correct authors. Unexpanded MMT1981 references in dated audit snapshots refer to this Mizutani--Morita--Tsuboi article. Historical candidate and reviewer snapshots are not silently rewritten.
+
+This corrects one unread-source identification; it neither establishes historical firstness nor fills the article-body priority gap. The theorem, proof/PDF/source, code and exact deposit metadata are unchanged. All other version/access qualifications remain. A new whole-package adversary must review this corrected package before publication.

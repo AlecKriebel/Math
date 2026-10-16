@@ -1,0 +1,60 @@
+{
+  "schema": "pr948-workflow-root-corrections-v1",
+  "utc": "2026-10-16T10:27:23.909372+00:00",
+  "status": "IMPLEMENTED_AND_FINITE_REGRESSIONS_PASSED_REQUIRES_NEW_ENTIRE_PACKAGE_REVIEW",
+  "source_core": {
+    "bytes": 92068,
+    "sha256": "3be81538c4e17e6b220208992a8d56422218f37773f84c8a690a4ab10a41d823"
+  },
+  "preserved_pre_fix_snapshot_sha256": "4d85a2231f99e768b1e2ef3b15d1be4914cba95f297e4708a9a1cc180ec314a2",
+  "findings": [
+    {
+      "id": "R948-WORKFLOW-ROOT-01",
+      "mechanism": "Historical evidence_files keys now authenticate only base/evidence/<repo-relative-key>, with no mutable live fallback. All exact old snapshots must authenticate before profile execution; missing/tampered evidence rejects. Current live evidence drift still rejects.",
+      "evidence": [
+        "accept_pr948.py:authenticate_evidence/freeze_check",
+        "test_root_fixes.py:old47/new50 snapshot and full retained-adverse-review loop",
+        "ROOT_FIXES_RESULT.json"
+      ],
+      "private_snapshot_contract": "Private raw bodies stay local, with restrictive access and explicit exclusion from all public package/archive/release/commit allowlists."
+    },
+    {
+      "id": "R948-WORKFLOW-ROOT-02",
+      "mechanism": "Cached identity reuse requires BOTH original head and independently recorded well-formed original currentBaseRefOid equality. currentBaseRefOid is normalized from authenticated LIVE baseRef.target.oid, with matching baseRef.name/baseRefName; stored associated baseRefOid remains separate and never authorizes reuse. Bounded GraphQL augmentation binds all common gh PR metadata before returning the live pointer. All filename pages and final status bracket bind the live pointer. Missing/different/malformed original live context derives complete current filenames even unchanged head/stored base; current missing/null/malformed pointer rejects.",
+      "evidence": [
+        "accept_pr948.py:next_identity/gate_next",
+        "ROOT_FIXES_RESULT.json:retarget oldclaimed/newunsolved skip, unchanged positive, pagination/count/race/ambiguity",
+        "test_base_context.py",
+        "BASE_CONTEXT_ATTEMPT_03.json:26PASS, both exact authenticated root finite-DAG witnesses, stable advanced base and in-bracket advance, no mathematics reads",
+        "test_live_base_context.py",
+        "LIVE_BASE_ATTEMPT_02.json:37PASS, authenticated actual stored/live distinction, old851 exact finite-DAG witness reproduced, corrected live-only drift rejects",
+        "FINAL_AUTHENTICATION.json:production metadata path, associated/stored and live branch OIDs distinct"
+      ],
+      "math_source_read": false,
+      "required_amendment": "LIVE_BASE_REF_TARGET_BINDING_AFTER_ENGINEERING_CC88",
+      "initial_inventory_not_rewritten": true,
+      "real_initial_inventory_base_context": "No authenticated live pin; complete current filenames required"
+    },
+    {
+      "id": "R948-WORKFLOW-ROOT-03",
+      "mechanism": "Unpublished native baseline requires KEY not in state; explicit null and all present entries reject. Absence reports membership, while exact publication recovery remains supported.",
+      "evidence": [
+        "accept_pr948.py:native_safety",
+        "ROOT_FIXES_RESULT.json:null rejection, trueabsence positive, exact recovery membership"
+      ]
+    }
+  ],
+  "configured_inherited_finding_count": 50,
+  "all_original47_ids_retained": true,
+  "new_required_ids": [
+    "R948-WORKFLOW-ROOT-01",
+    "R948-WORKFLOW-ROOT-02",
+    "R948-WORKFLOW-ROOT-03"
+  ],
+  "classification_counts": {
+    "required": 39,
+    "optional": 11
+  },
+  "scientific_or_publication_acceptance": false,
+  "external_mutations": 0
+}

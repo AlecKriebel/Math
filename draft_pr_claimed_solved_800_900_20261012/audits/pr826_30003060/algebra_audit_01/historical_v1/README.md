@@ -1,0 +1,3 @@
+# Historical audit interface, version 1
+
+These three files preserve the checker, decision, and results byte for byte before the optimization hardening requested on 2026-10-15. They are historical evidence, not the current acceptance interface. The v1 checker used Python assert statements, whose acceptance checks disappear under python -O. Its mathematical calculations and ordinary-mode results were correct; current acceptance uses explicit fail-closed checks and recorded normal/optimized replays in the parent directory. See PRESERVED_MANIFEST.json for byte counts and SHA-256 digests. Do not update these historical copies.

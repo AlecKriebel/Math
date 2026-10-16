@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-10-14T05:12:48.234923+00:00",
+  "scope": {
+    "pr": 908,
+    "problem_id": "30006191",
+    "packet": "bounded_region_v2",
+    "original_head": "a35667b1bb0bafed69916709997a4684223ecc93",
+    "object": "New exact-energy bootstrap audit deduction; independent falsification and verification"
+  },
+  "verdict": "PASS_WITH_EXPLICIT_PRESENTATION_REQUIREMENTS",
+  "completion_estimate_percent": 100,
+  "central_gap": null,
+  "strongest_verified_result": "For both ordering conventions k=0,1 and the exact original normalized f and original packed Slaters, the fixed creation and annihilation norm differences tend to 2 at pi/(2n+1-k), the annihilation difference on Xi_n=a*(f)Psi_n tends to 2, and its vector-state square tends to 4.",
+  "verified_estimates": {
+    "kinetic_expectation": "Tinitial + <M(2n-k-M)> <= C n^(5/3) + 2n F_B",
+    "interacting_leakage": "F_B(s) <= C n^(5/3) s^2 exp(C sqrt(n)|s|)",
+    "localized_residual_squared": "||J_n(Vtilde-2n)(chi_A f_s tensor (1-P_B)Psi_s)||^2 <= 8 n^2 F_B(s)",
+    "comparison_error": "C_a (n^(11/6)+n^(3/2)) t^2 for 0<=t<=a/n",
+    "comparison_error_at_candidate_time": "O(n^(-1/6)+n^(-1/2))",
+    "probe_occupation_at_candidate_time": "O(n^(-1/3))"
+  },
+  "adversarial_checks": {
+    "circularity": "No; scalar-shifted exact energy closes the same scalar leakage differential inequality.",
+    "interacting_slater_preservation": "Not assumed.",
+    "sharp_cutoff_derivatives": "Neither q nor P_B is differentiated.",
+    "one_body_domain": "D(h_k)=H^2; local smooth f belongs to D(h_k^2); H^2 Lipschitz bound follows from graph-norm equivalence and functional calculus.",
+    "duhamel_domain": "Cross residual bounded; common all-space kinetic domain and exact symmetric intertwining suffice.",
+    "antisymmetrization": "Localized bound uses 1+N_A, validated independently by local-number decomposition.",
+    "second_moment": "Not required for this route; explicit weighted first-moment estimate closes the residual bound.",
+    "uniform_constants": "Fixed geometry and orbital template; independent of n and uniform over k=0,1.",
+    "sign": "Inner product linear in second gives +2int in the matrix element; at candidate times this tends to -1.",
+    "exact_witness": "Original Q has closure inside B(2e1,.46), and original Xi_n is normalized.",
+    "boundary_cases": "n>=1 and both k conventions; small finite n do not affect limit; a=pi/2 covers prescribed times."
+  },
+  "presentation_requirements": [
+    "Normalize f and explicitly bind to the original cluster Q and original Xi_n.",
+    "Choose fixed smooth chi_A equal to one near supp f, and fixed smooth chi_B zero near B_0 and one outside B.",
+    "State bounded-perturbation Duhamel and symmetric intertwining on the common kinetic domain.",
+    "Show the weighted residual estimate rather than quoting leakage probability alone.",
+    "For k=0 state cross-phase convergence, not exact equality to -1 at every candidate time."
+  ],
+  "parent_derivation_reviewed": "INDEPENDENT_DERIVATION.md D10-D14; independently derived before reading this written parent derivation; consistent.",
+  "source_binding": {
+    "arxiv_id": "2609.34402v1",
+    "pdf_sha256": "5d35ca7805a8e1d8be3227eedcfb3e76111d85ae7df8cdcc3820d7c8fd15473c",
+    "source_loci": "Lemmas 3.2-3.4 and proofs, pp. 9-15",
+    "original_proof_sha256": "2b7c22cfc54049a9e51fe5eb4eb283ba911e6f27e8b6e4dc9557927bc04d7350"
+  },
+  "priority_limit": "The cutoff theorem is not literally the earlier full-space theorem. This is a valid quantitative deduction using the earlier proof mechanism with a sharper scalar-shifted energy closure; no novelty, priority, or current-openness certification.",
+  "actions": {
+    "git_changes": false,
+    "external_communication": false,
+    "publication": false,
+    "pr_comments": false,
+    "sheets_operations": false,
+    "other_shards_read": false,
+    "legacy_already_solved_packet_read": false
+  },
+  "numerical_simulation_required": false,
+  "evidence_artifact": "VERDICT.md"
+}

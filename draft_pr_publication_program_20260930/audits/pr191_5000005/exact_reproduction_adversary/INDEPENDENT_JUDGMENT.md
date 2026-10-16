@@ -1,0 +1,15 @@
+# Independent judgment before consulting old review verdicts
+
+Checkpoint UTC 2026-10-15T04:24Z (approximate minute; run-record UTC timestamps are authoritative). Audit completion estimate 85%; unrestricted mathematical discovery estimate unchanged/undetermined. Historical author effort 2/5 is not reset.
+
+Both submitted checkers reproduce their claimed totals exactly in ordinary and optimized modes: author 3,276,822; reviewer 441,920. Five inspected checkers (author, old independent, and three newly authored physical-geometry programs) have zero AST `assert` statements. Deliberate false conditions fail in both modes with nonzero exit, so no optimization-hardening repair is indicated.
+
+Independent exact physical first-hit calculations pass for n=3,4,5,6,8. They use rational ray-edge intersections, exact metric reflections and exact quadratic-field signs, and determine the source type from final incoming direction, terminal outgoing polygon edge and segment parity. They do not infer endpoint matching from a cone-label identity. Counts are trace invocations with repetitions, not counts of distinct saddle connections: 1,628 terminated invocations, 1,280 admissible transformed-pair comparisons. The longest trace has 40 segments. No counterexample to the parity-selected reconstructed conjecture was found in this finite sample.
+
+Important exact scope failure: the bare shorthand “A0 iff beta−alpha=2pi/n”, imported in the authenticated upstream target according to the coordinator, is false for source Figure 9 diagonals if applied without segment parity. For n=5, direct X0X2 has (a,b)=(2,4) in pi/n units and source type A1, while X0X3 has (a,b)=(1,3) and source type A2. Both satisfy b−a=2. If the literal shorthand assigns both A0, their admissible relation ell=−1,epsilon=+1 would require second type A1. Thus the literal bare classifier and the signed law cannot hold simultaneously. This is not a counterexample to the parity-repaired law: its correct types satisfy 2=1−(−1) modulo3.
+
+Candidate section 1 explicitly uses the preceding segment-parity selector and thus adopts a defensible repair to the source ambiguity. Any promotion must state that repair and reconcile the exact target rather than silently claiming the literal bare statement was proved.
+
+The candidate proof's genuine geometric obligations are the synchronized even-cone common shift (using commutation with the hyperelliptic involution), exhaustion of model germs by polygon chords, and imported one/two-cusp affine reduction on the actual two-polygon surface. The finite checkers test algebra conditional on these facts and cannot establish them. My reading found no additional internal algebraic obstruction; an independent analytic/external-source audit remains necessary before claiming the all-n theorem. This family's original task is reproduction/falsification, not a full independent proof of Veech's theorems or historical novelty.
+
+This judgment was sealed before reading old REVIEW.md opinions. Original code inspection came only after the source-first seal, as required.

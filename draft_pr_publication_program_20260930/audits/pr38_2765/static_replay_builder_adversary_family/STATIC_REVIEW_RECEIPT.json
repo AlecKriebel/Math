@@ -1,0 +1,120 @@
+{
+  "schema": "independent_static_transport_builder_adversary_v1",
+  "utc": "2026-10-02T10:16:52.586296+00:00",
+  "status": "BLOCKED_STATIC_REVISION_REQUIRED",
+  "static_review_completion_estimate_percent": 100,
+  "full_target_partial_progress_estimate_percent": 15,
+  "full_target_estimate_qualification": "Unchanged root heuristic, not solution probability or discovery credit",
+  "reviewed_frozen_families": {
+    "root_replay_preparation_family": {
+      "manifest_path": "root_replay_preparation_family/PREPARATION_MANIFEST.json",
+      "manifest_sha256": "460e735cdecf14e1577959c57bb9cf5afa4b81818565474abfd5a2b28103a2f8",
+      "complete_recursive_coverage": true,
+      "files": [
+        {
+          "path": "INPUT_PINS.json",
+          "bytes": 37914,
+          "sha256": "009f07836d5b4058abd8598160ee6bd51f6b5e0fd9b13014ebf0805f58e988ee",
+          "AST_parse_syntax_only": false
+        },
+        {
+          "path": "README.md",
+          "bytes": 13765,
+          "sha256": "376dc0bbe885e8457edb57db86270a5cf585b7acc5383099da6b012d873abfe0",
+          "AST_parse_syntax_only": false
+        },
+        {
+          "path": "RESEARCH_LOG.md",
+          "bytes": 2679,
+          "sha256": "d87c53a7f353f87fdf5cb1916e3dfa0dbd671ff239bf8b87791032001e7740b2",
+          "AST_parse_syntax_only": false
+        },
+        {
+          "path": "capture_runner.py",
+          "bytes": 5891,
+          "sha256": "30dff4700e4c9158a9303860d067801fe261fed8b2acbb7eaa11a472c3c807dc",
+          "AST_parse_syntax_only": true
+        },
+        {
+          "path": "collect_root_replays.py",
+          "bytes": 33919,
+          "sha256": "02848c52bbdda64c0656235e2b48d4523e589306d7b21a7712f8b29097ba09ae",
+          "AST_parse_syntax_only": true
+        },
+        {
+          "path": "inspect_source_native.py",
+          "bytes": 9400,
+          "sha256": "7ccd54b7af914f717a34bcc18469ba69bae5d1cfa8acd2045110254a9b2619ea",
+          "AST_parse_syntax_only": true
+        },
+        {
+          "path": "reconstructed_controls.py",
+          "bytes": 15246,
+          "sha256": "13a181a162a1422e5e6df843f98d502db6bb275831f79a9782fd0c26ae472da6",
+          "AST_parse_syntax_only": true
+        }
+      ]
+    },
+    "current_preparation_family": {
+      "manifest_path": "current_preparation_family/STATIC_REVIEW.json",
+      "manifest_sha256": "0aa63f40183ab89166b37d807ce6b38e1e62a5de481fc0aa3d367e8d184d3638",
+      "complete_recursive_coverage": true,
+      "files": [
+        {
+          "path": "README.md",
+          "bytes": 4721,
+          "sha256": "721d655ffc069d0d46b4f83fb35ba1e98d9a1ed5e91bfd73594431b7de46191d",
+          "AST_parse_syntax_only": false
+        },
+        {
+          "path": "RESEARCH_LOG.md",
+          "bytes": 2537,
+          "sha256": "e88a890335e92b07adcbd9db9fed3b996d3b90dc9763dcf5ecf1c7b893c3e93a",
+          "AST_parse_syntax_only": false
+        },
+        {
+          "path": "ROOT_GUARD_CONTRACT.md",
+          "bytes": 7266,
+          "sha256": "e750d8fe58eefd74a585d0b70cdbf4ec91774d040b722f176fde4cdee0457959",
+          "AST_parse_syntax_only": false
+        },
+        {
+          "path": "prepare_current_packet.py",
+          "bytes": 44998,
+          "sha256": "dbb81b2573c1ed59845c2a46d11572b86862c5b4cc1eff926ba86fa84bd14bdd",
+          "AST_parse_syntax_only": true
+        }
+      ]
+    }
+  },
+  "read_all_sources_in_full": true,
+  "programs_imported_or_executed": false,
+  "reviewed_helpers_compiled": false,
+  "syntax_inspection": "AST parse only; byte/hash inspection",
+  "Git_commands_or_remote_operations": 0,
+  "external_communication": false,
+  "closed_shared_canonical_native_mutations": 0,
+  "new_substantive_attempts": 0,
+  "audit_turns": 0,
+  "mathematical_verdict": null,
+  "whole_current_gate": "pending_NEW_whole_current_packet_source_first_adversary",
+  "blocking_findings": [
+    {
+      "id": "S1",
+      "kind": "deterministic source-derived integration rejection",
+      "summary": "Actual current-measure git-hash-object stdin preserved as .stdin but builder capability whitelist rejects it",
+      "scope": "current_measure_family/replay_and_controls.py:21; capture_runner.py:85-90; collect_root_replays.py:473-478; prepare_current_packet.py:261",
+      "runtime_observed": false
+    },
+    {
+      "id": "S2",
+      "kind": "unhandled failure-retention paths",
+      "summary": "Outer timeout/OSError and nested process launch failures skip complete attempted-run stream/source receipt before cleanup; setup is outside protected block",
+      "scope": "collect_root_replays.py:142-148,204-218,419-421,471; capture_runner.py:73-107",
+      "runtime_observed": false
+    }
+  ],
+  "source_revision_required": true,
+  "no_closed_source_edits_performed": true,
+  "remaining_gap": "Reviewed new builder/collector/capture revisions, then actual complete retained root replay and fresh whole-current adversary; full research target unsolved"
+}

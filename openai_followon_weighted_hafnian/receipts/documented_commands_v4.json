@@ -1,0 +1,44 @@
+{
+  "archive_sha256": "3c8bb5709cf81b443ad0496cfb4d34341da22b40ba77c4a54bf4cf78a62ff6b3",
+  "cwd": "/Users/alec/Documents/Math/openai_followon_weighted_hafnian/receipts/clean_reproduction_v4",
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "reproduce.py",
+        "--output",
+        "reproduction-receipt.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"passed\", \"payload_hashes_verified\": 28, \"checks\": [\"test_gadget.py\", \"test_sampling.py\", \"upstream_cell_checks.py\"]}\n",
+      "stderr": "",
+      "original_payload_unchanged": true
+    },
+    {
+      "argv": [
+        "python3",
+        "research/lean_source_inspection/audit_sources.py",
+        "--source",
+        "/Users/alec/Desktop/math/lean"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"local_module_count\": 415,\n  \"local_source_bytes\": 3091883,\n  \"external_imports\": [\n    \"Mathlib\"\n  ],\n  \"model_and_comparator_definitions_equal_mod_whitespace\": true,\n  \"lexical_critical_token_hits\": [],\n  \"main_listed_in_formalization_yaml\": false,\n  \"free_disk_bytes_at_probe\": 742445056,\n  \"pin_mismatches\": [],\n  \"tool_availability\": {\n    \"comparator\": null,\n    \"landrun\": null,\n    \"lean4export\": null\n  },\n  \"lean_version\": \"Lean (version 4.34.1, arm64-apple-darwin24.6.0, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)\",\n  \"build_probe\": {\n    \"command\": [\n      \"/Users/alec/.elan/toolchains/leanprover--lean4---v4.34.1/bin/lean\",\n      \"OAI/Combinatorics/MatchingCount/Main.lean\"\n    ],\n    \"cwd\": \"/Users/alec/Documents/Math/openai_followon_weighted_hafnian/receipts/clean_reproduction_v4/research/lean_source_inspection/pinned_lean\",\n    \"exit_code\": 1,\n    \"stdout\": \"OAI/Combinatorics/MatchingCount/Main.lean:1:0: error: unknown module prefix 'Mathlib'\\n\\nNo directory 'Mathlib' or file 'Mathlib.olean' in the search path entries:\\n/Users/alec/Documents/Math/openai_followon_weighted_hafnian/receipts/clean_reproduction_v4/research/lean_source_inspection/pinned_lean\\n/Users/alec/.elan/toolchains/leanprover--lean4---v4.34.1/lib/lean\\n\",\n    \"stderr\": \"\"\n  },\n  \"kernel_build_reproduced\": false\n}\n",
+      "stderr": "",
+      "original_payload_unchanged": true
+    },
+    {
+      "argv": [
+        "python3",
+        "reproduce.py",
+        "--output",
+        "after-inspection-receipt.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"passed\", \"payload_hashes_verified\": 28, \"checks\": [\"test_gadget.py\", \"test_sampling.py\", \"upstream_cell_checks.py\"]}\n",
+      "stderr": "",
+      "original_payload_unchanged": true
+    }
+  ],
+  "status": "passed",
+  "optional_scope": "source inspection and failed dependency probe, not a kernel build"
+}

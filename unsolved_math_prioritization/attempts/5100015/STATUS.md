@@ -1,12 +1,9 @@
-# Current reviewed status: full k303,b claim passes
+# Current status: mathematical resolution, qualified priority
 
-As of2026-10-01, the unchanged full proof has passed separate independent source/mathematics review with no mandatory correction. Recommended queue status: **claimed_solved, 1/5 author turns**. This is an AI-assisted mathematical claim with credited classical inputs, not a novelty/priority certificate or human peer review.
+The signed outer tangent/center-pedal area product k303,b is proved for a strictly nested nondegenerate confocal elliptical caustic and periods not divisible by four, with admissible stars, reversal and fixed-repeat scaling. Actual feet lie on the boundary tangent side lines. Hyperbolic/focal/collapsed caustics and unsigned filled-lobe areas are outside scope.
 
-- PROOF.md SHA2564f2eac23212f3fdf1c0c17ba79081e6dc9790907d1725c7359e9461052eabfc2
-- Independent full PASS: independent_review/INDEPENDENT_REVIEW.md SHA256a061d8e564502b4606043cf1152968001166f6b330b69426ed6af5d07348b46f
-- Author checks:5,660 exact assertions and4,512 separately labeled high-precision diagnostics PASS
-- Separate reviewer checks:6,195 exact assertions and6,615 high-precision diagnostics PASS
+Classical KLS2002 odd Jacobi product-to-sum, KS2003/2004 Landen, AST2020 velocity/foot and skew-hodograph, BT2020 telescope, Stachel canonical and standard conic/Jacobi/pole methods are credited. Ferudun2026v1.1 Theorem2/Section6 (DOI10.5281/zenodo.23088516) is an exact contemporary full proof; v1.0 covers only the primitive even centered subset via its arbitrary-point result. Historical ordering, independent non-derivation and novelty are undetermined. No first-proof, current-worldwide-open, new-identity or exclusive-resolution claim is made.
 
-Scope: signed outer tangent-polygon area times its signed center-pedal area, every primitive period not divisible by4, including odd and2mod4 periods and stars, in a nondegenerate strict confocal ellipse pair. Feet are on the outer polygon's tangent side lines. The repetition extension is proved explicitly. No arbitrary-M, hyperbolic/degenerate-caustic or unsigned-filled-lobe extension is asserted.
+Extensive AI assistance; unrefereed, with no independent human peer review or formal proof verification. Full mathematical/source and qualified bounded priority audit are accepted. Whole-package sequential review, final clearance and actual release outcomes are separate later records; this preparation snapshot does not authorize or predict them.
 
-All original author-freeze files remain unchanged. Their statements that review was pending, including README.md and PROOF.md, describe the historical pre-review checkpoint. This file and the independent review are the current disposition. The old upstream OPEN-TRIAGE report is retained as history. Primary PDFs, full-text extractions and page images remain excluded.
+QUEUE classification claimed_solved records a complete mathematical resolution, not historical firstness. Original author turn1/5 retained.

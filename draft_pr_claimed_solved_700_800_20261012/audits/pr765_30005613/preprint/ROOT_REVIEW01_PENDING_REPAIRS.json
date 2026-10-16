@@ -1,0 +1,47 @@
+{
+  "checked_utc": "2026-10-16T05:28:57.832024+00:00",
+  "status": "REPAIRS_REQUIRED_AFTER_REVIEW01_CLOSES",
+  "frozen_six_unchanged": true,
+  "publication_allowed": false,
+  "mathematical_review": "Independent first whole-package mathematical review continuing; no central gap reported so far.",
+  "actionable_issues": [
+    {
+      "source": "root inspection",
+      "issue": "Explicitly initialize O1=Q1(1) alongside a1=x1=1."
+    },
+    {
+      "source": "fresh adversary01 physical tests",
+      "issue": "Portable rebuild follows symlink output ancestors, allowing closed input modification.",
+      "reproduction": "External output/output/pdf symlink to closed input root adds paper.pdf; external output/PACKAGE_INVENTORY.json symlink to paper.tex overwrites source.",
+      "required_repair": [
+        "Validate every output target, including final inventory receipt, and all existing ancestors for symlinks and proper file/directory type before any output writes.",
+        "Require resolved portable targets outside the closed input root.",
+        "Postcheck the original closed input inventory and bytes are unchanged.",
+        "Add physical negative regression controls for both reported attacks and related destinations; rerun corrected portable builds."
+      ]
+    },
+    {
+      "source": "fresh adversary01 independent physical hardlink tests",
+      "issue": "Regular hardlink output destinations can alias and overwrite closed input files, bypassing symlink/path placement checks.",
+      "reproduction": "Hardlink external zenodo-metadata.json or PACKAGE_INVENTORY.json to disposable closed paper.tex; builder exits0 and overwrites source.",
+      "required_repair": [
+        "Preflight reject output files with multiple hardlinks or inode aliases to closed inputs.",
+        "Write all generated files and final inventory through fresh same-directory temporary regular files and atomic replacement.",
+        "Add hardlink regressions for every relevant destination; require rejection before any output change and unchanged input bytes."
+      ]
+    },
+    {
+      "source": "root independent physical reproduction",
+      "issue": "An ordinary single-link external PDF input can share a generated output path and be overwritten.",
+      "receipt": "ROOT_EXTERNAL_PDF_ALIAS_ATTACK.json",
+      "required_repair": [
+        "Forbid all portable output destinations from aliasing supplied external PDF path/inode.",
+        "Postcheck original external PDF identity alongside the complete closed source inventory.",
+        "Run external-PDF alias regressions for all seven generated destinations."
+      ]
+    }
+  ],
+  "pr_completion_estimate_percent": 63,
+  "shard_completion_estimate_percent": 39,
+  "updated_utc": "2026-10-16T05:37:02.675347+00:00"
+}

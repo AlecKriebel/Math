@@ -1,0 +1,650 @@
+{
+  "status": "PASS",
+  "runs": [
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "relocated_changed_mtimes_same_six_rebuild",
+      "status": "PASS",
+      "six": {
+        "paper.tex": {
+          "bytes": 11905,
+          "sha256": "a869a60a04b1675ed8175868b28cbd61a8d39c68f02e5b1bd84452877eeda991"
+        },
+        "output/pdf/paper.pdf": {
+          "bytes": 53568,
+          "sha256": "9aed9197fbe5a1a57a113ab08945f3815dad542be2daf7d25561ac7223491490"
+        },
+        "source-and-verification.zip": {
+          "bytes": 235028,
+          "sha256": "bd6fbd003cd0987e066da20e19274ae9b41a1516d9688047ce8128dc78544cf1"
+        },
+        "zenodo-deposit.json": {
+          "bytes": 4443,
+          "sha256": "0872e34d45b7c27b97cc8bc7ebcf5fc15dfab6baba863309a7e4789cdcd9107b"
+        },
+        "zenodo-metadata.json": {
+          "bytes": 4247,
+          "sha256": "0af7b945eb38d21a2ec92e48ccf40ca184eccf5e974abc548aa46ce87ee94714"
+        },
+        "zenodo-upload-kit.zip": {
+          "bytes": 276659,
+          "sha256": "5cf6a87595efdee9c99b90e2b8ccce7daf1da034432d2dfa41d6b0d6a512b119"
+        }
+      }
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "changed_tex",
+      "status": "REJECTED",
+      "stderr": "mp/review03-work/physical-source-slwexacf/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-slwexacf/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-slwexacf/source/verify_bundle.py\", line 40, in validate_closed_map\n    require(identity(actual[name])==record, 'Source content mismatch: '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-slwexacf/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Source content mismatch: paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "missing_tex",
+      "status": "REJECTED",
+      "stderr": "view03-work/physical-source-5n9vmvse/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5n9vmvse/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5n9vmvse/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5n9vmvse/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "hidden_extra",
+      "status": "REJECTED",
+      "stderr": "view03-work/physical-source-89dxhbdd/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-89dxhbdd/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-89dxhbdd/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-89dxhbdd/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "empty_directory",
+      "status": "REJECTED",
+      "stderr": "20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-8bk8rf4e/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-8bk8rf4e/source/build_package.py\", line 122, in inventory\n    require(dirs == expected_dirs, 'Unexpected empty directory: ' + str(root))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-8bk8rf4e/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Unexpected empty directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-8bk8rf4e/source\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "source_symlink",
+      "status": "REJECTED",
+      "stderr": "ft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-6fg8cbcy/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-6fg8cbcy/source/build_package.py\", line 114, in inventory\n    require(not p.is_symlink(), 'Symlink in source: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-6fg8cbcy/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Symlink in source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-6fg8cbcy/source/paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "source_fifo",
+      "status": "REJECTED",
+      "stderr": "jg9i/source/build_package.py\", line 119, in inventory\n    result[name] = regular(p)\n                   ~~~~~~~^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-e7g3jg9i/source/build_package.py\", line 106, in regular\n    require(not path.is_symlink() and path.is_file() and\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            stat.S_ISREG(path.stat().st_mode), 'Nonregular source: ' + str(path))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-e7g3jg9i/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Nonregular source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-e7g3jg9i/source/pipe\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "wrong_pdf",
+      "status": "REJECTED",
+      "stderr": "iew03-work/physical-source-wzq3bcrf/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-wzq3bcrf/source/verify_bundle.py\", line 120, in main\n    check_structure(before,args.pdf)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-wzq3bcrf/source/verify_bundle.py\", line 52, in check_structure\n    require(identity(regular(pdf))==bindings['paper.pdf'], 'PDF binding differs')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-wzq3bcrf/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: PDF binding differs\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "output_inside_input",
+      "status": "REJECTED",
+      "stderr": "nts/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-wmj0j6hv/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-wmj0j6hv/source/build_package.py\", line 270, in main\n    require(args.output_dir is not None and out != ROOT and ROOT not in out.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'Portable rebuild output must be outside closed input tree')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-wmj0j6hv/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Portable rebuild output must be outside closed input tree\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "ancestor_symlink",
+      "status": "REJECTED",
+      "stderr": "tmp/review03-work/physical-output-xqeu4n1_/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xqeu4n1_/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xqeu4n1_/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xqeu4n1_/linked-parent\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "destination_symlink",
+      "status": "REJECTED",
+      "stderr": "mp/review03-work/physical-output-q2dsmmy6/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-q2dsmmy6/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-q2dsmmy6/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-q2dsmmy6/outputs/paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "output_fifo",
+      "status": "REJECTED",
+      "stderr": "/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-d_x3wkk1/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-d_x3wkk1/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-d_x3wkk1/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "output_directory",
+      "status": "REJECTED",
+      "stderr": "/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-41k8im1m/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-41k8im1m/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-41k8im1m/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "output_hardlink_to_pdf",
+      "status": "REJECTED",
+      "stderr": "ackage.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-a2fdj3yr/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-a2fdj3yr/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-a2fdj3yr/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "output_hardlink_to_source",
+      "status": "REJECTED",
+      "stderr": "ackage.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-o6zyypow/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-o6zyypow/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-o6zyypow/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "inventory_hardlink_to_pdf",
+      "status": "REJECTED",
+      "stderr": "ackage.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-ar6hjfag/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-ar6hjfag/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-ar6hjfag/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": false,
+      "case": "file_parent",
+      "status": "REJECTED",
+      "stderr": "   out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-_d8v1va7/source/build_package.py\", line 218, in validate_outputs\n    require(not directory.exists() or directory.is_dir(),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'Output parent is not a directory: ' + str(directory))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-_d8v1va7/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output parent is not a directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-_d8v1va7/outputs/output\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "relocated_changed_mtimes_same_six_rebuild",
+      "status": "PASS",
+      "six": {
+        "paper.tex": {
+          "bytes": 11905,
+          "sha256": "a869a60a04b1675ed8175868b28cbd61a8d39c68f02e5b1bd84452877eeda991"
+        },
+        "output/pdf/paper.pdf": {
+          "bytes": 53568,
+          "sha256": "9aed9197fbe5a1a57a113ab08945f3815dad542be2daf7d25561ac7223491490"
+        },
+        "source-and-verification.zip": {
+          "bytes": 235028,
+          "sha256": "bd6fbd003cd0987e066da20e19274ae9b41a1516d9688047ce8128dc78544cf1"
+        },
+        "zenodo-deposit.json": {
+          "bytes": 4443,
+          "sha256": "0872e34d45b7c27b97cc8bc7ebcf5fc15dfab6baba863309a7e4789cdcd9107b"
+        },
+        "zenodo-metadata.json": {
+          "bytes": 4247,
+          "sha256": "0af7b945eb38d21a2ec92e48ccf40ca184eccf5e974abc548aa46ce87ee94714"
+        },
+        "zenodo-upload-kit.zip": {
+          "bytes": 276659,
+          "sha256": "5cf6a87595efdee9c99b90e2b8ccce7daf1da034432d2dfa41d6b0d6a512b119"
+        }
+      }
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "changed_tex",
+      "status": "REJECTED",
+      "stderr": "mp/review03-work/physical-source-c50zndks/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-c50zndks/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-c50zndks/source/verify_bundle.py\", line 40, in validate_closed_map\n    require(identity(actual[name])==record, 'Source content mismatch: '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-c50zndks/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Source content mismatch: paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "missing_tex",
+      "status": "REJECTED",
+      "stderr": "view03-work/physical-source-s2nxhtv7/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-s2nxhtv7/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-s2nxhtv7/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-s2nxhtv7/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "hidden_extra",
+      "status": "REJECTED",
+      "stderr": "view03-work/physical-source-1cbb0xkb/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-1cbb0xkb/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-1cbb0xkb/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-1cbb0xkb/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "empty_directory",
+      "status": "REJECTED",
+      "stderr": "20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-hj_uuyzf/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-hj_uuyzf/source/build_package.py\", line 122, in inventory\n    require(dirs == expected_dirs, 'Unexpected empty directory: ' + str(root))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-hj_uuyzf/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Unexpected empty directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-hj_uuyzf/source\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "source_symlink",
+      "status": "REJECTED",
+      "stderr": "ft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5zu2egvz/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5zu2egvz/source/build_package.py\", line 114, in inventory\n    require(not p.is_symlink(), 'Symlink in source: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5zu2egvz/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Symlink in source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5zu2egvz/source/paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "source_fifo",
+      "status": "REJECTED",
+      "stderr": "je1y/source/build_package.py\", line 119, in inventory\n    result[name] = regular(p)\n                   ~~~~~~~^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5x4cje1y/source/build_package.py\", line 106, in regular\n    require(not path.is_symlink() and path.is_file() and\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            stat.S_ISREG(path.stat().st_mode), 'Nonregular source: ' + str(path))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5x4cje1y/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Nonregular source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-5x4cje1y/source/pipe\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "wrong_pdf",
+      "status": "REJECTED",
+      "stderr": "iew03-work/physical-source-z7s0_706/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-z7s0_706/source/verify_bundle.py\", line 120, in main\n    check_structure(before,args.pdf)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-z7s0_706/source/verify_bundle.py\", line 52, in check_structure\n    require(identity(regular(pdf))==bindings['paper.pdf'], 'PDF binding differs')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-z7s0_706/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: PDF binding differs\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "output_inside_input",
+      "status": "REJECTED",
+      "stderr": "nts/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xybbc601/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xybbc601/source/build_package.py\", line 270, in main\n    require(args.output_dir is not None and out != ROOT and ROOT not in out.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'Portable rebuild output must be outside closed input tree')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xybbc601/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Portable rebuild output must be outside closed input tree\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "ancestor_symlink",
+      "status": "REJECTED",
+      "stderr": "tmp/review03-work/physical-output-1437jiy0/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-1437jiy0/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-1437jiy0/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-1437jiy0/linked-parent\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "destination_symlink",
+      "status": "REJECTED",
+      "stderr": "mp/review03-work/physical-output-oewx62ro/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-oewx62ro/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-oewx62ro/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-oewx62ro/outputs/paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "output_fifo",
+      "status": "REJECTED",
+      "stderr": "/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-w7prvbi6/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-w7prvbi6/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-w7prvbi6/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "output_directory",
+      "status": "REJECTED",
+      "stderr": "/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-s3ffu2h8/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-s3ffu2h8/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-s3ffu2h8/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "output_hardlink_to_pdf",
+      "status": "REJECTED",
+      "stderr": "ackage.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-sg03p4_6/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-sg03p4_6/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-sg03p4_6/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "output_hardlink_to_source",
+      "status": "REJECTED",
+      "stderr": "ackage.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-qxwdlgmo/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-qxwdlgmo/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-qxwdlgmo/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "inventory_hardlink_to_pdf",
+      "status": "REJECTED",
+      "stderr": "ackage.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-m19u1brv/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-m19u1brv/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-m19u1brv/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.14.6",
+      "optimized": true,
+      "case": "file_parent",
+      "status": "REJECTED",
+      "stderr": "   out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-otbq123t/source/build_package.py\", line 218, in validate_outputs\n    require(not directory.exists() or directory.is_dir(),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'Output parent is not a directory: ' + str(directory))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-otbq123t/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output parent is not a directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-otbq123t/outputs/output\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "relocated_changed_mtimes_same_six_rebuild",
+      "status": "PASS",
+      "six": {
+        "paper.tex": {
+          "bytes": 11905,
+          "sha256": "a869a60a04b1675ed8175868b28cbd61a8d39c68f02e5b1bd84452877eeda991"
+        },
+        "output/pdf/paper.pdf": {
+          "bytes": 53568,
+          "sha256": "9aed9197fbe5a1a57a113ab08945f3815dad542be2daf7d25561ac7223491490"
+        },
+        "source-and-verification.zip": {
+          "bytes": 235028,
+          "sha256": "bd6fbd003cd0987e066da20e19274ae9b41a1516d9688047ce8128dc78544cf1"
+        },
+        "zenodo-deposit.json": {
+          "bytes": 4443,
+          "sha256": "0872e34d45b7c27b97cc8bc7ebcf5fc15dfab6baba863309a7e4789cdcd9107b"
+        },
+        "zenodo-metadata.json": {
+          "bytes": 4247,
+          "sha256": "0af7b945eb38d21a2ec92e48ccf40ca184eccf5e974abc548aa46ce87ee94714"
+        },
+        "zenodo-upload-kit.zip": {
+          "bytes": 276659,
+          "sha256": "5cf6a87595efdee9c99b90e2b8ccce7daf1da034432d2dfa41d6b0d6a512b119"
+        }
+      }
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "changed_tex",
+      "status": "REJECTED",
+      "stderr": "tmp/review03-work/physical-source-yjud0gks/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-yjud0gks/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-yjud0gks/source/verify_bundle.py\", line 40, in validate_closed_map\n    require(identity(actual[name])==record, 'Source content mismatch: '+name)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-yjud0gks/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Source content mismatch: paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "missing_tex",
+      "status": "REJECTED",
+      "stderr": "t/tmp/review03-work/physical-source-02wzjl16/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-02wzjl16/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-02wzjl16/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-02wzjl16/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "hidden_extra",
+      "status": "REJECTED",
+      "stderr": "t/tmp/review03-work/physical-source-fq0ybnls/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-fq0ybnls/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-fq0ybnls/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-fq0ybnls/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "empty_directory",
+      "status": "REJECTED",
+      "stderr": "^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-s2mm5m61/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-s2mm5m61/source/build_package.py\", line 122, in inventory\n    require(dirs == expected_dirs, 'Unexpected empty directory: ' + str(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-s2mm5m61/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Unexpected empty directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-s2mm5m61/source\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "source_symlink",
+      "status": "REJECTED",
+      "stderr": "        ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-keebeqwi/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-keebeqwi/source/build_package.py\", line 114, in inventory\n    require(not p.is_symlink(), 'Symlink in source: ' + str(p))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-keebeqwi/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Symlink in source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-keebeqwi/source/paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "source_fifo",
+      "status": "REJECTED",
+      "stderr": "_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-slu24jh6/source/build_package.py\", line 119, in inventory\n    result[name] = regular(p)\n                   ^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-slu24jh6/source/build_package.py\", line 106, in regular\n    require(not path.is_symlink() and path.is_file() and\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-slu24jh6/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Nonregular source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-slu24jh6/source/pipe\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "wrong_pdf",
+      "status": "REJECTED",
+      "stderr": "ent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-kgei6ph5/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-kgei6ph5/source/verify_bundle.py\", line 120, in main\n    check_structure(before,args.pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-kgei6ph5/source/verify_bundle.py\", line 52, in check_structure\n    require(identity(regular(pdf))==bindings['paper.pdf'], 'PDF binding differs')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-kgei6ph5/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: PDF binding differs\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "output_inside_input",
+      "status": "REJECTED",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-29e8nrk8/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-29e8nrk8/source/build_package.py\", line 270, in main\n    require(args.output_dir is not None and out != ROOT and ROOT not in out.parents,\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-29e8nrk8/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Portable rebuild output must be outside closed input tree\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "ancestor_symlink",
+      "status": "REJECTED",
+      "stderr": " File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-ss6d83dz/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-ss6d83dz/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-ss6d83dz/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-ss6d83dz/linked-parent\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "destination_symlink",
+      "status": "REJECTED",
+      "stderr": "e \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-yp5vliql/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-yp5vliql/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-yp5vliql/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-yp5vliql/outputs/paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "output_fifo",
+      "status": "REJECTED",
+      "stderr": "_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-qb_xp3jt/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-qb_xp3jt/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-qb_xp3jt/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-qb_xp3jt/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "output_directory",
+      "status": "REJECTED",
+      "stderr": "_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-vvpkv5sn/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-vvpkv5sn/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-vvpkv5sn/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-vvpkv5sn/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "output_hardlink_to_pdf",
+      "status": "REJECTED",
+      "stderr": "700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-npknrn8l/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-npknrn8l/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-npknrn8l/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-npknrn8l/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "output_hardlink_to_source",
+      "status": "REJECTED",
+      "stderr": "700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-tvsffat4/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-tvsffat4/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-tvsffat4/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-tvsffat4/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "inventory_hardlink_to_pdf",
+      "status": "REJECTED",
+      "stderr": "700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-41zjb7ff/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-41zjb7ff/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-41zjb7ff/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-41zjb7ff/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": false,
+      "case": "file_parent",
+      "status": "REJECTED",
+      "stderr": "dule>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-_ybetilp/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-_ybetilp/source/build_package.py\", line 218, in validate_outputs\n    require(not directory.exists() or directory.is_dir(),\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-_ybetilp/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output parent is not a directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-_ybetilp/outputs/output\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "relocated_changed_mtimes_same_six_rebuild",
+      "status": "PASS",
+      "six": {
+        "paper.tex": {
+          "bytes": 11905,
+          "sha256": "a869a60a04b1675ed8175868b28cbd61a8d39c68f02e5b1bd84452877eeda991"
+        },
+        "output/pdf/paper.pdf": {
+          "bytes": 53568,
+          "sha256": "9aed9197fbe5a1a57a113ab08945f3815dad542be2daf7d25561ac7223491490"
+        },
+        "source-and-verification.zip": {
+          "bytes": 235028,
+          "sha256": "bd6fbd003cd0987e066da20e19274ae9b41a1516d9688047ce8128dc78544cf1"
+        },
+        "zenodo-deposit.json": {
+          "bytes": 4443,
+          "sha256": "0872e34d45b7c27b97cc8bc7ebcf5fc15dfab6baba863309a7e4789cdcd9107b"
+        },
+        "zenodo-metadata.json": {
+          "bytes": 4247,
+          "sha256": "0af7b945eb38d21a2ec92e48ccf40ca184eccf5e974abc548aa46ce87ee94714"
+        },
+        "zenodo-upload-kit.zip": {
+          "bytes": 276659,
+          "sha256": "5cf6a87595efdee9c99b90e2b8ccce7daf1da034432d2dfa41d6b0d6a512b119"
+        }
+      }
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "changed_tex",
+      "status": "REJECTED",
+      "stderr": "tmp/review03-work/physical-source-ew8ox9t4/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-ew8ox9t4/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-ew8ox9t4/source/verify_bundle.py\", line 40, in validate_closed_map\n    require(identity(actual[name])==record, 'Source content mismatch: '+name)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-ew8ox9t4/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Source content mismatch: paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "missing_tex",
+      "status": "REJECTED",
+      "stderr": "t/tmp/review03-work/physical-source-o0yer0r7/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-o0yer0r7/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-o0yer0r7/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-o0yer0r7/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "hidden_extra",
+      "status": "REJECTED",
+      "stderr": "t/tmp/review03-work/physical-source-p_stelaj/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-p_stelaj/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-p_stelaj/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-p_stelaj/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "empty_directory",
+      "status": "REJECTED",
+      "stderr": "^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-q0bqu9n5/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-q0bqu9n5/source/build_package.py\", line 122, in inventory\n    require(dirs == expected_dirs, 'Unexpected empty directory: ' + str(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-q0bqu9n5/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Unexpected empty directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-q0bqu9n5/source\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "source_symlink",
+      "status": "REJECTED",
+      "stderr": "        ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-4nom81n0/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-4nom81n0/source/build_package.py\", line 114, in inventory\n    require(not p.is_symlink(), 'Symlink in source: ' + str(p))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-4nom81n0/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Symlink in source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-4nom81n0/source/paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "source_fifo",
+      "status": "REJECTED",
+      "stderr": "_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-w5oazvqj/source/build_package.py\", line 119, in inventory\n    result[name] = regular(p)\n                   ^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-w5oazvqj/source/build_package.py\", line 106, in regular\n    require(not path.is_symlink() and path.is_file() and\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-w5oazvqj/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Nonregular source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-w5oazvqj/source/pipe\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "wrong_pdf",
+      "status": "REJECTED",
+      "stderr": "ent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-evgold2q/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-evgold2q/source/verify_bundle.py\", line 120, in main\n    check_structure(before,args.pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-evgold2q/source/verify_bundle.py\", line 52, in check_structure\n    require(identity(regular(pdf))==bindings['paper.pdf'], 'PDF binding differs')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-source-evgold2q/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: PDF binding differs\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "output_inside_input",
+      "status": "REJECTED",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-a72a7o1d/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-a72a7o1d/source/build_package.py\", line 270, in main\n    require(args.output_dir is not None and out != ROOT and ROOT not in out.parents,\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-a72a7o1d/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Portable rebuild output must be outside closed input tree\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "ancestor_symlink",
+      "status": "REJECTED",
+      "stderr": " File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-9p2kj7hh/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-9p2kj7hh/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-9p2kj7hh/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-9p2kj7hh/linked-parent\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "destination_symlink",
+      "status": "REJECTED",
+      "stderr": "e \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-w380gjx0/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-w380gjx0/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-w380gjx0/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-w380gjx0/outputs/paper.tex\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "output_fifo",
+      "status": "REJECTED",
+      "stderr": "_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-tygloia4/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-tygloia4/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-tygloia4/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-tygloia4/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "output_directory",
+      "status": "REJECTED",
+      "stderr": "_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xpie2b9v/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xpie2b9v/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xpie2b9v/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-xpie2b9v/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "output_hardlink_to_pdf",
+      "status": "REJECTED",
+      "stderr": "700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-lttfgx3g/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-lttfgx3g/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-lttfgx3g/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-lttfgx3g/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "output_hardlink_to_source",
+      "status": "REJECTED",
+      "stderr": "700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-hfisorko/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-hfisorko/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-hfisorko/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-hfisorko/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "inventory_hardlink_to_pdf",
+      "status": "REJECTED",
+      "stderr": "700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-yfdcg2u8/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-yfdcg2u8/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-yfdcg2u8/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-yfdcg2u8/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n",
+      "preserved": true
+    },
+    {
+      "runtime": "Python 3.12.14",
+      "optimized": true,
+      "case": "file_parent",
+      "status": "REJECTED",
+      "stderr": "dule>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-vnr64pdl/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-vnr64pdl/source/build_package.py\", line 218, in validate_outputs\n    require(not directory.exists() or directory.is_dir(),\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-vnr64pdl/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output parent is not a directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review03-work/physical-output-vnr64pdl/outputs/output\n",
+      "preserved": true
+    }
+  ],
+  "count": 68,
+  "positive_rebuilds": 4,
+  "negative_fixtures": 64,
+  "source_and_supplied_pdf_preserved": true,
+  "scratch": "owned RAM fixtures, removed"
+}

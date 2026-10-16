@@ -1,0 +1,10 @@
+# PR23 compatibility-family audit research log
+
+- 2026-10-01T19:52:34Z — Began independent derivation from frozen SOURCE_STATUS.md, source_record.json, primary OWR and De Philippis–Rindler sources. Exact PR head: ea6b192f7e3bc094b78bbc416bf61c609ffa5b2d. Historical review/code/provenance not yet consulted. Snapshot root is source_snapshot/ (14 files), manifest is its parent's snapshot_manifest.json. Completion estimate: 8% of this audit.
+- Authorization/scope: validation of existing source-status correction, no new central proof attempt; preserve frozen/canonical files and main branch; no Git/PR/publication writes; no external-person contact. Child writes confined to compatibility_family/.
+
+- 2026-10-01T19:56:30Z — Sealed FIRST_PASS.md and criterion before historical code/reviews/sibling outcomes. Independently derived compatibility constraints, oblique congruence reduction, distributional signed-measure profile regularity, rigid kernel, degeneracies, formula ambiguity, and explicit nonconvex-domain obstruction. Strongest result: classification on whole space and adapted boxes. No candidate defect found; primary theorem literal branch condition requires qualification already present in draft. Completion estimate: 55%.
+
+- 2026-10-01T20:01:52.458168+00:00 — Original 8-check verifier and historical 11-check compatibility suite reproduced in ignored copies; receipts match byte-for-byte / JSON-for-JSON. New displacement-nullspace controls and oblique covariance, mutation, local-potential, signed-singular, scaling, zero/d1, nonconvex witnesses all passed (19 grouped checks). All 14 frozen SHA-256 hashes still match. Primary 2020/OWR PDF hashes match historical receipts. Completion estimate: 88%.
+
+- 2026-10-01T20:05:08.633109+00:00 — Completed REPORT.md / VERDICT.md. Mathematical PASS for scoped source correction; P2 stale PR_DRAFT.md:24 scope statement identified and sent to root. No mathematical correction, no fresh central attempt, no paper. All source/snapshot bytes preserved; raw references/replays ignored. Completion estimate: 100% of this audit. Parent owns final classification/integration/publication.

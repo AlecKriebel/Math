@@ -1,0 +1,652 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..89959d9ad 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -55,7 +55,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 44 | 30003955 / OWR-16415-018 | Disconnected Preimages of Subsurfaces Under Finite Covers | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+ | 45 | 6800007 / AMR-067-0007 | Manifolds modelled on flag manifolds — Question 2 | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+ | 46 | 30004186 / OWR-17128-002 | Stability of Peaked Reduced Ostrovsky Waves | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+-| 47 | 7000004 / AMR-069-0004 | Geometry of Curves and Surfaces — Problem 1.4 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
++| 47 | 7000004 / AMR-069-0004 | Geometry of Curves and Surfaces — Problem 1.4 | 0.2562 | 5.5 | 3 | 2019 | unsolved | 1/5 |  | 2026-09-30: Separate review passed the source-qualified binormal/linking obstruction and exact local checks after narrow source corrections. Immersed/continuous-binormal scope and signed-crossing cancellation remain unresolved; no global linking certificate or full solution is claimed. Newer embedded-surface results are explicitly distinguished. Draft PR: https://github.com/AlecKriebel/Math/pull/34. |  |
+ | 48 | 7000019 / AMR-069-0019 | Geometry of Curves and Surfaces — Problem 4.3 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+ | 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/7000004/OBSTRUCTION.md b/unsolved_math_prioritization/attempts/7000004/OBSTRUCTION.md
+new file mode 100644
+index 000000000..adcfaf25c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/OBSTRUCTION.md
+@@ -0,0 +1,67 @@
++# 7000004: the injective-binormal ribbon question remains unresolved here
++
++**Outcome:** no proof or counterexample to the full target. The current literature supplies useful restrictions, but neither injectivity nor a total-torsion calculation was shown to prevent cancellation in the linking number. Model: gpt-6-astra, xhigh; checked 2026-09-30.
++
++## 1. Exact source and necessary conventions
++
++The source is [Ghomi, *Open Problems in Geometry of Curves and Surfaces*](https://people.math.gatech.edu/~ghomi/Papers/op.pdf), Problem1.4 on p.6, within the discussion of Nirenberg's tight-surface rigidity problem. It asks whether a smooth closed immersed curve admitting a continuous injective binormal field has nonzero linking number with its small binormal push-off.
++
++The intended convention is a unit-length binormal direction field, viewed in the sphere, normal to a continuous choice of osculating planes. The 2019 wording itself does not explicitly impose unit length. This convention is a substantive scope clarification: normalizing an arbitrary injective nonzero vector-valued field need not preserve its injectivity. The definition permits curvature-zero points. Replacing this by the Frenet formula while assuming positive curvature would change the problem. “Twisted” means nonzero linking of the two curves; it does not merely mean nonzero torsion, nonzero twist integral, or a nontrivial loop of frames.
++
++There is also a definitional issue for the full immersed formulation: linking requires the images of the curve and its push-off to be disjoint. This is automatic for an embedded center curve and sufficiently small normal push-off, but not for every immersed curve. This issue is a scope caveat, not a counterexample to the intended geometric question.
++
++## 2. A directly relevant later paper
++
++[Ghomi–Raffaelli, *Topology of closed asymptotic curves on negatively curved surfaces*](https://arxiv.org/abs/2412.19266v2), revised September2025, was published in [*Journal of Geometric Analysis*35,381 (2025)](https://doi.org/10.1007/s12220-025-02200-3).
++
++Its Problem1.1 still asks whether zero linking is possible with an injective Gauss map in the embedded negatively curved setting. Theorem1.2 gives
++\[
++\operatorname{Lk}(\Gamma,n)=\operatorname{Cr}(\Gamma_u)
+++\frac12\#\{t:\langle u,n(t)\rangle=0\}\operatorname{sign}(\tau_g).
++\tag{1}
++\]
++Here \(u\) is generic, crossings are signed, and \(\tau_g\) is nonvanishing. Sections2–3 justify those hypotheses. Note1.6 explicitly warns about self-linking for self-intersecting center curves. Notes5.1–5.2 force inflections when the spherical normal is injective. The paper reports Example4.2 with injective normal and linking2; Example4.1 has linking0 but noninjective normal. The displayed spherical parametrization in Example4.2 omits a factor1/6 from each of its first two coordinates, making its printed square root nonreal. The linked [primary Mathematica notebook](https://ghomi.math.gatech.edu/MathematicaNBs/Asymptotic-Examples.nb), Second Example, The Binormal, input In[1], includes both factors. This qualifies the attribution of the reported example; neither the notebook nor its full linking-number construction was independently executed or certified here. Neither reported example is a counterexample to the target.
++
++The complete eleven-page preprint and the corresponding published sections were inspected. Their regular, embedded setting is narrower than a merely continuous binormal along an arbitrary immersion. The paper therefore cannot be used as a solution of the full source question. No later full resolution was located in the limited current search.
++
++## 3. Why the obvious differential-geometric shortcut stalls
++
++Suppose temporarily that a unit binormal \(B\) is sufficiently differentiable and regular. For an arclength parametrization let
++\[
++T=\Gamma',\qquad N=B\times T.
++\]
++The identities \(B\cdot T=B\cdot T'=0\) yield the signed Darboux equations
++\[
++T'=\kappa_sN,\qquad N'=-\kappa_sT+\tau B,\qquad B'=-\tau N.
++\tag{2}
++\]
++Regularity of \(B\) means \(\tau\ne0\), so \(\tau\) has constant sign. The twist of this framing is
++\[
++\operatorname{Tw}(\Gamma,B)=\frac1{2\pi}\int\tau\,ds.
++\]
++A nonzero integral here does **not** prove nonzero linking: Călugăreanu's identity is
++\[
++\operatorname{Lk}=\operatorname{Wr}+\operatorname{Tw},
++\]
++and cancellation with writhe is precisely an unexcluded possibility. Formula(1) makes the analogous gap discrete: the signed crossing term must be controlled, not merely the number of intersections of \(B\) with a great circle.
++
++Nor may one simplify by assuming \(\kappa_s\) never vanishes. For a regular simple spherical binormal, the absolute total signed geodesic curvature is less than \(2\pi\), by Gauss–Bonnet for its Jordan domain. Equations(2) identify that integral, up to orientation, with \(\int\kappa_s ds\). If \(\kappa_s\) kept one sign, Fenchel's theorem would instead give
++\[
++2\pi\le\int|\kappa_s|ds
++=\left|\int\kappa_s ds\right|<2\pi,
++\]
++a contradiction. This is the known inflection obstruction; it shows why excluding inflections discards an essential part of the problem rather than solving it.
++
++For the original continuous field, differentiability, finite spherical length, and nonzero \(B'\) cannot simply be assumed. An approximation argument would need to preserve binormal compatibility, injectivity, closure of the center curve, and the linking invariant simultaneously. No such argument was established here.
++
++## 4. Further source cautions
++
++The 2019 source already warns that the earlier Kovaleva approach imposes unwarranted regularity. The 2025 paper's Note5.5 additionally disputes the older claimed formula equating linking to half the number of inflections. Accordingly, that older assertion cannot be promoted to a proof without a new audit and repair.
++
++The upstream research report's references to planar/convex special cases are not a demonstrated partial solution of this exact injective-binormal problem. On any planar subarc with nonzero curvature, a continuous unit binormal is constant. A planar closed regular curve has such a subarc and therefore cannot satisfy the injectivity hypothesis. No prior substantive proof attempt or exact duplicate was found in the repository or source report.
++
++## 5. Precise remaining gap and disposition
++
++Even in the smoother embedded case, the missing step is a global argument showing that injectivity of the spherical binormal excludes \(\operatorname{Wr}=-\operatorname{Tw}\), equivalently the cancellation in(1), or an explicit counterexample satisfying all hypotheses with disjoint push-off and zero linking. The continuous/immersed formulation also requires the regularity and well-definedness issues to be addressed.
++
++The investigation stops after one substantive route with an **unresolved** outcome. The algebra checks in `verify.py` confirm only the frame identities and twist calculation. They do not provide a global topological certificate. This artifact is neither a new theorem resolving the problem nor a claim that the literal scope caveat resolves it negatively.
+diff --git a/unsolved_math_prioritization/attempts/7000004/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/7000004/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..9478da485
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/RESEARCH_LOG.md
+@@ -0,0 +1,11 @@
++# Research log:7000004
++
++- 2026-09-30 04:43 UTC: accepted rank47 target; inspected pinned source/report and repository instructions. Checked main-tree/queue/related-group evidence and full-statement duplicates before pursuing a proof route. No prior substantive attempt found; upstream source/literature triage was preserved.
++- 04:44–04:48 UTC: read original Problem1.4 with its regularity/context warnings, then the complete directly relevant Ghomi–Raffaelli preprint and corresponding published sections. Current2025 paper retains the narrower embedded question and provides a signed-crossing formula, examples and inflection restrictions.
++- 04:48–04:52 UTC: audited one differential-geometric route. Nonzero twist does not exclude cancellation by writhe; continuous/immersed hypotheses cannot be upgraded without proof. Ran exact symbolic local checks successfully. Froze the explicit unresolved obstruction early because no new global mechanism was available.
++
++## Disposition
++
++One substantive attempt used; no full result, discovery claim or counterexample. Existing inflection and linking facts are credited. Limited literature search does not certify global open status. Root owns queue changes; requested outcome is unsolved. Separate adversarial review is required before any PR. No branch or PR created in this investigation. Model gpt-6-astra; effort xhigh, not ultra.
++
++- 2026-09-30 05:32 UTC: Applied three narrow independent-review clarifications: unit-binormal convention is not explicit in2019 wording; planar constancy only on nonzero-curvature subarcs; Example4.2 displayed typo versus notebook /6 factors, with no independent linking computation claimed. Original artifact preserved under revisions/. Full target remains unresolved.
+diff --git a/unsolved_math_prioritization/attempts/7000004/prior_report.json b/unsolved_math_prioritization/attempts/7000004/prior_report.json
+new file mode 100644
+index 000000000..3d5126836
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/prior_report.json
+@@ -0,0 +1,10 @@
++{
++  "classification": "PARTIAL-PROGRESS",
++  "wording_corrected": "no",
++  "difficulty_suggested": null,
++  "problem": "Let \u0393 be a smooth closed curve immersed in R^3. Suppose \u0393 has a continuous binormal vector field B which is one-to-one (i.e., B restricted to \u0393 is injective). Does it follow that the ribbon (\u0393, B) is twisted?",
++  "status_literature": "- This problem concerns the geometry of ribbons / thin strips and the curve's normal/tangent indicatrix behavior. It is related to Ghomi's work on the \"wide part\" and width of closed curves.\n- The notion of a one-to-one binormal field implies the curve's normal spherical image is injective on a full period, forcing strong global turning. Whether this forces the ribbon to be twisted is a delicate global question.\n- No direct solved reference was verified; the problem is treated as an open question in the surrounding literature. Deterministic configurations (e.g., when the curve is close to planar/convex) are understood, but the general statement was not settled.",
++  "work_done": "- Verified the statement (source Problem 1.4). Searched for literature on bijective binormal fields and ribbon twist; no complete answer found.",
++  "result": "PARTIAL-PROGRESS: the problem remains essentially open, with partial understanding in special curve classes (convex/planar) and related width/twist inequalities.",
++  "what_remains": "- Prove or disprove that injectivity of the binormal field over the whole closed curve forces a twisted ribbon; characterize the possible configurations."
++}
+diff --git a/unsolved_math_prioritization/attempts/7000004/readiness.json b/unsolved_math_prioritization/attempts/7000004/readiness.json
+new file mode 100644
+index 000000000..2d42c7f70
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/readiness.json
+@@ -0,0 +1,39 @@
++{
++  "id": 7000004,
++  "review_hash": "2e49912828f018ce3f85114143f107c8b3315172c5e5538a6231c128efb1d086",
++  "statement_hash": "3fba262110a123ef34d75b5cac921d5d24b3964782b23c2618a9725ed6f04d93",
++  "exact_claim": "A smooth closed immersed curve admitting a continuous one-to-one binormal has nonzero linking with its small binormal push-off, with linking required to be well defined.",
++  "primary_sources": [
++    {
++      "url": "https://people.math.gatech.edu/~ghomi/Papers/op.pdf",
++      "location": "Problem1.4, p6, within Nirenberg rigidity discussion"
++    },
++    {
++      "url": "https://arxiv.org/abs/2412.19266v2",
++      "location": "Ghomi\u2013Raffaelli, revised2025; full11pages, especially Problem1.1, Theorem1.2, Examples4.1\u20134.2, Notes1.6,5.1\u20135.5"
++    },
++    {
++      "url": "https://doi.org/10.1007/s12220-025-02200-3",
++      "location": "Published2025 version of the directly relevant paper"
++    }
++  ],
++  "literature_checked_at": "2026-09-30T04:52:00Z",
++  "success_test": "A proof covering the source hypotheses, or a counterexample with compatible continuous injective binormal and disjoint zero-linking push-off. Nonzero total torsion alone does not suffice.",
++  "budget": {
++    "maximum_substantive_attempts": 5,
++    "used_substantive_attempts": 1,
++    "time_cap_utc": "2026-09-30T06:43:00Z",
++    "model": "gpt-6-astra",
++    "reasoning_effort": "xhigh",
++    "compute": "Exact symbolic local-frame, twist, and spherical-curvature identities; no numerical global-linking claim."
++  },
++  "prior_attempt_gap": "Upstream report records source verification/literature search only, without a substantive proof attempt; its vague planar/convex special-case claims do not establish progress on the injective-binormal hypothesis.",
++  "duplicate_check": "Pinned full-statement scan finds only this injective-binormal question; other binormal-flow/ribbon-concordance records concern different problems. Main-tree snapshot has no7000004 attempt; related-target-groups has no match; initial queue queued0/5.",
++  "status": "blocked",
++  "queue_outcome_requested": "unsolved",
++  "remaining_gap": "No global argument excludes cancellation of nonzero framing twist by writhe (or the signed-crossing term) under injectivity of the spherical binormal; the original continuous/immersed scope needs additional care.",
++  "artifact": "OBSTRUCTION.md",
++  "completion_estimate_percent": 5,
++  "independent_review": "PASS for unresolved package; see review/REVIEW.md and review/verdict.json",
++  "reviewed_artifact_sha256": "6689fb008c098f14fc6cb99bfd761b72728a391330f9888f0e106c344537955f"
++}
+diff --git a/unsolved_math_prioritization/attempts/7000004/review/REVIEW.md b/unsolved_math_prioritization/attempts/7000004/review/REVIEW.md
+new file mode 100644
+index 000000000..fc7e7e626
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/review/REVIEW.md
+@@ -0,0 +1,79 @@
++# Independent review of the injective binormal obstruction
++
++**Verdict: PASS for the unresolved obstruction and source-scope report, after the three narrow clarifications below were incorporated and checked.** This is a source-scope and local-argument review. It does not certify a solution, a counterexample, or the full numerical example in the cited paper.
++
++Problem 7000004 / AMR-069-0004. Reviewed on 30 September 2026 by a separate gpt-6-astra agent at xhigh effort. Initial reviewed `OBSTRUCTION.md` SHA-256: `8be32eb4ac09ebac4018774194af299a8fd81b54a514dfa1bb69af04548701f3`.
++
++## Exact source and scope
++
++The full [Ghomi survey](https://people.math.gatech.edu/~ghomi/Papers/op.pdf), printed p. 6, was checked around Problem 1.4. It allows a smooth closed **immersed** center curve and a **continuous** injective binormal field, using continuously chosen osculating planes that contain the first two derivatives. Curvature-zero points are expressly compatible with this definition. The preceding tight-surface discussion and the warning about unwarranted regularity in an earlier approach are relevant to the exact question.
++
++The intended spherical, nonvanishing unit-binormal convention should be stated as a convention rather than silently derived from the text: the 2019 statement does not literally specify unit length. Dividing an arbitrary vector-valued field by its length need not preserve its injectivity. This ambiguity is not used as a purported counterexample.
++
++The [Ghomi–Raffaelli paper](https://link.springer.com/article/10.1007/s12220-025-02200-3), published 9 October 2025, still states the related embedded-surface question as Problem 1.1. Its hypotheses in Sections 1–2 include an embedded orientable surface of class at least $C^3$, negative Gauss curvature, and a closed asymptotic curve. Consequently the center curve is simple and its Darboux normal has nonvanishing derivative. These are genuine additional hypotheses. Injectivity of a merely continuous spherical field does not imply a nonzero derivative, a finite length, or even differentiability.
++
++A sufficiently small normal push-off of a compact smooth embedded curve is disjoint from the center curve by the tubular-neighborhood theorem, even for a continuous nonvanishing field. For an immersed center curve this requires separate care. Linking can be defined for two disjoint immersed cycles; it is not the occurrence of self-intersections alone that makes every such definition impossible. The artifact correctly identifies possible failure of disjointness as a caveat, not as a universal failure or a counterexample to the intended question.
++
++## Frame identities and the linking formula
++
++With arclength parameter, $T=\Gamma'$, a unit binormal $B$, and $N=B\times T$, differentiating orthonormality and using $B\cdot T'=0$ gives
++
++$$T'=\kappa_sN,\qquad N'=-\kappa_sT+\tau B,\qquad B'=-\tau N.$$
++
++Thus regularity of $B$ gives $|B'|=|\tau|>0$, so continuous $\tau$ has fixed sign. The twist integrand is
++
++$$T\cdot(B\times B')=\tau,$$
++
++which agrees with the sign and normalization in the artifact. This calculation remains valid when $\kappa_s=0$; division by curvature is unnecessary. The standard smooth embedded ribbon identity is $\operatorname{Lk}=\operatorname{Wr}+\operatorname{Tw}$. Neither nonzero torsion nor nonzero twist alone rules out cancellation by writhe.
++
++The cited Theorem 1.2 was matched to its proof, not merely to its displayed statement. Let $u$ be generic and not parallel to a tangent, and write $a=u\cdot T$, $b=u\cdot N$, $c=u\cdot B$. Their derivatives are
++
++$$a'=\kappa_sb,\qquad b'=-\kappa_sa+\tau c,\qquad c'=-\tau b.$$
++
++For $v=(u\times T)/|u\times T|=\cos\theta\,N+\sin\theta\,B$, one has $\cos\theta=c/\sqrt{b^2+c^2}$ and $\sin\theta=-b/\sqrt{b^2+c^2}$, hence
++
++$$\theta'=-\tau+\frac{\kappa_sac}{b^2+c^2}.$$
++
++At a zero of $c$, $b\ne0$, so $c'\ne0$ and $\theta'=-\tau$. These zeros are isolated and finite. Counting the two regular values with angles $\pi/2$ and $3\pi/2$ gives $\operatorname{Rot}(v,B)=-\frac12\#\{c=0\}\operatorname{sign}\tau$. The planar blackboard framing has linking equal to the signed crossing sum. Therefore
++
++$$\operatorname{Lk}(\Gamma,B)=\operatorname{Cr}(\Gamma_u)+\frac12\#\{u\cdot B=0\}\operatorname{sign}\tau.$$
++
++This verifies the sign and factor of the imported formula under its smooth embedded hypotheses. The first term is a **signed** diagram crossing sum, not a nonnegative crossing count or knot crossing number. Controlling its cancellation remains an unproved global step in the attempted route.
++
++## Inflections and orientation
++
++The spherical curvature numerator is
++
++$$B''\cdot(B\times B')=\tau^2\kappa_s.$$
++
++With the outward orientation of the sphere, its signed geodesic curvature is $\kappa_s/|\tau|$, and spherical arclength is $|\tau|\,ds$. Thus its curvature integral is $\int\kappa_s\,ds$; changing orientation may change the sign but not the absolute-value argument. This formulation works for both signs of torsion and avoids an unwarranted replacement of $|\tau|$ by $\tau$.
++
++A regular simple spherical curve bounds a Jordan region of area strictly between $0$ and $4\pi$. Gauss–Bonnet gives an absolute curvature integral below $2\pi$. If $\kappa_s$ had one sign, this would contradict Fenchel's lower bound $2\pi$ for the total curvature of a closed regular space curve. The artifact's inflection obstruction is therefore valid in the smoother setting it explicitly assumes. It cannot be extended to the source's continuous field merely by asserting that an approximation exists.
++
++For planar curves the precise local observation is that on any subarc of nonzero curvature the continuous unit binormal is constant. A closed regular planar curve has such a subarc, so its binormal cannot be injective. An arbitrary nonstraight planar arc may contain a straight interval on which compatible binormals can vary; the original wording should be narrowed accordingly.
++
++## Source discrepancy in Example 4.2
++
++There is a concrete omission in the displayed formula of Example 4.2 in arXiv v2, the journal HTML, and the [author-hosted PDF](https://ghomi.math.gatech.edu/Papers/asymptotic.pdf) dated 19 September 2025. The two printed planar coordinates have squared sum $(3+\sin t)^2\ge4$, making the displayed third coordinate $\sqrt{1-n_1^2-n_2^2}$ nonreal.
++
++The linked [primary Mathematica notebook](https://ghomi.math.gatech.edu/MathematicaNBs/Asymptotic-Examples.nb), Second Example, The Binormal, input cell In[1], divides **both** planar coordinates by $6$. Its radicand is then at least $5/9$. This is direct primary-source evidence for the missing factors, rather than a guessed repair. The notebook was read as text, not executed. Its SHA-256 is `89791fab271dacd16351bd21c1162c02ecbe26ee506a0dbffd8d76cda03fbd5d`.
++
++The scaled spherical map is smooth, regular, and injective: in polar coordinates its radius is $(3+\sin t)/6>0$ and angle is $(5/2)\cos t$, whose range has length $5<2\pi$. Equality of planar points therefore forces equality of both sine and cosine. The polar velocity cannot vanish because its two terms would require both $\cos t=0$ and $\sin t=0$. This limited check does **not** certify the global construction of the closed center curve or its claimed linking number $2$.
++
++The artifact may credit the paper's reported example and its Note 5.5 criticism of the older inflection-count formula, with the explicit source qualification above. Neither example settles the current target. No new official erratum, universal proof, or counterexample was located in the bounded searches; that is not an exhaustive status certificate.
++
++## Reproducible verification and disposition
++
++The submitted `verify.py` was copied unchanged and replayed in this review directory. It passes. The independent script adds **38 exact assertions**, all passing, including both torsion signs, the angular crossing calculation, the ruled-strip curvature $-\tau^2$, and the printed/notebook normalization discrepancy.
++
++From this review directory run `python3 submitted_verify.py` and `python3 independent_checks.py` with Python 3 and SymPy 1.14.0. Both scripts write only their deterministic result files. The tests are local controls, not a topological linking certificate.
++
++The remaining task is exactly the one identified by the author: prove that an injective compatible binormal excludes the required cancellation, or construct a valid disjoint zero-linking push-off under all intended source hypotheses. The attempted work establishes neither. Preserve the **unsolved** disposition and do not promote the package to a solved or novel-result claim.
++
++## Final snapshot coverage
++
++The author incorporated exactly the three requested clarifications: the unit-field convention, the planar-subarc wording, and the explicit Example 4.2 source discrepancy. The complete diff was checked on 30 September 2026 at 05:33 UTC. No other mathematical change was present, and no required correction remains.
++
++Final reviewed `OBSTRUCTION.md` SHA-256: `6689fb008c098f14fc6cb99bfd761b72728a391330f9888f0e106c344537955f`.
++
++**Final verdict: PASS for an explicitly unresolved source/obstruction package.** The full open problem remains unresolved in this attempt. The review is AI-generated and unrefereed; it certifies neither novelty nor the complete published example.
+diff --git a/unsolved_math_prioritization/attempts/7000004/review/independent_checks.py b/unsolved_math_prioritization/attempts/7000004/review/independent_checks.py
+new file mode 100644
+index 000000000..4b81f2085
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/review/independent_checks.py
+@@ -0,0 +1,67 @@
++#!/usr/bin/env python3
++"""Independent exact local controls; no global linking certificate is asserted."""
++from pathlib import Path
++import json
++import sympy as s
++checks={}
++def check(name, statement):
++    assert bool(statement),name
++    checks[name]='PASS'
++def zero(expr):
++    if isinstance(expr,s.MatrixBase):return all(s.simplify(z)==0 for z in expr)
++    return s.simplify(expr)==0
++k,tau,tp,theta,thetap=s.symbols('k tau tp theta thetap',real=True)
++T=s.Matrix([1,0,0]);N=s.Matrix([0,1,0]);B=s.Matrix([0,0,1])
++Tp=k*N;Np=-k*T+tau*B;Bp=-tau*N
++D=s.Matrix.hstack(Tp,Np,Bp)
++check('frame_derivative_skew',zero(D+D.T))
++check('binormal_twist_density',zero(T.dot(B.cross(Bp))-tau))
++check('normal_twist_density',zero(T.dot(N.cross(Np))-tau))
++V=s.cos(theta)*N+s.sin(theta)*B
++Vp=s.cos(theta)*Np+s.sin(theta)*Bp+thetap*(-s.sin(theta)*N+s.cos(theta)*B)
++check('rotating_normal_twist',zero(T.dot(V.cross(Vp))-(tau+thetap)))
++Bpp=-tp*N-tau*Np
++check('spherical_geodesic_curvature_numerator',zero(Bpp.dot(B.cross(Bp))-tau**2*k))
++check('binormal_speed_squared',zero(Bp.dot(Bp)-tau**2))
++# Both torsion signs must give the same pullback curvature integral, with the
++# outward-sphere convention: kg_B = k/|tau| and ds_B = |tau| ds.
++for a in [-3,-1,1,3]:
++    for b in [-2,0,2]:
++        check(f'curvature_pullback_tau{a}_k{b}',s.Rational(a*a*b,abs(a)**3)*abs(a)==b)
++# Fixed spatial u has moving components (a,b,c) in the Darboux frame.
++a,b,c=s.symbols('a b c',real=True)
++ap=k*b;bp=-k*a+tau*c;cp=-tau*b
++# cos(theta_u)=c/h, sin(theta_u)=-b/h; atan2 derivative cancels h.
++angle_prime=s.cancel((c*(-bp)-(-b)*cp)/(b*b+c*c))
++check('angle_derivative_formula',zero(angle_prime-(-tau+k*a*c/(b*b+c*c))))
++check('angle_zero_crossing_sign',zero(angle_prime.subs(c,0)+tau))
++check('great_circle_transversality',zero(cp+tau*b))
++# Ruled strip F(s,r)=gamma(s)+r N(s) has fundamental coefficients at r=0:
++# I=identity, II=[[0,tau],[tau,0]], so K=-tau^2, independently of k.
++II=s.Matrix([[Tp.dot(B),Np.dot(B)],[Np.dot(B),0]])
++check('strip_gaussian_curvature',zero(II.det()+tau**2))
++# The source's printed Example 4.2 has missing /6 factors, confirmed by
++# reading (not executing) its author-hosted Mathematica notebook.
++t=s.symbols('t',real=True)
++r=3+s.sin(t);angle=s.Rational(5,2)*s.cos(t)
++x=r*s.cos(angle);y=r*s.sin(angle)
++check('printed_example_radicand',zero((1-x*x-y*y)-(1-r*r)))
++check('printed_example_invalid_at_zero',s.simplify((1-x*x-y*y).subs(t,0))==-8)
++check('printed_example_negative_all_parameters_upper_bound',1-2**2==-3)
++r6=r/6
++check('notebook_radicand_identity',zero(1-r6*r6-(53+s.cos(2*t)-12*s.sin(t))/72))
++check('notebook_radicand_lower_bound',1-s.Rational(4,6)**2==s.Rational(5,9))
++planar_speed_squared=s.diff(r6,t)**2+r6**2*s.diff(angle,t)**2
++check('polar_speed_squared',zero(planar_speed_squared-(s.cos(t)**2/s.Integer(36)+s.Rational(25,144)*(3+s.sin(t))**2*s.sin(t)**2)))
++check('speed_at_sin_zero',planar_speed_squared.subs(t,0)==s.Rational(1,36))
++check('angle_range_less_full_turn',s.Rational(5)<2*s.pi)
++# Gauss-Bonnet range controls for genuine Jordan regions 0<A<4pi.
++for numerator in range(1,8):
++    area=s.Rational(numerator,2)*s.pi
++    check(f'gauss_bonnet_area_{numerator}',abs(2*s.pi-area)<2*s.pi)
++# A unit circle's Frenet binormal is constant, so it cannot be injective.
++gamma=s.Matrix([s.cos(t),s.sin(t),0])
++check('circle_binormal_constant',zero(gamma.diff(t).cross(gamma.diff(t,2))-B))
++out={'passed':len(checks),'failed':0,'sympy_version':s.__version__,'checks':checks,'scope':'Exact local frame, sign, curvature, and source-typo controls. No full-target theorem, global linking value, or numerical example certification.'}
++Path(__file__).with_name('independent_results.json').write_text(json.dumps(out,indent=2)+'\n')
++print(json.dumps(out,indent=2))
+diff --git a/unsolved_math_prioritization/attempts/7000004/review/independent_results.json b/unsolved_math_prioritization/attempts/7000004/review/independent_results.json
+new file mode 100644
+index 000000000..52c47eb89
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/review/independent_results.json
+@@ -0,0 +1,46 @@
++{
++  "passed": 38,
++  "failed": 0,
++  "sympy_version": "1.14.0",
++  "checks": {
++    "frame_derivative_skew": "PASS",
++    "binormal_twist_density": "PASS",
++    "normal_twist_density": "PASS",
++    "rotating_normal_twist": "PASS",
++    "spherical_geodesic_curvature_numerator": "PASS",
++    "binormal_speed_squared": "PASS",
++    "curvature_pullback_tau-3_k-2": "PASS",
++    "curvature_pullback_tau-3_k0": "PASS",
++    "curvature_pullback_tau-3_k2": "PASS",
++    "curvature_pullback_tau-1_k-2": "PASS",
++    "curvature_pullback_tau-1_k0": "PASS",
++    "curvature_pullback_tau-1_k2": "PASS",
++    "curvature_pullback_tau1_k-2": "PASS",
++    "curvature_pullback_tau1_k0": "PASS",
++    "curvature_pullback_tau1_k2": "PASS",
++    "curvature_pullback_tau3_k-2": "PASS",
++    "curvature_pullback_tau3_k0": "PASS",
++    "curvature_pullback_tau3_k2": "PASS",
++    "angle_derivative_formula": "PASS",
++    "angle_zero_crossing_sign": "PASS",
++    "great_circle_transversality": "PASS",
++    "strip_gaussian_curvature": "PASS",
++    "printed_example_radicand": "PASS",
++    "printed_example_invalid_at_zero": "PASS",
++    "printed_example_negative_all_parameters_upper_bound": "PASS",
++    "notebook_radicand_identity": "PASS",
++    "notebook_radicand_lower_bound": "PASS",
++    "polar_speed_squared": "PASS",
++    "speed_at_sin_zero": "PASS",
++    "angle_range_less_full_turn": "PASS",
++    "gauss_bonnet_area_1": "PASS",
++    "gauss_bonnet_area_2": "PASS",
++    "gauss_bonnet_area_3": "PASS",
++    "gauss_bonnet_area_4": "PASS",
++    "gauss_bonnet_area_5": "PASS",
++    "gauss_bonnet_area_6": "PASS",
++    "gauss_bonnet_area_7": "PASS",
++    "circle_binormal_constant": "PASS"
++  },
++  "scope": "Exact local frame, sign, curvature, and source-typo controls. No full-target theorem, global linking value, or numerical example certification."
++}
+diff --git a/unsolved_math_prioritization/attempts/7000004/review/submitted_results.json b/unsolved_math_prioritization/attempts/7000004/review/submitted_results.json
+new file mode 100644
+index 000000000..d4330a707
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/review/submitted_results.json
+@@ -0,0 +1,9 @@
++{
++  "scope": "Local algebra only; the source question remains unresolved",
++  "darboux_orthogonality": true,
++  "twist_density": "tau",
++  "spherical_curvature_numerator": "tau^2 k",
++  "planar_circle_binormal_constant": true,
++  "all_passed": true,
++  "sympy_version": "1.14.0"
++}
+diff --git a/unsolved_math_prioritization/attempts/7000004/review/submitted_verify.py b/unsolved_math_prioritization/attempts/7000004/review/submitted_verify.py
+new file mode 100644
+index 000000000..dd2fbe174
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/review/submitted_verify.py
+@@ -0,0 +1,20 @@
++#!/usr/bin/env python3
++"""Local frame diagnostics only; no global linking or injectivity certificate."""
++import json
++from pathlib import Path
++import sympy as s
++k,tau,taup=s.symbols('k tau taup',real=True)
++T=s.Matrix([1,0,0]);N=s.Matrix([0,1,0]);B=s.Matrix([0,0,1])
++Tp=k*N;Np=-k*T+tau*B;Bp=-tau*N
++assert T.cross(N)==B and B.cross(T)==N
++assert Tp.dot(B)==0 and Bp.dot(T)==0
++assert s.simplify(Tp.dot(N)+T.dot(Np))==0
++assert s.simplify(Np.dot(B)+N.dot(Bp))==0
++assert Np.dot(B)==tau
++Bpp=-taup*N-tau*Np
++assert s.expand(Bpp.dot(B.cross(Bp)))==tau*tau*k
++# Constant unit binormal of the unit circle.
++u=s.symbols('u',real=True);g=s.Matrix([s.cos(u),s.sin(u),0]);cross=g.diff(u).cross(g.diff(u,2))
++assert s.simplify(cross-B)==s.zeros(3,1)
++out={'scope':'Local algebra only; the source question remains unresolved','darboux_orthogonality':True,'twist_density':'tau','spherical_curvature_numerator':'tau^2 k','planar_circle_binormal_constant':True,'all_passed':True,'sympy_version':s.__version__}
++Path(__file__).with_name('verification.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))
+diff --git a/unsolved_math_prioritization/attempts/7000004/review/verdict.json b/unsolved_math_prioritization/attempts/7000004/review/verdict.json
+new file mode 100644
+index 000000000..c03a09bf6
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/review/verdict.json
+@@ -0,0 +1,34 @@
++{
++  "problem_id": 7000004,
++  "verdict": "PASS_UNRESOLVED_SOURCE_AND_OBSTRUCTION",
++  "full_problem_solved": false,
++  "recommended_queue_status": "unsolved",
++  "initial_artifact_sha256": "8be32eb4ac09ebac4018774194af299a8fd81b54a514dfa1bb69af04548701f3",
++  "date": "2026-09-30",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "independent_checks_passed": 38,
++  "submitted_checks": "all passed on replay",
++  "scope": "Unresolved source audit and local obstruction only. No universal proof or counterexample.",
++  "source_notebook": {
++    "url": "https://ghomi.math.gatech.edu/MathematicaNBs/Asymptotic-Examples.nb",
++    "sha256": "89791fab271dacd16351bd21c1162c02ecbe26ee506a0dbffd8d76cda03fbd5d",
++    "inspection": "read as text; not executed"
++  },
++  "files_sha256": {
++    "submitted_verify.py": "5bd40a0b59fa51a003ef748bf4e4f0e281a67e5e2758c9505ab9e5e0cc270ae3",
++    "submitted_results.json": "49b4dcabd9f4453e3598649f55e5784d23c1c8f9ec8776415538ab5727a04c5e",
++    "verification.json": "49b4dcabd9f4453e3598649f55e5784d23c1c8f9ec8776415538ab5727a04c5e",
++    "independent_checks.py": "ec0fe8e5b823cd22199affcf64bb85a54f23c9ca8649842f0c5becc7c42c130c",
++    "independent_results.json": "32d2c2bf303e2c9c7afc9db4c2c76dd9ab0ba23a487b27e04442ac742c8ccae8"
++  },
++  "final_artifact_sha256": "6689fb008c098f14fc6cb99bfd761b72728a391330f9888f0e106c344537955f",
++  "required_clarifications_completed": [
++    "State unit spherical binormal as intended convention; not explicit in literal 2019 wording.",
++    "Use nonzero-curvature planar subarc, not arbitrary nonstraight planar arc.",
++    "Qualify Example 4.2: printed spherical coordinates omit /6 factors present in primary notebook; global linking example is credited, not independently certified."
++  ],
++  "remaining_required_corrections": [],
++  "review_sha256": "0d8a579e9273e3bd7e5bc170b7964b2754a0404896c35dc47e1512e4f46326a0",
++  "ai_reviewed_unrefereed": true
++}
+diff --git a/unsolved_math_prioritization/attempts/7000004/revisions/OBSTRUCTION-pre-review.md b/unsolved_math_prioritization/attempts/7000004/revisions/OBSTRUCTION-pre-review.md
+new file mode 100644
+index 000000000..e324e50a2
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/revisions/OBSTRUCTION-pre-review.md
+@@ -0,0 +1,67 @@
++# 7000004: the injective-binormal ribbon question remains unresolved here
++
++**Outcome:** no proof or counterexample to the full target. The current literature supplies useful restrictions, but neither injectivity nor a total-torsion calculation was shown to prevent cancellation in the linking number. Model: gpt-6-astra, xhigh; checked 2026-09-30.
++
++## 1. Exact source and necessary conventions
++
++The source is [Ghomi, *Open Problems in Geometry of Curves and Surfaces*](https://people.math.gatech.edu/~ghomi/Papers/op.pdf), Problem1.4 on p.6, within the discussion of Nirenberg's tight-surface rigidity problem. It asks whether a smooth closed immersed curve admitting a continuous injective binormal field has nonzero linking number with its small binormal push-off.
++
++The intended binormal is a nonvanishing unit direction field, viewed in the sphere, normal to a continuous choice of osculating planes. The definition permits curvature-zero points. Replacing this by the Frenet formula while assuming positive curvature would change the problem. “Twisted” means nonzero linking of the two curves; it does not merely mean nonzero torsion, nonzero twist integral, or a nontrivial loop of frames.
++
++There is also a definitional issue for the full immersed formulation: linking requires the images of the curve and its push-off to be disjoint. This is automatic for an embedded center curve and sufficiently small normal push-off, but not for every immersed curve. This issue is a scope caveat, not a counterexample to the intended geometric question.
++
++## 2. A directly relevant later paper
++
++[Ghomi–Raffaelli, *Topology of closed asymptotic curves on negatively curved surfaces*](https://arxiv.org/abs/2412.19266v2), revised September2025, was published in [*Journal of Geometric Analysis*35,381 (2025)](https://doi.org/10.1007/s12220-025-02200-3).
++
++Its Problem1.1 still asks whether zero linking is possible with an injective Gauss map in the embedded negatively curved setting. Theorem1.2 gives
++\[
++\operatorname{Lk}(\Gamma,n)=\operatorname{Cr}(\Gamma_u)
+++\frac12\#\{t:\langle u,n(t)\rangle=0\}\operatorname{sign}(\tau_g).
++\tag{1}
++\]
++Here \(u\) is generic, crossings are signed, and \(\tau_g\) is nonvanishing. Sections2–3 justify those hypotheses. Note1.6 explicitly warns about self-linking for self-intersecting center curves. Notes5.1–5.2 force inflections when the spherical normal is injective. Example4.2 has injective normal and linking2; Example4.1 has linking0 but noninjective normal. Neither is a counterexample to the target.
++
++The complete eleven-page preprint and the corresponding published sections were inspected. Their regular, embedded setting is narrower than a merely continuous binormal along an arbitrary immersion. The paper therefore cannot be used as a solution of the full source question. No later full resolution was located in the limited current search.
++
++## 3. Why the obvious differential-geometric shortcut stalls
++
++Suppose temporarily that a unit binormal \(B\) is sufficiently differentiable and regular. For an arclength parametrization let
++\[
++T=\Gamma',\qquad N=B\times T.
++\]
++The identities \(B\cdot T=B\cdot T'=0\) yield the signed Darboux equations
++\[
++T'=\kappa_sN,\qquad N'=-\kappa_sT+\tau B,\qquad B'=-\tau N.
++\tag{2}
++\]
++Regularity of \(B\) means \(\tau\ne0\), so \(\tau\) has constant sign. The twist of this framing is
++\[
++\operatorname{Tw}(\Gamma,B)=\frac1{2\pi}\int\tau\,ds.
++\]
++A nonzero integral here does **not** prove nonzero linking: Călugăreanu's identity is
++\[
++\operatorname{Lk}=\operatorname{Wr}+\operatorname{Tw},
++\]
++and cancellation with writhe is precisely an unexcluded possibility. Formula(1) makes the analogous gap discrete: the signed crossing term must be controlled, not merely the number of intersections of \(B\) with a great circle.
++
++Nor may one simplify by assuming \(\kappa_s\) never vanishes. For a regular simple spherical binormal, the absolute total signed geodesic curvature is less than \(2\pi\), by Gauss–Bonnet for its Jordan domain. Equations(2) identify that integral, up to orientation, with \(\int\kappa_s ds\). If \(\kappa_s\) kept one sign, Fenchel's theorem would instead give
++\[
++2\pi\le\int|\kappa_s|ds
++=\left|\int\kappa_s ds\right|<2\pi,
++\]
++a contradiction. This is the known inflection obstruction; it shows why excluding inflections discards an essential part of the problem rather than solving it.
++
++For the original continuous field, differentiability, finite spherical length, and nonzero \(B'\) cannot simply be assumed. An approximation argument would need to preserve binormal compatibility, injectivity, closure of the center curve, and the linking invariant simultaneously. No such argument was established here.
++
++## 4. Further source cautions
++
++The 2019 source already warns that the earlier Kovaleva approach imposes unwarranted regularity. The 2025 paper's Note5.5 additionally disputes the older claimed formula equating linking to half the number of inflections. Accordingly, that older assertion cannot be promoted to a proof without a new audit and repair.
++
++The upstream research report's references to planar/convex special cases are not a demonstrated partial solution of this exact injective-binormal problem. A nonstraight planar arc has constant unit binormal direction, so a planar closed regular curve does not satisfy the injectivity hypothesis. No prior substantive proof attempt or exact duplicate was found in the repository or source report.
++
++## 5. Precise remaining gap and disposition
++
++Even in the smoother embedded case, the missing step is a global argument showing that injectivity of the spherical binormal excludes \(\operatorname{Wr}=-\operatorname{Tw}\), equivalently the cancellation in(1), or an explicit counterexample satisfying all hypotheses with disjoint push-off and zero linking. The continuous/immersed formulation also requires the regularity and well-definedness issues to be addressed.
++
++The investigation stops after one substantive route with an **unresolved** outcome. The algebra checks in `verify.py` confirm only the frame identities and twist calculation. They do not provide a global topological certificate. This artifact is neither a new theorem resolving the problem nor a claim that the literal scope caveat resolves it negatively.
+diff --git a/unsolved_math_prioritization/attempts/7000004/source_checksums.json b/unsolved_math_prioritization/attempts/7000004/source_checksums.json
+new file mode 100644
+index 000000000..795aee411
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/source_checksums.json
+@@ -0,0 +1,19 @@
++[
++  {
++    "file": "ghomi-op.pdf",
++    "sha256": "6ff7c016b904e2a606afe8fff1f88522f15b8e8528795e74eee56ece537e264e",
++    "bytes": 706964
++  },
++  {
++    "file": "ghomi-raffaelli-asymptotic.pdf",
++    "sha256": "1329d83437393ff0cf984466a28fc6cf384e8e5b1e38f1ef2a9fcb868e61489a",
++    "bytes": 2769655
++  },
++  {
++    "file": "Asymptotic-Examples.nb",
++    "url": "https://ghomi.math.gatech.edu/MathematicaNBs/Asymptotic-Examples.nb",
++    "sha256": "89791fab271dacd16351bd21c1162c02ecbe26ee506a0dbffd8d76cda03fbd5d",
++    "bytes": 551710,
++    "inspection": "Second Example, The Binormal, input In[1]; read only, not executed."
++  }
++]
+diff --git a/unsolved_math_prioritization/attempts/7000004/source_record.json b/unsolved_math_prioritization/attempts/7000004/source_record.json
+new file mode 100644
+index 000000000..b4090d86d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/source_record.json
+@@ -0,0 +1,45 @@
++{
++  "id": 7000004,
++  "problem_number": "AMR-069-0004",
++  "title": "Geometry of Curves and Surfaces \u2014 Problem 1.4",
++  "statement": "Let \u0393 be a smooth closed curve immersed in R3. Suppose that \u0393 has a continuous binormal vector \ufb01eld B which is one-to-one. Does it follow then that the ribbon (\u0393,B ) is twisted?",
++  "background": "Source list: Ghomi - Open Problems in Geometry of Curves and Surfaces (2019)\nSource item: Problem 1.4, PDF page 6\nSource URL: https://people.math.gatech.edu/~ghomi/Papers/op.pdf\nAccessed: 2026-07-29\nExtraction: pdf-text-normalized\nStatus evidence: Author survey labels the item as a problem; current status NEEDS_REVIEW\nRights note: Public author-hosted PDF; statement reuse terms NEEDS_REVIEW\nDifficulty assignment: default L3",
++  "difficulty_level_id": 3,
++  "status": "partially_solved",
++  "proposed_by": "Mohammad Ghomi",
++  "proposed_year": 2019,
++  "category_id": 6,
++  "set_id": 13,
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-07-29T00:00:00Z",
++  "updated_at": "2026-08-06T00:00:00Z",
++  "published": true,
++  "category": {
++    "id": 6,
++    "name": "geometry",
++    "display_name": "Geometry",
++    "description": "Euclidean and non-Euclidean geometry, geometric structures.",
++    "slug": "geometry",
++    "order_index": 6,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 13,
++    "name": "amr_open_problem_lists",
++    "display_name": "AMR Open Problem Lists",
++    "description": "Open and partially solved problems collected from public source lists indexed by AMR, with per-record provenance and status notes.",
++    "slug": "amr-open-problem-lists",
++    "order_index": 13,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "research_classification": "PARTIAL-PROGRESS",
++  "research_summary": "PARTIAL-PROGRESS: the problem remains essentially open, with partial understanding in special curve classes (convex/planar) and related width/twist inequalities. Literature status: - This problem concerns the geometry of ribbons / thin strips and the curve's normal/tangent indicatrix behavior. It is related to Ghomi's work on the \"wide part\" and width of closed curves. - The notion of a one-to-one binormal field implies the curve's normal spherical image is injective on a full period, forcing strong global turning. Whether this forces the ribbon to be twisted is a delicate global question. - No direct solved reference was verified; the problem is treated as an open question in the surrounding literature. Deterministic configurations (e.g., when the curve is close to planar/convex) are understood, but the general statement was not settled."
++}
+diff --git a/unsolved_math_prioritization/attempts/7000004/turns.jsonl b/unsolved_math_prioritization/attempts/7000004/turns.jsonl
+new file mode 100644
+index 000000000..3d268fc7d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/turns.jsonl
+@@ -0,0 +1 @@
++{"turn": 1, "timestamp": "2026-09-30T04:52:00Z", "mechanism": "Audit Darboux equations, twist/linking decomposition, and the current signed-crossing formula; test whether binormal injectivity forces nonzero linking.", "outcome": "blocked", "artifact": "OBSTRUCTION.md", "completion_estimate_percent": 5, "remaining_gap": "No global argument excludes cancellation of nonzero framing twist by writhe (or the signed-crossing term) under injectivity of the spherical binormal; the original continuous/immersed scope needs additional care.", "model": "gpt-6-astra", "reasoning_effort": "xhigh"}
+diff --git a/unsolved_math_prioritization/attempts/7000004/verification.json b/unsolved_math_prioritization/attempts/7000004/verification.json
+new file mode 100644
+index 000000000..d4330a707
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/verification.json
+@@ -0,0 +1,9 @@
++{
++  "scope": "Local algebra only; the source question remains unresolved",
++  "darboux_orthogonality": true,
++  "twist_density": "tau",
++  "spherical_curvature_numerator": "tau^2 k",
++  "planar_circle_binormal_constant": true,
++  "all_passed": true,
++  "sympy_version": "1.14.0"
++}
+diff --git a/unsolved_math_prioritization/attempts/7000004/verify.py b/unsolved_math_prioritization/attempts/7000004/verify.py
+new file mode 100644
+index 000000000..dd2fbe174
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/7000004/verify.py
+@@ -0,0 +1,20 @@
++#!/usr/bin/env python3
++"""Local frame diagnostics only; no global linking or injectivity certificate."""
++import json
++from pathlib import Path
++import sympy as s
++k,tau,taup=s.symbols('k tau taup',real=True)
++T=s.Matrix([1,0,0]);N=s.Matrix([0,1,0]);B=s.Matrix([0,0,1])
++Tp=k*N;Np=-k*T+tau*B;Bp=-tau*N
++assert T.cross(N)==B and B.cross(T)==N
++assert Tp.dot(B)==0 and Bp.dot(T)==0
++assert s.simplify(Tp.dot(N)+T.dot(Np))==0
++assert s.simplify(Np.dot(B)+N.dot(Bp))==0
++assert Np.dot(B)==tau
++Bpp=-taup*N-tau*Np
++assert s.expand(Bpp.dot(B.cross(Bp)))==tau*tau*k
++# Constant unit binormal of the unit circle.
++u=s.symbols('u',real=True);g=s.Matrix([s.cos(u),s.sin(u),0]);cross=g.diff(u).cross(g.diff(u,2))
++assert s.simplify(cross-B)==s.zeros(3,1)
++out={'scope':'Local algebra only; the source question remains unresolved','darboux_orthogonality':True,'twist_density':'tau','spherical_curvature_numerator':'tau^2 k','planar_circle_binormal_constant':True,'all_passed':True,'sympy_version':s.__version__}
++Path(__file__).with_name('verification.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))

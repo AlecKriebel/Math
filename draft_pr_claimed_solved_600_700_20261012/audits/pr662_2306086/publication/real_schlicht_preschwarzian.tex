@@ -1,0 +1,293 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\D}{\mathbb D}
+\newcommand{\SR}{S_{\mathbb R}}
+\newcommand{\cl}[1]{\overline{#1}}
+\DeclareMathOperator{\Impart}{Im}
+\setlength{\parskip}{0.25em}
+\title{A qualitative pre-Schwarzian improvement\protect\\ for real schlicht functions}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 15, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For normalized univalent functions with real Taylor coefficients, the classical
+centered pre-Schwarzian disk can be strictly shrunk at every fixed nonreal point,
+uniformly over the class. On the real diameter its classical radius remains
+sharp. We prove this qualitative answer to Hayman--Lingham Problem~6.86 by
+combining classical coefficient equality, reflection symmetry of the equality
+domains, and compactness. The gap is uniform on compact nonreal sets. No explicit
+upper-gap formula or sharp radius is determined. The proof uses classical
+methods, and no historical firstness is claimed.
+\end{abstract}
+
+\section{The fixed-point question}
+Let $S$ be the holomorphic injections $f:\D\to\mathbb C$, where
+$\D=\{z:|z|<1\}$, normalized by $f(0)=0$ and $f'(0)=1$.
+Let $\SR$ be the subfamily with real Taylor coefficients, equivalently
+$f(\cl z)=\cl{f(z)}$. Its members have nonvanishing derivative. Write
+\[
+ P_f=\frac{f''}{f'},\qquad
+ A_f(z)=(1-|z|^2)P_f(z)-2\cl z.
+\]
+The classical bound is $|A_f(z)|\le4$ for $f\in S$.
+Problem~6.86 of Hayman and Lingham \cite[printed pp.~114 and 147]{HL}
+asks whether the corresponding estimate
+\begin{equation}\label{source}
+ \left|zP_f(z)-\frac{2|z|^2}{1-|z|^2}\right|
+ \le \frac{4|z|}{1-|z|^2}
+\end{equation}
+improves when the coefficients are real. The source fixes the evaluation point;
+its wording does not explicitly require a sharp or numerical formula.
+We answer that qualitative question, with the necessary real-axis exception.
+Postcomposition by a real affine map normalizes any real-on-real holomorphic
+injection without changing $P_f$.
+
+\begin{samepage}
+\begin{theorem}\label{main}
+For every $z\in\D$ the maximum
+\[
+ M(z)=\max_{f\in\SR}|A_f(z)|
+\]
+exists. It satisfies
+\[
+ M(z)<4\quad(\Impart z\ne0),\qquad M(x)=4\quad(-1<x<1).
+\]
+For each nonempty compact $K\subset\D\setminus\mathbb R$ there is
+$\epsilon_K>0$ such that $|A_f(z)|\le4-\epsilon_K$ for all
+$f\in\SR$ and $z\in K$.
+\end{theorem}
+\end{samepage}
+
+Thus, for fixed nonreal $z$, the right side of \eqref{source} may be replaced by
+$(4-\epsilon(z))|z|/(1-|z|^2)$, where $\epsilon(z)=4-M(z)>0$.
+This is a uniform-in-function existence statement, not an evaluation of $M$.
+At nonzero real points the classical radius is sharp even if the disk's center
+is allowed to move: the examples below give its two opposite endpoints.
+At $z=0$ the expression in \eqref{source} is identically zero; the auxiliary
+quantity $A_f(0)=f''(0)$ is different.
+
+\section{Classical equality and real symmetry}
+We include the coefficient argument so that the equality information used in
+the proof is explicit. The methods and classical estimate are not claimed as
+new; the source refers to Hayman's classical treatment \cite{Hayman}.
+
+\begin{lemma}\label{coefficient}
+If $F(z)=z+a_2z^2+\cdots\in S$, then $|a_2|\le2$.
+Equality holds exactly for $F(z)=z/(1-\lambda z)^2$, $|\lambda|=1$.
+\end{lemma}
+\begin{proof}
+The zero-free function $F(z)/z$, extended at zero by $1$, has a logarithm $L$
+on $\D$ with $L(0)=0$. On $|w|>1$ put
+\[
+ H(w)=w\exp[-L(w^{-2})/2]=w-\frac{a_2}{2w}+O(w^{-3}).
+\]
+It is odd and nonzero. If $H(w_1)=H(w_2)$, then squaring and using injectivity
+of $F$ gives $w_2=\pm w_1$; oddness and nonvanishing exclude the minus sign.
+Hence $H$ is an exterior injection.
+For an exterior injection $w+b_0+\sum_{n\ge1}b_nw^{-n}$, Green's formula on
+the image of $|w|=R>1$ gives the enclosed area
+\[
+ \pi\left(R^2-\sum_{n\ge1}n|b_n|^2R^{-2n}\right)\ge0.
+\]
+The curve is positively oriented since its exterior maps to the unbounded
+component. Laurent series and their derivatives converge uniformly on that
+circle. Each finite partial sum of this nonnegative series is at most $R^2$.
+Letting $R\downarrow1$ and then increasing the number of terms gives
+$\sum n|b_n|^2\le1$.
+Here $b_1=-a_2/2$, proving the bound. Equality forces every further negative
+coefficient to vanish; oddness removes $b_0$. Thus $H(w)=w-\lambda/w$,
+$|\lambda|=1$, and squaring gives the stated $F$.
+Conversely these maps are injective: equality of two values factors as
+$(z-w)(1-\lambda^2zw)=0$. They attain $|a_2|=2$.
+\end{proof}
+
+For $a\in\D$ the normalized Koebe transform
+\[
+ T_af(w)=\frac{f((a+w)/(1+\cl a w))-f(a)}{(1-|a|^2)f'(a)}
+\]
+belongs to $S$, and $2a_2(T_af)=A_f(a)$. Lemma~\ref{coefficient} proves
+$|A_f(a)|\le4$. If equality holds, $T_af$ is a Koebe rotation, so
+$f(\D)$ is a complex affine image of a one-ray complement. This classifies
+the image of the original $f$; it does not directly identify $f$ as a Koebe
+rotation. For example the identity
+\[
+ \frac{z}{(1-z)^2}
+ =\frac14\left[\left(\frac{1+z}{1-z}\right)^2-1\right]
+\]
+shows that its image omits exactly $(-\infty,-1/4]$; rotation gives the
+general one-ray image.
+
+Suppose now $f\in\SR$ and $|A_f(a)|=4$. Reflection symmetry makes its omitted
+ray invariant under conjugation. The ray's unique finite endpoint is real,
+and its direction must also be real. Since zero belongs to the image, the
+ray is either $(-\infty,c]$, $c<0$, or $[c,\infty)$, $c>0$.
+Put
+\[
+ k_+(z)=\frac{z}{(1-z)^2},\qquad k_-(z)=\frac{z}{(1+z)^2}.
+\]
+The appropriate map $g=4|c|k_+$ or $4|c|k_-$ has the same image as $f$ and
+fixes zero. The inverse composition $g^{-1}\circ f$ is a disk automorphism
+fixing zero; its derivative has modulus $1/(4|c|)=1$. Hence $|c|=1/4$,
+and the positive normalized derivatives force $f=k_+$ or $f=k_-$.
+Direct differentiation yields
+\begin{equation}\label{deficit}
+ |A_{k_+}(z)|^2=|A_{k_-}(z)|^2
+ =16-\frac{48(\Impart z)^2}{|1-z^2|^2}.
+\end{equation}
+Thus equality is impossible at a nonreal point in $\SR$. On the real diameter,
+$A_{k_+}(x)=4$ and $A_{k_-}(x)=-4$.
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+We still need to pass from separate strictness for every $f$ to a strict
+maximum over all $f$. The universal bound gives
+\[
+ |P_f(re^{i\theta})|\le\frac{4+2r}{1-r^2}.
+\]
+Integrating the radial derivative of $\log|f'|$, and then $f'$, gives
+\[
+ |f'(z)|\le\frac{1+|z|}{(1-|z|)^3},\qquad
+ |f(z)|\le\frac{|z|}{(1-|z|)^2}.
+\]
+Montel's theorem makes $S$ a normal family. A locally uniform limit retains
+derivative $1$ at zero and is nonconstant. To check injectivity, fix $w\in\D$
+and apply Hurwitz to the zero-free holomorphic divided differences
+$(f_n(z)-f_n(w))/(z-w)$, extended at $w$ by $f_n'(w)$.
+Their limit cannot be identically zero, since that would make the limit of
+$f_n$ constant. Thus the limit remains injective, with nonzero derivative.
+Consequently $S$ is compact, and reflection makes $\SR$ a closed compact
+subfamily. Derivative convergence and a nonzero limiting derivative imply
+joint continuity of $(f,z)\mapsto|A_f(z)|$ at interior points.
+The fixed-point maximum is attained, and the equality analysis above excludes
+$4$ at every nonreal point. On $\SR\times K$ joint continuity similarly
+gives an attained maximum below $4$. The real Koebe maps prove sharpness on
+the real diameter. (For empty $K$ the assertion is vacuous.)
+\end{proof}
+
+\section{The remaining radius and two boundary obstructions}
+The following exact reductions describe what the qualitative result leaves
+undetermined. They do not provide an upper-gap formula.
+
+\begin{proposition}\label{reduction}
+Let $\delta(z)=|\Impart z|/|1-z^2|$. The function $M(z)$ depends only on
+$\delta(z)\in[0,1/2)$, and
+\begin{equation}\label{bounds}
+ \max\{4\sqrt{1-3\delta(z)^2},\,8\delta(z)\}\le M(z)<4
+ \quad(\Impart z\ne0).
+\end{equation}
+There is no single positive gap valid at all nonreal points of $\D$.
+\end{proposition}
+\begin{proof}
+For real $a\in(-1,1)$, write $\phi_a(w)=(w+a)/(1+aw)$.
+The transform $T_a$ is a bijection of $\SR$, with inverse $T_{-a}$.
+The chain rule gives
+\[
+ A_{T_af}(w)=\frac{1+a\cl w}{1+aw}\,A_f(\phi_a(w)).
+\]
+The phase has modulus one, so $M(w)=M(\phi_a(w))$. Also
+$M(\cl w)=M(w)$. The same maps preserve $\delta$, and
+\[
+ |1-z^2|^2=(1-|z|^2)^2+4(\Impart z)^2.
+\]
+For $x=\operatorname{Re}z$, $r=|z|$, choose
+\[
+ a=\frac{2x}{1+r^2+\sqrt{(1+r^2)^2-4x^2}}.
+\]
+Its modulus is below one, and the real part of $(z-a)/(1-az)$ vanishes,
+because $xa^2-(1+r^2)a+x=0$. Thus a nonreal $z$ is equivalent to $it$ or
+$-it$, where $0<t<1$ and
+\[
+ \delta=\frac{t}{1+t^2},\qquad
+ t=\frac{2\delta}{1+\sqrt{1-4\delta^2}}.
+\]
+This proves the one-variable reduction. Equation~\eqref{deficit} gives the
+first lower bound. For $h(z)=z/(1-z^2)$, the factorization
+\[
+ h(z)-h(w)=\frac{(z-w)(1+zw)}{(1-z^2)(1-w^2)}
+\]
+proves univalence on $\D$, and $A_h(it)=8it/(1+t^2)$. The real transforms
+give the second lower bound at every point. The upper bound is
+Theorem~\ref{main}. As $\delta\to0$, the Koebe lower bound tends to $4$;
+as $\delta\to1/2$, the other one tends to $4$, realized along $z=it\to i$.
+Therefore no global positive gap exists.
+\end{proof}
+
+The lower-bound branches cross at $\delta=1/\sqrt7$.
+At $z=i/2$ their squares are $208/25$ and $256/25$, respectively, so the two
+real Koebe maps cannot alone be extremizers there. These are lower bounds,
+not a proposed formula for $M$. The first limiting obstruction is
+$\delta\to0$, for example on approaching an interior real point; merely
+$\Impart z\to0$ near the boundary endpoints $\pm1$ does not suffice.
+
+\section{Scope, prior work, and verification}
+The result is a qualitative application of classical equality rigidity and
+compactness to the fixed-point question. It determines neither an explicit
+positive upper gap nor the sharp function $M(it)$, its general extremizers,
+or the full variability region. The 2018 source's dated no-progress update
+does not certify present openness.
+
+\noindent\begin{minipage}{\linewidth}
+Relevant earlier work includes Koepf's classification of extreme points
+\cite[Section~4]{Koepf}; its linear-functional setting does not directly
+optimize $f''/f'$. Rodemich \cite{Rodemich} announced an argument bound for
+$(1-z^2)f'(z)$ in the same real class; differentiating such an inequality
+does not establish the present derivative bound. The supplement records a
+precise test of that proposed shortcut, not a counterexample within the globally
+univalent class. Jenkins's own survey \cite[p.~7]{Jenkins1962} identifies derivative
+bounds in \cite{Jenkins1960}. The full 1960 article and the solved cases of
+\cite{AlePop} were not obtained in the bounded priority audit. Their exact
+overlap remains unverified. Accordingly no historical firstness, new general
+method, exhaustive literature clearance, or current-openness guarantee is
+claimed. These limits do not enter the self-contained proof above.
+\end{minipage}
+
+The accompanying verification archive preserves the original research
+candidate and its controlling scope clarification, independent analytic and
+source audits, bounded priority records, and exact algebraic controls.
+The analytic argument is a written proof; the controls are not a formal
+proof certificate. Saved exploratory Loewner values are explicitly
+uncertified and play no role in the proof. Full third-party source scans
+are excluded from the archive.
+
+\paragraph{AI assistance and review status.}
+AI tools were used extensively in developing the argument, checking sources
+and computations, adversarial verification, and writing this note and its
+supporting materials. This is an unrefereed preprint. Internal AI reviews do
+not constitute independent human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{HL} W.~K. Hayman and E.~F. Lingham,
+\emph{Research Problems in Function Theory (New Edition)},
+\href{https://arxiv.org/abs/1809.07200v2}{arXiv:1809.07200v2} (2018),
+Chapter~6, printed pp.~114 and 147, Problem~6.86.
+\bibitem{Hayman} W.~K. Hayman, \emph{Multivalent Functions},
+Cambridge Tracts in Mathematics and Mathematical Physics~48,
+Cambridge University Press, 1958.
+\bibitem{Koepf} W. Koepf, On nonvanishing univalent functions with real
+coefficients, \emph{Math. Z.} \textbf{192} (1986), 575--579.
+\href{https://doi.org/10.1007/BF01162704}{doi:10.1007/BF01162704}.
+\bibitem{Rodemich} E. Rodemich, An inequality for univalent functions with
+real coefficients, \emph{Notices Amer. Math. Soc.} \textbf{26} (January 1979),
+abstract~763-30-11, A-68.
+\href{https://web.archive.org/web/20220620050040id_/https://www.ams.org/journals/notices/197901/197901FullIssue.pdf}{Archived publisher scan}.
+\bibitem{Jenkins1962} J.~A. Jenkins, The general coefficient theorem and
+certain applications, \emph{Bull. Amer. Math. Soc.} \textbf{68} (1962), 1--9.
+\href{https://doi.org/10.1090/S0002-9904-1962-10670-3}{doi:10.1090/S0002-9904-1962-10670-3}.
+\bibitem{Jenkins1960} J.~A. Jenkins, On univalent functions with real
+coefficients, \emph{Ann. of Math.} \textbf{71} (1960), 1--15.
+\href{https://doi.org/10.2307/1969877}{doi:10.2307/1969877}.
+\bibitem{AlePop} I.~A. Aleksandrov and G.~A. Popova, Extremal properties
+of univalent holomorphic functions with real coefficients,
+\emph{Sibirsk. Mat. Zh.} \textbf{14} (1973), 915--926;
+English translation, \emph{Siberian Math. J.} \textbf{14} (1973), 635--643.
+\href{https://doi.org/10.1007/BF00969900}{doi:10.1007/BF00969900}.
+\end{thebibliography}
+\end{document}

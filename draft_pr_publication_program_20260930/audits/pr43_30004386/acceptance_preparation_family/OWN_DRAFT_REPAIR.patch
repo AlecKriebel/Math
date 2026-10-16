@@ -1,0 +1,86 @@
+--- initial/pr43_guards.py
++++ prepared/pr43_guards.py
+@@ -402,7 +402,7 @@
+     authority,_=root_binding_input(a.root_bindings,a.root_bindings_sha256)
+     require(equal(pin(ps['previous_mirror']),authority['previous_mirror']) and equal(pin(ps['previous_post']),authority['previous_post']),'Exact genuine ROOT-approved PR42 predecessor bytes')
+     previous=load(ps['previous_mirror']);require(len(previous['entries'])==32 and 42 in previous['required_completed_prs'] and 43 not in previous['required_completed_prs'],'Actual completed PR42 prior scope')
+-    required(load(ps['previous_post']),{'status':'PASS','pr':43,'targets':34,'consumed_substantive_turns':41,'primary_acceptances':32,'program_completed_count':32,'fresh_native_mirror_noop':True},'Completed actual PR42 predecessor post')
++    required(load(ps['previous_post']),{'status':'PASS','pr':42,'targets':33,'consumed_substantive_turns':41,'primary_acceptances':32,'program_completed_count':32,'fresh_native_mirror_noop':True},'Completed actual PR42 predecessor post')
+     rootpost=load(R/authority['previous_root_post']['path'])
+     required(rootpost,{'schema':'pr42-root-complete-actual-post-inspection/v1','status':'PASS','completed_primary_prs':32,'all32_prior_states_and_full_history_prefix_preserved':True,'current13_match_exact_allowed_acceptance_changes':True,'new_substantive_attempts':0,'audit_turns':0,'full_problem_solved':False},'Genuine completed ROOT PR42 post read')
+     require(equal(rootpost['entire_post'],load(ps['previous_post'])),'Entire genuine predecessor post object')
+@@ -417,7 +417,7 @@
+     rr=rows(fresh['files']); require({z['path'] for z in rr}==NATIVE and len(rr)==13,'Exact13 fresh full native/inventory pins required')
+     require(all(type(z.get('worktree_mode')) is int and 0<=z['worktree_mode']<=0o7777 for z in rr),'Explicit typed thirteen worktree permission modes required')
+     for z in fresh['files']:keyset(z,{'path','bytes','sha256','worktree_mode'},'Exact fresh native reference')
+-    snap=load(A/'snapshot_manifest.json'); required(snap,{'head':HEAD,'base':ORIGINAL_BASE},'Original17/18 snapshot'); require(len(snap['files'])==16 and len(snap['changed_paths'])==17,'Original17/18 counts')
++    snap=load(A/'snapshot_manifest.json'); required(snap,{'head':HEAD,'base':ORIGINAL_BASE},'Original16/17 snapshot'); require(len(snap['files'])==16 and len(snap['changed_paths'])==17,'Original16/17 counts')
+     raw=git_bytes('diff',ORIGINAL_BASE,HEAD); require(len(raw)==54344 and sha(raw)==snap['diff_sha256'] and raw==(C/'original_diff.patch').read_bytes(),'Entire original Git diff changed')
+     require(git_bytes('diff','--name-only',ORIGINAL_BASE,HEAD).decode().splitlines()==snap['changed_paths'],'Original changed paths differ')
+     for z in rows(snap['files']):
+--- initial/integrate_reviewed_partial.py
++++ prepared/integrate_reviewed_partial.py
+@@ -42,8 +42,8 @@
+         g.native_modes(fresh['files'])
+         queue=g.Q.read_bytes(); g.selected(queue); queue_after(queue)
+         state=g.load(g.R/'unsolved_math_prioritization/state.json'); inv=g.load(g.B/'inventory.json')
+-        g.require(all(type(z['turns_used']) is int for z in state.values()) and len(state)==33 and g.ID not in state and sum(z['turns_used'] for z in state.values())==41,'Require postPR41 native32targets/39turns, selected identity absent')
+-        g.require(inv['completed_count']==32 and sum(z.get('stage')=='complete' for z in inv['items'])==32,'Require31 complete primaries before42')
++        g.require(all(type(z['turns_used']) is int for z in state.values()) and len(state)==33 and g.ID not in state and sum(z['turns_used'] for z in state.values())==41,'Require postPR42 native33targets/41turns, selected identity absent')
++        g.require(inv['completed_count']==32 and sum(z.get('stage')=='complete' for z in inv['items'])==32,'Require32 complete primaries before43')
+         item=[z for z in inv['items'] if z['number']==43]; g.require(len(item)==1 and item[0]['headRefOid']==g.HEAD and item[0]['headRefName']=='dot/math-30004386' and item[0].get('stage')!='complete','Exact original PR43 inventory required')
+         pre={'schema':'pr43-original-head-integration-preflight/v1','utc':now,**pins,'main_before':head,'pr':observation,'foreign_logs':foreign,'whole_queue_before_sha256':g.sha(queue),'selected_row_before':g.selected(queue),'state_before_sha256':g.sha((g.R/'unsolved_math_prioritization/state.json').read_bytes()),'history_before_sha256':g.sha((g.R/'unsolved_math_prioritization/history.jsonl').read_bytes()),'inventory_before_sha256':g.sha((g.B/'inventory.json').read_bytes()),'original_substantive_attempts':0,'new_substantive_attempts':0,'audit_turns':0,'dated_frozen_preimage_not_rewritten':True}
+         g.dump(g.A/'integration_preflight.json',pre,exclusive=True); g.write(g.A/'integration_queue_before.md',queue,exclusive=True); g.write(g.A/'integration_inventory_before.json',(g.B/'inventory.json').read_bytes(),exclusive=True); g.write(g.A/'accepted_pr_body.md',BODY.encode(),exclusive=True)
+@@ -112,7 +112,7 @@
+     g.manifest(g.K,'MANIFEST.json',frozen=True)
+     g.accepted_invariants(g.load(g.K/'acceptance.json'),pins,pre); g.accepted_invariants(g.load(g.A/'acceptance.json'),pins,pre,audit=True)
+     g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md'}); g.dump(g.B/'inventory.json',inv); inventory_guard(before_inv,g.load(g.B/'inventory.json'),observation,now); g.foreign_check(pre)
+-    note='\n## '+now+' — PR43 actual accepted qualified scoped partial\n\nWorkflow100%; scientific discovery0%; original2/5,new0,audit0. Actual MERGED original-head/tree checked. Program33/180=18.3333%; one present native mirror remains. No paper/newDOI/tracker/release.\n'
++    note='\n## '+now+' — PR43 actual accepted qualified scoped partial\n\nWorkflow100%; scientific discovery0%; original0/5,new0,audit0. Actual MERGED original-head/tree checked. Program33/180=18.3333%; one present native mirror remains. No paper/newDOI/tracker/release.\n'
+     logdir=g.A/'integration_log_preimages'; g.require(not logdir.exists() and not logdir.is_symlink(),'New retained log-preimage directory required'); logdir.mkdir()
+     log_receipt=[]
+     for name,f in [('root_problem',g.A/'ROOT_RESEARCH_LOG.md'),('program',g.B/'RESEARCH_LOG.md')]:
+--- initial/state_mirror_reconciliation.py
++++ prepared/state_mirror_reconciliation.py
+@@ -24,7 +24,7 @@
+     g.require(g.equal(patch,expected_patch),'Entire typed accepted queue receipt, no meaningful extension')
+     push=g.prepush_record(pins); g.require(tree==canonical['merge_tree']==push['merge_tree'] and push['merge_commit']==canonical['merge_commit'],'Actual original-head tree/parents/prepush differ')
+     final,retained_remote=g.finalization(pins,pre)
+-    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv,retained_remote,final['utc']); g.required(inv,{'current_pr':44,'completed_count':33},'PostPR43 next-target metadata'); g.require(inv['completed_count']==33 and sum(z.get('stage')=='complete' for z in inv['items'])==33,'Exactly32 primary completions')
++    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv,retained_remote,final['utc']); g.required(inv,{'current_pr':44,'completed_count':33},'PostPR43 next-target metadata'); g.require(inv['completed_count']==33 and sum(z.get('stage')=='complete' for z in inv['items'])==33,'Exactly33 primary completions')
+     item=next(z for z in inv['items'] if z['number']==43); g.required(item,{'stage':'complete','outcome':'already_solved_accepted_partial','queue_status':'already_solved','audited_head':g.HEAD,'merge_commit':canonical['merge_commit'],'merged_at':canonical['merged_at'],'original_attempts':'0/5','cumulative_attempts':'0/5','new_substantive_attempts':0,'paper_or_new_doi_or_tracker':False},'Exact selected accepted inventory')
+     g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md','draft_pr_publication_program_20260930/inventory.json','unsolved_math_prioritization/state.json','unsolved_math_prioritization/history.jsonl'})
+     return pre,canonical
+@@ -35,7 +35,7 @@
+     g.require(not (g.A/'state_mirror_intent.json').exists(),'Inspect retained intent before retry')
+     state=g.R/'unsolved_math_prioritization/state.json'; history=g.R/'unsolved_math_prioritization/history.jsonl'; old_state,old_history=state.read_bytes(),history.read_bytes(); prior=g.parse(old_state)
+     g.require(g.sha(old_state)==pre['state_before_sha256'] and g.sha(old_history)==pre['history_before_sha256'],'Exact full preflight state/history differs')
+-    g.require(len(prior)==33 and g.ID not in prior and sum(z['turns_used'] for z in prior.values())==41,'Require32targets/39turns and selected identity absent')
++    g.require(len(prior)==33 and g.ID not in prior and sum(z['turns_used'] for z in prior.values())==41,'Require33targets/41turns and selected identity absent')
+     proposal=copy.deepcopy(g.load(g.R/a.previous_mirror)); old_entries=copy.deepcopy(proposal['entries']); old_duplicates=copy.deepcopy(proposal.get('duplicate_mirrors'))
+     proposal.update(created_at_utc=g.stamp(),scope='Incremental present accepted primary PR43; source-status correction; original0/5, no new proof turn or historical reconstruction.')
+     for k in ['inventory','queue']: proposal[k]=g.binding(g.R/proposal[k]['path'])
+@@ -49,10 +49,10 @@
+         except m.Rejected:negatives.append(label)
+         else:raise ValueError('Exact empty-ledger guard accepted mutant '+label)
+     plan=m.build_plan(g.R,proposal); validation=m.validate_plan(g.R,plan)
+-    g.require(plan['primary_count']==33 and plan['duplicate_count']==1 and len(plan['state_after'])==34 and sum(z['turns_used'] for z in plan['state_after'].values())==41,'Exactly33targets/41turns/32primary/one preserved duplicate required')
++    g.require(plan['primary_count']==33 and plan['duplicate_count']==1 and len(plan['state_after'])==34 and sum(z['turns_used'] for z in plan['state_after'].values())==41,'Exactly34targets/41turns/33primary/one preserved duplicate required')
+     g.require(len(plan['history_append'])==1 and plan['history_append'][0]['id']==g.ID and plan['history_append'][0]['event']=='acceptance_mirror_import','Exactly one present primary acceptance event')
+     g.require(all(g.equal(plan['state_after'][k],v) for k,v in prior.items()),'Every prior state unchanged; no new duplicate')
+-    event=plan['history_append'][0]; g.required(event,{'turns_used':0,'turn_limit':5,'status':'already_solved'},'Native original2/5 budget'); g.required(event['evidence'],{'historical_transitions_asserted':False,'import_is_present_day_mirror':True,'duplicate_ids':[]},'Present event only')
++    event=plan['history_append'][0]; g.required(event,{'turns_used':0,'turn_limit':5,'status':'already_solved'},'Native original0/5 empty ledger budget'); g.required(event['evidence'],{'historical_transitions_asserted':False,'import_is_present_day_mirror':True,'duplicate_ids':[]},'Present event only')
+     g.dump(g.A/'state_mirror_bindings.json',proposal,exclusive=True); g.dump(g.A/'state_mirror_plan.json',plan,exclusive=True)
+     protected={}
+     for z in plan['bindings']:
+--- initial/verify_post_acceptance.py
++++ prepared/verify_post_acceptance.py
+@@ -19,7 +19,7 @@
+     g.require(state==plan['state_after_bytes'].encode() and g.equal(current,plan['state_after']) and set(current)==set(old)|{g.ID},'Exact native planned state membership/content differs')
+     g.require(all(g.equal(current[k],v) for k,v in old.items()) and len(current)==34 and sum(z['turns_used'] for z in current.values())==41,'Prior states/budget/duplicate source-only disposition differ')
+     for k,raw in [('state',state),('history',history)]: g.require(g.sha(raw)==intent[k+'_after_sha256']==receipt[k+'_sha256']==plan[k+'_after_sha256'],'Actual state/history receipt SHA differs')
+-    g.required(current[g.ID],{'id':g.ID,'pr':43,'status':'already_solved','turns_used':0,'turn_limit':5,'event':'acceptance_mirror_import'},'Native present original2/5 budget')
++    g.required(current[g.ID],{'id':g.ID,'pr':43,'status':'already_solved','turns_used':0,'turn_limit':5,'event':'acceptance_mirror_import'},'Native present original0/5 empty ledger budget')
+     g.required(current[g.ID]['evidence'],{'historical_transitions_asserted':False,'import_is_present_day_mirror':True,'duplicate_ids':[]},'No invented historical/duplicate transition')
+     previous=g.load(g.R/a.previous_mirror); g.require(g.equal(proposal['entries'][:-1],previous['entries']) and g.equal(proposal.get('duplicate_mirrors'),previous.get('duplicate_mirrors')),'Prior proposal accounting differs')
+     m=g.mirror_module(proposal); g.require(g.sha(m.encode(plan))==intent['plan_sha256'],'Actual complete plan binding differs')

@@ -1,0 +1,42 @@
+"""Read-only exact V5 source, actual frozen inputs and actual root process custody.
+Never runs Git/services/native/resources or reads private configuration semantically.
+"""
+from pathlib import Path
+import ast,collections,datetime,difflib,hashlib,json,os,shutil,stat,sys
+O=Path(__file__).absolute().parent;A=O.parent;C=A.parents[2];D=A/'native_publication_integration_plan_20261006/corrected_v5';V4=D.parent/'corrected_v4';B=A/'native_actual_input_preparation_v2_20261006/draft_dfe3e71993e3bd99'
+R=Path('/Users/alec/Documents/Math');reads={};checks=[]
+def ck(n,v):
+ if not v:raise ValueError(n)
+ checks.append(n)
+def sha(b):return hashlib.sha256(b).hexdigest()
+def read(p):
+ p=Path(p).absolute();s=p.stat();ck('regular '+str(p),stat.S_ISREG(s.st_mode) and not any(q.is_symlink() for q in [p,*p.parents]));b=p.read_bytes();t=p.stat();ck('stable read '+str(p),(s.st_size,s.st_mtime_ns)==(t.st_size,t.st_mtime_ns));reads[str(p)]={'path':str(p),'bytes':len(b),'sha256':sha(b),'mode':format(stat.S_IMODE(t.st_mode),'04o'),'body_retained':False};return b
+def opaque(p,expected):
+ p=Path(p).absolute();s=p.stat();ck('opaque regular '+str(p),stat.S_ISREG(s.st_mode) and not any(q.is_symlink() for q in [p,*p.parents]));h=hashlib.sha256()
+ with p.open('rb') as f:
+  for block in iter(lambda:f.read(1024*1024),b''):h.update(block)
+ t=p.stat();pin={'bytes':t.st_size,'sha256':h.hexdigest()};ck('opaque exact stable '+str(p),(s.st_size,s.st_mtime_ns)==(t.st_size,t.st_mtime_ns) and pin=={k:expected[k] for k in ['bytes','sha256']});reads[str(p)]={'path':str(p),**pin,'mode':format(stat.S_IMODE(t.st_mode),'04o'),'body_retained':False,'metadata_only_opaque_digest':True};return pin
+def j(p):return json.loads(read(p))
+def pin(p,v):b=read(p);ck('exact byte pin '+str(p),len(b)==v['bytes'] and sha(b)==v['sha256']);return b
+# Exact sealed source inventory and narrow full regenerated diff.
+manifest=j(D/'OUTPUT_MANIFEST.json');ck('known V5 source seal SHA',sha((D/'OUTPUT_MANIFEST.json').read_bytes())=='97520bba53dda8830db2e11762e0e52abdc6f6ec11eea60bad95e70473c74645');seal=j(D/'SEAL_RECEIPT.json')
+ck('seal count111 and bytes',manifest['file_count']==111 and len(manifest['files'])==111 and sum(v['bytes'] for v in manifest['files'])==manifest['total_bytes']==1453854)
+for v in manifest['files']:
+ pin(D/v['relative_path'],v);ck('source mode '+v['relative_path'],reads[str(D/v['relative_path'])]['mode']==v['mode'])
+ck('sealer actual source identity',seal['actual_sealer_PID']==manifest['actual_sealer_PID']==52864 and seal['sealed'] is True and seal['allfiles_including_manifest_and_receipt']==113)
+sys.path.insert(0,str(D));import v3_guards as g
+family=j(D/'CORE_FAMILY_MANIFEST.json');ck('known core family',family['code_family_sha256']=='f0e5185cda10f88894dfc7c94146d7943de3e329b08d0700335c9a486c5a08e2')
+diff=[];changed=[]
+for name in g.PROGRAMS:
+ old=read(V4/name);new=pin(D/name,family['program_files'][name])
+ if old!=new:changed.append(name);diff.extend(difflib.unified_diff(old.decode().splitlines(True),new.decode().splitlines(True),fromfile='sealed_corrected_v4/'+name,tofile='corrected_v5/'+name))
+ck('only actual guards changed',changed==['v3_guards.py']);ck('full source diff independently regenerated',read(D/'CORE_SOURCE_DIFF.patch')==''.join(diff).encode())
+pred=j(D/'PREDECESSOR_UNCHANGED_INPUT_PINS.json')
+for v in pred['files']:pin(v['path'],v)
+pred_counts=dict(collections.Counter(v['group'] for v in pred['files']))
+# Authenticate original35-test actual custody, never rerun sealed-folder fixture suites.
+pj=j(D/'execution_receipts/PROCESS_JOURNAL.json');ck('two sealed fixture processes',len(pj['records'])==2)
+for mode,r in zip(['NORMAL','OPTIMIZED'],pj['records']):
+ t=j(D/(mode+'_FIXTURE_RESULTS.json'));ck('35 exact successful fixture tests '+mode,t['tests']==35 and t['all_passed'] is True and t['actual_PID']==r['PID'] and t['argv']==r['argv'] and t['exit_code']==r['exit_code']==0 and t['UTC_start']==r['UTC_start'] and t['UTC_end']==r['UTC_end'] and r['child_reaped'] is True and r['termination_reason'] is None)
+ for stream in ['stdout','stderr']:
+  b=pin(t[stream]['path'],t

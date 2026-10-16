@@ -1,0 +1,13 @@
+# Root independent reconstruction checkpoint
+
+2026-09-30T22:07:26.994668-07:00. Mathematical scope reviewed directly before accepting family verdicts.
+
+For λ in V(I), the cokernel of the first Koszul matrix is R/(I+mλ)=C, hence rankD1=N−1. The commuting second matrix is the standard Koszul differential, so rank subtraction computes dimTor1^R(R/I,Cλ). The short exact sequence identifies that Tor group with I/mλI. Localization and Nakayama give the exact local minimum (d−1)N+1−rankD2. All other spectral factors contribute zero homology, so globally sized matrices are consistent at every individual support point.
+
+The Artinian product decomposition of A=R/I lets conormal generators be padded and glued: μ_A(I/I²) is the maximum of these local numbers. Each number is at least d by height. For d≥2, this maximum r satisfies r≥2=dim(R/I)+2. Mohan Kumar's original Theorem5 therefore applies and gives μ_R(I)=r. For d1, the polynomial ring is a PID and the separately empty second matrix gives μ=1. No inference from local Nakayama alone is used.
+
+The root independently viewed original printed pp234–235 from the institutional GDZ PDF recovered by the primary-target family, URL https://gdz.sub.uni-goettingen.de/download/pdf/PPN356556735_0046/LOG_0020.pdf . The theorem actually covers polynomial rings over a field or PID; the candidate's field assertion is a valid specialization. Its proof visibly supplies the monic reduction and projective-module patching/free-module steps; ordinary published-theorem use is intended, rather than a claim of new formal certification. The institution-hosted scan closes the earlier publisher-route retrieval limitation. It remains ignored scratch, not republished source material.
+
+Scope stress: N1 gives zeroD2 and exactly d generators; d1/multiple support remain correct; arbitrary noncyclic commuting tuples are outside the representation hypothesis. The diagnostic five-dimensional Gorenstein algebra has basis1,x,y,z,xy, five independent minimal quadrics and socle spanxy, so it falsifies a socle-only CI criterion in d3. The curvilinear nonlinear embedding C[t]/t4 has global kernel(y−x²,z−x³,x4), but degree filtration(1,3); it distinguishes affine CI from strict CI.
+
+Provisional root finding: no mathematical blocker in the exact formulation. Clarify any wording suggesting that affine-linear changes alter strict-CI property: those changes preserve the degree filtration, though the leading forms themselves change coordinates. Source documentation should be supplemented with the newly recovered original proof. Full independent computation and family reports remain pending; full priority audit has not begun. PR11 workflow **25%**; overall dispositions **2/180 (1.11%)**.

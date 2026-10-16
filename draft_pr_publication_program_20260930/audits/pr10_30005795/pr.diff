@@ -1,0 +1,320 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..cdd942fd1 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -34,7 +34,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 23 | 10600039 / AMR-105-0039 | Virtual-knot problem 39 — We still do not know whether the free knot whose Gauss diagram is a heptagon (i.e. | 0.2700 | 5.0 | 3 | unknown | queued | 0/5 |  | 2026-09-22 ~19:45 PDT — MODEL AUDIT: attempt INVALIDATED (did not run on ChatGPT-6 Astra Pro — read-only chat inspection: no model attribution in the UI; created with "Latest" + Extra High, 6 Pro absent from the picker all day; remaining turns abandoned). Row reset to unattempted with a fresh 0/5 budget for a future 6-Pro attempt. Transcript-grounded findings from the invalidated attempt retained below for reference (not a 6-Pro attempt):  2026-09-22 ~17:01 PDT: slot refilled from freed rows (12 claimed_solved + 8 unsolved freed slots, only rows 20/22 active — third slot now filled). Chat created (sidebar searched for 10600039 / AMR-105-0039 / heptagon / virtual-knot — the only hit was a Library document FILE, not a chat, so no duplicate; no sign-in gate or CAPTCHA). Initial prompt sent 1/5 (full-resolution framing, verbatim problem statement from unsolvedmath.com/problems/10600039: "We still do not know whether the free knot whose Gauss diagram is a heptagon (i.e. consists of 7 chords each of which is linked with precisely two adjacent ones) is trivial."; 5-message budget disclosed; FULL RESOLUTION / NO RESOLUTION verdict line required). Model: "Latest" + Extra High thinking 4/4 (no "ChatGPT-6 Astra Pro" in picker; GPT-5.6 Sol / GPT-5.5 / disabled "Pro" also shown). Canonical chatgpt.com/c URL (not a dead local-chatgpt URL). Reply 1/5 generating at handoff — classify next run. Turns → 1/5. |  |
+ | 24 | 11000263 / AMR-109-0263 | Question 6 — DoesX3 equal 0 in Zn? | 0.2700 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 25 | 30002145 / OWR-12008-005 | Rigidity of Symmetric-Gradient Differential Inclusions | 0.2693 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
+-| 26 | 30005795 / OWR-14298162-002 | Valuation Bounds When the Center Meets the Negative Part | 0.2693 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
++| 26 | 30005795 / OWR-14298162-002 | Valuation Bounds When the Center Meets the Negative Part | 0.2693 | 6.0 | 3 | 2024 | already_solved | 1/5 |  | 2026-09-30: Known-bound/source-status correction: intended bound already follows from 2023 published Lemma 27. Source typo requires F over S and inherited Du Val hypothesis; not a novel solution. Duplicate 30005796 documented. Draft PR: https://github.com/AlecKriebel/Math/pull/10. |  |
+ | 27 | 30005473 / OWR-12697711-006 | Irreducibility of Exposed-Point Varieties of Generic Discotopes | 0.2675 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+ | 28 | 30002867 / OWR-13678-008 | Matrix Characterization of Complete Intersections | 0.2675 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+ | 29 | 30005897 / OWR-14298367-003 | Shadowing Without Bounded Distortion | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30005795/BOUND.md b/unsolved_math_prioritization/attempts/30005795/BOUND.md
+new file mode 100644
+index 000000000..cddb537c1
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005795/BOUND.md
+@@ -0,0 +1,102 @@
++# A known log-canonical-threshold bound for the negative-part integral
++
++**Record:** 30005795 / OWR-14298162-002  
++**Assessment:** source correction and reconstruction of an existing method; no new mathematical discovery claimed  
++**Checked:** 2026-09-30 UTC  
++**Execution model:** gpt-6-astra, xhigh (not ultra)
++
++## 1. What the source actually asks
++
++The relevant source is Ivan Cheltsov and Elena Denisova, *Calabi problem for smooth Fano threefolds*, in Oberwolfach Report 14/2024, pp. 836–843. Section 1 chooses a surface S with Du Val singularities. Section 3, p. 839, discusses the contribution of the negative part of the Zariski decomposition of -K_X-uS. The question is followed immediately by a worked log-canonical example on p. 840.
++
++The final quantifier on p. 839 says “for every prime divisor F over X.” This is a genuine printed typo, visually checked in the PDF, not merely an extraction error. The expressions ord_F(N(u)|_S) and A_S(F) instead require a prime divisor **over S**. The preceding formulas and the following example use that correct domain. Moreover, the cleaned dataset statement omits the Du Val hypothesis inherited from Section 1. We restore both explicitly rather than claiming to solve the ill-defined literal sentence.
++
++Put V=(-K_X)^3 and w(u)=3(P(u)^2·S)/V. In the source's nef-restriction setup w(u)≥0. The intended task is to bound
++
++\[
++ I(F)=\int_0^\tau w(u)\operatorname{ord}_F(N(u)|_S)\,du
++\]
++
++by K A_S(F). The application only needs divisors whose center on S contains the distinguished point P. A global version covering every prime divisor over S is also available.
++
++## 2. The bound
++
++Suppose
++
++\[
++ N(u)|_S=\sum_{j=1}^r f_j(u)D_j,
++ \qquad f_j(u)\ge0,
++\]
++
++where D_j are fixed effective Cartier divisors on the klt surface S and the integrals below are finite. Write
++
++\[
++ a_j=\int_0^\tau w(u)f_j(u)\,du,
++ \qquad c_j=\operatorname{lct}(S;D_j).
++\]
++
++Discard D_j=0. Each remaining global threshold c_j is strictly positive. Then
++
++\[
++ \boxed{K_0=\sum_{j=1}^r\frac{a_j}{c_j}}
++\]
++
++satisfies I(F)≤K_0 A_S(F) for **every** prime divisor F over S. If the question insists on K>0 even when I vanishes identically, take K=1+K_0.
++
++For the local application use c_{j,P}=lct_P(S;D_j) instead and restrict to P∈c_S(F). If P is outside the support of D_j, its local threshold is infinite and its contribution is zero. Local thresholds cannot silently be substituted into a claim about all centers on S.
++
++### Proof
++
++For a prime divisor F over S, log canonicity of (S,c_jD_j) gives
++
++\[
++ A_S(F)-c_j\operatorname{ord}_F(D_j)\ge0.
++\]
++
++The required endpoint log canonicity, as well as c_j>0, follows by computing the threshold on a log resolution of (S,D_j): all discrepancies of the klt surface are positive, and there are only finitely many relevant coefficients. Consequently
++
++\[
++ \begin{aligned}
++ I(F)
++ &=\sum_j a_j\operatorname{ord}_F(D_j)\\
++ &\le\sum_j\frac{a_j}{c_j}A_S(F)
++ =K_0A_S(F).
++ \end{aligned}
++\]
++
++This uses only a finite sum, nonnegative weights and the definition of the log canonical threshold. The same argument on a neighborhood of P proves the local assertion. ∎
++
++## 3. Why the finiteness assumptions fit the Fano setup
++
++A smooth complex Fano variety is a Mori dream space by Birkar–Cascini–Hacon–McKernan, Corollary 1.3.2. Its finite Mori chamber decomposition gives finite-support, chamberwise linear negative parts; see also Okawa, *On images of Mori dream spaces*, §2.3. Along the compact segment -K_X-uS, the coefficient functions are bounded and piecewise linear, and the intersection weight is bounded and piecewise polynomial. Thus every a_j above is finite. The relevant negative prime divisors E_j on X restrict to effective Cartier divisors D_j=E_j|_S because X is smooth and E_j≠S.
++
++For completeness, S is not a fixed divisorial component along this segment. At its effective endpoint D_tau=-K_X-τS, any effective representative containing bS with b>0 would give an effective representative of -K_X-(τ+b)S, contradicting the definition of τ. Such an endpoint representative exists on a Mori dream space. A convex combination with an effective representative of -K_X avoiding S then supplies representatives avoiding S for the remaining segment. Hence the asymptotic fixed coefficient along S is zero.
++
++This discussion uses the usual Mori-dream-space/divisorial interpretation of the negative part, rather than asserting that all positive parts are nef on the original threefold. In the setting explicitly used in the report, P(u)|_S is nef, which is enough for w≥0. Even if one instead works with a chamberwise divisor on the original model and its intersection weight has either sign, replacing w by max(w,0) in a_j gives a finite upper bound for the original integral, since all valuation orders of the restricted negative part are nonnegative.
++
++## 4. Optimal constant, when desired
++
++For the nonnegative-weight setup set B=Σ_j a_jD_j. Linearity gives I(F)=ord_F(B). Therefore the least nonnegative global constant is
++
++\[
++ K_{\rm opt}=\sup_F\frac{\operatorname{ord}_F(B)}{A_S(F)}
++ =\frac1{\operatorname{lct}(S;B)}.
++\]
++
++Use the convention K_opt=0 when B=0. This is a characterization and a finite log-resolution computation, not a numerical value independent of X and S. The componentwise bound K_0 may be larger than K_opt; it does not assume the threshold of a sum equals a sum of thresholds. Neither formula by itself guarantees a strong enough bound to prove K-stability in a particular family.
++
++## 5. Prior literature and classification
++
++Cheltsov–Fujita–Kishimoto–Okada, *K-stable divisors in P¹×P¹×P² of degree (1,1,2)*, Nagoya Mathematical Journal 251 (2023), 686–714, Appendix B, **Lemma 27**, explicitly proves the componentwise local estimate above. Its first inequality is precisely the negative-part contribution with c_j=lct_P(S;E_j|_S). The displayed second inequality uses a del Pezzo fibration assumption; the first inequality and its one-line proof do not use that assumption. The author-hosted preprint numbers the same result **Lemma 26**. These numbering differences were checked.
++
++That 2023 paper is reference [3] in the 2024 lecture report. The report's method question should therefore not be advertised as a newly solved 2024 open problem. The appropriate disposition is **known bound / source-status correction**, with a statement-repair warning. Upstream record 30005796 is explicitly another extraction of the same question and should not receive a separate research budget or discovery credit.
++
++No claim is made that every effective threshold or best application-specific K is easy to compute, that there is a universal K independent of the input, or that the original report poses a new sharp-constant conjecture. No such stronger target was identified.
++
++## Sources
++
++1. Cheltsov–Denisova contribution, [official OWR PDF](https://ems.press/content/serial-article-files/48650), pp. 836–840 and bibliography p. 843; DOI [10.4171/OWR/2024/14](https://doi.org/10.4171/OWR/2024/14).
++2. Cheltsov–Fujita–Kishimoto–Okada, [published article, Appendix B, Lemma 27](https://www.cambridge.org/core/journals/nagoya-mathematical-journal/article/kstable-divisors-in-mathbb-p1times-mathbb-p1times-mathbb-p2-of-degree-112/999FB6032A21485AD71CF230CC802E6C), DOI [10.1017/nmj.2023.5](https://doi.org/10.1017/nmj.2023.5).
++3. Same authors, [author-hosted preprint, Appendix B, Lemma 26](https://www.maths.ed.ac.uk/cheltsov/pdf/220608539.pdf).
++4. Birkar–Cascini–Hacon–McKernan, [*Existence of minimal models for varieties of log general type*](https://www.ams.org/jams/2010-23-02/S0894-0347-09-00649-3/viewer/), JAMS 23 (2010), Corollary 1.3.2.
++5. Okawa, [*On images of Mori dream spaces*](https://arxiv.org/abs/1104.1326), §2.3 on chamberwise Zariski decompositions.
+diff --git a/unsolved_math_prioritization/attempts/30005795/PR_DRAFT.md b/unsolved_math_prioritization/attempts/30005795/PR_DRAFT.md
+new file mode 100644
+index 000000000..720e1b6b6
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005795/PR_DRAFT.md
+@@ -0,0 +1,27 @@
++# Draft PR description
++
++Title: Audit 30005795: known Nemuro bound and source corrections
++
++Base: main  
++Head: dot/math-30005795  
++Draft: true
++
++## Summary
++- Recover the original OWR p. 839 question and its missing Du Val context
++- Correct the printed valuation-domain typo: prime divisors over S, not X
++- Identify the existing componentwise lct bound in the 2023 Nemuro Lemma, published Lemma 27 / preprint Lemma 26
++- Supply a self-contained bound, local/global distinction, finite-support justification and optional optimal-lct characterization
++- Flag upstream 30005796 as the same target
++
++## Status
++Known-method/source-status correction; no novel solution claim. No central queue, state, catalogue, or historic review files changed. One substantive reconstruction turn recorded, below the five-turn cap. Model was gpt-6-astra at xhigh, not ultra.
++
++## Checks
++- Full pinned source record read; matching prior report absent (unique problem code)
++- Dataset SHA256 verified against manifest
++- Original OWR PDF p. 839 visually inspected
++- Published Appendix B and author preprint checked, including differing lemma numbering
++- PR and branch searches found no prior matching work before branch attempt
++
++## Publication history
++The initial connector request to GitHub create_branch for AlecKriebel/Math, dot/math-30005795, base_ref=main returned 403 Resource not accessible by integration. No branch, push or PR was created by that request. On 2026-09-30, the separately authorized GitHub CLI login was verified with repository push permission; duplicate branch/PR checks were repeated and were empty. The source-status files were checkpointed through that route. The single draft PR is [#10](https://github.com/AlecKriebel/Math/pull/10), with initial commit `13a35e9b94183a8ae761407ee25e14210a888bbb`.
+diff --git a/unsolved_math_prioritization/attempts/30005795/PUBLICATION.json b/unsolved_math_prioritization/attempts/30005795/PUBLICATION.json
+new file mode 100644
+index 000000000..fa9511103
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005795/PUBLICATION.json
+@@ -0,0 +1,11 @@
++{
++  "repository": "AlecKriebel/Math",
++  "branch": "dot/math-30005795",
++  "pull_request": 10,
++  "pull_request_url": "https://github.com/AlecKriebel/Math/pull/10",
++  "draft": true,
++  "initial_checkpoint_commit": "13a35e9b94183a8ae761407ee25e14210a888bbb",
++  "base_commit": "01358d66fc67d1c462bddf31c0d4ee5b120e6737",
++  "scope": "Known-method/source-status correction; no novel mathematical discovery claimed",
++  "central_files_modified": false
++}
+diff --git a/unsolved_math_prioritization/attempts/30005795/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/30005795/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..157087df9
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005795/RESEARCH_LOG.md
+@@ -0,0 +1,28 @@
++# Research log: 30005795
++
++All timestamps UTC on 2026-09-30. Execution: gpt-6-astra, xhigh. Maximum budget: two hours from 03:28 and five substantive proof turns. Work stopped early on establishing the known-method disposition.
++
++- 03:28–03:30: Requested problem page attempted first, inaccessible in web retrieval and HTTP. Recovered full original OWR report and pinned upstream record. Read root/queue AGENTS, README, policy and queue row; queued 0/5, no matching PR or branch, no proof files found. Completion estimate: 10% toward a verified disposition, 0% toward a new discovery.
++- 03:30: GitHub branch creation returned 403 Resource not accessible by integration. Parent notified immediately. No alternate remote write attempted. Local checkpoints continue. Completion estimate: 15% disposition.
++- 03:30–03:32: Recovered full source context: Du Val surface, F-over-X typo, following example, and reference [3]. Found 2023 published Lemma 27 giving the desired componentwise lct estimate. Confirmed preprint Lemma 26 and explicit duplicate 30005796. Prior report is absent from pinned research_results.json; problem code is unique. Completion estimate: 85% disposition, 0% novel discovery.
++- 03:32–03:35: Substantive reconstruction turn 1: wrote the known inequality with explicit global/local quantifiers; added finite-support/integrability explanation and optimal-threshold characterization. Checked that the fibration assumption is used only in the second inequality of the existing lemma. Prepared statement repair and intended draft-PR contents. Completion estimate: 95% disposition pending parent review; no novel-solution claim.
++
++## Adversarial checks
++
++- A prime divisor over a threefold does not automatically define a divisor over the surface: the literal extracted quantifier is invalid.
++- The surface's Du Val/klt hypothesis cannot be dropped when using positive log canonical thresholds.
++- A threshold local at P only bounds divisors whose center contains P. The all-divisor statement uses global thresholds.
++- The zero-negative-part case requires any positive K if the statement forbids K=0.
++- Individual thresholds cannot be added to obtain the threshold of a sum. The safe componentwise bound and optimal threshold of the integrated divisor are distinguished.
++- The first inequality of the 2023 lemma is independent of its fibration hypothesis; no claim is made that its second inequality holds for arbitrary S.
++- Existence of a finite K is distinct from a numerically useful K for proving delta>1.
++
++## Remaining work
++
++Source-status correction prepared for a single authorized draft PR. No fresh search for a new theorem is justified by this record. The initial connector blocker is preserved above; the later CLI recovery is recorded below.
++
++## Publication recovery
++
++- 03:49–03:50: User-authorized GitHub CLI login verified as AlecKriebel, with repository push permission. Repeated target PR and branch searches returned none. Preparing the single draft PR using the reviewed source-status artifacts. No central queue or state files will be changed. Completion estimate: 100% source-status disposition; remote delivery in progress; 0% new discovery.
++
++- 03:52: Remote branch `dot/math-30005795` created and its head read back as `13a35e9b94183a8ae761407ee25e14210a888bbb`. Exactly one draft PR created: [#10](https://github.com/AlecKriebel/Math/pull/10). No central queue/state files changed. Completion estimate: 100% source-status disposition and draft delivery, 0% novel discovery.
+diff --git a/unsolved_math_prioritization/attempts/30005795/readiness.json b/unsolved_math_prioritization/attempts/30005795/readiness.json
+new file mode 100644
+index 000000000..0311fc023
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005795/readiness.json
+@@ -0,0 +1,32 @@
++{
++  "id": "30005795",
++  "problem_number": "OWR-14298162-002",
++  "review_hash": "5081ef98b6dded83141b86df7459a049ad314b91fe800fb7cccc88173ece0ed8",
++  "statement_hash": "3a3d23ad91bb3f4444574540ebded907825b286938009eee0a03756b092eaf2d",
++  "dataset_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "exact_claim": "Corrected source reading: smooth complex Fano threefold X, a normal surface S with Du Val singularities, the source negative-part family, and all prime divisors F over S; find a finite K>0 bounding the weighted negative-part valuation by K A_S(F). Local variant restricts to centers containing P. The literal over-X quantifier is undefined.",
++  "primary_sources": [
++    "https://ems.press/content/serial-article-files/48650 (pp. 836\u2013840, 843)",
++    "https://doi.org/10.1017/nmj.2023.5 (Appendix B, Lemma 27)"
++  ],
++  "literature_checked_at": "2026-09-30",
++  "success_test": "A finite general bound with correctly typed valuation domain and restored surface hypotheses; audit for prior publication before any novelty claim.",
++  "budget": "At most five substantive turns, two hours from 03:28 UTC. Stopped early after known-method disposition. Model gpt-6-astra xhigh, not ultra.",
++  "prior_attempt_gap": "No repo attempt found in QUEUE, state, matching branches/PRs or code search. Pinned upstream prior report absent; unique problem code. Full original source supplies method and cited prior publication.",
++  "duplicate_check": "30005796 explicitly repeats this question. No matching prior PR/branch for 30005795 or title/code search. related_target_groups.json omitted this duplicate.",
++  "recommended_disposition": "already_known_with_statement_repair",
++  "ready_for_novel_attempt": false,
++  "proof_artifact": "BOUND.md",
++  "publication": {
++    "initial_connector_blocker": "GitHub create_branch returned 403 Resource not accessible by integration; no branch created by that attempt.",
++    "current_route": "User-authorized GitHub CLI login verified for AlecKriebel with push permission on 2026-09-30.",
++    "branch": "dot/math-30005795",
++    "pr_policy": "Exactly one draft PR; rechecked no matching PR or branch at 03:49 UTC.",
++    "status": "single draft PR created",
++    "branch_created": true,
++    "pr_created": true,
++    "pr_url": "https://github.com/AlecKriebel/Math/pull/10",
++    "initial_checkpoint_commit": "13a35e9b94183a8ae761407ee25e14210a888bbb"
++  },
++  "central_files_modified": false
++}
+diff --git a/unsolved_math_prioritization/attempts/30005795/source_record.json b/unsolved_math_prioritization/attempts/30005795/source_record.json
+new file mode 100644
+index 000000000..9b31be404
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005795/source_record.json
+@@ -0,0 +1,64 @@
++{
++  "id": 30005795,
++  "problem_number": "OWR-14298162-002",
++  "title": "Valuation Bounds When the Center Meets the Negative Part",
++  "statement": "Let $X$ be a smooth Fano threefold, let $P\\in S\\subset X$, and for $u\\in[0,\\tau]$ write the Zariski decomposition $-K_X-uS=P(u)+N(u)$. If $P\\in\\operatorname{Supp}N(u)$ for some $u$, find $K>0$ such that $\\frac{3}{(-K_X)^3}\\int_0^\\tau P(u)^2\\cdot S\\cdot\\operatorname{ord}_F(N(u)|_S)\\,du\\leq K A_S(F)$ for every prime divisor $F$ over $X$.",
++  "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [K-Stability, Birational Geometry and Mirror Symmetry (2024), Oberwolfach Reports, DOI 10.4171/owr/2024/14, pp. 827--870](https://doi.org/10.4171/owr/2024/14)\n\n## Literature review (checked 2026-08-22)\n\n**Status:** open\n\n**Assessment.** The 2024 report explicitly poses the case P\\inSupp(N(u)) as an unresolved technical question and asks for a uniform bound; no later proof resolving this exact case was located.\n\n**Sources checked.**\n\n- [K-Stability, Birational Geometry and Mirror Symmetry (2024)](https://doi.org/10.4171/owr/2024/14)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "proposed_by": null,
++  "proposed_year": 2024,
++  "category_id": 5,
++  "set_id": 15,
++  "source_url": "https://doi.org/10.4171/owr/2024/14",
++  "source_citation": "K-Stability, Birational Geometry and Mirror Symmetry (2024), Oberwolfach Reports, DOI 10.4171/owr/2024/14, pp. 827--870",
++  "literature_assessment": "The 2024 report explicitly poses the case P\\inSupp(N(u)) as an unresolved technical question and asks for a uniform bound; no later proof resolving this exact case was located.",
++  "literature_sources": [
++    {
++      "url": "https://doi.org/10.4171/owr/2024/14",
++      "label": "K-Stability, Birational Geometry and Mirror Symmetry (2024)"
++    }
++  ],
++  "literature_checked_at": "2026-08-22",
++  "tags": [
++    "owr",
++    "oberwolfach-reports",
++    "OWR-14298162-002",
++    "literature-status:open",
++    "owr-year:2024"
++  ],
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-08-25T00:00:00Z",
++  "updated_at": "2026-09-16T12:06:53Z",
++  "published": true,
++  "category": {
++    "id": 5,
++    "name": "algebraic_geometry",
++    "display_name": "Algebraic Geometry",
++    "description": "Geometric objects defined by polynomial equations.",
++    "slug": "algebraic-geometry",
++    "order_index": 5,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 15,
++    "name": "oberwolfach_reports_open_problems",
++    "display_name": "Oberwolfach Reports Open Problems",
++    "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++    "slug": "oberwolfach-reports-open-problems",
++    "order_index": 15,
++    "created_at": "2026-08-25T00:00:00Z"
++  },
++  "original_statement": "What if P \\in Supp(N (u)) for some u \\in [0, \\tau ]? for every prime divisor F over S. Thus, if P 6\\in Supp(N (u)) for u \\in [0, \\tau ], then S 1 \\deltaP S, W\u2022,\u2022 \u2a7e R\\tau D2 . 3 (\u2212KX )3 q(u) du 0",
++  "clean_statement": "Let $X$ be a smooth Fano threefold, let $P\\in S\\subset X$, and for $u\\in[0,\\tau]$ write the Zariski decomposition $-K_X-uS=P(u)+N(u)$. If $P\\in\\operatorname{Supp}N(u)$ for some $u$, find $K>0$ such that $\\frac{3}{(-K_X)^3}\\int_0^\\tau P(u)^2\\cdot S\\cdot\\operatorname{ord}_F(N(u)|_S)\\,du\\leq K A_S(F)$ for every prime divisor $F$ over $X$.",
++  "statement_status": "corrected_verified",
++  "statement_verification": "The statement was reconstructed and checked against the official Oberwolfach report."
++}
+diff --git a/unsolved_math_prioritization/attempts/30005795/turns.jsonl b/unsolved_math_prioritization/attempts/30005795/turns.jsonl
+new file mode 100644
+index 000000000..fbaa86d70
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005795/turns.jsonl
+@@ -0,0 +1 @@
++{"turn": 1, "at": "2026-09-30T03:35:00Z", "kind": "substantive reconstruction of known proof", "outcome": "already_known", "artifact": "BOUND.md", "note": "No fresh research candidate; existing 2023 bound reconstructed with source repairs. Do not label candidate_result or verified_solved as a novel discovery."}

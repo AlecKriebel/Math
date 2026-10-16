@@ -1,0 +1,288 @@
+{
+  "utc": "2026-10-15T08:37:01.214728+00:00",
+  "kind": "Code hardening only, no mathematical or source change",
+  "prior_external_public_map_sha256": "fdef3b2c42f877192921622330166c2986a513cb90be927bb1b7014b78c1cf31",
+  "prior_public_map_entry_count": 13,
+  "public_programs_have_no_ast_Assert": true,
+  "current_program_sha256": {
+    "reproduce.py": "51ee7bb4e6878119073159579313e371fca8f33a889e2952c035c10e3b468660",
+    "compare_after.py": "8e79568f6d80958cd5f3d006708307681591bf36cf13f0b129683ed218e48a51",
+    "authenticate.py": "b11a0afa6796b07bdd1efc41f93b2cd70d9e654a636126b0deb2b97c88f9f9c1",
+    "hardening_checks.py": "ade0f3c3bdcdcf8ba899753b81caf9d51be0141eac7f6dbc412244f85cc5b4cb"
+  },
+  "initial_independent_result_sha256": "7ef1020807029869c798a5998f38cff5a9800973e62ab231a2fe4d9e90acbe45",
+  "modes": [
+    {
+      "mode": "normal",
+      "parent_optimize": 0,
+      "child_probe": {
+        "optimize": 0,
+        "environment": null
+      },
+      "valid_replays": [
+        {
+          "program": "reproduce.py",
+          "exit": 0,
+          "stdout_sha256": "4826f8ff39b9c9aa5bb4f90f9c998cec15f19e27c5748fc27f1e110caf9292a9",
+          "json_accepted": true
+        },
+        {
+          "program": "compare_after.py",
+          "exit": 0,
+          "stdout_sha256": "6d17d20685698b2c0ab32f5f55d6a71ba10d594034164ab81ff9ede49da88405",
+          "json_accepted": true
+        },
+        {
+          "program": "authenticate.py",
+          "exit": 0,
+          "stdout_sha256": "b1b5dc8c641f169db302d30da6eb721293121b604dc895521959397af109be4f",
+          "json_accepted": true
+        }
+      ],
+      "rejected_controls": [
+        {
+          "check": "false_expected_signature",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 0,
+          "stderr_sha256": "c92266dec09c071d0e9b746315f53f3ae451cb9e3dbea0102af82f816449b70e"
+        },
+        {
+          "check": "nonsymmetric_form",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 0,
+          "stderr_sha256": "46db991a39bd5c50e7f07dc42d49f31bb7914c1f6fc7b089000abcd3ca8f5b97"
+        },
+        {
+          "check": "false_expected_Meyer_form",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 0,
+          "stderr_sha256": "688193b2387a76f01f911892f1c759f34461b2407f7eea5d7475db422dc9f8b7"
+        },
+        {
+          "check": "false_actual_authentication_pin",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 0,
+          "stderr_sha256": "48cde03bbe74e169ad662473e1b533901a2f739741a1ea859ad33cdd72611afb"
+        },
+        {
+          "check": "false_certificate_term",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 0,
+          "stderr_sha256": "21429c0ebd799367062736698ea2b7c5fca7f8002b21ad6512f90fe19b040ee8"
+        }
+      ],
+      "default_replays_preserved_top_level_files": true,
+      "all_initial_mathematical_data_equal_except_timestamp": true
+    },
+    {
+      "mode": "O",
+      "parent_optimize": 1,
+      "child_probe": {
+        "optimize": 1,
+        "environment": null
+      },
+      "valid_replays": [
+        {
+          "program": "reproduce.py",
+          "exit": 0,
+          "stdout_sha256": "eeeeff71eedc9aaf92eec44121cb1f027c353fc8d5834f2a26d1bfd666a71844",
+          "json_accepted": true
+        },
+        {
+          "program": "compare_after.py",
+          "exit": 0,
+          "stdout_sha256": "a7fdb7c1663e81237a24f943593d1203840bfde622c4d83145f8d5e00b74e0da",
+          "json_accepted": true
+        },
+        {
+          "program": "authenticate.py",
+          "exit": 0,
+          "stdout_sha256": "5e14afd5f72c705b5c005f491b849bec55b3a5454f517523de43f14c8ee1aef1",
+          "json_accepted": true
+        }
+      ],
+      "rejected_controls": [
+        {
+          "check": "false_expected_signature",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 1,
+          "stderr_sha256": "f9433a5149ce37ca8220f9ec208d6e88adb796daaf6cf456a6d00197a7517d8b"
+        },
+        {
+          "check": "nonsymmetric_form",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 1,
+          "stderr_sha256": "c7e281c773075a3b2f66524142a94c46eecde75fb0c4905d059f547bdf0f8317"
+        },
+        {
+          "check": "false_expected_Meyer_form",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 1,
+          "stderr_sha256": "bb62caa5e26c735ad3d0e2185596433ff9975e75e41275673aedb4862718ed55"
+        },
+        {
+          "check": "false_actual_authentication_pin",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 1,
+          "stderr_sha256": "6c52d75864ff8bd92070ca6300e2231ed18b1de1f63e971048f81a6cfd1a31d1"
+        },
+        {
+          "check": "false_certificate_term",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 1,
+          "stderr_sha256": "b89a94bc3cb2561e60fccfe2a4a1b5016a22e8148d53a79a221f0272bc8f0653"
+        }
+      ],
+      "default_replays_preserved_top_level_files": true,
+      "all_initial_mathematical_data_equal_except_timestamp": true
+    },
+    {
+      "mode": "OO",
+      "parent_optimize": 2,
+      "child_probe": {
+        "optimize": 2,
+        "environment": null
+      },
+      "valid_replays": [
+        {
+          "program": "reproduce.py",
+          "exit": 0,
+          "stdout_sha256": "646511dec8e6032ecfac7cc74db7da77f594e0806fd5d8c77306509f8447d39c",
+          "json_accepted": true
+        },
+        {
+          "program": "compare_after.py",
+          "exit": 0,
+          "stdout_sha256": "ddbd7266d78033faedcfb27bb06bbfb4a07029c01bb1aff77471b939426ab3f5",
+          "json_accepted": true
+        },
+        {
+          "program": "authenticate.py",
+          "exit": 0,
+          "stdout_sha256": "e82d4735e385b204763559530ad8e3dc81b72282fb1ec5bfa376bc7b7391ed6e",
+          "json_accepted": true
+        }
+      ],
+      "rejected_controls": [
+        {
+          "check": "false_expected_signature",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "c2d42c36fd01839a922d426ed822ea4f8e8732f14164142036db6545816cf3d2"
+        },
+        {
+          "check": "nonsymmetric_form",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "816f9e84bcc31caaea12ae67efa49103cf77054d94263b9cb14d1a46241336f1"
+        },
+        {
+          "check": "false_expected_Meyer_form",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "b586f45c8a42505cad57eef165e8aa63c9eb98506715a29aa25461cf26a34c92"
+        },
+        {
+          "check": "false_actual_authentication_pin",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "ac40a9aebedaea5e74ef9ef0a1d7e3beb5b4366cae8cbad473d3aa7f9f034253"
+        },
+        {
+          "check": "false_certificate_term",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "babb21407a56ef37e96a8a5aa7b69fc29033fa9fd0e6bf163a2a630ba2cdb891"
+        }
+      ],
+      "default_replays_preserved_top_level_files": true,
+      "all_initial_mathematical_data_equal_except_timestamp": true
+    },
+    {
+      "mode": "inherited2",
+      "parent_optimize": 2,
+      "child_probe": {
+        "optimize": 2,
+        "environment": "2"
+      },
+      "valid_replays": [
+        {
+          "program": "reproduce.py",
+          "exit": 0,
+          "stdout_sha256": "52997ce49fe7bc2948d82143466f80318b0c92d41890edba318f1fb6de23686e",
+          "json_accepted": true
+        },
+        {
+          "program": "compare_after.py",
+          "exit": 0,
+          "stdout_sha256": "e8ce6adb2bb8d7604a2731a12352d5519031edc0752999562b98dfd7d33159a5",
+          "json_accepted": true
+        },
+        {
+          "program": "authenticate.py",
+          "exit": 0,
+          "stdout_sha256": "34208d561c8ddc06de5de11b61fc887a4760681e242d9edf491625696f664a14",
+          "json_accepted": true
+        }
+      ],
+      "rejected_controls": [
+        {
+          "check": "false_expected_signature",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "c2d42c36fd01839a922d426ed822ea4f8e8732f14164142036db6545816cf3d2"
+        },
+        {
+          "check": "nonsymmetric_form",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "816f9e84bcc31caaea12ae67efa49103cf77054d94263b9cb14d1a46241336f1"
+        },
+        {
+          "check": "false_expected_Meyer_form",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "b586f45c8a42505cad57eef165e8aa63c9eb98506715a29aa25461cf26a34c92"
+        },
+        {
+          "check": "false_actual_authentication_pin",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "ac40a9aebedaea5e74ef9ef0a1d7e3beb5b4366cae8cbad473d3aa7f9f034253"
+        },
+        {
+          "check": "false_certificate_term",
+          "exit": 1,
+          "explicit_VerificationError": true,
+          "observed_optimize": 2,
+          "stderr_sha256": "babb21407a56ef37e96a8a5aa7b69fc29033fa9fd0e6bf163a2a630ba2cdb891"
+        }
+      ],
+      "default_replays_preserved_top_level_files": true,
+      "all_initial_mathematical_data_equal_except_timestamp": true
+    }
+  ],
+  "successful_valid_program_replays": 12,
+  "rejected_deliberately_false_controls": 20,
+  "mathematical_data_unchanged": true,
+  "all_default_replays_stdout_only_and_file_preserving": true
+}

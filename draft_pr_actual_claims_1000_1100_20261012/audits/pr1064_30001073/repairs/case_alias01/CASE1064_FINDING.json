@@ -1,0 +1,95 @@
+{
+  "utc": "2026-10-16T04:19:26.011499+00:00",
+  "scope": "PR1064-only exact excerpt of complete scope REPORT; other PR prose and reproduction records intentionally omitted. Full sources hash-pinned locally and here. This is a new finding on dated current support bytes, not a changed old zero verdict.",
+  "sources": [
+    {
+      "path": "reviews/case_alias_scope_20261016/REPORT.md",
+      "bytes": 9345,
+      "sha256": "5ac328360d1d9a4f1ab7c7b64635ebe0ee4c235db871bc207d72a9982bbd118d"
+    },
+    {
+      "path": "ROOT_CASE_ALIAS_SCOPE_REVIEW.json",
+      "bytes": 8299,
+      "sha256": "0fc30d85a48ebd4c5e119256c05186a9321e35942e4263c303f4c1c8095c4fec"
+    }
+  ],
+  "exact_REPORT_excerpt": "### CASE-1064 \u2014 P3: physical case alias bypasses the internal output whitelist\n\npreprint_v1_0/build_archive.py:17 permits physically internal outputs only at support.zip or under tmp/. It tests this using lexical out.is_relative_to(root). Lines 12\u201315 separately protect existing input leaves using resolved equality and samefile.\n\nBoth clean/direct_*.zip controls were rejected with \u201cinside package output must be support.zip or under tmp/\u201d. Both uppercase CLEAN/case_alias_*.zip paths succeeded, physically creating clean/case_alias_*.zip outside those permitted internal locations. This is **not an outside-only promise**: the kit intentionally supports support.zip and tmp/ internally. The failure is the narrower mismatch in its explicit code-enforced location policy. README.md:11\u201321 describes tmp outputs and protected-file guards. Existing-input samefile protection remains present; no existing-file overwrite was tested or observed.\n\nTested canonical support.zip: 612,938 bytes, SHA-256 aeb9344ff84b46412d4532dc463cad4b151edba363172620978129c2964b2dbc. Both produced ZIPs matched exactly. Since the verifier rejects unmanifested files outside tmp/, this is also a meaningful package-location boundary, but a post-contamination verifier was not separately run in this bounded audit.\n\n",
+  "root_selected_fields": {
+    "utc": "2026-10-16T04:14:55.131590+00:00",
+    "status": "ROOT_ADOPT_THREE_NEW_UNPUBLISHED_SUPPORT_P3_FINDINGS_PENDING_BOUNDED_REPAIRS_AND_NEW_COMPLETE_WHOLE_REVIEWS",
+    "mathematical_acceptance_unchanged": true,
+    "existing_input_overwrite_observed": false,
+    "required_repairs": "Physical existing-output-ancestor identity checks preserving per-package intended mutable destinations and existing direct/symlink/hardlink guards; new complete full reviews required after bounded repair.",
+    "published_records_not_inspected_or_changed": true,
+    "publication_ready_for_affected": false,
+    "services_held_after_pr": 1032
+  },
+  "root_PR1064_actual_commands": [
+    {
+      "pr": 1064,
+      "optimized": false,
+      "argv": [
+        "python3",
+        "-B",
+        "/private/tmp/root-case-1064-yqoymjki/clean/build_archive.py",
+        "--output",
+        "/private/tmp/root-case-1064-yqoymjki/CLEAN/case-False.zip"
+      ],
+      "exit_code": 0,
+      "expected_acceptance_defect": true,
+      "stdout_sha256": "267e88fe40d899ffdb46f688955b04f1ce5d89234d87b59d73f73ce4f54e17da",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "samefile_parent": true
+    },
+    {
+      "pr": 1064,
+      "optimized": false,
+      "argv": [
+        "python3",
+        "-B",
+        "/private/tmp/root-case-1064-yqoymjki/clean/build_archive.py",
+        "--output",
+        "/private/tmp/root-case-1064-yqoymjki/clean/direct-False.zip"
+      ],
+      "exit_code": 1,
+      "expected_acceptance_defect": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "66594520b1b10f9e34ecfd83a54b73d2f2375f183b9bbfc37f69eb88f176a134",
+      "samefile_parent": true
+    },
+    {
+      "pr": 1064,
+      "optimized": true,
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "/private/tmp/root-case-1064-yqoymjki/clean/build_archive.py",
+        "--output",
+        "/private/tmp/root-case-1064-yqoymjki/CLEAN/case-True.zip"
+      ],
+      "exit_code": 0,
+      "expected_acceptance_defect": true,
+      "stdout_sha256": "4ee269e22624a85c9d37396e5f18e650e512ff68aebdbdf4a879f198fb02b5a2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "samefile_parent": true
+    },
+    {
+      "pr": 1064,
+      "optimized": true,
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "/private/tmp/root-case-1064-yqoymjki/clean/build_archive.py",
+        "--output",
+        "/private/tmp/root-case-1064-yqoymjki/clean/direct-True.zip"
+      ],
+      "exit_code": 1,
+      "expected_acceptance_defect": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "66594520b1b10f9e34ecfd83a54b73d2f2375f183b9bbfc37f69eb88f176a134",
+      "samefile_parent": true
+    }
+  ]
+}

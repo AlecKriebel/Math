@@ -1,0 +1,78 @@
+[
+  {
+    "name": "M01_wrong_response",
+    "start_utc": "2026-10-16T07:03:20.031660+00:00",
+    "end_utc": "2026-10-16T07:03:21.027954+00:00",
+    "PASS": true,
+    "result": {
+      "defect_reproduced": true,
+      "verified": true,
+      "wrong_range": "'Wrong tab'!Z999:AC999",
+      "wrong_dimension": "COLUMNS"
+    }
+  },
+  {
+    "name": "M02_partial_http",
+    "start_utc": "2026-10-16T07:03:21.206626+00:00",
+    "end_utc": "2026-10-16T07:03:21.682885+00:00",
+    "PASS": true,
+    "result": {
+      "defect_reproduced": true,
+      "exception": {
+        "rejected": true,
+        "error": "IncompleteRead(19 bytes read, 100 more expected)"
+      },
+      "retained_file_count": 0,
+      "available_partial_bytes": 19
+    }
+  },
+  {
+    "name": "M02_binary_stream",
+    "start_utc": "2026-10-16T07:03:21.855244+00:00",
+    "end_utc": "2026-10-16T07:03:21.872704+00:00",
+    "PASS": true,
+    "result": {
+      "defect_reproduced": true,
+      "exception": {
+        "rejected": true,
+        "error": "UnicodeDecodeError('utf-8', b'prefix\\x00\\xffsuffix', 7, 8, 'invalid start byte')"
+      },
+      "saved_stdout_bytes": 0,
+      "saved_stderr_bytes": 0,
+      "actual_stdout_bytes": 14,
+      "actual_stderr_bytes": 12
+    }
+  },
+  {
+    "name": "M02_all_text_readers",
+    "start_utc": "2026-10-16T07:03:21.874538+00:00",
+    "end_utc": "2026-10-16T07:03:22.136059+00:00",
+    "PASS": true,
+    "result": {
+      "inspect_exception": {
+        "rejected": true,
+        "error": "UnicodeDecodeError('utf-8', b'prefix\\x00\\xffsuffix', 7, 8, 'invalid start byte')"
+      },
+      "publish_preflight_exception": {
+        "rejected": true,
+        "error": "UnicodeDecodeError('utf-8', b'prefix\\x00\\xffsuffix', 7, 8, 'invalid start byte')"
+      },
+      "both_streams_lost_in_both_callers": true,
+      "real_local_child_stdout_hex": "70726566697800ff737566666978",
+      "real_local_child_stderr_hex": "6572726f722d73747265616d"
+    }
+  },
+  {
+    "name": "M03_final_native_drift",
+    "start_utc": "2026-10-16T07:03:22.289902+00:00",
+    "end_utc": "2026-10-16T07:03:30.920342+00:00",
+    "PASS": true,
+    "result": {
+      "defect_reproduced": true,
+      "completion": 100,
+      "actual_main": "57bc303be10dedc2f1ea27d5a17fe99f2f9e905e",
+      "verified_merge": "cb543983511736d7fabd0bda2f8b28d689740c0e",
+      "actual_body": "STALE FOCAL FIRST PROOF CLAIM DURING LIVE READ"
+    }
+  }
+]

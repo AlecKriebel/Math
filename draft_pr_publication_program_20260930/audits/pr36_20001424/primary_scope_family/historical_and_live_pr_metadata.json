@@ -1,0 +1,46 @@
+{
+  "commands": [
+    {
+      "utc": "2026-10-02T06:22:17.111560+00:00",
+      "argv": [
+        "git",
+        "log",
+        "--all",
+        "--format=%H %aI %cI %s",
+        "--",
+        "unsolved_math_prioritization/attempts/20001424"
+      ],
+      "exit": 0,
+      "stdout": "f9c1b2e875db5fc76eb8f8f72d38bd4db94c2e9c 2026-09-29T22:46:27-07:00 2026-09-29T22:46:27-07:00 Add independent review of PCF descent counterexample\n7acb8807dc1a45157f3382484ea840f0c3ec2a2b 2026-09-29T22:23:01-07:00 2026-09-29T22:23:01-07:00 Construct graph-defined degree11 PCF descent counterexample candidate\n2fe86deee74b4721e2f4ab85ffc0b6a40fcd82cb 2026-09-29T22:09:31-07:00 2026-09-29T22:09:31-07:00 Audit PCF descent source and withdrawn characterization\n",
+      "stderr": ""
+    },
+    {
+      "utc": "2026-10-02T06:22:17.433258+00:00",
+      "argv": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "origin",
+        "dot/math-20001424"
+      ],
+      "exit": 0,
+      "stdout": "35be7fe58a2832c4d7012cf69c973810fb4c42f8\trefs/heads/dot/math-20001424\n",
+      "stderr": ""
+    },
+    {
+      "utc": "2026-10-02T06:22:17.938126+00:00",
+      "argv": [
+        "gh",
+        "api",
+        "repos/AlecKriebel/Math/pulls/36",
+        "--jq",
+        "{number, state, draft, title, created_at, updated_at, head_sha:.head.sha, head_ref:.head.ref, base_sha:.base.sha, base_ref:.base.ref, merge_commit_sha, merged_at}"
+      ],
+      "exit": 0,
+      "stdout": "{\"base_ref\":\"main\",\"base_sha\":\"c6975ca76f9f667f1250ba403d0e6da2aafe14d0\",\"created_at\":\"2026-09-30T05:49:07Z\",\"draft\":true,\"head_ref\":\"dot/math-20001424\",\"head_sha\":\"35be7fe58a2832c4d7012cf69c973810fb4c42f8\",\"merge_commit_sha\":null,\"merged_at\":null,\"number\":36,\"state\":\"open\",\"title\":\"Resolve PCF descent question with reviewed degree-11 graph counterexample\",\"updated_at\":\"2026-09-30T05:51:14Z\"}\n",
+      "stderr": ""
+    }
+  ],
+  "pinned_diff_base": "01358d66fc67d1c462bddf31c0d4ee5b120e6737",
+  "interpretation": "Live PR base tracks moving main; pinned original diff base is kept separately. Original branch differs from current main; neither branch nor remote changed by audit. Commit UTC times corroborate source/candidate/review before original07:04Z deadline, but log counts cannot prove all historical assistant turns."
+}

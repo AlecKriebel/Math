@@ -1,0 +1,97 @@
+{
+  "audit": "PR885/PID9700042",
+  "date_utc": "2026-10-15T14:32:12.257783+00:00",
+  "claims": [
+    {
+      "id": "T",
+      "claim": "Exact Aldous\u2013Lenderman flow: 1-v(1-q) ~ sqrt(2q), fixed q volume limit first",
+      "status": "Exact target; not assumed novel or open",
+      "evidence": [
+        "S1"
+      ],
+      "gap": "None in target identification"
+    },
+    {
+      "id": "P1",
+      "claim": "Rare-edge Poisson/Hammersley heuristic and interchange difficulty already documented in 2004/2005",
+      "status": "Verified prior mechanism",
+      "evidence": [
+        "S1",
+        "S2"
+      ],
+      "gap": "Heuristic is not the full old theorem"
+    },
+    {
+      "id": "P2",
+      "claim": "Ordinary undirected Bernoulli bond FPP has diagonal defect 2*sqrt(2q) per N to first order",
+      "status": "Verified old theorem; insufficient direct model substitution",
+      "evidence": [
+        "S4: Theorem 1, Proposition 3"
+      ],
+      "gap": "Different backward costs; finite witness proves nonidentity"
+    },
+    {
+      "id": "P3",
+      "claim": "Strict iid open-site score sigma_r / sqrt(r) -> 2",
+      "status": "Verified old estimate",
+      "evidence": [
+        "S4: Lemmas 5, 10; Proposition 3 / Section 3.4"
+      ],
+      "gap": "None required beyond old inputs"
+    },
+    {
+      "id": "P4",
+      "claim": "BGT (33), m=0 weighted-list estimate controls the target asymmetric path bad event after iid site construction r=2q-q^2",
+      "status": "Complete deduction authored in this audit; parent independent review requested",
+      "evidence": [
+        "S4: Sections 2.5 and 3.3",
+        "OLD_ESTIMATE_COROLLARY.md",
+        "GEOMETRY_CHECKS.json"
+      ],
+      "gap": "No unsupported model-comparison lemma remains in the written deduction; independent parent acceptance is separate"
+    },
+    {
+      "id": "P5",
+      "claim": "Full exact flow asymptotic follows from P3/P4, pathwise chain lower bound, finite cut duality and source-premised L1 flow limit",
+      "status": "Old-estimate corollary established by written argument within this audit",
+      "evidence": [
+        "OLD_ESTIMATE_COROLLARY.md"
+      ],
+      "gap": "No claim that the exact flow corollary was explicitly printed before this audit; historical recognition remains unlocated"
+    },
+    {
+      "id": "P6",
+      "claim": "BK witness decomposition without disjoint-region hypothesis and endpoint skeleton applications predate C4",
+      "status": "Verified method overlap",
+      "evidence": [
+        "S7: Lemma 2.5, Section 5.2"
+      ],
+      "gap": "Does not alone settle this exact lattice-flow asymptotic"
+    },
+    {
+      "id": "N",
+      "claim": "C4 is first or current source conjecture remained open through 7 October 2026",
+      "status": "Not established; material positive priority objection supplied",
+      "evidence": [
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "gap": "Finite search cannot prove universal firstness or exhaustive absence"
+    }
+  ],
+  "blocked_routes": [
+    {
+      "route": "Identify target dual with ordinary symmetric Bernoulli FPP solely from equal leading coefficient",
+      "status": "blocked",
+      "reason": "Exact finite costs differ; would transfer the central model-comparison issue to an unsupported claim",
+      "reopened_by": "Materially new mechanism: exact BGT m=0 weighted-list event inclusion, not the failed direct identification"
+    }
+  ],
+  "correction": {
+    "found_by": "parent independent primary-page read",
+    "original_error": "Other-coordinate H was negative part of net displacement",
+    "corrected_definition": "H=sum over gaps and individual increments of negative part in the other coordinate",
+    "effect": "Corrected b>=G/2+H still valid; stronger geometry checks rerun; complete argument retained"
+  }
+}

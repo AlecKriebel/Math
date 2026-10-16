@@ -1,0 +1,1397 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..ff7925a66 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -81,7 +81,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
+ | 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+ | 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+-| 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
++| 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | claimed_solved | 1/5 |  | 2026-09-30: Complete negative endpoint-continuity construction for every finite integer regularity on both source surfaces, preserving normalized parametrizations, completeness and strict positive curvature. Separate adversarial review passed the uniform logarithmic estimates and nonlinear r=1 correction;90author and136independent controls. AI-reviewed and unrefereed; priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/57. |  |
+ | 74 | 10300016 / AMR-102-0016 | Branched surfaces and triangulations — Question 7.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 75 | 10300025 / AMR-102-0025 | Leaf spaces and transverse structures — Question 8.2 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 76 | 10300054 / AMR-102-0054 | Numerical invariants — Question 13.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30003354/CANDIDATE.md b/unsolved_math_prioritization/attempts/30003354/CANDIDATE.md
+new file mode 100644
+index 000000000..36733719d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/CANDIDATE.md
+@@ -0,0 +1,204 @@
++# Failure of the conformal parametrization at every finite integer endpoint
++
++**Target:** 30003354 / OWR-15208-008.  
++**Status:** complete candidate counterexample construction, pending separate adversarial review. Priority is unconfirmed; no published-new-result claim is made.  
++**Scope:** every finite integer r≥0, on both the plane and the sphere, with all metrics smooth, complete and of strictly positive Gaussian curvature.
++
++## 1. Exact formulation
++
++Let $M_0=\mathbb C$ with $g_0=|dz|^2$, and let $M_1=S^2$ with the unit round metric
++
++$$g_1=\frac{4|dz|^2}{(1+|z|^2)^2}$$
++
++in stereographic coordinates. Let $\mathcal D(M_0)$ be the smooth orientation-preserving diffeomorphisms fixing 0 and 1, and let $\mathcal D(M_1)$ fix 0, 1 and infinity. Let $\mathcal O_\kappa$ consist of smooth real functions for which $e^{-2u}g_\kappa$ is complete with nonnegative curvature.
++
++The source's continuous bijection is
++
++$$P_\kappa:\mathcal O_\kappa^{,r}\times\mathcal D^{,r+1}(M_\kappa)
++\longrightarrow\mathcal R_{\ge0}^{,r}(M_\kappa),
++\qquad P_\kappa(u,\phi)=\phi^*(e^{-2u}g_\kappa).$$
++
++The superscripts specify compact-open $C^r$ and $C^{r+1}$ topologies **on smooth objects**, not finite-regularity classes. The extra derivative on the diffeomorphism is essential. The exact interpretation is explicit in [Belegradek–Hu's 2016 erratum](https://doi.org/10.1007/s00208-015-1354-1) and [Banakh–Belegradek, Sections 2, 8–9](https://arxiv.org/abs/1510.07269). The [original workshop report](https://ems.press/doi/pdf/10.4171/OWR/2017/3), printed p. 149, asks about the integer endpoint; its abbreviated use of the pullback symbol must not be read as assigning only r derivatives to $\phi$ itself.
++
++**Candidate theorem.** For every finite integer $r\ge0$ and each $\kappa\in\{0,1\}$, $P_\kappa^{-1}$ is not continuous. This remains true after restricting to strictly positive-curvature metrics. The conclusion concerns this parametrization, not an assertion that the underlying spaces admit no other homeomorphism.
++
++We construct $g_n\to g_*$ in $C^r$ whose unique normalized diffeomorphisms $\phi_n$ do not approach the identity in $C^{r+1}$. No assertion is made against the known $C^\infty$ or noninteger Hölder results.
++
++## 2. Fixed positive-curvature backgrounds
++
++Use the following radial background, depending on the surface:
++
++$$g_*=e^{-2b(z)}|dz|^2,\qquad
++b(z)=\begin{cases}
++\tfrac12\log(1+|z|^2),&M_0,\\
++\log(1+|z|^2)-\log2,&M_1.
++\end{cases}$$
++
++On the plane this is the complete cigar metric, with curvature $2/(1+|z|^2)>0$; completeness follows from the divergent radial integral $\int_0^\infty(1+s^2)^{-1/2}ds$. On the sphere it is $g_1$, with curvature 1. On every fixed coordinate disk, $\Delta b$ has a positive lower bound.
++
++All perturbations below equal $g_*$ outside $|z|<1/4$. Diffeomorphisms fix 0 and are the identity outside this disk, so all required normalization points are fixed, including infinity. The inverse image of $g_*$ under $P_\kappa$ is $(b,\mathrm{id})$ on the plane and $(0,\mathrm{id})$ on the sphere.
++
++## 3. The endpoint r=0: a slow radial twist
++
++Choose a smooth function $\eta:\mathbb R\to[0,1]$ equal to 0 on $(-\infty,0]$ and 1 on $[1,\infty)$, with bounded derivative. Set $R=1/4$, choose $\theta_0\notin2\pi\mathbb Z$, and, for $s>0$, set
++
++$$\theta_n(s)=\theta_0\eta\!\left(\frac{\log(R/s)}n\right),\qquad
++\phi_n(z)=e^{i\theta_n(|z|)}z.$$
++
++Define $\phi_n(0)=0$. This is a smooth diffeomorphism: it is a constant rotation on $|z|\le Re^{-n}$, the identity for $|z|\ge R$, and its inverse subtracts the same angle at each radius. It preserves orientation. Moreover
++
++$$q_n(s):=s\theta_n'(s),\qquad \|q_n\|_\infty\le\frac{|\theta_0|\|\eta'\|_\infty}{n}.$$
++
++In orthonormal polar frames in the source and target, the differential is a rotation followed by the shear with matrix $\left(\begin{smallmatrix}1&0\\q_n&1\end{smallmatrix}\right)$. Since $b$ is radial, the matrix of $\phi_n^*g_*$ relative to $g_*$ is
++
++$$\begin{pmatrix}1+q_n^2&q_n\\q_n&1\end{pmatrix}.$$
++
++Thus $g_n=\phi_n^*g_*\to g_*$ uniformly, even globally in the background tensor norm. Each $g_n$ is complete with positive curvature because it is isometric to $g_*$. Its normalized conformal factor is the fixed one for $g_*$, and its normalized diffeomorphism is $\phi_n$. But
++
++$$D\phi_n(0)=\operatorname{Rot}(\theta_0)\ne I$$
++
++for every n. This proves failure at r=0 on both surfaces.
++
++## 4. Logarithmic coordinate perturbations for r≥1
++
++Fix an integer $r\ge1$. Choose $\chi\in C_c^\infty(\mathbb C)$ radial, equal to 1 for $|z|\le1/8$ and 0 for $|z|\ge1/4$. For integers $n\to\infty$, put
++
++$$\rho_n=e^{-n},\quad \varepsilon_n=1/n,\quad
++s_n(z)=(|z|^2+\rho_n^2)^{1/2},\quad L_n(z)=\log s_n(z),$$
++
++$$f_n(z)=z+w_n(z),\qquad
++w_n(z)=\varepsilon_n\chi(z)z^{r+1}L_n(z).\tag{4.1}$$
++
++All functions are smooth for each n. Constants in the estimates below may depend on r and the fixed cutoff, but not on n. We discard finitely many initial n whenever necessary.
++
++### 4.1 Uniform estimates
++
++For real derivatives of order $j\ge1$,
++
++$$|D^jL_n(z)|\le C_j s_n(z)^{-j}.\tag{4.2}$$
++
++This follows either by repeated differentiation of $\frac12\log(|z|^2+\rho_n^2)$ or by rescaling $(z,\rho_n)$; the resulting rational functions are bounded on the unit half-sphere. By Leibniz's rule, on the inner disk,
++
++$$|D^k(z^{r+1}L_n)|\le C_{r,k}s_n^{r+1-k}(1+|\log s_n|),\qquad0\le k\le r+1.\tag{4.3}$$
++
++On the cutoff annulus all derivatives of fixed order are uniformly bounded, since $|z|\ge1/8$. In particular,
++
++$$\|Df_n-I\|_{C^0}\le C_r\varepsilon_n\to0,
++\qquad \|(f_n)_z\|_{C^r}\le C_r.\tag{4.4}$$
++
++For the second bound, the largest possible logarithm is $n+O(1)$, canceled by $\varepsilon_n=1/n$. Consequently $f_n$ is globally injective and onto: its displacement has Lipschitz constant less than 1, so the inverse equation is a contraction on $\mathbb R^2$. Its positive Jacobian and the smooth inverse function theorem make it a smooth orientation-preserving diffeomorphism. It is the identity outside the fixed disk and fixes 0.
++
++With Wirtinger derivatives $\partial_z=(\partial_x-i\partial_y)/2$, define
++
++$$\mu_n=\frac{(f_n)_{\bar z}}{(f_n)_z}.$$
++
++On the inner disk,
++
++$$(f_n)_{\bar z}=\frac{\varepsilon_n z^{r+2}}{2(|z|^2+\rho_n^2)}.\tag{4.5}$$
++
++Its derivatives of order k≤r have magnitude at most $C_r\varepsilon_n s_n^{r-k}$. The cutoff contribution is also $O(\varepsilon_n)$ in $C^r$. Thus
++
++$$\|(f_n)_{\bar z}\|_{C^r}\le C_r\varepsilon_n.$$
++
++By (4.4), $(f_n)_z$ stays uniformly away from zero and has uniformly bounded $C^r$ norm. Differentiating its reciprocal finitely many times therefore gives
++
++$$\boxed{\|\mu_n\|_{C^r}\le C_r\varepsilon_n\longrightarrow0.}\tag{4.6}$$
++
++In contrast, because $\chi=1$ near 0 and $L_n(0)=\log\rho_n=-n$,
++
++$$\boxed{\partial_x^{r+1}(f_n-\mathrm{id})(0)=-(r+1)!}\tag{4.7}$$
++
++as a complex-valued derivative. Terms in which a derivative hits $L_n$ leave an undifferentiated factor of $z^{r+1}$ of positive degree at 0 and vanish. Hence $f_n$ cannot converge to the identity in $C^{r+1}$.
++
++### 4.2 Metrics realizing these normalized diffeomorphisms
++
++For a smooth real correction $a_n$ supported in the same disk, define
++
++$$g_n=e^{-2b(z)-2a_n(z)}|dz+\mu_n(z)d\bar z|^2.\tag{4.8}$$
++
++For a complex coefficient $\mu$, the notation denotes the real quadratic form obtained from the squared complex modulus. Its eigenvalues relative to $|dz|^2$ are $(1\pm|\mu|)^2$, so this is a smooth positive metric for large n. Outside the disk it equals $g_*$; on the plane it is therefore complete (also uniformly comparable to the complete background).
++
++Let $h_n=\log|(f_n)_z|$ and
++
++$$U_n=(b+a_n+h_n)\circ f_n^{-1}.$$
++
++Since $df_n=(f_n)_z(dz+\mu_n d\bar z)$, identity (4.8) is exactly
++
++$$g_n=f_n^*(e^{-2U_n(w)}|dw|^2).\tag{4.9}$$
++
++On the plane take $u_n=U_n$. On the sphere put $u_n=U_n-b(w)$; this is zero outside the disk and extends smoothly across infinity. Then (4.9) is $g_n=P_\kappa(u_n,f_n)$. Once positivity is proved below, $u_n\in\mathcal O_\kappa$ by isometry and completeness. Normalized uniqueness from the source, or simply uniqueness of normalized plane/sphere conformal automorphisms, identifies $f_n$ as the diffeomorphism component of $P_\kappa^{-1}(g_n)$.
++
++## 5. Integer endpoints r≥2
++
++For r≥2, set $a_n=0$. By (4.6), $g_n\to g_*$ in $C^r$, hence in $C^2$ on the fixed compact support. Gaussian curvature is a continuous function of the positive metric's two-jet. The background curvature has a positive minimum on that disk, so $g_n$ has positive curvature there for all sufficiently large n. Outside, it is the background metric. The metrics are complete, their normalized inverse images have diffeomorphism component $f_n$, and (4.7) proves inverse discontinuity.
++
++## 6. The endpoint r=1: a curvature-preserving correction
++
++C^1 convergence alone does not preserve a lower curvature bound, so the preceding argument cannot simply be reused. We give a correction that is small in C^1 and prove its sign directly.
++
++In this section r=1. On $|z|\le1/8$ write $s=s_n$, $\varepsilon=\varepsilon_n$, and $\ell=1+|\log s|$. The estimates from (4.1)–(4.3), with one further derivative, give
++
++$$|Df_n-I|\le C\varepsilon,\quad
++|D^2f_n|\le C\varepsilon\ell,\quad
++|D^3f_n|\le C\varepsilon/s.\tag{6.1}$$
++
++In the third estimate the degree-two polynomial has no third derivative, so every surviving Leibniz term differentiates the logarithm at least once. These estimates imply
++
++$$|\nabla h_n|\le C\varepsilon\ell,\qquad
++|D^2h_n|\le C(\varepsilon/s+\varepsilon^2\ell^2)
++\le C'\varepsilon/s,\tag{6.2}$$
++
++because $s\ell^2$ is uniformly bounded for $0<s<1$.
++
++Define the pulled-back Euclidean Laplacian on a real function v by
++
++$$\mathcal L_n v=\big[\Delta_w(v\circ f_n^{-1})\big]\circ f_n.
++$$
++
++The ordinary chain rule writes it as
++
++$$\mathcal L_n v=A_n^{ij}\partial_{ij}v+B_n^i\partial_i v,
++\quad A_n=(Df_n)^{-1}(Df_n)^{-T}.$$
++
++The inverse-map second-derivative formula and (6.1) give
++
++$$\|A_n-I\|\le C\varepsilon,\quad A_n\ge\tfrac12 I,
++\quad |B_n|\le C\varepsilon\ell.\tag{6.3}$$
++
++All matrices and norms here are in real coordinates. Since b and its first two derivatives are bounded on this disk, (6.2)–(6.3), $s\ell\le C$ and $s\ell^2\le C$ imply, for a constant $C_0$ independent of n,
++
++$$\mathcal L_n(b+h_n)\ge\Delta b-C_0\varepsilon/s
++\ge-C_0\varepsilon/s.\tag{6.4}$$
++
++The regularized radius is convex and satisfies
++
++$$\nabla s=z/s,\quad D^2s=I/s-zz^T/s^3\ge0,
++\quad \Delta s=\frac{|z|^2+2\rho_n^2}{s^3}\ge1/s.$$ 
++
++Therefore (6.3) gives
++
++$$\mathcal L_n s\ge\frac1{2s}-C\varepsilon\ell\ge\frac1{4s}\tag{6.5}$$
++
++for all sufficiently large n, uniformly in z: multiply the error by s and use the boundedness of $s\ell$.
++
++Choose a fixed constant $K>4C_0$, and set
++
++$$a_n(z)=K\varepsilon_n\chi(z)s_n(z).\tag{6.6}$$
++
++This function is smooth, supported in the fixed disk, and tends to zero in C^1 because $|\nabla s_n|\le1$ and $s_n$ is uniformly bounded on the support. On the inner disk, (6.4)–(6.5) give
++
++$$\mathcal L_n(b+h_n+a_n)\ge(K/4-C_0)\varepsilon_n/s_n>0.\tag{6.7}$$
++
++On the closed cutoff annulus $1/8\le|z|\le1/4$, all derivatives of fixed order of $f_n-\mathrm{id}$, $h_n$ and $a_n$ are $O_K(\varepsilon_n)$. Thus $\mathcal L_n(b+h_n+a_n)\to\Delta b$ uniformly there. The latter has a strictly positive minimum, so the same positivity holds throughout that annulus for sufficiently large n. Outside the support, the metric is $g_*$.
++
++Finally, the curvature of $e^{-2U_n}|dw|^2$ is $e^{2U_n}\Delta_w U_n$, and
++
++$$\Delta_w U_n(f_n(z))=\mathcal L_n(b+h_n+a_n)(z).$$
++
++This proves positive curvature everywhere, not just positivity of an approximate linearized curvature. Equations (4.6), (4.8) and $a_n\to0$ in C^1 imply $g_n\to g_*$ in C^1. But (4.7) gives $\partial_x^2(f_n-\mathrm{id})(0)=-2$ for all n. The r=1 case is established on both surfaces.
++
++## 7. Conclusion and limits
++
++Each integer r has its own sequence of smooth complete positive-curvature metrics. In each case the metrics converge in the exact source topology and the uniquely normalized diffeomorphisms fail to converge in the required one-higher-derivative topology. This proves the candidate theorem for all finite integer endpoints, while leaving the known Hölder and C^infinity homeomorphism results intact.
++
++The construction uses familiar endpoint mechanisms (slow twists and regularized logarithms). A bounded literature search found the original expectation of failure and the 2016 erratum, but did not establish priority for the construction or its full curvature-preserving version. Independent review and a broader novelty assessment remain necessary before describing this as a new result.
+diff --git a/unsolved_math_prioritization/attempts/30003354/PR_DRAFT.md b/unsolved_math_prioritization/attempts/30003354/PR_DRAFT.md
+new file mode 100644
+index 000000000..779b4df47
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/PR_DRAFT.md
+@@ -0,0 +1,19 @@
++## Result and scope
++
++This draft contains a complete candidate negative answer to the specified conformal-metric parametrization question for every finite integer r>=0, on both the plane and the sphere.
++
++The counterexample sequences consist of smooth complete strictly positive-curvature metrics converging in C^r, while their uniquely normalized conformal diffeomorphisms fail to converge in C^(r+1). The r=1 endpoint includes an exact nonlinear curvature-preserving correction; curvature continuity in C^1 is not assumed.
++
++The proof concerns this particular parametrization. It does not rule out other product homeomorphisms, and it does not contradict the known Hölder or C-infinity statements. The source's 2016 erratum and exact derivative shift are documented.
++
++## Independent validation
++
++- Frozen CANDIDATE.md SHA-256: 7f358fb1aaa73dc3cfd06c798c10f6afed65ee430b622b84b90f0554dd440e62
++- Separate adversarial review: PASS_COMPLETE_COUNTEREXAMPLE; no mandatory corrections
++- All 90 submitted symbolic assertions reproduce byte-for-byte
++- All 136 independent exact assertions pass
++- Complete review, source checks and reproducible scripts included
++
++Reproduce the submitted checks with `python3 unsolved_math_prioritization/attempts/30003354/verify.py` and the independent checks with the script in `independent_review/` (Python3 and SymPy).
++
++This is an AI-reviewed, unrefereed candidate result. Historical priority is unconfirmed and no new-discovery claim is made. One substantive attempt,1/5. No source PDFs, external publication, release or merge is included.
+diff --git a/unsolved_math_prioritization/attempts/30003354/README.md b/unsolved_math_prioritization/attempts/30003354/README.md
+new file mode 100644
+index 000000000..0972cbdbc
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/README.md
+@@ -0,0 +1,13 @@
++# 30003354 — Integer-endpoint conformal parametrization
++
++[The candidate](CANDIDATE.md) constructs complete smooth positive-curvature metrics on the plane and sphere whose normalized conformal coordinates fail to depend continuously in the integer endpoint topology, for every finite integer r>=0.
++
++Status: the exact frozen proof passed [separate adversarial review](independent_review/REVIEW.md), with no mandatory correction. All 90 submitted and 136 independent exact assertions pass. Priority remains unconfirmed; this is AI-reviewed and unrefereed. The frozen candidate retains its historical pending-review header to preserve the reviewed snapshot.
++
++- [Exact source/topology audit](SOURCE_AUDIT.md)
++- [Original pinned record](source_record.json)
++- [Source and prior-attempt provenance](provenance.json)
++- [Exact symbolic controls](verify.py) and [results](verification.json)
++- [Research log](RESEARCH_LOG.md) and [attempt accounting](turns.json)
++
++From this directory, run `python3 verify.py` with Python 3 and SymPy. Output is deterministic JSON. The finite controls do not replace the uniform all-parameter proof.
+diff --git a/unsolved_math_prioritization/attempts/30003354/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/30003354/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..a39e6fc92
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/RESEARCH_LOG.md
+@@ -0,0 +1,12 @@
++# Research log
++
++All times UTC on September 30, 2026. Selected model: gpt-6-astra, xhigh. No claim of an ultra setting.
++
++- 06:38 — Started rank73 with a two-hour ceiling. Read the pinned full record after the live site reader failed. Passed local, remote branch, all-state PR and duplicate gates. Repository instructions matched those already read. Completion estimate: 10%.
++- 06:41 — Recovered exact original p149 and full primary definitions. The integer endpoint concerns C^r metrics/functions and C^(r+1) normalized diffeomorphisms, all objects smooth. The source's nonnegative-curvature and completeness restrictions are substantive.
++- 06:42 — Established the slow-radial-twist endpoint obstruction at r=0 inside complete positive-curvature metrics. Identified a regularized logarithmic polynomial construction for higher derivative endpoints. Completion estimate: 45%.
++- 06:44 — Read the complete 2016 erratum and recovered its exact scope. It corrected integer topology to Hölder topology, without affecting the other source results. Bounded current literature search did not establish a prior counterexample or priority for this construction.
++- 06:47 — Froze the complete all-finite-integer candidate. For r>=2, small Beltrami coefficients preserve positive curvature by C^2 convergence; for r=1, an explicit C^1-small regularized radial conformal term dominates the exact pulled-Laplacian error. Sent the frozen hash for separate adversarial review. Completion estimate for the candidate proof: 100%; validation pending. One substantive attempt family, 1/5.
++- 06:49 — Added source provenance and symbolic checks without changing candidate mathematics. Checks are diagnostics only; uniform estimates and geometric scope remain proof obligations for the separate reviewer. No shared queue files edited and no PR before independent review.
++
++- 07:00 — The separate adversarial review passed the complete all-finite-integer counterexample for both surfaces, including the r=1 exact nonlinear curvature sign, normalization and completeness. All 90 submitted and 136 independent exact assertions passed. Copied the seven review deliverables unchanged; candidate mathematics remains frozen. Readiness for an authorized draft PR: 100%. Priority is unconfirmed and the result is AI-reviewed/unrefereed.
+diff --git a/unsolved_math_prioritization/attempts/30003354/SOURCE_AUDIT.md b/unsolved_math_prioritization/attempts/30003354/SOURCE_AUDIT.md
+new file mode 100644
+index 000000000..50c5d9b5e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/SOURCE_AUDIT.md
+@@ -0,0 +1,29 @@
++# Source, topology, and bounded novelty audit
++
++Checked September 30, 2026. The exact frozen candidate counterexample passed separate adversarial review; priority has not been established.
++
++## Exact target
++
++The complete pinned record was read after the live problem page proved inaccessible to the web reader. The full original [OWR report](https://ems.press/doi/pdf/10.4171/OWR/2017/3) was downloaded and Belegradek's contribution, printed pp. 148–151, read in context; p. 149 was rendered and visually checked. The event was in January 2017; the publisher's page lists publication on January 3, 2018. This explains the report-year/publication-year variation in the imported citation.
++
++The metrics are smooth and complete with nonnegative curvature. The normalized orientation-preserving diffeomorphisms fix 0 and 1 on the plane, or 0, 1 and infinity on the sphere. The function factor is restricted to conformal metrics satisfying the same curvature and completeness requirements. The problem concerns continuity in weaker topologies on these smooth objects, not the existence of uniformizing maps for merely continuous metrics.
++
++The exact derivative shift is unambiguous in the full primary references: metrics and functions have C^r topology, while diffeomorphisms have C^(r+1) topology. The workshop's action notation is abbreviated; switching between pullback by a diffeomorphism and pushforward by its inverse does not change the question, since inversion is a homeomorphism of these C^(r+1) diffeomorphism groups. The candidate follows the dataset and Banakh–Belegradek's pullback convention.
++
++## Earlier theorem and actual correction
++
++The full two-page [Belegradek–Hu erratum](https://doi.org/10.1007/s00208-015-1354-1), Math. Ann. 364 (2016), 711–712, was downloaded from the publisher and read. It corrects the earlier integer-topology homeomorphism assertion by inserting a Hölder exponent 0<alpha<1 at every regularity index. It explains that the applied continuity theorem was available in Hölder rather than integer topology. At that time the authors suspected failure at the integer endpoint but had no counterexamples. The erratum explicitly says the paper's other results were unaffected.
++
++The current [Banakh–Belegradek preprint](https://arxiv.org/abs/1510.07269) is v2, March 1, 2017; v1 dates to October 25, 2015. Sections 2, 8 and 9 provide the topologies, normalizations, and corrected homeomorphism statements. The work was published in J. Math. Soc. Japan 70 (2018), 733–756, [DOI 10.2969/jmsj/07027344](https://doi.org/10.2969/jmsj/07027344). The primary proof audit here uses the accessible arXiv version; the publisher metadata independently confirms publication. There is no reliance on the superseded integer-topology claim.
++
++## Scope of the candidate
++
++The candidate gives separate sequences for r=0, r=1, and every r>=2. It preserves the exact geometric constraints, and in fact uses positive-curvature metrics. The r=1 argument includes a nonlinear curvature-sign estimate: C^1 convergence alone is never used to infer curvature control. The conclusion is failure of the specified parametrization to be a homeomorphism. It does not classify the abstract homeomorphism type of the metric space and does not contradict the noninteger Hölder or C^infinity results.
++
++The construction's normalization is explicit rather than achieved by uncontrolled postcomposition. Its conformal factors are defined by an exact pullback identity; completeness and curvature of those factors follow by isometry. On the noncompact plane all perturbations lie in a fixed disk, so compact-open versus global uniform control creates no escape-to-infinity issue.
++
++## Prior attempts, duplicates, and novelty limits
++
++Before research there was no own attempt folder, matching remote branch, numeric-ID PR, state record, or related-target-group entry. An all-state descriptive PR search found only the unrelated conformal-primitive PR22. A pinned-corpus search found no other record with this exact conformal-metric parametrization target. The queue row was rank73, queued, 0/5.
++
++Current-source searches used the exact paper title, the authors' names with integer topology and counterexample terms, and conformal-parametrization endpoint terms. The authoritative material recovered was the original expectation and the erratum. No later resolution was identified in this bounded search. This does not establish priority: slow radial twists and logarithmic failures of endpoint regularity are standard mechanisms. The candidate must remain priority-unconfirmed and AI-reviewed/unrefereed even if its separate mathematical audit passes.
+diff --git a/unsolved_math_prioritization/attempts/30003354/independent_review/REVIEW.md b/unsolved_math_prioritization/attempts/30003354/independent_review/REVIEW.md
+new file mode 100644
+index 000000000..134552c4e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/independent_review/REVIEW.md
+@@ -0,0 +1,148 @@
++# Independent adversarial review: 30003354 / OWR-15208-008
++
++**Verdict: PASS for the complete candidate counterexample, for every finite integer $r\geq0$, on both the plane and the sphere. No mandatory mathematical correction was found.** The constructed metrics meet the smoothness, completeness and strictly positive-curvature requirements. This is an independent AI review, not human peer review or a historical-priority certificate.
++
++Reviewed on 2026-09-30 using gpt-6-astra with xhigh reasoning. The reviewed CANDIDATE.md has SHA-256
++
++7f358fb1aaa73dc3cfd06c798c10f6afed65ee430b622b84b90f0554dd440e62.
++
++The snapshot and the submitted checker are preserved in [author_replay/](author_replay/). No author mathematical file was edited.
++
++## 1. Exact source question
++
++I read Belegradek's complete contribution in [OWR 3/2017](https://ems.press/doi/pdf/10.4171/OWR/2017/3), pp.148–151, and visually inspected p.149. The normalization fixes 0 and 1 on the plane, and 0, 1 and infinity on the sphere. The question concerns the specified conformal parametrization of smooth complete nonnegatively curved metrics.
++
++The full [2016 Belegradek–Hu erratum](https://doi.org/10.1007/s00208-015-1354-1) explicitly corrects the regularity indices: metrics and conformal factors carry $C^{k+\alpha}$ topology, while diffeomorphisms carry $C^{k+1+\alpha}$ topology. Its unresolved endpoint is $\alpha=0$ at finite integer $k$. [Banakh–Belegradek, Sections 2, 8–9](https://arxiv.org/abs/1510.07269v2), independently specifies the compact-open topologies on smooth objects and the same derivative shift.
++
++The workshop's abbreviated action notation does not change this target. Pullback by a diffeomorphism and pushforward by its inverse give equivalent parametrizations because inversion is a homeomorphism of the relevant diffeomorphism groups. The candidate's pullback convention is explicit and consistent throughout.
++
++The conclusion does not assert that the metric spaces have no other homeomorphism to a product, nor does it contradict the known noninteger Hölder or $C^\infty$ statements.
++
++## 2. Uniform logarithmic estimates for all fixed $r\geq1$
++
++The all-$r$ estimates are valid, rather than being inferred from the finite symbolic tests.
++
++For $s=(|z|^2+\rho^2)^{1/2}$, every positive-order derivative of $\log s$ is homogeneous of degree equal to minus its order in $(x,y,\rho)$. On the unit upper half-sphere its rational expression has a nonzero denominator and is bounded. This proves the uniform derivative bound used in (4.2), including the limit toward $\rho=0$ away from the spatial origin.
++
++Leibniz's rule then yields the stated bounds for $z^{r+1}\log s$. The term with no derivative on the logarithm is the only one retaining a logarithm. On the inner disk, for every fixed $r\geq1$, the expression $s^r(1+|\log s|)$ is uniformly bounded. This gives $Df_n-I=O(1/n)$. The derivatives through order $r$ of $(f_n)_z$ are uniformly bounded because the largest remaining logarithm is at most $n+O(1)$, canceled by $1/n$.
++
++The direct formula for $(f_n)_{\bar z}$ has no logarithm. Its order-$k$ derivatives, for $k\leq r$, are bounded by $C_r n^{-1}s^{r-k}$. On the fixed cutoff annulus, all relevant derivatives are uniformly $O(1/n)$. Since $(f_n)_z$ stays away from zero and has a bounded $C^r$ norm, the finite reciprocal/product rules prove $\|\mu_n\|_{C^r}=O(1/n)$.
++
++The bad top jet is exact. At zero, differentiating the degree-$r+1$ monomial fewer than $r+1$ times leaves a zero factor. Hence only its full derivative times $\log\rho_n$ contributes, and
++$$
++\partial_x^{r+1}(f_n-\mathrm{id})(0)
++=(r+1)!\,\varepsilon_n\log\rho_n=-(r+1)!.
++$$
++There is no asymptotic error or cutoff contribution at this point.
++
++The global diffeomorphism argument also holds: for large $n$ the displacement has global Lipschitz constant below one, so the inverse equation is a contraction for every target point. The Jacobian is positive by uniform closeness to the identity. The inverse is smooth, and the map fixes 0 and is the identity outside the prescribed disk.
++
++## 3. Exact metric realization and normalized uniqueness
++
++The metric identity is correct:
++$$
++df_n=(f_n)_z(dz+\mu_n\,d\bar z),\qquad
++U_n\circ f_n=b+a_n+\log|(f_n)_z|.
++$$
++Substitution gives exactly
++$$
++f_n^*(e^{-2U_n}|dw|^2)
++=e^{-2b-2a_n}|dz+\mu_n\,d\bar z|^2.
++$$
++In particular the sign of the logarithmic Jacobian term is correct.
++
++The real quadratic form is positive once $|\mu_n|<1$. Its two eigenvalues relative to the Euclidean metric are $(1\pm|\mu_n|)^2$. The metrics are uniformly comparable to the background and agree with it off a fixed disk.
++
++Because a global bijection equal to the identity outside the disk sends that disk to itself, $U_n=b$ outside the disk. On the sphere, $u_n=U_n-b$ is therefore identically zero near infinity and extends smoothly across it. The maps extend there as the identity. On the plane, the complete cigar background is preserved outside a compact set; completeness follows also from uniform metric comparability. The conformal target metrics are complete by the exact isometry identity.
++
++The stipulated normalization is satisfied without any postcomposition. Any two normalized conformal representations differ by a conformal automorphism: an affine complex map on the plane or a Möbius map on the sphere. Fixing the required two or three points makes it the identity. Thus the constructed $f_n$ really is the inverse parametrization's diffeomorphism component. It cannot be replaced by a different convergent normalized choice.
++
++## 4. The critical $r=1$ curvature correction
++
++This is the principal analytical risk in the argument. I checked its uniformity, the inverse-map drift, the sign of the curvature formula, and the order in which constants are chosen.
++
++Write $\ell=1+|\log s|$. After omitting finitely many terms, $0<s<1$ throughout the inner disk. The elementary bounds
++$$
++s\ell\leq1,\qquad s\ell^2\leq4/e
++$$
++follow by setting $t=-\log s\geq0$ and differentiating $e^{-t}(1+t)$ and $e^{-t}(1+t)^2$. These bounds are uniform in both the point and $n$.
++
++The third derivative of $z^2\log s$ has no undifferentiated-logarithm term because the polynomial has degree two. Hence
++$$
++|D^2f_n|\leq C\varepsilon_n\ell,\qquad
++|D^3f_n|\leq C\varepsilon_n/s.
++$$
++Differentiating $h_n=\log|(f_n)_z|$ gives
++$$
++|\nabla h_n|\leq C\varepsilon_n\ell,\qquad
++|D^2h_n|\leq C(\varepsilon_n/s+\varepsilon_n^2\ell^2)
++\leq C'\varepsilon_n/s.
++$$
++The quadratic derivative term is absorbed using $s\ell^2\leq4/e$ and $\varepsilon_n\leq1$.
++
++For a real Jacobian $J=Df_n$, the principal coefficient of the pulled-back Laplacian is indeed
++$$
++A=J^{-1}J^{-T},
++$$
++not its transposed-order alternative. The drift satisfies the exact formula
++$$
++B=-J^{-1}\big(A:D^2 f_n^1,\ A:D^2 f_n^2\big)^T.
++$$
++Thus $A-I=O(\varepsilon_n)$, $A\geq\frac12I$ for large $n$, and $|B|\leq C\varepsilon_n\ell$. The candidate retains this drift; it does not confuse the operator with just its principal part.
++
++For $b+h_n$, all possible errors are bounded by a fixed multiple of
++$$
++\varepsilon_n+\varepsilon_n\ell+\varepsilon_n/s
+++\varepsilon_n^2\ell^2\leq C\varepsilon_n/s.
++$$
++The bounded derivatives of either background $b$ are sufficient here. The resulting constant $C_0$ is independent of $n$ and of the later correction coefficient $K$.
++
++The regularized radius has positive semidefinite Hessian, with tangential eigenvalue $1/s$ and radial eigenvalue $\rho_n^2/s^3$. Therefore
++$$
++\mathcal L_n s
++\geq\frac{1}{2s}-C\varepsilon_n\ell
++\geq\frac{1}{4s}
++$$
++uniformly for large $n$. Choosing a fixed $K>4C_0$ makes the inner-disk lower bound strictly positive. This is an exact operator estimate, not a first-order approximation.
++
++The cutoff correction $K\varepsilon_n\chi s_n$ tends to zero in $C^1$: $s_n$ is bounded on the support and $|\nabla s_n|\leq1$. On the cutoff annulus, its derivatives through the needed order and those of $f_n-\mathrm{id}$ are $O_K(\varepsilon_n)$, because that annulus stays away from zero. The pulled-back Laplacian there consequently converges uniformly to $\Delta b$, which has a positive minimum. Choosing $n$ large after $K$ handles the annulus without changing $K$. Outside the support nothing changes.
++
++Finally, $K_{e^{-2U_n}|dw|^2}=e^{2U_n}\Delta U_n$. The exponent is positive, and the exact pullback of $\Delta U_n$ is the quantity just estimated. This proves strictly positive curvature everywhere on both surfaces. Together with $\mu_n\to0$ and $a_n\to0$ in $C^1$, it proves the required $C^1$ metric convergence. No step assumes that $C^1$ convergence alone controls curvature.
++
++## 5. The remaining endpoints
++
++For $r\geq2$, $a_n=0$ gives convergence of metric coefficients in $C^r$ and hence in $C^2$ on the fixed compact support. Gaussian curvature depends smoothly on the positive metric two-jet. The background has a positive curvature minimum on this support; no positive global lower bound on the cigar's curvature is needed because the metrics agree with it elsewhere. The fixed top derivative of $f_n-\mathrm{id}$ proves failure of convergence in $C^{r+1}$.
++
++For $r=0$, the radial twist is smooth at zero because it is a constant rotation on a whole neighborhood there. It is a global orientation-preserving diffeomorphism with the explicitly stated inverse. Radiality of the background removes the rotation from the pullback metric. The shear parameter is uniformly $O(1/n)$, so the metrics converge uniformly while the derivative at zero remains a fixed nonidentity rotation. Pullback preserves both completeness and positive curvature. The maps fix all the normalization points.
++
++Each fixed integer has its own sequence and sufficiently large starting index. The proof does not require a uniform choice across all integers.
++
++## 6. Reproducibility and independent challenges
++
++The submitted checker has SHA-256
++
++dad7fc79034bb61fb869a81582cae21ebade0a49474f9c590cc145586dd8a04c.
++
++All **90 submitted symbolic checks reproduce byte for byte** in the separate replay directory. The three source PDF hashes match the author's provenance record. The original candidate hash remains unchanged.
++
++The independent [checker](independent_checks.py) passes **136 exact assertions**, with [receipt](independent_results.json). It imports none of the author's code. Its controls include:
++
++- Uniform logarithmic-bound certificates used above
++- A nonlinear chart made of two successive shears, checking both the inverse-Jacobian order and the nonzero Laplacian drift; dropping either is detected
++- The actual critical map's jets at zero and the corrected Laplacian there
++- The critical linearized curvature profile, which changes sign and has scale $\varepsilon_n/s_n$, confirming that the critical endpoint needs genuine curvature control
++
++For the last diagnostic, putting $Q=x^2+y^2$ gives the exact identity
++$$
++\Delta\operatorname{Re}\partial_z(z^2\log s)
++=\frac{4x(Q^2+3Q\rho^2+3\rho^4)}{(Q+\rho^2)^3}.
++$$
++The finite profile tests are not used to infer nonlinear positivity; the all-point estimate in Section 4 supplies that proof.
++
++The controls use SymPy 1.14.0 and exact symbolic/rational arithmetic. They do not certify completeness or uniqueness computationally; those were checked geometrically above.
++
++## 7. Final disposition
++
++The candidate supplies a complete negative answer for every finite integer endpoint in the exact source parametrization, including both specified surfaces and the stronger strict-positive-curvature restriction. No unresolved mathematical step was identified, and no mandatory correction is required.
++
++A bounded independent current-source search recovered the erratum and the corrected primary work, but no verified later resolution. That does not establish historical priority. Preserve the candidate/AI-reviewed/unrefereed description and the explicit lack of a new-discovery or priority claim when publishing a draft PR.
+diff --git a/unsolved_math_prioritization/attempts/30003354/independent_review/author_replay/CANDIDATE.md b/unsolved_math_prioritization/attempts/30003354/independent_review/author_replay/CANDIDATE.md
+new file mode 100644
+index 000000000..36733719d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/independent_review/author_replay/CANDIDATE.md
+@@ -0,0 +1,204 @@
++# Failure of the conformal parametrization at every finite integer endpoint
++
++**Target:** 30003354 / OWR-15208-008.  
++**Status:** complete candidate counterexample construction, pending separate adversarial review. Priority is unconfirmed; no published-new-result claim is made.  
++**Scope:** every finite integer r≥0, on both the plane and the sphere, with all metrics smooth, complete and of strictly positive Gaussian curvature.
++
++## 1. Exact formulation
++
++Let $M_0=\mathbb C$ with $g_0=|dz|^2$, and let $M_1=S^2$ with the unit round metric
++
++$$g_1=\frac{4|dz|^2}{(1+|z|^2)^2}$$
++
++in stereographic coordinates. Let $\mathcal D(M_0)$ be the smooth orientation-preserving diffeomorphisms fixing 0 and 1, and let $\mathcal D(M_1)$ fix 0, 1 and infinity. Let $\mathcal O_\kappa$ consist of smooth real functions for which $e^{-2u}g_\kappa$ is complete with nonnegative curvature.
++
++The source's continuous bijection is
++
++$$P_\kappa:\mathcal O_\kappa^{,r}\times\mathcal D^{,r+1}(M_\kappa)
++\longrightarrow\mathcal R_{\ge0}^{,r}(M_\kappa),
++\qquad P_\kappa(u,\phi)=\phi^*(e^{-2u}g_\kappa).$$
++
++The superscripts specify compact-open $C^r$ and $C^{r+1}$ topologies **on smooth objects**, not finite-regularity classes. The extra derivative on the diffeomorphism is essential. The exact interpretation is explicit in [Belegradek–Hu's 2016 erratum](https://doi.org/10.1007/s00208-015-1354-1) and [Banakh–Belegradek, Sections 2, 8–9](https://arxiv.org/abs/1510.07269). The [original workshop report](https://ems.press/doi/pdf/10.4171/OWR/2017/3), printed p. 149, asks about the integer endpoint; its abbreviated use of the pullback symbol must not be read as assigning only r derivatives to $\phi$ itself.
++
++**Candidate theorem.** For every finite integer $r\ge0$ and each $\kappa\in\{0,1\}$, $P_\kappa^{-1}$ is not continuous. This remains true after restricting to strictly positive-curvature metrics. The conclusion concerns this parametrization, not an assertion that the underlying spaces admit no other homeomorphism.
++
++We construct $g_n\to g_*$ in $C^r$ whose unique normalized diffeomorphisms $\phi_n$ do not approach the identity in $C^{r+1}$. No assertion is made against the known $C^\infty$ or noninteger Hölder results.
++
++## 2. Fixed positive-curvature backgrounds
++
++Use the following radial background, depending on the surface:
++
++$$g_*=e^{-2b(z)}|dz|^2,\qquad
++b(z)=\begin{cases}
++\tfrac12\log(1+|z|^2),&M_0,\\
++\log(1+|z|^2)-\log2,&M_1.
++\end{cases}$$
++
++On the plane this is the complete cigar metric, with curvature $2/(1+|z|^2)>0$; completeness follows from the divergent radial integral $\int_0^\infty(1+s^2)^{-1/2}ds$. On the sphere it is $g_1$, with curvature 1. On every fixed coordinate disk, $\Delta b$ has a positive lower bound.
++
++All perturbations below equal $g_*$ outside $|z|<1/4$. Diffeomorphisms fix 0 and are the identity outside this disk, so all required normalization points are fixed, including infinity. The inverse image of $g_*$ under $P_\kappa$ is $(b,\mathrm{id})$ on the plane and $(0,\mathrm{id})$ on the sphere.
++
++## 3. The endpoint r=0: a slow radial twist
++
++Choose a smooth function $\eta:\mathbb R\to[0,1]$ equal to 0 on $(-\infty,0]$ and 1 on $[1,\infty)$, with bounded derivative. Set $R=1/4$, choose $\theta_0\notin2\pi\mathbb Z$, and, for $s>0$, set
++
++$$\theta_n(s)=\theta_0\eta\!\left(\frac{\log(R/s)}n\right),\qquad
++\phi_n(z)=e^{i\theta_n(|z|)}z.$$
++
++Define $\phi_n(0)=0$. This is a smooth diffeomorphism: it is a constant rotation on $|z|\le Re^{-n}$, the identity for $|z|\ge R$, and its inverse subtracts the same angle at each radius. It preserves orientation. Moreover
++
++$$q_n(s):=s\theta_n'(s),\qquad \|q_n\|_\infty\le\frac{|\theta_0|\|\eta'\|_\infty}{n}.$$
++
++In orthonormal polar frames in the source and target, the differential is a rotation followed by the shear with matrix $\left(\begin{smallmatrix}1&0\\q_n&1\end{smallmatrix}\right)$. Since $b$ is radial, the matrix of $\phi_n^*g_*$ relative to $g_*$ is
++
++$$\begin{pmatrix}1+q_n^2&q_n\\q_n&1\end{pmatrix}.$$
++
++Thus $g_n=\phi_n^*g_*\to g_*$ uniformly, even globally in the background tensor norm. Each $g_n$ is complete with positive curvature because it is isometric to $g_*$. Its normalized conformal factor is the fixed one for $g_*$, and its normalized diffeomorphism is $\phi_n$. But
++
++$$D\phi_n(0)=\operatorname{Rot}(\theta_0)\ne I$$
++
++for every n. This proves failure at r=0 on both surfaces.
++
++## 4. Logarithmic coordinate perturbations for r≥1
++
++Fix an integer $r\ge1$. Choose $\chi\in C_c^\infty(\mathbb C)$ radial, equal to 1 for $|z|\le1/8$ and 0 for $|z|\ge1/4$. For integers $n\to\infty$, put
++
++$$\rho_n=e^{-n},\quad \varepsilon_n=1/n,\quad
++s_n(z)=(|z|^2+\rho_n^2)^{1/2},\quad L_n(z)=\log s_n(z),$$
++
++$$f_n(z)=z+w_n(z),\qquad
++w_n(z)=\varepsilon_n\chi(z)z^{r+1}L_n(z).\tag{4.1}$$
++
++All functions are smooth for each n. Constants in the estimates below may depend on r and the fixed cutoff, but not on n. We discard finitely many initial n whenever necessary.
++
++### 4.1 Uniform estimates
++
++For real derivatives of order $j\ge1$,
++
++$$|D^jL_n(z)|\le C_j s_n(z)^{-j}.\tag{4.2}$$
++
++This follows either by repeated differentiation of $\frac12\log(|z|^2+\rho_n^2)$ or by rescaling $(z,\rho_n)$; the resulting rational functions are bounded on the unit half-sphere. By Leibniz's rule, on the inner disk,
++
++$$|D^k(z^{r+1}L_n)|\le C_{r,k}s_n^{r+1-k}(1+|\log s_n|),\qquad0\le k\le r+1.\tag{4.3}$$
++
++On the cutoff annulus all derivatives of fixed order are uniformly bounded, since $|z|\ge1/8$. In particular,
++
++$$\|Df_n-I\|_{C^0}\le C_r\varepsilon_n\to0,
++\qquad \|(f_n)_z\|_{C^r}\le C_r.\tag{4.4}$$
++
++For the second bound, the largest possible logarithm is $n+O(1)$, canceled by $\varepsilon_n=1/n$. Consequently $f_n$ is globally injective and onto: its displacement has Lipschitz constant less than 1, so the inverse equation is a contraction on $\mathbb R^2$. Its positive Jacobian and the smooth inverse function theorem make it a smooth orientation-preserving diffeomorphism. It is the identity outside the fixed disk and fixes 0.
++
++With Wirtinger derivatives $\partial_z=(\partial_x-i\partial_y)/2$, define
++
++$$\mu_n=\frac{(f_n)_{\bar z}}{(f_n)_z}.$$
++
++On the inner disk,
++
++$$(f_n)_{\bar z}=\frac{\varepsilon_n z^{r+2}}{2(|z|^2+\rho_n^2)}.\tag{4.5}$$
++
++Its derivatives of order k≤r have magnitude at most $C_r\varepsilon_n s_n^{r-k}$. The cutoff contribution is also $O(\varepsilon_n)$ in $C^r$. Thus
++
++$$\|(f_n)_{\bar z}\|_{C^r}\le C_r\varepsilon_n.$$
++
++By (4.4), $(f_n)_z$ stays uniformly away from zero and has uniformly bounded $C^r$ norm. Differentiating its reciprocal finitely many times therefore gives
++
++$$\boxed{\|\mu_n\|_{C^r}\le C_r\varepsilon_n\longrightarrow0.}\tag{4.6}$$
++
++In contrast, because $\chi=1$ near 0 and $L_n(0)=\log\rho_n=-n$,
++
++$$\boxed{\partial_x^{r+1}(f_n-\mathrm{id})(0)=-(r+1)!}\tag{4.7}$$
++
++as a complex-valued derivative. Terms in which a derivative hits $L_n$ leave an undifferentiated factor of $z^{r+1}$ of positive degree at 0 and vanish. Hence $f_n$ cannot converge to the identity in $C^{r+1}$.
++
++### 4.2 Metrics realizing these normalized diffeomorphisms
++
++For a smooth real correction $a_n$ supported in the same disk, define
++
++$$g_n=e^{-2b(z)-2a_n(z)}|dz+\mu_n(z)d\bar z|^2.\tag{4.8}$$
++
++For a complex coefficient $\mu$, the notation denotes the real quadratic form obtained from the squared complex modulus. Its eigenvalues relative to $|dz|^2$ are $(1\pm|\mu|)^2$, so this is a smooth positive metric for large n. Outside the disk it equals $g_*$; on the plane it is therefore complete (also uniformly comparable to the complete background).
++
++Let $h_n=\log|(f_n)_z|$ and
++
++$$U_n=(b+a_n+h_n)\circ f_n^{-1}.$$
++
++Since $df_n=(f_n)_z(dz+\mu_n d\bar z)$, identity (4.8) is exactly
++
++$$g_n=f_n^*(e^{-2U_n(w)}|dw|^2).\tag{4.9}$$
++
++On the plane take $u_n=U_n$. On the sphere put $u_n=U_n-b(w)$; this is zero outside the disk and extends smoothly across infinity. Then (4.9) is $g_n=P_\kappa(u_n,f_n)$. Once positivity is proved below, $u_n\in\mathcal O_\kappa$ by isometry and completeness. Normalized uniqueness from the source, or simply uniqueness of normalized plane/sphere conformal automorphisms, identifies $f_n$ as the diffeomorphism component of $P_\kappa^{-1}(g_n)$.
++
++## 5. Integer endpoints r≥2
++
++For r≥2, set $a_n=0$. By (4.6), $g_n\to g_*$ in $C^r$, hence in $C^2$ on the fixed compact support. Gaussian curvature is a continuous function of the positive metric's two-jet. The background curvature has a positive minimum on that disk, so $g_n$ has positive curvature there for all sufficiently large n. Outside, it is the background metric. The metrics are complete, their normalized inverse images have diffeomorphism component $f_n$, and (4.7) proves inverse discontinuity.
++
++## 6. The endpoint r=1: a curvature-preserving correction
++
++C^1 convergence alone does not preserve a lower curvature bound, so the preceding argument cannot simply be reused. We give a correction that is small in C^1 and prove its sign directly.
++
++In this section r=1. On $|z|\le1/8$ write $s=s_n$, $\varepsilon=\varepsilon_n$, and $\ell=1+|\log s|$. The estimates from (4.1)–(4.3), with one further derivative, give
++
++$$|Df_n-I|\le C\varepsilon,\quad
++|D^2f_n|\le C\varepsilon\ell,\quad
++|D^3f_n|\le C\varepsilon/s.\tag{6.1}$$
++
++In the third estimate the degree-two polynomial has no third derivative, so every surviving Leibniz term differentiates the logarithm at least once. These estimates imply
++
++$$|\nabla h_n|\le C\varepsilon\ell,\qquad
++|D^2h_n|\le C(\varepsilon/s+\varepsilon^2\ell^2)
++\le C'\varepsilon/s,\tag{6.2}$$
++
++because $s\ell^2$ is uniformly bounded for $0<s<1$.
++
++Define the pulled-back Euclidean Laplacian on a real function v by
++
++$$\mathcal L_n v=\big[\Delta_w(v\circ f_n^{-1})\big]\circ f_n.
++$$
++
++The ordinary chain rule writes it as
++
++$$\mathcal L_n v=A_n^{ij}\partial_{ij}v+B_n^i\partial_i v,
++\quad A_n=(Df_n)^{-1}(Df_n)^{-T}.$$
++
++The inverse-map second-derivative formula and (6.1) give
++
++$$\|A_n-I\|\le C\varepsilon,\quad A_n\ge\tfrac12 I,
++\quad |B_n|\le C\varepsilon\ell.\tag{6.3}$$
++
++All matrices and norms here are in real coordinates. Since b and its first two derivatives are bounded on this disk, (6.2)–(6.3), $s\ell\le C$ and $s\ell^2\le C$ imply, for a constant $C_0$ independent of n,
++
++$$\mathcal L_n(b+h_n)\ge\Delta b-C_0\varepsilon/s
++\ge-C_0\varepsilon/s.\tag{6.4}$$
++
++The regularized radius is convex and satisfies
++
++$$\nabla s=z/s,\quad D^2s=I/s-zz^T/s^3\ge0,
++\quad \Delta s=\frac{|z|^2+2\rho_n^2}{s^3}\ge1/s.$$ 
++
++Therefore (6.3) gives
++
++$$\mathcal L_n s\ge\frac1{2s}-C\varepsilon\ell\ge\frac1{4s}\tag{6.5}$$
++
++for all sufficiently large n, uniformly in z: multiply the error by s and use the boundedness of $s\ell$.
++
++Choose a fixed constant $K>4C_0$, and set
++
++$$a_n(z)=K\varepsilon_n\chi(z)s_n(z).\tag{6.6}$$
++
++This function is smooth, supported in the fixed disk, and tends to zero in C^1 because $|\nabla s_n|\le1$ and $s_n$ is uniformly bounded on the support. On the inner disk, (6.4)–(6.5) give
++
++$$\mathcal L_n(b+h_n+a_n)\ge(K/4-C_0)\varepsilon_n/s_n>0.\tag{6.7}$$
++
++On the closed cutoff annulus $1/8\le|z|\le1/4$, all derivatives of fixed order of $f_n-\mathrm{id}$, $h_n$ and $a_n$ are $O_K(\varepsilon_n)$. Thus $\mathcal L_n(b+h_n+a_n)\to\Delta b$ uniformly there. The latter has a strictly positive minimum, so the same positivity holds throughout that annulus for sufficiently large n. Outside the support, the metric is $g_*$.
++
++Finally, the curvature of $e^{-2U_n}|dw|^2$ is $e^{2U_n}\Delta_w U_n$, and
++
++$$\Delta_w U_n(f_n(z))=\mathcal L_n(b+h_n+a_n)(z).$$
++
++This proves positive curvature everywhere, not just positivity of an approximate linearized curvature. Equations (4.6), (4.8) and $a_n\to0$ in C^1 imply $g_n\to g_*$ in C^1. But (4.7) gives $\partial_x^2(f_n-\mathrm{id})(0)=-2$ for all n. The r=1 case is established on both surfaces.
++
++## 7. Conclusion and limits
++
++Each integer r has its own sequence of smooth complete positive-curvature metrics. In each case the metrics converge in the exact source topology and the uniquely normalized diffeomorphisms fail to converge in the required one-higher-derivative topology. This proves the candidate theorem for all finite integer endpoints, while leaving the known Hölder and C^infinity homeomorphism results intact.
++
++The construction uses familiar endpoint mechanisms (slow twists and regularized logarithms). A bounded literature search found the original expectation of failure and the 2016 erratum, but did not establish priority for the construction or its full curvature-preserving version. Independent review and a broader novelty assessment remain necessary before describing this as a new result.
+diff --git a/unsolved_math_prioritization/attempts/30003354/independent_review/author_replay/verification.json b/unsolved_math_prioritization/attempts/30003354/independent_review/author_replay/verification.json
+new file mode 100644
+index 000000000..5216435c5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/independent_review/author_replay/verification.json
+@@ -0,0 +1,99 @@
++{
++  "assertions": 90,
++  "candidate_sha256": "7f358fb1aaa73dc3cfd06c798c10f6afed65ee430b622b84b90f0554dd440e62",
++  "checks": {
++    "bar_derivative_homogeneity_1_0_0": "PASS",
++    "bar_derivative_homogeneity_1_1_0": "PASS",
++    "bar_derivative_homogeneity_1_1_1": "PASS",
++    "bar_derivative_homogeneity_2_0_0": "PASS",
++    "bar_derivative_homogeneity_2_1_0": "PASS",
++    "bar_derivative_homogeneity_2_1_1": "PASS",
++    "bar_derivative_homogeneity_2_2_0": "PASS",
++    "bar_derivative_homogeneity_2_2_1": "PASS",
++    "bar_derivative_homogeneity_2_2_2": "PASS",
++    "bar_derivative_homogeneity_3_0_0": "PASS",
++    "bar_derivative_homogeneity_3_1_0": "PASS",
++    "bar_derivative_homogeneity_3_1_1": "PASS",
++    "bar_derivative_homogeneity_3_2_0": "PASS",
++    "bar_derivative_homogeneity_3_2_1": "PASS",
++    "bar_derivative_homogeneity_3_2_2": "PASS",
++    "bar_derivative_homogeneity_3_3_0": "PASS",
++    "bar_derivative_homogeneity_3_3_1": "PASS",
++    "bar_derivative_homogeneity_3_3_2": "PASS",
++    "bar_derivative_homogeneity_3_3_3": "PASS",
++    "bar_derivative_homogeneity_4_0_0": "PASS",
++    "bar_derivative_homogeneity_4_1_0": "PASS",
++    "bar_derivative_homogeneity_4_1_1": "PASS",
++    "bar_derivative_homogeneity_4_2_0": "PASS",
++    "bar_derivative_homogeneity_4_2_1": "PASS",
++    "bar_derivative_homogeneity_4_2_2": "PASS",
++    "bar_derivative_homogeneity_4_3_0": "PASS",
++    "bar_derivative_homogeneity_4_3_1": "PASS",
++    "bar_derivative_homogeneity_4_3_2": "PASS",
++    "bar_derivative_homogeneity_4_3_3": "PASS",
++    "bar_derivative_homogeneity_4_4_0": "PASS",
++    "bar_derivative_homogeneity_4_4_1": "PASS",
++    "bar_derivative_homogeneity_4_4_2": "PASS",
++    "bar_derivative_homogeneity_4_4_3": "PASS",
++    "bar_derivative_homogeneity_4_4_4": "PASS",
++    "bar_derivative_r1": "PASS",
++    "bar_derivative_r2": "PASS",
++    "bar_derivative_r3": "PASS",
++    "bar_derivative_r4": "PASS",
++    "cigar_curvature": "PASS",
++    "critical_third_derivative_homogeneity_0": "PASS",
++    "critical_third_derivative_homogeneity_1": "PASS",
++    "critical_third_derivative_homogeneity_2": "PASS",
++    "critical_third_derivative_homogeneity_3": "PASS",
++    "critical_third_derivative_no_log_0": "PASS",
++    "critical_third_derivative_no_log_1": "PASS",
++    "critical_third_derivative_no_log_2": "PASS",
++    "critical_third_derivative_no_log_3": "PASS",
++    "fixed_top_jet_r1": "PASS",
++    "fixed_top_jet_r2": "PASS",
++    "fixed_top_jet_r3": "PASS",
++    "fixed_top_jet_r4": "PASS",
++    "fixed_top_jet_r5": "PASS",
++    "fixed_top_jet_r6": "PASS",
++    "jacobian_wirtinger": "PASS",
++    "log_homogeneity_1_0": "PASS",
++    "log_homogeneity_1_1": "PASS",
++    "log_homogeneity_2_0": "PASS",
++    "log_homogeneity_2_1": "PASS",
++    "log_homogeneity_2_2": "PASS",
++    "log_homogeneity_3_0": "PASS",
++    "log_homogeneity_3_1": "PASS",
++    "log_homogeneity_3_2": "PASS",
++    "log_homogeneity_3_3": "PASS",
++    "log_homogeneity_4_0": "PASS",
++    "log_homogeneity_4_1": "PASS",
++    "log_homogeneity_4_2": "PASS",
++    "log_homogeneity_4_3": "PASS",
++    "log_homogeneity_4_4": "PASS",
++    "metric_beltrami_determinant": "PASS",
++    "metric_pullback_exact": "PASS",
++    "normalized_top_jet_r1": "PASS",
++    "normalized_top_jet_r2": "PASS",
++    "normalized_top_jet_r3": "PASS",
++    "normalized_top_jet_r4": "PASS",
++    "normalized_top_jet_r5": "PASS",
++    "normalized_top_jet_r6": "PASS",
++    "pulled_laplacian_chain_rule_0": "PASS",
++    "pulled_laplacian_chain_rule_1": "PASS",
++    "pulled_laplacian_chain_rule_2": "PASS",
++    "pulled_laplacian_chain_rule_3": "PASS",
++    "pulled_laplacian_chain_rule_4": "PASS",
++    "pulled_laplacian_chain_rule_5": "PASS",
++    "radial_twist_metric": "PASS",
++    "radial_twist_orientation": "PASS",
++    "radius_gradient_bound": "PASS",
++    "radius_hessian": "PASS",
++    "radius_hessian_determinant": "PASS",
++    "radius_laplacian": "PASS",
++    "radius_laplacian_lower_bound_difference": "PASS",
++    "round_curvature": "PASS"
++  },
++  "scope": "Exact bounded algebra, homogeneity, curvature-sign identities and jets. These do not replace the all-r estimates, completeness or uniqueness proof.",
++  "status": "PASS",
++  "sympy_version": "1.14.0"
++}
+diff --git a/unsolved_math_prioritization/attempts/30003354/independent_review/author_replay/verify.py b/unsolved_math_prioritization/attempts/30003354/independent_review/author_replay/verify.py
+new file mode 100644
+index 000000000..4fffccf96
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/independent_review/author_replay/verify.py
+@@ -0,0 +1,77 @@
++#!/usr/bin/env python3
++"""Exact algebra/jet controls; the uniform estimates are proved in CANDIDATE.md."""
++from pathlib import Path
++from math import factorial
++import hashlib,json
++import sympy as S
++x,y,rho,eps=S.symbols('x y rho eps',real=True,positive=True)
++# Positivity assumptions on x,y only simplify radicals; identities are rational
++# and hence hold for all real x,y by polynomial continuation.
++a,b,c,d,q=S.symbols('a b c d q',real=True)
++z=x+S.I*y
++s2=x*x+y*y+rho*rho
++rad=S.sqrt(s2)
++L=S.log(s2)/2
++checks={}
++def ck(name,v):
++    assert bool(v),name
++    checks[name]='PASS'
++def zero(f):return S.simplify(S.expand(f))==0
++def euler(f):return x*S.diff(f,x)+y*S.diff(f,y)+rho*S.diff(f,rho)
++# Beltrami-to-metric algebra, without differentiability or numerical sampling.
++J=S.Matrix([[a+c,-b+d],[b+d,a-c]])
++ck('jacobian_wirtinger',zero(J.det()-(a*a+b*b-c*c-d*d)))
++muR=(a*c+b*d)/(a*a+b*b)
++muI=(a*d-b*c)/(a*a+b*b)
++M=S.Matrix([[1+muR,muI],[muI,1-muR]])
++ck('metric_pullback_exact',all(zero(v) for v in J.T*J-(a*a+b*b)*(M.T*M)))
++ck('metric_beltrami_determinant',zero((M.T*M).det()-(1-muR**2-muI**2)**2))
++Tw=S.Matrix([[1,0],[q,1]])
++ck('radial_twist_metric',Tw.T*Tw==S.Matrix([[1+q*q,q],[q,1]]))
++ck('radial_twist_orientation',Tw.det()==1)
++# Background curvature and radial correction identities.
++for name,bg,expected in [('cigar',S.log(1+x*x+y*y)/2,2/(1+x*x+y*y)),('round',S.log(1+x*x+y*y)-S.log(2),S.Integer(1))]:
++    lap=S.diff(bg,x,2)+S.diff(bg,y,2)
++    ck(name+'_curvature',zero(S.exp(2*bg)*lap-expected))
++H=S.hessian(rad,(x,y))
++ck('radius_hessian',all(zero(v) for v in H-(S.eye(2)/rad-S.Matrix([x,y])*S.Matrix([[x,y]])/rad**3)))
++ck('radius_hessian_determinant',zero(H.det()-rho**2/s2**2))
++ck('radius_laplacian',zero(S.trace(H)-(x*x+y*y+2*rho*rho)/rad**3))
++ck('radius_laplacian_lower_bound_difference',zero(S.trace(H)-1/rad-rho*rho/rad**3))
++ck('radius_gradient_bound',zero(1-S.diff(rad,x)**2-S.diff(rad,y)**2-rho*rho/s2))
++# All coordinate derivatives in these bounded degree families.
++for k in range(1,5):
++    for j in range(k+1):
++        f=S.diff(L,x,j,y,k-j)
++        ck(f'log_homogeneity_{k}_{j}',zero(euler(f)+k*f))
++for r in range(1,5):
++    w=z**(r+1)*L
++    db=(S.diff(w,x)+S.I*S.diff(w,y))/2
++    B=z**(r+2)/(2*s2)
++    ck(f'bar_derivative_r{r}',zero(db-B))
++    for k in range(r+1):
++        for j in range(k+1):
++            D=S.diff(B,x,j,y,k-j)
++            ck(f'bar_derivative_homogeneity_{r}_{k}_{j}',zero(euler(D)-(r-k)*D))
++# The top jet is exact, rather than a floating-point asymptotic.
++for r in range(1,7):
++    f=eps*x**(r+1)*S.log(x*x+rho*rho)/2
++    jet=S.diff(f,x,r+1).subs(x,0)
++    ck(f'fixed_top_jet_r{r}',zero(jet-eps*factorial(r+1)*S.log(rho)))
++    ck(f'normalized_top_jet_r{r}',zero(jet.subs(eps,-1/S.log(rho))+factorial(r+1)))
++# For r=1 the third derivatives have no logarithmic term and degree -1.
++w=z*z*L
++for j in range(4):
++    D=S.diff(w,x,j,y,3-j)
++    ck(f'critical_third_derivative_homogeneity_{j}',zero(euler(D)+D))
++    ck(f'critical_third_derivative_no_log_{j}',not S.cancel(S.expand(D)).has(S.log))
++# Chain rule for a nonlinear chart with explicit inverse, independently testing
++# both the principal coefficient and the drift coefficient.
++F=S.Matrix([x,y+x*x]);G=S.Matrix([x,y-x*x]);JF=F.jacobian([x,y]);Ji=JF.inv();A=Ji*Ji.T
++B=S.Matrix([-sum(Ji[i,k]*sum(A[j,l]*S.diff(F[k],[x,y][j],[x,y][l]) for j in range(2) for l in range(2)) for k in range(2)) for i in range(2)])
++for i,v in enumerate((x,y,x*x,x*y,y*y,x**3+y**3)):
++    LHS=sum(S.diff(v.subs({x:G[0],y:G[1]},simultaneous=True),u,2) for u in (x,y)).subs({x:F[0],y:F[1]},simultaneous=True)
++    RHS=sum(A[j,k]*S.diff(v,[x,y][j],[x,y][k]) for j in range(2) for k in range(2))+sum(B[j]*S.diff(v,[x,y][j]) for j in range(2))
++    ck(f'pulled_laplacian_chain_rule_{i}',zero(LHS-RHS))
++result={'status':'PASS','assertions':len(checks),'sympy_version':S.__version__,'candidate_sha256':hashlib.sha256(Path(__file__).with_name('CANDIDATE.md').read_bytes()).hexdigest(),'scope':'Exact bounded algebra, homogeneity, curvature-sign identities and jets. These do not replace the all-r estimates, completeness or uniqueness proof.','checks':checks}
++print(json.dumps(result,indent=2,sort_keys=True))
+diff --git a/unsolved_math_prioritization/attempts/30003354/independent_review/independent_checks.py b/unsolved_math_prioritization/attempts/30003354/independent_review/independent_checks.py
+new file mode 100644
+index 000000000..5ab57a08f
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/independent_review/independent_checks.py
+@@ -0,0 +1,113 @@
++#!/usr/bin/env python3
++"""Independent exact controls for the integer endpoint construction.
++
++This does not import the author's verifier. Uniform positivity, completeness
++and the all-r claim are checked in the written review, not by samples.
++"""
++from collections import Counter
++from itertools import product
++import json
++import sympy as s
++
++x, y = s.symbols('x y', real=True)
++rho, eps, K, beta = s.symbols('rho eps K beta', positive=True)
++t = s.symbols('t', nonnegative=True)
++counts = Counter()
++def check(ok, name):
++    assert bool(ok), name
++    counts[name] += 1
++def zero(expr):
++    return s.simplify(s.expand(expr)) == 0
++def lap(expr):
++    return s.diff(expr, x, 2) + s.diff(expr, y, 2)
++
++# Explicit scalar bounds used in the nonlinear error absorption:
++# exp(-t)(1+t) <= 1 and exp(-t)(1+t)^2 <= 4/e.
++p = s.exp(-t)*(1+t)
++q = s.exp(-t)*(1+t)**2
++check(zero(s.diff(p, t)+t*s.exp(-t)), 'uniform_scalar_bound_certificate')
++check(zero(s.diff(q, t)-(1-t)*(1+t)*s.exp(-t)), 'uniform_scalar_bound_certificate')
++check(p.subs(t, 0) == 1, 'uniform_scalar_bound_certificate')
++check(q.subs(t, 1) == 4/s.E, 'uniform_scalar_bound_certificate')
++
++# The critical first variation has both signs and scale eps/s.
++Q = x*x+y*y
++S2 = Q+rho*rho
++H = x*(s.log(S2)+Q/(2*S2))  # Re(partial_z(z^2 log(s)))
++profile = 4*x*(Q*Q+3*Q*rho*rho+3*rho**4)/S2**3
++check(zero(lap(H)-profile), 'critical_laplacian_profile')
++check(zero(profile.subs({x:rho, y:0})-s.Rational(7, 2)/rho), 'critical_laplacian_profile')
++check(zero(profile.subs({x:-rho, y:0})+s.Rational(7, 2)/rho), 'critical_laplacian_profile')
++check(zero(3*S2**2-(Q*Q+3*Q*rho*rho+3*rho**4)
++           -(2*Q*Q+3*Q*rho*rho)), 'uniform_profile_bound_certificate')
++# Together with |x|<=s, the polynomial certificate proves |s*profile|<=12.
++for X, Y in product(range(-3, 4), repeat=2):
++    for r in (s.Rational(1, 8), s.Rational(1, 64)):
++        value = profile.subs({x:r*X, y:r*Y, rho:r})
++        rad2 = r*r*(1+X*X+Y*Y)
++        check(rad2*value**2 <= 144, 'scaled_profile_diagnostic')
++
++# An exact chart made from two nonlinear shears, not the author's single shear.
++a, b = s.Rational(1, 3), -s.Rational(1, 5)
++F = s.Matrix([x+a*y*y, y+b*(x+a*y*y)**2])
++G = s.Matrix([x-a*(y-b*x*x)**2, y-b*x*x])
++subF = {x:F[0], y:F[1]}
++check(all(zero(e) for e in G.subs(subF, simultaneous=True)-s.Matrix([x,y])),
++      'double_shear_inverse')
++J = F.jacobian([x,y])
++Ji = J.inv()
++check(zero(J.det()-1), 'double_shear_orientation')
++inverse_derivative = G.jacobian([x,y]).subs(subF, simultaneous=True)
++for e in inverse_derivative-Ji:
++    check(zero(e), 'inverse_derivative')
++A = Ji*Ji.T
++A_from_inverse = inverse_derivative*inverse_derivative.T
++for e in A_from_inverse-A:
++    check(zero(e), 'principal_laplacian_coefficient')
++actual_drift = s.Matrix([lap(G[i]).subs(subF, simultaneous=True) for i in range(2)])
++hessian_traces = s.Matrix([
++    sum(A[i,j]*s.diff(F[k], [x,y][i], [x,y][j]) for i in range(2) for j in range(2))
++    for k in range(2)])
++predicted_drift = -Ji*hessian_traces
++for e in actual_drift-predicted_drift:
++    check(zero(e), 'inverse_laplacian_drift')
++check(any(not zero(e) for e in actual_drift), 'dropping_drift_fails')
++wrong_A = Ji.T*Ji
++check(any(e.subs({x:1,y:1}) != 0 for e in A-wrong_A),
++      'transposing_principal_coefficient_fails')
++
++# Actual critical map jets at zero. The cubic jet vanishes; the quadratic
++# perturbation is holomorphic, so its trace and the drift at zero vanish.
++L = s.log(S2)/2
++f = s.Matrix([x+eps*(x*x-y*y)*L, y+2*eps*x*y*L])
++at_zero = {x:0,y:0}
++check(f.subs(at_zero) == s.zeros(2,1), 'normalization_at_origin')
++check(f.jacobian([x,y]).subs(at_zero) == s.eye(2), 'normalization_at_origin')
++for k in range(2):
++    check(zero(lap(f[k]).subs(at_zero)), 'critical_drift_at_origin')
++    for j in range(4):
++        check(zero(s.diff(f[k], x,j,y,3-j).subs(at_zero)), 'critical_cubic_jet')
++
++# h's exact two-jet follows from f_z=1+2 eps log(rho) z+O(|z|^3).
++c = 2*eps*s.log(rho)
++h_two_jet = c*x-c*c*(x*x-y*y)/2
++check(lap(h_two_jet) == 0, 'log_jacobian_harmonic_two_jet')
++bg = beta*s.log(1+Q)
++correction = K*eps*s.sqrt(S2)
++check(zero(lap(bg+correction).subs(at_zero)-(4*beta+2*K*eps/rho)),
++      'positive_corrected_laplacian_at_origin')
++check(s.diff(correction,x).subs(at_zero) == 0 and
++      s.diff(correction,y).subs(at_zero) == 0,
++      'correction_preserves_critical_gradient')
++check(s.diff(h_two_jet,x).subs(at_zero).subs(eps,-1/s.log(rho)) == -2,
++      'critical_nonconvergent_factor_gradient')
++
++print(json.dumps({
++    'status':'PASS','exact_assertions':sum(counts.values()),
++    'categories':dict(counts),'sympy_version':s.__version__,
++    'limits':[
++        'First-variation samples are diagnostic and do not prove nonlinear positivity',
++        'The uniform all-n correction estimate is assessed in the written review',
++        'No historical-priority or human-peer-review certificate'
++    ]
++},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30003354/independent_review/independent_results.json b/unsolved_math_prioritization/attempts/30003354/independent_review/independent_results.json
+new file mode 100644
+index 000000000..b6dd76056
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/independent_review/independent_results.json
+@@ -0,0 +1,30 @@
++{
++  "status": "PASS",
++  "exact_assertions": 136,
++  "categories": {
++    "uniform_scalar_bound_certificate": 4,
++    "critical_laplacian_profile": 3,
++    "uniform_profile_bound_certificate": 1,
++    "scaled_profile_diagnostic": 98,
++    "double_shear_inverse": 1,
++    "double_shear_orientation": 1,
++    "inverse_derivative": 4,
++    "principal_laplacian_coefficient": 4,
++    "inverse_laplacian_drift": 2,
++    "dropping_drift_fails": 1,
++    "transposing_principal_coefficient_fails": 1,
++    "normalization_at_origin": 2,
++    "critical_drift_at_origin": 2,
++    "critical_cubic_jet": 8,
++    "log_jacobian_harmonic_two_jet": 1,
++    "positive_corrected_laplacian_at_origin": 1,
++    "correction_preserves_critical_gradient": 1,
++    "critical_nonconvergent_factor_gradient": 1
++  },
++  "sympy_version": "1.14.0",
++  "limits": [
++    "First-variation samples are diagnostic and do not prove nonlinear positivity",
++    "The uniform all-n correction estimate is assessed in the written review",
++    "No historical-priority or human-peer-review certificate"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30003354/independent_review/review_summary.json b/unsolved_math_prioritization/attempts/30003354/independent_review/review_summary.json
+new file mode 100644
+index 000000000..5321470d9
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/independent_review/review_summary.json
+@@ -0,0 +1,33 @@
++{
++  "problem_id": 30003354,
++  "problem_code": "OWR-15208-008",
++  "reviewed_utc": "2026-09-30T06:59:44.410249+00:00",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "verdict": "PASS_COMPLETE_COUNTEREXAMPLE",
++  "reviewed_artifact": "CANDIDATE.md",
++  "artifact_sha256": "7f358fb1aaa73dc3cfd06c798c10f6afed65ee430b622b84b90f0554dd440e62",
++  "submitted_verifier_sha256": "dad7fc79034bb61fb869a81582cae21ebade0a49474f9c590cc145586dd8a04c",
++  "author_checks": 90,
++  "author_receipt_byte_identical": true,
++  "independent_exact_assertions": 136,
++  "mandatory_corrections": [],
++  "scope": "Every finite integer r>=0; plane and sphere; smooth complete strictly positive-curvature metrics; compact-open C^r metrics/functions and C^(r+1) normalized diffeomorphisms",
++  "not_claimed": [
++    "Failure of every possible product homeomorphism",
++    "Failure at noninteger Holder or C-infinity topology",
++    "Historical priority",
++    "Human peer review"
++  ],
++  "source_pdfs_hash_verified": 3,
++  "author_mathematical_files_edited": false,
++  "report_sha256": "5873e7471e3f8151b064bc97d9d78091e2368b97aab8ccf4d2fa6fc34f9a4b6e",
++  "publication_files": [
++    "REVIEW.md",
++    "author_replay/CANDIDATE.md",
++    "author_replay/verification.json",
++    "author_replay/verify.py",
++    "independent_checks.py",
++    "independent_results.json"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30003354/provenance.json b/unsolved_math_prioritization/attempts/30003354/provenance.json
+new file mode 100644
+index 000000000..fe69e80e3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/provenance.json
+@@ -0,0 +1,41 @@
++{
++  "problem_id": 30003354,
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "branch": "dot/math-30003354",
++  "start_time_utc": "2026-09-30T06:38:05Z",
++  "research_ceiling_utc": "2026-09-30T08:38:05Z",
++  "pinned_dataset_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "base_commit": "c6975ca76f9f667f1250ba403d0e6da2aafe14d0",
++  "prior_attempt_checks": {
++    "existing_attempt_folder": false,
++    "numeric_all_state_pr_results": [],
++    "conformal_all_state_pr_results": "Only unrelated PR22, conformal primitive decomposition",
++    "remote_matching_branch_results": [],
++    "state_and_related_group_matches": false,
++    "dataset_duplicate_search": "No same-formula target found; unrelated generic parametrization records excluded",
++    "queue_before": "rank73 queued 0/5"
++  },
++  "candidate_sha256": "7f358fb1aaa73dc3cfd06c798c10f6afed65ee430b622b84b90f0554dd440e62",
++  "sources": [
++    {
++      "file": "owr2017-03.pdf",
++      "url": "https://ems.press/doi/pdf/10.4171/OWR/2017/3",
++      "sha256": "ee8f4612226d4b8b16cff97f95e286b4ed5bb1151b525e20e57d2a5f6dfb70cc"
++    },
++    {
++      "file": "banakh-belegradek.pdf",
++      "url": "https://arxiv.org/pdf/1510.07269v2",
++      "sha256": "a36e30d01b869858309158745801ad6002ddc150c5037cb0261c456e9081f3c8"
++    },
++    {
++      "file": "belegradek-hu-erratum.pdf",
++      "url": "https://link.springer.com/content/pdf/10.1007/s00208-015-1354-1.pdf",
++      "sha256": "9351194be109a1d830d76abac80374fd5d25642eb3136df8006b5da4a1ea2f7b"
++    }
++  ],
++  "novelty": "Not established; familiar endpoint mechanisms, no discovery claim pending review and broader priority audit.",
++  "independent_review": "PASS_COMPLETE_COUNTEREXAMPLE; see independent_review/REVIEW.md",
++  "author_assertions": 90,
++  "independent_assertions": 136
++}
+diff --git a/unsolved_math_prioritization/attempts/30003354/source_record.json b/unsolved_math_prioritization/attempts/30003354/source_record.json
+new file mode 100644
+index 000000000..0e11eab84
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/source_record.json
+@@ -0,0 +1,68 @@
++{
++  "id": 30003354,
++  "problem_number": "OWR-15208-008",
++  "title": "Borderline Continuity of Conformal Metric Parametrizations",
++  "statement": "For a simply connected surface $V$ equal to $\\mathbb{R}^2$ or $S^2$, does the parametrization $(u,\\phi)\\mapsto\\phi^*e^{-2u}g_\\kappa$ remain a homeomorphism in the borderline $C^{r,0}$ metric, function, and diffeomorphism topologies?",
++  "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [Mini-Workshop: Spaces and Moduli Spaces of Riemannian Metrics (2018), Oberwolfach Reports, DOI 10.4171/owr/2017/3, pp. 133--166](https://doi.org/10.4171/owr/2017/3)\n\n## Literature review (checked 2026-08-21)\n\n**Status:** partially solved\n\n**Assessment.** The decomposition map is proved to be a homeomorphism in the stated C^{r,\\alpha} settings with 0<\\alpha<1, while the borderline alpha=0 topology is explicitly left unresolved and expected to fail.\n\n**Sources checked.**\n\n- [Oberwolfach report on nonnegative surfaces](https://doi.org/10.4171/owr/2017/3)\n- [Banakh--Belegradek spaces of nonnegatively curved surfaces](https://arxiv.org/abs/1510.07269)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++  "difficulty_level_id": 3,
++  "status": "partially_solved",
++  "proposed_by": null,
++  "proposed_year": 2017,
++  "category_id": 7,
++  "set_id": 15,
++  "source_url": "https://doi.org/10.4171/owr/2017/3",
++  "source_citation": "Mini-Workshop: Spaces and Moduli Spaces of Riemannian Metrics (2018), Oberwolfach Reports, DOI 10.4171/owr/2017/3, pp. 133--166",
++  "literature_assessment": "The decomposition map is proved to be a homeomorphism in the stated C^{r,\\alpha} settings with 0<\\alpha<1, while the borderline alpha=0 topology is explicitly left unresolved and expected to fail.",
++  "literature_sources": [
++    {
++      "url": "https://doi.org/10.4171/owr/2017/3",
++      "label": "Oberwolfach report on nonnegative surfaces"
++    },
++    {
++      "url": "https://arxiv.org/abs/1510.07269",
++      "label": "Banakh--Belegradek spaces of nonnegatively curved surfaces"
++    }
++  ],
++  "literature_checked_at": "2026-08-21",
++  "tags": [
++    "owr",
++    "oberwolfach-reports",
++    "OWR-15208-008",
++    "literature-status:partially-solved",
++    "owr-year:2017"
++  ],
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-08-25T00:00:00Z",
++  "updated_at": "2026-09-16T12:06:53Z",
++  "published": true,
++  "category": {
++    "id": 7,
++    "name": "topology",
++    "display_name": "Topology",
++    "description": "Properties preserved under continuous deformations.",
++    "slug": "topology",
++    "order_index": 7,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 15,
++    "name": "oberwolfach_reports_open_problems",
++    "display_name": "Oberwolfach Reports Open Problems",
++    "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++    "slug": "oberwolfach-reports-open-problems",
++    "order_index": 15,
++    "created_at": "2026-08-25T00:00:00Z"
++  },
++  "original_statement": "For a simply connected surface V equal to the plane or the sphere, is the parametrization sending (u,\\phi) to \\phi^{*}e^{-2u}g_{\\kappa} a homeomorphism in the specified metric topologies?",
++  "clean_statement": "For a simply connected surface $V$ equal to $\\mathbb{R}^2$ or $S^2$, does the parametrization $(u,\\phi)\\mapsto\\phi^*e^{-2u}g_\\kappa$ remain a homeomorphism in the borderline $C^{r,0}$ metric, function, and diffeomorphism topologies?",
++  "statement_status": "corrected_verified",
++  "statement_verification": "The official report passage was checked and the statement was rewritten as a self-contained problem while preserving its mathematical content."
++}
+diff --git a/unsolved_math_prioritization/attempts/30003354/turns.json b/unsolved_math_prioritization/attempts/30003354/turns.json
+new file mode 100644
+index 000000000..955809221
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/turns.json
+@@ -0,0 +1,16 @@
++{
++  "problem_id": 30003354,
++  "budget": 5,
++  "substantive_proof_attempts": 1,
++  "turns": [
++    {
++      "number": 1,
++      "date": "2026-09-30",
++      "family": "Explicit endpoint coordinate perturbations with curvature control",
++      "outcome": "candidate",
++      "artifact": "CANDIDATE.md",
++      "scope": "Every finite integer r >= 0, plane and sphere, smooth complete strictly positive curvature.",
++      "independent_review": "PASS_COMPLETE_COUNTEREXAMPLE"
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30003354/verification.json b/unsolved_math_prioritization/attempts/30003354/verification.json
+new file mode 100644
+index 000000000..5216435c5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/verification.json
+@@ -0,0 +1,99 @@
++{
++  "assertions": 90,
++  "candidate_sha256": "7f358fb1aaa73dc3cfd06c798c10f6afed65ee430b622b84b90f0554dd440e62",
++  "checks": {
++    "bar_derivative_homogeneity_1_0_0": "PASS",
++    "bar_derivative_homogeneity_1_1_0": "PASS",
++    "bar_derivative_homogeneity_1_1_1": "PASS",
++    "bar_derivative_homogeneity_2_0_0": "PASS",
++    "bar_derivative_homogeneity_2_1_0": "PASS",
++    "bar_derivative_homogeneity_2_1_1": "PASS",
++    "bar_derivative_homogeneity_2_2_0": "PASS",
++    "bar_derivative_homogeneity_2_2_1": "PASS",
++    "bar_derivative_homogeneity_2_2_2": "PASS",
++    "bar_derivative_homogeneity_3_0_0": "PASS",
++    "bar_derivative_homogeneity_3_1_0": "PASS",
++    "bar_derivative_homogeneity_3_1_1": "PASS",
++    "bar_derivative_homogeneity_3_2_0": "PASS",
++    "bar_derivative_homogeneity_3_2_1": "PASS",
++    "bar_derivative_homogeneity_3_2_2": "PASS",
++    "bar_derivative_homogeneity_3_3_0": "PASS",
++    "bar_derivative_homogeneity_3_3_1": "PASS",
++    "bar_derivative_homogeneity_3_3_2": "PASS",
++    "bar_derivative_homogeneity_3_3_3": "PASS",
++    "bar_derivative_homogeneity_4_0_0": "PASS",
++    "bar_derivative_homogeneity_4_1_0": "PASS",
++    "bar_derivative_homogeneity_4_1_1": "PASS",
++    "bar_derivative_homogeneity_4_2_0": "PASS",
++    "bar_derivative_homogeneity_4_2_1": "PASS",
++    "bar_derivative_homogeneity_4_2_2": "PASS",
++    "bar_derivative_homogeneity_4_3_0": "PASS",
++    "bar_derivative_homogeneity_4_3_1": "PASS",
++    "bar_derivative_homogeneity_4_3_2": "PASS",
++    "bar_derivative_homogeneity_4_3_3": "PASS",
++    "bar_derivative_homogeneity_4_4_0": "PASS",
++    "bar_derivative_homogeneity_4_4_1": "PASS",
++    "bar_derivative_homogeneity_4_4_2": "PASS",
++    "bar_derivative_homogeneity_4_4_3": "PASS",
++    "bar_derivative_homogeneity_4_4_4": "PASS",
++    "bar_derivative_r1": "PASS",
++    "bar_derivative_r2": "PASS",
++    "bar_derivative_r3": "PASS",
++    "bar_derivative_r4": "PASS",
++    "cigar_curvature": "PASS",
++    "critical_third_derivative_homogeneity_0": "PASS",
++    "critical_third_derivative_homogeneity_1": "PASS",
++    "critical_third_derivative_homogeneity_2": "PASS",
++    "critical_third_derivative_homogeneity_3": "PASS",
++    "critical_third_derivative_no_log_0": "PASS",
++    "critical_third_derivative_no_log_1": "PASS",
++    "critical_third_derivative_no_log_2": "PASS",
++    "critical_third_derivative_no_log_3": "PASS",
++    "fixed_top_jet_r1": "PASS",
++    "fixed_top_jet_r2": "PASS",
++    "fixed_top_jet_r3": "PASS",
++    "fixed_top_jet_r4": "PASS",
++    "fixed_top_jet_r5": "PASS",
++    "fixed_top_jet_r6": "PASS",
++    "jacobian_wirtinger": "PASS",
++    "log_homogeneity_1_0": "PASS",
++    "log_homogeneity_1_1": "PASS",
++    "log_homogeneity_2_0": "PASS",
++    "log_homogeneity_2_1": "PASS",
++    "log_homogeneity_2_2": "PASS",
++    "log_homogeneity_3_0": "PASS",
++    "log_homogeneity_3_1": "PASS",
++    "log_homogeneity_3_2": "PASS",
++    "log_homogeneity_3_3": "PASS",
++    "log_homogeneity_4_0": "PASS",
++    "log_homogeneity_4_1": "PASS",
++    "log_homogeneity_4_2": "PASS",
++    "log_homogeneity_4_3": "PASS",
++    "log_homogeneity_4_4": "PASS",
++    "metric_beltrami_determinant": "PASS",
++    "metric_pullback_exact": "PASS",
++    "normalized_top_jet_r1": "PASS",
++    "normalized_top_jet_r2": "PASS",
++    "normalized_top_jet_r3": "PASS",
++    "normalized_top_jet_r4": "PASS",
++    "normalized_top_jet_r5": "PASS",
++    "normalized_top_jet_r6": "PASS",
++    "pulled_laplacian_chain_rule_0": "PASS",
++    "pulled_laplacian_chain_rule_1": "PASS",
++    "pulled_laplacian_chain_rule_2": "PASS",
++    "pulled_laplacian_chain_rule_3": "PASS",
++    "pulled_laplacian_chain_rule_4": "PASS",
++    "pulled_laplacian_chain_rule_5": "PASS",
++    "radial_twist_metric": "PASS",
++    "radial_twist_orientation": "PASS",
++    "radius_gradient_bound": "PASS",
++    "radius_hessian": "PASS",
++    "radius_hessian_determinant": "PASS",
++    "radius_laplacian": "PASS",
++    "radius_laplacian_lower_bound_difference": "PASS",
++    "round_curvature": "PASS"
++  },
++  "scope": "Exact bounded algebra, homogeneity, curvature-sign identities and jets. These do not replace the all-r estimates, completeness or uniqueness proof.",
++  "status": "PASS",
++  "sympy_version": "1.14.0"
++}
+diff --git a/unsolved_math_prioritization/attempts/30003354/verify.py b/unsolved_math_prioritization/attempts/30003354/verify.py
+new file mode 100644
+index 000000000..4fffccf96
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30003354/verify.py
+@@ -0,0 +1,77 @@
++#!/usr/bin/env python3
++"""Exact algebra/jet controls; the uniform estimates are proved in CANDIDATE.md."""
++from pathlib import Path
++from math import factorial
++import hashlib,json
++import sympy as S
++x,y,rho,eps=S.symbols('x y rho eps',real=True,positive=True)
++# Positivity assumptions on x,y only simplify radicals; identities are rational
++# and hence hold for all real x,y by polynomial continuation.
++a,b,c,d,q=S.symbols('a b c d q',real=True)
++z=x+S.I*y
++s2=x*x+y*y+rho*rho
++rad=S.sqrt(s2)
++L=S.log(s2)/2
++checks={}
++def ck(name,v):
++    assert bool(v),name
++    checks[name]='PASS'
++def zero(f):return S.simplify(S.expand(f))==0
++def euler(f):return x*S.diff(f,x)+y*S.diff(f,y)+rho*S.diff(f,rho)
++# Beltrami-to-metric algebra, without differentiability or numerical sampling.
++J=S.Matrix([[a+c,-b+d],[b+d,a-c]])
++ck('jacobian_wirtinger',zero(J.det()-(a*a+b*b-c*c-d*d)))
++muR=(a*c+b*d)/(a*a+b*b)
++muI=(a*d-b*c)/(a*a+b*b)
++M=S.Matrix([[1+muR,muI],[muI,1-muR]])
++ck('metric_pullback_exact',all(zero(v) for v in J.T*J-(a*a+b*b)*(M.T*M)))
++ck('metric_beltrami_determinant',zero((M.T*M).det()-(1-muR**2-muI**2)**2))
++Tw=S.Matrix([[1,0],[q,1]])
++ck('radial_twist_metric',Tw.T*Tw==S.Matrix([[1+q*q,q],[q,1]]))
++ck('radial_twist_orientation',Tw.det()==1)
++# Background curvature and radial correction identities.
++for name,bg,expected in [('cigar',S.log(1+x*x+y*y)/2,2/(1+x*x+y*y)),('round',S.log(1+x*x+y*y)-S.log(2),S.Integer(1))]:
++    lap=S.diff(bg,x,2)+S.diff(bg,y,2)
++    ck(name+'_curvature',zero(S.exp(2*bg)*lap-expected))
++H=S.hessian(rad,(x,y))
++ck('radius_hessian',all(zero(v) for v in H-(S.eye(2)/rad-S.Matrix([x,y])*S.Matrix([[x,y]])/rad**3)))
++ck('radius_hessian_determinant',zero(H.det()-rho**2/s2**2))
++ck('radius_laplacian',zero(S.trace(H)-(x*x+y*y+2*rho*rho)/rad**3))
++ck('radius_laplacian_lower_bound_difference',zero(S.trace(H)-1/rad-rho*rho/rad**3))
++ck('radius_gradient_bound',zero(1-S.diff(rad,x)**2-S.diff(rad,y)**2-rho*rho/s2))
++# All coordinate derivatives in these bounded degree families.
++for k in range(1,5):
++    for j in range(k+1):
++        f=S.diff(L,x,j,y,k-j)
++        ck(f'log_homogeneity_{k}_{j}',zero(euler(f)+k*f))
++for r in range(1,5):
++    w=z**(r+1)*L
++    db=(S.diff(w,x)+S.I*S.diff(w,y))/2
++    B=z**(r+2)/(2*s2)
++    ck(f'bar_derivative_r{r}',zero(db-B))
++    for k in range(r+1):
++        for j in range(k+1):
++            D=S.diff(B,x,j,y,k-j)
++            ck(f'bar_derivative_homogeneity_{r}_{k}_{j}',zero(euler(D)-(r-k)*D))
++# The top jet is exact, rather than a floating-point asymptotic.
++for r in range(1,7):
++    f=eps*x**(r+1)*S.log(x*x+rho*rho)/2
++    jet=S.diff(f,x,r+1).subs(x,0)
++    ck(f'fixed_top_jet_r{r}',zero(jet-eps*factorial(r+1)*S.log(rho)))
++    ck(f'normalized_top_jet_r{r}',zero(jet.subs(eps,-1/S.log(rho))+factorial(r+1)))
++# For r=1 the third derivatives have no logarithmic term and degree -1.
++w=z*z*L
++for j in range(4):
++    D=S.diff(w,x,j,y,3-j)
++    ck(f'critical_third_derivative_homogeneity_{j}',zero(euler(D)+D))
++    ck(f'critical_third_derivative_no_log_{j}',not S.cancel(S.expand(D)).has(S.log))
++# Chain rule for a nonlinear chart with explicit inverse, independently testing
++# both the principal coefficient and the drift coefficient.
++F=S.Matrix([x,y+x*x]);G=S.Matrix([x,y-x*x]);JF=F.jacobian([x,y]);Ji=JF.inv();A=Ji*Ji.T
++B=S.Matrix([-sum(Ji[i,k]*sum(A[j,l]*S.diff(F[k],[x,y][j],[x,y][l]) for j in range(2) for l in range(2)) for k in range(2)) for i in range(2)])
++for i,v in enumerate((x,y,x*x,x*y,y*y,x**3+y**3)):
++    LHS=sum(S.diff(v.subs({x:G[0],y:G[1]},simultaneous=True),u,2) for u in (x,y)).subs({x:F[0],y:F[1]},simultaneous=True)
++    RHS=sum(A[j,k]*S.diff(v,[x,y][j],[x,y][k]) for j in range(2) for k in range(2))+sum(B[j]*S.diff(v,[x,y][j]) for j in range(2))
++    ck(f'pulled_laplacian_chain_rule_{i}',zero(LHS-RHS))
++result={'status':'PASS','assertions':len(checks),'sympy_version':S.__version__,'candidate_sha256':hashlib.sha256(Path(__file__).with_name('CANDIDATE.md').read_bytes()).hexdigest(),'scope':'Exact bounded algebra, homogeneity, curvature-sign identities and jets. These do not replace the all-r estimates, completeness or uniqueness proof.','checks':checks}
++print(json.dumps(result,indent=2,sort_keys=True))
