@@ -1,0 +1,23 @@
+# 5100012 / k203,b: attributed centered-pedal research note
+
+Published and tracked; actual original-HEAD-safe merge and factual acceptance pending.
+
+Research note: [10.5281/zenodo.23421134](https://doi.org/10.5281/zenodo.23421134). Alec Kriebel, ORCID0009-0001-9320-500X. Extensive AI use; unrefereed; no conventional human peer review or proof-assistant certification. No outside person was contacted on behalf of this research.
+
+For a>b>0 and 0<lambda<b², fix the outer ellipse and its proper confocal elliptical caustic. For physical orbits of least N>=3, N odd or divisible by four, the signed original-trajectory area times signed shoelace area of perpendicular feet from the fixed center O to the original complete supporting side lines is phase independent. Every admitted coprime primitive star winding and both directions are included.
+
+RGK arxiv2004.12497v11 Table3p6 and journal DOI10.1007/s40598-021-00174-y Table3p346 report k203,b. Their table does not literally print least/primitive; least physical period is a necessary explicit interpretation. An exact physical-six family duplicated to listed12 disproves unrestricted list-length wording. No moving-M, hyperbolic, nonconfocal, collapsed, clipped-segment or unweighted filled-star extension is asserted. Absolute values of the signed shoelace areas also have constant product.
+
+Alper Ferudun, Center-Pedal Area Products in Elliptic Billiards, DOI10.5281/zenodo.23085904, proves the same full qualified theorem. Its trace telescope and standard Jacobi identities imply the shifted-trace normalization and explicit C_T coefficient here. His later DOI10.5281/zenodo.23400541 also uses adjacent-foot pole cancellation. Stachel canonical coordinates, standard Jacobi facts, and established meromorphic cancellation/compactness methods (including Akopyan–Schwartz–Tabachnikov and Chavez-Caliz) are credited. No theorem, formula or method novelty, firstness, certified independent discovery or literal simultaneity is claimed.
+
+The complete current Jacobi/direct-foot/two-pole proof is indexed in CURRENT_PROOF.md. Original PROOF.md, metadata, source manifests, raw verifiers, all original independent_review records, checkpoint and original log remain byte-exact historical provenance. CURRENT_STATUS.json and CURRENT_SOURCE_AND_PRIORITY.json govern current attribution and lifecycle. All20 originals, including the five replaced presentation files, remain byte-exact in [the custody archive](../../../draft_pr_publication_program_20260930/audits/pr204_5100012/original_submitted_head/). Manifest wrappers explicitly direct historical hashes there. SHA256SUMS authenticates this current native presentation.
+
+Ordinary assertion-enabled historical replays reproduce37393 exact and4092 numeric author checks, and13712 exact plus348 reviewer diagnostics. Under optimization the original scripts enforce zero correctness assertions and accept false identities. They remain historical provenance, not supported live entrypoints. Use the sealed portable explicit-exception runner and repaired controls; its finite exact/noninterval results do not prove the universal theorem. The original PROOF.md hash binding is legacy provenance only.
+
+Supported entrypoint: [portable driver](../../../draft_pr_publication_program_20260930/audits/pr204_5100012/publication_package_v1/portable_verification_01/verify_portable.py); see its packaged README. From the final package root use `python3 -B portable_verification_01/verify_portable.py --materials materials --work-dir verification-work --output verification-receipt.json`. No dependency installation is performed.
+
+Original metadata/log reports one substantive author turn and original QUEUE1/5; actual model/reasoning effort and historical runtime flags are unknown. Two audit families verified the universal Jacobi mechanism after exposure. Independent direct geometry proves all N3/N4 but its general route remains partial; independent physical evidence covers63 shape/winding configurations and378 phase/direction orbits. Root’s pre-candidate flag route is uncompleted and supplies no additional proof.
+
+PR204 server creation is 2026-10-01T05:28:14Z. Ferudun centered-record creation is 2026-10-01T15:39:54.821511Z (registration15:39:55Z). These are object-record timestamps, not discovery times, earliest historical visibility or proof of independence. Shared203/204 checkpoint work was author input, not independent review. Current manuscript/audits are dated16October2026, not backdated.
+
+[Reviewed final package](../../../draft_pr_publication_program_20260930/audits/pr204_5100012/publication_package_v1/). Proposed constructor byte postimages themselves perform no publication, merge or factual acceptance.
