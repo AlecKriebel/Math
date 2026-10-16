@@ -1,0 +1,104 @@
+{
+  "utc": "2026-10-16T03:59:14.694911+00:00",
+  "status": "REPRODUCED_ACTIONABLE_P3",
+  "candidate_or_original_modified": false,
+  "cause": "fresh_output compares lexical pathlib containment; case-folding aliases share an existing parent inode but evade the KIT root comparison",
+  "actual_filesystem_case_insensitive": true,
+  "commands": [
+    {
+      "mode": "normal",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/review1097-case-alias-vunriiwe/CLEAN/case-alias-normal.zip"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"members\": 103, \"status\": \"PASS\"}\n",
+      "stderr": "",
+      "fresh_output_lexically_outside_kit": true,
+      "actual_output_created_inside_protected_kit": true,
+      "same_existing_parent_inode": true,
+      "output_is_directory": false,
+      "created_file_hashes": {
+        "case-alias-normal.zip": "934665a0c3426fd3bc013c6698754d913c73a002cbd4f114596991b7afec19ce"
+      }
+    },
+    {
+      "mode": "normal",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "scripts/rebuild_pdf.py",
+        "--out-dir",
+        "/private/tmp/review1097-case-alias-vunriiwe/CLEAN/case-pdf-normal"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"byte_identity_scope\": \"Observed with the stated compiler/runtime; other TeX versions may differ\", \"matches_distributed_pdf\": true, \"pdf_sha256\": \"6ae840e0b2e1df73b204c2c293c3fbcfa39206654e775a75261515c693a6187d\", \"status\": \"PASS\"}\n",
+      "stderr": "",
+      "fresh_output_lexically_outside_kit": true,
+      "actual_output_created_inside_protected_kit": true,
+      "same_existing_parent_inode": true,
+      "output_is_directory": true,
+      "created_file_hashes": {
+        "case-pdf-normal/compile.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "case-pdf-normal/paper.pdf": "6ae840e0b2e1df73b204c2c293c3fbcfa39206654e775a75261515c693a6187d",
+        "case-pdf-normal/paper.out": "344b3f57df33f143e2ff632ff86558e2f3474e12ac7cf9270a1316c128966e6b",
+        "case-pdf-normal/paper.tex": "daaacbeb3b198a8c13208663a6e49fc417a5b7ec2e7a0bfa62a9a87e42ce7f5f",
+        "case-pdf-normal/compile.stdout.txt": "06a828c6f06825a14d613aa05440e68ed7a70ba018efc5bbfeec50b20f284f9a",
+        "case-pdf-normal/paper.aux": "dfd0ed6b0eb5fb75d93307101e2b370afaf2f1d8cc0d950aa401868405828019",
+        "case-pdf-normal/paper.log": "9b926b10d693dc4b2e7efe6e64de394c2360f3aaf28fbd90f270b1edbd589e1d"
+      }
+    },
+    {
+      "mode": "optimized",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/review1097-case-alias-vunriiwe/CLEAN/case-alias-optimized.zip"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"members\": 103, \"status\": \"PASS\"}\n",
+      "stderr": "",
+      "fresh_output_lexically_outside_kit": true,
+      "actual_output_created_inside_protected_kit": true,
+      "same_existing_parent_inode": true,
+      "output_is_directory": false,
+      "created_file_hashes": {
+        "case-alias-optimized.zip": "934665a0c3426fd3bc013c6698754d913c73a002cbd4f114596991b7afec19ce"
+      }
+    },
+    {
+      "mode": "optimized",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "scripts/rebuild_pdf.py",
+        "--out-dir",
+        "/private/tmp/review1097-case-alias-vunriiwe/CLEAN/case-pdf-optimized"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"byte_identity_scope\": \"Observed with the stated compiler/runtime; other TeX versions may differ\", \"matches_distributed_pdf\": true, \"pdf_sha256\": \"6ae840e0b2e1df73b204c2c293c3fbcfa39206654e775a75261515c693a6187d\", \"status\": \"PASS\"}\n",
+      "stderr": "",
+      "fresh_output_lexically_outside_kit": true,
+      "actual_output_created_inside_protected_kit": true,
+      "same_existing_parent_inode": true,
+      "output_is_directory": true,
+      "created_file_hashes": {
+        "case-pdf-optimized/compile.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "case-pdf-optimized/paper.pdf": "6ae840e0b2e1df73b204c2c293c3fbcfa39206654e775a75261515c693a6187d",
+        "case-pdf-optimized/paper.out": "344b3f57df33f143e2ff632ff86558e2f3474e12ac7cf9270a1316c128966e6b",
+        "case-pdf-optimized/paper.tex": "daaacbeb3b198a8c13208663a6e49fc417a5b7ec2e7a0bfa62a9a87e42ce7f5f",
+        "case-pdf-optimized/compile.stdout.txt": "5c2c73bcfcbb26a7e72c2cac2842611a2e89245852be1826a0473c52350a09ac",
+        "case-pdf-optimized/paper.aux": "dfd0ed6b0eb5fb75d93307101e2b370afaf2f1d8cc0d950aa401868405828019",
+        "case-pdf-optimized/paper.log": "9b926b10d693dc4b2e7efe6e64de394c2360f3aaf28fbd90f270b1edbd589e1d"
+      }
+    }
+  ],
+  "temporary_outputs_removed": true
+}

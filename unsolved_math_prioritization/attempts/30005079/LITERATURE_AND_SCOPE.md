@@ -1,3 +1,10 @@
+> Current-context header added 2026-10-16T06:01:01.482913+00:00. The body below is the unchanged
+> historical7October2026 literature/scope snapshot. For the current paper,
+> see [note.tex](note.tex) and [the PDF](rank-two-fano-note.pdf); for current
+> Li–Li and Miao–Wang January2024 chronology and remaining priority limits,
+> see [FINAL_PRIORITY_DISPOSITION.md](verification/root_evidence/FINAL_PRIORITY_DISPOSITION.md).
+> The original unprefixed file is preserved in verification/source/.
+
 # Source alignment and scope
 
 Checked 2026-10-07. Problem 30005079 / OWR-10252925-004.

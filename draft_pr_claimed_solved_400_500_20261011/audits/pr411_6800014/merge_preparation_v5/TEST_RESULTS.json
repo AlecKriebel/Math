@@ -1,0 +1,1181 @@
+{
+  "format": "pr411-v5-compact-offline-control-summary-v1",
+  "at_utc": "2026-10-13T14:22:06.256904+00:00",
+  "result": "PASS",
+  "source_sha256": "98fb660fd0f2e70b17b195fb2209d3fd53da1c12fd5b8fd0b6f9eb3e5cd0c0aa",
+  "normal_controls": 66,
+  "optimized_controls": 66,
+  "actual_isolated_CLI_controls": 14,
+  "changed_original_top_level_nodes": [
+    "Journal",
+    "main"
+  ],
+  "unchanged_original_top_level_nodes": 82,
+  "normal_case_outcomes": [
+    {
+      "actual_accept": true,
+      "control": "valid_readonly_descriptor",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "one_durable_continuation_originals_preserved",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": false,
+      "control": "ordinary_lock_bypass_rejected",
+      "detail": "Stop: exclusive phase/head intent already exists; GET-only reconcile, never retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "double_continuation_rejected",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "stopped_run_reuse_rejected",
+      "detail": "Stop: continuation cannot reuse the stopped run",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "different_root_rejected",
+      "detail": "Stop: continuation must use the exact original journal root",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_expected_head",
+      "detail": "Stop: continuation not bound to a merge plan",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_phase",
+      "detail": "Stop: continuation not bound to a merge plan",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_main_head",
+      "detail": "Stop: continuation changed original source/head/main/registration/confirmed phase bindings",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_source_head",
+      "detail": "Stop: continuation changed original source/head/main/registration/confirmed phase bindings",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_approved_map_sha256",
+      "detail": "Stop: continuation changed original source/head/main/registration/confirmed phase bindings",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_run_id",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_phase",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_head",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_plan_sha256",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_extra",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_remote_intent",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_ack",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_extra_exclusive",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_empty_line",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_torn",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_head",
+      "detail": "Stop: original journal is not a sole canonical zero-write exclusive event",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_plan_sha256",
+      "detail": "Stop: original journal is not a sole canonical zero-write exclusive event",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_at_utc",
+      "detail": "Stop: original exclusive event is in the future",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_result",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_error_type",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_mutation_resume_permitted",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_phase",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_plan_drift",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "acceptance_original_mutation_intents",
+      "detail": "Stop: root zero-write acceptance does not join the actual original custody",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "acceptance_original_journal_events",
+      "detail": "Stop: root zero-write acceptance does not join the actual original custody",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "acceptance_original_acknowledgments",
+      "detail": "Stop: root zero-write acceptance does not join the actual original custody",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "acceptance_pin_divergence",
+      "detail": "Stop: root zero-write acceptance does not join the actual original custody",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "completed_CLI_returncode",
+      "detail": "Stop: original completed CLI did not confirm the pre-intent guard STOP",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "completed_CLI_stderr_base64",
+      "detail": "Stop: original completed CLI did not confirm the pre-intent guard STOP",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "completed_CLI_wrong_run",
+      "detail": "Stop: completed CLI does not bind the original exclusive run/root/plan",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "completed_CLI_wrong_root",
+      "detail": "Stop: completed CLI does not bind the original exclusive run/root/plan",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "missing_original_STOP",
+      "detail": "Stop: cannot open pinned input without symlinks",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_symlink",
+      "detail": "Stop: cannot open pinned input without symlinks",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "continuation_directory_symlink",
+      "detail": "NotADirectoryError: [Errno 20] Not a directory: 'continuations'",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "existing_torn_guard_consumed",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "existing_symlink_guard_consumed",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "late_journal_drift",
+      "detail": "Stop: local input hash differs from caller binding",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "late_STOP_drift",
+      "detail": "Stop: local input hash differs from caller binding",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "late_guard_drift",
+      "detail": "Stop: local input hash differs from caller binding",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "late_plan_drift",
+      "detail": "Stop: continuation plan drift before remote intent",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": true,
+      "control": "concurrent_successors_exactly_one",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "unchanged_execute_one_synthetic_merge",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": false,
+      "control": "new_preintent_STOP_guard_stays_consumed",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "unknown_remote_write_never_continues",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": true,
+      "control": "fresh_Sheet_deadline_still_mandatory",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "canonical_approval_still_mandatory",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "native_claimed_gate_still_mandatory",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "same_open_Journal_response_loss_never_retries",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "same_open_Journal_eight_way_remote_fence",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "durable_remote_fence_consumed_before_failed_append",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": false,
+      "control": "continuation_wrong_remote_action_route",
+      "detail": "Stop: continuation remote intent is not the exact ordinary merge action",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "continuation_wrong_remote_action_body",
+      "detail": "Stop: continuation remote intent is not the exact ordinary merge action",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "continuation_wrong_remote_action_expected",
+      "detail": "Stop: continuation remote intent is not the exact ordinary merge action",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": true,
+      "control": "closed_Journal_no_relative_open_or_remote_intent",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "same_open_Journal_preintent_terminal_STOP_never_resumes",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_empty",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_torn",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_symlink",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_fifo",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_directory",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    }
+  ],
+  "optimized_case_outcomes": [
+    {
+      "actual_accept": true,
+      "control": "valid_readonly_descriptor",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "one_durable_continuation_originals_preserved",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": false,
+      "control": "ordinary_lock_bypass_rejected",
+      "detail": "Stop: exclusive phase/head intent already exists; GET-only reconcile, never retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "double_continuation_rejected",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "stopped_run_reuse_rejected",
+      "detail": "Stop: continuation cannot reuse the stopped run",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "different_root_rejected",
+      "detail": "Stop: continuation must use the exact original journal root",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_expected_head",
+      "detail": "Stop: continuation not bound to a merge plan",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_phase",
+      "detail": "Stop: continuation not bound to a merge plan",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_main_head",
+      "detail": "Stop: continuation changed original source/head/main/registration/confirmed phase bindings",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_source_head",
+      "detail": "Stop: continuation changed original source/head/main/registration/confirmed phase bindings",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "new_plan_drift_approved_map_sha256",
+      "detail": "Stop: continuation changed original source/head/main/registration/confirmed phase bindings",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_run_id",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_phase",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_head",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_plan_sha256",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_claim_extra",
+      "detail": "Stop: original exclusive claim/run/head/plan differs",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_remote_intent",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_ack",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_extra_exclusive",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_empty_line",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_torn",
+      "detail": "Stop: original journal torn or has any additional event; no retry",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_head",
+      "detail": "Stop: original journal is not a sole canonical zero-write exclusive event",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_plan_sha256",
+      "detail": "Stop: original journal is not a sole canonical zero-write exclusive event",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_at_utc",
+      "detail": "Stop: original exclusive event is in the future",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_result",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_error_type",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_mutation_resume_permitted",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_phase",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "STOP_plan_drift",
+      "detail": "Stop: original terminal STOP/plan differs; no intent-free continuation",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "acceptance_original_mutation_intents",
+      "detail": "Stop: root zero-write acceptance does not join the actual original custody",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "acceptance_original_journal_events",
+      "detail": "Stop: root zero-write acceptance does not join the actual original custody",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "acceptance_original_acknowledgments",
+      "detail": "Stop: root zero-write acceptance does not join the actual original custody",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "acceptance_pin_divergence",
+      "detail": "Stop: root zero-write acceptance does not join the actual original custody",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "completed_CLI_returncode",
+      "detail": "Stop: original completed CLI did not confirm the pre-intent guard STOP",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "completed_CLI_stderr_base64",
+      "detail": "Stop: original completed CLI did not confirm the pre-intent guard STOP",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "completed_CLI_wrong_run",
+      "detail": "Stop: completed CLI does not bind the original exclusive run/root/plan",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "completed_CLI_wrong_root",
+      "detail": "Stop: completed CLI does not bind the original exclusive run/root/plan",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "missing_original_STOP",
+      "detail": "Stop: cannot open pinned input without symlinks",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "original_journal_symlink",
+      "detail": "Stop: cannot open pinned input without symlinks",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "continuation_directory_symlink",
+      "detail": "NotADirectoryError: [Errno 20] Not a directory: 'continuations'",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "existing_torn_guard_consumed",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "existing_symlink_guard_consumed",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "late_journal_drift",
+      "detail": "Stop: local input hash differs from caller binding",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "late_STOP_drift",
+      "detail": "Stop: local input hash differs from caller binding",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "late_guard_drift",
+      "detail": "Stop: local input hash differs from caller binding",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "late_plan_drift",
+      "detail": "Stop: continuation plan drift before remote intent",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": true,
+      "control": "concurrent_successors_exactly_one",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "unchanged_execute_one_synthetic_merge",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": false,
+      "control": "new_preintent_STOP_guard_stays_consumed",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "unknown_remote_write_never_continues",
+      "detail": "Stop: the one merge continuation guard is already consumed; no further attempt",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": true,
+      "control": "fresh_Sheet_deadline_still_mandatory",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "canonical_approval_still_mandatory",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "native_claimed_gate_still_mandatory",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "same_open_Journal_response_loss_never_retries",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "same_open_Journal_eight_way_remote_fence",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "durable_remote_fence_consumed_before_failed_append",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": false,
+      "control": "continuation_wrong_remote_action_route",
+      "detail": "Stop: continuation remote intent is not the exact ordinary merge action",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "continuation_wrong_remote_action_body",
+      "detail": "Stop: continuation remote intent is not the exact ordinary merge action",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": false,
+      "control": "continuation_wrong_remote_action_expected",
+      "detail": "Stop: continuation remote intent is not the exact ordinary merge action",
+      "expected_accept": false
+    },
+    {
+      "actual_accept": true,
+      "control": "closed_Journal_no_relative_open_or_remote_intent",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "same_open_Journal_preintent_terminal_STOP_never_resumes",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_empty",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_torn",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_symlink",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_fifo",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    },
+    {
+      "actual_accept": true,
+      "control": "any_terminal_receipt_presence_directory",
+      "detail": "expected boundary completed",
+      "expected_accept": true
+    }
+  ],
+  "CLI_case_outcomes": [
+    {
+      "control": "plan",
+      "optimized": false,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 0,
+      "main_call_returncodes": [
+        0
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "f6b849dfd5ff277ca5bd27943c8bc4e662d1a342f81a60617e47c1831a002427",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "0634d07cf72f01d390dbdd03e8fca46cf26c85cd6e76e9cb325d9f2c3bee4313",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/normal_plan.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/normal_plan.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "apply",
+      "optimized": false,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 1,
+      "main_call_returncodes": [
+        0
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "1f0fc0ff8cc41f7bd902b20a99ebb7f73548be368ada45d91b0700231c7fae1e",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "b26ad9c83bc2d7b42ed3bf46013e08693644ca92c2ef0dde4c33019b40142eeb",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/normal_apply.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/normal_apply.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "badapproval",
+      "optimized": false,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 0,
+      "main_call_returncodes": [
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "6b220cdbf1a44edb955e7df7a4aef954ce78c2a0578c384074325cfc36c3cdb6"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "27e92f948e11d432070f21bd55b40e07a5728c04d791467e27a9593e67d8e48d",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/normal_badapproval.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/normal_badapproval.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "dirty",
+      "optimized": false,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 0,
+      "main_call_returncodes": [
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "90fa046d2409313207b938ce6d7e623df85a00d7eaefcc4fe9cdb70262effba3"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "5bccdc8aba5b8eadc880ddf1c2d75fd474c0ea5b8902cf5e8812d88275974a18",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/normal_dirty.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/normal_dirty.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "double",
+      "optimized": false,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 1,
+      "main_call_returncodes": [
+        0,
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "2b897229648c59f3b904cf9e04af52e13807eacafc0f379790d5f6238747d50f",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "86388d24e43fb86a668bf3e50ee5dbc7e85f50b8e98cc95ac0dd1e30d1d147b7"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "54a920192b1260af5a41e2388826b11e584742298625c2ab0f354acb9ca36ce6",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/normal_double.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/normal_double.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "unknown",
+      "optimized": false,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 1,
+      "main_call_returncodes": [
+        2,
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "099e7ca566f0c3dc0d85f5cf8eaa1cfb75d701a57e5ac998f1e9487de23b12db"
+        },
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "86388d24e43fb86a668bf3e50ee5dbc7e85f50b8e98cc95ac0dd1e30d1d147b7"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "58e3e9a6912afe0d1782e2e98d23b461bd7294246f19c5de1f1443bb82184edb",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/normal_unknown.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/normal_unknown.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "stale",
+      "optimized": false,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 0,
+      "main_call_returncodes": [
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "318ba11b9e3a7d3a35d561fbffd20c5fe1d6ebc7245040a5bdb4873f2e16bb60"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "74f77825bf16dfe9f79996655f86adcd7dc8a9fbc14f2578f57dc8c4e2a6cf4d",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/normal_stale.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/normal_stale.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "plan",
+      "optimized": true,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 0,
+      "main_call_returncodes": [
+        0
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "affeae145cea954ea52193b612e429995724afdf8ba13effdfd6f8fe148e65fe",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "b508b75718cceec29d3e36d68c2afa7341ee1c5a0dfb057b054b0e2624316f22",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_plan.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_plan.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "apply",
+      "optimized": true,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 1,
+      "main_call_returncodes": [
+        0
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "0b0d969f2eba19f25941e4d15c984e03a50029e47faa266d47cfbca57915c64b",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "2b1936b57dfc8bda4cba2a9dbf801999fe2e0c84f35a6c9f3a53bf4f155ba025",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_apply.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_apply.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "badapproval",
+      "optimized": true,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 0,
+      "main_call_returncodes": [
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "6b220cdbf1a44edb955e7df7a4aef954ce78c2a0578c384074325cfc36c3cdb6"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "d6922b0e75ebe989e0535161cceaf6e89eb234cc11f7d62b03285e2f960b1269",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_badapproval.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_badapproval.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "dirty",
+      "optimized": true,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 0,
+      "main_call_returncodes": [
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "90fa046d2409313207b938ce6d7e623df85a00d7eaefcc4fe9cdb70262effba3"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "6447ae8454e508d05bfd22628b53cbc6f0bbd294db1bce619167cddcdd5331e2",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_dirty.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_dirty.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "double",
+      "optimized": true,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 1,
+      "main_call_returncodes": [
+        0,
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "13d480a2a7a7798042bd646634ab71def9629b9a4760c33c8c6042147ff38fc7",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "86388d24e43fb86a668bf3e50ee5dbc7e85f50b8e98cc95ac0dd1e30d1d147b7"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "15cfa9a8edc7efe21ab658516ebf188be1a5e5cdb9f1ca721442419c0a5cd880",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_double.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_double.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "unknown",
+      "optimized": true,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 1,
+      "main_call_returncodes": [
+        2,
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "099e7ca566f0c3dc0d85f5cf8eaa1cfb75d701a57e5ac998f1e9487de23b12db"
+        },
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "86388d24e43fb86a668bf3e50ee5dbc7e85f50b8e98cc95ac0dd1e30d1d147b7"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "9c34a60ec2a03bc7e69aa732d673bbf4bee1b616169d0d7707fa0751a37c3a6b",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_unknown.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_unknown.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    },
+    {
+      "control": "stale",
+      "optimized": true,
+      "result": "PASS_ISOLATED_SYNTHETIC_CLI",
+      "fake_API_writes": 0,
+      "main_call_returncodes": [
+        2
+      ],
+      "main_call_capture_sha256": [
+        {
+          "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "318ba11b9e3a7d3a35d561fbffd20c5fe1d6ebc7245040a5bdb4873f2e16bb60"
+        }
+      ],
+      "actual_subprocess_returncode": 0,
+      "actual_subprocess_stdout_sha256": "22d8876e54cfbbac87c2eac948cfea226e0e17bc74f0a04676284ba1551a1d66",
+      "actual_subprocess_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_stdout_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_stale.stdout",
+      "private_stderr_path": "private_sources/merge_preparation_v5/cli_terminal/optimized_stale.stderr",
+      "native_requests": 0,
+      "native_mutations": 0,
+      "native_success_certified": false
+    }
+  ],
+  "private_raw_results": {
+    "normal": {
+      "path": "private_sources/merge_preparation_v5/NORMAL_TERMINAL_FIFO_STDOUT.json",
+      "bytes": 14020,
+      "sha256": "56888a519ed313814d2b894003a8d648315365d31089d7ab7a61eb37f906f8e0",
+      "result_json_path": "private_sources/merge_preparation_v5/normal_terminal_fifo/RESULT.json",
+      "result_json_sha256": "56888a519ed313814d2b894003a8d648315365d31089d7ab7a61eb37f906f8e0"
+    },
+    "optimized": {
+      "path": "private_sources/merge_preparation_v5/OPTIMIZED_TERMINAL_FIFO_STDOUT.json",
+      "bytes": 14020,
+      "sha256": "3df7783222e5f9c02f93029681a6f6f61aca7944164f0b1061bc38e34e7571a7",
+      "result_json_path": "private_sources/merge_preparation_v5/optimized_terminal_fifo/RESULT.json",
+      "result_json_sha256": "3df7783222e5f9c02f93029681a6f6f61aca7944164f0b1061bc38e34e7571a7"
+    },
+    "isolated_CLI": {
+      "path": "private_sources/merge_preparation_v5/CLI_TERMINAL_STDOUT.json",
+      "bytes": 9346052,
+      "sha256": "4e54519b42449a9224f2fb2673dda44773c6956f43da8d201fe2b58428b69865",
+      "result_json_path": "private_sources/merge_preparation_v5/cli_terminal/RESULT.json",
+      "result_json_sha256": "4e54519b42449a9224f2fb2673dda44773c6956f43da8d201fe2b58428b69865"
+    }
+  },
+  "native_requests": 0,
+  "native_mutations": 0,
+  "native_success_certified": false,
+  "boundary": "Compact outcomes and cryptographic custody references only. Raw stdout/stderr, original ADMIN JSON, fixture plans/QUEUE, and synthetic receipt data remain private. Fake API/prepare/readbacks are explicit assumptions, not native production evidence."
+}

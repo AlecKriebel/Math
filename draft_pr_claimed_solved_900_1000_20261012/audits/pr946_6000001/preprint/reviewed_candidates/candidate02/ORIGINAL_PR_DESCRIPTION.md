@@ -1,0 +1,15 @@
+## Accepted scope
+
+Publishes the unchanged complete global proper statistical-embedding proof and two full independent AI audits for problem 6000001. Scoped status: `claimed_solved`, 4/5 author turns. Smooth positive-definite boundaryless statistical manifolds with both specified dual connections torsion-free embed into a positive-Hessian open domain in dimension binomial(2n+4,3). Ambient convexity, completeness, global dual coordinates, finite probability models, optimal dimension, novelty and journal acceptance are not claimed. AI-assisted and unrefereed; independent AI review is not human peer review or formal certification.
+
+Includes only authored proof/audits/acceptance, replay scripts and public source-verification metadata. The existing QUEUE file changes only this problem's Status, Turns and Findings; all other bytes are preserved.
+
+## External verification anchors
+
+- PUBLIC_MANIFEST.json SHA-256: `29cb50b07af6a65b633516b5d86eed1dae93d57cf2abfb264b18eb9555a29903`
+- verify_publication.py SHA-256: `7b0c100d43d1296afa01279476688391bc35a2291ea5858915b70ef2c1810625`
+- mutation_tests.py SHA-256: `ea39250778445149237fb6fd03581f21eff7059d7cd71895fa5cb7874a8e0b64`
+
+Authenticate these external pins before running downloaded scripts. Finite controls and hash checks do not prove the global theorem. See attempts/6000001/README.md for reproduction and evidence boundaries.
+
+Draft only. Exact-head remote byte verification, downloaded replay and hosted-check inspection are being completed; no hosted-CI pass is claimed.

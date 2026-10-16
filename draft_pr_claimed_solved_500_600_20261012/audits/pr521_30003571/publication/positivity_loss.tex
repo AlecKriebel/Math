@@ -1,0 +1,272 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={Loss of total-space positivity for the normalized relative Kahler-Ricci flow},pdfauthor={Alec Kriebel},pdfsubject={Unrefereed AI-assisted mathematical research note},pdfkeywords={relative Kahler-Ricci flow; positivity; projective bundles; counterexample}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\PP}{\mathbf P}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\MA}{\operatorname{MA}}
+\newcommand{\ddbar}{\partial\bar\partial}
+\title{Loss of total-space positivity for the normalized relative K\"ahler--Ricci flow}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{12 October 2026 \quad (version 1.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a negative answer to the total-space positivity-preservation question
+for the relative K\"ahler--Ricci flow defined by Naumann on $\OO_E(r)$.
+For the ample rank-two bundle $E=\OO_{\PP^1}(1)\oplus\OO_{\PP^1}(1)$,
+we construct a smooth strictly positive initial metric on
+$\OO_E(2)\simeq\OO_{\PP^1\times\PP^1}(2,2)$.
+For the defining flow with probability-normalized fiber measures, its horizontal
+curvature at one point is exactly
+$1/96-(1-e^{-2t})/24$, hence equals $-1/96$ at $t=(\log2)/2$.
+The argument uses the exact evolution of a second base derivative along a
+stationary central fiber and an explicit global positivity certificate.
+\end{abstract}
+
+\section{Question and statement}
+Naumann's report \cite{O} ends on p.~2443 with the question of preserving
+positivity on the total space when a positive metric on $\OO_E(1)$ is evolved
+through its $r$th power. The question remains explicit in \cite[\S3.3]{N}.
+We answer it for the flow actually defined in \cite[(13)]{N}.
+The flow's construction itself was already given in those sources.
+The older report abbreviates the denominator without a time subscript;
+we use the evolving measure explicit in the published defining equation.
+
+Let $f:X=\PP(E^*)\to S$ use the convention $f_*\OO_E(1)=E$.
+For a metric $e^{-\phi}$ on $L=\OO_E(r)$, the isomorphism
+$K_{X/S}^{-1}=L\otimes f^*(\det E)^{-1}$ identifies its fiber restrictions
+with anticanonical densities after a determinant frame is chosen. Define
+\begin{equation}\label{flow}
+ \partial_t\phi_t=\log\frac{\MA(\phi_t)}{\mu_{\phi_t}},\qquad
+ \mu_\phi=\frac{e^{-\phi}\,dA_z}{I(s)},\quad
+ I(s)=\int_{\PP^1}e^{-\phi(s,z)}\,dA_z.
+\end{equation}
+Here the fiber dimension in the example is one, and $\MA$ is curvature volume
+divided by its fixed total mass. The density notation uses compatible
+anticanonical frames; it is not the integral of a globally defined scalar
+function against an arbitrarily chosen background area form. A determinant
+frame change cancels from $\mu_\phi$. Addition of a base function changes
+neither probability measure. In local coordinates, with $g=\phi_{z\bar z}>0$,
+\begin{equation}\label{scalar}
+ \partial_t\phi=\log g+\phi+\log I+C,
+\end{equation}
+where $C$ is a fixed constant determined by the area convention and the
+curvature mass. In particular the reaction coefficient for this weight is one.
+Omitting the fixed mass normalization in the report changes only a function
+of time in the solution and leaves its curvature unchanged.
+
+\begin{theorem}\label{thm}
+For $S=\PP^1$ and $E=\OO_S(1)\oplus\OO_S(1)$, there is a smooth Hermitian
+metric $e^{-\phi_0}$ on $L=\OO_E(2)$ with strictly positive curvature on the
+compact total space $X$, such that its solution of \eqref{flow} satisfies
+\begin{equation}\label{negative}
+ (\phi_t)_{s\bar s}(0,0)=\frac1{96}-\frac{1-e^{-2t}}{24}.
+\end{equation}
+At $t_*=(\log2)/2$ this coefficient is $-1/96$. Fiberwise curvature remains
+positive. The positive square-root metric on $\OO_E(1)$ gives admissible
+initial data for the source's question.
+\end{theorem}
+
+We use the finite-time existence and smoothness statement of
+\cite[Theorem~5]{N}, including smoothness on $X\times[0,\infty)$.
+Its proof reduces the fiberwise flow to the normalized anticanonical
+K\"ahler--Ricci flow; see also \cite{B}. No regularity or convergence of an
+infinite-time limit in base directions is needed here.
+Uniqueness can be checked directly: for the difference $v$ of two solutions,
+$|\log I(\phi)-\log I(\widetilde\phi)|\leq\|v\|_{C^0}$ on each fiber.
+At a fiber maximum of $v$ the logarithmic Hessian difference is nonpositive.
+Applying the maximum principle to $v$ and $-v$ gives
+an upper Dini derivative bound $D^+\|v\|_{C^0}\leq2\|v\|_{C^0}$.
+Gr\"onwall's inequality proves uniqueness for common initial data and
+therefore preservation of lifted symmetries.
+
+\section{A globally positive initial metric}
+Write $E=\OO_S(1)\otimes\mathbf C^2$. Then
+$X\simeq\PP^1_s\times\PP^1_z$ and
+$\OO_E(1)=\OO(1,1)$, so $E$ is ample and $L=\OO(2,2)$.
+Set
+\[
+ \epsilon=\frac1{96},\qquad\delta=\frac14,\qquad
+ u=|s|^2,\quad v=|z|^2,\quad p=\frac{u}{1+u},\quad x=\frac{v}{1+v}.
+\]
+In the finite chart take
+\begin{equation}\label{initial}
+ \phi_0=2\log(1+u)+\frac{2-\epsilon}{1+u}
+       +2\log(1+v)+\delta\frac{u}{1+u}\left(\frac{v}{1+v}\right)^2.
+\end{equation}
+The logarithms are standard weights on $\OO(2,2)$ and the remaining terms
+are global smooth functions. Explicitly, under $w=1/s$ subtract the
+transition weight $2\log|s|^2$. The base terms become
+$2\log(1+|w|^2)+(2-\epsilon)|w|^2/(1+|w|^2)$, with
+$p=(1+|w|^2)^{-1}$. Under $\zeta=1/z$ subtract $2\log|z|^2$;
+the fiber logarithm becomes $2\log(1+|\zeta|^2)$ and
+$x^2=(1+|\zeta|^2)^{-2}$. These formulas also show smoothness in the joint
+infinity chart.
+
+In product Fubini--Study unit frames the Hessian diagonal coefficients and
+squared mixed modulus are
+\begin{align}
+ A&=(1+u)^2(\phi_0)_{s\bar s}
+     =4p+(\epsilon+\delta x^2)(1-2p),\nonumber\\
+ B&=(1+v)^2(\phi_0)_{z\bar z}
+     =2+2\delta p x(2-3x),\label{ABC}\\
+ Q&=(1+u)^2(1+v)^2|(\phi_0)_{s\bar z}|^2
+     =4\delta^2p(1-p)x^3(1-x).\nonumber
+\end{align}
+Direct differentiation proves these identities. They extend continuously
+to the closed square $0\leq p,x\leq1$, covering every infinity point.
+Throughout this square,
+\[
+ A\geq\epsilon+\frac{167}{48}p=:A_0,\qquad
+ B\geq\frac32=:B_0,\qquad Q\leq\frac p4=:Q_0.
+\]
+For explicit certificates,
+\begin{align*}
+ A-A_0&=\delta x^2+2\delta p(1-x^2)\geq0,\\
+ B-B_0&=2\delta\{(1-p)+p(1-x)(1+3x)\}\geq0,\\
+ Q_0-Q&=4\delta^2p\{1-(1-p)x^3(1-x)\}\geq0.
+\end{align*}
+Because $A_0,B_0$ are positive,
+\begin{equation}\label{det}
+ AB-Q\geq A_0B_0-Q_0=\frac1{64}+\frac{159}{32}p>0.
+\end{equation}
+Thus the curvature is strictly positive in every direction everywhere.
+This continuum certificate does not rely on sampled points.
+Dividing the weight by two gives the required positive root metric.
+
+\section{An exact second-variation equation}
+Rotational symmetry in the base, preserved by uniqueness, gives on $s=0$
+\begin{equation}\label{sym}
+ (\phi_t)_s=(\phi_t)_{\bar s}=(\phi_t)_{s\bar z}=0.
+\end{equation}
+The initial central-fiber weight is
+$2\log(1+|z|^2)+2-\epsilon$. Its two probability measures in
+\eqref{flow} coincide, so uniqueness gives
+\[
+ \phi_t(0,z)=2\log(1+|z|^2)+2-\epsilon
+ \quad\hbox{for every finite }t\geq0.
+\]
+Define
+\[
+ w(z,t)=(\phi_t)_{s\bar s}(0,z),\qquad
+ g_F=\frac2{(1+|z|^2)^2},\qquad
+ \Delta_F=\frac{(1+|z|^2)^2}{2}\partial_z\partial_{\bar z}.
+\]
+The sign convention makes $\Delta_F$ nonpositive on nonconstant
+eigenfunctions. Differentiating \eqref{scalar}, using \eqref{sym}, yields
+$(\log g)_{s\bar s}=g_F^{-1}w_{z\bar z}=\Delta_Fw$.
+Smoothness and compactness justify differentiation under the fiber integral:
+\[
+ I_s=0,\qquad I_{s\bar s}=-I\int_{\PP^1}w\,\mu_F,
+ \qquad(\log I)_{s\bar s}=-\int_{\PP^1}w\,\mu_F.
+\]
+Consequently the second derivative of the actual nonlinear solution obeys
+the closed equation
+\begin{equation}\label{jet}
+ w_t=\Delta_Fw+w-\int_{\PP^1}w\,\mu_F,\qquad
+ w(z,0)=\epsilon+\delta x^2.
+\end{equation}
+This is an exact identity, not a linearization approximation.
+The geodesic curvature is
+$c(\phi_t)=(\phi_t)_{s\bar s}-|(\phi_t)_{s\bar z}|^2/(\phi_t)_{z\bar z}$;
+by \eqref{sym} it equals $w$ on the central fiber.
+
+\section{Solution and strict negativity}
+The pushforward of $\mu_F$ under $x=v/(1+v)$ is Lebesgue measure on
+$[0,1]$, since radial integration gives $dv/(1+v)^2=dx$.
+For a smooth $F(x)$,
+\[
+ \Delta_FF=\tfrac12\{x(1-x)F''+(1-2x)F'\}.
+\]
+Let $P_1=2x-1$ and $P_2=6x^2-6x+1$. Both have zero mean;
+$\Delta_FP_1=-P_1$, $\Delta_FP_2=-3P_2$, and
+$x^2=1/3+P_1/2+P_2/6$. Hence \eqref{jet} has solution
+\begin{equation}\label{solution}
+ w(x,t)=\epsilon+\frac\delta3+\frac\delta2P_1(x)
+                   +\frac\delta6e^{-2t}P_2(x).
+\end{equation}
+To justify its identification with the actual second derivative, the difference
+of two solutions of \eqref{jet} with common initial data has zero mean:
+integrating its equation shows that the mean is constant. The difference
+then solves $a_t=\Delta_Fa+a$; the maximum principle applied to $e^{-t}a$
+proves uniqueness.
+
+At $z=0$, $P_1=-1$ and $P_2=1$, so
+$w(0,t)=\epsilon-\delta(1-e^{-2t})/6$, which is \eqref{negative}.
+For $t=t_*$ it equals $-1/96$, and is negative for every
+$t>\tfrac12\log(4/3)$. Because the mixed Hessian vanishes there,
+this is negative curvature on the actual tangent vector $\partial/\partial s$.
+All initial data were strictly positive on a compact total space, and
+$t_*$ is finite. This proves Theorem~\ref{thm}.
+
+\section{Normalization, scope, and verification}
+There is a convention discrepancy between the defining equation
+\cite[(13)]{N} and a literal same-weight/time reading of the displayed
+$r c$ term in \cite[(14)]{N}. A calibration independent of our example is
+the positive product weight
+$\phi_{\rm prod}=2\log(1+|s|^2)+2\log(1+|z|^2)$.
+It is stationary under \eqref{flow}. At $s=0$ its geodesic curvature is
+$c=2$, the fiber Laplacian and Kodaira--Spencer terms vanish, and
+$(\log I)_{s\bar s}=-2$. A same-convention $r c$ term with $r=2$
+would therefore give $c_t=2$, contradicting stationarity.
+Our proof uses \eqref{flow} and derives \eqref{jet} directly.
+We do not assign an editorial explanation or undocumented intention to the
+source. For comparison, setting $\psi=\phi/r$ and $\tau=t/r$ transforms
+\eqref{scalar} into
+\[
+ \psi_\tau=\log\psi_{z\bar z}+r\psi+
+           \log\int e^{-r\psi}\,dA_z+C',
+\]
+so a coefficient $r$ can occur with the corresponding weight and time
+changes. Such positive rescaling leaves the occurrence of positivity loss
+unchanged. Probability normalization is essential: omitting $\log I$
+changes the flow and the second-variation equation.
+
+The result resolves the source's universal positivity-preservation question
+for its defining flow. It does not settle the Griffiths conjecture, exclude
+special initial metrics, or address other normalizations. The example's
+bundle itself already has Griffiths-positive metrics. The prior construction
+of the flow is not claimed as a new contribution.
+
+The accompanying verification package contains the manuscript source,
+exact symbolic checks, analytic derivations, source and priority audit, and
+adversarial review records. Symbolic computations check the algebra and
+global inequality certificates; smooth parabolic existence is the cited
+analytic input, not a computational conclusion. Historical first priority
+is not asserted; the accompanying audit records the scope and limits of
+the literature search.
+In particular, Berman's preservation theorem concerns a nonnormalized
+weight flow, and his earlier \cite[Remark~4.11]{B} already identifies
+normalized anticanonical negativity for effectively parametrized Fano
+families. Those statements do not supply this locally isotrivial
+projective-space bundle example on $\OO_E(r)$. They preclude a broad
+claim of first positivity loss for normalized relative flows.
+A relevant Naumann habilitation listed by his university in 2025 was
+identified, but its text was not recovered; this is a specific unresolved
+priority lead recorded in the accompanying audit.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in developing, writing, reproducing, and
+adversarially checking this result. Internal adversarial reviews were
+performed by AI agents. This is an unrefereed preprint and has not received
+human peer review; these internal checks do not constitute such review.
+
+\begin{thebibliography}{9}
+\bibitem{O} P.~Naumann, An approach to the Griffiths conjecture,
+in \emph{Komplexe Analysis}, Oberwolfach Reports \textbf{14} (2017), no.~3,
+2440--2443. \href{https://doi.org/10.4171/OWR/2017/39}{doi:10.4171/OWR/2017/39}.
+\bibitem{N} P.~Naumann, An approach to the Griffiths conjecture,
+\emph{Mathematical Research Letters} \textbf{28} (2021), no.~5, 1505--1523.
+\href{https://doi.org/10.4310/MRL.2021.v28.n5.a10}{doi:10.4310/MRL.2021.v28.n5.a10}.
+Earlier version: \href{https://arxiv.org/abs/1710.10034}{arXiv:1710.10034}.
+\bibitem{B} R.~J.~Berman, Relative K\"ahler--Ricci flows and their quantization,
+\emph{Analysis \& PDE} \textbf{6} (2013), no.~1, 131--180.
+\href{https://doi.org/10.2140/apde.2013.6.131}{doi:10.2140/apde.2013.6.131}.
+\end{thebibliography}
+\end{document}

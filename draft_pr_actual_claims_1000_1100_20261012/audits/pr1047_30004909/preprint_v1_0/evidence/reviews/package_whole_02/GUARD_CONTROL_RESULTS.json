@@ -1,0 +1,227 @@
+{
+  "timestamp_utc": "2026-10-14T04:21:11.751533+00:00",
+  "status": "PASS",
+  "negative_controls_rejected": 15,
+  "positive_control": true,
+  "independent_zip_byte_equal": true,
+  "controls": [
+    {
+      "name": "payload_corrupt",
+      "rebuilt_manifest_before_check": false,
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/verify_package.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/payload_corrupt/scripts/verify_package.py\", line 29, in <module>\n    check(row['path'], row['bytes'], row['sha256'])\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/payload_corrupt/scripts/verify_package.py\", line 21, in check\n    require(len(data) == size and hashlib.sha256(data).hexdigest() == digest, 'hash mismatch: ' + name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/payload_corrupt/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: hash mismatch: LICENSE.md\n"
+    },
+    {
+      "name": "metadata_bare_wrapper",
+      "rebuilt_manifest_before_check": true,
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/verify_package.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/metadata_bare_wrapper/scripts/verify_package.py\", line 39, in <module>\n    require(set(metadata) == {'metadata'}, 'request wrapper')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/metadata_bare_wrapper/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: request wrapper\n"
+    },
+    {
+      "name": "metadata_equivalence",
+      "rebuilt_manifest_before_check": true,
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/verify_package.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/metadata_equivalence/scripts/verify_package.py\", line 40, in <module>\n    require(metadata['metadata'] == json.loads(get('.zenodo.json')), 'metadata mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/metadata_equivalence/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: metadata mismatch\n"
+    },
+    {
+      "name": "publication_state_true",
+      "rebuilt_manifest_before_check": true,
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/verify_package.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/publication_state_true/scripts/verify_package.py\", line 43, in <module>\n    require(state['publication_ready'] is False and state['all_issues_resolved'] is False, 'preparation-stage operational hold')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/publication_state_true/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: preparation-stage operational hold\n"
+    },
+    {
+      "name": "checker_scope_changed",
+      "rebuilt_manifest_before_check": true,
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/verify_package.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/checker_scope_changed/scripts/verify_package.py\", line 48, in <module>\n    require(hashlib.sha256(portable).hexdigest() == adapt['portable_sha256'], 'portable checker identity')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/checker_scope_changed/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: portable checker identity\n"
+    },
+    {
+      "name": "original_body_changed",
+      "rebuilt_manifest_before_check": true,
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/verify_package.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/original_body_changed/scripts/verify_package.py\", line 33, in <module>\n    check(row['package_path'], row['bytes'], row['sha256'])\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/original_body_changed/scripts/verify_package.py\", line 21, in check\n    require(len(data) == size and hashlib.sha256(data).hexdigest() == digest, 'hash mismatch: ' + name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/original_body_changed/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: hash mismatch: evidence/submitted/REPORT.md\n"
+    },
+    {
+      "name": "duplicate_evidence_path",
+      "rebuilt_manifest_before_check": true,
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/verify_package.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/duplicate_evidence_path/scripts/verify_package.py\", line 31, in <module>\n    require(len({c['package_path'] for c in copies}) == len(copies), 'duplicate evidence paths')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/duplicate_evidence_path/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: duplicate evidence paths\n"
+    },
+    {
+      "name": "manifest_convention_changed",
+      "rebuilt_manifest_before_check": false,
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/verify_package.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/manifest_convention_changed/scripts/verify_package.py\", line 26, in <module>\n    require(manifest['members'] == allow + ['MANIFEST.json'], 'manifest membership')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/manifest_convention_changed/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: manifest membership\n"
+    },
+    {
+      "name": "absolute_path",
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/build_supportkit.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/absolute_path/scripts/build_supportkit.py\", line 30, in <module>\n    data = safe_file(name).read_bytes()\n           ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/absolute_path/scripts/build_supportkit.py\", line 15, in safe_file\n    raise ValueError('Unsafe member: ' + name)\nValueError: Unsafe member: /absolute.txt\n"
+    },
+    {
+      "name": "traversal_path",
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/build_supportkit.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/traversal_path/scripts/build_supportkit.py\", line 30, in <module>\n    data = safe_file(name).read_bytes()\n           ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/traversal_path/scripts/build_supportkit.py\", line 15, in safe_file\n    raise ValueError('Unsafe member: ' + name)\nValueError: Unsafe member: ../outside.txt\n"
+    },
+    {
+      "name": "circular_manifest",
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/build_supportkit.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/circular_manifest/scripts/build_supportkit.py\", line 27, in <module>\n    raise ValueError('Invalid explicit allowlist or circular member')\nValueError: Invalid explicit allowlist or circular member\n"
+    },
+    {
+      "name": "zip_member",
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/build_supportkit.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/zip_member/scripts/build_supportkit.py\", line 27, in <module>\n    raise ValueError('Invalid explicit allowlist or circular member')\nValueError: Invalid explicit allowlist or circular member\n"
+    },
+    {
+      "name": "symlink_leaf",
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/build_supportkit.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/symlink_leaf/scripts/build_supportkit.py\", line 30, in <module>\n    data = safe_file(name).read_bytes()\n           ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/symlink_leaf/scripts/build_supportkit.py\", line 18, in safe_file\n    raise ValueError('Symlink member or ancestor: ' + name)\nValueError: Symlink member or ancestor: LICENSE.md\n"
+    },
+    {
+      "name": "symlink_ancestor",
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/build_supportkit.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/symlink_ancestor/scripts/build_supportkit.py\", line 30, in <module>\n    data = safe_file(name).read_bytes()\n           ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/symlink_ancestor/scripts/build_supportkit.py\", line 18, in safe_file\n    raise ValueError('Symlink member or ancestor: ' + name)\nValueError: Symlink member or ancestor: paper/matroid_rank_obstruction.tex\n"
+    },
+    {
+      "name": "directory_member",
+      "expected_rejection": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/build_supportkit.py"
+      ],
+      "actual_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/directory_member/scripts/build_supportkit.py\", line 30, in <module>\n    data = safe_file(name).read_bytes()\n           ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_whole_02/fault_controls/directory_member/scripts/build_supportkit.py\", line 20, in safe_file\n    raise ValueError('Nonregular member: ' + name)\nValueError: Nonregular member: extra_directory\n"
+    },
+    {
+      "name": "unlisted_file_excluded",
+      "expected_rejection": false,
+      "byte_identical_archive": true,
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "scripts/build_supportkit.py"
+      ],
+      "actual_exit": 0,
+      "stdout": "{\"archive\": \"pr1047_supportkit_v1.0.zip\", \"members\": 143, \"bytes\": 628830, \"sha256\": \"f6b3e2282cfe23b7135bf686c4f190884388af1dced82afff2c3da794f60f20d\", \"crc\": \"PASS\", \"deterministic\": true}\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "all mutations occur only in reviewer-owned copies"
+}

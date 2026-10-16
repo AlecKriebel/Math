@@ -1,0 +1,315 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,geometry,microtype}
+\usepackage[hidelinks]{hyperref}
+\geometry{margin=1in}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\T}{\mathbb T}
+\newcommand{\Id}{\mathrm{Id}}
+\title{A torus-collar proof of the real-spectrum compact-support classification for Nijenhuis operators}
+\author{Alec Kriebel\\Independent researcher\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{15 October 2026, version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a complete smooth compact-support proof of the classification asked
+for in the historical integrable-systems problem source: a real Jordan type
+occurs on a nonempty open subset of $\R^n$ for a compactly supported smooth
+Nijenhuis operator exactly when its spectrum is real. The construction
+realizes arbitrary specified numerical real Jordan data in a commuting local
+frame. On a same-dimensional torus collar, the torsion equation reduces to
+$(A-\lambda I)A'=0$; an ordered finite path removes every Jordan block and
+reaches an exact zero band. The nonreal obstruction and earlier semisimple
+and two-dimensional examples are prior results. We include the precise
+zero-point rigidity deduction needed for necessity. The historical priority
+of the full result and of this construction remains unestablished.
+Extensive AI tools assisted solving, verification and writing. This preprint
+is unrefereed and has no external human peer review or formal
+proof-assistant certification.
+\end{abstract}
+
+\section{Statement, historical target and attribution}
+For a smooth real field $L$ of tangent-space endomorphisms, use the convention
+\[
+ N_L(X,Y)=L^2[X,Y]+[LX,LY]-L[LX,Y]-L[X,LY].
+\]
+An operator is Nijenhuis when $N_L=0$. Jordan type here means the block
+sizes and grouping by eigenvalue; our existence statement also fixes any
+desired numerical real eigenvalues.
+
+\begin{theorem}\label{thm:main}
+For every $n\geq1$ and every prescribed real Jordan matrix $J$ with entirely
+real spectrum, there exists a globally $C^\infty$, compactly supported real
+Nijenhuis operator on $\R^n$ whose matrix is $J$ in a smooth commuting local
+frame on a nonempty open domain. Conversely, every eigenvalue at every
+point of a compactly supported smooth real Nijenhuis operator on $\R^n$ is
+real.
+\end{theorem}
+
+The type, rank and eigenvalues may change outside the realization domain.
+The theorem prescribes neither the matrix in the ambient Cartesian frame
+nor global regularity, and is a smooth, not a real-analytic, statement.
+The zero matrix is permitted.
+
+The target is Problem 5.11 on p.~29 of the 14 January 2020 author-v2
+of Bolsinov--Matveev--Miranda--Tabachnikov~\cite{problems}; its 10 April
+2018 author-v1 counterpart is Problem 4.10 on p.~37. The original journal
+work appeared in 2018. A corpus label ``5.9'' is not the locator in either
+inspected version. The full wording asks for necessary and sufficient
+conditions for compact support with a prescribed unchanged algebraic type
+on a domain. Theorem~\ref{thm:main} answers that printed question, without
+asserting that it remained open worldwide before this note.
+
+The source already credits the nonreal obstruction, real semisimple
+realizations and a two-dimensional Jordan example. Bolsinov--Konyaev--Matveev
+(BKM)~\cite{bkm}, author-v2 Theorem 4.5 and the following p.~28 remark,
+also give arbitrary algebraic types at local points. Those facts are prior.
+The proof below supplies an explicit fixed-type open domain together with
+a smooth compact-support transition. The bounded literature audit in the
+supplement certifies neither firstness of the full theorem nor priority of
+the torus-collar mechanism.
+
+\section{The one-variable collar equation}
+Let $m=n-1\geq1$ and work on $\T^m\times(-1,1)$. Write
+$e_1,\ldots,e_m$ for the invariant angular fields and $v=\partial_t$.
+They form a global commuting frame. Angular coordinate functions are only
+locally real-valued; the invariant fields and their dual forms are global.
+For smooth matrix, vector and scalar functions of $t$, set
+\[
+ Le_i=\sum_{k=1}^m A_{ki}(t)e_k,\qquad
+ Lv=\sum_{k=1}^m b_k(t)e_k+\lambda(t)v.
+\]
+All angular-pair torsions vanish. For a mixed pair the brackets are
+\[
+ [Le_i,Lv]=-\lambda A'e_i,\quad [Le_i,v]=-A'e_i,
+ \quad [e_i,Lv]=[e_i,v]=0.
+\]
+Consequently
+\begin{equation}\label{eq:collar}
+ N_L(e_i,v)=(A-\lambda I)A'e_i,\qquad
+ N_L=0\ \Longleftrightarrow\ (A-\lambda I)A'=0.
+\end{equation}
+Tensoriality and skew symmetry account for every component. The product
+order is essential. There is no condition on $b'$, $\lambda'$, rank,
+diagonalizability or invertibility.
+
+\begin{lemma}\label{lem:path}
+For every real-spectrum Jordan matrix $J$ of size $n\geq2$, after a constant
+permutation of whole blocks there is a smooth path
+$L(s)=\left(\begin{smallmatrix}A(s)&b(s)\\0&\lambda(s)\end{smallmatrix}\right)$,
+$0\leq s\leq1$, from $J$ to zero, constant near both endpoints, satisfying
+$(A-\lambda I)\,dA/ds=0$.
+\end{lemma}
+\begin{proof}
+Use upper-superdiagonal Jordan convention and designate the last vector of
+one block as transverse. The remaining hyperplane is invariant. Thus
+$J=\left(\begin{smallmatrix}A_0&b_0\\0&\lambda_0\end{smallmatrix}\right)$,
+where $A_0$ contains the other blocks and the distinguished block shortened
+by one; a size-one distinguished block disappears. The vector $b_0$ retains
+the removed terminal arrow, so the initial full matrix is exactly $J$.
+
+First hold $A$ and $\lambda$ fixed and move $b_0$ to zero. Whenever $A$ is
+fixed, both $b$ and $\lambda$ can move freely in~\eqref{eq:collar}.
+Process the blocks of $A_0$ one at a time, leaving processed blocks zero and
+unprocessed blocks fixed. For a current block $\mu I_r+K$, move $\lambda$
+to the real number $\mu$ while holding $A$ fixed. Write
+\[
+ K=\sum_{j=1}^{r-1}a_jE_{j,j+1},\qquad
+ KK'=\sum_{j=1}^{r-2}a_j a'_{j+1}E_{j,j+2}.
+\]
+Initially every $a_j=1$. With $\lambda=\mu$, move $a_1$ to zero, then
+$a_2$ to zero, and so forth. Only one arrow changes at a time. Whenever
+$a'_{j+1}\ne0$, its predecessor $a_j$ is already identically zero; the
+first arrow has no predecessor. Hence $KK'=0$. Other blocks have zero
+derivative and contribute nothing to the ordered product.
+
+The active block is now scalar. Move its scalar value $c(s)$ from $\mu$
+to zero and set $\lambda(s)=c(s)$ on this stage. The derivative is supported
+in that block, where $A-\lambda I$ vanishes. Repeat for every angular block.
+For singleton blocks there are no arrows; zero eigenvalues allow constant
+scalar stages. At the end $A=b=\lambda=0$.
+
+There are finitely many stages. On separate successive intervals use a
+$C^\infty$ switch constant near both endpoints. For example, with
+$H(u)=e^{-1/u}$ for $u>0$ and $H(u)=0$ otherwise, the function
+$S(u)=H(u)/(H(u)+H(1-u))$ is smooth, zero for $u\leq0$ and one for
+$u\geq1$; apply $S$ to an affine parameter whose endpoints extend beyond
+$[0,1]$. Each stage then has genuine open endpoint plateaus. Values agree
+at joins, so concatenation is smooth. Reparametrization only multiplies
+$A'$ by a scalar, preserving~\eqref{eq:collar}. No division by an eigenvalue
+or eigenvalue difference is used.
+\end{proof}
+
+Choose a smooth even $q:(-1,1)\to[0,1]$ equal to zero for $|t|\leq1/4$
+and one for $|t|\geq3/4$; explicitly take
+$q(t)=S(2(t^2-1/16))$. Substitute $s=q(t)$ in Lemma~\ref{lem:path}.
+The chain rule gives
+\[
+ (A(q)-\lambda(q)I)\frac{d}{dt}A(q)
+ =q'(t)(A(q)-\lambda(q)I)\frac{d}{ds}A(q)=0.
+\]
+The tensor is $J$ on the central band and exactly zero on both end bands.
+There is no absolute-value corner and no arbitrary scalar cutoff of $J$.
+A constant frame permutation restores any initially specified block order;
+constant linear combinations of commuting fields still commute.
+
+\section{A same-dimensional torus collar and extension}
+For every $d\geq1$, the torus $\T^d$ embeds as a two-sided smooth
+hypersurface in $\R^{d+1}$. Here is the needed all-dimensional induction.
+Start with a circle in $\R^2$. If $f:\T^{d-1}\hookrightarrow\R^d$ is an
+oriented embedded hypersurface, it has a global unit normal $\nu$.
+Inside $\R^{d+1}$ its rank-two normal bundle has the explicit frame
+$(\nu,0),(0,1)$. By compactness and the tubular-neighborhood theorem, a
+sufficiently small normal disk bundle is embedded. Its boundary is
+$\T^{d-1}\times S^1=\T^d$, with parametrization
+\[
+ F(p,\phi)=\big(f(p)+\varepsilon\cos\phi\,\nu(p),
+                         \varepsilon\sin\phi\big).
+\]
+The tubular coordinates recover $p,\cos\phi,\sin\phi$, proving injection
+and immersion. Compactness makes this an embedding. A global unit normal
+is $(\cos\phi\,\nu(p),\sin\phi)$: orthogonality follows from
+$\nu\cdot df=\nu\cdot d\nu=0$. This verifies two-sidedness for the next
+step and completes the induction.
+
+For $n\geq2$ a thin normal collar of the embedded $\T^{n-1}\subset\R^n$
+is diffeomorphic, after rescaling, to $\T^{n-1}\times(-1,1)$. Push the
+preceding tensor through this diffeomorphism. Its frame still commutes,
+and torsion vanishes by naturality. Its support lies in the image of the
+compact set $\T^{n-1}\times[-3/4,3/4]$, strictly inside the open collar.
+Extend it by zero to $\R^n$. Each collar-boundary or exterior point has
+a neighborhood outside that compact support. Thus the extension is
+globally smooth, and its torsion is zero by locality. No exterior angular
+frame is required. The central band is nonempty and open; a connected
+coordinate box inside it is a realization domain.
+
+For $n=1$, a compactly supported smooth scalar function equal to the desired
+eigenvalue on an interval, multiplied by $\Id$, suffices. The alternating
+vector-valued two-form $N_L$ vanishes in dimension one. The zero matrix is
+also realized by the zero tensor. This proves the existence direction in
+every stated boundary case.
+
+\section{The credited nonreal obstruction}
+BKM's author-v2 Theorem 6.1~\cite{bkm}, pp.~41--43, states nonreal spectral
+persistence with constant algebraic multiplicity on a closed connected
+smooth manifold. It has no analyticity or regularity hypothesis. The
+following weaker consequence is all that is needed here. We give its
+maximum-principle justification using their local splitting and canonical
+complex/holomorphic results (Theorems 3.1 and 3.3).
+
+\begin{lemma}\label{lem:zero}
+A smooth real Nijenhuis operator on a closed connected manifold which
+vanishes at one point has entirely real spectrum everywhere.
+\end{lemma}
+\begin{proof}
+Suppose otherwise. Let $\mu(x)$ be the largest positive imaginary part of
+an eigenvalue, with value zero for an all-real spectrum. Roots depend
+continuously on polynomial coefficients, so $\mu$ is continuous. On the
+compact manifold it has a positive maximum $\mu_0$. Among roots on the
+line $\operatorname{Im}z=\mu_0$ at maximum points choose the largest
+algebraic multiplicity $m_0$. The locus $E$ having such a root of
+multiplicity $m_0$ is nonempty and closed: along a convergent sequence
+choose a convergent subsequence of those roots; vanishing polynomial
+derivatives shows multiplicity at least $m_0$, and maximality gives equality.
+
+At $p\in E$, isolate the root $\lambda_0$ and its conjugate by the local
+splitting theorem. On this real block the canonical complex structure
+makes its complex characteristic factor
+$P(z)=z^{m_0}+a_1z^{m_0-1}+\cdots+a_{m_0}$ holomorphic in the block's
+complex coordinates and independent of complementary coordinates. At $p$,
+$P(z)=(z-\lambda_0)^{m_0}$. All nearby roots have imaginary part at most
+$\mu_0$. Therefore $-\operatorname{Im}a_1\leq m_0\mu_0$ with equality
+at $p$. The holomorphic maximum principle makes $a_1$ constant locally.
+Every root consequently has imaginary part $\mu_0$. The shifted polynomial
+$P(w+i\mu_0)$ has only real roots. Its coefficients are real-valued
+holomorphic functions and hence constant. Thus $P$ remains
+$(z-\lambda_0)^{m_0}$ locally. The complementary block can be empty;
+otherwise independence of its coordinates gives the same conclusion on
+the product neighborhood. Hence $E$ is open. Connectedness gives $E=M$,
+contradicting the zero point.
+\end{proof}
+
+For compactly supported $L$ on $\R^n$, identify $\R^n$ with a standard
+chart of $S^n$ and extend by zero near infinity. Compact support makes this
+a smooth Nijenhuis field on closed connected $S^n$, zero on a neighborhood
+of infinity. Lemma~\ref{lem:zero} excludes nonreal spectrum, completing
+Theorem~\ref{thm:main}.
+
+The attribution is substantive: both the obstruction and its local
+splitting/holomorphic mechanism are prior. Our argument avoids relying on
+the final polynomial-reduction sentence of the author-v2 proof, whose
+literal count of removed nonreal pairs is imprecise. For example, rotation
+blocks with spectra $\{\pm i,\pm i/2\}$ all acquire real eigenvalues under
+$z\mapsto z^2+1$, although two original pairs were nonreal. This is not a
+counterexample to the theorem; it explains why the exact application is
+proved by the preceding maximum argument. We do not certify every step of
+the stronger persistence proof or identify the unread Advances in
+Mathematics publisher body with author-v2 bytes.
+
+\section{Relation to prior constructions and verification}
+The arbitrary-type point construction of BKM Theorem 4.5 and its remark
+is generically semisimple in independent characteristic-coefficient
+coordinates. Repeated-root conditions there do not supply a fixed
+nonsemisimple type on an open domain. In Geometry III~\cite{bkm3}, the
+actual journal regular-layer theorem is Theorem 1.10 (author-v1 Theorem
+1.4). It realizes regular layers near a nonzero nilpotent block, rather
+than arbitrary repeated blocks with a compact zero transition. The journal
+and arXiv numberings must be distinguished.
+
+Geometry IV~\cite{bkm4} does allow singular or zero output symmetries of a
+regular generator. Its functional coefficients nevertheless obey
+compatibility equations. In its size-three nilpotent formula an unwrapped
+angular coordinate multiplies a transverse derivative, so naive
+periodization does not provide the collar construction. This observation
+does not exclude a different use of that framework. Local constant-type
+or spectral splitting results and fixed functional calculus likewise do
+not by themselves supply compact support: a product block sum retains
+unbounded cylinders of support, and fixed calculus preserves
+diagonalizability of a semisimple input. Standard tubular-neighborhood and
+smooth-switch arguments are not claimed as new.
+
+The accompanying portable standard-library controls check the full collar
+identity from coordinate first jets, finite ordered Jordan schedules with
+exact polynomial arithmetic, and deliberately invalid arrow order,
+cutoff and unmatched-scalar variants. They corroborate indexing; the
+all-dimensional proof is above. These are newly distributed controls, not
+a reconstruction or certification of the submitted historical omitted
+programs or their counts. The source ledger records actual prior reading
+scopes and unknowns, including unread 2025 Sbornik and 2026 cohomology
+bodies and older cited works. No exhaustive historical inference is made.
+
+\paragraph{Disclosure and license.}
+AI tools were used extensively in solving, source comparison, adversarial
+verification and writing. This note is unrefereed; automated and AI reviews
+are not external human peer review. No journal acceptance or formal
+proof-assistant certification is claimed. Full-result and construction-method
+priority remain unknown. Copyright Alec Kriebel, 2026; distributed under
+Creative Commons Attribution 4.0 International (CC BY 4.0).
+
+\begin{thebibliography}{9}
+\bibitem{problems} A. Bolsinov, V. Matveev, E. Miranda and S. Tabachnikov,
+\emph{Open Problems, Questions, and Challenges in Finite-Dimensional
+Integrable Systems}, Philos. Trans. R. Soc. A 376 (2018), 20170430.
+\href{https://doi.org/10.1098/rsta.2017.0430}{doi:10.1098/rsta.2017.0430}.
+Author versions: \href{https://arxiv.org/abs/1804.03737v2}{arXiv:1804.03737v2},
+Problem 5.11, p.~29; v1, Problem 4.10, p.~37.
+\bibitem{bkm} A. V. Bolsinov, A. Yu. Konyaev and V. S. Matveev,
+\emph{Nijenhuis Geometry}, Adv. Math. 394 (2022), 108001.
+\href{https://doi.org/10.1016/j.aim.2021.108001}{doi:10.1016/j.aim.2021.108001}.
+Inspected author version: \href{https://arxiv.org/abs/1903.04603v2}{arXiv:1903.04603v2},
+Theorems 3.1, 3.3, 4.5, 6.1 and p.~28 remark; publisher body not equated.
+\bibitem{bkm3} A. V. Bolsinov, A. Yu. Konyaev and V. S. Matveev,
+\emph{Nijenhuis geometry III: gl-regular Nijenhuis operators}, Rev. Mat.
+Iberoam. 40 (2024), 155--188, online 3 March 2023.
+\href{https://doi.org/10.4171/RMI/1416}{doi:10.4171/RMI/1416}, Theorem 1.10.
+Author-v1: \href{https://arxiv.org/abs/2007.09506v1}{arXiv:2007.09506v1}, Theorem 1.4.
+\bibitem{bkm4} A. V. Bolsinov, A. Yu. Konyaev and V. S. Matveev,
+\emph{Nijenhuis geometry IV: conservation laws, symmetries and integration
+of certain non-diagonalisable systems of hydrodynamic type in quadratures},
+Nonlinearity 37 (2024), 105003.
+\href{https://doi.org/10.1088/1361-6544/ad6acc}{doi:10.1088/1361-6544/ad6acc}.
+Inspected author-v1: \href{https://arxiv.org/abs/2304.10626v1}{arXiv:2304.10626v1}.
+\end{thebibliography}
+\end{document}

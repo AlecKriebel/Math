@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-15T10:40:24.236283+00:00",
+  "pr": 938,
+  "review_round": "04 ongoing, not final or clean",
+  "finding": "R7",
+  "root_triage": "Required bug accepted; no promotion",
+  "mechanism": "Finalizer executes append_pr938_tracker.py via loader before checking its reviewed fingerprint, so a changed dependency executes before rejection. Reviewer reproduced with private marker only; no real operation.",
+  "repair_plan": [
+    "Validate actual accepted freeze, target and exact six-helper fingerprint inventory before executing any helper dependency.",
+    "Capture regular helper bytes, authenticate complete captured inventory, and compile/execute the verified captured dependency bytes with correct __file__/non-main module identity; avoid reloading a path after hashing.",
+    "Adversarially reject changed/missing dependencies before execution, and prevent changed-on-disk bytes after authentication from being executed; use fully scoped harmless-marker controls.",
+    "Audit current dynamic dependency boundaries globally, preserve historical candidates/reports and zero proof turns, rebuild candidate05 and assign another NEW complete independent review."
+  ],
+  "candidate04_and_six_frozen_helpers_unchanged": true,
+  "new_proof_search_responses": 0,
+  "real_operational_actions": false
+}

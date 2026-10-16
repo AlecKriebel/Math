@@ -1,0 +1,16 @@
+{
+  "status": "CORRECTED_CHECKER_ASSUMPTION",
+  "utc": "2026-10-14T03:20:57.718773+00:00",
+  "initial_exit": 1,
+  "initial_error": "triangle_exact_velocity assertion; SymPy integration variable s was incorrectly declared positive even though domain is [-h,h]",
+  "repair": "Declare s real, retain h positive; rerun required.",
+  "mathematical_impact": "None: even pulse times odd sine cancellation remains exact. This was an independent checker modeling error, not a submitted proof failure.",
+  "second_exit": 1,
+  "second_error": "triangle_leading_gap assertion: equivalent but structurally different SymPy expressions compared with ==",
+  "second_repair": "Use simplify(actual-expected)==0 for algebraic equality",
+  "final_exit": 0,
+  "final_assertions": 215,
+  "final_exact_assertions": 210,
+  "final_noncertified_diagnostics": 5,
+  "all_development_errors_repaired": true
+}

@@ -1,0 +1,463 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Ric}{\operatorname{Ric}}
+\newcommand{\Scal}{\operatorname{Scal}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Der}{\operatorname{Der}}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\title{Local Ricci-pinching maxima on an almost-abelian group}
+\author{Alec Kriebel\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Research note --- 13 October 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Lauret's July 2018 talk announced nonglobal local maxima of the Ricci
+pinching functional that are not solvsolitons of the specified transitive
+group. This note gives a self-contained small-parameter proof for the
+known Lauret--Will family \(A_u=J\oplus uE_{12}\).
+For \(0<u<1/2\), its standard metric is a non-strict local maximum of
+\(F=\Scal^2/\norm{\Ric}^2\), with value \(1/3\), among all nearby
+left-invariant metrics on its fixed five-dimensional simply connected
+group. The metric fails that group's equation \(\Ric=cI+D\),
+\(D\in\Der(\mathfrak g)\), and a same-group metric has value \(9/17\).
+The proof uses a full orthogonal slice and a uniform remainder estimate
+along an exact constant-value family. The metric is nevertheless a Ricci
+soliton, isometric to \(\R^2\times H_3\). No novelty, first assertion, or
+first proof is claimed. This AI-assisted research note is unrefereed.
+\end{abstract}
+
+\section{Statement and source context}
+
+The existence statement addressed here was already announced by Jorge
+Lauret on 23 July 2018, in a displayed theorem attributed to
+Lauret--Will \cite[slide 13/17, overlay PDF pp.~71--73]{talk}.
+It asserts the existence of Ricci-soliton local maxima that are
+nonglobal and are not solvsolitons. The checked slides do not supply a
+construction or proof of that clause.
+The exact family used below, denoted \(D_t\), and its value \(1/3\)
+are in Lauret--Will \cite[\S6.4, p.~19]{LWv1} and
+\cite[\S6.4, p.~20]{LWv2}. Their critical-point classification and
+nonglobality results are also prior work
+\cite[Theorem 1.5, Theorem 6.5(iii), Proposition 6.11]{LWv2}.
+
+Both checked arXiv versions explicitly leave small nilpotent
+coefficients unresolved immediately after Lemma 6.12
+\cite[pp.~18--19]{LWv1}\cite[p.~19]{LWv2}.
+These statements postdate the talk announcement. This note does not
+infer the reason for their difference. The full journal text was not
+retrieved, so the statements about passages and page numbers concern
+the specified arXiv versions. The proof below stands on its own;
+neither the source chronology nor a claim of present community-open
+status is a premise.
+
+Question 14 in \S11 of the Morgan--Pansu collection
+\cite[p.~12]{MP}, proposed by Lauret, asks whether local maxima of \(F\)
+among left-invariant metrics on a fixed solvable group are
+solvsolitons. In that question a solvsoliton means
+\begin{equation}\label{eq:solvsoliton}
+  \Ric_g=cI+D,\qquad c\in\R,\quad D\in\Der(\mathfrak g),
+\end{equation}
+where \(\mathfrak g\) is the Lie algebra of the specified group.
+Thus the group presentation is part of the assertion.
+Here and throughout, \(\Ric_g\) denotes the Ricci endomorphism and its
+norm is the Hilbert--Schmidt norm with respect to \(g\).
+Local maximality uses the usual topology on the cone of positive
+definite inner products on \(\mathfrak g\).
+
+Let \(J=\begin{pmatrix}0&-1\\1&0\end{pmatrix}\), and let \(E_{12}\)
+be the \(2\) by \(2\) matrix with its only nonzero entry in position
+\((1,2)\). For \(u>0\), define
+\[
+ A_u=\begin{pmatrix}
+ 0&-1&0&0\\1&0&0&0\\0&0&0&u\\0&0&0&0
+ \end{pmatrix}=J\oplus uE_{12}.
+\]
+Let \(\mathfrak g_u=\R e_0\oplus V\), with
+\(V=\operatorname{span}(e_1,e_2,e_3,e_4)\), have bracket
+\([e_0,X]=A_uX\) and \([V,V]=0\).
+This is a solvable Lie algebra: its derived algebra is contained in
+the abelian ideal \(V\). Write \(G_u\) for its simply connected group
+and \(g_u\) for the metric making the displayed basis orthonormal.
+
+\begin{theorem}\label{thm:main}
+For each fixed \(0<u<1/2\), the metric \(g_u\) is a non-strict local
+maximum of \(F\) among all left-invariant metrics on \(G_u\), and
+\(F(g_u)=1/3\). It does not satisfy \eqref{eq:solvsoliton} on
+\(\mathfrak g_u\). It is not a global maximum: a left-invariant metric
+on the same group has \(F=9/17\).
+\end{theorem}
+
+This supplies a negative answer to the literal fixed-group assertion
+in Question 14, already announced in the talk cited above.
+It is compatible with the Ricci-soliton local-maximum conclusion of
+Lauret--Will \cite[Theorem 1.5]{LWv2}.
+Section \ref{sec:presentation} explains the metric's Ricci-soliton
+presentation explicitly. No conclusion for completely solvable groups
+or groups of real type follows from this example.
+
+\section{Curvature and the space of metrics}
+
+We first make the curvature computation and the all-metrics reduction
+explicit. For an arbitrary real matrix \(A:V\to V\), consider the
+orthonormal almost-abelian presentation \([e_0,X]=AX\). Put
+\[
+ S=\tfrac12(A+A^T),\qquad K=\tfrac12(A-A^T).
+\]
+For left-invariant \(X,Y\in V\), the Koszul formula gives
+\begin{equation}\label{eq:connection}
+\begin{aligned}
+ \nabla_{e_0}e_0&=0,& \nabla_{e_0}X&=KX,\\
+ \nabla_Xe_0&=-SX,& \nabla_XY&=\langle SX,Y\rangle e_0.
+\end{aligned}
+\end{equation}
+Use the convention
+\(R(U,W)=\nabla_U\nabla_W-\nabla_W\nabla_U-\nabla_{[U,W]}\).
+Substituting \eqref{eq:connection} yields
+\[
+ R(e_0,X)e_0=(S^2+[S,K])X,\qquad
+ R(X,Y)Z=-\langle SY,Z\rangle SX+\langle SX,Z\rangle SY.
+\]
+Taking the Ricci trace gives
+\begin{equation}\label{eq:ricci}
+ \Ric_{00}=-\tr S^2,\qquad
+ \Ric_{0V}=0,\qquad
+ \Ric|_V=[K,S]-(\tr A)S
+       =\tfrac12[A,A^T]-(\tr A)S.
+\end{equation}
+For example, the \(e_0\) contribution to \(\Ric|_V\) is
+\(-S^2-[S,K]\), and the trace over \(V\) is
+\(S^2-(\tr S)S\), giving the stated expression.
+This also recovers the almost-abelian formula in
+\cite[equation (3)]{LWv2}.
+
+Every matrix used below has trace zero. With the Frobenius norm, put
+\[
+ s(A)=\norm{S}^2,\qquad q(A)=\norm{[A,A^T]}^2.
+\]
+Equation \eqref{eq:ricci} implies
+\begin{equation}\label{eq:reduction}
+ \Scal=-s,\qquad \norm{\Ric}^2=s^2+\tfrac14q,\qquad
+ F(A)=\frac{s^2}{s^2+q/4}.
+\end{equation}
+When \(s>0\), this reduces the desired inequality to
+\begin{equation}\label{eq:P}
+ F(A)\le\tfrac13
+ \quad\Longleftrightarrow\quad
+ P(A):=q(A)-8s(A)^2\ge0.
+\end{equation}
+For \(A_u\), direct multiplication gives
+\(s(A_u)=u^2/2\), \(q(A_u)=2u^4\), and hence \(F(A_u)=1/3\).
+The function \(F\) is invariant under nonzero scalar multiplication
+of \(A\) and under orthogonal conjugation.
+
+Fix \(u=u_0\) in the theorem's range. A nearby inner product on the
+fixed vector space \(\R e_0\oplus V\) has positive definite Gram matrix
+\[
+ \Gamma=\begin{pmatrix}\alpha&\beta^T\\\beta&\Gamma_V\end{pmatrix}.
+\]
+Set
+\[
+ T=\Gamma_V^{-1/2},\qquad
+ c=(\alpha-\beta^T\Gamma_V^{-1}\beta)^{-1/2}.
+\]
+The columns of \(T\) give an orthonormal basis of \(V\), and
+\(f_0=c(e_0-\Gamma_V^{-1}\beta)\) is its unit orthogonal complement.
+The component of \(f_0\) in \(V\) has zero adjoint action on \(V\).
+Thus the bracket matrix in this orthonormal basis is exactly
+\begin{equation}\label{eq:allmetrics}
+ cT^{-1}A_{u_0}T.
+\end{equation}
+As \(\Gamma\to I\), both \(c\to1\) and \(T\to I\) smoothly.
+Consequently it suffices to prove \eqref{eq:P} for every conjugate of
+\(A_{u_0}\) sufficiently close to \(A_{u_0}\).
+Conversely, any conjugate is realized by a metric on the fixed group:
+an arbitrary invertible change of basis in \(V\), declared orthonormal
+with \(e_0\), gives such a matrix. Cross terms in \(\Gamma\) have
+therefore been fully included in the local reduction.
+
+\section{A full orthogonal slice}
+
+Let \(A\) be a nearby conjugate of \(A_{u_0}\).
+Its generalized zero eigenspace
+\[
+ W=\ker A^2
+\]
+is two-dimensional and invariant. The relation \(A^4+A^2=0\) implies
+that \(E=I+A^2\) is an idempotent with image \(W\).
+This is a smooth projection, generally not an orthogonal one.
+We can construct a smooth local orthonormal frame directly:
+put \(p=Ee_4\) and
+\[
+ f_3=\frac{Ap}{\norm{Ap}},\qquad
+ f_4=\frac{p-\langle p,f_3\rangle f_3}
+ {\norm{p-\langle p,f_3\rangle f_3}}.
+\]
+At \(A_{u_0}\) the denominators are \(u_0\) and \(1\), respectively,
+so neither vanishes nearby. Since \(A^2p=0\), these choices give
+\[
+ Af_3=0,\qquad Af_4=vf_3,\qquad
+ v=\frac{\norm{Ap}}{\norm{p-\langle p,f_3\rangle f_3}}>0,
+ \quad v\longrightarrow u_0.
+\]
+Project \(e_1,e_2\) orthogonally onto \(W^\perp\) and apply
+Gram--Schmidt to obtain a smooth frame \(f_1,f_2\) close to \(e_1,e_2\).
+
+In the frame \(f_1,f_2,f_3,f_4\), invariance of \(W\) gives
+\begin{equation}\label{eq:slice}
+ M=\begin{pmatrix}C&0\\L&N\end{pmatrix}
+  =\begin{pmatrix}
+  a&b-k&0&0\\ b+k&-a&0&0\\
+  x&y&0&v\\ z&w&0&0
+  \end{pmatrix},
+ \qquad k=\sqrt{1+a^2+b^2}.
+\end{equation}
+Indeed, \(C\) represents the quotient action on \(V/W\), which has
+eigenvalues \(i,-i\). It has trace zero and determinant one.
+Writing its symmetric part as
+\(\begin{pmatrix}a&b\\b&-a\end{pmatrix}\) and skew part as \(kJ\)
+gives \(k^2-a^2-b^2=1\); proximity to \(J\) chooses \(k>0\).
+All six transverse coordinates
+\(\xi=(a,b,x,y,z,w)\) tend to zero as \(A\to A_{u_0}\).
+The lower-left block \(L\) is unrestricted in the estimates that follow.
+This point is essential: \(W^\perp\) need not be invariant.
+
+For a checkable expansion, block multiplication gives
+\[
+ [M,M^T]=
+ \begin{pmatrix}
+ [C,C^T]-L^TL&CL^T-L^TN\\
+ LC^T-N^TL&LL^T+[N,N^T]
+ \end{pmatrix}.
+\]
+It follows that
+\begin{align}
+ q(M)&=\norm{[C,C^T]-L^TL}^2+
+ 2\norm{LC^T-N^TL}^2+\norm{LL^T+[N,N^T]}^2,\label{eq:blockq}\\
+ s(M)&=2(a^2+b^2)+\tfrac12(x^2+y^2+z^2+w^2+v^2).\label{eq:blocks}
+\end{align}
+In particular, \(s(M)\ge v^2/2>0\).
+Put \(h^2=a^2+b^2\), \(r^2=x^2+y^2+z^2+w^2\), and \(d=wx-yz\).
+Expanding \eqref{eq:blockq}--\eqref{eq:blocks}, using \(k^2=1+h^2\),
+gives the exact identity
+\begin{equation}\label{eq:QR}
+ P(M)=Q_v(\xi)+R_v(\xi),
+\end{equation}
+where
+\begin{equation}\label{eq:Q}
+\begin{aligned}
+ Q_v(\xi)={}&16(2-v^2)(a^2+b^2)
+       +2(x+vw)^2+2(y-vz)^2\\
+       &+2(1-4v^2)(z^2+w^2)
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eq:R}
+\begin{aligned}
+ R_v(\xi)={}&-12h^2r^2-24ak(wz+xy)
+       +12bk(x^2+z^2-y^2-w^2)\\
+ &+4v\{a(wy-xz)-b(wx+yz)\}
+       +4v(k-1)d-4d^2.
+\end{aligned}
+\end{equation}
+These formulas exhibit \(P(v,0)=0\) and \(D_\xi P(v,0)=0\) for
+every \(v>0\). Each term in \(R_v\) has order at least three in
+\(\xi\), because \(k-1=h^2/(k+1)\).
+
+\section{Uniform positivity and local maximality}
+
+Choose a closed interval \(I=[v_-,v_+]\) with
+\(0<v_-<u_0<v_+<1/2\), and set \(c_0=1-4v_+^2>0\).
+The two mixed-variable quadratic blocks in \eqref{eq:Q}, before the
+factor \(2\), have matrices
+\[
+ \begin{pmatrix}1&v\\v&1-3v^2\end{pmatrix},
+ \qquad
+ \begin{pmatrix}1&-v\\-v&1-3v^2\end{pmatrix}.
+\]
+Their determinants are \(1-4v^2\) and their traces are \(2-3v^2\).
+For a positive definite \(2\) by \(2\) matrix, its smaller eigenvalue
+is at least its determinant divided by its trace. Thus the smaller
+eigenvalue after the factor \(2\) is at least
+\[
+ \frac{2(1-4v^2)}{2-3v^2}\ge 1-4v^2\ge c_0.
+\]
+The coefficient \(16(2-v^2)\) also exceeds \(c_0\). Hence, with
+\(\rho=\norm{\xi}\),
+\begin{equation}\label{eq:Qbound}
+ Q_v(\xi)\ge c_0\rho^2\qquad(v\in I).
+\end{equation}
+
+For completeness, an explicit uniform bound on \eqref{eq:R} suffices.
+If \(\rho\le1\), then \(k\le\sqrt2\), \(k-1\le h^2/2\), and
+\[
+ |wz+xy|,\ |wy-xz|,\ |wx+yz|,\ |d|\le r^2/2,\qquad
+ |x^2+z^2-y^2-w^2|\le r^2.
+\]
+Using \(v<1/2\) and \(|a|+|b|\le\sqrt2\rho\), the six terms of
+\eqref{eq:R}, in their displayed order, are bounded respectively by
+\[
+ 12\rho^4,\quad
+ 12\sqrt2\rho^3,\quad
+ 12\sqrt2\rho^3,\quad
+ \sqrt2\rho^3,\quad
+ \tfrac12\rho^4,\quad
+ \rho^4.
+\]
+Consequently
+\begin{equation}\label{eq:Rbound}
+ |R_v(\xi)|\le(\tfrac{27}{2}+25\sqrt2)\rho^3<50\rho^3
+ \qquad(v\in I,\ \rho\le1).
+\end{equation}
+For \(\rho\le\min(1,c_0/100)\), equations
+\eqref{eq:QR}, \eqref{eq:Qbound}, and \eqref{eq:Rbound} give
+\[
+ P(M)\ge c_0\rho^2-50\rho^3\ge\tfrac12c_0\rho^2\ge0.
+\]
+Continuity of the slice coordinates ensures that every sufficiently
+nearby conjugate has \(v\in I\) and satisfies this bound on \(\rho\).
+Orthogonal invariance, \eqref{eq:allmetrics}, and \eqref{eq:P}
+therefore give \(F(g)\le1/3\) for every sufficiently nearby
+left-invariant metric on \(G_{u_0}\).
+
+The estimate is uniform along the flat parameter \(v\); this is why
+the argument proves a neighborhood maximum despite a degenerate
+Hessian. The family \(A_v\) consists of conjugates of \(A_{u_0}\)
+by \(\operatorname{diag}(1,1,v/u_0,1)\) for all \(v>0\),
+and \(F(A_v)=1/3\). In particular the maximum is
+non-strict. The theorem asserts only the open range \(0<u<1/2\);
+neither endpoint is included.
+
+\section{The fixed-group obstruction and a larger value}
+
+At the candidate, \eqref{eq:ricci} gives, in the order
+\(e_0,e_1,e_2,e_3,e_4\),
+\begin{equation}\label{eq:riccandidate}
+ \Ric=\operatorname{diag}(-u_0^2/2,0,0,u_0^2/2,-u_0^2/2).
+\end{equation}
+If \(\Ric=cI+D\), the required map \(D=\Ric-cI\) is this specific
+diagonal map. Write its entries \(d_0,\ldots,d_4\).
+The derivation identity for \([e_0,e_1]=e_2\) requires
+\(d_2=d_0+d_1\). Since \(d_1=d_2=-c\), it forces \(d_0=0\)
+and \(c=-u_0^2/2\). Then \(d_3=u_0^2\) and \(d_4=0\).
+The nonzero bracket \([e_0,e_4]=u_0e_3\) instead requires
+\(d_3=d_0+d_4=0\), a contradiction.
+This proves failure of the precise equation on \(\mathfrak g_{u_0}\).
+
+To check nonglobality directly, set
+\[
+ B=\begin{pmatrix}
+ 0&-1&0&0\\1&0&0&0\\1&0&0&1\\0&-1&0&0
+ \end{pmatrix},\qquad
+ T_B=\begin{pmatrix}I_2&0\\Y&I_2\end{pmatrix},
+ \qquad Y=\begin{pmatrix}0&2\\1&0\end{pmatrix}.
+\]
+With \(H=\operatorname{diag}(1,1,1/u_0,1)\), multiplication gives
+\[
+ HA_{u_0}H^{-1}=A_1,\qquad
+ T_BA_1T_B^{-1}=B.
+\]
+Thus \(B\) represents a metric on the same fixed group.
+Its invariants are \(s(B)=3/2\) and \(q(B)=8\), so
+\[
+ F(B)=\frac{(3/2)^2}{(3/2)^2+8/4}=\frac9{17}>\frac13.
+\]
+This proves the last assertion of Theorem \ref{thm:main}.
+Nonglobality for the known family also follows from the prior
+optimization result \cite[Theorem 6.5(iii)]{LWv2};
+the displayed comparison is an explicit check independent of that theorem.
+
+\section{The Ricci-soliton presentation and disclosure}
+\label{sec:presentation}
+
+The obstruction above depends on the transitive group.
+This distinction can be seen without a classification theorem.
+Identify the simply connected \(G_{u_0}\) with \(\R\times\R^4\),
+with multiplication
+\[
+ (t,X)(s,Y)=(t+s,X+e^{tA_{u_0}}Y).
+\]
+Writing \(X=(x_1,x_2,x_3,x_4)\), its standard left-invariant metric is
+\[
+ dt^2+\norm{e^{-tA_{u_0}}dX}^2
+ =dx_1^2+dx_2^2+dt^2+(dx_3-u_0t\,dx_4)^2+dx_4^2.
+\]
+The rotation block contributes the Euclidean factor
+\(dx_1^2+dx_2^2\). The remaining three terms are the
+standard left-invariant metric on the Heisenberg group \(H_3\)
+whose orthonormal basis \(T,Z,W\) satisfies
+\([T,W]=u_0Z\). Hence the Riemannian manifold is the product
+\(\R^2\times H_3\).
+
+On this product Lie algebra, in the order of the Euclidean basis,
+\(T,Z,W\), the Ricci operator is
+\(\operatorname{diag}(0,0,-u_0^2/2,u_0^2/2,-u_0^2/2)\).
+It equals \(cI+D_{\mathrm{prod}}\), where
+\[
+ c=-3u_0^2/2,\qquad
+ D_{\mathrm{prod}}=
+ \operatorname{diag}(3u_0^2/2,3u_0^2/2,u_0^2,2u_0^2,u_0^2).
+\]
+This map is a derivation: the central entry is the sum of the two
+noncentral Heisenberg entries, and the Euclidean summand is abelian.
+The product presentation is therefore a solvsoliton and, consequently,
+a Ricci soliton: the symmetric derivation integrates to automorphisms,
+whose pullback metric has derivative \(2g(D_{\mathrm{prod}}\,\cdot,\cdot)\).
+Thus its Ricci tensor is a scalar multiple of the metric plus a Lie
+derivative. Theorem \ref{thm:main} does not assert the existence of
+a local maximum that is not a Ricci soliton.
+
+\paragraph{Status, credit, and AI assistance.}
+This is an unrefereed research note. The known family,
+value, critical-point restrictions, and nonglobality machinery are
+credited above; the earlier exact existence announcement is explicit
+in the abstract and introduction. No new-family claim, firstness
+claim, established novelty, or current community-open claim is made.
+The direct proof presented here is intended to be checked from the
+displayed identities and estimates.
+AI tools were used extensively in solving the problem, symbolic
+computation, source review, writing, and adversarial verification.
+Machine agents are not independent human referees; this work has not
+received external human peer review. The author retains responsibility
+for the claims, calculations, citations, and exposition.
+
+\begin{thebibliography}{9}
+\bibitem{MP}
+F.~Morgan and P.~Pansu,
+\emph{A list of open problems in Differential Geometry},
+collection associated with Modern Trends in Differential Geometry,
+S\~ao Paulo, July 2018, \S11, Question 14, p.~12.
+\href{https://www.imo.universite-paris-saclay.fr/~pierre.pansu/problems_MTDG.pdf}
+{Accessible primary PDF}. Accessed 13 October 2026.
+
+\bibitem{talk}
+J.~Lauret,
+\emph{Homogeneous Ricci curvature and the beta operator},
+S\~ao Paulo talk, 23 July 2018, slide 13/17,
+overlay PDF pp.~71--73.
+\href{https://www.ime.usp.br/~mtg/slides/j_lauret.pdf}{Primary slides}.
+Accessed 13 October 2026.
+
+\bibitem{LWv1}
+J.~Lauret and C.~E.~Will,
+\emph{The Ricci pinching functional on solvmanifolds},
+\href{https://arxiv.org/abs/1808.01380v1}{arXiv:1808.01380v1},
+3 August 2018. Version-specific references in this note use its
+printed pagination.
+
+\bibitem{LWv2}
+J.~Lauret and C.~E.~Will,
+\emph{The Ricci pinching functional on solvmanifolds},
+\href{https://arxiv.org/abs/1808.01380v2}{arXiv:1808.01380v2},
+9 May 2019. Journal metadata: \emph{Quarterly Journal of Mathematics}
+\textbf{70} (2019), 1281--1304,
+\href{https://doi.org/10.1093/qmath/haz020}{doi:10.1093/qmath/haz020}.
+The full text checked here is arXiv v2; no assertion of
+textual identity with the journal version is made.
+\end{thebibliography}
+\end{document}

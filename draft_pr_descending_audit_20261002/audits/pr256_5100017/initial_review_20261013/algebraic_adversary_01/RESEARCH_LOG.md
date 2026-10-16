@@ -1,0 +1,14 @@
+# Algebraic adversary research log
+
+Only this assigned audit folder is owned by this agent. Submitted sources are immutable. No Git operations, branch changes, native-provider writes, external outreach, or publication actions were performed.
+
+- 2026-10-13T03:12:07.036616+00:00 — Initial independent projection/complex-moment mechanism and falsifiers recorded before opening the submitted proof or any prior review. Best-guess audit completion: 0%.
+- 2026-10-13T03:16:00+00:00 (approximate working checkpoint) — Complete submitted proof and verifier read; independent finite-cyclic action argument, adjacent-normal bilinear coefficients, squared-support relation, doubled-normal telescope, and area pairing derived. No algebra error identified. N=4 converse identified as worth making explicit via S_Z=0. Best-guess completion: 55%.
+- 2026-10-13T03:20:35.134747+00:00 — Exact checkpoint PASS: 68 exact checks, including all surviving antipodal moment monomials, both explicit coefficient coboundaries, centroid assembly, N=4 all-M raw shoelace, and symbolic all-M Cartesian 8/3 star projections. Exact exceptional radius squared 123539/20736 confirmed. The test point on that circle has zero signed area and nonzero first moment. Best-guess completion: 90%.
+- 2026-10-13T03:21:03.046631+00:00 — Broad independent tangent-map numeric generator exposed double-precision period-parameter instability near degenerate caustics. This concerns the diagnostic generator, not the exact theorem. Switched all period tuning and orbit generation to 90-digit arithmetic before independent Cartesian projection evaluation; retained the original 2e-8 normalized residual threshold. Best-guess completion: 90%.
+
+- 2026-10-13T03:22:30.722480+00:00 — Independent numeric robustness run PASS: 141 primitive even families, 564 phases, 2520 pedal cases, including 264 zero-area cases. All period generation used 90 digits; normalized moment residual ≤7.87e-14. Near-degenerate controls stayed within the open elliptic domain, down to b²−λ≈2.81e-24. Independent all-period derivation completed. Best-guess completion: 98%.
+
+Strongest verified result: the complete signed-area and signed-moment identities for every stated even least-period elliptic-caustic family, with explicit centroid and precise undefined circle. Exact remaining mathematical gap: none. Final report and inventory conclude this assigned audit; no proof repair is required. A nonblocking expository sentence can make N=4⇒d=0 explicit.
+
+- 2026-10-13T03:30:30.306291+00:00 — Final exact winding certificate PASS; two prior double-generator failures reproduced individually with their original residuals and their high-precision repairs. Complete candidate-repair proof read; its sole new N=4⇒d=0 paragraph directly and symbolically verified PASS. Final report and hash inventory completed. Best-guess assigned audit completion: 100%. Exact remaining mathematical gap: none.

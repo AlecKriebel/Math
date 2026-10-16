@@ -1,0 +1,39 @@
+# Independent round 3 derivation and claim boundary
+
+Reviewer: pr681-whole-package-adversary-round3. This derivation was reconstructed from the current four-page paper and literal primary sources before reading earlier verdict reasoning. The subsequently inspected historical derivations were used for consistency checks. The executable independent controls do not import the candidate's mathematical code.
+
+## Exact target and literal source
+
+The target is the equality between the integral free-group Andreadakis kernel A_n(k) on F_n/Gamma_(k+1) and the substitution kernel D_n(k) on the entire J/J^(k+1) in the rational SL(2,C) individual-matrix-entry function algebra. The inspected OWR 2018 printed pages 88 and 89 define those component functions and J, then D, state inclusion and equality through degree four, and formulate equality in every positive degree within an n>=3 discussion. They concern neither trace functions nor the lower central series of IA_n.
+
+Freshly retrieved OWR and Satoh 1607.05411v2 bytes have the same hashes as the root source ledger, independently measured in SOURCE_BINDINGS.json. Complete rendered OWR pages 88/89, Satoh preprint pages 9/10/17 and Burde pages 4/10 were inspected. Satoh Section 4.2 acts on the whole J quotient, Theorem 4.9 records inclusion, and Theorem 6.3 gives the known low-degree equality. A right-action convention or a consistent inverse-action convention has the same kernel; the current direct substitution is consistent with the inspected definitions.
+
+## Matrix identity and finite ideal powers
+
+For an arbitrary 2 by 2 matrix X over a commutative ring, Cayley-Hamilton says X^2=tX-dI. For U=[X,Y] and V=[X,Z], XU+UX=tU and XV+VX=tV. Thus XUV=(tU-UX)V=tUV-U(tV-VX)=UVX. Interchanging U,V gives XVU=VUX. Consequently [[[X,Y],[X,Z]],X]=0. This argument uses only integer polynomial operations and no division, diagonalization, smoothness, reducedness or characteristic-zero assumption. The full filtration statement remains in the rational component-algebra setting claimed by the paper.
+
+For invertible 1+u,1+z with entries of u in I^r and z in I^s, direct multiplication gives [1+u,1+z]-1=(uz-zu)(1+u)^(-1)(1+z)^(-1). Inverses differ from identity by entries in I; therefore the degree r+s class is [u_r,z_s], with actual displacement in I^(r+s). No convergence assertion is needed. Apply this repeatedly to tautological matrices 1+B_i, B_i in Mat_2(J). For w the weights are 2,2,4,5, and the fifth-degree class is P(X1,X2,X3)=0. For v the weights are 2,3,5,6, and the sixth-degree class is P(X1,X2,[X1,X2])=0. The graded coefficient ring is commutative, so the matrix identity applies. Zero in J^5/J^6 or J^6/J^7 means actual membership in J^6 or J^7. Nothing is inferred from a sample of arcs, traces, or pointwise numerical evaluations.
+
+The independently inspected frozen matrix family also recomputes the full finite universal Gauss-chart quotient and checks one degree beyond vanishing, preventing truncation from fabricating zero. The fresh package replay reproduces all 21 controls in both modes with exact frozen-output equality.
+
+## Integral obstruction and automorphism bridge
+
+In integral noncommutative formal series, x_i maps to 1+X_i and x_i^(-1) to its geometric inverse. The same filtered commutator calculation proves the elementary implication E(Gamma_r) is contained in 1+terms of degree at least r. Its converse and injectivity are not required. The leading term of w is P; the coefficient of X1X1X2X1X3 is -1, from -X1(X1X2)(X1X3). The leading term of v is Q; the coefficient of X1X1X1X2X1X2 is +1, from X1(X1^2 X2)(X1X2). Hence w is outside integral Gamma_6, and v outside integral Gamma_7.
+
+My direct tensor-series computation gives those complete leading polynomials, independently compared with full-word Magnus multiplication. My distinct untruncated integral unitriangular evaluation recovers all 489 positive-length coefficient paths through the needed degrees. The two sparse assignments printed on page 4 give exactly I-E16 and I+E17. In U_d(Z), commutators add distances above the diagonal, so Gamma_d is trivial; these are independent finite certificates of the integral nonmembership. The all-rank extension follows by fixing further generators, or mapping them to identity in these witnesses.
+
+If u avoids x_t, the substitutions x_t -> x_t u and x_t -> x_t u^(-1), with other generators fixed, are two-sided inverse automorphisms: both fix u and cancel on x_t. Choosing (u,t)=(w,4) or (v,3) proves the rank ranges n>=4 and n>=3. For the moving tautological matrix, the difference is M_t(M(u)-I), so it vanishes modulo J^6 or J^7. All generator entries generate the component algebra because products and SL2 adjugates give all word entries. The telescoping product difference therefore fixes every polynomial modulo the same power, hence the whole J quotient. Conversely x_t^(-1)phi(x_t)=u supplies the integral obstruction to A membership. This proves exactly D_n(5) minus A_n(5) for n>=4 and D_n(6) minus A_n(6) for n>=3.
+
+My extra boundary checks include an explicit 3 by 3 counterexample P(diag(0,1,2),E12,E23)=2E13 and all 4096 assignments of three 2 by 2 matrices over F2. The latter test the division-free identity only; they do not extend the theorem to positive-characteristic filtration definitions.
+
+## Classical attribution and historical limits
+
+Burde 1411.0950v2 equation (4) displays [z,[[z,x],[z,y]]]=0, exactly -P under z=X,x=Y,y=Z. Its Theorem 4.14 attributes this identity in an sl2 basis to Razmyslov. Q is a weighted substitution and has degree six. The current paper, README, status summary, scope and deposit credit this classical identity explicitly. The original Razmyslov paper was not independently inspected here. The source supports reporting Burde's historical attribution, not pretending to have read the original classification.
+
+The priority family's source ledgers and hypothesis map distinguish trace/character filtrations, ordinary Andreadakis lower-central comparisons, Grossman derived-quotient constructions and tangent algebras of relatively free algebras. None of the inspected implications establishes a complete older application to this exact component filtration. Their negative search is bounded evidence. Four fresh targeted search queries found no verified exact predecessor, and fresh direct DOI openings did not obtain the final 2017/2021 journal texts. I make no firstness, exhaustive-coverage or 2026-openness inference. The public 2017v2, shorter related sources and metadata are not treated as identical to inaccessible final articles. The note's explicit significant source-access limits are therefore appropriate.
+
+## Operational representation boundary
+
+The frozen scientific bytes remain unchanged. The repaired helper permits only an empty normalization list or exactly [{field:description,kind:plain_text_html_entities}]. The latter is permitted only when the frozen description has no markup matching the kit rule, html.unescape leaves it unchanged, and html.escape(quote=False) actually changes it. Both published receipts must report the same exact list. Their file sets, sizes, SHA hashes, production record identity, resolved DOI and UTC ordering remain required. Downstream validation records the list and the exact raw or escaped description SHA, with the deposit, receipts, helpers, reviews, gates and all original files captured and rechecked before writes.
+
+The independent kit controls reconstruct all eleven supplied native metadata fields and independently compare the previously downloaded two binaries with the unchanged local files. Actual record 23387442 is an observed unpublished draft with no public DOI asserted by this review. All stage/publish/append/push demonstrations in this review use fake identifiers and intercepted transports in isolated fixtures. Operational findings and their verified repairs are recorded in FINDINGS.md; no finding is waived.

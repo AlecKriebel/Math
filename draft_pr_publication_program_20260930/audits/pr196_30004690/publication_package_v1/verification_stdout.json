@@ -1,0 +1,73 @@
+{
+  "inventory_files_verified": 70,
+  "exact_scalar_replays": [
+    {
+      "script": "audits/legendre_regularity_audit_01/exact_scalar_verifier.py",
+      "optimization_enabled": false,
+      "certificate_exact_match": true,
+      "result": {
+        "verdict": "PASS_EXACT_NORMAL_FORM",
+        "arithmetic": "fractions.Fraction; all identities exact",
+        "parameters": {
+          "T": "2/5",
+          "a_T": "7/11",
+          "kappa_0": "-2",
+          "beta": "-3",
+          "L": "-5/2",
+          "M": "-7/3"
+        },
+        "certificates": [
+          "Polynomial identity holds for all real t, not only sampled t.",
+          "Plateau support sign certificate gives unique global maximizer T.",
+          "Completed square gives unique global left maximizer for 0<h<(-L)T.",
+          "Post-contact objective is below its T value; left maximum strictly exceeds it.",
+          "F-prime left difference quotient is 0; right is -1/L = 2/5",
+          "Six invalid-hypothesis controls are rejected."
+        ],
+        "scope": "Scalar algebra only; no claim of independently verified Hele-Shaw geometry or PDE."
+      }
+    },
+    {
+      "script": "audits/legendre_regularity_audit_01/exact_scalar_verifier.py",
+      "optimization_enabled": true,
+      "certificate_exact_match": true,
+      "result": {
+        "verdict": "PASS_EXACT_NORMAL_FORM",
+        "arithmetic": "fractions.Fraction; all identities exact",
+        "parameters": {
+          "T": "2/5",
+          "a_T": "7/11",
+          "kappa_0": "-2",
+          "beta": "-3",
+          "L": "-5/2",
+          "M": "-7/3"
+        },
+        "certificates": [
+          "Polynomial identity holds for all real t, not only sampled t.",
+          "Plateau support sign certificate gives unique global maximizer T.",
+          "Completed square gives unique global left maximizer for 0<h<(-L)T.",
+          "Post-contact objective is below its T value; left maximum strictly exceeds it.",
+          "F-prime left difference quotient is 0; right is -1/L = 2/5",
+          "Six invalid-hypothesis controls are rejected."
+        ],
+        "scope": "Scalar algebra only; no claim of independently verified Hele-Shaw geometry or PDE."
+      }
+    },
+    {
+      "script": "original_submitted_head/independent_review/scalar_duality_check.py",
+      "optimization_enabled": false,
+      "certificate_exact_match": true,
+      "result": {
+        "status": "PASS",
+        "cases": 81,
+        "exact_assertions": 486,
+        "method": "Rational piecewise-concave-quadratic functions; optimize both branches and endpoints exactly.",
+        "scope": "Checks plateau direction, global maximizer, and unequal one-sided quadratic coefficients. Does not validate Hele-Shaw geometry, source inputs, or solve the PDE."
+      }
+    }
+  ],
+  "scalar_only": true,
+  "geometric_or_PDE_computation_certified": false,
+  "historical_priority_certified": false,
+  "verification_writes": false
+}

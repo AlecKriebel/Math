@@ -1,0 +1,5 @@
+# Current bounded repair status
+
+REPAIR_STATUS_CASE_ALIAS01.json supersedes the current readiness interpretation of the unchanged, dated TERMINAL_STATUS.json. Three prior whole-package reviews completed; at least two are required. The latest prior whole03 was zero actionable P0–P3 on its original bytes. A subsequently confirmed CASE-1064 P3 support-location finding required this bounded repair. ROOT adoption of the repair and NEW COMPLETE whole04 are required before any new readiness decision. Focused repair checks do not constitute whole04 or change prior review verdicts.
+
+Publication, published and issues-updated flags remain false. The ordered service gate remains held after PR1032. The exact five-page paper, mathematical proof, constants, checker programs, source credits and bibliographic objects are unchanged. It remains an explicitly credited prior corollary; novelty, historical priority and worldwide still-open status are not certified. Extensive AI assistance, unrefereed status, and absence of formal or external human peer review remain disclosed. No compiler, renderer, Git, service or outreach action occurred in this repair.

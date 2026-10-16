@@ -1,0 +1,11 @@
+# Root adversarial priority checkpoint: classical long-cylinder deduction
+
+The inspected Ammann–Jammes author manuscript is dated December8,2008,15pages; exacthash/registrymetadata/inspection scope are in ROOT_AJ_SOURCE_CHECK.json. Introduction and section3.2 identify long cylindrical conformal blowups as classical Pinocchio metrics, with earlier references. Its main result makes normalized first positive conformal eigenvalues unbounded. Theorem4.1 concerns fixed-index eigenvalues below a cylinder spectral threshold. These facts require explicit geometric predecessor credit. The published2011 chapter title includes “first eigenvalues”, unlike the arXiv title; inspected author copy is not asserted byte-identical to the chapter or2007version.
+
+A fixed-index spectral theorem alone supplies too little heat mass: for N fixed and a positive sphere operator, the firstN terms in the normalized expression16pi^2/V_L times the time4 heat sum are at most16pi^2 N/V_L, tending tozero when V_L grows linearly. This excludes a deduction merely from first-eigenvalue blowup.
+
+It does NOT exclude a deduction from the earlier *geometric construction*. A long exact unitS2 cylinder permits the ordinary Dirichlet min–max argument for all k, hence O(L) trial modes and the normalized lower limit sqrt(pi)/e. Combining that elementary fact with a rigorous upper bound on the round maximum gives precisely the mechanism here. The independent priority audit must test this stronger classical-construction route rather than stop at the fixed-index theorem boundary.
+
+Accordingly no new-cylinder construction or new-minmax principle is claimed. Potential contribution is an explicit finite quantitative application settling the named historical comparison; historical firstness and substantial methodological novelty are unproved. Root sent this adversarial challenge to the own priority lead; an independent challenger is assessing it. Complete priority disposition remains pending. PR822 workflow35%; programme19%; originaleffort1/5, no newcentral proof search.
+
+Primary references: [author manuscript](https://ammann.app.uni-regensburg.de/publications/supdir/supdir.pdf), [version record](https://arxiv.org/abs/0708.0529), [published chapter DOI](https://doi.org/10.1017/CBO9780511863219.002).

@@ -1,0 +1,11 @@
+# Source and audit contract
+
+The subject is the original 30-file, 214,980-byte focused package for problem 9700042, PR 885, at Git head `4b1ef9bbeb723a4171949a6c3934db98962ac615`. Its original effort is 5/5. The external parent source-manifest SHA-256 is `6b1d1281848190f616f6759f40454183c937b65e65219b893202254be6c3617d`. The Git object prefix is `unsolved_math_prioritization/attempts/9700042/`.
+
+The source directory is a read-only subject by audit policy. It is authenticated against both the externally pinned manifest and actual Git tree/blob bytes at that head. This audit writes only its own directory. No Git working tree, index, branch, ref, config, queue, PR, publication, release, DOI, or external communication is changed. The parent's previously captured eligibility record supplies the live gate; this audit independently authenticates its assigned exact head, not current remote PR state.
+
+The audit independently checks file identities, packet inventory semantics, declared relocation pins, the two actual patch transformations, all five finite checker outputs, interpreter modes and assertion retention, bounded negative controls, and the originals after replay. The current authoritative packet inventory contains 29 payload files plus `PACKET_MANIFEST.json`; frozen historical audit inventories are not assertions that their omitted source files or duplicate snapshots are included.
+
+The strongest possible artifact verdict is that this exact packet is authentic and its declared finite diagnostics reproduce. It establishes neither the asymptotic theorem nor an external premise, independence of historical mathematical audits, novelty, priority, human peer review, or publication acceptance. The mathematical approach families are not read or consulted by this audit.
+
+Public and private receipts have separate roles. Public receipts identify actual byte counts and SHA-256 hashes before normalizing path strings; normalized text is explicitly labeled. Private raw process stderr/stdout may contain ephemeral paths and is excluded from the explicit public manifest. Public manifest entries are explicit relative regular-file paths with sizes and hashes, never a recursive directory allowance.

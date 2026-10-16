@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/finalization/terminal_admin_20261014/scratch/verify_support.py", line 112, in <module>
+    main()
+    ~~~~^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/finalization/terminal_admin_20261014/scratch/verify_support.py", line 104, in main
+    members = verify_payload()
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/finalization/terminal_admin_20261014/scratch/verify_support.py", line 63, in verify_payload
+    terminal.verify_terminal(ROOT)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/finalization/terminal_admin_20261014/scratch/terminal_stage.py", line 24, in verify_terminal
+    for row in accepted['protected_package_inputs']:check(row)
+                                                    ~~~~~^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/finalization/terminal_admin_20261014/scratch/terminal_stage.py", line 8, in check
+    data=get(row['path']);require(len(data)==row['bytes'] and hashlib.sha256(data).hexdigest()==row['sha256'],'protected reviewed payload changed: '+row['path'])
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/finalization/terminal_admin_20261014/scratch/terminal_stage.py", line 6, in get
+    def get(name):return (root/name).read_bytes()
+                         ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/finalization/terminal_admin_20261014/scratch/paper.pdf.sha256'

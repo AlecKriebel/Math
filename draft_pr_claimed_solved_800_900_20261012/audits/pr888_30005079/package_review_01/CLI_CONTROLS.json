@@ -1,0 +1,707 @@
+{
+  "timestamp_utc": "2026-10-16T06:20:43.034360+00:00",
+  "status": "PASS",
+  "actual_fresh_cli_invocations": 8,
+  "earlier_actual_success_receipts": [
+    {
+      "label": "current_normal",
+      "observed_returncode": 0,
+      "raw_receipt_pin": {
+        "bytes": 11314,
+        "sha256": "528892e4d1c5cba7ac9b47e18e21ddacae9868acea916cdf42cb4ccae4b35f5b"
+      }
+    },
+    {
+      "label": "current_optimized",
+      "observed_returncode": 0,
+      "raw_receipt_pin": {
+        "bytes": 11434,
+        "sha256": "9e4f3c6ca9594b9a04ba3baaa008f78459e42e4b76ba5e2dfcdee45d2af04657"
+      }
+    },
+    {
+      "label": "default_fresh_outside_build",
+      "observed_returncode": 0,
+      "raw_receipt_pin": {
+        "bytes": 11609,
+        "sha256": "ed62056f715b9281d03591a53a0f51b5710d0d0d3669cdb6af01a36e5d091920"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "label": "wrong_current_pin",
+      "started_utc": "2026-10-16T06:20:26.487358+00:00",
+      "completed_utc": "2026-10-16T06:20:26.580797+00:00",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "stdout_raw_pin": {
+        "bytes": 75,
+        "sha256": "9ee29e0a493215f2417dad5447b3f6cb83b08f69b80387762c38da3daa9f9f7b"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "current",
+        "0000000000000000000000000000000000000000000000000000000000000000",
+        "--verify-only"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions.",
+      "direct_process_record_pin": {
+        "bytes": 775,
+        "sha256": "cb246d8c5e3776402f9ec339e7cb33d29ef4f3817b934feadb90343b565038cc"
+      },
+      "result": {
+        "reason": "external current manifest pin mismatch",
+        "status": "REJECTED"
+      }
+    },
+    {
+      "label": "current_authentication_only",
+      "started_utc": "2026-10-16T06:20:26.583262+00:00",
+      "completed_utc": "2026-10-16T06:20:26.782956+00:00",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "stdout_raw_pin": {
+        "bytes": 854,
+        "sha256": "a38e025a93a3ad36b29d2479043ce7e0aa165c9535b81625d69b26bd46fe6cfe"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "current",
+        "db1810399e605970d022afc971438561bbf4f3bca60ee93f457919d7b7a051c1",
+        "--verify-only"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions.",
+      "direct_process_record_pin": {
+        "bytes": 786,
+        "sha256": "e17b3b0c02f6c7094cad7077aa604e188f4d9ce2ab9ebc71ef7781235d33115f"
+      },
+      "result": {
+        "current_manifest_sha256": "db1810399e605970d022afc971438561bbf4f3bca60ee93f457919d7b7a051c1",
+        "outer_files": 179,
+        "portable": {
+          "index_sha256": "a41885c94a6a7d97ac16700256d10a29b616895b80b37db693239e59f7475480",
+          "original_bytes": 98055,
+          "original_effort": "1/5",
+          "original_files": 21,
+          "package_member_count": 150,
+          "replay": "NOT_RUN",
+          "scope": "Closed byte authentication and finite auxiliary diagnostics only; no proof, priority, novelty, human-review or publication approval.",
+          "source_authentication": {
+            "corpora": "NOT_RUN",
+            "primary_sources": "NOT_RUN"
+          },
+          "status": "PASS"
+        },
+        "same_runtime_exact_zip_rebuild": true,
+        "scope": "Closed byte authentication and finite auxiliary diagnostics only; no proof, priority, novelty, human-review or publication approval.",
+        "status": "PASS"
+      }
+    },
+    {
+      "label": "build_forbids_verify_only",
+      "started_utc": "2026-10-16T06:20:26.783838+00:00",
+      "completed_utc": "2026-10-16T06:20:26.846013+00:00",
+      "returncode": 2,
+      "expected_returncode": 2,
+      "stdout_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_raw_pin": {
+        "bytes": 121,
+        "sha256": "31c058b573dc6555d500354ff9783a3c5590799f6b0b1ef8915d9f0c8f27cbae"
+      },
+      "stderr_redacted": "usage: portable.py [-h] {verify,build,current,source-only} ...\nportable.py: error: unrecognized arguments: --verify-only\n",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "build",
+        "a41885c94a6a7d97ac16700256d10a29b616895b80b37db693239e59f7475480",
+        "<AUDIT_ROOT>/package_review_01/private_tmp/blocked_build/rank-two-fano-verification.zip",
+        "--root",
+        "<AUDIT_ROOT>/candidate/verification",
+        "--verify-only"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions.",
+      "direct_process_record_pin": {
+        "bytes": 1057,
+        "sha256": "3a71798d445db07cf8e4ed7875bfdaa5ebfabbe56f8d423670187443f5e88e46"
+      }
+    },
+    {
+      "label": "build_existing_output",
+      "started_utc": "2026-10-16T06:20:26.847806+00:00",
+      "completed_utc": "2026-10-16T06:20:26.926156+00:00",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "stdout_raw_pin": {
+        "bytes": 57,
+        "sha256": "7e1ead4c026dfb7ffcd7e85788578dd1e265de3220a4e8be6eda9ea886201c37"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "build",
+        "a41885c94a6a7d97ac16700256d10a29b616895b80b37db693239e59f7475480",
+        "<AUDIT_ROOT>/package_review_01/private_tmp/default_build/rank-two-fano-verification.zip",
+        "--root",
+        "<AUDIT_ROOT>/candidate/verification",
+        "--dependency-dir",
+        "<AUDIT_ROOT>/publication_tools_01/private_tmp/wheels"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions.",
+      "direct_process_record_pin": {
+        "bytes": 992,
+        "sha256": "789fb54bf134db0163b3369ab4b14bcad3e2e269b63fc330fcbeb9b56a347f1e"
+      },
+      "result": {
+        "reason": "output must be fresh",
+        "status": "REJECTED"
+      }
+    },
+    {
+      "label": "default_build_missing_dependencies",
+      "started_utc": "2026-10-16T06:20:26.927164+00:00",
+      "completed_utc": "2026-10-16T06:20:27.007757+00:00",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "stdout_raw_pin": {
+        "bytes": 119,
+        "sha256": "a5c569b1a5de082fc9dc050fa9f7b499acdadaf44a5563a5077c94df00e7b27e"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "build",
+        "a41885c94a6a7d97ac16700256d10a29b616895b80b37db693239e59f7475480",
+        "<AUDIT_ROOT>/package_review_01/private_tmp/missing_dependency_output/rank-two-fano-verification.zip",
+        "--root",
+        "<AUDIT_ROOT>/candidate/verification"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions.",
+      "direct_process_record_pin": {
+        "bytes": 934,
+        "sha256": "1cdfceeb9acac64303db667f247d19044b8d5d3da9a9577850861181e7170f64"
+      },
+      "result": {
+        "reason": "default replay requires --dependency-dir containing the two pinned official wheels",
+        "status": "REJECTED"
+      }
+    },
+    {
+      "label": "original_root_actual_optimized",
+      "started_utc": "2026-10-16T06:20:27.008803+00:00",
+      "completed_utc": "2026-10-16T06:20:27.076458+00:00",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "stdout_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_raw_pin": {
+        "bytes": 871,
+        "sha256": "73b438b6f58f9d87d3211b92f01408ff759cea6f26da74b1a180285e987adea0"
+      },
+      "stderr_redacted": "Traceback (most recent call last):\n  File \"<AUDIT_ROOT>/candidate/verification/source/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<AUDIT_ROOT>/candidate/verification/source/verify_publication.py\", line 137, in main\n    require(not sys.flags.optimize, 'Run with assertions enabled, without -O or PYTHONOPTIMIZE')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<AUDIT_ROOT>/candidate/verification/source/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Run with assertions enabled, without -O or PYTHONOPTIMIZE\n",
+      "argv_redacted": [
+        "-O",
+        "<AUDIT_ROOT>/candidate/verification/source/verify_publication.py"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions.",
+      "direct_process_record_pin": {
+        "bytes": 1377,
+        "sha256": "17fc0a98bb343170f26db72b107f1dce1c3c02932a0e97511508d291976a481b"
+      }
+    },
+    {
+      "label": "source_only_complete_corpora",
+      "started_utc": "2026-10-16T06:20:27.077249+00:00",
+      "completed_utc": "2026-10-16T06:20:28.252146+00:00",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "stdout_raw_pin": {
+        "bytes": 2343,
+        "sha256": "ec488099d6d505c3385345418337fe7ab7afef1a2d0dd2ad34c384a4c77e88d8"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "source-only",
+        "--catalog",
+        "<PROJECT_ROOT>/unsolved_math_prioritization/catalog.json",
+        "--problems",
+        "<PROJECT_ROOT>/unsolved_math_prioritization/cache/problems.json",
+        "--reports",
+        "<PROJECT_ROOT>/unsolved_math_prioritization/cache/research_results.json",
+        "--primary-dir",
+        "<AUDIT_ROOT>/private_sources"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions.",
+      "direct_process_record_pin": {
+        "bytes": 1022,
+        "sha256": "3dc3469aa824fac8ea983cc578fef8bbe9ddcd3f513dd60a1e6f8f16828a8941"
+      },
+      "result": {
+        "archival_code_executed": false,
+        "archival_code_read": false,
+        "canonical_pair_bytes": 5415,
+        "canonical_pair_sha256": "6bbb2826e583f9ccbbb38411ce780e865c0b9564b74bf9f6eca5250f4b06e083",
+        "inputs": [
+          {
+            "bytes": 21735099,
+            "complete_pin_before_any_extraction": true,
+            "name": "catalog.json",
+            "sha256": "891938878f1e395de77f6829d5d5d13cb5d5393f85efaa7941fb14bd3e3d7566"
+          },
+          {
+            "bytes": 68931837,
+            "complete_pin_before_any_extraction": true,
+            "name": "problems.json",
+            "sha256": "04128381e42a5e312326d74adb0947ee02062ade70229e02d3060ac4ef9942cf"
+          },
+          {
+            "bytes": 80334822,
+            "complete_pin_before_any_extraction": true,
+            "name": "research_results.json",
+            "sha256": "8da848d31c20eb4eecaa07702eced4724aa4a89f877c2a0774d9f3138389aa6b"
+          }
+        ],
+        "primary_sources": {
+          "bodies_copied": false,
+          "pins": [
+            {
+              "bytes": 1032709,
+              "name": "owr2022_17.pdf",
+              "sha256": "c997329409f016d06867ecc06dd38c59cea4919aa9ecf34791ed6a95f63345ec"
+            },
+            {
+              "bytes": 433443,
+              "name": "miao_wang_solitons_v4.pdf",
+              "sha256": "2548f933f5d2ddb4013d5f4e1c6ea938aeb9acc518f66c72f6a7a19ed631b6d4"
+            },
+            {
+              "bytes": 538390,
+              "name": "miao_wang_optimal_v2.pdf",
+              "sha256": "85285e55a256fe342d511f716530ed790801d695bdd5f21090ff9d56039b8049"
+            },
+            {
+              "bytes": 558188,
+              "name": "han_li_optimal_arxiv.pdf",
+              "sha256": "939691d9bd0c24444f43b944b91c1ac9684fef628d3b23393cc7f6fd3b5db0ff"
+            },
+            {
+              "bytes": 641357,
+              "name": "han_li_gytd.pdf",
+              "sha256": "cd44c6a91351619ffc41aae32bba1d144afb6f9eda11f4dbee74f3677502e9a6"
+            },
+            {
+              "bytes": 221336,
+              "name": "wang_zhu_toric.pdf",
+              "sha256": "93aa63348add332cca1df8519bd864065f1956ae5f898e09065651d5f92245b1"
+            },
+            {
+              "bytes": 443588,
+              "name": "BLXZ_2103.15278v2.pdf",
+              "sha256": "8d56f0d92d9146ea85c53be8c04fc02e90f4b09a57fc3f591a996d1b040c1351"
+            }
+          ],
+          "status": "PASS",
+          "technical_theorems_verified_by_hash": false
+        },
+        "source_bodies_copied": false,
+        "statement_bytes": 126,
+        "statement_sha256": "89284283d8e9e26eea1e01f6862da8c4ebd61a27bc03a36512d29cb746e9f0d3",
+        "status": "PASS",
+        "target_report": "ABSENT"
+      }
+    },
+    {
+      "label": "hostile_environment_full_replay",
+      "started_utc": "2026-10-16T06:20:28.253387+00:00",
+      "completed_utc": "2026-10-16T06:20:43.025672+00:00",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "stdout_raw_pin": {
+        "bytes": 11314,
+        "sha256": "dfdbea093338a8795cbc09b5aaceacea46b4b8af550e45be45267e4c7c97f27b"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "current",
+        "db1810399e605970d022afc971438561bbf4f3bca60ee93f457919d7b7a051c1",
+        "--dependency-dir",
+        "<AUDIT_ROOT>/publication_tools_01/private_tmp/wheels"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions.",
+      "direct_process_record_pin": {
+        "bytes": 855,
+        "sha256": "75af2f5c25b1cc00337a3facb9c28e335f43bede445f3d293ca6e051b742b45b"
+      },
+      "result": {
+        "current_manifest_sha256": "db1810399e605970d022afc971438561bbf4f3bca60ee93f457919d7b7a051c1",
+        "outer_files": 179,
+        "portable": {
+          "index_sha256": "a41885c94a6a7d97ac16700256d10a29b616895b80b37db693239e59f7475480",
+          "original_bytes": 98055,
+          "original_effort": "1/5",
+          "original_files": 21,
+          "package_member_count": 150,
+          "replay": {
+            "checker_compile_optimize": 0,
+            "counts": {
+              "corrupt": 2,
+              "negative": 2,
+              "positive": 2
+            },
+            "direct_root_launches": 1,
+            "effective_root_flags": [
+              "-I",
+              "-S",
+              "-B"
+            ],
+            "in_process_patch_damage_controls": 3,
+            "launcher": {
+              "dependency_versions": {
+                "mpmath": "1.3.0",
+                "sympy": "1.14.0"
+              },
+              "events": [
+                {
+                  "checker": "checks/verify_construction.py",
+                  "compile_optimize": 0,
+                  "effective_flags": [
+                    "-I",
+                    "-S",
+                    "-B"
+                  ],
+                  "generated_output": {
+                    "bytes": 1614,
+                    "sha256": "af213be553199430c63574706c8f3ca2f47f9e2014040e1e958cba915c393bcd"
+                  },
+                  "kind": "positive",
+                  "measured_flags": {
+                    "dont_write_bytecode": 1,
+                    "ignore_environment": 1,
+                    "isolated": 1,
+                    "no_site": 1,
+                    "optimize": 0,
+                    "safe_path": true
+                  },
+                  "original_execution_began": true,
+                  "original_sha256": "ea788eb3ff9d78c8d2b8d9dfaea7ea4806f1bfea72ba68835fa02230e971e8c9",
+                  "requested_by_original": [
+                    "-B"
+                  ],
+                  "returncode": 0,
+                  "stderr": {
+                    "bytes": 0,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "stdout": {
+                    "bytes": 1615,
+                    "sha256": "7ff9d9d12e568b5c3be20876d9cb11a040aa00fcafda46da42af8fbf10fcd514"
+                  }
+                },
+                {
+                  "checker": "audits/reviewer_b/independent_checks.py",
+                  "compile_optimize": 0,
+                  "effective_flags": [
+                    "-I",
+                    "-S",
+                    "-B"
+                  ],
+                  "generated_output": {
+                    "bytes": 5514,
+                    "sha256": "bdd982cf5ebdf55cbce62b31e1604f7ac5313fb007c47d46afe8e562b7303389"
+                  },
+                  "kind": "positive",
+                  "measured_flags": {
+                    "dont_write_bytecode": 1,
+                    "ignore_environment": 1,
+                    "isolated": 1,
+                    "no_site": 1,
+                    "optimize": 0,
+                    "safe_path": true
+                  },
+                  "original_execution_began": true,
+                  "original_sha256": "afeb7d7cbb80a4a3e466e2f9370a8ccd49c59bb0cda5ffb5353fe52a0720b626",
+                  "requested_by_original": [
+                    "-B"
+                  ],
+                  "returncode": 0,
+                  "stderr": {
+                    "bytes": 0,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "stdout": {
+                    "bytes": 107,
+                    "sha256": "4c67c0787e588f956dd8b061dcc50ef4d059fcdf223faa9cac8287e63a210ee1"
+                  }
+                },
+                {
+                  "checker": "checks/verify_construction.py",
+                  "compile_optimize": 0,
+                  "effective_flags": [
+                    "-I",
+                    "-S",
+                    "-B"
+                  ],
+                  "kind": "negative",
+                  "measured_flags": {
+                    "dont_write_bytecode": 1,
+                    "ignore_environment": 1,
+                    "isolated": 1,
+                    "no_site": 1,
+                    "optimize": 0,
+                    "safe_path": true
+                  },
+                  "original_execution_began": true,
+                  "original_sha256": "ea788eb3ff9d78c8d2b8d9dfaea7ea4806f1bfea72ba68835fa02230e971e8c9",
+                  "requested_by_original": [],
+                  "returncode": 1,
+                  "stderr": {
+                    "bytes": 641,
+                    "sha256": "11a9f53c4c444870e0317f6826d74c7d82ca114b15a388c2bd3e951ce316b2aa"
+                  },
+                  "stdout": {
+                    "bytes": 0,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  }
+                },
+                {
+                  "checker": "checks/verify_construction.py",
+                  "compile_optimize": 0,
+                  "effective_flags": [
+                    "-I",
+                    "-S",
+                    "-B"
+                  ],
+                  "kind": "corrupt",
+                  "measured_flags": {
+                    "dont_write_bytecode": 1,
+                    "ignore_environment": 1,
+                    "isolated": 1,
+                    "no_site": 1,
+                    "optimize": 0,
+                    "safe_path": true
+                  },
+                  "original_execution_began": false,
+                  "original_sha256": "ea788eb3ff9d78c8d2b8d9dfaea7ea4806f1bfea72ba68835fa02230e971e8c9",
+                  "requested_by_original": [],
+                  "returncode": 1,
+                  "stderr": {
+                    "bytes": 178,
+                    "sha256": "6176ed062a372d39d6461379e5f8628dc8d9586ea03a3c298cf5121a8f2fcebe"
+                  },
+                  "stdout": {
+                    "bytes": 0,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  }
+                },
+                {
+                  "checker": "audits/reviewer_b/independent_checks.py",
+                  "compile_optimize": 0,
+                  "effective_flags": [
+                    "-I",
+                    "-S",
+                    "-B"
+                  ],
+                  "kind": "negative",
+                  "measured_flags": {
+                    "dont_write_bytecode": 1,
+                    "ignore_environment": 1,
+                    "isolated": 1,
+                    "no_site": 1,
+                    "optimize": 0,
+                    "safe_path": true
+                  },
+                  "original_execution_began": true,
+                  "original_sha256": "afeb7d7cbb80a4a3e466e2f9370a8ccd49c59bb0cda5ffb5353fe52a0720b626",
+                  "requested_by_original": [],
+                  "returncode": 1,
+                  "stderr": {
+                    "bytes": 673,
+                    "sha256": "7d639b80bf95a14f9422d21c33c1633e601774687dc08787418f0ae4c9efcf3b"
+                  },
+                  "stdout": {
+                    "bytes": 0,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  }
+                },
+                {
+                  "checker": "audits/reviewer_b/independent_checks.py",
+                  "compile_optimize": 0,
+                  "effective_flags": [
+                    "-I",
+                    "-S",
+                    "-B"
+                  ],
+                  "kind": "corrupt",
+                  "measured_flags": {
+                    "dont_write_bytecode": 1,
+                    "ignore_environment": 1,
+                    "isolated": 1,
+                    "no_site": 1,
+                    "optimize": 0,
+                    "safe_path": true
+                  },
+                  "original_execution_began": false,
+                  "original_sha256": "afeb7d7cbb80a4a3e466e2f9370a8ccd49c59bb0cda5ffb5353fe52a0720b626",
+                  "requested_by_original": [],
+                  "returncode": 1,
+                  "stderr": {
+                    "bytes": 178,
+                    "sha256": "6176ed062a372d39d6461379e5f8628dc8d9586ea03a3c298cf5121a8f2fcebe"
+                  },
+                  "stdout": {
+                    "bytes": 0,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  }
+                }
+              ],
+              "patch_controls": [
+                {
+                  "damaged_input": {
+                    "bytes": 3312,
+                    "sha256": "5ac39f54bd6d2037d79a58ff910fa50a1c2e896eb5916b3f193c26a40bd6adbb"
+                  },
+                  "kind": "damaged_context",
+                  "patch": "CITATION_CORRECTION.patch",
+                  "patch_pin": {
+                    "bytes": 5079,
+                    "sha256": "1353da61da9172b765b71258939edb20bbd3bcd95e0d9061bf2a844a54aabbfb"
+                  },
+                  "rejected": true
+                },
+                {
+                  "damaged_input": {
+                    "bytes": 3312,
+                    "sha256": "5ac39f54bd6d2037d79a58ff910fa50a1c2e896eb5916b3f193c26a40bd6adbb"
+                  },
+                  "kind": "damaged_context",
+                  "patch": "NUMERICAL_CORRECTION_v1_to_v2.patch",
+                  "patch_pin": {
+                    "bytes": 2924,
+                    "sha256": "259087cc95fcb9219b3f84eeee73efc671bd23d97d8199ce1f299dd5ed54651b"
+                  },
+                  "rejected": true
+                },
+                {
+                  "damaged_input": {
+                    "bytes": 3312,
+                    "sha256": "5ac39f54bd6d2037d79a58ff910fa50a1c2e896eb5916b3f193c26a40bd6adbb"
+                  },
+                  "kind": "damaged_context",
+                  "patch": "POLYSTABILITY_CITATION_v3_to_v4.patch",
+                  "patch_pin": {
+                    "bytes": 2284,
+                    "sha256": "558225e0285c67a1bbf909a16766f34bf61384d648dde89a73633c0e0b7ed7d0"
+                  },
+                  "rejected": true
+                }
+              ],
+              "root_compile_optimize": 0,
+              "root_flags": {
+                "dont_write_bytecode": 1,
+                "ignore_environment": 1,
+                "isolated": 1,
+                "no_site": 1,
+                "optimize": 0,
+                "safe_path": true
+              },
+              "root_sha256": "0b90c28e34e309823c10a1704b57b935f2058820be867243dcdfa3cb7803719f"
+            },
+            "nested_subprocess_count": 6,
+            "original_root_output": {
+              "author_results_byte_identical": true,
+              "edition_hashes_verified": 4,
+              "forward_and_reverse_patches_verified": 3,
+              "independent_results_byte_identical": true,
+              "packet_files_verified": 21,
+              "python_version": "3.14.6",
+              "scope": "Integrity and auxiliary exact checks only; mathematical acceptance is in the two AI audit reports. No formal-proof or novelty certification.",
+              "sympy_version": "1.14.0"
+            },
+            "original_root_stdout": {
+              "bytes": 412,
+              "sha256": "16a22d5e5ed3d171abceae753cdcc83d485e42684b229f91815cfb09c03d3c06"
+            },
+            "originals_unchanged": true,
+            "outer_measured_optimize": 0,
+            "root_actual_optimization": "Always0 because unchanged original root rejects-O; actual checker mode follows outer optimization.",
+            "root_compile_optimize": 0,
+            "runtime_boundary": "The selected CPython interpreter and its standard library, including native extensions and any standard-library bytecode, are trusted and are not byte-pinned by this tool. No OS sandbox or formal proof verifier is supplied.",
+            "status": "PASS",
+            "wheel_pins": [
+              {
+                "bytes": 6299353,
+                "filename": "sympy-1.14.0-py3-none-any.whl",
+                "sha256": "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5"
+              },
+              {
+                "bytes": 536198,
+                "filename": "mpmath-1.3.0-py3-none-any.whl",
+                "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c"
+              }
+            ]
+          },
+          "scope": "Closed byte authentication and finite auxiliary diagnostics only; no proof, priority, novelty, human-review or publication approval.",
+          "source_authentication": {
+            "corpora": "NOT_RUN",
+            "primary_sources": "NOT_RUN"
+          },
+          "status": "PASS"
+        },
+        "same_runtime_exact_zip_rebuild": true,
+        "scope": "Closed byte authentication and finite auxiliary diagnostics only; no proof, priority, novelty, human-review or publication approval.",
+        "status": "PASS"
+      }
+    }
+  ],
+  "private_redaction": "Raw stdout/stderr are retained privately by pin; only local audit/interpreter prefixes in argv/stderr are redacted. Successful tool JSON is unmodified.",
+  "scope": "Four qualifying directly recorded full replays: initial manual normal/optimized/default-build plus fresh hostile-environment replay. Historical collector eight cases are separate; authentication-only/source-only execute zero archival code.",
+  "collector_incident": {
+    "initial_collection_exit": 1,
+    "cause": "Reviewer expected-hash literal accidentally appended the archive member count 150; actual archive SHA256 is the 64-hex value ending f8f957.",
+    "all_eight_actual_case_returncodes_had_passed_before_failure": true,
+    "raw_outputs_preserved": true,
+    "candidate_defect": false,
+    "historical_initial_cli_cases": 8,
+    "historical_status_provenance": "Guard-inferred only; qualified separately in HISTORICAL_CLI_RECOVERY_QUALIFIED.json. Original raw outputs and first recovered receipt preserved privately.",
+    "fresh_cli_cases_after_evidence_repair": 8,
+    "total_actual_full_replays_including_historical_hostile": 5,
+    "qualifying_directly_recorded_full_replays": 4,
+    "initial_collector_code_pin": {
+      "bytes": 6258,
+      "sha256": "79895730d0fd0eb1dd036b4a0f9ec9cfa648bc837431bf2d7f245468e7a97ea5"
+    },
+    "timestamps": "Historical collector starts were not retained and completion metadata was observed later. Every new case directly records start/end and actual returncode before later assertions."
+  }
+}

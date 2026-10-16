@@ -1,0 +1,157 @@
+{
+  "authentication": {
+    "assertion_counts": {
+      "audit_a/independent_controls.py": 0,
+      "audit_b/independent_checks.py": 0,
+      "author/checks.py": 0,
+      "source_free_audit_b.py": 0,
+      "verify_publication.py": 0
+    },
+    "frozen_files": 22,
+    "head": "32eaecaa8907dbf674e65b138b000cdcc49004ae",
+    "packet_files": 30,
+    "public_manifest_sha256": "acab12ef33c8e2dc566337cfe01b94f2fe81f06ede4b31f1c363e055741fb0df",
+    "source_free_adapter_omitted_top_level_loops": 1,
+    "status": "PASS",
+    "turns": "2/5"
+  },
+  "child_guard_challenges": [],
+  "extended_rejected_mutations": 19,
+  "mutations": [
+    {
+      "exception": "RuntimeError",
+      "name": "FIFO PUBLIC_MANIFEST.json",
+      "reason": "Invalid public manifest path",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "FIFO author/PROOF.md",
+      "reason": "Nonregular path: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "FIFO extra_fifo",
+      "reason": "Nonregular path: extra_fifo",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "Unix socket author/PROOF.md",
+      "reason": "Nonregular path: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "Unix socket extra_socket",
+      "reason": "Nonregular path: extra_socket",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "listed directory symlink audit_a",
+      "reason": "Symlinks forbidden",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "listed directory symlink author",
+      "reason": "Symlinks forbidden",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "semantic byte mutation narrow cutoff",
+      "reason": "Byte mismatch: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "resigned proof blocked by independent freeze narrow cutoff",
+      "reason": "Frozen acceptance anchor mismatch: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "semantic byte mutation wide cutoff",
+      "reason": "Byte mismatch: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "resigned proof blocked by independent freeze wide cutoff",
+      "reason": "Frozen acceptance anchor mismatch: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "semantic byte mutation shift upper bound",
+      "reason": "Byte mismatch: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "resigned proof blocked by independent freeze shift upper bound",
+      "reason": "Frozen acceptance anchor mismatch: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "semantic byte mutation leading degree",
+      "reason": "Byte mismatch: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "resigned proof blocked by independent freeze leading degree",
+      "reason": "Frozen acceptance anchor mismatch: author/PROOF.md",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "unlisted extra synthetic source-like payload",
+      "reason": "File inventory mismatch",
+      "rejected": true
+    },
+    {
+      "exception": "RuntimeError",
+      "name": "resigned extra payload using authentic external anchor",
+      "reason": "External manifest anchor mismatch",
+      "rejected": true
+    },
+    {
+      "name": "independent hard pin rejects caller-resigned extra payload",
+      "reason": "Externally fixed public manifest mismatch",
+      "rejected": true
+    },
+    {
+      "name": "independent root symlink guard",
+      "reason": "Independent guard rejects a symlinked root",
+      "rejected": true
+    }
+  ],
+  "original_authenticated_before_and_after": true,
+  "problem_id": 30006419,
+  "replays": [],
+  "scope": "Frozen finite controls reproduced; expanded nonregular/inventory/pin adversary. Tooling boundaries are separated from mathematical truth. Original author 2/5 count retained.",
+  "status": "PASS",
+  "trust_boundary_observations": [
+    {
+      "case": "extra root payload with freshly supplied outer anchor",
+      "historical_validator": "ACCEPTS",
+      "meaning": "Expected external-anchor trust boundary, not authenticity under the live PR pin. Original pinned nested freezes stay intact. Independent checker hard-codes the live PR anchor and rejects this replacement."
+    },
+    {
+      "case": "symlinked packet root",
+      "historical_validator": "ACCEPTS after Path.resolve",
+      "meaning": "All internal packet symlinks are rejected. Root symlink canonicalization is a wording/tooling boundary, not changed frozen bytes. Independent checker rejects root symlinks."
+    },
+    {
+      "case": "equivalent(True,1.0)",
+      "historical_comparator": "ACCEPTS",
+      "meaning": "Numeric tolerance helper uses isinstance(bool,int); not a strict numeric type guarantee. Authenticated exact producers and independent guards remain necessary."
+    }
+  ],
+  "turns": "2/5"
+}

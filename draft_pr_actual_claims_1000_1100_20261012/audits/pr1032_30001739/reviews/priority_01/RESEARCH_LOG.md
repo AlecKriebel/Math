@@ -1,0 +1,7 @@
+# Independent priority audit research log
+
+2026-10-13T22:02:09.630838+00:00 — Opened independent adverse priority review. Read exact accepted GL15 candidate and mathematical interfaces; do not infer novelty from mathematical acceptance. Priority assessment completion estimate: 5%. Main potential defeater: Luo–Zha full body not yet inspected.
+
+2026-10-13T22:08:55.240073+00:00 — Independent adverse checkpoint. Primary full bodies inspected: FLO2012, LM2014/2016, MOS2017, BP generic paper, Lu–Matringe2026, BP2025 survey, Sharma2026, Gurevich2015, Gurevich–Ma–Mitra2016/2018. Found earlier imprimitive negative distinction (§8 GMM); exact degree20 different subgroup, so credit required but no identity resolution. Luo–Zha author/publisher/HEP/arXiv/archive efforts yield no complete body; July5 VOR vs HEPJuly28 metadata discrepancy recorded. Priority-audit work completion estimate: 60%; novelty establishment estimate: 0% while critical body comparison remains uncleared.
+
+2026-10-13T22:17:19.150644+00:00 — Final priority checkpoint. Exact transformed-candidate comparison completed; report preserves critical Luo–Zha full-body gap and denies novelty promotion. Independent review deliverable completion:100%; best-guess historical-priority resolution:60%; novelty clearance achieved:0%. The unresolved source-access condition is not a mathematical defect and not a reason to infer novelty. No outside communication, access request, Git/PR/service/publication mutation. Freezing outputs after pin verification.

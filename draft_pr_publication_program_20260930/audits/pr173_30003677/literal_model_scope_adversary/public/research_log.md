@@ -1,0 +1,4 @@
+# Literal model and source-scope adversarial audit log
+
+- 2026-10-12T14:14:18.984312+00:00 — Began independent source/model derivation. Read only the exact candidate and curation record plus the PDF skill; no original review, readiness/verification verdicts, ROOT, or other-agent conclusions read. Estimated audit completion: 10%. No mathematical verdict has been sent.
+- 2026-10-12T14:18:32.942210+00:00 — Completed actual independent fixed-time/local-path derivation, read the complete decisive primary model and question texts, checked years, and wrote the first substantive scope assessment. Estimated audit completion: 65%. Strongest verified result is the candidate's near-total capture theorem under its explicitly restricted growing-seed hypotheses; full broader hub-budget classification remains outside scope. No verdict sent before seal.

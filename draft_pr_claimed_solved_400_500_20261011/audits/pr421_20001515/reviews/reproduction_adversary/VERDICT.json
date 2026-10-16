@@ -1,0 +1,249 @@
+{
+  "recorded_at_utc": "2026-10-12T22:37:03.586161+00:00",
+  "scope": "PR421 finite-verification runtime audit only",
+  "head_sha": "d5bf8b5a25cabb177433338fae60af52ebfecf1c",
+  "problem_id": "20001515",
+  "family_verdict": "FROZEN_NORMAL_REPRODUCTION_PASS_WITH_OPTIMIZED_VALIDATION_DEFECT",
+  "frozen_pins": "PASS all13 snapshot and git objects; immutable through final checkpoint",
+  "frozen_normal_replay": "PASS all3 outputs match their pinned expected artifacts exactly",
+  "frozen_optimized_replay": "EXIT0/PASS strings reproduced, but all62 predicates removed; not validation",
+  "control_verdict": "All8 controls rejected normal, accepted with PASS under frozen -O",
+  "validation_repair_verdict": "CANDIDATE_PASS_ON_LOCAL_REPLAYS_PENDING_NEW_INDEPENDENT_ADVERSARY",
+  "repair": {
+    "predicates_preserved": 62,
+    "predicate_ast_one_to_one": true,
+    "all_other_ast_semantics_recovered_by_inverse_transform": true,
+    "baseline_outputs_identical_both_modes": true,
+    "all8_controls_rejected_both_modes": true,
+    "original_exception_type_and_args_preserved_for_all_controls": true,
+    "frozen_originals_changed": false,
+    "proof_attempts_added": 0,
+    "diagnostic_location_changes": true,
+    "overlay_hashes": {
+      "verify.py": "e3357a9af58d68c2f450d2901ab71c58ed955112017fe0ec758d1adc3b36ca42",
+      "audit/independent_audit.py": "281ebf97900d047447a2a3865f233cfba1c41df6dd6c4e8aaae66150250b1903",
+      "audit/independent_algebra.py": "3fda0f889aa454390c6f30c54c842a0a49a5f5a3d1bdea0bce5819711e3dbc96"
+    }
+  },
+  "execution_probe_baseline": {
+    "frozen_normal": {
+      "verify.py": 160,
+      "audit/independent_audit.py": 142,
+      "audit/independent_algebra.py": 6
+    },
+    "frozen_optimized": 0,
+    "repaired_normal_and_optimized": {
+      "verify.py": 160,
+      "audit/independent_audit.py": 142,
+      "audit/independent_algebra.py": 6
+    },
+    "limitation": "Instrumented diagnostics supplement exact uninstrumented replays."
+  },
+  "historical_provenance": "Five initial WIP hashes verified; proof/verifier/checks unchanged; gate/log changed. Pre-publication independent program absent from WIP commit, so claimed portability-only historical edit cannot be independently byte-compared.",
+  "exact_remaining_gap": [
+    "Fresh adversarial audit of sealed explicit-check overlay is pending assignment by root.",
+    "Finite certificates and forward word evaluations do not independently establish reverse group equivalence, applicability of global cubical theorems, properness/cocompactness, exact-source identity, or novelty; those semantic/source questions are assigned to other independent families.",
+    "Historical pre-publication independent program bytes and original local manifest are not present in supplied13-file packet/WIP commit; reported portability-only changes remain historical testimony."
+  ],
+  "budget": {
+    "original": "1/5",
+    "new_proof_search_turns": 0
+  },
+  "outreach": false,
+  "shared_git_or_remote_mutations": false,
+  "completion_estimate_percent_for_this_reproduction_family": 100,
+  "controls": [
+    {
+      "name": "verify_fullness",
+      "program": "verify.py",
+      "mechanism": "Delete the A link corner x-/y+ before testing local fullness.",
+      "frozen_normal_exit": 1,
+      "frozen_optimized_exit": 0,
+      "frozen_optimized_status": "PASS",
+      "repaired_normal_exit": 1,
+      "repaired_optimized_exit": 1,
+      "rejection_type_and_args_equal": true,
+      "exception": {
+        "type": "builtins.AssertionError",
+        "args_repr": "('link image not full',)"
+      }
+    },
+    {
+      "name": "verify_cube_corner",
+      "program": "verify.py",
+      "mechanism": "Delete the z_B+ cube triangle x+/y+/z_B+ after incidence reconstruction.",
+      "frozen_normal_exit": 1,
+      "frozen_optimized_exit": 0,
+      "frozen_optimized_status": "PASS",
+      "repaired_normal_exit": 1,
+      "repaired_optimized_exit": 1,
+      "rejection_type_and_args_equal": true,
+      "exception": {
+        "type": "builtins.AssertionError",
+        "args_repr": "()"
+      }
+    },
+    {
+      "name": "verify_stable_sign",
+      "program": "verify.py",
+      "mechanism": "Change the t exponent in z=c^-1 t^-1 from -1 to +1.",
+      "frozen_normal_exit": 1,
+      "frozen_optimized_exit": 0,
+      "frozen_optimized_status": "PASS",
+      "repaired_normal_exit": 1,
+      "repaired_optimized_exit": 1,
+      "rejection_type_and_args_equal": true,
+      "exception": {
+        "type": "builtins.AssertionError",
+        "args_repr": "()"
+      }
+    },
+    {
+      "name": "independent_fullness",
+      "program": "audit/independent_audit.py",
+      "mechanism": "Delete one actual Q corner at A before checking its induced link image.",
+      "frozen_normal_exit": 1,
+      "frozen_optimized_exit": 0,
+      "frozen_optimized_status": "PASS finite geometric incidence checks",
+      "repaired_normal_exit": 1,
+      "repaired_optimized_exit": 1,
+      "rejection_type_and_args_equal": true,
+      "exception": {
+        "type": "builtins.AssertionError",
+        "args_repr": "()"
+      }
+    },
+    {
+      "name": "independent_cube_corner",
+      "program": "audit/independent_audit.py",
+      "mechanism": "Delete the x+/y+/z_B+ actual cube corner before comparing to cliques.",
+      "frozen_normal_exit": 1,
+      "frozen_optimized_exit": 0,
+      "frozen_optimized_status": "PASS finite geometric incidence checks",
+      "repaired_normal_exit": 1,
+      "repaired_optimized_exit": 1,
+      "rejection_type_and_args_equal": true,
+      "exception": {
+        "type": "builtins.AssertionError",
+        "args_repr": "()"
+      }
+    },
+    {
+      "name": "independent_cube_side",
+      "program": "audit/independent_audit.py",
+      "mechanism": "Attach the p cube side to z_B in place of z_A; triangles remain separately derived.",
+      "frozen_normal_exit": 1,
+      "frozen_optimized_exit": 0,
+      "frozen_optimized_status": "PASS finite geometric incidence checks",
+      "repaired_normal_exit": 1,
+      "repaired_optimized_exit": 1,
+      "rejection_type_and_args_equal": true,
+      "exception": {
+        "type": "builtins.AssertionError",
+        "args_repr": "()"
+      }
+    },
+    {
+      "name": "algebra_stable_sign",
+      "program": "audit/independent_algebra.py",
+      "mechanism": "Change z=c^-1 t^-1 to z=c^-1 t in the independent algebra input.",
+      "frozen_normal_exit": 1,
+      "frozen_optimized_exit": 0,
+      "frozen_optimized_status": "PASS",
+      "repaired_normal_exit": 1,
+      "repaired_optimized_exit": 1,
+      "rejection_type_and_args_equal": true,
+      "exception": {
+        "type": "builtins.AssertionError",
+        "args_repr": "({'xyXY': ('', 0), 'bxBY': ('', 0), 'product_p': ('', 0), 'product_q': ('', 0), 'product_r': ('', 0), 'product_s': ('', 0), 'product_d': ('CBaabc', 0), 'product_e': ('bCaacB', 0), 'HNN': ('Baab', 0)},)"
+      }
+    },
+    {
+      "name": "proof_byte",
+      "program": "audit/independent_audit.py",
+      "mechanism": "Append a newline to the proof bytes without editing the verifier.",
+      "frozen_normal_exit": 1,
+      "frozen_optimized_exit": 0,
+      "frozen_optimized_status": "PASS finite geometric incidence checks",
+      "repaired_normal_exit": 1,
+      "repaired_optimized_exit": 1,
+      "rejection_type_and_args_equal": true,
+      "exception": {
+        "type": "builtins.AssertionError",
+        "args_repr": "()"
+      }
+    }
+  ],
+  "final_source_pins": [
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/ATTEMPT_1.md",
+      "sha256": "c022afdfe003d0692a032cee48855ddf712de22953b358b895c485215875d8a6",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/INITIAL_WIP_FREEZE.json",
+      "sha256": "6ffab2644b59aa1767780860039b87150ce6213ac2283255ea8e54b09ceb015f",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/RESEARCH_LOG.md",
+      "sha256": "885ebc99c4123ea229e757047d532f92640d6d481838e450629405f1747a1b90",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/SOURCE_GATE.md",
+      "sha256": "69e562b8d0b428fbce36a49cdca51a2e921b67258bd4b3887b285d03f7903b72",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/VERIFICATION_ADDENDUM.md",
+      "sha256": "51983adea5a4dff15f951ddfdb517a1710d36b50bfbba93158fafb3dd5c5ca06",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/AUDIT.md",
+      "sha256": "154858d740a27eaadff20a72b25cefb56bfeb1c458d9aab18dca1c67f67cba3f",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/AUDIT_RESULT.json",
+      "sha256": "79bbdd08b29cd631a0e5c0728e384834a2742b5862d8b50fd76fcefebb518651",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/independent_algebra.py",
+      "sha256": "352941d102c62ccb02912deca8a59ec91e354d12d60ff2744f1e27d14b8b64a2",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/independent_algebra_results.json",
+      "sha256": "ebba35993d64973e0d4fc432052314e82eaa72088d1c70dbd65ac7387c15c4bf",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/independent_audit.py",
+      "sha256": "36a92c802ab97eb5e17e1aa5e1e97091b84177a310a872654fde274785c14f7a",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/independent_results.json",
+      "sha256": "438d623b96bc48e927753bb1c2a7e4d390d3eb5207d5d0ae785b44c5860817cf",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/checks.json",
+      "sha256": "23d6f2d3ee4126b1b712a636ed8bc3b19f4298806962ecdb8acb0a5ddf6f675e",
+      "receipt_match": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/verify.py",
+      "sha256": "a0f54ea14a541033545b6cf5f11484622f5c52365353b62fa024d2d1c20b10dd",
+      "receipt_match": true
+    }
+  ],
+  "initial_diagnostic_correction": {
+    "artifact": "INITIAL_FROZEN_REPLAYS.json",
+    "defect": "Bytecode diagnostic recognized LOAD_ASSERTION_ERROR only, falsely reporting0 normal asserts on Python3.14. Canonical executions/control outcomes were unaffected.",
+    "correction": "Final replay.py also recognizes LOAD_COMMON_CONSTANT AssertionError; final FROZEN_REPLAYS.json records34/24/4 normal and0 optimized."
+  }
+}

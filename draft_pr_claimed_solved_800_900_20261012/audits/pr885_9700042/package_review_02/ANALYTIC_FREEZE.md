@@ -1,0 +1,17 @@
+# Independent analytic freeze
+
+UTC: 2026-10-16T05:01Z (sampled shell timing to be logged separately). This freeze precedes all prior verdicts. An earlier full write failed ENOSPC before creation; only my freshly extracted BGT text was deleted to permit this compact freeze.
+
+Fully read original Aldous/canonical pair first; then actual note.tex, C1, full revised C4; freshly extracted the pinned actual BGT v1 PDF and read §§2.2–2.5,3.1–3.4, equation19, Lemma19, equation33. Viewed stored BGT23–24 images; their render linkage remains to check. Conditional on classical strict-chain scaling, I find the complete original asymptotic analytically supported. Package validation remains open (review completion estimate30%).
+
+Finite dual: n2 is the two forced edges; boundary transitions and balanced oriented interfaces survive checkerboards. A simple corner crosscut gives the inverse cut. Nonnegative cycle removal is valid. Concatenation proves expected superadditivity; bounded boundary terms connect normalization2n to2N. Shared vertices are permitted.
+
+Outgoing pairs are independent per site with r=2q-q². Strict chains fit either marked departure, including boundary cases. Simple paths give at most one marked departure per visited vertex, even double-open ones. Excluding endpoint and separating origin yields k≤p+I0 and A≥a-1+I0, hence D-A≤L-b. Auxiliary terminal(N+1,N+1) handles the final gap. Real-gap replacement may intersect the rest: replace to a cheaper walk then remove nonnegative cycles, establishing local minimality and b_j≤ell_j.
+
+Distinguished-coordinate prefix has nonpositive net displacement, hence absolute increment sum≤twice backward variation. Other coordinate uses EACH negative part, bounded by actual intervening variation. Disjoint time prefixes imply X≤2b. Excess gives -X+2L>2delta M sqrt(r). Fixed distinct lists have probability r^p without conditioning. m0 is numerical specialization, not prohibition of double marks. Reconstructing Chernoff factors in d1=2,d2=0 gives r^-1 exp(alpha), exp((2beta-alpha tau)M sqrt(r)), B0 per anchor and B1 per skipped site as displayed; extra exp2 is harmless. beta2gamma, then gamma large, alpha tau>2beta+1, then r small makes coordinate/ell geometric sum bounded. This fixes site units independently of BGT epsilon/bar-epsilon event notation. Ordinary FPP identity is invalid and unused.
+
+At fixed small q, the exponential tail vanishes with N; bounded D controls expectation. Squeeze sigma_r/2≤g≤sigma_r/2+delta sqrt(r)/2; BGT site score includes origin and scales2sqrt(r). Then q→0, then delta→0. No simultaneous-limit premise.
+
+C1 retains distinct-edge/variation counting and only e/2. C4 directly bounds K_N^+, uses finite sparse Poisson convergence with exponential UI, fixed m=L/h skeleton entropy, and disjoint original marked-edge witnesses for BK despite overlapping rectangles. Padding has nonnegative reward and cycle removal is safe. Bad-rectangle budget and parameter order appear sound. Active note attributes whole result to BGT estimates plus explicit event comparison, disclaiming novelty/firstness/current-openness/human/formal review. Archived C1 novelty wording still needs contextual priority inspection.
+
+Remaining: all executable bodies,197-file and159-member authentication and independent ZIP parser/rebuild; actual normal/O current and O outside build; finite falsification; zero-child semantic malformed controls; primary/corpus pins/source-origin; metadata/priority ledgers; six actual PDF pages. No whole-package verdict yet.

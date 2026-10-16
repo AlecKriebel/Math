@@ -1,0 +1,13 @@
+# Portable verification preparation completed
+
+The sealed supporting package is `/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/preprint/verification`. It preserves all 20 submitted files,49 authored audit-family payloads and 5 sealed family manifests byte-for-byte, with 22 relevant root receipts, 4 current scope-control files and 4 forensic-history files. No third-party/private reading payloads are present.
+
+All 9 current programs were read in full and replayed from fresh temporary copies using the prescribed Python 3.14.6 path with `-B`, SymPy 1.14.0 and mpmath 1.3.0. All scientific JSON fields matched exactly ; 7 outputs were byte-identical. Only meromorphic `utc_start`/`utc_end` and priority-author `utc` actually differed. Named interpreter metadata exclusions are documented for portability; all scientific library/version, precision, error, count and input/program hash fields remain exact. All archive manifest rows and every frozen scientific result row were validated.
+
+The meromorphic default adapter substitutes exactly 3 frozen primary PDF hashes for the original script's non-scientific source preflight. Its scope is restricted and reported; it does not pretend to freshly hash unavailable sources. A second replay freshly hashed the 3 existing genuine PDFs, copied them into the expected relative mirror and ran the unchanged original program directly. It made 0 substitutions and produced the same canonical scientific hash. The original program and all 5 audit-family payloads remain unchanged. Nine negative/safeguard tests passed.
+
+The sole documented superseded SOURCES.md row in original MANIFEST_V1 remains historical; current original author/review manifest rows all match. The wrong root polarity program remains forensic history, excluded from current jobs, alongside its historical status and the preserved current erratum. README corrects the inaccessible primary title to *A Triple of Projective Billiards*.
+
+Final manifest: **117 payload files, 1174391 bytes**, excluding the manifest itself (118 physical files total). SHA256: `f64fc9ad80fa2520fcdb7bc6f0ee6017b5c6328ae981b8519c2429991001bc83`. The final seal was issued once after replay; the complete post-replay delta was README title/log and 4 reporting files only. Final integrity and all archive/frozen-row checks passed. Full receipts and their hashes are listed in PREPARATION_REPORT.json.
+
+Preparation 100%; overall research case remains root's 55%. This work is not either required sequential whole-manuscript adversarial review and authorizes no upload. No Git/provider/queue work, network, install or external communication occurred.

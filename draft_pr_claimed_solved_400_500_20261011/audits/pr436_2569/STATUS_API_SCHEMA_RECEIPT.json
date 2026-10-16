@@ -1,0 +1,205 @@
+{
+  "checked_at_utc": "2026-10-12T22:12:49.183043+00:00",
+  "source": "Live GitHub read-only schema introspection",
+  "official_reference": "https://docs.github.com/en/graphql/reference/commits#createcommitonbranch",
+  "initial_introspection_failure": "Three inputFields expansions exceeded GitHub limit; split read-only queries succeeded",
+  "corrected_preexecution_input": "CommittableBranch uses branchName, not refName; no mutation was sent with the obsolete candidate",
+  "queries": [
+    {
+      "name": "branch_and_files",
+      "query": "{ a:__type(name:\"CommittableBranch\"){inputFields{name type{kind name ofType{kind name ofType{kind name}}}}} b:__type(name:\"FileChanges\"){inputFields{name type{kind name ofType{kind name ofType{kind name}}}}} }",
+      "result": {
+        "data": {
+          "a": {
+            "inputFields": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "repositoryNameWithOwner",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "branchName",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          "b": {
+            "inputFields": [
+              {
+                "name": "deletions",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "FileDeletion"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "additions",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "FileAddition"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "remote_mutation": false
+    },
+    {
+      "name": "addition",
+      "query": "{ __type(name:\"FileAddition\"){inputFields{name type{kind name ofType{kind name}}}} }",
+      "result": {
+        "data": {
+          "__type": {
+            "inputFields": [
+              {
+                "name": "path",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "contents",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Base64String"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "remote_mutation": false
+    },
+    {
+      "name": "mutation_input_and_output",
+      "query": "{ a:__type(name:\"CreateCommitOnBranchInput\"){inputFields{name type{kind name ofType{kind name}}}} b:__type(name:\"CreateCommitOnBranchPayload\"){fields{name type{kind name ofType{kind name}}}} }",
+      "result": {
+        "data": {
+          "a": {
+            "inputFields": [
+              {
+                "name": "clientMutationId",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "branch",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CommittableBranch"
+                  }
+                }
+              },
+              {
+                "name": "fileChanges",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "FileChanges",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "message",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CommitMessage"
+                  }
+                }
+              },
+              {
+                "name": "expectedHeadOid",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "GitObjectID"
+                  }
+                }
+              }
+            ]
+          },
+          "b": {
+            "fields": [
+              {
+                "name": "clientMutationId",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "commit",
+                "type": {
+                  "kind": "OBJECT",
+                  "name": "Commit",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "ref",
+                "type": {
+                  "kind": "OBJECT",
+                  "name": "Ref",
+                  "ofType": null
+                }
+              }
+            ]
+          }
+        }
+      },
+      "remote_mutation": false
+    }
+  ]
+}

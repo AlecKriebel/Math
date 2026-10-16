@@ -1,0 +1,21 @@
+{
+  "case": "archive_output_existing_hardlink_to_paper_tex",
+  "argv": [
+    "python3",
+    "-I",
+    "-B",
+    "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_02/tmp/clean/build_archive.py",
+    "--output",
+    "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_02/tmp/clean/tmp/hardlinked.zip"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_02/tmp/clean/build_archive.py\", line 17, in <module>\n    v.check_archive(out,allow)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_02/tmp/clean/verify_package.py\", line 75, in check_archive\n    require(z.read(info)==(ROOT/info.filename).read_bytes(),'archive bytes mismatch '+info.filename)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_02/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: archive bytes mismatch paper.tex\n",
+  "original_sha256": "22b01481733113dee52f7c6e2e160f519d580110ee7a9665b2117f77705d2a31",
+  "after_sha256": "7a839d37a627f98a38eae52f0422daf3ec283ef38ea0a0ec8f3ad7bf3f7c0482",
+  "canonical_changed": true,
+  "after_begins_zip": true,
+  "target_samefile": true,
+  "actionable_priority": "P3",
+  "reason": "Archive builder allows an existing output hardlink to an allowlisted input, truncates and overwrites canonical source before verification fails."
+}

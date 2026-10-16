@@ -1,0 +1,13 @@
+# Early independent checkpoint
+
+UTC: 2026-10-15T04:37:38.999914+00:00. Audit completion estimate: 18%. Read before old or sibling review verdicts.
+
+Exact target: OWR8/2026, pp.504–507, defines multiplicative nonnegative real finite-support profiles, permits infinite graphs in its general definition, and asks almost-linear weighted centers for bounded cube dimension. The finite adjacency-list interpretation in the manuscript is explicit, strictly broader in dimension and expressly narrower in encoding/infinite scope. Separate arbitrary-edge question and G^p unimodality remain separate.
+
+Independent threshold derivation: D=n−1 bounds all integral distances. For R≥0 let b_u be largest k∈[0,D] with k w_u≤R. For w_u=0 this is D. Then each constraint w_u d(x,u)≤R is exactly d(x,u)≤b_u, exactly d(x,u)+D−b_u≤D. Their conjunction gives E_(D−b)(x)≤D. The bridge uses no median property; medianity is solely the imported additive algorithm dependency. All labels fit [0,D]. Negative R is infeasible for nonempty vertex set. Singleton/all-zero profiles give all vertices.
+
+Independent search check: optimum is in conceptual n rows [0,w_u,…,Dw_u]. Feasible incumbent D max w is witnessed by any vertex. Weighted lower middles with row-length selection weights admit weak-side masses ≥M/2. A feasible pivot deletes ≥q, an infeasible pivot deletes ≤q; in each case participating rows delete at least half their entries and lose ≥M/4. Invariant is feasible incumbent equals optimum or some optimum copy survives. Ties and zero rows cause no difficulty. O(log n) calls with O(n log n) comparisons each; total with BDH is O(n log^5 n).
+
+Imported source checked independently at arXiv2410.10235v1 pp.2–4,12–24: additive arrival weights are nonnegative integers and Theorem1 supplies all labels. Natural logarithm is explicitly defined. Source p.24 uses ladder ell≤ln(s), while only ell≤log_2(s) is structural, so its stated duplicate-volume estimate cannot be accepted literally. Lemma16's product upper bound using final s_n reverses monotonicity. Appendix replacement f(s)=2ceil(log_2 s) makes 2ell/f≤1; balanced child sizes ≤s(1−1/f), unbalanced slices <s/f; f(s)≥2 retains majority uniqueness and gated slice identities independent of this parameter. A fixed root logarithm contraction gives O(log²N) depth without Lemma16. Both original and fiber-weight slice calls are necessary because a fiber weight can undercut the original weight. Remaining tasks: full equation-by-equation imported proof audit, source/publication comparisons, package and negative controls, exact rebuild, visual inspection.
+
+No acceptance inferred from prior verdicts, finite controls, or seals. Potential priority is a modest bridge/corollary; credited components are not new.

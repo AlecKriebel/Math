@@ -1,0 +1,19 @@
+--- native_integration_preparation_01/derive_native193.py
++++ native_integration_preparation_02/derive_native193.py
+@@ -231,6 +231,7 @@
+  files=dict(phase95['native_files']);prefix=NATIVE
+  updates={'UTC':factual_utc,'status':'FACTUAL100_POSTIMAGE_REQUIRES_SEPARATE_ACTUAL_MAIN_ACCEPTANCE','case_percent':100,'actual_original_PR_merged':True,'actual_merge_commit':m['merge_commit'],'actual_merge_acceptance_receipt_pin':merge_pin,'actual_factual_MAIN_accepted':False,'completed':False,'goal_complete':False,'factual_postimage_programme_counts':{'fully_completed_count':41,'published_count':25},'factual_postimage_not_adopted_until_actual_MAIN_acceptance':True}
+  facts={**f95,**updates};facts.pop('programme_counters_unchanged_until_actual_factual_acceptance',None)
++ facts['original_merge_MAIN_parent']=facts.pop('fresh_MAIN_parent')
+  new_sentence=('The two NEW whole-package adversaries completed clean and Root authenticated the final exact package. The note is actually published at '+f95['DOI_URL']+'; tracker row '+f95['tracker_range']+' was appended/read back with foreign rows retained. Original-HEAD merge '+m['merge_commit']+' was actually accepted by Root. This is a factual100 postimage with prospective programme41/25; its separate actual-main factual acceptance remains required and is not asserted here.')
+  old_sentence=phase95['factual_sentence']
+  for rel in ('CURRENT_PROOF.md','README.md','SOURCE_AUDIT.md'):
+@@ -244,6 +245,8 @@
+  files[prefix+'FINAL_DISPOSITION.md']=('# Final disposition for 30004563\n\n'+CLAIM+'\n\n'+new_sentence+'\n\nOriginal submitted HEAD: '+HEAD+'. Actual accepted merge: '+m['merge_commit']+'. Integrated queue remains claimed_solved / 2/5. Original19 and all scientific/publication bytes remain unchanged from the accepted95 derivation. This is a separately derived factual100 postimage; actual MAIN adoption must still be authenticated independently.\n').replace('\n','\n').encode()
+  for rel in ('readiness.json','continuity.json','source_manifest.json','PUBLICATION.json'):
+   j=json.loads(files[prefix+rel]);j.update(updates);j.pop('programme_counters_unchanged_until_actual_factual_acceptance',None)
++  if 'current_status' in j:j['current_status']=updates['status']
++  if 'fresh_MAIN_parent' in j:j['original_merge_MAIN_parent']=j.pop('fresh_MAIN_parent')
+   if 'remaining_required' in j:j['remaining_required']='Separate actual-main factual acceptance of this100 postimage; actual merge already accepted.'
+   files[prefix+rel]=encoded(j)
+  files[prefix+'RESEARCH_LOG.md']+=('\n## '+factual_utc+' — factual100 postimage after actual merge acceptance\n\n'+new_sentence+' Original submitted effort2/5 and earlier unknown history retained. No source/science/original19 bytes changed.\n').replace('\n','\n').encode()
