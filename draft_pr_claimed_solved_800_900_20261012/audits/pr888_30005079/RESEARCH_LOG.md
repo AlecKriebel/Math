@@ -1,0 +1,5 @@
+# PR888 / PID30005079 research log
+
+2026-10-16T05:17:05.733730+00:00 — 5% PR888, shard87%. Fresh metadata-only gate skipped886/887 exactunsolved without source/proof processing. PR888 exact claimed_solved1/5, heada7571ddbbbe2de3600b96bd7ccccf86e4d5748e7; exported21 source files, actual modes and Git blob/SHA identities checked. All3complete native corpus pins checked before exact target extraction; no other problem sources audited. Independent source-first families will assess the target and adversarially review distinct construction/valuation/minimizer/degeneration mechanisms. Original effort1/5 unchanged; validation is not new central proof-search.
+
+2026-10-16T05:22:34.553045+00:00 — PR88820%, shard87%. Parent read actual OWR printed888–889 and HL-opt critical pages, full candidate proof and original launcher; exact target fixed. Four independent source-first families active; no final mathematical promotion yet. Recorded corrected sign-alert as optional clarification, not proven defect. All6 cited primaryPDFs actualHTTP200 and originalpins. Originaleffort1/5; no new central proof-search. Exactunsolved886/887 skipped metadata-only.
