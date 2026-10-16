@@ -34,6 +34,9 @@ FAMILIES = {
 PROFILE = A / 'publication/profile'
 DRIVER_SHA = '252b38c10858eab3fd2ea2e7314e1d2aeee7a257bb5fb6360bac3e9526949046'
 ALLOWLIST_SHA = 'eb9e551bed22ea2939c33523e4a713ad099bddc7e885901b53a1d16e500eeca8'
+HISTORICAL_FULL_REVIEWS = {
+    'full_package_01': '348cf0e067b1a0532cb79172510c247ea3d079dcb315dab899143dc53dca0c66',
+}
 
 def need(ok, message):
     if not ok:
@@ -123,7 +126,24 @@ def main():
         need(len(read(PROFILE/'history/pre_root01'/name,record['sha256']))==record['bytes'],'profile old size')
     for name in allow['public_files']:
         add('profile/'+name,PROFILE/name,DRIVER_SHA if name=='verify_package.py' else None)
-    for name in ('README.md','AUTHORSHIP_PROVENANCE.md','AUDIT_LIMITS.md','FINDING_DISPOSITIONS.json'):
+    # Previous complete adverse reviews are historical evidence. Reviews of this
+    # new candidate stay outside its closed tree, avoiding recursive approval.
+    for family, expected in HISTORICAL_FULL_REVIEWS.items():
+        base = A/'reviews'/family
+        manifest_data = read(base/'MANIFEST.json',expected)
+        manifest = json.loads(manifest_data)
+        entries = manifest['files']
+        allowed = manifest['explicit_public_allowlist']
+        need(isinstance(entries,dict) and isinstance(allowed,list)
+             and len(allowed)==len(set(allowed)) and set(entries)==set(allowed)
+             and 'MANIFEST.json' not in entries,'historical whole-review allowlist')
+        for name, record in entries.items():
+            data = read(base/name,record['sha256'])
+            need(len(data)==record['bytes'],'historical whole-review payload size')
+            add('audit/'+family+'/'+name,base/name,record['sha256'])
+        add('audit/'+family+'/MANIFEST.json',base/'MANIFEST.json',expected)
+    for name in ('README.md','AUTHORSHIP_PROVENANCE.md','AUDIT_LIMITS.md',
+                 'FINDING_DISPOSITIONS.json','FULL_PACKAGE_REVIEW_DISPOSITIONS.json'):
         add(name,D/name)
     add('paper/note.tex',D/'note.tex')
     add('paper/note.pdf',D/'output/pdf/note.pdf')
@@ -137,9 +157,17 @@ def main():
         'ROOT_PRE_PACKAGE_SOURCE_CONTINUITY_06.json',
         'ROOT_PROFILE_ROOT01_AUTHENTICATION.json','ROOT_PROFILE_ROOT01_REPLAY.json',
         'PUBLICATION_FINDINGS_REGISTER.md','ROOT_WORKFLOW_PRE_FREEZE_FINDINGS.json',
+        'ROOT_FULL01_REPORT_AUTHENTICATION.json',
+        'ROOT_CANDIDATE1_ARCHIVE_AUTHENTICATION.json',
     ]
     for name in rootfiles:
         add('audit/root/'+name,A/name)
+    for name in ('witness.py','WITNESS.json','witness_unchanged_head.py',
+                 'WITNESS_UNCHANGED_HEAD.json','WITNESS_UNCHANGED_HEAD_REPLAY.json'):
+        add('audit/root_status_context/'+name,A/'publication/root_status_context'/name)
+    for name in ('LIVE_BASE_OBSERVATION.json','STORED_BASE_WITNESS.json',
+                 'witness_stored_base.py'):
+        add('audit/root_live_base_context/'+name,A/'publication/root_live_base_context'/name)
     for name in ('PRE_REVIEW_SYNTHESIS.md','QUERY_LEDGER.json','ROOT_RETRIEVALS_01.json',
                  'ROOT_RENDER_INPUTS_01.json','SUPPLEMENTARY_PRIMARY_READING.json',
                  'BIBLIOGRAPHIC_ACCESS_FOLLOWUP.json','RESEARCH_LOG.md'):

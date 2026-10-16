@@ -39,6 +39,23 @@ not recreate its private inputs or imply that every hashed source was read.
 The PR declares 4/5 author turns. The earlier native per-turn history and total
 were not authenticated; the audit adds zero substantive author proof responses.
 See `AUTHORSHIP_PROVENANCE.md`, `AUDIT_LIMITS.md` and `FINDING_DISPOSITIONS.json`.
+The separate `FULL_PACKAGE_REVIEW_DISPOSITIONS.json` tracks findings from
+complete publication-package reviews in addition to the 50 earlier findings.
+`audit/full_package_01/` preserves the first complete adverse review of the
+previous candidate. It verified the theorem and found a workflow recovery
+defect; its verdict is not an acceptance of this corrected candidate. Copied
+historical probes describe the exact earlier repository inputs and outputs.
+They are evidence to inspect, rather than current verification entry points.
+The post-review comparison-base amendment of the existing ROOT02 finding is
+documented in `audit/root_status_context/`. Its synthetic witnesses concern
+which PR is eligible for review; no excluded PR or mathematical source was
+processed. The unchanged manuscript needs no mathematical repair for it.
+A later live check and exact-code witness in audit/root_live_base_context/
+distinguish the PR associated baseRefOid from the live branch pointer
+baseRef.target.oid. Only a matching independently recorded head and live
+branch pointer justify reusing a cached identity; otherwise complete current
+filenames must be derived. Earlier gate versions remain historical evidence,
+including the initially insufficient associated-base-only fix.
 
 ## Reproduce the finite checks
 
@@ -79,6 +96,8 @@ then rendered and personally inspected all five PDF pages. PDF bytes may vary
 with compiler and font versions. The archived source is the mathematical
 reference; byte identity is expected only for the distributed PDF itself.
 
-Later whole-package review receipts, acceptance and publication/readback
-receipts are externally anchored repository evidence. They are kept outside
-this closed tree to avoid recursive self-approval and self-hashing.
+Reviews of this corrected candidate, acceptance and publication/readback
+receipts are externally anchored repository evidence. They remain outside
+this closed tree to avoid recursive self-approval and self-hashing. At least
+two new consecutive complete clean reviews are required after every repair;
+earlier unfinished, failed and adverse records must remain honestly preserved.

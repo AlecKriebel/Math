@@ -72,3 +72,28 @@ comparisons inspectable without redistributing third-party articles. Access
 gaps are disclosed rather than declared closed. Stronger historical assertions
 would require additional final-body and forward-citation work. No external
 outreach was prepared.
+
+The first complete publication-package review is preserved under
+`audit/full_package_01/`. It independently verified the stated theorem and
+finite reproductions, but rejected candidate1 for R948-FULL01-R01: the workflow
+could not accept later clean reviews while retaining an honest unfinished or
+failed historical round. This concerns operational review recovery, not a
+mathematical repair. Its source rehashes and selected-page readings do not
+establish a complete literature search. Its cached-local-main source/native
+check is explicitly distinct from a fresh remote-main gate. Its completed
+before/after authentication and actual storage failures remain recorded.
+The separate full-review disposition file describes the repair status; future
+approval still requires two new complete clean reviews of the corrected freeze.
+
+After that first review, root found a further boundary case in the existing
+ROOT02 status selector: the comparison base can change the unique problem
+identified by changed filenames even when the PR head is unchanged. A finite
+Git DAG and exact old-code synthetic witnesses are retained. This does not
+allege a real retarget or any processing of an excluded problem. Missing
+original base context must remain unknown, and requires fresh complete
+filename derivation; valid matching head and LIVE branch target pins alone
+permit reuse. Actual read-only GitHub metadata and an exact851core witness
+show associated PR baseRefOid can stay fixed while baseRef.target.oid changes.
+The associated-base-only engineering seal and an unsealed working package
+are preserved as authoring history, not accepted current evidence.
+The engineering amendment and its tests require fresh entire-package review.

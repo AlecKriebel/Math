@@ -1,0 +1,125 @@
+{
+  "utc": "2026-10-16T10:22:59.415933+00:00",
+  "finding_id": "R948-WORKFLOW-ROOT-02",
+  "amendment": "LIVE_BASE_REF_TARGET_BINDING_AFTER_ENGINEERING_CC88",
+  "classification": "required",
+  "source_core_sha256": "851c3ce35cf741b5418b17db418f52f246e2c121cf70baeb48fee4fe1ee8575d",
+  "synthetic_only": true,
+  "actual_remote_mutations": 0,
+  "actual_mathematics_or_other_problem_source_reads": 0,
+  "dag": {
+    "O": {
+      "parents": [],
+      "tree": {
+        "A": 0,
+        "B": 0,
+        "misc": 0
+      }
+    },
+    "D": {
+      "parents": [
+        "O"
+      ],
+      "tree": {
+        "A": 0,
+        "B": 0,
+        "misc": 1
+      }
+    },
+    "C1": {
+      "parents": [
+        "O"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 0,
+        "misc": 0
+      }
+    },
+    "C2": {
+      "parents": [
+        "C1"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 1,
+        "misc": 0
+      }
+    },
+    "H": {
+      "parents": [
+        "C2"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 0,
+        "misc": 0
+      }
+    },
+    "M": {
+      "parents": [
+        "D",
+        "C2"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 1,
+        "misc": 1
+      }
+    }
+  },
+  "old_merge_base": "O",
+  "new_merge_base": "C2",
+  "old_changed_files": [
+    "unsolved_math_prioritization/attempts/1000001/proof.md"
+  ],
+  "new_changed_files": [
+    "unsolved_math_prioritization/attempts/1000002/proof.md"
+  ],
+  "same_PR_head_and_name_and_file_count": true,
+  "immutable_head_queue_statuses": {
+    "1000001": "claimed_solved",
+    "1000002": "unsolved"
+  },
+  "actual_historical_gate_selected": {
+    "number": 952,
+    "problem_id": "1000001",
+    "headRefOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "baseRefName": "main",
+    "status": "claimed_solved",
+    "queue_row_sha256": "44e5fb48885d076d324f0eda40d7b3211a21541acb074627181101aabbf8f96e",
+    "gate_utc": "2026-10-16T10:22:59.415752+00:00",
+    "math_source_read": false,
+    "snapshot_not_yet_created": true
+  },
+  "current_comparison_problem_id": "1000002",
+  "current_comparison_status": "unsolved",
+  "calls": [
+    {
+      "request": "PR metadata",
+      "baseRefOid_requested": true,
+      "actual_base": "D"
+    },
+    {
+      "request": "changed filenames",
+      "baseRefOid_requested": true,
+      "actual_base": "D"
+    },
+    {
+      "request": "immutable QUEUE status only",
+      "proof_source_read": false
+    },
+    {
+      "request": "PR metadata",
+      "baseRefOid_requested": true,
+      "actual_base": "M"
+    }
+  ],
+  "conclusion": "With a changed initial head, the selector can accept a claimed target from an earlier complete filename comparison even though the unchanged PR head now compares only an unsolved target. Associated baseRefOid remains fixed while the actual live branch pointer changes. No real retarget or processed excluded PR is alleged.",
+  "required_correction": "Bind well-formed LIVE baseRef.target.oid in before/after metadata and every changed-file page. Associated baseRefOid can stay fixed across a live base advance; its equality is insufficient. Cached initial identity requires independently recorded matching head and live base, absent in real initial inventory. Apply the same rule to final status-only resweep.",
+  "primary_documentation": [
+    "https://docs.github.com/en/pull-requests/reference/branches",
+    "https://docs.github.com/en/graphql/reference/pulls"
+  ],
+  "source_inference": "The root live observation independently distinguishes associated baseRefOid from live baseRef.target.oid. This finite valid DAG and exact inert851core witness demonstrate the gate gap; no real wrong-target event is alleged."
+}

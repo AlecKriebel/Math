@@ -42,3 +42,13 @@ Only the human researcher may communicate externally with other people. No
 outreach, request for author confirmation or contact with other research shards
 was undertaken or prepared for this note. Unavailable outside input remains
 an explicit research limitation.
+
+The first entire-package adversary independently reconstructed the theorem,
+personally inspected all five manuscript pages and reproduced the finite
+checks. It returned an adverse package verdict for one review-history recovery
+defect, with no mathematical gap. The unchanged original proof and manuscript
+need no mathematical correction for that finding. Workflow repair and its
+tests add no author proof-search response. Its sealed adverse evidence is
+retained; later clean reviews cannot erase it or turn an earlier unfinished
+or failed check into a passing event. New clean reviews of the corrected
+candidate remain an external acceptance requirement.

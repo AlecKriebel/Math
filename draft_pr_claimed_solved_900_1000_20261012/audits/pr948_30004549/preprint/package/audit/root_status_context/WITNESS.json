@@ -1,0 +1,125 @@
+{
+  "utc": "2026-10-16T10:00:26.898702+00:00",
+  "finding_id": "R948-WORKFLOW-ROOT-02",
+  "amendment": "BASE_REF_OID_BINDING_AFTER_FULL01",
+  "classification": "required",
+  "source_core_sha256": "1f538840a9e3d0ec26270d977960699cfd6155e8706ffa7de3c82854042be563",
+  "synthetic_only": true,
+  "actual_remote_mutations": 0,
+  "actual_mathematics_or_other_problem_source_reads": 0,
+  "dag": {
+    "O": {
+      "parents": [],
+      "tree": {
+        "A": 0,
+        "B": 0,
+        "misc": 0
+      }
+    },
+    "D": {
+      "parents": [
+        "O"
+      ],
+      "tree": {
+        "A": 0,
+        "B": 0,
+        "misc": 1
+      }
+    },
+    "C1": {
+      "parents": [
+        "O"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 0,
+        "misc": 0
+      }
+    },
+    "C2": {
+      "parents": [
+        "C1"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 1,
+        "misc": 0
+      }
+    },
+    "H": {
+      "parents": [
+        "C2"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 0,
+        "misc": 0
+      }
+    },
+    "M": {
+      "parents": [
+        "D",
+        "C2"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 1,
+        "misc": 1
+      }
+    }
+  },
+  "old_merge_base": "O",
+  "new_merge_base": "C2",
+  "old_changed_files": [
+    "unsolved_math_prioritization/attempts/1000001/proof.md"
+  ],
+  "new_changed_files": [
+    "unsolved_math_prioritization/attempts/1000002/proof.md"
+  ],
+  "same_PR_head_and_name_and_file_count": true,
+  "immutable_head_queue_statuses": {
+    "1000001": "claimed_solved",
+    "1000002": "unsolved"
+  },
+  "actual_historical_gate_selected": {
+    "number": 952,
+    "problem_id": "1000001",
+    "headRefOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "baseRefName": "main",
+    "status": "claimed_solved",
+    "queue_row_sha256": "44e5fb48885d076d324f0eda40d7b3211a21541acb074627181101aabbf8f96e",
+    "gate_utc": "2026-10-16T10:00:26.898421+00:00",
+    "math_source_read": false,
+    "snapshot_not_yet_created": true
+  },
+  "current_comparison_problem_id": "1000002",
+  "current_comparison_status": "unsolved",
+  "calls": [
+    {
+      "request": "PR metadata",
+      "baseRefOid_requested": false,
+      "actual_base": "D"
+    },
+    {
+      "request": "changed filenames",
+      "baseRefOid_requested": false,
+      "actual_base": "D"
+    },
+    {
+      "request": "immutable QUEUE status only",
+      "proof_source_read": false
+    },
+    {
+      "request": "PR metadata",
+      "baseRefOid_requested": false,
+      "actual_base": "M"
+    }
+  ],
+  "conclusion": "With a changed initial head, the selector can accept a claimed target from an earlier complete filename comparison even though the unchanged PR head now compares only an unsolved target. Name/head/draft/state/count binding omits the changed base commit. No real retarget or processed excluded PR is alleged.",
+  "required_correction": "Bind well-formed baseRefOid in before/after metadata and every changed-file page, in addition to head/name/draft/state and full filename count. Apply the same boundary to the final status-only resweep. Preserve all existing static identity/status exclusions.",
+  "primary_documentation": [
+    "https://docs.github.com/en/pull-requests/reference/branches",
+    "https://docs.github.com/en/graphql/reference/pulls"
+  ],
+  "source_inference": "GitHub documents the three-dot merge-base/head comparison and exposes baseRefOid; the finite DAG and actual inert-code witness supply this specific race, rather than claiming a documented real occurrence."
+}
