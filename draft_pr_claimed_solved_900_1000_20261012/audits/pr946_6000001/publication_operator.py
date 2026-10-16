@@ -5,7 +5,7 @@ helpers remain unchanged. A NEW complete postmerge review and updated canonical
 approval must explicitly authenticate this additional operator before use.
 """
 import sys
-if not sys.flags.isolated or sys.flags.optimize or not sys.dont_write_bytecode:
+if not sys.flags.isolated or not sys.flags.no_site or sys.flags.optimize or not sys.dont_write_bytecode:
     raise RuntimeError('Use Python -I -S -B at optimization zero')
 import argparse, copy, hashlib, json
 from pathlib import Path
@@ -67,6 +67,9 @@ class ExistingDraftClient:
              'one authorized exact-ID publication only')
         self.guard()
         fresh=self.get(ident)
+        # Close the intervening external read before either publication or
+        # an already-published return. No service call follows this closure.
+        self.guard()
         if fresh['submitted']:
             return fresh
         self.posts+=1
@@ -125,6 +128,13 @@ def run(args):
         N['accepted_review_check'](accepted,freeze,context)
         N['merged_gate'](accepted,freeze)
         N['accepted_review_check'](accepted,freeze,context)
+        # This additional executable is deliberately outside the unchanged
+        # seven-source inventory. Refresh its exact external/reviewer identity
+        # after the full service and sealed-review closure on every boundary.
+        current=N['read_regular'](Path(__file__),pin=N['fingerprint'](own))
+        need(N['exact'](result.get('inspected_publication_operator'),N['fingerprint'](current))
+             and latest['manifest_sha256']==args.review_sha256,
+             'current operator differs from externally sealed inspected identity')
     guard()
     actual=kit['ZenodoClient']('production',kit['token_for']('production'))
     client=ExistingDraftClient(actual,kit,metadata,files,guard,args.action=='publish')

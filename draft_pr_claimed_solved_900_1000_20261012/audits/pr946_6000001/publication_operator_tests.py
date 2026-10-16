@@ -1,8 +1,8 @@
 """Adversarial fake-client tests of the additional exact-ID storage operator."""
 import sys
-if not sys.flags.isolated or sys.flags.optimize or not sys.dont_write_bytecode:
+if not sys.flags.isolated or not sys.flags.no_site or sys.flags.optimize or not sys.dont_write_bytecode:
     raise RuntimeError('Use -I -S -B')
-import argparse,copy,hashlib,json,tempfile
+import argparse,copy,hashlib,json,tempfile,subprocess
 from pathlib import Path
 ROOT=Path('/Users/alec/Documents/Math')
 A=ROOT/'draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001'
@@ -77,7 +77,7 @@ with tempfile.TemporaryDirectory(prefix='notes-operator-',dir=A/'private') as tm
         proxy=N['ExistingDraftClient'](api,K,metadata,files,lambda:guards.append('fresh_guard'),True)
         r=K['run'](argparse.Namespace(command='publish',manifest=manifest,sandbox=False,confirm_id=ident,check_doi=True),client=proxy)
         assert r['state']=='published' and r['id']==ident and r['doi']=='10.5281/zenodo.23409904'
-        assert api.calls.count('POST_PUBLISH')==proxy.posts==1 and len(guards)==1
+        assert api.calls.count('POST_PUBLISH')==proxy.posts==1 and len(guards)==2
         assert r['files']==[{'name':f['name'],'size':f['size'],'sha256':f['sha256']} for f in files]
         again=K['run'](argparse.Namespace(command='inspect',manifest=manifest,sandbox=False,check_doi=True),client=proxy)
         assert again['state']=='published' and api.calls.count('POST_PUBLISH')==1
@@ -94,6 +94,27 @@ with tempfile.TemporaryDirectory(prefix='notes-operator-',dir=A/'private') as tm
     need_methods=['create','update','upload','request','edit','discard']
     assert not any(hasattr(proxy,name) for name in need_methods)
     cases.append({'case':'no_create_update_upload_or_generic_request_path','pass':True})
+    for already in [False,True]:
+        revoked=[False]
+        class RevokingAPI(FakeAPI):
+            def get(self,i):
+                value=super().get(i);revoked[0]=True;return value
+        api=RevokingAPI();api.value['submitted']=already
+        def current_guard():
+            if revoked[0]:raise RuntimeError('Synthetic approval revoked during final GET')
+        proxy=N['ExistingDraftClient'](api,K,metadata,files,current_guard,True)
+        reject('final_GET_revocation_blocks_POST_or_return_'+str(already),lambda:proxy.publish(ident))
+        assert api.calls==['GET'] and proxy.posts==0
+
+probe='import pathlib,sys; p=pathlib.Path(sys.argv[1]); exec(compile(p.read_bytes(),str(p),"exec",optimize=0),{"__name__":"_startup_probe_","__file__":str(p)})'
+for label,flags in [('missing_S',['-I','-B']),('missing_I',['-S','-B']),
+                    ('missing_B',['-I','-S']),('optimized',['-I','-S','-B','-O'])]:
+    proc=subprocess.run([sys.executable,*flags,'-c',probe,str(source)],capture_output=True,text=True)
+    assert proc.returncode!=0 and 'Use Python -I -S -B at optimization zero' in proc.stderr
+    cases.append({'case':'actual_startup_rejects_'+label,'pass':True,'returncode':proc.returncode})
+proc=subprocess.run([sys.executable,'-I','-S','-B','-c',probe,str(source)],capture_output=True,text=True)
+assert proc.returncode==0
+cases.append({'case':'actual_required_startup_imports_without_dispatch','pass':True})
 report={'status':'PASS','utc':K['datetime'].now(K['timezone'].utc).isoformat(),
     'operator_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
     'unchanged_repository_kit_sha256':hashlib.sha256(raw).hexdigest(),

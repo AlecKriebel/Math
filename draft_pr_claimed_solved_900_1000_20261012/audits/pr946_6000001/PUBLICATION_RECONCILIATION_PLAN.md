@@ -1,58 +1,74 @@
-# Existing-draft publication reconciliation
+# Existing-draft publication reconciliation, operator02
 
-PR946 has already merged as918948421d00b1184a88ca07017134726b466adb.
-Its unchanged candidate06 paper/package and six complete reviews remain valid.
-The repository kit created draft23409904 and uploaded both exact reviewed files,
-then stopped because its strict notes comparison rejected Zenodo's storage of
-the single `>` in `Python>=3.11` as `&gt;`. The existing draft is unpublished.
-ZENODO_STAGE_RECONCILIATION_01.json records the actual read-only exact-ID
-readback, matching file sizes/checksums, and the sole metadata difference.
-Nothing is deleted, restaged, reuploaded, or newly deposited to work around it.
+PR946 merged as918948421d00b1184a88ca07017134726b466adb after six complete
+reviews. The repository kit created production draft23409904, uploaded the
+exact two reviewed files, and stopped on the sole notes-storage difference
+`Python>=3.11` becoming `Python&gt;=3.11`. The exact-ID read-only reconciliation
+confirms every other metadata field and both API file checksums/sizes.
+The draft is unpublished. Do not create another draft, restage, reupload,
+delete files, or modify the scientific submission or shared repository kit.
 
-Required issue PUB946-METADATA-001 concerns publication transport. The reviewed
-metadata and both submission files remain byte-identical. The shared top-level
-kit and seven captured dependencies are unchanged. A separate, explicitly
-reviewed publication_operator.py supplies only exact-ID GET and one authorized
-publish POST to the unchanged original kit through its supported client
-interface. Its only normalization is the exact observed notes substitution.
-All other metadata and the complete file-name/checksum/size set are checked by
-the original kit. There is no create/upload/update/generic-request path.
+The separate exact-ID operator uses the unchanged original kit's supported
+client interface. Its only normalization is the exact observed single notes
+substitution; the original verifier still checks all metadata and the exact
+file-name/checksum/size set. No create/upload/update/generic request path exists.
+The scientific candidate06 remains223files+77evidence with unchanged seven
+captured dependencies. The additional executable is separately pinned.
 
-Before this additional operator can run, commission NEW full_package_07 to
-repeat the entire mathematical/source/priority/PDF/cold/package/workflow review
-and independently audit the extended publication path. The scientific freeze
-stays candidate06 with223files/77evidence; the additional operator is a separate
-externally pinned executable covered explicitly by review07. Its source, tests
-and this issue are additional review inputs, not silently added to the old
-seven-file dependency inventory. All earlier seals remain unchanged.
+Full review07, seal
+eb55f996d2149104316d840103b641b104e60b371a7d6bef5202aa117406898d,
+completed the entire proof, primary priority, six-page PDF, four cold modes,
+original controls and workflow audit. Its66payloads are immutable. It found
+no mathematical gap and no optional issue, but three required operator01
+defects: FP07-OPS-001 final GET reopened approval/source checking before POST;
+FP07-OPS-002 later guards omitted changed additional operator bytes;
+FP07-OPS-003 startup did not enforce no_site. Root authenticated all66files,
+24primary bodies, the actual seven-seal adverse chain, and independently
+reproduced all three through actual core/kit guards with fake services.
+The old six-round canonical approval is preserved unchanged and does not
+authorize bypassing the adverse seventh review.
 
-The seventh review's own scope gate must authenticate the actual completed
-merge, original HEAD's exact claimed_solved4/5 row, unchanged original33,
-current source/holds/related, candidate223+77 and7dependencies, plus this
-additional operator. A draft/open gate is no longer applicable after our own
-authorized merge. Record that distinction honestly. Reconstruct the proof
-before earlier verdicts, test actual current context with all6 real prior
-rounds and explicitly synthetic terminal07, and perform a fresh merged END.
+Operator02 requires isolated/no_site/nonoptimized/-B startup. It keeps the
+fresh exact-ID GET, then repeats complete approval/source/merged-state guards
+before the sole POST or already-published return. Every effective action and
+receipt guard ends by authenticating its current canonical bytes against
+both external and inspected-review fingerprints. No external read follows
+the final closure before dispatch. This supplies sequential closure within
+the explicitly trusted interpreter/OS/filesystem model; it claims no atomic
+protection against malicious same-user mutation after a final descriptor read.
+All old frozen scientific/core/kit files remain byte-identical. Version01,
+its tests and plan are preserved under publication_operator_versions and in
+the sealed seventh review. Current focused tests cover36cases; additional
+root actual-core/kit integration must pass before the next review starts.
 
-Latest RESULT must include inspected_publication_operator={bytes,sha256} and
-all31 prior issues verified, including PUB946-METADATA-001. Root must authenticate
-the entire seventh seal, programs/results and complete seven-round chain;
-archive the unchanged six-round ACCEPTANCE before extending it to seven rounds
-with the same frozen paper/metadata and exact theorem. Do not fabricate a new
-draft-stage approval or original author turn. The current core's actual
-review_check/accepted_package must validate the entire extended chain.
+Commission NEW full_package_08 to repeat the ENTIRE review after all repairs.
+Its own successful scope gate must come before mathematical reading and use
+the actual MERGED state, exact originalHEAD/claimed_solved4/5 row, source/cache/
+holds/related, original33, current223+77, seven dependencies and separate
+operator02. It must reconstruct the proof independently before earlier
+verdicts, personally inspect decisive primary pages and all six paper pages,
+repeat all four exact cold modes and controls, and test the actual current
+context with all seven real earlier reviews plus synthetic08. No fabricated
+historicalcandidate06 or07 is needed: those reviews share scientific freeze6.
+Its RESULT must include inspected_publication_operator={bytes,sha256} and
+verify all34prior IDs, including PUB946-METADATA-001 and the three07findings.
+Any required or optional finding requires a global fix and another NEW entire
+review. No publication is authorized while the latest review is adverse.
 
-Only then invoke the separately externally pinned operator: inspect-stage
-recovers the already uploaded existing draft by a read-only inspection;
-publish requires the exact stageID23409904, fresh complete approval/source/
-merge guards, an exclusive publish intent and the unchanged kit's --confirm-id
-logic; inspect confirms the public DOI. A prior publish intent blocks any blind
-repeat. Actual original kit lost-response handling permits no second POST.
-The normal unchanged tracker/native/finalization helpers then consume these
-actual, explicitly reconciled receipts and revalidate the full accepted chain.
+After a genuinely clean final whole review, root authenticates its entire
+sealed packet, programs, full chain and actual merged/source state. Archive
+the original six-round ACCEPTANCE before explicitly extending the same
+scientific candidate's approval to the complete eight-or-later-round chain.
+This is postmerge review extension, not a new draft acceptance or author
+proof-search event. The unchanged core review_check/accepted_package must
+validate it. The operator also requires the final review's external seal,
+exact separately inspected operator fingerprint and verified transport issue.
 
-The new29 fake-client tests pass, including exact escape/identity, changed
-notes/metadata/files/IDs, absent mutation methods, fresh-guard rejection and
-actual original-kit single-POST/lost-response recovery. They do not replace the
-NEW whole review or its actual-current-context guard/state-machine tests.
-No publication has yet occurred; no new mathematical proof response is added.
+Only then run inspect-stage (read-only recovery of the existing upload),
+publish (exclusive intent and --confirm-id23409904 through the unchanged kit),
+and inspect (actual public DOI). Saved uncertain intents prohibit blind
+writing retries; inspect the same existing state after any uncertain outcome.
+The unchanged tracker, native-ledger and finalization helpers then consume
+the actual reconciled receipts and independently revalidate the full chain.
+Google CLI append/readback remains after publication; original declared4/5,
+unknown earlier native history and0audit proof responses remain honest.
