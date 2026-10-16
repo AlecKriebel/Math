@@ -1,6 +1,6 @@
 # Claimed-solved draft PR publication program:700–800
 
-Updated 2026-10-16T09:27:28.195522+00:00. This is a progress index; final eligibility reconciliation remains pending.
+Updated 2026-10-16T09:59:14.985744+00:00. This is a progress index; final eligibility reconciliation remains pending.
 
 Only draft PRs whose immutable head QUEUE row is exactly claimed_solved are eligible. Every other status is skipped without mathematical review or disposition. Initial screen:89 skipped and12 eligible.
 
@@ -13,10 +13,12 @@ Only draft PRs whose immutable head QUEUE row is exactly claimed_solved are elig
 | [#765](https://github.com/AlecKriebel/Math/pull/765) | Accepted the existential quasi-conical pure-point Dirichlet construction; arbitrary window sizes or domains are not claimed. | [Preprint](https://doi.org/10.5281/zenodo.23410944) |
 | [#767](https://github.com/AlecKriebel/Math/pull/767) | Closed without merge: Farinati–Solotar’s final2004 examples already answer the unrestricted question negatively. | [Earlier result](https://doi.org/10.1090/S0002-9939-04-07274-0) |
 
-Current: **#778 /30001054**, the historical four-axiom realization obstruction. Mathematics and bounded priority gates are closed; the exact four-page package is in the fresh whole-preprint review loop. No DOI, tracker entry or merge has been made for this PR.
+| [#778](https://github.com/AlecKriebel/Math/pull/778) | Accepted the literal historical four-axiom realization obstruction and separated-input lemma; proper representation theorem credited, priority unresolved. | [Preprint](https://doi.org/10.5281/zenodo.23414444) |
 
-Overall process completion estimate: **57%**. Six initial eligible PRs completed; one current and five initial eligible PRs remain. This percentage measures the processing program, not proof novelty.
+Current: **#781 /4600024**, eligibility confirmed exactly claimed_solved3/5. Source intake and independent mathematical audits are next.
+
+Overall process completion estimate: **58%**. Seven initial eligible PRs completed; five initial eligible PRs remain. Final eligibility reconciliation remains pending. This percentage measures the processing program, not proof novelty.
 
 The accepted papers disclose extensive AI use, unrefereed status, no external human peer review and no proof-assistant certification. Historical firstness and current worldwide openness are not certified; each paper states its exact source and priority bounds.
 
-[Research log](RESEARCH_LOG.md) and [machine-readable state](STATE.json) contain scope, immutable source identities, audit checkpoints and receipts. Final published files and metadata are bound in each problem’s audit folder.
+[Research log](RESEARCH_LOG.md) and [machine-readable state](STATE.json) contain scope, immutable source identities, audit checkpoints and receipts. Final published files and metadata are bound in each problem's audit folder.
