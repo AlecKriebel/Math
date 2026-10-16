@@ -122,3 +122,7 @@ preprint. Independent human peer review and formal verification have not been
 completed. Passing software checks is auxiliary evidence and does not supply
 mathematical acceptance or publication approval. No outside individual was
 contacted on behalf of this independent research effort.
+
+## Published record
+
+Published preprint: [10.5281/zenodo.23411227](https://doi.org/10.5281/zenodo.23411227). Two successive NEW independent whole-package reviews cleared the same179-file package before merge. PUBLICATION_RECEIPT.json records the exact accepted revision, final review links, production deposit and unique tracker row. This later outer README/log/manifest annotation adds the receipt; the five-page paper, metadata and150-member verification ZIP remain unchanged. The README inside the ZIP is the frozen pre-publication version.
