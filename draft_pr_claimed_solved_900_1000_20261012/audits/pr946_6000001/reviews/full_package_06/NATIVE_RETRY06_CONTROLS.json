@@ -1,0 +1,123 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-16T05:14:08.657341+00:00",
+  "actual_current06_context": true,
+  "terminal06_explicitly_synthetic": true,
+  "actual_native_source_tree_CAS_and_shared_guards": true,
+  "only_Git_service_transport_fake": true,
+  "actual_external_mutations": 0,
+  "cases": [
+    {
+      "case": "native_after_first_CAS_pending",
+      "rejected": true,
+      "reason": "PR946 guard: supplied reviews must account for every numbered review, including unfinished or adverse rounds"
+    },
+    {
+      "case": "native_after_first_CAS_adverse",
+      "rejected": true,
+      "reason": "PR946 guard: supplied reviews must account for every numbered review, including unfinished or adverse rounds"
+    },
+    {
+      "case": "native_after_first_CAS_revocation",
+      "rejected": true,
+      "reason": "PR946 guard: canonical acceptance changed during operation"
+    },
+    {
+      "case": "native_after_first_CAS_sealed_review",
+      "rejected": true,
+      "reason": "PR946 guard: nonregular or oversized file: draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/reviews/full_package_06/FULL_AUDIT.md"
+    },
+    {
+      "case": "native_after_first_CAS_new_source_hold",
+      "rejected": true,
+      "reason": "PR946 guard: current source identity/readiness holds"
+    },
+    {
+      "case": "native_after_first_CAS_uncertain_push",
+      "rejected": true,
+      "reason": "PR946 guard: push uncertain/non-CAS failure: inspect; do not automatically repeat"
+    },
+    {
+      "case": "actual_ascending_status_only_closed_nondraft_wrongstatus_skips",
+      "pass": true,
+      "selected": 950,
+      "skipped": [
+        {
+          "pr": 947,
+          "action": "SKIP_NOT_OPEN_DRAFT",
+          "math_source_read": false
+        },
+        {
+          "pr": 948,
+          "action": "SKIP_NOT_OPEN_DRAFT",
+          "math_source_read": false
+        },
+        {
+          "pr": 949,
+          "problem_id": "SYNTHETIC949",
+          "status": "partially_solved",
+          "action": "SKIP_STATUS_ONLY",
+          "math_source_read": false
+        }
+      ],
+      "commands": [
+        [
+          "gh",
+          "pr",
+          "view",
+          "947",
+          "--repo",
+          "AlecKriebel/Math",
+          "--json",
+          "number,state,isDraft,headRefOid,headRefName,baseRefName,url"
+        ],
+        [
+          "gh",
+          "pr",
+          "view",
+          "948",
+          "--repo",
+          "AlecKriebel/Math",
+          "--json",
+          "number,state,isDraft,headRefOid,headRefName,baseRefName,url"
+        ],
+        [
+          "gh",
+          "pr",
+          "view",
+          "949",
+          "--repo",
+          "AlecKriebel/Math",
+          "--json",
+          "number,state,isDraft,headRefOid,headRefName,baseRefName,url"
+        ],
+        [
+          "gh",
+          "api",
+          "repos/AlecKriebel/Math/contents/unsolved_math_prioritization/QUEUE.md?ref=9999999999999999999999999999999999999999",
+          "-H",
+          "Accept: application/vnd.github.raw+json"
+        ],
+        [
+          "gh",
+          "pr",
+          "view",
+          "950",
+          "--repo",
+          "AlecKriebel/Math",
+          "--json",
+          "number,state,isDraft,headRefOid,headRefName,baseRefName,url"
+        ],
+        [
+          "gh",
+          "api",
+          "repos/AlecKriebel/Math/contents/unsolved_math_prioritization/QUEUE.md?ref=0000000000000000000000000000000000000000",
+          "-H",
+          "Accept: application/vnd.github.raw+json"
+        ]
+      ],
+      "math_source_read": false
+    }
+  ],
+  "case_count": 7
+}
