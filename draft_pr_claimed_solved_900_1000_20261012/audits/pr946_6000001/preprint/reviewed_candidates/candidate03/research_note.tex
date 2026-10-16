@@ -1,0 +1,528 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Global Hessian realizations of statistical manifolds},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\HS}{\mathrm{HS}}
+\DeclareMathOperator{\Sym}{Sym}
+\title{Global Hessian realizations of statistical manifolds}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 15, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $M$ be a smooth, Hausdorff, second-countable $n$-manifold without
+boundary, with a positive Riemannian metric and two prescribed, mutually
+dual, torsion-free connections. For $n\geq1$ we construct a proper smooth
+embedding into an open subset of $\R^{\binom{2n+4}{3}}$ carrying one smooth
+positive Hessian potential. Orthogonal projection of the ambient standard
+connection and its metric dual induces exactly the ordered pair of given
+connections. Finite polynomial features provide a smooth global scalar
+third-jet lifting; a variable tubular neighborhood and a pointwise Schur
+estimate provide ambient positivity without compactness or uniform bounds.
+For a general Riemannian dual pair, vanishing of both torsions is necessary
+and sufficient for such realization. This supplies a self-contained answer
+in the smooth statistical category to the historical dually flat realization
+question. Historical novelty and present openness are not asserted; important
+prior constructions and unresolved primary-source coverage are specified.
+\end{abstract}
+\noindent\textbf{Status and disclosure.}
+Unrefereed research note, version 1.0. Licensed under
+\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}. AI tools were used extensively in developing,
+writing, checking, and adversarially reviewing the argument and supporting
+computations. These checks do not constitute independent human peer review
+or formal proof certification. The author is responsible for the claims.
+
+\section{Statement and conventions}
+
+Amari asked whether an arbitrary manifold with a Riemannian dual structure
+can be realized as a higher-dimensional submanifold of a dually flat
+manifold with the induced dual structure \cite[p.~87, question~1]{Amari}.
+The question appears in Furuhata--Matsuzoe--Urakawa
+\cite[p.~125, item~1(a)]{FMU}, reporting the December 1996 workshop.
+The cited definition requires zero torsion and curvature for both ambient
+connections, with dual affine coordinates understood locally
+\cite[pp.~84--85]{Amari}. No fixed probability model, convexity, completeness,
+or globally injective dual coordinate map is imposed here.
+
+Throughout, manifolds and data are smooth. A \emph{dual pair} satisfies
+\begin{equation}\label{eq:duality}
+ Xg(Y,Z)=g(\nabla_XY,Z)+g(Y,\nabla^*_XZ).
+\end{equation}
+It is \emph{statistical} when both connections are torsion-free. The
+connections induced along an isometric immersion are the metric-orthogonal
+tangential projections of the respective ambient connections. Flatness below
+refers to these affine connections, not to Levi--Civita curvature.
+
+\begin{theorem}\label{thm:main}
+Let $(M,g,\nabla,\nabla^*)$ be a statistical manifold of fixed finite
+dimension $n\geq1$, Hausdorff and second-countable, without boundary, with
+$g$ positive definite. There exist an open set $U\subset\R^N$,
+$N=\binom{2n+4}{3}>n$, a smooth function $\Psi:U\to\R$ with positive
+ordinary Hessian $G=\Hess\Psi$, and a proper smooth embedding $f:M\to U$
+such that $f^*G=g$. The standard flat connection $D$ and its $G$-dual $D^*$
+are torsion-free and flat and induce, in that order, $\nabla$ and $\nabla^*$.
+\end{theorem}
+
+There is no connectedness or completeness hypothesis. The domain $U$ depends
+on all the data and may be nonconvex and incomplete. The theorem neither
+constructs a finite probability model nor optimizes $N$. Its proof uses the
+proper Whitney embedding theorem and the smooth Euclidean tubular
+neighborhood theorem; the jet lifting and positivity argument are given
+explicitly below.
+
+\section{A global pair from scalar third jets}
+
+Let $L$ be the Levi--Civita connection and set $C=\nabla g$. Duality and
+the two torsion conditions imply that $C$ is totally symmetric and
+\begin{equation}\label{eq:difference}
+ \nabla=L-\tfrac12 C^\sharp,\qquad
+ \nabla^*=L+\tfrac12 C^\sharp,
+ \quad g(C^\sharp(X,Y),Z)=C(X,Y,Z).
+\end{equation}
+Indeed, write $K=\nabla-L$ and $K^*=\nabla^*-L$. Both are symmetric in
+their two vector arguments, and duality says
+$g(K_XY,Z)=-g(Y,K^*_XZ)$. Applying these symmetries successively makes
+$g(K_XY,Z)$ symmetric in all three variables; it follows that
+$K^*=-K$ and $C(X,Y,Z)=-2g(K_XY,Z)$.
+
+In coordinates write $g_{ij}=g(\partial_i,\partial_j)$ and
+$\Gamma_{ijk}=g(\nabla_{\partial_i}\partial_j,\partial_k)$.
+The symmetric array
+\begin{equation}\label{eq:Q}
+ Q_{ijk}:=\partial_k g_{ij}+\Gamma_{ijk}
+ =\tfrac12\bigl(\partial_i g_{jk}+\partial_j g_{ik}
+                         +\partial_k g_{ij}-C_{ijk}\bigr)
+\end{equation}
+will prescribe \emph{ordinary} third derivatives, not a covariant tensor.
+
+\subsection*{Finite features and a smooth right inverse}
+
+Choose a proper smooth embedding $e:M\to\R^K$, $K=2n+1$. Whitney's
+proper version is recorded in \cite[Lemma~19, p.~665 and footnote~32]{Whitney};
+see also its Theorem~1, p.~654. Let $p_1,\ldots,p_N$ be all monomials of
+degree at most three in $K$ variables, including the constant, and put
+\begin{equation}\label{eq:feature}
+ f=(p_1\circ e,\ldots,p_N\circ e),\qquad
+ N=\dim\mathcal P_3(\R^K)=\binom{K+3}{3}.
+\end{equation}
+Projection $\pi$ onto the degree-one coordinates gives $\pi f=e$.
+Consequently $f$ is an injective immersion and a topological embedding.
+For compact $B\subset\R^N$, $f^{-1}(B)$ is a closed subset of the compact
+set $e^{-1}(\pi B)$, so $f$ is proper. Thus $S=f(M)$ is a closed embedded
+submanifold of $\R^N$.
+
+For the vector bundle of scalar third jets define the smooth bundle map
+\[
+ E:M\times\R^N\longrightarrow J^3(M,\R),\qquad
+ E_p(c)=j^3_p\Bigl(\sum_A c_A f^A\Bigr).
+\]
+Each $E_p$ is onto. Choose $n$ ambient linear functions whose restrictions
+by $e$ have independent differentials at $p$. These restrictions are local
+coordinates $y$ near $p$. Every scalar third jet is a polynomial of degree
+at most three in $y-y(p)$, hence is the restriction of an ambient polynomial
+of that degree. This proves surjectivity using the same finite polynomial
+space at every point, even though the coordinates used to check it vary.
+
+Choose smooth positive bundle metrics, available by paracompactness, and
+denote the adjoint by $E^\dagger$. Then
+\begin{equation}\label{eq:rightinverse}
+ R=E^\dagger(EE^\dagger)^{-1}
+\end{equation}
+is a smooth right inverse: $EE^\dagger$ is positive definite on each jet
+fiber. Inversion is smooth on invertible matrices; no uniform bound for
+$R$, finite chart cover, or compactness is needed.
+
+For example, with $M=(0,\infty)$ and $e(t)=(\log t,0,0)$, the polynomial
+\[
+ q_t(y)=\frac{t^3}{6}(y-\log t)^3
+\]
+restricts to $q_t(\log s)$ with zero derivatives of orders zero through two
+at $s=t$ and third derivative one. Its coefficients are smooth in $t$,
+and its leading coefficient is unbounded. This illustrates a smooth lift
+without a uniform bound; it is not claimed to be the minimum-norm lift
+in \eqref{eq:rightinverse}.
+
+\subsection*{The prescribed jet and its coordinate law}
+
+At $p$, use the exponential map of $L$ only as a germ near $0\in T_pM$,
+and prescribe the scalar third jet $J_p$ by
+\begin{equation}\label{eq:germ}
+ q_p(\exp_p v)=\tfrac12 g_p(v,v)-\tfrac1{12}C_p(v,v,v).
+\end{equation}
+The contractions are basis independent, and the local exponential map is
+smooth near the zero section. This defines a smooth section $J$; no common
+injectivity radius or complete exponential map is required. It is a section
+of jets of germs at varying points, not the third jet of one global scalar
+function on $M$. In particular, there is no implication from $q_p(p)=0$
+for all $p$ that these germs have vanishing Hessians.
+
+In $L$-normal coordinates the first derivative is zero, the Hessian is $g$,
+and the third derivative is $-C/2$. In arbitrary coordinates the conversion
+adds
+\[
+ L_{ij}^{a}g_{ak}+L_{ik}^{a}g_{aj}+L_{jk}^{a}g_{ai}
+ =\tfrac12(\partial_i g_{jk}+\partial_j g_{ik}+\partial_k g_{ij}).
+\]
+Thus the value, first, second, and third ordinary derivatives of $J_p$ are
+respectively $0,0,g,Q$. Explicitly, under $x=x(y)$, set
+$X_a^i=\partial x^i/\partial y^a$ and
+$X_{ab}^i=\partial^2x^i/(\partial y^a\partial y^b)$. The chain rule gives
+\begin{equation}\label{eq:chartlaw}
+ Q'_{abc}=X_a^iX_b^jX_c^k Q_{ijk}
+ +g_{ij}\bigl(X_{ab}^iX_c^j+X_{ac}^iX_b^j+X_{bc}^iX_a^j\bigr).
+\end{equation}
+There is no third coordinate-change term because the first derivative is
+zero. The connection transformation supplies the first of these three
+inhomogeneous terms, and differentiating the transformed metric supplies
+the other two. This checks directly why \eqref{eq:Q} is compatible scalar
+jet data and must not be treated as a tensor.
+
+Set $a=RJ$ and $\phi=-a$, identifying coefficient vectors with ambient
+covectors. By definition of $E$, in every coordinate chart
+\begin{equation}\label{eq:jetidentities}
+ a_A f^A=0,\qquad a_A f_i^A=0,\qquad
+ a_A f_{ij}^A=g_{ij},\qquad a_A f_{ijk}^A=Q_{ijk}.
+\end{equation}
+Here $f_i=\partial_i f$, etc. In evaluating the jet at $p$, the coefficient
+$a(p)$ is held fixed in the germ variable. Subsequent differentiation along
+the base $p$ differentiates $a$ as well. Differentiating the second and
+third identities and using \eqref{eq:Q} gives, with the signs displayed,
+\begin{align}
+ f_i^A\partial_j\phi_A
+   &=a_A f_{ij}^A=g_{ij},\label{eq:pairmetric}\\
+ f_{ij}^A\partial_k\phi_A
+   &=a_A f_{ijk}^A-\partial_k g_{ij}=\Gamma_{ijk}.
+   \label{eq:pairconnection}
+\end{align}
+Moreover
+\begin{equation}\label{eq:zeroform}
+ \phi_A\dd f^A=0.
+\end{equation}
+These are the metric and connection identities of a Lauritzen-type pair,
+with an identically zero compatibility one-form, rather than a merely
+closed form whose periods would need to be controlled. The metric identity
+makes $\dd\phi$ injective on each tangent space, but global injectivity of
+$\phi$ is neither inferred nor needed.
+
+\section{One positive Hessian neighborhood of the whole image}
+
+Identify $M$ with $S$. By the smooth Euclidean normal tubular neighborhood
+theorem there is an open neighborhood $T$ of $S$ on which normal addition
+is a diffeomorphism from a neighborhood of the zero section of $NS$.
+Write
+\[
+ z=r(z)+\nu(z),\qquad r(z)\in S,\quad \nu(z)\in N_{r(z)}S.
+\]
+We use the variable-radius version, not a uniform-radius assertion; an
+explicit statement is \cite[Definition~3.53 and Theorem~3.54, pp.~43--44]{Tube}.
+At $s\in S$, $\dd r=P_{T_sS}$ and $\dd\nu=P_{N_sS}$, as follows from
+the derivative of normal addition at $(s,0)$. No normal trivialization is
+assumed.
+
+By \eqref{eq:zeroform}, $\phi_s$ annihilates $T_sS$. Define on $T$
+\begin{equation}\label{eq:psi0}
+ \Psi_0(z)=\phi_{r(z)}(\nu(z)).
+\end{equation}
+It is smooth, $\Psi_0|_S=0$, and $\dd\Psi_0|_S=\phi$: the term
+containing the derivative of $\phi$ vanishes at $\nu=0$, while
+$\phi_s P_{N_sS}=\phi_s$. Differentiating this ambient covector equality
+along $S$ gives
+\begin{equation}\label{eq:hessian-column}
+ H_0(f_i,\,\cdot\,)=\partial_i\phi,
+ \qquad H_0=\Hess\Psi_0.
+\end{equation}
+The tangent block is $g$ by \eqref{eq:pairmetric}. On a fixed normal fiber
+\eqref{eq:psi0} is linear, so the normal--normal block is zero. In Euclidean
+orthonormal tangent and normal frames,
+\[
+ H_0|_S=\begin{pmatrix}A&B\\B^{\mathsf T}&0\end{pmatrix},\qquad A>0.
+\]
+Regard $A$ as a self-adjoint endomorphism of $TS$, and $B:NS\to TS$.
+The functions
+\begin{equation}\label{eq:lambda}
+ t=\tr(A^{-1})\|B\|_{\HS}^2,\qquad \lambda=1+t
+\end{equation}
+are smooth and frame independent. They need only be finite pointwise;
+they may be unbounded on $S$.
+
+Set
+\begin{equation}\label{eq:psi}
+ \Psi(z)=\Psi_0(z)+\lambda(r(z))|\nu(z)|^2.
+\end{equation}
+The correction has zero value and first derivative on $S$. Its Hessian
+there is $2\lambda\langle P_N\,\cdot\,,P_N\,\cdot\,\rangle$, so
+\begin{equation}\label{eq:block}
+ \Hess\Psi|_S=\begin{pmatrix}A&B\\B^{\mathsf T}&2\lambda I\end{pmatrix}.
+\end{equation}
+For $w\in NS$, positivity of $A^{-1}$ implies
+\[
+ \langle B^{\mathsf T}A^{-1}Bw,w\rangle
+ \leq \|A^{-1}\|_{\rm op}\|B\|_{\HS}^2|w|^2
+ \leq t|w|^2.
+\]
+For a tangent vector $v$ the quadratic form of \eqref{eq:block} is
+\begin{align*}
+ &\langle A(v+A^{-1}Bw),v+A^{-1}Bw\rangle
+       +\langle(2\lambda I-B^{\mathsf T}A^{-1}B)w,w\rangle,\\[-2pt]
+ &\hspace{35mm}2\lambda I-B^{\mathsf T}A^{-1}B\ \geq\ (2+t)I>0.
+\end{align*}
+It is therefore positive definite at every point of $S$. Define
+\begin{equation}\label{eq:U}
+ U=\{z\in T:(\Hess\Psi)_z\text{ is positive definite}\}.
+\end{equation}
+This is open and contains all of $S$. Restricting $\Psi$ to $U$ produces
+one global positive Hessian metric. No uniform tubular radius, lower
+eigenvalue bound, bounded coefficient field, or infinite-series convergence
+is used. The map $f:M\to U$ remains proper, since a compact subset of $U$
+is also compact in $\R^N$.
+
+\section{Flatness, the ordered pair, and the torsion criterion}
+
+In ambient coordinates $z^A$, let $D$ be the standard connection and
+$G_{AB}=\partial_A\partial_B\Psi$. Its metric dual has coefficients
+\begin{equation}\label{eq:dualcoeff}
+ (\Gamma^*)^C_{AB}=G^{CE}\partial_A G_{BE}.
+\end{equation}
+Symmetry of the third derivatives makes $D^*$ torsion-free. The functions
+$\eta_E=\partial_E\Psi$ have invertible Jacobian $G$ and satisfy
+\[
+ \partial_A\partial_B\eta_E
+       -(\Gamma^*)^C_{AB}\partial_C\eta_E=0.
+\]
+They are therefore local $D^*$-affine coordinates. This proves that $D^*$
+is flat everywhere, without assuming that $z\mapsto\dd\Psi(z)$ is globally
+injective. The connection $D$ is already torsion-free and flat.
+
+The preserved first jet on $S$ gives
+\begin{equation}\label{eq:gradient}
+ \dd\Psi(f(p))=\phi(p),\qquad
+ G_{AB}(f(p)) f_k^B=\partial_k\phi_A.
+\end{equation}
+Combining \eqref{eq:gradient} with \eqref{eq:pairmetric} proves $f^*G=g$.
+For the connection $\nabla^{\rm ind}$ obtained from $D$,
+\[
+ g(\nabla^{\rm ind}_{\partial_i}\partial_j,\partial_k)
+ =G(f_{ij},f_k)=f_{ij}^A\partial_k\phi_A=\Gamma_{ijk}.
+\]
+Thus $\nabla^{\rm ind}=\nabla$. Restricting ambient duality to tangent
+fields, normal terms disappear by orthogonality. The induced connection
+from $D^*$ is consequently the $g$-dual of $\nabla$, hence is the specified
+$\nabla^*$. This proves Theorem~\ref{thm:main}, including the ordering.
+
+\begin{corollary}\label{cor:torsion}
+For a smooth positive Riemannian dual pair on a manifold as above,
+realization by orthogonal projection from a torsion-free dually flat
+statistical manifold is possible if and only if both given torsions vanish.
+\end{corollary}
+\begin{proof}
+Sufficiency is the theorem. Along any immersion into an ambient manifold,
+the torsion-free identity
+$\bar\nabla_X\dd f(Y)-\bar\nabla_Y\dd f(X)=\dd f([X,Y])$
+projects to the torsion-free identity for the induced connection.
+Apply it separately to the two ambient connections.
+\end{proof}
+
+A second-countable zero-dimensional manifold is countable and discrete.
+Embed it as a subset of the nonnegative integers in $\R$, with
+$\Psi(z)=z^2/2$. This is proper and realizes all its (zero-dimensional)
+tangent data. The empty case is vacuous. No extension to boundary or
+indefinite-metric settings is asserted.
+
+\section{Prior constructions and the scope of the answer}
+
+The conclusion answers the historical existence question in its smooth
+positive statistical category. It is not a claim that this is the first
+answer or that the question remained open until this note. Several
+ingredients have substantial precedents. Lauritzen's statistical,
+cubic-tensor, dual-connection, and induced-connection framework is in
+\cite{LauritzenIMS}. The separate Lancaster note \cite{LauritzenPair}
+is credited for pair embeddings by Marugame
+\cite[\S2.4]{Marugame}; its original body was not obtained in the present
+source audit. Matumoto \cite[Theorem~1 and proof, pp.~328--331]{Matumoto}
+constructs global contrast functions by compatible scalar third-order data
+and explicitly distinguishes the further flat-embedding question.
+
+Finite jets, freedom, and right inverses belong to the Nash--Gromov
+embedding tradition. In statistical geometry they occur in L\^e's long
+preprint \cite[pp.~33--39]{Le2003} and in Loi--Matta's robustness theorem
+and minimum-norm inverse \cite{LoiMatta}. The latter starts with already
+induced statistical data; openness near such data does not alone realize
+an arbitrary prescribed metric and cubic. Marugame's local equivalence
+\cite[Theorem~2.2, \S2.4]{Marugame} constructs a Hessian extension from a
+pair using a local primitive and a positive transverse quadratic term.
+Those are direct antecedents of the extension stage here. The present
+proof supplies a global pair with $\phi\,\dd f=0$ and a variable-neighborhood
+positivity argument. Osipov's positive Hessian cones are genuine global
+realizations for the stated constant-statistical-curvature classes
+\cite{Osipov}; their restriction is the curvature hypothesis, not the
+absence of a single global affine chart.
+
+The finite-probability-model literature needs a separate distinction.
+L\^e's earlier texts make unrestricted finite-simplex claims
+\cite{Le2003,Le2006,Le2007}; the inspected arXiv v6 explicitly assumes
+compactness in its Main Theorem and Theorems~5.1 and~5.6 \cite{Le2016}.
+In the actual 2017 book, Theorem~4.10 on p.~222 gives finite-sample
+immersion for compact input and a countable-sample model for noncompact
+input; Theorem~4.11 on p.~238 makes the corresponding embedding distinction
+\cite{AJLS}. These statements were inspected in a Springer-authorized
+preview; they should not be replaced by the broader chapter abstract.
+The complete chapter, including the unavailable p.~239, was not audited.
+
+A valid unrestricted smooth finite-simplex embedding theorem would already
+answer the historical question: in mixture coordinates the potential
+$\sum_a p_a\log p_a$ has positive Hessian equal to the Fisher metric, and
+its derivative cubic is minus the Amari--Chentsov cubic. Applying such a
+theorem to the appropriate cubic sign induces both ordered connections
+by \eqref{eq:difference}. Properness is not a historical novelty shield
+either: an embedded image $S$ is open in its ambient closure, so removing
+the closed set $\overline S\setminus S$ makes the embedding proper in a
+smaller allowed open ambient. Neither observation proves the particular
+dimension bound here to be new.
+
+The inspected older noncompact gluing arguments leave compatibility of the
+separately embedded pieces and their derivatives unproved; this is not a
+counterexample to their conclusions. The final 2006 article and final 2007
+chapter were not obtained as authenticated full bodies, and are not assumed
+identical to an arXiv version. Along with the separate Lauritzen note and
+Abe's article \cite{Abe}, they remain material primary-source gaps. The
+accepted manuscripts inspected for Marugame and Loi--Matta are distinguished
+from their publisher versions in the references. This bounded literature
+audit establishes neither absence of an earlier full solution nor current
+openness. The note presents the explicit proof above with those limitations.
+
+\paragraph{Verification materials.}
+Companion materials preserve the original proof and its computational
+records, independent checks of jet and Hessian identities, source-scope
+comparisons, and reproduction instructions. Finite exact checks and
+numerical examples corroborate identities; they do not replace the universal
+proof or its differential-topology inputs. Historical strict floating-output
+comparison failures are preserved separately from a typed, bounded portable
+comparison of designated sample fields. Its tolerances are a transport
+policy, not a proved roundoff estimate. No numerical test, AI review, or
+source search certifies historical novelty.
+
+\begin{thebibliography}{99}\small
+\bibitem{Amari}
+S.-I. Amari, \emph{Information geometry}, Contemporary Mathematics
+\textbf{203} (1997), 81--95, especially pp.~84--85, 87.
+\url{https://bsi-ni.brain.riken.jp/database/file/166/169.pdf}.
+
+\bibitem{FMU}
+H. Furuhata, H. Matsuzoe, and H. Urakawa,
+\emph{Open problems in affine differential geometry and related topics},
+Interdisciplinary Information Sciences \textbf{4}(2) (1998), 125--127.
+\url{https://www.jstage.jst.go.jp/article/iis/4/2/4_2_125/_pdf/-char/en}.
+
+\bibitem{LauritzenIMS}
+S. L. Lauritzen, \emph{Statistical manifolds}, in
+\emph{Differential Geometry in Statistical Inference}, IMS Lecture Notes
+Monograph Series \textbf{10} (1987), 163--216.
+\href{https://doi.org/10.1214/lnms/1215467061}{doi:10.1214/lnms/1215467061}.
+
+\bibitem{LauritzenPair}
+S. L. Lauritzen, \emph{Conjugate connections in statistical theory},
+in \emph{Geometrization of Statistical Theory}, ULDM Publications,
+University of Lancaster (1987), 33--51. Original body not obtained;
+pair attribution checked in \cite[\S2.4]{Marugame} and the author's
+\href{https://web.math.ku.dk/~lauritzen/publications.html}{institutional bibliography}.
+
+\bibitem{Matumoto}
+T. Matumoto, \emph{Any statistical manifold has a contrast function---On
+the $C^3$-functions taking the minimum at the diagonal of the product
+manifold}, Hiroshima Mathematical Journal \textbf{23}(2) (1993), 327--332.
+\href{https://doi.org/10.32917/hmj/1206128255}{doi:10.32917/hmj/1206128255}.
+
+\bibitem{Whitney}
+H. Whitney, \emph{Differentiable manifolds}, Annals of Mathematics
+\textbf{37}(3) (1936), 645--680.
+\href{https://doi.org/10.2307/1968482}{doi:10.2307/1968482}.
+
+\bibitem{Tube}
+M. Gualtieri, \emph{MAT1300 course notes}, part 11 (2017),
+Definition~3.53 and Theorem~3.54, pp.~43--44.
+\url{https://www.math.toronto.edu/mgualt/courses/17-1300/docs/17-1300-notes-11.pdf}.
+
+\bibitem{Le2003}
+H. V. L\^e, \emph{Monotone invariants and embeddings of statistical
+manifolds}, MPI preprint 43/2003;
+\url{https://files-www.mis.mpg.de/mpi-typo3/preprints/2003/preprint2003_43.pdf}.
+See also \emph{Statistical manifolds are statistical models}, MPI preprint
+77/2003;
+\url{https://files-www.mis.mpg.de/mpi-typo3/preprints/2003/preprint2003_77.pdf}.
+
+\bibitem{Le2016}
+H. V. L\^e, \emph{Monotone invariants and embeddings of statistical
+manifolds}, arXiv:math/0506163v6, March 10, 2016, especially pp.~14--15,
+22--23. \url{https://arxiv.org/abs/math/0506163v6}.
+This inspected version is distinguished from \cite{Le2007}.
+
+\bibitem{Le2006}
+H. V. L\^e, \emph{Statistical manifolds are statistical models},
+Journal of Geometry \textbf{84} (2006), 83--93.
+\href{https://doi.org/10.1007/s00022-005-0030-0}{doi:10.1007/s00022-005-0030-0}.
+Publication metadata and broad abstract inspected; final body not obtained.
+
+\bibitem{Le2007}
+H. V. L\^e, \emph{Monotone invariants and embeddings of statistical
+manifolds}, in \emph{Advances in Deterministic and Stochastic Analysis},
+World Scientific (2007).
+\href{https://doi.org/10.1142/9789812770493_0012}{doi:10.1142/9789812770493\_0012}.
+Final chapter body not obtained; no identity with an arXiv version assumed.
+
+\bibitem{AJLS}
+N. Ay, J. Jost, H. V. L\^e, and L. Schwachh\"ofer,
+\emph{Information Geometry}, Springer (2017), Chapter~4,
+\emph{The intrinsic geometry of statistical models}, 185--239.
+\href{https://doi.org/10.1007/978-3-319-56478-4_4}{doi:10.1007/978-3-319-56478-4\_4}.
+Actual Theorems~4.10 and~4.11 inspected in the authorized previews
+\href{https://books.google.com/books?id=pLsyDwAAQBAJ&pg=PA222}{p.~222}
+and \href{https://books.google.com/books?id=pLsyDwAAQBAJ&pg=PA238}{p.~238};
+full chapter not obtained.
+
+\bibitem{Marugame}
+T. Marugame, \emph{The Bonnet theorem for statistical manifolds},
+Information Geometry \textbf{4} (2021), 363--376.
+\href{https://doi.org/10.1007/s41884-021-00056-4}{doi:10.1007/s41884-021-00056-4}.
+Inspected bodies: \href{https://arxiv.org/abs/2103.10102v1}{arXiv:2103.10102v1}
+(March 18, 2021), \S\S2.1--2.4, and the
+\href{https://uec.repo.nii.ac.jp/record/10333/files/Bonnet_thm_statistical_mfd.pdf}{author accepted manuscript};
+publisher version not obtained.
+
+\bibitem{LoiMatta}
+A. Loi and S. Matta, \emph{Robustness of statistical manifolds},
+Topology and its Applications \textbf{327} (2023), 108438.
+\href{https://doi.org/10.1016/j.topol.2023.108438}{doi:10.1016/j.topol.2023.108438}.
+Inspected bodies: \href{https://arxiv.org/abs/2110.06145v1}{arXiv:2110.06145v1}
+and the \href{https://iris.unica.it/retrieve/6dbf3c46-1ccf-403f-bb6f-a3757afe194a/TOPOL\%20108438_merged.pdf}{author accepted manuscript},
+Theorem~1 and the free-map/right-inverse argument; publisher version not obtained.
+
+\bibitem{Osipov}
+P. Osipov, \emph{Statistical Lie algebras of a constant curvature and
+locally conformally K\"ahler Lie algebras},
+\href{https://arxiv.org/abs/2112.06686v2}{arXiv:2112.06686v2}
+(May 20, 2022), Theorem~2.12;
+\emph{Locally conformally Hessian and statistical manifolds},
+\href{https://arxiv.org/abs/2209.02357v3}{arXiv:2209.02357v3}
+(September 6, 2023), Theorem~3.16, p.~14.
+The latter was published in Journal of Geometry and Physics,
+\href{https://doi.org/10.1016/j.geomphys.2023.104989}{doi:10.1016/j.geomphys.2023.104989};
+the cited theorem reading is of the specified preprint.
+
+\bibitem{Abe}
+N. Abe, \emph{Affine immersions and conjugate connections}, Tensor,
+New Series \textbf{55}(3) (1994), 276--280.
+\href{https://dl.ndl.go.jp/en/pid/11196378}{Issue archive}; original body not obtained.
+\end{thebibliography}
+\end{document}

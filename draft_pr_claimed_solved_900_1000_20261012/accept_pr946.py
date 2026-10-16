@@ -1312,6 +1312,7 @@ def finalize(args, context):
     already = PR in state['completed_prs']
     need(state.get('active_pr') in (PR, None) or already, 'unexpected active research target')
     if already and state.get('active_pr') not in (PR, None):
+        accepted_review_check(accepted, freeze, context)
         print(json.dumps({'already_finalized': True, 'next_pr': state.get('active_pr')}))
         return
     completed = sorted([r for r in state['completed_results'] if r['pr'] != PR] + [record], key=lambda r: r['pr'])
@@ -1339,6 +1340,8 @@ def finalize(args, context):
         state['next_pr'] = None
     state['publication'] = '_'.join('PR' + str(number) for number in state['published_prs']) + '_published_tracker_native_ledgers_verified'
     state['shard_completion_estimate_percent'] = 100 * len(state['completed_prs']) / len(state['eligible_prs'])
+    # gate_next and state reads may span service requests; refresh after all reads.
+    accepted_review_check(accepted, freeze, context)
     if not already:
         with (P / 'README.md').open('a') as out:
             out.write(f"\nPR #946 accepted, merged and published: [{publication['doi']}](https://doi.org/{publication['doi']}); tracker {tracker['updated_range']}. Fully credited global Hessian construction; original declared4/5 and native-history uncertainty preserved; audit adds0.\n")
