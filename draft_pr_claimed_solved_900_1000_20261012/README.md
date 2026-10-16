@@ -41,3 +41,5 @@ PR #932 closed without merging on verified exact-priority grounds. Candidate mat
 PR #938 accepted, merged and published: [10.5281/zenodo.23393596](https://doi.org/10.5281/zenodo.23393596); tracker 'Math Puzzles'!A108:D108. All finite derived depths, credited prior general inputs, bounded priority and unrefereed AI disclosures explicit; original observed1/5 preserved with one separately counted strengthening, known2/5.
 
 PR #946 accepted, merged and published: [10.5281/zenodo.23409904](https://doi.org/10.5281/zenodo.23409904); tracker 'Math Puzzles'!A117:D117. Fully credited global Hessian construction; original declared4/5 and native-history uncertainty preserved; audit adds0.
+
+PR #948 accepted, merged and published: [10.5281/zenodo.23422055](https://doi.org/10.5281/zenodo.23422055); tracker 'Math Puzzles'!A129:D129. Three fixed anti-invariant classes on a compact nonintegrable four-manifold; seven sealed full-package review rounds, final two clean. Bounded priority, extensive AI and unrefereed status disclosed; original PR-declared4/5 and UNKNOWN historical native count preserved, audit adds0.
