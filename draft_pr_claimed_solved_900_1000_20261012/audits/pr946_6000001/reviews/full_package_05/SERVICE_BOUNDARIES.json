@@ -1,0 +1,113 @@
+{
+  "status": "FINDINGS_REPRODUCED",
+  "candidate_revision": 5,
+  "actual_current05_context": true,
+  "real_control_flow": [
+    "zenodo",
+    "publication_links",
+    "tracker_append",
+    "explicit_tree",
+    "native_write",
+    "native_verify",
+    "finalize",
+    "all_shared_guards"
+  ],
+  "fake_services_and_inmemory_Git_only": true,
+  "terminal_review_synthetic": true,
+  "cases": [
+    {
+      "case": "positive_actual_stage_captured_kit_dispatch",
+      "pass": true
+    },
+    {
+      "case": "positive_actual_publish_captured_kit_dispatch",
+      "pass": true
+    },
+    {
+      "case": "positive_actual_inspect_captured_kit_dispatch",
+      "pass": true
+    },
+    {
+      "case": "positive_actual_tracker_append_readback_dedup_recovery",
+      "pass": true,
+      "append_count": 1
+    },
+    {
+      "case": "tracker_gid",
+      "rejected": true,
+      "reason": "PR946 guard: exact sheet gid/title"
+    },
+    {
+      "case": "tracker_header",
+      "rejected": true,
+      "reason": "PR946 guard: exact tracker headers"
+    },
+    {
+      "case": "tracker_multiple_rows",
+      "rejected": true,
+      "reason": "PR946 guard: exact tracker row readback"
+    },
+    {
+      "case": "tracker_row_content",
+      "rejected": true,
+      "reason": "PR946 guard: exact tracker row readback"
+    },
+    {
+      "case": "positive_actual_native_tree_CAS_retry_ancestry_literal_bytes_verify",
+      "pass": true,
+      "push_count": 2,
+      "source_parent_reads": [
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "cccccccccccccccccccccccccccccccccccccccc",
+        "9999999999999999999999999999999999999999",
+        "676b72cd17ed469eae44581bdbc42a4bbe757e0b",
+        "676b72cd17ed469eae44581bdbc42a4bbe757e0b"
+      ]
+    },
+    {
+      "case": "positive_full_actual_finalize_metadata_readback_completion_and_repeat",
+      "pass": true,
+      "metadata_edit_count": 1
+    },
+    {
+      "case": "late_review_payload_passes_shared_guard_but_fresh_entry_rejects",
+      "defect_reproduced": true,
+      "fresh_entry_error": "PR946 guard: nonregular or oversized file: draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/reviews/full_package_05/FULL_AUDIT.md"
+    },
+    {
+      "case": "late_review_seal_passes_shared_guard_but_fresh_entry_rejects",
+      "defect_reproduced": true,
+      "fresh_entry_error": "PR946 guard: external review seal changed"
+    }
+  ],
+  "calls": [
+    [
+      "captured_kit",
+      "stage"
+    ],
+    [
+      "captured_kit",
+      "publish"
+    ],
+    [
+      "captured_kit",
+      "inspect"
+    ],
+    [
+      "gh",
+      "pr",
+      "edit"
+    ]
+  ],
+  "actual_external_mutations": 0
+}

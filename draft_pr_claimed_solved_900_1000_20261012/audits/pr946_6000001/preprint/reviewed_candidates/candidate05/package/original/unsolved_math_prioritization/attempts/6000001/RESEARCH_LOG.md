@@ -1,0 +1,8 @@
+# Publication research log: problem 6000001
+
+- 2026-10-07, author freeze at 22:25 UTC: four substantive approaches produced a complete global proof candidate. The chronological approach ledger is preserved in `public/APPROACH_LEDGER.md`. Estimated completion toward the stated proof goal: 90%, with independent review outstanding.
+- 2026-10-07, 22:45:38 UTC: audit A accepted the exact frozen proof without a required mathematical patch, after full global review and independently authored finite controls. Estimated completion toward the bounded proof-and-two-audit goal: 95%.
+- 2026-10-07, 22:48:57 UTC: audit B independently accepted the same exact frozen proof, without consulting audit A or requiring a mathematical patch. The full review, acceptance, source metadata, and independent checks are preserved. Estimated completion toward the bounded proof-and-two-audit goal: 100%. This estimate is not a probability of truth, novelty, or journal acceptance.
+- 2026-10-07, publication preparation: preserved all three frozen packets unchanged, added an externally pinned closed-inventory replay wrapper and corruption tests, and prepared a target-only queue update. No new substantive mathematical proof-search turn was used. The publication step retains the original scope and does not claim a fixed finite probability model or optimized execution of assertion-based mathematical programs.
+
+The publication contains source-free authored work and public verification metadata only. Retrieval and inspection details are recorded in each packet's source metadata. Duplicate screening is a bounded repository/inherited-record check, not a worldwide priority determination.
