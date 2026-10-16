@@ -1056,7 +1056,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1045 | 2843 / KP-3.45 | Kirby Problem 3.45 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1046 | 2845 / KP-3.47 | Kirby Problem 3.47 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1047 | 2945 / KP-4.69 | Kirby Problem 4.69 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1048 | 2956 / KP-4.80 | Kirby Problem 4.80 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1048 | 2956 / KP-4.80 | Kirby Problem 4.80 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Partial results accepted unchanged after independent audit; both existence questions unresolved. Symmetric neck subgroup ranks 0 or n-1 for odd n and 0, 1 or n-1 for even n; three-K3 Klein four-group reduces to one unproved neck-nontriviality claim. Eta^4 vanishing is only the specified nonequivariant detector. Separate ten-assert optimization-safe verifier correction; original ten optimized false-PASS controls disclosed. Imported Ruberman theorem via Konno; original proof uninspected. No novelty claim. See [source-free audited packet](attempts/2956/README.md). |  |
 | 1049 | 2960 / KP-4.84 | Kirby Problem 4.84 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1050 | 2970 / KP-4.94 | Kirby Problem 4.94 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1051 | 2974 / KP-4.98 | Kirby Problem 4.98 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
