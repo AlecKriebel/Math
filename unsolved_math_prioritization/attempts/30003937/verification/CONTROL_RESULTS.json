@@ -1,0 +1,3745 @@
+{
+  "input_delivery_manifest_sha256": "98854f8da9b313710b5de111cf438bc0be87573cf23090163f771e6b974ae9db",
+  "input_external_bootstrap_sha256": "824b4e2163a616c6510c497174b372132b36fc3ed4346b5fe5eb63eca25ff257",
+  "modes": [
+    0,
+    1,
+    2
+  ],
+  "negative_count": 168,
+  "positive_count": 9,
+  "pure_comparison_negative_count": 42,
+  "pure_comparison_positive_count": 6,
+  "receipt_scope": "This pre-seal test inventory excludes this receipt itself. Final external bootstrap re-seals the complete delivery including this receipt. Test-only manifest anchors are explicitly labeled.",
+  "schema": "dynamic-transport-hostile-controls-v1",
+  "semantic_negative_count": 6,
+  "tests": [
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "stale_report",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 57,
+          "sha256": "495c1cc4ea2bd369cfc9b063a137323e1e0947ce22d0cf79ec8ba794a7b3afa4",
+          "text": "REJECT: ValueError: manifest file pin: current/REPORT.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_report",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_receipt",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "malicious_verifier",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_empty_directory",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "missing_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 53,
+          "sha256": "2950aa68b998bc62c16580b850532b0621da28b15398ea13f4863b4e7e836e3c",
+          "text": "REJECT: ValueError: manifest file pin: ACCEPTANCE.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_directory",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "hardlink_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 46,
+          "sha256": "8bdfc64905c567a0e6ae5f49a287a50c13427bb70024075500965a86c162a6dd",
+          "text": "REJECT: ValueError: single-link file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_key",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "6bdc26d9e4ec7cec2a8763ba6372b40cd436e51c523fcc9626909c65eee763f4",
+          "text": "REJECT: ValueError: duplicate JSON key\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_path",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_bool_bytes",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_negative_bytes",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_traversal",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_absolute_path",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_unknown_key",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 40,
+          "sha256": "8fe332f7fd3f15da02153e058a6ceca5e117ebdc19c41130fae71fcfa196e5d8",
+          "text": "REJECT: ValueError: manifest exact keys\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_wrong_type",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "7873c3c698194ec77829e059b3b6bc427f59c85ec8f8df7f187026648ab83636",
+          "text": "REJECT: ValueError: manifest list required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_promoted",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 119,
+          "sha256": "c9e7223faeac058d431a13a474ac20a19916fee78d55b073fa2e41cf98641fc1",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: unsupported scope promotion full_target_resolved\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_bool_approaches",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 94,
+          "sha256": "0c3f9ac99103d68a39d7a50515bf02402c5e24517fbdfcb5e4a326bd04621be9",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: scope scalar approaches\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_restart_removed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 134,
+          "sha256": "02b94acb6c19f667c672327085572280807b6eb3005825bf481468f11a2a6c38",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing qualification continuation_requires_valid_local_restart\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_original_falsely_passed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 99,
+          "sha256": "e5a3e0c412bc3005df828954430f7d3d4a3f199a371628770e1b8b71a29dc26f",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: honest absent-input statuses\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_arg_absent",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 105,
+          "sha256": "055163b028bbd5963db12e890423725bd8430f25ac8c9b543139502e532e82ff",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: the following arguments are required: --queue\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_symlink",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_symlink",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_parent_traversal",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "e8847a74887a9120bd75d3375296f408bdc69b7d7875cd48dd831ebde192a179",
+          "text": "REJECT: ValueError: parent traversal in supplied path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_absent",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 141,
+          "sha256": "f4d412798e2ed07f4210fb2467bbb3bbfb851414e14b5255744ff2954590c3be",
+          "text": "REJECT: FileNotFoundError: [Errno 2] No such file or directory: '/tmp/dmk-control-f8c82eya/repository/unsolved_math_prioritization/QUEUE.md'\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_wrong_path",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "1b3d59cf091b9277f856aa32d33acbc090c54c0e858de610fd8c3e0d5f6be088",
+          "text": "REJECT: ValueError: actual repository QUEUE path required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_modified",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_chat_modified",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_doi_modified",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_other_row_modified",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "queue_proof_forged",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "0d39142ad1d9fc157c9e2ae54632940e3ba84c4750a35452339e75201daf92ac",
+          "text": "REJECT: ValueError: fixed queue before and after pins\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_directory",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "d515631c2b121ee883443e2ac6197fa893338f74cce7293766a302a085d17ef3",
+          "text": "REJECT: ValueError: directory writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_queue",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "anchor_internal",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 61,
+          "sha256": "4fef6b74d43f14e7ea648dd0b97c3dc216a52f837805ed9d62b63de5153b71e6",
+          "text": "REJECT: ValueError: bootstrap must run from outside delivery\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "unknown_option",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 100,
+          "sha256": "5807cca8072364321e3b8d7b0961d8c6bb1dbf3e2757dcf6fff04e60dc85f478",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: unrecognized arguments: --integrity-only\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_semantic_rejection_with_current_internal_pins_updated",
+      "case": "current_wrong_cubic_sign",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 41,
+          "sha256": "aa78154362d20cb5f970e83d9d4c08036e225babe61dadd53f7b0cfdbd88e44c",
+          "text": "RuntimeError: primal dissipation formula\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_semantic_rejection_with_current_internal_pins_updated",
+      "case": "independent_wrong_cubic_sign",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 29,
+          "sha256": "c04b30f09e29feeb3c311dccabd7bca4aa02e52727b745fa0f39a6b118a127ef",
+          "text": "RuntimeError: primal formula\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "output_inside",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 52,
+          "sha256": "7808526768a6217162d7a63658bbb5f971eeed3e47e0c3300acb9ec38c8f040e",
+          "text": "RuntimeError: output must be external to the packet\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "output_existing",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 36,
+          "sha256": "6861b9cc423725108b85c4b488a216080c338a80d9ae2daa2e62fa86fe1eb64d",
+          "text": "RuntimeError: output already exists\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "output_new_external",
+      "created_output": {
+        "bytes": 1032,
+        "sha256": "8aa140ffc8e99d764755706afe6f7a29449d55f8ee23f2aa99958f2c3b6ce9c7",
+        "text": "{\n  \"checks\": {\n    \"integrity\": {\n      \"all_hashes_matched\": true,\n      \"no_assert_nodes\": true,\n      \"pinned_files\": 12\n    },\n    \"mathematics\": {\n      \"degenerate\": {\n        \"perturbation_mean\": \"1/30720\",\n        \"perturbation_mean_zero_L2_squared\": \"11/2202009600\",\n        \"polynomial_piece_identities\": 12,\n        \"rational_point_states\": 340,\n        \"strict_positivity_satisfied\": false\n      },\n      \"energy\": {\n        \"dissipation_states\": 24,\n        \"negative_controls\": 7,\n        \"scalar_entropy_states\": 16\n      },\n      \"fixed_flux\": {\n        \"fixed_flux_states\": 60,\n        \"radial_dimensions_checked\": 8\n      }\n    }\n  },\n  \"limits\": \"Bounded exact algebraic regression and integrity tests; not PDE existence, compactness, global convergence, or novelty certification.\",\n  \"python_optimization\": 0,\n  \"readonly\": {\n    \"actual_write_probes\": true,\n    \"directory_create_denied\": true,\n    \"existing_file_write_open_denials\": 13\n  },\n  \"readonly_required\": true,\n  \"status\": \"passed\",\n  \"uid\": 1000\n}\n",
+        "type": "inline_utf8"
+      },
+      "expected": "PASS",
+      "optimization": 0,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_unchanged",
+      "expected": "PASS",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 40,
+          "sha256": "8287a072a76eaf97977a56d41684c40dc48d502a26bd9e866db7c4b7abb2f63d",
+          "text": "{\"status\":\"PASS_UNCHANGED_FULL_OUTPUT\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_unchecked_value",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "a6fa4444a2cd46b07dd28df517f61143468254f171c7d4c582c9271dc4668b5c",
+          "text": "REJECT: ValueError: exact JSON value mismatch at $.limits\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_extra_top_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 50,
+          "sha256": "29abf7d4503d996feda84d88fa346493e0295c7ff490a8a885d9668bf4ce6131",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_extra_nested_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 59,
+          "sha256": "599b873f5df238dad99f944891893b7d07b960287910e237ae6b969decee8b93",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $.readonly\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_nested_bool_to_int",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 83,
+          "sha256": "9680742f0439919c6825dd731a9849d13fb8e34c66048e65b222b35795afe724",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.directory_create_denied\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_nested_int_to_float",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 92,
+          "sha256": "fb385454ea0eb87e7f54a3f314887afc1f383af23e6aae0d714a94442c04d0b7",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.existing_file_write_open_denials\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_stdout_whitespace",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "6cae94e3e873369998e0a09967958444c94a45823afe054ab5df0b29f5ac07a7",
+          "text": "REJECT: ValueError: complete fresh stdout bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_stderr_added",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "93f0742bff37e3977032350d492d60f3adce32cc95799f62c0210107c7faa47f",
+          "text": "REJECT: ValueError: complete fresh stderr bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_unchanged",
+      "expected": "PASS",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 40,
+          "sha256": "8287a072a76eaf97977a56d41684c40dc48d502a26bd9e866db7c4b7abb2f63d",
+          "text": "{\"status\":\"PASS_UNCHANGED_FULL_OUTPUT\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_unchecked_value",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "a6fa4444a2cd46b07dd28df517f61143468254f171c7d4c582c9271dc4668b5c",
+          "text": "REJECT: ValueError: exact JSON value mismatch at $.limits\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_extra_top_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 50,
+          "sha256": "29abf7d4503d996feda84d88fa346493e0295c7ff490a8a885d9668bf4ce6131",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_extra_nested_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 59,
+          "sha256": "599b873f5df238dad99f944891893b7d07b960287910e237ae6b969decee8b93",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $.readonly\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_nested_bool_to_int",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 90,
+          "sha256": "4f30420629df4974e936679442e4fae3a104a41ad38d0b0059d275a7ed6d1aa5",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.actual_directory_create_denied\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_nested_int_to_float",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 90,
+          "sha256": "be6926bacef31cb1fba84dee25dce8cdff22837985c554390a0dd2017874fcce",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.actual_file_write_open_denials\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_stdout_whitespace",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "6cae94e3e873369998e0a09967958444c94a45823afe054ab5df0b29f5ac07a7",
+          "text": "REJECT: ValueError: complete fresh stdout bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_stderr_added",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "93f0742bff37e3977032350d492d60f3adce32cc95799f62c0210107c7faa47f",
+          "text": "REJECT: ValueError: complete fresh stderr bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "stale_report",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 57,
+          "sha256": "495c1cc4ea2bd369cfc9b063a137323e1e0947ce22d0cf79ec8ba794a7b3afa4",
+          "text": "REJECT: ValueError: manifest file pin: current/REPORT.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_report",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_receipt",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "malicious_verifier",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_empty_directory",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "missing_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 53,
+          "sha256": "2950aa68b998bc62c16580b850532b0621da28b15398ea13f4863b4e7e836e3c",
+          "text": "REJECT: ValueError: manifest file pin: ACCEPTANCE.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_directory",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "hardlink_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 46,
+          "sha256": "8bdfc64905c567a0e6ae5f49a287a50c13427bb70024075500965a86c162a6dd",
+          "text": "REJECT: ValueError: single-link file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_key",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "6bdc26d9e4ec7cec2a8763ba6372b40cd436e51c523fcc9626909c65eee763f4",
+          "text": "REJECT: ValueError: duplicate JSON key\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_path",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_bool_bytes",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_negative_bytes",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_traversal",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_absolute_path",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_unknown_key",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 40,
+          "sha256": "8fe332f7fd3f15da02153e058a6ceca5e117ebdc19c41130fae71fcfa196e5d8",
+          "text": "REJECT: ValueError: manifest exact keys\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_wrong_type",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "7873c3c698194ec77829e059b3b6bc427f59c85ec8f8df7f187026648ab83636",
+          "text": "REJECT: ValueError: manifest list required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_promoted",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 119,
+          "sha256": "c9e7223faeac058d431a13a474ac20a19916fee78d55b073fa2e41cf98641fc1",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: unsupported scope promotion full_target_resolved\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_bool_approaches",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 94,
+          "sha256": "0c3f9ac99103d68a39d7a50515bf02402c5e24517fbdfcb5e4a326bd04621be9",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: scope scalar approaches\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_restart_removed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 134,
+          "sha256": "02b94acb6c19f667c672327085572280807b6eb3005825bf481468f11a2a6c38",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing qualification continuation_requires_valid_local_restart\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_original_falsely_passed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 99,
+          "sha256": "e5a3e0c412bc3005df828954430f7d3d4a3f199a371628770e1b8b71a29dc26f",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: honest absent-input statuses\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_arg_absent",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 105,
+          "sha256": "055163b028bbd5963db12e890423725bd8430f25ac8c9b543139502e532e82ff",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: the following arguments are required: --queue\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_symlink",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_symlink",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_parent_traversal",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "e8847a74887a9120bd75d3375296f408bdc69b7d7875cd48dd831ebde192a179",
+          "text": "REJECT: ValueError: parent traversal in supplied path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_absent",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 141,
+          "sha256": "2bf46e4be8a3bbc2f7dccd47d85757bf5f0257496d0f73cae56b6c899c1fe70b",
+          "text": "REJECT: FileNotFoundError: [Errno 2] No such file or directory: '/tmp/dmk-control-h33893n7/repository/unsolved_math_prioritization/QUEUE.md'\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_wrong_path",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "1b3d59cf091b9277f856aa32d33acbc090c54c0e858de610fd8c3e0d5f6be088",
+          "text": "REJECT: ValueError: actual repository QUEUE path required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_modified",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_chat_modified",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_doi_modified",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_other_row_modified",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "queue_proof_forged",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "0d39142ad1d9fc157c9e2ae54632940e3ba84c4750a35452339e75201daf92ac",
+          "text": "REJECT: ValueError: fixed queue before and after pins\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_directory",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "d515631c2b121ee883443e2ac6197fa893338f74cce7293766a302a085d17ef3",
+          "text": "REJECT: ValueError: directory writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_queue",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "anchor_internal",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 61,
+          "sha256": "4fef6b74d43f14e7ea648dd0b97c3dc216a52f837805ed9d62b63de5153b71e6",
+          "text": "REJECT: ValueError: bootstrap must run from outside delivery\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "unknown_option",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 100,
+          "sha256": "5807cca8072364321e3b8d7b0961d8c6bb1dbf3e2757dcf6fff04e60dc85f478",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: unrecognized arguments: --integrity-only\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_semantic_rejection_with_current_internal_pins_updated",
+      "case": "current_wrong_cubic_sign",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 41,
+          "sha256": "aa78154362d20cb5f970e83d9d4c08036e225babe61dadd53f7b0cfdbd88e44c",
+          "text": "RuntimeError: primal dissipation formula\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_semantic_rejection_with_current_internal_pins_updated",
+      "case": "independent_wrong_cubic_sign",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 29,
+          "sha256": "c04b30f09e29feeb3c311dccabd7bca4aa02e52727b745fa0f39a6b118a127ef",
+          "text": "RuntimeError: primal formula\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "output_inside",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 52,
+          "sha256": "7808526768a6217162d7a63658bbb5f971eeed3e47e0c3300acb9ec38c8f040e",
+          "text": "RuntimeError: output must be external to the packet\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "output_existing",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 36,
+          "sha256": "6861b9cc423725108b85c4b488a216080c338a80d9ae2daa2e62fa86fe1eb64d",
+          "text": "RuntimeError: output already exists\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "output_new_external",
+      "created_output": {
+        "bytes": 1032,
+        "sha256": "b147b6a0b8e1ddb3815ad8fa77a8c8ea45f7ecdebb0cce603af2e7c4b8ca7b78",
+        "text": "{\n  \"checks\": {\n    \"integrity\": {\n      \"all_hashes_matched\": true,\n      \"no_assert_nodes\": true,\n      \"pinned_files\": 12\n    },\n    \"mathematics\": {\n      \"degenerate\": {\n        \"perturbation_mean\": \"1/30720\",\n        \"perturbation_mean_zero_L2_squared\": \"11/2202009600\",\n        \"polynomial_piece_identities\": 12,\n        \"rational_point_states\": 340,\n        \"strict_positivity_satisfied\": false\n      },\n      \"energy\": {\n        \"dissipation_states\": 24,\n        \"negative_controls\": 7,\n        \"scalar_entropy_states\": 16\n      },\n      \"fixed_flux\": {\n        \"fixed_flux_states\": 60,\n        \"radial_dimensions_checked\": 8\n      }\n    }\n  },\n  \"limits\": \"Bounded exact algebraic regression and integrity tests; not PDE existence, compactness, global convergence, or novelty certification.\",\n  \"python_optimization\": 1,\n  \"readonly\": {\n    \"actual_write_probes\": true,\n    \"directory_create_denied\": true,\n    \"existing_file_write_open_denials\": 13\n  },\n  \"readonly_required\": true,\n  \"status\": \"passed\",\n  \"uid\": 1000\n}\n",
+        "type": "inline_utf8"
+      },
+      "expected": "PASS",
+      "optimization": 1,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_unchanged",
+      "expected": "PASS",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 40,
+          "sha256": "8287a072a76eaf97977a56d41684c40dc48d502a26bd9e866db7c4b7abb2f63d",
+          "text": "{\"status\":\"PASS_UNCHANGED_FULL_OUTPUT\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_unchecked_value",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "a6fa4444a2cd46b07dd28df517f61143468254f171c7d4c582c9271dc4668b5c",
+          "text": "REJECT: ValueError: exact JSON value mismatch at $.limits\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_extra_top_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 50,
+          "sha256": "29abf7d4503d996feda84d88fa346493e0295c7ff490a8a885d9668bf4ce6131",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_extra_nested_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 59,
+          "sha256": "599b873f5df238dad99f944891893b7d07b960287910e237ae6b969decee8b93",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $.readonly\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_nested_bool_to_int",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 83,
+          "sha256": "9680742f0439919c6825dd731a9849d13fb8e34c66048e65b222b35795afe724",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.directory_create_denied\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_nested_int_to_float",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 92,
+          "sha256": "fb385454ea0eb87e7f54a3f314887afc1f383af23e6aae0d714a94442c04d0b7",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.existing_file_write_open_denials\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_stdout_whitespace",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "6cae94e3e873369998e0a09967958444c94a45823afe054ab5df0b29f5ac07a7",
+          "text": "REJECT: ValueError: complete fresh stdout bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_stderr_added",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "93f0742bff37e3977032350d492d60f3adce32cc95799f62c0210107c7faa47f",
+          "text": "REJECT: ValueError: complete fresh stderr bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_unchanged",
+      "expected": "PASS",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 40,
+          "sha256": "8287a072a76eaf97977a56d41684c40dc48d502a26bd9e866db7c4b7abb2f63d",
+          "text": "{\"status\":\"PASS_UNCHANGED_FULL_OUTPUT\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_unchecked_value",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "a6fa4444a2cd46b07dd28df517f61143468254f171c7d4c582c9271dc4668b5c",
+          "text": "REJECT: ValueError: exact JSON value mismatch at $.limits\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_extra_top_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 50,
+          "sha256": "29abf7d4503d996feda84d88fa346493e0295c7ff490a8a885d9668bf4ce6131",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_extra_nested_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 59,
+          "sha256": "599b873f5df238dad99f944891893b7d07b960287910e237ae6b969decee8b93",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $.readonly\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_nested_bool_to_int",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 90,
+          "sha256": "4f30420629df4974e936679442e4fae3a104a41ad38d0b0059d275a7ed6d1aa5",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.actual_directory_create_denied\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_nested_int_to_float",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 90,
+          "sha256": "be6926bacef31cb1fba84dee25dce8cdff22837985c554390a0dd2017874fcce",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.actual_file_write_open_denials\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_stdout_whitespace",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "6cae94e3e873369998e0a09967958444c94a45823afe054ab5df0b29f5ac07a7",
+          "text": "REJECT: ValueError: complete fresh stdout bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_stderr_added",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "93f0742bff37e3977032350d492d60f3adce32cc95799f62c0210107c7faa47f",
+          "text": "REJECT: ValueError: complete fresh stderr bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "stale_report",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 57,
+          "sha256": "495c1cc4ea2bd369cfc9b063a137323e1e0947ce22d0cf79ec8ba794a7b3afa4",
+          "text": "REJECT: ValueError: manifest file pin: current/REPORT.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_report",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_receipt",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "malicious_verifier",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_empty_directory",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "missing_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 53,
+          "sha256": "2950aa68b998bc62c16580b850532b0621da28b15398ea13f4863b4e7e836e3c",
+          "text": "REJECT: ValueError: manifest file pin: ACCEPTANCE.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_directory",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "hardlink_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 46,
+          "sha256": "8bdfc64905c567a0e6ae5f49a287a50c13427bb70024075500965a86c162a6dd",
+          "text": "REJECT: ValueError: single-link file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_key",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "6bdc26d9e4ec7cec2a8763ba6372b40cd436e51c523fcc9626909c65eee763f4",
+          "text": "REJECT: ValueError: duplicate JSON key\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_path",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_bool_bytes",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_negative_bytes",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_traversal",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_absolute_path",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_unknown_key",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 40,
+          "sha256": "8fe332f7fd3f15da02153e058a6ceca5e117ebdc19c41130fae71fcfa196e5d8",
+          "text": "REJECT: ValueError: manifest exact keys\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_wrong_type",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "7873c3c698194ec77829e059b3b6bc427f59c85ec8f8df7f187026648ab83636",
+          "text": "REJECT: ValueError: manifest list required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_promoted",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 119,
+          "sha256": "c9e7223faeac058d431a13a474ac20a19916fee78d55b073fa2e41cf98641fc1",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: unsupported scope promotion full_target_resolved\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_bool_approaches",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 94,
+          "sha256": "0c3f9ac99103d68a39d7a50515bf02402c5e24517fbdfcb5e4a326bd04621be9",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: scope scalar approaches\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_restart_removed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 134,
+          "sha256": "02b94acb6c19f667c672327085572280807b6eb3005825bf481468f11a2a6c38",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing qualification continuation_requires_valid_local_restart\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_original_falsely_passed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 99,
+          "sha256": "e5a3e0c412bc3005df828954430f7d3d4a3f199a371628770e1b8b71a29dc26f",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: honest absent-input statuses\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_arg_absent",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 105,
+          "sha256": "055163b028bbd5963db12e890423725bd8430f25ac8c9b543139502e532e82ff",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: the following arguments are required: --queue\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_symlink",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_symlink",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_parent_traversal",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "e8847a74887a9120bd75d3375296f408bdc69b7d7875cd48dd831ebde192a179",
+          "text": "REJECT: ValueError: parent traversal in supplied path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_absent",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 141,
+          "sha256": "228e1a23b0a44501cf8bbcd0b7451ffb339f9276beb1f6031822f249d3374e34",
+          "text": "REJECT: FileNotFoundError: [Errno 2] No such file or directory: '/tmp/dmk-control-f3420mz3/repository/unsolved_math_prioritization/QUEUE.md'\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_wrong_path",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "1b3d59cf091b9277f856aa32d33acbc090c54c0e858de610fd8c3e0d5f6be088",
+          "text": "REJECT: ValueError: actual repository QUEUE path required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_modified",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_chat_modified",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_doi_modified",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_other_row_modified",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "queue_proof_forged",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "0d39142ad1d9fc157c9e2ae54632940e3ba84c4750a35452339e75201daf92ac",
+          "text": "REJECT: ValueError: fixed queue before and after pins\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_directory",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "d515631c2b121ee883443e2ac6197fa893338f74cce7293766a302a085d17ef3",
+          "text": "REJECT: ValueError: directory writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_queue",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "anchor_internal",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 61,
+          "sha256": "4fef6b74d43f14e7ea648dd0b97c3dc216a52f837805ed9d62b63de5153b71e6",
+          "text": "REJECT: ValueError: bootstrap must run from outside delivery\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "unknown_option",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 100,
+          "sha256": "5807cca8072364321e3b8d7b0961d8c6bb1dbf3e2757dcf6fff04e60dc85f478",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: unrecognized arguments: --integrity-only\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_semantic_rejection_with_current_internal_pins_updated",
+      "case": "current_wrong_cubic_sign",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 41,
+          "sha256": "aa78154362d20cb5f970e83d9d4c08036e225babe61dadd53f7b0cfdbd88e44c",
+          "text": "RuntimeError: primal dissipation formula\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_semantic_rejection_with_current_internal_pins_updated",
+      "case": "independent_wrong_cubic_sign",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 29,
+          "sha256": "c04b30f09e29feeb3c311dccabd7bca4aa02e52727b745fa0f39a6b118a127ef",
+          "text": "RuntimeError: primal formula\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "output_inside",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 52,
+          "sha256": "7808526768a6217162d7a63658bbb5f971eeed3e47e0c3300acb9ec38c8f040e",
+          "text": "RuntimeError: output must be external to the packet\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "output_existing",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 36,
+          "sha256": "6861b9cc423725108b85c4b488a216080c338a80d9ae2daa2e62fa86fe1eb64d",
+          "text": "RuntimeError: output already exists\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "output_new_external",
+      "created_output": {
+        "bytes": 1032,
+        "sha256": "638abf7ffa36fd8800bd7db6ff3211e90cf8c52d601d9a44a4006b532fa02e72",
+        "text": "{\n  \"checks\": {\n    \"integrity\": {\n      \"all_hashes_matched\": true,\n      \"no_assert_nodes\": true,\n      \"pinned_files\": 12\n    },\n    \"mathematics\": {\n      \"degenerate\": {\n        \"perturbation_mean\": \"1/30720\",\n        \"perturbation_mean_zero_L2_squared\": \"11/2202009600\",\n        \"polynomial_piece_identities\": 12,\n        \"rational_point_states\": 340,\n        \"strict_positivity_satisfied\": false\n      },\n      \"energy\": {\n        \"dissipation_states\": 24,\n        \"negative_controls\": 7,\n        \"scalar_entropy_states\": 16\n      },\n      \"fixed_flux\": {\n        \"fixed_flux_states\": 60,\n        \"radial_dimensions_checked\": 8\n      }\n    }\n  },\n  \"limits\": \"Bounded exact algebraic regression and integrity tests; not PDE existence, compactness, global convergence, or novelty certification.\",\n  \"python_optimization\": 2,\n  \"readonly\": {\n    \"actual_write_probes\": true,\n    \"directory_create_denied\": true,\n    \"existing_file_write_open_denials\": 13\n  },\n  \"readonly_required\": true,\n  \"status\": \"passed\",\n  \"uid\": 1000\n}\n",
+        "type": "inline_utf8"
+      },
+      "expected": "PASS",
+      "optimization": 2,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_unchanged",
+      "expected": "PASS",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 40,
+          "sha256": "8287a072a76eaf97977a56d41684c40dc48d502a26bd9e866db7c4b7abb2f63d",
+          "text": "{\"status\":\"PASS_UNCHANGED_FULL_OUTPUT\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_unchecked_value",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "a6fa4444a2cd46b07dd28df517f61143468254f171c7d4c582c9271dc4668b5c",
+          "text": "REJECT: ValueError: exact JSON value mismatch at $.limits\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_extra_top_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 50,
+          "sha256": "29abf7d4503d996feda84d88fa346493e0295c7ff490a8a885d9668bf4ce6131",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_extra_nested_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 59,
+          "sha256": "599b873f5df238dad99f944891893b7d07b960287910e237ae6b969decee8b93",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $.readonly\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_nested_bool_to_int",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 83,
+          "sha256": "9680742f0439919c6825dd731a9849d13fb8e34c66048e65b222b35795afe724",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.directory_create_denied\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_nested_int_to_float",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 92,
+          "sha256": "fb385454ea0eb87e7f54a3f314887afc1f383af23e6aae0d714a94442c04d0b7",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.existing_file_write_open_denials\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_stdout_whitespace",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "6cae94e3e873369998e0a09967958444c94a45823afe054ab5df0b29f5ac07a7",
+          "text": "REJECT: ValueError: complete fresh stdout bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "current_pure_comparison_stderr_added",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "93f0742bff37e3977032350d492d60f3adce32cc95799f62c0210107c7faa47f",
+          "text": "REJECT: ValueError: complete fresh stderr bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_unchanged",
+      "expected": "PASS",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 40,
+          "sha256": "8287a072a76eaf97977a56d41684c40dc48d502a26bd9e866db7c4b7abb2f63d",
+          "text": "{\"status\":\"PASS_UNCHANGED_FULL_OUTPUT\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_unchecked_value",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "a6fa4444a2cd46b07dd28df517f61143468254f171c7d4c582c9271dc4668b5c",
+          "text": "REJECT: ValueError: exact JSON value mismatch at $.limits\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_extra_top_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 50,
+          "sha256": "29abf7d4503d996feda84d88fa346493e0295c7ff490a8a885d9668bf4ce6131",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_extra_nested_key",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 59,
+          "sha256": "599b873f5df238dad99f944891893b7d07b960287910e237ae6b969decee8b93",
+          "text": "REJECT: ValueError: exact JSON keys mismatch at $.readonly\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_nested_bool_to_int",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 90,
+          "sha256": "4f30420629df4974e936679442e4fae3a104a41ad38d0b0059d275a7ed6d1aa5",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.actual_directory_create_denied\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_nested_int_to_float",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 90,
+          "sha256": "be6926bacef31cb1fba84dee25dce8cdff22837985c554390a0dd2017874fcce",
+          "text": "REJECT: ValueError: exact JSON type mismatch at $.readonly.actual_file_write_open_denials\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_stdout_whitespace",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "6cae94e3e873369998e0a09967958444c94a45823afe054ab5df0b29f5ac07a7",
+          "text": "REJECT: ValueError: complete fresh stdout bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "case": "independent_pure_comparison_stderr_added",
+      "expected": "REJECT",
+      "hash_guards_involved": false,
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 77,
+          "sha256": "93f0742bff37e3977032350d492d60f3adce32cc95799f62c0210107c7faa47f",
+          "text": "REJECT: ValueError: complete fresh stderr bytes differ from pinned reference\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    }
+  ],
+  "uid": 1000
+}
