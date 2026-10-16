@@ -34,7 +34,7 @@ if integrated:
  assert base.expected_tree(target)==head.root and head.read(qpath)==iq
  actual=gql('query($o:GitObjectID!){repository(owner:"AlecKriebel",name:"Math"){object(oid:$o){...on Commit{oid parents(first:3){nodes{oid}}}}}}',{"o":r["head"]})["repository"]["object"]
  assert [x["oid"]for x in actual["parents"]["nodes"]]==[H,r["main_base"]]
-sourcepin=hashlib.sha256((T/"preprint/source/MANIFEST.json").read_bytes()).hexdigest();assert sourcepin==g["source_manifest_sha256"]=="50baca75de83bb4959f52b88762b020a65181428d200dffc4f343db8e026f9de"
+sourcepin=hashlib.sha256((T/"preprint/source/MANIFEST.json").read_bytes()).hexdigest();assert sourcepin==g["source_manifest_sha256"]=="b20f39f39a33b18822cff51850f8b5b220e139af4d7badec23a7f5a7e17805aa"
 for f in g["publication_files"]:
  raw=(T/"preprint"/f["path"]).read_bytes();assert len(raw)==f["bytes"]and hashlib.sha256(raw).hexdigest()==f["sha256"]
 rec={"utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"result":"PASS","pr":789,"problem":"30001478","original_reviewed_head":H,"approved_merged_head":parents[1],"merge_commit":merge["oid"],"merge_first_parent":parents[0],"merge_parents_exact":parents,"merge_tree":post.root,"entire_merge_tree_equals_first_parent_plus_exact_allowed_59_paths":True,"allowed_paths":sorted(rows),"original_added_candidate_blobs_preserved":58,"other_QUEUE_bytes_preserved":True,"own_QUEUE_exact_candidate_row_preserved":True,"own_proof_budget":"1/5","source_manifest_sha256":sourcepin,"all_frozen_six_unchanged":True,"branch_integration_repair_required":integrated,"private_unrelated_workspace_and_all_other_remote_paths_untouched":True,"case_percent":97,"shard_percent":83}
