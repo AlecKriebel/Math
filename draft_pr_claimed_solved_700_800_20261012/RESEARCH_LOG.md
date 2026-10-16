@@ -320,7 +320,7 @@ First fresh whole-preprint adversary now reviewing the current six artifacts ind
 
 First fresh whole-package adversary reports mathematical/problem/PRZ/attribution/PDF/rebuild/finite checks pass so far, but initial bootstrap manifest read blocks on a FIFO before regular-file check (normal/O physicalcopy timeouts). Final report still sealing, no clean verdict inferred. Current six/source inputs held unchanged; exact157-file1,415,724byte historical package snapshot preserved for the review before repairs. Plan explicit nonblocking/no-follow regular reads for initial manifest/helper/PDF and fresh whole review after fixes. Tracker read-only headers/target duplicate preflight PASS; noappend. Own API native adapter changes only the post-confirmed-commit receipt directory selection to prefer mounted audit/tmp; pure byte-splicing/mutation logic unchanged and syntaxchecked, no native operation performed. PR70%;shard65%.
 
-## "+now+" — PR781 sealed first whole review repaired and fresh second review assigned
+## 2026-10-16T10:57:52.302377+00:00 — PR781 sealed first whole review repaired and fresh second review assigned
 
 Whole review01 sealed27authoredfiles+manifest externalSHA dbc9e06ad3e389ec03ac5e265816dc430c7ef182c607fea0cccf757d9be729ad. Exactly1P2 software issue class at initial manifest/PDF reads, no mathematical/scope/credit/PDF/metadata/rebuild defect. Root read the complete report/derivation/codes/source-query/guard ledgers and independently replayed actualPython3.14/3.12normal/O custody+ternary profiles and20physical controls, PASS; root separately confirmed4oldFIFOtimeouts on disposable copies. Original exactreviewinputs retained at preprint_revisions/review01_input.
 
