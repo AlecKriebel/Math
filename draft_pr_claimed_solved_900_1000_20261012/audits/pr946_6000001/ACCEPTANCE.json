@@ -1128,6 +1128,62 @@
       "required_repairs": [],
       "optional_improvements": [],
       "public_files_authenticated": 61
+    },
+    {
+      "round": 7,
+      "manifest_sha256": "eb55f996d2149104316d840103b641b104e60b371a7d6bef5202aa117406898d",
+      "completed_utc": "2026-10-16T05:55:17.456808+00:00",
+      "required_repairs": [
+        {
+          "id": "FP07-OPS-001",
+          "priority": "P1",
+          "title": "Final GET permits approval/source invalidation before publish POST",
+          "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+          "lines": [
+            68,
+            73
+          ],
+          "evidence": "OPERATOR_INTEGRATION.json cases DEFECT_final_GET_acceptance_before_POST and DEFECT_final_GET_source_hold_before_POST",
+          "repair": "Run complete current approval/source/operator closure after the final external GET and before the sole POST; no external read may reopen the window.",
+          "mathematical": false
+        },
+        {
+          "id": "FP07-OPS-002",
+          "priority": "P1",
+          "title": "Repeated closing guards omit current canonical additional operator bytes",
+          "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+          "lines": [
+            124,
+            127
+          ],
+          "evidence": "OPERATOR_INTEGRATION.json case DEFECT_operator_drift_during_first_GET_survives_all_later_guards",
+          "repair": "Include separately pinned canonical operator fingerprint and inspected-review identity in every effective action/receipt closing guard without rewriting old frozen seven-source inventory.",
+          "mathematical": false
+        },
+        {
+          "id": "FP07-OPS-003",
+          "priority": "P2",
+          "title": "Startup accepts actual no_site=0 despite required -S",
+          "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+          "lines": [
+            7,
+            10
+          ],
+          "evidence": "OPERATOR_INTEGRATION.json case DEFECT_actual_operator_import_accepts_no_site_zero",
+          "repair": "Check sys.flags.no_site before nonbuiltin imports and add real omitted-S negative control.",
+          "mathematical": false
+        }
+      ],
+      "optional_improvements": [],
+      "public_files_authenticated": 66
+    },
+    {
+      "round": 8,
+      "manifest_sha256": "ab7aa41536a65ffd085fc88f70153b9aa1c95725c41691b71a287c7a97da5c41",
+      "completed_utc": "2026-10-16T06:22:55.231772+00:00",
+      "required_repairs": [],
+      "optional_improvements": [],
+      "public_files_authenticated": 77
     }
   ],
   "all_prior_required_and_optional_findings_resolved": true,
@@ -1135,5 +1191,25 @@
   "unrefereed": true,
   "independent_human_peer_review": false,
   "formal_machine_proof_certification": false,
-  "merge_and_publication_authorized_by_user": true
+  "merge_and_publication_authorized_by_user": true,
+  "postmerge_approval_extension": {
+    "utc": "2026-10-16T06:26:27.537110+00:00",
+    "original_approval_sha256": "e8a163e5f2b08c01af30fbe8440027886bc00c7399c221a5fe9da6c8838c1c67",
+    "original_approval_archive": "draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/ACCEPTANCE_six_rounds_before_postmerge_extension.json",
+    "original_full_review_count": 6,
+    "complete_full_review_count": 8,
+    "clean_latest_review_manifest_sha256": "ab7aa41536a65ffd085fc88f70153b9aa1c95725c41691b71a287c7a97da5c41",
+    "same_scientific_candidate_revision": 6,
+    "same_scientific_freeze_sha256": "9af8f2570af53b6a6658a7998ac08927829c8747be7c764a8d2c392dc6c6afe1",
+    "separately_reviewed_publication_operator": {
+      "bytes": 9912,
+      "sha256": "d085ec080ee6c2f1239f49f724e7a71ef6d86b3d994fbe9b4039371181a61aef"
+    },
+    "all34_prior_issues_verified_resolved": true,
+    "actual_existing_unpublished_draft_id": 23409904,
+    "merged_commit": "918948421d00b1184a88ca07017134726b466adb",
+    "reason": "Postmerge complete review-chain extension after exact notes-storage reconciliation and all three operator repairs; original paper/metadata/seven dependencies/theorem/declared4 history unchanged.",
+    "new_draft_stage_approval": false,
+    "new_author_proof_responses": 0
+  }
 }
