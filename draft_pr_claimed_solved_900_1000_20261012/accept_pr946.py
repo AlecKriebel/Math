@@ -617,8 +617,23 @@ def premerge_gate(freeze, require_draft=False):
     return pr, parent, source, originals
 
 
+def accepted_state_check(accepted, freeze, context):
+    """Refresh canonical approval, dependency inventory and all frozen files."""
+    fresh_accepted = load(A / 'ACCEPTANCE.json')
+    need(exact(fresh_accepted, accepted), 'canonical acceptance changed during operation')
+    fresh_context = capture_inventory(context['inventory_sha256'])
+    need(exact(fresh_context['inventory'], context['inventory'])
+         and fresh_context['captured'] == context['captured'],
+         'canonical operation dependencies changed during operation')
+    fresh_freeze = freeze_check(read_regular(D / 'FREEZE.json'),
+                                accepted['freeze_sha256'], fresh_context)
+    need(exact(fresh_freeze, freeze), 'canonical frozen candidate changed during operation')
+    disposition_check()
+
+
 def accepted_review_check(accepted, freeze, context):
-    """Reauthenticate the complete accepted chain, including new canonical rounds."""
+    """Refresh canonical approval/package and the complete accepted review chain."""
+    accepted_state_check(accepted, freeze, context)
     rows = accepted.get('full_package_reviews')
     need(type(rows) is list and len(rows) >= 2, 'accepted full review history required')
     specs = []
@@ -633,6 +648,10 @@ def accepted_review_check(accepted, freeze, context):
     need(exact(checked, rows) and type(accepted.get('exact_claim')) is str
          and accepted['exact_claim'] == latest['strongest_verified_theorem'],
          'accepted review records/theorem differ from freshly authenticated complete history')
+    # Source/Git and full-chain reads may span time; refresh canonical state
+    # after them, then close the review-directory set once more.
+    accepted_state_check(accepted, freeze, context)
+    require_complete_review_history(specs)
     return checked
 
 
