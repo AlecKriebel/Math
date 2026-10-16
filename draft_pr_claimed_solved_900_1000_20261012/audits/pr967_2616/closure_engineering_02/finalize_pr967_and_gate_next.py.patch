@@ -1,0 +1,24 @@
+--- BASE_finalize_pr967_and_gate_next.py
++++ finalize_pr967_and_gate_next.py
+@@ -8,7 +8,7 @@
+ import sys
+ if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):
+     raise RuntimeError('Use Python -I -S -B')
+-import argparse,base64,hashlib,json,os,re,stat,subprocess
++import argparse,base64,hashlib,json,math,os,re,stat,subprocess
+ from datetime import datetime,timezone
+ from pathlib import Path,PurePosixPath
+ P=Path(__file__).resolve().parent
+@@ -45,7 +45,11 @@
+         for k,v in items:need(k not in out,'duplicate JSON key');out[k]=v
+         return out
+     def bad(x):raise RuntimeError('Nonfinite JSON: '+x)
+-    return json.loads(raw,object_pairs_hook=pairs,parse_constant=bad)
++    def finite_float(text):
++        value=float(text)
++        need(math.isfinite(value),'nonfinite JSON float')
++        return value
++    return json.loads(raw,object_pairs_hook=pairs,parse_constant=bad,parse_float=finite_float)
+ 
+ def safe(name):
+     return (type(name) is str and bool(name) and '\\' not in name and '\0' not in name
