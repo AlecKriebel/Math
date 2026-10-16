@@ -32,3 +32,21 @@ counterexample after fresh current-head/status/source/raw-cache/original checks.
 Workflow estimate30%; initial-shard estimate77.50%. Deep priority is now
 underway in independent classical/recent/mechanism families plus root. No
 priority conclusion or paper/merge/publication action has occurred for PR948.
+
+Update2026-10-16, before fresh whole-priority verdict: classical_priority
+(manifest41ff65fc95d0ed4a99287fe3eee1c40acbec13c7b7cef497703f23f3c87ec3da),
+mechanism_priority
+(2354407ea8ff379658f9115bf1b524f6582badfe817d6e4b2130d461fb150cb9),
+and recent_priority
+(3b58a26df8b2f81b856569c5a6600aee4b99dc004457a170c415986302f6e659)
+are sealed and root-authenticated,31payloads total. Their mechanisms span
+early exact questions/classical models, general structural/deformation bridges,
+and recent/current primary citation/version chains. Each bounded survey found
+no verified qualifying compact4D nonintegrable h-minus>=3 predecessor; none
+certifies novelty, firstness, current openness or exhaustive coverage. Material
+HT/CZ/positive-plane/closed-pair/generic-theorem credits and all required plus
+optional findings are in PUBLICATION_FINDINGS_REGISTER. Root's independent
+search/actual-reading/version/access bounds are in reviews/root_priority.
+Fresh priority_falsifier_01 is challenging the entire synthesis. Mathematical
+gate unchanged; preprint/profile/whole-package review remain required.
+Workflow35%; initial-shard77.9167%; no new author response or external action.

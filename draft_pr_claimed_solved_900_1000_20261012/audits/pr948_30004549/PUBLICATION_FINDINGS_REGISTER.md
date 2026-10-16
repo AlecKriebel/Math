@@ -33,3 +33,37 @@ No original regular-file package failure or central mathematical gap has
 been reported. A new entry point must not relabel the historical verifier as
 repaired. It must state that finite algebra, byte integrity, mathematical
 proof, literature coverage, and peer review have different evidentiary roles.
+
+Update2026-10-16: all three priority families are sealed/root-authenticated;
+fresh whole-priority falsification is active. Complete required/optional
+dispositions below; namespaces preserve raw IDs. Recent RP IDs are root
+registry labels for ordered arrays in its sealed RESULT, which had no IDs.
+All final paper/profile dispositions remain pending actual package review.
+
+| ID | Required final disposition | Current evidence/status |
+| --- | --- | --- |
+| classical_priority:CP-R1 | Bounded search; no firstness/novelty/current-openness assertion | Root synthesis explicit; paper pending |
+| classical_priority:CP-R2 | Cite HT1908.03016v3; separate compact4D h-minus2 from noncompact/6D large examples | Root synthesis; paper pending |
+| classical_priority:CP-R3 | LU1507 withdrawal; later curvature papers are not an established repaired threshold theorem | Root synthesis; paper/audit pending |
+| classical_priority:CP-R4 | All four Tan/Wang/Zhang/Zhu and actual all-smooth-J generic theorem | Paper pending |
+| classical_priority:CP-O1 | Include earliest2008 Question3.27 alongside2011Conj2.5/OWR2020 | Accepted clarity improvement; paper pending |
+| classical_priority:CP-O2 | Credit Li-Zhang definitions/DLZ decomposition/metric-related and HT2 examples | Accepted context; paper pending |
+| mechanism_priority:M1 | Credit Donaldson positive planes and Bande-Kotschick closed pairs | Paper pending |
+| mechanism_priority:M2 | Full generic prior credit and bounded novelty wording | Paper pending |
+| mechanism_priority:M3 | Correct HT final version/categories | Same as CP-R2 |
+| mechanism_priority:O1 | Preserve approximate query intervals and actual exact reruns | Sealed ledger/log retained; no invented exact clocks |
+| mechanism_priority:O2 | Preserve ENOSPC/dependent-read/recovery chronology | Sealed STORAGE_INCIDENT/log and root receipts retained |
+| mechanism_priority:O3 | Geiges1996 inaccessible body, bibliography only | No theorem reliance; gap explicit; fresh review may narrow |
+| recent_priority:RP-R1 | Cite material HT and Chen-ZhangI/II, distinguish real closed classes from plurigenera | Root inspected accepted CZ passages; paper pending |
+| recent_priority:RP-R2 | Full four-author generic theorem credit | Paper pending |
+| recent_priority:RP-R3 | Bounded priority and exact final-journal/access/coverage gaps | Root synthesis; paper/audit pending |
+| recent_priority:RP-R4 | No reliance on withdrawn LU or1112v1/1307v1 fixed-F constancy/corollary | Root personally inspected actual dependency; public discussion pending |
+| recent_priority:RP-O1 | Stronger historical claims require inaccessible final bodies and complete citation coverage | Stronger claims excluded; gaps explicitly retained |
+| recent_priority:RP-O2 | Do not replace CZ plurigenera with an invented real-h-minus/index bridge | Primary distinction checked; separate central research not undertaken; comparison gap explicit |
+| ROOT-PRIORITY-01 |2012 survey author-upload text through3.3 is distinct from unavailable institutional/publisher fullPDF | Host attribution and actual partial reading explicit; direct403/PDF-link internal errors retained |
+
+A first attempted register extension and query-ledger save failed ENOSPC;
+the old5555-byte register survived intact and no query file was created.
+The extension below is saved only on a successful retry. Original24 files,
+sealed family payloads, mathematical gate and native4/5/history-unknown
+accounting are unchanged. Pending dispositions are not publication acceptance.
