@@ -2,7 +2,9 @@ from pathlib import Path
 import datetime,hashlib,json
 R=Path("/Users/alec/Documents/Math");D=R/"draft_pr_claimed_solved_700_800_20261012";T=D/"audits/pr788_30001522/tmp";M=T/"root-receipts";U=T/"publication"
 admin=json.loads((M/"ADMIN_SCOPE_ROOT_REPLAY.json").read_text());assert admin["result"]=="PASS"and not admin["remaining_actionable_issues"]
-g=json.loads((T/"FINAL_READINESS.json").read_text());assert g["result"]=="PASS"and g["reviewed_head"]=="3412d5a074c3f3a03f75735a9ccf1755e172204a"
+assert not(M/"NATIVE_ACCEPTANCE_INTENT.json").exists(),"Native acceptance intent already exists; this historical freeze recipe must never change a native-bound gate"
+g=json.loads((T/"FINAL_READINESS.json").read_text());assert g["native_acceptance_state"]=="NEXT_AFTER_PUBLICATION_TRACKER_AND_EXACT_MERGE","Historical one-time freeze already ran"
+assert g["result"]=="PASS"and g["reviewed_head"]=="3412d5a074c3f3a03f75735a9ccf1755e172204a"
 merge=json.loads((M/"ROOT_EXACT_MERGE_SCOPE.json").read_text());assert merge["result"]=="PASS"and merge["merge_commit"]=="e5ae5c7ad40a379ab39ec884b415f7e0636c95f0"and merge["original_added_candidate_blobs_preserved"]==48
 pub=json.loads((U/"PUBLISH_RECEIPT.json").read_text());public=json.loads((U/"PUBLIC_VERIFICATION.json").read_text());sheet=json.loads((U/"SHEET_VERIFICATION.json").read_text());assert pub["state"]=="published"and sheet["result"]==public["result"]=="PASS"and pub["doi"]==sheet["doi"]=="10.5281/zenodo.23422039"and not pub["metadata_normalizations"]
 g.update(administration_closed_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),merge_state="MERGED_EXACT_ORIGINAL_REVIEWED_HEAD_CLEAN_NO_BRANCH_REPAIR",merge_commit=merge["merge_commit"],merge_scope_full_Merkle_root_verified_by_root_and_independent_adversary=True,merge_first_parent=merge["merge_first_parent"],independent_administrative_scope_review=admin,admin_scope_review_is_not_a_third_whole_preprint_review=True,native_acceptance_state="READY_FOR_SCOPED_PRESENT_DAY_SEVEN_PATH_MIRROR",native_acceptance_gate_immutable_after_binding=True,PR_completion_estimate_percent=98)
