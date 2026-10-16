@@ -1,6 +1,6 @@
 # Current publication lifecycle
 
-Published, tracked and actual original-HEAD-safe merge accepted; factual acceptance pending.
+Published, tracked, merged and actual factual98 checkpoint accepted; program completion is governed separately.
 
 For a>b>0 and 0<lambda<b², fix the outer ellipse and its proper confocal elliptical caustic. For physical orbits of least N>=3, N odd or divisible by four, the signed original-trajectory area times signed shoelace area of perpendicular feet from the fixed center O to the original complete supporting side lines is phase independent. Every admitted coprime primitive star winding and both directions are included.
 
