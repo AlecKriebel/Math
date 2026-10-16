@@ -1,0 +1,123 @@
+Independent adversarial audit: classical pedal controls
+UTC checkpoint: 2026-10-16T06:17:08Z
+Completion: 100% of this bounded algebraic audit; target theorem progress not assessed.
+Disposition: PASS WITH EXPLICIT CONVENTION CAVEATS. No algebraic defect found in
+exact_classical_controls.py or either supplied receipt. No historical claim audited.
+
+1. Strongest verified result
+
+Let real nonzero normals n_i and real supports h_i define an ordered cycle
+n_i dot z = h_i, with det(n_i,n_{i+1}) nonzero. Let T_i be consecutive
+intersections, Q_i(M) orthogonal feet, and A', B_M their signed shoelace
+areas in precisely this order. Set
+
+  w_i = 2 det(n_i,n_{i+1})(n_i dot n_{i+1})
+        / (|n_i|^2 |n_{i+1}|^2),
+  S = sum_i w_i,  W = sum_i w_i T_i.
+
+Then, including self-crossing cycles and external M,
+
+  4(2 B_M - A') = sum_i w_i |M-T_i|^2,
+  B_M = B_0 + S |M|^2/8 - M dot W/4.
+
+This proves the requested formula for h_i=1 without a convexity assumption.
+
+Checkable algebraic proof:
+Put t_i=T_i-M and q_i=Q_i(M)-M. Because n_i dot t_i=h_i-n_i dot M,
+q_i is the projection of t_i onto n_i. Direct two-dimensional expansion gives
+
+  2 det(q_i,q_{i+1}) - (w_i/2)|t_i|^2
+    = det(q_i,t_i) - det(q_{i+1},t_i).
+
+On summing, the right side is
+sum_i det(q_i,t_i-t_{i-1}) = sum_i det(t_{i-1},t_i) = 2A',
+because q_i,t_i,t_{i-1} are collinear. The left side is
+4B_M - (1/2)sum_i w_i|t_i|^2. Rearrangement proves the identity and
+expansion proves the second formula.
+
+If the ordered polygon is centered at 0 and paired by
+T_{i+N/2}=-T_i with opposite side normals, then
+w_{i+N/2}=w_i, so W=0 and B_M=B_0+S|M|^2/8.
+Central symmetry alone does not cancel W about an arbitrary origin:
+for a center C the correct formula is W=C S and
+B_M=B_C+S|M-C|^2/8. The independent translated hexagon has
+S=4, C=(2/3,-5/7), and W=(8/3,-20/7), a concrete falsifier of an
+unqualified zero-moment claim.
+
+2. Sign, ordering, and denominator restrictions
+
+- delta_i must mean the oriented turn from n_i to n_{i+1}, modulo pi.
+  Then w_i=sin(2 delta_i). An unsigned interior angle generally reverses
+  this sign. Independent normal sign changes do not alter w_i.
+- A' and B_M are signed areas in the same side cycle. Reversal negates
+  both areas and the weight sum. Taking absolute areas, sorting vertices,
+  or replacing a star's signed area by its filled area is unsupported.
+- Nonzero real normals and nonparallel consecutive lines are required.
+  The formula does not define a vertex for a parallel or coincident pair;
+  its zero weight must not be interpreted as removing an infinite vertex.
+  Nonconsecutive parallels, right angles (zero weight), and feet outside
+  side segments cause no problem.
+- Central pairing must hold in the ordered polygon, not merely for an
+  unordered collection of vertices or lines.
+
+3. Exact excluded-parity orbit controls
+
+Outer ellipse: x^2/4+y^2=1.
+Inner proper confocal caustic: (5/16)x^2+5y^2=1, lambda=4/5 in (0,1).
+
+Orbit                  A       A'      B_0     AA'     A'B_0
+(2,0),(0,1),...         4       8       4       32      32
+(4,1),(-4,1),... /sqrt5 16/5    10      5       32      50
+
+Both cycles have four distinct vertices and are primitive period 4.
+Each chord is tangent to the stated inner ellipse, the tangency point
+lies strictly inside the chord segment, and the physical reflection
+direction is correct. Contact segment parameters are
+(1/5,4/5,1/5,4/5) and (1/2,1/2,1/2,1/2), respectively.
+Every weight vanishes individually, so B_M=A'/2 for every M in these
+two cycles. The values are genuine geometric controls; they refute
+an unrestricted inference from Steiner plus constant AA' to constant
+A'B_0. They are excluded-parity examples and provide no counterexample
+to a theorem restricted to another parity.
+
+4. Other controls and exact remaining gap
+
+The trapezoid (0,0),(2,0),(1,1),(0,1) has
+w=(-1,1,0,0), S=0, W=(-1,1), A'=3/2, and
+
+  B_(x,y) = 1/2 + x/4 - y/4.
+
+Thus S=0 permits nonconstant linear pedal-area levels and does not
+supply the finite center W/S. If S=W=0 the area is constant instead.
+When S is nonzero, completing the square does give center W/S.
+
+For x+y=1, the origin's foot is (1/2,1/2). Under (x,y)->(2x,y)
+it maps to (1,1/2); the transformed line x/2+y=1 has Euclidean foot
+(2/5,4/5). The affine-projection noncommutation control is correct.
+
+The radial identity does not prove any phase-family product invariant.
+For a centered family, A'B_M=A'B_0+|M|^2 A'S/8; invariance for every M
+requires both coefficient invariants. The finite controls supply no
+missing Poncelet-family invariant and establish no target all-N result.
+
+5. Reproduction and evidence
+
+verify_classical_controls.py uses only the Python standard library.
+It independently checks every polynomial coefficient of the general
+identity in M for 448 rational directed line cycles (224 cycles in both
+orientations), plus an explicit self-crossing pentagram and reversal,
+centered and translated central hexagons, both N=4 orbits, the full
+trapezoid polynomial, affine projection, and two denominator failures.
+It also reruns the parent source and exactly reproduces both receipts.
+Input SHA-256 values were unchanged before and after verification.
+VERIFY_RESULTS.json and VERIFY_RESULTS_OPTIMIZED.json record exact values
+and input hashes. All 23 validation conditions use explicit exception
+checks; no Python assert remains. Normal and -O runs match on every
+result field except the UTC timestamp. A deliberately false condition
+is rejected with the expected failure in both modes.
+MODE_ENFORCEMENT_RECEIPT.json records these enforcement checks.
+HASH_RECEIPT.json records local artifact hashes.
+
+No other research-family artifacts were read. No Git state, source
+artifact, branch, index, checkout, remote, or external contact was changed.
+

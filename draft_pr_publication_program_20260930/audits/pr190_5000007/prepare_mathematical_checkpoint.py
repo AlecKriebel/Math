@@ -1,0 +1,44 @@
+"""Fresh-parent MAIN checkpoint for authenticated PR190 mathematical findings."""
+from pathlib import Path
+import datetime,hashlib,importlib.util,json,re,sys
+A=Path(__file__).resolve().parent;P=A.parent.parent
+s=importlib.util.spec_from_file_location('base184',P/'audits/pr184_10300044/prepare_final_scoped_merge.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);m.m.TREE_CACHE_PATH=A/'CHECKPOINT_IMMUTABLE_TREE_CACHE.json'
+api,require,save,lookup,changed_leaves,body_at,pin=m.api,m.require,m.save,m.lookup,m.changed_leaves,m.body_at,m.pin
+PREFIX=m.PREFIX;CASE=PREFIX+'audits/pr190_5000007/';HEAD='0c3346c8ebcb3b967a1d8bf9a283f027b44b738c'
+def now():return datetime.datetime.now(datetime.UTC).isoformat()
+def prcheck():
+ p=api('pulls/190');require(p['head']['sha']==HEAD and p['state']=='open' and p['draft'] and not p['merged'],'Original190state/head drift')
+def scope():
+ names=['CURRENT_CASE_STATUS.json','RESEARCH_LOG.md','CURRENT_PROOF.md','ROOT_MATHEMATICAL_GATE_01.json','ROOT_FAMILY_PROMOTION_MODES_01.json','ROOT_GUARD_REPAIR_ADOPTION_01.json','ROOT_UPSTREAM_TARGET_AND_PRIOR_01.json','ROOT_UPSTREAM_PRIOR_LOOKUP_CORRECTION_02.json','ROOT_GITHUB_CHRONOLOGY_01.json','INTAKE_CHECKPOINT_ACCEPTANCE.json','prepare_mathematical_checkpoint.py']
+ names += ['current_verification/'+p.name for p in (A/'current_verification').iterdir() if p.is_file()]
+ names += ['root_verification_runs/'+p.name for p in (A/'root_verification_runs').iterdir() if p.is_file()]
+ d='literal_source_adversary';j=json.loads((A/d/'PUBLICATION_ALLOWLIST.json').read_text());names += [d+'/'+x['path'] for x in j['allowlist']]+[d+'/'+n for n in j['also_authored']]
+ d='global_geometry_adversary';j=json.loads((A/d/'SAFE_PUBLICATION_ALLOWLIST.json').read_text());names += [d+'/'+n for n in j['allowed_relative_paths']]
+ d='exact_reproduction_adversary';j=json.loads((A/d/'PUBLIC_SAFE_ALLOWLIST.json').read_text());names += [d+'/'+n for n in j['files']]
+ names=sorted(set(names))
+ for n in names:require((A/n).is_file() and not any('private' in x.lower() for x in Path(n).parts),'Unsafe selected audit file')
+ return names
+def prepare(gen):
+ require(re.fullmatch('[a-z0-9_]+',gen),'Bad generation');prcheck();gate=json.loads((A/'ROOT_MATHEMATICAL_GATE_01.json').read_text());require(gate['mathematical_clearance_at_stated_scope'] and not gate['historical_priority_clearance'] and not gate['publication_ready'],'Scientific gate')
+ e=api('git/ref/heads/main')['object']['sha'];parent=api('git/commits/'+e);j=json.loads(body_at(PREFIX+'CURRENT_PROGRESS.json',e));require(j['fully_completed_count']==38 and j['published_count']==22 and j['last_completed_PR']==184 and j['current_PR']==190 and j['current_original_head']==HEAD,'Own campaign census/case drift')
+ names=scope();out=A/('mathematical_checkpoint_'+gen);out.mkdir(exist_ok=False);stamp=now();status=json.loads((A/'CURRENT_CASE_STATUS.json').read_text());require(status['case_percent']==35,'Case checkpoint stage drift')
+ j.update(UTC=stamp,updated_UTC=stamp,current_status='TWO_PART_MATHEMATICS_CLEARED_DEEP_PRIORITY_AUDIT_ACTIVE',current_PR_workflow_percent=35,current_workflow_estimate_percent=35,current_mathematics_cleared=True,current_mathematical_result_valid=True,current_mathematical_scope='Imported bare-angle exclusion false by exactly two face diagonals; adopted parity-selected exclusion proved. No uniquely forced author-intent or unqualified affirmative literal claim.',current_priority_clearance=False,current_bounded_priority_audit_complete=False,current_historical_firstness_or_guaranteed_novelty_certified=False,current_publication_ready=False,current_Zenodo_published=False,current_tracker_updated=False,current_original_PR_merged=False,current_closed=False,current_remaining_required_steps=status['remaining_required_steps'],advance_to_next_PR_authorized_now=False,persistent_goal_complete=False,program_snapshot_semantics='38completed/22published unchanged. PR190 qualified two-part mathematics cleared by three source-first independent families and Root. All28 load-bearing assert guards repaired;8 portable baselines and10 meaningful wrong-science rejections pass. Deep priority ongoing; overlapping2026-10-09 preprint lead is not yet a body-verified priority finding; GitHub dates alone do not certifyfirstness or independence. No publication/disposition.')
+ save(out/'CURRENT_PROGRESS.json',j);note='\n\n'+stamp+' — PR190 workflow35%: exact imported bare-angle target false by two direct face diagonals; explicit parity-selected endpoint theorem proved without length bound. Three independent source-first families authenticated. Root current28-guard repair,8baselines/10meaningful wrong-science rejections accepted. External face word valid; displayed coordinate norm inconsistent. Deep priority audit ongoing, overlapping recent preprint under comparison; nofirstness/independence certified.38completed/22published unchanged; goal active.\n'
+ for n in ['CURRENT_PROGRESS.md','RESEARCH_LOG.md']:(out/n).write_bytes(body_at(PREFIX+n,e)+note.encode())
+ overlay={CASE+n:A/n for n in names};overlay.update({PREFIX+n:out/n for n in ['CURRENT_PROGRESS.json','CURRENT_PROGRESS.md','RESEARCH_LOG.md']});pins={n:{**pin(p),'local_path':str(p)} for n,p in sorted(overlay.items())}
+ tree=api('git/trees','POST',{'base_tree':parent['tree']['sha'],'tree':[{'path':n,'mode':'100644','type':'blob','content':p.read_text()} for n,p in sorted(overlay.items())]});m.m.m.h.warm_selected_directories([parent['tree']['sha'],tree['sha']],pins)
+ changed={n for n,x in pins.items() if lookup(parent['tree']['sha'],n)!=('100644','blob',x['git_blob'])};require(changed_leaves(parent['tree']['sha'],tree['sha'])==changed,'Foreign full tree delta')
+ for n,x in pins.items():require(lookup(tree['sha'],n)==('100644','blob',x['git_blob']),'Prepared selected identity drift')
+ co=api('git/commits','POST',{'message':'Record PR190 qualified mathematical audit and optimization-safe controls\n\nBare-angle statement false via exactly two face diagonals; parity-selected exclusion proved. Three independent source-first families, exact reproduction,28guard repairs and meaningful controls. Priority ongoing, nofirstness or source-intent certification.38completed/22published unchanged. NoQUEUE/nativeattempt/PRdisposition changes; foreignMAIN preserved.','tree':tree['sha'],'parents':[e]})
+ rec={'UTC':stamp,'expected_main':e,'parent_tree':parent['tree']['sha'],'tree':tree['sha'],'commit':co['sha'],'selected_files':pins,'changed_paths':sorted(changed),'case_percent':35,'completed':38,'published':22,'mathematical_clearance':True,'priority_clearance':False,'publication_ready':False,'QUEUE_native_attempt_PR_disposition_changes':0};save(A/'MATHEMATICAL_CHECKPOINT_PREPARATION_01.json',rec);prcheck();require(api('git/ref/heads/main')['object']['sha']==e,'MAIN advanced: rebuild fresh');print(json.dumps({'expected_main':e,'commit':co['sha'],'tree':tree['sha'],'selected':len(pins)}))
+def accept():
+ r=json.loads((A/'MATHEMATICAL_CHECKPOINT_PREPARATION_01.json').read_text());co=api('git/commits/'+r['commit']);require(co['tree']['sha']==r['tree'] and [p['sha'] for p in co['parents']]==[r['expected_main']],'Actual parent/tree drift');m.m.m.h.warm_selected_directories([r['parent_tree'],r['tree']],r['selected_files']);require(changed_leaves(r['parent_tree'],r['tree'])==set(r['changed_paths']),'Actual full tree scope drift')
+ for n,x in r['selected_files'].items():require(lookup(r['tree'],n)==('100644','blob',x['git_blob']),'Actual selected identity drift')
+ main=api('git/ref/heads/main')['object']['sha'];require(api('compare/'+r['commit']+'...'+main)['status'] in ['identical','ahead'],'Checkpoint not onMAIN')
+ for n in [PREFIX+'CURRENT_PROGRESS.json',CASE+'CURRENT_CASE_STATUS.json',CASE+'ROOT_MATHEMATICAL_GATE_01.json',CASE+'CURRENT_PROOF.md',CASE+'current_verification/check_certificate.py',CASE+'current_verification/check_half_turn.py']:
+  b=body_at(n,main);x=r['selected_files'][n];require(len(b)==x['bytes'] and hashlib.sha256(b).hexdigest()==x['sha256'],'Fresh native body drift')
+ prcheck();j={'UTC':now(),'status':'ACTUAL_QUALIFIED_MATHEMATICS_CHECKPOINT_FULL_SCOPE_AND_FRESH_NATIVE_BYTES_ACCEPTED','PR':190,'original_head':HEAD,'checkpoint_commit':r['commit'],'main_observed':main,'tree':r['tree'],'parent':r['expected_main'],'selected_files':len(r['selected_files']),'changed_paths':len(r['changed_paths']),'all_foreign_base_paths_preserved':True,'case_percent':35,'mathematical_clearance_at_explicit_two_part_scope':True,'priority_clearance':False,'publication_ready':False,'completed':38,'published':22,'goal_complete':False};save(A/'MATHEMATICAL_CHECKPOINT_ACCEPTANCE_01.json',j);print(json.dumps(j))
+if __name__=='__main__':
+ if sys.argv[1]=='prepare':prepare(sys.argv[2])
+ elif sys.argv[1]=='accept':accept()
+ else:raise RuntimeError('Unknown action')

@@ -1,0 +1,45 @@
+{
+  "completion_percent": 75,
+  "defects": [
+    {
+      "claim": "V3 blocks mutations even via exposed V1 base dispatcher",
+      "counterexample": "v1.Admin.request(e, zenodo, POST actions/publish) defaults write=False and reaches fake backend POST; direct sheet append bypass reaches fake append with wrong target/data, no active phase.",
+      "id": "SW1"
+    },
+    {
+      "claim": "public native metadata/access/custom_fields exactly equal the pinned snapshot",
+      "counterexample": "public access.embargo.active=0 instead of false is accepted because Python equality treats false == 0.",
+      "id": "SW2"
+    }
+  ],
+  "evidence_kind": "offline_model",
+  "native_observations": {
+    "draft": true,
+    "github_gate_gets": 6,
+    "head": "ff7a7521458c1d2d9ae6f762eac04a3c3d9b9568",
+    "merged": false,
+    "selected_queue": {
+      "id_code": "6800014 / AMR-067-0014",
+      "status": "claimed_solved",
+      "turns": "2/5"
+    },
+    "sheet_calls": 0,
+    "state": "open",
+    "zenodo_calls": 0
+  },
+  "remaining_gap": "Repair SW1/SW2 then rerun exact current source; no native V3 recovery/tracker PASS claimed.",
+  "result": "REPAIR_REQUIRED",
+  "review": "publication_v3_software_adversary0",
+  "reviewed_source_sha256": "def419151e2a2e63f11081baaba5a845f259b9b89679bca274894cb358e0543c",
+  "schema": 1,
+  "source_sha256": "def419151e2a2e63f11081baaba5a845f259b9b89679bca274894cb358e0543c",
+  "strongest_verified": "Captured actual shapes recover with eight fake GETs and one explicit fixed Sheet append; ordinary V3 and V2 dispatch paths reject prohibited writes; source states remain unchanged; unknown append is GET-only and nonretryable.",
+  "test_sha256": "d1aed13d5a345adce010dc4aed6c68298cabd71eded87e1c10652d04a4862dae",
+  "tests": {
+    "failed": 3,
+    "passed": 24,
+    "result_sha256": "2220d31b5fb3f8804fdaefeb028c9a06417d75044368f7d674ac27071f71e521",
+    "run": 27
+  },
+  "utc": "2026-10-13T05:28:24.558758+00:00"
+}

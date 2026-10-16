@@ -1,0 +1,196 @@
+--- source02/append_verified_tracker.py
++++ source03/append_verified_tracker.py
+@@ -2,7 +2,7 @@
+ import sys
+ if not __debug__ or sys.flags.optimize:
+     raise RuntimeError('Release helpers refuse optimized Python before any action')
+-from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
++from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest,durable_mkdir
+ from pathlib import Path
+ from datetime import datetime, timezone
+ import json
+@@ -33,7 +33,7 @@
+ assert not clear['unresolved_optional_findings']
+ z=publication(R,PUB,CTX)
+ assert z['submitted'] and z['metadata_and_files_verified']
+-T.mkdir(parents=True, exist_ok=True)
++durable_mkdir(T)
+ doi = z['doi_url']
+ meta = call('01-properties', ['sheets', 'spreadsheets', 'get', '--params', json.dumps({'spreadsheetId': SHEET})])
+ tabs = [s['properties'] for s in meta['sheets'] if s['properties']['sheetId'] == 1254632077]
+
+--- source02/integrate_reviewed_pr.py
++++ source03/integrate_reviewed_pr.py
+@@ -5,7 +5,7 @@
+ import sys
+ if not __debug__ or sys.flags.optimize:
+     raise RuntimeError('Release helpers refuse optimized Python before any action')
+-from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
++from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest,durable_mkdir
+ from pathlib import Path
+ from datetime import datetime, timezone
+ import base64
+@@ -39,7 +39,7 @@
+ assert z['submitted'] and z['metadata_and_files_verified']
+ assert t['verified'] and t['doi_url'] == z['doi_url']
+ T = PUB / 'private_transport' / datetime.now(timezone.utc).strftime('native_prepare_%Y%m%dT%H%M%S%fZ')
+-T.mkdir(parents=True, exist_ok=False)
++durable_mkdir(T,exist_ok=False)
+ seq = 0
+ 
+ 
+@@ -161,7 +161,7 @@
+ paths += [p for p in D.iterdir() if p.is_file()]
+ for folder in ['submitted','root_reproduction']:
+     paths += [p for p in (D/folder).rglob('*') if p.is_file() and not any(x.startswith('private') or x=='__pycache__' for x in p.parts)]
+-for family in ['source_domain_adversary_01','physical_geometry_adversary_01','meromorphic_divisor_adversary_01','priority_author_updates_01','priority_classical_general_01','whole_manuscript_adversary_01','whole_manuscript_adversary_02','whole_manuscript_adversary_03','release_helpers_adversary_01','release_helpers_adversary_02']:
++for family in ['source_domain_adversary_01','physical_geometry_adversary_01','meromorphic_divisor_adversary_01','priority_author_updates_01','priority_classical_general_01','whole_manuscript_adversary_01','whole_manuscript_adversary_02','whole_manuscript_adversary_03','release_helpers_adversary_01','release_helpers_adversary_02','release_helpers_adversary_03']:
+     folder=D/family
+     candidates=[p for p in [folder/'AUTHORED_MANIFEST.json',folder/'MANIFEST.json',folder/'SAFE_AUTHORED_MANIFEST.json'] if p.exists()]
+     assert len(candidates)==1;seal=candidates[0];paths.append(seal);m=json.loads(seal.read_text())
+
+--- source02/publish_preprint.py
++++ source03/publish_preprint.py
+@@ -2,7 +2,7 @@
+ import sys
+ if not __debug__ or sys.flags.optimize:
+     raise RuntimeError('Release helpers refuse optimized Python before any action')
+-from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
++from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest,durable_mkdir
+ from pathlib import Path
+ from datetime import datetime, timezone
+ import hashlib
+@@ -31,7 +31,7 @@
+ metadata = json.loads((R / 'metadata.json').read_text())
+ assert json.loads(MANIFEST.read_text())['metadata'] == metadata == clear['publication_metadata']
+ T = PUB / 'private_transport/zenodo'
+-T.mkdir(parents=True, exist_ok=True)
++durable_mkdir(T)
+ 
+ 
+ def preflight_read(label, command):
+
+--- source02/release_binding.py
++++ source03/release_binding.py
+@@ -133,7 +133,7 @@
+ 
+ def acquire(pub):
+     """Caller retains this handle for the whole workflow; all stages share the lock."""
+-    path=Path(pub)/'private_transport/release.lock';path.parent.mkdir(parents=True,exist_ok=True)
++    path=Path(pub)/'private_transport/release.lock';durable_mkdir(path.parent)
+     handle=path.open('a+')
+     try:fcntl.flock(handle.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB)
+     except BlockingIOError:
+@@ -145,6 +145,7 @@
+     """Atomic first-writer intent, flushed before the associated provider mutation."""
+     with Path(path).open('x') as f:
+         f.write(json.dumps(data,indent=2)+'\n');f.flush();os.fsync(f.fileno())
++    sync_directory(Path(path).parent)
+ 
+ 
+ def pr_identity(pr,head,draft=None,state='open'):
+@@ -153,3 +154,24 @@
+     require(pr['head'].get('repo',{}).get('full_name')=='AlecKriebel/Math','Wrong head repository')
+     require(pr.get('base',{}).get('ref')=='main' and pr['base'].get('repo',{}).get('full_name')=='AlecKriebel/Math','Wrong base repository/branch')
+     if draft is not None:require(pr.get('draft') is draft,'Wrong draft state')
++
++
++def sync_directory(path):
++    """Fail closed when the supported OS cannot sync a directory entry."""
++    fd=os.open(str(path),os.O_RDONLY|getattr(os,'O_DIRECTORY',0))
++    try:os.fsync(fd)
++    finally:os.close(fd)
++
++
++def durable_mkdir(path,exist_ok=True):
++    """Sync every newly created ancestor linkage, including a retry anchor."""
++    path=Path(path);missing=[];anchor=path
++    while not anchor.exists():missing.append(anchor);anchor=anchor.parent
++    require(anchor.is_dir(),'Directory anchor is not a directory')
++    if not missing and not exist_ok:raise FileExistsError(str(path))
++    # An earlier failed sync can leave the anchor visible but not confirmed durable.
++    sync_directory(anchor.parent)
++    for new in reversed(missing):
++        new.mkdir(exist_ok=exist_ok if new==path else True)
++        sync_directory(new.parent)
++    require(path.is_dir(),'Required durable directory is missing')
+
+--- source02/verify_and_merge.py
++++ source03/verify_and_merge.py
+@@ -2,7 +2,7 @@
+ import sys
+ if not __debug__ or sys.flags.optimize:
+     raise RuntimeError('Release helpers refuse optimized Python before any action')
+-from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
++from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest,durable_mkdir
+ from pathlib import Path
+ from datetime import datetime, timezone
+ import base64
+@@ -18,7 +18,9 @@
+ PREFIX = 'unsolved_math_prioritization/attempts/5100033/'
+ assert not (PUB / 'PR_MERGED.json').exists(), 'Already merged; read-only reconciliation only'
+ require(not (PUB/'NATIVE_MERGE_REQUEST.json').exists(),'Prior merge intent exists: read-only reconciliation only')
+-p = json.loads((PUB / 'PR_PREPARED.json').read_text())
++prepared_raw=(PUB/'PR_PREPARED.json').read_bytes()
++p=json.loads(prepared_raw)
++prepared_receipt_sha256=hashlib.sha256(prepared_raw).hexdigest()
+ head = p['prepared_head']
+ _RELEASE_LOCK=acquire(PUB)
+ CTX=context(R)
+@@ -33,7 +35,7 @@
+ assert z['submitted'] and z['metadata_and_files_verified']
+ assert t['verified'] and t['doi_url'] == z['doi_url']
+ T = PUB / 'private_transport' / datetime.now(timezone.utc).strftime('native_merge_%Y%m%dT%H%M%S%fZ')
+-T.mkdir(parents=True, exist_ok=False)
++durable_mkdir(T,exist_ok=False)
+ seq = 0
+ 
+ 
+@@ -130,6 +132,15 @@
+            'exact_queue_row': target[0], 'metadata_and_files_verified': True,
+            'tracker_verified': True, 'release_status_only_native_delta': True}
+ (PUB / 'NATIVE_SCIENTIFIC_READBACK.json').write_text(json.dumps(receipt, indent=2) + '\n')
++# Native readbacks can be lengthy. Refresh the actual PR and every accepted
++# local release/receipt binding immediately before the ready transition.
++pr=api('GET','pulls/210')
++pr_identity(pr,head)
++require(not pr['merged'],'PR merged during native readback: reconcile read-only')
++unchanged(R,CTX)
++require(publication(R,PUB,CTX)==z,'Accepted publication receipt changed')
++require(tracker(R,PUB,CTX,z)==t,'Accepted tracker receipt changed')
++require(digest(PUB/'PR_PREPARED.json')==prepared_receipt_sha256,'Accepted prepared receipt changed')
+ if pr['draft']:
+     exclusive_json(PUB/'NATIVE_READY_ATTEMPT.json',dict(utc=datetime.now(timezone.utc).isoformat(),head=head,release_binding=binding(CTX)))
+     result = api('POST', 'graphql', {'query': 'mutation($id: ID!) { markPullRequestReadyForReview(input:{pullRequestId:$id}) { pullRequest { id isDraft } } }',
+@@ -145,7 +156,9 @@
+ assert pr['mergeable'] is True, 'Conflict or unknown native mergeability; resolve without forcing main'
+ request = {'sha': head, 'merge_method': 'merge',
+            'commit_title': 'Merge PR #210: audited odd outer focal-pedal area product and published preprint'}
+-unchanged(R,CTX);publication(R,PUB,CTX);tracker(R,PUB,CTX,z)
++unchanged(R,CTX)
++require(publication(R,PUB,CTX)==z and tracker(R,PUB,CTX,z)==t,'Accepted release receipts changed before merge')
++require(digest(PUB/'PR_PREPARED.json')==prepared_receipt_sha256,'Prepared receipt changed before merge')
+ exclusive_json(PUB/'NATIVE_MERGE_REQUEST.json',dict(request,release_binding=binding(CTX)))
+ result = api('PUT', 'pulls/210/merge', request)
+ assert result['merged'] is True
+
+--- source02/verify_published_readonly.py
++++ source03/verify_published_readonly.py
+@@ -5,7 +5,7 @@
+ from pathlib import Path
+ from datetime import datetime,timezone
+ import json,subprocess,urllib.request
+-from release_binding import context,binding,unchanged,publication,verify_doi,acquire,exclusive_json,require
++from release_binding import context,binding,unchanged,publication,verify_doi,acquire,exclusive_json,require,durable_mkdir
+ 
+ 
+ def verify_existing(R,PUB,CTX):
+@@ -13,7 +13,7 @@
+     attempt=json.loads((PUB/'PUBLISH_ATTEMPT.json').read_text())
+     require(attempt.get('release_binding')==binding(CTX),'Publication attempt belongs to another cleared release')
+     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+-    T=PUB/'private_transport/zenodo';T.mkdir(parents=True,exist_ok=True)
++    T=PUB/'private_transport/zenodo';durable_mkdir(T)
+     tool=Path('/Users/alec/Documents/Math/zenodo_deposit_tool/zenodo.py')
+     py='/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3'
+     run=subprocess.run([py,'-B',str(tool),'inspect',str(R/'deposit.json'),'--check-doi'],capture_output=True,text=True,timeout=180)

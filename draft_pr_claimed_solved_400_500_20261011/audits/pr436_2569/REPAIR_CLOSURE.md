@@ -1,0 +1,7 @@
+# Verification repair closure
+
+Accepted 2026-10-12T22:13:19.826496+00:00. Existing mathematics remains unchanged and author proof-search budget remains5/5 with zero new attempts. Root has read the fresh adversary's full report and machine verdict. All82 original predicates and other AST nodes are retained; sixteen fresh baselines match, and exact source-normal/repaired-normal/repaired-optimized coverage agrees at29,952 condition evaluations. Two new mathematical corruptions fail in both repaired modes.
+
+The repair is a separate overlay applied to an isolated pinned source copy, not an independently complete input folder. It preserves acceptance/rejection and successful output, with a diagnostic difference: all82 bare-assert failures acquire constant source-location messages and therefore change exception.args. Literal failure-message equivalence is not claimed. Historical agent records are preserved rather than rewritten. There are zero required mathematical or verification repairs remaining.
+
+Fresh report SHA256 72b627d019e20e387ce742f9455279772700273f6ceaa4c13f4f80d8c1076260; result cd39a3f401582bf2c7e50af52e7123d50942305bed9703820cfe42336b80bc5f. Instrumentation corrections were recorded honestly and do not supply fabricated evidence. Original optimized runs alone are not verification. This closure is not novelty or preprint approval. Completion80% of selected disposition; batch67%.

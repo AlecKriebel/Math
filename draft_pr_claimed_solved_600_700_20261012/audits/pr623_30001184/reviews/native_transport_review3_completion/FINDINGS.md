@@ -1,0 +1,39 @@
+# PR623 repaired native transport: final independent completion review
+
+**PASS. Zero mandatory findings and zero optional findings.** This fresh reviewer independently read the current adapter, bootstrap, launch instructions, final author report/receipt, unchanged repository kit, review2's F5 finding and the relevant preserved primary implementations. The repaired frozen transport is accepted for the parent's guarded execution against the existing own draft **23356540**. This is an implementation acceptance, not an assertion of an executed publication or a resolving DOI.
+
+The earlier `native_transport_review3` folder had bounded controls but no final report or verdict. It remains untouched; its completion was not assumed. This review captured its own inputs and independently replayed inspected controls in this separate folder. No reviewed source or scientific artifact was edited. No new tests were added because code inspection and the bounded controls covered the actual repaired boundaries; unchanged science was neither reproved nor rendered again.
+
+## F5 is resolved without weakening content checks
+
+The pinned PDF's five pages independently report **612 by 792 points**, zero rotation. The ZIP's raw EOCD central-directory field is **218946**, pointing to the central-directory signature; this agrees with the adapter's independent `ZipFile.start_dir` derivation. These values come from the exact checked payloads, not the prior record's foreign ZIP offset. The adapter accepts only null/empty extraction metadata or the complete exact integer annotations for the correct content type. Wrong types, values, MIME types and additional fields reject.
+
+The preserved official file-service configuration constructs the complete PDF IIIF group, draft/record namespaces and ZIP container link. All allowed links bind the same host, own ID, filename, state and fixed image parameters. They are inert: preview/container requests are unavailable. Partial groups, extra fields, foreign hosts/IDs/names, inappropriate state, query/fragment variations and cross-type links reject. Correct annotations retain MD5/size and independently downloaded SHA-256 checks.
+
+The actual native client and unchanged kit were exercised at the standard-library HTTPSConnection boundary. The server model includes full pending/completed draft and published shapes. Its DOI resolver is explicitly modeled, so no offline result establishes external DOI registration. All **16 wire tests pass in normal and optimized Python**, including **48 hostile annotation cases, 188 hostile link cases and 12 positive representation cases in each mode**. This current control file contains 16 tests, correcting the task's earlier estimate of 15. Complete publication, lost-response recovery, missing local receipt recovery, malformed post-publication annotations, unchanged-byte streaming races and no duplicate POSTs are exercised. Derived routes are never followed.
+
+## Other repaired boundaries remain sound within their stated scope
+
+- **F1 source binding:** the trusted inline invocation captures/hash-checks/executes one bootstrap snapshot. The bootstrap does likewise for the adapter, and the adapter for the unmodified kit, in fresh module identities. The code does not reuse cached `zenodo`/`native_transport` modules. Marker and pathname-swap controls confirm rejection before unchecked execution or execution of the captured bytes only. The approved inline text, interpreter and standard library remain the root of trust.
+- **F3 manifest and bytes:** one manifest read and one read per payload produce checked immutable snapshots. The actual kit parses, hashes, stats, opens, reads and sends these snapshots. Replacing and modifying private source files during successive streaming chunks leaves transmitted size, SHA-256 and MD5 exact. Changed/mixed capture and raw Path substitutions reject before writes.
+- **F2 DOI/OAI and kit fidelity:** the preserved publication PID component creates missing required schemes for public initial records; Zenodo's configuration/providers derive the version DOI and OAI identifier and register asynchronously. The adapter checks the exact DOI/OAI map, state, metadata and files. The kit's actual final verifier, receipt constructor, DOI resolver and local state functions remain unchanged; no kit lifecycle function is replaced. The native metadata is hashed in full before its reversible projection, so rich native fields cannot be silently discarded.
+- **F4 downloads:** the actual binary read uses wildcard acceptance, requires HTTP 200 and exact size/SHA, and follows no redirects. PUT retains octet-stream content type. The preserved parent calibration supports this deployed negotiation distinction; this reviewer queried no other record.
+- **O1 journal and ambiguity:** actual file/directory/parent fsync barriers precede each modeled write. Failed storage disables further dispatch; attempted initialize/content/commit/publish keys are refused by fresh OS processes. Ambiguous writes are reconciled through readback or stop, without automatic repeated mutation. Correct readback after a malformed reversible acknowledgment can establish completion. Local locking does not prevent another machine/browser from editing, and no server-atomic transaction or physical power-loss durability is claimed. The kit's separate receipt retains its original atomic-save semantics; a failed receipt save does not imply unpublication.
+
+All **56 supplied tests**, **16 wire tests**, **4 source controls** and **4 fresh-process restart controls** pass **in each of normal and optimized Python**, with zero failures/errors. Their mechanisms were inspected before their results were accepted. The source/byte/journal evidence addresses the actual earlier defects; passing models are not substituted for live evidence.
+
+## Identity, external state and exact remaining gap
+
+`INPUT_BINDING.json` captures 78 inputs. `FINAL_INPUT_RECHECK.json` confirms all 78 unchanged, including the **45 accepted publication pins** and author freeze; all bound primary sources also remain unchanged. The **29 native blobs independently equal original Git head `947442c091ae617804c6a0d07b98ff2c50368798` and their ZIP members**. All **87 manifested ZIP entries** validate, with exactly one additional package manifest and no duplicates. Transport content is absent from the paper and ZIP. The shared branch remains `main`; this reviewer performed no Git mutation.
+
+Accepted adapter SHA-256: `954d909ee6a8388c36d93bfa74387b24e9383a90c113d6f8eece89a0fa54f32b`.
+
+Accepted bootstrap SHA-256: `16ac53b7127971de17c0948783fbc23ccc6854c7720e7e63cbd585305df7bf3b`.
+
+Unchanged kit SHA-256: `a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca`.
+
+The parent's hash-captured read-only preflight at **2026-10-15T03:06:07.054102Z**, independently read and hash-bound here, confirms exact metadata, unpublished own draft 23356540, and no pending/completed files. This reviewer made **zero live network requests and zero live mutations**, and did not duplicate that fresh read. No account search, other-record request, publication, PR, tracker or outside/other-shard communication occurred.
+
+**Exact remaining live gap:** own-draft file initialization/content/commit acknowledgments and actual extracted/final representations, followed by verified real publication, the unchanged kit's saved receipt and independently observed DOI resolution HTTP 200. Those remain for the parent to execute and inspect using the reviewed capture invocation, retained journal and existing ID. No replacement deposit, metadata simplification, unchecked retry or publication success is implied by this PASS.
+
+Assigned review completion: **100%**. Best estimate of transport readiness: **90%**, pending the stated real service boundaries; actual publication remains unfinished. Final binding time: 2026-10-15T03:09:31.069253+00:00.

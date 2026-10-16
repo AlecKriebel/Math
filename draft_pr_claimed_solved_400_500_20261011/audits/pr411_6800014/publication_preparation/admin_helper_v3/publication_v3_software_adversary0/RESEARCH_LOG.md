@@ -1,0 +1,6 @@
+# V3 administration helper software adversary
+
+- 2026-10-13T05:24:09.541349+00:00 — 10% complete. Fresh native GitHub gate passed: expected head, OPEN/draft/unmerged, queue blob and SHA pinned. Review is bounded to administration source and offline response replay; no scientific claims assessed.
+- 2026-10-13T05:25:27.812351+00:00 — 30% complete. Queue selection confirmed from header. Direct V1 baseclass request bypass reaches a fake Zenodo publish dispatch under default write=False; reported to root for interpretation/repair. Native calls remain the six GitHub gate GETs only.
+- 2026-10-13T05:28:24.558758+00:00 — 75% complete. Independent 27-test actual-schema replay: 24 pass, 3 fail corresponding to SW1 base dispatch (two routes) and SW2 bool/int projection. Normal intended routes and unknown-write reconciliation passed. Source and scientific files unedited; root repair and current-source rerun remain.
+- 2026-10-13T05:30:53.857910+00:00 — 100% of bounded first software review complete. Unchanged 27-test suite passes on repaired source e701c68b6a0b6bf9d78bb8c167d5f43c35532b0e4f1d0204281b434505adf2fe; original 24/27 initial run and both defect reports preserved. V1/V2 original state hashes unchanged. Root fresh independent review remains separately required; no native V3 recovery/tracker PASS claimed.

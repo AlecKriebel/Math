@@ -1,0 +1,15 @@
+# Independent first assessment
+
+UTC checkpoint: 2026-10-12 04:49:00 UTC. Review completion estimate: 30%.
+
+This assessment was written before reading any historical independent_review file. The original COUNTEREXAMPLE.md, README.md, source_record.json and verify.py have been read. No historical review has been read, and no conclusion from it has been used.
+
+The all-mesh H^-1 bridge appears valid from direct derivation. On each neighboring triangle, 4 lambda_A lambda_B -20 lambda_A lambda_B lambda_C has zero mean, nonzero trace on the selected edge, and zero trace on every other edge. The traces from the two neighbors agree. Therefore zero extension gives a continuous, piecewise polynomial H^1_0 function, including when the selected interior edge meets the domain boundary. Its elementwise zero means annihilate arbitrary real P0 coefficients. A linear combination with coefficient J_e |e| pairs diagonally with edge distributions. Other edges have zero trace, so signs and edge cancellation cannot erase this pairing. A triangle contains at most three selected bubbles, yielding the claimed upper energy bound. Shape regularity is essential to a uniform bound under affine scaling.
+
+The center hat is min(2x,2y,2-2x,2-2y) on the unit square. Across its lower-left center segment, gradients (0,2) and (2,0) give a normal jump of magnitude 2 sqrt(2). Scaling to side h and multiplying by amplitude h preserves that jump. The selected segment lies inside exactly one hat support except its endpoint, so support-boundary cancellation does not affect its jump. Selected segments from distinct micro-squares have disjoint relative interiors.
+
+The two Cauchy inequalities and edge allocation count are correctly directed. In particular, distributing arbitrarily many subdivisions unevenly cannot reduce the weighted square sum below (sum |J_sigma| |sigma|)^2 divided by total subdivision count. The n levels each contribute 2 to that numerator's square root. On a common NVB refinement of size O(4^n), this produces order n^2 4^-n before taking the dual-norm square root.
+
+The H^1_0 series converges by orthogonality of gradients on disjoint interiors. Its exact tail norm is (2/sqrt(3))2^-n, and the weak Dirichlet Laplacian is an isometry under the gradient dual norm. The reverse triangle transfer therefore loses only a constant multiple of 2^-n. No illegal exchange of an infinite edge sum and an H^1 test is needed.
+
+The remaining significant dependency is mesh geometry and refinement cost: verify that the stated initial NVB labels generate every dyadic square's four-triangle center pattern, that the chosen supports are admissible with cost O(j+4^j), and that conforming completion and overlay remain uniformly linear and shape regular. This is not supplied by the finite checker alone. Primary-source verification and an independent refinement construction will address it. Boundary edges must remain excluded from the bubble lemma; including boundary distributions would be false because H^1_0 tests have zero trace there. No mathematical counterexample to the stated interior-edge lemma has been found so far.

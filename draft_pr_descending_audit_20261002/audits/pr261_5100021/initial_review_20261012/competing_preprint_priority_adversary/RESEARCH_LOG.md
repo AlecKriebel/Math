@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-12 10:01:48 UTC — 5% completion. Read root/unsolved AGENTS. Froze independent plan before candidate/verdict exposure. Exact target and prohibited actions recorded.
+- 2026-10-12 10:03 UTC — 30%. Full external six-page PDF, metadata, source ZIP and verification report retrieved by read-only HTTP. Initial web PDF/DOI/Zenodo opens failed; landing-page PDF click and Python urllib retrieval succeeded. Saved receipts. No individual communication.
+- 2026-10-12 10:04 UTC — 45%. Official DataCite record recovered. Verified version DOI is findable, exact title/author and same-target abstract, registered 2026-10-01 10:01:22 UTC. Direct Zenodo remained403. Root notified; full-proof byte publication remains distinct and unresolved.
+- 2026-10-12 10:07 UTC — 65%. Twenty-two independently coded exact symbolic identities pass. Published Chávez-Caliz theorem and Stachel canonical translation scope checked. Bounded Zenodo OAI/files/export variants all403; linked author public repo inventory contains no clearly linked manuscript repo; Project-Euler tree contains no target content.
+- 2026-10-12 10:10:13 UTC — 75%. Mathematical independent freeze PASS for current manuscript's primitive strict-elliptical-caustic signed claim, including stars and zeros. Eighty-four independent direct geometric phase cases corroborate at80digits. Initial numerical script binary-float step defect preserved in narrative and corrected. No candidate proof or review verdict read before freeze.
+
+- 2026-10-12T10:15:07.072932+00:00 — 100% of bounded audit. Full report complete. Current external proof passes; official DOI metadata earlier than our authored work verified. Zenodo archival byte/time binding remains explicit. Post-freeze comparison finds materially distinct proof routes. First full candidate file commit corrected to 8f29 at 11:46:29 UTC and all three candidate snapshots hash-identical. No Git/provider mutations or external individual communication.

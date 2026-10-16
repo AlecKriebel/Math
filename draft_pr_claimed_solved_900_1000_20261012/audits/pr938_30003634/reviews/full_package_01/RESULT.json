@@ -1,0 +1,145 @@
+{
+  "pr": 938,
+  "problem_id": "30003634",
+  "original_pr_head": "2b3ea2de7a9a9ea4fa8cba9a34cbdb01063bda3b",
+  "clean_context": true,
+  "candidate_revision": 1,
+  "started_utc": "2026-10-15T09:21:21+00:00",
+  "completed_utc": "2026-10-15T09:35:08.635910+00:00",
+  "candidate_pins": {
+    "freeze": "a7fae8c5b9364251b80d470859f8b34339be679fa52f853e032e2db03713c536",
+    "manifest": "7aa302b1ad5242fe03c576b68bf19af825e135f9aa1b296056cd4587c54ae51e",
+    "pdf": "4ea430556637561ac14094d4c944f6a33a3b01d344293053b83cd41c5964d5e2"
+  },
+  "inspected_helper_hashes": {
+    "accept_pr938.py": {
+      "bytes": 10161,
+      "sha256": "a7277cccb55e4cb1836161dbd9ee89e3a77aef56157a7cd08f115ebbe40c7114"
+    },
+    "merge_pr938.py": {
+      "bytes": 7784,
+      "sha256": "fafa428e36d3c8f345236e9b64f3d0e46134a0566107bec1e9cd96687ef960aa"
+    },
+    "run_pr938_zenodo.py": {
+      "bytes": 4463,
+      "sha256": "d3b2c883a2b82054d1896d5d2077b1975518310721dc571e7a5745ba11bb7720"
+    },
+    "append_pr938_tracker.py": {
+      "bytes": 10444,
+      "sha256": "45748e0850743cadd5c2ca5618a83c81054dda7c9cde200f3d9c6912dec3851d"
+    },
+    "update_pr938_publication_ledger.py": {
+      "bytes": 19228,
+      "sha256": "638ef17b13a33791f9c9d9ce60c8f7ea9c3bc8b0c97b5b2049b16839f3f19425"
+    }
+  },
+  "full_reproducer_completed": true,
+  "required_issues": [
+    {
+      "id": "R1",
+      "title": "Require every intervening full-package review round",
+      "file": "accept_pr938.py",
+      "evidence": "HELPER_OFFLINE_CONTROLS.json/review_gate: sealed01 and03 pass while unresolved02 is omitted",
+      "required_change": "Require complete consecutive ordered review history from01 and account for every intervening required/optional issue.",
+      "mathematical_change": false
+    },
+    {
+      "id": "R2",
+      "title": "Require RESULT.json inside each externally sealed review map",
+      "file": "accept_pr938.py",
+      "evidence": "An empty files/allowlist permits an unsealed RESULT mutation from failure to clean without changing the external seal.",
+      "required_change": "Require authenticated RESULT.json plus mandatory FULL_AUDIT.md/RESEARCH_LOG.md; reject empty/incomplete maps and verdict mutation.",
+      "mathematical_change": false
+    },
+    {
+      "id": "R3",
+      "title": "Recheck the exact accepted live PR description before merge",
+      "file": "merge_pr938.py",
+      "evidence": "view() does not request body; bounded preflight accepts body-only drift.",
+      "required_change": "Read body and compare the accepted freeze description hash before ready/merge; retain an explicit already-merged interpretation.",
+      "mathematical_change": false
+    }
+  ],
+  "optional_issues": [
+    {
+      "id": "O1",
+      "title": "Type-exact author summary comparison",
+      "file": "publication/verify_package.py",
+      "evidence": "n=true,m=3.0,nullity=false pass plain dict equality but fail recursive equivalent(); immutable author code emits valid ints.",
+      "recommended_change": "Use equivalent() for the original summary and add a bool/float negative control, matching the README claim.",
+      "actual_finite_result_affected": false
+    },
+    {
+      "id": "O2",
+      "title": "Validate the exact tracker A1 row range",
+      "files": [
+        "append_pr938_tracker.py",
+        "update_pr938_publication_ledger.py"
+      ],
+      "evidence": "Receipt linkage accepts Other tab!A10:D10 with correct gid/title fields and values.",
+      "recommended_change": "Require Math Puzzles, columnsA:D, one positive row, and the exact readback range after append/recovery and in both receipt validators.",
+      "actual_live_write_shown_wrong": false
+    }
+  ],
+  "prior_issue_resolution": {},
+  "clean_for_preprint": false,
+  "mathematical_remaining_gap_for_stated_theorem": null,
+  "strongest_verified_theorem": "For every m>=3 and finite integer k>=1, P_m^(k) contains a pure braid whose standard closure is not integrally smoothly1-solvable; consequently P_m^(n+2) is not contained in F_n^m for every m>=3 and integer n>=1. Witnesses may depend on finite depth.",
+  "explicit_witness": {
+    "derived_level": 3,
+    "word_length": 104,
+    "signature": -2,
+    "goeritz_inertia": [
+      23,
+      25,
+      0
+    ],
+    "determinant": -7154819319988224,
+    "mu": 0,
+    "meyer_terms": 104
+  },
+  "authentication": {
+    "start_and_end_actual_immutable_git_disk_archive_originals": 44,
+    "git_modes": "100644",
+    "endpoint_disk_modes": "0644",
+    "archive_modes": "100644",
+    "archive_payloads": 200,
+    "archive_members": 201,
+    "all_candidate22_and_helpers5_unchanged": true
+  },
+  "cold_replay": {
+    "actual_outer_optimization": [
+      0,
+      1,
+      2,
+      2
+    ],
+    "full_modes": 4,
+    "isolated_nonoptimized_worker": true,
+    "finite_results_identical": true,
+    "external_family_seals": 8,
+    "hostile_inventory_runs": 140,
+    "false_assertion_controls": 4,
+    "copy_corruption_runs": 4,
+    "repeated_after_local_driver_output_hardening": true
+  },
+  "priority": "Bounded primary evidence does not establish a complete predecessor; generic signature/quasimorphism and solvable-quotient tools are prior and explicitly credited. No firstness/current-openness certification.",
+  "accounting": {
+    "original_observed": 1,
+    "new_complete_mechanisms": 1,
+    "known_combined": 2,
+    "limit": 5,
+    "this_verification_added": 0,
+    "native_counts": [
+      0,
+      1,
+      1,
+      2
+    ],
+    "earlier_subprocesses_independently_observed": false
+  },
+  "operational_actions_performed": false,
+  "candidate_mutations_performed": false,
+  "audit_completion_percent": 100,
+  "pending": "Fix every required and optional issue globally, refreeze, and obtain a NEW complete-package review; all external actions remain pending."
+}

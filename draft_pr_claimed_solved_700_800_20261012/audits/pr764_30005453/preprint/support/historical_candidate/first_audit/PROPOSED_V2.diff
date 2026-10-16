@@ -1,0 +1,77 @@
+--- author_v1/PROOF.md
++++ proposed_author_v2/PROOF.md
+@@ -37,9 +37,11 @@
+ alternating arrays (2,0,2,0,...) and (0,2,0,2,...), in addition to the all-ones
+ array, as fixed points for every 0<alpha<1. Each vertex sees one nonzero incident
+ edge, so its denominator is nonzero. Thus the literal assertion of uniqueness
+-among all nonnegative fixed points is false. The intended non-vanishing
+-homogenization problem is addressed here. Initially zero edges also require a
+-different statement, because the dynamics never reinforce them.
++among all nonnegative fixed points is false. The theorem here addresses an
++explicitly corrected positive-equilibrium formulation. Interpreting this as the
++source's intended non-vanishing homogenization problem is an inference, not an
++explicit restriction in the report. Initially zero edges also require a different
++statement, because the dynamics never reinforce them.
+ 
+ ## 2. Positive equilibria in vertex coordinates
+ 
+@@ -377,7 +379,8 @@
+ * The stated stochastic proof uses unit initial counts, the initialization
+   in the cited paper. It extends without changing any estimates to arbitrary
+   deterministic positive integer initial counts, finite on each edge: in
+-  (12) subtract H(N_e(0)), whose contribution after scaling vanishes. No
++  (9) replace H(N_e(t)) by H(N_e(t))-H(N_e(0)); the initial constant vanishes
++  after scaling. No
+   uniform bound on those initial counts is needed for the coordinatewise
+   estimates. Fractional starting weights can be handled by replacing H with
+   the edge-specific sum over N_e(0)+j, but that extension is not needed for
+--- author_v1/README.md
++++ proposed_author_v2/README.md
+@@ -16,8 +16,10 @@
+ 
+ The source's word “unique” needs a positive-equilibrium qualifier. On the
+ infinite path, alternating 2/0 arrays are boundary fixed points even below
+-criticality. This package explicitly distinguishes that literal ambiguity
+-from the intended positive-equilibrium convergence question.
++criticality. This package distinguishes the false literal nonnegative-uniqueness
++statement from an explicitly corrected positive-equilibrium convergence question.
++Calling the latter the source's intended question is an interpretation; the report
++does not explicitly state that restriction.
+ 
+ Status: author-level candidate; independent adversarial review is pending.
+ No novelty, editorial, or priority claim is made. The public-source search did
+--- author_v1/SOURCE_REVIEW.md
++++ proposed_author_v2/SOURCE_REVIEW.md
+@@ -56,7 +56,8 @@
+ Targeted searches used the paper title, authors, WARM homogenization,
+ sublinear reinforcement, infinite graphs, and equilibrium terminology.
+ The author publication pages and primary-paper results were checked. No
+-retrieved primary source was found to establish the complete intended claim.
++retrieved primary source was found to establish the complete positive-equilibrium
++theorem stated here.
+ This is a dated, bounded search result, not proof of novelty or universal
+ absence of another result.
+ 
+@@ -69,8 +70,10 @@
+ 
+ ## Remaining validation
+ 
+-The package claims a complete author-level candidate proof of the intended
+-positive-equilibrium statement. The outstanding task is independent scrutiny
++The package claims a complete author-level candidate proof of an explicitly
++corrected positive-equilibrium statement. The primary report does not explicitly
++restrict uniqueness to positive equilibria; that reading is an interpretation,
++not a verified source convention. The outstanding task is independent scrutiny
+ of the compensator-normalized martingale law, passage to complete trajectories,
+ and the space-time maximum principle. There is no assertion that a numerical
+ check has discharged any of those analytic steps.
+--- author_v1/RESULT.json
++++ proposed_author_v2/RESULT.json
+@@ -1,6 +1,6 @@
+ {
+   "problem_id": 30005453,
+-  "outcome": "complete_candidate_proof_of_intended_positive_equilibrium_statement",
++  "outcome": "complete_candidate_proof_of_explicitly_corrected_positive_equilibrium_statement",
+   "author_check": "PASS",
+   "independent_check": "PENDING",
+   "hypotheses": [

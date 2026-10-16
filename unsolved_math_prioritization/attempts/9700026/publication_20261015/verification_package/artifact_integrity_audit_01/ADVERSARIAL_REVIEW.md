@@ -1,0 +1,11 @@
+# Independent read-only review of the artifact audit
+
+Timestamp: 2026-10-15T09:43:47.980114+00:00
+
+An internal independent subagent reviewed the full authored harness and both first final receipts without changing files, running supplied or mutated programs, copying corpora or contacting any outside person. It independently recomputed the 40/56 positive counts, 91/110 probe classifications, ten separate source-input rejection processes and 72 nested wrapper children. It found all positive processes passed and observed rejection reasons matched their intended checks. Common authentication and probe objects agreed across the two reviewed receipts. No private corpus, PDF or canonical-pair payload was found in them.
+
+It identified one reusable-harness gap: the generic probe classifier could otherwise label any newly accepted intended-rejection case as a legacy limitation. The harness now contains an explicit allowlist of the 22 observed legacy acceptance labels and refuses PASS for every other acceptance, including any strict-parser/ZIP regression. The reviewer read that patch and confirmed it closes the gap. Final receipts were rerun against the corrected code; their current digests and counts are checked again by the artifact auditor before the public manifest is finalized. The earlier reviewed harness digest was 539054e12e5a88ecdd2f82574ed00552e798553f6801c52329e80d1e505ad8f6; it is not claimed as the final corrected code digest.
+
+The review also clarified that the source checker binds the imported record statement hash, rather than extracting the author proof's prose; the report wording was corrected. It confirmed the distinction among fixed pins, resealed helper diagnostics and pre-execution startup trust.
+
+Residual assumptions are explicit: raw stdout/stderr capture is not a general redactor, despite the inspected bodies' present metadata-only outputs; TemporaryDirectory cannot guarantee cleanup after an uncatchable crash/SIGKILL; safe hardlink reuse relies on read-only code and absence of a concurrent adversary. The decision is artifact identity and finite reproducibility with documented limitations. Mathematical validity, primary-source interpretation, priority and reconstruction of the exact historical 106 tests remain separate and unestablished by this family.

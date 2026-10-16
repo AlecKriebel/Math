@@ -1,0 +1,16 @@
+{
+  "timestamp_utc": "2026-10-12T05:33:29.263913+00:00",
+  "comparisons": {
+    "manuscript.tex": {
+      "previous_stage_sha256": "2b18e880063553f8c55043d5d010374e29d00f84b7d82e0328c85be82d87ae10",
+      "current_sha256": "74bb774b46c75deac52e8f77cdb690e30f509c7e5f34b030c69f461f7a6072e1",
+      "diff": "--- round2/manuscript.tex\n+++ round3/manuscript.tex\n@@ -184,8 +184,9 @@\n Thus $\\ell u=0$ implies $u=0$. Symmetry of the ambient Hilbert function\n turns this injection into an isomorphism from degree $d$ to $d+1$.\n \n-The graded surjection $F[P]\\to F[L]$, setting outside variables to zero,\n-descends modulo $\\Theta$. Surjectivity of multiplication by $\\ell$\n+The natural graded subcomplex quotient $F[P]\\to F[L]$ sets outside\n+variables to zero and imposes the additional nonface relations of $L$.\n+It descends modulo $\\Theta$. Surjectivity of multiplication by $\\ell$\n descends as well: lift a target class upstairs, take an upstairs\n preimage, and project. Hence\n \\[\n"
+    },
+    "verification/reproduce.py": {
+      "previous_stage_sha256": "6228cecf8ece552fbb9e49d98b2919c3279ddf11c48cf40ffd338b46839a98ec",
+      "current_sha256": "13cc94f222ca09e31825cbb01715f715a5e7e0012da6725d03e20f595c8e6edc",
+      "diff": "--- round2/verification/reproduce.py\n+++ round3/verification/reproduce.py\n@@ -17,9 +17,11 @@\n \n \n def checked_file(relative_path, expected_hash):\n-    path = (ROOT / relative_path).resolve()\n+    unresolved = ROOT / relative_path\n+    path = unresolved.resolve()\n     require(path.is_relative_to(ROOT), \"Control path escapes package\")\n-    require(path.is_file() and not path.is_symlink(), \"Missing regular control file\")\n+    require(unresolved.is_file() and not unresolved.is_symlink(),\n+            \"Missing regular control file\")\n     data = path.read_bytes()\n     require(hashlib.sha256(data).hexdigest() == expected_hash,\n             \"Control file checksum mismatch: \" + relative_path)\n"
+    }
+  },
+  "correction_interpretation": "Only clarified natural subcomplex quotient and fixed unresolved direct-symlink guard. No theorem or numerical output change. Author scope change independently verified via original/current JSON in PACKAGE_CHECKS.json. Earlier reviews bind their own stages, not final hashes."
+}

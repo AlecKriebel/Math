@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-15T13:08:46.102174+00:00",
+  "controls": [
+    {
+      "tool": "historical_v1",
+      "timed_out": true,
+      "elapsed_seconds": 1.0064332499969169
+    },
+    {
+      "tool": "current_v2",
+      "timed_out": false,
+      "elapsed_seconds": 0.0637084580012015,
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys,base64;raw=base64.b64decode(sys.argv[1]);p=sys.argv[2];N={'__name__':'_read_only_test_','__file__':p};exec(compile(raw,p,'exec'),N);N['anchored'](__import__('pathlib').Path(sys.argv[3]),'0'*64)\n                                                                                                                                                   ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/reviews/full_package_01/private/cold/package/tools/portable_gate.py\", line 35, in anchored\n    data=bounded_read(child,TOOL_CAP)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/reviews/full_package_01/private/cold/package/tools/portable_gate.py\", line 17, in bounded_read\n    require(stat.S_ISREG(info.st_mode),'Opened object is not a regular file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/reviews/full_package_01/private/cold/package/tools/portable_gate.py\", line 13, in require\n    if not ok:raise RuntimeError(msg)\n              ^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Opened object is not a regular file\n"
+    }
+  ],
+  "interpretation": "Historical v1 tool-open blocks before regular-file test; current v2 O_NONBLOCK open and fstat promptly reject. Historical bytes preserved. No current-universal-proof conclusion.",
+  "external_actions": 0
+}

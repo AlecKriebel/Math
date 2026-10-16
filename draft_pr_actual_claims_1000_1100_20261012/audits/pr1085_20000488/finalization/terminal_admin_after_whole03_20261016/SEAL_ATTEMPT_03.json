@@ -1,0 +1,13 @@
+{
+  "event_order": "Third sealing attempt, after retained-live and retired-scratch custody rows all passed, before report/output seal creation.",
+  "command": "python3 -B finalization/terminal_admin_after_whole03_20261016/seal_admin.py",
+  "returncode": 1,
+  "stdout": "",
+  "error": "TypeError: cannot use 'set' as a set element (unhashable type: 'set')",
+  "cause": "Report generation accidentally used an extra pair of set braces when counting distinct retired locators. The custody rows, copy checks, protected identities, controls and closed ZIP checks had completed before this formatting error.",
+  "correction": "Use len({r['captured_locator'] for r in retired}) for the report's distinct-locator count.",
+  "seal_written": false,
+  "candidate_changed": false,
+  "controls_reclassified": false,
+  "ENOSPC_observed": false
+}

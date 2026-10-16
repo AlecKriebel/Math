@@ -1,0 +1,7 @@
+Closing without merging after independent mathematical, source/priority, and disposition reviews.
+
+The exact zero-minimizer theorem is correct; both original verifier suites and new independent convex/tomography checks reproduce. It cannot be accepted here as a new full resolution of the original open problem. Ferudun's earlier [preprint, DOI 10.5281/zenodo.23110494](https://doi.org/10.5281/zenodo.23110494), Lemma 2.1, explicitly proves the same universal box-feasible theorem and projected optimizer set. The deposited PDF and independent DOI registration establish public release on 2 October 2026, before this 4 October attempt.
+
+The draft also limits itself to exact optimizers and expressly excludes numerical/auxiliary recovery. We tested a reasonable extension using a three-direction unique binary image with a feasible kernel obstruction to every full-sign multiplier reconstruction. That stronger construction is already prior Theorem 4.2; independently checking it does not restore novelty. A new algorithm-specific theorem would require materially new research.
+
+The valid frozen derivation and reproducible review evidence are preserved in the [audit folder](https://github.com/AlecKriebel/Math/tree/main/draft_pr_claimed_solved_500_600_20261012/audits/pr523_30004064). The outcome is a source/priority rejection, not an allegation of an algebraic error.

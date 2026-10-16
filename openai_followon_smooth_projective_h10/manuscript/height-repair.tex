@@ -1,0 +1,325 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,
+urlcolor=blue!45!black,pdftitle={A conditional coefficient-prime repair of the five-point height argument},
+pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\GQ}{G_{\Q}}
+\newcommand{\hF}{h_{\mathrm F}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\setlength{\emergencystretch}{2em}
+\title{A conditional coefficient-prime repair\\of the five-point height argument}
+\author{Alec Kriebel\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We reconstruct the non-CM arithmetic part of the five-point height argument
+in the pinned source \cite{Pinned}, replacing its new unrestricted
+$2$-adic modularity input by Pan's published theorem at $5$.
+The $2$-adic member of the resulting system supplies the conductor at $5$.
+The deduction is conditional on the preceding geometric and height-comparison
+inputs stated below; it neither certifies the entire upstream manuscript nor
+establishes undecidability of rational polynomial solvability.
+\end{abstract}
+
+\section{Scope and geometric inputs}
+Write $h$ for absolute logarithmic Weil height and $\hF$ for the original
+stable Faltings height. Let $\mathcal C$ be the fixed five branch values
+of the discriminant-$210$ quaternionic quotient constructed in \cite{Pinned},
+after its fixed rational coordinate change putting one at $\infty$.
+The distinct involution labels $30,42,70,105,210$, each with a unique
+branch value, imply individual rationality because the involutions are
+$\Q$-defined (lines 162--173). This is that fixed configuration, not a
+construction for arbitrary five rational points. Choose primitive
+integral forms $L_b(U,V)$ vanishing at $b$, with $L_\infty=V$.
+For $s=(u:v)\notin\mathcal C$ put
+\[
+ n_{q,b}(s)=v_q(L_b(u,v))-\min\{v_q(u),v_q(v)\},\qquad
+ M=M_S(s)=\prod_{\substack{q\notin S\\\exists b:\ n_{q,b}(s)\ {\rm odd}}}q.
+\]
+These nonnegative contact orders are invariant under rational rescaling.
+The product is finite and $M\ge1$. Enlarge the fixed finite set $S$ to
+contain $2,3,5,7$ if necessary; this changes a claimed height bound only
+by a fixed constant. Put $T=S\cup\{q:q\mid M\}$.
+
+The following are the reconstructed inputs from \cite{Pinned},
+\texttt{04-height.tex}; their construction is outside the new substitution.
+All constants below depend only on the fixed data, never on $s$.
+\begin{enumerate}
+\item A fixed proper cover $\pi:Y\to\mathbf P^1$, with branch index two
+over $\mathcal C$, carries a principally polarized abelian surface family
+$\mathcal A$. For $y$ over $s$, $A=\mathcal A_y$ is defined over a Galois
+field $L/\Q$ of bounded degree, unramified outside $T$, and has good
+reduction over $L$ outside $S$. All geometric homomorphisms between its
+conjugates are $L$-defined; these conjugates are isogenous
+(lines 303--353 and 573--615).
+\item In the non-CM case $\End^0_{\overline\Q}(A)=B$, the fixed indefinite
+quaternion division algebra of discriminant $210$. Thus $A$ is absolutely
+simple. In the remaining case the preceding CM argument supplies a uniform
+upper bound for $\hF(A)$ (lines 623--687).
+\item The fixed family satisfies
+\begin{equation}\label{base}
+ h(s)\le C\bigl(1+\max\{0,\hF(A)\}\bigr)
+\end{equation}
+(lines 364--371, with its theta-height proof through line 567).
+\end{enumerate}
+The local reason for the first input is $\pi^*t=z^2$ after an unramified
+extension outside $S$: even contact gives unramified lifts. Properness of
+the spread family gives good reduction even where the fiber field ramifies.
+The CM case and \eqref{base} are retained inputs, not consequences of Pan.
+
+\begin{theorem}\label{main}
+Assuming the three inputs above, the non-CM arithmetic argument requires
+no unrestricted modularity theorem at $2$. Published modularity at $5$
+gives constants $H,c>0$ such that
+\[
+                         h(s)\le H M_S(s)^c
+       \qquad(s\in\mathbf P^1(\Q)\setminus\mathcal C).
+\]
+\end{theorem}
+
+\section{The prime-independent corrected action}
+Let $\Gamma=\operatorname{Gal}(L/\Q)$. Choose $L$-defined quasi-isogenies
+$\mu_\gamma:{}^\gamma A\to A$, $\mu_1=1$, with
+$\mu_\gamma{}^\gamma b=b\mu_\gamma$ for $b\in B$.
+Transport of the prescribed $B$-action gives an automorphism of $B$;
+Skolem--Noether corrects it to this $B$-linearity. Consequently
+\[
+ \mu_\gamma{}^\gamma\mu_\delta=c(\gamma,\delta)\mu_{\gamma\delta},
+ \qquad c(\gamma,\delta)\in\Q^\times.
+\]
+A scalar $c$ on a surface has degree $c^4$. With positive real algebraic
+$a_\gamma=(\deg\mu_\gamma)^{-1/4}$ and
+$\widetilde\mu_\gamma=a_\gamma\mu_\gamma$ we obtain the normalized cocycle
+\[
+ \widetilde\mu_\gamma{}^\gamma\widetilde\mu_\delta
+ =\epsilon(\gamma,\delta)\widetilde\mu_{\gamma\delta},
+ \qquad \epsilon=c/|c|\in\{\pm1\}.
+\]
+Here Galois transports the Hom factor and acts trivially on algebraic
+coefficient scalars. These are the source equations
+\texttt{hei:blinear} and \texttt{hei:sign-cocycle}
+(lines 710--750).
+
+The controlled splitting of lines 766--849 gives a finite Dirichlet
+character $\chi$, of order $m\le CM$, and a continuous scalar cochain
+$\beta:\GQ\to\mu_{2m}$ satisfying
+\begin{equation}\label{beta}
+ \beta^2=\chi,\qquad
+ \beta(g)\beta(h)/\beta(gh)=\epsilon(g,h).
+\end{equation}
+It is trivial on inertia outside $T$; $\chi$ is tame at odd primes and has
+bounded unit conductor at each fixed prime. To recall the control mechanism,
+identify $H^2(\GQ,\{\pm1\})$ with $\operatorname{Br}(\Q)[2]$.
+The class is locally zero outside $T$. The square-root obstruction of a
+local finite character is its value at $-1$. Odd characters modulo the
+offending odd primes, and the character modulo $4$ at $2$, match the
+finite local invariants; Brauer reciprocity matches the real invariant.
+Their product has order at most $2\prod_{q\in T,\ q\ne2}(q-1)\le CM$.
+Correct a continuous square-root cochain by a sign cochain to obtain
+\eqref{beta}. A single quadratic character cancels its finitely many
+unwanted odd-prime inertia signs outside $T$, introducing possible
+ramification only at $2\in S$.
+
+Since the inflated $\epsilon$ is one whenever either input lies in $G_L$,
+\eqref{beta} shows that $\beta|_{G_L}$ is a conjugacy-invariant character.
+Define $G_{L'}=\ker(\beta|_{G_L})$; then
+\begin{equation}\label{field}
+ L'/\Q\text{ is Galois},\qquad [L':\Q]\le2m[L:\Q]\le CM.
+\end{equation}
+For $\ell=5,2$ fix embeddings $\iota_\ell:\overline\Q\hookrightarrow
+\overline\Q_\ell$, and define on the extended covariant Tate module
+\begin{equation}\label{action}
+ R_\ell(g)=\iota_\ell(\beta(g)a_{\bar g})\,\mu_{\bar g}\circ g,
+ \qquad \bar g=g|_L,\qquad R_\ell\simeq r_\ell\oplus r_\ell .
+\end{equation}
+The two sign discrepancies cancel, so this is a continuous representation
+over a finite coefficient extension. Its $B$-commutation and matrix units
+in $B\otimes\overline\Q_\ell=M_2(\overline\Q_\ell)$ give the
+two-dimensional $r_\ell$. This remains valid at $5$, which ramifies in $B$:
+splitting is over algebraically closed \emph{coefficients}.
+On $G_{L'}$, $R_\ell$ is precisely $V_\ell(A)$ with extended coefficients.
+
+\section{Pan's theorem and its hypotheses}
+We use the $p=5$ specialization of Pan's Theorem 1.0.4 \cite{Pan}
+(author version, printed p.~5). A continuous irreducible two-dimensional
+$\overline\Q_p$ representation of $\GQ$, ramified at only finitely many
+places, odd, potentially semistable at $p$, and having distinct
+Hodge--Tate weights, arises from a cuspidal eigenform up to twist.
+There is no residual-image assumption for $p\ge5$.
+The extra exclusion in Pan's statement concerns only $p=3$, namely local
+residual semisimplification of the form $\eta\oplus\eta\omega$.
+
+Each hypothesis holds for $r_5$:
+Faltings' theorems \cite{Faltings} give semisimplicity and
+$\End_{G_{L'}}(V_5(A))=B\otimes\Q_5$.
+Using \eqref{action}, the commutant of $r_5|_{G_{L'}}$ after scalar
+extension is the scalars; semisimplicity therefore implies absolute
+irreducibility, also for $r_5$.
+At $5$, $A$ acquires semistable reduction over a further finite local
+extension of $L'$. Its Tate module is then semistable, as are its
+constituents. Hence $r_5$ is potentially semistable. The Hodge--Tate
+comparison and finite-extension descent of the de Rham property
+\cite{Fontaine} give cyclotomic exponents $0,1$ for $r_5$,
+each once (cyclotomic Hodge--Tate weight $-1$).
+
+For complex conjugation $j$, a scalar $r_5(j)$ would make $R_5(j)$ scalar.
+Betti comparison identifies $\mu_{\bar j}\circ j$ with conjugation
+followed by a holomorphic quasi-isogeny. It exchanges the two nonzero
+Hodge subspaces, contradicting scalar action. Since $j^2=1$,
+$r_5(j)$ has eigenvalues $1,-1$ and is odd.
+Outside $T\cup\{5\}$, inertia fixes $L$, good reduction kills its Tate
+action, and $\beta$ is trivial; thus ramification is finite.
+
+Apply Pan. In arithmetic-Frobenius normalization a weight-$k$ form has
+cyclotomic exponents $0,k-1$; a Tate twist by $n$ shifts both by $n$.
+The exponents $0,1$ force $k=2,n=0$; finite-character twists may be
+absorbed into the primitive form. If a dual presentation is used, the
+identity $V_f^\vee\simeq V_f\otimes\psi_f^{-1}\chi_{\rm cyc}^{1-k}$
+gives the same normalization. We obtain a primitive weight-two newform
+$f$ of level $N$ with $r_5\simeq V_{f,5}$.
+
+\section{Compatibility and the conductor at 5}
+For $q\notin T\cup\{2,5\}$, $q\nmid N$, choose arithmetic Frobenius
+$g$ at $q$. On the geometric good special fiber $\widetilde A$ put
+\[
+ u_q=\operatorname{red}(\mu_{\bar g})\circ
+       \operatorname{Frob}^{\rm rel}_q\in\End^0(\widetilde A),\qquad
+ \alpha_q=\tfrac12\beta(g)a_{\bar g}\Tr(u_q)\in\overline\Q.
+\]
+Clearing denominators, an abelian-variety endomorphism has a rational
+Tate characteristic polynomial independent of the coefficient prime.
+Thus $\iota_\ell(\alpha_q)=\Tr(r_\ell(g))$ for $\ell=5,2$.
+Choose the algebraic conjugate of $f$ selected by $\iota_5$.
+Injectivity gives $\alpha_q=a_q(f)$ in $\overline\Q$.
+Chebotarev and semisimplicity imply $r_2\simeq V_{f,2}$ for the
+\emph{same} conjugate. This reconstructs lines 992--1038 with $(5,2)$
+in place of $(2,3)$.
+
+Carayol's conductor comparison \cite{Carayol} applies at $q\ne\ell$,
+including monodromy. Accordingly use $r_5$ at every $q\ne5$, and
+$r_2$ at $q=5$. Outside $T$ the conductor exponent is zero.
+At large $q$, larger than $[L:\Q]$ and all fixed exceptional primes,
+wild inertia fixes $L$ and acts trivially on the prime-to-$q$ Tate module.
+Its $\beta$-image is sign-valued because $\beta^2=\chi$ is tame.
+A pro-odd group has no nontrivial sign quotient; hence $r_\ell$ is tame
+and has conductor exponent at most two.
+
+For completeness the bounded small-prime argument also covers $5$.
+For fixed $q$ and $F=L_v$, bounded degree leaves finitely many local fields.
+The square of $\beta|_{G_F}$ corresponds to $\chi\circ N_{F/\Q_q}$,
+with uniformly bounded unit conductor. On sufficiently deep units
+$U_F^b$, $\beta$ is sign-valued. Logarithmic coordinates show
+$(U_F^b)^2=U_F^b$ for odd $q$, or $U_F^{b+v_F(2)}$ at $2$,
+so $\beta$ is uniformly trivial sufficiently deep.
+Choose fixed $p_0\ge3$, $p_0\ne q$.
+Over $F_1=F(A[p_0])$ inertia is unipotent \cite{SilverbergZarhin};
+$[F_1:F]\le|\mathrm{GL}_4(\mathbf F_{p_0})|$.
+A compact unipotent $\ell$-adic group has no nontrivial pro-$q$ subgroup
+for $\ell\ne q$. The finite local-field choices and Herbrand rules
+therefore give a uniform upper ramification cutoff for $r_\ell$.
+Its Swan conductor and dimension-two inertia contribution are bounded.
+The fixed small primes contribute a constant, proving
+\begin{equation}\label{level}
+                              N\le CM^2.
+\end{equation}
+This argument uses bounded $[L:\Q]$, not the growing degree of $L'$.
+
+\section{The modular factor and five-point bound}
+Let $J=J_1(N)$, $g_0=\dim J$. Its $5$-adic module contains $r_5$.
+Over $G_{L'}$, $V_5(A)$ consists of two copies of $r_5$, so an
+extended-coefficient equivariant Hom to $V_5(J)$ is nonzero.
+In finite dimension finitely many commutation equations cut out the
+invariant Hom space; their kernels commute with scalar extension.
+Faltings thus gives an actual nonzero $L'$-map $A\to J$.
+Absolute simplicity makes its kernel finite; complete reducibility gives
+\[
+                           J\sim_{L'} A\times D_0.
+\]
+The source's Belyi-degree estimate and Javanpeykar's height bound
+\cite{Javanpeykar}, in the same stable-height convention, give
+$g_0\le CN^2$ and $\max\{0,\hF(J)\}\le CN^{12}$.
+
+Zarhin's trick \cite{Zarhin} gives a principally polarized complement
+$D_Z=(D_0\times D_0^\vee)^4$, and
+$C_1=J^8\sim_{L'} C_2=A^8\times D_Z$.
+Set $g=8g_0$ and $d=[L':\Q]$. By \eqref{field}--\eqref{level},
+$g\le CM^4$, $d\le CM$, and $\max\{0,\hF(C_1)\}\le CM^{24}$.
+Gaudron--R\'emond \cite{GR} gives an isogeny $\phi:C_1\to C_2$ with
+\[
+ \log\deg\phi\le1024g^3\!
+ \left(64g^2\log(14g)+\log d
+       +2\log\max\{\hF(C_1),\log d,1\}\right)\le CM^{C}.
+\]
+Crucially its source height is already known. Additivity and the
+isogeny-height inequality imply
+$8\hF(A)+\hF(D_Z)\le8\hF(J)+\frac12\log\deg\phi$.
+Bost's dimension-proportional lower bound \cite{Bost} gives
+$\hF(D_Z)\ge-C\dim D_Z$ in this normalization.
+Consequently $\hF(A)\le CM^C$.
+Combine with \eqref{base}; the retained uniform CM bound covers all other
+fibers and $M\ge1$ absorbs constants. This proves Theorem \ref{main}.
+
+\paragraph{Status and disclosure.}
+The new substitution is the choice of coefficient primes $(5,2)$ and the
+application of published Pan modularity; the geometric and height inputs
+and scalar descent are reconstructed from the pinned manuscript.
+This conditional supplement does not use the direct fixed-field
+von K\"anel--Kret shortcut and does not settle the separate pointwise
+$2$-converse dependency. AI tools were used in drafting, source inspection,
+and adversarial checking; these checks are not conventional peer review.
+
+\begin{thebibliography}{99}\footnotesize\raggedright
+\setlength{\itemsep}{2pt}\setlength{\parskip}{0pt}
+\bibitem{Pinned} OpenAI, \emph{Hilbert's tenth problem over the rational numbers},
+September 24, 2026, source commit
+\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+\href{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Hilberts-tenth-problem-over-the-rational-numbers-September-24-2026}{Pinned manuscript}.
+Line references are to \texttt{build/sections/04-height.tex};
+the contact definition is \texttt{02-reduction.tex}, lines 232--247.
+\bibitem{Pan} Lue Pan, \emph{The Fontaine--Mazur conjecture in the residually
+reducible case}, J. Amer. Math. Soc. \textbf{35} (2022), 1031--1169.
+\href{https://doi.org/10.1090/jams/991}{doi:10.1090/jams/991}.
+Theorem 1.0.4, \href{https://arxiv.org/pdf/1901.07166v2}{author version}.
+\bibitem{Faltings} G. Faltings, \emph{Endlichkeitss\"atze f\"ur abelsche
+Variet\"aten \"uber Zahlk\"orpern}, Invent. Math. \textbf{73} (1983), 349--366.
+\href{https://doi.org/10.1007/BF01388432}{doi:10.1007/BF01388432};
+erratum, \textbf{75} (1984), 381,
+\href{https://doi.org/10.1007/BF01388572}{doi:10.1007/BF01388572}.
+\bibitem{Fontaine} J.-M. Fontaine, \emph{Repr\'esentations $p$-adiques
+semi-stables}, Ast\'erisque \textbf{223} (1994), 113--184, especially \S3.9(ii).
+\href{https://www.numdam.org/item/AST_1994__223__113_0/}{Primary text}.
+\bibitem{Carayol} H. Carayol, \emph{Sur les repr\'esentations $l$-adiques
+associ\'ees aux formes modulaires de Hilbert}, Ann. Sci. ENS
+\textbf{19} (1986), 409--468, Theorem A, \S0.7.
+\href{https://doi.org/10.24033/asens.1512}{doi:10.24033/asens.1512}.
+\bibitem{SilverbergZarhin} A. Silverberg and Y. G. Zarhin,
+\emph{Semistable reduction and torsion subgroups of abelian varieties},
+Ann. Inst. Fourier \textbf{45} (1995), 403--420, Theorem 3.5.
+\href{https://doi.org/10.5802/aif.1459}{doi:10.5802/aif.1459}.
+\bibitem{Javanpeykar} A. Javanpeykar, \emph{Polynomial bounds for Arakelov
+invariants of Belyi curves}, Algebra Number Theory \textbf{8} (2014), 89--140.
+\href{https://doi.org/10.2140/ant.2014.8.89}{doi:10.2140/ant.2014.8.89}.
+\bibitem{GR} \'E. Gaudron and G. R\'emond, \emph{Polarisations et isog\'enies},
+Duke Math. J. \textbf{163} (2014), 2057--2108, Theorem 1.4.
+\href{https://doi.org/10.1215/00127094-2782528}{doi:10.1215/00127094-2782528}.
+\bibitem{Bost} J.-B. Bost, \emph{Intrinsic heights of stable varieties and
+abelian varieties}, Duke Math. J. \textbf{82} (1996), 21--70.
+\href{https://doi.org/10.1215/S0012-7094-96-08202-2}{doi:10.1215/S0012-7094-96-08202-2}.
+\bibitem{Zarhin} Y. G. Zarhin, \emph{Abelian varieties, quaternion trick and
+endomorphisms}, Springer Proc. Math. Stat. \textbf{409} (2023), 857--864,
+Theorem 1.1(ii) and Remark 1.4.
+\href{https://doi.org/10.1007/978-3-031-17859-7_42}{doi:10.1007/978-3-031-17859-7\_42}.
+\end{thebibliography}
+\end{document}

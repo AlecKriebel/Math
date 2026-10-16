@@ -1,0 +1,11 @@
+# Bounded support repair after whole review 01
+
+14 October 2026 UTC; PR1071, head fc37aa5169a0fe6adae0a254c9ee6c1531a2911f.
+
+Three P3 package findings were repaired: outputs now require new names outside the frozen root and real existing parent directories without symlink ancestors; every member, including the self-hash-excluded bootstrap manifest, is checked for regular/no-symlink/real-ancestor structure before parsing or archive writes; and CITATION.txt replaces the invalid root-type CFF with a parsed plain scholarly citation. New empty checker/compiler directories contain all subprocess files, logs, copies and receipts. No existing output is reused. This static policy does not address concurrent filesystem mutation.
+
+The paper source, PDF, nine submitted Git bodies, all three Zenodo bibliographic objects, original checker bytes, and all existing mathematical/source/priority reports/results are unchanged. The exact original invalid CFF is historical text under history/preparation01/CITATION.cff.invalid.txt, not a current citation. Original preparation status and pin records retain their dated meanings. All 92 original output pins resolve either to unchanged originals or exact saved before bytes. The current status is PENDING_NEW_WHOLE_02: one fresh whole review completed, minimum two, readiness/issues-resolved/published false, services held after PR1032. The root must adopt the bounded repair and obtain a new complete whole02 adversarial review; this repair is not that review.
+
+The original finite-checker program is copied byte-exact and replayed with explicit normal/-O wrapper controls. It supplies finite evidence only. No actual candidate compilation/render, PDF marker, paper edit, Git/service/DOI/PR/GWS action, external communication or new subagent was performed in this repair. The existing seven-page PDF is unchanged and remains subject to fresh whole-review inspection.
+
+The local audit resolves all 92 original preparation output pins, including external receipts, the previous ZIP and its sidecar. The distribution preserves selected exact before-byte text/code/manifest/descriptor snapshots; it does not redistribute the previous ZIP, its sidecar, raw compiler streams or all external preparation receipts. Current UPLOAD_BINDINGS.json is outside the ZIP and binds the current PDF/archive/manifest.

@@ -1,0 +1,36 @@
+{
+  "timestamp_utc": "2026-10-13T04:28:21.994756+00:00",
+  "issue": "R3-DIAG-01",
+  "repair": "Nine explicit require guards replace optimization-sensitive assert checks. Historical first-review files preserved separately; analytic derivation unchanged.",
+  "source_proof_unchanged": "88ceb90850cd364d3ef53a17d1c60beebff3a19b650c1af14b06c07c208e41fc",
+  "original_script_sha256": "760275683020e48248e3ce39939675f3181502369d5c409cef0753b9cf8694ee",
+  "current_script_sha256": "a0f1517642e84811235fdb062359beb3d9ab4a2e7ce5a27590b8d5356b1e7cea",
+  "normal_optimized_results_identical_except_timestamp": true,
+  "runs": [
+    {
+      "mode": "normal",
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"all checks passed\",\n  \"output\": \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr810_2307042/tmp/guard_replay/normal/CHECK_RESULTS.json\",\n  \"c\": \"0.0003249863618574431472124527589123768228204924635788521088419651505734290855509797544253967384722570216\",\n  \"b\": \"0.4434094419850369543294488988917042812670445443563069624181294412808471356050020304084614350294996563\",\n  \"exact_directional_minimum\": \"0.4052164889908448753055903994164126031366872641702449647343683442811830678775787441926099654063744527\",\n  \"mesh_min_gap_over_radius\": 0.1959768500374004\n}\n",
+      "stderr": ""
+    },
+    {
+      "mode": "negative_normal",
+      "exit_code": 1,
+      "expected_failure_observed": true,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr810_2307042/tmp/guard_replay/negative_normal/reproduce_checks.py\", line 146, in <module>\n    require(False, \"forced_failure_negative_control\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr810_2307042/tmp/guard_replay/negative_normal/reproduce_checks.py\", line 17, in require\n    raise RuntimeError(\"Diagnostic check failed: \" + check_name)\nRuntimeError: Diagnostic check failed: forced_failure_negative_control\n"
+    },
+    {
+      "mode": "optimized",
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"all checks passed\",\n  \"output\": \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr810_2307042/tmp/guard_replay/optimized/CHECK_RESULTS.json\",\n  \"c\": \"0.0003249863618574431472124527589123768228204924635788521088419651505734290855509797544253967384722570216\",\n  \"b\": \"0.4434094419850369543294488988917042812670445443563069624181294412808471356050020304084614350294996563\",\n  \"exact_directional_minimum\": \"0.4052164889908448753055903994164126031366872641702449647343683442811830678775787441926099654063744527\",\n  \"mesh_min_gap_over_radius\": 0.1959768500374004\n}\n",
+      "stderr": ""
+    },
+    {
+      "mode": "negative_optimized",
+      "exit_code": 1,
+      "expected_failure_observed": true,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr810_2307042/tmp/guard_replay/negative_optimized/reproduce_checks.py\", line 146, in <module>\n    require(False, \"forced_failure_negative_control\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr810_2307042/tmp/guard_replay/negative_optimized/reproduce_checks.py\", line 17, in require\n    raise RuntimeError(\"Diagnostic check failed: \" + check_name)\nRuntimeError: Diagnostic check failed: forced_failure_negative_control\n"
+    }
+  ],
+  "limitations": "Diagnostic evidence with analytic truncation estimates, not an interval-rounded certificate or proof of a radius."
+}

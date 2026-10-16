@@ -1,0 +1,152 @@
+{
+  "status": "NONCLEAN",
+  "utc": "2026-10-16T05:57:37.939549+00:00",
+  "candidate_revision": 6,
+  "actual_prior_rounds": 6,
+  "terminal07_explicitly_synthetic": true,
+  "operator": {
+    "bytes": 9163,
+    "sha256": "4d219a1543a1c01ef3653ef48ade657db4dabc4c0fafe8cd245c0d13af86524e"
+  },
+  "core_sha256": "8e1a0d7b3ca6e5d72e76415541b393fbfbe52e307368bc86b9e7982d5be27cd7",
+  "kit_sha256": "a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca",
+  "guards_unmodified": [
+    "capture_inventory",
+    "freeze_check",
+    "archive_check",
+    "original_check",
+    "review_check",
+    "accepted_package",
+    "accepted_review_check",
+    "merged_gate",
+    "source_gate",
+    "publication_links",
+    "descriptor_check",
+    "runtime_upload_copy",
+    "kit.verify",
+    "kit.run"
+  ],
+  "fake_only": [
+    "private fixture paths",
+    "Git/PR transport",
+    "Zenodo API/token/DOI factories"
+  ],
+  "cases": [
+    {
+      "case": "positive_reconciled_existing_stage",
+      "action": "inspect-stage",
+      "error": null,
+      "API_calls": [
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "positive_publication",
+      "action": "publish",
+      "error": null,
+      "API_calls": [
+        "GET",
+        "GET",
+        "POST",
+        "GET"
+      ],
+      "POST_count": 1
+    },
+    {
+      "case": "positive_public_DOI_inspect",
+      "action": "inspect",
+      "error": null,
+      "API_calls": [
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "actual_core_publication_links_accept_reconciled_stage_publish_inspect",
+      "pass": true
+    },
+    {
+      "case": "positive_lost_POST_response_recovers_without_second_POST",
+      "action": "publish",
+      "error": null,
+      "API_calls": [
+        "GET",
+        "GET",
+        "POST",
+        "GET"
+      ],
+      "POST_count": 1
+    },
+    {
+      "case": "prior_publish_intent_blocks_blind_repeat",
+      "action": "publish",
+      "error": "RuntimeError: PR946 exact-ID reconciliation: prior publish intent: inspect first",
+      "API_calls": [],
+      "POST_count": 0
+    },
+    {
+      "case": "DEFECT_final_GET_acceptance_before_POST",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: canonical acceptance changed during operation",
+      "API_calls": [
+        "GET",
+        "GET",
+        "POST",
+        "GET"
+      ],
+      "POST_count": 1,
+      "required_finding": "FP07-OPS-001",
+      "approval_or_source_invalid_before_POST": true,
+      "later_closing_guard_detected_only_after_POST": true
+    },
+    {
+      "case": "DEFECT_final_GET_source_hold_before_POST",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: current source identity/readiness holds",
+      "API_calls": [
+        "GET",
+        "GET",
+        "POST",
+        "GET"
+      ],
+      "POST_count": 1,
+      "required_finding": "FP07-OPS-001",
+      "approval_or_source_invalid_before_POST": true,
+      "later_closing_guard_detected_only_after_POST": true
+    },
+    {
+      "case": "DEFECT_operator_drift_during_first_GET_survives_all_later_guards",
+      "action": "publish",
+      "error": null,
+      "API_calls": [
+        "GET",
+        "GET",
+        "POST",
+        "GET"
+      ],
+      "POST_count": 1,
+      "required_finding": "FP07-OPS-002",
+      "canonical_operator_drifted": true
+    },
+    {
+      "case": "control_approval_revoked_in_first_GET_is_blocked_by_actual_core_guard",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: canonical acceptance changed during operation",
+      "API_calls": [
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "DEFECT_actual_operator_import_accepts_no_site_zero",
+      "required_finding": "FP07-OPS-003",
+      "returncode": 0,
+      "actual_no_site": 0,
+      "actual_isolated": 1,
+      "actual_dont_write_bytecode": 1
+    }
+  ],
+  "case_count": 11,
+  "actual_external_mutations": 0
+}

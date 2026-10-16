@@ -1,0 +1,92 @@
+"""Seal this completed review; no Git, network, author verifier or service calls."""
+from pathlib import Path
+import datetime
+import hashlib
+import json
+import os
+
+D = Path(__file__).resolve().parent
+
+
+def pin(p):
+    b = p.read_bytes()
+    return {'path':str(p.relative_to(D)), 'bytes':len(b),
+            'sha256':hashlib.sha256(b).hexdigest()}
+
+
+def check(condition, message):
+    if not condition:
+        raise RuntimeError(message)
+
+
+def main():
+    check(not (D/'OUTPUT_MANIFEST.json').exists() and
+          not (D/'SEAL_RECEIPT.json').exists(), 'Refusing to rewrite an existing completion seal')
+    inputs = json.loads((D/'READ_INPUT_PINS.json').read_text())
+    for row in inputs['files']:
+        body=Path(row['path']).read_bytes()
+        check(len(body)==row['bytes'] and hashlib.sha256(body).hexdigest()==row['sha256'],
+              'A reviewed input changed before completion seal')
+    verdict=json.loads((D/'VERDICT.json').read_text())
+    check(verdict['required_findings']==[] and verdict['optional_findings']==[],
+          'This seal must accurately preserve the completed verdict')
+    check(verdict['new_central_proof_search_turns']==0 and
+          verdict['completion_percent_for_assigned_mathematical_review']==100,
+          'Review incomplete or verification-only scope changed')
+    receipt=json.loads((D/'EXACT_CONTROL_PROCESS_RECEIPTS.json').read_text())
+    results=[]
+    for row in receipt['processes']:
+        check(row['exit_code']==0 and row['reaped'] and not row['timed_out'],
+              'Actual exact-control execution incomplete')
+        for stream,suffix in [('stdout','stdout.json'),('stderr','stderr.txt')]:
+            body=(D/(row['mode']+'.'+suffix)).read_bytes()
+            check(len(body)==row[stream+'_bytes'] and
+                  hashlib.sha256(body).hexdigest()==row[stream+'_sha256'],
+                  'Full process output custody failed')
+        data=json.loads((D/(row['mode']+'.stdout.json')).read_bytes())
+        check(data['PID']==row['PID'] and data['all_passed'] and data['checks']==699 and
+              data['purposeful_admissible_cases']==15 and data['negative_controls_detected']==33,
+              'Actual exact-control counts do not match completed report')
+        for key in ('PID','optimized'):
+            data.pop(key)
+        results.append(data)
+    check(len(results)==2 and results[0]==results[1], 'Normal/O substantive outputs differ')
+    check(not (D/'private_rendered_primary').exists(),
+          'Copyrighted temporary image bodies must not enter public review output seal')
+    rows=[]
+    for p in sorted(D.rglob('*')):
+        check(not p.is_symlink(), 'Review payload cannot contain a symlink')
+        if p.is_file():
+            rows.append(pin(p))
+    UTC=datetime.datetime.now(datetime.timezone.utc).isoformat()
+    manifest={'schema':'pr110-completed-independent-algebra-review-output-manifest/v1',
+              'UTC':UTC,'actual_sealer_PID':os.getpid(),'payload_file_count':len(rows),
+              'payload_bytes':sum(row['bytes'] for row in rows),'files':rows,
+              'excluded_self_referential_metadata':['OUTPUT_MANIFEST.json','SEAL_RECEIPT.json']}
+    m=D/'OUTPUT_MANIFEST.json'
+    m.write_text(json.dumps(manifest,indent=2)+'\n')
+    sealed={'schema':'pr110-completed-independent-algebra-review-seal/v1',
+            'UTC':UTC,'actual_sealer_PID':os.getpid(),'completed_actual_review':True,
+            'fixture':False,'simulation':False,'dry_run':False,
+            'REPORT':pin(D/'REPORT.md'),'VERDICT':pin(D/'VERDICT.json'),
+            'OUTPUT_MANIFEST':pin(m),'READ_INPUT_PINS':pin(D/'READ_INPUT_PINS.json'),
+            'payload_file_count':len(rows),'payload_bytes':manifest['payload_bytes'],
+            'all_reviewed_inputs_unchanged':True,'normal_optimized_outputs_authenticated':True,
+            'required_findings':[],'optional_findings':[],
+            'original_effort':'2/5','new_central_proof_search_turns':0,
+            'publication_or_priority_clearance':False}
+    s=D/'SEAL_RECEIPT.json'
+    s.write_text(json.dumps(sealed,indent=2)+'\n')
+    for row in rows:
+        check(pin(D/row['path'])==row, 'Sealing changed a payload body')
+    for p in D.rglob('*'):
+        if p.is_file():
+            p.chmod(0o444)
+    print(json.dumps({'actual_sealer_PID':os.getpid(),'UTC':UTC,
+                      'payload_file_count':len(rows),'payload_bytes':manifest['payload_bytes'],
+                      'REPORT':pin(D/'REPORT.md'),'VERDICT':pin(D/'VERDICT.json'),
+                      'OUTPUT_MANIFEST':pin(m),'SEAL_RECEIPT':pin(s)},indent=2))
+
+
+if __name__=='__main__':
+    main()

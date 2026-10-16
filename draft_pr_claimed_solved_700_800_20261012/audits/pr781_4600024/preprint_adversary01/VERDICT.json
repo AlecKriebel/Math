@@ -1,0 +1,34 @@
+{
+  "utc": "2026-10-16T10:51:06.890229+00:00",
+  "target_pr": 781,
+  "problem_id": 4600024,
+  "exact_head": "4a38c3ccc4cac918fb75fd4b97449f3ebd2e0f7f",
+  "verdict": "REPAIR_REQUIRED_ONE_VERIFIER_INPUT_READ_ISSUE",
+  "actionable_issue_count": 1,
+  "issues": [
+    {
+      "priority": 2,
+      "file": "source/verify_bundle.py",
+      "lines": [
+        22,
+        69
+      ],
+      "mechanism": "Blocking read_bytes opens of manifest/PDF FIFOs before regular-file enforcement",
+      "evidence": [
+        "SOURCE_MANIFEST_FIFO_PROBE.json",
+        "OPTIONAL_PDF_FIFO_PROBE.json",
+        "READ_GUARD_REPLAY.json"
+      ],
+      "fix": "Use explicit no-follow/nonblocking regular-file reads; add prompt normal/-O FIFO rejection controls, rebuild and obtain a fresh whole-package review."
+    }
+  ],
+  "mathematical_issues": [],
+  "priority_or_statement_issues": [],
+  "pdf_visual_issues": [],
+  "metadata_or_rebuild_issues": [],
+  "historical_firstness_certified": false,
+  "present_worldwide_openness_certified": false,
+  "candidate_modified": false,
+  "original_proof_attempt_budget": "3/5 unchanged",
+  "research_progress_for_this_review_percent": 100
+}

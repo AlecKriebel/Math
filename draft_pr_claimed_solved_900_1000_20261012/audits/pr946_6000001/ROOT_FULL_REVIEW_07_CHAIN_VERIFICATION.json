@@ -1,0 +1,972 @@
+{
+  "utc": "2026-10-16T05:57:22.667610+00:00",
+  "status": "PASS_ADVERSE_PACKET_INTEGRITY",
+  "pr": 946,
+  "problem_id": "6000001",
+  "candidate_revision": 6,
+  "freeze_sha256": "9af8f2570af53b6a6658a7998ac08927829c8747be7c764a8d2c392dc6c6afe1",
+  "operations_inventory_sha256": "f4742eca6ddd628ecac1e704fed772a17837d42d4d0fdef42c73d3cda3bed254",
+  "publication_operator": {
+    "bytes": 9163,
+    "sha256": "4d219a1543a1c01ef3653ef48ade657db4dabc4c0fafe8cd245c0d13af86524e"
+  },
+  "all_review_packets": [
+    {
+      "round": 1,
+      "manifest_sha256": "2f1a4ba73839b83280e9daba44fbe79e70b52a80761deded5314e0db99c7e834",
+      "public_payloads": 40,
+      "required_issues": [
+        {
+          "id": "FP01-OPS-001",
+          "severity": "required",
+          "category": "operational_review_history",
+          "location": "accept_pr946.py:370-495",
+          "finding": "A later sealed adverse canonical full_package_NN round can be omitted from the supplied consecutive clean prefix and the earlier prefix accepted.",
+          "evidence": [
+            "OPERATIONS_ADVERSARY.json",
+            "operations_adversary.py"
+          ],
+          "repair": "Inventory all canonical review directories safely and require the complete sealed consecutive sequence; reject omitted, malformed and unsealed canonical rounds."
+        },
+        {
+          "id": "FP01-OPS-002",
+          "severity": "required",
+          "category": "operational_schema",
+          "location": "accept_pr946.py:377-495",
+          "finding": "Current-freeze reviews accept missing candidate_revision, mismatched revision999, and absent COLD.normalized_fields_ignored despite mandatory schema.",
+          "evidence": [
+            "SCHEMA_ADVERSARY.json",
+            "operations_adversary.py"
+          ],
+          "repair": "Require mandatory keys/types explicitly for all review paths, compare revision to authenticated freeze, and require explicit exact empty normalization list."
+        }
+      ],
+      "optional_issues": [
+        {
+          "id": "FP01-OPS-003",
+          "category": "state_consistency",
+          "location": "accept_pr946.py:1205-1235",
+          "finding": "Full finalize selects next target but leaves publication summary omitting946 and carries its portable_release_tooling field to next target.",
+          "evidence": [
+            "FINALIZE_STATE_ADVERSARY.json",
+            "finalize_state_adversary.py"
+          ],
+          "repair": "Refresh publication summary from completed records and clear or scope target-specific tooling before selecting next target."
+        },
+        {
+          "id": "FP01-DOC-001",
+          "category": "document_metadata",
+          "location": "research_note.tex title/status area",
+          "finding": "Descriptor declares version1.0 and CC-BY4.0 but standalone PDF has no visible version/license notice.",
+          "evidence": [
+            "PDF_RENDER_REVIEW.json"
+          ],
+          "repair": "Add compact version1.0 and CC-BY4.0 notice consistent with descriptor."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "manifest_sha256": "e0361044f313b540f8a46b6a417a00a1777e22a33439e9a097aa0f9e7b54c3e6",
+      "public_payloads": 39,
+      "required_issues": [
+        {
+          "id": "FP02-OPS-001",
+          "severity": "required",
+          "category": "operational_review_history",
+          "location": "accept_pr946.py:620-633 accepted_package; merge/zenodo/tracker_append/native_write/finalize action boundaries",
+          "finding": "After acceptance, later actions neither reauthenticate the accepted complete sealed review chain nor inventory new canonical full_package_NN rounds. An adverse or unfinished round added after acceptance, including after readiness, can be ignored before merge and publication actions.",
+          "evidence": [
+            "INDEPENDENT_OPERATIONS_CONTROLS.json",
+            "independent_operations_controls.py",
+            "ACTION_BOUNDARY_REVIEW.json"
+          ],
+          "repair": "Revalidate accepted review seals/full records/current and historical freezes/issue resolutions and exact complete directory set at every later action, then recheck immediately before mutating dispatches, after readiness and per native CAS parent. Add new-adverse-round and changed-seal controls across all actions."
+        }
+      ],
+      "optional_issues": [
+        {
+          "id": "FP02-DOC-001",
+          "category": "source_link",
+          "location": "research_note.tex:455, PDF bibliography item7",
+          "finding": "Tubular-neighborhood citation uses non-www math.toronto.edu hostname, freshly HTTP404; www.math.toronto.edu serves the exact authenticated primary PDF.",
+          "evidence": [
+            "SOURCE_LINK_CONTROLS.json",
+            "PRIMARY_SOURCE_REVIEW.json"
+          ],
+          "repair": "Use https://www.math.toronto.edu/mgualt/courses/17-1300/docs/17-1300-notes-11.pdf and rebuild paper/archive/metadata pins consistently."
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "manifest_sha256": "28f08795caf265a412463b3b30880f29bcbc615eb84baf4b92010d1720326370",
+      "public_payloads": 35,
+      "required_issues": [
+        {
+          "id": "FP03-OPS-001",
+          "severity": "required",
+          "category": "operational_final_completion_review_history",
+          "location": "accept_pr946.py:1309-1316,1323-1350 finalize",
+          "finding": "The last accepted_review_check precedes CURRENT_STATE/inventory reads and gate_next. A new canonical pending/adverse review introduced during those reads is ignored before final workflow-completion state/log writes; pending review introduced during state reading also permits already_finalized=true recovery return.",
+          "evidence": [
+            "ACTION_CHAIN_CONTROLS.json",
+            "action_chain_controls.py",
+            "FULL_AUDIT.md"
+          ],
+          "repair": "Reauthenticate the complete accepted review history after all state/next-status reads immediately before the final completion-write sequence, and before the already-finalized return after state reading; add actual-directory behavioral pending/adverse/drift and positive-chain controls. Preserve candidate03 and older evidence, rebuild pins and commission a NEW entire full-package review."
+        }
+      ],
+      "optional_issues": []
+    },
+    {
+      "round": 4,
+      "manifest_sha256": "7fb99b465473a17ad54a363c4ee6f410023b3857343a5df2c356a705d50180d0",
+      "public_payloads": 39,
+      "required_issues": [
+        {
+          "id": "FP04-OPS-001",
+          "severity": "required",
+          "category": "operational_canonical_acceptance_refresh",
+          "location": "accept_pr946.py:620-637,711-730,1311-1317,1328-1344",
+          "finding": "The immediate shared guard does not reload canonical ACCEPTANCE.json. Revocation or accepted theorem drift during late state/next-status reads still allows completion or already_finalized; acceptance revocation during ready still permits the subsequent merge dispatch.",
+          "evidence": [
+            "ACTION_CHAIN_CONTROLS.json",
+            "action_chain_controls.py",
+            "FULL_AUDIT.md"
+          ],
+          "repair": "Refresh and validate canonical acceptance at each immediate boundary, require exact consistency with the authenticated action snapshot and stop on revocation or drift, including after intervening service reads. Preserve captured execution and uncertain-action recovery semantics."
+        },
+        {
+          "id": "FP04-OPS-002",
+          "severity": "required",
+          "category": "operational_current_freeze_refresh",
+          "location": "accept_pr946.py:493-560,620-637,1311-1317,1328-1344",
+          "finding": "The immediate shared guard retains the already-loaded current freeze and does not reread every current frozen file. Standalone current TeX or FREEZE drift introduced during state/next-status reads still allows completion or already_finalized while a fresh accepted_package immediately rejects.",
+          "evidence": [
+            "ACTION_CHAIN_CONTROLS.json",
+            "action_chain_controls.py",
+            "FULL_AUDIT.md"
+          ],
+          "repair": "Reauthenticate the externally pinned current freeze and complete current payload/evidence context at existing immediate boundaries and compare the refreshed snapshot, including after reads inside the guard. Retain snapshot execution semantics; no atomic hostile-filesystem guarantee is required."
+        }
+      ],
+      "optional_issues": []
+    },
+    {
+      "round": 5,
+      "manifest_sha256": "4d60602995d799a0850c4657b3401ad9c353460800f1fbd752c532b73b6963b2",
+      "public_payloads": 48,
+      "required_issues": [
+        {
+          "id": "FP05-OPS-001",
+          "severity": "required",
+          "category": "initial_acceptance_final_canonical_refresh",
+          "location": "accept_pr946.py:696-726",
+          "finding": "Initial accept authenticates current candidate and full reviews, then performs a final premerge/source/original reread without refreshing current freeze/payload/dependency context afterward. A current TeX change during the final actual source_gate still writes canonical ACCEPTANCE for the stale freeze. Fresh accepted_package rejects the same tree, so later external actions remain blocked.",
+          "evidence": [
+            "LATE_REFRESH_CONTROLS.json",
+            "late_refresh_controls.py",
+            "CURRENT05_CONTROLS.json"
+          ],
+          "repair": "After final live/source/original/review reads, reauthenticate and compare the current externally pinned candidate and operational dependency context before writing acceptance. Cover currentFREEZE/payload/evidence/dependency drift. Preserve captured execution and no-OS-atomicity limits."
+        },
+        {
+          "id": "FP05-OPS-002",
+          "severity": "required",
+          "category": "late_sealed_review_content_refresh",
+          "location": "accept_pr946.py:634-655",
+          "finding": "The shared guard authenticates full reviews, refreshes canonical acceptance/current freeze/dependencies, then scans only review-directory names. Changing a sealed terminal review payload or MANIFEST during the intervening current-state refresh is missed and the guard returns. Fresh accepted_package rejects the same tree. This is a deterministic intervening-read gap, not an atomic hostile-filesystem requirement.",
+          "evidence": [
+            "LATE_REFRESH_CONTROLS.json",
+            "late_refresh_controls.py",
+            "SERVICE_BOUNDARIES.json",
+            "service_boundaries.py",
+            "CURRENT05_CONTROLS.json"
+          ],
+          "repair": "Reauthenticate externally sealed review contents/seals and the complete canonical directory set after intervening current-candidate reads, comparing with the accepted chain. Test payload and seal drift while canonical dependencies refresh plus valid complete-chain controls. Do not promise OS atomicity."
+        }
+      ],
+      "optional_issues": []
+    },
+    {
+      "round": 6,
+      "manifest_sha256": "1c75fc274754826a9d189a7e5e5ac206782deddd0a91dc75d0636d9aa787de71",
+      "public_payloads": 61,
+      "required_issues": [],
+      "optional_issues": []
+    },
+    {
+      "round": 7,
+      "manifest_sha256": "eb55f996d2149104316d840103b641b104e60b371a7d6bef5202aa117406898d",
+      "public_payloads": 66,
+      "required_issues": [
+        {
+          "id": "FP07-OPS-001",
+          "priority": "P1",
+          "title": "Final GET permits approval/source invalidation before publish POST",
+          "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+          "lines": [
+            68,
+            73
+          ],
+          "evidence": "OPERATOR_INTEGRATION.json cases DEFECT_final_GET_acceptance_before_POST and DEFECT_final_GET_source_hold_before_POST",
+          "repair": "Run complete current approval/source/operator closure after the final external GET and before the sole POST; no external read may reopen the window.",
+          "mathematical": false
+        },
+        {
+          "id": "FP07-OPS-002",
+          "priority": "P1",
+          "title": "Repeated closing guards omit current canonical additional operator bytes",
+          "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+          "lines": [
+            124,
+            127
+          ],
+          "evidence": "OPERATOR_INTEGRATION.json case DEFECT_operator_drift_during_first_GET_survives_all_later_guards",
+          "repair": "Include separately pinned canonical operator fingerprint and inspected-review identity in every effective action/receipt closing guard without rewriting old frozen seven-source inventory.",
+          "mathematical": false
+        },
+        {
+          "id": "FP07-OPS-003",
+          "priority": "P2",
+          "title": "Startup accepts actual no_site=0 despite required -S",
+          "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+          "lines": [
+            7,
+            10
+          ],
+          "evidence": "OPERATOR_INTEGRATION.json case DEFECT_actual_operator_import_accepts_no_site_zero",
+          "repair": "Check sys.flags.no_site before nonbuiltin imports and add real omitted-S negative control.",
+          "mathematical": false
+        }
+      ],
+      "optional_issues": []
+    }
+  ],
+  "authenticated_review_chain": null,
+  "latest_result": {
+    "pr": 946,
+    "problem_id": "6000001",
+    "original_pr_head": "7d3adb0e500b0414a49a449e7981d34ade329427",
+    "reviewer_agent_id": "/root/pr946_full_package_07",
+    "clean_context": true,
+    "full_reproducer_completed": true,
+    "started_utc": "2026-10-16T05:39:07.105105+00:00",
+    "completed_utc": "2026-10-16T05:55:17.456808+00:00",
+    "candidate_revision": 6,
+    "candidate_pins": {
+      "freeze": "9af8f2570af53b6a6658a7998ac08927829c8747be7c764a8d2c392dc6c6afe1",
+      "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+      "pdf": "b874d63619ec7abbd3d9109639eb017b69435118c4cc9d5fec450605e4316e42"
+    },
+    "inspected_helper_hashes": {
+      "accept_pr946.py": {
+        "bytes": 85902,
+        "sha256": "8e1a0d7b3ca6e5d72e76415541b393fbfbe52e307368bc86b9e7982d5be27cd7"
+      },
+      "merge_pr946.py": {
+        "bytes": 7123,
+        "sha256": "8cef58dad47aff16ec8863212051366e91e24c9ae1905412f6fec373a09585b9"
+      },
+      "run_pr946_zenodo.py": {
+        "bytes": 7124,
+        "sha256": "c66c13733bc03fe4fa66cc541a29d7b7cc84cfc72408bbfb42329927f268a322"
+      },
+      "append_pr946_tracker.py": {
+        "bytes": 7125,
+        "sha256": "f7bb2d9cffb672c2da95e691a4ed41e421ddb954d9fc3397dea35074abde2ca4"
+      },
+      "update_pr946_publication_ledger.py": {
+        "bytes": 7124,
+        "sha256": "5ccc7375eb8d7fad65e2ba421cc4041cda085ea364224d5122a9857256d18cac"
+      },
+      "finalize_pr946_and_gate_next.py": {
+        "bytes": 7126,
+        "sha256": "1e72f8760dec3456d701bf96bd27495ddafb4e15402a85858d4b5befd21e18c4"
+      }
+    },
+    "inspected_publication_operator": {
+      "bytes": 9163,
+      "sha256": "4d219a1543a1c01ef3653ef48ade657db4dabc4c0fafe8cd245c0d13af86524e"
+    },
+    "required_issues": [
+      {
+        "id": "FP07-OPS-001",
+        "priority": "P1",
+        "title": "Final GET permits approval/source invalidation before publish POST",
+        "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+        "lines": [
+          68,
+          73
+        ],
+        "evidence": "OPERATOR_INTEGRATION.json cases DEFECT_final_GET_acceptance_before_POST and DEFECT_final_GET_source_hold_before_POST",
+        "repair": "Run complete current approval/source/operator closure after the final external GET and before the sole POST; no external read may reopen the window.",
+        "mathematical": false
+      },
+      {
+        "id": "FP07-OPS-002",
+        "priority": "P1",
+        "title": "Repeated closing guards omit current canonical additional operator bytes",
+        "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+        "lines": [
+          124,
+          127
+        ],
+        "evidence": "OPERATOR_INTEGRATION.json case DEFECT_operator_drift_during_first_GET_survives_all_later_guards",
+        "repair": "Include separately pinned canonical operator fingerprint and inspected-review identity in every effective action/receipt closing guard without rewriting old frozen seven-source inventory.",
+        "mathematical": false
+      },
+      {
+        "id": "FP07-OPS-003",
+        "priority": "P2",
+        "title": "Startup accepts actual no_site=0 despite required -S",
+        "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+        "lines": [
+          7,
+          10
+        ],
+        "evidence": "OPERATOR_INTEGRATION.json case DEFECT_actual_operator_import_accepts_no_site_zero",
+        "repair": "Check sys.flags.no_site before nonbuiltin imports and add real omitted-S negative control.",
+        "mathematical": false
+      }
+    ],
+    "optional_issues": [],
+    "clean_for_preprint": false,
+    "strongest_verified_theorem": "For every smooth Hausdorff second-countable manifold without boundary of fixed finite dimension n>=1, every positive Riemannian metric g and every prescribed ordered mutually g-dual torsion-free connection pair (nabla,nabla*) admit a proper smooth embedding into one open subset U of R^N, N=binomial(2n+4,3)>n, carrying one smooth function Psi with everywhere positive ordinary Hessian G, such that f*G=g and the G-orthogonal tangential projections of the standard flat connection D and its G-dual D* induce exactly (nabla,nabla*) in that order; both ambient connections are torsion-free and flat. Among general smooth positive Riemannian dual pairs in this category, vanishing of both torsions is necessary and sufficient. Countable zero-dimensional and empty cases have the separate trivial realization in R. No convexity, completeness, global dual-gradient injectivity, finite probability model, optimal dimension or historical novelty is asserted.",
+    "mathematical_remaining_gap_for_stated_theorem": null,
+    "prior_issue_resolution": {
+      "O1": {
+        "verified": true,
+        "resolution": "All three inhomogeneous scalar third-jet terms are explicit in equation7; new nonlinear2D exact checks validate8 entries and detect tensor-only omissions.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "O2": {
+        "verified": true,
+        "resolution": "Varying-base nonholonomic germs are distinguished from one global scalar; fixed coefficients in E and later base differentiation independently reconstructed before prior verdicts.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "O3": {
+        "verified": true,
+        "resolution": "The proper log(t) example has smooth unbounded t^3/6 coefficient and unit third derivative, newly checked exactly; no minimum-norm claim.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "SM-OPTIONAL-1": {
+        "verified": true,
+        "resolution": "Actual Amari84–85/87 personally viewed: torsion/curvature flatness and local dual coordinates support direct current citations.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "global_hessian/optional_exposition/0": {
+        "verified": true,
+        "resolution": "Actual Gualtieri43–44 personally viewed; fresh wwwURL returns exact authenticated variable-radius primary PDF.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "global_hessian/optional_exposition/1": {
+        "verified": true,
+        "resolution": "dr=P_T and dnu=P_N and zero first jet of the normal correction are explicit and independently derived.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "global_hessian/optional_exposition/2": {
+        "verified": true,
+        "resolution": "Completed-square Schur lower bound(2+t)I is displayed and new exact unbounded2x3 block controls detect omission of normal correction.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "global_hessian/optional_exposition/3": {
+        "verified": true,
+        "resolution": "Actual Whitney654Theorem1/665Lemma19fn32 personally viewed, including proper finite-limit-point removal.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "global_adversary/optional_findings/0": {
+        "verified": true,
+        "resolution": "Global scope and excluded convexity/completeness/dual-gradient injectivity/boundary/indefinite/probability/optimal-dimension conclusions remain clear in all outputs.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "global_adversary/optional_findings/1": {
+        "verified": true,
+        "resolution": "Circle/noncompact-parabola companion illustrations remain authenticated and actually replay in all4 cold modes; universal proof is separately reconstructed.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "global_adversary/optional_findings/2": {
+        "verified": true,
+        "resolution": "Universal mathematics, bounded priority, finite computation and complete operations are independently assessed; none is substituted for another.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "reproducibility/required_findings/0": {
+        "verified": true,
+        "resolution": "Fresh historical strict wrapper fails; direct actual replay has9/12 different sample floats/max2.1032064978498966e-12. Exactly12 typed finite bounded fields pass88 negatives and44 exact-leaf/domain controls, with no roundoff-proof claim.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "reproducibility/required_findings/1": {
+        "verified": true,
+        "resolution": "Actual immutable native state/history lack target events. Declared4/5, unknown historical total, unauthenticated native history and0audit proof responses are honest in every publication path.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "reproducibility/optional_findings/0": {
+        "verified": true,
+        "resolution": "Fresh corrupted-proof original auditA fails normally and falsely passes O/OO. Actual current diagnostic children are isolated optimization0/-B in all4 outer modes.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "reproducibility/v1_FIFO_required_repair": {
+        "verified": true,
+        "resolution": "Actual v1 FIFO timeout and v2 prompt rejection reproduced;15 nonblocking/6link tests include forced stat/open replacement, caps, growth and ancestor links.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "priority_falsifier/required_repair/0": {
+        "verified": true,
+        "resolution": "Actual authorized AJLS221/222/237/238 personally viewed: finitecompact/countablenoncompact statements available; p239/full chapter still unaudited.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "priority_falsifier/required_repair/1": {
+        "verified": true,
+        "resolution": "Older unrestricted finite-simplex claims remain substantive adverse evidence; final2006/2007 bodies remain unavailable, and neither falsity/erratum/firstness/current openness follows.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "priority_falsifier/required_repair/2": {
+        "verified": true,
+        "resolution": "Actual Lauritzen/Matumoto/Lê/Marugame/LoiMatta/Osipov ancestry and mechanism limits checked and credited; properness/globalchart/dimension do not shield historical priority.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "priority_falsifier/required_repair/3": {
+        "verified": true,
+        "resolution": "All8 family seals and v2 repair, all6 full seals/every curated payload and complete223-file historical candidates with7 sources authenticated without changing old reports.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP01-OPS-001": {
+        "verified": true,
+        "resolution": "Actual current06 canonical directory scan rejects omitted/pending/adverse/malformed/mixedcase/gap/symlink rounds; all6 prior seals plus synthetic07 retained.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP01-OPS-002": {
+        "verified": true,
+        "resolution": "Mandatory exacttyped RESULT/START/END/COLD fields and positive matching revision/explicit empty normalization enforced on actual current and historical paths. Missing/wrongtype controls and re-sealed synthetic revision999/bool/whole-receipt negatives reject.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP01-OPS-003": {
+        "verified": true,
+        "resolution": "Complete actual positive finalizer recomputes publication summary and clears target-specific tooling; completion/repeat and status-only next selection pass.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP01-DOC-001": {
+        "verified": true,
+        "resolution": "All6 actual PDF pages freshly rendered and personally viewed; page1 version1.0 and CCBY4.0 match descriptor.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP02-OPS-001": {
+        "verified": false,
+        "resolution": "Original seven-source core repairs pass current07 cases, but extending the entire current-approval/action-window contract to the additional operator exposes FP07-OPS-001 and FP07-OPS-002. The extended broad contract remains unresolved.",
+        "review07_evidence": [
+          "OPERATOR_INTEGRATION.json",
+          "FULL_AUDIT.md"
+        ]
+      },
+      "FP02-DOC-001": {
+        "verified": true,
+        "resolution": "Correct wwwToronto URL serves exact authenticated primary PDF; current TeX/PDF/archive cite it consistently.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP03-OPS-001": {
+        "verified": true,
+        "resolution": "Actual current06 late state/nextstatus and already-finalized windows reject new pending/adverse rounds and sealed-history drift; positive completion/recovery pass.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP04-OPS-001": {
+        "verified": true,
+        "resolution": "Actual accepted_state_check refreshes full canonical acceptance before and after intervening original/review reads; revocation/theorem/accepted-record drift rejects at shared, postready and final-state/status boundaries.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP04-OPS-002": {
+        "verified": true,
+        "resolution": "Actual candidate_state_check recaptures7 dependencies and exact external FREEZE/all223+77payload/evidence identities; TeX/FREEZE/helper/inventory/evidence drift rejects after intervening reads and before actions/completion.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP05-OPS-001": {
+        "verified": true,
+        "resolution": "Initial actual accept reauthenticates current candidate/dependencies after final actual premerge/source/original reads, then closes sealed review/historical contexts before exclusive approval save. Nine object classes plus pending/adverse injections reject without creating ACCEPTANCE; valid actual initial approval/readback passes in fake fixture.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "FP05-OPS-002": {
+        "verified": true,
+        "resolution": "Actual shared closing review_state_check authenticates all externally sealed review payloads/seals/historical candidate sources after the second current-FREEZE refresh. Payload/seal/historical-file/dependency/pending/adverse injections reject, with actual review_check unmodified.",
+        "review07_evidence": [
+          "INDEPENDENT_DERIVATION.md",
+          "PRIMARY_SOURCE_REVIEW.md",
+          "COLD_REPLAY.json",
+          "PRESERVATION_CHECKS.json",
+          "CURRENT07_CONTROLS.json",
+          "CLOSURE07_CONTROLS.json",
+          "CONTRACT07_CONTROLS.json",
+          "SERVICE_BOUNDARIES.json",
+          "ACTION_ENTRY_CONTROLS.json",
+          "MERGE_RECOVERY07_CONTROLS.json",
+          "NATIVE_RETRY07_CONTROLS.json",
+          "SCHEMA_CONTROLS.json"
+        ],
+        "scope": "Original scientific package and original seven-source core, independently rerun in review07 with six real prior seals plus synthetic07."
+      },
+      "PUB946-METADATA-001": {
+        "verified": false,
+        "resolution": "Only the exact observed notes escape is safely normalized and exact files/metadata verified by unchanged kit, with positive receipt linkage and29original tests passing. The entire production-resume repair is not complete until FP07-OPS-001/002/003 are repaired and independently rereviewed. No actual publication performed.",
+        "review07_evidence": [
+          "METADATA_STORAGE_REVIEW.json",
+          "OPERATOR_INTEGRATION.json",
+          "ORIGINAL29_REPLAY.json"
+        ]
+      }
+    },
+    "whole_package_review_completed": true,
+    "assigned_review_completion_percent": 100,
+    "actual_external_mutations": 0,
+    "canonical_candidate_mutations": 0,
+    "new_proof_search_responses": 0,
+    "new_target_realization_mechanisms": 0,
+    "original_declared_turns": "4/5",
+    "historical_native_event_history_authenticated": false,
+    "original_total_attempt_count_known": false,
+    "review_fixture": {
+      "actual_scientific_candidate": 6,
+      "prior_real_full_seals": 6,
+      "complete_historical01_to05_candidates": 5,
+      "round06_current_candidate06": true,
+      "terminal07_explicitly_synthetic": true,
+      "current_context_cases": 183,
+      "schema_cases": 79,
+      "new_actual_operator_core_kit_integration_cases": 11
+    },
+    "no_OS_sandbox_or_atomic_filesystem_claim": true,
+    "limitations": [
+      "Bounded primary-body access; no novelty/firstness/current-openness certification.",
+      "No independent human peer review or formal proof certification.",
+      "All API/Git mutation boundaries fake; original production record remains unpublished per saved readback.",
+      "Three required additional-operator defects remain; no clean acceptance authorized."
+    ]
+  },
+  "expected_readiness_rejection": "PR946 guard: latest complete review must clear exact current package with no findings",
+  "ready_to_approve": false,
+  "fresh_merged_destination": {
+    "utc": "2026-10-16T05:57:21.564513+00:00",
+    "baseRefName": "main",
+    "actual_PR_readback": {
+      "baseRefName": "main",
+      "body": "## Accepted scope\n\nPublishes the unchanged complete global proper statistical-embedding proof and two full independent AI audits for problem 6000001. Scoped status: `claimed_solved`, 4/5 author turns. Smooth positive-definite boundaryless statistical manifolds with both specified dual connections torsion-free embed into a positive-Hessian open domain in dimension binomial(2n+4,3). Ambient convexity, completeness, global dual coordinates, finite probability models, optimal dimension, novelty and journal acceptance are not claimed. AI-assisted and unrefereed; independent AI review is not human peer review or formal certification.\n\nIncludes only authored proof/audits/acceptance, replay scripts and public source-verification metadata. The existing QUEUE file changes only this problem's Status, Turns and Findings; all other bytes are preserved.\n\n## External verification anchors\n\n- PUBLIC_MANIFEST.json SHA-256: `29cb50b07af6a65b633516b5d86eed1dae93d57cf2abfb264b18eb9555a29903`\n- verify_publication.py SHA-256: `7b0c100d43d1296afa01279476688391bc35a2291ea5858915b70ef2c1810625`\n- mutation_tests.py SHA-256: `ea39250778445149237fb6fd03581f21eff7059d7cd71895fa5cb7874a8e0b64`\n\nAuthenticate these external pins before running downloaded scripts. Finite controls and hash checks do not prove the global theorem. See attempts/6000001/README.md for reproduction and evidence boundaries.\n\nDraft only. Exact-head remote byte verification, downloaded replay and hosted-check inspection are being completed; no hosted-CI pass is claimed.",
+      "headRefName": "dot/statistical-embedding-6000001-proof-20261007",
+      "headRefOid": "7d3adb0e500b0414a49a449e7981d34ade329427",
+      "isDraft": false,
+      "mergeCommit": {
+        "oid": "918948421d00b1184a88ca07017134726b466adb"
+      },
+      "mergedAt": "2026-10-16T05:26:48Z",
+      "number": 946,
+      "state": "MERGED",
+      "title": "Problem 6000001: audited global statistical embedding proof",
+      "url": "https://github.com/AlecKriebel/Math/pull/946"
+    },
+    "merge_commit": "918948421d00b1184a88ca07017134726b466adb",
+    "observed_remote_main": "ffbb738ae74609facb41a7e09fdc9a6c0bfed221",
+    "merge_commit_is_ancestor_of_observed_main": true,
+    "source_gate": {
+      "utc": "2026-10-16T05:57:20.666570+00:00",
+      "remote_main": "ffbb738ae74609facb41a7e09fdc9a6c0bfed221",
+      "present": true,
+      "holds": [],
+      "statement_hash": "04707260f4ed2585125f1da57279c9cf1da447cd99a9010d463e5be43dc945cd",
+      "review_hash": "f8584e1f273da5d42d94704da74c51cf5aa9f0100b44e2bc9b2096c45eabf4fb",
+      "related_target_membership": {}
+    }
+  },
+  "originals_checked": 33,
+  "acceptance_created_or_changed": false,
+  "external_mutations": 0,
+  "new_proof_responses": 0
+}

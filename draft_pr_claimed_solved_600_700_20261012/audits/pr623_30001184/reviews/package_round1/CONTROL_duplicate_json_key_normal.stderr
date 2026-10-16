@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/package_round1/tmp/control_duplicate_json_key/verify_package.py", line 152, in <module>
+    main()
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/package_round1/tmp/control_duplicate_json_key/verify_package.py", line 103, in main
+    doc = integrity()
+          ^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/package_round1/tmp/control_duplicate_json_key/verify_package.py", line 35, in integrity
+    doc = read_json(ROOT / MANIFEST)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/package_round1/tmp/control_duplicate_json_key/verify_package.py", line 31, in read_json
+    return json.loads(path.read_text(), object_pairs_hook=unique_object)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/package_round1/tmp/control_duplicate_json_key/verify_package.py", line 25, in unique_object
+    require(key not in result, 'duplicate JSON key: ' + key)
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/package_round1/tmp/control_duplicate_json_key/verify_package.py", line 19, in require
+    raise ValueError(message)
+ValueError: duplicate JSON key: schema

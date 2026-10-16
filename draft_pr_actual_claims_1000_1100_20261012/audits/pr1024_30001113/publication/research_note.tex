@@ -1,0 +1,285 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\F}{\mathbb F}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Th}{\Theta}
+\title{A characteristic-two counterexample to d\'evissage\newline
+for local deformation functors}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID:
+\href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{12 October 2026\quad (research note)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a negative answer to the unrestricted fibre-product question for
+local deformation functors posed by Byszewski. For the weakly ramified action
+of the additive group of $\F_4$ given by $t\mapsto t/(1+at)$, and its subgroup
+$\F_2$, restriction--induction cannot be formally smooth over any
+prorepresentable recipient, regardless of its tangent dimension. The proof
+combines the known involution deformation pathology with an exact calculation
+showing that restriction has injective tangent map. The variant assuming
+prorepresentability of the subgroup and quotient deformation functors is
+untouched. The involution pathology and additive action are established prior
+ingredients; the contribution is their use to obstruct the proposed
+factorization.
+\end{abstract}
+
+\section{The unrestricted question and the counterexample}
+Let $k$ be a perfect field of characteristic $p$ and $\mathcal C$ the category
+of local Artinian $W(k)$-algebras with identified residue field $k$.
+For a faithful local action $\rho:H\to\operatorname{Aut}_k k[[t]]$,
+$D_H(A)$ is the set of lifts to $\operatorname{Aut}_A A[[t]]$, modulo
+coordinate conjugation reducing to the identity. This is the unframed
+category of \cite{OWR,Byszewski,BC}; nilpotent constant terms are permitted.
+The residual action gives a unique point over $k$.
+For $N\triangleleft G$ and $Q=G/N$, restriction and induction give a natural map
+\[
+ (\mathrm{res},\mathrm{ind}):D_G\longrightarrow D_N^Q\times D_Q,
+\]
+where $D_N^Q$ is the actual fixed subfunctor of $D_N$.
+A prorepresentable functor has the form
+\[
+ h_R(A)=\operatorname{Hom}_{W(k),\mathrm{loc}}(R,A)
+\]
+for a complete Noetherian local $W(k)$-algebra with residue $k$.
+
+The question in \cite[p.~3039]{OWR}, \cite[Question~6.4.4]{Thesis}, and
+\cite[Question~4.4]{Byszewski} asks for a prorepresentable $F$, natural maps
+$D_N^Q\to F\leftarrow D_Q$, and a formally smooth restriction--induction map
+into the fibre product. The refined formulation prescribes
+$TF=H^1(Q,\Th^\sharp/\Th^N)$, with
+$\Th=\operatorname{Der}_k k[[t]]$ and
+$\Th^\sharp=\operatorname{Der}_k(k[[t]]^N)$.
+Neither question assumes $D_N$ or $D_Q$ prorepresentable. Those extra
+hypotheses are stated separately in \cite[Theorem~3]{OWR} and
+\cite[Remark~4.5, Theorem~4.9]{Byszewski}.
+
+\begin{theorem}\label{thm:noF}
+Put $k=\F_4=\F_2[u]/(u^2+u+1)$, $G=(k,+)$, $N=(\F_2,+)$, and
+$\rho(a)(t)=t/(1+at)$. There are no prorepresentable $F$ and natural maps
+$f:D_N^Q\to F$, $g:D_Q\to F$ for which restriction--induction factors as a
+formally smooth map
+\[
+ D_G\longrightarrow D_N^Q\times_F D_Q.
+\]
+This remains impossible for every tangent dimension of $F$; in particular
+it excludes the prescribed one-dimensional tangent space in this example.
+\end{theorem}
+
+The action is a standard weakly ramified additive action, not a new
+construction. Direct substitution gives $\rho(a)\rho(b)=\rho(a+b)$, and the
+$t^2$ coefficient distinguishes $a$. Every nonidentity element has conductor
+one. The proof below uses actual deformation classes, without replacing
+either component functor by a versal hull.
+
+\section{A quotient tangent invisible to every recipient}
+The $N$-quotient parameter and induced $Q$-action are
+\[
+ y=\frac{t^2}{1+t},\qquad k[[t]]^N=k[[y]],\qquad
+ \sigma(y)=\rho(u)(y)=\frac{y}{1+y}.
+\]
+Here $t^2+yt+y=0$, $\rho(1)(t)=t+y$, and every series uniquely has the form
+$A(y)+tB(y)$: the leading terms of $y^m$ and $ty^m$ have even and odd
+$t$-orders, and successive leading-term subtraction converges.
+Invariance forces $yB(y)=0$. The same basis argument for Laurent series
+gives $k((t))^N=k((y))$. Finally $u(u+1)=1$ gives
+\[
+ \rho(u)(y)=\frac{t^2}{(1+ut)(1+(u+1)t)}
+            =\frac{t^2}{1+t+t^2}=\frac{y}{1+y}.
+\]
+Thus $D_Q$ is the weakly ramified involution deformation functor.
+
+\begin{lemma}\label{lem:recipient}
+There is a nonzero $v\in D_Q(k[\eps]/\eps^2)$ whose image under every natural
+map $D_Q\to h_R$ is the residue basepoint.
+\end{lemma}
+\begin{proof}
+Let $B=k[\eps]/\eps^3$, $A=k[\eps]/\eps^2$, and let $j:B\to B$ fix $k$ and
+send $\eps$ to $\eps+\eps^2$. These are objects and maps of $\mathcal C$ via
+$W(k)\to k$. Define
+\[
+ \sigma_\eps(y)=\frac{y+\eps}{1+y},\qquad
+ M_\eps=\begin{pmatrix}1&\eps\\1&1\end{pmatrix}.
+\]
+Its constant coefficient is nilpotent and its linear coefficient is a unit,
+so substitution defines a continuous automorphism. Its matrix square is
+$(1+\eps)I$, so it is an involution lifting $\sigma$.
+Write $x=[\sigma_\eps]\in D_Q(B)$ and $v$ for its reduction to $A$.
+
+The class $x$ is fixed by $j$. The identity-reducing coordinate change
+$\chi(y)=(1+\eps)y+\eps$, represented by
+$C=\bigl(\begin{smallmatrix}1+\eps&\eps\\0&1\end{smallmatrix}\bigr)$, satisfies
+\[
+ M_{\eps+\eps^2}C=(1+\eps)CM_\eps
+\]
+in $B$. Scalar matrices do not change the fractional-linear substitution,
+so this gives the required conjugacy. Function composition reverses the
+source's ring-substitution order; the equivalence is valid in either
+conjugating direction. This is the known calculation of
+\cite[Proposition~4.1]{BC}, reproduced here for completeness.
+
+For a natural map $\eta:D_Q\to h_R$, write $\psi:R\to B$ for $\eta_B(x)$.
+Naturality gives $j\circ\psi=\psi$. Since
+\[
+ B^j=k+k\eps^2,
+\]
+the composite $R\to B\to A$ lands in $k\subset A$. It is consequently the
+residue map followed by $k\to A$, hence $\eta_A(v)$ is the basepoint. This
+argument applies also to mixed-characteristic $R$ and arbitrary tangent
+dimension, with no linearity assumption on $\eta$.
+
+The class $v$ is nonzero. Every identity-reducing coordinate change over $A$
+has the form $y+\eps h(y)$ with arbitrary $h\in k[[y]]$, including its
+constant coefficient. Its first-order conjugacy perturbation is, up to sign,
+$h(\sigma(y))-\sigma'(y)h(y)$, whose constant coefficient is zero.
+But $\sigma_\eps-\sigma=\eps/(1+y)$ has constant perturbation coefficient
+one. Thus no allowed conjugator trivializes $v$.
+\end{proof}
+
+The conclusion of Lemma~\ref{lem:recipient} is also an elementary consequence
+of the previously published failure to preserve injections in
+\cite[Proposition~6.1, p.~899]{BC}. There the nonzero involution tangent and
+the basepoint become equal after the injection
+$k[e]/e^2\hookrightarrow k[w]/w^3$, $e\mapsto w^2$.
+Every $h_R$ preserves injections of target rings. Naturality therefore makes
+their images equal already over $k[e]/e^2$. We claim no new recipient-collapse
+phenomenon or new involution pathology; the direct cubic-ring proof fixes
+the particular tangent class used here.
+
+\section{The restriction tangent is injective}
+Over $k$, every algebraic derivation of $k[[t]]$ is a coefficient derivation:
+perfectness in characteristic two gives $h=a(t)^2+tb(t)^2$, so
+$d(h)=d(t)b(t)^2=d(t)h'(t)$. Thus $\Th=k[[t]]\partial_t$, and these
+derivations are continuous. There is no additional discontinuous tangent
+module in this example.
+
+Restriction to the $N$-fixed ring identifies
+\[
+ \Th^N\cong M:=yk[[y]]\partial_y.
+\]
+Indeed the unique extension of $b(y)\partial_y$ to the separable field
+$k((t))$ has coefficient
+\[
+ a(t)=\frac{b(y)}{dy/dt}=b(y)\frac{(1+t)^2}{t^2},
+ \qquad \frac{dy}{dt}=\frac{t^2}{(1+t)^2}.
+\]
+Uniqueness makes it $N$-invariant. It preserves $k[[t]]$ precisely when
+$2\operatorname{ord}_y b-2\geq0$, namely $b\in yk[[y]]$.
+Conversely an invariant derivation restricts and is recovered by this
+formula. The field polynomial has derivative $y\ne0$, so separability
+and uniqueness hold.
+
+Conjugation by the quotient involution acts on coefficient functions by
+\[
+ T(f)(y)=(1+y)^2f\!\left(\frac{y}{1+y}\right),\qquad T^2=1.
+\]
+All group elements are involutions, so the inverse-conjugation convention
+gives the same operator. Put $z=y^2/(1+y)$. The preceding fixed-ring basis
+argument gives $k((y))^Q=k((z))$, and nonzero invariant Laurent series have
+even $y$-valuation. For $f\in yk[[y]]$, $Tf=f$ is equivalent to invariance
+of $f/y^2$. Its valuation is at least $-1$, hence by evenness at least zero.
+It follows that
+\[
+ M^Q=y^2k[[z]]\partial_y,
+ \qquad (T-1)(y h(z))=y^2h(z)\quad(h\in k[[z]]).
+\]
+The reverse containment of $(T-1)M$ in $M^Q$ follows from $(T-1)^2=0$.
+The cyclic cocycle formula therefore gives
+\[
+ H^1(Q,\Th^N)=\frac{\ker(1+T)}{(T-1)M}=0.
+\]
+These are identities on complete formal series, not finite-jet calculations.
+
+The first-order lifting calculation identifies $TD_H=H^1(H,\Th)$, and
+restriction with cohomological restriction \cite[Proposition~2.4]{Byszewski}:
+write a lift as $(\mathrm{id}+\eps c(g))\rho(g)$; group relations give a
+cocycle, and coordinate conjugation changes it by a coboundary.
+The vanishing above makes restriction injective. Explicitly, for a cocycle
+whose restriction is zero in cohomology, subtract a coboundary so it vanishes
+on $N$. The cocycle equation and commutativity of $G$ make its value at $u$
+$N$-invariant; the relation $u+u=0$ gives $(1+T)c(u)=0$.
+Write $c(u)=(T-1)m$ with $m\in\Th^N$ and subtract this coboundary too. It
+preserves the zero $N$-values and kills $u$, hence kills the entire cocycle.
+Thus
+\[
+ \ker(TD_G\longrightarrow TD_N)=0.
+\]
+Since $D_N^Q(A)\subset D_N(A)$ literally, restriction into the actual fixed
+subfunctor also has zero tangent kernel.
+
+For the prescribed space, $\Th^\sharp=k[[y]]\partial_y$ and
+$\Th^\sharp/\Th^N\cong k$ has trivial $Q$-action (constant coefficients are
+preserved by $T$). Hence $H^1(Q,\Th^\sharp/\Th^N)=k$, as asserted in the
+theorem. Its dimension is not needed for the contradiction.
+
+\section{Failure of formal smoothness and scope}
+\begin{proof}[Proof of Theorem~\ref{thm:noF}]
+Suppose such $F$, $f$ and $g$ exist; identify $F$ naturally with $h_R$.
+At $A=k[\eps]/\eps^2$, naturality from $k$ sends the residual basepoint
+$0_N\in D_N^Q(A)$ under $f$ to the residue basepoint of $F(A)$.
+Lemma~\ref{lem:recipient} gives the same image for $g_A(v)$, with $v\ne0$.
+Therefore $(0_N,v)$ belongs to $(D_N^Q\times_F D_Q)(A)$.
+Its reduction is the unique residual point. The surjection $A\to k$ is
+small: its kernel is annihilated by the maximal ideal of $A$.
+Formal smoothness would lift this pair to $w\in D_G(A)$ with
+\[
+ \mathrm{res}(w)=0_N,\qquad\mathrm{ind}(w)=v.
+\]
+Restriction injectivity forces $w=0_G$. Naturality of induction then gives
+$\mathrm{ind}(w)=0_Q$, contradicting $v\ne0$.
+\end{proof}
+
+The cubic ring is used only to constrain detection of a first-order tangent
+by an arbitrary prorepresentable recipient. The obstruction to smoothness
+already occurs on $A\to k$. No extension of $f$ from $D_N^Q$ to $D_N$ is
+assumed, and no cohomological tangent formula for $f$ or $g$ is prescribed.
+Nor is universality of a Klein-four deformation ring used.
+
+This answers the unrestricted original question negatively and does not
+contradict the conditional obstruction-space theorems cited above.
+The involution component is in the exceptional nonprorepresentable case.
+The variant imposing prorepresentability of $D_N$ and $D_Q$ remains
+unaddressed; changing to coordinate automorphisms fixing the zero section
+would likewise change the category and exclude the crucial nilpotent
+translation. The introductory and refined formulations are one question,
+not separate discoveries.
+
+\paragraph{Priority, verification and review status.}
+The known additive action, involution conjugacy, failure to preserve
+injections, and tangent-cohomology framework are credited above. The
+supplement records independent formal-series and functor audits, finite
+exact checks and a bounded priority search. No matching prior negative
+factorization was located in inspected primary bodies; this does not prove
+exhaustive originality or that the question remained open until 2026.
+Finite computations support explicit identities; the unrestricted formal
+series and all-natural-map statements are proved in the text, without a
+formal proof-assistant certificate.
+
+AI tools were used extensively in solving, verifying, auditing sources, and
+preparing this paper and supporting materials. This is an unrefereed research
+note. Independent adversarial reviews are AI reviews; conventional human
+peer review and journal acceptance are not claimed.
+
+\begin{thebibliography}{9}
+\bibitem{OWR} J.~Byszewski, \emph{D\'evissage for local deformation functors},
+Oberwolfach Reports 54/2008, 3038--3040.
+\href{https://ems.press/content/serial-article-files/46200}{Primary report}.
+\bibitem{Thesis} J.~Byszewski, \emph{Cohomological aspects of equivariant deformation theory},
+Ph.D. thesis, Utrecht University (2009),
+Question~6.4.4.
+\href{https://dspace.library.uu.nl/handle/1874/33749}{Repository record}.
+\bibitem{Byszewski} J.~Byszewski,
+\emph{Deformation functors of local actions},
+\href{https://arxiv.org/abs/1112.0352v1}{arXiv:1112.0352v1} (2011).
+\bibitem{BC} J.~Byszewski and G.~Cornelissen,
+\emph{Which weakly ramified group actions admit a universal formal deformation?},
+Ann. Inst. Fourier \textbf{59} (2009), 877--902.
+\href{https://doi.org/10.5802/aif.2450}{doi:10.5802/aif.2450},
+Propositions~4.1 and~6.1.
+\end{thebibliography}
+\end{document}

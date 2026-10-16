@@ -1,0 +1,7 @@
+# Package preflight research log
+
+2026-10-13T13:54:06.319698+00:00 — Froze independent PDF/ZIP copies and verified supplied exact hashes. Review completion estimate: 5%; publication readiness remains held pending unread priority fulltexts.
+
+2026-10-13T14:06:08.666415+00:00 — Independent main proof/source bridge and Brown actual-support waver derived; two pristine replays and exact outside-extraction PDF/ZIP rebuilds pass. Original 17 Git blobs, 3 archived ignore files and all 79 JSONL evidence lines verified. 16 package controls meet expected outcomes; cache/venv exceptions explicitly limit inventory assertions. Independent higher-order Brown coefficient initially mistyped by reviewer, corrected by rational series division to 136/6237; no manuscript defect. Initial scratch sentinel landed inside a nested-sealed source folder and was correctly rejected; moved disposable instrumentation to scratch root. Review completion estimate: 80%; source/priority acceptance remains held.
+
+2026-10-13T14:17:00.592774+00:00 — Completed bounded review. Final check discovered canonical PDF drift to ed7f68e2…/85128bytes while frozen copies and canonical ZIP remain original. Parent confirms intentional new Friedland credit and promises new build/QA/manifest reconciliation, freeze and fresh adversary. Recorded issue without altering root. Exact frozen mathematics and technical preparation PASS; changed canonical artifact outside verdict; priority/publication HOLD, not final submission-ready acceptance. Review completion estimate:100%; overall novelty clearance unresolved.

@@ -1,0 +1,596 @@
+Signed impulse estimates and global smooth solutions for ﬁnite
+          multispecies relativistic Vlasov–Maxwell
+                                                  Alec Kriebel
+                                     ORCID: 0009-0001-9320-500X
+
+                                              October 6, 2026
+
+
+                                                    Abstract
+        We extend the signed-impulse proof of the one-species three-dimensional relativistic
+     Vlasov–Maxwell theorem in OpenAI’s family 362 manuscript to a ﬁxed ﬁnite collection of
+     particle species. Mass normalization gives a common velocity law and constant species-
+     dependent accelerations. The entire source–receiver cancellation has coeﬃcient ea eb /ma ;
+     the source acceleration cancels before its sign is discarded. A positive mass-weighted
+     energy controls a disjoint union of species label spaces, and the angular occupation
+     and selected receiver coeﬃcient use one simultaneous momentum bootstrap. We prove
+     the resulting global classical theorem for nonnegative smooth compact phase data and
+     compatible Cb∞ ∩ L2 Maxwell ﬁelds, without smallness, symmetry or neutrality. The
+     universal geometric identity is inherited; the new estimates keep all source and receiver
+     coeﬃcients explicit and close the shared-ﬁeld bootstrap.
+
+
+1    Problem, attribution and exact scope
+We use rationalized units with light speed and vacuum permittivity one. For ﬁxed N ≥ 1,
+masses ma > 0 and charges ea ∈ R, physical number densities Fa (t, x, p) have velocities
+p/(m2a + |p|2 )1/2 and momentum accelerations ea (E + ua × B). Put
+
+                           v = p/ma ,             fa (t, x, v) = m3a Fa (t, x, ma v),
+                             q                                                                                     (1.1)
+                   q(v) =        1 + |v|2 ,         u(v) = v/q(v),            λa = ea /ma .
+
+Thus fa dv = Fa dp; fa remains a number density. The equations are
+                 ∂t fa + u · ∇x fa + λa (E + u × B) · ∇v fa = 0,                   1 ≤ a ≤ N,
+                       ∂t E − curl B = −j,                 ∂t B + curl E = 0,
+                                          div E = ρ,                 div B = 0,                                    (1.2)
+                                              X        Z                      X        Z
+                                     ρ=           ea        fa dv,       j=       ea        ufa dv.
+                                              a                               a
+
+There is no background charge. A classical solution has C 1 densities and ﬁelds, solves these
+equations pointwise, has ﬁelds continuous into L2x , and has compact particle phase support
+on each compact time interval.
+Theorem 1.1 (Finite-species global theorem). For every ﬁxed ﬁnite species list as above,
+initial data
+                                                                                  X             Z
+0 ≤ fa0 ∈ Cc∞ (R6 ),       E0 , B0 ∈ Cb∞ (R3 ; R3 ) ∩ L2 ,             div E0 =            ea       fa0 dv,   div B0 = 0
+                                                                                   a
+                                                                                                                   (1.3)
+
+                                                            1
+give a unique global classical solution of (1.2). It is smooth on each ﬁnite time interval, its
+particle phase support is compact there, and both constraints persist. On a ﬁnite maximal
+lifespan, a bound on maxa sup(x,v)∈supp fa (t) |v| is a continuation criterion.
+
+    Cb∞ means every spatial derivative is bounded. The ﬁeld assumption does not require all
+derivatives to be square integrable. It permits a nonzero net charge and its Coulomb tail.
+Finite ﬁeld energy supplies cone and spatial budgets, while bounded initial derivatives control
+homogeneous terms. Requiring all derivatives bounded is a convenient smooth-persistence
+class; no sharp minimal-regularity assertion is made. Constants below may depend on the
+data, the ﬁxed horizon and all ﬁxed masses and charges; no massless or inﬁnite species limit
+is asserted. The ﬁrst new special case is N = 2, m1 = m2 = 1, e1 = 1, e2 = −1. Noncompact
+momentum tails, collisions and curved spacetime are outside the theorem.
+    The underlying one-species unrestricted large-data theorem and the angular selection
+mechanism are due to the OpenAI manuscript [1], supplied as part of its October 2026 public
+repository release, with manuscript date September 23, 2026. We use its exact pinned version
+adc7f1241b42e322a6451854ab7e4b4c146bf78a; the date printed on a manuscript is not
+evidence of an earlier public disclosure. This note’s contribution is the signed cross-species
+estimate and its coupled closure, not an independent solution of the one-species problem.
+Glassey–Schaeﬀer [4] already use mass-normalized momentum and signed weighted source
+sums. Their large-data nearly-neutral theorem requires small signed phase-space density in
+C 1 and small compactly supported C 2 ﬁelds, rather than arbitrary signed data. Momentum
+normalization, multispecies formulation and bounded-momentum continuation are classical;
+see Glassey [2] and Luk–Strain [3].
+                                                                   P                   b B)
+                                                                                          b =
+    If all charged species share a nonzero ratio λa = λ, set g = λ2 ea 6=0 ma fa and (E,
+λ(E, B). Then g ≥ 0 solves the unit-coeﬃcient one-species system with these ﬁelds; its
+sources are the transformed Maxwell sources. Charged species can then be transported in
+that global ﬁeld, and neutral species are free. This special case is already an immediate
+consequence of the inherited one-species theorem and known normalization. The extension
+requiring the estimates below has distinct charge-to-mass ratios, in particular the two unit-
+mass charges +1, −1.
+    Recent multispecies work of Mattingly–Pankavich–Ben-Artzi [7] sharpens decay and scat-
+tering for small globally neutral data. Its Theorem 1.1 recalls the earlier Glassey–Strauss
+small-data existence result; Theorems 1.5–1.6 concern scattering and decay. Those hypothe-
+ses do not duplicate the arbitrary-data, nonneutral theorem considered here.
+
+
+2    Positive energy and separate label spaces
+For species a, characteristics satisfy
+
+                          Ya0 = u(Va ),          Va0 = λa (E + u(Va ) × B).                     (2.1)
+
+The phase vector ﬁeld has zero divergence, since u = ∇v q and divv (u × B) = 0. Hence every
+ﬂow preserves volume and transports fa0 , preserving positivity, particle number and its L∞
+norm. Integrating transport gives ρt + div j = 0 and propagates both Gauss constraints.
+Speeds below one give suppx fa (t) ⊂ B(0, R0 + t) for a common initial radius R0 .
+   Deﬁne
+                                X        Z                             X         Z
+      U = 12 (|E|2 + |B|2 ) +       ma       qfa dv,       S =E×B+          ma       qufa dv.   (2.2)
+                                a                                       a
+                                                                  R                    R
+Multiplying species transport by ma q gives work ma λa E · ufa dv = ea E · ufa dv. Its sum
+cancels the Maxwell work, including every charge sign. Thus ∂t U + div S = 0, |S| ≤ U , and
+
+                                                       2
+                        R
+total energy H0 = U(0, x) dx is conserved. Spatial cutoﬀs with derivative O(R−1 ) justify
+this identity because ﬁelds are Ct L2 and particle support is compact on the preﬁx considered.
+    On a backward cone y = x − (t − s)n, put r = t − s and d = 1 − n · u(v) > 0. Its exact
+ﬂux density is
+                                                                                   X        Z
+                                                                          2
+                      U − n · S = 12     |E + n × B| + |n · B|
+                                                          2
+                                                                               +       mb       qdfb dv.
+                                                                                   b
+
+Integrating the shrinking-ball conservation law bounds its cone integral by H0 . In particular,
+for G = |E + n × B| + |n · B|,
+    Z                            Z           Z                                         Z
+        r G dn ds ≤ 4H0 ,
+         2   2
+                                     r   2
+                                                 qdfb dv dn ds ≤ H0 /mb ,                  qfb dx dv ≤ H0 /mb .    (2.3)
+
+All are positive bounds. No signed density is substituted for energy.
+                                                                    R
+                                  P                   P                         P
+    The positive aggregate f∗ := b fb has kf∗ k∞ ≤ b kfb0 k∞ and qf∗ ≤ H0 b m−1       b , with
+the analogous cone bound. It generally solves no scalar Vlasov equation. Its label space is the
+disjoint union of the species label spaces, each with its own ﬂow. Every labelwise calculation
+below uses the appropriate component before summing. This distinction is essential for
+opposite charges.
+
+
+3    The signed source–receiver identity
+Fix a supported receiver of species a, denoted X(t), VX (t), with a(t) = u(VX (t)), qX = q(VX )
+and Ka = VX0 . Use Yb (s, z), Vb (s, z) for a source label of species b. On its retarded branch,
+
+t = s + r,       rn = X(t) − Yb (s, z),          d = 1 − n · ub ,        D = 1 − n · a,
+                                                                                     |n| = 1.   η = 1 − a · ub ,
+                                                                                        (3.1)
+The symbol η is geometric, not a charge. Both d, D are positive. The retarded inverse ﬂow
+has Jacobian dz = d dy dv: its derivative is the volume-preserving ﬁxed-time inverse ﬂow
+times Id − (ub , Vb0 ) ⊗ (n, 0), whose determinant is d. Diﬀerentiating the retarded relation
+gives
+                          dt     d
+                             = ,       ds fb0 (z)dz = D dt fb (s, y, v)dy dv,
+                          ds    D                                                       (3.2)
+                      r0 = d/D − 1,     rn0 = N0 = (d/D)(a − n) + n − ub .
+Strict timelikeness makes each noncolliding branch unique. The set of labels colliding with a
+ﬁxed receiver at some equal time is null: a time mesh of size ζ covers such labels by O(ζ −1 )
+spatial balls of volume O(ζ 3 ), and a bounded momentum set has ﬁnite volume. Volume
+preservation and bounded initial density give mass O(ζ 2 ). This argument applies separately
+to every source species.
+    Linearity of the wave potentials in Maxwell sources yields the source-b kernel, with bb =
+dub /ds,
+             n − ub (n − ub )(n · bb ) − dbb                             λb
+     Kb =              +                     ,                    bb =      (Id − ub ⊗ ub )(E + ub × B).           (3.3)
+             r2 qb2 d3        rd3                                        qb
+
+Its magnetic kernel is n×Kb and its source multiplier is eb /(4π). The receiver force multiplier
+is consequently
+                                                    ea eb
+                                      cab = λa eb =       ,                                (3.4)
+                                                     ma
+not λa λb . The latter normalization would omit mb . Initial-cone and homogeneous-data terms
+are bounded by a datum/horizon constant, multiplied by the ﬁxed coeﬃcients. This follows
+from bounded initial momenta and Kirchhoﬀ’s estimate using bounded initial derivatives.
+
+                                                              3
+   Set Q = DId + n ⊗ a, H = Q/D, g = (ub − n)/d, and k0 = ub − ηn/D. Then Hg = k0 /d.
+The complete branch-measure interior pair force, after removing cab /(4π), is
+
+                                            H (ub )  Hg
+                                   K=−        ∂s g − 2 2 .
+                                            r       r qb d
+
+The second term is the transport term and must be retained.
+
+Lemma 3.1 (Universal pair cancellation). For arbitrary diﬀerentiable timelike source and
+receiver curves with the velocity law (1.1),
+                                  0                            !
+                           k0              η         n       n(at · k0 )
+                       K=−
+                           rd
+                                        + 2 2
+                                         r D        2 D −a +
+                                                   qX          rD2
+                                                                         .                              (3.5)
+
+The identity requires no assumption on the signs or sizes of accelerations. It therefore holds
+after multiplication by every signed cab .
+
+Proof. The product rule separates diﬀerentiation through ub , n, r, a. For any variation A
+of a, ∂a k0 [A] = n(A · k0 )/D; since a0 = at d/D, this gives the last term. The remaining
+geometric identities are
+                                                                                              
+                                                                 ηd                n(N0 · a)
+           N0 · ub − dr − qb−2 = −ηd/D,
+                        0
+                                                   rd(k0 )0n = −              N0 +           ,
+                                                                      D               D
+                                                                           !
+                                 n(N0 · a)        d                 n
+                            N0 +           + k0 =               a− 2            .
+                                    D             D               qX D
+
+They follow by expanding (3.1), using |ub |2 = 1 − qb−2 and |a|2 = 1 − qX −2
+                                                                             . Substitution into
+the diﬀerentiated primitive gives (3.5). These identities are also checked by the denominator-
+cleared universal polynomial certiﬁcate distributed with this note. The proof, rather than
+the supplementary ﬁnite rational samples, establishes all quantiﬁers.
+
+    After conversion to dt dy dv, the nondiﬀerentiated residuals are
+                               !
+              fb η     n                              fb n(at · k0 )                  Id − a ⊗ a
+    Rab = cab 2       2 D −a ,          Aab = cab                    ,         at =              Ka .   (3.6)
+             r D     qX                                    rD                             qX
+
+Here Ka is the full acceleration from the common ﬁeld. No additional factor λa belongs in
+this last formula.
+
+
+4    Uniform occupation and coeﬃcient transfer
+We spell out why the analytic estimates of [1, Sections 4–8] apply to this collection, rather
+than invoking its one-species theorem on separately forced populations.
+    Fix a horizon T0 and a compact classical preﬁx [0, t∗ ] with t∗ ≤ T0 . Choose a suﬃciently
+large dyadic P such that
+
+                              P ≥ 1024         max             q(Vb (t, z)).
+                                         b,z∈supp fb0 , t≤t∗
+
+Empty label components are omitted. Write
+
+                             L = log(2 + P ),          S(w) = P 2 L/w.
+
+
+
+                                                  4
+The simultaneous bootstrap assumes, for every species and supported label,
+                         √
+|Va (t2 )−Va (t1 )| ≤ M P I +AIS(w),   I = t2 −t1 ,    w/8 ≤ q(Va (t)) ≤ 8w            (t ∈ [t1 , t2 ]).
+                                                                                                (4.1)
+One chooses M, A only after establishing constants independent of them.
+    Use the exact dyadic partitions of [1, Section 4]: qb  p, qX  w, d  θ2 , D  ϕ2 , η  σ 2 ,
+r  h after normalizing the radius by max(1, T0 ). Source representatives are p = 64 · 2k ; the
+ﬁxed comparisons imply 64 ≤ p ≤ P , θ ≥ 1/p, ϕ ≳ 1/w, σ ≳ 1/m, m = min(p, w). For
+θ < κϕ the source/receiver separation scale is σ  ϕ and its partition is omitted; otherwise
+retain σ and put ν = min(θ, σ), k1 = 1 + ϕ/σ, ω = σ. In the small sector put ν = θ, k1 = 1,
+ω = ϕ. The ﬁxed κ is small enough for all enlarged overlapping supports.
+    For aR receiver interval of length at most I ≤ (w/P )2 , deﬁne the aggregate hit measure
+     P
+M = b r2 DNb dt ds dn, where Nb is the bin-restricted velocity integral of fb . Each species
+has Nb ≤ Cb p3 ν 2 , by its conserved L∞ norm and the velocity cap. At ﬁxed source time the
+spatial map (t, n) 7→ X(t) − (t − s)n is injective with Jacobian r2 D. By (3.2),
+            XZ                Z
+      M=          fb0 (z)dz              ds,      M ≤ C max(I, h)/p,      M ≤ CIϕ2 /θ2 .         (4.2)
+             b                bin hits
+
+
+The energy bounds in (2.3) prove the ﬁrst estimate; branch time change and the ﬁnite sum
+of species particle numbers prove the second.
+    For a suﬃciently large ﬁxed C1 , set
+                                                           s      
+                                            P M                 AL 
+                                  ℓ−1/2 = C1   +                    .                           (4.3)
+                                            m ω                  ω
+
+The ﬁrst-exit argument using (4.1) bounds source and receiver increments on cells of length
+O(ℓ) by εmω. The velocity derivative has norm at most 1/q, giving velocity changes εω.
+This step uses each species’ own signed bootstrap; there is no equality of its acceleration
+with another species’ acceleration. On actual bins ω > C0 /m, projected relative velocity
+is bounded below by cω on a cell. The same-time separation at a hit is O(h(ϕ + ω)), so
+monotone crossing gives duration Chk1 per label. The label mass at a common cell time is
+at most C/p after summing the species energy bounds. Consequently
+
+                                  M ≤ C(hk1 /p) max(1, I/ℓ, h/ℓ).                                (4.4)
+
+   For thepsmall sector, average the cell mass using the two indicators q  p, |u − a(s)|  ϕ
+and q  p, (1 − nret · a(tret ))/2  ϕ over one enlarged source-time interval of length O(I).
+Deﬁne Epϕ with density qf∗ and normalization 1/I. Both indicator families have bounded
+                                              P
+overlap and unique retarded receiver time, so p,ϕ Epϕ ≤ C. Full stable cells can be averaged;
+the at most two clipped cells use their direct mass bound. When ℓ < h ≤ I, the spatial hit
+map and the second indicator give M ≤ CIEpϕ /p directly. These arguments yield
+                                   q        √
+ M ≤ C(hk1 /p)R2 ,     R=1+              I/ℓ E,    E = Epϕ in the small sector,
+                                                                          E = 1 otherwise,
+                                                                                        (4.5)
+except the deﬁcit bins ω ≤ C0 /m with h ≤ min(I, ℓ). On that exception ℓ ≤ CP −2 and the
+direct near bounds suﬃce. Every cell and indicator proof operates on each component of the
+disjoint label space, then adds positive masses. Thus the scalar transport equation for f∗ is
+never assumed.
+
+
+
+
+                                                     5
+4.1   Direct bounds, derivatives and uniform constants
+The source acceleration satisﬁes
+  |bb | ≤ C|λb |qb−1 (G + θ2 |B|),   |n · bb | ≤ C|λb |θqb−1 (G + θ2 |B|),          |qb0 | ≤ C|λb |(G + θ|B|).
+For every pair the transport majorants are C|cab |fb /(r2 p2 θ2 ) and C|cab |fb ϕ/(r2 p2 θ3 ); the
+good-ﬁeld and magnetic majorants are
+                                             fb ϕG                      fb ϕ|B|
+                                C|cab λb |         ,       C|cab λb |           .                          (4.6)
+                                             rpθ2                          rp
+Perpendicular receiver projection supplies an additional factor ϕ to the acceleration-kernel
+majorants, because the kernel numerator is tangent to n. Taking the ﬁnite maximum of
+1, |cab |, |cab λb | bounds all these by the same positive majorants with density f∗ , up to a ﬁxed
+constant.
+     Cone G2 budgets and spatial B 2 budgets are shared over the angular bins, as in [1,
+Section 5]. Cauchy–Schwarz, the density cap and (4.5) give the following representative
+near/far bounds in the small sector, suppressing their ﬁxed constants and the square roots
+of bounded ﬁeld budgets:
+                                                                  √        √ p
+           T⊥ : min(Ihpϕ3 /θ, M/(h2 ϕp2 θ3 )),        Sg : min(I h p2 ϕ2 , I pM/(θh)),
+                                      q         √         √      p
+                         Sb : min( I(I + h) h p2 θ2 ϕ, I + h pMθ/(ϕh)).
+The remaining sector replaces the relevant θ2 density factor by ν 2 , and retains k1 . These
+are exactly the nonnegative inputs to the radial balances and angular sums of [1, Section
+                P
+5]. For example h min(Ahα , Bh−β ) ≤ Cα,β Aβ/(α+β) B α/(α+β) . The ﬁnite species constants
+multiply A, B outside these balances. They do not alter any exponent, shared-budget overlap
+or bootstrap parameter. The resulting baseline and absolute bounds are
+                                               Z
+                                                              √
+                 baseline cost ≤ CB(I, w),        |Ka | dt ≤ C w B(I, w),
+                                        √       J
+                                                    √                                   (4.7)
+                            B(I, w) = P I + (M + A)IS(w).
+Here baseline means transport, magnetic remainder and the remaining-sector good-ﬁeld cost,
+as precisely enumerated in that source proposition. The exceptional deﬁcit near costs have
+ratio O(L3 /P ) to IS(w).
+    The signed primitive creates source derivatives with coeﬃcient |cab λb | and exactly the
+majorants (4.6); geometric cutoﬀ derivatives have majorant C|cab |fb ϕ/(r2 θ). The central
+residual is bounded by C|cab |fb /r2 . The receiver residual and receiver-cutoﬀ derivatives
+have majorant
+                                                  fb θ|Ka |
+                                          C|cab |           .                              (4.8)
+                                                   wrϕ2
+Projection adds ϕ to these bounds. For the moving projector Π = w(Id − ξ ⊗ ξ)/|VX |,
+ξ = VX /|VX |, its derivative has the projected receiver size. A Lipschitz weight derivative
+contributes C|cab | |ψt |fb θ/(rϕ).
+    Choose representative selections ﬁxed for the receiver interval and common to every
+source component. Derivatives of their selected partition sum equal the negative sum of
+unselected derivatives, with common physical multiplier factored out. Supports meeting
+have representatives within factor four. Thus source and geometric derivative costs can be
+assigned to unselected neighbors as in [1, Section 6]; no diﬀerent kernels or charges are
+canceled against each
+                    R
+                         other. Integration by parts is valid componentwise. Initial-cone terms
+have total cost C |ψ|, since Dk0 = Dub − ηn is bounded and each initial d is bounded
+below. A radial tip cutoﬀ has error Opreﬁx (γ) and can be removed on the ﬁxed preﬁx. Such
+justiﬁcation constants do not enter the uniform estimates.
+
+                                                       6
+4.2   Direction occupation and selected coeﬃcients
+                                                         √
+Apply the projected identity with selection θ < κϕ, pθ h ≤ 1 to the successive ﬁrst exits of
+direction of a receiver of any species. For w ≥ P 3/5 , w−3/5 ≤ δ ≤ w−1/10 and a time interval
+of length at most (w/P )2 , the direction count proof of [1, Section 7] uses only (4.1), (4.5),
+(4.7) and the projected majorants above. The total receiver/projector coeﬃcient is CL2 /w;
+the time-weight cost is CL2 per exit. Bulk terms are integrated over disjoint intervals, so
+they share one length bound rather than gaining an exit count. The estimate is
+
+                               2 Nc wδ ≤ C(M, A)wL + CL Nc .
+                               1                  6    2
+
+
+Absorb the last term using wδ ≥ P 6/25 to obtain Nc + 1 ≤ C(M, A)L6 /δ. This uses no
+improved occupation input.
+   Separate source and receiver direction partitions then give, in the window
+
+                    p, w ≥ P 7/10 ,    j −49/100 ≤ ϕ ≤ j −4/25   (j = p, w),                (4.9)
+
+                 M ≤ C(h/p)ϕ−29/25 max(1, I/Im
+                                             0      0
+                                               , h/Im ),          0
+                                                                 Im = (m/P )2 .           (4.10)
+Indeed, with stable energy cells of length Im  0 /[C (M 2 + AL)], bad hits crossing a receiver
+                                                    2
+direction boundary have source duration O(h) per boundary. Good hits have same-
+time separation O(hϕ) and monotone relative velocity Ω(ϕ) on the common reﬁnement
+of source and receiver direction cells. The reﬁnement count is their sum, so duration is
+C(M, A)hL6 /ϕ per label. Summing positive species masses and cells gives the pre-absorption
+cost C(M, A)(h/p)ϕ−1 L7 max(1, I/Im  0 , h/I 0 ). The window gives ϕ−4/25 ≥ P 56/3125 , ab-
+                                            m
+                            7
+sorbing the ﬁxed C(M, A)L for a suﬃciently large threshold. The ﬁnal C in (4.10) is
+independent of M, A. This is the required order of dependency, rather than a circular use
+of improved occupation to count directions.
+    Set ϵ = 10−5 , β = 29/25 and W = (P θ)−ϵ ϕϵ hϵ . Let M∗ be the minimum of the pure
+entries
+max(I, h)     h                                     h −β          0      0
+          ,     max(1, I/ℓ, h/ℓ) (ϕ > C0 /m),         ϕ max(1, I/Im , h/Im ) when (4.9) holds.
+   p          p                                     p
+Then M ≤ CM∗ , with the constant outside the entries. Select a small-sector representative
+if                                        √ √       !
+                                  √ 2 2 I pM∗             √
+                          min I h p ϕ ,               > P I W.                      (4.11)
+                                             θh
+                                       √           P
+Unselected good-ﬁeld costs sum to CP I because W ≤ C. At ﬁxed receiver time, (4.8),
+the density cap and the positive cone budget give aggregate coeﬃcient at most CU , where
+
+                              U = w−1 min{h2 (pθ)3 , (pθhϕ2 )−1 }.                        (4.12)
+
+Both estimates are available with ﬁxed species-dependent constants. Taking their maximum
+bounds the minimum by CU . The exact representative argument of [1, Section 8] gives
+
+              U ≤ w−1/2 W         on selected representatives for P ≥ P∗ (M, A).          (4.13)
+
+To check its decisive compatibility, write p = P 1−α , w = P z , c = 1 − z, pθ = P b , ϕ = P −y ,
+h = P −H and ∆ = ϵ(α + b + y + H). Near selection gives 2α + H/2 + 2y < z + ∆. Energy
+far selection and unsafety force ∆ < 4z/99995 < .001z, H > .496z + 3(α + c) and actual
+separation mϕ > P .3 . Stable-cell far selection then forces the window (4.9). Improved
+occupation and unsafety imply
+
+      βy > H/3 + z/3 + 2 min(α, c) − 8∆/3,          βy < 29z/50 − 29H/100 + (29/50)∆.
+
+                                                7
+Consequently H/z < 37487/93500 < 62/125, contradicting H/z > .496. The intervening
+window inequalities and exact rational margin are checked by the accompanying selection
+certiﬁcate and reproduced in the audit supplement; no species coeﬃcient occurs inside these
+pure inequalities.
+    Summing (4.13) bounds the coeﬃcient of the full |Ka | by Cw−1/2 , uniformly over all
+                         √
+receivers. It cancels the w loss in (4.7). The spatial, central and source derivative balances
+and endpoint-weight estimates of [1, Section 8] use exactly the transferred majorants listed
+above. Hence, for an endpoint-zero weight with ramps of length η0 I,
+                         Z
+                                            √            √          
+                           ψKa dt ≤ Cη0 P I + (M + A)IS(w) .                            (4.14)
+                           J
+
+The constant depends on the ﬁxed species data but not on M, A. This proves parameter
+robustness of the analytic chain: positivity enters only the aggregate majorants and energy,
+while every signed kernel identity was ﬁrst taken pairwise with its full ﬁxed coeﬃcient.
+
+
+5    Coupled closure and exclusion of ﬁnite-time blowup
+                     √
+Let Bw (I) = M P I + AIS(w). If it is at least 32w, the endpoint energy range directly
+gives |∆Va | ≤ 16w ≤ Bw (I)/2. Otherwise M ≥ 32 implies I ≤ (w/P )2 . Restore the two
+edge ramps in (4.14) by integrating the removed weight against Va (t) − Va (t1 ) on the left and
+Va (t)−Va (t2 ) on the right. Each monotone ramp has derivative norm one, so the simultaneous
+signed bootstrap, rather than an absolute force bound, gives total cost 2Bw (η0 I). Thus
+                                      √      √                 √
+                 |∆Va | ≤ (Cη0 + 2M η0 )P I + [Cη0 (M + A) + 2Aη0 ]IS(w).
+           √
+Choose 2 η0 , 2η0 ≤ 1/8, then M ≥ max(32, 8Cη0 ), then A ≥ max(1, 16Cη0 M, 256Cη20 ), and
+ﬁnally P0 large enough for all preceding estimates. This gives a strict half-bootstrap for
+every species with one set of constants.
+    The set of times up to which all eligible intervals and all species satisfy (4.1) is closed by
+truncation and continuity. On a ﬁxed compact classical preﬁx, the ﬁnite union of supported
+label sets has a ﬁnite
+                     √     acceleration bound C∗ . Every interval of suﬃciently small length
+obeys C∗ I ≤ M P I. The strict improvement on a longer interval’s preﬁx and C∗ ε on its
+suﬃx prove relative right openness, uniformly over the ﬁnite species list. This temporary C∗
+aﬀects only the openness argument; it never enters M, A, P0 . Therefore the signed increment
+estimate is unconditional on every compact classical preﬁx, with constants independent of
+that preﬁx’s endpoint.
+    If all particle data vanish, smooth vacuum Maxwell evolution is global. Otherwise sup-
+pose a maximal solution had ﬁnite lifespan and unbounded joint momentum. Let Q(t) =
+maxa,z∈supp fa0 q(Va (t, z)) and tn its ﬁrst hit of 2n for large n. Choose a maximizing species
+and label at tn , and sn its last hit of 2n−1 . Then sn ≥ tn−1 even if the maximizer changes
+species, and the chosen label remains in [2n−1 , 2n ] on [sn , tn ]. Apply the signed estimate
+with P = 1024 · 2n , w = 2n , ∆n = tn − sn . Since q is one-Lipschitz,
+                                     p
+                   2n−1 ≤ 1024M 2n ∆n + 10242 A2n ∆n log(2 + 1024 · 2n ).
+One term must exceed 2n−2 , so tn − tn−1 ≥ ∆n ≥ c/ log(2 + 1024 · 2n ). The sum diverges.
+Finite-time momentum blowup is impossible.
+
+
+6    Local theory, uniqueness and nonneutral continuation
+For Sobolev ﬁelds we use the classical bounded-momentum criterion of Glassey–Strauss [5], in
+the precise formulation of Luk–Strain [3, Theorem 1.1, Footnote 1, Remark 1.2]: nonnegative
+
+                                                8
+compact phase data in H 5 , ﬁelds in H 5 , Gauss constraints, and a uniform ﬁnite momentum
+radius imply continuation. Their remark explicitly extends the method to ﬁnitely many
+species. Glassey’s book [2, Chapter 5] formulates the masses and signs and explains the
+species-speciﬁc streaming operators and separate iterate diﬀerences. Its printed theorem
+includes neutrality; we do not silently remove that hypothesis from its statement.
+    The ﬁnite-species Sobolev adaptation uses the same bounded-radius velocity law after
+(1.1). Source ﬁeld representations acquire eb λb and receiver force equations acquire λa ; ab-
+solute estimates replace them by ﬁxed constants and sum √ ﬁnitely many species. At bounded
+radius R, all cone divisors obey 1 − n · u ≥ 1 − R/ 1 + R2 > 0. The division-lemma
+and diﬀerentiated kernel estimates in [6, 3] therefore have the same bounded constants and
+                                                        P
+logarithmic derivative inequality, with N (t) = maxs≤t a k∇x,v fa (s)k∞ :
+                                                                     Z t
+k(E, B)(t)kW 1,∞ ≤ C[1 + log(2 + N (t))],        N (t) ≤ N (0) + C         [1 + log(2 + N (s))]N (s) ds.
+                                                                      0
+
+The Osgood integral diverges, controlling derivatives; higher Sobolev norms then satisfy
+the usual tame transport–Maxwell Gronwall estimate. Local H 6 iteration uses kjkHxk ≤
+          P
+|BR |1/2 a |ea |kfa kH k and the divergence-free phase transport. It gives a common local
+lifespan, positivity and smooth persistence for smooth data. The constants depend on R;
+these continuation estimates do not replace the a priori signed proof.
+     To reach (1.3), ﬁx any ﬁnite horizon T and choose L0 > R0 + 2T . The signed smooth
+compact initial density ρ0 has Coulomb ﬁeld EC = −∇(−∆)−1 ρ0 . It is smooth and belongs to
+every H k in three dimensions: its Fourier transform is −iξ ρb0 /|ξ|2 , whose O(|ξ|−1 ) behavior
+is
+R
+    square integrable near zero, and ρb0 decays rapidly at inﬁnity. This argument permits
+   ρ0 6= 0.
+     Both GE = E0 − EC and GB = B0 are smooth divergence-free ﬁelds. For either such G,
+the smooth potential                      Z           
+                                                 1
+                                AG (x) =             tG(tx) dt × x
+                                             0
+
+satisﬁes curl AG = G, as follows by diﬀerentiating t2 G(tx) and using div G = 0. Let a
+compact cutoﬀ χ equal one on B(0, L0 ). Set E e0 = EC + curl(χAG ) and B     e0 = curl(χAG ).
+                                                                    E                      B
+                             k
+These ﬁelds lie in every H , preserve both constraints and coincide with the originals on
+B(0, L0 ).
+    The diﬀerence is divergence-free smooth L2 data for vacuum Maxwell. Its global vacuum
+evolution W is Ct L2 , smooth with bounded derivatives, and vanishes on |x| < L0 −t by ﬁnite
+propagation. For t ≤ T it vanishes throughout every particle region |x| ≤ R0 + t. Adding W
+to a solution for modiﬁed data, or subtracting it from an original-data solution, preserves all
+species transport equations on their supports, Maxwell equations and constraints, without
+changing momenta. Thus bounded-momentum continuation and smooth local theory transfer
+to (1.3) on any prescribed horizon.
+    Uniqueness holds in the full classical class, not only the Sobolev construction. On a
+common compact interval choose a common momentum radius R and subtract two solu-
+                                                         P
+tions. Transport diﬀerence energies are bounded by C a kδfa k2 kδ(E, B)k2 , since the other
+solution’s ﬁrst density derivatives are bounded on compact phase support. Maxwell’s diﬀer-
+                                        P
+ence current satisﬁes kδjk2 ≤ |BR |1/2 a |ea |kδfa k2 . Spatial cutoﬀs justify Maxwell energy
+                                                                P
+without assuming L2 ﬁeld derivatives. Gronwall applied to a kδfa k22 + kδ(E, B)k22 gives
+equality. Together with the signed estimate and momentum-doubling argument this com-
+pletes the proof of Theorem 1.1. The dependency ledger and independent adversarial audit
+records describe the validation performed.
+
+
+
+                                                     9
+7    Checks, limitations and disclosure
+If a receiver has ea = 0, its momentum is constant and all pair factors vanish. A source with
+eb = 0 has free transport and no Maxwell contribution; its positive energy may be retained
+harmlessly. Identical mass/charge species can be combined by adding number densities. For
+a single species with m = e = 1 every displayed formula reduces to [1]. For two unit masses
+and charges +1, −1, same-sign pair coeﬃcients are +1 and cross-sign coeﬃcients −1; source
+accelerations are signed before exact cancellation. An extreme ﬁxed mass ratio only enlarges
+m−1b , |λb | and |cab | and the normalized initial norms. There is no uniform estimate as a mass
+approaches zero. Neutrality is used nowhere in the positive energy, kernels, occupation or
+localization proof.
+    The assumptions of bounded smooth ﬁeld derivatives provide the homogeneous ﬁeld and
+vacuum regularity needed by this proof. Arbitrary smooth ﬁnite energy ﬁelds without those
+derivative bounds are not covered. Compact particle phase support is a hypothesis of the
+analytic chain. The note does not infer control of support from energy alone, or a scalar
+                         P
+Vlasov equation for b fb .
+    The source package contains exact source hashes, dependency and priority ledgers, scoped
+agent audits, and standard-library kernel and exponent certiﬁcates. Those certiﬁcates check
+algebra only. This multispecies theorem is not claimed to be Lean formalized; a source-library
+static scan or existence of comparator ﬁles is not formal certiﬁcation. AI tools were used
+extensively in the research, drafting and veriﬁcation. Automated adversarial reviews do not
+constitute conventional human peer review. This preprint has not undergone conventional
+human peer review or refereeing. The ordinary analytic proof is the basis for the theorem;
+no reproduced Lean certiﬁcate is claimed.
+
+
+References
+[1] OpenAI. Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system.
+    OpenAI Math Release preprint, manuscript dated September 23, 2026. Pinned repository input:
+    adc7f1241b42e322a6451854ab7e4b4c146bf78a, family 362. The manuscript-speciﬁc citation is
+    supplied in that family’s README.
+[2] R. T. Glassey. The Cauchy Problem in Kinetic Theory. SIAM, 1996, Chapters 5–6.
+    doi:10.1137/1.9781611971477.
+[3] J. Luk and R. M. Strain. A new continuation criterion for the relativistic Vlasov–Maxwell
+    system. Commun. Math. Phys. 331 (2014), 1005–1027. arXiv:1406.0165v1;
+    doi:10.1007/s00220-014-2108-8.
+[4] R. T. Glassey and J. Schaeﬀer. Global existence for the relativistic Vlasov–Maxwell system with
+    nearly neutral initial data. Commun. Math. Phys. 119 (1988), 353–384. doi:10.1007/BF01218078.
+[5] R. T. Glassey and W. A. Strauss. Singularity formation in a collisionless plasma could occur
+    only at high velocities. Arch. Ration. Mech. Anal. 92 (1986), 59–90. doi:10.1007/BF00250732.
+[6] F. Bouchut, F. Golse and C. Pallard. Classical solutions and the Glassey–Strauss theorem for the
+    3D Vlasov–Maxwell system. Arch. Ration. Mech. Anal. 170 (2003), 1–15. arXiv:math/0301175.
+[7] G. Mattingly, S. Pankavich and J. Ben-Artzi. Sharp time decay and scattering of small data
+    solutions to the relativistic Vlasov–Maxwell system. arXiv:2609.29013v1, submitted September
+    24, 2026.
+
+
+
+
+                                                10
+

@@ -1,0 +1,192 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\area}{\operatorname{area}}
+\title{Quantitative persistence in a fixed-city area equation}
+\author{Alec Kriebel\thanks{ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}. Extensive AI tools were used in developing, writing, reproducing, and adversarially checking this work. This preprint is unrefereed; completed external human peer review and formal proof-assistant verification are not claimed. The author is responsible for its claims.}}
+\date{15 October 2026\quad (version 1.0.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+For finitely many fixed distinct interior sites in the unit square, let each site's positive population share grow at the rate of the area where its influence is maximal, minus its current share. Influence is proportional to population to the power $\alpha$ times distance to the power $-\beta$. We prove that every positive initial probability vector gives a global trajectory and, when $\beta>2\alpha$, every share has an explicit positive lower bound for all time. An asymmetric three-site instance with $\alpha=2$ and $\beta=8$ has all shares between $1/4096$ and $2047/2048$. This disproves the unrestricted $\alpha>1$ collapse alternative in the literal 2007 fixed-city conjecture. The result is a quantitative, all-site persistence statement; it does not establish convergence or resolve the stochastic city-founding model. We credit the original local geometric mechanism and a directly overlapping 2026 two-city counterexample analysis. No firstness claim is made.
+\end{abstract}
+
+\section{The equation and the literal conjecture}
+
+Let $D=[0,1]^2$, let $n\geq2$, and fix distinct $x_1,\ldots,x_n\in(0,1)^2$. For $\alpha,\beta>0$ and $z\in(0,\infty)^n$, define
+\begin{align}
+ S_i(z)&=\{y\in D:z_i^\alpha|y-x_i|^{-\beta}
+                      \geq z_j^\alpha|y-x_j|^{-\beta}\text{ for all }j\},\label{cells}\\
+ A_i(z)&=\area S_i(z),\qquad
+ \dot z_i=A_i(z)-z_i.\label{ode}
+\end{align}
+Conventions at the finitely many sites and at tied boundaries do not affect the areas. Initial data lie in the positive probability simplex
+\[
+ \Delta^\circ=\{z\in(0,\infty)^n:\textstyle\sum_i z_i=1\}.
+\]
+These are exactly the fixed-city equations displayed in the 2007 rough notes of Aldous \cite[\S6.4, p.~40]{Ald07}. The global parameter declaration allows all positive $\alpha,\beta$ \cite[p.~2]{Ald07}. The literal Conjecture~32(a) predicts that some $z_i(t)$ tends to one if $\alpha>1$ \emph{or} $0<\beta<2\alpha$, for positions and initial values in an unspecified general position. We refute its unrestricted $\alpha>1$ alternative, on the open region $\alpha>1$, $\beta>2\alpha$.
+
+This is a statement about the displayed finite-dimensional equation. The later Aldous--Huang paper declares $0<\alpha\leq1$, permits stochastic founding of new cities, and does not state this fixed-city conjecture \cite[\S2]{AH12}. Our result does not refute that paper's model.
+
+\section{Persistence and its proof}
+
+Put $q=\alpha/\beta$ and $p=2q$. Taking a positive $\beta$th root in \eqref{cells} shows that, away from the sites,
+\begin{equation}
+ y\in S_i(z)\quad\Longleftrightarrow\quad
+ |y-x_i|\leq (z_i/z_j)^q |y-x_j|\quad\text{for every }j.\label{dominance}
+\end{equation}
+In particular, the cells and the vector field depend only on $q$, with no time change.
+These are classical multiplicatively weighted Voronoi cells, with site weight $z_i^q$; their circular or linear pairwise boundaries are standard geometry \cite[pp.~251--252]{AE84}.
+
+\begin{theorem}\label{main}
+Equation \eqref{ode} has a unique global positive classical trajectory from every $z(0)\in\Delta^\circ$. Choose $h_i>0$ so that
+\begin{equation}
+ x_i+[-h_i,h_i]^2\subset D,\qquad
+ 8h_i^2\leq |x_i-x_j|^2\quad(j\ne i),\label{geometry}
+\end{equation}
+and set $K_i=4h_i^2$. If $\beta>2\alpha$, then, for every $t\geq0$,
+\begin{equation}
+ z_i(t)\geq
+ \left[K_i+\bigl(z_i(0)^{1-p}-K_i\bigr)e^{-(1-p)t}\right]^{1/(1-p)}.\label{quant}
+\end{equation}
+Consequently, with $\eta_i=\min\{z_i(0),K_i^{1/(1-p)}\}>0$,
+\begin{equation}
+ \eta_i\leq z_i(t)\leq1-\sum_{j\ne i}\eta_j<1,
+ \qquad \liminf_{t\to\infty}z_i(t)\geq K_i^{1/(1-p)}.\label{uniform}
+\end{equation}
+\end{theorem}
+
+Distinctness and interiority make \eqref{geometry} possible. Its constants need not be optimal. The all-time lower bound depends on the initial value; the positive asymptotic lower bound does not. Neither statement asserts a limit exists.
+
+\begin{lemma}\label{regularity}
+For fixed distinct sites, $A$ is locally Lipschitz on the positive orthant, including states with equal weights.
+\end{lemma}
+\begin{proof}
+For distinct sites $a,b$, set $F_\lambda(y)=|y-a|^2-\lambda|y-b|^2$, $\lambda>0$. A pairwise tie is its zero set, a circle or a nonconstant line, hence planar-null. Almost every point has a strict winner, whose inequalities persist under small positive weight perturbations. Dominated convergence gives continuity of each $A_i$; the almost-everywhere partition gives $0\leq A_i\leq1$ and $\sum_iA_i=1$.
+
+Here is a quantitative local estimate avoiding any assumption on cell combinatorics. Write $d=|a-b|$ and restrict $\lambda$ to $[m,M]\subset(0,\infty)$. Direct expansion gives
+\begin{equation}
+ |\nabla F_\lambda|^2=4\{\lambda d^2+(1-\lambda)F_\lambda\}.\label{gradient}
+\end{equation}
+Let $H=\max\{1,|1-m|,|1-M|\}$. On $|F_\lambda|\leq\varepsilon\leq md^2/(2H)$, at least one coordinate derivative has absolute value at least $g=\sqrt m\,d$. Along a slice in that coordinate, the quadratic $F_\lambda$ has at most two intervals on which that derivative has magnitude at least $g$ and constant sign. Each interval contributes length at most $2\varepsilon/g$ to the band. Fubini in both coordinates and a union bound yield
+\[
+ \area\{y\in D:|F_\lambda(y)|\leq\varepsilon\}
+ \leq 8\varepsilon/g.
+\]
+If the dominance test changes between $\lambda$ and $\mu$, then
+\[
+ |F_\lambda(y)|\leq |\lambda-\mu|\,|y-b|^2
+                   \leq2|\lambda-\mu|.
+\]
+Thus nearby parameters change the pairwise dominance set by area at most $16|\lambda-\mu|/g$. A full cell is a finite intersection of these sets; its symmetric difference is contained in the union of their symmetric differences. Finally, $\lambda_{ij}(z)=(z_i/z_j)^{2q}$ is smooth locally on the positive orthant. Summing the estimates proves the assertion, including the line case $\lambda=1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+Local existence and uniqueness follow from Lemma~\ref{regularity}. Along any positive solution, $s=\sum_i z_i$ satisfies $\dot s=1-s$, so $s(0)=1$ implies $s(t)=1$. Also $\dot z_i\geq-z_i$, whence
+\[
+ z_i(t)\geq e^{-t}z_i(0)>0.
+\]
+Before a finite possible maximal endpoint $T$, the trajectory therefore stays in a compact subset of the positive simplex, with $|\dot z_i|\leq1$. Bounded derivatives give a positive limiting state at $T$, from which local existence extends the solution. This proves global continuation. The following persistence argument in fact applies to every positive solution and does not require uniqueness.
+
+For $z\in\Delta^\circ$ consider
+\[
+ Q_i(z)=x_i+[-h_i z_i^q,h_i z_i^q]^2.
+\]
+Since $z_i\leq1$, this square lies in $D$. For $y\in Q_i(z)$ and every $j\ne i$, \eqref{geometry} gives
+\begin{align*}
+ |y-x_i|&\leq\sqrt2h_i z_i^q,\\
+ |y-x_j|&\geq2\sqrt2h_i-\sqrt2h_i z_i^q\geq\sqrt2h_i.
+\end{align*}
+As $z_j\leq1$, these inequalities imply
+\[
+ |y-x_i|\leq z_i^q|y-x_j|
+             \leq(z_i/z_j)^q|y-x_j|.
+\]
+By \eqref{dominance}, $Q_i(z)$ is contained in the actual winning cell, up to irrelevant null conventions. This is simultaneous dominance over \emph{every} competitor. Hence
+\begin{equation}
+ A_i(z)\geq4h_i^2z_i^{2q}=K_i z_i^p.\label{area}
+\end{equation}
+When $p<1$, positivity allows differentiating $u_i=z_i^{1-p}$:
+\[
+ \dot u_i=(1-p)z_i^{-p}\dot z_i
+       \geq(1-p)(K_i-u_i).
+\]
+Multiplication by $e^{(1-p)t}$ and integration give
+\[
+ u_i(t)\geq K_i+(u_i(0)-K_i)e^{-(1-p)t}.
+\]
+The right side is a positive convex combination of $K_i$ and $u_i(0)$. Raising to $1/(1-p)$ gives \eqref{quant} and the lower and limiting bounds in \eqref{uniform}. The upper bound follows by summing the other coordinates' lower bounds and using $\sum_i z_i=1$.
+\end{proof}
+
+\begin{corollary}\label{counter}
+The unrestricted $\alpha>1$ collapse alternative in the literal Conjecture~32(a) of \cite{Ald07} is false. Its counterexamples include every positive initial probability vector and every configuration of distinct interior sites whenever $n\geq2$, $\alpha>1$, and $\beta>2\alpha$.
+\end{corollary}
+
+This is more than an exceptional symmetric equilibrium: it covers an open class of configurations, initial conditions in the relative simplex topology, and parameter pairs. The source does not define general position. An ordinary genericity condition excluding lower-dimensional or measure-zero exceptional data cannot eliminate this class.
+
+\section{An exact asymmetric instance}
+
+Take $\alpha=2$, $\beta=8$, $n=3$, and
+\[
+ x_1=(1/5,1/4),\quad x_2=(3/4,1/3),\quad x_3=(2/5,4/5),
+ \qquad z(0)=(1/6,1/3,1/2).
+\]
+For common $h_i=1/16$, each square is strictly interior. The squared pairwise site distances are
+\[
+ \frac{557}{1800},\qquad\frac{137}{400},\qquad\frac{49}{144},
+\]
+all strictly greater than $8h_i^2=1/32$. Their distinct values and the signed triangle determinant $343/1200$ show that the triangle is scalene and noncollinear. Here $p=1/2$, $K_i=1/64$, and $K_i^{1/(1-p)}=1/4096$, below every initial coordinate. Therefore the actual trajectory satisfies
+\begin{equation}
+ \frac1{4096}\leq z_i(t)\leq\frac{2047}{2048}
+ \qquad(i=1,2,3;\ t\geq0).\label{instance}
+\end{equation}
+Exact rational arithmetic checks the stated geometric hypotheses and constants. The analytic proof establishes \eqref{instance} for the full trajectory; finite samples or simulations do not establish it.
+
+\section{Antecedents, overlap, and limits}
+
+The model, conjecture, and local geometric growth mechanism belong to the preceding literature. In particular, Aldous's Lemma~3 uses the area exponent $2\alpha/\beta$, and the unfinished discussion around Proposition~30 places a protected disk inside a city's influence region and obtains a lower growth estimate with that exponent \cite[pp.~9, 36--37]{Ald07}. That discussion has stochastic and environmental conditions and explicitly omitted details. We do not present either the exponent or the protected-neighborhood idea as new. The proof above applies the idea uniformly on the normalized finite-city simplex and integrates it to obtain \eqref{quant}.
+
+The unrefereed note of Ferudun, posted 14 October 2026, directly addresses overlapping questions \cite{Fer26}. Its Corollary~4.4 and \S8 explicitly refute Conjecture~32(a) using open families of two-city invariant intervals for $1\leq p=2\alpha/\beta<\sqrt3$ (on $p=1$ with $\alpha>1$). Its proved Lemma~4.1(iii) also gives, for every $p>0$, the derivative
+\[
+ f'_{x^0}(1/2)=p\left(a+\frac1{12a}\right)
+\]
+of the symmetric two-city area map. For $0<p<1$, choose $a=1/4$; the derivative is $7p/12<1$. Differentiability gives inward drift at two nearby endpoints, and its Lemma~4.3 preserves those signs under small position perturbations. Thus those proved lemmas already imply a qualitative two-city counterexample in the same $p<1$ regime, even though the note labels its proposed quantitative strip extension there as a sketch. The identification $z'=f_x(z)-z$ uses exactly \eqref{ode}, without a time change. We therefore claim no first negative answer to the literal conjecture. The present theorem supplies all-site, all-positive-initial-state quantitative persistence, rather than a local two-city basin statement.
+
+Ferudun also records the ratio invariance of the equation. For example, $(\alpha,\beta)=(2,8)$ and $(1/2,2)$ give the same vector field, while the two clauses of the 2007 conjecture predict incompatible behavior. This diagnoses an inconsistency in their conjunction; by itself it does not identify which clause fails. Theorem~\ref{main} directly rules out collapse without assuming the conjectured convergence clause.
+
+An authored proof and rational certificate were recorded in the repository snapshot of 6 October 2026 \cite{Kri26}. The present note incorporates a bounded priority audit through 15 October, including the subsequent overlapping paper. Recorded chronology does not establish exhaustive priority or firstness, and neither is claimed.
+
+Our proof does not settle convergence, uniqueness of a positive equilibrium, independence of a limiting state from initial conditions, or the stochastic founding process. It proves no persistence assertion at $\beta=2\alpha$ or $\beta<2\alpha$; the already identified two-city counterexamples above must be kept in mind when formulating remaining collapse questions. Coincident sites, zero initial coordinates, and boundary sites are outside the stated theorem. The one-city case is excluded. Local uniqueness on the positive orthant is not a claim of uniqueness on its closed boundary.
+
+\paragraph{Verification material.}
+The accompanying package contains the proof source, exact rational certificate, original frozen artifacts, independently authored audit reasoning, and standard-library verification tools. The tools authenticate explicit byte inventories and replay finite arithmetic diagnostics; they do not certify the analytic theorem or priority. Complete-corpus and primary-PDF provenance checks require separately supplied pinned inputs and are explicitly not run when those inputs are absent. Primary PDFs and raw corpus records are not redistributed. Startup code and the inventory digest must be authenticated independently before executing a checker; a program cannot establish its own pre-execution trust by hashing itself after startup. The current package instructions and pins are available with the repository record \cite{Kri26}.
+
+\begin{thebibliography}{9}
+\bibitem{AE84}
+F.~Aurenhammer and H.~Edelsbrunner, An optimal algorithm for constructing the weighted Voronoi diagram in the plane, \emph{Pattern Recognition} \textbf{17} (1984), no.~2, 251--257.
+\url{https://doi.org/10.1016/0031-3203(84)90064-5}.
+
+\bibitem{Ald07}
+D.~J. Aldous, \emph{Technical notes on a spatial model of city growth} (rough notes, 25 April 2007), especially \S6.4, Conjecture~32, p.~40. Descriptive title; linked from the author's problem page.
+\url{https://www.stat.berkeley.edu/~aldous/Research/OP/cities-notes.pdf}.
+
+\bibitem{AH12}
+D.~Aldous and B.~Huang, \emph{A Spatial Model of City Growth and Formation}, arXiv:1209.5120v1 (23 September 2012).
+\url{https://arxiv.org/abs/1209.5120v1}.
+
+\bibitem{Fer26}
+A.~Ferudun, \emph{On Conjecture 1 of Aldous for a Spatial Model of City Growth: A Proof of Part (a), and Counterexamples to Parts (b) and (c) for $2\alpha/\sqrt3<\beta<2\alpha$}, EulerSolve Research Papers, AMR-096-0023, version~1.0, 14 October 2026, unrefereed preprint.
+\url{https://doi.org/10.5281/zenodo.23367464}.
+
+\bibitem{Kri26}
+A.~Kriebel, \emph{Persistence refutes the literal city-ODE collapse conjecture}, authored proof and certificate, repository commit \texttt{fba74a301786f9648e48722e76f440097b0746c2}, recorded 6 October 2026. Original snapshot:
+\href{https://github.com/AlecKriebel/Math/tree/fba74a301786f9648e48722e76f440097b0746c2/unsolved_math_prioritization/attempts/9700026}{GitHub immutable source tree}; current package and publication record:
+\url{https://github.com/AlecKriebel/Math/pull/880}.
+\end{thebibliography}
+\end{document}

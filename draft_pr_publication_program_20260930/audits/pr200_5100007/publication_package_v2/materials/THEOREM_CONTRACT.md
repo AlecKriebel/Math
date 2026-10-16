@@ -1,0 +1,13 @@
+# Exact scope and dependency contract
+
+Boundary ellipse: a>b>0. Caustic axes alpha>beta>0 satisfy a²-alpha²=b²-beta²=lambda with 0<lambda<b². The fixed pair has periodic billiards of least N>=3. Winding is primitive, gcd(tau,N)=1 and 0<tau<N/2 after reversal. Outer vertices are intersections of tangents to the boundary at consecutive impacts; focus means either original confocal focus. All lengths are ordinary positive Euclidean distances. Constancy varies phase at fixed pair and winding.
+
+Result: each one-focus product is phase constant iff4 divides N. Both constants agree in the positive case. Repeating r times yields the rth positive power and leaves this criterion unchanged. The claim is not extended to circles, hyperbolic or collapsed caustics, separatrices or N2. The circle is separately constant for all admitted periods, so noncircularity is essential to necessity.
+
+Published input: Stachel, On the motion of billiards in ellipses, DOI10.1007/s40879-021-00524-2, Theorem4.3/(4.9); preprint2105.03624v2 Theorem2/(4.10). It supplies canonical billiard translation P(u)=(-a snu,b cnu), a=alpha dnv/cnv, b=beta/cnv, delta=2v=4Ktau/N. Modulus k=c/alpha, not mpmath's parameter k². Standard DLMF22.4/22.6/22.8 supplies periods, poles, zeros and addition/shift identities. Correct real dn period is2K; the printed sign discrepancy observed in Stachel is not used and is not asserted to be an author-confirmed erratum.
+
+Checkable deductions: solve actual two boundary tangents for Q; factor the paired squared focal distance H; compute its full divisor on T=C/(2KZ+2iK'Z); sum over the orderL=N/gcd(N,2) subgroup. Generic norm divisor is4O_(p+K)-4O_p. Cosets coincide iffL even iff4divN. N4 has a degree drop and coefficient2. For oddN, the paired norm is not a single-focus square: constancy of either one-focus product implies both by the separate antipodal phase shift, hence contradicts the nonzero norm divisor by the identity theorem. Sufficiency uses in-orbit antipodal pairing only for evenN.
+
+Historical contribution limit: the exact positive theorem is already in Ferudun DOI10.5281/zenodo.23093258 and must be credited; classical polarity, canonical parametrization and elliptic norm methods are prior. The converse is a verified extension of that located positive statement, but its worldwide historical novelty is not established. Dated source question marks do not certify current openness. No firstness or independent-discovery certification is made.
+
+No computation replaces the analytic universal proof. Exact fixtures establish their own finite algebraic claims; arbitrary-precision samples are neither formal nor interval certification. AI audits are not conventional human peer review.

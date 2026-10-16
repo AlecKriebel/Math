@@ -1,0 +1,229 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\sn}{\operatorname{sn}}
+\newcommand{\cn}{\operatorname{cn}}
+\newcommand{\dn}{\operatorname{dn}}
+\newcommand{\Area}{\operatorname{Area}}
+\title{An odd-period product for focal inversions\protect\\of outer billiard polygons}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{15 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a periodic billiard family between an ellipse and a strictly nested nondegenerate confocal elliptical caustic, form the outer polygon by intersecting consecutive tangents at the billiard vertices. Invert its vertices in the unit circles centered at the two original billiard foci, and join successive images by straight segments. We prove that the product of the resulting signed areas is constant for every odd least period, including primitive stars. This proves the invariant conjectured as k904,a in the pinned 2020 list of Reznik, Garcia and Koiller. An explicit inverse-edge factorization reduces the area to a cyclic elliptic sum. Its double principal parts cancel, leaving two simple poles and complementary half-period zeros. The triangular critical case and repeated traversals are included. The analytic methods are classical; no first-proof or absolute-priority claim is made. This AI-assisted research note is unrefereed.
+\end{abstract}
+
+\section{The precise invariant}
+Let
+\[
+ \mathcal E:\quad x^2/a^2+y^2/b^2=1,\qquad
+ a>b>0,\qquad f_\pm=(\pm c,0),\quad c^2=a^2-b^2.
+\]
+Fix a strictly nested nondegenerate confocal ellipse with semiaxes
+$\alpha>\beta>0$, so $\alpha^2-\beta^2=c^2$. Suppose its billiard family has odd least period $N\geq3$. If $P_j$ are successive billiard vertices, let $Q_j$ be the intersection of the tangents to $\mathcal E$ at $P_j,P_{j+1}$, with indices modulo $N$. For an ordered polygon $X$, signed area means
+\[
+ \Area(X)=\frac12\sum_{j=0}^{N-1}\det(X_j,X_{j+1}).
+\]
+In particular, this is algebraic area for a star, rather than the area of the union of its faces. Write
+\[
+ J_f(Q)=f+\frac{Q-f}{\lVert Q-f\rVert^2},\qquad
+ B_\pm=\Area\bigl(J_{f_\pm}(Q_0),\ldots,J_{f_\pm}(Q_{N-1})\bigr).
+\]
+\begin{theorem}\label{thm:main}
+For every such family, including every admissible coprime star turning number, $B_+B_-$ is a positive constant independent of the starting vertex. Both inversions are defined at every real outer vertex. Reversing the trajectory leaves the product unchanged.
+\end{theorem}
+
+The target is k904,a in \cite[\S3.9, Table~10, p.~12]{RGK}, using the \emph{original} billiard foci and the \emph{outer} vertices. The same assertion is k808,a in v10, posted 25 October 2020; v11 was posted 29 October 2020. The journal companion \emph{Fifty New Invariants} has a smaller table. The original-vertex product k903,a and inversion about the outer locus's own foci k906 are different constructions. Vertex inversion followed by straight joining is also different from inverting whole edges to arcs. Our theorem concerns the nondegenerate elliptical-caustic setting just specified; it makes no assertion for collapsed or hyperbolic caustics.
+
+\section{Canonical coordinates and the exact edge term}
+Put $k=c/\alpha\in(0,1)$, $k'=\beta/\alpha=\sqrt{1-k^2}$, and let $K=K(k)$, $K'=K(k')$. All Jacobi functions below have modulus $k$. Stachel's canonical coordinates \cite[Theorem~4.3 and (4.9)]{Stachel} give
+\begin{equation}\label{eq:canonical}
+ P(w)=(-a\sn w,b\cn w),\quad
+ a=\alpha\frac{\dn v}{\cn v},\quad b=\frac{\beta}{\cn v},\quad
+ \delta=2v=\frac{4K\tau}{N},
+\end{equation}
+where $\gcd(\tau,N)=1$, $0<\tau<N/2$, and $0<v<K$. This orientation suffices by reversal. Intersecting the tangents at $P(u-v),P(u+v)$ gives
+\begin{equation}\label{eq:outer}
+ Q(u)=(-A_o\sn u,B_o\cn u),\qquad
+ A_o=a\frac{\dn v}{\cn v},\quad B_o=\frac b{\cn v}.
+\end{equation}
+Indeed, the tangent at $P(z)$ is $-X\sn z/a+Y\cn z/b=1$; Jacobi addition verifies both equations. The magnitude of their determinant is
+\[
+ \frac{2\sn v\cn v\dn u}{ab(1-k^2\sn^2u\sn^2v)}>0
+ \quad(u\in\mathbb R).
+\]
+Thus the intersections are finite. Moreover $A_o>a$, $B_o>b$, since $\dn^2v-\cn^2v=k'^2\sn^2v>0$. Every real $Q(u)$ is outside $\mathcal E$, whereas both foci are inside it. This proves the asserted finiteness of inversion. We do not require $A_o>B_o$; the outer locus can have its major axis reversed.
+
+For the rest of the proof set
+\begin{gather}\label{eq:defs}
+ h=\sn v,\quad C=\cn v,\quad d=\dn v,\quad t=h^2,\quad q=C^2=1-t,\\
+ U=1-2k^2t+k^2t^2,\quad V=1-2t+k^2t^2,\quad W=1-k^2t^2.\nonumber
+\end{gather}
+Then $A_o=\alpha d^2/q$, $B_o=\alpha k'/q$, $U=W\dn(2v)$ and $V=W\cn(2v)$. Direct expansion yields the focal squared distance
+\begin{equation}\label{eq:distance}
+ D_f(u):=(Q_x(u)-c)^2+Q_y(u)^2
+ =\frac{\alpha^2}{q^2}(1+k\sn u)(U+kV\sn u),\qquad f=f_+.
+\end{equation}
+For example, its three coefficients follow from
+\[
+ A_o^2-B_o^2=\frac{\alpha^2 k^2V}{q^2},\quad
+ B_o^2+c^2=\frac{\alpha^2U}{q^2},\quad U+V=2qd^2.
+\]
+For complex $u$, all squared norms in this proof are continued as bilinear sums of squares, with no conjugation. Translating the inverse polygon by $-f$ leaves its area unchanged, so write $I(u)=(Q(u)-f)/D_f(u)$.
+
+\begin{lemma}\label{lem:edge}
+The inverse-edge contribution $e(u)=\tfrac12\det(I(u-v),I(u+v))$ satisfies
+\begin{equation}\label{eq:edge}
+ e(u)=\frac{C_0\dn u(1-k^2t\sn^2u)}
+ {(d+kC\sn u)^2(L_0+kL_1\sn u)},
+\end{equation}
+where
+\begin{equation}\label{eq:L}
+ L_0=\frac{U^2-k^2V^2t}{d},\qquad
+ L_1=\frac{V^2-U^2t}{C},\qquad
+ C_0=\frac{B_o h d q^4}{\alpha^3 C}>0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $D=1-k^2t\sn^2u$. The addition formulas give the three identities
+\begin{align}
+ &(1+k\sn(u-v))(1+k\sn(u+v))
+       =\frac{(d+kC\sn u)^2}{D},\label{eq:factor1}\\
+ &(U+kV\sn(u-v))(U+kV\sn(u+v))
+       =\frac{(d+kC\sn u)(L_0+kL_1\sn u)}D,\label{eq:factor2}\\
+ &\tfrac12\det(Q(u-v)-f,Q(u+v)-f)
+       =\frac{\alpha B_o h d\dn u(d+kC\sn u)}{CD}.\label{eq:det}
+\end{align}
+For completeness, expand the products using
+\[
+ \sn(u\pm v)=\frac{\sn u\,C d\pm h\cn u\dn u}{D},\qquad
+ \cn(u\pm v)=\frac{\cn u\,C\mp\sn u\,h\dn u\,d}{D}.
+\]
+Use $\cn^2u=1-\sn^2u$ and $\dn^2u=1-k^2\sn^2u$. In \eqref{eq:factor2} the constant and quadratic coefficients are the definitions of $L_0,L_1$; the remaining coefficient is precisely
+\[
+ d^2(V^2-U^2t)+q(U^2-k^2V^2t)=2UVqd^2.
+\]
+Expansion of the determinant gives \eqref{eq:det}. Dividing it by the product of \eqref{eq:distance} at $u-v,u+v$ proves \eqref{eq:edge}, including the factor $q^4$.
+\end{proof}
+
+Define
+\begin{equation}\label{eq:Z}
+ Z=W^2-4k^2t^2qd^2=W^2\bigl(1-k^2t\sn^2(2v)\bigr)>0.
+\end{equation}
+The triple-angle formulas imply
+\begin{equation}\label{eq:triple}
+ L_0=Z\dn(3v),\qquad L_1=Z\cn(3v),\qquad
+ L_0^2-k^2L_1^2=k'^2Z^2.
+\end{equation}
+An explicit algebraic check is obtained by putting
+$D_3=UW-2k^2tqV$, $C_3=VW-2td^2U$: then
+\[
+ U^2-k^2V^2t=d^2D_3,\quad V^2-U^2t=qC_3,\quad
+ \dn(3v)=dD_3/Z,\quad\cn(3v)=CC_3/Z.
+\]
+In particular $L_0>0$. Since $d^2-k^2C^2=k'^2>0$, all denominator factors in \eqref{eq:edge} are positive on the real axis, as are its numerator and $C_0$. Thus
+\begin{equation}\label{eq:positive}
+ e(u)>0\quad\hbox{for every real }u.
+\end{equation}
+Also $L_1\ne0$: in $0<3v<3K$, a zero of $\cn(3v)$ would require $3v=K$, hence $N=6\tau$, impossible for odd $N$.
+
+\section{Poles and cyclic cancellation}
+We use the standard Jacobi periods, zeros, poles and quarter shifts \cite[\S\S22.4,22.8]{DLMF}. Put $p=iK'$ and $r_0=3K+p$. The function $e$ has period $4K$ and anti-period $2p$, hence period $4p$.
+
+\begin{lemma}\label{lem:poles}
+Modulo $4K,2p$, the only possible poles of $e$ are double poles at $r_0\pm v$ and simple poles at $r_0\pm3v$. In the exceptional primitive triangular case, the latter two points coincide, but the resulting pole still has order at most one. Moreover
+\begin{equation}\label{eq:reflection}
+ e(2r_0-u)=-e(u).
+\end{equation}
+\end{lemma}
+\begin{proof}
+On the torus with periods $4K,2p$, $\sn$ has degree two. The identity
+\[
+ \sn(K+p+z)=\frac{\dn z}{k\cn z}
+\]
+and the real $2K$ shift show that the zeros of $d+kC\sn u$ are exactly $r_0\pm v$. They are distinct and simple: their value $-d/(kC)$ has magnitude greater than $1/k$, and so is not a critical value of $\sn$. Its square in \eqref{eq:edge} permits double poles.
+
+By \eqref{eq:triple}, the zeros of the other factor are $r_0\pm3v$. They are distinct and simple except when $3v=2K$. Indeed, $6v\in(0,6K)$ can be a multiple of $4K$ only at $6v=4K$; the same exceptional value is the only possible critical fiber, since $\sn(3v)=0$ then. Primitivity makes $3v=2K$ exactly $N=3,\tau=1$. In that case $L_0=Z$, $L_1=-Z$, and the factor is $Z(1-k\sn u)$, with a double zero at $K+p$. At this point $\dn u$ has a simple zero, leaving order at most one in \eqref{eq:edge}. This point is different from $r_0\pm v$. The first and second zero sets cannot otherwise intersect, since that would make $2v$ or $4v$ a multiple of $4K$, impossible for $0<v<K$.
+
+At a common pole of $\sn,\cn,\dn$, the numerator of \eqref{eq:edge} has order three and its denominator has order three, since $k,C,L_1\ne0$; the singularity is removable. There are no other denominator zeros or poles. This exhausts the possible poles. Finally Jacobi parity and shifts give $\sn(2r_0-u)=\sn u$ and $\dn(2r_0-u)=-\dn u$, proving \eqref{eq:reflection}.
+\end{proof}
+
+Let
+\begin{equation}\label{eq:F}
+ F(u)=\sum_{j=0}^{N-1}e(u+j\delta),\qquad L=\frac{4K}{N},\qquad R=r_0+v.
+\end{equation}
+The outer polygon can be phased as $Q(w+j\delta)$, so $B_+(w)=F(w+v)$. Reindexing makes $\delta$ a period of $F$. B\'ezout's identity applied to $\gcd(\tau,N)=1$ gives the real period $L$ from $\delta=\tau L$ and $4K=NL$. Its imaginary anti-period is $2p$.
+
+The quadratic Laurent coefficients of $e$ at $r_0+v,r_0-v$ are opposite by \eqref{eq:reflection}. Those points differ by $\delta$. At every possible translated pole of the sum, one coefficient of each sign occurs; the $N$ translates of either point are distinct modulo $4K$. Thus all double terms cancel. The other two possible poles are already at most simple and differ from $R$ by $\delta$ and $-2\delta$. The triangular coincidence was included in Lemma~\ref{lem:poles}; it creates no unexamined higher-order pole. Consequently, on the compact torus
+\begin{equation}\label{eq:torus}
+ X=\mathbb C/(L\mathbb Z+4p\mathbb Z),
+\end{equation}
+$F$ has at most two simple poles, at $R,R+2p$.
+
+Both poles actually occur. If neither occurred, compactness would make $F$ constant and its anti-period would force zero, contradicting the positive real sum \eqref{eq:positive}. The anti-period pairs the poles, so each has order exactly one.
+
+\section{Complementary zeros and the other focus}
+Cyclic reindexing in \eqref{eq:reflection} shows that $F$ is odd about $r_0$. Since $2v=\delta$ is a period, it is also odd about $R$:
+\[
+ F(2R-u)=-F(u).
+\]
+At $R+L/2$ reflection is a real-period translation, so $F$ vanishes there. Its anti-period gives a second zero at $R+L/2+2p$. These are distinct points of $X$ and neither is a pole. A nonzero meromorphic function on a compact torus has equally many zeros and poles counted with multiplicity. The two zeros therefore exhaust its zero divisor and are simple. Translation by $L/2$ interchanges the zero and pole divisors, so
+\begin{equation}\label{eq:constant}
+ F(u)F(u+L/2)\quad\hbox{is holomorphic on }X\hbox{ and hence constant}.
+\end{equation}
+This step is the classical complementary-divisor argument, applied to the target-specific pole calculation above.
+
+Since $Q(u+2K)=-Q(u)$, inversion about $f_-$ is the central reflection of inversion about $f_+$ at the opposite point. Central reflection preserves signed area. Hence
+\[
+ B_-(w)=B_+(w+2K)=F(w+v+2K).
+\]
+For odd $N$, $2K=NL/2\equiv L/2\pmod L$. Equation~\eqref{eq:constant} proves Theorem~\ref{thm:main}. Both areas are positive in the chosen orientation by \eqref{eq:positive}. Reversal negates both and preserves their product.
+
+\begin{corollary}\label{cor:repeat}
+For a fixed $r$-fold traversal of an odd least-period family, the product is $r^2$ times the least-period product. In particular this includes every odd repeated traversal counted with an odd total number of vertices.
+\end{corollary}
+\begin{proof}
+Each shoelace sum is repeated $r$ times, so each signed area is multiplied by $r$.
+\end{proof}
+
+The circular case is a separate rigid-rotation calculation: for billiard radius $a$ and step angle $2\pi\tau/N$, the outer radius is $R_o=a/\cos(\pi\tau/N)$. Both focal inversions are central, and each signed inverse area is $N\sin(2\pi\tau/N)/(2R_o^2)$. The product is its square. Under a similarity of the entire original configuration by $s>0$, while retaining unit inversion, the product scales by $s^{-4}$. Replacing both unit inversion radii by $\rho$ multiplies it by $\rho^8$.
+
+\section{Credit, priority scope and verification}
+Stachel supplies the canonical billiard coordinates. Jacobi identities and elliptic principal-part methods are established tools: cyclic master identities are developed in \cite{KLS,KLSlocal}, and complex analysis of billiard invariants in \cite{AST}. In particular, complementary area zeros and poles already occur in Chavez-Caliz's proof of an even-period product for \emph{untransformed} Poncelet and tangent polygons \cite[Theorem~6]{CC}. We claim no new general elliptic-function principle. The proof here supplies the specific original-focus outer-edge expression, cancellation and critical-case check needed for the pinned conjecture.
+
+Related original-vertex triangular products precede this note \cite{GR,RGH}. Ferudun's recent general odd-period original-vertex counterpart \cite{Ferudun} likewise concerns different vertices. In \eqref{eq:distance} the two linear factors are generally distinct; an original-ellipse focal-distance square cannot simply be substituted. Indeed,
+\[
+ (A_o^2-B_o^2)-c^2=-\frac{\alpha^2 k^2(1-k^2)t^2}{q^2}<0,
+\]
+so the original foci are not the foci of the outer locus. The inverse-area ratio conjecture k806,a could provide a bridge if independently proved, but is not assumed here. Roitman--Garcia--Reznik prove related inverse-perimeter statements; their final area-table entries are experimental \cite{RGR}.
+
+Two independent literature-audit families searched original-author updates and broad geometric/elliptic mechanisms through 15 October 2026. No exact general earlier proof was verified in the audited primary corpus. Historical novelty remains undetermined. The full final journal text of \emph{The talented Mr. Inversive Triangle} was subscription-limited; its open author versions were read, without assuming final-byte equivalence. Other selected-passage and unresolved-source limits are retained in the supporting priority ledgers. Thus the claim is a proof of the assertion in the pinned 2020 source, without a claim to be its first proof or to have established its present worldwide open status.
+
+The portable verification package preserves the complete original submission and supplies exact algebraic, pole-lattice and independent Cartesian checks, with numerical diagnostics labeled separately. The five core programs were reproduced in isolated folders with byte-identical result files during the mathematical audit. Finite computations support the proof and do not replace its all-period argument. For example, two exact triangular phases for squared billiard axes $21,16$ and caustic parameter $336/25$ give outer inverse-area product $1/3600$, while the original-vertex product is $1/324$. The datum also appears in \cite{Ferudun}; the outer tangent intersections and distinction were independently checked here.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in solving, writing, source investigation, symbolic and numerical checking, and independent adversarial audits. These audits are AI-based checks, not independent human peer review or formal proof-assistant verification. This preprint is unrefereed. The author is responsible for the stated claims; the proof, source limits and reproducible materials are provided for independent scrutiny.
+
+{\small
+\begin{thebibliography}{11}
+\bibitem{RGK} D. Reznik, R. Garcia and J. Koiller, \emph{Eighty new invariants of N-periodics in the elliptic billiard}, \href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11} (29 October 2020), \S3.9 and Table~10. Earlier label: \href{https://arxiv.org/abs/2004.12497v10}{v10}, Table~9, k808,a.
+\bibitem{Stachel} H. Stachel, \emph{On the motion of billiards in ellipses}, European J. Math. \textbf{8} (2022), 1602--1622. \href{https://doi.org/10.1007/s40879-021-00524-2}{doi:10.1007/s40879-021-00524-2}.
+\bibitem{DLMF} NIST Digital Library of Mathematical Functions, Chapter~22, \href{https://dlmf.nist.gov/22.4}{\S22.4} and \href{https://dlmf.nist.gov/22.8}{\S22.8}, accessed 15 October 2026. Modulus convention $k$ is used in this note.
+\bibitem{AST} A. Akopyan, R. Schwartz and S. Tabachnikov, \emph{Billiards in ellipses revisited}, European J. Math. \textbf{8} (2022), 1313--1327. \href{https://doi.org/10.1007/s40879-020-00426-9}{doi:10.1007/s40879-020-00426-9}; \href{https://arxiv.org/abs/2001.02934v2}{arXiv:2001.02934v2}.
+\bibitem{KLS} A. Khare, A. Lakshminarayan and U. Sukhatme, \emph{Cyclic identities involving Jacobi elliptic functions. II}, J. Math. Phys. \textbf{44} (2003), 1822--1841; \href{https://arxiv.org/abs/math-ph/0207019v2}{arXiv:math-ph/0207019v2}.
+\bibitem{KLSlocal} A. Khare, A. Lakshminarayan and U. Sukhatme, \emph{Local identities involving Jacobi elliptic functions}, Pramana \textbf{62} (2004), 1201--1230; \href{https://arxiv.org/abs/math-ph/0306028}{arXiv:math-ph/0306028}.
+\bibitem{CC} A. C. Chavez-Caliz, \emph{More about areas and centers of Poncelet polygons}, Arnold Math. J. \textbf{7} (2021), 91--106. \href{https://doi.org/10.1007/s40598-020-00154-8}{doi:10.1007/s40598-020-00154-8}.
+\bibitem{GR} R. Garcia and D. Reznik, \emph{Invariants of self-intersected and inversive N-periodics in the elliptic billiard}, \href{https://arxiv.org/abs/2011.06640v1}{arXiv:2011.06640v1} (2020), Proposition~15.
+\bibitem{RGH} D. Reznik, R. Garcia and M. Helman, \emph{The talented Mr. Inversive Triangle in the elliptic billiard}, \href{https://arxiv.org/abs/2012.03020v2}{arXiv:2012.03020v2} (2021), Proposition~7 and Conjecture~1.
+\bibitem{Ferudun} A. Ferudun, \emph{Products of the two focal inversion areas in elliptic billiards}, unrefereed preprint (2 October 2026). \href{https://doi.org/10.5281/zenodo.23096994}{doi:10.5281/zenodo.23096994}.
+\bibitem{RGR} P. Roitman, R. Garcia and D. Reznik, \emph{New invariants of Poncelet--Jacobi bicentric polygons}, Arnold Math. J. \textbf{7} (2021), 619--637. \href{https://doi.org/10.1007/s40598-021-00188-6}{doi:10.1007/s40598-021-00188-6}.
+\end{thebibliography}
+}
+\end{document}

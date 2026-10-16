@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+"""Write original audit metadata, without public copies of private primary bodies."""
+from pathlib import Path
+import os, datetime, json, hashlib
+W=Path(__file__).resolve().parent
+utc=datetime.datetime.now(datetime.timezone.utc).isoformat()
+def write(name,d):
+    (W/name).write_text(json.dumps(d,indent=2,ensure_ascii=False)+'\n')
+queries=[
+    '"k603" "antipedal"','"k_{603}"','"antipedal" "foci" invariant proof','"Eighty New Invariants" antipedal proof',
+    'Reznik billiard invariants k603 GitHub','"antipedal" "billiard" "proof"','"antipedal" "sum" "foci"','"focal antipedal"',
+    'site:eulersolve.org/papers/amr-050-0032','"antipedal" "distance" "2025" billiard','"antipedal" "k603" proof',
+    '"Equal sum of distances" "Antipedal" proof','"Reznik" "invariants" "antipedal" -site:researchgate.net -site:eulersolve.org -site:scribd.com',
+    '"k603" billiard -site:researchgate.net','"k_{603}" billiard -site:researchgate.net','"New Invariants" "Poncelet" antipedal',
+    '"Reznik" "antipedal" "2022"','"Reznik" "antipedal" "2023"','"Reznik" "antipedal" "2024"','"Reznik" "antipedal" "2025"',
+    '"Garcia" "Billiards" "33" "colloquium" pdf','"33CBM06" pdf','"New Invariants of Poncelet Polygons" Garcia Koiller Reznik',
+    '"k603" site:arxiv.org','"Discovering Poncelet invariants in the plane" pdf','"33CBM06" "impa"','"978-65-89124-43-6"',
+    '"Estimating elliptic billiard invariants with spatial integrals" antipedal','"Average Elliptic Billiard Invariants" arxiv',
+    '"k603" "proof" ellipse -site:researchgate.net','"antipedal" "foci" "equal" ellipse -site:researchgate.net -site:scribd.com',
+    '"33CBM06-eBook.pdf"','"Discovering Poncelet" filetype:pdf -site:scribd.com','"Poncelet Surprises" pdf',
+    '"antipedal" "focal" "telescoping"','ellipse billiard "circumradii" foci sum','ellipse billiard "circumradius" "focus" sum',
+    '"antipedal" "focal" invariant proof ellipse -site:researchgate.net -site:scribd.com','"antipedal" "k_603"',
+    '"When Grünbaum meets Poncelet" "2026" arxiv','"When Grünbaum meets Poncelet" configurations pdf'
+]
+write('QUERY_LOG.json',{'schema':'pr110-exact-history-web-query-log/v1','written_UTC':utc,'actual_writer_PID':os.getpid(),
+    'retrieval_date_UTC':'2026-10-06','per_query_OS_PID':None,'per_query_exact_UTC':None,
+    'timestamp_limit':'Browser tools expose neither an OS PID nor exact per-query UTC. These are actual literal queries from the audit tool calls; the date is honest calendar retrieval date, not a fabricated precision timestamp.',
+    'queries':queries,'query_count':len(queries),
+    'mathematical_evidence_policy':'Only inspected primary source statements support mathematical comparisons. Secondary search results and OpenAlex were discovery only.',
+    'overall_search_result':'No full exact k603 proof located. Found original source, author ledgers/book, current 2026 neighboring centroid/area notes and generic Poncelet citation follow-ups. Negative discovery does not prove global absence.'})
+
+sources=[
+    {'id':'source_arxiv_v11','url':'https://arxiv.org/abs/2004.12497v11','private_text':'private_review_materials/arxiv_source_v11.txt','read_boundary':'Freshly read §§3.5–3.7 and Table7 (text lines318–435). Complete body keyword-screened; root full-source reading not falsely counted as this family full reading. Current abs submission history fully read; bodiesv1–v10 not downloaded.','mapping':'Literal k603 target, observation with question-mark proof field in2020.'},
+    {'id':'source_published2021','DOI':'10.1007/s40598-021-00174-y','private_text':'private_review_materials/source_published2021.txt','read_boundary':'Freshly read §§3.5–3.7 and Tables5–7, especially p349 (text lines332–466). Complete body keyword-screened; not represented as fresh full-paper reading.','mapping':'Exact historical k603 remains unproved entry; not a present2026 certificate.'},
+    {'id':'self_intersected_arxiv_v3','url':'https://arxiv.org/abs/2011.06640v3','private_text':'private_review_materials/self_intersected_v3.txt','read_boundary':'Main body text lines1–650 rea

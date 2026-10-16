@@ -1,0 +1,9 @@
+2026-10-16T05:27:46.469827+00:00
+
+# Historical custody order correction
+
+WHOLE04-P3-01 found the unqualified additional1558_values_and_order_preserved=true claim in repairs/portability01/HISTORICAL_STAGE_RESOLUTION.json and its REPORT.md false for global order. Those sealed raw records remain byte-exact dated history. HISTORY_ORDER_QUALIFICATION.json explicitly supersedes that claim; it does not silently repair old evidence.
+
+The old additional1558 sequence is OUTPUT_PINS30, CURRENT_CANDIDATE_PINS306, CURRENT_AUDIT_PINS633, PROTECTED_UNCHANGED589. The portability sequence is OUTPUT_PINS30, CURRENT_AUDIT_PINS633, CURRENT_CANDIDATE_PINS306, PROTECTED_UNCHANGED589. The two intact middle blocks were permuted;939 global positions differ, beginning at additional zero-based30/global2818. Exact row multiset and every stage's internal values/order are preserved. The first2788 rows retain global order. All4346 referenced bytes remain exactly resolvable. The two source-ledger pins, canonical projected-array digests, per-stage digests, group boundaries and first difference make the correction checkable.
+
+Four NEW complete whole reviews have finished (minimum two); latest whole04 has one P3. HISTORY_ORDER_REPAIR_STATUS.json now governs current workflow: bounded qualification pending root repair adoption, then a NEW COMPLETE whole05 and root terminal adoption. publication_ready=false, issues_resolved=false, published=false; services held after PR1032. All old status records are dated stages. The mathematical claim, source/PDF, native metadata, citation, finite runtime contract and UNKNOWN priority/novelty/current-open qualifications retain their exact scope. This repair is not whole05 or terminal administrative adoption. No Git, service, communication, new compile/render/PDF marker or omitted-program replay is performed.

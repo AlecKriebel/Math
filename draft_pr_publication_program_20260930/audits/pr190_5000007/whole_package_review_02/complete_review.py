@@ -1,0 +1,38 @@
+"""Close the review with an input rehash, derived read-depth ledger, and read-only seal."""
+from pathlib import Path
+import datetime,hashlib,json,stat
+R=Path(__file__).resolve().parent;A=R.parent
+now=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
+def digest(p):
+    b=p.read_bytes();return {'path':str(p.relative_to(R)),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+def need(x,m):
+    if not x:raise ValueError(m)
+a=json.loads((A/'ROOT_WHOLE_REVIEW_INPUT_02.json').read_text());rows=[]
+for n,s in a['other_exact_inputs'].items():
+    p=A/n;b=p.read_bytes();h=hashlib.sha256(b).hexdigest();need(h==s['sha256'] and len(b)==s['bytes'],'authority input changed');rows.append({'path':n,'bytes':len(b),'sha256':h})
+p=A/'ROOT_WHOLE_REVIEW_INPUT_02.json';need(hashlib.sha256(p.read_bytes()).hexdigest()=='0b92036ef757a041bc433c9a606bff802210dc76637c92e2abad093fd95006ff','authority changed')
+m=A/a['package_manifest'];need(hashlib.sha256(m.read_bytes()).hexdigest()==a['package_manifest_SHA256'],'manifest changed')
+for n,s in json.loads(m.read_text())['payloads'].items():
+    p=m.parent/n;b=p.read_bytes();need(len(b)==s['bytes'] and hashlib.sha256(b).hexdigest()==s['sha256'],'payload changed');rows.append({'path':str(p.relative_to(A)),**s})
+(R/'FINAL_INPUT_REHASH.json').write_text(json.dumps({'UTC':now(),'authority_SHA256':'0b92036ef757a041bc433c9a606bff802210dc76637c92e2abad093fd95006ff','packet_manifest_SHA256':a['package_manifest_SHA256'],'unchanged':rows,'result':'PASS'},indent=2)+'\n')
+source=json.loads((R/'SOURCE_IDENTITY_RESULTS.json').read_text())
+depths=[{'source':'Fuchs2021 journal','read':'p501 text; pp502-503 complete text/formulas and full page images Figures8/9; p506 shorthand; pp514-515/Conjecture3.2. pp504-505 table images not audited.','verified_scope':'Angle convention, parity sentence, printed ambiguity/diagonal calibration and exact target.'},{'source':'AAH arXiv1811.04131v2','read':'Relevant §§2.2-2.4 background; Proposition4.4/Theorem4.5 with proofs and Section5 through Corollary5.5; §10.2.1. Broad initial extraction truncated elsewhere; not a full-body read.','verified_scope':'Polygon-preserving translation cover, classical virtual-Weierstrass half-turn antecedent, triangle/square-only caveat.'},{'source':'Troubetzkoy arXiv2202.04892v3','read':'Full five-page text, proof, explicit dodecahedron exception and references.','verified_scope':'Related elementary refolding antecedent; not dodecahedral A0 theorem.'},{'source':'Ferudun current DOI-identical PDF/source','read':'PDFpp2-3 conventions/Remark1.2 and pp23-26 wholeSection7; corresponding main.tex §1.1 and whole§7 read from source ZIP in memory. Archive other entries inventoried only; report checksum authenticated, not treated as independent proof.','verified_scope':'Exact overlap: parity/diagonal distinction, midpoint theorem and A1 witness correction. Numerical census and other six conjectures not certified.'},{'source':'Pinned public mathematical certificate','read':'Literal face cycles/word, crossings, coefficients and terminal-ray calculation inspected; exact pinned HTTPS body identity authenticated. No executable program downloaded or run.','verified_scope':'Face word valid; transported144deg/A1; independent displayed-coordinate norm discrepancy.'}]
+(R/'READ_DEPTH.json').write_text(json.dumps({'UTC':now(),'primary_files':source['primary_local_bodies'],'depths':depths,'limits':['No journal/preprint body identity comparison for AAH/Troubetzkoy','Older Fuchs/Veech bodies not newly read here','No exhaustive priority, source-intent, historical visibility, author awareness/independence certification','No certification of other six Ferudun conjectures'],'primary_extractions_or_raw_API_metadata_retained_here':False},indent=2)+'\n')
+first=json.loads((R/'FIRST_ANALYTICAL_ASSESSMENT_SEAL.json').read_text())
+log=['# Research log: new whole-package review02','',f'- {first["UTC"]}: First analytical assessment sealed before prior report/gate opinions. Review completion estimate30%. The handwritten04:02 display timestamp in that sealed file is erroneous; this actual seal time governs. This was disclosed to Root immediately; the sealed original remains intact.','- '+json.loads((R/'normal_run_verification.receipt.json').read_text())['UTC_end']+': Canonical ordinary runner passes8 baselines and10 meaningful rejections. Optimized runner and all3 documented ordinary independent programs also pass. Review estimate55%.','- '+source['UTC_end']+': Independent current DOI/API/file, website PDF/source and chronological record retrieval succeeds; complete record/file hashes and sizes match. Historical firstness remains unproved. Review estimate75%.','- '+json.loads((R/'own_link_refolding_attack.receipt.json').read_text())['UTC_end']+': New full singular-link, exact all-parameter edge reversal and wrong-sector attacks pass; quotient-free developed-chain proof independently checked. Review estimate82%.','- '+json.loads((R/'final_checks.receipt.json').read_text())['UTC_end']+': Canonical AST preservation, five family seals, embedded metadata/manuscript equality and all4 personally viewed supplied/rebuilt page renders verified. Review estimate92%.','- '+now()+': Complete report written; final bound-input rehash passes. Review completion estimate100%; no required issue. Initial two privacy-screen failures (authored manuscript PDF falsely classified as downloaded primary article) retained and corrected after exact inspection. Initial coefficient-regex false miss resolved by literal matching. No baseline/build/render scientific failure, ENOSPC failure, output deletion, Git/remote mutation or outreach.','', 'Verified discovery scope: the explicit C endpoint theorem and exactly-two-diagonal bare-angle correction, with public-word144deg/A1 and separate norm defect. Priority remains uncertified; workflow completion is not a novelty probability.','']
+(R/'RESEARCH_LOG.md').write_text('\n'.join(log))
+# Only authored reports/derived results/scripts/receipts are allowlisted; render
+# intermediates and the complete first-party PDF text extracts are left out.
+unsafe={'supplied_pdftotext.stdout','rebuilt_pdftotext.stdout'}
+files=sorted(p for p in R.iterdir() if p.is_file() and p.name not in unsafe|{'FINAL_SEAL.json','SAFE_AUTHORED_ALLOWLIST.json'})
+allow=[p.name for p in files]+['SAFE_AUTHORED_ALLOWLIST.json','FINAL_SEAL.json']
+(R/'SAFE_AUTHORED_ALLOWLIST.json').write_text(json.dumps({'UTC':now(),'files':allow,'scope':'Reviewer-authored reports, derived results, scripts and receipts only. Rendering intermediates and text extracts excluded. No primary bodies, downloaded code, raw API responses or credentials.'},indent=2)+'\n')
+files.append(R/'SAFE_AUTHORED_ALLOWLIST.json')
+seal={'UTC':now(),'authority_SHA256':'0b92036ef757a041bc433c9a606bff802210dc76637c92e2abad093fd95006ff','package_manifest_SHA256':a['package_manifest_SHA256'],'disposition':'PASS','required_issues':[],'files':[digest(p) for p in sorted(files)],'self_excluded':'FINAL_SEAL.json','actual_all_review_file_modes_after_write':'0o444','completion_percent':100}
+(R/'FINAL_SEAL.json').write_text(json.dumps(seal,indent=2)+'\n')
+for p in R.rglob('*'):
+    if p.is_file():p.chmod(0o444)
+need(all(stat.S_IMODE(p.stat().st_mode)==0o444 for p in R.rglob('*') if p.is_file()),'review file permissions')
+for x in seal['files']:
+    need(digest(R/x['path'])==x,'sealed payload mismatch')
+print(json.dumps({'UTC':now(),'disposition':'PASS','report':digest(R/'FINAL_REPORT.md'),'final_seal':digest(R/'FINAL_SEAL.json'),'safe_allowlist':digest(R/'SAFE_AUTHORED_ALLOWLIST.json'),'all_actual_modes_0444':True,'sealed_key_files':len(seal['files'])},indent=2))

@@ -1,0 +1,104 @@
+"""Native main checkpoint of owned intake/reproduction; no local Git mutations."""
+from pathlib import Path
+from datetime import datetime,timezone
+from concurrent.futures import ThreadPoolExecutor
+import base64
+import hashlib
+import json
+import subprocess
+
+ROOT=Path('/Users/alec/Documents/Math')
+P=ROOT/'draft_pr_descending_audit_20261002'
+D=Path(__file__).resolve().parent
+T=D/'private_transport'/datetime.now(timezone.utc).strftime('checkpoint_%Y%m%dT%H%M%S%fZ')
+T.mkdir(parents=True,exist_ok=False)
+GH='/opt/homebrew/Cellar/gh/2.85.0/bin/gh';BASE='repos/AlecKriebel/Math/';seq=0
+
+
+def api(method,path,payload=None):
+    global seq
+    seq+=1;args=[GH,'api','--method',method,BASE+path]
+    if payload is not None:
+        target=T/f'{seq:02d}-request.json';target.write_text(json.dumps(payload));args+=['--input',str(target)]
+    run=subprocess.run(args,capture_output=True,timeout=60)
+    (T/f'{seq:02d}-stdout.json').write_bytes(run.stdout);(T/f'{seq:02d}-stderr.txt').write_bytes(run.stderr)
+    if run.returncode:raise RuntimeError(f'Native call{seq} failed; inspect retained outcome before mutation retry')
+    return json.loads(run.stdout)
+
+
+intake=json.loads((D/'INTAKE.json').read_text());pr=api('GET','pulls/214')
+assert pr['state']=='open' and pr['draft'] and pr['head']['sha']==intake['head']
+queue=api('GET','contents/'+intake['Queue_path']+'?ref='+intake['head'])
+assert queue['sha']==intake['Queue_blob']
+rows=[s for s in base64.b64decode(queue['content']).decode().splitlines() if '30005244 / OWR-11101924-008' in s]
+assert len(rows)==1 and rows[0].split('|')[8].strip()=='claimed_solved'
+assert json.loads((D/'ROOT_MATHEMATICAL_ACCEPTANCE.json').read_text())['status']=='PASS_SOURCE_AWARE_QUALIFIED_FULL_OFF_INTERVAL_PHENOMENON'
+paths=[p for p in D.iterdir() if p.is_file() and p.name!='MANUSCRIPT_PREPARATION_CHECKPOINT_PUBLICATION_RECEIPT.json']
+paths += [p for p in (D/'submitted').rglob('*') if p.is_file() and '__pycache__' not in p.parts]
+paths += [p for p in (D/'root_reproduction').rglob('*') if p.is_file() and 'private' not in p.parts]
+for family in ['source_scope_adversary_01','kernel_consistency_adversary_01','spectral_fredholm_adversary_01','ball_counterexample_adversary_01']:
+    folder=D/family;seal=folder/'SAFE_AUTHORED_MANIFEST.json';paths.append(seal);data=json.loads(seal.read_text())
+    for row in data.get('safe_authored_files',data.get('files',[])):
+        p=Path(row['path']);p=p if p.is_absolute() else folder/p
+        assert p.resolve().is_relative_to(folder.resolve());raw=p.read_bytes()
+        assert len(raw)==row['bytes'] and hashlib.sha256(raw).hexdigest()==row['sha256'];paths.append(p)
+for family in ['priority_author_history_01','priority_classical_approximation_01','priority_counterexample_01','root_priority_01','final_priority_gate_adversary_01']:
+    folder=D/family;seal=folder/'SAFE_AUTHORED_MANIFEST.json';paths.append(seal);data=json.loads(seal.read_text())
+    authored=data if isinstance(data,list) else data.get('safe_authored_files',data.get('files',data.get('allowed_files',data.get('artifacts',[]))))
+    for row in authored:
+        p=Path(row.get('path',row.get('file')));p=p if p.is_absolute() else folder/p
+        assert p.resolve().is_relative_to(folder.resolve());raw=p.read_bytes()
+        assert len(raw)==row['bytes'] and hashlib.sha256(raw).hexdigest()==row['sha256'];paths.append(p)
+selection=P/'next_selection_after_pr218_20261015'
+paths += [p for p in selection.iterdir() if p.is_file()]
+paths += [P/'RESEARCH_LOG.md',P/'CURRENT_GOAL_SELECTION_20261013.json']
+old=P/'audits/pr218_30006020/initial_review_20261015'
+paths += [old/'COMPLETION_CHECKPOINT_PUBLICATION_RECEIPT.json']
+R=D.parent/'preprint'
+paths += [p for p in R.iterdir() if p.is_file()]
+paths += [p for folder in ['verification','pr_update'] for p in (R/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts]
+paths += [R/'output/pdf/dipole_spectrum.pdf',R/'output/dipole_spectrum_verification.zip']
+entries=[];pins=[];expected={}
+for path in sorted(set(paths)):
+    assert path.resolve().is_relative_to(P.resolve()) and not path.is_symlink()
+    assert not set(path.parts).intersection({'private_reading','private_transport','private_revision_history','private_upstream','private'})
+    raw=path.read_bytes();rel=path.relative_to(ROOT).as_posix();expected[rel]=raw
+    try:
+        content=raw.decode('utf-8');entry=dict(path=rel,mode='100644',type='blob',content=content)
+    except UnicodeDecodeError:
+        blob=api('POST','git/blobs',dict(content=base64.b64encode(raw).decode(),encoding='base64'))['sha']
+        entry=dict(path=rel,mode='100644',type='blob',sha=blob)
+    entries.append(entry)
+    pins.append(dict(path=rel,bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest()))
+for attempt in range(4):
+    parent=api('GET','git/ref/heads/main')['object']['sha']
+    tree=api('GET','git/commits/'+parent)['tree']['sha']
+    newtree=api('POST','git/trees',dict(base_tree=tree,tree=entries))['sha']
+    commit=api('POST','git/commits',dict(message='Checkpoint PR214 at65%: credited manuscript and portable package; first fresh review running',tree=newtree,parents=[parent]))['sha']
+    try:
+        assert api('PATCH','git/refs/heads/main',dict(sha=commit,force=False))['object']['sha']==commit
+        break
+    except RuntimeError:
+        error=json.loads((T/f'{seq:02d}-stdout.json').read_text());latest=api('GET','git/ref/heads/main')['object']['sha']
+        if str(error.get('status'))!='422' or latest==parent or attempt==3:raise
+
+
+def readback(row):
+    run=subprocess.run([GH,'api',BASE+'contents/'+row['path']+'?ref='+commit],capture_output=True,timeout=60)
+    assert run.returncode==0
+    raw=base64.b64decode(json.loads(run.stdout)['content']);assert raw==expected[row['path']]
+    return dict(path=row['path'],sha256=hashlib.sha256(raw).hexdigest(),byte_identical=True)
+
+
+with ThreadPoolExecutor(max_workers=6) as pool:verified=list(pool.map(readback,pins))
+main=api('GET','git/ref/heads/main')['object']['sha']
+if main!=commit:assert api('GET','compare/'+commit+'...'+main)['status']=='ahead'
+pr=api('GET','pulls/214');assert pr['state']=='open' and pr['draft'] and pr['head']['sha']==intake['head']
+result=dict(utc=datetime.now(timezone.utc).isoformat(),commit=commit,parent=parent,main_readback=main,
+            owned_files=pins,actual_native_byte_readbacks=verified,case_completion_percent=65,
+            original_PR_head_unchanged=intake['head'],prior_PR239_held_uncompleted=True,
+            full_goal_active_incomplete=True,counts=[41,18,18,0],local_Git_or_index_mutations=0,
+            entire_third_party_reading_copies_excluded=True,unfinished_new_reviewer_artifacts_excluded=True,
+            manuscript_deposit_tracker_PR_comment_closure_or_merge=False,transport_receipts=str(T))
+(D/'MANUSCRIPT_PREPARATION_CHECKPOINT_PUBLICATION_RECEIPT.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({k:v for k,v in result.items() if k not in ['owned_files','actual_native_byte_readbacks']},indent=2))

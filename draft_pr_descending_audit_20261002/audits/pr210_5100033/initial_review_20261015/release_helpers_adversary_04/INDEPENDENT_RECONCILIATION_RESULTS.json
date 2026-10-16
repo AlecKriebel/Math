@@ -1,0 +1,438 @@
+{
+  "utc": "2026-10-16T03:52:58.336387+00:00",
+  "review": "source04",
+  "synthetic_fixture_only": true,
+  "actual_provider_network_subprocess_Git_writes": 0,
+  "independently_authored": true,
+  "tests": [
+    {
+      "test": "normal exact old-to-new binding with fresh SAME deposit and four cells",
+      "passed": true,
+      "readonly_calls": 5,
+      "downloads": 2,
+      "archive_unchanged": true,
+      "original_intents_unchanged": true
+    },
+    {
+      "test": "reconciliation reentry stops before provider calls",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Prior local reconciliation intent exists; inspect retained local state read-only before any retry",
+      "readonly_calls": 5,
+      "downloads": 2
+    },
+    {
+      "test": "reconciled receipts permit queued MAIN integration in trapped fixture",
+      "passed": true
+    },
+    {
+      "test": "stale old-clearance authority",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "New clearance does not authorize this exact historical published clearance",
+      "readonly_calls": 0,
+      "downloads": 0
+    },
+    {
+      "test": "stale supplemental self pin",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Reconciliation source differs from fresh supplemental approval",
+      "readonly_calls": 0,
+      "downloads": 0
+    },
+    {
+      "test": "changed current helper",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Cleared file bytes changed: integrate_reviewed_pr.py",
+      "readonly_calls": 0,
+      "downloads": 0
+    },
+    {
+      "test": "changed archive receipt without manifest repair",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Historical release evidence changed: ZENODO_VERIFIED_PUBLICATION.json",
+      "readonly_calls": 0,
+      "downloads": 0
+    },
+    {
+      "test": "changed current publication receipt",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Initial current local receipts changed; reconcile manually",
+      "readonly_calls": 0,
+      "downloads": 0
+    },
+    {
+      "test": "changed current tracker receipt",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Initial current local receipts changed; reconcile manually",
+      "readonly_calls": 0,
+      "downloads": 0
+    },
+    {
+      "test": "existing native source",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Native preparation already occurred; reconcile manually",
+      "readonly_calls": 0,
+      "downloads": 0
+    },
+    {
+      "test": "existing native ref intent",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Native preparation already occurred; reconcile manually",
+      "readonly_calls": 0,
+      "downloads": 0
+    },
+    {
+      "test": "genuine old-style clearance refuses changed integrator pin",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Cleared file bytes changed: integrate_reviewed_pr.py",
+      "readonly_calls": 0,
+      "downloads": 0
+    },
+    {
+      "test": "wrong deposit identity",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Same published pair not confirmed",
+      "readonly_calls": 3,
+      "downloads": 0
+    },
+    {
+      "test": "sandbox environment",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Same published pair not confirmed",
+      "readonly_calls": 3,
+      "downloads": 0
+    },
+    {
+      "test": "unpublished state",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Same published pair not confirmed",
+      "readonly_calls": 3,
+      "downloads": 0
+    },
+    {
+      "test": "missing provider file",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Same published pair not confirmed",
+      "readonly_calls": 3,
+      "downloads": 0
+    },
+    {
+      "test": "wrong DOI version",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Published DOI/version changed",
+      "readonly_calls": 3,
+      "downloads": 0
+    },
+    {
+      "test": "DOI resolved elsewhere",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "DOI did not resolve to the verified version record",
+      "readonly_calls": 3,
+      "downloads": 0
+    },
+    {
+      "test": "wrong tracker tab title",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Wrong tracker destination",
+      "readonly_calls": 4,
+      "downloads": 2
+    },
+    {
+      "test": "changed existing fourth cell",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Actual existing four tracker cells differ",
+      "readonly_calls": 5,
+      "downloads": 2
+    },
+    {
+      "test": "wrong public SHA",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Actual unchanged public bytes mismatch",
+      "readonly_calls": 3,
+      "downloads": 1
+    },
+    {
+      "test": "coherently rewritten archive/current receipts and unpinned manifest select OTHER deposit",
+      "passed": false,
+      "defect_reproduced": true,
+      "accepted_record_id": 23398176,
+      "expected_record_id": 23398175,
+      "readonly_calls": 5
+    },
+    {
+      "test": "coherently rewritten unpinned archived range selects OTHER tab/cells",
+      "passed": false,
+      "defect_reproduced": true,
+      "accepted_range": "'Other tab'!A7:D7",
+      "expected_range": "'Math Puzzles'!A113:D113"
+    },
+    {
+      "test": "archive changes after initial check yet new receipt provenance hashes changed bytes",
+      "passed": false,
+      "defect_reproduced": true,
+      "archive_unchanged": false,
+      "new_receipt_points_to_unaccepted_archive": true
+    },
+    {
+      "test": "current publication receipt changes mid-flight and is silently overwritten",
+      "passed": false,
+      "defect_reproduced": true,
+      "changed_current_evidence_preserved": false,
+      "original_archive_still_present": true
+    },
+    {
+      "test": "initial current publish intent differs from pinned archive yet transition accepts",
+      "passed": false,
+      "defect_reproduced": true,
+      "intent_vs_archive_match": false
+    },
+    {
+      "test": "ZENODO_VERIFIED_PUBLICATION.json replacement interruption",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "OSError",
+      "reason": "synthetic receipt replace failure ZENODO_VERIFIED_PUBLICATION.json",
+      "readonly_calls": 5,
+      "downloads": 2
+    },
+    {
+      "test": "ZENODO_VERIFIED_PUBLICATION.json interruption rerun stops before calls",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Prior local reconciliation intent exists; inspect retained local state read-only before any retry",
+      "readonly_calls": 5,
+      "downloads": 2
+    },
+    {
+      "test": "ZENODO_VERIFIED_PUBLICATION.json interruption blocks native integration",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Published receipt belongs to different clearance/inputs",
+      "readonly_calls": 5,
+      "downloads": 2
+    },
+    {
+      "test": "TRACKER_VERIFIED_APPEND.json replacement interruption",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "OSError",
+      "reason": "synthetic receipt replace failure TRACKER_VERIFIED_APPEND.json",
+      "readonly_calls": 5,
+      "downloads": 2
+    },
+    {
+      "test": "TRACKER_VERIFIED_APPEND.json interruption rerun stops before calls",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Prior local reconciliation intent exists; inspect retained local state read-only before any retry",
+      "readonly_calls": 5,
+      "downloads": 2
+    },
+    {
+      "test": "TRACKER_VERIFIED_APPEND.json interruption blocks native integration",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Tracker receipt belongs to another clearance",
+      "readonly_calls": 5,
+      "downloads": 2
+    },
+    {
+      "test": "final audit receipt write failure propagates",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "OSError",
+      "reason": "synthetic final reconciliation receipt write failure",
+      "readonly_calls": 5,
+      "downloads": 2
+    },
+    {
+      "test": "final audit write fault leaves fully fresh valid pair and sticky intent",
+      "passed": true,
+      "verified_pair_complete": true,
+      "automatic_reconciliation_retry_blocked": true
+    },
+    {
+      "test": "actual retained MAIN queued row still refuses current repaired source",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "actual MAIN whitespace regression",
+      "passed": false,
+      "defect_reproduced": true,
+      "origin": "independently confirmed root-reported finding",
+      "actual_empty_cell_lengths": [
+        2,
+        2,
+        2
+      ],
+      "reconstructed_empty_cell_lengths": [
+        1,
+        1,
+        1
+      ],
+      "copy_or_native_mutations": 0
+    },
+    {
+      "test": "MAIN queued near miss column 1",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 2",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 3",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 4",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 5",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 6",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 7",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 8",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 9",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 10",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 11",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "MAIN queued near miss column 12",
+      "expected_rejection": true,
+      "passed": true,
+      "error": "RuntimeError",
+      "reason": "Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration",
+      "readonly_calls": 11,
+      "downloads": 0
+    },
+    {
+      "test": "prior claimed_solved MAIN route retained",
+      "passed": true
+    }
+  ],
+  "test_count": 49,
+  "defect_count": 6,
+  "actual_helpers_executed": false,
+  "completion_percent": 85
+}

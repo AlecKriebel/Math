@@ -1,0 +1,33 @@
+{
+  "additional_interruption": "Initial independent suite executed its first positive checker and forced failure but receipt writing raised ENOSPC; its complete clean retry passed. Some retry helper setup calls failed before launching roots while mkdir/rename was unavailable. Raw terminal tool receipts exist in the audit conversation.",
+  "attribution": "Observed ENOSPC is direct evidence. Attribution of concurrent initial direct patch mismatches to that resource condition is an inference, supported by unchanged-source clean retries.",
+  "incidents": [
+    {
+      "attempt_role": "initial_direct_root_baseline_failure",
+      "description": "First direct baseline: patch-result equality failed during concurrent ENOSPC; clean unchanged-script retry passed.",
+      "stderr_actual_bytes": 964,
+      "stderr_actual_sha256": "3bbd5c55eff034a2eb120119c48cf66ae7d394e348a5ae7bdaa61c398b65e30f",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<original-packet>/verify_packet.py\", line 181, in <module>\n    main()\n    ~~~~^^\n  File \"<original-packet>/verify_packet.py\", line 172, in main\n    'patch_replays': replay_patches(),\n                     ~~~~~~~~~~~~~~^^\n  File \"<original-packet>/verify_packet.py\", line 124, in replay_patches\n    require(p.read_bytes() == expected, 'Patch result differs: ' + revised)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<original-packet>/verify_packet.py\", line 35, in require\n    raise RuntimeError(message)\nRuntimeError: Patch result differs: audit_c1/TURN_C1_CLARIFIED.md\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attempt_role": "initial_direct_root_optimized_failure",
+      "description": "First direct optimized: patch-result equality failed during concurrent ENOSPC; clean unchanged-script retry passed.",
+      "stderr_actual_bytes": 964,
+      "stderr_actual_sha256": "3bbd5c55eff034a2eb120119c48cf66ae7d394e348a5ae7bdaa61c398b65e30f",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<original-packet>/verify_packet.py\", line 181, in <module>\n    main()\n    ~~~~^^\n  File \"<original-packet>/verify_packet.py\", line 172, in main\n    'patch_replays': replay_patches(),\n                     ~~~~~~~~~~~~~~^^\n  File \"<original-packet>/verify_packet.py\", line 124, in replay_patches\n    require(p.read_bytes() == expected, 'Patch result differs: ' + revised)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<original-packet>/verify_packet.py\", line 35, in require\n    raise RuntimeError(message)\nRuntimeError: Patch result differs: audit_c1/TURN_C1_CLARIFIED.md\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attempt_role": "root_optimized",
+      "description": "First observed optimized: confirmed ENOSPC while retaining child stderr; clean retry passed.",
+      "stderr_actual_bytes": 2049,
+      "stderr_actual_sha256": "e543fa2e60fc45b2a2704c86ad204694ab02303aa4238be9e6c07a714cf66abf",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<audit-root>/observe_root.py\", line 63, in <module>\n    exec(compile(data, str(source / \"verify_packet.py\"), \"exec\", optimize=0), {\"__name__\": \"__main__\", \"__file__\": str(source / \"verify_packet.py\")})\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<original-packet>/verify_packet.py\", line 181, in <module>\n    main()\n    ~~~~^^\n  File \"<original-packet>/verify_packet.py\", line 173, in main\n    'checkers': run_checkers(),\n                ~~~~~~~~~~~~^^\n  File \"<original-packet>/verify_packet.py\", line 96, in run_checkers\n    neg = subprocess.run(cmd + ['negative'], cwd=td, capture_output=True, timeout=30)\n  File \"<audit-root>/observe_root.py\", line 41, in observed_run\n    (raw / (ident + \".stderr\")).write_bytes(stderr)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py\", line 796, in write_bytes\n    with self.open(mode='wb') as f:\n         ~~~~~~~~~^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 28] No space left on device: '<audit-root>/root_optimized/private_raw/027.stderr'\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

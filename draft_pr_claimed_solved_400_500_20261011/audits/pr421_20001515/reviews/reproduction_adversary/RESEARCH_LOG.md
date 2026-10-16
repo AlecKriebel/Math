@@ -1,0 +1,7 @@
+# Reproduction adversary log
+
+- 2026-10-12T22:28:10.615961+00:00: Sealed independent reproduction criteria after fully reading the three programs, before reading historical verdicts. Scope is finite runtime validation, byte provenance, and corruption controls; no new proof search. Completion estimate: 10%.
+
+- 2026-10-12T22:32:03.588698+00:00: All 13 snapshot/git pins match. Twenty-two frozen runs completed: clean baselines PASS; every relevant corrupted fixture rejects under normal Python and prints PASS under -O. Initial bytecode diagnostic falsely counted zero normal assertions because Python 3.14 uses LOAD_COMMON_CONSTANT rather than LOAD_ASSERTION_ERROR; retained INITIAL_FROZEN_REPLAYS.json and private INITIAL_replay.py, and correcting diagnostic. Historical pre-publication independent program absent from WIP commit, so cannot independently certify its claimed portability-only diff. Completion estimate: 55%.
+
+- 2026-10-12T22:37:03.586161+00:00: Separate explicit-check overlay preserves all62 predicate/message ASTs and restores the entire original AST under inverse conversion. Successful outputs identical both modes; all8 controls reject normal/-O with identical AssertionError type/args. Instrumented baselines reach all62 predicates,308 total evaluations, versus0 frozen-O evaluations. Final source pins remain intact. Full report/verdict prepared for a new repair adversary; no publication authority inferred. Completion estimate for this reproduction family:100%.

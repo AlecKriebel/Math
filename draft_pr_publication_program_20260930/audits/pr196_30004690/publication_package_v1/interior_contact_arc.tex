@@ -1,0 +1,342 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,geometry,microtype}
+\geometry{margin=1in}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Pone}{\mathbb P^1}
+\newcommand{\D}{\mathbb D}
+\newcommand{\ddc}{dd^c}
+\newcommand{\FS}{\omega_{\mathrm{FS}}}
+\newcommand{\ind}{\mathbf 1}
+\title{An interior second-order defect from a Hele--Shaw contact arc}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{15 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a detailed application of Ross--Witt Nystr\"om's smooth Hele--Shaw
+contact-arc construction: the associated homogeneous complex Monge--Amp\`ere
+solution on $\Pone\times\D$ has no second-order real Taylor expansion at an
+interior point, despite smooth strictly K\"ahler fibre boundary data. Filling
+a zero-area contact arc gives a strict Green-function time-slope gap; smooth
+variation on the covering surface supplies finite nonzero curvature on the
+other side. Legendre duality then yields incompatible quadratic coefficients.
+The 2021 Oberwolfach report already announces an interior construction.
+This is an attributed proof/application note; historical priority of the
+deduction is unresolved and no first-discovery claim is made.
+\end{abstract}
+
+\section{Statement and attribution}
+Let $\D=\{\tau\in\mathbb C:|\tau|<1\}$ and let $\pi:\Pone\times\D\to\Pone$
+be projection. We use the coherent normalization
+\[
+ d^c=\frac{i}{4\pi}(\bar\partial-\partial),\qquad
+ \ddc=\frac{i}{2\pi}\partial\bar\partial,\qquad
+ \ddc\log|z|^2=\delta_0,\qquad
+ \FS=\ddc\log(1+|z|^2),\quad \int_{\Pone}\FS=1.
+\]
+A second-order real Taylor expansion at $p$ means an expansion in real local
+coordinates of the form $u(p+h)=u(p)+\ell(h)+Q(h)+o(|h|^2)$, where $\ell$ is
+linear and $Q$ is quadratic.
+
+\begin{theorem}\label{thm:main}
+There exists $\phi\in C^\infty(\Pone)$ with
+$\omega_\phi:=\FS+\ddc\phi>0$ such that the bounded weak solution $\Phi$ of
+\begin{equation}\label{eq:pde}
+ \pi^*\FS+\ddc\Phi\geq0,\qquad
+ (\pi^*\FS+\ddc\Phi)^2=0,\qquad
+ \Phi(z,\tau)=\phi(\tau z)\quad (|\tau|=1)
+\end{equation}
+has no second-order real Taylor expansion at a point $(z_*,\tau_*)$ with
+$0<|\tau_*|<1$. The equation is in the Bedford--Taylor sense, and each
+boundary fibre form is strictly positive. In particular $\Phi$ is not $C^2$
+in the interior.
+\end{theorem}
+
+The construction of $\phi$, the obstacle-current identity, the smooth strong
+flow on a covering surface, and the Monge--Amp\`ere/Hele--Shaw duality are
+all due to Ross--Witt Nystr\"om \cite{applications,harmonic}.
+The additional argument written here is the arc-filled Green comparison,
+its combination with finite left curvature, and the resulting interior
+Taylor defect. Green extremality, the Hopf lemma and convex conjugacy used
+in that argument are classical tools.
+
+This attribution is material to the status of the result. Their survey
+\cite[\S4.3]{survey} discusses the interior-location question in its dated
+2017/2018 context. Witt Nystr\"om's joint-work report with Ross
+\cite[pp.~1323--1324]{owr} already announces and sketches an interior
+construction, using a terminal-domain harmonic-disc route and an inverse-flow
+density whose smoothness is left tentative there; that discussion permits
+vanishing density at the terminal singular points. It must receive credit
+for the announced phenomenon. The present note uses instead a finite-time
+contact arc and the strictly positive form supplied by
+\cite[Proposition~3.4]{applications}. The earlier published contact theorem
+\cite[Theorem~6.2]{applications} states its nonsmoothness conclusion on the
+boundary circle. The rank-degeneration examples in \cite{rank} by themselves
+do not give the Taylor defect below.
+
+A bounded literature audit through 15 October 2026 found no complete exact
+predecessor in the recorded inspected scope. It does not establish historical
+firstness, independent discovery, or present worldwide openness. In particular,
+the Oberwolfach contribution is not being recast as a numbered unresolved
+conjecture. This note supplies a checkable proof application, rather than a
+claim to a newly discovered general phenomenon. Source versions, precise
+inspection scope and remaining coverage/access gaps are in the supplement.
+
+\section{Credited flow and duality inputs}
+For a potential $\phi$ as above, set
+\[
+ \psi_t=\sup\{\psi\in\operatorname{PSH}(\Pone,\FS):
+            \psi\leq\phi,\ \nu_0(\psi)\geq t\},\qquad
+ \Omega_t=\{\psi_t<\phi\},\quad 0\leq t\leq1.
+\]
+Here $\nu_0$ is the coefficient of the unit logarithmic pole, with the usual
+upper-semicontinuous envelope convention. The domains increase with $t$.
+The envelopes decrease and are concave in $t$. For $0<t<1$,
+\begin{equation}\label{eq:current}
+ \FS+\ddc\psi_t=\ind_{\Omega_t^c}\omega_\phi+t\delta_0,
+ \qquad \int_{\Omega_t}\omega_\phi=t,
+\end{equation}
+and $\psi_t$ is $C^{1,1}$ away from the pole
+\cite[Proposition~2.5]{applications}.
+
+We use the following specific features of the published construction,
+not an assertion about arbitrary self-contacting flows.
+
+\begin{proposition}[Ross--Witt Nystr\"om construction]\label{prop:input}
+One can choose a smooth strictly positive $\omega_\phi$ and $T\in(0,1)$
+so that $\Omega=\Omega_T$ is connected and its boundary has a smooth
+contact segment $S$ of positive length. At a relative interior point
+$q\in S$, a sufficiently small coordinate disc $B$ satisfies
+$B\setminus S\subset\Omega$, with fluid on both sides of $S$.
+The pre-contact domains are projections of a smooth family of smoothly
+bounded simply connected strong-flow domains $\Omega'_t$ on a fixed covering
+surface, extending smoothly through $t=T$. Projection is conformal and
+injective on the open domains for $t\leq T$ close to $T$.
+The limiting outward boundary velocity on the lift is strictly positive.
+\end{proposition}
+
+These are the construction in \cite[Proposition~3.4 and its proof]{applications},
+with the strong-flow extension from its Theorem~2.15 (and the two-sided local
+flow discussed in \cite[Remark~7.1]{moduli}). Nonvanishing limiting velocity
+and the two-sided fluid geometry are recorded in the proof of
+\cite[Theorem~6.2]{applications}. The covering resolves the contact:
+distinct boundary points can project to the same arc. Injectivity is required
+only on the open fluid domain, not on its closure. A smooth compact domain
+and collar on the cover can be placed in a conformal coordinate chart;
+smooth Green dependence is then the uniformly elliptic Dirichlet dependence
+of \cite[Appendix~A]{applications}.
+
+Write $G_U(w,0)$ for the negative Green function with singular part
+$\log|w|^2$ at the injection point. The duality
+\cite[Theorem~4.4]{applications} gives
+\begin{equation}\label{eq:dual}
+ \widetilde\Phi(w,\tau)
+ =\sup_{0\leq t\leq1}\{\psi_t(w)+(1-t)\log|\tau|^2\}.
+\end{equation}
+For $\tau\ne0$, \cite[Proposition~4.2]{applications} identifies it with
+the bounded solution in \eqref{eq:pde} through
+\begin{equation}\label{eq:twist}
+ \Phi(z,\tau)+\log|\tau|^2+\log(1+|z|^2)
+ =\widetilde\Phi(\tau z,\tau)+\log(1+|\tau z|^2).
+\end{equation}
+We use this identity in finite affine coordinates near the point in question.
+The solution is the usual envelope with the prescribed smooth boundary data.
+A constant $\min\phi$ is an admissible lower bound; vertical subharmonic
+comparison gives the upper bound $\max\phi$. The cited duality concerns this
+weak solution, with its boundary trace, not just a formal transform.
+
+\section{A strict Green-function slope gap}
+Choose $q,B$ as in Proposition~\ref{prop:input}, away from $0$ and the arc
+endpoints, and put $D_+=\Omega\cup B$. This is an open connected proper
+domain. Its difference from $\Omega$ has area zero, whereas its complement
+has positive $\omega_\phi$-area $1-T$. Thus both domains are Greenian.
+
+\begin{lemma}\label{lem:gap}
+For every $w\in\Omega\setminus\{0\}$,
+\[
+ \partial_t^+\psi_T(w)\leq G_{D_+}(w,0)<G_\Omega(w,0).
+\]
+\end{lemma}
+\begin{proof}
+On $D_+\setminus\{0\}$, \eqref{eq:current} makes $\psi_T$ plus a local
+potential of $\FS$ distributionally harmonic: the newly filled part of $S$
+has area zero, and the current identity supplies the entire measure, including
+the absence of a line measure. Weyl regularity therefore gives harmonic
+continuation across the arc. This is not an arbitrary removability assertion
+for positive-capacity sets.
+
+For $0<h<1-T$ let $v_h=(\psi_{T+h}-\psi_T)/h$. Then $v_h\leq0$ and,
+on $D_+$,
+\[
+ \ddc v_h=\delta_0+h^{-1}\ind_{\Omega_{T+h}^c}\omega_\phi\geq\delta_0.
+\]
+In fact monotonicity of the domains makes the extra term zero almost
+everywhere on $D_+$; the weaker inequality suffices. The logarithmic
+coefficient at $0$ is one. The extremal characterization of the negative
+Green function gives $v_h\leq G_{D_+}$.
+
+Domain monotonicity gives $G_{D_+}\leq G_\Omega$. The inequality is strict:
+the old Green function tends to zero at a smooth interior point of the
+contact slit from either side, as is also seen on the smooth lift.
+Meanwhile $G_{D_+}(q,0)<0$ since $q$ is now an interior point. Their
+nonnegative harmonic difference on $\Omega$, with the equal logarithmic
+poles cancelled, is nonzero. The strong maximum principle makes it positive
+everywhere. Finally $t\mapsto\psi_t(w)$ is finite and concave near $T$, so
+the right derivative exists and passing $h\downarrow0$ proves the claim.
+\end{proof}
+
+The arc must be nonpolar. Filling a single isolated point would not justify
+this strict comparison. No description, smoothness or filling-rate estimate
+for the post-contact weak flow was used.
+
+\section{Finite nonzero curvature from the smooth lift}
+Fix a finite affine point $w_*\in\Omega\setminus\{0\}$ and write
+$a(t)=\psi_t(w_*)$. It belongs to the smoothly evolving domains for all
+$t<T$ sufficiently close to $T$.
+
+\begin{lemma}\label{lem:left}
+The pre-contact branch satisfies
+\[
+ a'_-(T)=\kappa_0:=G_\Omega(w_*,0)<0,\qquad
+ a''_-(T)=L\in(-\infty,0),
+\]
+with smooth one-sided dependence up to $T$.
+\end{lemma}
+\begin{proof}
+On a smooth pre-contact domain, differentiating the harmonic Dirichlet
+problem for $\psi_t$ gives
+\[
+ \partial_t\psi_t(w)=G_{\Omega_t}(w,0).
+\]
+Indeed this derivative is harmonic away from its fixed unit logarithmic
+pole. Its boundary value is zero: differentiating $\psi_t-\phi=0$ along
+the moving boundary has no spatial contribution, by the $C^1$ smooth fit.
+Uniqueness of the Green Dirichlet problem proves the identity.
+The smooth Dirichlet problem on the lifted family justifies these
+differentiations up to the one-sided limit at $T$.
+
+Choose fixed lifts of $0$ and $w_*$ under the fixed covering projection.
+For $t\leq T$ the lifted and original Green functions agree by conformal
+invariance. Smooth domain dependence on the lift gives a finite derivative
+$H=\partial_tG_{\Omega'_t}|_{T}$, harmonic even at the pole after removal
+of its time-independent logarithmic singularity. Differentiating its zero
+boundary value gives
+\[
+ H=-V\partial_nG_{\Omega'_T}\quad\hbox{on }\partial\Omega'_T.
+\]
+Here $V>0$ is the limiting outward normal velocity. The outward normal
+derivative of the negative Green function is positive by Hopf's lemma.
+Thus $H<0$ on the boundary and throughout the domain, and evaluation at
+the fixed lift of $w_*$ gives finite $L<0$. The projected singular boundary
+is never used as a smooth Dirichlet boundary at $T$.
+\end{proof}
+
+\section{Legendre plateau and incompatible Taylor coefficients}
+Lemma~\ref{lem:gap} supplies
+\begin{equation}\label{eq:slopes}
+ a'_+(T)\leq b:=G_{D_+}(w_*,0)<\kappa_0=a'_-(T).
+\end{equation}
+For $\kappa$ near $\kappa_0$ set
+\[
+ F(\kappa)=\widetilde\Phi(w_*,e^{\kappa/2})
+ =\kappa+\sup_{0\leq t\leq1}\{a(t)-\kappa t\}.
+\]
+Global concavity is essential. For $b<\kappa<\kappa_0$, the supporting
+slopes in \eqref{eq:slopes} make $T$ the unique global maximizer, so
+\begin{equation}\label{eq:affine}
+ F(\kappa)=a(T)+(1-T)\kappa.
+\end{equation}
+For $\kappa>\kappa_0$ sufficiently close, Lemma~\ref{lem:left} and the
+implicit function theorem give a unique $t(\kappa)<T$ near $T$ with
+$a'(t(\kappa))=\kappa$. It too is the unique global maximizer: a supporting
+line for a concave function is global, and local strict curvature excludes
+any second point of equality. Thus no unknown post-contact branch can
+overtake it. Endpoint values in the supremum cause no difficulty, even
+if interpreted in the extended-real envelope convention.
+
+Put $\delta=\kappa-\kappa_0$ and $x=t(\kappa)-T$. As $\delta\downarrow0$,
+\[
+ x=\delta/L+o(\delta),\qquad
+ a(T+x)=a(T)+\kappa_0x+\tfrac12Lx^2+o(x^2).
+\]
+Substitution, together with \eqref{eq:affine} on the other side, yields
+\begin{equation}\label{eq:quadratic}
+ F(\kappa_0+\delta)-F(\kappa_0)-(1-T)\delta
+ =\begin{cases}
+ 0,&\delta<0\text{ sufficiently small},\\[2pt]
+ -\delta^2/(2L)+o(\delta^2),&\delta>0.
+ \end{cases}
+\end{equation}
+Since $L<0$, no common quadratic Taylor coefficient exists. This proves
+failure of a second-order expansion, rather than merely a discontinuous
+limiting Hessian.
+
+\begin{proof}[Completion of Theorem~\ref{thm:main}]
+The number $\kappa_0$ is finite and negative. Define
+$\tau_*=e^{\kappa_0/2}\in(0,1)$ and $z_*=w_*/\tau_*$.
+Along the smooth curve $(z,\tau)=(w_*e^{-\kappa/2},e^{\kappa/2})$,
+\eqref{eq:twist} gives
+\[
+ \Phi(w_*e^{-\kappa/2},e^{\kappa/2})
+ =F(\kappa)+\log\frac{1+|w_*|^2}{e^\kappa+|w_*|^2}.
+\]
+The added term is smooth. A second-order real Taylor expansion for $\Phi$
+at $(z_*,\tau_*)$ would restrict to one along this curve, contradicting
+\eqref{eq:quadratic}. Finally $(z,\tau)\mapsto\phi(\tau z)$ is jointly
+smooth on $\Pone\times\partial\D$, and circle rotations preserve $\FS$,
+so each boundary fibre form is strictly positive.
+\end{proof}
+
+\paragraph{Scope and verification.}
+This is an existence recipe using a credited designer-flow theorem,
+not a closed-form potential. The argument requires a positive-length arc,
+$0<T<1$, a non-pole interior observation point, the smooth lifted family,
+and finite strictly negative $L$. It does not prove an arbitrary point
+tangency or terminal-time slit has this defect. The supplementary exact
+rational verifier checks the scalar support and quadratic signs, including
+invalid-hypothesis controls; it does not certify the geometric PDE inputs
+by computation. The proof above supplies those analytic deductions from
+the cited results.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in investigating the problem, deriving,
+drafting and checking the argument, auditing sources and preparing the
+verification materials. Independent AI adversarial reviews are recorded
+with their actual scope in the repository. This preprint is unrefereed and
+has not undergone conventional human peer review. The author is responsible
+for the claims and their qualifications.
+
+\begin{thebibliography}{9}
+\bibitem{applications} J. Ross and D. Witt Nystr\"om,
+\emph{Applications of the duality between the homogeneous complex
+Monge--Amp\`ere equation and the Hele--Shaw flow},
+Ann. Inst. Fourier \textbf{69} (2019), 1--30.
+\href{https://doi.org/10.5802/aif.3237}{doi:10.5802/aif.3237}.
+\bibitem{harmonic} J. Ross and D. Witt Nystr\"om,
+\emph{Harmonic discs of solutions to the complex homogeneous
+Monge--Amp\`ere equation}, Publ. Math. IHES \textbf{122} (2015), 315--335.
+\href{https://doi.org/10.1007/s10240-015-0074-0}{doi:10.1007/s10240-015-0074-0}.
+\bibitem{moduli} J. Ross and D. Witt Nystr\"om,
+\emph{The Hele--Shaw flow and moduli of holomorphic discs},
+Compos. Math. \textbf{151} (2015), 2301--2328.
+\href{https://doi.org/10.1112/S0010437X15007526}{doi:10.1112/S0010437X15007526}.
+\bibitem{rank} J. Ross and D. Witt Nystr\"om,
+\emph{On the maximal rank problem for the complex homogeneous
+Monge--Amp\`ere equation}, Anal. PDE \textbf{12} (2019), 493--503.
+\href{https://doi.org/10.2140/apde.2019.12.493}{doi:10.2140/apde.2019.12.493}.
+\bibitem{survey} J. Ross and D. Witt Nystr\"om,
+\emph{The Dirichlet problem for the complex homogeneous Monge--Amp\`ere
+equation}, author version
+\href{https://arxiv.org/abs/1712.00405v2}{arXiv:1712.00405v2} (2018).
+\bibitem{owr} D. Witt Nystr\"om (joint work with J. Ross),
+\emph{Singular solutions to the homogeneous Monge--Amp\`ere equation via
+the Hele--Shaw flow}, in \emph{Geometric Methods of Complex Analysis},
+Oberwolfach Report 25/2021, pp.~1321--1325.
+\href{https://doi.org/10.4171/owr/2021/25}{doi:10.4171/owr/2021/25}.
+\end{thebibliography}
+\end{document}
