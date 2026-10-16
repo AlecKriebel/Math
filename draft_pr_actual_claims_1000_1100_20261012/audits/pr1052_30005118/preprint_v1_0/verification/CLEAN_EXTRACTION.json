@@ -1,0 +1,94 @@
+{
+  "timestamp_utc": "2026-10-14T04:07:39.377822+00:00",
+  "all_checks_passed": true,
+  "fresh_clean_extraction": true,
+  "external_upload_descriptor_intentionally_absent": true,
+  "all_documented_commands_executed": true,
+  "deterministic_archive_rebuild_bytes_equal": true,
+  "source_pdf_compilation_succeeded": true,
+  "scope": "All final author/code/metadata revisions exercised. Receipt has no archive self-binding. Final outside-archive verification binds the final ZIP after sealing this receipt.",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.065,
+      "stdout": "{\"payload_members\": 83, \"all_checks_passed\": true, \"upload_wrapper\": \"intentionally absent from extracted support archive\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "run_checks.py",
+        "--output",
+        "_runs/fresh.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.271,
+      "stdout": "{\"all_checks_passed\": true, \"runs\": 5, \"output\": \"_runs/fresh.json\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "test_integrity.py",
+        "--output",
+        "_runs/integrity.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.08,
+      "stdout": "{\"all_checks_passed\": true, \"valid_wrapper_controls\": 2, \"invalid_wrapper_and_path_controls_rejected\": 21, \"external_descriptor_required_for_clean_extraction\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/rebuilt.zip"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.091,
+      "stdout": "2c478990a5c3b2d937d40b28434f205d5f3170b01ab498bab456c304cb0f956d  _runs/rebuilt.zip\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "verify_support.py",
+        "--archive",
+        "_runs/rebuilt.zip"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.142,
+      "stdout": "{\"payload_members\": 83, \"all_checks_passed\": true, \"upload_wrapper\": \"intentionally absent from extracted support archive\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-B",
+        "build_pdf.py",
+        "--outdir",
+        "_runs/pdf"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.117,
+      "stdout": "note: Running TeX ...\nnote: Rerunning TeX because \"paper.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/preprint_v1_0/tmp/clean-current-vr5_97yv/_runs/pdf/paper.pdf` (57.197265625 KiB)\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/preprint_v1_0/tmp/clean-current-vr5_97yv/_runs/pdf/paper.log` (16.74609375 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n",
+      "stderr": "warning: paper.tex:109: Underfull \\hbox (badness 1715) in paragraph at lines 108--109\nwarning: paper.tex:109: Underfull \\hbox (badness 4779) in paragraph at lines 108--109\nwarning: paper.tex:109: Underfull \\hbox (badness 1715) in paragraph at lines 108--109\nwarning: paper.tex:109: Underfull \\hbox (badness 4779) in paragraph at lines 108--109\nwarning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.\n"
+    }
+  ]
+}

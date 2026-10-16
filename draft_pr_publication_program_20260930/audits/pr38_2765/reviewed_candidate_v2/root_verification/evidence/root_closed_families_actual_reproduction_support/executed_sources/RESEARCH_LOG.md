@@ -1,0 +1,20 @@
+# PR38 root replay preparation log
+
+The first three entries below are reconstructed preparation checkpoints anchored
+to the recorded filesystem birth timestamps of the named static artifacts; they
+do not claim a replay ran then. The final timestamp is a directly read UTC clock.
+
+- 2026-10-02T09:37:07.731086Z — INPUT_PINS.json first created; retrospective estimate 20% of static replay-source preparation, 0% additional full-target discovery. Root/native AGENTS, original snapshot/provenance/accounting schemas, closed-family runners/manifests/receipts and PR37 examples read. No proposed source imported/executed, no verifier run, no scientific verdict.
+- 2026-10-02T09:42:38.817354Z — reconstructed_controls.py first created; retrospective estimate 65% of static preparation, 0% additional full-target discovery. Independent source/native/full-corpus inspector and complete subprocess capture drafted. Exact trace mutation/source mapping and fresh root manifest controls defined. Null versus empty-object fallback and authored2/5/native omission explicitly qualified.
+- 2026-10-02T09:50:01.534855Z — collect_root_replays.py first created; retrospective estimate 90% of static preparation, 0% additional full-target discovery. Root's independently completed primary reading remains a separate prerequisite. Primary nested basename/ignoredtmp exclusion controls distinguish original-validator acceptance from strict-root rejection. Receipt/retention schema coordinated with current-packet preparer under root authorization. No outside communication.
+- 2026-10-02T10:01:12Z — Static preparation closing checkpoint, estimated 100% of this source-preparation assignment, 0% additional full-target discovery. Four sources and complete contract prepared; AST parsed only for syntax. Strict self-excluding preparation manifest is written after this checkpoint. Exact169 members plus three original manifest bytes pinned. Actual execution, failure assessment, primary-reading attestation, scientific verdict, Git publication and packet promotion remain root-owned. Every preparation write stayed in this folder; no closed/shared/Git/remote/inventory/canonical state changed.
+- 2026-10-02T10:08:34Z — Final static review and seal checkpoint, 100% of static preparation, 0% additional target discovery. Added exact expected manifest rejection mechanisms, complete stdin/executed-source capture, explicit stdout-materialized receipt behavior, retained actual-runtime/default-failure contract, and packet-builder schema alignment. Syntax is checked by AST parsing only; no ACTUAL run or success claim exists. PREPARATION_MANIFEST.json is generated last and excludes only itself.
+
+## Separately preserved S2 execution revision
+
+The preceding entries are the unchanged predecessor log copied as provenance;
+their old folder-only write statements refer to that original preparation.
+This revision writes only root_replay_execution_revision, preserves the closed
+predecessor, and makes no new substantive research attempt.
+
+- 2026-10-02T10:46:40Z — Static S2 closing checkpoint:100% of this revision assignment,0% additional full-target discovery. Prelaunch source/argv/cwd/stdin, byte-normalized partial timeouts, explicit OSError launch failures with null exits, protected setup/finalization, original-versus-secondary failure retention and permanent private-attempt preservation prepared. Corrected the outer runpy prelaunch ledger guard before seal. INPUT_PINS/inspector/reconstructed controls remain byte-identical; current-measure label and exact Git stdin request stay compatible with sealed S1 revision. Four Python sources are AST-parsed only; none imported, compiled or executed. No mathematical/manifest helper, native/Git/remote/shared/canonical mutation, ACTUAL run or verdict. Exact patch/docs and strict nine-member self-excluding manifest are generated last; root and independent adversary must fully review before actual execution. Root's15% partial-progress heuristic is unchanged, not discovery credit or solution probability.

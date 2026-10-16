@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "corrupt",
+      "status": "REJECTED_AS_REQUIRED",
+      "expected_error": "Outer payload mismatch",
+      "actual_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/corrupt/run_all.py\", line 90, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/corrupt/run_all.py\", line 43, in main\n    raise RuntimeError(f\"Outer payload mismatch: {name}\")\nRuntimeError: Outer payload mismatch: README.md\n",
+      "layer": "actual driver; no mocked subprocess"
+    },
+    {
+      "case": "extra",
+      "status": "REJECTED_AS_REQUIRED",
+      "expected_error": "Outer payload inventory mismatch",
+      "actual_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/extra/run_all.py\", line 90, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/extra/run_all.py\", line 38, in main\n    raise RuntimeError(\"Outer payload inventory mismatch\")\nRuntimeError: Outer payload inventory mismatch\n",
+      "layer": "actual driver; no mocked subprocess"
+    },
+    {
+      "case": "missing_nested_payload",
+      "status": "REJECTED_AS_REQUIRED",
+      "expected_error": "Outer payload inventory mismatch",
+      "actual_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/missing_nested_payload/run_all.py\", line 90, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/missing_nested_payload/run_all.py\", line 38, in main\n    raise RuntimeError(\"Outer payload inventory mismatch\")\nRuntimeError: Outer payload inventory mismatch\n",
+      "layer": "actual driver; no mocked subprocess"
+    },
+    {
+      "case": "missing_nested_after_outer_reseal",
+      "status": "REJECTED_AS_REQUIRED",
+      "expected_error": "Nested hash mismatch or missing payload",
+      "actual_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/missing_nested_after_outer_reseal/run_all.py\", line 90, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/missing_nested_after_outer_reseal/run_all.py\", line 47, in main\n    nested, original = verify_nested(before, registry)\n                       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/missing_nested_after_outer_reseal/integrity.py\", line 36, in verify_nested\n    raise RuntimeError(f\"Nested hash mismatch or missing payload: {path}\")\nRuntimeError: Nested hash mismatch or missing payload: reviews/oracle01/CONTROL_RESULTS.json\n",
+      "layer": "actual driver; no mocked subprocess"
+    },
+    {
+      "case": "alter_nested_seal",
+      "status": "REJECTED_AS_REQUIRED",
+      "expected_error": "Nested hash mismatch or missing payload",
+      "actual_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/alter_nested_seal/run_all.py\", line 90, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/alter_nested_seal/run_all.py\", line 47, in main\n    nested, original = verify_nested(before, registry)\n                       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/alter_nested_seal/integrity.py\", line 36, in verify_nested\n    raise RuntimeError(f\"Nested hash mismatch or missing payload: {path}\")\nRuntimeError: Nested hash mismatch or missing payload: reviews/oracle01/controls.py\n",
+      "layer": "actual driver; no mocked subprocess"
+    },
+    {
+      "case": "duplicate_nested_seal",
+      "status": "REJECTED_AS_REQUIRED",
+      "expected_error": "Seal registry mismatch",
+      "actual_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/duplicate_nested_seal/run_all.py\", line 90, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/negative/duplicate_nested_seal/run_all.py\", line 46, in main\n    raise RuntimeError(\"Seal registry mismatch\")\nRuntimeError: Seal registry mismatch\n",
+      "layer": "actual driver; no mocked subprocess"
+    },
+    {
+      "case": "complete_mock_baseline",
+      "status": "ACCEPTED_AS_REQUIRED",
+      "error": null,
+      "layer": "JSON-comparison unit control with explicitly mocked subprocess outputs; actual five programs separately replayed under OS network denial"
+    },
+    {
+      "case": "wrong_actual_math",
+      "status": "REJECTED_AS_REQUIRED",
+      "error": "Complete mathematical JSON mismatch: original/unsolved_math_prioritization/attempts/30006605/bundle/controls.py",
+      "layer": "JSON-comparison unit control with explicitly mocked subprocess outputs; actual five programs separately replayed under OS network denial"
+    },
+    {
+      "case": "only_three_top_level_clocks",
+      "status": "ACCEPTED_AS_REQUIRED",
+      "error": null,
+      "layer": "JSON-comparison unit control with explicitly mocked subprocess outputs; actual five programs separately replayed under OS network denial"
+    },
+    {
+      "case": "nested_clock_named_math",
+      "status": "REJECTED_AS_REQUIRED",
+      "error": "Complete mathematical JSON mismatch: reviews/oracle01/controls.py",
+      "layer": "JSON-comparison unit control with explicitly mocked subprocess outputs; actual five programs separately replayed under OS network denial"
+    },
+    {
+      "case": "extra_ignored_field",
+      "status": "REJECTED_AS_REQUIRED",
+      "error": "Unsupported replay normalization",
+      "layer": "JSON-comparison unit control with explicitly mocked subprocess outputs; actual five programs separately replayed under OS network denial"
+    },
+    {
+      "case": "normalization_wrong_job",
+      "status": "REJECTED_AS_REQUIRED",
+      "error": "Unsupported replay normalization",
+      "layer": "JSON-comparison unit control with explicitly mocked subprocess outputs; actual five programs separately replayed under OS network denial"
+    }
+  ]
+}

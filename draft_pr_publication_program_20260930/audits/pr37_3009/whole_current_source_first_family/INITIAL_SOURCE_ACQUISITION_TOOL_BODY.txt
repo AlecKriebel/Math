@@ -1,0 +1,29 @@
+Transcription of the initial source acquisition tool body. This is retained
+tool source, not a claim that an initial filesystem script file existed.
+The commands were run from /Users/alec/Documents/Math before the proof seal.
+No rerun of this body is required or represented as having occurred.
+
+from pathlib import Path
+import urllib.request,subprocess,json,datetime,hashlib
+b=Path('draft_pr_publication_program_20260930/audits/pr37_3009/whole_current_source_first_family')
+(b/'primary').mkdir(exist_ok=True); (b/'receipts').mkdir(exist_ok=True)
+urls={'k3':'https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf','kolev_v3':'https://arxiv.org/pdf/math/0303258v3','brown1977':'https://www.ams.org/journals/proc/1977-065-02/S0002-9939-1977-0461491-0/S0002-9939-1977-0461491-0.pdf'}
+for k,u in urls.items():
+ r={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'url':u,'receipt_kind':'live primary fetch','copyright':'Imported primary dependency; retained privately for audit; not a first-party theorem proof.'}
+ try:
+  with urllib.request.urlopen(u,timeout=40) as f:data=f.read();r['http_status']=f.status;r['final_url']=f.url;r['headers']=dict(f.headers)
+  p=b/'primary'/f'{k}.pdf';p.write_bytes(data);r.update(bytes=len(data),sha256=hashlib.sha256(data).hexdigest())
+  z=subprocess.run(['pdftotext','-layout',str(p),str(p.with_suffix('.txt'))],capture_output=True,text=True)
+  (b/'receipts'/f'{k}.extract.stdout').write_text(z.stdout);(b/'receipts'/f'{k}.extract.stderr').write_text(z.stderr);r['extract_exit']=z.returncode
+ except Exception as e:r['failure']=repr(e)
+ (b/'receipts'/f'{k}.fetch.json').write_text(json.dumps(r,indent=2)+'\n')
+ print(k,r.get('http_status'),r.get('extract_exit'),r.get('failure'))
+
+Actual original displayed stdout (tool session82783):
+k3 200 0 None
+kolev_v3 200 0 None
+brown1977 None None <HTTPError 403: 'Forbidden'>
+
+The subsequent exposure ledger creation code is represented by the resulting
+complete EXPOSURE_LEDGER.json, with all permitted read paths and hashes. It did
+not read the candidate or old audit interpretations.

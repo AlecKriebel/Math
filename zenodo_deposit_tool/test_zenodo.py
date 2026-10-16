@@ -94,6 +94,50 @@ class DepositFlowTests(unittest.TestCase):
         with self.assertRaisesRegex(zenodo.DepositError, "already published"):
             self.call("stage")
 
+    def test_omitted_creator_affiliation_null_preserves_manifest(self):
+        self.metadata['creators'][0]['orcid'] = '0009-0001-9320-500X'
+        self.write_manifest()
+        original = self.manifest.read_bytes()
+        self.call('stage')
+        self.client.records[123]['metadata']['creators'][0]['affiliation'] = None
+        expected = [{'field': 'creators', 'kind': 'omitted_creator_affiliation_to_null'}]
+        self.assertEqual(self.call('inspect')['metadata_normalizations'], expected)
+        self.assertEqual(self.call('publish', 123)['metadata_normalizations'], expected)
+        self.assertEqual(self.manifest.read_bytes(), original)
+        self.assertEqual(self.client.publishes, 1)
+
+    def test_creator_affiliation_exception_rejects_substantive_or_extra_changes(self):
+        creator = {'name': 'Kriebel, Alec', 'orcid': '0009-0001-9320-500X'}
+        self.metadata['creators'] = [creator]
+        self.write_manifest()
+        self.call('stage')
+        cases = [
+            [{**creator, 'affiliation': ''}],
+            [{**creator, 'affiliation': 'Changed institution'}],
+            [{**creator, 'affiliation': None, 'name': 'Changed author'}],
+            [{**creator, 'affiliation': None, 'orcid': 'Changed identifier'}],
+            [{**creator, 'affiliation': None, 'unrequested': None}],
+            [{'name': creator['name'], 'affiliation': None}],
+            [], [creator, creator], None,
+        ]
+        for actual in cases:
+            with self.subTest(actual=actual):
+                self.client.records[123]['metadata']['creators'] = actual
+                with self.assertRaisesRegex(zenodo.DepositError, 'metadata differs'):
+                    self.call('publish', 123)
+                self.assertEqual(self.client.publishes, 0)
+        self.metadata['creators'] = [{**creator, 'affiliation': None}]
+        self.write_manifest()
+        self.client.records[123]['metadata']['creators'] = [creator]
+        with self.assertRaisesRegex(zenodo.DepositError, 'metadata differs'):
+            self.call('publish', 123)
+        self.metadata['creators'] = [creator, {'name': 'Second author'}]
+        self.write_manifest()
+        self.client.records[123]['metadata']['creators'] = list(reversed(self.metadata['creators']))
+        with self.assertRaisesRegex(zenodo.DepositError, 'metadata differs'):
+            self.call('publish', 123)
+        self.assertEqual(self.client.publishes, 0)
+
     def test_plain_description_entity_encoding_preserves_metadata_and_publication(self):
         self.metadata["description"] = "For 1 <= p < infinity & p > 0, the author's claim holds."
         self.write_manifest()

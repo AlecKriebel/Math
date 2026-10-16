@@ -1,0 +1,223 @@
+--- integration_preparation_family/pr36_guards.py
++++ integration_execution_revision/pr36_guards.py
+@@ -28,6 +28,15 @@
+ PREVIOUS_SHA = '7e0490b03d35e055a73a5a8f0b4258123004b06886f6db13642db82474ac1769'
+ ADMIN = {'README.md', 'pr_body.md', 'readiness.json', 'status.json', 'CURRENT_AUDIT_SCOPE.md', 'RESEARCH_LOG.md'}
+ HEADER = ['Rank', 'ID / code', 'Problem', 'EV', 'Impact (/10)', 'Difficulty', 'Proposed', 'Status', 'Turns', 'Chat', 'Findings', 'DOI']
++WHOLE_SCRATCH_EXCLUSIONS = ['tmp/', '__pycache__/']
++WHOLE_RETAINED_SETUP_JSON_FAILURES = {
++    'actual_replay/20261002T075111561114Z/spec_mutant_wrong_orbit_optimized.json': {'bytes': 5202, 'sha256': '2ba4c8c88686eeaa70cdb005658b3585a7b72cb5693a11d07e6fe046e52480af'},
++    'actual_replay/20261002T075151189487Z/spec_mutant_wrong_orbit_optimized.json': {'bytes': 5202, 'sha256': '2ba4c8c88686eeaa70cdb005658b3585a7b72cb5693a11d07e6fe046e52480af'},
++}
++FOREIGN_TRACKED_EXCLUSIONS = {
++    'paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/commands.tsv',
++    'paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/full_transcript.log',
++}
+ 
+ def require(condition, message):
+     if not condition:
+@@ -86,22 +95,31 @@
+     require(path.suffix not in {'.pyc', '.tmp'}, 'Excluded temporary member')
+     return path
+ 
+-def manifest(base, path, expected=None, count=None, exact=True):
++def manifest(base, path, expected=None, count=None, exact=True, whole_scope=False):
+     base, path = Path(base), Path(path)
+     raw = path.read_bytes()
+     if expected:
+         require(sha(raw) == expected, 'Pinned manifest changed: ' + str(path))
+     obj = json.loads(raw)
++    if whole_scope:
++        require(base.resolve() == (A / 'whole_current_source_first_family').resolve(), 'Scratch/retained-setup qualifiers restricted to exact PR36 whole family')
++        require(obj.get('foreign_scratch_excluded') == WHOLE_SCRATCH_EXCLUSIONS, 'Whole permits only exact tmp/__pycache__ scratch exclusions')
++    else:
++        require(obj.get('foreign_scratch_excluded', []) == [], 'Canonical/current package permits zero foreign scratch exclusions')
+     rows = obj['files']
+     if isinstance(rows, dict):
+         rows = [{'path': k, **v} for k, v in rows.items()]
+     require(isinstance(rows, list), 'Unknown manifest schema')
+     names = [z['path'] for z in rows]
+     require(len(names) == len(set(names)), 'Duplicate manifest members')
++    if whole_scope:
++        require(set(WHOLE_RETAINED_SETUP_JSON_FAILURES) <= set(names), 'Both exact dated setup-failure artifacts must remain retained')
+     if count is not None:
+         require(len(rows) == count, 'Wrong manifest count')
+     if 'files_count' in obj:
+         require(obj['files_count'] == len(rows), 'Declared manifest count differs')
++    if 'member_count' in obj:
++        require(obj['member_count'] == len(rows), 'Declared authored member count differs')
+     for row in rows:
+         relative(row['path'])
+         child = base / row['path']
+@@ -109,13 +127,24 @@
+         raw = child.read_bytes()
+         require(len(raw) == row.get('bytes', row.get('size')) and sha(raw) == row['sha256'], 'Member binding changed: ' + str(child))
+         if child.suffix == '.json':
+-            json.loads(raw)
++            retained = WHOLE_RETAINED_SETUP_JSON_FAILURES.get(row['path']) if whole_scope else None
++            if retained is not None:
++                require(row.get('bytes', row.get('size')) == retained['bytes'] and row['sha256'] == retained['sha256'] and len(raw) == retained['bytes'] and sha(raw) == retained['sha256'], 'Dated malformed setup JSON byte pin differs')
++                try:
++                    json.loads(raw)
++                except json.JSONDecodeError:
++                    pass  # Exact dated -O-as-script setup failure, never a valid success receipt.
++                else:
++                    raise ValueError('Retained setup fixture unexpectedly parses; inspect historical scope')
++            else:
++                json.loads(raw)
+         elif child.suffix == '.jsonl':
+             for line in raw.splitlines():
+                 json.loads(line)
+     if exact:
+-        actual = {str(p.relative_to(base)) for p in base.rglob('*') if p.is_file()}
+-        require(not any(p.is_symlink() for p in base.rglob('*')), 'Symlink in frozen package')
++        authored = [p for p in base.rglob('*') if not (whole_scope and {'tmp', '__pycache__'} & set(p.relative_to(base).parts))]
++        actual = {str(p.relative_to(base)) for p in authored if p.is_file()}
++        require(not any(p.is_symlink() for p in authored), 'Symlink in frozen authored package')
+         require(path.resolve().is_relative_to(base.resolve()), 'Manifest outside bound package')
+         require(set(names) == actual - {str(path.relative_to(base))}, 'Manifest not exact/self-excluding')
+     return rows
+@@ -146,7 +175,7 @@
+     receipt = R / relative(args.root_final_receipt)
+     require(whole.resolve().is_relative_to(A.resolve()) and receipt.resolve().is_relative_to(A.resolve()), 'Final gates must belong to PR36 audit')
+     require(whole.parent != C and 'whole' in whole.parent.name.lower(), 'Cannot reuse candidate or old individual-family verdict')
+-    manifest(whole.parent, whole, args.whole_manifest_sha256)
++    manifest(whole.parent, whole, args.whole_manifest_sha256, whole_scope=True)
+     require(sha(receipt.read_bytes()) == args.root_final_receipt_sha256, 'Explicit root final receipt pin changed')
+     root = load(receipt)
+     required = {'status': 'PASS', 'pr': PR, 'problem_id': int(ID), 'original_head': HEAD,
+@@ -171,7 +200,38 @@
+     require(load(C / 'source_record.json')['upstream_prior_report'] == load(C / 'prior_report.json'), 'Complete prior report changed')
+     return frozen, {'reviewed_candidate_manifest_sha256': CURRENT_SHA, 'current_proof_dependencies_sha256': DEPENDENCIES_SHA,
+                     'whole_manifest': args.whole_manifest, 'whole_manifest_sha256': args.whole_manifest_sha256,
+-                    'root_final_receipt': args.root_final_receipt, 'root_final_receipt_sha256': args.root_final_receipt_sha256}
++                    'root_final_receipt': args.root_final_receipt, 'root_final_receipt_sha256': args.root_final_receipt_sha256,
++                    'whole_foreign_scratch_excluded': WHOLE_SCRATCH_EXCLUSIONS,
++                    'whole_retained_setup_json_parse_failures': [{'path': name, **pin, 'qualification': 'Exact dated early -O-as-script adapter setup failure; malformed JSON retained, not a valid successful receipt.'} for name, pin in sorted(WHOLE_RETAINED_SETUP_JSON_FAILURES.items())]}
++
++def capture_foreign_tracked_exclusions():
++    dirty = set(git_bytes('diff', '--name-only', '-z').decode().split('\0')) - {''}
++    require(dirty <= FOREIGN_TRACKED_EXCLUSIONS, 'Owned/shared or unapproved tracked path is dirty; checkpoint only owned work before preflight')
++    records = []
++    for name in sorted(FOREIGN_TRACKED_EXCLUSIONS):
++        require(git_bytes('ls-files', '--error-unmatch', '--', name).decode().strip() == name, 'Explicit foreign exclusion is not tracked')
++        path = R / name
++        require(path.is_file() and not path.is_symlink(), 'Foreign excluded path must be regular file')
++        raw = path.read_bytes()
++        records.append({'path': name, 'bytes': len(raw), 'sha256': sha(raw), 'head_sha256': sha(git_bytes('show', 'HEAD:' + name)), 'dirty_at_preflight': name in dirty, 'integration_and_checkpoint_excluded': True})
++    return records
++
++def foreign_tracked_unchanged(pre):
++    records = pre['foreign_tracked_exclusions']
++    names = [x['path'] for x in records]
++    require(len(names) == len(set(names)) and set(names) == FOREIGN_TRACKED_EXCLUSIONS, 'Foreign exclusion scope changed; no arbitrary exclusions permitted')
++    for row in records:
++        path = R / row['path']
++        require(path.is_file() and not path.is_symlink() and row.get('integration_and_checkpoint_excluded') is True, 'Foreign exclusion scope invalid')
++        raw = path.read_bytes()
++        require(len(raw) == row['bytes'] and sha(raw) == row['sha256'], 'Foreign bytes changed since explicit preflight capture; inspect parallel writer, never overwrite/checkpoint')
++        require(sha(git_bytes('show', 'HEAD:' + row['path'])) == row['head_sha256'], 'Foreign exclusion was accidentally checkpointed or changed in current Git tree')
++        stages = [x for x in git_bytes('ls-files', '--stage', '-z', '--', row['path']).decode().split('\0') if x]
++        require(len(stages) == 1, 'Foreign excluded path has ambiguous/conflicted index stages')
++        fields, name = stages[0].split('\t', 1)
++        mode, blob, stage = fields.split()
++        require(name == row['path'] and stage == '0' and mode in {'100644', '100755'}, 'Foreign excluded index path must be an unconflicted regular stage0 blob')
++        require(sha(git_bytes('show', ':' + row['path'])) == row['head_sha256'], 'Foreign dirty bytes accidentally staged; unstage by root inspection before any checkpoint')
+ 
+ def selected_row(data):
+     lines = data.decode().splitlines(keepends=True)
+@@ -199,6 +259,10 @@
+         mode = git_bytes('ls-tree', merge, '--', prefix + z['path']).decode().split()[0]
+         require(mode in {'100644', '100755'}, 'Merged canonical member is not a regular blob')
+     require(git_bytes('show', merge + ':unsolved_math_prioritization/QUEUE.md') == queue_bytes, 'Actual published merge queue differs from reviewed named-row overlay')
++    pre = load(A / 'integration_preflight.json')
++    foreign_tracked_unchanged(pre)
++    for row in pre['foreign_tracked_exclusions']:
++        require(sha(git_bytes('show', merge + ':' + row['path'])) == row['head_sha256'], 'Actual merge accidentally checkpointed foreign excluded work')
+ 
+ def load_mirror():
+     # Import only occurs during explicitly root-executed mirror/postvalidation.
+--- integration_preparation_family/integrate_reviewed_partial.py
++++ integration_execution_revision/integrate_reviewed_partial.py
+@@ -45,6 +45,7 @@
+         g.require(p.read_bytes() == (g.C / z['path']).read_bytes(), 'Canonical reviewed bytes changed: ' + z['path'])
+ 
+ def before_guard(pre):
++    g.foreign_tracked_unchanged(pre)
+     for key, suffix in [('state', '.json'), ('history', '.jsonl')]:
+         p = g.R / 'unsolved_math_prioritization' / (key + suffix)
+         g.require(g.sha(p.read_bytes()) == pre[key + '_before_sha256'], 'Shared ' + key + ' changed since preflight')
+@@ -68,7 +69,7 @@
+         if not merge_head.is_absolute():
+             merge_head = g.R / merge_head
+         g.require(not merge_head.exists() and not g.git('diff', '--cached', '--name-only'), 'Index/merge must be clean before root integration')
+-        g.require(not g.git('diff', '--name-only'), 'Checkpoint tracked changes before capturing preflight')
++        foreign = g.capture_foreign_tracked_exclusions()
+         q = g.Q.read_bytes()
+         g.require(g.git_bytes('show', 'HEAD:unsolved_math_prioritization/QUEUE.md') == q, 'Captured current queue must equal clean captured main tree')
+         row = g.selected_row(q)
+@@ -79,10 +80,11 @@
+         inventory = g.load(g.B / 'inventory.json')
+         g.require(len(state) == 26 and g.ID not in state and sum(x['turns_used'] for x in state.values()) == 31, 'Require post-PR35 mirror26/31')
+         g.require(sum(x.get('stage') == 'complete' for x in inventory['items']) == 25, 'Require25 accepted primaries before PR36')
+-        g.dump(g.A / 'integration_preflight.json', {'utc': now, **pins, 'pr': observation, 'main_before': g.git('rev-parse', 'HEAD'), 'whole_queue_before_sha256': g.sha(q), 'dated_queue_before_sha256': patch['whole_queue_preimage_sha256'], 'separately_reviewed_named_row_rebase': rebased, 'selected_row_before': row, 'state_before_sha256': g.sha((g.R / 'unsolved_math_prioritization/state.json').read_bytes()), 'history_before_sha256': g.sha((g.R / 'unsolved_math_prioritization/history.jsonl').read_bytes()), 'inventory_before_sha256': g.sha((g.B / 'inventory.json').read_bytes()), 'new_substantive_attempts': 0, 'attempts': '1/5', 'remote_pending': True}, exclusive=True)
++        g.dump(g.A / 'integration_preflight.json', {'utc': now, **pins, 'foreign_tracked_exclusions': foreign, 'pr': observation, 'main_before': g.git('rev-parse', 'HEAD'), 'whole_queue_before_sha256': g.sha(q), 'dated_queue_before_sha256': patch['whole_queue_preimage_sha256'], 'separately_reviewed_named_row_rebase': rebased, 'selected_row_before': row, 'state_before_sha256': g.sha((g.R / 'unsolved_math_prioritization/state.json').read_bytes()), 'history_before_sha256': g.sha((g.R / 'unsolved_math_prioritization/history.jsonl').read_bytes()), 'inventory_before_sha256': g.sha((g.B / 'inventory.json').read_bytes()), 'new_substantive_attempts': 0, 'attempts': '1/5', 'remote_pending': True}, exclusive=True)
+         g.write(g.A / 'integration_queue_before.md', q, exclusive=True)
+         g.write(g.A / 'integration_inventory_before.json', (g.B / 'inventory.json').read_bytes(), exclusive=True)
+         g.write(g.A / 'accepted_pr_body.md', BODY.encode(), exclusive=True)
++        g.foreign_tracked_unchanged({'foreign_tracked_exclusions': foreign})
+         print('PREFLIGHT PASS PR36; root remote-ready/body and guarded no-ff merge remain')
+         return
+     pre = g.load(g.A / 'integration_preflight.json')
+@@ -199,6 +201,7 @@
+     note = '\n## ' + now + ' — PR36 accepted and remotely merged\n\nWorkflow100%: credited already_solved PRIOR_APPLICATION, original1/5,new0,verification0; no paper/newDOI/tracker/release. Exact original head ' + g.HEAD + ', actual merge ' + merge + '; NEW complete current-packet source-first gate and actual root final reproduction passed. Original/science/source/dependencies/ledger preserved. Program26/180=' + str(round(done / 180 * 100, 4)) + '%; other items and holds preserved. Present acceptance mirror follows source/remote/package verification.\n'
+     for p in [g.A / 'RESEARCH_LOG.md', g.B / 'RESEARCH_LOG.md']:
+         g.write(p, p.read_bytes() + note.encode())
++    g.foreign_tracked_unchanged(pre)
+     print('FINALIZE PASS PR36; present mirror still pending')
+ 
+ if __name__ == '__main__':
+--- integration_preparation_family/state_mirror_reconciliation.py
++++ integration_execution_revision/state_mirror_reconciliation.py
+@@ -21,6 +21,7 @@
+     g.require(not (g.A / 'state_mirror_intent.json').exists(), 'Inspect prior intent before any retry')
+     g.require(g.sha(g.PREVIOUS.read_bytes()) == g.PREVIOUS_SHA, 'Frozen PR35 base proposal changed')
+     pre = g.load(g.A / 'integration_preflight.json')
++    g.foreign_tracked_unchanged(pre)
+     acceptance = g.load(g.K / 'acceptance.json')
+     audit = g.load(g.A / 'acceptance.json')
+     g.require({k: v for k, v in audit.items() if k not in {'canonical_manifest_sha256', 'canonical_manifest_entries'}} == acceptance, 'Audit/canonical acceptance mismatch')
+@@ -81,6 +82,7 @@
+     with lock_path.open('a+b') as lock:
+         fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+         mirror.validate_plan(g.R, plan)
++        g.foreign_tracked_unchanged(pre)
+         g.require(state_path.read_bytes() == old_state and history_path.read_bytes() == old_history, 'Shared preimage changed before locked write')
+         intent = {'schema': 'pr36-present-acceptance-mirror/v1', 'status': 'PREPARED', 'prepared_at_utc': g.stamp(), **pins, 'plan_sha256': g.sha(mirror.encode(plan)), 'before': plan['preconditions'], 'before_state_bytes': old_state.decode(), 'before_history_bytes': old_history.decode(), 'state_after_sha256': plan['state_after_sha256'], 'history_after_sha256': plan['history_after_sha256'], 'write_order': ['history.jsonl', 'state.json'], 'new_event': g.ID, 'new_proof_turns': 0, 'lock_limitation': 'Cooperative advisory lock; noncooperating writers remain outside protocol.'}
+         g.dump(g.A / 'state_mirror_intent.json', intent, exclusive=True)
+@@ -93,6 +95,7 @@
+         g.require(g.sha(state_path.read_bytes()) == plan['state_after_sha256'] and g.sha(history_path.read_bytes()) == plan['history_after_sha256'], 'Mirror output differs')
+         for path, digest in protected.items():
+             g.require(g.sha((g.R / path).read_bytes()) == digest, 'Protected binding changed by mirror: ' + path)
++        g.foreign_tracked_unchanged(pre)
+         intent.update(status='COMPLETED', completed_at_utc=g.stamp())
+         g.dump(g.A / 'state_mirror_intent.json', intent)
+         g.dump(g.A / 'state_mirror_receipt.json', {'at_utc': g.stamp(), 'preflight': validation, 'negative_ledger_controls': negatives, 'history_events_added': 1, 'prior_state_entries_semantically_unchanged': 26, 'current_targets': 27, 'consumed_substantive_turns': 32, 'complete_primary_count': 26, 'duplicate_count': 1, 'new_proof_turns_added_by_mirror': 0, 'entire_original_ledger_bytes_unchanged': True, 'protected_bindings_unchanged': len(protected), 'legacy_generator_run': False, 'state_sha256': g.sha(state_path.read_bytes()), 'history_sha256': g.sha(history_path.read_bytes()), 'scope': 'One present source-bound accepted partial; exact complete prior history prefix retained, no historical proof/readiness transition invented.'}, exclusive=True)
+--- integration_preparation_family/verify_post_acceptance.py
++++ integration_execution_revision/verify_post_acceptance.py
+@@ -37,6 +37,7 @@
+     g.require(remote == g.load(g.A / 'remote_merge_receipt.json') and remote['state'] == 'MERGED' and remote['isDraft'] is False and remote['mergedAt'] == acceptance['merged_at'] and remote['mergeCommit']['oid'] == acceptance['merge_commit'], 'Fresh actual remote acceptance differs')
+     g.require(remote['body'] == (g.K / 'pr_body.md').read_text() == (g.A / 'accepted_pr_body.md').read_text(), 'Actual remote/canonical/reviewed body differs')
+     pre = g.load(g.A / 'integration_preflight.json')
++    g.foreign_tracked_unchanged(pre)
+     merge = acceptance['merge_commit']
+     parents = g.git('show', '-s', '--format=%P', merge).split()
+     g.require(parents == acceptance['merge_parents'] == [pre['main_before'], g.HEAD], 'Actual exact no-ff merge parents differ')
+@@ -88,6 +89,7 @@
+     for z in g.load(g.A / 'snapshot_manifest.json')['files']:
+         g.require(g.git_bytes('show', g.HEAD + ':unsolved_math_prioritization/attempts/' + g.ID + '/' + z['path']) == (g.K / 'original_archive' / z['path']).read_bytes(), 'Original16 Git artifact changed')
+     result = {'utc': g.stamp(), 'status': 'PASS', 'pr': g.PR, **pins, 'exact_remote_merge_and_parents_verified': True, 'canonical_manifest_sha256': audit['canonical_manifest_sha256'], 'canonical_members': len(rows), 'reviewed_members_exact_science_or_archived_admin': len(frozen), 'entire_original_candidate_source_prior_ledger_preserved': True, 'named12_column_actual_queue_change_only': True, 'selected_chat_DOI_and_other_current_queue_bytes_preserved': True, 'current_read_only_mirror_validation': validation, 'fresh_proposal_inventory_binding_only_refreshed_in_memory': True, 'history_exact_single_present_acceptance_append': True, 'all_prior_states_preserved': 26, 'current_targets': 27, 'consumed_original_substantive_turns': 32, 'complete_primary_prs': 26, 'explicit_duplicate_count': 1, 'attempts': '1/5', 'new_substantive_attempts': 0, 'verification_attempts_added': 0, 'program_completion_estimate_percent': count / 180 * 100, 'paper_or_new_doi_or_tracker': False, 'shared_files_written': 0}
++    g.foreign_tracked_unchanged(pre)
+     g.dump(g.A / 'ROOT_POST_ACCEPTANCE_VERIFICATION.json', result, exclusive=True)
+     print(json.dumps({'status': 'PASS', 'pr': g.PR, 'canonical_members': len(rows), 'targets': 27, 'turns': 32, 'completed_primary_prs': 26, 'new_proof_turns': 0}))
+ 

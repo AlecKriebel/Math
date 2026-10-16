@@ -1,0 +1,7 @@
+# Independent SOURCE-first notes
+
+The original note makes the target framed-instanton rank equality exact and leaves it unresolved. A finite abelian character set gives finitely many conjugacy orbits, whose point/sphere homology totals |H1|; this says nothing about obstructed transverse first-order deformation. The adjoint square is necessary. The quartic lower link is a torus times a closed interval; reduced link homology shifts to degrees 2 and 3 with dimensions 2 and 1. This is an abstract analytic germ, not an actual instanton local model. Trefoil slope6 has C2*C3, central first-generator images, abelian SU2 representations and squared roots of order dividing3; deleting the square is invalid. The Seifert proof supplied in the V2 operative note separately realizes normal cohomology, and computes no I# rank.
+
+Administrative reasoning before the old ADVERSE report: exact capture schema is shared across Git and helper classes, but source is explicitly None for Git and a typed original-source row for helpers. The V2 source checks exact argv, genuine completed children, typed PID/exit codes, timezone-aware chronology and full streams first, then class-specific source fields. The old generic source-presence predicate is not present. Static records alone are not an actual current freeze. All five ROOT drafts and runtime/acceptance fields remain prospective.
+
+This note was authored after full source text reading and before reading old ADVERSE conclusions. No production builder/operator or historical mathematical helper was imported, compiled or executed.

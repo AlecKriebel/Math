@@ -1,0 +1,16 @@
+def require(x,msg):
+ if not x:raise RuntimeError(msg)
+
+
+def encoded(value):return (json.dumps(value,indent=2)+'\n').encode()
+
+
+def byte_pin(b):return {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'git_blob':hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()}
+
+
+def queue_update(before,original,base,doi,url):
+ def rows(s):return [l for l in s.splitlines() if '| 5000005 /' in l]
+ current,orig,old=rows(before),rows(original),rows(base);require(len(current)==len(orig)==len(old)==1 and orig[0].split('|')[8].strip()=='claimed_solved','Original QUEUE eligibility/identity')
+ require(orig[0].split('|')[9].strip()=='2/5','Original effort drift');require(current[0] in [orig[0],old[0]],'Foreign target-row drift');cells=current[0].split('|');require(len(cells)==14,'QUEUE schema')
+ cells[8]=' claimed_solved ';cells[9]=' 2/5 ';cells[10]=' https://github.com/AlecKriebel/Math/pull/191 ';cells[11]=' '+CLAIM+' ';cells[12]=' ['+doi+']('+url+') ';after=before.replace(current[0],'|'.join(cells))
+ require(len(before.splitlines())==len(after.splitlines()) and sum(x!=y for x,y in zip(before.splitlines(),after.splitlines()))==1,'Foreign QUEUE row delta');return after

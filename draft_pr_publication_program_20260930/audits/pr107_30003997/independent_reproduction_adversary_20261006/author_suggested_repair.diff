@@ -1,0 +1,22 @@
+--- author_replay/verify.py
++++ author_suggested_repair/verify.py
+@@ -6,7 +6,8 @@
+ import hashlib,json
+ counts=Counter();formulas_checked=0;trees_checked=0
+ def ck(k,b):
+- assert b,k
++ if not b:
++  raise AssertionError(k)
+  counts[k]+=1
+ def make(n,clauses):
+  nodes=['r'];levels={'r':0};arcs=[];cost={}
+@@ -28,7 +29,8 @@
+  for v in nodes[1:]:
+   route=[];seen=set();u=v
+   while u!='r':
+-   assert u not in seen
++   if u in seen:
++    raise AssertionError('cycle in parent path')
+    seen.add(u);p=parent[u];route.append((p,u));u=p
+   paths[v]=tuple(reversed(route))
+  return paths

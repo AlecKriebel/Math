@@ -1,0 +1,9 @@
+# Qualified publication adversarial review, round one
+
+- 2026-10-04T03:36:52Z — New from-scratch review began. All four operative manuscript/PDF/ZIP/metadata pins match the qualified input manifest; all ten ZIP members and all fifteen original submitted artifact hashes and Git blob hashes independently match. Completion estimate: 20% of this review.
+- 2026-10-04T03:37:34Z — Actual extracted checker returned its exact 1,342-byte expected JSON, 7,114 checks. Independent archive rebuilding returned the identical 24,186-byte ZIP. Rendered all five current PDF pages and personally inspected every page. Imported source formulas and literal original Problem 42 checked against relevant primary page images, including both signed stabilizations and both virtual exchanges. Completion estimate: 60%.
+
+This is verification of an existing complete candidate, with no new central proof attempt. Historical priority is unresolved; the human explicitly authorized this qualified publication exception. No external outreach, Git write, PR mutation, Zenodo action or spreadsheet action is performed by this reviewer.
+
+- 2026-10-04T03:42:37Z — Distinct modular linear algebra and union-find closure controls passed 17,266 cases across all classical/virtual families. Actual zero-shift mutation failed at the literal primary source control. Rebuilt standalone PDF renders identically on every one of five pages. Initial payload pins, archive hashes, author-run provenance and mathematical-proof identity all pass final readback. Completion estimate: 95%.
+- 2026-10-04T03:43:25Z — Completed full report. No substantive issue or required repair found. Exact qualified package passes the human-authorized PR50 exception; historical priority remains unresolved and novelty is not certified. Completion estimate: 100% of this adversarial review. Root must still perform a NEW independent review and actual publication/tracker/merge checks.

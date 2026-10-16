@@ -1,0 +1,3 @@
+# Additive research checkpoint
+
+2026-10-12T15:06:56.306604+00:00 — 100% bounded audit completion. Preserved the original final manifest and every existing sealed file. Completed its original normal and optimized integrity verification (77 files, all 0444). Independently checked original-v1 jump-mark normalization following a post-seal parent question. Added explicit physical generator/SDE-threshold distinction, a doubled threshold with probability marks, a doubled closure bound, and exact positive/semantic-negative controls. V2 integrity metadata is the operative final package. No additional literature discovery or external communication occurred. Historical source-access ledger remains intact and the additional actual primary reading boundary is separately recorded.

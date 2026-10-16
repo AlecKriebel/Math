@@ -15,3 +15,7 @@ Saved the complete universal candidate in PROOF.md. Author verification covers s
 Outcome: full candidate after one substantive author turn; independent adversarial review pending. No original-target gap is intentionally left in the candidate, but the result must not be promoted before review. Completion estimate: 85% toward a source-matched independently reviewed result. No novelty or priority claim.
 
 The active proof work fits within the two-hour turn cap. Source retrieval, the earlier source-only checkpoint, and independent reviews of other targets are not extra author turns for this problem. No shared-main or queue mutation was made.
+
+2026-10-15T12:53:57.396901+00:00 — case60% current presentation reconciliation: all20 original files archived and verified byte-exact. Updated current source/history/credit/scope wrappers; mathematical argument unchanged apart from explicit repetitions and credit. Original verification hash labelled historical; unchanged scripts remain available for isolated replay. Preprint under preparation, actual final review/publication receipts separate.
+
+2026-10-16T04:22:41.034394+00:00 — case95%: fresh sequential manuscript reviews/global repairs completed, exact preprint published at https://doi.org/10.5281/zenodo.23398175, GWS all4cells verified 'Math Puzzles'!A113:D113. Native scientific readback/merge event remains to be recorded separately. Author1/5 and20 originals retained.

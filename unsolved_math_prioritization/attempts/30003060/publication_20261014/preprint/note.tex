@@ -1,0 +1,214 @@
+\documentclass[10pt]{article}
+\usepackage[margin=26mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}[proposition]{Corollary}
+\newcommand{\HK}{\operatorname{HK}}
+\newcommand{\HH}{\operatorname{HH}}
+\newcommand{\im}{\operatorname{im}}
+\hypersetup{pdftitle={A characteristic obstruction in higher Koszul homology},pdfauthor={Alec Kriebel}}
+\title{\vspace{-10mm}A characteristic obstruction in\\ higher Koszul homology}
+\author{Alec Kriebel\thanks{OpenAI tools were used extensively in development,
+ solving, drafting, coding and adversarial verification. This is an unrefereed
+ preprint; no completed external human peer review or formal proof-assistant
+ verification is claimed.}\\
+ \small Independent researcher\\
+ \small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 14, 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+Over every field of positive characteristic, the free algebra on two
+ degree-one generators is Koszul but has nonzero positive-degree higher
+ Koszul homology. We give an explicit class and the complete cyclic-word
+ calculation. This elementary application of classical tensor-algebra
+ formulas refutes the unrestricted-field equivalence reported in
+ Oberwolfach Report 10/2016. The characteristic-zero converse remains
+ unresolved here.
+\end{abstract}
+
+\section{The unrestricted statement and its scope}
+Solotar's contribution to Oberwolfach Report 10/2016
+\cite[printed pp.~479--481]{OWR} asks whether a quadratic algebra is
+Koszul if and only if its higher Koszul homology vanishes in positive
+degrees. The contribution states no restriction on the characteristic.
+We use higher homology with coefficients in the algebra itself and
+fundamental cocycle \(e_A\), as defined by Berger--Lambre--Solotar
+\cite[\S5.2]{BLS}. Read over unrestricted fields, the equivalence is false.
+
+This qualification matters. The forward theorem in
+\cite[Theorem~6.4]{BLS} assumes characteristic zero; the adjacent
+Conjecture~6.5 includes the additional condition \(\HK^{\mathrm{hi}}_0(A)\cong k\)
+and is motivated as a converse, while its preceding discussion also
+considers removing the characteristic hypothesis.
+Our counterexample refutes the unrestricted forward implication of
+either formulation. It neither proves nor disproves the
+characteristic-zero vanishing-to-Koszulness converse, and does not
+establish a unique historical intended domain.
+
+The calculation is an elementary assembled consequence of the classical
+tensor-algebra Hochschild formulas of Loday--Quillen \cite[\S5]{LQ},
+Goodwillie's Euler cap operator \cite[II.4.8]{G}, and the BLS definition.
+No new homological mechanism or historical firstness is claimed.
+We record the explicit obstruction to the unrestricted written statement.
+
+\section{The free-algebra calculation}
+Let \(k\) be a field, let \(V\) have a finite basis of \(r\) letters,
+and put \(A=T_k(V)\), graded by word length. This is a quadratic
+algebra with relation space \(R=0\).
+Write \(\HK_i^{\mathrm{hi}}(A)[n]\) for total internal weight \(n\):
+a chain in \(A_{n-i}\otimes W_i\) has that total weight.
+For \(n>0\), let \(\mathcal O_n\) denote the cyclic orbits of length-\(n\)
+words in the chosen letters. Orbit cardinality means the number of
+\emph{distinct} rotations, which can be smaller than \(n\).
+
+\begin{proposition}[Classical specialization]\label{prop:orbits}
+The algebra \(A\) is Koszul over every field. If \(\operatorname{char}k=p>0\),
+then, for \(n>0\) and \(i=0,1\),
+\[
+ \HK_i^{\mathrm{hi}}(A)[n]
+ \cong\bigoplus_{\substack{O\in\mathcal O_n\\p\mid |O|}}k.
+\]
+In characteristic zero these positive-weight groups vanish.
+For all fields, \(\HK_i^{\mathrm{hi}}(A)=0\) for \(i\ge2\),
+\(\HK_0^{\mathrm{hi}}(A)[0]=k\), and
+\(\HK_1^{\mathrm{hi}}(A)[0]=0\).
+\end{proposition}
+
+\begin{proof}
+Multiplication \(\mu(a\otimes v)=av\) maps the word/letter basis
+of \(A\otimes V\) bijectively onto the nonempty words of \(A\).
+Consequently
+\[
+ 0\longrightarrow A\otimes V\xrightarrow{\ \mu\ }A
+ \xrightarrow{\ \varepsilon\ }k\longrightarrow0
+\]
+is an exact linear graded free left resolution, proving Koszulness.
+Here \(\varepsilon\) is augmentation. This map \(\mu\) is distinct
+from the coefficient-\(A\) commutator differential used next.
+
+The quadratic Koszul spaces satisfy \(W_0=k\), \(W_1=V\), and
+\(W_j=0\) for \(j\ge2\), since every defining intersection contains
+\(R=0\). Thus the ordinary coefficient complex is exactly
+\[
+ 0\longrightarrow A\otimes V\xrightarrow{\ b\ }A\longrightarrow0,
+ \qquad b(a\otimes v)=av-va.
+\]
+In particular \(\HK_1(A)=\ker b\), \(\HK_0(A)=\operatorname{coker}b\),
+and \(\HK_j(A)=0\) for \(j\ge2\).
+The fundamental left cap product on \(a\otimes v\) is \(va\).
+For a cycle \(z=\sum a_j\otimes v_j\), the equation \(b(z)=0\)
+gives \(\sum v_ja_j=\sum a_jv_j\). Hence the induced higher
+differential is
+\[
+ \delta:\ker b\longrightarrow\operatorname{coker}b,
+ \qquad \delta[z]=\Big[\sum_j a_jv_j\Big].
+\]
+This definition is valid also in characteristic two
+\cite[\S5.2]{BLS}. There is no incoming higher boundary from \(\HK_2(A)\).
+
+Fix \(n>0\). Concatenation identifies \(A_{n-1}\otimes V\)
+and \(A_n\) separately with the vector space \(E_n\) on length-\(n\)
+words. Let \(\rho\) move the final letter to the beginning.
+Then \(b=1-\rho\); this is the classical small complex
+\cite[Lemmas~5.1--5.2]{LQ}. The higher map becomes the natural map
+\[
+ E_n^\rho\longrightarrow (E_n)_\rho
+       :=E_n/(1-\rho)E_n.
+\]
+On an orbit \(O\) of cardinality \(d\), equality of neighboring
+coefficients makes the invariant subspace the line generated by
+\(s_O=\sum_{w\in O}w\). The coinvariant quotient is the line
+generated by any \([w]\), which is nonzero: the coefficient-sum
+functional kills all differences and takes \([w]\) to one.
+No division by \(d\) is involved. The induced map is
+\[
+ s_O\longmapsto d[w].
+\]
+Its kernel and cokernel are both one-dimensional precisely when
+\(d=0\) in \(k\), and otherwise both vanish. Summing the orbit
+blocks proves the formula. At weight zero only the degree-zero
+chain \(k\) occurs; all assertions in degrees at least two follow
+from the absence of their ordinary homology groups.
+\end{proof}
+
+\begin{corollary}\label{cor:counterexample}
+For every field \(k\) of positive characteristic \(p\), the quadratic
+algebra \(k\langle x,y\rangle\) is Koszul and
+\(\HK_1^{\mathrm{hi}}(k\langle x,y\rangle)[p]\ne0\).
+\end{corollary}
+\begin{proof}
+The word \(w=x^{p-1}y\) has exactly \(p\) distinct rotations
+\(w_j=\rho^j(w)\), because the unique \(y\) changes position.
+Write \(w_j=a_jv_j\), with \(v_j\) its final letter. The chain
+\[
+ z_p=\sum_{j=0}^{p-1}a_j\otimes v_j
+\]
+is a sum of distinct basis tensors and is therefore nonzero.
+Its commutator boundary telescopes, and
+\(\delta[z_p]=p[w]=0\). There are neither ordinary boundaries
+entering degree one nor higher boundaries entering from \(\HK_2\).
+Thus \([z_p]\ne0\) in higher degree one.
+In characteristic two, \(z_2=x\otimes y+y\otimes x\).
+\end{proof}
+
+The same orbit contributes a positive-weight higher degree-zero class,
+so adding \(\HK_0^{\mathrm{hi}}(A)\cong k\) cannot rescue the unrestricted
+equivalence. In contrast, one generator has only singleton orbits;
+its positive-weight higher groups vanish in every characteristic.
+In particular, listing repeated rotations of \(x^p\) cannot supply
+a counterexample.
+
+\section{Classical operators, verification and priority limits}
+The operator here is Euler cap, not Connes' differential \(B\).
+Loday--Quillen \cite[Lemma~5.3]{LQ} identify \(B\) with the cyclic
+norm in the opposite direction. On an orbit of size \(d\) in
+weight \(n\), Euler cap has scalar \(d\), whereas \(B\) has scalar
+\(n/d\). Their composites multiply by \(n\), consistently with
+Goodwillie's identity \cite[Theorem~II.4.2]{G}. For the primitive
+weight-\(p\) orbit above, \(B\) is invertible in characteristic \(p\)
+while Euler cap is zero. The two homologies cannot be substituted
+for each other merely from characteristic dependence.
+
+The supporting archive includes editable source, all 65 frozen original
+files and four evidence archives, independent algebra and source-scope
+reviews, and a dated bounded priority audit. Fresh exact controls compare
+234 matrix/necklace cases, check 14 prime witnesses and ten negative
+controls, and run 2110 explicit checks in both normal and optimized
+Python. Corrupted expectations are rejected in both modes.
+These finite and integrity checks supplement the unlimited algebraic
+proof; they do not certify it or determine historical priority.
+
+No earlier explicitly stated exact counterexample was located in the
+inspected corpus. This bounded finding does not establish worldwide
+firstness or current openness. The entire mechanism receives the
+classical credit stated above. Version and access limits, including
+unavailable complete journal-final bodies for some related work,
+are recorded in the accompanying audit. Downloaded primary publications
+are excluded from the deposit; bibliographic locators and hashes remain.
+
+\begin{thebibliography}{9}
+\bibitem{OWR}
+A.~Solotar, Koszul Calculus (joint work with R.~Berger and T.~Lambre),
+in \emph{Hochschild Cohomology in Algebra, Geometry, and Topology},
+Oberwolfach Reports \textbf{13} (2016), 449--506,
+contribution pp.~479--481.
+\href{https://doi.org/10.4171/OWR/2016/10}{doi:10.4171/OWR/2016/10}.
+\bibitem{BLS}
+R.~Berger, T.~Lambre and A.~Solotar, Koszul calculus,
+\emph{Glasgow Math. J.} \textbf{60} (2018), 361--399.
+\href{https://doi.org/10.1017/S0017089517000167}{doi:10.1017/S0017089517000167}.
+First preprint: \href{https://arxiv.org/abs/1512.00183v1}{arXiv:1512.00183v1}
+(December 1, 2015).
+\bibitem{LQ}
+J.-L.~Loday and D.~Quillen,
+Cyclic homology and the Lie algebra homology of matrices,
+\emph{Comment. Math. Helv.} \textbf{59} (1984), 565--591.
+\href{https://doi.org/10.1007/BF02566367}{doi:10.1007/BF02566367}.
+\bibitem{G}
+T.~G.~Goodwillie, Cyclic homology, derivations, and the free loopspace,
+\emph{Topology} \textbf{24} (1985), 187--215.
+\href{https://doi.org/10.1016/0040-9383(85)90055-2}{doi:10.1016/0040-9383(85)90055-2}.
+\end{thebibliography}
+\end{document}

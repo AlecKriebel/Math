@@ -1,0 +1,104 @@
+{
+  "actual_root_Journal_constructions": 0,
+  "at_utc": "2026-10-13T14:19:36.370227+00:00",
+  "baseline_source_sha256": "e4c9bd76594127b23cf6439df0b2c7a965f39b8f027d6debdb7cdf8e393aaa14",
+  "blocker_count": 1,
+  "blockers": [
+    {
+      "claim": "A successor terminal pre-intent STOP forbids a later remote intent or write in that phase attempt.",
+      "exact_gap": "Reject existing successor terminal receipt before admitting the first remote intent.",
+      "id": "TERMINAL_STOP_SAME_OPEN_OBJECT_REUSE",
+      "normal_reproduced": true,
+      "observed": "First dirty execute records terminal STOP and zero intents. Second clean execute on the same open Journal with the same plan/approval issues its first synthetic ordinary expected-head merge PUT, then fails on the existing receipt.",
+      "optimized_reproduced": true,
+      "per_run_one_remote_intent_fence_still_holds": true,
+      "scope_narrowing_accepted": false
+    }
+  ],
+  "boundary": "Finite local ADMIN-only structural and software review; fake API/observations/readbacks. No production success or new native verification.",
+  "changed_original_top_level_nodes": [
+    "Journal",
+    "main"
+  ],
+  "external_communications": 0,
+  "format": "pr411-fresh-final-independent-software-verdict-v1",
+  "future_repair_endorsed": false,
+  "live_continuation_accepted": false,
+  "live_phase_approval_granted": false,
+  "native_mutations": 0,
+  "native_requests": 0,
+  "new_validator": "pre_intent_continuation",
+  "original_top_level_AST_nodes_unchanged": 82,
+  "partial_verified_evidence": {
+    "compact_supplied_TEST_RESULTS_bytes": 40954,
+    "counterexamples_reproduced": 2,
+    "isolated_subprocess_CLI_controls_passed": 14,
+    "normal_controls_passed": 89,
+    "normal_optimized_assertions_required": false,
+    "optimized_controls_passed": 89
+  },
+  "pinned_private_evidence": {
+    "counterexample_code": {
+      "bytes": 2919,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/terminal_stop_counterexample.py",
+      "sha256": "8c4344afa3750fc26b9045ac76b87522f3d9af849e103f32e489a7d59d1a93ab"
+    },
+    "frozen_input_manifest": {
+      "bytes": 2106,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/frozen_inputs/FINAL_FRESH_REVIEW_INPUTS.json",
+      "sha256": "8d097268eeb6df7f1b388c86baa077577c595314516b8aad29a9f06dc239c6b0"
+    },
+    "frozen_reproduction_code": {
+      "bytes": 26423,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/independent_controls_frozen.py",
+      "sha256": "ac56e6b540414749b9a470060b4f9c56e1a1e7c8ea7a0ab4c23038f39bdbf89f"
+    },
+    "frozen_source": {
+      "bytes": 99463,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/frozen_inputs/pr411_admin.py",
+      "sha256": "abd32d4d0a1d18c54825246e773b6ea3d13090d762850a20962f0f885b9c5279"
+    },
+    "independent_code": {
+      "bytes": 26340,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/independent_controls_initial_abd.py",
+      "sha256": "f7dd04cd83e3ee2be46222ce17f6149bc126a0e8519109ec36fbc223b3cbbe27"
+    },
+    "isolated_CLI_controls": {
+      "bytes": 4332,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/isolated_cli/RESULT.json",
+      "sha256": "15e9f7b8b249a2394a457449f8e98df643beb6dad07ca9bbb00c8652e902cb34"
+    },
+    "normal_controls": {
+      "bytes": 17118,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/normal_v2/RESULT.json",
+      "sha256": "7ca72655ee5c4c8544d3e55ff24ef55f0ae596b59c71fc8d1a644091d6e69c60"
+    },
+    "normal_counterexample": {
+      "bytes": 1650,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/counterexample_normal/RESULT.json",
+      "sha256": "35eb2c1ce3572a205952b7fd248454d3a9ecb74e3d69b8541d1856d72e000ad9"
+    },
+    "optimized_controls": {
+      "bytes": 17117,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/optimized_v2/RESULT.json",
+      "sha256": "d625583055ea4262bddf13a742c1ef18774f2f4cfe144e77d4991b1f31a6ffe3"
+    },
+    "optimized_counterexample": {
+      "bytes": 1649,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/counterexample_optimized/RESULT.json",
+      "sha256": "218b3ab05662b9f7377248db09342b29bfa79276ba0eb4f971da92629601260a"
+    },
+    "private_positive_pinmap": {
+      "bytes": 525153,
+      "path": "private_sources/merge_preparation_v5/final_fresh_software_adversary/POSITIVE_PINMAP.json",
+      "sha256": "b6ba95ca676852dfa553f3a641b4c854b96e41c66a5a2802dece30b72c9549ef"
+    }
+  },
+  "prior_blocked_reviews_unchanged": true,
+  "result": "BLOCKED",
+  "reviewer_fresh_after_all_abd32_corrections": true,
+  "root_descriptor_readonly_replayed": true,
+  "root_descriptor_sha256": "7bc150a109e2ad48edafe5669e57d261944f5eeaad8de31526a4cfae2a417c48",
+  "scientific_files_or_assets_read": 0,
+  "source_sha256": "abd32d4d0a1d18c54825246e773b6ea3d13090d762850a20962f0f885b9c5279"
+}

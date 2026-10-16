@@ -1,0 +1,102 @@
+# Whole-candidate adversarial review 01: PR1080
+
+Reviewed PR head: `64b252b199f2692eef2545656190c14bcaf63889`. Problem 11000150 / AMR-109-0150. Review performed 14 October 2026 UTC.
+
+**The mathematical theorem and its qualified priority framing pass. The candidate is not submission-ready: one actionable P2 and one actionable P3 require repair.** These are the invalid repository Zenodo manifest and the archive builder's output-alias handling. There are no additional actionable mathematical, source, layout or reproducibility findings. This is a complete new review of the entire candidate, not a review limited to those two defects.
+
+The current paper PDF has 84,937 bytes and SHA-256 `2337d141a8985f73a942f97e23727fe8e9e7857a653ff154fa2a76d5c90b27ed`; the TeX has SHA-256 `43115a1b12108340e4e3b28eb315e6d7d79ff3a8a208286abf3528c537ea6587`. The 72-member ZIP has 607,553 bytes and SHA-256 `d1c03ef097938934641907c3552f05a0687347ea7945b399fff1a365322a1a1b`.
+
+## Independence and exact scope
+
+I read AGENTS.md and the PDF skill. I derived the full claim and proof obligations from the current paper and original mathematical report before consulting the old audit reports/verdicts or the root's two defect observations. The initial read batch also returned the original manifest's accepted-partial edition label, and the report contained its historical review-status paragraph. Those labels were encountered before the independent reconstruction was saved; neither supplied proof evidence, and this is not represented as a fully blind review. `INDEPENDENT_CLAIM.md` records the independent obligations. `INPUT_PINS.json` freezes all 289 preexisting audit files by hash without duplicating them. All writes and deliberate mutations are confined to this new review folder. No candidate file, Git branch/index, PR service, publication service, spreadsheet, other effort or individual was changed or contacted.
+
+I subsequently read all six complete original bodies, both complete mathematical family reports and frozen derivations, the complete priority report and prior-corollary derivation, the root mathematical audit and adoptions, the complete current TeX, both current READMEs, metadata, license, preparation report and final verification, all four portable programs, and all three original checker programs. Direct `git show` of every one of the six pinned blobs agrees exactly with the fully read submitted snapshot. Historical attempt accounting and past retrieval times are retained historical claims, not independently authenticated events.
+
+The exact theorem fixes genus g>=1 and an oriented compact S(g,1). Maps and isotopies fix the one boundary pointwise. Each ordered factor is a positive twist about a non-null-homotopic simple closed curve; isotopic repetitions count repeatedly; every pair has geometric intersection at most one. The target is ONE positive boundary twist. There are finitely many simultaneous-conjugacy classes, and hence a finite attained M(g)>=4g(2g+1). Peripheral factors occur only in the singleton. Otherwise factors are nonseparating. Credited values are M(1)=12 and M(2)=40.
+
+This gives the complete negative answer to the separately printed restricted arbitrary-length clause. It does not solve the higher-genus exact-maximum and classification bundle. The exact M(g) for g>=3, numerical upper formula, effective stopping criterion, extremizers, Hurwitz, positive Artin, T-move and A5/D6 classifications remain unresolved in this work. No first-discovery, new generic method, exhaustive-priority, worldwide continuing-openness, human-review or formal-certification claim is established.
+
+## Mathematical adversarial assessment
+
+**All admissible positive twists and no positive identity.** HKM's positive monoid uses homotopically nontrivial curves, not only nonseparating or homologically nonzero curves. Its annulus/handle-extension and remaining separating cases establish the needed inclusion in the right-veering monoid. The arc order is preserved by orientation-preserving boundary-fixing maps, so that monoid is closed under composition. Proper arc action is faithful: successively fix a disjoint cut-to-disk arc system by isotopy relative to the boundary, then apply the disk argument. A non-null twist is nontrivial and moves an arc strictly right; its inverse is therefore not right-veering. A positive identity would equate that inverse with a right-veering product. The empty residual product is covered. Disk-bounding identity twists would invalidate the theorem and are explicitly excluded; closed-surface positive identities do not invalidate this bordered statement.
+
+**Exact generic finite-alphabet lemma.** The retained-prefix formula is correct in any group:
+
+    u=s1...sm, v=b0 s1 b1...sm bm,
+    U0=1, Uj=s1...sj,
+    v u^-1 = product_j Uj bj Uj^-1.
+
+Each nonempty inserted block splits into conjugates of its letters. Normality of the ambient positive set and absence of any positive identity make a fixed evaluation fiber a subsequence antichain. The complete minimal-bad-sequence Higman proof handles all good-pair positions, empty shortened words, repetitions and the empty alphabet. An infinite fiber enumerated without duplication would contain a proper comparable pair. Centrality of the generic target is not used.
+
+The independent CT route also passes. The ambient normal reduced cone Q gives the order x<=y iff yx^-1 lies in Q. Normality supplies left invariance; the formula supplies right invariance; group translations preserve strict inequality. Restricting to the finitely generated alphabet monoid H yields strong positivity with only the identity as an order-unit. The germ is generated by the finite original generators dividing the target, meeting CT's weak local finite generation hypothesis. Corollary 4.13 gives atomicity and FF-atomicity. Its arbitrary-matching equivalence preserves length, giving BF-atomicity. Fixed nonempty expansions of every prescribed letter into atoms bound RAW ordered-word length by the largest atomic length. No injectivity of expansion, normality of H, left-duo hypothesis, atomicity of the chosen letters, or identification of unordered matching with ordered equality is assumed. Both routes prove the same credited prior corollary.
+
+**Distinct supports and finite orbits.** Equal mod-two homology classes have zero pairing by alternation. Geometric intersection at most one therefore forces disjointness within each homology fiber, including the zero/separating fiber. A pants decomposition bounds each nonperipheral fiber by 3g-2. One peripheral class gives the coarse bound 2^(2g)(3g-2)+1. This counts distinct classes, not occurrences; the genus-one length-12 chain already exceeds the bound 5.
+
+Hyperbolic geodesic representatives realize all pairwise geometric minima simultaneously. Distinct geodesics cannot share an interval or have tangent concurrence. In a small chart about a multiple crossing, the branches have alternating endpoint orders for every participating pair. Generic small perturbation preserves one crossing per pair and separates triples. The marked bounded ribbon graph records the constituent cycles, cyclic orders and opposite crossing pairings, with an auxiliary bivalent vertex for every isolated circle. An abstract intersection graph would lose necessary data.
+
+Complementary-boundary partitions, genera and the distinguished original boundary add only finite data. Surface classification and collar extensions match the actual prescribed circle maps. An annular twist can change a particular gluing homeomorphism but does not create another ambient-homeomorphism orbit of the marked support. A final collar correction fixes the original boundary pointwise. Disconnected, non-filling, isolated-circle, disk-complement and annular cases are included; no no-disk condition from CFP's different homotopy assertion is imported.
+
+Normalize each support to one of the finitely many representatives. Only here is centrality needed: relative-boundary conjugation preserves t_delta. Each representative has a finite word fiber, so a finite union represents every ordered simultaneous-conjugacy class. The 2g-chain relation raised to power 4g+2 supplies admissibility and length 4g(2g+1). Thus the finite length set is nonempty and its maximum is attained. No numerical longest-word bound or enumeration stopping rule has been extracted from Higman.
+
+**Peripheral/separating factors and low genus.** Peripheral commutation gives t_delta^(m-1)W=1 and forces m=1 with W empty. A separating nonperipheral factor has even intersection with every closed curve, hence is disjoint from every factor under the <=1 restriction. After capping the sole boundary, all nonperipheral factors remain essential: a disk after capping would yield an old disk or an old annulus to the boundary. The positive capped identity produces a nontrivial genus-at-least-two Lefschetz fibration. Essential vanishing cycles ensure relative minimality; the one-boundary lift supplies a (-1) section, whose fiber intersection one ensures a nonzero fiber class and the required symplectic realization. Absolute minimality is not assumed.
+
+Smith's singleton common-invariant-essential-curve obstruction applies. The chosen twist lifts fix the two endpoints of a lift of the disjoint curve. Their directed monotonicity cannot cancel; a nontrivial hyperbolic deck action with those fixed endpoints moves in opposite directions on the two intervals. The identity deck action cannot equal a nontrivial positive product either. This argument needs no assertion that fixed points are countable; the paper explicitly rejects that unused source wording because a fixed complementary subsurface can have a Cantor limit set. The separating exclusion is thus a legitimate credited interface, independent of the finiteness proof.
+
+Genus-one abelianization gives weight one per nonseparating twist and twelve for the boundary twist. In genus two BMVHM's L counts nonseparating factors, so the exclusion just established is necessary before applying its bound forty. The two- and four-curve chains attain twelve and forty while satisfying the pairwise restriction. The unrestricted higher-genus infinite-length regime has no pairwise restriction and presents no contradiction. The note accurately discloses that it does not independently re-prove the sources' complete gauge-theoretic dependency hierarchy.
+
+## Primary sources and priority limits
+
+I checked the actual retained full bodies at their stated versions, rehashed eight PDF authorities and read their exact relevant proof interfaces. Fresh official web reads independently corroborated the arXiv edition metadata and the institutional original target/JMM source. No fresh duplicate local body download or journal/preprint byte identity is claimed.
+
+| Primary authority | Newly checked interface |
+| --- | --- |
+| Wajnryb/Farb 2006 | Complete printed124-126/PDF131-133 text and actual pixels: original restricted and unrestricted clauses, repetitions, neighboring equivalence questions, chain relation and Smith attribution |
+| HKM math/0510639v1 | Definition2.1, arc order/monoid and complete Lemma2.5 proof; PDF4 viewed |
+| CT2208.05869v3 | Order/atom definitions, Definition2.3, Definitions3.1-3.2 and Remark3.3, Definition4.1, Lemma4.2/Proposition4.3, complete Theorem4.7/Corollary4.8 and Theorems4.10-4.12/Corollary4.13 proof interfaces; PDF20-21 viewed |
+| Smith math/0011223v1 | Complete 13-page text, with the initially truncated portion subsequently read separately; symplectic/nontrivial/genus conventions, directed-motion proof, singleton Proposition4.2 and Corollary4.3; PDF10-11 viewed |
+| BMVHM1412.0352v2 | Exact L convention, TheoremA, Proposition1 proof, complete Theorem6 proof and main-theorem assembly; PDF2 viewed |
+| JMM1996 journal body | Introductory simple-homotopy convention and complete Theorem3.3 proof, printed12-13/PDF6-7; both pages viewed |
+| MRT1008.3710v5 | Proposition4.1 and proof, mod-two/disjointness mechanism and Section6 boundary proof; PDF8 viewed |
+| CFP1603.00846v2 | Complete Lemma10 proof, signatures/partitions and Section3 embedding-count interface; PDF8 viewed; literal single/punctured setting remains distinct from the supplied adaptation |
+
+The paper's credit is adequate for the inspected authorities. In particular the exact generic lemma is a prior CT corollary, and the support and ribbon mechanisms have explicit antecedents. The exact historical priority of the resulting surface application remains UNKNOWN. The 68-query bounded prior audit is accurately qualified, and unavailable Higman original/Smith journal bodies remain unavailable editions rather than silently cleared ones. This whole review is not a new exhaustive literature survey or proof of absence of earlier publications.
+
+## Custody, reproduction and visual checks
+
+All 289 review inputs, 194 preparation inputs and 90 preparation outputs rehash unchanged. All six actual Git blobs agree with their snapshots. Every one of the 60 selected original copies is byte-identical. All 194 copy/omission dispositions and 269 historical pin references reconcile to exact canonical copies or individually explained omissions. Omitted source bodies, extracts, images and workspace custody are not represented as delivered or replayed evidence. The included original six-file edition has no executable.
+
+The 72 ZIP members, payload bytes, sorted order, fixed 2026-10-14 timestamps, regular-file 0644 modes, stored method, empty extras/comments and CRCs were independently checked. A separately written closed ZIP reconstruction is byte-identical. All three custom research-metadata copies are byte-identical; this consistency does not make them native Zenodo metadata.
+
+All documented positive commands actually pass from a new extraction, with normal and optimized Python, strict explicit external binding, `cmp`, and standalone Tectonic compilation. The built-in standalone compiler also reports success. The adapter source hashes and checked AST custody-cut anchor match. All assertions are transformed into runtime guards, preserving mathematical calculations and keeping them active under -O. The word result matches its saved result exactly; the surface result matches excluding the timestamp; the priority adapter retains its computations and omits only the disclosed 52-input historical custody tail. Both modes detect all 22 built-in mathematical/package faults. Fourteen additional coherent/schema/alias-boundary rejection controls pass in the two modes; coherent outer-manifest refresh does not hide missing omission reasons or defeat an external binding. There are 48 captured actual commands, including successful checks and intentionally failing controls.
+
+Fresh `independent_checks.py`, rather than the preserved code, additionally passes 55,987 permutation-action insertion identities, 87,380 exact symplectic self-pairings, a noncentral positive-translation target with 578,949 labeled words of maximum length18, 1,540 exact generic rational crossings for 2-21 branches, and disconnected ribbon/isolated-circle controls. Missing conjugation, wrong parity and erasing expansions fail under both normal and optimized Python. Complete positive result JSONs agree in both modes. These finite controls catch errors; the written proof and credited source interfaces prove the universal theorem.
+
+I rendered and individually viewed all seven current paper pages at 100 dpi, and thirteen pertinent primary-source pages. The paper has no clipped or overlapping content, missing glyphs, malformed mathematics, pagination or reference-link defect. The normal standalone compilation reports only the disclosed bibliography underfull warnings and no overfull warning. Its PDF differs in byte metadata, as allowed by the explicit cross-runtime limitation; no byte-identity promise for compiled PDFs is made. Current source, canonical PDF and candidate kit remain unchanged. Only this review's disposable extraction, altered scratch files and render derivatives are removed after hash receipts are saved.
+
+Authorship, the exact ORCID, CC BY4.0, extensive AI assistance, unrefereed status, absent external human review and absent formal certification are disclosed consistently. Current pending-review statements describe the preparation checkpoint; final promotion must preserve that historical checkpoint and provide an accurate current review/readiness record. No present clearance or publication is claimed.
+
+## Actionable findings and exact repairs
+
+### PACKAGE01-P2-ZENODO-MANIFEST
+
+`preprint_v1_0/deposit_metadata.json` is the same custom research object as both other metadata copies. It contains no native `metadata`/`files` wrapper, no native publication type or creator list, and no upload attachment list. The repository's entirely local command
+
+    python3 zenodo_deposit_tool/zenodo.py check <candidate>/deposit_metadata.json
+
+exits1 with `Manifest must contain exactly 'metadata' and 'files'`. Thus the intended upload workflow cannot consume the delivered file, even though the three custom objects agree.
+
+**Required repair:** retain and clearly identify the custom research metadata separately. Supply fully reviewed native Zenodo API metadata and a repository-kit manifest containing exactly `metadata` and `files`, naming the exact PDF and ZIP. Map the same title, author/ORCID, license, version, core claim, unresolved bundle, source credit, unknown priority, AI and unrefereed disclosures into valid API fields; do not merely wrap the unsupported custom object. Bind and verify the native metadata and attachment identities without creating a hash cycle. Run the repository local `check` and the documented clean interfaces after repair. This is a submission blocker, not a mathematical defect.
+
+### PACKAGE01-P3-ARCHIVE-OUTPUT-ALIASES
+
+`verification_kit/build_archive.py:18-22` resolves the output before testing `is_symlink`, so the leaf-symlink guard cannot see a resolved symlink. It also checks lexical containment but not whether an existing outside output is the same inode as a protected input. `ZipFile(..., 'w')` then truncates that inode after verification has already passed.
+
+In fresh scratch, an outside hardlink to allowlisted `preprint.tex` is accepted with exit0 and corrupts the TeX while returning PASS. A symlinked ancestor leading to such a hardlink has the same effect. In both normal and optimized modes the TeX changes from SHA-256 `43115a1b12108340e4e3b28eb315e6d7d79ff3a8a208286abf3528c537ea6587` to `148f0bab91ab61389661cabcf8e8abd131a097e60ac0120290bebbb88e1fc83a`; the produced ZIP is corrupt as evidence. An outside output symlink to an external sentinel is likewise accepted and overwrites its target, contradicting the explicit leaf-symlink rejection. Direct inside paths and symlinks resolving inside are already rejected and leave inputs unchanged.
+
+**Required repair:** preflight the unresolved output path before writes, reject forbidden symlinks, and check existing samefile/inode aliases against all protected kit inputs and relevant delivery files, including aliases through ancestors. Ensure failure occurs before truncation or compilation/write side effects. Keep an ordinary independent outside rebuild destination working. Add normal/-O controls for the hardlink, resolved-symlink and ancestor cases, with sentinel and every protected input unchanged. Reseal only the repaired code/documentation/metadata and resulting archive, preserving all old review records, proof, source and unchanged PDF bytes.
+
+## Terminal disposition
+
+P0:0; P1:0; P2:1; P3:1. The mathematics is accepted within the explicit credited scope, the entire original bundle remains partial, and historical priority/novelty remain UNKNOWN. Submission/publication readiness is false. Repair the two findings, reconcile all copies/pins/metadata globally, then obtain a NEW complete whole-candidate adversarial review. At least two fresh whole-candidate reviews are required by the root workflow; this first review cannot itself clear that gate. No closing, merger or publication action is recommended on the strength of this candidate.
+
+Review completion estimate:100%. The relevant mathematical research estimate remains60%, reflecting the unresolved maximum/classification bundle rather than an unverified gap in the accepted theorem. `OUTPUT_PINS.json` and the separate `TERMINAL_SEAL.json` freeze the completed authored review and receipts.

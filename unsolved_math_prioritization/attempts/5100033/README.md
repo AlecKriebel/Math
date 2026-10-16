@@ -1,19 +1,13 @@
-# 5100033: outer focal-pedal area product
+# Reviewed outer focal-pedal area product
 
-**Complete first-turn candidate, independent review pending.** No novelty claim.
+`PROOF.md` proves the signed outer-tangent focal-pedal area product at the original foci for every admitted odd primitive period/star, with direct fixed-repetition scaling s² and a circular case. Exact target: arXiv v11 k605,a = published k606, originally v1April2020k604. Full mathematical/source and bounded priority audits have been integrated. Historical novelty and public proof priority remain undetermined; no first-proof, new general elliptic-method, current-world-open or human-peer-review claim is made.
 
-For every odd primitive N-periodic billiard family in a nondegenerate confocal ellipse pair, including primitive stars, the product of the two signed focal-pedal areas of the outer tangent polygon is constant.
+`history/original_submission_20261015/` preserves all20 original files, including the independent_review/ packet, byte-for-byte. Top-level `verification.json` explicitly wraps an inherited run binding the original proof; it does not pretend to bind this edited presentation. `verify.py` is unchanged and, if run here, will produce a new result binding the adjacent current proof. The portable harness runs the original checkers in isolated folders and leaves all archived inputs unchanged.
 
-The exact target is arXiv Table 7 **k605,a**, renamed **k606** in the published edition. Published k605 is a different, unprimed invariant. See SOURCES.md before interpreting the code.
+Current top-level manifests bind the reconciled presentation, while old manifests, pending-review statements, old source-only checkpoint and worktree paths are preserved as dated history. `readiness.json` separates the immutable imported review hash from the current assessment. Author research turn1/5 is preserved.
 
-- PROOF.md: complete meromorphic argument and exact geometry
-- verify.py and verification.json: finite exact controls and separately labeled numerical diagnostics
-- SOURCES.md, source_manifest.json and readiness.json: primary inputs, scope and source gate
-- RESEARCH_LOG.md and turn_ledger.json: author-turn history
-- MANIFEST.json: frozen candidate file hashes
+The standalone note, exact planned metadata, source/verification archive and independent audit records accompany the case. This is a dated source snapshot; required whole-package review and publication outcomes are recorded in the case's final clearance and later native release receipts. See `PUBLICATION_STATUS.md`.
 
-Run `python3 verify.py` in this directory and compare its JSON with verification.json. It uses installed SymPy and mpmath, not downloaded source software. Numerical comparisons support debugging; the all-period proof is in PROOF.md.
+The top-level `MANIFEST_V1.json` is a retained historical copy. Interpret its entries against `history/original_submission_20261015/`, with the one documented superseded SOURCES.md hash explained by the historical metadata correction. It is not an active manifest for edited current files; use CURRENT_PACKET_MANIFEST.json and the current MANIFEST/PUBLICATION_MANIFEST.
 
-The proof cancels the double-pole coefficient of a simultaneous two-endpoint singularity, then uses reflection, imaginary anti-periodicity and the divisor of a two-pole elliptic function. It makes no division by a potentially zero pedal area. Hyperbolic caustics and repeated-period relabeling are outside the restored source scope.
-
-The earlier SOURCE_CHECKPOINT.md is preserved as a historical zero-turn source checkpoint. The current ledger controls the attempt count. Shared queue state is not regenerated from incomplete local history.
+Verified preprint and source/verification archive: https://doi.org/10.5281/zenodo.23398175. The required sequential whole-manuscript/package reviews and global repairs are complete. Exact Google Workspace all-four-cell readback: 'Math Puzzles'!A113:D113. FINAL_ACCEPTANCE.json and PUBLICATION_RECEIPT.json bind the actual release; native merge events are recorded separately in the case audit and GitHubPR#210.

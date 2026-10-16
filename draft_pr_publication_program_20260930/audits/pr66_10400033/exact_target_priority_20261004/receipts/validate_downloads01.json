@@ -1,0 +1,26 @@
+{
+  "label": "validate_downloads01",
+  "kind": "executed_subprocess",
+  "started_at_utc": "2026-10-04T16:51:11.853245+00:00",
+  "finished_at_utc": "2026-10-04T16:51:11.934780+00:00",
+  "elapsed_seconds": 0.08138929196866229,
+  "recorder_pid": 61622,
+  "subprocess_pid": 61630,
+  "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/exact_target_priority_20261004",
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path;import json,hashlib; b=Path('/Users/alec/.cache/pr66_exact_target_priority_20261004'); [(print(json.dumps({'file':str(p),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'first_bytes':repr(p.read_bytes()[:70])}))) for p in b.glob('*.pdf')]; d=json.loads((b/'crossref_abe.json').read_text())['message']; print(json.dumps({k:d.get(k) for k in ['title','author','published','published-print','published-online','is-referenced-by-count','link','reference']},indent=2))"
+  ],
+  "returncode": 0,
+  "stdout": {
+    "path": "/Users/alec/.cache/pr66_exact_target_priority_20261004/raw/validate_downloads01.stdout",
+    "bytes": 5954,
+    "sha256": "bbace82de133eba17d79fb65812c79f9b5e223fe384c29a71d7ca702eba5b9da"
+  },
+  "stderr": {
+    "path": "/Users/alec/.cache/pr66_exact_target_priority_20261004/raw/validate_downloads01.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

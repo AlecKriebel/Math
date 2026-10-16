@@ -1,0 +1,49 @@
+# PR62 independent knot geometry and priority adversary
+
+**Verdict: PASS for the explicitly scoped obstruction/credited-known-case package; KP1.56 remains unresolved by this work, unsolved 1/5. No essential mathematical or scientific-credit correction was found.** This is not approval of a solution or authorization to publish. Root's independent adjudication remains separate.
+
+Original head: `98cc2821e9376507caf2d2c57414f7c7e7719c1b`. Main candidate: `OBSTRUCTION.md`, 10,382 bytes, SHA256 `d6fa375ecd946908b8426140ba74e30aeb11d175ad750c3ba2d1462d4567856b`. Target record: 5,323 bytes, SHA256 `c11d105cc1e702ea957d6f8d5be95c8c5a50ae1f5f7cd8e645b65bc403bdb3e1`. Attempt accounting: 383 bytes, SHA256 `212f864e7a03b35ca04e110d6c706e04f4e1602959f4c362e3bedbd1b6b312cd`.
+
+## Findings first
+
+1. The original deliverable correctly declines to solve the general implication. Its elementary rank reformulation and conditional chain bound are deductions from prior theorems, clearly attributed and conditional where needed. No new knot theorem, counterexample, or priority claim is supplied. The appropriate status remains **unsolved, one substantive attempt out of five**.
+2. The imported Gordon/Boninger successor residual-nilpotence case is stated with the correct group, direction, and equal-Alexander-degree hypotheses. The fibered class is an old consequence, not a new result. No silent extension to all residually finite knot groups occurs.
+3. The exclusion of Wang's full-twist family is valid in **both** directions: total Kh dimensions agree while graded profiles differ. A graded injection with equal finite total dimension is impossible between them. Merely noting different Kh without equal dimensions would have been insufficient; the original uses the required stronger argument.
+4. The 2026 finiteness and cabling/minimality claims retain their necessary restrictions. Finiteness is not uniqueness. Fixed-companion cable rigidity and a few detected nonfibered knots do not settle arbitrary nonfibered equal-HFK pairs. Current additional Agol–Ren fibered finiteness likewise leaves the general gap.
+5. No actionable geometric or priority defect was found in the full original argument. Source-access limits remain real: Gordon's full 1981 article and Wang's journal typeset PDF were not independently read. The original package already discloses both. No exhaustive-priority or all-literature assertion is justified.
+
+## Independence and target
+
+The initial independent core was saved at 19:37:35 UTC before any PR62 candidate or fresh review content was read (SHA256 `0df43bb37e37ab06d3baeb3e9c8ec1a038f507dfb77e8ea7a45a286554ed6523`). It established the literal K3 target, convention, old geometric cases, Kh obstruction and 2026 scope. I did not read other fresh PR62 analyses or inherit a historical PASS. Later I read the original complete OBSTRUCTION.md and its source/accounting metadata; the historical review reports were not used as mathematical evidence.
+
+The exact target is actual ribbon comparability plus isomorphic bigraded hat HFK implying endpoint isotopy. It is not a question about a selected concordance being a product. I checked the literal author-authorized K3 Problem 1.56, printed pp.55–56, before the candidate. The general implication is still presented as open in that source; bounded current primary searches found no later universal resolution. The latter is a search result, not a proof of absence.
+
+## Full argument audit
+
+**Section 1.** J≤K is fixed operationally by a birth/saddle movie from J at the lower end to K at the upper end, so the cited injection points J to K. Opposite verbal conventions in Gordon/Agol do not reverse the algebra. Standard absolutely bigraded F2 hat homology is used consistently.
+
+**Section 2.** The reverse decorated concordance gives a left inverse on HFK. If the group dimensions agree, the injected finite spaces have equal dimensions in every grading, so the actual map is invertible. Conversely, under a ribbon map, equality of total rank forces all nonnegative grade-wise deficits to be zero. Thus KP1.56 is equivalent to strict total-rank growth on strict ribbon comparisons, without proving that growth. The reverse annulus has deaths when the original has births. An inverse linear map does not meet Agol's second geometric premise. The small category countermodel accurately exposes this logical gap and is explicitly not a knot realization.
+
+**Section 3.** Fresh direct retrieval of the published Boninger PDF matched its original recorded SHA256 `662301cd49c2a5307ba1d0c00a43bd7402eefdf73e518c2ea87d051bc1f8aa6f`. Section 4 defines residual nilpotence of the commutator subgroup, then states Lemma 4.1 with successor K and equal normalized degree. The candidate exactly imports it. Its Euler characteristic calculation gives equal Alexander polynomials over the same F2 rank convention, so degree equality follows. Free fibered commutators are within the class. Equal HFK detects equal genus and fiberedness, covering either fibered endpoint. Mayland–Murasugi's pseudoalternating prime-power-leading-coefficient result is credited through Boninger, not reproved or extended. “Outside the class” is necessary for a counterexample, not sufficient evidence for one.
+
+**Section 4.** The fixed nonzero finite H in Wang's formula is essential. Canceling the fixed summand B grade by grade reduces profile equality to H invariant under a nonzero translation. Taking an extremal supported homological grading rules this out. Since all total dimensions equal dim(B)+dim(H), an injection is a graded isomorphism and contradicts this difference. Levine–Zemke's primary five-page theorem/proof confirms grading-preserving injection. The linked publisher erratum corrects copyright statements only. The trivial-band H=0 case is correctly excluded. A common ribbon predecessor (the connected sum) gives no comparison between two twists.
+
+**Section 5.** BHS Theorem 1.2 is finitely many fibered predecessors of arbitrary K; its Corollary 1.3 applies all predecessors only for fibered K. Hom–Park arXiv:2608.06625 Theorem 1.2 concerns cables of one companion, with target winding p>1, and does not claim that an arbitrary predecessor is a cable. Dunkerley's selected minimality theorem uses detection and extra concordance obstructions for a two-knot detection set. I verified the stated scope and relevant proofs, not the entire 2026 technical machinery. Their credit and dates remain with the original authors.
+
+**Section 6.** Modulo 2 the signed Euler sum equals total rank and evaluates to Δ(1)=1, establishing oddness. Conditional on the desired affirmative answer, every strict drop is at least two and there are at most (R−1)/2 strict steps from rank R. Without that hypothesis, a nonincreasing positive integer rank only eventually stabilizes; endpoint types need not do so by this argument. The candidate explicitly preserves this distinction.
+
+**Section 7.** The exact remaining gap is endpoint rigidity outside the known successor classes, or an actual distinct ribbon-comparable equal-HFK example. The formal models and band-twist obstruction do not transfer that difficulty into a proved general theorem. The route is appropriately stopped as unresolved.
+
+## Actual verification and adversarial controls
+
+The entire submitted checker was read before execution. A separate actual run reproduced its JSON **byte for byte**, including 564 assertions and the candidate hash. The checker tests finite algebra examples; it does not compute HFK for knots or search for a ribbon movie. Its assertion evidence is for the stated standard unoptimized Python invocation.
+
+I wrote distinct independent controls: 63 annular Morse-count checks including the zero-birth boundary; 6 finite-poset/functor checks showing that finiteness, antisymmetry and constant split invariant do not imply uniqueness; 3,200 grading-shift checks on 80 nonzero H profiles including collisions and negative shifts; a zero-H boundary; and 3 group checks showing the concrete finite perfect group A5 is residually finite but not residually nilpotent. A5 is not claimed to be a knot group. These **3,273** exact finite controls passed. Their optimized-Python refusal was also actually tested and exited 1. The universal arguments are the written deductions above; these finite checks are controls, not universal knot proofs.
+
+Actual capture controller PID22277; submitted PID22279, independent PID22280, optimized-refusal PID22287, all between 2026-10-03T19:42:11.453159+00:00 and 19:42:11.562687+00:00. Each capture retains prelaunch argv/input/controller pins and full stdout/stderr bytes. All recorded inputs were unchanged after their runs. Submitted stdout: 387 bytes, SHA256 `d3bb6070256ff2db6f7fb2dbf668c0b9309e1dbdaae95349fc1ff462980a73f9`. Independent stdout: 456 bytes, SHA256 `c7ec719b9d25024ca82e5f2497ece3882907644f801446fad174222080fdd897`. Refusal stderr: 71 bytes, SHA256 `e28c081d9edd3075c2b33dfb88e58ec867ce90d0e1e4b52d9759f9ad0209973b`.
+
+## Limits and disposition
+
+This is a geometry/priority/source review of an unresolved obstruction package. No general proof, actual knot counterexample, new knot topology, new substantive attempt, exhaustive literature certification, or full reproof of imported technical theorems is established. Original candidate/source/accounting bodies were only read. No Git/index/branch/native/PR/remote/Zenodo/GWS mutation, paper preparation, or outside contact occurred. Current original-head API authentication is supplied by the preparation family; I independently check the preserved local bodies against those pins without claiming my own API retrieval. SOURCE.json indexes this family's evidence and those exact external body pins. Root approval is neither asserted nor inferred.
+
+Audit estimate: 100% for this assigned bounded family; discovery toward a general resolution remains incomplete.

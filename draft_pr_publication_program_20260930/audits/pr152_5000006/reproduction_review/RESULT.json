@@ -1,0 +1,83 @@
+{
+  "all_n_theorem_established_by_this_audit": false,
+  "artifact_sha256": {
+    "RESEARCH_LOG.md": "a4bae2c3584cb79e155edfb4d1324c024acc00954049d2308a7ae534f5463437",
+    "REVIEW.md": "c157f4c1c921582e02cf42022230426f675c7b85d81fab7337358df027411644",
+    "exact_reversal_counterexample.json": "28bd2c5b22e27a1981f37c0b1b8d707d17957e3bd68477b7b476868a089c2de2",
+    "exact_reversal_counterexample.py": "e6a48e5a092b2d695dca1867a8ec6c85e6b899271e9e667673c9a1a3e05c671a",
+    "independent_checks.py": "2f269109eef9f0b8ba825ffba03494e217f28f47c0943713b326a3069247ac4e",
+    "independent_results.json": "bbf2e15dd48774de32ebc1d855e101d9dfb6f3fbeaecb727ada37b3e68959678",
+    "optimization_audit.py": "daa2242578a58e7c9447d6c8d224e4f9512ea60e1c81be78ae86538073c0651f",
+    "optimization_results.json": "cfba2aa33e317bbf90769e457bf8a236690f044398d6a3fd0564bf8e2c500cc7",
+    "physical_controls.py": "46bd60ce6d17ab75caa7356f5d72991e0bac14cad7845310205e28d827885626",
+    "physical_results.json": "297af7f5f539ff6e724c795e18d01f496e998429bcc3539147d10550e546b06c",
+    "physical_witnesses.json": "d329e9d872d1cb2c6521ba0bb94189866576cffa45c33fd70dcb7f06cb93c6af",
+    "repair_reproduction.py": "fa520c8b8508e78c5ab71a34104df4a527584c595f859d38dea3f8e854d139f7",
+    "repair_reproduction_results.json": "d196cf497c4efb6b62a955aad2c7d5096d9814baab0e556c2c9f61c2924fb69e"
+  },
+  "assigned_reproduction_audit_completion_percent": 100,
+  "author_checks_reproduced": 14630,
+  "case": "PR152/problem5000006",
+  "frozen_candidate_sha256": "100454abdfcbeb6647e0e0596a86b86b3a39d330de2605fe485ae242d9e91c9a",
+  "frozen_verifier_sha256": "8e7b57f47567c0cb61f1090af50d1f13da09859f8b63a15444da3f60d1ceb5cd",
+  "independence_preserved": "Physical mechanism and its first results formed before old independent checker was inspected; no old review verdict read.",
+  "limitations": [
+    "finite reflection depths and n=3..16 only",
+    "double-precision physical search, not validated interval arithmetic",
+    "copy/direction deduplication has finite precision",
+    "does not certify Veech/cusp theorem applicability or universal affine invariance",
+    "finite exact controls do not establish universal Veech/cusp reduction, hyperelliptic uniqueness, novelty, or all-n theorem"
+  ],
+  "old_independent_checks_reproduced": 60055,
+  "original_findings": [
+    {
+      "claim": "An explicit false vertex-class control emits PASS under -O in original verifier.",
+      "id": "ASSERT_OPTIMIZATION",
+      "normal_false_control_exit": 1,
+      "optimized_false_control_exit": 0,
+      "repair": "Explicit RuntimeError control now rejects false condition in both modes."
+    },
+    {
+      "claim": "Physical source-label reversal is parity-sensitive; its unconditional identification with intrinsic saddle reversal needs chart qualification.",
+      "exact_pentagon_certificate_checks": 15,
+      "exact_physical_reverse_type": 2,
+      "exact_source_type": 2,
+      "finite_failure_count": 156,
+      "id": "PHYSICAL_VS_INTRINSIC_REVERSAL",
+      "repair": "Intrinsic K and physical k differ by initial folding chart sign; physical k_reverse=(-1)^N*k, while oriented saddle K_reverse=-K; all weights remain invariant.",
+      "unqualified_predicted_reverse_type": 1
+    }
+  ],
+  "physical_search": {
+    "control_calls": 61794,
+    "failures_by_category": {
+      "candidate_unqualified_physical_reversal": 156
+    },
+    "max_errors": {
+      "copy_match": 1.5739134377203758e-13,
+      "corner_integer": 2.6645352591003757e-15,
+      "endpoint": 1.7453816170132086e-12,
+      "labelled_ratio_relative": 4.618527782440651e-14
+    },
+    "n_max": 16,
+    "n_min": 3,
+    "repaired_physical_reversal_controls": 925,
+    "small_lattice_paths": 1203,
+    "source_parallel_ratio_comparisons": 684,
+    "trajectory_count": 925
+  },
+  "repair_review": {
+    "candidate_sha256": "e6d40a40032b5af335777abf692e6b0bb45b1582f85d7a02bed192b4984217b9",
+    "chart_repair_assessment": "Compatible with exact source-angle algebra and all performed physical controls; all-n affine/cusp proof requires separate proof review.",
+    "normal_controls": 19458,
+    "normal_false_control_exit": 1,
+    "normal_status": "PASS",
+    "optimized_controls": 19458,
+    "optimized_false_control_exit": 1,
+    "optimized_status": "PASS",
+    "verifier_sha256": "144f07e343c494548935b9214d15cfa75a6be7b035b1b1b71deca550bcb922f8"
+  },
+  "sine_ratio_counterexample_found": false,
+  "timestamp_utc": "2026-10-12T00:00:54Z",
+  "verdict": "BOUNDED_CONTROLS_SUPPORTED_AFTER_REPAIR"
+}

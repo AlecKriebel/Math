@@ -1,0 +1,352 @@
+--- before/scripts/package_paths.py
++++ current/scripts/package_paths.py
+@@ -0,0 +1,39 @@
++"""Static filesystem policy for frozen members and fresh external outputs.
++
++Outputs must not exist (including dangling symlinks). Their parent must be an
++existing real directory outside the package, with no symlink ancestors. A new
++output directory is empty before any copy, log or trusted subprocess write.
++This is a static local preflight, not a concurrent filesystem race guarantee.
++"""
++import os, stat
++from pathlib import Path, PurePosixPath
++ROOT = Path(__file__).resolve().parents[1]
++def require(ok, message):
++    if not ok:
++        raise RuntimeError(message)
++def safe_path(root, name):
++    require(isinstance(name, str) and bool(name), 'Invalid member name.')
++    parts = name.split('/')
++    require(not PurePosixPath(name).is_absolute() and all(x not in ('', '.', '..') for x in parts) and '\\' not in name, 'Unsafe member name: ' + name)
++    base = Path(root).resolve()
++    current = base
++    for i, part in enumerate(parts):
++        current = current / part
++        require(not current.is_symlink(), 'Symlink member/ancestor: ' + name)
++        require(current.exists(), 'Missing member/ancestor: ' + name)
++        mode = current.stat().st_mode
++        require(stat.S_ISREG(mode) if i == len(parts)-1 else stat.S_ISDIR(mode), 'Nonregular member or nondirectory ancestor: ' + name)
++    require(current.resolve().is_relative_to(base), 'Escaping member: ' + name)
++    return current
++
++def fresh_output(path, root=ROOT):
++    """Return a preflighted absent file/directory; no mkdir or write occurs."""
++    target = Path(os.path.abspath(os.fspath(path)))
++    require(not target.exists() and not target.is_symlink(), 'Output must be new; existing files/directories, symlinks and hardlinks are rejected: ' + str(target))
++    parent = target.parent
++    require(parent.exists() and parent.is_dir(), 'Output parent must already exist: ' + str(parent))
++    for ancestor in (parent, *parent.parents):
++        require(not ancestor.is_symlink(), 'Symlink output ancestor: ' + str(ancestor))
++        require(ancestor.is_dir(), 'Output ancestor is not a directory: ' + str(ancestor))
++    require(not target.is_relative_to(Path(root).resolve()) and not target.resolve().is_relative_to(Path(root).resolve()), 'Output must be outside all frozen package descendants.')
++    return target
+--- before/scripts/verify_package.py
++++ current/scripts/verify_package.py
+@@ -1,37 +1,56 @@
+ #!/usr/bin/env python3
+ """Read-only integrity, metadata, copy-custody and optional upload binding check."""
+-import argparse,hashlib,json,zipfile
++import argparse,hashlib,json,zipfile,sys
++sys.dont_write_bytecode=True
+ from pathlib import Path
+ ROOT=Path(__file__).resolve().parents[1]
+ def require(ok,message):
+     if not ok:raise RuntimeError(message)
+ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+-def safe_path(root,name):
+-    p=root/name
+-    require(not p.is_symlink() and p.resolve().is_relative_to(root.resolve()),'Unsafe member: '+name)
+-    return p
++from package_paths import safe_path
++
++def validate_citation(root, metadata):
++    text=safe_path(root,'CITATION.txt').read_text(encoding='utf-8')
++    lines=text.splitlines()
++    require(len(lines)==11 and lines[0]=='Scholarly citation (plain UTF-8; not CFF)', 'Citation format drift.')
++    values={}
++    for line in lines[1:]:
++        require(': ' in line, 'Malformed citation field.')
++        key,value=line.split(': ',1)
++        require(key not in values and value, 'Duplicate/empty citation field.')
++        values[key]=value
++    expected={'Author':'Alec Kriebel','Title':metadata['title'],'Kind':'Unrefereed research note (preprint)','Version':'1.0','Date':'2026-10-14','Affiliation':'Independent Researcher','ORCID':'https://orcid.org/'+metadata['creators'][0]['orcid'],'License':'CC BY 4.0','Attribution':'Attributed witness proof; historical and method priority, full novelty, and worldwide current-open status UNKNOWN.','Review':'Extensive AI assistance; no human peer review or formal certification.'}
++    require(values==expected, 'Scholarly citation fields differ from reviewed paper/metadata.')
++    require(not (root/'CITATION.cff').exists() and not (root/'CITATION.cff').is_symlink(), 'Invalid historical CFF must not be an active root citation.')
++    return values
+ def verify(root=ROOT,bindings=None,archive=None,require_bindings=False):
+-    manifest=json.loads((root/'PACKAGE_MANIFEST.json').read_text());members=manifest['members']
++    root=Path(root).resolve()
++    manifest=json.loads(safe_path(root,'PACKAGE_MANIFEST.json').read_text());members=manifest['members']
+     require(len({r['path'] for r in members})==len(members),'Duplicate manifest members.')
+     require('PACKAGE_MANIFEST.json' not in {r['path'] for r in members},'Circular manifest hash.')
+     for r in members:
+         p=safe_path(root,r['path']);require(p.is_file(),'Missing member: '+r['path'])
+         require(p.stat().st_size==r['bytes'] and sha(p)==r['sha256'],'Member mismatch: '+r['path'])
+-    metadata=json.loads((root/'metadata.json').read_text())
+-    require(metadata==json.loads((root/'metadata_wrapped.json').read_text())['metadata']==json.loads((root/'deposit.json').read_text())['metadata'],'Three metadata objects differ.')
++    metadata=json.loads(safe_path(root,'metadata.json').read_text())
++    require(metadata==json.loads(safe_path(root,'metadata_wrapped.json').read_text())['metadata']==json.loads(safe_path(root,'deposit.json').read_text())['metadata'],'Three metadata objects differ.')
+     require(metadata['title']=='A localized Gaussian-witness lower bound for fractional iterated area on uniform grids','Title drift.')
+     require(metadata['creators'][0]['orcid']=='0009-0001-9320-500X','ORCID drift.')
+     require(metadata['license']=='cc-by-4.0' and metadata['publication_type']=='preprint','License/type drift.')
+-    status=json.loads((root/'STATUS.json').read_text())
++    status=json.loads(safe_path(root,'STATUS.json').read_text())
+     require(status['publication_ready'] is False and status['issues_resolved'] is False,'Preparation prematurely promoted.')
+     require(status['fresh_whole_package_reviews_completed']==0 and status['minimum_fresh_reviews_required']==2,'Review state drift.')
+-    for r in json.loads((root/'INPUT_COPY_MAP.json').read_text())['copies']:
++    validate_citation(root,metadata)
++    current=json.loads(safe_path(root,'CURRENT_STATUS.json').read_text())
++    require(current['state']=='PENDING_NEW_WHOLE_02' and current['fresh_whole_package_reviews_completed']==1 and current['minimum_fresh_reviews_required']==2, 'Current review state drift.')
++    require(current['publication_ready'] is False and current['issues_resolved'] is False and current['published'] is False and current['services_held_at_pr']==1032, 'Premature current promotion.')
++    for r in json.loads(safe_path(root,'INPUT_COPY_MAP.json').read_text())['copies']:
+         p=safe_path(root,r['package_copy']);require(sha(p)==r['sha256'] and p.stat().st_size==r['bytes'],'Custody copy mismatch: '+r['package_copy'])
+     selected=bindings if bindings is not None else root/'UPLOAD_BINDINGS.json'
+     checked=False
+-    if selected.exists():
+-        b=json.loads(selected.read_text());pdf=root/b['pdf']['filename'];require(pdf.is_file() and sha(pdf)==b['pdf']['sha256'] and pdf.stat().st_size==b['pdf']['bytes'],'Upload PDF binding mismatch.')
+-        ap=archive if archive is not None else selected.parent/b['archive']['filename'];require(ap.is_file(),'Present bindings require a readable archive.')
++    if selected.exists() or selected.is_symlink():
++        require(selected.is_file() and not selected.is_symlink(),'Present bindings must be a regular nonsymlink file.')
++        b=json.loads(selected.read_text());pdf=safe_path(root,b['pdf']['filename']);require(pdf.is_file() and sha(pdf)==b['pdf']['sha256'] and pdf.stat().st_size==b['pdf']['bytes'],'Upload PDF binding mismatch.')
++        ap=archive if archive is not None else selected.parent/b['archive']['filename'];require(ap.is_file() and not ap.is_symlink(),'Present bindings require a regular nonsymlink archive.')
+         require(sha(ap)==b['archive']['sha256'] and ap.stat().st_size==b['archive']['bytes'],'Upload ZIP binding mismatch.')
+         expected=sorted([r['path'] for r in members]+['PACKAGE_MANIFEST.json'])
+         with zipfile.ZipFile(ap) as z:
+@@ -41,7 +60,7 @@
+                 require(i.compress_type==zipfile.ZIP_STORED and i.date_time==(2026,10,14,0,0,0) and i.external_attr==(0o100644<<16),'Archive determinism attributes differ.')
+         require(b['manifest_sha256']==sha(root/'PACKAGE_MANIFEST.json'),'Manifest external binding mismatch.');checked=True
+     else:require(not require_bindings,'Required bindings are absent.')
+-    return {'status':'PASS','manifest_members':len(members),'historical_copies':len(json.loads((root/'INPUT_COPY_MAP.json').read_text())['copies']),'metadata_objects_equal':True,'upload_bindings_checked':checked,'verification':'Read-only. Manifest excludes its own hash; archive and PDF bindings live outside the ZIP to avoid self-reference.'}
++    return {'status':'PASS','manifest_members':len(members),'historical_copies':len(json.loads(safe_path(root,'INPUT_COPY_MAP.json').read_text())['copies']),'metadata_objects_equal':True,'upload_bindings_checked':checked,'verification':'Read-only. Manifest excludes its own hash; archive and PDF bindings live outside the ZIP to avoid self-reference.'}
+ if __name__=='__main__':
+     p=argparse.ArgumentParser();p.add_argument('--bindings',type=Path);p.add_argument('--archive',type=Path);p.add_argument('--require-bindings',action='store_true');a=p.parse_args()
+     print(json.dumps(verify(bindings=a.bindings,archive=a.archive,require_bindings=a.require_bindings),indent=2))
+--- before/scripts/build_archive.py
++++ current/scripts/build_archive.py
+@@ -4,14 +4,14 @@
+ sys.dont_write_bytecode=True
+ from pathlib import Path
+ from verify_package import ROOT,verify
++from package_paths import fresh_output,safe_path
+ p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);a=p.parse_args()
++output=fresh_output(a.out)
+ verify(bindings=ROOT/'__absent_binding__')
+-manifest=json.loads((ROOT/'PACKAGE_MANIFEST.json').read_text())
++manifest=json.loads(safe_path(ROOT,'PACKAGE_MANIFEST.json').read_text())
+ names=sorted([r['path'] for r in manifest['members']]+['PACKAGE_MANIFEST.json'])
+-if a.out.resolve().is_relative_to(ROOT.resolve()) and a.out.resolve().parent==ROOT:raise SystemExit('Place generated archive outside frozen root, e.g. _tmp/rebuild.zip.')
+-a.out.parent.mkdir(parents=True,exist_ok=True)
+-with zipfile.ZipFile(a.out,'w',compression=zipfile.ZIP_STORED,allowZip64=False) as z:
++with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_STORED,allowZip64=False) as z:
+     for name in names:
+         info=zipfile.ZipInfo(name,date_time=(2026,10,14,0,0,0));info.create_system=3;info.external_attr=0o100644<<16;info.compress_type=zipfile.ZIP_STORED
+-        z.writestr(info,(ROOT/name).read_bytes())
++        z.writestr(info,safe_path(ROOT,name).read_bytes())
+ print(json.dumps({'archive':str(a.out),'members':len(names),'compression':'ZIP_STORED','fixed_time':'2026-10-14T00:00:00','permissions':'regular-file 0644','order':'lexicographic explicit manifest allowlist'},indent=2))
+--- before/scripts/check.py
++++ current/scripts/check.py
+@@ -1,7 +1,9 @@
+ #!/usr/bin/env python3
+ """Replay byte-exact original finite checker; use explicit guards under -O."""
+ import argparse,hashlib,json,shutil,subprocess,sys,tempfile
++sys.dont_write_bytecode=True
+ from pathlib import Path
++from package_paths import fresh_output,safe_path
+ root=Path(__file__).resolve().parents[1]
+ def require(condition,message):
+     if not condition:raise RuntimeError(message)
+@@ -24,18 +26,19 @@
+     except RuntimeError:return {'control':label,'rejected':True}
+     raise RuntimeError('Negative control escaped: '+label)
+ def run(out):
+-    out.mkdir(parents=True,exist_ok=True)
+-    copies=json.loads((root/'INPUT_COPY_MAP.json').read_text())['copies']
++    out=fresh_output(out,root)
++    out.mkdir()
++    copies=json.loads(safe_path(root,'INPUT_COPY_MAP.json').read_text())['copies']
+     row=next(r for r in copies if r['package_copy']=='checks/original_finite_checks.py')
+-    src=root/row['package_copy'];require(digest(src)==row['sha256'],'Original checker bytes changed.')
+-    expected=json.loads((root/'checks/original_expected.json').read_text())
+-    tex=(root/'paper.tex').read_text();q=(root/'custody/ROOT_CURRENT_SOURCE_QUALIFICATION.md').read_text();add=(root/'custody/ROOT_SOURCE_VERSION_ADDENDUM_20261014.md').read_text()
++    src=safe_path(root,row['package_copy']);require(digest(src)==row['sha256'],'Original checker bytes changed.')
++    expected=json.loads(safe_path(root,'checks/original_expected.json').read_text())
++    tex=safe_path(root,'paper.tex').read_text();q=safe_path(root,'custody/ROOT_CURRENT_SOURCE_QUALIFICATION.md').read_text();add=safe_path(root,'custody/ROOT_SOURCE_VERSION_ADDENDUM_20261014.md').read_text()
+     source_guard(tex,q,add)
+     modes=[]
+     for mode,flags in [('normal',[]),('optimized',['-O'])]:
+         dest=out/mode;dest.mkdir(exist_ok=True);checker=dest/'original_finite_checks.py';shutil.copyfile(src,checker)
+         require(digest(checker)==row['sha256'],'Isolated replay copy is not byte-exact.')
+-        proc=subprocess.run([sys.executable,*flags,str(checker)],capture_output=True,text=True)
++        proc=subprocess.run([sys.executable,*flags,str(checker)],capture_output=True,text=True,cwd=dest)
+         (dest/'stdout.txt').write_text(proc.stdout);(dest/'stderr.txt').write_text(proc.stderr)
+         require(proc.returncode==0 and proc.stderr=='','Original finite checker failed.')
+         result=json.loads((dest/'FINITE_CHECKS.json').read_text());result_guard(result,expected)
+@@ -47,6 +50,6 @@
+ if __name__=='__main__':
+     parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path);args=parser.parse_args()
+     if args.out:
+-        require(args.out.resolve()!=root,'Use an output directory separate from frozen package contents.');run(args.out.resolve())
++        run(args.out)
+     else:
+-        with tempfile.TemporaryDirectory(prefix='pr1071-finite-') as d:run(Path(d))
++        with tempfile.TemporaryDirectory(prefix='pr1071-finite-',dir=Path(tempfile.gettempdir()).resolve()) as d:run(Path(d)/'result')
+--- before/scripts/build_pdf.py
++++ current/scripts/build_pdf.py
+@@ -1,14 +1,15 @@
+ #!/usr/bin/env python3
+ """Compile the standalone source outside frozen package contents."""
+-import argparse, os, shutil, subprocess
++import argparse, os, shutil, subprocess, sys
++sys.dont_write_bytecode=True
+ from pathlib import Path
++from package_paths import fresh_output,safe_path
+ p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--tectonic',default='tectonic');a=p.parse_args()
+-root=Path(__file__).resolve().parents[1];dest=a.out.resolve()
+-if dest==root:raise SystemExit('Use a separate output directory.')
+-dest.mkdir(parents=True,exist_ok=True)
+-source=dest/'paper.tex';shutil.copyfile(root/'paper.tex',source)
++root=Path(__file__).resolve().parents[1];dest=fresh_output(a.out,root)
++dest.mkdir()
++source=dest/'paper.tex';shutil.copyfile(safe_path(root,'paper.tex'),source)
+ env=os.environ.copy();env['SOURCE_DATE_EPOCH']='1791936000';env['FORCE_SOURCE_DATE']='1'
+-proc=subprocess.run([a.tectonic,'--outdir',str(dest),'--keep-logs',str(source)],env=env,text=True,capture_output=True)
++proc=subprocess.run([a.tectonic,'--outdir',str(dest),'--keep-logs',str(source)],env=env,text=True,capture_output=True,cwd=dest)
+ (dest/'compile.stdout.txt').write_text(proc.stdout);(dest/'compile.stderr.txt').write_text(proc.stderr)
+ print(proc.stdout);print(proc.stderr)
+ if proc.returncode:raise SystemExit(proc.returncode)
+--- before/README.md
++++ current/README.md
+@@ -4,11 +4,11 @@
+ 
+ The analytic bound covers independent standard equal-H fBm, each fixed H in (1/4,1), the canonical iterated integral, both complete uniform grids, every T>0 and integer n>=1 and every L2 grid estimator. Brownian exact optimum and smooth asymptotic rate are prior. This is an attributed localized Gaussian-witness proof; full novelty, historical and method priority and worldwide current-open status are UNKNOWN. Source use is canonical existence plus sufficient L2 convergence; the pinned NTU v1 exact Euler coefficients are not endorsed. The fresh journal-formatted source has a different lag split; no journal-error claim follows from the specific v1 defect. See the current dated root addendum preserved in custody/.
+ 
+-Extensive AI assistance, unrefereed, and no formal certification. STATUS.json records the dated preparation state. This frozen version awaits at least two fresh whole-package reviews; publication_ready=false and issues_resolved=false. Ascending service operations are held at PR1032. The note does not establish an endpoint, sharp constant, exact limit, H-uniform constant, adaptive/nonuniform, unequal-H or correlated-component result.
++Extensive AI assistance, unrefereed, and no formal certification. STATUS.json retains the dated original preparation state. CURRENT_STATUS.json records the repaired package: one fresh whole review completed, three P3 findings repaired, and a NEW complete whole02 review required; publication_ready=false and issues_resolved=false. Ascending service operations are held at PR1032. The note does not establish an endpoint, sharp constant, exact limit, H-uniform constant, adaptive/nonuniform, unequal-H or correlated-component result.
+ 
+ ## Clean extraction and read-only verification
+ 
+-Python 3.9+ standard library is sufficient for integrity, archive building and finite-checker replay. Tectonic is optional for standalone PDF recompilation and may need its normal TeX cache/network resources. The commands below were executed against a clean extraction. Replace the two input paths with the downloaded archive and its containing directory. Generated outputs are deliberately outside the extracted frozen package.
++Python 3.9+ standard library is sufficient for integrity, archive building and finite-checker replay. Tectonic is optional for standalone PDF recompilation and may need its normal TeX cache/network resources. The commands below were executed against a clean extraction. Replace the two input paths with the downloaded archive and its containing directory. Generated outputs must be new and outside every descendant of the extracted frozen package. Their parent must already exist and have no symlink ancestors. Existing output files/directories are rejected, including symlinks, dangling links and hardlink aliases. Use a new directory/file for every run. This static local preflight covers the entire new checker/compiler directory, including subprocess files, logs and receipts; it does not promise safety under concurrent filesystem changes.
+ 
+ ```sh
+ python3 -m zipfile -e /path/to/PR1071_preprint_v1_0_support.zip /path/to/pr1071-clean
+@@ -36,3 +36,11 @@
+ The bare metadata.json object equals the metadata object in metadata_wrapped.json and deposit.json exactly. UPLOAD_BINDINGS.json and the archive sidecar are intentionally outside the ZIP to avoid self-reference. PACKAGE_MANIFEST.json excludes its own hash; the external binding pins it. A deterministic ZIP_STORED allowlist uses fixed UTC date 2026-10-14, lexicographic order and regular-file mode 0644. No ambient filesystem glob is packed. The builder never rewrites the manifest or other frozen content.
+ 
+ Selected original authored records remain byte-exact in custody/; their historical wording is governed by the current paper, SUPPLEMENT.md and dated source addendum. INPUT_COPY_MAP.json proves exact copy identity. FROZEN_INPUTS.json records all earlier audit bytes including omitted private sources; downloading those bodies or rerunning omitted programs is not claimed. Raw source PDFs/text/images/API captures, environment executables, Git full trees and upload/service actions are excluded.
++
++## Repaired support interfaces and citation
++
++CITATION.txt is a validated plain UTF-8 scholarly citation of the research note; the mathematical paper is not classified as software or a dataset. The invalid original CFF (root `type: unpublished`, outside CFF 1.2.0's software/dataset enum) is preserved exactly as history/preparation01/CITATION.cff.invalid.txt and is not an active citation file. The official schema is https://raw.githubusercontent.com/citation-file-format/citation-file-format/1.2.0/schema.json . The verifier parses the plain fields and requires their exact agreement with the reviewed author/title/ORCID/version/date and attribution.
++
++Every manifest/member file is required to be present, regular, nonsymlink and reached only through real directory ancestors inside the package, including the self-hash-excluded manifest BEFORE JSON parsing. The default absent-binding path and strict present/required binding checks remain available. The original preparation's pin manifest and dated reports remain unchanged. history/preparation01/ resolves exact before bytes of changed outputs; WHOLE01_COPY_EXCLUSIONS.json names individually omitted raw streams/private/generated files. These historical artifacts retain their earlier meanings and are superseded by CURRENT_STATUS.json for current workflow status.
++
++The local audit resolves all 92 original preparation output pins, including external receipts, the previous ZIP and its sidecar. The distribution preserves selected exact before-byte text/code/manifest/descriptor snapshots; it does not redistribute the previous ZIP, its sidecar, raw compiler streams or all external preparation receipts. Current UPLOAD_BINDINGS.json is outside the ZIP and binds the current PDF/archive/manifest.
+--- before/SUPPLEMENT.md
++++ current/SUPPLEMENT.md
+@@ -17,3 +17,7 @@
+ FROZEN_INPUTS.json hashes every pre-existing regular audit file and AGENTS.md before preparation. INPUT_COPY_MAP.json maps selected exact copies back to those original paths. PACKAGE_MANIFEST.json hashes the explicit archive allowlist excluding its own bytes. UPLOAD_BINDINGS.json, the ZIP and its hash sidecar live outside the ZIP, binding the manifest, PDF and ZIP without a self-hash cycle. Stored compression, lexicographic member order, 14 October 2026 timestamps and mode 0644 make the archive reproducible. Selected authored reports/metadata are safe to distribute; complete raw third-party bodies, extracts, images, raw API responses, Git full trees and executable environments are excluded.
+ 
+ The universal claim is the analytic theorem in the note. Preparation status is dated, with publication_ready=false and issues_resolved=false until at least two fresh whole-package reviews are completed and their findings handled. Service operations remain held at PR1032. No external submission, service operation, Git operation or contact was performed by this preparation task. Outside expertise might help locate unindexed precedents; this observation records a research gap only, without preparing outreach.
++
++Bounded package repair (14 October 2026 UTC): CURRENT_STATUS.json records one completed fresh whole review and the requirement for a NEW whole02 review. The original preparation status and hash records remain unchanged history. All generating commands require absent output names outside the package, existing real parent directories, and no symlink ancestors; all generated child files therefore start in a new empty external directory. The original checker itself is unchanged. This is a static local-filesystem rule, without concurrent race claims. The bootstrap manifest and all ordinary members share regular/nonsymlink/ancestry checks before parsing or writing. CITATION.txt supplies the current plain scholarly citation, with explicit parser checks; the original invalid root-enum CFF is historical text only. The analytic paper, PDF and all three bibliographic metadata objects are unchanged.
++
++The local audit resolves all 92 original preparation output pins, including external receipts, the previous ZIP and its sidecar. The distribution preserves selected exact before-byte text/code/manifest/descriptor snapshots; it does not redistribute the previous ZIP, its sidecar, raw compiler streams or all external preparation receipts. Current UPLOAD_BINDINGS.json is outside the ZIP and binds the current PDF/archive/manifest.
+--- before/CITATION.cff
++++ current/CITATION.cff
+@@ -1,13 +0,0 @@
+-cff-version: 1.2.0
+-message: "Please cite this attributed research note; historical priority remains unverified."
+-title: "A localized Gaussian-witness lower bound for fractional iterated area on uniform grids"
+-authors:
+-  - family-names: Kriebel
+-    given-names: Alec
+-    affiliation: Independent Researcher
+-    orcid: "https://orcid.org/0009-0001-9320-500X"
+-version: "1.0"
+-date-released: "2026-10-14"
+-license: CC-BY-4.0
+-type: unpublished
+-abstract: "Attributed Gaussian-witness proof for both complete uniform grids, independent equal-H standard fBm, H in (1/4,1), every T>0 and n>=1. Brownian and smooth rate priors credited; full novelty, theorem and method priority UNKNOWN. Extensive AI assistance, unrefereed. Dated preparation and later-review status in STATUS.json."
+--- before/CITATION.txt
++++ current/CITATION.txt
+@@ -0,0 +1,11 @@
++Scholarly citation (plain UTF-8; not CFF)
++Author: Alec Kriebel
++Title: A localized Gaussian-witness lower bound for fractional iterated area on uniform grids
++Kind: Unrefereed research note (preprint)
++Version: 1.0
++Date: 2026-10-14
++Affiliation: Independent Researcher
++ORCID: https://orcid.org/0009-0001-9320-500X
++License: CC BY 4.0
++Attribution: Attributed witness proof; historical and method priority, full novelty, and worldwide current-open status UNKNOWN.
++Review: Extensive AI assistance; no human peer review or formal certification.
+--- before/CURRENT_STATUS.json
++++ current/CURRENT_STATUS.json
+@@ -0,0 +1,12 @@
++{
++  "utc": "2026-10-14T05:37:36.608145+00:00",
++  "state": "PENDING_NEW_WHOLE_02",
++  "pr": 1071,
++  "fresh_whole_package_reviews_completed": 1,
++  "minimum_fresh_reviews_required": 2,
++  "publication_ready": false,
++  "issues_resolved": false,
++  "published": false,
++  "services_held_at_pr": 1032,
++  "meaning": "Bounded repair addresses three whole01 P3 findings. Original STATUS/FINAL_VERIFICATION/preparation pins remain dated historical stages; a new complete whole02 review is required."
++}
+--- before/REPAIR_NOTES.md
++++ current/REPAIR_NOTES.md
+@@ -0,0 +1,11 @@
++# Bounded support repair after whole review 01
++
++14 October 2026 UTC; PR1071, head fc37aa5169a0fe6adae0a254c9ee6c1531a2911f.
++
++Three P3 package findings were repaired: outputs now require new names outside the frozen root and real existing parent directories without symlink ancestors; every member, including the self-hash-excluded bootstrap manifest, is checked for regular/no-symlink/real-ancestor structure before parsing or archive writes; and CITATION.txt replaces the invalid root-type CFF with a parsed plain scholarly citation. New empty checker/compiler directories contain all subprocess files, logs, copies and receipts. No existing output is reused. This static policy does not address concurrent filesystem mutation.
++
++The paper source, PDF, nine submitted Git bodies, all three Zenodo bibliographic objects, original checker bytes, and all existing mathematical/source/priority reports/results are unchanged. The exact original invalid CFF is historical text under history/preparation01/CITATION.cff.invalid.txt, not a current citation. Original preparation status and pin records retain their dated meanings. All 92 original output pins resolve either to unchanged originals or exact saved before bytes. The current status is PENDING_NEW_WHOLE_02: one fresh whole review completed, minimum two, readiness/issues-resolved/published false, services held after PR1032. The root must adopt the bounded repair and obtain a new complete whole02 adversarial review; this repair is not that review.
++
++The original finite-checker program is copied byte-exact and replayed with explicit normal/-O wrapper controls. It supplies finite evidence only. No actual candidate compilation/render, PDF marker, paper edit, Git/service/DOI/PR/GWS action, external communication or new subagent was performed in this repair. The existing seven-page PDF is unchanged and remains subject to fresh whole-review inspection.
++
++The local audit resolves all 92 original preparation output pins, including external receipts, the previous ZIP and its sidecar. The distribution preserves selected exact before-byte text/code/manifest/descriptor snapshots; it does not redistribute the previous ZIP, its sidecar, raw compiler streams or all external preparation receipts. Current UPLOAD_BINDINGS.json is outside the ZIP and binds the current PDF/archive/manifest.
+--- before/WHOLE01_COPY_EXCLUSIONS.json
++++ current/WHOLE01_COPY_EXCLUSIONS.json
+@@ -0,0 +1,36 @@
++{
++  "utc": "2026-10-14T05:37:36.608145+00:00",
++  "scope": "Individual exclusions from whole01 terminal OUTPUT_PINS; safe authored findings/reports/results/code copied unchanged.",
++  "records": [
++    {
++      "path": "reviews/package_01/INDEPENDENT_CHECKS_normal.stderr.txt",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "reason": "Generated compiler/checker raw stream, log or extracted text; excluded individually, not needed for authored finding/evidence."
++    },
++    {
++      "path": "reviews/package_01/INDEPENDENT_CHECKS_optimized.stderr.txt",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "reason": "Generated compiler/checker raw stream, log or extracted text; excluded individually, not needed for authored finding/evidence."
++    },
++    {
++      "path": "reviews/package_01/compile.stderr.txt",
++      "bytes": 0,
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "reason": "Generated compiler/checker raw stream, log or extracted text; excluded individually, not needed for authored finding/evidence."
++    },
++    {
++      "path": "reviews/package_01/compile.stdout.txt",
++      "bytes": 532,
++      "sha256": "6c8ad5e27706a497b9e372e64656eb1c70f8cbde4ff27f0906a91832e12a3b61",
++      "reason": "Generated compiler/checker raw stream, log or extracted text; excluded individually, not needed for authored finding/evidence."
++    },
++    {
++      "path": "reviews/package_01/paper.log.txt",
++      "bytes": 18666,
++      "sha256": "f69683b6c0edf12da5afc5ff012e072073ded4c67cf46e179680b7bfce16d793",
++      "reason": "Generated compiler/checker raw stream, log or extracted text; excluded individually, not needed for authored finding/evidence."
++    }
++  ]
++}

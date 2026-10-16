@@ -1,0 +1,783 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..0b148eb51 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -61,7 +61,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+-| 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
++| 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-09-30: Separate review passed the distinguished-component normalization and source-obstruction audit. Known cone-angle/two-bridge cases are credited; arbitrary SU2 representations or sign-related SL2 components do not settle the general canonical PSL2 arc question. No full-resolution or novelty claim. Draft PR: https://github.com/AlecKriebel/Math/pull/35. |  |
+ | 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/2744/OBSTRUCTION.md b/unsolved_math_prioritization/attempts/2744/OBSTRUCTION.md
+new file mode 100644
+index 000000000..795a45924
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/OBSTRUCTION.md
+@@ -0,0 +1,99 @@
++# Canonical-component compact-real arcs: normalization and remaining obstruction
++
++**Disposition: unresolved. No full proof or counterexample was obtained.** The known cone-manifold theorem covers a substantial class, including hyperbolic two-bridge knots, but it does not establish the universal assertion. The deductions below clarify its exact coverage and isolate the missing step; they are not claimed as new discoveries.
++
++**Target:** 2744 / KP-1.85. **Date:** 30 September 2026. **Model and effort:** gpt-6-astra, xhigh. **Substantive response:** 1/5.
++
++## 1. Exact target and original source
++
++[K3: A New Problem List in Low-Dimensional Topology](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf), Problem 1.85, printed pp. 76–77, fixes a hyperbolic knot $K\subset S^3$ and the distinguished $\mathrm{PSL}_2(\mathbb C)$ character component containing the discrete faithful representation. It asks whether this particular component contains an arc of $\mathrm{SO}(3)$ representations, considered up to conjugacy. The question was proposed and scribed for K3 by T. Lidman.
++
++A family produced only by conjugating one representation is constant in the character variety and does not count. Nor does an arc on another character component, an isolated compact-image character, or a real-character arc of noncompact type. The usual affine character variety uses the reductive/GIT quotient rather than the naive orbit space at nonsemisimple reducible representations. This causes no ambiguity for compact-group characters, whose orbits are closed.
++
++[Chinburg–Reid–Stover](https://arxiv.org/abs/1706.00952), Conjecture 1.9, gives the corresponding $\mathrm{SL}_2(\mathbb C)$/$\mathrm{SU}(2)$ formulation. The current arXiv version is v3, 27 July 2020; the paper appeared in *IMRN* 2022, pp. 4969–5036. The checked conjecture and theorem statements come from this revised version and the published text, rather than the initial v1.
++
++## 2. The finite-quotient normalization bridge
++
++Let $M$ be the knot exterior and $\Gamma=\pi_1(M)$. The central projection
++
++$$p:\mathrm{SL}_2(\mathbb C)\longrightarrow\mathrm{PSL}_2(\mathbb C)$$
++
++induces a finite character map
++
++$$p_X:X_{\mathrm{SL}_2}(\Gamma)\longrightarrow X_{\mathrm{PSL}_2}(\Gamma).$$
++
++The precise reference is [Heusener–Porti](https://arxiv.org/pdf/math/0302075), Proposition 4.2, Remark 4.3, and Example 4.6. For a knot exterior every projective representation lifts. The obstruction lies in $H^2(\Gamma;\mathbb Z/2)$, which vanishes here; equivalently one can use the knot-exterior example in that source. The lifts differ by $H^1(\Gamma;\mathbb Z/2)\cong\mathbb Z/2$, acting by the meridian-sign twist. The projective character variety is the finite quotient by this action.
++
++Fix the chosen oriented discrete faithful projective character $\chi_0$, and let $C_{\mathrm{PSL}}$ be its component. A lifted canonical curve $C_{\mathrm{SL}}$ containing a lift of $\chi_0$ maps onto $C_{\mathrm{PSL}}$. Indeed, its finite image is a closed irreducible curve containing $\chi_0$; the discrete faithful character is a smooth point on its unique local character component. The complex dimension is one for a one-cusped hyperbolic manifold.
++
++The compact real groups match exactly:
++
++$$p(\mathrm{SU}(2))=\mathrm{PSU}(2)\cong\mathrm{SO}(3),\qquad
++p^{-1}(\mathrm{PSU}(2))=\mathrm{SU}(2).$$
++
++Thus a genuine $\mathrm{SU}(2)$ character arc on $C_{\mathrm{SL}}$ projects to a nonconstant compact-real set on the chosen projective curve. It cannot collapse to a point because the map has finite fibers. The compact-real locus is semialgebraic; after restricting to a smaller subarc away from the finite branching and singular sets, its image is an arc of $\mathrm{SO}(3)$ characters.
++
++Conversely, a projective compact-real arc has lifts on the finite preimage of $C_{\mathrm{PSL}}$. At least one one-dimensional component of this preimage contains infinitely many lifted unitary characters. Its finite image is all of $C_{\mathrm{PSL}}$, so it contains a point above $\chi_0$ and is a lifted canonical component. The semialgebraic unitary locus on it consequently contains an arc. This explains why the SL/SU and PSL/SO formulations do not have a hidden normalization gap for knot exteriors. It does **not** produce the missing arc.
++
++## 3. What Dix's theorem actually proves
++
++[James P. Dix, *Ribbon Concordances and Representation Varieties*](https://escholarship.org/content/qt27j2v475/qt27j2v475_noSplash_7f3e70d717e17eaf9515cffc4ef313be.pdf), Berkeley dissertation, 2024, Section 3.3, Theorem 3.3.3, proves the compact-real curve assertion when the pair $(S^3,K)$ admits a Euclidean cone-manifold structure with cone angle at most $\pi$. Corollary 3.3.4 covers hyperbolic two-bridge knots. These are existing results, not results of this attempt.
++
++The proof does more than exhibit one rotational holonomy. It obtains a unitary real curve through a smooth Euclidean-holonomy character, regenerates nearby hyperbolic cone structures, and follows a decreasing-angle deformation to the complete hyperbolic holonomy. Smoothness along that path supplies the needed component control. The finite quotient described above turns the asserted SL/SU curve into the arc requested by KP-1.85.
++
++There are two separate dependencies: producing a compact-real arc and proving it lies on the geometric component. Retaining only the Euclidean rotational representation would discard the first; retaining only a connected path without the smooth-component argument would discard the second.
++
++The dissertation's Section 5 explicitly describes the obstacle outside the angle criterion. A cone path reaching angle $\pi$ can degenerate into geometries other than the Euclidean geometry used in the theorem. In particular, the Montesinos-knot discussion is posed as future work, not an extension of Theorem 3.3.3 to all hyperbolic Montesinos knots. No universal continuation through those alternatives was established here.
++
++## 4. Multiple SL components do not refute the projective question
++
++[Boyle–Rouse, *Freely 2-periodic knots have two canonical components*](https://arxiv.org/pdf/2403.07157), Theorem 1.1 and Remarks 1.2–1.3, gives hyperbolic knots whose **SL** character varieties have two canonical components, corresponding to the two lifts of the same oriented complete holonomy. The paper's example includes $10_{157}$.
++
++This is a useful warning against assuming a unique SL canonical component, but it does not establish two distinguished PSL components. If $C_+$ and $C_-$ contain the positive- and negative-meridian-trace lifts, the nontrivial sign twist $\epsilon$ exchanges them. Hence
++
++$$p_X(C_+)=p_X(\epsilon C_+)=p_X(C_-).$$
++
++Both images are precisely the component containing the fixed projective holonomy. The twist also preserves $\mathrm{SU}(2)$. Thus these two components neither supply nor obstruct the requested unitary arc by themselves. Changing orientation by complex conjugation is a separate operation; it must not be confused with the central sign quotient.
++
++## 5. Routes checked and where each stops
++
++### General compact representations
++
++Gauge-theoretic existence results, as discussed in the introduction of Chinburg–Reid–Stover, provide nonabelian unitary representations somewhere in the character variety of a nontrivial knot. This existence statement does not identify their irreducible algebraic component with $C_{\mathrm{PSL}}$, and by itself does not supply an arc there. Moving between those components is the central missing assertion, so the general existence theorem cannot simply be substituted.
++
++### A single unitary point
++
++An isolated point does not prove an arc, particularly at a singular point. The elementary irreducible complex curve
++
++$$y^2+x^2(1+x)=0$$
++
++has an isolated real point at $(0,0)$: in $|x|<1/2$ its left side is at least $y^2+x^2/2$. Its complex discriminant as a quadratic in $y$ is $-4x^2(1+x)$, not a square, so this is not merely a union of conjugate lines. It also has a genuine real arc elsewhere, for example
++
++$$x=-1-t^2,\qquad y=t(1+t^2).$$
++
++This is an algebraic diagnostic, not a knot-character counterexample. It shows exactly why a computed isolated character, without regularity or a positive-dimensional compact-real locus, is inadequate.
++
++Real trace values alone are also insufficient: real irreducible characters can be of $\mathrm{SL}_2(\mathbb R)$ type. Even elliptic individual generators do not force simultaneous compactness. For example, the real determinant-one matrices
++
++$$A=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad
++B=\begin{pmatrix}0&-4\\1/4&0\end{pmatrix}$$
++
++both have trace zero, but $\operatorname{tr}(AB)=-17/4$, impossible for a unitary product. Again this is only a representation-theoretic control; no knot relation is asserted for this pair.
++
++### Complex-conjugation and field-of-definition shortcut
++
++If a complex canonical curve differs from its complex conjugate, their intersection is finite. Any compact-real character lies in that intersection, so such a curve cannot contain the requested arc. This gives a possible obstruction test, but it requires an actual hyperbolic knot in $S^3$ with that property. Examples for other one-cusped manifolds are not enough.
++
++[Long–Reid, *Fields of definition of canonical curves*](https://math.rice.edu/~ar99/fields_of_defn_published.pdf), Sections 4–6, discusses precisely this distinction and examples outside the knot-in-$S^3$ setting. Chinburg–Reid–Stover also warns that general one-cusped manifolds can lack real characters on the canonical component. No qualifying knot counterexample was found in this attempt. Boyle–Rouse's sign-exchanged pair from Section 4 is not such a counterexample.
++
++### Cone-manifold continuation
++
++The known Euclidean regeneration route succeeds under Dix's stated hypothesis. Extending it to every hyperbolic knot requires a new theorem controlling degenerations and obtaining a regular compact-real locus on the same component. The presently available argument stops there; it has not been replaced by an assumption that all knots admit the required Euclidean cone angle.
++
++## 6. Verification and stopping point
++
++The exact original statement, current primary versions, finite quotient, Dix's proof and limitations, and the 2024 multiple-component result were inspected. No later universal proof or counterexample was located in bounded searches through 30 September 2026. This is not a claim of an exhaustive literature review.
++
++`check_controls.py` checks the algebraic examples and finite-quotient matrix identities exactly. Such tests are controls against invalid shortcuts, not evidence that a new knot satisfies or refutes the conjecture. No large knot census, floating-point continuation, or exhaustive search was performed.
++
++**Exact remaining task:** for every hyperbolic knot not already covered by a verified geometric or arithmetic criterion, produce a positive-dimensional compact-real character locus on the chosen discrete-faithful component, or produce a verified knot for which that locus has no arc. None of the checked routes closes this gap. The original problem remains **unsolved in this attempt**.
+diff --git a/unsolved_math_prioritization/attempts/2744/PR_DRAFT.md b/unsolved_math_prioritization/attempts/2744/PR_DRAFT.md
+new file mode 100644
+index 000000000..a019eefc3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/PR_DRAFT.md
+@@ -0,0 +1,16 @@
++# Record unresolved canonical-component SO(3) arc attempt (2744)
++
++## Result
++
++The universal KP-1.85 question remains unresolved in this attempt. This package credits Dix's existing Euclidean cone-manifold criterion and the hyperbolic two-bridge case, makes the SL/SU to PSL/SO finite-quotient passage explicit, and records why several tempting shortcuts fail.
++
++Boyle–Rouse's two SL canonical components are identified by the meridian-sign quotient. They do not yield two distinct chosen PSL components or a counterexample to this problem.
++
++## Checks and scope
++
++- One bounded substantive response, of five allowed
++- 21 exact algebraic diagnostic assertions pass
++- No new knot example, universal theorem, novelty, or exhaustive literature search is claimed
++- Separate source-scope review passed with no mandatory correction; all 121 independent exact assertions pass
++- AI-reviewed and unrefereed; the full problem remains unsolved
++- Shared queue changes are handled separately by the coordinator
+diff --git a/unsolved_math_prioritization/attempts/2744/README.md b/unsolved_math_prioritization/attempts/2744/README.md
+new file mode 100644
+index 000000000..2bf98b86e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/README.md
+@@ -0,0 +1,8 @@
++# 2744 / KP-1.85: unresolved bounded attempt
++
++The original universal canonical-component SO(3)-arc question remains unresolved in this attempt. [OBSTRUCTION.md](OBSTRUCTION.md) gives the exact source, the finite SL/PSL normalization argument, credited existing cone-manifold results, and the remaining gap. No discovery or counterexample is claimed.
++
++- Reproduce the 21 exact diagnostic checks: `python3 unsolved_math_prioritization/attempts/2744/check_controls.py` from the repository root (Python 3, SymPy 1.14.0).
++- [Source record](source_record.json), [provenance](provenance.json), and [research log](RESEARCH_LOG.md) preserve scope, prior-attempt checks, and the bounded outcome.
++- One substantive response used, of five allowed. Research stopped when the tested routes reduced to the central unsupported component/arc assertion.
++- [Separate source-scope review](independent_review/REVIEW.md) passed the exact frozen artifact with no mandatory correction. All 21 submitted and 121 independent exact assertions passed. This is an AI-generated, unrefereed review of the unresolved package, not a full-solution certificate.
+diff --git a/unsolved_math_prioritization/attempts/2744/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/2744/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..713780fc0
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/RESEARCH_LOG.md
+@@ -0,0 +1,21 @@
++# Research log
++
++All times are UTC on 30 September 2026. Model: gpt-6-astra at xhigh effort.
++
++## 05:10–05:16: source and readiness checks
++
++The requested problem page was attempted first but did not yield usable source content. The pinned upstream record and complete K3 Problem 1.85 were read, followed by the current Chinburg–Reid–Stover paper, Dix's dissertation, and the Heusener–Porti lifting/quotient source. The project queue still listed 2744 as queued, 0/5. No prior attempt folder, matching remote branch, or all-state pull request was found. The upstream dated literature triage is source material, not an earlier attempt in this project.
++
++The original problem is a universal assertion about an arc on the chosen geometric PSL component. Dix's Euclidean cone-angle criterion and the two-bridge corollary are known positive cases. Completion estimate toward a new full resolution: 0%; source scope established.
++
++## 05:16–05:25: one substantive bounded attempt
++
++The finite SL/PSL quotient was written explicitly. The two SL canonical components in Boyle–Rouse are sign-exchanged and have the same projective image; they do not obstruct the original question. General unitary existence, isolated real points, real traces, nonreal canonical curves of other one-cusped manifolds, and unproved cone continuation do not settle this knot-in-S3 target. Exact algebraic controls illustrate the failed shortcuts without being presented as knot examples.
++
++The 21 exact assertions pass. Initial test-code equality checks compared expanded and factored SymPy expressions structurally; they were replaced by simplification of their differences. No mathematical identity or claimed knot result was changed. Bounded current-literature searches did not locate a universal resolution. This is not an exhaustive novelty certificate.
++
++Outcome: unsolved, after one substantive response. Completion estimate toward a new full resolution remains 0%. The useful deliverable is a source-checked obstruction and normalization package. No independent proof of all imported cone-manifold theorems is claimed. The mathematical artifact is frozen for separate source-scope review; a draft PR is held until that review.
++
++## 05:44 Separate review and publication preparation
++
++The independent reviewer passed the exact frozen artifact with no mandatory correction. All 21 submitted and 121 independent assertions passed. The six review/check files were copied unchanged and their bytes verified. The optional observation that general unitary existence is stronger than the artifact's minimal recalled statement does not change its true component-membership obstruction. No mathematical revision was made. Full-resolution completion remains 0%; the unresolved deliverable and separate review are complete.
+diff --git a/unsolved_math_prioritization/attempts/2744/check_controls.py b/unsolved_math_prioritization/attempts/2744/check_controls.py
+new file mode 100644
+index 000000000..3ccce887d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/check_controls.py
+@@ -0,0 +1,30 @@
++#!/usr/bin/env python3
++"""Exact negative controls. No knot relation or new character arc is certified."""
++from pathlib import Path
++import json
++import sympy as s
++x,y,t=s.symbols('x y t',real=True);f=y*y+x*x*(1+x)
++checks={}
++def ck(name,value):
++    assert bool(value),name
++    checks[name]='PASS'
++ck('isolated_point_on_curve',f.subs({x:0,y:0})==0)
++ck('point_singular',s.diff(f,x).subs({x:0,y:0})==0 and s.diff(f,y).subs({x:0,y:0})==0)
++ck('isolation_remainder',s.expand(f-(y*y+x*x/2)-x*x*(x+s.Rational(1,2)))==0)
++ck('quadratic_discriminant',s.expand(s.discriminant(f,y)+4*x*x*(1+x))==0)
++ck('simple_factor_in_discriminant',s.diff(1+x,x)==1)
++ck('genuine_other_real_arc',s.expand(f.subs({x:-1-t*t,y:t*(1+t*t)}))==0)
++A=s.Matrix([[0,-1],[1,0]]);B=s.Matrix([[0,-4],[s.Rational(1,4),0]])
++ck('elliptic_generators',A.det()==1 and B.det()==1 and s.trace(A)==s.trace(B)==0)
++ck('noncompact_product',s.trace(A*B)==-s.Rational(17,4))
++D=s.diag(2,s.Rational(1,2));ck('generators_conjugate',D*A*D.inv()==B)
++# Rational unit quaternions represented in SU(2), including sign twins.
++qs=[(1,0,0,0),(0,1,0,0),(s.Rational(3,5),s.Rational(4,5),0,0),(s.Rational(1,2),)*4]
++for j,(a,b,c,d) in enumerate(qs):
++    U=s.Matrix([[a+s.I*b,c+s.I*d],[-c+s.I*d,a-s.I*b]])
++    ck(f'unitary_{j}',s.simplify(U.conjugate().T*U)==s.eye(2) and s.simplify(U.det())==1)
++    ck(f'sign_quotient_trace_square_{j}',s.trace(U)**2==s.trace(-U)**2)
++    ck(f'sign_quotient_adjoint_{j}',(U*A*U.inv()-(-U)*A*(-U).inv()).applyfunc(s.simplify)==s.zeros(2))
++r={'passed':len(checks),'failed':0,'sympy_version':s.__version__,'checks':checks,'scope':'Algebraic shortcut controls only; no theorem about a new knot, and no solution of KP-1.85.'}
++Path(__file__).with_name('check_results.json').write_text(json.dumps(r,indent=2)+'\n')
++print(json.dumps(r,indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2744/check_results.json b/unsolved_math_prioritization/attempts/2744/check_results.json
+new file mode 100644
+index 000000000..3d1e4d634
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/check_results.json
+@@ -0,0 +1,29 @@
++{
++  "passed": 21,
++  "failed": 0,
++  "sympy_version": "1.14.0",
++  "checks": {
++    "isolated_point_on_curve": "PASS",
++    "point_singular": "PASS",
++    "isolation_remainder": "PASS",
++    "quadratic_discriminant": "PASS",
++    "simple_factor_in_discriminant": "PASS",
++    "genuine_other_real_arc": "PASS",
++    "elliptic_generators": "PASS",
++    "noncompact_product": "PASS",
++    "generators_conjugate": "PASS",
++    "unitary_0": "PASS",
++    "sign_quotient_trace_square_0": "PASS",
++    "sign_quotient_adjoint_0": "PASS",
++    "unitary_1": "PASS",
++    "sign_quotient_trace_square_1": "PASS",
++    "sign_quotient_adjoint_1": "PASS",
++    "unitary_2": "PASS",
++    "sign_quotient_trace_square_2": "PASS",
++    "sign_quotient_adjoint_2": "PASS",
++    "unitary_3": "PASS",
++    "sign_quotient_trace_square_3": "PASS",
++    "sign_quotient_adjoint_3": "PASS"
++  },
++  "scope": "Algebraic shortcut controls only; no theorem about a new knot, and no solution of KP-1.85."
++}
+diff --git a/unsolved_math_prioritization/attempts/2744/independent_review/REVIEW.md b/unsolved_math_prioritization/attempts/2744/independent_review/REVIEW.md
+new file mode 100644
+index 000000000..edae14a6e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/independent_review/REVIEW.md
+@@ -0,0 +1,57 @@
++# Independent adversarial review: KP-1.85 / 2744
++
++**Verdict: PASS for the unresolved source-and-obstruction package. The full problem remains unsolved in this attempt.** No mandatory mathematical correction was found. This verdict does not certify a universal compact-real arc theorem or a new knot counterexample.
++
++- Review date: 30 September 2026
++- Reviewer: independent gpt-6-astra worker, xhigh
++- Frozen artifact: `OBSTRUCTION.md`
++- Reviewed SHA-256: `99a09c92911e10ee1cba5de34f4ab78274cb8e211fa0f1456ed80b640819f872`
++- Source artifact was not edited. A separate snapshot was checked byte-for-byte.
++
++## 1. Exact question and source scope
++
++The full K3 source, Problem 1.85, printed pp. 76–77, asks for an arc on the particular PSL(2,C) component containing the discrete-faithful character of a hyperbolic knot in S3. Compact characters on other components, a conjugation orbit, and an isolated compact character do not suffice. Fixing the orientation clarifies which complete holonomy is meant; complex conjugation preserves the compact real form, so the existence assertion is unaffected by reversing that choice. The artifact handles the affine/GIT character quotient correctly at compact characters.
++
++Source: [K3 book, Problem 1.85](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf). The book and source PDFs were inspected for this review but are not included for redistribution.
++
++The SL/SU formulation is indeed Conjecture 1.9 of [Chinburg–Reid–Stover](https://arxiv.org/abs/1706.00952), current arXiv v3, 27 July 2020, published in IMRN 2022. I also checked the adjoining Theorem 1.8 and Corollary 1.10 to ensure no unconditional universal resolution was overlooked there. Their arithmetic hypotheses cannot be silently dropped. The introduction actually recalls a curve of irreducible SU(2) characters somewhere in the character variety for each nontrivial knot, stronger than existence of one point. The artifact's weaker wording remains true, and its central conclusion is correct: those results do not locate such a curve on the distinguished component. Mentioning the stronger known statement would be an optional clarification, not a repair.
++
++## 2. Finite quotient and preservation of arcs
++
++I independently checked both directions of the normalization argument.
++
++1. A hyperbolic knot exterior is aspherical and has vanishing second cohomology with Z/2 coefficients. Its projective representations therefore lift. The lift ambiguity is precisely H1 with Z/2 coefficients, a group of order two. The quotient statement must apply to the liftable projective locus first; for knot exteriors that locus is the whole character variety. The artifact makes this additional step rather than assuming liftability for arbitrary groups.
++2. A finite algebraic quotient is closed and preserves dimension on each irreducible curve. A canonical SL curve thus maps onto the projective canonical curve. Smoothness and complex dimension one at discrete faithful holonomy prevent an ambiguity among local irreducible components.
++3. A projectively compact representation, after conjugation into PSU(2), has every SL lift in SU(2). Indeed an SL representative of a PSU(2) matrix differs from a unitary representative only by a scalar whose square is one. This establishes the group-level bridge, not just real trace values.
++4. Finite fibers prevent an actual unitary character arc from collapsing to a point. The relevant compact-character loci are semialgebraic: use finitely many generators and relations, the real algebraic SU(2) representation locus, and polynomial character functions. On a complex algebraic curve an infinite semialgebraic locus contains an arc. Restriction away from finitely many exceptional points handles branching and singularities.
++5. Conversely, an arc on the projective canonical curve has infinitely many unitary lifts. One of the finitely many irreducible components of its algebraic preimage contains infinitely many of them. Its image is the whole projective curve, since a positive-dimensional closed irreducible subset of that curve is the curve itself. It contains a point above the complete holonomy, so smoothness there identifies it as a lifted canonical component. If a different lift of the complete holonomy was initially chosen, the central sign twist carries one such component to the other and preserves the unitary locus.
++
++In particular, a general uncountability argument was not used in place of semialgebraicity, and the quotient was not incorrectly treated as an everywhere-free two-fold cover. These details agree with [Heusener–Porti, Proposition 4.2, Remark 4.3 and Example 4.6](https://arxiv.org/pdf/math/0302075). Branch fibers can be smaller.
++
++## 3. Existing geometric theorem
++
++I read the proof of Dix's Theorem 3.3.3, its preceding quotient lemma, Corollary 3.3.4, and the limitations in Section 5. The stated assumption is a Euclidean cone structure on the pair (S3,K) with angle at most pi. It gives a real unitary character curve on every SL canonical component. The two-bridge corollary is an established subcase.
++
++The proof does control both positive-dimensional unitary deformations and membership in the canonical component: Euclidean rotational holonomy is smooth under the stated assumptions; regeneration supplies nearby hyperbolic cone characters; decreasing the cone angle reaches complete holonomy along smooth characters. The component cannot change along that smooth path. The almost-product exclusion and the hyperbolic-knot hypothesis occur in the source proof. Its Section 5 explicitly leaves the more general Montesinos degeneration question for future work. The artifact preserves those distinctions.
++
++Source: [Dix dissertation, Section 3.3, printed pp. 14–16, and Section 5](https://escholarship.org/content/qt27j2v475/qt27j2v475_noSplash_7f3e70d717e17eaf9515cffc4ef313be.pdf). This is a source-verification and logical-dependency audit, not a new independent derivation of every cited cone-manifold theorem.
++
++## 4. Multiple components and real-locus obstructions
++
++[Boyle–Rouse](https://arxiv.org/abs/2403.07157), current v1 dated 11 March 2024, Theorem 1.1 and Remarks 1.2–1.3, concerns the two SL lifts of the same oriented complete holonomy. I read those statements and their surrounding definition. The nontrivial meridian-sign character is an automorphism of the SL character variety and takes one holonomy lift to the other. Uniqueness of the smooth local component then gives the exchange of the two canonical curves. The finite quotient identifies their images. The example 10_157 therefore supplies no second distinguished projective component and no counterexample to the desired arc.
++
++The complex-conjugation test is also valid as a conditional obstruction: two distinct irreducible complex algebraic curves have only finitely many points in common, while all compact-real characters are fixed by the real structure in trace coordinates. One must still exhibit a qualifying knot. [Long–Reid, Section 5](https://math.rice.edu/~ar99/fields_of_defn_published.pdf) carefully distinguishes knot complements in S3 from their more general one-cusped constructions. Section 6 concerns invariant trace fields; those fields must not be confused with the field of definition of the canonical curve. The artifact does not make this mistake or present the general-manifold examples as knot counterexamples.
++
++## 5. Algebraic controls and reproducibility
++
++The isolated-point example is irreducible over C: viewed as a monic quadratic in y over C(x), its discriminant has an odd-order zero at x=-1 and is not a square. Gauss's lemma passes this to C[x,y]. For |x|<1/2 the nonnegative lower bound forces the only real zero near the origin to be the origin. The separate parameterized real arc is nonconstant, so the example precisely distinguishes an isolated point from an arc elsewhere.
++
++The elliptic-generator matrices are separately conjugate over SL(2,R), but their product is diagonal with entries -1/4 and -4. Its trace has absolute value greater than two, excluding simultaneous conjugacy into SU(2). No relation making these matrices into a knot-group representation is asserted.
++
++The submitted verifier was copied before execution so its output-writing behavior did not touch the author's files. Its 21 exact assertions pass. Independent checks additionally test the SO(3) adjoint action of rational unit quaternions, orientation and orthogonality, central-sign invisibility, multiplication, sign-twisted word traces, rank-two free-group finite quotient controls including smaller exceptional fibers, and independently derived acnode and elliptic-pair identities. All 121 independent exact assertions pass with SymPy 1.14.0, as recorded in `independent_results.json`. These are diagnostics, not finite evidence for the conjecture itself.
++
++## 6. Final disposition
++
++The source search was bounded, and neither the author's search nor this review establishes exhaustive absence of later literature. Current arXiv version histories and the principal theorem statements were checked on 30 September 2026. The package's explicit unresolved disposition is appropriate.
++
++**Required corrections: none.** Preserve the original problem's `unsolved` status, no full-solution credit, and no novelty claim for the cited cone theorem or the elementary normalization deductions. A new substantive mathematical edit should receive a new review; a purely administrative change can be checked by an exact diff.
+diff --git a/unsolved_math_prioritization/attempts/2744/independent_review/independent_checks.py b/unsolved_math_prioritization/attempts/2744/independent_review/independent_checks.py
+new file mode 100644
+index 000000000..a700b56d5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/independent_review/independent_checks.py
+@@ -0,0 +1,76 @@
++#!/usr/bin/env python3
++"""Independent exact controls for the scope audit of KP-1.85.
++No new knot or character arc is certified by these finite checks.
++"""
++from pathlib import Path
++from itertools import product
++import json
++import sympy as s
++checks = {}
++def ck(name, value):
++    if not bool(value):
++        raise AssertionError(name)
++    checks[name] = 'PASS'
++def simp(M):
++    return M.applyfunc(s.simplify)
++# Conjugation of traceless Hermitian matrices identifies the projective
++# unitary action with SO(3), including the central sign invariance.
++P = [s.Matrix([[0,1],[1,0]]), s.Matrix([[0,-s.I],[s.I,0]]), s.diag(1,-1)]
++def adjoint(U):
++    return s.Matrix(3,3,lambda i,j:s.simplify(s.trace(P[i]*U*P[j]*U.inv())/2))
++triples = [(0,0,0),(1,0,0),(0,1,0),(0,0,1),(1,1,0),(1,1,1),(2,1,-1),(-1,2,3),(2,-3,4)]
++matrices=[]
++for k,xyz in enumerate(triples):
++    n=sum(v*v for v in xyz); den=1+n
++    a=s.Rational(1-n,den); b,c,d=[s.Rational(2*v,den) for v in xyz]
++    U=s.Matrix([[a+s.I*b,c+s.I*d],[-c+s.I*d,a-s.I*b]])
++    R=adjoint(U); matrices.append(U)
++    ck(f'unit_quaternion_{k}',a*a+b*b+c*c+d*d==1)
++    ck(f'su2_{k}',simp(U.conjugate().T*U)==s.eye(2) and U.det()==1)
++    ck(f'adjoint_real_{k}',simp(R.conjugate()-R)==s.zeros(3))
++    ck(f'adjoint_orthogonal_{k}',simp(R.T*R)==s.eye(3))
++    ck(f'adjoint_orientation_{k}',s.factor(R.det())==1)
++    ck(f'central_sign_invisible_{k}',adjoint(-U)==R)
++    ck(f'faithful_mod_center_control_{k}',(R==s.eye(3))==(U==s.eye(2) or U==-s.eye(2)))
++for k in range(len(matrices)-1):
++    U,V=matrices[k:k+2]
++    ck(f'adjoint_product_{k}',adjoint(U*V)==simp(adjoint(U)*adjoint(V)))
++# A sign character on two meridional generators: arbitrary word products
++# change only by a central sign, and trace squares do not change.
++U,V=matrices[4],matrices[7]
++for n in range(1,5):
++    for bits in product((0,1),repeat=n):
++        M=N=s.eye(2)
++        for bit in bits:
++            W=(U,V)[bit]; M=M*W; N=N*(-W)
++        label=''.join(map(str,bits))
++        ck(f'sign_word_{label}',simp(N-(-1)**n*M)==s.zeros(2) and s.simplify(s.trace(N)**2-s.trace(M)**2)==0)
++# Free-group rank-two character quotient: finite sign orbits, which may
++# shrink at special points. This guards against treating all fibers as free.
++def invariants(v):
++    x,y,z=v; return (x*x,y*y,z*z,x*y*z)
++def orbit(v):
++    x,y,z=v
++    return {(a*x,b*y,a*b*z) for a,b in product((-1,1),repeat=2)}
++for k,v in enumerate([(2,3,5),(0,3,5),(0,0,5),(0,0,0)]):
++    orb=orbit(v); inv=invariants(v)
++    ck(f'quotient_relation_{k}',inv[3]**2==inv[0]*inv[1]*inv[2])
++    ck(f'quotient_sign_orbit_{k}',all(invariants(w)==inv for w in orb))
++    ck(f'quotient_fiber_size_{k}',len(orb)==(4,4,2,1)[k])
++# Independent exact derivation of the real isolated point and noncompact
++# simultaneous-conjugacy control.
++x,y,t=s.symbols('x y t',real=True)
++f=y*y+x*x*(1+x)
++ck('node_origin_singular',f.subs({x:0,y:0})==0 and all(s.diff(f,z).subs({x:0,y:0})==0 for z in (x,y)))
++ck('strict_isolation_decomposition',s.expand(f-y*y-x*x/2-x*x*(x+s.Rational(1,2)))==0)
++disc=s.discriminant(f,y)
++ck('discriminant_odd_factor',s.factor(disc)==-4*x*x*(x+1) and s.Poly(disc,x).diff().eval(-1)!=0)
++ck('distant_arc_identity',s.expand(f.subs({x:-1-t*t,y:t*(1+t*t)}))==0)
++ck('distant_arc_regular_at_zero',s.diff(t*(1+t*t),t).subs(t,0)==1)
++A=s.Matrix([[0,-1],[1,0]]); D=s.diag(2,s.Rational(1,2)); B=D*A*D.inv()
++ck('elliptic_separate_conjugacy',A.det()==B.det()==1 and A.trace()==B.trace()==0)
++ck('noncompact_product_diagonal',A*B==s.diag(-s.Rational(1,4),-4))
++ck('noncompact_product_trace',s.trace(A*B)==-s.Rational(17,4) and s.trace(A*B)<-2)
++result={'passed':len(checks),'failed':0,'sympy_version':s.__version__,'checks':checks,'scope':'Exact algebraic diagnostics only; no universal knot theorem, census computation, or new compact-real arc.'}
++Path(__file__).with_name('independent_results.json').write_text(json.dumps(result,indent=2)+'\n')
++print(json.dumps({'passed':len(checks),'failed':0,'sympy_version':s.__version__}))
+diff --git a/unsolved_math_prioritization/attempts/2744/independent_review/independent_results.json b/unsolved_math_prioritization/attempts/2744/independent_review/independent_results.json
+new file mode 100644
+index 000000000..0571696be
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/independent_review/independent_results.json
+@@ -0,0 +1,129 @@
++{
++  "passed": 121,
++  "failed": 0,
++  "sympy_version": "1.14.0",
++  "checks": {
++    "unit_quaternion_0": "PASS",
++    "su2_0": "PASS",
++    "adjoint_real_0": "PASS",
++    "adjoint_orthogonal_0": "PASS",
++    "adjoint_orientation_0": "PASS",
++    "central_sign_invisible_0": "PASS",
++    "faithful_mod_center_control_0": "PASS",
++    "unit_quaternion_1": "PASS",
++    "su2_1": "PASS",
++    "adjoint_real_1": "PASS",
++    "adjoint_orthogonal_1": "PASS",
++    "adjoint_orientation_1": "PASS",
++    "central_sign_invisible_1": "PASS",
++    "faithful_mod_center_control_1": "PASS",
++    "unit_quaternion_2": "PASS",
++    "su2_2": "PASS",
++    "adjoint_real_2": "PASS",
++    "adjoint_orthogonal_2": "PASS",
++    "adjoint_orientation_2": "PASS",
++    "central_sign_invisible_2": "PASS",
++    "faithful_mod_center_control_2": "PASS",
++    "unit_quaternion_3": "PASS",
++    "su2_3": "PASS",
++    "adjoint_real_3": "PASS",
++    "adjoint_orthogonal_3": "PASS",
++    "adjoint_orientation_3": "PASS",
++    "central_sign_invisible_3": "PASS",
++    "faithful_mod_center_control_3": "PASS",
++    "unit_quaternion_4": "PASS",
++    "su2_4": "PASS",
++    "adjoint_real_4": "PASS",
++    "adjoint_orthogonal_4": "PASS",
++    "adjoint_orientation_4": "PASS",
++    "central_sign_invisible_4": "PASS",
++    "faithful_mod_center_control_4": "PASS",
++    "unit_quaternion_5": "PASS",
++    "su2_5": "PASS",
++    "adjoint_real_5": "PASS",
++    "adjoint_orthogonal_5": "PASS",
++    "adjoint_orientation_5": "PASS",
++    "central_sign_invisible_5": "PASS",
++    "faithful_mod_center_control_5": "PASS",
++    "unit_quaternion_6": "PASS",
++    "su2_6": "PASS",
++    "adjoint_real_6": "PASS",
++    "adjoint_orthogonal_6": "PASS",
++    "adjoint_orientation_6": "PASS",
++    "central_sign_invisible_6": "PASS",
++    "faithful_mod_center_control_6": "PASS",
++    "unit_quaternion_7": "PASS",
++    "su2_7": "PASS",
++    "adjoint_real_7": "PASS",
++    "adjoint_orthogonal_7": "PASS",
++    "adjoint_orientation_7": "PASS",
++    "central_sign_invisible_7": "PASS",
++    "faithful_mod_center_control_7": "PASS",
++    "unit_quaternion_8": "PASS",
++    "su2_8": "PASS",
++    "adjoint_real_8": "PASS",
++    "adjoint_orthogonal_8": "PASS",
++    "adjoint_orientation_8": "PASS",
++    "central_sign_invisible_8": "PASS",
++    "faithful_mod_center_control_8": "PASS",
++    "adjoint_product_0": "PASS",
++    "adjoint_product_1": "PASS",
++    "adjoint_product_2": "PASS",
++    "adjoint_product_3": "PASS",
++    "adjoint_product_4": "PASS",
++    "adjoint_product_5": "PASS",
++    "adjoint_product_6": "PASS",
++    "adjoint_product_7": "PASS",
++    "sign_word_0": "PASS",
++    "sign_word_1": "PASS",
++    "sign_word_00": "PASS",
++    "sign_word_01": "PASS",
++    "sign_word_10": "PASS",
++    "sign_word_11": "PASS",
++    "sign_word_000": "PASS",
++    "sign_word_001": "PASS",
++    "sign_word_010": "PASS",
++    "sign_word_011": "PASS",
++    "sign_word_100": "PASS",
++    "sign_word_101": "PASS",
++    "sign_word_110": "PASS",
++    "sign_word_111": "PASS",
++    "sign_word_0000": "PASS",
++    "sign_word_0001": "PASS",
++    "sign_word_0010": "PASS",
++    "sign_word_0011": "PASS",
++    "sign_word_0100": "PASS",
++    "sign_word_0101": "PASS",
++    "sign_word_0110": "PASS",
++    "sign_word_0111": "PASS",
++    "sign_word_1000": "PASS",
++    "sign_word_1001": "PASS",
++    "sign_word_1010": "PASS",
++    "sign_word_1011": "PASS",
++    "sign_word_1100": "PASS",
++    "sign_word_1101": "PASS",
++    "sign_word_1110": "PASS",
++    "sign_word_1111": "PASS",
++    "quotient_relation_0": "PASS",
++    "quotient_sign_orbit_0": "PASS",
++    "quotient_fiber_size_0": "PASS",
++    "quotient_relation_1": "PASS",
++    "quotient_sign_orbit_1": "PASS",
++    "quotient_fiber_size_1": "PASS",
++    "quotient_relation_2": "PASS",
++    "quotient_sign_orbit_2": "PASS",
++    "quotient_fiber_size_2": "PASS",
++    "quotient_relation_3": "PASS",
++    "quotient_sign_orbit_3": "PASS",
++    "quotient_fiber_size_3": "PASS",
++    "node_origin_singular": "PASS",
++    "strict_isolation_decomposition": "PASS",
++    "discriminant_odd_factor": "PASS",
++    "distant_arc_identity": "PASS",
++    "distant_arc_regular_at_zero": "PASS",
++    "elliptic_separate_conjugacy": "PASS",
++    "noncompact_product_diagonal": "PASS",
++    "noncompact_product_trace": "PASS"
++  },
++  "scope": "Exact algebraic diagnostics only; no universal knot theorem, census computation, or new compact-real arc."
++}
+diff --git a/unsolved_math_prioritization/attempts/2744/independent_review/submitted_check_controls.py b/unsolved_math_prioritization/attempts/2744/independent_review/submitted_check_controls.py
+new file mode 100644
+index 000000000..3ccce887d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/independent_review/submitted_check_controls.py
+@@ -0,0 +1,30 @@
++#!/usr/bin/env python3
++"""Exact negative controls. No knot relation or new character arc is certified."""
++from pathlib import Path
++import json
++import sympy as s
++x,y,t=s.symbols('x y t',real=True);f=y*y+x*x*(1+x)
++checks={}
++def ck(name,value):
++    assert bool(value),name
++    checks[name]='PASS'
++ck('isolated_point_on_curve',f.subs({x:0,y:0})==0)
++ck('point_singular',s.diff(f,x).subs({x:0,y:0})==0 and s.diff(f,y).subs({x:0,y:0})==0)
++ck('isolation_remainder',s.expand(f-(y*y+x*x/2)-x*x*(x+s.Rational(1,2)))==0)
++ck('quadratic_discriminant',s.expand(s.discriminant(f,y)+4*x*x*(1+x))==0)
++ck('simple_factor_in_discriminant',s.diff(1+x,x)==1)
++ck('genuine_other_real_arc',s.expand(f.subs({x:-1-t*t,y:t*(1+t*t)}))==0)
++A=s.Matrix([[0,-1],[1,0]]);B=s.Matrix([[0,-4],[s.Rational(1,4),0]])
++ck('elliptic_generators',A.det()==1 and B.det()==1 and s.trace(A)==s.trace(B)==0)
++ck('noncompact_product',s.trace(A*B)==-s.Rational(17,4))
++D=s.diag(2,s.Rational(1,2));ck('generators_conjugate',D*A*D.inv()==B)
++# Rational unit quaternions represented in SU(2), including sign twins.
++qs=[(1,0,0,0),(0,1,0,0),(s.Rational(3,5),s.Rational(4,5),0,0),(s.Rational(1,2),)*4]
++for j,(a,b,c,d) in enumerate(qs):
++    U=s.Matrix([[a+s.I*b,c+s.I*d],[-c+s.I*d,a-s.I*b]])
++    ck(f'unitary_{j}',s.simplify(U.conjugate().T*U)==s.eye(2) and s.simplify(U.det())==1)
++    ck(f'sign_quotient_trace_square_{j}',s.trace(U)**2==s.trace(-U)**2)
++    ck(f'sign_quotient_adjoint_{j}',(U*A*U.inv()-(-U)*A*(-U).inv()).applyfunc(s.simplify)==s.zeros(2))
++r={'passed':len(checks),'failed':0,'sympy_version':s.__version__,'checks':checks,'scope':'Algebraic shortcut controls only; no theorem about a new knot, and no solution of KP-1.85.'}
++Path(__file__).with_name('check_results.json').write_text(json.dumps(r,indent=2)+'\n')
++print(json.dumps(r,indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2744/independent_review/submitted_results.json b/unsolved_math_prioritization/attempts/2744/independent_review/submitted_results.json
+new file mode 100644
+index 000000000..3d1e4d634
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/independent_review/submitted_results.json
+@@ -0,0 +1,29 @@
++{
++  "passed": 21,
++  "failed": 0,
++  "sympy_version": "1.14.0",
++  "checks": {
++    "isolated_point_on_curve": "PASS",
++    "point_singular": "PASS",
++    "isolation_remainder": "PASS",
++    "quadratic_discriminant": "PASS",
++    "simple_factor_in_discriminant": "PASS",
++    "genuine_other_real_arc": "PASS",
++    "elliptic_generators": "PASS",
++    "noncompact_product": "PASS",
++    "generators_conjugate": "PASS",
++    "unitary_0": "PASS",
++    "sign_quotient_trace_square_0": "PASS",
++    "sign_quotient_adjoint_0": "PASS",
++    "unitary_1": "PASS",
++    "sign_quotient_trace_square_1": "PASS",
++    "sign_quotient_adjoint_1": "PASS",
++    "unitary_2": "PASS",
++    "sign_quotient_trace_square_2": "PASS",
++    "sign_quotient_adjoint_2": "PASS",
++    "unitary_3": "PASS",
++    "sign_quotient_trace_square_3": "PASS",
++    "sign_quotient_adjoint_3": "PASS"
++  },
++  "scope": "Algebraic shortcut controls only; no theorem about a new knot, and no solution of KP-1.85."
++}
+diff --git a/unsolved_math_prioritization/attempts/2744/independent_review/verdict.json b/unsolved_math_prioritization/attempts/2744/independent_review/verdict.json
+new file mode 100644
+index 000000000..26c24ba79
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/independent_review/verdict.json
+@@ -0,0 +1,30 @@
++{
++  "problem_id": 2744,
++  "date": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "verdict": "PASS_SCOPED_UNRESOLVED_AUDIT",
++  "artifact": "OBSTRUCTION.md",
++  "artifact_sha256": "99a09c92911e10ee1cba5de34f4ab78274cb8e211fa0f1456ed80b640819f872",
++  "full_problem_solved": false,
++  "mandatory_corrections": [],
++  "optional_clarifications": [
++    "The CRS introduction recalls a curve of irreducible SU(2) characters somewhere, not merely one character; this still leaves canonical-component membership unresolved."
++  ],
++  "source_versions": {
++    "Chinburg_Reid_Stover": "1706.00952v3, 2020-07-27; IMRN 2022",
++    "Boyle_Rouse": "2403.07157v1, 2024-03-11",
++    "Dix": "2024 Berkeley dissertation, Theorem 3.3.3 and Corollary 3.3.4"
++  },
++  "submitted_assertions_passed": 21,
++  "independent_results": "independent_results.json",
++  "scope_holds": [
++    "Universal compact-real arc assertion unresolved",
++    "No new knot counterexample",
++    "No novelty claim",
++    "Bounded literature search, not exhaustive"
++  ],
++  "source_files_edited": false,
++  "review_sha256": "6475638fadeb8bdbfb6ca23e37f9a3b1805a8e715fd928b15a58a51b3f90d10f",
++  "independent_assertions_passed": 121
++}
+diff --git a/unsolved_math_prioritization/attempts/2744/provenance.json b/unsolved_math_prioritization/attempts/2744/provenance.json
+new file mode 100644
+index 000000000..0eca9bda1
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/provenance.json
+@@ -0,0 +1,65 @@
++{
++  "problem_id": 2744,
++  "retrieved_date": "2026-09-30",
++  "requested_page": "https://www.unsolvedmath.com/problems/2744",
++  "page_result": "Tried first; no usable content retrieved; used pinned full record and original K3 source.",
++  "dataset": "ulamai/UnsolvedMath",
++  "dataset_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "prior_attempt_checks": {
++    "project_queue": "rank 53, queued, 0/5 before this attempt",
++    "prior_attempt_folder": "none",
++    "all_state_pr_search": "no result for 2744, checked again 05:25 UTC",
++    "remote_branch_search": "no match before first push",
++    "related_groups": "no distinct prior attempt found",
++    "upstream_literature_triage": "preserved and credited; not treated as a project attempt"
++  },
++  "source_checks": [
++    {
++      "name": "k3",
++      "url": "https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf",
++      "scope": "Problem 1.85, printed pp.76\u201377",
++      "pdf_sha256": "ae56518166fe38aaaf555c58614329228afe734e743b111badec4060877fa12f"
++    },
++    {
++      "name": "crs",
++      "url": "https://arxiv.org/pdf/1706.00952",
++      "scope": "v3; Theorem 1.8, Conjecture 1.9, Corollary 1.10; published IMRN 2022",
++      "pdf_sha256": "00923ea4281f030b915ea4dcc5752509605b9ac771b32dcff99f97b2919c56a5"
++    },
++    {
++      "name": "dix2024",
++      "url": "https://escholarship.org/uc/item/27j2v475",
++      "scope": "Section 3.3, Theorem 3.3.3, Corollary 3.3.4; Section 5 future work",
++      "pdf_sha256": "9328a51128ab729148307b7d54e1c869a0dc3693873a4eb60b71d3bc2de4bc37"
++    },
++    {
++      "name": "heusener-porti",
++      "url": "https://arxiv.org/pdf/math/0302075",
++      "scope": "Proposition 4.2, Remark 4.3, Example 4.6",
++      "pdf_sha256": "c0be56b131d0335feb190464675b61287fe10f592b72090b61b5fecf6d7bf402"
++    },
++    {
++      "name": "Boyle\u2013Rouse 2024",
++      "url": "https://arxiv.org/pdf/2403.07157",
++      "scope": "Theorem 1.1 and Remarks 1.2\u20131.3; SL canonical curves, not separate PSL images"
++    },
++    {
++      "name": "Long\u2013Reid 2011",
++      "url": "https://math.rice.edu/~ar99/fields_of_defn_published.pdf",
++      "scope": "Sections 4\u20136; general one-cusped examples distinguished from knots in S3"
++    }
++  ],
++  "artifact_sha256": "99a09c92911e10ee1cba5de34f4ab78274cb8e211fa0f1456ed80b640819f872",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "status": "unsolved",
++  "independent_review": {
++    "verdict": "PASS_SCOPED_UNRESOLVED_AUDIT",
++    "reviewed_artifact_sha256": "99a09c92911e10ee1cba5de34f4ab78274cb8e211fa0f1456ed80b640819f872",
++    "report": "independent_review/REVIEW.md",
++    "review_sha256": "6475638fadeb8bdbfb6ca23e37f9a3b1805a8e715fd928b15a58a51b3f90d10f",
++    "independent_checks_passed": 121,
++    "mandatory_corrections": []
++  },
++  "full_resolution_completion_estimate_percent": 0
++}
+diff --git a/unsolved_math_prioritization/attempts/2744/source_record.json b/unsolved_math_prioritization/attempts/2744/source_record.json
+new file mode 100644
+index 000000000..53d8b1f9f
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/source_record.json
+@@ -0,0 +1,41 @@
++{
++  "id": 2744,
++  "problem_number": "KP-1.85",
++  "title": "Kirby Problem 1.85",
++  "statement": "Let $K$ be a hyperbolic knot in $S^{3}$ and $\\chi(K)$ the space of con-\njugacy classes of $\\operatorname{PSL}_{2}(\\mathbb{C})$ representations of $\\pi_{1}(S^{3} - K)$. There is a distinguished\ncomponent of $\\chi(K)$ that contains the discrete faithful representation coming from\nthe finite volume hyperbolic structure on the complement of $K$. Does this component\nalways contain an arc of representations to $\\operatorname{SO}(3)$?",
++  "background": "Source: Kirby's Problems in Low-Dimensional Topology notes. Original problem number: KP-1.85.\n\nLiterature notes:\n(1) Chinburg-Reid-Stover conjectured [CRS22, Conjecture 1.9] that there\nalways is such an arc of representations. A positive answer would in fact\nprove that the knot groups of hyperbolic knots always have faithful $\\operatorname{SO}(3)$\nrepresentations.\n(2) It is explained in [Ago22] that an affirmative answer to this question\nwould prove there are no infinite descending chains of hyperbolic knots in\nthe ribbon concordance partial order [Gor81, Question 6.2]. See Prob-\nlem 1.56 for a knot Floer homology perspective on Gordon’s question.\n\nReferences cited:\n- [CRS22] Ted Chinburg, Alan W. Reid, and Matthew Stover. Azumaya algebras and canonical components. Int. Math. Res. Not. IMRN, 2022(7):4969–5036, 2022. doi:10.1093/imrn/rnaa209.\n- [Ago22] Ian Agol. Ribbon concordance of knots is a partial ordering. Comm. Amer. Math. Soc., 2:374–379, 2022. doi:10.1090/cams/15.\n- [Gor81] C. McA. Gordon. Ribbon concordance of knots in the 3-sphere. Math. Ann., 257(2):157–170, 1981. doi:10.1007/BF01458281.\n\n<!-- LITERATURE-TRIAGE:BEGIN -->\n## Literature review (checked 2026-08-17)\n\n**Status:** partially_solved  \n**Classification:** PARTIAL-PROGRESS\n\n**Current literature assessment.** The canonical-component SO(3)-arc conjecture remains open for arbitrary hyperbolic knots, but it has been proved for knots admitting a Euclidean cone structure with cone angle at most pi.\n\n**Verified partial progress.**\n\n- Chinburg--Reid--Stover formulated the general conjecture in their study of canonical components.\n- Dix proves the conjecture for knots admitting a Euclidean cone-manifold structure with cone angle at most pi.\n- The cone-manifold condition applies to the hyperbolic 2-bridge setting used in Dix's ribbon-concordance application.\n\n**Full solution or refutation.**\n\nCone-manifold deformation supplies the requested compact-real arc for a direct geometric class, but no theorem covering every hyperbolic knot was found.\n\n**What remains.**\n\nEstablish an SO(3) arc on the distinguished PSL_2(C) character component for hyperbolic knots not covered by the cone-angle criterion.\n\n**Sources checked.**\n\n- K3: A New Problem List in Low-Dimensional Topology, Problem 1.85 (2026). (authoritative_secondary): https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf\n  Evidence used: States the general conjecture and its implications for faithful SO(3) representations and ribbon concordance.\n- Ted Chinburg, Alan W. Reid and Matthew Stover, Azumaya algebras and canonical components, International Mathematics Research Notices 2022, 4969--5036. (primary): https://doi.org/10.1093/imrn/rnaa209\n  Evidence used: Formulates the canonical-component conjecture.\n- James Patrick Dix, Ribbon Concordances and Representation Varieties, PhD dissertation, University of California, Berkeley (2024). (primary): https://escholarship.org/uc/item/27j2v475\n  Evidence used: Proves the conjecture under the Euclidean cone-angle hypothesis and derives the 2-bridge ribbon-concordance application.\n\n**Review notes.** The direct partial theorem is in a dissertation; the exact passage between SL_2 and PSL_2 character conventions merits expert normalization review.\n\nThis is a dated literature triage; an open classification is not proof that no later or unindexed result exists.\n<!-- LITERATURE-TRIAGE:END -->",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "category_id": 7,
++  "set_id": 11,
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-05-13T00:00:00Z",
++  "updated_at": "2026-05-13T00:00:00Z",
++  "published": true,
++  "category": {
++    "id": 7,
++    "name": "topology",
++    "display_name": "Topology",
++    "description": "Properties preserved under continuous deformations.",
++    "slug": "topology",
++    "order_index": 7,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 11,
++    "name": "kirby_low_dimensional_topology",
++    "display_name": "Kirby's Problems in Low-Dimensional Topology",
++    "description": "Problems from Kirby-style notes on low-dimensional topology, including knot theory, 3-manifolds, 4-manifolds, and related invariants.",
++    "slug": "kirby-low-dimensional-topology",
++    "order_index": 11,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/2744/turns.json b/unsolved_math_prioritization/attempts/2744/turns.json
+new file mode 100644
+index 000000000..3369af884
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2744/turns.json
+@@ -0,0 +1,20 @@
++{
++  "problem_id": 2744,
++  "problem_number": "KP-1.85",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "turn_limit": 5,
++  "substantive_turns_used": 1,
++  "outcome": "unsolved",
++  "responses": [
++    {
++      "turn": 1,
++      "date": "2026-09-30",
++      "artifact": "OBSTRUCTION.md",
++      "outcome": "unsolved",
++      "reason": "Known cone-manifold cases and finite-quotient normalization do not prove a compact-real arc on the chosen canonical component for every hyperbolic knot."
++    }
++  ],
++  "queue_update_owner": "coordinating agent",
++  "note": "Recorded locally; shared queue generator was not run by this worker."
++}

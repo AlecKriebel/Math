@@ -1,0 +1,11 @@
+--- capture_own_v3
++++ capture_own_v4
+@@ -22,7 +22,7 @@
+     pre={'schema':'pr45-acceptance-source-adversary-prelaunch/v1','operator_pid':os.getpid(),'argv':argv,'cwd':str(H),'prepared_utc':utc(),'source_sha256':sha(source_raw),'operator_sha256':sha(operator_raw),'stdin_supplied':False,'production_imported_compiled_executed':False,'completed_capture_absent_before_launch':not (d/'CAPTURE.json').exists()}
+     put(d/'PRELAUNCH_SOURCE.py',source_raw);put(d/'PRELAUNCH_OPERATOR.py',operator_raw);put(d/'PRELAUNCH.json',enc(pre))
+     start=utc();p=subprocess.Popen(argv,cwd=H,stdin=subprocess.DEVNULL,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1'));out,err=p.communicate();end=utc()
+-    rec={'schema':'pr45-acceptance-source-adversary-actual-capture/v1',**pre,'started_utc':start,'finished_utc':end,'child_pid':p.pid,'actual_execution':True,'completed':True,'exit_code':p.returncode,'expected_exit_code':v.expected_exit,'source_unchanged':source.read_bytes()==source_raw,'operator_unchanged':Path(__file__).read_bytes()==operator_raw,'future_acceptance_approved':False}
++    rec={**pre,'schema':'pr45-acceptance-source-adversary-actual-capture/v1','started_utc':start,'finished_utc':end,'child_pid':p.pid,'actual_execution':True,'completed':True,'exit_code':p.returncode,'expected_exit_code':v.expected_exit,'source_unchanged':source.read_bytes()==source_raw,'operator_unchanged':Path(__file__).read_bytes()==operator_raw,'future_acceptance_approved':False}
+     for channel,b in [('stdout',out),('stderr',err)]:put(d/(channel+'.bin'),b);rec[channel]={'path':channel+'.bin','bytes':len(b),'sha256':sha(b)}
+     good=p.returncode==v.expected_exit and rec['source_unchanged'] and rec['operator_unchanged'];rec['status']='PASS_OWN_EXPECTED_OUTCOME' if good else 'FAIL'
+     put(d/'CAPTURE.json',enc(rec))

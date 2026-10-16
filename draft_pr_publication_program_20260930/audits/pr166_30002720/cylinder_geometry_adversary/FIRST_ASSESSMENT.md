@@ -1,0 +1,15 @@
+# First independent assessment — cylinder geometry route
+
+Sealed assessment timestamp: 2026-10-12T10:33:34.927831+00:00
+Original PR head: efc3f35a72543ad9ae76fd31a860116f1ffd4a32
+Candidate SHA256: c72a38099e93b4d593be231e8f0c4ad726a399c3d61283da9f7b1f7e55801a5c (13938 bytes).
+
+Verdict: the submitted mathematical theorem survives this independent adversarial audit. No substantive gap or counterexample was found. The reviewer independently reconstructed every cylinder identity and the entire probabilistic implication, using the primary process preprint only to confirm the exact model, operational cost and question scope. The strongest verified result is failure of tightness, under every deterministic real centering sequence, at the candidate's explicit fixed nonboundary continuity rank t. The proof does not substitute process non-tightness, a changing rank, or an endpoint convention for a fixed marginal.
+
+All-index checks include the initial fair bit and d-1 transition convention, isolated square-position counts, the rational rank series, strict nonboundary interiority and continuity, both endpoint means with the first terminal switch retained, the singleton-stopped bucket recursion including the empty prefix, local cylinder lengths with K>=1, and the exact 2j-zero gap. The nearby-jump mechanism has P_j jump height and rank distance O(P_j q^(2j)); w_j=P_jq^j yields sample size ceil(w_j^-2), sqrt(n_j)P_j>=q^-j and log(n_j)=O(j^2). Independently bounded cost noise is o(n_jP_j). The triangular binomial CLT gives positive limiting mass in each window; their cost bands have separation much larger than sqrt(n_j), uniformly over deterministic centers.
+
+An additional conservative all-index estimate gives cost-band error below P_j/8 for every j>=100. Exact controls cover 8191 cylinder words through depth 12, 49 square indices j=2 through 50, and 9216 stopped-selection rank cases on subsets of distinct four-bit words. Six negative mutations detect root/transition/terminal/rank-increment/K=0/singleton convention errors. Finite controls are diagnostics; the analytic derivation supplies the asymptotics. A deterministic rerun reproduced the complete control output byte for byte.
+
+Independence: before this seal only the candidate COUNTEREXAMPLE.md, permitted neutral problem.json/source_manifest.json, and independently retrieved primary sources were read. Author verifier/code/output, author reviews, status/gate/frozen verdicts, root and sibling reviews were not consulted. No outside human outreach, remote mutation, Git/index/ref/branch/checkout operation or release occurred. No author comparison is required to support this assessment.
+
+Scope limits: no historical-priority finding, all-rank classification, almost-everywhere conclusion or data-dependent-centering failure is asserted. The source's published boundary mechanism is credited. The exact open question is answered negatively in its universal fixed-rank interpretation; an almost-everywhere or suitably regular-rank reformulation remains outside this result. Completion estimate: 90% (packaging and final inventory remain).

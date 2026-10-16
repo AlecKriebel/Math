@@ -1,0 +1,11 @@
+--- original
++++ mutant
+@@ -15,7 +15,7 @@
+ rot={}
+ for i in roots:
+     prev,next_,pend=(i-1)%4,(i+1)%4,paths[i][0]
+-    rot[i]=[prev,next_,pend] if i<2 else [prev,pend,next_]
++    rot[i]=[prev,next_,pend] if i<4 else [prev,pend,next_]
+ for v in V:
+     if v not in rot:rot[v]=sorted(adj[v])
+ assert len(E)==10 and len(V)==10

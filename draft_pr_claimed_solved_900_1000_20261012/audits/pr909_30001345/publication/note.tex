@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage{titling}
+\setlength{\droptitle}{-30pt}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\rough}{\overline M}
+\newcommand{\C}{\mathbb C}
+\title{Classical arrangement counterexamples to\protect\\ summed rough-\(M\) semicontinuity}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{October 14, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The classical dual Hesse arrangement and the established deformation of an
+affine line arrangement to its pencil give a delta-constant multibranch family
+whose central rough invariant is \(7\), whereas the sum on every nearby fiber
+is \(12\). We record the elementary corollary with explicit coefficients,
+finite simultaneous normalization, and a common transverse ball. It gives a
+negative answer to the unrestricted summed reading of the rough-invariant
+question in Borodzik's 2009 Oberwolfach contribution. It does not address the
+later explicitly unibranched parametric conjecture. We credit the earlier
+construction and method and make no firstness or present-openness claim.
+\end{abstract}
+
+\paragraph{Question and provenance.}
+For a reduced plane-curve singularity, let
+\[
+ \rough(C,p)=K\cdot(K+D),\qquad D=C'+E_{\rm red},
+\]
+on its minimal embedded resolution; \(K\) is the local canonical divisor
+supported on the exceptional divisor. For a fiber with several singularities
+we take the sum of these local values in a fixed representative.
+Borodzik's report \cite[pp.~2446--2447]{OWR} defines this rough invariant and
+asks about upper semicontinuity, including delta-constant deformations.
+The question itself does not write a sum or impose unibranchedness; its
+following fixed-ball discussion compares sums over nearby singularities.
+Our conclusion concerns precisely this unrestricted summed reading, without
+asserting an unstated intended scope.
+
+The geometry is prior mathematics. De Jong--van Straten
+\cite[Definition~4.2 and Example~6.6]{DvS} use the exact nine-line,
+twelve-triple configuration in the delta-constant picture-deformation
+framework. The scaling of affine line constants to zero is explicit in
+Plamenevskaya--Starkston \cite[Example~8.7]{PS}. Borodzik
+\cite[p.~578]{B} already uses contraction to an ordinary multiple point
+and its rough value \(r-2\). Thus the theorem below is an explicit classical
+corollary and formulation clarification; it asserts neither a new
+arrangement nor a new deformation method. The inspected sources did not
+establish earlier publication of this exact rough-invariant comparison;
+that bounded observation does not establish priority.
+
+\begin{theorem}\label{thm}
+There is a reduced flat holomorphic family in the open unit ball in
+\(\C^2\), over \(|t|<1/4\), with finite simultaneous normalization and smooth
+disjoint transverse boundary circles, such that the central fiber has an
+ordinary ninefold point and every nonzero fiber has exactly twelve ordinary
+triple points. All singularities lie inside the ball of radius \(1/2\), and
+\[
+ \delta(C_0,0)=\sum_p\delta(C_t,p)=36,\qquad
+ \rough(C_0,0)=7<12=\sum_p\rough(C_t,p)\quad(t\ne0).
+\]
+Every normalized fiber consists of nine disks. The construction restricts,
+after scaling, to arbitrarily small ball representatives.
+\end{theorem}
+
+\begin{proof}
+Let \(\omega\) be a primitive cube root of unity. In \(\mathbb P^2\) take
+\[
+ A_i:X-\omega^iY=0,\quad B_j:Y-\omega^jZ=0,\quad
+ C_k:Z-\omega^kX=0\qquad(i,j,k\bmod3).
+\]
+The three same-group intersections are the coordinate vertices. The other
+nine are
+\[
+ P_{ij}=[\omega^{i+j}:\omega^j:1],
+\]
+each incident to exactly
+\(A_i,B_j,C_{-i-j}\). All twelve are ordinary triples, and they exhaust
+the \(12\binom32=\binom92\) pairs. In particular there are no further
+intersections. This is the dual Hesse arrangement of \cite{DvS}.
+
+The infinity \(L=X+2Y+4Z=0\) misses the vertices and every \(P_{ij}\),
+since \(|\omega^{i+j}+2\omega^j+4|\ge1\).
+In the chart \(u=X/L,v=Y/L\), all nine affine directions are distinct.
+Scaling \((u,v)=(x/t,y/t)\) gives the equation
+\begin{equation}\label{F}
+ F=(x^3-y^3)\bigl(64y^3-(t-x-2y)^3\bigr)
+              \bigl((t-x-2y)^3-64x^3\bigr)=0.
+\end{equation}
+Its nine linear factors, indexed by \(q\in\{1,\omega,\omega^2\}\), are
+\[
+ x-qy,\qquad qx+(4+2q)y-qt,\qquad -(1+4q)x-2y+t.
+\]
+For \(t\ne0\) its singular set is exactly the scaled twelve-point set;
+at zero the nine distinct directions meet only at the origin. Every fiber
+is reduced. The coefficient of \(x^9\) is the constant \(-65\), so the
+polynomial quotient is free of rank nine over \(\C[y,t]\) and flat over
+\(\C[t]\). Directly in the analytic local ring at parameter \(t_0\),
+put \(s=t-t_0\). If \(sg=Fh\), reduction modulo \(s\) in the domain
+\(\C\{x-x_0,y-y_0\}\) shows \(h=sh_1\), since \(F_{t_0}\ne0\).
+Cancellation gives \(g=Fh_1\). The quotient is torsion-free over the
+base discrete valuation ring, hence flat. This persists on open restriction.
+
+Each linear factor has nonzero \(x\)-coefficient, so its component plane
+is a graph over \((y,t)\). The disjoint union of the nine planes maps
+finitely to \(F=0\): on rings its algebra is the finite product of the
+nine cyclic component quotients. The component ideals intersect in their
+product, making this an injective extension with the same total fraction
+ring. The product algebra is normal, finite and integral over the reduced
+quotient, hence is its integral closure. At every fixed \(t\), including
+zero, it restricts to the disjoint union of nine distinct smooth lines,
+which is the normalization of that fiber. This is finite simultaneous
+normalization, with normalized projection smooth. The total space \(F=0\)
+itself is nonnormal. Analytic restriction preserves this description.
+
+Use the open unit ball for the holomorphic family, and its closed ball for
+boundary statements. The vertex chart coordinates are \((1,0),(0,1/2),(0,0)\).
+At the other points, both coordinate numerators have modulus one and the
+common denominator has modulus at least one. Hence every singular point
+has norm at most \(\sqrt2|t|<1/2\). For any of the displayed lines
+\(ax+by+ct=0\), its distance to the origin is
+\(d(t)=|ct|/(|a|^2+|b|^2)^{1/2}\).
+The three groups have bounds respectively \(0,|t|/\sqrt5,|t|/\sqrt{13}\),
+all strictly below one. A closest point and a fixed unit direction are
+\[
+ p(t)=-\frac{ct(\bar a,\bar b)}{|a|^2+|b|^2},\qquad
+ v=\frac{(-b,a)}{\sqrt{|a|^2+|b|^2}}.
+\]
+The sphere intersection is
+\(p(t)+\sqrt{1-d(t)^2}\,e^{i\theta}v\), a transverse smoothly varying
+circle. These nine circles are disjoint because all pair intersections
+are strictly inside the half-radius ball. Thus they give a link isotopy
+along any parameter path, and each normalized restricted line is a disk.
+The central cone is transverse to every sphere about zero. Homogeneity
+\(F(\rho x,\rho y,\rho t)=\rho^9F(x,y,t)\) gives the corresponding
+radius-\(\rho\) representative over \(|t|<\rho/4\). No properness of
+the open-ball projection is needed; the normalization map is finite.
+
+For an ordinary \(r\)-fold point, transverse smooth branches give
+\(\delta_r=\binom r2\), by the additivity formula
+\(\delta(fg)=\delta(f)+\delta(g)+I(f,g)\).
+For \(r\ge3\), one blowup has \(E^2=-1\), \(E\cdot C'=r\), and
+\(K=E\): adjunction gives \((K+E)E=-2\).
+Consequently
+\[
+ \rough_r=E\cdot(C'+2E)=r-2.
+\]
+A node already has normal crossings and rough value zero, in agreement
+with this formula at \(r=2\). Applying it at the ordinary ninefold point
+and all twelve triples proves both displayed equalities and the strict
+inequality. In particular delta constancy is an equality of total local
+invariants, with all singularities retained in the representative.
+\end{proof}
+
+\paragraph{Classical Fermat extension.}
+For every integer \(n\ge3\), the classical arrangement
+\[
+ (X^n-Y^n)(Y^n-Z^n)(Z^n-X^n)=0
+\]
+has \(3n\) lines, three ordinary
+\(n\)-fold vertices and \(n^2\) other ordinary triples
+\cite[p.~119]{H}. Indeed the latter are
+\([\zeta^{i+j}:\zeta^j:1]\); exactly one line of each group passes
+through each, and same-group pairs meet at the vertices. These exhaust
+all pairs. The same infinity misses every intersection. Scaling its
+affine factors gives, by the proof above, finite simultaneous normalization
+and a sufficiently small common transverse ball. Therefore
+\[
+ 3\binom n2+3n^2=\binom{3n}2,\qquad
+ \sum_p\rough(C_t,p)-\rough(C_0,0)
+   =3(n-2)+n^2-(3n-2)=n^2-4.
+\]
+The excesses are unbounded. This conclusion follows from the all-\(n\)
+incidence argument, rather than a finite computational range. At \(n=2\)
+the vertices are nodes and the excess is zero.
+
+\paragraph{Limits of the conclusion.}
+The sums here run over all moving singularities; no counterexample to a
+marked-section assertion is claimed. The central curve has nine branches.
+Borodzik's published Definition~2.1 and Conjecture~3.8
+\cite[pp.~575,577]{B} require a parametric deformation to have a
+\emph{unibranched} central fiber as well as rational normalization.
+The present family fails that hypothesis and does not resolve that
+conjecture. We use precisely rough \(K(K+D)\), without substituting a
+different multibranch convention or a fine invariant. For these ordinary
+points \(K+D\) is relatively nef, so the negative part is zero; this does
+not identify fine-invariant conventions on other singularities.
+
+\paragraph{Verification and review status.}
+The companion source and verification archive contains the unchanged
+original 28-file packet, independent exact arithmetic controls, reviewed
+provenance records, and a verifier using externally anchored hashes and
+isolated nonoptimized replay. Computation checks incidence, factorization,
+invariant arithmetic and boundary estimates; it supplements the analytic
+proof and proves neither priority nor a universal assertion by sampling.
+Raw third-party source bodies are excluded. The original recovery record
+says ``1 verified/5''; the earlier attempt count is unavailable.
+AI tools were used extensively in the research, writing and independent
+adversarial checking. Those checks are not independent human peer review.
+This preprint is unrefereed.
+
+\clearpage
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{OWR} M.~Borodzik, On deformations of plane curve singularities,
+in \emph{Singularities}, Oberwolfach Reports \textbf{6} (2009), no.~3,
+2446--2448. Report published June~30, 2010.
+\href{https://doi.org/10.4171/OWR/2009/43}{doi:10.4171/OWR/2009/43}.
+\bibitem{B} M.~Borodzik, Deformations of singularities of plane curves:
+topological approach, Osaka J. Math. \textbf{51} (2014), no.~3, 573--583.
+\href{https://doi.org/10.18910/50809}{doi:10.18910/50809}.
+\bibitem{DvS} T.~de Jong and D.~van Straten, Deformation theory of
+sandwiched singularities, Duke Math. J. \textbf{95} (1998), no.~3,
+451--522. \href{https://doi.org/10.1215/S0012-7094-98-09513-8}{doi:10.1215/S0012-7094-98-09513-8}.
+\bibitem{PS} O.~Plamenevskaya and L.~Starkston, Unexpected Stein fillings,
+rational surface singularities and plane curve arrangements,
+Geom. Topol. \textbf{27} (2023), no.~3, 1083--1202.
+\href{https://doi.org/10.2140/gt.2023.27.1083}{doi:10.2140/gt.2023.27.1083}.
+\bibitem{H} F.~Hirzebruch, Arrangements of lines and algebraic surfaces,
+in \emph{Arithmetic and Geometry}, Vol.~II, Progress in Mathematics 36,
+Birkh\"auser, 1983, 113--140.
+\href{https://doi.org/10.1007/978-1-4757-9286-7_7}{doi:10.1007/978-1-4757-9286-7\_7}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,55 @@
+# Current source scope and bounded framing: 30000170 / OWR-783-002
+
+Current root decisions, including the later recovered-primary adjudication, dated **2026-10-11**: mathematically accepted core complex projection/whole-epigraph result; **GO for direct credited proof-note preparation**, **HOLD for unconditional novelty/application priority**, and final exact-version/publication review pending. Author turns remain 1/5. These source notes distinguish current evidence from the original 2026-10-01 access gate.
+
+## Historical set question and OWR omission
+
+Lewis, *The Mathematics of Eigenvalue Optimization* (2003), Section8, printed pp166–168, explicitly works in complex Euclidean monic coefficient space and asks whether the stable monic polynomial set is prox-regular, explaining the nearest-projection consequence. Root and the independent priority-source adversary read the full relevant section, and Root visually checked p168. The core theorem gives a negative complex degree-two answer to that historical set question. This does not establish that the question remained open in 2026. [Primary author-posted paper](https://people.orie.cornell.edu/aslewis/publications/03-mathematics.pdf).
+
+Lewis's OWR contribution, *Local Structure and Algorithms in Nonsmooth Optimization*, OWR2/2005 pp104–106, DOI10.4171/owr/2005/02, defines closed-half-plane stability and prints Question1 at p106/PDF38. It asks about a unique nearest stable polynomial near s^k, but omits field, normalization, and metric. Its surrounding text calls the question an essential ingredient; it does not print the imported “Equivalently.” The explicit complex antecedent and cited complex theory support the complex coefficient interpretation, while OWR's omissions remain disclosed. [Printed report](https://ems.press/content/serial-article-files/45976?nt=1).
+
+Burke–Overton2001 defines complex polynomial/monic spaces; Burke–Lewis–Overton2005 handles full exact-degree complex coefficients and the real coefficient Hilbert pairing. Lewis's related *Eigenvalues and nonsmooth optimization* defines stable monics in Section1.5,p9 and its epigraph geometric definition in **Section1.7,p15**. Section1.6 concerns partial smoothness. The corrected locator is current; historical copied reviews retain their original text with an explicit erratum.
+
+## Classical mechanisms are credited
+
+Bottema (1956), *The Routh-Hurwitz condition for the biquadratic equation*, printed pp403–406, supplies the classical real-quartic boundary and degeneracy geometry. The independent source adversary recovered and visually checked all four body pages. Its stability conventions are not reused as a closed-set theorem admitting every repeated root. [Original scan](https://onkirillov.narod.ru/1956-IM-Bottema-WhitneyUmbrella-ZieglerParadox.pdf).
+
+Kirillov–Overton (2013), *Robust stability at the Swallowtail singularity*, presents the real-quartic Whitney umbrella; the source adversary read substantive pp1–8 and relevant p9 bibliography. The complex quadratic chart V²≤x²U has the same classical shape. A nonlinear coordinate identification alone does not transport nearest-point projection in a fixed coefficient metric; the direct normal/support calculation supplies that step. Neither cusp geometry nor ordinary implicit root differentiation is claimed novel. [Primary paper](https://cs.nyu.edu/~overton/papers/pdffiles/swallowtail.pdf).
+
+Prior Burke–Overton/Lewis root/abscissa variational calculus and PRT2000's finite-dimensional local-projection/prox-regular-set equivalence are credited as existing mechanisms. No theorem from an unread body is used as a proof premise.
+
+## Cross2010: recovered body and precise scope
+
+The full 222-page dissertation PDF, *Spectral Abscissa Optimization using Polynomial Stability Conditions*, UMI3406832, has now been recovered. Independent priority reviewers read **complete chapter5, printed pp80–133/PDF101–154**, with relevant visual checks; unrelated chapters were not completely read. The pinned PDF SHA256 is f4d8e02b8393d9497144c32680f4fdc388ad7fb59c47a3d5743dafb74ea195d7. [Primary record](https://www.proquest.com/docview/288328008).
+
+Definition5.22 uses standard finite-subgradient function prox-regularity. The one-real-parameter theorem, the restricted nonlinear family in Example5.38, and the real-quadratic conclusion have different ambient/metric or regularity quantifiers from the core complex coefficient projection theorem. The source adversary corrected the printed Example5.38 comparison arithmetic without changing that restricted-family conclusion; two parameter minimizers map to one characteristic polynomial. No exact core theorem was located in the read extents. This bounded finding is not a literature-absence certificate.
+
+**Historical access record, 2026-10-01:** the original gate had only the 2009 talk/2010 thesis title and had not recovered the full thesis. That dated access limitation is superseded by the current chapter reading. Original logs/reviews remain historical records rather than current claims. The full 2009 talk slides/recording/notes remain unavailable; archived abstracts do not certify that missing body's contents.
+
+## Three regularity claims and the compatible positive auxiliary result
+
+1. Local single-valued nearest projection onto the closed stable-polynomial set
+2. Prox-regularity of the entire abscissa epigraph as a set, including horizontal normals
+3. Standard function prox-regularity relative to a fixed finite subgradient
+
+PRT2000 equates (1) with stable-set prox-regularity in finite dimension. The core proof directly negates (1) and (2) in complex quadratic coefficient space, monic/full, all fixed SPD coefficient metrics. A horizontal epigraph normal vector means the coefficient/height product metric; with mixed coordinates it is the support covector that stays horizontal.
+
+PR2010 localizes the function property near a fixed finite subgradient and relates it to the epigraph normal (v,-1). A separately developed, cold-reviewed auxiliary proof now establishes the **positive** monic complex-quadratic function property at the origin in the real Euclidean coefficient metric, with constants depending on that finite subgradient. Root accepted its mathematics on 2026-10-11, including the strict-inequality repair r=M+1. The core projection proof does not depend on this lemma. Original reviews and the bounded priority gate do not certify its novelty or the final paper/package. A general-degree function conjecture remains outside the accepted results.
+
+## Later recovered closest-polynomial sources and remaining gaps
+
+After the initial bounded framing gate, the complete public author-linked **Moses–Liu1991 article OCR**, printed pp901–906, was read. It works with real monic closed-unit-disk stable coefficients and an SPD weighted Euclidean objective, and p902 recognizes possible nonunique global solutions. Generic global nonuniqueness is prior credit, not a discovery asserted here. No exact local complex half-plane/all-metric theorem was located in the complete OCR. The original typeset PDF and Figure1 remain unrecovered; those visual limitations are retained. [Author-linked OCR](https://www.academia.edu/329556/Determining_the_Closest_Stable_Polynomial_to_An_Unstable_One).
+
+The complete **214-page Open Access Orban2013 thesis, Nearest Stable System**, is recovered. The recovery agent read relevant theory and complete polynomial Chapter4 pp135–181; a cold independent source adversary separately read complete Chapter2 pp31–67 and Chapter4 pp135–181, plus bounded additional extents. Complex monic coefficient projection is explicit at p144, and weighted objectives are discussed at pp175–180. This genuinely relevant prior complex algorithm/projection formulation is credited; it is not dismissed as real-only or matrix-only. No exact core A–C statement was located in those audited chapters, and no complete negative certification across all 214 pages is asserted. [Actual primary thesis PDF](https://research.dial.uclouvain.be/bitstreams/930fe0d3-f488-439c-bce1-37a8dc368917/download).
+
+The cold reader found a numerical distance inconsistency in displayed Example22 p66. The displayed entries do not reproduce its printed distance; a conjugated-input interpretation is only a plausible, unverified correction. The example is not a core proof premise and is not advertised as verified matrix global or local ties. Competing matrix candidates/algorithmic local optima do not establish distinct globally nearest coefficient polynomials.
+
+The separate **Orban–Nesterov–Van Dooren2013 journal article** and **Combettes–Trussell1992** remain genuinely unread full bodies. The thesis is not asserted identical to the journal article. Full Cross2009 talk and other geometry originals retain their stated read limits. No field, metric, uniqueness, or theorem-absence claim is inferred from a missing body. Earlier candidate missing-body rows were dated snapshots and are superseded only to the recovered extent here.
+
+The root bounded decision permits a direct, carefully credited proof note without asserting firstness, a presently open problem, novel cusp geometry, or first application. Unconditional novelty/application priority remains HOLD; targeted recovery is ongoing. Real-only general stability, all-degree failure, and an explicit nonunique input or minimizing pair are excluded. Source uncertainty is not evidence of proof failure, and an unread body is not evidence of theorem absence.
+
+## Provenance and historical artifacts
+
+Current source versions/read extents and root/cold-review pins are recorded in source_manifest.json and CURRENT_REVIEW_PROVENANCE.md. All source PDFs/text/page images remain private reading copies outside this authored candidate. The original 17 files and the entire v1 candidate have distinct immutable snapshots. Original independent_review files, original controls/receipts, and the historical review request are byte-identical original-version evidence; the candidate's historical-only FROZEN_MANIFEST wrapper preserves the original data. Current CANDIDATE_MANIFEST.json separately binds this revision.
+
+No external individual communication, outreach draft, paper edit, DOI, Git/provider action, or shared-map edit was performed by this consistency repair.

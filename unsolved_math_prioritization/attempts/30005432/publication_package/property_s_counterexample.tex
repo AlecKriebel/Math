@@ -1,0 +1,325 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\FC}{\operatorname{FC}}
+\newcommand{\Sset}{\mathcal S}
+\title{A counterexample to ideal closure of property-(s) elements in skew braces}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{12 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The elements with property (s) in a skew left brace need not form an
+additive subgroup, even when the additive group is abelian.
+On $\Z\times\Z/4\Z$ we give an explicit standard semidirect brace whose
+property-(s) set is $\Z\times\{0,1\}$. The element $(0,1)$ has both
+defining indices equal to two, whereas its additive double has both
+indices infinite. This answers the unrestricted ideal-closure question
+of Colazzo negatively. The construction uses known ingredients.
+We credit an exact overlapping October 2026 preprint and record our
+earlier September 2026 repository disclosure; historical priority and
+mutual independence remain unresolved.
+\end{abstract}
+
+\section{The question and exact conventions}
+A skew left brace is a set $B$ with group operations $+$ and $\circ$
+satisfying
+\[
+ a\circ(b+c)=(a\circ b)-a+(a\circ c).
+\]
+The common identity is denoted by $0$; addition need not be commutative.
+Write $\lambda_a(b)=-a+a\circ b$ and $a*b=\lambda_a(b)-b$.
+For $z\in B$, put
+\[
+ H_z=\{g:z*g=0\}\cap C_{(B,+)}(z),\qquad
+ K_z=\{g:g*z=0\}\cap C_{(B,\circ)}(z).
+\]
+An element has \emph{property (s)} when both
+\begin{equation}\label{indices}
+ [(B,+):H_z]<\infty,\qquad [(B,\circ):K_z]<\infty .
+\end{equation}
+These are the right and left fixed intersections in the original
+definition; their ambient groups are different.
+
+Colazzo's Question~1 in Oberwolfach Report 9/2023, printed
+p.~543~\cite{OWR}, asks whether the set $\Sset(B)$ of these elements is
+an ideal for an arbitrary skew brace.
+The question imposes no finiteness, global property-(S), finite-generation
+or two-sided assumption. In a finite brace every element has (s).
+Colazzo--Ferrara--Trombetti's published Definition~3.7 uses
+\eqref{indices}; Proposition~3.10 proves ideality for two-sided braces
+and the following text leaves the general case open~\cite{CFT}.
+An ideal must in particular be an additive subgroup.
+
+\section{The counterexample and complete index calculation}
+On $C=\Z/4\Z$ set
+\[
+ c\diamond d=c+d+2cd\pmod4,\qquad
+ \varepsilon(0)=\varepsilon(1)=1,\quad
+ \varepsilon(2)=\varepsilon(3)=-1.
+\]
+Residues in statements involving $\{0,1\}$ are represented by
+$0,1,2,3$.
+
+\begin{theorem}\label{main}
+Give $B=\Z\times C$ coordinatewise addition and multiplication
+\begin{equation}\label{circle}
+ (n,c)\circ(m,d)=
+ \bigl(n+\varepsilon(c)m,\ c\diamond d\bigr).
+\end{equation}
+Then $B$ is a left brace with abelian additive group, and
+\[
+ \Sset(B)=\Z\times\{0,1\}.
+\]
+For $x=(0,1)$ both indices in \eqref{indices} equal $2$.
+For $x+x=(0,2)$ both are infinite.
+Thus $\Sset(B)$ is neither an additive subgroup nor an ideal.
+It also fails $\lambda$-invariance, although it is a normal subgroup of
+$(B,\circ)$.
+\end{theorem}
+
+\begin{proof}
+Write $c=u+2v$, $d=s+2t$, with all four bits in $\{0,1\}$.
+Modulo four,
+\[
+ c\diamond d=(u+s\bmod2)+2(v+t\bmod2).
+\]
+Indeed the carry from $u+s$ is canceled modulo four by $2us$.
+Hence $(C,\diamond)$ is the Klein four group and
+$\varepsilon(c)=(-1)^v$ is a character of this group.
+Equation \eqref{circle} is its action by signs on $\Z$, so it is an
+associative group law with identity $(0,0)$ and inverse
+\[
+ (n,c)^{-1}_{\circ}=(-\varepsilon(c)n,c).
+\]
+In particular, this is a group construction over all integers.
+
+Direct calculation gives
+\begin{align}
+ \lambda_{(n,c)}(m,d)&=(\varepsilon(c)m,(-1)^c d),\label{lambda}\\
+ (n,c)*(m,d)&=((\varepsilon(c)-1)m,2cd).\label{star}
+\end{align}
+The second coordinates are modulo four.
+Each map in \eqref{lambda} is an additive automorphism. Together
+with $a\circ b=a+\lambda_a(b)$ this proves the left brace identity.
+
+For $z=(n,c)$ and $g=(m,d)$, addition is abelian, so
+\begin{align}
+ H_z&=\{(m,d):(\varepsilon(c)-1)m=0,\quad 2cd=0\},\label{H}\\
+ K_z&=\{(m,d):(\varepsilon(c)-1)m=0,\quad
+             (\varepsilon(d)-1)n=0,\quad 2cd=0\}.\label{K}
+\end{align}
+To verify \eqref{K}, $g*z=0$ imposes
+$(\varepsilon(d)-1)n=0$ and $2cd=0$.
+The remaining commutation equation is
+$(\varepsilon(c)-1)m=(\varepsilon(d)-1)n$,
+which then reduces to the first equation in \eqref{K}.
+
+For $c=0,1$, these groups have the form $\Z\times L$.
+Their exact indices are
+\[
+\begin{array}{c|cc}
+ z & [(B,+):H_z] & [(B,\circ):K_z]\\ \hline
+ (0,0)&1&1\\
+ (n,0),\ n\ne0&1&2\\
+ (0,1)&2&2\\
+ (n,1),\ n\ne0&2&4 .
+\end{array}
+\]
+For the second index the respective subsets $L$ are
+$C,\{0,1\},\{0,2\},\{0\}$, all subgroups of $(C,\diamond)$.
+The projection $(B,\circ)\to(C,\diamond)$ is surjective, so these
+indices are $4/|L|$.
+For the first index, \eqref{H} gives $B$ when $c=0$ and
+$\Z\times\{0,2\}$ when $c=1$.
+
+If $c=2$ or $3$, both \eqref{H} and \eqref{K} force $m=0$.
+The additive cosets represented by $(j,0)$, $j\in\Z$, are pairwise
+distinct, since their differences have nonzero first coordinate.
+The multiplicative cosets are also pairwise distinct:
+$(i,0)^{-1}_{\circ}\circ(j,0)=(j-i,0)$ belongs to $K_z$ only when
+$i=j$. This proves both infinite indices and the asserted complete
+set, without extrapolation from finite computations.
+
+Finally $x+x=(0,2)$, while
+$\lambda_x(x)=(0,3)\notin\Sset(B)$.
+The character $(n,c)\mapsto\varepsilon(c)$ on $(B,\circ)$ has
+kernel $\Sset(B)$, proving multiplicative normality.
+\end{proof}
+
+The circle group is $D_\infty\times C_2$: the high bit acts by
+inversion on $\Z$, while the low bit acts trivially.
+The brace is not two-sided. For $u=v=(0,1)$ and $w=(1,0)$,
+\[
+ (u+v)\circ w=(-1,2),\qquad
+ (u\circ w)-w+(v\circ w)=(1,2).
+\]
+Thus the counterexample respects the two-sided restriction in the
+known positive result.
+
+\section{Known ingredients, overlap and priority limits}
+The finite brace $(C,+,\diamond)$ is old:
+Bachiller's Proposition~2.4(iii) includes it~\cite{Bachiller}, and
+CFT Example~3.8 recalls it~\cite{CFT}.
+The semidirect construction is standard, for example
+Smoktunowicz--Vendramin's published Corollary~3.37~\cite{SV}.
+Dietzel's Theorem~5(iv) explicitly uses the same high-bit inversion
+character in a finite cyclic-module family~\cite{Dietzel}.
+Replacing that trivial finite module by the trivial brace $\Z$
+and making the index calculation above is an elementary specialization.
+We claim no new construction method.
+
+The example is also an immediate application of the earlier
+finite-conjugacy machinery once the character is chosen.
+Cascella--Properzi--Van Antwerpen's Proposition~5.17 identifies
+$\Sset(B)$ with the multiplicative FC-centre when every element has
+finite additive conjugacy and a finite $\lambda$-orbit~\cite{CPV}.
+Those hypotheses hold here: addition is abelian and the $\lambda$
+image has four elements. Conjugation is explicitly
+\[
+ (m,d)\circ(n,c)\circ(m,d)^{-1}_{\circ}
+   =\bigl((1-\varepsilon(c))m+\varepsilon(d)n,c\bigr),
+\]
+which gives the same set. The direct proof of
+Theorem~\ref{main} does not depend on that characterization.
+
+Di Matteo--Ferrara also give a pre-September characterization and
+a finite-factor construction~\cite{DMF}.
+An infinite-module variation of their Section~4, and another of
+Mondal--Shumyatsky--Trombetti--Yadav's finite Theorem~4.7~\cite{MSTY},
+give alternative negative examples by short calculations.
+The supporting priority audit records those derivations.
+They are deductions made in our audit, not claims that those papers
+explicitly published the unrestricted negative answer.
+This ancestry limits any broad originality claim.
+
+Alper Ferudun's unrefereed October~11, 2026 note,
+Theorem~1.2~\cite{Ferudun}, gives exactly the same construction and
+property-(s) set as Theorem~\ref{main}. We credit this exact overlap.
+GitHub records our PR~156 as created on September~30, 2026 at
+12:24:37 UTC~\cite{Repository}; its original proof is unchanged.
+The first proof commit is dated September~30 at 12:16:29 UTC, an
+author-supplied commit timestamp distinct from the provider's PR date.
+Ferudun's first Zenodo record was created on October~11 at
+05:15:40.640397 UTC. This note's formal preprint date is later and is
+not backdated. The repository was public according to the author;
+current public visibility was checked, while historical visibility
+was not independently archived.
+
+We describe these as \emph{contemporaneous separate discoveries},
+meaning separate disclosures in the same period. The dates establish
+an ordering of the recorded disclosures, not a literally simultaneous
+release or either author's awareness of the other's work.
+Mutual independence has not been established.
+
+Our bounded primary-source audit found no earlier explicit negative
+answer in the full bodies read. It does not certify historical novelty,
+first priority or exclusive resolution.
+Several complete publisher bodies were unavailable: JKVV's 2021
+\emph{Radical and weight} article, the 2026 CPV and Mondal--Yadav
+articles, and the 2026 word/conjugacy-problem article
+(DOI \href{https://doi.org/10.1080/10586458.2025.2598349}
+{10.1080/10586458.2025.2598349}).
+Available full preprints or the author-labeled CPV postprint were
+read where available. The precise versions, additional access gaps
+and bounded search limits are preserved in the supporting audit.
+These gaps can affect priority assessment; they do not affect the
+self-contained counterexample.
+
+\section*{Verification and disclosure}
+The support archive contains the standalone source, an exact
+standard-library checker, recorded ordinary and optimized runs,
+negative controls, source locators and the priority/provenance audit.
+The checker uses explicit raised errors, so optimization does not
+disable its checks. Its finite and symbolic controls supplement the
+written proof; the infinite-coset argument is the certificate of
+infinite index. Every finite quotient has property (s) globally and
+cannot by itself establish this failure.
+
+AI tools were used extensively in solving, drafting, literature
+comparison, reproduction and adversarial verification.
+This preprint is unrefereed and has not undergone conventional human
+peer review. The author is responsible for its contents.
+
+\begin{thebibliography}{10}
+\bibitem{OWR}
+I.~Colazzo, Derived-indecomposable solutions and skew braces whose
+elements have a finite number of conjugates, contribution to
+\emph{Oberwolfach Report} 9/2023, pp.~543--544, Question~1.
+\href{https://doi.org/10.4171/OWR/2023/9}{doi:10.4171/OWR/2023/9}.
+
+\bibitem{CFT}
+I.~Colazzo, M.~Ferrara and M.~Trombetti,
+On derived-indecomposable solutions of the Yang--Baxter equation,
+\emph{Publ. Mat.} 69 (2025), 171--193.
+\href{https://doi.org/10.5565/PUBLMAT6912508}{doi:10.5565/PUBLMAT6912508}.
+
+\bibitem{Bachiller}
+D.~Bachiller, Classification of braces of order $p^3$,
+\emph{J. Pure Appl. Algebra} 219 (2015), 3568--3603.
+\href{https://doi.org/10.1016/j.jpaa.2014.12.013}
+{doi:10.1016/j.jpaa.2014.12.013};
+\href{https://arxiv.org/abs/1407.5224v1}{arXiv:1407.5224v1}.
+
+\bibitem{SV}
+A.~Smoktunowicz and L.~Vendramin,
+On skew braces (with an appendix by N.~Byott and L.~Vendramin),
+\emph{J. Comb. Algebra} 2 (2018), 47--86.
+\href{https://doi.org/10.4171/JCA/2-1-3}{doi:10.4171/JCA/2-1-3}.
+
+\bibitem{Dietzel}
+C.~Dietzel, Braces of order $p^2q$,
+\emph{J. Algebra Appl.} 20 (2021), 2150140.
+\href{https://doi.org/10.1142/S0219498821501401}
+{doi:10.1142/S0219498821501401};
+\href{https://arxiv.org/abs/1801.06911v2}{arXiv:1801.06911v2},
+Theorem~5(iv).
+
+\bibitem{CPV}
+R.~Cascella, S.~Properzi and A.~Van Antwerpen,
+Finiteness conditions on skew braces and solutions of the
+Yang--Baxter equation, \emph{Mediterr. J. Math.} 23 (2026), article~187.
+\href{https://doi.org/10.1007/s00009-026-03182-4}
+{doi:10.1007/s00009-026-03182-4}.
+Full author-labeled postprint:
+\href{https://arxiv.org/abs/2603.06177v2}{arXiv:2603.06177v2},
+submitted September~14, 2026.
+
+\bibitem{DMF}
+M.~Di Matteo and M.~Ferrara, Finite-index problems in skew braces,
+\href{https://arxiv.org/abs/2607.20222v1}{arXiv:2607.20222v1},
+July~22, 2026.
+
+\bibitem{MSTY}
+S.~Mondal, P.~Shumyatsky, M.~Trombetti and M.~K.~Yadav,
+Relative commuting probability and BFC-type results for finite
+skew braces,
+\href{https://arxiv.org/abs/2609.16269v1}{arXiv:2609.16269v1},
+September~14, 2026.
+
+\bibitem{Ferudun}
+A.~Ferudun, The Elements with Property (s) of a Skew Brace Need Not
+Form an Ideal: On a Question of Colazzo, Ferrara and Trombetti,
+unrefereed preprint, version~1, October~11, 2026.
+\href{https://doi.org/10.5281/zenodo.23292254}
+{doi:10.5281/zenodo.23292254}.
+
+\bibitem{Repository}
+A.~Kriebel, Original counterexample draft, PR~156,
+\href{https://github.com/AlecKriebel/Math/pull/156}
+{github.com/AlecKriebel/Math/pull/156}, September~30, 2026.
+Initial proof commit
+\href{https://github.com/AlecKriebel/Math/commit/c1677fe1ed901b8d9c5efe4cbd3d3fec7d0ba227}
+{\texttt{c1677fe1ed901b8d9c5efe4cbd3d3fec7d0ba227}}.
+\end{thebibliography}
+\end{document}
+

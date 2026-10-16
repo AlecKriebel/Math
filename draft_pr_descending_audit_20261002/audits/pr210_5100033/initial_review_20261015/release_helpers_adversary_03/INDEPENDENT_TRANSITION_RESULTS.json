@@ -1,0 +1,309 @@
+{
+  "utc": "2026-10-15T14:16:00.436353+00:00",
+  "synthetic_fixture_only": true,
+  "source03_independently_authored_assertions": true,
+  "tests": [
+    {
+      "test": "late ready identity: head",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Wrong expected native head/branch",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "late ready identity: branch",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Wrong expected native head/branch",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "late ready identity: head repository",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Wrong head repository",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "late ready identity: base branch",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Wrong base repository/branch",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "late ready identity: base repository",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Wrong base repository/branch",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "late ready identity: closed state",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Wrong PR/state",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "late ready identity: merged state",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "PR merged during native readback: reconcile read-only",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "late ready exact accepted publication receipt",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Accepted publication receipt changed",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "late ready exact accepted tracker receipt",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Accepted tracker receipt changed",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "late ready exact accepted prepared receipt",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Accepted prepared receipt changed",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "freshly observed already-ready state omits ready POST and merges exact expected head",
+      "passed": true,
+      "ready_POST_count": 0,
+      "merge_PUT_count": 1
+    },
+    {
+      "test": "premerge exact accepted publication receipt after ready",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Accepted release receipts changed before merge",
+      "ready_POST_count": 1,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "premerge exact accepted tracker receipt after ready",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Accepted release receipts changed before merge",
+      "ready_POST_count": 1,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "premerge exact accepted prepared receipt after ready",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Prepared receipt changed before merge",
+      "ready_POST_count": 1,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "prepared JSON and SHA use accepted same bytes; later change caught",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Accepted prepared receipt changed",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "actual descriptor order: intent file then containing directory",
+      "passed": true,
+      "fsync_order": [
+        "file",
+        "directory"
+      ]
+    },
+    {
+      "test": "all three missing ancestor links sync after mkdir",
+      "passed": true,
+      "directory_syncs": [
+        ".",
+        "primitive-fixture-c71ipyxo",
+        "primitive-fixture-c71ipyxo/one",
+        "primitive-fixture-c71ipyxo/one/two"
+      ]
+    },
+    {
+      "test": "new ancestor directory-sync failure propagates",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic unconfirmed new retry linkage"
+    },
+    {
+      "test": "retry resyncs visible unconfirmed ancestor then new child link",
+      "passed": true,
+      "directory_syncs": [
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015/release_helpers_adversary_03/primitive-fixture-c71ipyxo",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015/release_helpers_adversary_03/primitive-fixture-c71ipyxo/retry"
+      ]
+    },
+    {
+      "test": "existing final directory retry resyncs its parent",
+      "passed": true,
+      "directory_syncs": [
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015/release_helpers_adversary_03/primitive-fixture-c71ipyxo"
+      ]
+    },
+    {
+      "test": "exclusive intent directory-sync failure propagates after file fsync",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic directory sync failure"
+    },
+    {
+      "test": "failed-directory-sync intent remains exclusive on retry",
+      "passed": true,
+      "refused": "FileExistsError",
+      "reason": "[Errno 17] File exists: '/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015/release_helpers_adversary_03/primitive-fixture-c71ipyxo/failure.json'"
+    },
+    {
+      "test": "publish_preprint.py startup directory-sync failure blocks every provider call",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic startup directory-sync failure"
+    },
+    {
+      "test": "append_verified_tracker.py startup directory-sync failure blocks every provider call",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic startup directory-sync failure"
+    },
+    {
+      "test": "integrate_reviewed_pr.py startup directory-sync failure blocks every provider call",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic startup directory-sync failure"
+    },
+    {
+      "test": "verify_and_merge.py startup directory-sync failure blocks every provider call",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic startup directory-sync failure"
+    },
+    {
+      "test": "verify_published_readonly.py startup directory-sync failure blocks every provider call",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic startup directory-sync failure"
+    },
+    {
+      "test": "stage intent file-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic stage intent file-sync failure"
+    },
+    {
+      "test": "stage intent directory-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic stage intent parent-sync failure"
+    },
+    {
+      "test": "publish intent file-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic publish intent file-sync failure"
+    },
+    {
+      "test": "publish intent directory-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic publish intent parent-sync failure"
+    },
+    {
+      "test": "append intent file-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic append intent file-sync failure"
+    },
+    {
+      "test": "append intent directory-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic append intent parent-sync failure"
+    },
+    {
+      "test": "ref intent file-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic ref intent file-sync failure"
+    },
+    {
+      "test": "ref intent directory-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic ref intent parent-sync failure"
+    },
+    {
+      "test": "ready intent file-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic ready intent file-sync failure"
+    },
+    {
+      "test": "ready intent directory-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic ready intent parent-sync failure"
+    },
+    {
+      "test": "merge intent file-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic merge intent file-sync failure"
+    },
+    {
+      "test": "merge intent directory-sync failure blocks associated provider mutation",
+      "passed": true,
+      "refused": "OSError",
+      "reason": "synthetic merge intent parent-sync failure"
+    },
+    {
+      "test": "native body corrupted under same mocked head refuses before ready/merge",
+      "passed": true,
+      "refused": "AssertionError",
+      "reason": "",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "foreign native changed path refuses before ready/merge",
+      "passed": true,
+      "refused": "AssertionError",
+      "reason": "",
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0
+    },
+    {
+      "test": "required source03 seal absent refuses before native object/ref mutation",
+      "passed": true,
+      "refused": "AssertionError",
+      "reason": ""
+    }
+  ],
+  "test_count": 42,
+  "all_tests_passed": true,
+  "actual_provider_network_calls": 0,
+  "actual_helper_subprocesses": 0,
+  "untrapped_action_helper_imports": 0,
+  "crash_simulated": false,
+  "mandatory_findings": [],
+  "optional_findings": [],
+  "completion_percent": 95
+}

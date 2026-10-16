@@ -1,0 +1,7 @@
+# Accepted already_solved partial: PR21 /30001696
+
+Checked2026-10-01T20:29:23.523123+00:00; complete mathematical/source acceptance gate PASS, no unresolved findings. Both universal routes prove the whole product, including all boundaries and endpoints. Conservative already_solved classification follows stronger dated embedded-collapse facts and the fully verified routine PL adapter. No earlier printed final formula or recognition date is asserted. Original substantive attempts1/5. No novel discovery, paper, deposit, DOI or tracker row.
+
+Original head096aacd71a1dc6dd3a73bea3c1055877dc8c0451. Fresh report SHA2560c3e2e514b7b480492e94b39e3abd3480df244396d89dd902dc9286c6c2de4eb; fresh manifest SHA25631249ba36627933bd66a8b3a0dfe34b54f93c3d9d0c684ab6105cc16e91a807b; reviewed candidate manifest SHA2561190312a7917a663fc4da4ecb44fa3b435e6798acb534c0de22db01b3f4f36c8. Root reproduces101284 fresh exact controls plus original and393658 family controls. Finite checks supplement the universal argument. Extensive AI/unrefereed work.
+
+PROOF sections1 onward equal current-reviewed bytes; spectral sections2–8 equal original bytes. Both classical adapters and every historical/source/script/receipt byte remain unchanged. Administrative status updates have archived REVIEWED_CANDIDATE copies and explicit hashes in acceptance.json. Remote integration receipt is in the acceptance-program audit; only that receipt establishes the completed merge.

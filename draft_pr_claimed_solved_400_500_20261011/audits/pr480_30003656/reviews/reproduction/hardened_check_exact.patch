@@ -1,0 +1,52 @@
+--- a/check_exact.py
++++ b/check_exact.py
+@@ -6,6 +6,11 @@
+ from pathlib import Path
+ 
+ MAX_N = 4  # A_n = {0,...,n}, distinguished point 0
++
++
++def check(condition, description):
++    if not condition:
++        raise AssertionError(description)
+ 
+ 
+ def category(injective):
+@@ -52,14 +57,14 @@
+     rows = []
+     for n in range(MAX_N + 1):
+         for a in range(n + 1):
+-            assert forces(NE, n, (a,)) == (a != 0 if injective else False)
+-            assert forces(NNE, n, (a,)) == (a == 0 if injective else True)
++            check(forces(NE, n, (a,)) == (a != 0 if injective else False), 'original assertion at line 55')
++            check(forces(NNE, n, (a,)) == (a == 0 if injective else True), 'original assertion at line 56')
+         row = {"stage_n": n, "beta": forces(BETA, n), "alpha": forces(ALPHA, n),
+                "exists_nonbasepoint": forces(EXTRA, n), "decidable_basepoint": forces(DEC, n)}
+-        assert row["beta"] is (not injective)
+-        assert row["alpha"] is injective
+-        assert row["exists_nonbasepoint"] == (injective and n > 0)
+-        assert row["decidable_basepoint"] is injective
++        check(row["beta"] is (not injective), 'original assertion at line 59')
++        check(row["alpha"] is injective, 'original assertion at line 60')
++        check(row["exists_nonbasepoint"] == (injective and n > 0), 'original assertion at line 61')
++        check(row["decidable_basepoint"] is injective, 'original assertion at line 62')
+         rows.append(row)
+     return {"arrows": sum(map(len, arrows.values())), "objects": MAX_N + 1,
+             "rows": rows, "forcing_cache_entries": forces.cache_info().currsize}
+@@ -92,13 +97,13 @@
+                     assignments += 1
+         for pair, entailed in relation.items():
+             a, b = pair
+-            assert all(v[a] == v[b] for v in valid) == entailed
++            check(all(v[a] == v[b] for v in valid) == entailed, 'original assertion at line 95')
+             comparisons += 1
+         # Construct Q explicitly, with the c-class numbered 0.
+         reps = [root(0)] + [r for r in sorted({root(a) for a in range(terms)}) if r != root(0)]
+         q = tuple(reps.index(root(a)) for a in range(terms))
+-        assert q[0] == 0
+-        assert all((q[a] == q[b]) == relation[a, b] for a in range(terms) for b in range(terms))
++        check(q[0] == 0, 'original assertion at line 100')
++        check(all((q[a] == q[b]) == relation[a, b] for a in range(terms) for b in range(terms)), 'original assertion at line 101')
+         premises += 1
+     return {"terms": terms, "premise_sets": premises, "satisfying_assignments": assignments,
+             "atomic_consequence_comparisons": comparisons}

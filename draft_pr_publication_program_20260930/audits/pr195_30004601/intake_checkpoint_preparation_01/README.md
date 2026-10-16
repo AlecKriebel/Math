@@ -1,0 +1,18 @@
+# PR195 initial intake checkpoint
+
+This inert small adapter records the frozen initial20% PR195 intake while three NEW independent mathematical families are active. It grants no mathematical,priority,paper,whole-package,publication,tracker,merge or completion clearance. Original effort remains “prior unknown;1 recovered”. PR194 was unsolved and skipped untouched; no194 mathematical or disposition work is performed. Programme counts41completed/25published,last193 and dated99/41.4% remain unchanged.
+
+The baseline is the genuine prior PR193 own checkpoint `44cf280eb6468af9ae17d17120d23709cabad4c6` with1258 selected identities. Its exact preparation,one parent/tree/full changed-leaf scope,operative message,Root pre-move receipt,actual acceptance and observed current identities are checked without invoking any193 historical95/100 or191 case contexts. Only authenticated low-level byte/current/native-object functions load at the explicit CLI entrypoint.
+
+Current QUEUE inherits only the exact Root-reviewed foreign30003634 row change in `ROOT_INTAKE_REVIEWED_INHERITED_QUEUE_01.json`. Historical1258 identities remain exact at the historical acceptance; current inheritance verifies both QUEUE bodies,all approved foreign changed lines,unchanged own193/195 rows and every other selected identity. QUEUE is never an overlay or write. Further selected/QUEUE drift stops the transaction and requires separate Root reconciliation.
+
+Only programme `CURRENT_PROGRESS.json`,`CURRENT_PROGRESS.md`,`RESEARCH_LOG.md` may override the prior1258 content. The prior193 current/next/conditional/active facts are retired to explicit dated history; all last193 completion/publication metadata and census lists remain exact. New own files are limited to pinned23 originals/custody/Root controls,status-only intake4 files,prior193 own receipts,reviewed inherited QUEUE evidence,this helper's nine sealed files and the frozen20% case/log postimages. No private source,primary body,image,cache or unsealed agent output is selected.
+
+## Root commands
+
+1. Inspect all source,input pins and `FINAL_SEAL.json`. The two20% baseline copies are intentionally stable even if Root later obtains new review results; promote those results in a separate checkpoint after this actual acceptance.
+2. From this folder run `python3 -B prepare_intake_checkpoint.py prepare intake01`. The original195 API must still show exact HEAD `e776a961293116775fed2cb2a3019d577b84c04a`,open,draft and unmerged. The helper may create native tree/commit objects and own `checkpoint_intake01/PREPARATION.json`; it never moves a ref or edits a PR/native attempt/QUEUE.
+3. Root independently checks the actual expected parent,one-parent candidate/full tree delta/exact complete selected map and all protected prior identities. Acquire the separate write window and adopt only after the fresh lease check. A stale candidate stays immutable; retry with a fresh generation name.
+4. Run `python3 -B prepare_intake_checkpoint.py accept intake01`. It independently rederives the exact postimage from the candidate's true parent,verifies full scope/message and every combined identity at actual current MAIN,fetches every output body and QUEUE,and repeats the exact original195 open/draft/head API check. Genuine receipt is exclusively written to `checkpoint_intake01/INTAKE_CHECKPOINT_ACCEPTANCE.json`.
+
+Current cursor stays195,conditional next196,advanceFalse.196 intake requires actual195 completion. Broader programme goal remains active. This helper does not execute any service publication,tracker,PR/native or ref move. Its future own receipt is not invented in its committed postimage.

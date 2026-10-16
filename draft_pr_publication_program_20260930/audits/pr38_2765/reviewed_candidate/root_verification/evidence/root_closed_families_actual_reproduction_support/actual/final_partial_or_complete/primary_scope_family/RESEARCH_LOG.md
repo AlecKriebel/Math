@@ -1,0 +1,9 @@
+# PR38 source/scope family research log
+
+2026-10-02T08:29:59.485572+00:00 — 20% of family audit completed. Full raw source/importer pin established; exact primary K3 recovered; source-first reconstruction sealed before proposal or prior review. Source cited AIM summary incorrectly; recoverable exact source repair. No fresh proof search and no substantive attempt response.
+
+2026-10-02T08:39:35.013443+00:00 — 65% of family audit completed. Primary operative proofs recovered/read, including Bonahon1988 GDZ after failures. Independent mathematical/source assessment sealed before historical review. All four propositions valid under their explicit hypotheses. No full-target result and no novelty claim. Original30 checks reproduce exactly using system Python; default-runtime failure and two rejecting code mutations retained.
+
+2026-10-02T08:49:25.802946+00:00 — 95% of family audit completed. Historical72-check helper replay byte-identical; all9 mathematical/source/accounting mutations reject. Exact original QUEUE is unsolved2/5 but current catalog/state/history omit attempt; root confirms no verified native transcript is available. Preserve authored2/5 only, zero audit responses, no fabricated historical events. Bounded current primary search distinguishes2026 horoboundary work from Liouville restricted-fiber classification. Final report written; strict own manifest gate remains.
+
+2026-10-02T08:50:46.826784+00:00 — 100% of family audit completed. Report, exact originals, successful/failing executions, source ledgers and accounting limitation closed. Strict all-authored self-excluded manifest is generated after this final log checkpoint; its actual baseline and rejecting mutations are checked from private ignoredtmp. No further family changes planned. Percentage refers only to this independent family, not the full target or program.

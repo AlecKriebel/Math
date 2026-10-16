@@ -1,5 +1,5 @@
-# PR11: affine complete-intersection matrix characterization
+# PR11 accepted partial outcome
 
-Mathematics, original-source reconstruction and exact computations pass. Extensive independent priority audits establish equivalent older methods for the literal target, so the repaired current candidate is already_solved / credited known-method reformulation. A fresh complete acceptance adversary is active. No paper or DOI will be created.
+Mathematics, sources, exact reproduction, two full priority families and a fresh complete adversary pass. Dispositionalready_solved / credited known-method reformulation. PR11MERGED at 2026-10-01T05:59:31Z, commit7d834c507a891a1c13fac4f485bf55f96f88ac8b. No paper, Zenodo deposit or tracker row. Workflow100%.
 
-The source_snapshot is immutable original-head evidence; reviewed_candidate contains global repairs. Historical reviews identify their original hashes. Current priority certificates and source limitations are in priority/, exact reproducibility in exact_reproduction_family/, and source proof in primary_target_family/. Supplemental global proof is optional, separately falsified, and not a canonical dependency.
+source_snapshot is immutable originalhead evidence; reviewed_candidate is the historical15-file preacceptance freeze. Current accepted source/administrative metadata is in unsolved_math_prioritization/attempts/30002867. The canonical proofbody is byteidentical to the independently reviewed proof; its accepted header and metadata updates are explicitly recorded. Original reviews identify historical hashes. Positive priority certificates preserve exact inputs, nilpotents and multiple support; exactD2 priorabsence is not proved or claimed.

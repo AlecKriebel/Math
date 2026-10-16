@@ -1,0 +1,265 @@
+{
+  "utc": "2026-10-15T14:23:32.183991+00:00",
+  "synthetic_fixture_only": true,
+  "network_or_provider_calls": 0,
+  "actual_subprocesses_executed": 0,
+  "untrapped_helper_top_levels_imported": 0,
+  "tests": [
+    {
+      "test": "normal publication, exact public SHA pair and DOI/version",
+      "passed": true
+    },
+    {
+      "test": "verified publication refuses action reentry",
+      "passed": true,
+      "refused": "AssertionError",
+      "reason": "Already verified: read-only reconciliation"
+    },
+    {
+      "test": "uncertain stage creates an exclusive file-flushed intent",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "02-stage failed: inspect retained tool outcome before any mutation retry"
+    },
+    {
+      "test": "uncertain stage action reentry refuses before CLI",
+      "passed": true,
+      "refused": "AssertionError",
+      "reason": "Prior stage attempt: reconcile before another provider action"
+    },
+    {
+      "test": "DOI_pending retains provider fact and refuses promotion",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Deposit is published; DOI/public SHA verification pending. Read-only recovery only."
+    },
+    {
+      "test": "DOI_pending recovers exclusively through inspect/downloads",
+      "passed": true
+    },
+    {
+      "test": "bad_public_SHA retains provider fact and refuses promotion",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Deposit is published; DOI/public SHA verification pending. Read-only recovery only."
+    },
+    {
+      "test": "bad_public_SHA recovers exclusively through inspect/downloads",
+      "passed": true
+    },
+    {
+      "test": "normal exact four-cell tracker append",
+      "passed": true
+    },
+    {
+      "test": "tracker existing exact attempted row reconciles without reappend",
+      "passed": true
+    },
+    {
+      "test": "append-time conflicting problem with different DOI refuses",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Conflicting problem row already exists; reconcile read-only"
+    },
+    {
+      "test": "exact tracker row with stale attempt release refuses",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Prior attempt belongs to different release/payload"
+    },
+    {
+      "test": "native integration succeeds with two parents, reviewed seals and foreign queue preserved",
+      "passed": true
+    },
+    {
+      "test": "native expected-head full tree/body verification, ready and merged/closed readback",
+      "passed": true
+    },
+    {
+      "test": "native prepared tree mismatch refuses before ready/merge",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Actual commit tree/parents disagree with prepared receipt"
+    },
+    {
+      "test": "native prepared main_parent mismatch refuses before ready/merge",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Actual commit tree/parents disagree with prepared receipt"
+    },
+    {
+      "test": "native prepared publication_receipt_sha256 mismatch refuses before ready/merge",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Prepared native receipts changed"
+    },
+    {
+      "test": "native prepared release_binding mismatch refuses before ready/merge",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Prepared PR belongs to another release"
+    },
+    {
+      "test": "uncertain ready intent with draft still true refuses second POST",
+      "passed": true,
+      "refused": "FileExistsError",
+      "reason": "[Errno 17] File exists: '/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015/root_reproduction/release_helpers_review03_regression/fixture-htr20jye/publication/NATIVE_READY_ATTEMPT.json'"
+    },
+    {
+      "test": "confirmed ready state permits merge without repeating prior ready POST",
+      "passed": true
+    },
+    {
+      "test": "uncertain merge leaves exclusive request before one PUT",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Synthetic uncertain merge response"
+    },
+    {
+      "test": "prior merge request refuses action reentry before CLI",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Prior merge intent exists: read-only reconciliation only"
+    },
+    {
+      "test": "publication wrong branch refuses before stage",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Wrong expected native head/branch"
+    },
+    {
+      "test": "clearance invalidated during native reads stops merge",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Final release not cleared"
+    },
+    {
+      "test": "ready transition after clearance invalidation",
+      "passed": true,
+      "regression_prevented": true,
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0,
+      "invalid_clearance_at_ready": true,
+      "reason": "Fresh release-context guard now refuses before ready POST"
+    },
+    {
+      "test": "head changed during native reads stops merge",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Wrong expected native head/branch"
+    },
+    {
+      "test": "ready transition after head changes away from reviewed commit",
+      "passed": true,
+      "regression_prevented": true,
+      "ready_POST_count": 0,
+      "merge_PUT_count": 0,
+      "reviewed_head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "current_head": "dddddddddddddddddddddddddddddddddddddddd",
+      "reason": "Fresh expected-head identity check now refuses before ready POST"
+    },
+    {
+      "test": "symlink alias resolves to same process lock",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Another release stage is active; no parallel action allowed"
+    },
+    {
+      "test": "cleared PDF symlink alias is refused",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Missing or symlinked cleared file: manuscript.pdf"
+    },
+    {
+      "test": "changed reviewed helper bytes are refused",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Cleared file bytes changed: publish_preprint.py"
+    },
+    {
+      "test": "append_verified_tracker.py optimized compiled entry refuses before any external call",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Release helpers refuse optimized Python before any action"
+    },
+    {
+      "test": "integrate_reviewed_pr.py optimized compiled entry refuses before any external call",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Release helpers refuse optimized Python before any action"
+    },
+    {
+      "test": "publish_preprint.py optimized compiled entry refuses before any external call",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Release helpers refuse optimized Python before any action"
+    },
+    {
+      "test": "release_binding.py optimized compiled entry refuses before any external call",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Release stages refuse optimized Python: all guards must remain enabled"
+    },
+    {
+      "test": "verify_and_merge.py optimized compiled entry refuses before any external call",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Release helpers refuse optimized Python before any action"
+    },
+    {
+      "test": "verify_published_readonly.py optimized compiled entry refuses before any external call",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Release verification refuses optimized Python"
+    },
+    {
+      "test": "publish_preprint.py false clearance refuses normal copied entry",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Final release not cleared"
+    },
+    {
+      "test": "append_verified_tracker.py false clearance refuses normal copied entry",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Final release not cleared"
+    },
+    {
+      "test": "integrate_reviewed_pr.py false clearance refuses normal copied entry",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Final release not cleared"
+    },
+    {
+      "test": "verify_and_merge.py false clearance refuses normal copied entry",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Final release not cleared"
+    },
+    {
+      "test": "verify_published_readonly.py false clearance refuses normal copied entry",
+      "passed": true,
+      "refused": "RuntimeError",
+      "reason": "Final release not cleared"
+    },
+    {
+      "test": "intent persistence descriptor trace",
+      "passed": true,
+      "fsync_calls": [
+        {
+          "fd": 3,
+          "is_directory": false
+        },
+        {
+          "fd": 3,
+          "is_directory": true
+        }
+      ],
+      "parent_directory_fsynced": true,
+      "scope": "Trace only; no crash or filesystem durability guarantee asserted by this computation"
+    }
+  ],
+  "passing_test_count": 42,
+  "reproduced_defects": [],
+  "completion_percent": 100
+}
