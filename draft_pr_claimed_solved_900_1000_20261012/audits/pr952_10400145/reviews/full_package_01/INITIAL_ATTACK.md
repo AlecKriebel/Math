@@ -1,0 +1,15 @@
+# Initial attack, with disclosed prior-summary exposure
+
+Recorded UTC: 2026-10-16T17:15:19.844147+00:00
+
+This is not an uncontaminated independent-first attack. Before this file, the actual read-only preflight stdout displayed the existing PR description (including its first-coefficient obstruction and numerical conclusion). I had not opened the candidate paper/proof or five route reports, but that prior-summary exposure prevents clean independence credit. No chronology is backdated. The selected primary pages were then read directly: O physical118–120, L physical7–9, HL physical4,5,7,40.
+
+Exact target: for every integral homology sphere M, an F in lim_m R[t]/product_{j=1}^m(t-q^j), with ordinary integral Habiro R, should interpolate standard I^{sl_n}(M), n>=1, common q, I^{sl_1}=1. This is a hypothesis; one M with nonzero first coefficient suffices to refute it.
+
+My reconstruction: map R to D=Z[e]/(e^2) by q=1+e, q^{-1}=1-e. The second Habiro defining ideal maps to zero, so this map is well-defined via the second finite quotient without differentiating an infinite expression. Use the third t quotient, represent its monic-division remainder in the Newton basis 1,(t-q),(t-q)(t-q^2). Under t=q^n, the last term is zero in D; q^n-q=(n-1)e. Thus every rank value has first coefficient a+b(n-1). The rank-one value1 makes a=0, so v3=2v2. This is an exact finite-quotient consequence, not a sampling inference or Taylor-injectivity argument.
+
+The selected L page821 gives c1=n(n^2-1)lambda_CW for an integral homology sphere; HL Proposition1.2 identifies projective evaluations and Proposition1.9 the Taylor expansion, with q=v^2 and v=exp(h/2) on page2726. Need visually check the damaged extracted formula and the common-q convention before promoting the bridge. Then any nonzero lambda violates v3=2v2, since24lambda !=12lambda over Z.
+
+An orientation check independent of naming convention is available from O page492: the printed left-hand-trefoil -1 surgery expansion has k=0 contribution1, k=1 contribution q(1-q^2)(1-q^3)/(1-q)= -6e mod e^2, and k>=2 contributions zero mod e^2. Thus the named orientation has v2=-6; lambda=-1 follows from the published n=2 coefficient. Reversing orientation changes signs but cannot remove the obstruction. Casson-zero cases are not decided by first order. Omitting rank1 still forces affine first coefficients for ranks2,3,4, which cubic values violate. Inverting additional (q^k-1) factors or changing rank normalization could destroy this map and lies outside this literal target.
+
+Attack priorities: ensure evaluation is genuinely defined through the finite quotient for n<=3; verify the ordinary integral coefficient completion, not a localization; test common parameter/rescaling and theta/Casson normalizations; avoid importing higher-topology claims into algebra; check all priority claims are bounded and no unavailable source is called negative evidence. An existence theorem in a different completion does not repair the literal obstruction.
