@@ -1,0 +1,89 @@
+{
+  "audit_artifacts": {
+    "HIGHER_KOSZUL_30003060_INDEPENDENT_AUDIT_BOOTSTRAP.py": {
+      "bytes": 4458,
+      "sha256": "953a13cd894c7bd7203c311e6e525b176fbc9ac4d867528e2838a4d27764ab7b"
+    },
+    "HIGHER_KOSZUL_30003060_INDEPENDENT_AUDIT_EXTERNAL_MANIFEST.json": {
+      "bytes": 3273,
+      "sha256": "48b8c02e3efb4bc92be9a7f8bcc2737d205c7655c3d81518c475c3ce8d24fae3"
+    },
+    "HIGHER_KOSZUL_30003060_INDEPENDENT_AUDIT_SAFE.zip": {
+      "bytes": 32651,
+      "sha256": "593bf40cb9b15a291302771f483311e28f451d95541909b1ff5beb22ee4f8160"
+    }
+  },
+  "controls": [
+    {
+      "control": "strict relocated audit normal",
+      "expected_success": true,
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "control": "strict relocated audit optimized",
+      "expected_success": true,
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "control": "audit same-size archive mutation rejected",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "audit manifest mutation rejected",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "audit entrypoint symlink rejected",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "audit archive symlink rejected",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    }
+  ],
+  "includes_raw_source_or_private_coordination": false,
+  "original_author_files_reverified_unchanged": true,
+  "publication_performed": false,
+  "replays": {
+    "relocated_normal": {
+      "archive_sha256": "593bf40cb9b15a291302771f483311e28f451d95541909b1ff5beb22ee4f8160",
+      "isolated_execution": true,
+      "manifest_sha256": "48b8c02e3efb4bc92be9a7f8bcc2737d205c7655c3d81518c475c3ce8d24fae3",
+      "mathematical_independent_review": "NOT_PERFORMED_BY_REPLAY",
+      "members_verified": 19,
+      "no_bytecode_execution": true,
+      "no_site_execution": true,
+      "optimized_execution": false,
+      "optional_provenance_rehash": "NOT_RUN_SOURCE_INPUTS_NOT_SUPPLIED",
+      "results_reproduced_byte_exactly": true,
+      "status": "PASS",
+      "textual_source_inspection": "NOT_PERFORMED_BY_REPLAY"
+    },
+    "relocated_optimized": {
+      "archive_sha256": "593bf40cb9b15a291302771f483311e28f451d95541909b1ff5beb22ee4f8160",
+      "isolated_execution": true,
+      "manifest_sha256": "48b8c02e3efb4bc92be9a7f8bcc2737d205c7655c3d81518c475c3ce8d24fae3",
+      "mathematical_independent_review": "NOT_PERFORMED_BY_REPLAY",
+      "members_verified": 19,
+      "no_bytecode_execution": true,
+      "no_site_execution": true,
+      "optimized_execution": true,
+      "optional_provenance_rehash": "NOT_RUN_SOURCE_INPUTS_NOT_SUPPLIED",
+      "results_reproduced_byte_exactly": true,
+      "status": "PASS",
+      "textual_source_inspection": "NOT_PERFORMED_BY_REPLAY"
+    }
+  },
+  "source_rehash_and_textual_audit": "Recorded separately inside accepted audit, not rerun by bootstrap",
+  "status": "PASS"
+}

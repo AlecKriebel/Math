@@ -1,0 +1,3 @@
+# Scope of the original independent review
+
+The preserved review files in this directory authenticate the original proof SHA256 b8edd78d03dac33a7be77837649eef7a8558900b3499774725174836fa54d462 and original author manifest SHA256 28281e6da84af174e91478d020518b041c18b72b72fddfdaa4250a3ac86b5140. Those bytes live under ../original_submission/; the author manifest’s relative paths resolve within that archived folder. They do not hash-bind the new classification headers or PRIORITY_AUDIT.md. Current proof Sections 1–8 are unchanged. New root and fresh mathematical/priority reviews are separately preserved in the campaign audit folder.

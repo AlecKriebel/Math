@@ -1,0 +1,7 @@
+# Completed bounded priority audit; historical priority not certified
+
+AAH2018v1/2019v2 supplies the translation cover and virtual-Weierstrass midpoint rotational reversal. Troubetzkoy2022v3 supplies the related elementary refolding argument for the other four solids. The current Ferudun AMR-049 manuscript, DOI10.5281/zenodo.23267641, contains a checkable overlapping theorem, parity/diagonal distinction and16-face A1 correction. These results are credited explicitly; no new symmetry mechanism or certified theorem novelty is claimed.
+
+GitHub records PR190 creation2026-10-01T04:03:35Z. The initial artifact commit contains the authenticated original V2. DataCite records related DOI registration2026-10-09T17:25:41Z. Commit dates/current public visibility do not certify historical exact-byte visibility or awareness/independence. Current website and DOI-deposited file equality remains unverified403.
+
+AAH/Troubetzkoy journal-version bodies were not compared to read preprints. Fuchs2014 body remained unavailable; Veech originals were not read by these primary families. Current citation indexes were demonstrably incomplete. Failed searches do not establish openness/firstness. Exact source versions/read depth and bounded queries are in the case priority-family reports and package; the original limited search is retained under historical_original/.

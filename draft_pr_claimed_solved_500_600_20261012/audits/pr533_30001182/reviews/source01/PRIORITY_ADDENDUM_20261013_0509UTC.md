@@ -1,0 +1,39 @@
+# Priority addendum: close two current primary-source leads
+
+Checkpoint: 2026-10-13 05:09 UTC. This addendum follows the initial report and preserves its recorded chronology. The human's requested publication scope does not assert historical firstness or that the problem remained open in 2026. The audit therefore assesses whether a reasonable bounded primary-source comparison finds a disqualifying prior full-target overlap; it does not demand impossible exhaustive novelty certification.
+
+## 1. Full Ryll-Nardzewski proof and references inspected
+
+Freshly retrieved [arXiv:2509.02270v2](https://arxiv.org/pdf/2509.02270v2): 530,082 bytes, SHA-256 `e86077b3e64b3abd987699fcedf84c7677d23ed700f6369205ab74789b925a66`, retrieved 2026-10-13 05:05:13 UTC. The document is 43 pages, with v2 dated 2026-06-30; its [arXiv record](https://arxiv.org/abs/2509.02270) gives the version timestamp 2026-06-30 19:52:56 UTC and first submission 2025-09-02 12:48:01 UTC, and identifies journal DOI [10.1016/j.aim.2026.111119](https://doi.org/10.1016/j.aim.2026.111119).
+
+I read the complete extracted 43-page paper: introduction, definitions, every stated proof in §§2–5, Appendix A, and the complete 20-item references. I additionally visually inspected complete printed p.6 (sample/sequence algebra and classical criterion) and p.28 (extension Proposition4.3 and free-product Remark4.5). This is a scope and priority reading, not a certification of all unrelated results in the paper.
+
+The potentially confusing extension/restriction statements have a different parameter from Liebscher's target. Proposition4.3 extends the **index set** of the same sample-algebra process from N to dyadic indices and identifies spreadable states with invariant states of the enlarged dynamics. Remark4.5 repeats this index-extension observation for free products. It does not change the sample algebra A to an ambient A' containing the fixed B,C; hence it is not ambient-independence invariance or its failure. Proposition3.9 invokes ordinary Segal state extension to construct a graded-state counterexample to exchangeability; it does not assert failure of positive/extreme invariant state extension.
+
+The paper's extremality results are for spreadable/shift/braid-invariant states on twisted tensor quotients under specified bicharacter and abelianness assumptions. Theorem4.10 derives product states as the extreme boundary of that restricted state space. The counterexamples in §3 distinguish spreadability from exchangeability or braidability. AppendixA concerns when an automorphism descends to a quotient given a faithful state. None supplies the C²⊂M2 or C4⊂M4 ambient witness, a full-witness obstruction for Liebscher independence, a Laurent localization non-lifting example, or an equivalent theorem about the all-exchangeable ambient comparison.
+
+There is no Liebscher or OWR citation and no DKW quantum-symmetric-state paper in the 20-item references. References to Köstler and free random variables are background for distinct distributional-symmetry questions. This reference finding supports the checked scope conclusion; absence of a name by itself would not prove non-overlap.
+
+**Lead disposition: closed for reasonable target-overlap review. No positive complete target overlap found.** The exact full-text scope, not the earlier abstract-only observation, is the basis.
+
+## 2. Oxford thesis retrieved from the institutional PDF link
+
+The earlier web-reader403 did not mean the document was unavailable. Ordinary unauthenticated HTTP retrieval of the [institutional ORA record](https://ora.ox.ac.uk/objects/uuid:4f027742-4931-4cc2-9736-cdf99741e338), using a conventional browser User-Agent, returned its public HTML. Its `citation_pdf_url` and visible full-text link identify
+
+[Summers's institutional thesis PDF](https://ora.ox.ac.uk/objects/uuid:4f027742-4931-4cc2-9736-cdf99741e338/files/dj96021565).
+
+Fresh PDF: 1,452,750 bytes, SHA-256 `882897a7ea2ec22f1ecd1af86e665bbb1dde2890b5b5374f9be0548b2f5f7dad`, retrieved 2026-10-13 05:06:21 UTC. The complete institutional document contains191 pages. The ORA record identifies it as the dissemination version, DOI [10.5287/ora-ermd4qrd8](https://doi.org/10.5287/ora-ermd4qrd8), DPhil thesis dated2025, deposit2026-08-17. The PDF's generation timestamp is2026-02-08 and is not a public-release timestamp. An author's web acknowledgement-only PDF also surfaced but contains only6 pages and was not used as proof material.
+
+I screened the complete191-page extracted document for target terminology, surveyed its complete theorem/definition inventory and contents, read the full relevant quantum-setting introduction (§3.1), Definition3.64 and the tensor de Finetti statements3.65–3.67, the complete main categorical Theorems3.72–3.73 and proofs, §4.4's symmetric-tensor construction and Theorem4.22 with proof, §5.5's evaluation/transition-algebra definitions and Theorem5.32 with proof, the conclusion, and all159 bibliography entries. The remaining categorical/probabilistic foundations and coalgebra proofs were not all read line by line. Printed pp72,73,84,159 were additionally inspected visually.
+
+The precise scope excludes a hidden substitution of free-product symmetric states. Definition3.64 defines exchangeability on **infinite tensor powers** A^⊗N. Theorems3.65–3.67 compare minimal and maximal **tensor** completions, not a universal free-product completion. Theorem3.72 takes diagrams of tensor powers in categories of completely positive unital maps and constructs C(S(A)) as a colimit. Section4.4 symmetrizes tensors, and §5.5 studies transition algebras for A⊗(-). Those categorical colimits and parameterized state maps do not assert ambient invariance of the existence of an extreme exchangeable free-product witness for fixed B,C.
+
+The thesis explicitly lists free-probability/noncommutative-process extensions as possible future directions on printed p.73. Its references include Størmer, Hulanicki–Phelps, Crismale–Fidaleo and Köstler–Speicher, and the author's tensor-colimit paper with Staton (EPTCS394(2023),400–414). No Liebscher or DKW quantum-symmetric-state reference appears. Full-text searches find neither the free-product construction nor an ambient-independence/state-extension counterexample. Combined with the actual definitions and complete main quantum proof inspection, this supports a substantive category exclusion, not merely a title/keyword judgment.
+
+**Lead disposition: closed for reasonable target-overlap review. Full institutional access succeeded; no positive complete target overlap found.** No OAI or alternate-source workaround remained necessary after the official PDF was obtained. The old403 and abstract-only findings remain in the original chronological log as superseded observations.
+
+## 3. Updated priority assessment and publication scope
+
+Both requested primary-source gaps are now closed at the described coverage. Neither changes the strongest verified result or supplies a prior full-target resolution. Pure folding and the DKW extremality framework remain credited prior mechanisms. The reasonable current-source gate is **PASS with a bounded apparent-new-application qualification** for publishing the explicit original-definition counterexample; the audit supplies no basis for firstness, exhaustive novelty, or still-open-in-2026 claims.
+
+Remaining limits are the general possibility of older specialist observations under other terminology, uninspected journal-version differences, incomplete global index coverage, and lack of an archived historical visibility record for the candidate. These are disclosed limits rather than specific unresolved adverse leads. The optional faithful-marginal construction C5 remains audit-only and is excluded from the manuscript recommendation, as requested. No original candidate files changed, no remote mutation occurred, and no person was contacted.

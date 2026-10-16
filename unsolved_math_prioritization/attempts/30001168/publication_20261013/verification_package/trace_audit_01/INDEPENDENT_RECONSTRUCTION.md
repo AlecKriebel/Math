@@ -1,0 +1,29 @@
+# Independent trace-family reconstruction before prior verdicts
+
+Checkpoint: exact UTC machine timestamp in RESEARCH_LOG.jsonl. Estimated audit completion: 40%.
+
+Inputs read so far: frozen `source/author/PROOF.md` and `SOURCE_METADATA.json`; primary official EMS report, printed pp. 421-422, PDF pages 67-68 (zero based 66-67); an immutable read-only query for problem 30001168 from the existing dataset cache. No author certificate, audit certificate, AUDIT.md, SECOND_REVIEW.md, or their verdicts/results have been opened. This checkpoint precedes those reads.
+
+The primary question is the all-positive-time maximum comparison for smooth positive W on the unit round S^n, with integral W^(n/2) equal to round volume, weighted operator W^(-1/2) Y W^(-1/2) in the round L2 space, and n >= 3. The immediately following monotonicity conjecture is restricted to n >= 4. A valid n=3 counterexample therefore negates the full first claim while making no deduction about that restriction or the second question. The catalog background also mentions an adjacent Hardy inequality; that does not change the exact target statement. The prior report in the dataset is empty.
+
+## Reconstructed analytic obligations
+
+On the unit S3, degree ell spherical harmonics have Laplace eigenvalue ell(ell+2) and dimension (ell+1)^2 (difference of dimensions of homogeneous polynomials of degrees ell and ell-2 in R4). Adding scalar-curvature potential R/8 = 6/8 = 3/4 and setting j=ell+1 gives eigenvalue j^2-1/4 with multiplicity j^2. Thus the round trace in the proof has the right positive sign, ground eigenvalue, and multiplicities.
+
+Write Theta(t)=sum over Z of exp(-t j^2). Then sum over positive j of j^2 exp(-t j^2) = -Theta'(t)/2. Differentiating sqrt(pi/t) times sum over Z of exp(-pi^2 m^2/t) gives precisely sqrt(pi)/4 times [1 + 2 sum over positive m (1-2 pi^2 m^2/t) exp(-pi^2 m^2/t)] after multiplying by t^(3/2). Both series and their derivatives converge locally uniformly for t>0. For 0<t<=1, all correction terms are strictly negative. Consequently the upper bound sqrt(pi) exp(1/4)/4 follows, and using sqrt(pi)<1.773 and exp(1/4)<4/3 gives 0.591 < 0.645. This is loose but adequate and covers t=1.
+
+For a<=t<=b with 1<=a<=b<=2, replacing the polynomial prefactor by b sqrt(b), each negative exponential by its value at a, and the sum from j=4 by twice its first term is valid. Indeed the consecutive-term ratio is at most (25/16)exp(-9)<1/2. The requested arithmetic bound is therefore a valid upper envelope, not a sample of F0. All 100 closed intervals cover [1,2], including both endpoints. For t>=2 every individual t^(3/2)exp(-(j^2-1/4)t) is nonincreasing, and positivity allows summation of the pointwise inequalities. It suffices to check the bound at t=2 to cover every large time; no interchange of an infinite derivative is needed.
+
+The critical arithmetic checks still pending are all 100 strict rational comparisons, strict upper rounding of sqrt(b), lower Taylor polynomials for exp(x), pi/e enclosures, and finite lower comparison >13/20. The upper Taylor reciprocal is valid for x>0 even for the large x in the tail: a finite positive Taylor polynomial lies below exp(x). No remainder estimate is required for that direction.
+
+For the cylinder lower bound, min-max uses nested subspaces of the first k Dirichlet S2-constant sine modes, extended by zero, with exact Rayleigh bound 1/4+(pi k/L)^2. This is a bound on the kth full closed eigenvalue with multiplicity, and it supplies an infinite Gaussian lower sum by termwise comparison and monotone summation. Extending functions with zero interface trace lies in H1; derivative jumps do not affect the quadratic form. The local potential 1/4 is scalar curvature 2 divided by 8. The missing angular modes can only strengthen the trace lower bound.
+
+The decreasing Gaussian sum is at least integral from 1 to infinity, hence at least L/(4 sqrt(pi))-1. The loss of one is conservative and finite. With V_L<=4 pi(L+4), normalized metric a g_L with a=(2pi^2/V_L)^(2/3), and time 4a, the scaled trace lower bound is sqrt(pi)/e times (L-4sqrt(pi))/(L+4). The normalized time and t^(3/2) prefactor exactly cancel metric scaling; the round normalization measure is required. At L=10000 the stated elementary enclosures give a rational lower bound above 0.65; this remains to be replayed exactly. Finite L is essential, as no limiting singular weight alone would answer the question.
+
+Conformal covariance and smooth pole compactification are separate analytic obligations: they are not supplied by the finite arithmetic software. The author gives the needed covariance powers, a unitary factor W^(3/4), and explicit positive radial pole formulas. I currently see no spectral or arithmetic contradiction in the mechanism. This is a provisional assessment before inspecting the certificates, not a final acceptance.
+
+## Independent route to try
+
+On [1,2], the first-mode contribution increases up to 2 and every higher-mode contribution decreases already before 1. A sharper envelope can therefore put the first mode at b and every higher mode at a, rather than replacing their common polynomial prefactor by b^(3/2). A coarser rational partition with this mechanism would be an independent finite validation of the uniform upper target. Independently derive pi bounds from alternating arctangent sums and e bounds from positive Taylor terms with geometric tail, using different truncations from the author. Later software replay will be tested under ordinary and optimized execution with semantic negative controls.
+
+Exact remaining gap at this checkpoint: arithmetic execution, code/semantic inspection, and the geometric family's separately assigned validation. Novelty/priority is deferred to a distinct later step; no central search or outside communication is undertaken.

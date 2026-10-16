@@ -1,0 +1,35 @@
+# Independent source-first checkpoint
+
+Saved: 2026-10-15T04:23:51.202450+00:00 (2026-10-14T21:23:51.202450-07:00). Audit completion estimate: 45%.
+
+## Independence and scope
+
+This record was authored before opening the frozen candidate PROOF.md, any historical audit, or any sibling assessment. Directory listings displayed filenames, but no assessment content was read. The source statement, primary literature, and the deductions below determined this checkpoint. The requested work area is reviews/priority01 only; no index, canonical, or original files were changed. Main branch was confirmed. No outside person was contacted.
+
+The exact target is Ducoffe, *Radius functions in median graphs*, Oberwolfach Report 8/2026, pp. 504-507, Open problem 1 on p. 505, DOI 10.4171/OWR/2026/8. I read the entire contribution, including its definition and references, using full PDF extraction and visual inspection of all four relevant pages (PDF pp. 18-21). The source definition allows a possibly infinite graph and finite-support nonnegative real profile, but its almost-linear algorithm question is interpreted here, as instructed, for a nonempty finite explicitly supplied promised median adjacency graph, unit edges, and finite nonnegative real vertex weights. No recognition cost, implicit graph, infinite encoding, arbitrary edge lengths, or continuous facility location is claimed. Objective: return a vertex minimizing max_u pi(u)d(c,u), exactly, in n polylog(n) arithmetic/comparison operations for fixed cube dimension. A dimension-free algorithm would be stronger. Treating weights as additive would change the problem.
+
+## Exact source-scope table
+
+| Source/version | Verified locator and mechanism | Exact-target scope | Priority consequence |
+| --- | --- | --- | --- |
+| Ducoffe OWR8/2026 | pp.504-507; definition p.504; Open problem1 p.505; discussion p.506 | Multiplicative nonnegative real profiles; question bounded cube dimension; p.506 reports only cube-dimension2 algorithm known | Authentic open-question record, not evidence of current unresolvedness |
+| Berge-Ducoffe-Habib, arXiv:2410.10235v1, submitted 2024-10-14 | pp.2-3 Theorem1: all additive eccentricities max_v[d(u,v)+omega(v)] in O(n log^4 n); omega:V->N; p.4 Perspectives explicitly separates multiplicative Weighted Center | Every finite median graph, unit edges, additive nonnegative integer weights | Powerful known component; explicitly does NOT state the desired multiplicative conclusion |
+| Same, SODA2025 DOI10.1137/1.9781611978322.52 | Publisher metadata: online 2025-01-07, pp.1679-1704; abstract confirms quasilinear eccentricities | Full publisher PDF was inaccessible via browser (Internal Error); no assertion of textual identity to arXiv | Conference bibliographic identity confirmed, full-version comparison limited |
+| Ducoffe, arXiv:2607.04287v1, submitted 2026-07-05; ESA2026 DOI10.4230/LIPIcs.ESA.2026.133, published2026-08-25 | ESA p.133:6 Lemma2, full-version Lemma2.1 pp.5-6: generic weighted-center decision-to-optimization in O((T+n)log n); weighted medians of row midpoints | Arbitrary finite unit-edge graph, arbitrary nonnegative real profile; exact vertex decision witness; no median hypothesis | A directly prior general component. Claimed exact algorithms are for bounded-hyperbolicity families, not all median graphs or all bounded cube-dimension median graphs |
+| Chalopin-Chepoi-Dragan-Ducoffe-Vaxes, arXiv:2503.15011v1, submitted2025-03-19 | TheoremE/Theorem7.8 and Section7: deterministic O(n log^2 n) weighted center | Arbitrary nonnegative multiplicative real weights on cube-free (dimension<=2) median graphs | Explicit prior exact solution of an already-known special case; not dimension3+ |
+| Berge-Habib, arXiv:2105.12150v1, submitted2021-05-25 | Abstract and algorithm Section4/5: O(2^{O(d log d)} n) eccentricities | Unit-edge all-one/unweighted eccentricities; maximum-weight disjoint-set labels inside proof are not multiplicative demand weights | Earlier dimension-parameterized unweighted result; not explicit full target |
+| Ducoffe MFCS2021 DOI10.4230/LIPIcs.MFCS.2021.43 | pp.43:4-43:8 Theorems1/5; tree product/system range-query framework; OWR p.505 cites weighted extension | Supplied bounded-tree-dimension embedding. Bounded cube dimension does not imply bounded tree dimension; absolute center result is a different problem | Relevant known subclass/framework; cannot substitute for exact target |
+
+## Independent deduction from the prior components
+
+For any finite connected unit-edge graph on n vertices let D=n-1. For a proposed nonnegative objective threshold R, define integer r(u) as the largest k in [0,D] with k*pi(u)<=R; for pi(u)=0 put r(u)=D. These r(u) are computable by bounded binary comparison search, without arbitrary real floor. Set omega(u)=D-r(u), a nonnegative integer <=D. Then
+
+max_u[d(c,u)+omega(u)]<=D iff d(c,u)<=r(u) for every u iff max_u pi(u)d(c,u)<=R.
+
+Hence the BDH additive theorem supplies an exact decision witness in O(n log^4 n) on ANY finite median graph. Combining it with Ducoffe ESA Lemma2 (with bounded binary search in place of unbounded floor if necessary) yields O(n log^5 n) exact multiplicative vertex-center computation on any finite median graph, in the stipulated exact comparison model. The all-zero/singleton cases are handled directly. This deduction is mine at this checkpoint; it is not evidence that an earlier paper explicitly recorded this consequence. The question as formulated at OWR predates the July2026 decision-reduction preprint; the 2024 additive paper itself labels the multiplicative problem a future challenge.
+
+## Provisional source-first conclusion
+
+No inspected primary source explicitly states or proves the full exact-target almost-linear algorithm, at bounded cube dimension generally or all dimensions. There is a strong straightforward combined-prior-tools consequence by October14,2026. Do not describe the additive theorem itself as an explicit earlier multiplicative-center solution. Do not call the generic optimization reduction novel. A historical-first claim is unestablished by this search. An exact-target explicit collision must be supported by an actual earlier statement/proof, not inferred merely from the ease of combination.
+
+Search coverage and limits: multiple current web queries for median/weighted/multiplicative center, ball intersections, 2410.10235 forward works, 2607.04287 and author bibliography returned the above main papers and no explicit complete-target collision. Search results also surfaced project-owned/public assessment pages and dataset mirrors; these were not used as mathematical/priority evidence. Full primary PDFs were downloaded independently under .cache; the OWR source was read from the supplied cache. The DOI resolver for OWR and publisher SODA PDF returned Internal Error; neither was retried through a denied route. Search absence is not proof of absence, and author bibliographies/search indexes can lag. Source-ledger and final report will retain those limitations.

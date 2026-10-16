@@ -1,0 +1,9 @@
+# Current source and priority status — 13 October 2026 UTC
+
+This dated record supplements, rather than rewrites, the frozen source/author/SOURCE_STATUS.md and the earlier source_priority_01/ disposition. The exact smooth-annulus theorem remains mathematically verified. The original equation-along-a-line interpretation and the remote-contact limitation remain explicit.
+
+A fresh independent punctured-disc audit confirms that a negative example in the broader Green-domain scope is an elementary deduction from older positive-harmonic facts. Köhn (1966), §4, p.63, explicitly classifies punctured-disc minimal kernels; Herron (1987), Theorem3 and §3.2 p.17, and the inspected Bear–Smith author manuscript (23 May 2005), Proposition2.6 p.4, provide related cone/metric formulas. The companion priority_puncture_04/PUBLIC_ADDENDUM.md and INDEPENDENT_DERIVATION.md give the exact three-competitor gradient argument and Martin eligibility. Symmetric metric equalities alone must not be substituted for the one-sided envelope.
+
+No inspected earlier source was verified to state this Green-line failure as a recognized resolution of Problem7.42. Elementary mathematical derivability does not establish recognized historical priority. The puncture result also does not yield the selected prescribed-kernel theorem in the smooth annulus. First resolution, current worldwide openness, and priority of the exact annular theorem remain unverified. The publication claim is a qualified explicit smooth-annulus result, with transparent credit to the simpler classical consequence, not certification of a newly original resolution of a currently open problem.
+
+Historical packets retain their original dated inspection limits, acceptance stages and hashes. This record and the later puncture addendum qualify the broader context of those records. No outside input was requested or outreach prepared.

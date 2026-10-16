@@ -1,0 +1,32 @@
+{
+  "omit_negative_layers": {
+    "before": "for sign in (1, -1):",
+    "after": "for sign in (1,):",
+    "reason": "threshold exact reconstruction",
+    "mutant_sha256": "66698f1fcb337a69d56ec14620f8423dba3e55f99298200c30356bb67cdd47ec"
+  },
+  "strict_threshold": {
+    "before": "sign*x >= level",
+    "after": "sign*x > level",
+    "reason": "threshold exact reconstruction",
+    "mutant_sha256": "4f4d0d7e6007a44f5d40d79de1335b3ba983395141fa6da5bd0de48102651f11"
+  },
+  "reverse_lp_sign": {
+    "before": "need(dot(cost, direction) >= 0, 'LP layer objective sign')",
+    "after": "need(dot(cost, direction) <= 0, 'LP layer objective sign')",
+    "reason": "LP layer objective sign",
+    "mutant_sha256": "ca172f53e4632ea4a9b55df46e3bd9636318782a923e7291d3ce0adfd79c5fb0"
+  },
+  "remove_small_layer": {
+    "before": "if q >= 1:",
+    "after": "if q > 0:",
+    "reason": "strict l1 decrease",
+    "mutant_sha256": "5d82cb37c6bec6c60e69dc60422ccd453abb217d07a5676be42efd69cf3247d0"
+  },
+  "reverse_submodularity": {
+    "before": "need(pvalue+qvalue >= values[meet]+values[join], 'exact partial LP submodularity')",
+    "after": "need(pvalue+qvalue <= values[meet]+values[join], 'exact partial LP submodularity')",
+    "reason": "exact partial LP submodularity",
+    "mutant_sha256": "de50fc8cb7e3f62451d9076ea5d2ca72c42a930845c6a649ac1f2e3c56a215d2"
+  }
+}

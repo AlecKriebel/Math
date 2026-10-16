@@ -1,0 +1,7 @@
+# PR407 independent priority/status challenge
+
+2026-10-13T15:12:04.018812+00:00 — 10% complete. Scope: challenge exact claimed_solved status against user definition; independently check literal OWR target, classical theorem coverage, and documented historical prior resolution. No external communication or native Git writes.
+
+2026-10-13T15:14:43.017826+00:00 — 55% complete. Independently obtained OWR/AJR/Stanley/Coons primary PDFs and pre-OWR Chebikin–Ehrenborg arXiv v2. New fullfamily prior mechanism: arbitrary descent polytopes are ribbon-poset order polytopes; their Ehrhart polynomials were computed in 2011. Still distinguish mathematical entailment from documented original signed-family closure. Beck–Hlavacek signed-poset theorem uses [-1,1]^n and does not directly identify the original unit-cube family by a unimodular map.
+
+2026-10-13T15:23:17.598745+00:00 — 100% complete for delegated classification audit. Recommend already_solved by verified prior full-family theorem coverage (an explicit inference, not historical named OWR closure). New all-family alcove mechanism independently checked after initial independent descent-polytope search. Lattice coweight/root distinction pinned; unrestricted Lemma3.2 wording rejected by [0,2] counterexample, while its needed gcd-one condition is proved for the specialization. Controls pass63families/384counts/115roots/873determinants. No native changes/publication authorized by this reviewer; rootadjudication pending.

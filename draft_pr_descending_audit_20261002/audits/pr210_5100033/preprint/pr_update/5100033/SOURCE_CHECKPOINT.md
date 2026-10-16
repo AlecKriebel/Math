@@ -1,0 +1,3 @@
+# Source checkpoint: current/history distinction
+
+The original source-only checkpoint and its worktree paths, zero author-turn count and pending descriptions are preserved byte-exact at `history/original_submission_20261015/SOURCE_CHECKPOINT.md`. Those statements describe1October2026. The current assessment is in PROOF.md, SOURCES.md, readiness.json and the case audit: full mathematical/source acceptance and bounded priority integration, qualified historical priority, one original substantive author turn. Later final clearance/native release receipts record actual publication and merge outcomes. This source snapshot alone does not claim those outcomes.

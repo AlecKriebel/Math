@@ -1,0 +1,359 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,needspace}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\emergencystretch=2em
+\hypersetup{pdftitle={A smooth Reshetnyak-harmonic sphere with unbounded distortion},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Ep}{E_+^2}
+\newcommand{\EK}{E_{\rm KS}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\op}{\operatorname{op}}
+\title{A smooth Reshetnyak-harmonic sphere\\with unbounded distortion}
+\author{Alec Kriebel\\\small Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{13 October 2026 \quad Version 1.0\\\small Unrefereed research note}
+\begin{document}
+\maketitle
+\begin{abstract}
+We construct a compact smooth Riemannian sphere and a smooth homeomorphism
+from the round sphere which locally minimizes Reshetnyak energy against every
+same-trace Sobolev competitor, but has essentially unbounded infinitesimal
+distortion. This gives a negative answer for the Reshetnyak member of the
+general-energy harmonic-sphere question posed in the inspected 2025 texts of
+Meier--Vikman--Wenger. Scalar calibration on a flat belt and an exact two-form
+calibration on conformal caps prove the full local comparison. The map does
+not minimize energy in its homotopy class and is not Korevaar--Schoen harmonic.
+Separately, an angular-stress argument gives the nonsharp bound
+$4+\sqrt{17}$ for locally Korevaar--Schoen-minimizing spheres into complete
+metric spaces. Classical ingredients are credited; first priority is not claimed.
+\end{abstract}
+
+\section{Question, energies, and exact conclusions}
+Question~1 of Meier's Oberwolfach contribution \cite[p.~1625]{owr}, also
+Question~1.9 of Meier--Vikman--Wenger \cite{mvw}, asks whether harmonic spheres
+are infinitesimally quasiconformal in its stated metric setting. The energy is
+fixed from a class including Reshetnyak and Korevaar--Schoen energies
+\cite[Definition~3.1]{mvw}. We use the precise neighborhoodwise definition:
+each source point has an open neighborhood $U$ such that, for every Lipschitz
+domain $\Omega\Subset U$ and every $v\in W^{1,2}(\Omega,X)$ with the trace of
+$u|_\Omega$, the chosen energy of $u|_\Omega$ is at most that of $v$
+\cite[Definition~6.1]{mvw}. Competitors may leave the reference image and need
+not be continuous or homotopic to the reference map.
+
+For a smooth Riemannian target, the energies in conformal source coordinates are
+\[
+ \Ep(v;\Omega)=\int_\Omega\|dv\|_{\op}^2,
+ \qquad \EK(v;\Omega)=\int_\Omega(\sigma_1(dv)^2+\sigma_2(dv)^2).
+\]
+The conformal source factor cancels. For a metric differential seminorm $s$,
+let $M(s)$ and $m(s)$ be its maximum and minimum on the Euclidean unit circle.
+Infinitesimal quasiconformality with constant $Q$ means
+$M(s)\le Qm(s)$ almost everywhere; the zero seminorm satisfies this inequality.
+
+\begin{theorem}\label{thm:negative}
+There is a compact smooth Riemannian surface $X$, diffeomorphic to $S^2$,
+and a smooth homeomorphism $u:S^2\to X$ such that $u$ is locally minimizing
+for $\Ep$ in the preceding full Sobolev sense, while no finite $Q$ bounds its
+infinitesimal distortion. The target is geodesic, admits a local quadratic
+isoperimetric inequality, and every sufficiently small-diameter continuous
+sphere in $X$ is null-homotopic.
+\end{theorem}
+
+\begin{theorem}\label{thm:positive}
+Let $X$ be complete and $u\in W^{1,2}(S^2,X)$ be locally minimizing for
+Korevaar--Schoen energy in the standard metric-Sobolev framework of
+\cite{mvw}. Then $u$ is infinitesimally $(4+\sqrt{17})$-quasiconformal.
+No target curvature, topology, or isoperimetric hypothesis is needed.
+\end{theorem}
+
+Theorem~\ref{thm:negative} answers the inspected general-energy question
+negatively. Theorem~\ref{thm:positive} addresses a separate fixed-energy
+restriction. Energy comparability does not identify their exact minimizers.
+The source binding is to the byte-checked arXiv v1 and the Oberwolfach report.
+The revised 2026 journal article exists, but its mathematical text was not
+accessible to this review; unchanged final wording or openness through 2026
+is not asserted.
+
+\section{Two local comparisons with unrestricted competitors}
+\begin{lemma}\label{lem:flat}
+Suppose a target patch is Euclidean with coordinates $(s,y)$, and a smaller
+set $V$ has $y$ 1-Lipschitz for the whole target distance. In source coordinates
+$(t,x)$, a map $u(t,x)=(h(t),x)$ into $V$ with $|h'|\le1$ minimizes $\Ep$
+on every relatively compact Lipschitz subdomain against all same-trace Sobolev
+competitors in the whole target.
+\end{lemma}
+\begin{proof}
+The McShane extension \cite{mcshane}
+\[
+ F(q)=\inf_{p\in V}\{y(p)+d_X(p,q)\}
+\]
+is globally 1-Lipschitz and agrees with $y$ on $V$; it is finite in the compact
+target used below. For any competitor $v$, scalar Sobolev composition gives
+$f=F\circ v\in W^{1,2}(\Omega)$, with trace $x$ and
+$\int_\Omega|\nabla f|^2\le\Ep(v;\Omega)$. Put
+$w=f-x\in W^{1,2}_0(\Omega)$. Integration of its weak $x$-derivative is zero,
+by compactly supported approximation. Therefore
+\[
+ \Ep(v;\Omega)\ge\int_\Omega|\nabla f|^2
+ =|\Omega|+\int_\Omega|\nabla w|^2\ge|\Omega|
+ =\Ep(u;\Omega).
+\]
+There is no restriction on the competitor's image. In a smooth target, a
+sufficiently small strongly geodesically convex ball inside a flat coordinate
+patch supplies the ambient-distance premise: its minimizing geodesics remain
+in the patch, so coordinate differences are bounded by their lengths.
+\end{proof}
+
+\begin{lemma}\label{lem:cap}
+A smooth orientation-preserving conformal map into an oriented compact smooth
+Riemannian sphere locally minimizes $\Ep$ against every same-trace
+$W^{1,2}$ competitor.
+\end{lemma}
+\begin{proof}
+Write $A=\operatorname{Area}(X)$. Shrink a source neighborhood $U$ until its
+compact image supports a smooth cutoff $0\le\eta\le1$ which equals one near
+that image and has $0<a:=\int_X\eta\,dA<A/2$. Set
+\[
+ b=\frac a{A-a}<1,\qquad \omega=((1+b)\eta-b)\,dA.
+\]
+This two-form has comass at most one, agrees with the area form near $u(U)$,
+and integrates to zero on $X$. Top-degree de Rham cohomology gives a global
+smooth one-form $\alpha$ with $d\alpha=\omega$.
+The standard calibration comparison \cite{hl} gives, pointwise for every
+competitor,
+\[
+ v^*\omega\le |\operatorname{Jac}v|\,dA_{\rm source}
+ \le\|dv\|_{\op}^2\,dA_{\rm source};
+\]
+both inequalities are equalities for the reference conformal map. We justify
+the needed identity $\int_\Omega v^*\omega=\int_\Omega u^*\omega$ at the
+critical Sobolev regularity, rather than assuming smooth target-valued density.
+
+A finite atlas and partition of unity write $\alpha=\sum_j f_j\,dg_j$ with
+globally smooth real functions on $X$. Coordinate functions are extended with
+cutoffs equal to one near the corresponding coefficient supports. For bounded
+scalar $F,G\in W^{1,2}_{\rm loc}$, mollification proves
+$d(F\,dG)=dF\wedge dG$ in distributions: uniformly bounded approximants for
+$F$ give $L^2$ convergence of the one-forms by dominated convergence and
+strong $L^2$ gradient convergence; products of the gradients converge in $L^1$.
+Applying scalar composition and the chain rule thus gives
+$d(v^*\alpha)=v^*\omega$.
+
+Matching traces glue $v$ on $\Omega$ to $u$ on $U\setminus\Omega$ as a
+Sobolev map $\widetilde v$. This can also be checked in a smooth embedding of
+the compact target. The $L^2$ one-form
+$\beta=\widetilde v^*\alpha-u^*\alpha$ is supported in
+$\overline\Omega\Subset U$. Pair its distributional derivative with a smooth
+cutoff equal to one there. The cutoff derivative misses its support, so
+\[
+ 0=\int_U d\beta=\int_\Omega(v^*\omega-u^*\omega),
+\]
+where the middle integral denotes that cutoff pairing. Integrating the
+calibration inequalities proves the assertion. Extra bubbles, orientation
+reversal, and target excursions do not alter this exact-form identity.
+\end{proof}
+
+\section{The smooth compact counterexample}
+Use the cylinder $\R\times(\R/2\pi\mathbb Z)$ with coordinates $(s,\theta)$
+and add its two ends as sphere poles. Define
+\[
+ B(r)=\begin{cases}e^{-1/r}&r>0,\\0&r\le0,\end{cases}
+ \quad H(r)=\frac{B(r)}{B(r)+B(1-r)},\quad
+ \rho(s)=e^{-|s|H(|s|-2)},\quad
+ g_X=\rho(s)^2(ds^2+d\theta^2).
+\]
+The denominator never vanishes. The metric is flat for $|s|\le2$. At the
+negative end $z=e^{s+i\theta}$ makes it exactly $|dz|^2$ for $s\le-3$;
+at the positive end $\zeta=e^{-s-i\theta}$ does the same for $s\ge3$.
+It therefore extends smoothly and positively over both poles. The apparent
+absolute value is harmless since its coefficient vanishes near zero.
+
+Compact smooth Riemannian geometry gives completeness and geodesicity, and a
+uniform contractible normal-ball radius. Every sufficiently small-diameter
+sphere image is contained in such a ball. To verify local quadratic isoperimetry,
+choose uniformly controlled nested charts with convex Euclidean images.
+A sufficiently short Lipschitz loop lies in a smaller chart. Its Euclidean
+image of length at most $L\ell$ can be coned to one of its points within
+distance $L\ell/2$, giving cone area at most $L^2\ell^2/4$. Returning through
+the inverse chart gives area at most $L^4\ell^2/4$. The radial cone is Sobolev
+and retains the prescribed Lipschitz boundary parametrization. Compactness
+makes the scale and constants uniform.
+
+On the round source sphere use cylinder coordinates $(t,\theta)$, with metric
+$g_0=\operatorname{sech}^2t\,(dt^2+d\theta^2)$. Put
+\[
+ \eta_0(t)=1-H((16t^2-1)/3),\quad
+ a(t)=\eta_0(t)t^2+1-\eta_0(t),\quad h(t)=\int_0^t a(r)\,dr.
+\]
+Here $a$ is smooth and even, $0\le a\le1$, vanishes only at zero, equals $t^2$
+for $|t|\le1/4$, and equals one for $|t|\ge1/2$. Thus $h$ is a smooth,
+strictly increasing odd homeomorphism of $\R$, with
+\begin{align*}
+ h(t)&=t^3/3\quad(|t|\le1/4),\\
+ h(t)&=t-c\quad(t\ge1/2),\qquad h(t)=t+c\quad(t\le-1/2),\\
+ c&=\int_0^{1/2}(1-a(r))\,dr\in(0,1/2).
+\end{align*}
+Define $u(t,\theta)=(h(t),\theta)$ and send the poles to the corresponding
+target poles. Its pole expressions are multiplication by $e^c$ in the
+respective complex coordinates, so it is a globally smooth homeomorphism.
+The inverse need not be smooth at the equator; that is not a hypothesis.
+Smoothness on the compact source implies $u\in W^{1,2}(S^2,X)$.
+
+For $|t|<1$, the image is in the flat target belt since $|h(t)|\le|t|$.
+Around each such point choose a smaller source neighborhood mapping into a
+strongly convex target ball, and lift the angular coordinate to a real $x$.
+Lemma~\ref{lem:flat} proves every required fixed-trace comparison there.
+For $|t|>1/2$ and at the poles, the map is orientation-preserving conformal;
+Lemma~\ref{lem:cap} proves every required comparison. These open regimes
+overlap and cover the sphere, including both seam circles.
+
+For $0<|t|<1/4$, the singular values before the common source conformal
+rescaling are $1$ and $t^2$. Their ratio is $t^{-2}$. Given finite $Q\ge1$,
+choose $0<\delta<\min\{1/4,1/\sqrt Q\}$. The band $0<|t|<\delta$ has
+positive round area $4\pi\tanh\delta$ and ratio greater than $Q$.
+This proves essential unboundedness and Theorem~\ref{thm:negative}.
+
+For completeness, the maximum-square seminorm energy is admissible: continuity,
+monotonicity, degree-two homogeneity, and rotation invariance are immediate.
+Its unit sublevel consists of uniformly bounded 1-Lipschitz seminorms on the
+unit circle, compact by Arzel\`a--Ascoli. Quasiconvexity follows from convexity
+of the squared operator norm: a smooth fixed-affine-boundary map into a normed
+space has average derivative equal to that affine derivative, and Jensen's
+inequality gives the energy comparison. No immersion restriction is needed.
+
+\subsection*{Two distinctions that prevent false contradictions}
+The conformal coordinate identity $f(t,\theta)=(t,\theta)$ is homotopic to $u$
+and has $\Ep(f)=\operatorname{Area}(X)$. Changing variables $s=h(t)$ gives
+\[
+ \Ep(u)-\operatorname{Area}(X)
+ =2\pi\int_{-1/2}^{1/2}(1-a(t))\,dt=4\pi c>0.
+\]
+Thus $u$ is not a global homotopy minimizer. In a flat rectangle with
+$0<t<1/4$, perturb its first coordinate by $\varepsilon\psi$, where
+$\psi\ge0$ is smooth, nonzero, and compactly supported. The KS first variation is
+\[
+ 2\int h'\partial_t\psi=-2\int h''\psi=-4\int t\psi<0.
+\]
+Small perturbations keep the image flat and retain the trace, so $u$ is not
+KS-harmonic. Nonsmooth operator-norm energy does not supply the unique linear
+stress used next; local supporting stresses cannot simply be patched globally.
+
+\section{The separate Korevaar--Schoen theorem}
+The metric-Sobolev approximate differential and domain-diffeomorphism chain
+rule are standard inputs \cite{ks,mvw,lw}. Normalize KS energy by
+$I(s)=\pi^{-1}\int_{S^1}s(v)^2\,dv$. For $A\in GL^+(2)$, set
+$F_s(A)=I(s\circ A)/\det A$. The angular substitution $w=Av/|Av|$, whose
+Jacobian is $\det A/|Av|^2$, yields
+\begin{equation}\label{eq:angular}
+ F_s(A)=\frac1{\pi(\det A)^2}\int_{S^1}
+             \frac{s(w)^2}{|A^{-1}w|^4}\,dw.
+\end{equation}
+This is smooth in $A$ near the identity even for a nonsmooth or degenerate
+seminorm. Each fixed-order matrix derivative is bounded by $C M(s)^2$.
+Its first derivative is $DF_s(I)[D]=T(s):D$, where
+\[
+ T(s)=\frac1\pi\int_{S^1}s(w)^2(4w\otimes w-2I)\,dw.
+\]
+The stress is symmetric and tracefree. For a smooth vector field $V$ supported
+inside a minimizing source chart, use $u\circ\phi_\varepsilon$ with
+$\phi_\varepsilon=\mathrm{id}+\varepsilon V$. On a smaller domain enclosing
+its support this is an admissible same-trace competitor for either sign of
+$\varepsilon$. After the change of variables, the differential seminorm
+is held at the fixed new point and the matrix is
+$D\phi_\varepsilon\circ\phi_\varepsilon^{-1}$. The $CM(s)^2$ bound is
+integrable. Dominated differentiation gives
+\[
+ \int T(s_z):DV(z)\,dz=0.
+\]
+Write $T=\left(\begin{smallmatrix}a&b\\b&-a\end{smallmatrix}\right)$.
+Its distributional divergence equations are
+$a_x+b_y=0$, $b_x-a_y=0$, so $q=a-ib$ is holomorphic by the distributional
+Weyl lemma. Scaling and rotation give
+$T(\lambda s)=\lambda^2T(s)$ and $T(s\circ R)=R^TT(s)R$.
+Under a holomorphic coordinate change $z=z(w)$,
+$q_w=(dz/dw)^2q_z$. Thus $q_z\,dz^2$ is a global holomorphic quadratic
+differential. Each pole has its own minimizing chart and weak equation;
+no unproved puncture-removal claim is used. On the sphere this differential
+vanishes: its coefficient is entire in a plane chart and is $O(|z|^{-4})$
+at infinity. Hence $T(s_z)=0$ almost everywhere.
+
+For a nonzero balanced seminorm normalize $M(s)=1$. Choose $e_2$ with
+$s(e_2)=m$, and put $L=s(e_1)$ for its perpendicular unit vector.
+The triangle inequality gives $L^2\ge1-m^2$. For $r(v)=L|v_1|$,
+the reverse triangle inequality gives $|s(v)-r(v)|\le m$ on the unit circle.
+Both are at most one, so $|s(v)^2-r(v)^2|\le2m$ and
+\[
+ \|T(s)-T(r)\|_{\op}\le8m,\qquad T(r)=L^2\operatorname{diag}(1,-1).
+\]
+Consequently $1-m^2\le L^2\le8m$, and $m\ge\sqrt{17}-4$.
+Undoing normalization proves $M/m\le4+\sqrt{17}$; zero seminorms satisfy
+the inequality trivially. This proves Theorem~\ref{thm:positive}.
+
+For inner-product seminorms, $T(s)=2G-\tr(G)I$ and this recovers classical
+weak conformality \cite[Lemma~1.5]{su}. In general, fourfold-symmetric
+non-Euclidean norms can be balanced. Bounded distortion, not roundness, is the
+conclusion. The better KS bounds for SL(2)-minimal or Plateau-minimizing
+seminorms \cite{lw} have a different variational hypothesis; our constant is
+nonsharp and no improvement or optimality is claimed.
+
+\section*{Attribution, verification, and review status}
+The question and homotopy-minimizer theory belong to Meier--Vikman--Wenger.
+We credit Lytchak--Wenger's general energy/area framework, Korevaar--Schoen's
+Sobolev and NPC tensor theory, the classical Hopf/Sacks--Uhlenbeck method,
+McShane extension, and standard form/comass calibration. The compact belt/cap
+construction and the complete arguments above are submitted for review.
+The accompanying bounded priority audit did not authenticate an earlier exact
+match, but first bibliographic priority is unresolved. Final publisher wording,
+inaccessible older texts, and unread or unindexed later literature remain
+historical coverage gaps. No first-priority or current-openness claim is made.
+
+The source and verification archive preserves the original candidate and
+independent analytic, computational, source/model, and priority reviews.
+The historical author has 257 exact algebra controls. The source-free replay
+executes 673 of a historical 675-check mixed audit, omitting its two PDF-input
+identity checks; another mixed audit is reproduced within its stated numerical
+tolerances. Fresh independent controls and negative tests are included.
+Numerical quadrature is diagnostic, not a rigorous error enclosure. These
+finite checks supplement the universal written proofs and do not formally
+certify Sobolev analysis or historical priority.
+
+AI tools were used extensively in development, computation, verification,
+adversarial review, and writing. This note is unrefereed and has not received
+independent human or journal peer review. AI-assisted independent review is
+not human peer review or proof-assistant formalization. Authored materials are
+released under CC BY 4.0; cited third-party documents are not included.
+
+\begin{thebibliography}{9}
+\bibitem{mvw} D.~Meier, N.~Vikman, S.~Wenger,
+\emph{Energy minimizing harmonic $2$-spheres in metric spaces},
+arXiv:2503.08553v1, 11 March 2025.
+\url{https://arxiv.org/pdf/2503.08553v1}.
+\bibitem{owr} D.~Meier (joint work with N.~Vikman and S.~Wenger),
+\emph{Energy minimizing harmonic $2$-spheres in metric spaces},
+Oberwolfach Report 30/2025, pp.~1624--1626, Question 1 on p.~1625.
+\url{https://doi.org/10.4171/owr/2025/30}.
+\bibitem{lw} A.~Lytchak, S.~Wenger,
+\emph{Energy and area minimizers in metric spaces},
+Adv. Calc. Var.~10 (2017), 407--421.
+\url{https://doi.org/10.1515/acv-2015-0027}.
+Relevant manuscript: 11 September 2015, Lemmas 3.1/4.1 and \S3.3,
+\url{https://www.mi.uni-koeln.de/~alytchak/preprints/enarea.pdf}.
+\bibitem{ks} N.~J.~Korevaar, R.~M.~Schoen,
+\emph{Sobolev spaces and harmonic maps for metric space targets},
+Comm. Anal. Geom.~1 (1993), 561--659.
+\url{https://doi.org/10.4310/cag.1993.v1.n4.a4}.
+\bibitem{su} J.~Sacks, K.~Uhlenbeck,
+\emph{The existence of minimal immersions of $2$-spheres},
+Ann. of Math.~113 (1981), 1--24.
+\url{https://doi.org/10.2307/1971131}.
+\bibitem{mcshane} E.~J.~McShane, \emph{Extension of range of functions},
+Bull. Amer. Math. Soc.~40 (1934), 837--842.
+\url{https://doi.org/10.1090/S0002-9904-1934-05978-0}.
+\bibitem{hl} R.~Harvey, H.~B.~Lawson, Jr., \emph{Calibrated geometries},
+Acta Math.~148 (1982), 47--157.
+\url{https://doi.org/10.1007/BF02392726}.
+\end{thebibliography}
+\end{document}

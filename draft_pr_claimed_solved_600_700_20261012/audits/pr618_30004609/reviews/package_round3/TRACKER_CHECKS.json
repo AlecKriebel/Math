@@ -1,0 +1,49 @@
+{
+  "utc": "2026-10-13T04:35:27.351886+00:00",
+  "method": "Actual AST DOI matching block plus static branch/control-flow review; full helper not executed",
+  "doi_match_cases": [
+    {
+      "case": "absent",
+      "passed_gate": true,
+      "matches": []
+    },
+    {
+      "case": "bare",
+      "passed_gate": true,
+      "matches": [
+        1
+      ]
+    },
+    {
+      "case": "url",
+      "passed_gate": true,
+      "matches": [
+        1
+      ]
+    },
+    {
+      "case": "different",
+      "passed_gate": true,
+      "matches": []
+    },
+    {
+      "case": "duplicate",
+      "passed_gate": false,
+      "matches": [
+        1,
+        2
+      ]
+    }
+  ],
+  "positions": {
+    "duplicate_gate": 24,
+    "existing_exact_row": 29,
+    "append": 34,
+    "readback": 40,
+    "readback_equal": 41,
+    "receipt": 46
+  },
+  "all_expected": true,
+  "external_calls": 0,
+  "limitations": "Single-actor idempotent read-before-append protocol; API does not provide atomic DOI uniqueness across independent concurrent appenders."
+}

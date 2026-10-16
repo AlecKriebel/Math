@@ -1,0 +1,11 @@
+The normalized real-coefficient schlicht class admits a strictly smaller centered pre-Schwarzian radius at every fixed nonreal point, uniformly over the class. The gap is also uniform on compact nonreal sets. The classical radius remains sharp on the real diameter, and the source expression at zero is separately zero. This answers the literal qualitative fixed-point reading of Hayman–Lingham Problem 6.86.
+
+Preprint and exact verification archive: https://doi.org/10.5281/zenodo.23384924
+
+The concise research note uses classical second-coefficient equality, real-slit rigidity and compactness. It makes no historical-firstness, exhaustive-novelty or current-openness guarantee. Jenkins (1960) and Aleksandrov–Popova (1973) remain specific unresolved original-source limits in the bounded priority audit. AI tools were used extensively; this is an unrefereed preprint, and internal AI reviews do not constitute human peer review.
+
+The note does not determine an explicit upper gap, sharp quantitative radius, general nonreal extremizers or full variability region. Exact examples and real-automorphism identities describe lower bounds and the failure of a single positive gap over all nonreal points. Saved numerical replays are explicitly uncertified and are not used in the proof.
+
+Validation preserves all 24 original attempt files, including its controlling scope and exact-inventory verifier, byte for byte. The verifier replays 3,558 authored exact controls per ordinary/optimized mode, 32 independent symbolic checks, and 24 hostile mutation controls. Further independent geometry, covariance and historical-source controls accompany the accepted package. At least two distinct fresh whole-package reviews found no mandatory or optional findings against the final accepted bytes. Publication receipts bind the PDF and exact ZIP, and the tracker row is read back with DOI uniqueness checked.
+
+The accepted publication is in the sibling `unsolved_math_prioritization/publications/2306086/` directory so the original 24-file verifier remains intact. The merge tree changes only that publication directory, the preserved attempt, and this problem’s Status, Turns and Findings cells in `QUEUE.md`. The accepted queue claim remains qualitative `claimed_solved`, `5/5`.

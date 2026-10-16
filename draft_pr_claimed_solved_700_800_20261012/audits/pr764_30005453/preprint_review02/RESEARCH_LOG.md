@@ -1,0 +1,9 @@
+# Review 02 research log
+
+- 2026-10-16T04:15Z: Read entire frozen manuscript and binding, independently reconstructed proof before inherited conclusions. No mathematical blocker found. Completion: 25% of whole-preprint audit.
+- 2026-10-16T04:17Z: Initial persistence failed with disk exhaustion; shell here-document also failed. Direct Python `-B -c` saved the initial position after it was preserved by parent-message receipt. No inherited conclusions read before that position.
+- 2026-10-16T04:17Z: Read package README, verifier, builder, and independent mathematical-control implementations. Six frozen input hashes match binding; ZIP has 155 entries and clean CRC. Primary Qin text covers complete positive theorem with broader initialization. Completion: 40%.
+
+- 2026-10-16T04:22Z: Fresh compilation succeeded; text and all six raster page hashes match frozen PDF; visually inspected all six pages. Fourteen new guard attacks rejected in both normal and optimized modes; fresh exact finite controls pass. System normal full replay passed; second replay receipt save failed with errno 28 before remaining modes/builder. Resuming only missing modes after resource state changed (155 MiB reported free); removed only own compiled scratch after preserving receipts. Corrected earlier approximate log time 04:20 to actual 04:17. Completion: 70%.
+
+- 2026-10-16T04:28:02.206216+00:00: All missing complete verifiers PASS: system Python3.14.6 outer-O and PYTHONOPTIMIZE=2, bundled Python3.12.14 normal, retaining prior system normal PASS. Portable builder reproduced all6publication identities exactly; full source before/after map unchanged. Final source/metadata/analytic/visual review finds0actionable issues and no required repairs. Own private scratch removed; no primary bodies retained. Evidence complete and ready for closed-inventory verification. Completion:100% of this audit.

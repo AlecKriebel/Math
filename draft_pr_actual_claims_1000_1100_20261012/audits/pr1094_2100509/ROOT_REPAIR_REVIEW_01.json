@@ -1,0 +1,332 @@
+{
+  "utc": "2026-10-16T04:23:56.822724+00:00",
+  "status": "ADOPT_BOUNDED_REPAIR01_PENDING_NEW_COMPLETE_WHOLE02",
+  "full_report_and_complete_code_prose_diff_read": true,
+  "counts_rehashed": {
+    "outputs": 32,
+    "baseline": 309,
+    "allowed_changes": 8,
+    "protected_unchanged": 301,
+    "current": 146,
+    "historical_rows": 577,
+    "copies": 99,
+    "exclusions": 210,
+    "closed_zip_members": 117
+  },
+  "independent_actual_commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/verify_kit.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "769915af0f01b3834c1580b383a8a3c641bc3fbaa37d3f1ef28a42fa43d3f755",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/run_checks.py",
+        "--out",
+        "../checks-normal.json"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "dbea0d56c46b1d5c1c74b38f9ddb0e4735f108d848099ceb5670687381deacb9",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_support.py",
+        "--out",
+        "../support-normal.zip"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "35b584af3a4e836b1196e12b95855ba51be0e804d5dce7222ab8459f8275156f",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/kit/scripts/verify_kit.py",
+        "--require-binding"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "4ce1a3f4e58eb933572f6a269cb2755fdfa67b48a48987b9ee3c9e168fb2c2a6",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/verify_kit.py",
+        "--binding",
+        "/private/tmp/root1094-repair-og_wmlv5/missing-binding.json"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/verify_kit.py\", line 11, in main\n    'binding':binding_check(args.binding,args.require_binding)},sort_keys=True))\n              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 141, in binding_check\n    require(not required and path is None, 'required or explicit binding is absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: required or explicit binding is absent\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/build_support.pynormal.zip"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 117, in fresh_output\n    require((parent_stat.st_dev, parent_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output physically overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output physically overlaps protected kit: /private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/build_support.pynormal.zip\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1094-repair-og_wmlv5/lexical/../build_support.pynormal.zip"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 102, in fresh_output\n    p = no_links(path)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 29, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /private/tmp/root1094-repair-og_wmlv5/lexical\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/run_checks.py",
+        "--out",
+        "/private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/run_checks.pynormal.json"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 117, in fresh_output\n    require((parent_stat.st_dev, parent_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output physically overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output physically overlaps protected kit: /private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/run_checks.pynormal.json\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/run_checks.py",
+        "--out",
+        "/private/tmp/root1094-repair-og_wmlv5/lexical/../run_checks.pynormal.json"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 102, in fresh_output\n    p = no_links(path)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 29, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /private/tmp/root1094-repair-og_wmlv5/lexical\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/build_pdf.pynormal"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 117, in fresh_output\n    require((parent_stat.st_dev, parent_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output physically overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output physically overlaps protected kit: /private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/build_pdf.pynormal\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1094-repair-og_wmlv5/lexical/../build_pdf.pynormal"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 102, in fresh_output\n    p = no_links(path)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 29, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /private/tmp/root1094-repair-og_wmlv5/lexical\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/verify_kit.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "769915af0f01b3834c1580b383a8a3c641bc3fbaa37d3f1ef28a42fa43d3f755",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/run_checks.py",
+        "--out",
+        "../checks-optimized.json"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "dbea0d56c46b1d5c1c74b38f9ddb0e4735f108d848099ceb5670687381deacb9",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_support.py",
+        "--out",
+        "../support-optimized.zip"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "35b584af3a4e836b1196e12b95855ba51be0e804d5dce7222ab8459f8275156f",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/kit/scripts/verify_kit.py",
+        "--require-binding"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "4ce1a3f4e58eb933572f6a269cb2755fdfa67b48a48987b9ee3c9e168fb2c2a6",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/verify_kit.py",
+        "--binding",
+        "/private/tmp/root1094-repair-og_wmlv5/missing-binding.json"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/verify_kit.py\", line 11, in main\n    'binding':binding_check(args.binding,args.require_binding)},sort_keys=True))\n              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 141, in binding_check\n    require(not required and path is None, 'required or explicit binding is absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: required or explicit binding is absent\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/build_support.pyoptimized.zip"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 117, in fresh_output\n    require((parent_stat.st_dev, parent_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output physically overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output physically overlaps protected kit: /private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/build_support.pyoptimized.zip\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1094-repair-og_wmlv5/lexical/../build_support.pyoptimized.zip"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 102, in fresh_output\n    p = no_links(path)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 29, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /private/tmp/root1094-repair-og_wmlv5/lexical\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/run_checks.py",
+        "--out",
+        "/private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/run_checks.pyoptimized.json"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 117, in fresh_output\n    require((parent_stat.st_dev, parent_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output physically overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output physically overlaps protected kit: /private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/run_checks.pyoptimized.json\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/run_checks.py",
+        "--out",
+        "/private/tmp/root1094-repair-og_wmlv5/lexical/../run_checks.pyoptimized.json"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 102, in fresh_output\n    p = no_links(path)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 29, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /private/tmp/root1094-repair-og_wmlv5/lexical\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/build_pdf.pyoptimized"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 117, in fresh_output\n    require((parent_stat.st_dev, parent_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output physically overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output physically overlaps protected kit: /private/tmp/root1094-repair-og_wmlv5/KIT/absent/nested/build_pdf.pyoptimized\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1094-repair-og_wmlv5/lexical/../build_pdf.pyoptimized"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 102, in fresh_output\n    p = no_links(path)\n  File \"/private/tmp/root1094-repair-og_wmlv5/kit/scripts/safety.py\", line 29, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /private/tmp/root1094-repair-og_wmlv5/lexical\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/alec/Documents/Math/zenodo_deposit_tool/zenodo.py",
+        "check",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/zenodo-deposit.json"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "b1e849775d05679fa780b30450451c91caa84228584cc0bed41a606433d23798",
+      "stderr": ""
+    }
+  ],
+  "closed_zip_rebuilt_byte_equal": true,
+  "paper_PDF_native_metadata_unchanged_verified": true,
+  "no_new_compile_render": true,
+  "whole_reviews_completed": 1,
+  "minimum_whole_reviews": 2,
+  "new_complete_whole02_required": true,
+  "publication_ready": false,
+  "published": false,
+  "services_held_after_pr": 1032,
+  "repair_output_pins_sha256": "b7b48a4759eaf76a236633869abe31afde116a06359db83130bff82f62e91f15"
+}

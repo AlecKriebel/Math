@@ -1,0 +1,47 @@
+{
+  "status": "PASS_DRAFT_INTEGRITY_CONTROLS",
+  "tested_zip_sha256": "e79a7bd44182337507c2249763dd55f12cdea28828691cc0b5ef9579d0be625e",
+  "cases": [
+    {
+      "case": "extra_payload",
+      "rejected": true,
+      "reason": "RuntimeError: Inventory mismatch: extra={'unexpected.txt'}, missing=set()"
+    },
+    {
+      "case": "missing_payload",
+      "rejected": true,
+      "reason": "RuntimeError: Inventory mismatch: extra=set(), missing={'original/unsolved_math_prioritization/attempts/2306072/PROOF.md'}"
+    },
+    {
+      "case": "changed_payload",
+      "rejected": true,
+      "reason": "RuntimeError: Payload mismatch: original/unsolved_math_prioritization/attempts/2306072/PROOF.md"
+    },
+    {
+      "case": "outer_size",
+      "rejected": true,
+      "reason": "RuntimeError: Payload mismatch: original/unsolved_math_prioritization/attempts/2306072/PROOF.md"
+    },
+    {
+      "case": "unsafe_name",
+      "rejected": true,
+      "reason": "RuntimeError: Inventory mismatch: extra={'original/unsolved_math_prioritization/attempts/2306072/PROOF.md'}, missing={'../outside'}"
+    },
+    {
+      "case": "nested_registry",
+      "rejected": true,
+      "reason": "RuntimeError: Nested seal registry disagrees with SEALS.json"
+    },
+    {
+      "case": "nested_payload_outer_resealed",
+      "rejected": true,
+      "reason": "RuntimeError: Nested hash mismatch: original/unsolved_math_prioritization/attempts/2306072/SHA256SUMS.json: original/unsolved_math_prioritization/attempts/2306072/PROOF.md"
+    },
+    {
+      "case": "optimization",
+      "rejected": true,
+      "reason": "RuntimeError: Run without Python optimization"
+    }
+  ],
+  "limits": "Integrity checks do not validate mathematical truth or priority. No submission-ready verdict."
+}

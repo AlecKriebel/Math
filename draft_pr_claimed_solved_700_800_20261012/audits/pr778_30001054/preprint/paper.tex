@@ -1,0 +1,257 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\rev}{\mathcal R}
+\title{A missing multiplicity condition for double-permutation sequences}
+\author{Alec Kriebel\\
+  \small Independent researcher\\
+  \small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{16 October 2026\\ \small Research note, version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+The four term-sequence axioms in the inspected Goodman--Pollack manuscript
+and the 2008 Oberwolfach problem session do not suffice for the proposed
+encoding by connected sets with compatible tangent and separating
+pseudolines. An explicit two-body word has least period eight and satisfies
+all four axioms, but has no separating switch and hence cannot encode
+the required internal tangents. This gives a negative answer to the literal
+universal realization question under those axioms. It leaves intact the
+representation theorem for valid fibrations and the stronger
+allowable-interval definition. We also prove that requiring a fully
+separated term forces the missing switch multiplicities, clarifying the
+boundary of a separate normalized-input construction request.
+\end{abstract}
+
+\noindent\textbf{Disclosure.}
+AI tools were used extensively in formulating, reproducing, checking and
+adversarially reviewing the argument, investigating sources, and preparing
+this note and its software. This is an unrefereed preprint. Internal
+AI-assisted review is not external human peer review or proof-assistant
+certification.
+
+\section{The exact formulation}
+
+Fix an integer $n\ge2$. A double permutation is an ordering of
+\[
+  1,1',\ldots,n,n'
+\]
+in which $i$ precedes $i'$ for every $i$. Let $\rev$ reverse an ordering
+and interchange every primed and unprimed index. Set $N=8\binom n2$.
+Consider a doubly infinite word $(P_k)_{k\in\mathbb Z}$ satisfying:
+\begin{enumerate}
+\item Each $P_k$ is a double permutation.
+\item Each transition $P_k\longrightarrow P_{k+1}$ swaps two adjacent
+indices belonging to different bodies.
+\item $P_{k+N/2}=\rev(P_k)$ for every $k$.
+\item The word has period $N$.
+\end{enumerate}
+We call these the \emph{four term axioms}. The example below has
+\emph{least} period $N$, so it also satisfies the interpretation of the
+last axiom as a primitive-period requirement.
+
+These are Corollary~11 and Definition~12 of the 26 November 2006
+Goodman--Pollack author manuscript \cite[pp.~8--9]{GP06}; the same four
+conditions are printed in Pollack's problem-session item in
+\cite[p.~2551]{OWR}. The topological realization question appears explicitly
+in the manuscript and as Question~1 in \cite[p.~2492]{OWR}.
+Our input definition is exactly the four conditions above.
+
+The source geometric encoding uses pairwise disjoint compact connected
+sets and a compatible arrangement of pseudolines, with a strict separator
+and four designated common tangents for each body pair: two internal and
+two external \cite[Theorem~1 and Definitions~4,~8--9]{GP06}.
+Both directions of every tangent are recorded. A directed tangent is
+indexed according to the left or right supporting side of each body.
+Thus an internal tangent, with the bodies on opposite sides, gives an
+ordered switch involving one primed and one unprimed index. We call
+such a switch \emph{mixed}. Supporting switches have two primed or two
+unprimed indices. We use the post-switch ordering convention of
+\cite[p.~7]{GP06}.
+
+\begin{theorem}\label{thm:negative}
+The four term axioms do not imply realizability in this connected-set,
+compatible-pseudoline encoding. A counterexample already exists for
+$n=2$, with least period eight.
+\end{theorem}
+
+\section{The eight-term obstruction}
+
+Put
+\[
+ A=(1,2,1',2'),\qquad B=(1,2,2',1'),\qquad C=(2,1,2',1').
+\]
+Repeat the following period in both directions:
+\[
+ \boxed{A,\ B,\ A,\ B,\ C,\ B,\ C,\ B.}                 \tag{1}
+\]
+Every displayed ordering has $1$ before $1'$ and $2$ before $2'$.
+Each of the transitions $A\leftrightarrow B$ and
+$B\leftrightarrow C$ is one adjacent different-body swap. These are all
+the transitions of (1), including its wrap.
+
+Moreover $\rev(A)=C$, $\rev(C)=A$ and $\rev(B)=B$, so the half-period
+identity holds at every phase. The least period divides eight. A proper
+divisor would be $1$, $2$ or $4$ and would imply $P_0=P_4$.
+Since $A\ne C$, the least period is eight.
+
+The ordered post-switch pairs, including the last-to-first transition,
+are
+\[
+\begin{gathered}
+ (2',1'),\ (1',2'),\ (2',1'),\ (2,1),\\
+ (1,2),\ (2,1),\ (1,2),\ (1',2').
+\end{gathered}                                                   \tag{2}
+\]
+Each of the four supporting types occurs twice. None of
+$(1,2')$, $(2,1')$, $(1',2)$ or $(2',1)$ occurs.
+
+In the source encoding the two internal tangent pseudolines of this
+body pair must contribute mixed events. In fact recording both directions
+gives four such events. Equation (2) has none, so it cannot be that
+encoding. This proves Theorem~\ref{thm:negative}.
+
+This obstruction uses the prescribed supporting sides and tangent roles,
+rather than Euclidean projection or simultaneous straightening. The
+source's strict separators and compatibility hypotheses ensure the
+unambiguous directed-tangent encoding; the argument requires neither
+smoothness nor positive area. A degeneracy that does not supply the
+prescribed tangent roles and single-swap events does not realize (1).
+Changing phase, reversing traversal, renaming the bodies or switching
+between before- and after-swap conventions preserves the absence of
+mixed events.
+
+\section{A fully separated input term changes the problem}
+
+The last paragraph of the separate polygonal-construction request
+\cite[p.~2551]{OWR} refers to the fully separated ordering
+$(1,1',2,2',\ldots,n,n')$. A variant that explicitly requires this
+ordering in its input excludes (1). More generally:
+
+\begin{lemma}\label{lem:separated}
+If a word satisfying the four term axioms contains
+\[
+ D=(i_1,i_1',i_2,i_2',\ldots,i_n,i_n')
+\]
+for some ordering $i_1,\ldots,i_n$ of the body labels, then every
+ordered different-body endpoint pair occurs exactly once as a switch
+in a full period.
+\end{lemma}
+
+\begin{proof}
+Shift the phase to make $P_0=D$. Its half-period counterpart
+$\rev(D)$ reverses the order of the body blocks and preserves each
+body's internal order. The relative order of each of the four endpoint
+pairs belonging to any two different bodies must therefore reverse.
+There are exactly $4\binom n2=N/2$ such pairs.
+
+An adjacent transposition changes the relative order of exactly the
+two endpoints it swaps. Each required endpoint pair must consequently
+be swapped an odd, positive number of times between $D$ and $\rev(D)$.
+There are precisely $N/2$ steps available, so every required pair is
+swapped once and none can backtrack. Reverse-toggle transports the
+second half to the first, giving one swap of each unordered
+different-body endpoint pair in each half. Since the full period
+returns every relative order to its starting value, the two swaps of
+each such pair have opposite orders. Thus every ordered type appears
+once in the full period.
+\end{proof}
+
+The word (1) has no fully separated term. Lemma~\ref{lem:separated}
+is a multiplicity statement, not a construction of polygons or a
+realization theorem in higher $n$. The four term axioms alone do not
+require a fully separated term. The reference to that term in the
+polygonal request must therefore be distinguished from an explicit
+normalized-input hypothesis. We do not prove the additional polygonal
+construction requirements in either interpretation.
+
+\section{Literature and verification boundaries}
+
+The stronger definition was already explicit in
+Dhandapani--Goodman--Holmsen--Pollack \cite[Section~2, p.~5]{DGHP}:
+each directed separating and supporting type occurs once per full
+period. Novick's published definition \cite[pp.~1060--1061]{Novick}
+requires two supporting and two separating switches per body pair
+per half-period. Both definitions exclude (1). The missing
+multiplicity condition is established literature, not a new definition.
+
+The Oberwolfach contribution immediately attributes an affirmative
+answer to Habert and Pocchiola \cite[pp.~2492--2493]{OWR}.
+Their final published Theorem~49 \cite[p.~624]{HP} realizes an already
+specified valid fibration of an arrangement of pseudocircles.
+Its following application identifies the properly constrained interval
+encodings with fibrations. Theorem~\ref{thm:negative} concerns the weaker
+four term axioms; it supplies no counterexample to that representation
+theorem. We do not independently reprove the representation theorem or
+the full coding equivalence for the stronger input class.
+
+The contribution here is the explicit finite obstruction to the literal
+four-axiom universal assertion and the boundary lemma above. The inspected
+definitions are those of the dated author manuscript and the official
+2008 report. The final Goodman--Pollack journal body and an older 2004 version
+cited in the early representation literature were not obtained;
+no assertion about a correction or its absence in those versions is made.
+The documented priority search is bounded. It certifies neither historical
+firstness of this observation nor that a corresponding question remains
+open today.
+
+The accompanying source and verification archive preserves the frozen
+candidate artifacts and independent reviews. Separate exact enumerations
+check all $6^4=1296$ possible first halves for two bodies. They agree on
+48 rooted primitive weak-axiom words: 16 satisfy switch-once and 32 have
+no mixed event. These are indexed words, not isomorphism-class counts.
+The archive also checks invalid inputs, the symmetry transforms of (1),
+positive separated-start controls and artifact integrity. The
+counterexample and Lemma~\ref{lem:separated} do not depend on the enumeration.
+Finite software checks do not certify a topological representation proof,
+literature completeness or formal proof-assistant verification.
+
+\begin{thebibliography}{9}
+
+\bibitem{GP06}
+J.~E. Goodman and R. Pollack,
+\emph{The combinatorial encoding of disjoint convex sets in the plane},
+author manuscript, 26 November 2006, 13 pp.
+\url{https://math.nyu.edu/inmemoriam/pollack/pubs/dblperm11-26-06.pdf}.
+References here use this manuscript's numbering.
+
+\bibitem{OWR}
+R. Pollack,
+\emph{Allowable double permutation sequences, arrangements of double
+pseudolines of Michel Pocchiola and their applications to planar families
+of convex sets}, pp.~2490--2493; and
+\emph{Allowable double-permutation sequences}, p.~2551,
+in \emph{Discrete Geometry}, Oberwolfach Report 44/2008.
+\href{https://doi.org/10.4171/OWR/2008/44}{doi:10.4171/OWR/2008/44}.
+
+\bibitem{DGHP}
+R. Dhandapani, J.~E. Goodman, A. Holmsen and R. Pollack,
+\emph{Interval sequences and the combinatorial encoding of planar
+families of pairwise disjoint convex sets},
+author manuscript, 21 April 2005, 19 pp., Section~2.
+\url{https://math.nyu.edu/inmemoriam/pollack/pubs/interval.pdf}.
+The journal citation is Rev. Roumaine Math. Pures Appl.
+\textbf{50} (2005), 537--553; page references here use the manuscript.
+
+\bibitem{Novick}
+M. Novick,
+\emph{Allowable Interval Sequences and Line Transversals in the Plane},
+Discrete Comput. Geom. \textbf{48} (2012), 1058--1073.
+\href{https://doi.org/10.1007/s00454-012-9457-x}{doi:10.1007/s00454-012-9457-x}.
+
+\bibitem{HP}
+L. Habert and M. Pocchiola,
+\emph{LR Characterization of Chirotopes of Finite Planar Families of
+Pairwise Disjoint Convex bodies},
+Discrete Comput. Geom. \textbf{50} (2013), 552--648.
+\href{https://doi.org/10.1007/s00454-013-9532-y}{doi:10.1007/s00454-013-9532-y}.
+The fibration definition and Theorem~49 are on pp.~623--624.
+
+\end{thebibliography}
+\end{document}

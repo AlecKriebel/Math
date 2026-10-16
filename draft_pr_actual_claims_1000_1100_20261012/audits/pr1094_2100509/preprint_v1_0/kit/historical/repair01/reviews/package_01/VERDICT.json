@@ -1,0 +1,43 @@
+{
+  "utc": "2026-10-16T03:57:32.668559+00:00",
+  "pr": 1094,
+  "head_oid": "954dd70b49458026e29b8dae63243391249008d8",
+  "status": "COMPLETE_WHOLE_PACKAGE_REVIEW_01_ONE_ACTIONABLE_P3",
+  "complete_assigned_scope": true,
+  "mathematics": "ACCEPT_COMPLETE_EXACT_SMOOTH_CLASSIFICATION",
+  "priority_framing": "ACCEPT_ATTRIBUTED_FULL_PROOF_FULL_RESULT_AND_METHOD_PRIORITY_UNKNOWN",
+  "findings": {
+    "P0": [],
+    "P1": [],
+    "P2": [],
+    "P3": [
+      {
+        "id": "P3-LEXICAL-SYMLINK-CONTRACT",
+        "priority": 3,
+        "title": "Inspect symlink components before collapsing dot-dot, as advertised",
+        "file": "preprint_v1_0/kit/scripts/safety.py",
+        "start_line": 17,
+        "end_line": 23,
+        "body": "no_links applies abspath before inspecting components, erasing lexical-link/.. and allowing a writer to create a fresh normalized sibling despite the README/fresh_output promise to reject lexical symlinks before resolution. Reproduced with run_checks in both modes. Protected inputs remain unchanged and the normalized target stays fresh/outside; this is an advertised-contract mismatch, not an overwrite escape. Inspect lexical components first, or consistently narrow the contract; refresh dependent package bindings and obtain a new complete review.",
+        "evidence": [
+          "LEXICAL_SYMLINK_FINDING.json",
+          "COMMAND_RECEIPTS.json"
+        ]
+      }
+    ]
+  },
+  "actionable_findings": 1,
+  "new_whole_package_review_number": 1,
+  "minimum_new_whole_package_reviews": 2,
+  "requires_reasonable_package_repair": true,
+  "requires_new_complete_independent_review_after_repair": true,
+  "publication_ready": false,
+  "published": false,
+  "ordered_services_hold_pr": 1032,
+  "candidate_edits": false,
+  "git_mutations": false,
+  "external_service_actions": false,
+  "external_human_peer_review": false,
+  "formal_certification": false,
+  "completion_percent_of_assigned_review": 100
+}

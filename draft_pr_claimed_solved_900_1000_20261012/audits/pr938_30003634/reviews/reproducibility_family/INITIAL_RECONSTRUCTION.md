@@ -1,0 +1,9 @@
+# Independent reconstruction
+
+2026-10-15T08:21:52.909973+00:00. Completion estimate 8% of reproducibility audit; zero positive proof-search turns. Read entire charter, private source record, then entire original proof before any historical audit verdict or sibling report.
+
+The exact proposed counterexample is a nested commutator beta=[ [c,a^-1 c a], [a^-1 c a,b^-1 c b] ], c=[sigma1^2,sigma2^2]. Normality of derived subgroups establishes third-derived membership without finite search. The proposed finite obstruction is a 48-dimensional explicit symmetric integer matrix with rational Schur pivots of inertia (23,25,0), determinant -7154819319988224, zero correction sum and signature -2; a 104-step Burau/Meyer route corroborates it. These are finite algebra statements contingent on diagram/cocycle applicability.
+
+The topological obstruction requires a universal statement: an ordinary smooth integral 1-solution for an algebraically split closure forces signature at -1 to vanish, via mod-2 versus sign-character rank comparison, hyperbolic lifted surfaces and a rho surgery identity. I do not infer that statement, source conventions or historical priority from successful code. Source PDFs are not supplied to this family, so external PDF checks will remain NOT_RUN unless separately provided.
+
+This family will authenticate all 44 actual immutable Git blobs against disk and inventory/modes, inspect every file and all nine Python programs before execution, then replay in disposable copies with bytecode disabled. Hostile controls must test executable integrity, metadata rebindings, external anchoring, strict types/counts/status/witnesses, inventories and file kinds. Optimization parent/worker behavior and OS/race limits must be reported exactly. Existing failure history will remain visible; any repair will be separately scoped and preserve originals.

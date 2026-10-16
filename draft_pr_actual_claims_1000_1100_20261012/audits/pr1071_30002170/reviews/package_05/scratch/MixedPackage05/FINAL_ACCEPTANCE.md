@@ -1,0 +1,11 @@
+# Terminal review accounting, pending root integrity adoption
+
+2026-10-15T14:14:44.496013+00:00
+
+Two NEW complete whole-package adversarial reviews have been completed (minimum two). Whole01 found three P3 support-interface defects; bounded repair addressed them; the independent complete whole02 found zero actionable P0, P1, P2 or P3 issues. The root adopted that full whole02 evidence in custody/ROOT_WHOLE_PACKAGE_REVIEW_02.json. The unchanged analytic paper and source/priority boundaries remain those reviewed there.
+
+TERMINAL_STATUS.json is the current workflow record. Its state is READY_FOR_SUBMISSION_UNPUBLISHED_HELD_AFTER_1032, with root terminal integrity adoption still required. The administrative worker does not set publication_ready or issues_resolved true. STATUS.json is the original preparation stage; CURRENT_STATUS.json and REPAIR_NOTES.md are the dated bounded-repair stage. Their old pending fields are preserved exactly, not live instructions to redo completed review. The external root seal after adoption governs subsequent readiness; no DOI, submission, tracker update or PR action has occurred here.
+
+The entire paper.tex, seven-page paper.pdf, all three native bibliographic metadata objects, original finite checker, current citation and static path policy are unchanged. The verifier only adds explicit terminal accounting checks; no mathematical or bibliographic meaning changes. Historical theorem and method priority, full novelty and worldwide current-open status remain UNKNOWN. Extensive AI assistance; unrefereed and not formally certified.
+
+The original 83 copy records retain their exact values and order. Added safe authored whole02/root/repair evidence and exact before-byte interface history are source-equal copies. WHOLE02_COPY_EXCLUSIONS.json accounts individually for omitted whole02 files. Source bodies, extracted full texts, images, raw compiler streams, private runtimes and previous archives are not redistributed. No omitted historical program is claimed newly replayed. The current uploader manifest is external publication/zenodo-deposit.json; its unchanged native metadata object selects the unchanged paper.pdf and the same-named current support ZIP.

@@ -1,0 +1,61 @@
+{
+  "baseline_sha256": "fb4a981f0a309222916a202572be1fc927575b7ecfdccc19e44e169deaa5703d",
+  "adapted_sha256": "225244e89c716d8778dd1a1a171303fdf6ada0eff9b87a101da6815bd2d6f75a",
+  "operator": {
+    "bytes": 9912,
+    "sha256": "d085ec080ee6c2f1239f49f724e7a71ef6d86b3d994fbe9b4039371181a61aef"
+  },
+  "controlled_replacements": [
+    {
+      "before": "{'bytes':9163,'sha256':'4d219a1543a1c01ef3653ef48ade657db4dabc4c0fafe8cd245c0d13af86524e'}",
+      "after": "{'bytes': 9912, 'sha256': 'd085ec080ee6c2f1239f49f724e7a71ef6d86b3d994fbe9b4039371181a61aef'}"
+    },
+    {
+      "before": "'DEFECT_final_GET_'+kind+'_before_POST'",
+      "after": "'REPAIRED_final_GET_'+kind+'_before_POST'"
+    },
+    {
+      "before": "need(rec['POST_count']==1,'final GET defect did not reproduce')",
+      "after": "need(rec['POST_count']==0,'repaired final GET allowed POST')"
+    },
+    {
+      "before": "rec['required_finding']='FP07-OPS-001';rec['approval_or_source_invalid_before_POST']=True;rec['later_closing_guard_detected_only_after_POST']=True",
+      "after": "rec['resolved_finding']='FP07-OPS-001';rec['approval_or_source_invalid_before_POST']=True;rec['publication_blocked_before_POST']=True"
+    },
+    {
+      "before": "rec=action('DEFECT_operator_drift_during_first_GET_survives_all_later_guards','publish',API(mutate=drift));need(rec['POST_count']==1,'operator drift defect');rec['required_finding']='FP07-OPS-002';rec['canonical_operator_drifted']=True",
+      "after": "rec=action('REPAIRED_operator_drift_during_first_GET_is_blocked','publish',API(mutate=drift),True);need(rec['POST_count']==0,'operator drift allowed POST');rec['resolved_finding']='FP07-OPS-002';rec['canonical_operator_drifted']=True"
+    },
+    {
+      "before": "exec(compile(p.read_bytes(),str(p),\"exec\",optimize=0),n); print(sys.flags.no_site)",
+      "after": "print(sys.flags.no_site,flush=True); exec(compile(p.read_bytes(),str(p),\"exec\",optimize=0),n)"
+    },
+    {
+      "before": "need(proc.returncode==0 and proc.stdout.strip()=='0','no-site absence was rejected')",
+      "after": "need(proc.returncode!=0 and proc.stdout.strip()=='0' and 'Use Python -I -S -B' in proc.stderr,'missing-S entry was not rejected')"
+    },
+    {
+      "before": "'DEFECT_actual_operator_import_accepts_no_site_zero','required_finding':'FP07-OPS-003'",
+      "after": "'REPAIRED_actual_operator_import_rejects_no_site_zero','resolved_finding':'FP07-OPS-003'"
+    },
+    {
+      "before": "out={'status':'NONCLEAN'",
+      "after": "out={'status':'PASS'"
+    },
+    {
+      "before": "(W/'OPERATOR_INTEGRATION.json').write_bytes(enc(out))",
+      "after": "(W/'REPAIRED_OPERATOR_INTEGRATION.json').write_bytes(enc(out))"
+    },
+    {
+      "before": "'required_findings':['FP07-OPS-001','FP07-OPS-002','FP07-OPS-003']",
+      "after": "'resolved_findings':['FP07-OPS-001','FP07-OPS-002','FP07-OPS-003']"
+    },
+    {
+      "before": "out={'status':'PASS'",
+      "after": "\n# Additional actual final-GET boundaries, including same-size executable drift.\nfixture_manifest=w/'MANIFEST.json';fixture_result=w/'RESULT.json'\nsaved={q:q.read_bytes() for q in [a/'ACCEPTANCE.json',d/'FREEZE.json',d/'research_note.tex',\n    w/'FULL_AUDIT.md',fixture_manifest,p/'accept_pr946.py',a/'OPERATIONS_INVENTORY.json',\n    root/next(iter(json.loads((d/'FREEZE.json').read_bytes())['evidence_files']))]}\nextra_review=a/'reviews/full_package_08'\ndef restore_extra():\n    global hold\n    import shutil\n    if extra_review.exists():shutil.rmtree(extra_review)\n    for q,b in saved.items():q.write_bytes(b)\n    clean()\nfor kind in ['pending','adverse','theorem','tex','freeze','payload','seal','core','inventory','evidence','operator_same_size']:\n    restore_extra();(d/'ZENODO_STAGE.json').write_bytes(stage_raw)\n    def invalidate(n):\n        if n!=2:return\n        if kind in ['pending','adverse']:\n            extra_review.mkdir()\n            if kind=='adverse':(extra_review/'RESULT.json').write_bytes(enc({'required_issues':[{'id':'SYNTHETIC'}]}))\n        elif kind=='theorem':\n            x=json.loads(accepted_raw);x['exact_claim']='SYNTHETIC revoked theorem';(a/'ACCEPTANCE.json').write_bytes(enc(x))\n        elif kind=='operator_same_size':operator_path.write_bytes(source.replace(b'Resume only',b'resume only',1))\n        else:\n            q={'tex':d/'research_note.tex','freeze':d/'FREEZE.json','payload':w/'FULL_AUDIT.md',\n               'seal':fixture_manifest,'core':p/'accept_pr946.py','inventory':a/'OPERATIONS_INVENTORY.json',\n               'evidence':root/next(iter(json.loads(saved[d/'FREEZE.json'])['evidence_files']))}[kind]\n            q.write_bytes(saved[q]+b'\\n')\n    rec=action('final_GET_blocks_'+kind,'publish',API(mutate=invalidate),True)\n    need(rec['POST_count']==0,'Final GET invalidation allowed POST: '+kind)\n    need(not(d/'ZENODO_PUBLISH.json').exists(),'Invalid publication receipt written')\nrestore_extra()\nfor mode in ['inspect-stage','inspect']:\n    clean()\n    def operator_changed(n):\n        if n==1:operator_path.write_bytes(source+b'\\n# SYNTHETIC changed canonical operator\\n')\n    rec=action('receipt_closure_blocks_operator_drift_'+mode,mode,API(mutate=operator_changed,published=mode=='inspect'),True)\n    need(rec['POST_count']==0,'Read-only path published')\n    need(not(d/('ZENODO_STAGE.json' if mode=='inspect-stage' else 'ZENODO_INSPECT.json')).exists(),'Invalid read-only receipt written')\nclean()\n\nout={'status':'PASS'"
+    }
+  ],
+  "new_actual_core_final_GET_and_receipt_cases": 13,
+  "actual_external_mutations": 0,
+  "fixture_history": "Six real prior rounds plus explicitly synthetic07; not production approval or the future whole08."
+}

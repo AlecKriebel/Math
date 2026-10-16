@@ -1,0 +1,15 @@
+# PR894 assembly engineering handoff
+
+Builder code and templates are complete; assembly has deliberately not run. This is engineering work, not a new independent review or an extension of the previous format PASS. Parent full-read, actual prepare/build/finalize and a new whole-publication loop remain necessary. Original effort remains 1/5.
+
+assemble.py uses only the Python >=3.11 standard library. prepare authenticates the explicit parent plan, all eight fixed safe envelopes and optional six-file author snapshot before writing a fresh candidate. Current preprint bytes are authoritative; the author snapshot and historical engineering fixtures are qualified by README/history templates. finalize requires the independently pinned prepared state and actual parent-captured full-replay tool build, verifies wrapper/eight-child raw evidence and unchanged frozen originals, compares a same-runtime rebuilt ZIP, copies the actual ZIP unchanged and writes the outer manifest last. Neither stage executes subprocesses. The real reviewed-tool build remains a mandatory separate parent step.
+
+STATIC_CHECKS.json records non-executing Python 3.11 grammar/compile checks, absence of subprocess import, authentication of all eight envelopes and their rows, the parent plan and all four paper/19 receipt rows, allowlist compatibility, the six-file author envelope and privacy/template checks. All passed. No prepare, finalize, tool build, candidate creation, PDF authoring or new independent review ran here.
+
+Parent input plan: 4761 bytes, SHA256 e29c52293cbba8451e620460a7cf83be2b438694d0ab64b1598161301f3083ea. Author envelope: 1401 bytes, SHA256 4ad42042840cc86a908e51f3f99f99a67f9427bb14e955495c69a83218bd766d. README.md gives complete input/capture schemas and execution commands. Actual preprint TeX/PDF/metadata/deposit pins matched this plan; their contents were not changed.
+
+Intermittent ENOSPC blocked new documentation files. A temporary rename of this effort's own log was reversed. Separate templates, instructions and static checks were subsequently saved after parent storage cleanup. New REPORT.md creation then failed again; this completed report and safe-manifest text were delivered to the parent for saving instead of further retries. No foreign/active work was removed. A dated log clarification preserves and corrects the initial overstatement that finalized preprint inputs were absent: they had not yet been inspected by this subtask.
+
+Only package_assembly_01 was edited. No accepted source/audit/tool/preprint input changed; no Git/remote/release/DOI action, installation, PDF-authoring marker, individual/project-chat/other-agent communication occurred. Trusted runtime/OS, no general TOCTOU guarantee and same-runtime ZIP reproducibility limits remain explicit.
+
+Engineering handoff completion: 100% of code/templates/report content; parent persistence of REPORT.md and SAFE_MANIFEST.json remains required because of ENOSPC. Claimed execution/acceptance of an assembled candidate: none.

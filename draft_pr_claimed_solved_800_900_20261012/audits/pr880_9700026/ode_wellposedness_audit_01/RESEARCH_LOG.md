@@ -1,0 +1,5 @@
+# Research log
+
+- 2026-10-15T09:29:58+00:00 — Read actual primary model; wrote independent regularity/failure-scenario memo before candidate or prior verdicts. Completion estimate: 35% of this audit. Main branch preserved; no Git or external operations.
+- 2026-10-15T09:33:44+00:00 — Post-inspection checkpoint: complete candidate and both prior reports/acceptances independently checked. Confirmed no continuity-to-uniqueness shortcut; both supplements pass. Exact rational checks pass, including equal/near-equal ratios, collinearity, close sites, and a zero-weight boundary nonuniqueness control. Full analytical report saved. Completion estimate: 90%.
+- 2026-10-15T09:34:33+00:00 — Final checkpoint: analytical audit and machine decision complete; PASS with no core gap or required repair. Positive-orthant uniqueness is auxiliary; natural zero-start extension is explicitly excluded and can be nonunique. Exact unresolved scope and safe-output boundary recorded. Completion estimate: 100% of this audit, not of the unresolved broader dynamics.

@@ -1,0 +1,79 @@
+{
+  "utc": "2026-10-16T04:05:35.621206+00:00",
+  "reviewer_manifest_sha256": "9f6801cce90d309829fc85d3fbe22d723dfe06a72b0685ec8e2e0850b21ffc8a",
+  "exact_frozen_input_copies": [
+    {
+      "path": "frozen_inputs/RENEWED_CLEARANCE_CANDIDATE.json",
+      "bytes": 12123,
+      "sha256": "c1297bbb2a0e6e364076ff539f58a5337ebc304e4efe77c3fc2dcc0623dc9104"
+    },
+    {
+      "path": "frozen_inputs/append_verified_tracker.py",
+      "bytes": 6439,
+      "sha256": "9eedf40db79d0949b1bf98a80b78decc71e94201b7030c7cf42af93f915c0ebb"
+    },
+    {
+      "path": "frozen_inputs/integrate_reviewed_pr.py",
+      "bytes": 18106,
+      "sha256": "c8907c95e4a16b29614d2e77c2c2eeb8714d83e100a9eca81f6a2ca4c6d142e3"
+    },
+    {
+      "path": "frozen_inputs/prepare_renewed_clearance_candidate.py",
+      "bytes": 3651,
+      "sha256": "df40d236dece76cb3755c5fea01b7a374c7d66036515bbc64d3fba74763a59f4"
+    },
+    {
+      "path": "frozen_inputs/publish_preprint.py",
+      "bytes": 5335,
+      "sha256": "67287d9f4e45779040502d7226391a36839716e40cc42f9507a13ae10fd569a5"
+    },
+    {
+      "path": "frozen_inputs/reconcile_published_release_readonly.py",
+      "bytes": 13859,
+      "sha256": "8d516c67c6dd57cef9cac9e7bdc3fec252412b804164cb323b547fe18e51fb16"
+    },
+    {
+      "path": "frozen_inputs/release_binding.py",
+      "bytes": 10448,
+      "sha256": "afc858a311137fa99e9a33207848d2ccc913a12f07862aa663b610b262bdb8ce"
+    },
+    {
+      "path": "frozen_inputs/verify_and_merge.py",
+      "bytes": 8638,
+      "sha256": "e56e3f6eb7a7b183f8fe4a3e977f267783188c12faf2766cf456f98910d5eabe"
+    },
+    {
+      "path": "frozen_inputs/verify_published_readonly.py",
+      "bytes": 4367,
+      "sha256": "05b5e494de791a03fa876da2b777e8891cf145ff67fc78aac9fb9221ec774a8b"
+    }
+  ],
+  "adaptations": [
+    {
+      "path": "regression_workflow_probes.py",
+      "original_sha256": "3b5ef80447a6bfaebb5a59b521ad1695c18219580025a926ce30591603dff39d",
+      "root_sha256": "f903f188b243f4a1f41de0f1441d1fcf58e7baee3d8e91e2b5f3922a0ce39715",
+      "exact_layout_only_diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n import shutil, socket, subprocess, sys, tempfile, urllib.request, zipfile\n \n OUT = Path(__file__).resolve().parent\n-D = OUT.parent\n+D = Path('/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015')\n CASE = D.parent\n SOURCE_PUB = OUT / 'frozen_inputs'\n SOURCE_R = CASE / 'preprint'\n"
+    },
+    {
+      "path": "regression_transition_probes.py",
+      "original_sha256": "0905c929f6d700d223f0c9289bdc9846c6b1cd3cb7d46d097518a5ab26274190",
+      "root_sha256": "0905c929f6d700d223f0c9289bdc9846c6b1cd3cb7d46d097518a5ab26274190",
+      "exact_layout_only_diff": ""
+    },
+    {
+      "path": "independent_source05_probes.py",
+      "original_sha256": "3f1c699f508ba9829e9b8072dc497c115000581d241ee3b7ba754bcdf83c8841",
+      "root_sha256": "5f7942577ca23763d1291cbee60066ce3ecaab78809681ba9a67a34cf1c3d8fb",
+      "exact_layout_only_diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n import base64,copy,gc,hashlib,io,json,os,runpy,shutil,socket,subprocess,sys,tempfile,urllib.request\n import regression_workflow_probes as h\n \n-O=Path(__file__).resolve().parent;D=O.parent;g=h.g\n+O=Path(__file__).resolve().parent;D=Path('/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015');g=h.g\n Z='ZENODO_VERIFIED_PUBLICATION.json';T='TRACKER_VERIFIED_APPEND.json'\n ATTEMPT='RELEASE_BINDING_RECONCILIATION_ATTEMPT.json';DONE='RELEASE_BINDING_RECONCILIATION.json'\n EVIDENCE=[Z,T,'STAGE_ATTEMPT.json','PUBLISH_ATTEMPT.json','ZENODO_STAGED_VERIFIED.json','ZENODO_TOOL_PUBLICATION_RECEIPT.json','ZENODO_PROVIDER_CONFIRMED_PUBLICATION.json']\n"
+    },
+    {
+      "path": "local_integrity_source05.py",
+      "original_sha256": "23e3074edfcd9579660ee324ad18fea164480994e1bcb5e863e76df249208347",
+      "root_sha256": "42943375501b544b6abcd156b78587861fb832ad1c96e494c8aa9e19733ecb8f",
+      "exact_layout_only_diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n from pathlib import Path\n from datetime import datetime,timezone\n import base64,hashlib,json,zipfile\n-O=Path(__file__).resolve().parent;D=O.parent;C=D.parent;P=C/'publication';R=C/'preprint';H=D/'history/release_helpers_review03_frozen'\n+O=Path(__file__).resolve().parent;D=Path('/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015');C=D.parent;P=C/'publication';R=C/'preprint';H=D/'history/release_helpers_review03_frozen'\n load=lambda p:json.loads(p.read_text());sha=lambda b:hashlib.sha256(b).hexdigest()\n def pin(p):raw=p.read_bytes();return dict(path=p.name,bytes=len(raw),sha256=sha(raw))\n freeze=load(O/'INDEPENDENT_FREEZE.json');sourcechecks=[]\n"
+    }
+  ],
+  "helpers_and_acceptance_guards_unchanged": true,
+  "actual_provider_network_CLI_Git_or_sheet_actions": 0
+}

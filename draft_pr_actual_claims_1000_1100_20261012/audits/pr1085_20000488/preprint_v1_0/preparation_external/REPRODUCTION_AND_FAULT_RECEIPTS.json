@@ -1,0 +1,1521 @@
+{
+  "passed": true,
+  "utc": "2026-10-14T05:33:52.635828+00:00",
+  "command_count": 104,
+  "expected_rejections": 86,
+  "canonical_files_unchanged": 104,
+  "independent_closed_archive_equal": true,
+  "normal_and_optimized_finite_results_equal": true,
+  "safe_PDF_rebuild_equal_both_modes": true,
+  "PDF_alias_guards_precompiler": true,
+  "commands": [
+    {
+      "label": "normal clean verify_package.py",
+      "utc": "2026-10-14T05:33:40.216218+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal clean check_math.py",
+      "utc": "2026-10-14T05:33:40.284532+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_math.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"Fourier_square_guards\": 144,\n  \"Hardy_coefficient_guards\": 5,\n  \"Hardy_margin\": \"597499/1200480\",\n  \"N_coarse_upper\": \"1/240\",\n  \"coercivity_minors\": 15,\n  \"coercivity_probes\": 125,\n  \"mass_scaling_guards\": 12,\n  \"package\": {\n    \"archive_verified\": false,\n    \"exact_historical_copies\": 66,\n    \"external_deposit_binding_verified\": false,\n    \"individual_exclusions\": 126,\n    \"new_whole_reviews\": 0,\n    \"passed\": true,\n    \"payload_members_verified\": 90,\n    \"publication_ready\": false,\n    \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n  },\n  \"passed\": true,\n  \"scope\": \"Finite rational diagnostics supplement the universal proofs; no discretized PDE, source theorem reproof, historical executable replay or formal proof certificate.\",\n  \"trace_guards\": 16,\n  \"v_upper\": \"2501/6000000\",\n  \"vertical_guards\": 12\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal clean archive",
+      "utc": "2026-10-14T05:33:40.355915+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/rebuilt_normal.zip"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_bytes\": 348815,\n  \"archive_sha256\": \"e297c94c2f71f74d55e77d29d6af850125c52e346652af2672b2671492afd52b\",\n  \"passed\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal clean verifier after build",
+      "utc": "2026-10-14T05:33:40.472841+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal absent strict descriptor rejection",
+      "utc": "2026-10-14T05:33:40.536620+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 93, in verify\n    regular(descriptor) # rejects dangling symlink as well as nonregular input\n    ~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 20, in regular\n    require(path.is_file() and stat.S_ISREG(path.stat().st_mode),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"regular input required: \" + str(path))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: regular input required: /private/tmp/pr1085-process-79vt09s4/kit/zenodo-deposit.json\n"
+    },
+    {
+      "label": "normal math mutation normal_sign",
+      "utc": "2026-10-14T05:33:40.601952+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_math.py",
+        "--mutation",
+        "normal_sign"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 41, in run\n    require(boundary*surface == F(1,4), \"normal defect with surface Jacobian\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: normal defect with surface Jacobian\n"
+    },
+    {
+      "label": "normal math mutation lost_jacobian",
+      "utc": "2026-10-14T05:33:40.671377+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_math.py",
+        "--mutation",
+        "lost_jacobian"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 41, in run\n    require(boundary*surface == F(1,4), \"normal defect with surface Jacobian\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: normal defect with surface Jacobian\n"
+    },
+    {
+      "label": "normal math mutation preprint_theta",
+      "utc": "2026-10-14T05:33:40.786442+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_math.py",
+        "--mutation",
+        "preprint_theta"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 11, in run\n    require(denominator > 0, \"published HHRV theta range; older preprint differs\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: published HHRV theta range; older preprint differs\n"
+    },
+    {
+      "label": "normal math mutation fourier_boundary_sign",
+      "utc": "2026-10-14T05:33:40.858809+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_math.py",
+        "--mutation",
+        "fourier_boundary_sign"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 75, in run\n    require(energy==completed+(rho-beta)*(A+B)**2 and completed>=0,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"Fourier trace square identity\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: Fourier trace square identity\n"
+    },
+    {
+      "label": "normal coherent stage fault publication_ready",
+      "utc": "2026-10-14T05:33:40.949791+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: publication_ready\n"
+    },
+    {
+      "label": "normal coherent stage fault all_actionable_issues_resolved",
+      "utc": "2026-10-14T05:33:41.028893+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: all_actionable_issues_resolved\n"
+    },
+    {
+      "label": "normal coherent stage fault published",
+      "utc": "2026-10-14T05:33:41.109072+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: published\n"
+    },
+    {
+      "label": "normal coherent stage fault embedded_eigenvalues_excluded",
+      "utc": "2026-10-14T05:33:41.197424+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: embedded_eigenvalues_excluded\n"
+    },
+    {
+      "label": "normal coherent stage fault all_coupling_absence_for_one_fixed_nonzero_graph",
+      "utc": "2026-10-14T05:33:41.285324+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: all_coupling_absence_for_one_fixed_nonzero_graph\n"
+    },
+    {
+      "label": "normal coherent stage fault general_n_ge_4_nongraph_classification",
+      "utc": "2026-10-14T05:33:41.367257+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: general_n_ge_4_nongraph_classification\n"
+    },
+    {
+      "label": "normal coherent stage fault human_peer_review",
+      "utc": "2026-10-14T05:33:41.514811+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: human_peer_review\n"
+    },
+    {
+      "label": "normal coherent stage fault formal_proof_certificate",
+      "utc": "2026-10-14T05:33:41.607096+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: formal_proof_certificate\n"
+    },
+    {
+      "label": "normal coherent scope fault new_whole_package_reviews",
+      "utc": "2026-10-14T05:33:41.697544+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 29, in verify\n    require(type(status.get(\"new_whole_package_reviews\")) is int and status[\"new_whole_package_reviews\"] == 0, \"new reviews pending\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: new reviews pending\n"
+    },
+    {
+      "label": "normal coherent scope fault minimum_new_whole_package_reviews",
+      "utc": "2026-10-14T05:33:41.781194+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 30, in verify\n    require(type(status.get(\"minimum_new_whole_package_reviews\")) is int and status[\"minimum_new_whole_package_reviews\"] == 2, \"two new reviews required\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: two new reviews required\n"
+    },
+    {
+      "label": "normal coherent scope fault novelty",
+      "utc": "2026-10-14T05:33:41.863398+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 35, in verify\n    require(status.get(key) == \"UNKNOWN\", \"unestablished historical predicate\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: unestablished historical predicate\n"
+    },
+    {
+      "label": "normal coherent scope fault audited_head",
+      "utc": "2026-10-14T05:33:41.944765+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 32, in verify\n    require(status[\"audited_head\"] == \"5e23f0c801d23976830657d2eef2b32bdc7da05a\", \"audited head\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: audited head\n"
+    },
+    {
+      "label": "normal coherent all metadata mutation",
+      "utc": "2026-10-14T05:33:42.025799+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 46, in verify\n    require(meta == wrapper[\"metadata\"] == EXPECTED_METADATA, \"exact bibliographic metadata\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: exact bibliographic metadata\n"
+    },
+    {
+      "label": "normal coherent historical copy map mutation",
+      "utc": "2026-10-14T05:33:42.106944+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 59, in verify\n    require(row[\"bytes\"] == old[\"bytes\"] and row[\"sha256\"] == old[\"sha256\"], \"copy map frozen source\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: copy map frozen source\n"
+    },
+    {
+      "label": "normal self excluded manifest symlink",
+      "utc": "2026-10-14T05:33:42.187281+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 46, in members\n    regular(ROOT / \"SUPPORT_MANIFEST.json\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /private/tmp/pr1085-process-79vt09s4/kit/SUPPORT_MANIFEST.json\n"
+    },
+    {
+      "label": "normal bootstrap allowlist symlink",
+      "utc": "2026-10-14T05:33:42.263128+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 38, in members\n    regular(ROOT / \"PAYLOAD_MEMBERS.txt\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /private/tmp/pr1085-process-79vt09s4/kit/PAYLOAD_MEMBERS.txt\n"
+    },
+    {
+      "label": "normal dangling descriptor",
+      "utc": "2026-10-14T05:33:42.333727+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 93, in verify\n    regular(descriptor) # rejects dangling symlink as well as nonregular input\n    ~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /private/tmp/pr1085-process-79vt09s4/kit/zenodo-deposit.json\n"
+    },
+    {
+      "label": "normal duplicate JSON key",
+      "utc": "2026-10-14T05:33:42.420099+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 24, in verify\n    status = read_json(ROOT / \"STATUS.json\")\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 34, in read_json\n    return json_bytes(regular(path).read_bytes())\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 31, in json_bytes\n    return json.loads(data.decode(\"utf-8\"), object_pairs_hook=pairs)\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 365, in loads\n    return cls(**kw).decode(s)\n           ~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 28, in pairs\n    require(key not in out, \"duplicate JSON key: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: duplicate JSON key: pr\n"
+    },
+    {
+      "label": "normal complete binding positive",
+      "utc": "2026-10-14T05:33:42.500905+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": true,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": true,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal external binding fault UPLOAD_BINDINGS.json28",
+      "utc": "2026-10-14T05:33:42.646069+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 108, in verify\n    require(set(row) == {\"filename\", \"bytes\", \"sha256\"} and type(row[\"bytes\"]) is int, \"binding file fields/types\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: binding file fields/types\n"
+    },
+    {
+      "label": "normal external binding fault UPLOAD_BINDINGS.json29",
+      "utc": "2026-10-14T05:33:42.791185+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 110, in verify\n    require(len(body) == row[\"bytes\"] and sha(body) == row[\"sha256\"], \"exact attachment binding\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: exact attachment binding\n"
+    },
+    {
+      "label": "normal external binding fault zenodo-deposit.json30",
+      "utc": "2026-10-14T05:33:42.938232+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 96, in verify\n    require(dep[\"metadata\"] == EXPECTED_METADATA, \"exact deposit metadata\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: exact deposit metadata\n"
+    },
+    {
+      "label": "normal external binding fault zenodo-deposit.json31",
+      "utc": "2026-10-14T05:33:43.079508+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 99, in verify\n    require(dep[\"files\"] == expected_files, \"exact repository deposit paths\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: exact repository deposit paths\n"
+    },
+    {
+      "label": "normal ordinary descriptor symlink",
+      "utc": "2026-10-14T05:33:43.217309+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 93, in verify\n    regular(descriptor) # rejects dangling symlink as well as nonregular input\n    ~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /private/tmp/pr1085-process-79vt09s4/kit/zenodo-deposit.json\n"
+    },
+    {
+      "label": "normal direct output alias verify_package.py",
+      "utc": "2026-10-14T05:33:43.355782+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/kit/paper.tex"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 72, in safe_output\n    require(target != ROOT and ROOT not in target.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside canonical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside canonical kit directory\n"
+    },
+    {
+      "label": "normal hardlink output alias verify_package.py",
+      "utc": "2026-10-14T05:33:43.408974+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_verify_package.py_normal"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "normal symlink output alias verify_package.py",
+      "utc": "2026-10-14T05:33:43.465157+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_verify_package.py_normal"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+    },
+    {
+      "label": "normal direct output alias check_math.py",
+      "utc": "2026-10-14T05:33:43.517947+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_math.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/kit/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 72, in safe_output\n    require(target != ROOT and ROOT not in target.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside canonical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside canonical kit directory\n"
+    },
+    {
+      "label": "normal hardlink output alias check_math.py",
+      "utc": "2026-10-14T05:33:43.573584+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_math.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_check_math.py_normal"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "normal symlink output alias check_math.py",
+      "utc": "2026-10-14T05:33:43.631265+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_math.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_check_math.py_normal"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+    },
+    {
+      "label": "normal direct output alias build_archive.py",
+      "utc": "2026-10-14T05:33:43.686221+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/kit/.zenodo.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 72, in safe_output\n    require(target != ROOT and ROOT not in target.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside canonical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside canonical kit directory\n"
+    },
+    {
+      "label": "normal hardlink output alias build_archive.py",
+      "utc": "2026-10-14T05:33:43.740051+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_build_archive.py_normal"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "normal symlink output alias build_archive.py",
+      "utc": "2026-10-14T05:33:43.795665+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_build_archive.py_normal"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+    },
+    {
+      "label": "normal supplied external descriptor output alias",
+      "utc": "2026-10-14T05:33:43.849012+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--deposit",
+        "/private/tmp/pr1085-process-79vt09s4/external_normal.json",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/external_normal.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 75, in safe_output\n    require(target != source.resolve(), \"output aliases protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output aliases protected input\n"
+    },
+    {
+      "label": "normal canonical PDF directory alias",
+      "utc": "2026-10-14T05:33:43.905613+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "."
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 14, in main\n    safe_output(out)\n    ~~~~~~~~~~~^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 72, in safe_output\n    require(target != ROOT and ROOT not in target.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside canonical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside canonical kit directory\n"
+    },
+    {
+      "label": "normal PDF child hardlink paper.tex",
+      "utc": "2026-10-14T05:33:43.959730+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfalias_normal_paper.tex"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "normal PDF child hardlink paper.pdf",
+      "utc": "2026-10-14T05:33:44.020980+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfalias_normal_paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "normal PDF child hardlink paper.log",
+      "utc": "2026-10-14T05:33:44.087589+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfalias_normal_paper.log"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "normal PDF child hardlink COMPILE_RECEIPT.json",
+      "utc": "2026-10-14T05:33:44.155282+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfalias_normal_COMPILE_RECEIPT.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "normal safe PDF rebuild",
+      "utc": "2026-10-14T05:33:44.254363+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfsafe_normal"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"engine\": \"Tectonic\",\n  \"overfull_boxes\": 0,\n  \"passed\": true,\n  \"pdf_bytes\": 97501,\n  \"pdf_sha256\": \"464de043ac6b723f3bd5c03dddb6efd1c0bfeb05b5209bb532006580b7aedc2d\",\n  \"source_date_epoch\": \"1791936000\",\n  \"source_sha256\": \"c18a6ed12250dcee413e85f9a6297c525015396f151cdab8d89a6eb76938046d\",\n  \"stderr\": \"\",\n  \"stdout\": \"note: Running TeX ...\\nnote: Rerunning TeX because \\\"paper.out\\\" changed ...\\nnote: Running xdvipdfmx ...\\nnote: Writing `/private/tmp/pr1085-process-79vt09s4/pdfsafe_normal/pr1085-tex-g6gxxs36/paper.pdf` (95.2158203125 KiB)\\nnote: Writing `/private/tmp/pr1085-process-79vt09s4/pdfsafe_normal/pr1085-tex-g6gxxs36/paper.log` (18.4091796875 KiB)\\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal clean payload after safe compile",
+      "utc": "2026-10-14T05:33:46.088525+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized clean verify_package.py",
+      "utc": "2026-10-14T05:33:46.168395+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized clean check_math.py",
+      "utc": "2026-10-14T05:33:46.242333+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "check_math.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"Fourier_square_guards\": 144,\n  \"Hardy_coefficient_guards\": 5,\n  \"Hardy_margin\": \"597499/1200480\",\n  \"N_coarse_upper\": \"1/240\",\n  \"coercivity_minors\": 15,\n  \"coercivity_probes\": 125,\n  \"mass_scaling_guards\": 12,\n  \"package\": {\n    \"archive_verified\": false,\n    \"exact_historical_copies\": 66,\n    \"external_deposit_binding_verified\": false,\n    \"individual_exclusions\": 126,\n    \"new_whole_reviews\": 0,\n    \"passed\": true,\n    \"payload_members_verified\": 90,\n    \"publication_ready\": false,\n    \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n  },\n  \"passed\": true,\n  \"scope\": \"Finite rational diagnostics supplement the universal proofs; no discretized PDE, source theorem reproof, historical executable replay or formal proof certificate.\",\n  \"trace_guards\": 16,\n  \"v_upper\": \"2501/6000000\",\n  \"vertical_guards\": 12\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized clean archive",
+      "utc": "2026-10-14T05:33:46.312872+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/rebuilt_optimized.zip"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_bytes\": 348815,\n  \"archive_sha256\": \"e297c94c2f71f74d55e77d29d6af850125c52e346652af2672b2671492afd52b\",\n  \"passed\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized clean verifier after build",
+      "utc": "2026-10-14T05:33:46.430229+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized absent strict descriptor rejection",
+      "utc": "2026-10-14T05:33:46.499841+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 93, in verify\n    regular(descriptor) # rejects dangling symlink as well as nonregular input\n    ~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 20, in regular\n    require(path.is_file() and stat.S_ISREG(path.stat().st_mode),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"regular input required: \" + str(path))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: regular input required: /private/tmp/pr1085-process-79vt09s4/kit/zenodo-deposit.json\n"
+    },
+    {
+      "label": "optimized math mutation normal_sign",
+      "utc": "2026-10-14T05:33:46.572301+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "check_math.py",
+        "--mutation",
+        "normal_sign"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 41, in run\n    require(boundary*surface == F(1,4), \"normal defect with surface Jacobian\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: normal defect with surface Jacobian\n"
+    },
+    {
+      "label": "optimized math mutation lost_jacobian",
+      "utc": "2026-10-14T05:33:46.680245+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "check_math.py",
+        "--mutation",
+        "lost_jacobian"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 41, in run\n    require(boundary*surface == F(1,4), \"normal defect with surface Jacobian\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: normal defect with surface Jacobian\n"
+    },
+    {
+      "label": "optimized math mutation preprint_theta",
+      "utc": "2026-10-14T05:33:46.783642+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "check_math.py",
+        "--mutation",
+        "preprint_theta"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 11, in run\n    require(denominator > 0, \"published HHRV theta range; older preprint differs\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: published HHRV theta range; older preprint differs\n"
+    },
+    {
+      "label": "optimized math mutation fourier_boundary_sign",
+      "utc": "2026-10-14T05:33:46.856454+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "check_math.py",
+        "--mutation",
+        "fourier_boundary_sign"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 75, in run\n    require(energy==completed+(rho-beta)*(A+B)**2 and completed>=0,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"Fourier trace square identity\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: Fourier trace square identity\n"
+    },
+    {
+      "label": "optimized coherent stage fault publication_ready",
+      "utc": "2026-10-14T05:33:46.950956+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: publication_ready\n"
+    },
+    {
+      "label": "optimized coherent stage fault all_actionable_issues_resolved",
+      "utc": "2026-10-14T05:33:47.034453+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: all_actionable_issues_resolved\n"
+    },
+    {
+      "label": "optimized coherent stage fault published",
+      "utc": "2026-10-14T05:33:47.117465+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: published\n"
+    },
+    {
+      "label": "optimized coherent stage fault embedded_eigenvalues_excluded",
+      "utc": "2026-10-14T05:33:47.203063+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: embedded_eigenvalues_excluded\n"
+    },
+    {
+      "label": "optimized coherent stage fault all_coupling_absence_for_one_fixed_nonzero_graph",
+      "utc": "2026-10-14T05:33:47.286241+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: all_coupling_absence_for_one_fixed_nonzero_graph\n"
+    },
+    {
+      "label": "optimized coherent stage fault general_n_ge_4_nongraph_classification",
+      "utc": "2026-10-14T05:33:47.370118+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: general_n_ge_4_nongraph_classification\n"
+    },
+    {
+      "label": "optimized coherent stage fault human_peer_review",
+      "utc": "2026-10-14T05:33:47.453575+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: human_peer_review\n"
+    },
+    {
+      "label": "optimized coherent stage fault formal_proof_certificate",
+      "utc": "2026-10-14T05:33:47.540005+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 28, in verify\n    require(status.get(key) is False, \"forbidden promotion: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: forbidden promotion: formal_proof_certificate\n"
+    },
+    {
+      "label": "optimized coherent scope fault new_whole_package_reviews",
+      "utc": "2026-10-14T05:33:47.622344+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 29, in verify\n    require(type(status.get(\"new_whole_package_reviews\")) is int and status[\"new_whole_package_reviews\"] == 0, \"new reviews pending\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: new reviews pending\n"
+    },
+    {
+      "label": "optimized coherent scope fault minimum_new_whole_package_reviews",
+      "utc": "2026-10-14T05:33:47.710144+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 30, in verify\n    require(type(status.get(\"minimum_new_whole_package_reviews\")) is int and status[\"minimum_new_whole_package_reviews\"] == 2, \"two new reviews required\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: two new reviews required\n"
+    },
+    {
+      "label": "optimized coherent scope fault novelty",
+      "utc": "2026-10-14T05:33:47.797283+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 35, in verify\n    require(status.get(key) == \"UNKNOWN\", \"unestablished historical predicate\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: unestablished historical predicate\n"
+    },
+    {
+      "label": "optimized coherent scope fault audited_head",
+      "utc": "2026-10-14T05:33:47.885003+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 32, in verify\n    require(status[\"audited_head\"] == \"5e23f0c801d23976830657d2eef2b32bdc7da05a\", \"audited head\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: audited head\n"
+    },
+    {
+      "label": "optimized coherent all metadata mutation",
+      "utc": "2026-10-14T05:33:47.974935+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 46, in verify\n    require(meta == wrapper[\"metadata\"] == EXPECTED_METADATA, \"exact bibliographic metadata\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: exact bibliographic metadata\n"
+    },
+    {
+      "label": "optimized coherent historical copy map mutation",
+      "utc": "2026-10-14T05:33:48.056169+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 59, in verify\n    require(row[\"bytes\"] == old[\"bytes\"] and row[\"sha256\"] == old[\"sha256\"], \"copy map frozen source\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: copy map frozen source\n"
+    },
+    {
+      "label": "optimized self excluded manifest symlink",
+      "utc": "2026-10-14T05:33:48.136137+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 46, in members\n    regular(ROOT / \"SUPPORT_MANIFEST.json\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /private/tmp/pr1085-process-79vt09s4/kit/SUPPORT_MANIFEST.json\n"
+    },
+    {
+      "label": "optimized bootstrap allowlist symlink",
+      "utc": "2026-10-14T05:33:48.213387+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 38, in members\n    regular(ROOT / \"PAYLOAD_MEMBERS.txt\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /private/tmp/pr1085-process-79vt09s4/kit/PAYLOAD_MEMBERS.txt\n"
+    },
+    {
+      "label": "optimized dangling descriptor",
+      "utc": "2026-10-14T05:33:48.289539+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 93, in verify\n    regular(descriptor) # rejects dangling symlink as well as nonregular input\n    ~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /private/tmp/pr1085-process-79vt09s4/kit/zenodo-deposit.json\n"
+    },
+    {
+      "label": "optimized duplicate JSON key",
+      "utc": "2026-10-14T05:33:48.377204+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 24, in verify\n    status = read_json(ROOT / \"STATUS.json\")\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 34, in read_json\n    return json_bytes(regular(path).read_bytes())\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 31, in json_bytes\n    return json.loads(data.decode(\"utf-8\"), object_pairs_hook=pairs)\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 365, in loads\n    return cls(**kw).decode(s)\n           ~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 28, in pairs\n    require(key not in out, \"duplicate JSON key: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: duplicate JSON key: pr\n"
+    },
+    {
+      "label": "optimized complete binding positive",
+      "utc": "2026-10-14T05:33:48.453694+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": true,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": true,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized external binding fault UPLOAD_BINDINGS.json78",
+      "utc": "2026-10-14T05:33:48.593467+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 108, in verify\n    require(set(row) == {\"filename\", \"bytes\", \"sha256\"} and type(row[\"bytes\"]) is int, \"binding file fields/types\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: binding file fields/types\n"
+    },
+    {
+      "label": "optimized external binding fault UPLOAD_BINDINGS.json79",
+      "utc": "2026-10-14T05:33:48.750616+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 110, in verify\n    require(len(body) == row[\"bytes\"] and sha(body) == row[\"sha256\"], \"exact attachment binding\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: exact attachment binding\n"
+    },
+    {
+      "label": "optimized external binding fault zenodo-deposit.json80",
+      "utc": "2026-10-14T05:33:48.970035+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 96, in verify\n    require(dep[\"metadata\"] == EXPECTED_METADATA, \"exact deposit metadata\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: exact deposit metadata\n"
+    },
+    {
+      "label": "optimized external binding fault zenodo-deposit.json81",
+      "utc": "2026-10-14T05:33:49.115259+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 99, in verify\n    require(dep[\"files\"] == expected_files, \"exact repository deposit paths\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: exact repository deposit paths\n"
+    },
+    {
+      "label": "optimized ordinary descriptor symlink",
+      "utc": "2026-10-14T05:33:49.259889+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 93, in verify\n    regular(descriptor) # rejects dangling symlink as well as nonregular input\n    ~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /private/tmp/pr1085-process-79vt09s4/kit/zenodo-deposit.json\n"
+    },
+    {
+      "label": "optimized direct output alias verify_package.py",
+      "utc": "2026-10-14T05:33:49.396373+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/kit/paper.tex"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 72, in safe_output\n    require(target != ROOT and ROOT not in target.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside canonical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside canonical kit directory\n"
+    },
+    {
+      "label": "optimized hardlink output alias verify_package.py",
+      "utc": "2026-10-14T05:33:49.450506+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_verify_package.py_optimized"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "optimized symlink output alias verify_package.py",
+      "utc": "2026-10-14T05:33:49.504804+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_verify_package.py_optimized"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+    },
+    {
+      "label": "optimized direct output alias check_math.py",
+      "utc": "2026-10-14T05:33:49.557406+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "check_math.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/kit/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 72, in safe_output\n    require(target != ROOT and ROOT not in target.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside canonical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside canonical kit directory\n"
+    },
+    {
+      "label": "optimized hardlink output alias check_math.py",
+      "utc": "2026-10-14T05:33:49.613433+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "check_math.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_check_math.py_optimized"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "optimized symlink output alias check_math.py",
+      "utc": "2026-10-14T05:33:49.670790+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "check_math.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_check_math.py_optimized"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+    },
+    {
+      "label": "optimized direct output alias build_archive.py",
+      "utc": "2026-10-14T05:33:49.726382+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/kit/.zenodo.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 72, in safe_output\n    require(target != ROOT and ROOT not in target.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside canonical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside canonical kit directory\n"
+    },
+    {
+      "label": "optimized hardlink output alias build_archive.py",
+      "utc": "2026-10-14T05:33:49.779739+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_build_archive.py_optimized"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "optimized symlink output alias build_archive.py",
+      "utc": "2026-10-14T05:33:49.835725+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/hard_build_archive.py_optimized"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+    },
+    {
+      "label": "optimized supplied external descriptor output alias",
+      "utc": "2026-10-14T05:33:49.890859+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--deposit",
+        "/private/tmp/pr1085-process-79vt09s4/external_optimized.json",
+        "--output",
+        "/private/tmp/pr1085-process-79vt09s4/external_optimized.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 75, in safe_output\n    require(target != source.resolve(), \"output aliases protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output aliases protected input\n"
+    },
+    {
+      "label": "optimized canonical PDF directory alias",
+      "utc": "2026-10-14T05:33:49.947517+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "."
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 14, in main\n    safe_output(out)\n    ~~~~~~~~~~~^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 72, in safe_output\n    require(target != ROOT and ROOT not in target.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside canonical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside canonical kit directory\n"
+    },
+    {
+      "label": "optimized PDF child hardlink paper.tex",
+      "utc": "2026-10-14T05:33:50.001997+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfalias_optimized_paper.tex"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "optimized PDF child hardlink paper.pdf",
+      "utc": "2026-10-14T05:33:50.061426+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfalias_optimized_paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "optimized PDF child hardlink paper.log",
+      "utc": "2026-10-14T05:33:50.124579+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfalias_optimized_paper.log"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "optimized PDF child hardlink COMPILE_RECEIPT.json",
+      "utc": "2026-10-14T05:33:50.191191+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfalias_optimized_COMPILE_RECEIPT.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1085-process-79vt09s4/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+    },
+    {
+      "label": "optimized safe PDF rebuild",
+      "utc": "2026-10-14T05:33:50.281817+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1085-process-79vt09s4/pdfsafe_optimized"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"engine\": \"Tectonic\",\n  \"overfull_boxes\": 0,\n  \"passed\": true,\n  \"pdf_bytes\": 97501,\n  \"pdf_sha256\": \"464de043ac6b723f3bd5c03dddb6efd1c0bfeb05b5209bb532006580b7aedc2d\",\n  \"source_date_epoch\": \"1791936000\",\n  \"source_sha256\": \"c18a6ed12250dcee413e85f9a6297c525015396f151cdab8d89a6eb76938046d\",\n  \"stderr\": \"\",\n  \"stdout\": \"note: Running TeX ...\\nnote: Rerunning TeX because \\\"paper.aux\\\" changed ...\\nnote: Running xdvipdfmx ...\\nnote: Writing `/private/tmp/pr1085-process-79vt09s4/pdfsafe_optimized/pr1085-tex-q3khn9mv/paper.pdf` (95.2158203125 KiB)\\nnote: Writing `/private/tmp/pr1085-process-79vt09s4/pdfsafe_optimized/pr1085-tex-q3khn9mv/paper.log` (18.4091796875 KiB)\\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\\n\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized clean payload after safe compile",
+      "utc": "2026-10-14T05:33:51.907567+00:00",
+      "cwd": "/private/tmp/pr1085-process-79vt09s4/kit",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "canonical normal strict binding",
+      "utc": "2026-10-14T05:33:52.050370+00:00",
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/preprint_v1_0",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": true,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": true,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "canonical normal mathematics",
+      "utc": "2026-10-14T05:33:52.194982+00:00",
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/preprint_v1_0",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_math.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"Fourier_square_guards\": 144,\n  \"Hardy_coefficient_guards\": 5,\n  \"Hardy_margin\": \"597499/1200480\",\n  \"N_coarse_upper\": \"1/240\",\n  \"coercivity_minors\": 15,\n  \"coercivity_probes\": 125,\n  \"mass_scaling_guards\": 12,\n  \"package\": {\n    \"archive_verified\": true,\n    \"exact_historical_copies\": 66,\n    \"external_deposit_binding_verified\": true,\n    \"individual_exclusions\": 126,\n    \"new_whole_reviews\": 0,\n    \"passed\": true,\n    \"payload_members_verified\": 90,\n    \"publication_ready\": false,\n    \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n  },\n  \"passed\": true,\n  \"scope\": \"Finite rational diagnostics supplement the universal proofs; no discretized PDE, source theorem reproof, historical executable replay or formal proof certificate.\",\n  \"trace_guards\": 16,\n  \"v_upper\": \"2501/6000000\",\n  \"vertical_guards\": 12\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "canonical optimized strict binding",
+      "utc": "2026-10-14T05:33:52.330224+00:00",
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/preprint_v1_0",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"archive_verified\": true,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": true,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "canonical optimized mathematics",
+      "utc": "2026-10-14T05:33:52.454311+00:00",
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/preprint_v1_0",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "check_math.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"Fourier_square_guards\": 144,\n  \"Hardy_coefficient_guards\": 5,\n  \"Hardy_margin\": \"597499/1200480\",\n  \"N_coarse_upper\": \"1/240\",\n  \"coercivity_minors\": 15,\n  \"coercivity_probes\": 125,\n  \"mass_scaling_guards\": 12,\n  \"package\": {\n    \"archive_verified\": true,\n    \"exact_historical_copies\": 66,\n    \"external_deposit_binding_verified\": true,\n    \"individual_exclusions\": 126,\n    \"new_whole_reviews\": 0,\n    \"passed\": true,\n    \"payload_members_verified\": 90,\n    \"publication_ready\": false,\n    \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n  },\n  \"passed\": true,\n  \"scope\": \"Finite rational diagnostics supplement the universal proofs; no discretized PDE, source theorem reproof, historical executable replay or formal proof certificate.\",\n  \"trace_guards\": 16,\n  \"v_upper\": \"2501/6000000\",\n  \"vertical_guards\": 12\n}\n",
+      "stderr": ""
+    }
+  ]
+}

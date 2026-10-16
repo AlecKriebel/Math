@@ -1,0 +1,41 @@
+{
+  "events": [
+    {
+      "time": "2026-10-16T07:59Z",
+      "operation": "apply_patch create INITIAL_POSITION and parent directory",
+      "failure": "Failed to create parent directories; no file created"
+    },
+    {
+      "time": "2026-10-16T07:59:52Z",
+      "operation": "mkdir -p assigned directory",
+      "failure": "No space left on device despite df116MiB free"
+    },
+    {
+      "time": "2026-10-16T08:00Z",
+      "operation": "second apply_patch create INITIAL_POSITION and parent directory",
+      "failure": "Failed to create parent directories; no file created"
+    }
+  ],
+  "later_events": [
+    {
+      "at": "2026-10-16T08:01Z",
+      "operation": "mkdir retry",
+      "failure": "ENOSPC; no directory created"
+    },
+    {
+      "at": "2026-10-16T08:04:44Z",
+      "operation": "mkdir retry",
+      "outcome": "success; no shared cleanup performed"
+    }
+  ],
+  "additional_events": [
+    {
+      "at": "2026-10-16T08:09Z",
+      "operation": "RAM-only fetch command with shell here-document",
+      "failure": "Shell could not create implicit here-document temporary file: no space left on device",
+      "recovery": "Retried with python -c; no temporary source body created"
+    }
+  ],
+  "temporary_full_bodies_written": false,
+  "other_problem_changes": false
+}

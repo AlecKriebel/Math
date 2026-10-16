@@ -1,0 +1,9 @@
+# Accepted odd outer focal-pedal area product — claimed_solved
+
+The original-focus signed outer-tangent pedal-area product is proved for every odd least-period billiard family with a strictly nested nondegenerate confocal elliptical caustic, including coprime stars and N3. Fixed repeated traversals multiply the product by s^2; the circular case is a direct extension. The two genuine N4 phases give products16 and25, excluding the primitive-even extension. The reviewed proof and all20 original archived inputs are unchanged.
+
+The historical source labels are2020 arXiv v1 k604, v11 k605,a and published k606. Three independent mathematical/source families, exact and high-precision controls, two bounded priority families and the required fresh sequential whole-package adversaries/global repairs are complete. Stachel/Jacobi/auxiliary-circle, classical cyclic elliptic/area methods, Khare–Sukhatme2004 and current Ferudun inverse-area/outer-pedal antecedents receive substantive credit. Both exact comparison bridges are documented. Historical novelty and public proof priority remain undetermined; no first-proof/new-general-method/current-worldwide-open claim. Source-access limits and the local0062p6 fixture correction remain explicit.
+
+Extensive AI assistance was used. This is an unrefereed preprint without independent human peer review or formal proof-assistant verification. FINAL_ACCEPTANCE.json and RELEASE_RECEIPT.json bind the actual reviewed submission and DOI/tracker facts; PUBLICATION_METADATA.json preserves the exact deposit metadata. Dated prepublication statuses are immutable provenance. Native merge events are recorded separately by GitHub and the case PR_MERGED receipt, without forecasting a merge here.
+
+Verified preprint and source/verification archive: https://doi.org/10.5281/zenodo.23398175. Exact metadata/both public files verified; single GWS append/all4cells read back at 'Math Puzzles'!A113:D113.

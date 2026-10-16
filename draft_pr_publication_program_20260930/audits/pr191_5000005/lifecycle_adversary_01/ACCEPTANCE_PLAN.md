@@ -1,0 +1,45 @@
+# PR191 independent lifecycle adversarial acceptance plan
+
+Sealed at 2026-10-15 05:21:43 UTC, before inspecting any proposed lifecycle implementation, author audit, or author self-test judgments. Audit completion estimate: 10%. This plan is based only on the parent task's acceptance scope. No proposal input has been read.
+
+## Claim and evidence standard
+
+Claim under test: the proposed operational controls permit only the human-authorized qualified credited note disposition of PR191 and reliably bind each irreversible step to the final accepted, unchanged scientific/public packet and the actual observed current MAIN state. PASS requires checkable implementation evidence and independent offline adversarial cases. Passing an author test suite is not evidence of complete safety. An offline PASS cannot establish that a future remote operation actually happened; that requires authoritative fresh readbacks.
+
+Scientific boundaries are fixed inputs, not subjects of this audit: the imported bare-A0/global conjunction is false for every n >= 5; the explicit parity-selected law/existence for all n >= 3 overlaps exact Ferudun/classical work. No novelty, priority, current openness, source erratum, or independence certification may be introduced. Native 50 is immutable pending template; DOI is null and publication/tracker/merge are unperformed until observed. Original head is a2791bdd3f7ecd5694aeeeb5dffb21964a5639fe; initial effort is 2/5 claimed_solved. Programme before factual completion is 39 complete / 23 published, last 190. Only full observed PR191 completion permits 40 / 24, current 191, next 192.
+
+## Independence and input freezing
+
+1. Seal this plan and its digest before any proposed operational code or its judgments are read.
+2. Wait for an explicit terminal/frozen signal from Root. Do not poll files, hash proposal files, or evaluate moving input.
+3. On terminal signal, inventory the precise frozen proposal, its contract, and any declared input references. Record authoritative content hashes and distinguish proposal evidence from author conclusions. Freeze audit input identities in our report.
+4. Confine outputs, execution, fixtures, stubs, mutants, caches, and generated reports to this own folder. No local Git/index/ref/checkout commands, remote operations, installation, outreach, or editor tabs. Never execute an operation that could reach a live service. Inspect code before executing it; run through offline stubs in a network-disabled harness if feasible.
+5. A mutated proposal or materially changed contract ends the current input generation; do not transfer acceptance silently to changed bytes. Record exact repairs and re-audit the changed generation.
+
+## Independent acceptance matrix
+
+A. Review succession and immutable bindings. Enumerate review/report/seal identities, generation ordering, issuer/family expectations, decisions, hashes, scope, timestamps and final gate construction. Reject missing, stale, ambiguous, circular, self-referential, future, negative or superseded reviews. Bind review approval to the exact final operational bytes and gate payload, science/native/public packet, and original head. Prove no audited-script overwrite through generators. Test drift in each selected identity independently.
+
+B. Public disposition content. Match the complete five-file public packet and three attachments to approved math and metadata, enforce attachment identity/size/hash and exact allowed publication metadata, reject altered credit/disclaimer/DOI/placeholders and hidden payload drift. Check route cannot promote unsupported scientific/priority assertions. Keep undeclared native originals and proof/code bytes byte-identical.
+
+C. Zenodo exactly-once state machine. Enumerate all external effect edges and recovery transitions. Test no-existing, existing draft, existing published, mismatched record, unknown creation, unknown upload, unknown publication and malformed/partial responses. Unknown outcomes must stop and reconcile authoritative state without guessing or creating duplicates. Retry idempotently; never synthesize a DOI. Bind state/journal to exact authorized request and accepted record identity; refuse foreign payload/head/gate/state reuse.
+
+D. Tracker exactly-once state machine. Fix spreadsheet 1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20, gid 1254632077, tab MathPuzzles, exact header Original Problem / Solution Chat URL / DOI / Notes and RAW insertion. Require exactly one intended row, preserve all foreign rows, reject same DOI with conflicting row or same case with inconsistent identity, and reconcile unknown append before retry. Require two independent fresh readbacks at the proper stage, accepting observed contents rather than API acknowledgement. Test false append success, duplicate match, reordered/changed rows, header/gid/tab drift, stale readbacks and coincident concurrent rows.
+
+E. Native factual generation. Enumerate exactly the declared factual documents and aliases permitted to change. Require all proof/code/original 16 byte identities to be protected. Check truthful prior/pending/completed states and all aliases: 39/23/190 before completion; 40/24/current 191/next 192 only after actual completion. Retire contradictory stale status/census/checkpoint statements. Reject undeclared path changes and unsupported foreign-row or peer control assumptions.
+
+F. Native object MAIN integration. Require native remote object APIs only, a fresh MAIN lease and nonforce expected-old adoption separated from preparation. Preserve every foreign path and row from fresh MAIN. Original-head merge must have exactly [fresh MAIN, original HEAD] parents in that order and correct full tree. Compare all selected identities to ACTUAL OBSERVED CURRENT MAIN using fresh authoritative bytes, even if a previously prepared tree is intact. Recheck merged map before factual preparation and combined merged-plus-factual map after actual adoption. Reject altered selected current MAIN, forged prepared object claims, wrong parents, wrong original head, partial map, stale lease and unexpected branch targeting.
+
+G. Concurrency and retries. Simulate MAIN advancing before adoption and between readback phases. A rejected stale generation remains preserved. A fresh generation must re-read current MAIN, preserve new foreign content and protected native facts, and need no manual gate rewrite. Require stable science/public binding while transient MAIN lease/generation identity can be reissued safely. No exclusive window, peer pause, future commit self-reference, or unverifiable lock assumption.
+
+H. Allowlist and confidentiality. Trace output of every generator and serializable payload. Safe exported artifacts include only declared operational code, contract/gate/review reports/manifests/seals and approved scientific/public packet/factual docs as explicitly necessary. Exclude other spreadsheet rows, raw HTTP, external paper bodies/derivatives, credentials, secrets, external state/journals and caches. Validate paths and symlink behavior. Ensure report allowlist contains only our public audit artifacts and no fixture secrets.
+
+## Offline adversarial method
+
+Read every operational module and contract. Build a call/effect map and a required-properties map. Invent independent fixtures with foreign paths, stale factual aliases, protected originals, multiple review generations, alternate current MAIN, and ambiguous remote outcomes. Exercise representative success and failure paths with in-memory or local native-object stubs. Inject mutant code or data to demonstrate that a test detects the specific safety violation; do not count a test merely because a standard happy path passes. Record full assertions, exit status and deterministic evidence in own artifacts. Prioritize altered selected current MAIN with intact prepared tree, wrong original head/parents, foreign path/row loss, unknown effect outcomes, false review succession, actual factual aliases and stale checkpoint retry.
+
+Where runtime contracts cannot be exercised safely, use explicit source reasoning and identify the remaining gap; do not declare it tested. A critical material unsupported route or equivalent transfer of the central difficulty is BLOCKED until a genuinely new mechanism supplies evidence. Distinguish implementation failure from fixture/harness failure and rerun corrected harnesses.
+
+## Promotion and final artifact requirements
+
+A clean conclusion requires no open material safety defects in the frozen proposal, independent positive and adversarial evidence, and exact final bindings that Root can install only as audited copies. Otherwise report precise required repairs, exploit preconditions and expected rejection behavior. Report limitations without treating them as a PASS. Preserve a timestamped research log and completion estimate at meaningful checkpoints; final deliverables comprise report, reproducible harness/evidence as safe, explicit safe allowlist, final manifest and seal. Hash all owned deliverables and make all owned files read-only (0444) at terminal checkpoint. No Git or remote publication work by this auditor.

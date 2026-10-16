@@ -1,0 +1,33 @@
+# PR140 sparse tree constructor: independent source delta review
+
+SOURCE-ONLY PASS; no mandatory finding. This is not an exact plan/data verdict, actual proposed-tree verification, or permission to publish/install. The existing v1-pinned plan cannot authorize this new source.
+
+Full candidate 21622 bytes, SHA256 9d5505d11ead83e7671e94d5cc24a481e2a606da45827bb1aa48f3ca5d14dce7; accepted predecessor 16644 bytes, SHA256 c7d2ac2cd330233efe96e69e6f6f47a1e3fc8cd7f3af868aad656182fc3aca32. Complete sources and exact diff were read. The final proposer SOURCE_DELTA_PREPARATION.json is 7395 bytes, SHA256 5a6916229c31f6144305d32e1ebeca9c3794825464b509aa9b70e5d0616dddc0; its source-only limits were checked. Its assertions about133 selected bodies and273 protected pins remain preparer evidence, not newly certified real data by this review.
+
+## Exact source change
+
+The module docstring changes private-index wording to sparse-tree wording. Seven helpers validate object IDs, parse raw-NUL immediate tree listings, build a selected-path trie, serialize Git-order entries, overlay changed ancestor trees, and construct selected blobs/trees. The only altered original function is publish: the full read-tree/update-index/write-tree private-index block is replaced by build_proposed_tree, and its unused private-index existence check is removed. The entire remaining publication function was compared after precisely that substitution. All14 other original functions, imports/constants, main and entry point are unchanged; a whole-module AST comparison outside the docstring and constructor changes independently verified that statement.
+
+## Independent adversarial evidence
+
+Normal actual PID 57421, 2026-10-07T17:06:27.543252+00:00 to 2026-10-07T17:06:27.793525+00:00; optimized actual PID 57462, 2026-10-07T17:06:27.856000+00:00 to 2026-10-07T17:06:28.106852+00:00. Each passed68 small cases and33 tiny Git children. Every child completed with exit0, was reaped and had an empty process group. Each owned scratch repository occupied899 bytes before writing its control receipt. No R/C repository, alternate object store, real index/ref, provider, remote, native/global path or actual publication operator was used.
+
+Tests were derived from the changed parser/trie/object boundaries rather than a count quota. They reject invalid object IDs and noncanonical command output; malformed/mismatched mode-kind records; duplicate, empty, slash and dot names; absolute, collapsed, parent, NUL and surrogate paths; leaf/branch collisions; Unicode case-fold aliases; incompatible selected existing tree/symlink/gitlink types; and mismatched selected source sizes/digests/blob IDs. Duplicate selected members are rejected before any object callback.
+
+The independent tiny Git oracle constructed the entire expected tree directly, separately from the recursive overlay. Exact root object and complete recursive raw-NUL listing matched. The selected changes include modification/addition under an existing directory, a new nested branch, normalization of a selected executable to100644, and names containing tabs/newlines. Unselected executable, symlink, a gitlink to a missing commit, invalid-UTF8 names and an entire untouched subtree retain their original modes, kinds, names and object IDs. Git mktree accepted the legitimate missing-commit gitlink. Only existing selected ancestors were read; four changed ancestor trees were written. Idempotent reapplication wrote nothing. Exact diff paths equaled the selected set. Serializer ordering was compared to Git's canonical immediate-tree listing, including the file/directory-prefix ordering a.c,a/,a0.
+
+Additional hash-stage tests use only fake in-memory source records and command callbacks. They verify exact selected payload hashing, independent SHA1 blob identity, duplicate rejection and the sparse command family. They do not build the actual133-member PR140 tree. All control source pins were checked again after execution.
+
+## Deduction and inherited safeguards
+
+At each visited tree, parsing preserves the exact immediate-entry tuple for every unselected child. The overlay changes only selected leaves and ancestors; untouched child tree IDs remain opaque. Canonical serialization and Git object validation turn that tuple-preservation invariant into an exact complement-preserving tree. Selected leaves must be regular blobs and become the reviewed100644 mode. Existing nonregular leaves and branch collisions fail closed rather than silently replacing types. The implementation is for the pinned40-character SHA1 Git repository, consistent with the inherited remote and plan format.
+
+The original protected full-file/resource checks, source/plan/independent-review digest gate, member preimages and modes, complete changed-path set check, each selected final tree entry, fresh remote parent guard, sole-parent commit, normal nonforce push, descendant-aware complete published-body readback, forward-only three-program-file installation, bounded child kill/reap handling and owned lock/receipt handling remain unchanged. No read-tree/update-index/write-tree constructor or large private index remains. The generic Git wrapper's optional index argument is inherited but unused by the new constructor.
+
+SOURCE-only correctness does not replace the newly source-pinned exact plan/data review. That review must authenticate the chosen fresh parent, every selected body, protected inputs, exact paths and output bytes. Normal push concurrency rejection remains a separate actual operational outcome, never a reason to force replace remote work. Actual Git mktree checks referenced object types/existence; a real missing required object or resource failure is an operational failure to preserve and resolve, not a source PASS proving runtime success.
+
+## Preserved prior failure and checkpoint
+
+The prior failed operation receipt remains untouched: 126236 bytes, SHA256 bedc03689691eec947f6d493bfd57a9e5852264c2bf1d6622b44a724ea87b198, actual PID 39142, 141 children. It records no proposed or published commit and its owned lock released. The reported ENOSPC incident motivated the constructor change; this review independently confirms the receipt phase and does not fabricate a new publication or reinterpret the failed operation as success.
+
+Actual sealer PID 58962, 2026-10-07T17:08:38.433302+00:00. Bounded source-review estimate100%; mathematical case status and overall program completion are not assessed or advanced. Own reports/control fixtures only. Proposer and predecessor sources/seals remain unchanged. Fresh source-pinned plan/data operational clearance still required.

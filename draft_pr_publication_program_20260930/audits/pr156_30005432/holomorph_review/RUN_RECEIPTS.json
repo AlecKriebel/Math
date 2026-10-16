@@ -1,0 +1,78 @@
+{
+  "created_utc": "2026-10-12T05:46:24.428258Z",
+  "execution_status": "PASS",
+  "runs": [
+    {
+      "name": "normal",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "CHECKER.py",
+        "--receipt",
+        "NORMAL_RECEIPT.json"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout_file": "NORMAL_STDOUT.json",
+      "stdout_sha256": "f53ac8eeb8c692c5143bc9e114066a0e0db5bffc9bf28407f9d27fd0df674f12",
+      "stderr_file": "NORMAL_STDERR.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "PASS",
+      "explicit_check_count": 243983,
+      "optimization_level": 0
+    },
+    {
+      "name": "optimized",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "CHECKER.py",
+        "--receipt",
+        "OPTIMIZED_RECEIPT.json"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout_file": "OPTIMIZED_STDOUT.json",
+      "stdout_sha256": "9aaf92727c25880fe66065b9a836bba05b677a517dec1a0559c88cab6d39868b",
+      "stderr_file": "OPTIMIZED_STDERR.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "PASS",
+      "explicit_check_count": 243983,
+      "optimization_level": 1
+    },
+    {
+      "name": "corrupt_normal",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "CHECKER.py",
+        "--corrupt"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "stdout_file": "CORRUPT_NORMAL_STDOUT.json",
+      "stdout_sha256": "e50fe82bfb630db52391a58bb5947ef7bfbf73b2ee8682c4fbc59c942f596d87",
+      "stderr_file": "CORRUPT_NORMAL_STDERR.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "FAIL",
+      "explicit_check_count": 243984,
+      "optimization_level": 0
+    },
+    {
+      "name": "corrupt_optimized",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "CHECKER.py",
+        "--corrupt"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "stdout_file": "CORRUPT_OPTIMIZED_STDOUT.json",
+      "stdout_sha256": "70ebb2eb0894eb46a05815725a21d81edcd338b54113310679e2dd72ebe6410b",
+      "stderr_file": "CORRUPT_OPTIMIZED_STDERR.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "FAIL",
+      "explicit_check_count": 243984,
+      "optimization_level": 1
+    }
+  ]
+}

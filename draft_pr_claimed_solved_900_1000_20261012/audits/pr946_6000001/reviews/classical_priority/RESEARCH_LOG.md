@@ -1,0 +1,7 @@
+# Classical priority audit log
+
+- 2026-10-15T11:41:31.923179+00:00 — Started independent classical genealogy audit after mathematical gate. Exact original Git proof and frozen copy both SHA256 a26c1755bc6f61085db4c01b6579701ff380822f2cc58a3ffbfb4acfa49370a2; immutable head QUEUE independently reads claimed_solved, 4/5. Full candidate and supplied charters/source record read. Completion toward bounded classical audit: 10%; mathematical discovery unchanged, no new proof response.
+
+- 2026-10-15T11:48:56.250167+00:00 — Fresh primary retrievals now include FMU1998, Amari1997, Lauritzen1987 main chapter, Matumoto1993, both MPI2003 preprints, arXiv v1–v6, Matsuzoe1998, Kurose1994, Uohashi et al.2000. Compared noncompact proof passages and actual v6 deletion/compactness; identified linear-model comass control. Final2006 and2007 body gaps remain. Completion toward bounded audit: 60%; strongest checked prior is compact/local, not all-manifold; no new proof response.
+
+- 2026-10-15T11:57:22.270424+00:00 — Completed source comparison and bounded practical classical search. All6arXiv versions freshly retrieved; unrestricted historical proof compared to actual compactness correction. Whole-simplex implication and properness restriction checked; method genealogy and4originalbody access gaps preserved. Final report is no unrestricted predecessor established, not a novelty or openness certificate. Completion toward bounded classical audit:100%; novelty unverified; proofresponses added0. Curated seal follows; raw/private excluded.

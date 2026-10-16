@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-16T06:46:32.909203+00:00: Initial independent position frozen before historical reports. Completion estimate 5%; central gap is bracket comparison/source scope plus exact finite controls.
+
+- 2026-10-16T06:51:51.573954+00:00: Completion estimate 75%. Independent algebra/dual-algebra derivation and source comparison saved before historical reports. Normal and optimized finite replay agree. First write attempt failed with ENOSPC and executed no computation. First executed script failed my I-square dimension check (incorrect expected 24); corrected to 23 analytically; unnormalized delta1 rank remains 24. Six meaningful negative controls now pass. Source PDFs rendered and exact theorem/sign pages visually inspected; no new PDF authored.
+
+- 2026-10-16T06:54:14.335482+00:00: Completion estimate 95% pending recursive closure. Independent ACCEPT_WITH_EXPLICIT_SCOPE: issue_count=0; required_repairs=[]; remaining_central_gaps=[]. Historical reports/scripts/results were read only after independent checkpoint and corroborate; their execution counts were not replayed or substituted. Source receipts, report, verdict, and separate history/current-input checkers saved. One initial input-binding command used an unresolved relative parent and failed before any receipt write; corrected with absolute resolved path. No candidate repair, no outreach, no original/Git mutation.
+
+- 2026-10-16T06:54:42.509500+00:00: Final findings checkpoint, completion estimate 100%. All own source-body/render/scratch outputs removed. Current-input verification passed in normal and optimized Python for the exact 34-file freeze. No mathematical issue found; no repair required. Authored history will now be sealed by exact recursive manifest and checked read-only in both interpreter modes; no authored edit is intended after sealing.

@@ -1,0 +1,37 @@
+{
+  "utc": "2026-10-14T04:51:28.147467+00:00",
+  "pr": 1064,
+  "status": "ADOPT_FULL_REVIEW_WITH_TWO_P3_REPAIRS_REQUIRED",
+  "root_complete_report_verdict_read": true,
+  "terminal_outputs_rehashed": 17,
+  "report_sha256": "47c12d0a173875d0bdd46aea2bf036c8f20c17f7a6596c4af9cf9c0f81e07275",
+  "verdict_sha256": "a6514ec700992cff07b8ea94ad3afa7bbb7dd91225cea91fb38ade5bc3391553",
+  "output_pins_sha256": "1fec1678e13ed7b8c7fd6876d10a9eed93563549f08d5e750aea2eee5f0638c8",
+  "findings": {
+    "P0": [],
+    "P1": [],
+    "P2": [],
+    "P3": [
+      {
+        "id": "P3-01",
+        "location": "preprint_v1_0/build_pdf.py:6",
+        "issue": "PDF output directory can alias canonical root and overwrite paper.pdf despite unconditional no-mutation wording.",
+        "receipt": "FAULT_RECEIPTS.json",
+        "blocking": false
+      },
+      {
+        "id": "P3-02",
+        "location": "preprint_v1_0/verify_package.py:22",
+        "issue": "Local regular-file/symlink guard omits the self-excluded SUPPORT_MANIFEST.json.",
+        "receipt": "SELF_MANIFEST_LINK_RECEIPT.json",
+        "blocking": false
+      }
+    ]
+  },
+  "math_sources_pdf_documented_reproduction_accepted_unchanged": true,
+  "repair_required_before_root_zero_issue_clearance": true,
+  "publication_ready": false,
+  "all_issues_resolved": false,
+  "next_gate": "Bounded build_pdf alias and all-allowlisted regular-file guards, then NEW full whole02",
+  "ascending_services_held_at": 1032
+}
