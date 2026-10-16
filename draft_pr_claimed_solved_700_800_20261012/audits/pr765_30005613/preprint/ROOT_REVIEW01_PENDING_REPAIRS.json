@@ -1,0 +1,26 @@
+{
+  "checked_utc": "2026-10-16T05:28:57.832024+00:00",
+  "status": "REPAIRS_REQUIRED_AFTER_REVIEW01_CLOSES",
+  "frozen_six_unchanged": true,
+  "publication_allowed": false,
+  "mathematical_review": "Independent first whole-package mathematical review continuing; no central gap reported so far.",
+  "actionable_issues": [
+    {
+      "source": "root inspection",
+      "issue": "Explicitly initialize O1=Q1(1) alongside a1=x1=1."
+    },
+    {
+      "source": "fresh adversary01 physical tests",
+      "issue": "Portable rebuild follows symlink output ancestors, allowing closed input modification.",
+      "reproduction": "External output/output/pdf symlink to closed input root adds paper.pdf; external output/PACKAGE_INVENTORY.json symlink to paper.tex overwrites source.",
+      "required_repair": [
+        "Validate every output target, including final inventory receipt, and all existing ancestors for symlinks and proper file/directory type before any output writes.",
+        "Require resolved portable targets outside the closed input root.",
+        "Postcheck the original closed input inventory and bytes are unchanged.",
+        "Add physical negative regression controls for both reported attacks and related destinations; rerun corrected portable builds."
+      ]
+    }
+  ],
+  "pr_completion_estimate_percent": 63,
+  "shard_completion_estimate_percent": 39
+}
