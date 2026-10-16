@@ -48,3 +48,7 @@ python3 -I -S -B "$PACKAGE_ROOT/portable.py" source-only --catalog "$COMPLETE_CA
 ```
 
 The optional directory contains exactly `owr2023.pdf`, `perfect-v1.pdf`, `perfect-author2024.pdf`, `rigidity-v1.pdf`, `etingof2024.pdf`. This is the five original pinned inputs, **not all manuscript references** or verification of their theorems. Raw corpora and scholarly primary bodies are excluded. Default verification requires no network, install or external communication.
+
+## Published record
+
+Published preprint: [10.5281/zenodo.23414025](https://doi.org/10.5281/zenodo.23414025). Two successive NEW independent whole-package reviews cleared the same253-file package before merge. PUBLICATION_RECEIPT.json records the accepted revision, final review evidence, production deposit and unique tracker row. This later outer README/manifest annotation adds the receipt; the four-page paper, metadata and242-member verification archive remain unchanged. The README inside the ZIP is the frozen pre-publication version.
