@@ -1,0 +1,5248 @@
+{
+  "input_delivery_manifest_sha256": "1ab5e30e179b7ac23a8eb21cf593c88b2b618ad9d6e39e2d100d90a74a667c77",
+  "input_external_bootstrap_sha256": "47d7162bac2bec26462fac5b2ac67250460202656f96f3bc87d097912a98f509",
+  "modes": [
+    0,
+    1,
+    2
+  ],
+  "negative_count": 240,
+  "positive_count": 9,
+  "pure_output_comparison_negatives": 42,
+  "pure_output_comparison_positives": 6,
+  "receipt_scope": "This pre-seal test inventory excludes this receipt itself. Final external bootstrap re-seals the complete delivery including this receipt. Test-only manifest anchors are explicitly labeled.",
+  "schema": "variational-maps-hostile-controls-v1",
+  "semantic_negative_count": 27,
+  "tests": [
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "stale_report",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 68,
+          "sha256": "84897ecc49a3ffe58818b2ca87352bc84289b932aa73c998ef4a27c3358f0563",
+          "text": "REJECT: ValueError: manifest file pin: current_derivative/REPORT.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_report",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_receipt",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "malicious_verifier",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_empty_directory",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "missing_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 53,
+          "sha256": "2950aa68b998bc62c16580b850532b0621da28b15398ea13f4863b4e7e836e3c",
+          "text": "REJECT: ValueError: manifest file pin: ACCEPTANCE.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_directory",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "hardlink_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 46,
+          "sha256": "8bdfc64905c567a0e6ae5f49a287a50c13427bb70024075500965a86c162a6dd",
+          "text": "REJECT: ValueError: single-link file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_key",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "6bdc26d9e4ec7cec2a8763ba6372b40cd436e51c523fcc9626909c65eee763f4",
+          "text": "REJECT: ValueError: duplicate JSON key\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_path",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_bool_bytes",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_negative_bytes",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_traversal",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_absolute_path",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_unknown_key",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 40,
+          "sha256": "8fe332f7fd3f15da02153e058a6ceca5e117ebdc19c41130fae71fcfa196e5d8",
+          "text": "REJECT: ValueError: manifest exact keys\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_wrong_type",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "7873c3c698194ec77829e059b3b6bc427f59c85ec8f8df7f187026648ab83636",
+          "text": "REJECT: ValueError: manifest list required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_promoted",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 119,
+          "sha256": "c9e7223faeac058d431a13a474ac20a19916fee78d55b073fa2e41cf98641fc1",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: unsupported scope promotion full_target_resolved\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_bool_approaches",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 94,
+          "sha256": "0c3f9ac99103d68a39d7a50515bf02402c5e24517fbdfcb5e4a326bd04621be9",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: scope scalar approaches\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_interpolation_removed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 142,
+          "sha256": "a6ad2badfb3976e74066c2dcdf4dba8c070ec9f2dd4bd7ff17b41641b1d38d08",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification interpolation_admissibility_required\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_original_falsely_passed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 92,
+          "sha256": "dd65c2006a6b67cadde87b86020f2006fab863c5301374160d2b644f4290729d",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: absent input statuses\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_self_gluings_removed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 144,
+          "sha256": "bc399e73ec626e85481a550af4c2fdf1d3a832d0ba10a9ef30014bd2c6877c4f",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification self_glued_faces_remain_in_full_target\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_isometry_map_promoted",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 145,
+          "sha256": "aa354133231b30b6d9053830dcb498a35ee23eae259169a4cc26c06daaec74e6",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification isometry_map_identification_conditional\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_D_conflated",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 133,
+          "sha256": "3dba45626ea36d8faa33858b9eccac6ea14d0f01285439aa7f3933ce308190b2",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification D_and_weak_closure_distinct\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_unknown_key",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 89,
+          "sha256": "aa2d4f05ab7cbc22ad84ed2d9fb06739f25a3eef150806169c74336101e6e4ab",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: scope exact schema\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_truncated_output",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 92,
+          "sha256": "f0edcb61bb292c5be75654bce13e8189b83bb72da50a1912f98bf332cf296dbe",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: stream bytes mismatch\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_bool_mode",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 88,
+          "sha256": "dae07d33cfbdd5158fff77d5ccd2299346923958b6e47411212fdb63aad7ca21",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: run mode and exit\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_wrong_failure",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 93,
+          "sha256": "f9eac91e927ea85275e9d458593b270b272842ca6d1610aa2b208d543c11a3b5",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: wrong semantic failure\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_wrong_uid",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 93,
+          "sha256": "2fe19bfa738c36ec5461327f3b0a67a38e619ee38627347b993fd672605c7afa",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: fresh receipt identity\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_arg_absent",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 105,
+          "sha256": "055163b028bbd5963db12e890423725bd8430f25ac8c9b543139502e532e82ff",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: the following arguments are required: --queue\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_symlink",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_symlink",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_parent_traversal",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "e8847a74887a9120bd75d3375296f408bdc69b7d7875cd48dd831ebde192a179",
+          "text": "REJECT: ValueError: parent traversal in supplied path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_absent",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 149,
+          "sha256": "9da1d698fd2e92cf03b65f9db68751037be60b99ecff9ae90cf898aa49129dd7",
+          "text": "REJECT: FileNotFoundError: [Errno 2] No such file or directory: '/tmp/variational-control-lfi6afr1/repository/unsolved_math_prioritization/QUEUE.md'\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_wrong_path",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "1b3d59cf091b9277f856aa32d33acbc090c54c0e858de610fd8c3e0d5f6be088",
+          "text": "REJECT: ValueError: actual repository QUEUE path required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_modified",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_chat_modified",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_doi_modified",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_other_row_modified",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "queue_proof_forged",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "0d39142ad1d9fc157c9e2ae54632940e3ba84c4750a35452339e75201daf92ac",
+          "text": "REJECT: ValueError: fixed queue before and after pins\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_file",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_directory",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "d515631c2b121ee883443e2ac6197fa893338f74cce7293766a302a085d17ef3",
+          "text": "REJECT: ValueError: directory writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_queue",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "anchor_internal",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 61,
+          "sha256": "4fef6b74d43f14e7ea648dd0b97c3dc216a52f837805ed9d62b63de5153b71e6",
+          "text": "REJECT: ValueError: bootstrap must run from outside delivery\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "unknown_option",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 100,
+          "sha256": "5807cca8072364321e3b8d7b0961d8c6bb1dbf3e2757dcf6fff04e60dc85f478",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: unrecognized arguments: --integrity-only\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_flat_laplacian",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 144,
+          "sha256": "23410d1cbd8f2f9140870bbec142fd6fe31d2c28fe3dc567d18af1fc8efa9aab",
+          "text": "{\"failed_check\": \"flat_harmonicity_by_exact_differences\", \"mutation\": \"flat_laplacian\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_flat_orientation",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 147,
+          "sha256": "d5a4097e5ad728789dfd30039d2fbbdc071a941eb8c4fd88850fab2a0c3cdd64",
+          "text": "{\"failed_check\": \"flat_jacobian_polynomial_interpolation\", \"mutation\": \"flat_orientation\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_area_normalization",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 142,
+          "sha256": "39e6f490f0a526a758ceadf528cd67d51b944b6f6e38293ab062206418c71058",
+          "text": "{\"failed_check\": \"energy_area_exact_interpolation\", \"mutation\": \"area_normalization\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_curvature_sign",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 146,
+          "sha256": "56da948ecc670fd6c02098fce7a5ffc2281e2e15f83c6d80426fb5c118025a14",
+          "text": "{\"failed_check\": \"negative_curvature_strict_rank_two_term\", \"mutation\": \"curvature_sign\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_cusp_amplitude",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 145,
+          "sha256": "d0da0ad60928221b5d3780b9f9d94f5e7693f02fee12720ddf37a90d9989815d",
+          "text": "{\"failed_check\": \"cusp_remote_folds_and_upper_derivative\", \"mutation\": \"cusp_amplitude\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_cusp_harmonicity",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 129,
+          "sha256": "0a3c0d56e44ba100e50388ef71865a3d227cfc6781ed5db761e17f4868db087d",
+          "text": "{\"failed_check\": \"cusp_is_not_harmonic\", \"mutation\": \"cusp_harmonicity\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_collapsed_trace_injectivity",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 164,
+          "sha256": "2ed5cd6b5e8efe47014a0da5c0713893fab2b049e7d5f57905cbd5b1b8b0f398",
+          "text": "{\"failed_check\": \"collapsed_trace_tests_have_nontrivial_kernel\", \"mutation\": \"collapsed_trace_injectivity\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_weak_lower_semicontinuity_direction",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 166,
+          "sha256": "ac3c1649131e2a45a036e246a9a60f28d00f42aa503a7f254b8bbe79512e274f",
+          "text": "{\"failed_check\": \"lower_semicontinuity_is_only_one_sided\", \"mutation\": \"weak_lower_semicontinuity_direction\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_quotient_trace_equals_side_incidence",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 165,
+          "sha256": "cd32c8c253307bd6b6d21756e0cfb4c721338795230e40f8e8340f964b324315",
+          "text": "{\"failed_check\": \"quotient_trace_is_not_side_incidence\", \"mutation\": \"quotient_trace_equals_side_incidence\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_unchanged_author",
+      "expected": "PASS",
+      "optimization": 0,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 156,
+          "sha256": "53508b5db4e5853dfefc06df1f8a44e7d3f96163451849aab8d21f3af1026a44",
+          "text": "{\"status\": \"PASS\", \"comparison\": {\"complete_stdout_bytes_equal\": true, \"complete_stderr_bytes_equal\": true, \"recursive_json_types_and_values_equal\": true}}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_unchanged_independent",
+      "expected": "PASS",
+      "optimization": 0,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 156,
+          "sha256": "53508b5db4e5853dfefc06df1f8a44e7d3f96163451849aab8d21f3af1026a44",
+          "text": "{\"status\": \"PASS\", \"comparison\": {\"complete_stdout_bytes_equal\": true, \"complete_stderr_bytes_equal\": true, \"recursive_json_types_and_values_equal\": true}}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_author_scope",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 78,
+          "sha256": "1ccf2879c7b4edfefab8278f8bd2215acb9cdd1aaa47db8ce09e326b6b5ca700",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON value mismatch stdout_json.scope\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_author_extra_key",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "bbc8c9fab59868b5936247696420440d72fd69412abe844657dfe17d7a8b6fb8",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_independent_scope",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 78,
+          "sha256": "1ccf2879c7b4edfefab8278f8bd2215acb9cdd1aaa47db8ce09e326b6b5ca700",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON value mismatch stdout_json.scope\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_independent_extra_key",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "bbc8c9fab59868b5936247696420440d72fd69412abe844657dfe17d7a8b6fb8",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_extra_key",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 88,
+          "sha256": "a9cce75e2e29d9ef9c9ffeb52aa66e2579803cf122b0287d4b0f075f996eecce",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json.checks[0].evidence\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_bool_int",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 107,
+          "sha256": "8d67c177d1f7baf20d8b08e4f71392796e287b70099d0b84650c712da433e9c8",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch stdout_json.checks[4].evidence.energy_prefactor\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_int_float",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 119,
+          "sha256": "4dbf888e9992156a7d50c6101230b3da7d0eefb46eb86f98c0be33d7558b3fe6",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch stdout_json.checks[5].evidence.nondegenerate_rational_cases\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_stdout_whitespace",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "fb1dd111bce1c7fbc0e3069216e4190a5c3535a5fa9adf7c71729cf5938ca045",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact complete stdout bytes differ\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_stderr_added",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "450e3882064fd32a73006aa32952a0b47c9ecf4b2f7eee98b863f9df7aec49b0",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact complete stderr bytes differ\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_value",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 104,
+          "sha256": "6d52b47c40b2cf133d6ac34b7b93a5f1679d17562c3c9b03dce7900f8c64766a",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON value mismatch stdout_json.checks[0].evidence.degree_bound\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_list_reordered",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 88,
+          "sha256": "a9cce75e2e29d9ef9c9ffeb52aa66e2579803cf122b0287d4b0f075f996eecce",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json.checks[0].evidence\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_outer_bool_exit",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 73,
+          "sha256": "aa3322eff4ba534cb5756175d548e4dfda6151fda60cd4b8e57d0ecc2cf5779c",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch run.exit_code\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_outer_extra_key",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 60,
+          "sha256": "da19ba214ba9e8451c3057563f74d04db076f09d72a8ef426e315e67d75be0d2",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"run comparison exact keys\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_outer_string_mode",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 76,
+          "sha256": "eaa5c862a12bdfbc5cb3954009befdf5dee91b0dfc03b70b1054319b40ccb3ef",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch run.optimization\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_valid",
+      "expected": "PASS",
+      "optimization": 0,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 133,
+          "sha256": "c5d63ed23608391b7e5b890f4f58056aba61a92b5c49ee4f42bebcc2ca71101f",
+          "text": "{\"status\": \"PASS\", \"comparison\": {\"changed_indices\": [8, 9, 11], \"chat_and_doi_unchanged\": true, \"all_other_bytes_unchanged\": true}}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_missing_target",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_duplicate_target",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_chat_changed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 67,
+          "sha256": "c8909b3780d94e70f8a0e9b78b074515f6c9f6b6019c9408311fdadbee8f7d27",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison changed columns\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_doi_changed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 67,
+          "sha256": "c8909b3780d94e70f8a0e9b78b074515f6c9f6b6019c9408311fdadbee8f7d27",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison changed columns\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_other_row_changed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_leading_literal_changed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_trailing_newline_changed",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 77,
+          "sha256": "308fb31d7b80eae4886da27209bd23d4993681afd499835dfb0bcbd0155e0b95",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison preserves all other bytes\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_wrong_turns",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 63,
+          "sha256": "2c17c45b6efb1352504c22f97136167a99e7b46d2f9fd7c37d169ee4d89c7037",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison disposition\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_missing_findings_change",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 67,
+          "sha256": "c8909b3780d94e70f8a0e9b78b074515f6c9f6b6019c9408311fdadbee8f7d27",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison changed columns\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_wrong_status",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 63,
+          "sha256": "2c17c45b6efb1352504c22f97136167a99e7b46d2f9fd7c37d169ee4d89c7037",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison disposition\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_nonbyte_input",
+      "expected": "REJECT",
+      "optimization": 0,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 62,
+          "sha256": "030a15771004a6a3eaeca731c2a81ebf6e3246551559c54716aae27f4c3cda50",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison byte types\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "stale_report",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 68,
+          "sha256": "84897ecc49a3ffe58818b2ca87352bc84289b932aa73c998ef4a27c3358f0563",
+          "text": "REJECT: ValueError: manifest file pin: current_derivative/REPORT.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_report",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_receipt",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "malicious_verifier",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_empty_directory",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "missing_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 53,
+          "sha256": "2950aa68b998bc62c16580b850532b0621da28b15398ea13f4863b4e7e836e3c",
+          "text": "REJECT: ValueError: manifest file pin: ACCEPTANCE.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_directory",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "hardlink_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 46,
+          "sha256": "8bdfc64905c567a0e6ae5f49a287a50c13427bb70024075500965a86c162a6dd",
+          "text": "REJECT: ValueError: single-link file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_key",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "6bdc26d9e4ec7cec2a8763ba6372b40cd436e51c523fcc9626909c65eee763f4",
+          "text": "REJECT: ValueError: duplicate JSON key\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_path",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_bool_bytes",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_negative_bytes",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_traversal",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_absolute_path",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_unknown_key",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 40,
+          "sha256": "8fe332f7fd3f15da02153e058a6ceca5e117ebdc19c41130fae71fcfa196e5d8",
+          "text": "REJECT: ValueError: manifest exact keys\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_wrong_type",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "7873c3c698194ec77829e059b3b6bc427f59c85ec8f8df7f187026648ab83636",
+          "text": "REJECT: ValueError: manifest list required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_promoted",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 119,
+          "sha256": "c9e7223faeac058d431a13a474ac20a19916fee78d55b073fa2e41cf98641fc1",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: unsupported scope promotion full_target_resolved\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_bool_approaches",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 94,
+          "sha256": "0c3f9ac99103d68a39d7a50515bf02402c5e24517fbdfcb5e4a326bd04621be9",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: scope scalar approaches\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_interpolation_removed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 142,
+          "sha256": "a6ad2badfb3976e74066c2dcdf4dba8c070ec9f2dd4bd7ff17b41641b1d38d08",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification interpolation_admissibility_required\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_original_falsely_passed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 92,
+          "sha256": "dd65c2006a6b67cadde87b86020f2006fab863c5301374160d2b644f4290729d",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: absent input statuses\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_self_gluings_removed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 144,
+          "sha256": "bc399e73ec626e85481a550af4c2fdf1d3a832d0ba10a9ef30014bd2c6877c4f",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification self_glued_faces_remain_in_full_target\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_isometry_map_promoted",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 145,
+          "sha256": "aa354133231b30b6d9053830dcb498a35ee23eae259169a4cc26c06daaec74e6",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification isometry_map_identification_conditional\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_D_conflated",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 133,
+          "sha256": "3dba45626ea36d8faa33858b9eccac6ea14d0f01285439aa7f3933ce308190b2",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification D_and_weak_closure_distinct\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_unknown_key",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 89,
+          "sha256": "aa2d4f05ab7cbc22ad84ed2d9fb06739f25a3eef150806169c74336101e6e4ab",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: scope exact schema\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_truncated_output",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 92,
+          "sha256": "f0edcb61bb292c5be75654bce13e8189b83bb72da50a1912f98bf332cf296dbe",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: stream bytes mismatch\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_bool_mode",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 88,
+          "sha256": "dae07d33cfbdd5158fff77d5ccd2299346923958b6e47411212fdb63aad7ca21",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: run mode and exit\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_wrong_failure",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 93,
+          "sha256": "f9eac91e927ea85275e9d458593b270b272842ca6d1610aa2b208d543c11a3b5",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: wrong semantic failure\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_wrong_uid",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 93,
+          "sha256": "2fe19bfa738c36ec5461327f3b0a67a38e619ee38627347b993fd672605c7afa",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: fresh receipt identity\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_arg_absent",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 105,
+          "sha256": "055163b028bbd5963db12e890423725bd8430f25ac8c9b543139502e532e82ff",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: the following arguments are required: --queue\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_symlink",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_symlink",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_parent_traversal",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "e8847a74887a9120bd75d3375296f408bdc69b7d7875cd48dd831ebde192a179",
+          "text": "REJECT: ValueError: parent traversal in supplied path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_absent",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 149,
+          "sha256": "975c952ddbc66627f0397611c8d01aefcf7c3ea0a0dfa91eec095e1001f75f75",
+          "text": "REJECT: FileNotFoundError: [Errno 2] No such file or directory: '/tmp/variational-control-5p8_5wnp/repository/unsolved_math_prioritization/QUEUE.md'\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_wrong_path",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "1b3d59cf091b9277f856aa32d33acbc090c54c0e858de610fd8c3e0d5f6be088",
+          "text": "REJECT: ValueError: actual repository QUEUE path required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_modified",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_chat_modified",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_doi_modified",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_other_row_modified",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "queue_proof_forged",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "0d39142ad1d9fc157c9e2ae54632940e3ba84c4750a35452339e75201daf92ac",
+          "text": "REJECT: ValueError: fixed queue before and after pins\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_file",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_directory",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "d515631c2b121ee883443e2ac6197fa893338f74cce7293766a302a085d17ef3",
+          "text": "REJECT: ValueError: directory writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_queue",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "anchor_internal",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 61,
+          "sha256": "4fef6b74d43f14e7ea648dd0b97c3dc216a52f837805ed9d62b63de5153b71e6",
+          "text": "REJECT: ValueError: bootstrap must run from outside delivery\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "unknown_option",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 100,
+          "sha256": "5807cca8072364321e3b8d7b0961d8c6bb1dbf3e2757dcf6fff04e60dc85f478",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: unrecognized arguments: --integrity-only\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_flat_laplacian",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 144,
+          "sha256": "6c9dcc103058277d3615ee7111f90303f9c1916da4a549c06cda5c0721f05454",
+          "text": "{\"failed_check\": \"flat_harmonicity_by_exact_differences\", \"mutation\": \"flat_laplacian\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_flat_orientation",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 147,
+          "sha256": "83c2d32765447a00e300c8d61644d39bac0c332b5850e6c2cf22520f0c9116cd",
+          "text": "{\"failed_check\": \"flat_jacobian_polynomial_interpolation\", \"mutation\": \"flat_orientation\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_area_normalization",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 142,
+          "sha256": "da6780865f95f99f4574a1d41225e296d5065e36725ef95d23652cd13d186232",
+          "text": "{\"failed_check\": \"energy_area_exact_interpolation\", \"mutation\": \"area_normalization\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_curvature_sign",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 146,
+          "sha256": "53ed0689b7d38583e8f38ad4a1dc519a9bbd6b9f4fd6c044fc5704c478bb3daa",
+          "text": "{\"failed_check\": \"negative_curvature_strict_rank_two_term\", \"mutation\": \"curvature_sign\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_cusp_amplitude",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 145,
+          "sha256": "c00a7290941c65ff571b99ad0f90703b9eba122afc004bc50301fe12bb3260d0",
+          "text": "{\"failed_check\": \"cusp_remote_folds_and_upper_derivative\", \"mutation\": \"cusp_amplitude\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_cusp_harmonicity",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 129,
+          "sha256": "97d733c13e92ab6de7bb4fab031446401d6e34d6ff8c0744ea3c565ccc219fa8",
+          "text": "{\"failed_check\": \"cusp_is_not_harmonic\", \"mutation\": \"cusp_harmonicity\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_collapsed_trace_injectivity",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 164,
+          "sha256": "b6348cc14a6d0818e051788342e954d26b2983ffc0fe2ac2f1c1d220d274ddcd",
+          "text": "{\"failed_check\": \"collapsed_trace_tests_have_nontrivial_kernel\", \"mutation\": \"collapsed_trace_injectivity\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_weak_lower_semicontinuity_direction",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 166,
+          "sha256": "64f8f18980f1998609fe71294f70b11425533b1aa47d2ddc3b18782549d09d6d",
+          "text": "{\"failed_check\": \"lower_semicontinuity_is_only_one_sided\", \"mutation\": \"weak_lower_semicontinuity_direction\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_quotient_trace_equals_side_incidence",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 165,
+          "sha256": "9aea3df70e37dc91aed04f5c1987a38ace533a4dcf8838699443c8a554e8f496",
+          "text": "{\"failed_check\": \"quotient_trace_is_not_side_incidence\", \"mutation\": \"quotient_trace_equals_side_incidence\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_unchanged_author",
+      "expected": "PASS",
+      "optimization": 1,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 156,
+          "sha256": "53508b5db4e5853dfefc06df1f8a44e7d3f96163451849aab8d21f3af1026a44",
+          "text": "{\"status\": \"PASS\", \"comparison\": {\"complete_stdout_bytes_equal\": true, \"complete_stderr_bytes_equal\": true, \"recursive_json_types_and_values_equal\": true}}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_unchanged_independent",
+      "expected": "PASS",
+      "optimization": 1,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 156,
+          "sha256": "53508b5db4e5853dfefc06df1f8a44e7d3f96163451849aab8d21f3af1026a44",
+          "text": "{\"status\": \"PASS\", \"comparison\": {\"complete_stdout_bytes_equal\": true, \"complete_stderr_bytes_equal\": true, \"recursive_json_types_and_values_equal\": true}}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_author_scope",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 78,
+          "sha256": "1ccf2879c7b4edfefab8278f8bd2215acb9cdd1aaa47db8ce09e326b6b5ca700",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON value mismatch stdout_json.scope\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_author_extra_key",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "bbc8c9fab59868b5936247696420440d72fd69412abe844657dfe17d7a8b6fb8",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_independent_scope",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 78,
+          "sha256": "1ccf2879c7b4edfefab8278f8bd2215acb9cdd1aaa47db8ce09e326b6b5ca700",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON value mismatch stdout_json.scope\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_independent_extra_key",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "bbc8c9fab59868b5936247696420440d72fd69412abe844657dfe17d7a8b6fb8",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_extra_key",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 88,
+          "sha256": "a9cce75e2e29d9ef9c9ffeb52aa66e2579803cf122b0287d4b0f075f996eecce",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json.checks[0].evidence\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_bool_int",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 107,
+          "sha256": "8d67c177d1f7baf20d8b08e4f71392796e287b70099d0b84650c712da433e9c8",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch stdout_json.checks[4].evidence.energy_prefactor\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_int_float",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 119,
+          "sha256": "4dbf888e9992156a7d50c6101230b3da7d0eefb46eb86f98c0be33d7558b3fe6",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch stdout_json.checks[5].evidence.nondegenerate_rational_cases\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_stdout_whitespace",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "fb1dd111bce1c7fbc0e3069216e4190a5c3535a5fa9adf7c71729cf5938ca045",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact complete stdout bytes differ\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_stderr_added",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "450e3882064fd32a73006aa32952a0b47c9ecf4b2f7eee98b863f9df7aec49b0",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact complete stderr bytes differ\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_value",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 104,
+          "sha256": "6d52b47c40b2cf133d6ac34b7b93a5f1679d17562c3c9b03dce7900f8c64766a",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON value mismatch stdout_json.checks[0].evidence.degree_bound\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_list_reordered",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 88,
+          "sha256": "a9cce75e2e29d9ef9c9ffeb52aa66e2579803cf122b0287d4b0f075f996eecce",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json.checks[0].evidence\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_outer_bool_exit",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 73,
+          "sha256": "aa3322eff4ba534cb5756175d548e4dfda6151fda60cd4b8e57d0ecc2cf5779c",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch run.exit_code\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_outer_extra_key",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 60,
+          "sha256": "da19ba214ba9e8451c3057563f74d04db076f09d72a8ef426e315e67d75be0d2",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"run comparison exact keys\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_outer_string_mode",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 76,
+          "sha256": "eaa5c862a12bdfbc5cb3954009befdf5dee91b0dfc03b70b1054319b40ccb3ef",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch run.optimization\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_valid",
+      "expected": "PASS",
+      "optimization": 1,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 133,
+          "sha256": "c5d63ed23608391b7e5b890f4f58056aba61a92b5c49ee4f42bebcc2ca71101f",
+          "text": "{\"status\": \"PASS\", \"comparison\": {\"changed_indices\": [8, 9, 11], \"chat_and_doi_unchanged\": true, \"all_other_bytes_unchanged\": true}}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_missing_target",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_duplicate_target",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_chat_changed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 67,
+          "sha256": "c8909b3780d94e70f8a0e9b78b074515f6c9f6b6019c9408311fdadbee8f7d27",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison changed columns\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_doi_changed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 67,
+          "sha256": "c8909b3780d94e70f8a0e9b78b074515f6c9f6b6019c9408311fdadbee8f7d27",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison changed columns\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_other_row_changed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_leading_literal_changed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_trailing_newline_changed",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 77,
+          "sha256": "308fb31d7b80eae4886da27209bd23d4993681afd499835dfb0bcbd0155e0b95",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison preserves all other bytes\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_wrong_turns",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 63,
+          "sha256": "2c17c45b6efb1352504c22f97136167a99e7b46d2f9fd7c37d169ee4d89c7037",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison disposition\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_missing_findings_change",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 67,
+          "sha256": "c8909b3780d94e70f8a0e9b78b074515f6c9f6b6019c9408311fdadbee8f7d27",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison changed columns\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_wrong_status",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 63,
+          "sha256": "2c17c45b6efb1352504c22f97136167a99e7b46d2f9fd7c37d169ee4d89c7037",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison disposition\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_nonbyte_input",
+      "expected": "REJECT",
+      "optimization": 1,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 62,
+          "sha256": "030a15771004a6a3eaeca731c2a81ebf6e3246551559c54716aae27f4c3cda50",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison byte types\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "stale_report",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 68,
+          "sha256": "84897ecc49a3ffe58818b2ca87352bc84289b932aa73c998ef4a27c3358f0563",
+          "text": "REJECT: ValueError: manifest file pin: current_derivative/REPORT.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_report",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "repinned_receipt",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "malicious_verifier",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 48,
+          "sha256": "c7da842d951162e97923202efd26b9797100ed4a0090d40a836e640a8eb476a4",
+          "text": "REJECT: ValueError: fixed delivery manifest pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "extra_empty_directory",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 55,
+          "sha256": "3d6cce8cc45fcafae2d5ef6a303fed2086c092025785a97aeb40d4dbac8bb761",
+          "text": "REJECT: ValueError: exact file and directory inventory\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "missing_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 53,
+          "sha256": "2950aa68b998bc62c16580b850532b0621da28b15398ea13f4863b4e7e836e3c",
+          "text": "REJECT: ValueError: manifest file pin: ACCEPTANCE.md\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "symlink_directory",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "hardlink_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 46,
+          "sha256": "8bdfc64905c567a0e6ae5f49a287a50c13427bb70024075500965a86c162a6dd",
+          "text": "REJECT: ValueError: single-link file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_key",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "6bdc26d9e4ec7cec2a8763ba6372b40cd436e51c523fcc9626909c65eee763f4",
+          "text": "REJECT: ValueError: duplicate JSON key\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_duplicate_path",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_bool_bytes",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_negative_bytes",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 45,
+          "sha256": "4cbe0e5a399873adf39f7c97355cc717f54fca9bcec4147cf826b8aab1132941",
+          "text": "REJECT: ValueError: manifest byte count type\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_traversal",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_absolute_path",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "c77c0b8aeb776db17516e0be8fde316d0529a16e8517806f1058fddcd9f7708c",
+          "text": "REJECT: ValueError: unsafe or duplicate manifest path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_unknown_key",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 40,
+          "sha256": "8fe332f7fd3f15da02153e058a6ceca5e117ebdc19c41130fae71fcfa196e5d8",
+          "text": "REJECT: ValueError: manifest exact keys\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "manifest_wrong_type",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "7873c3c698194ec77829e059b3b6bc427f59c85ec8f8df7f187026648ab83636",
+          "text": "REJECT: ValueError: manifest list required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_promoted",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 119,
+          "sha256": "c9e7223faeac058d431a13a474ac20a19916fee78d55b073fa2e41cf98641fc1",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: unsupported scope promotion full_target_resolved\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_bool_approaches",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 94,
+          "sha256": "0c3f9ac99103d68a39d7a50515bf02402c5e24517fbdfcb5e4a326bd04621be9",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: scope scalar approaches\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_interpolation_removed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 142,
+          "sha256": "a6ad2badfb3976e74066c2dcdf4dba8c070ec9f2dd4bd7ff17b41641b1d38d08",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification interpolation_admissibility_required\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_original_falsely_passed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 92,
+          "sha256": "dd65c2006a6b67cadde87b86020f2006fab863c5301374160d2b644f4290729d",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: absent input statuses\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_self_gluings_removed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 144,
+          "sha256": "bc399e73ec626e85481a550af4c2fdf1d3a832d0ba10a9ef30014bd2c6877c4f",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification self_glued_faces_remain_in_full_target\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_isometry_map_promoted",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 145,
+          "sha256": "aa354133231b30b6d9053830dcb498a35ee23eae259169a4cc26c06daaec74e6",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification isometry_map_identification_conditional\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_D_conflated",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 133,
+          "sha256": "3dba45626ea36d8faa33858b9eccac6ea14d0f01285439aa7f3933ce308190b2",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: missing mathematical qualification D_and_weak_closure_distinct\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "scope_unknown_key",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 89,
+          "sha256": "aa2d4f05ab7cbc22ad84ed2d9fb06739f25a3eef150806169c74336101e6e4ab",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: scope exact schema\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_truncated_output",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 92,
+          "sha256": "f0edcb61bb292c5be75654bce13e8189b83bb72da50a1912f98bf332cf296dbe",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: stream bytes mismatch\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_bool_mode",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 88,
+          "sha256": "dae07d33cfbdd5158fff77d5ccd2299346923958b6e47411212fdb63aad7ca21",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: run mode and exit\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_wrong_failure",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 93,
+          "sha256": "f9eac91e927ea85275e9d458593b270b272842ca6d1610aa2b208d543c11a3b5",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: wrong semantic failure\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "receipt_wrong_uid",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 93,
+          "sha256": "2fe19bfa738c36ec5461327f3b0a67a38e619ee38627347b993fd672605c7afa",
+          "text": "REJECT: ValueError: authenticated replay failed: REJECT: ValueError: fresh receipt identity\n\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_arg_absent",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 105,
+          "sha256": "055163b028bbd5963db12e890423725bd8430f25ac8c9b543139502e532e82ff",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: the following arguments are required: --queue\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_symlink",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "bd3420e6a7c515b6db0983e5f8a90dbd82508a973a018ad542f96305baa77fd3",
+          "text": "REJECT: ValueError: ordinary file required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_symlink",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 42,
+          "sha256": "54d22f5d7c272c759b074fddf987b0a24235d41493ddcc8e00bf3e28e1300077",
+          "text": "REJECT: ValueError: ordinary dir required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "root_parent_traversal",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "e8847a74887a9120bd75d3375296f408bdc69b7d7875cd48dd831ebde192a179",
+          "text": "REJECT: ValueError: parent traversal in supplied path\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_absent",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 149,
+          "sha256": "d27f02cfc21761b78d433ff9a99e8db725a2f639e4f575fb33d0b629ad4436d5",
+          "text": "REJECT: FileNotFoundError: [Errno 2] No such file or directory: '/tmp/variational-control-6ir8vlye/repository/unsolved_math_prioritization/QUEUE.md'\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_wrong_path",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 58,
+          "sha256": "1b3d59cf091b9277f856aa32d33acbc090c54c0e858de610fd8c3e0d5f6be088",
+          "text": "REJECT: ValueError: actual repository QUEUE path required\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_modified",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_chat_modified",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_doi_modified",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "queue_other_row_modified",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 43,
+          "sha256": "c20c38596e6da3aba09c159d33063cdffc87686fed1e1a03bcd6881187d0cb02",
+          "text": "REJECT: ValueError: actual QUEUE after pin\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "test_only_manifest_repin",
+      "case": "queue_proof_forged",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 54,
+          "sha256": "0d39142ad1d9fc157c9e2ae54632940e3ba84c4750a35452339e75201daf92ac",
+          "text": "REJECT: ValueError: fixed queue before and after pins\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_file",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_directory",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 39,
+          "sha256": "d515631c2b121ee883443e2ac6197fa893338f74cce7293766a302a085d17ef3",
+          "text": "REJECT: ValueError: directory writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "writable_queue",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 34,
+          "sha256": "03981bb8dd643ece8581ae107028beb635acf8794dae646a5083a3fa08d8a3f9",
+          "text": "REJECT: ValueError: file writable\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "anchor_internal",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 61,
+          "sha256": "4fef6b74d43f14e7ea648dd0b97c3dc216a52f837805ed9d62b63de5153b71e6",
+          "text": "REJECT: ValueError: bootstrap must run from outside delivery\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "fixed_reviewed_anchor",
+      "case": "unknown_option",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 2,
+        "stderr": {
+          "bytes": 100,
+          "sha256": "5807cca8072364321e3b8d7b0961d8c6bb1dbf3e2757dcf6fff04e60dc85f478",
+          "text": "usage: anchor.py [-h] --queue QUEUE root\nanchor.py: error: unrecognized arguments: --integrity-only\n",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_flat_laplacian",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 144,
+          "sha256": "f1a22059e2b32f9966449eda3915c237495e22d634285cc3e9dab414f7e7e818",
+          "text": "{\"failed_check\": \"flat_harmonicity_by_exact_differences\", \"mutation\": \"flat_laplacian\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_flat_orientation",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 147,
+          "sha256": "9d684a418d9de22c2e7fdaf1a26eb4e702f2207d4f1892ed8feac2e39a5369ad",
+          "text": "{\"failed_check\": \"flat_jacobian_polynomial_interpolation\", \"mutation\": \"flat_orientation\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_area_normalization",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 142,
+          "sha256": "7dd6953775ead1c6c0bc89d71dc5a6cca157daa5b813534309e4713d0f6aac53",
+          "text": "{\"failed_check\": \"energy_area_exact_interpolation\", \"mutation\": \"area_normalization\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_curvature_sign",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 146,
+          "sha256": "094c972166bbbe34864681377078e715d6b869fec1166d515761e73c7b57daa2",
+          "text": "{\"failed_check\": \"negative_curvature_strict_rank_two_term\", \"mutation\": \"curvature_sign\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_cusp_amplitude",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 145,
+          "sha256": "869c2941c5e55515b48c4d121cde1aa5ff823bfa5acd2122605ebbdb5365b5dd",
+          "text": "{\"failed_check\": \"cusp_remote_folds_and_upper_derivative\", \"mutation\": \"cusp_amplitude\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_cusp_harmonicity",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 129,
+          "sha256": "33d9cb9580003ab2b868ea4a8a81e98b9ff0088be8d80eef324acf9e86a0eed1",
+          "text": "{\"failed_check\": \"cusp_is_not_harmonic\", \"mutation\": \"cusp_harmonicity\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_collapsed_trace_injectivity",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 164,
+          "sha256": "d5430c106f37566b8ec48507cec216e349a86086545d9a85c9f099a8920046dd",
+          "text": "{\"failed_check\": \"collapsed_trace_tests_have_nontrivial_kernel\", \"mutation\": \"collapsed_trace_injectivity\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_weak_lower_semicontinuity_direction",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 166,
+          "sha256": "04adb5907e9a5d82a759ec5e5a1e62df8734a64a78fc24c704688d9da1711c5e",
+          "text": "{\"failed_check\": \"lower_semicontinuity_is_only_one_sided\", \"mutation\": \"weak_lower_semicontinuity_direction\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "none_direct_mathematical_mutation",
+      "case": "semantic_quotient_trace_equals_side_incidence",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 165,
+          "sha256": "dcace2839f594e180829cda2fe8f0623b5eeee8b6e72d0f52687830c90e5eb76",
+          "text": "{\"failed_check\": \"quotient_trace_is_not_side_incidence\", \"mutation\": \"quotient_trace_equals_side_incidence\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_unchanged_author",
+      "expected": "PASS",
+      "optimization": 2,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 156,
+          "sha256": "53508b5db4e5853dfefc06df1f8a44e7d3f96163451849aab8d21f3af1026a44",
+          "text": "{\"status\": \"PASS\", \"comparison\": {\"complete_stdout_bytes_equal\": true, \"complete_stderr_bytes_equal\": true, \"recursive_json_types_and_values_equal\": true}}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_unchanged_independent",
+      "expected": "PASS",
+      "optimization": 2,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 156,
+          "sha256": "53508b5db4e5853dfefc06df1f8a44e7d3f96163451849aab8d21f3af1026a44",
+          "text": "{\"status\": \"PASS\", \"comparison\": {\"complete_stdout_bytes_equal\": true, \"complete_stderr_bytes_equal\": true, \"recursive_json_types_and_values_equal\": true}}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_author_scope",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 78,
+          "sha256": "1ccf2879c7b4edfefab8278f8bd2215acb9cdd1aaa47db8ce09e326b6b5ca700",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON value mismatch stdout_json.scope\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_author_extra_key",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "bbc8c9fab59868b5936247696420440d72fd69412abe844657dfe17d7a8b6fb8",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_independent_scope",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 78,
+          "sha256": "1ccf2879c7b4edfefab8278f8bd2215acb9cdd1aaa47db8ce09e326b6b5ca700",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON value mismatch stdout_json.scope\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_independent_extra_key",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "bbc8c9fab59868b5936247696420440d72fd69412abe844657dfe17d7a8b6fb8",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_extra_key",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 88,
+          "sha256": "a9cce75e2e29d9ef9c9ffeb52aa66e2579803cf122b0287d4b0f075f996eecce",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json.checks[0].evidence\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_bool_int",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 107,
+          "sha256": "8d67c177d1f7baf20d8b08e4f71392796e287b70099d0b84650c712da433e9c8",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch stdout_json.checks[4].evidence.energy_prefactor\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_int_float",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 119,
+          "sha256": "4dbf888e9992156a7d50c6101230b3da7d0eefb46eb86f98c0be33d7558b3fe6",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch stdout_json.checks[5].evidence.nondegenerate_rational_cases\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_stdout_whitespace",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "fb1dd111bce1c7fbc0e3069216e4190a5c3535a5fa9adf7c71729cf5938ca045",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact complete stdout bytes differ\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_stderr_added",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 69,
+          "sha256": "450e3882064fd32a73006aa32952a0b47c9ecf4b2f7eee98b863f9df7aec49b0",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact complete stderr bytes differ\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_nested_value",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 104,
+          "sha256": "6d52b47c40b2cf133d6ac34b7b93a5f1679d17562c3c9b03dce7900f8c64766a",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON value mismatch stdout_json.checks[0].evidence.degree_bound\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_list_reordered",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 88,
+          "sha256": "a9cce75e2e29d9ef9c9ffeb52aa66e2579803cf122b0287d4b0f075f996eecce",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON object keys stdout_json.checks[0].evidence\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_outer_bool_exit",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 73,
+          "sha256": "aa3322eff4ba534cb5756175d548e4dfda6151fda60cd4b8e57d0ecc2cf5779c",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch run.exit_code\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_outer_extra_key",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 60,
+          "sha256": "da19ba214ba9e8451c3057563f74d04db076f09d72a8ef426e315e67d75be0d2",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"run comparison exact keys\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_hash_or_integrity_shortcut",
+      "case": "pure_output_outer_string_mode",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 76,
+          "sha256": "eaa5c862a12bdfbc5cb3954009befdf5dee91b0dfc03b70b1054319b40ccb3ef",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"exact JSON type mismatch run.optimization\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_valid",
+      "expected": "PASS",
+      "optimization": 2,
+      "result": {
+        "exit_code": 0,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 133,
+          "sha256": "c5d63ed23608391b7e5b890f4f58056aba61a92b5c49ee4f42bebcc2ca71101f",
+          "text": "{\"status\": \"PASS\", \"comparison\": {\"changed_indices\": [8, 9, 11], \"chat_and_doi_unchanged\": true, \"all_other_bytes_unchanged\": true}}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_missing_target",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_duplicate_target",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_chat_changed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 67,
+          "sha256": "c8909b3780d94e70f8a0e9b78b074515f6c9f6b6019c9408311fdadbee8f7d27",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison changed columns\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_doi_changed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 67,
+          "sha256": "c8909b3780d94e70f8a0e9b78b074515f6c9f6b6019c9408311fdadbee8f7d27",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison changed columns\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_other_row_changed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_leading_literal_changed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 70,
+          "sha256": "93946feb1dcb189b046c67085e24d7d2bbb2c51289e3f015933a178f23c3ef0b",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"one unchanged-position queue target\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_trailing_newline_changed",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 77,
+          "sha256": "308fb31d7b80eae4886da27209bd23d4993681afd499835dfb0bcbd0155e0b95",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison preserves all other bytes\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_wrong_turns",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 63,
+          "sha256": "2c17c45b6efb1352504c22f97136167a99e7b46d2f9fd7c37d169ee4d89c7037",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison disposition\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_missing_findings_change",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 67,
+          "sha256": "c8909b3780d94e70f8a0e9b78b074515f6c9f6b6019c9408311fdadbee8f7d27",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison changed columns\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_wrong_status",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 63,
+          "sha256": "2c17c45b6efb1352504c22f97136167a99e7b46d2f9fd7c37d169ee4d89c7037",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison disposition\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    },
+    {
+      "anchor": "pure_comparison_no_integrity_shortcut",
+      "case": "pure_queue_nonbyte_input",
+      "expected": "REJECT",
+      "optimization": 2,
+      "result": {
+        "exit_code": 1,
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": "",
+          "type": "inline_utf8"
+        },
+        "stdout": {
+          "bytes": 62,
+          "sha256": "030a15771004a6a3eaeca731c2a81ebf6e3246551559c54716aae27f4c3cda50",
+          "text": "{\"status\": \"REJECT\", \"reason\": \"queue comparison byte types\"}\n",
+          "type": "inline_utf8"
+        }
+      }
+    }
+  ],
+  "uid": 1000
+}
