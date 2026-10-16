@@ -1068,7 +1068,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1057 | 3023 / KP-5.16 | Kirby Problem 5.16 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1058 | 3091 / OPG-59923 | Generalised Empty Hexagon Conjecture | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1059 | 3422 / OPG-37293 | Sticky Cantor sets | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1060 | 3800015 / AMR-037-0015 | Shortest paths in line arrangements | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1060 | 3800015 / AMR-037-0015 | Shortest paths in line arrangements | 0.0900 | 5.5 | 3 | unknown | exhausted | 5/5 |  | Independently accepted partials: sharp n-2 expanded-edge bound; quadratic corridor and ordinary Euclidean-A* examples only for those methods; exact costs 91/5<21<65/3 and nonconvex 5,6,5 distance profile; expanded-output comparison-sorting bound. Corrected two-edge hop witness retained. General exact subquadratic algorithm/quadratic lower-bound target unresolved after five routes. Source/output conventions qualified; full 1999 paper and 2020 thesis uninspected. [Proof, audit and replay](attempts/3800015/README.md). |  |
 | 1061 | 3900016 / AMR-038-0016 | Triangulations with many distinct areas | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1062 | 5500016 / AMR-054-0016 | Simple Polygonalizations | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1063 | 5500054 / AMR-054-0054 | Traveling Salesman Problem in Solid Grid Graphs | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
