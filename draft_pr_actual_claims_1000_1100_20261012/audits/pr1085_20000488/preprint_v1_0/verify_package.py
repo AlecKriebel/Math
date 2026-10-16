@@ -148,6 +148,49 @@ def verify(check_archive=True, check_deposit=True, deposit=None, require_deposit
                     all(type(verdict.get("severity_counts", {}).get(k)) is int and
                     verdict["severity_counts"][k] == 0 for k in ["P0", "P1", "P2", "P3"]),
                     "whole02 zero finding semantics")
+    # The terminal stage above remains an exact dated snapshot. The later
+    # case-alias repair cannot inherit its old zero-finding clearance.
+    repair = read_json(ROOT / "CASE_ALIAS_REPAIR_ACCOUNTING.json")
+    require(type(repair.get("schema")) is int and repair["schema"] == 1,
+            "case repair schema")
+    require(type(repair.get("pr")) is int and repair["pr"] == 1085 and
+            type(repair.get("problem_id")) is int and repair["problem_id"] == 20000488 and
+            repair.get("audited_head") == status["audited_head"], "case repair identity")
+    require(repair.get("status") == "CASE_ALIAS_REPAIRED_PENDING_ROOT_ADOPTION_AND_NEW_COMPLETE_WHOLE03" and
+            repair.get("finding") == "CASE-1085" and repair.get("finding_severity") == "P3",
+            "case repair pending stage")
+    for key in ["historical_whole_reviews_completed", "minimum_whole_reviews"]:
+        require(type(repair.get(key)) is int and repair[key] == 2, "case repair two historical reviews")
+    for key in ["new_complete_whole03_required", "root_repair_adoption_required",
+                "historical_STATUS_and_TERMINAL_ACCOUNTING_preserved"]:
+        require(repair.get(key) is True, "case repair required review/adoption/history")
+    for key in ["new_complete_whole03_completed", "publication_ready", "all_actionable_issues_resolved",
+                "published", "human_peer_review", "formal_proof_certificate"]:
+        require(repair.get(key) is False, "case repair forbidden promotion: " + key)
+    require(repair.get("services_hold") == status["services_hold"], "case repair ordered hold")
+    for key in ["priority", "novelty", "worldwide_open_status", "independent_discovery"]:
+        require(repair.get(key) == status[key], "case repair historical scope: " + key)
+    for key in ["paper_pdf_sha256", "paper_tex_sha256"]:
+        require(repair.get(key) == terminal[key], "case repair unchanged paper")
+    repair_map = read_json(ROOT / "CASE_ALIAS_REPAIR_COPY_MAP.json")
+    require(type(repair_map.get("schema")) is int and repair_map["schema"] == 1,
+            "case repair copy schema")
+    repair_copies = repair_map["files"]
+    expected_copies = ["evidence/case_alias01/" + n for n in ["FINDING_AND_REPAIR.md",
+        "ROOT_CASE_ALIAS_SCOPE_REVIEW.json", "ROOT_TERMINAL_ADMIN_REVIEW_20261016.json",
+        "before/kit_common.py", "before/README.md", "before/verify_package.py"]]
+    require([r["copy"] for r in repair_copies] == expected_copies and
+            len({r["source_relative_program"] for r in repair_copies}) == len(repair_copies),
+            "case repair exact evidence membership")
+    for row in repair_copies:
+        require(set(row) == {"source_relative_program", "copy", "bytes", "sha256"} and
+                type(row["bytes"]) is int and row["copy"] in names, "case repair copy fields")
+        data = regular(ROOT / row["copy"]).read_bytes()
+        require(len(data) == row["bytes"] and sha(data) == row["sha256"], "case repair copied bytes")
+    hold = read_json(ROOT / expected_copies[2])
+    require(hold.get("new_complete_whole03_required") is True and
+            hold.get("publication_ready") is False and hold.get("published") is False and
+            hold.get("services_held_after_pr") == 1032, "case repair root hold evidence")
     require(regular(ROOT / "paper.pdf").read_bytes().startswith(b"%PDF-"), "paper PDF signature")
     archive_verified = False
     archive = ROOT / ARCHIVE
@@ -201,8 +244,9 @@ def verify(check_archive=True, check_deposit=True, deposit=None, require_deposit
             "individual_exclusions": len(excluded), "archive_verified": archive_verified,
             "external_deposit_binding_verified": binding_verified,
             "publication_ready": False, "new_whole_reviews": 2,
+            "new_complete_whole03_required": True, "new_complete_whole03_completed": False,
             "terminal_exact_copies": len(terminal_copies), "terminal_individual_exclusions": len(terminal_exclusions),
-            "scope": "Finite custody and declared-scope checks only. Universal proofs are in paper.tex; two complete whole reviews are recorded, external root terminal integrity adoption remains required, and services are held after PR1032."}
+            "scope": "Finite custody and declared-scope checks only. Universal proofs are in paper.tex; two historical complete whole reviews are recorded; the later case-alias repair requires external root adoption and NEW complete whole03, and services are held after PR1032."}
 
 def main():
     p = argparse.ArgumentParser()

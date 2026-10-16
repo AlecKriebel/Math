@@ -34,13 +34,13 @@ The strict check verifies external paper/ZIP hashes, every archive header/member
 
 ## Package and historical evidence
 
-`CUSTODY_MAP.json` partitions every audit input captured before the 16 October 2026 repair individually into an exact selected authored copy or an exclusion. Its original 171-input stage remains intact as dated history. Selected whole-review/root evidence and the original bytes of every changed interface are appended under `historical/repair01/`; changed original paths resolve to those explicit before-repair copies. Source PDFs, extracted third-party text, images, raw private searches and duplicate snapshots are excluded. No source body is redistributed. Public source hashes and actual read scopes are retained. `historical/` contains exact dated submitted/reviewer/root evidence: its acceptance labels and pending fields retain captured-stage meaning. They do not override `CURRENT_STATUS.json` or claim that new whole-package reviews are complete. Historical executable environments are neither copied nor declared portable. The newly written `scripts/run_checks.py` is the portable checker.
+`CUSTODY_MAP.json` partitions every audit input captured before the 16 October 2026 repair individually into an exact selected authored copy or an exclusion. Its original 171-input stage remains intact as dated history. Selected whole-review/root evidence and the original bytes of every changed interface are appended under `historical/repair01/`; changed original paths resolve to those explicit before-repair copies. Source PDFs, extracted third-party text, images, raw private searches and duplicate snapshots are excluded. No source body is redistributed. Public source hashes and actual read scopes are retained. `historical/` contains exact dated submitted/reviewer/root evidence: its acceptance labels and pending fields retain captured-stage meaning. They retain their own dated meaning. The unchanged `CURRENT_STATUS.json` is the captured repair-stage status; the later `TERMINAL_ACCOUNTING_20261016.json` supplies current pending-ROOT accounting. Historical executable environments are neither copied nor declared portable. The newly written `scripts/run_checks.py` is the portable checker.
 
 `metadata.json`, `.zenodo.json` and `metadata_api.json` encode one identical Zenodo API metadata object. The external native `zenodo-deposit.json` has exactly the repository uploader's `{metadata, files}` schema and selects the paper PDF and support ZIP. Its metadata equals the bare/API objects. The external `DEPOSIT_BINDING.json` binds those exact deliverables without a hash cycle; neither descriptor is inside its own selected ZIP. No DOI, external publication or PR merge is claimed at this stage.
 
 Copyright Alec Kriebel, 2026. Paper, authored notes and code: CC BY 4.0; see `LICENSE.txt`. Cited third-party works retain their own rights.
 
-## Current repair checkpoint (16 October 2026 UTC)
+## Captured repair checkpoint (16 October 2026 UTC; superseded accounting)
 
 One new complete whole-package review has finished. It accepted the complete
 mathematics and conservative priority framing, with one P3 mismatch between
@@ -49,7 +49,31 @@ bounded repair checks lexical prefixes before normalization and also rejects
 physical input-tree aliases through differently cased existing ancestors.
 The manuscript, PDF and every native bibliographic metadata field are
 unchanged. The first review and original preparation receipts are exact
-captured-stage history. A NEW complete independent whole-package review is
-still required, with a minimum of two total new complete reviews and all
-actionable findings resolved. Readiness and publication remain false, and
+captured-stage history. At that captured checkpoint a NEW complete independent whole-package
+review was still required, with a minimum of two total new complete reviews
+and all actionable findings resolved. Readiness and publication remain false, and
 all external services remain held after the preceding PR #1032 disposition.
+
+## Terminal accounting (16 October 2026 UTC; pending external ROOT integrity)
+
+Two new complete independent whole-package reviews have finished, meeting
+the minimum of two. The first review's P3 was repaired and root-adopted.
+The NEW complete review02 found zero actionable P0–P3 issues, and root adopted
+that whole review. No further whole review is currently required. The
+separate `TERMINAL_ACCOUNTING_20261016.json` binds the exact selected report,
+derivation, source-read ledger, verdict, output pins, seal and root adoption.
+`TERMINAL_SOURCE_COPY_LEDGER.json` appends their individual exact locators
+and the changed prose/verifier's before bytes without changing either old
+171/309-input custody partition. Old ZIP/bindings and raw streams are omitted
+from this new selection. `scripts/verify_kit.py` adds explicit checks of this
+terminal accounting and its evidence; all old payload/path/math guards remain
+unchanged. Reviewer programs are dated external evidence, omitted here and
+not promised as portable replay environments.
+
+External ROOT terminal integrity adoption is required and has not occurred.
+publication_ready, issues_resolved and published remain false. This dated
+administrative reconciliation supplies neither another whole review nor a
+final readiness grant. Priority, novelty and worldwide prior openness remain
+UNKNOWN; extensive AI assistance, unrefereed status and absence of external
+human peer review or proof-assistant certification remain in force. All
+external services remain held after PR #1032.

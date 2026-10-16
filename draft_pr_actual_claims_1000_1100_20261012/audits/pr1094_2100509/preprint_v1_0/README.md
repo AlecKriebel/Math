@@ -38,14 +38,26 @@ author-v2 rigidity-proof qualification are retained in `PROPOSED_PR_FRAMING.md`.
 No PR text, QUEUE row, original artifact, branch, index or remote state has
 been changed by preparation.
 
-This candidate is **not publication-ready yet**. Root adoption and at least
-two new independent whole-package adversarial reviews, with all actionable
-issues resolved, are required. The initial preparation recorded zero such new reviews. After the
-16 October 2026 bounded path-check repair, `kit/CURRENT_STATUS.json` records
-one completed full review and requires a NEW complete full review, retaining
-false readiness/publication flags and the ordered service hold
-at the preceding #1032 disposition. No upload, DOI, tracker write, merge,
-Git mutation, release or outside communication occurred.
+Current accounting is dated 16 October 2026 UTC in
+`TERMINAL_ACCOUNTING_20261016.json` and the identical kit record. Two new
+complete independent whole-package reviews have finished, meeting the
+minimum of two. Review01's P3 was repaired and root-adopted; the NEW complete
+review02 has zero actionable P0–P3 findings and root adopted it. No further
+whole review is currently required. External ROOT terminal integrity
+adoption remains required and has not occurred; publication_ready,
+issues_resolved and published remain false. This administrative checkpoint
+is not another review or a final readiness grant. All external services
+remain held after #1032.
+
+The original preparation's zero-review state and the bounded repair's
+one-review/new-review-required state remain exact dated history in all old
+pins, reports, seals and `kit/CURRENT_STATUS.json`. They do not describe the
+later terminal count. `kit/TERMINAL_SOURCE_COPY_LEDGER.json` adds only selected
+exact authored whole02/root evidence and before-interface copies; both
+previous custody partitions remain exact. The portable verifier now checks
+the separate terminal count, evidence hashes, conservative scope and pending
+ROOT/false-publication semantics. Historical reviewer programs are omitted
+and no portable replay of their environments is claimed.
 
 The bounded repair report and full before/after code/prose diff are in
 `../repairs/package01/`. The paper, PDF and shared native metadata object

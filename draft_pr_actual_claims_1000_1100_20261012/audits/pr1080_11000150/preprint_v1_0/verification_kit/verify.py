@@ -40,6 +40,16 @@ def fresh_output(path):
         require(not part.is_symlink(), "archive output symlink/ancestor rejected: " + str(part))
     output = Path(os.path.abspath(raw))
     require(not output.is_relative_to(ROOT), "archive must be outside the kit")
+    # Lexical containment alone misses case aliases on case-insensitive volumes.
+    # Inspect every existing ancestor, including above absent intermediates.
+    protected = ROOT.stat()
+    for part in [output, *output.parents]:
+        try:
+            identity = part.stat()
+        except (FileNotFoundError, NotADirectoryError):
+            continue
+        require((identity.st_dev, identity.st_ino) != (protected.st_dev, protected.st_ino),
+                "archive must be outside the physical kit")
     require(not output.exists(), "archive destination must be fresh; existing files and aliases rejected")
     require(output.parent.is_dir(), "archive parent must be an existing ordinary directory")
     return output
@@ -121,7 +131,14 @@ def verify(binding=None, require_binding=False, pdf=None, archive=None):
     relocation_rows = json.loads(regular_input(ROOT / "TERMINAL_HISTORY_RELOCATIONS.json").read_text())["rows"]
     relocations = {r["reference_index"]: r for r in relocation_rows}
     require(len(relocations) == len(relocation_rows), "duplicate historical relocation")
-    for index, relocation in relocations.items():
+    case_relocations = json.loads(regular_input(ROOT / "CASE_ALIAS_HISTORY_RELOCATIONS.json").read_text())["rows"]
+    for relocation in case_relocations:
+        index = relocation["reference_index"]
+        require(type(index) is int and 0 <= index < 4628 and index not in relocations
+                and history["references"][index] == relocation["historical_reference"],
+                "case repair historical relocation changed original row")
+        relocations[index] = relocation
+    for index, relocation in {r["reference_index"]: r for r in relocation_rows}.items():
         require(type(index) is int and 0 <= index < 2312 and history["references"][index] == relocation["historical_reference"], "historical relocation changed original row")
     for index, r in enumerate(history["references"]):
         if r["disposition"] == "exact_captured_stage_or_canonical_copy":
@@ -140,6 +157,19 @@ def verify(binding=None, require_binding=False, pdf=None, archive=None):
     require(latest["status"] == "COMPLETE_WHOLE02_ZERO_ACTIONABLE_FINDINGS" and latest["findings"] == [] and latest["findings_by_priority"] == {"P0": 0, "P1": 0, "P2": 0, "P3": 0} and latest["whole_reviews_completed"] == 2 and latest["minimum_whole_reviews"] == 2, "captured whole02 status/count differs")
     adoption = json.loads(regular_input(safe_path(terminal["root_whole02_adoption"])).read_text())
     require(adoption["status"] == "ADOPT_COMPLETE_WHOLE02_ZERO_ACTIONABLE_PENDING_TERMINAL_ADMIN" and adoption["whole_reviews_completed"] == 2 and adoption["minimum_whole_reviews"] == 2 and adoption["actionable_P0_P1_P2_P3"] == 0, "captured root whole02 adoption differs")
+    current = json.loads(regular_input(ROOT / "CURRENT_CASE_ALIAS_REPAIR01.json").read_text())
+    require(current["status"] == "BOUNDED_CASE_ALIAS_REPAIR_PENDING_ROOT_ADOPTION_AND_NEW_COMPLETE_WHOLE03"
+            and current["supersedes_dated_terminal_review_requirement"] is True,
+            "case repair current stage authority")
+    require(type(current["whole_reviews_completed"]) is int and current["whole_reviews_completed"] == 2
+            and type(current["minimum_whole_reviews"]) is int and current["minimum_whole_reviews"] == 2
+            and current["new_complete_review_required"] is True and current["required_next_review"] == "NEW complete whole03",
+            "case repair new complete review required")
+    require(current["root_repair_adoption_required"] is True and current["root_integrity_adoption_required"] is True
+            and all(current[key] is False for key in ["root_repair_adopted", "root_integrity_adopted", "publication_ready", "issues_resolved", "published"])
+            and current["services_held_at"] == 1032, "case repair publication/service boundary")
+    require(current["full_original_maximum_classification_bundle"] == "PARTIAL"
+            and current["exact_application_priority"] == "UNKNOWN", "case repair scope boundary")
     native = native_metadata()
     require(not require_binding or binding is not None, "external binding required")
     bound = False
@@ -158,10 +188,11 @@ def verify(binding=None, require_binding=False, pdf=None, archive=None):
         require(upload["files"] == [{"path": "preprint.pdf", "name": "preprint.pdf"},
                                     {"path": "verification_kit.zip", "name": "verification_kit.zip"}], "native upload attachments differ")
         require(regular_input(p.parent / "research_metadata.json").read_bytes() == (ROOT / "research_metadata.json").read_bytes(), "external research object differs")
+        require(regular_input(p.parent / "CURRENT_CASE_ALIAS_REPAIR01.json").read_bytes() == (ROOT / "CURRENT_CASE_ALIAS_REPAIR01.json").read_bytes(), "external case repair status differs")
         require(regular_input(p.parent / "TERMINAL_ADMIN_STAGE.json").read_bytes() == (ROOT / "TERMINAL_ADMIN_STAGE.json").read_bytes(), "external terminal status differs")
         require(regular_input(p.parent / "CURRENT_STATUS_REPAIR01.json").read_bytes() == (ROOT / "CURRENT_STATUS_REPAIR01.json").read_bytes(), "external current status differs")
         require([r["filename"] for r in data["external_files"]] ==
-                ["CURRENT_STATUS_REPAIR01.json", "README.md", "TERMINAL_ADMIN_STAGE.json", "deposit_metadata.json", "metadata.json", "preprint.tex", "research_metadata.json"], "external delivery file inventory differs")
+                ["CURRENT_CASE_ALIAS_REPAIR01.json", "CURRENT_STATUS_REPAIR01.json", "README.md", "TERMINAL_ADMIN_STAGE.json", "deposit_metadata.json", "metadata.json", "preprint.tex", "research_metadata.json"], "external delivery file inventory differs")
         for r in data["external_files"]:
             q = regular_input(p.parent / r["filename"])
             require(q.stat().st_size == r["bytes"] and digest(q) == r["sha256"], "external delivery member mismatch")

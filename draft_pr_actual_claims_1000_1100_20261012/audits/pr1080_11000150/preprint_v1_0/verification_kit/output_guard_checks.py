@@ -45,12 +45,12 @@ def main():
         for optimized in [False, True]:
             prefix = [sys.executable, "-I", "-B"] + (["-O"] if optimized else [])
 
-            def command(dest):
-                return subprocess.run(prefix + [str(kit / "build_archive.py"), "--output", str(dest)],
+            def command(dest, script_root=kit):
+                return subprocess.run(prefix + [str(script_root / "build_archive.py"), "--output", str(dest)],
                                       capture_output=True, text=True, timeout=120)
 
-            def reject(kind, dest, cleanup=None):
-                result = command(dest)
+            def reject(kind, dest, cleanup=None, script_root=kit):
+                result = command(dest, script_root)
                 require(result.returncode != 0, "output fault accepted: " + kind)
                 require("archive" in result.stderr, "unexpected rejection reason: " + kind)
                 require(pins(protected) == expected, "protected input/sentinel changed: " + kind)
@@ -81,15 +81,39 @@ def main():
             # Do not normalize away the aliased component before checking it.
             reject("ancestor-alias-dotdot", ancestor / ".." / "fresh-output.zip")
             ancestor.unlink()
+            case_kit = kit.with_name(kit.name.swapcase())
+            case_available = case_kit.exists() and case_kit.samefile(kit)
+            if case_available:
+                for kind, dest, script_root in [
+                    ("physical-case-root", case_kit / "fresh-case.zip", kit),
+                    ("physical-case-nested", case_kit / "originals" / "fresh-case.zip", kit),
+                    ("physical-case-absent-parent", case_kit / "absent-parent" / "fresh-case.zip", kit),
+                    ("physical-case-traversal", case_kit / "originals" / ".." / "fresh-case.zip", kit),
+                    ("physical-case-reverse-root", kit / "fresh-case.zip", case_kit),
+                    ("physical-case-reverse-absent-parent", kit / "absent-parent" / "fresh-case.zip", case_kit),
+                ]:
+                    reject(kind, dest, script_root=script_root)
+                    require(not dest.exists(), "rejected physical case output was created")
+                require(not (kit / "absent-parent").exists(), "rejected absent parent was created")
+            observations.append({"control": "physical-case-alias-availability", "optimized": optimized,
+                                 "same_physical_directory": case_available})
             dest = outside / ("fresh-optimized.zip" if optimized else "fresh-normal.zip")
             result = command(dest)
             require(result.returncode == 0, "fresh outside rebuild failed: " + result.stderr)
             positive_hashes.append(sha(dest))
             require(pins(protected) == expected, "positive rebuild changed protected inputs")
             dest.unlink()
+            case_outside = outside.with_name(outside.name.swapcase())
+            if case_outside.exists() and case_outside.samefile(outside):
+                dest = case_outside / "fresh-case-outside.zip"
+                result = command(dest)
+                require(result.returncode == 0, "fresh physical outside case rebuild failed: " + result.stderr)
+                positive_hashes.append(sha(dest))
+                require(pins(protected) == expected, "case outside rebuild changed protected inputs")
+                dest.unlink()
         require(len(set(positive_hashes)) == 1, "normal/optimized archives differ")
     print(json.dumps({"status": "PASS", "rejections": observations,
-                      "rejection_count": len(observations), "protected_file_count": len(protected),
+                      "rejection_count": sum("fault" in r for r in observations), "protected_file_count": len(protected),
                       "positive_normal_optimized_archive_sha256": positive_hashes,
                       "scope": "Concrete CLI prewrite controls; no mathematical theorem or concurrency-lock certification."}, indent=2))
 
