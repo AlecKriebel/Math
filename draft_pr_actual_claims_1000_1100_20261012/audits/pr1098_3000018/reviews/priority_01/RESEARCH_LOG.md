@@ -1,3 +1,5 @@
 # Priority research log
 
 2026-10-15 UTC: Audit initiated, full original main theorem and appendix, ROOT mathematical adoption, both complete independent math reports, frozen derivations and source interfaces read. Completion estimate: 10%. Full theorem priority, modular-storage mechanism and close-model implication audit remain.
+
+2026-10-15T14:28:42.856821+00:00: Checkpoint: 76 actual public search queries and directly inspected primary interfaces establish two exact mechanism antecedents (Stockmeyer-Meyer CRT-SAT; Holroyd-Levine-Winkler primed-toppler increments), plus Farrell root-last antecedent. Full 2026 generalized-rotor hardness and October fixed-priority period proof read. New exact comparison controls pass identically in normal and optimized Python, including six damaged implications and two explicit guard failures. All 62 frozen inputs and nine actual Git originals unchanged. Completion estimate: 85%; final source ledger, global framing instructions and terminal seals remain.
