@@ -12,7 +12,7 @@ from unittest.mock import patch
 sys.dont_write_bytecode = True
 T = Path(__file__).resolve().parents[2]
 SCRATCH = Path(__file__).resolve().parents[1] / "scratch" / "driver_controls"
-MF = "5d7bccdc118a464da0e149804c4b512c88a9d28cbff2d8b3bc280d963dd4f348"
+MF = "50baca75de83bb4959f52b88762b020a65181428d200dffc4f343db8e026f9de"
 HEAD = "aa44dec3baf8c1cd179cf8b55f32be95c74ee81a"
 
 
@@ -65,6 +65,7 @@ def execute(driver):
     gate_case("pending_plan_cannot_authorize", plan, False)
     forged = copy.deepcopy(plan)
     forged.update(result="PASS", actual_whole_preprint_rounds=2, final_current_round_clean=True)
+    forged.pop("completed_whole_reviews", None)
     gate_case("unbound_completion_flags_only", forged, False)
     truthy = copy.deepcopy(forged)
     truthy["final_current_round_clean"] = "false"

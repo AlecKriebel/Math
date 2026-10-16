@@ -27,6 +27,23 @@ python3 -I -B build_package.py --expected-manifest-sha256 EXTERNAL_PIN --pdf /ab
 
 The build is deterministic for the supplied PDF bytes and closed source. A fresh TeX compilation can differ in PDF metadata; inspect its pages and mathematics separately. The builder deliberately does not pretend to regenerate byte-identical TeX-engine output.
 
+## Explicit optional algebra-packet control command
+
+The sealed algebra packet README's "same arguments" shorthand is superseded here for test_packet.py: omit --replay, which is accepted only by its verify_packet.py. Before running the optional control harness, copy the entire sealed audit/math_quotient_algebra directory (all 15 files) to a new owned ordinary directory outside the closed source. The harness makes temporary directories under packet.parent and temporarily hardlinks its copied REPORT; do not pass the frozen source directory as its test root.
+
+Point --intake-root to the absolute extracted source's audit/intake directory and --primary-root to the absolute directory containing the four external files recorded in the copied PRIMARY_SOURCES.json. Those third-party bodies are not redistributed in this archive. For example, with a complete owned copy and a matching retrieved primary bank:
+
+```sh
+python3 -I -B /absolute/owned/algebra-packet-copy/test_packet.py \
+  --packet /absolute/owned/algebra-packet-copy \
+  --intake-root /absolute/extracted-source/audit/intake \
+  --primary-root /absolute/retrieved-primary-bank \
+  --expected-manifest-sha256 7cd556c6a87d2117f803112268e4b8eb86316c76dac40c9fee82ffe0ccf6eea0 \
+  --expected-checker-sha256 31246b25e6040d2d676f0fd5d1b6c4c65cedc0a67440da313a3ff0a584689333
+```
+
+The unchanged corrected invocation passes 2 positive and 16 negative controls. This is an optional custody-control suite, separate from the advertised read-only core --replay. Preserve all sealed family/original files and their external pins; this clarification does not alter them.
+
 ## Contents and review provenance
 
 main.tex is the sole TeX entry point. audit/intake preserves the exact immutable head, 58 original files and 3 archives; the other four audit folders preserve separately initialized mathematical source/geometry, quotient/tensor, direct history and structural priority packets. Their initial/provisional freezes precede candidate/old-literature comparison as documented. Root receipts bind and distinguish current versus historical evidence. Whole-preprint reviews occur after this source freeze and live in the public repository case, outside this archive to avoid circular custody.
