@@ -11,3 +11,219 @@ All four new initial families completed their distinct scopes. Parent fully read
 ## 2026-10-16T04:05:14.005818+00:00 — PR885 priority resolved with attributed-corollary scope; paper drafted (PR88540%; shard78%)
 
 Complete old-input target corollary verified against BGT2021's actual numerical list kernel, with correct per-increment negative parts, m0 prescribed-condition interpretation, site-threshold normalization, origin and terminal handling. Fresh completion adversary agrees with qualified short application framing and no automatic already_solved/firstness/current-openness conclusion. Parent fully read derivations/reports/decisions/all authored checker bodies; authenticated39 safe priority payloads plus two envelopes. Preserved missing original recent/disposition hash-envelope limitation through a newly dated completion allowlist. Original5/5 remains unchanged. Six-page research-note draft compiles and all initial pages visually inspected; metadata polish/rebuild and final package reviews pending. Initial verification tools normal/O replays passed, but a fresh format adversary found path-alias output containment; repair pending. No whole-packageCLEAR, PR mutation, merge, DOI or tracker action. Overnight live-agent inventory contained root only; retained prior artifacts and started fresh scoped completion/engineering rather than claiming absent work completed. FreshRESTgate03:53:14 still OPENdraft samehead/exactCL5/5 after one read-onlyGraphQLTLS timeout.
+
+## 2026-10-16T04:22:41.290050+00:00 — PR885 tooling adversary and final PDF checkpoint (PR88540%; shard78%)
+
+Actual public priority checkpoint b156d6d447be521a8fd5d6f71b824d89d9f89e8e verified all135 explicit Git blobs, remote commit API and three actual API blobs. Separate new receipt creation failed errno28; actual success is retained below. Parent authenticated all11 engineering safe payloads/external envelope and seven initial format-review handoff payloads. New format finding: frozen V2 canonical strings still miss filesystem case and APFS Data-prefix aliases; those same-inode paths reached a raising replay sentinel without archive execution or output. Memory-only proposed V3 compares actual root identity with every existing resolved output ancestor, rejects four alias/direct/dotdot helper cases in both normal/O isolated processes and retains an outside-parent sentinel positive. Fresh independent delta review pending. These are helper controls only, not actual CLI/current/default/build success. All six final PDF pages were actually viewed by parent; no visual layout issue. Original5/5 and exact claimed_solved gate unchanged. No final CLEAR, candidate/QUEUE mutation, merge, DOI or sheet action. New-file/tempdir ENOSPC persists despite own completed-render cleanup; user resource question asks for2GB and remains unanswered.
+
+Checkable checkpoint evidence (in-memory V3 remains unwritten):
+
+{
+  "completion_estimate_percent": 40,
+  "memory_only_v3_controls": [
+    {
+      "actual_CLI_build": false,
+      "archival_execution": false,
+      "controls": [
+        {
+          "archival_execution": false,
+          "case": "case_alias",
+          "output_exists": false,
+          "resolved_paths_equal": false,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "APFS_data_alias",
+          "output_exists": false,
+          "resolved_paths_equal": false,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "ordinary_child",
+          "output_exists": false,
+          "resolved_paths_equal": true,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "dotdot_root",
+          "output_exists": false,
+          "resolved_paths_equal": true,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        }
+      ],
+      "filesystem_writes": false,
+      "frozen_v2_sha256": "09e4932f66c15916891245a1fb3d6a7052cb5619710d94e0e2305fb7a7612aa6",
+      "in_memory_v3_bytes": 40867,
+      "in_memory_v3_sha256": "16d9de7451b8f24d970f14497c428c348a9640967bb47df9531af8d69f4c55cb",
+      "isolation": {
+        "dont_write_bytecode": 1,
+        "isolated": 1,
+        "no_site": 1
+      },
+      "outside_parent_reached_raising_sentinel": true,
+      "python_optimize": 0,
+      "status": "PASS_MEMORY_ONLY_HELPER_CONTROLS",
+      "whole_package_clear": false
+    },
+    {
+      "actual_CLI_build": false,
+      "archival_execution": false,
+      "controls": [
+        {
+          "archival_execution": false,
+          "case": "case_alias",
+          "output_exists": false,
+          "resolved_paths_equal": false,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "APFS_data_alias",
+          "output_exists": false,
+          "resolved_paths_equal": false,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "ordinary_child",
+          "output_exists": false,
+          "resolved_paths_equal": true,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "dotdot_root",
+          "output_exists": false,
+          "resolved_paths_equal": true,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        }
+      ],
+      "filesystem_writes": false,
+      "frozen_v2_sha256": "09e4932f66c15916891245a1fb3d6a7052cb5619710d94e0e2305fb7a7612aa6",
+      "in_memory_v3_bytes": 40867,
+      "in_memory_v3_sha256": "16d9de7451b8f24d970f14497c428c348a9640967bb47df9531af8d69f4c55cb",
+      "isolation": {
+        "dont_write_bytecode": 1,
+        "isolated": 1,
+        "no_site": 1
+      },
+      "outside_parent_reached_raising_sentinel": true,
+      "python_optimize": 1,
+      "status": "PASS_MEMORY_ONLY_HELPER_CONTROLS",
+      "whole_package_clear": false
+    }
+  ],
+  "memory_only_v3_proposal": {
+    "old": "    require(root != out and root not in out.parents, \"output must be outside input tree\")\n",
+    "replacement": "    require(root != out and root not in out.parents, \"output must be outside input tree\")\n    # Canonical strings can still differ for case aliases and APFS firmlinks.\n    # Compare directory identities before authentication/replay or any writes.\n    root_info = root.stat()\n    root_identity = (root_info.st_dev, root_info.st_ino)\n    for ancestor in (parent, *parent.parents):\n        ancestor_info = ancestor.stat()\n        require((ancestor_info.st_dev, ancestor_info.st_ino) != root_identity,\n                \"output must be outside input tree (physical directory alias)\")\n",
+    "scope": "In-memory candidate only until filesystem write succeeds. Frozen V2 must remain unchanged."
+  },
+  "priority_checkpoint_public_readback": {
+    "all_explicit_git_blobs_verified": 135,
+    "changed_paths": 59,
+    "commit": "b156d6d447be521a8fd5d6f71b824d89d9f89e8e",
+    "receipt_save_errno": 28,
+    "receipt_saved": false,
+    "remote_commit_actual_API_verified": true,
+    "status": "PASS",
+    "timestamp_utc": "2026-10-16T04:15:45.253467+00:00"
+  },
+  "remaining": "ENOSPC prevents new files/tempdirs and actual package assembly, replay/build, then two NEW successive whole-package CLEAR reviews, accepted revision/merge, Zenodo publication, DOI sheet row. No PR mutation/publication for #885 has occurred. V2 remains frozen and REVISE for physical-alias containment. Proposed V3 is in memory only. No final whole-package CLEARs exist for PR885.",
+  "resource_scope": "Own completed-render cleanup removed 77 cached PNGs, exact receipt exists; unique inode selected allocation 19,836,928 bytes is not an observed disk-free increase. Existing source PDFs/canonical assets/proof/data/logs preserved; no foreign cleanup. Required 2GB disk-space question remains unanswered.",
+  "shard_completion_estimate_percent": 78,
+  "timestamp_utc": "2026-10-16T04:22:41.290050+00:00",
+  "tool_auth_and_final_pdf_qa": {
+    "engineering_files_verified": 11,
+    "engineering_manifest_sha256": "bd672fa02d6e712c652a8450b9a971dce02db8221faae1cf28b39d27867daebe",
+    "engineering_public_path_scan": "PASS",
+    "engineering_total_bytes": 215212,
+    "final_pdf_visual_qa": {
+      "all_six_pages_actually_viewed_by_parent": true,
+      "layout_findings": [],
+      "pdf_bytes": 82047,
+      "pdf_sha256": "e8ef086a61d1425c0e4892279a42f64079be1216c7936fff81628471c1ed2fba",
+      "renders": [
+        {
+          "bytes": 192159,
+          "page": 1,
+          "sha256": "4adbf8106abf35d33ad19e7304c0d18822c07247a1b82238a1b7cb6b484d13a4"
+        },
+        {
+          "bytes": 232556,
+          "page": 2,
+          "sha256": "6a0a6675d1ae3533a5f466859b62657d44203b83bf1ffd7c3783eaae0484c7f3"
+        },
+        {
+          "bytes": 195203,
+          "page": 3,
+          "sha256": "998f213c23682e5ef882a962075e6a304fb7471eb19e23543f74f40beceb93ac"
+        },
+        {
+          "bytes": 208616,
+          "page": 4,
+          "sha256": "81b3bc2f784b4592bf3a747ddaca8fddde40075b778d39b22eb6db7b71ec0af0"
+        },
+        {
+          "bytes": 206983,
+          "page": 5,
+          "sha256": "a14909a87b150e1e3e052a0541ff199d34d909a9fe0ff8eee0b33f737b9cacba"
+        },
+        {
+          "bytes": 230923,
+          "page": 6,
+          "sha256": "3dd62dd1506bdb65d9f4945b2cd89561785ceaeab8cb80e538f48ce058d4a2db"
+        }
+      ],
+      "tex_sha256": "493e7b3756487bd47c2eb0f804e5bf253082b63e86f54c661c0ffbf40b7d39ea"
+    },
+    "format_handoff_files": [
+      {
+        "bytes": 8883,
+        "path": "HELPER_RECEIPTS.json",
+        "sha256": "68bf44e9dbd4d5732665b43ec96a2c2f47733a8ec8add01a2382525955f1f4a8"
+      },
+      {
+        "bytes": 8989,
+        "path": "HELPER_V2_RECEIPTS.json",
+        "sha256": "76454532da96fa0be46cce81385ba91986eb21296089ba193f4cb99c44bc6c17"
+      },
+      {
+        "bytes": 14030,
+        "path": "RESEARCH_LOG.md",
+        "sha256": "980fe0ad32d55fc0c18292a2775a56369a0622a5c3774237db6adc3763e654fb"
+      },
+      {
+        "bytes": 2159,
+        "path": "SOURCE_ONLY_RECEIPT.json",
+        "sha256": "06b42a9c1f6165d0d5a23efc8407eb459afd9c160f7665479b76cb1faccb8fbf"
+      },
+      {
+        "bytes": 8412,
+        "path": "review_tools.py",
+        "sha256": "39afed240fb90da53bbdc14a5f72267537bd40ab9cb128f96385683a18a85f31"
+      },
+      {
+        "bytes": 8537,
+        "path": "review_tools_v1.py",
+        "sha256": "9506ba11168faccec15ad203a0a6af4a94c2a3e7cf7189335ea136421501a7b6"
+      },
+      {
+        "bytes": 3498,
+        "path": "source_only_probe.py",
+        "sha256": "f90e6af90c12953f8a597b756a820cc7b62cf20688508f96b19b2ebb38e80315"
+      }
+    ],
+    "scope": "No current-root assembly/build/replay/whole-package CLEAR claimed."
+  }
+}
