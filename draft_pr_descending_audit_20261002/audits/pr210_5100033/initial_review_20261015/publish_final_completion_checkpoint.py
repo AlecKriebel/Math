@@ -17,7 +17,8 @@ prepared=json.loads((PUB/'PR_PREPARED.json').read_text())
 state=json.loads((D/'CURRENT_AUDIT_STATE.json').read_text())
 assert merged['merged'] is True and state['completion_percent']==100
 assert merged['program_counts']==state['counts']==[44,21,21,0]
-prior_checkpoint=json.loads((D/'FINAL_CLEARANCE_CHECKPOINT_PUBLICATION_RECEIPT.json').read_text())
+baseline_name='NATIVE_GUARD_REPAIR_CHECKPOINT_PUBLICATION_RECEIPT.json' if (D/'NATIVE_GUARD_REPAIR_CHECKPOINT_PUBLICATION_RECEIPT.json').exists() else 'FINAL_CLEARANCE_CHECKPOINT_PUBLICATION_RECEIPT.json'
+prior_checkpoint=json.loads((D/baseline_name).read_text())
 prior={x['path']:x for x in prior_checkpoint['owned_files']}
 prior.update({x['path']:x for x in prepared['included_owned_pins']})
 T=D/'private_transport'/datetime.now(timezone.utc).strftime('final_checkpoint_%Y%m%dT%H%M%S%fZ')
