@@ -51,11 +51,15 @@ def fresh_eligibility(g):
          "An acceptance already exists; reconcile before publication")
     rows2=[s for s in main.read("unsolved_math_prioritization/QUEUE.md").splitlines()
            if s.startswith("| ")and" 30001522 / "in s]
-    need(len(rows2)==1 and rows2[0].split("|")[8].strip()in("unsolved","claimed_solved"),
-         "Main has a competing disposition; reconcile rather than overwrite")
+    baseline_row='| 828 | 30001522 / OWR-4413-005 | Persistent Gaps between Free $p$-Rank and Toral Rank | 0.0983 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |'
+    need(len(rows2)==1 and rows2[0]in(baseline_row,rows[0]),
+         "Main differs from both the exact original-parent baseline and exact eligible candidate; reconcile rather than overwrite")
+    selected=[x for x in json.loads(main.read("unsolved_math_prioritization/catalog.json"))if x["id"]=="30001522"]
+    need(len(selected)==1 and selected[0]["statement_hash"]==g["statement_hash"]
+         and selected[0]["review_hash"]==g["review_hash"],"Main source identity changed")
     save(U/"FRESH_PRE_STAGE_ELIGIBILITY.json",{"utc":now(),"result":"ELIGIBLE",
         "PR":p,"PR_head_claimed_row":rows[0],"main_premerge_row":rows2[0],
-        "note":"Eligibility is the draft candidate's exact PR-head claimed_solved status; main can still carry its unmerged unsolved baseline."})
+        "note":"Eligibility is the draft candidate's exact PR-head claimed_solved status; main must carry the exact original-parent queued baseline or exact candidate row."})
 def fetch(url,method="GET"):
     request=urllib.request.Request(url,headers={"User-Agent":"Math-independent-research/1.0"},method=method)
     with urllib.request.urlopen(request,timeout=90)as response:
