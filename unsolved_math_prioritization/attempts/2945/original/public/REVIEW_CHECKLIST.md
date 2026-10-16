@@ -1,0 +1,14 @@
+# Independent-review checklist
+
+The requested disposition is partial/unresolved unless the reviewer finds a decisive theorem missing from the literature screen. No section claims a complete solution.
+
+1. **Statement fidelity.** Check K3 pp. 247–248 directly. The endpoint is a diffeomorphism of a closed 3-manifold. F is an automorphism of its 4-dimensional cylinder, fixes the bottom, and induces f on the top. No level-preservation condition is imposed. The global statement has not been silently narrowed to orientable M.
+2. **Known family.** The FW–KS topological pseudo-isotopy/non-isotopy statement is an external theorem. K3 and Galvin's thesis Theorem 9.2.6 were inspected; KS96 full text was unavailable. The full modern metacyclic-prism family must not all be attributed to the narrower original 1986 proof.
+3. **Derivative argument.** Check the H1 class for the supported matrix map, lifting to S³, injectivity on lifted degree classes, the derivative chain rule, and the use of tau² isotopic to id. No formal derivative homotopy is claimed to integrate.
+4. **Filling extension.** Check the explicit map of the joining 1-handle and matching boundary collar. Extension over a filling is weaker than a pseudo-isotopy.
+5. **Finite cover.** Check the complete bipartite graph construction and the all-neck boundary class. BBP Corollary 5.2 supplies injectivity for the twist subgroup. The resulting isotopy need not be deck-equivariant.
+6. **Marked mapping torus.** Check the gluing convention (x,0)~(f(x),1), the boundary formula after cutting, and coorientation. An unmarked diffeomorphism is not asserted to imply pseudo-isotopy.
+7. **Casson–Sullivan support and boundary control.** This is the most important review point. Inspect Galvin arXiv:2405.07928v2, Theorem 1.7 and Propositions 4.10 and 4.13. Confirm that the relative construction gives boundary-fixed homeomorphisms of each rounded (Yi minus D³)×[epsilon,1-epsilon], then check extension by zero of the obstruction class and its Poincaré–Lefschetz identification with inclusion on H1. The proof deliberately uses only finite-group pieces, not a good-group assertion for their free product.
+8. **Stabilization ceiling.** Galvin v2 Proposition 2.27 preserves the prescribed boundary map while allowing interior S²×S² sums. The report does not discard these sums or claim an unstabilized cylinder diffeomorphism.
+9. **Computation limits.** Re-run normal and optimized Python, and confirm the single-edge negative control. Tests check finite group, graph, and homology arithmetic only. They are not pseudo-isotopy certificates.
+10. **Scope and originality.** These are independently written deductions/reductions from cited results. Novelty has not been established. There are five distinct attacks, and no source search, audit, normalization or computation is charged as a mathematical approach.
