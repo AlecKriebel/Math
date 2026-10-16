@@ -1,0 +1,51 @@
+{
+  "frozen_utc": "2026-10-16T09:14:49.785968+00:00",
+  "review_scope": "Narrow omission normalization in Zenodo KIT; independent adversarial audit, no mathematical review, network writes, shared-file changes, Git actions, or external contact.",
+  "baseline": {
+    "source_path": "zenodo_deposit_tool/zenodo.py",
+    "bytes": 25740,
+    "sha256": "a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca",
+    "inspection_path": "draft_pr_claimed_solved_800_900_20261012/audits/pr894_30005737/ZENODO_CREATED_DRAFT_INSPECTION.json",
+    "inspection_sha256": "cfeb9144d609b25bd8626ffcd4dcc47540dd16971e5f66fdbb9d5931f88a552e"
+  },
+  "observed_trigger": {
+    "deposit_id": 23414025,
+    "intended_related_identifiers": [],
+    "remote_related_identifiers_key_present": false,
+    "submitted": false,
+    "files": {
+      "post-lie-note.pdf": {
+        "bytes": 93764,
+        "md5": "8ff7ab27f3f91b6101783b2f96dec6f0"
+      },
+      "post-lie-verification.zip": {
+        "bytes": 515447,
+        "md5": "c5ae800ed4e70734f38b66414b217dfd"
+      }
+    }
+  },
+  "accept_only": "For intended metadata key related_identifiers, intended JSON value is exactly empty list and remote metadata lacks that key entirely. Report exact, explicit normalization kind.",
+  "reject": [
+    "Intended nonempty related_identifiers list omitted remotely",
+    "Intended null or other non-list types paired with remote omission (must not acquire any new acceptance)",
+    "Intended empty list paired with explicit remote null, nonempty list, or other types",
+    "Missing or modified unrelated required metadata fields",
+    "Modified identity, publication state, file names, checksums, or sizes",
+    "Any broader description or creator normalization than original",
+    "Retries or duplicate create/upload/publish after unknown outcomes; state binding changes"
+  ],
+  "preserve": [
+    "All existing exact metadata equality semantics and preexisting narrow HTML/apostrophe/creator normalization boundaries outside target repair",
+    "Original run/request state and unknown-outcome safeguards",
+    "Exact intended metadata/PDF/ZIP and frozen 253-member core SHA256 c06bf8dfd12c840d0f4af7af32ef6253de1c9f8d3b47f7a0618dedd7fd17ed2b",
+    "Operational execution from byte-identical program-root snapshot whose parent.parent is repository root; same existing state/token paths; inspect existing deposit 23414025 without second stage"
+  ],
+  "planned_validation": [
+    "Read complete proposed file plus narrow diff and all relevant offline tests",
+    "Run original tests and newly supplied regressions against actual patched source with all HTTP/DOI mocked and private test state",
+    "Fresh independent table and lifecycle counterexamples in normal and optimized Python",
+    "Check source diff excludes state/network/identity/file safety logic and operational binding",
+    "Record subprocess flags, PID, UTC timestamps, return code, stdout and stderr before interpretation"
+  ],
+  "completion_percent": 15
+}
