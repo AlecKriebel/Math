@@ -22,6 +22,11 @@ problem's statement, proof, prior report or artifacts.
 4. Read only that exact head's QUEUE status and require literal claimed_solved.
    Every other status is a status-only skip: no statement, math, audit, repair,
    paper, merge, close or comment. Save the metadata/status/identity receipt.
+   After the filename lookup and immutable-head QUEUE read, obtain current PR
+   metadata again and require the same head/state/draft/base as at the start.
+   The PR-files endpoint is mutable; its result alone does not bind identity
+   to the proposed head. A changed observation invalidates this gate and
+   requires another status-only pass before any source or mathematical intake.
    If the proposal was stale, correct only the controller's own metadata state
    and continue ascending. A later actual-head change requires a new gate.
 5. Only after this successful scope gate create/fill the dedicated new audit
