@@ -222,7 +222,7 @@ def archive(files):
             info = zipfile.ZipInfo(safe_name(name), date_time=(2026, 10, 15, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
-            z.writestr(info, raw)
+            z.writestr(info, raw, compresslevel=9)
     return out.getvalue()
 
 
