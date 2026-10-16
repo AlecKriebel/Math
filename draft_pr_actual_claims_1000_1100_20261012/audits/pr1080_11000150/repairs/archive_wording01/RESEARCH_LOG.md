@@ -1,0 +1,3 @@
+# Archive wording repair01 research log
+
+- 2026-10-16T04:59:19.888369+00:00: Froze all 721 preexisting regular audit files and exact before bytes of eight permitted current packaging edits before mutation. Owned scratch alone is ignored. Best-guess bounded repair completion 10%; mathematical research completion 60%. Latest whole03 has one P3 distribution-description finding, already ROOT-adopted; current paper/math scope unchanged. ROOT repair adoption and NEW independent complete whole04 remain mandatory; publication_ready/issues_resolved/published false and services held at PR1032. No services, outreach, shared index, branch or Git changes.

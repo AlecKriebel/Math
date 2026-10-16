@@ -126,7 +126,7 @@ def terminal_semantics():
         need(not dst.exists(),'new copy exists '+str(dst));put(dst,src.read_bytes())
         source_copies.append({'source_locator':locator,'source_path':src.relative_to(A).as_posix(),
                              'copy_path':dst.relative_to(K).as_posix(),**pin(src)})
-    selected=['ROOT_REPAIR_REVIEW_01.json','ROOT_WHOLE_PACKAGE_REVIEW_02.json']
+    selected=['ROOT_WHOLE_PACKAGE_REVIEW_02.json']
     selected+=['reviews/package_02/'+n for n in ['REPORT.md','VERDICT.json','FINAL_SEAL.json','INPUT_FREEZE.json','INPUT_PRESERVATION.json','OUTPUT_PINS.json','SOURCE_READ_LEDGER.json','INDEPENDENT_DERIVATION.md','INDEPENDENT_NORMAL.json','INDEPENDENT_OPTIMIZED_RERUN.json','INDEPENDENT_REPRODUCTION.json','MATH_HARNESS_CORRECTION.json','MATH_OPTIMIZED_PROCESS.json','REVIEW_HARNESS_EVENTS.json','RESEARCH_LOG.md','CUSTODY_REPRODUCTION.json','ZIP_CLOSED.json','PDF_RENDER_RECEIPT.json','PDF_VISUAL_REVIEW.json','WRITER_GUARDS.json','SCRATCH_CLEANUP.json','EXTRA_SCRATCH_CLEANUP.json','SCRATCH_PINS.json','EXTRA_SCRATCH_PINS.json','ADDITIONAL_INPUT_PINS.json','PACKAGE_REPRODUCTION.json','independent_math.py','independent_math_initial.py']]
     for n in selected:copy(A/n,T/'selected'/n,n)
     for n in ['INPUT_FREEZE.json','BEFORE_BYTES.json']:copy(F/n,T/n,'finalization/terminal_admin_20261016/'+n)

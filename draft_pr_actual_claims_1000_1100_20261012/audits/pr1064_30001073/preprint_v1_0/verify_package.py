@@ -82,6 +82,21 @@ def check():
  require(repaired['bounded_repair_applied'] is True and repaired['new_complete_whole04_required'] is True and repaired['root_repair_adoption_required'] is True and repaired['focused_validation_is_complete_whole_review'] is False,'required fresh review/adoption altered')
  require(all(repaired[k] is False for k in ['ready_for_submission','publication_ready','published','issues_updated']),'current repair gate altered')
  require(repaired['ascending_publication_hold_after_pr']==1032 and repaired['novelty']=='UNKNOWN' and repaired['historical_priority']=='UNKNOWN','repair hold or novelty boundary altered')
+ # Earlier status checks above preserve their dated historical states.
+ dated=load('TERMINAL_STATUS_20261016.json')
+ require(dated['stage']=='TERMINAL_ADMIN_COMPLETE_PENDING_ROOT_EXTERNAL_FINAL_INTEGRITY' and dated['snapshot_date']=='2026-10-16','dated terminal stage altered')
+ require(dated['whole_package_reviews_completed']==4 and dated['whole_package_reviews_required']==2,'dated terminal complete-review count altered')
+ require(dated['latest_complete_review']=='support/history/reviews/package_04/VERDICT.json' and dated['root_complete_review_adoption']=='support/history/ROOT_WHOLE_PACKAGE_REVIEW_04.json','dated terminal review pointers altered')
+ require(dated['actionable_P0_P1_P2_P3']==0 and dated['latest_complete_review_root_adopted'] is True and dated['new_complete_whole_review_currently_required'] is False,'dated terminal whole-review adoption altered')
+ require(dated['root_terminal_administration_adoption_required'] is True and dated['root_external_final_integrity_required'] is True,'dated terminal ROOT integrity gate altered')
+ require(all(dated[k] is False for k in ['ready_for_submission','publication_ready','published','issues_updated','issues_resolved']),'dated terminal readiness/publication gate altered')
+ require(dated['ascending_publication_hold_after_pr']==1032 and dated['novelty']=='UNKNOWN' and dated['historical_priority']=='UNKNOWN','dated terminal hold or novelty boundary altered')
+ require(dated['individual_unsupported_historical_reference_occurrences']==5 and dated['universal_historical_pointer_authentication_claim'] is False,'dated historical qualification altered')
+ latest_review=load(dated['latest_complete_review'])
+ require(latest_review['verdict']=='ZERO_ACTIONABLE_FINDINGS' and latest_review['this_complete_whole_review_ordinal']==4 and latest_review['minimum_whole_reviews']==2 and all(latest_review['severity_counts'][s]==0 for s in ['P0','P1','P2','P3']),'dated latest complete-review verdict altered')
+ latest_adoption=load(dated['root_complete_review_adoption'])
+ require(latest_adoption['status']=='ADOPT_COMPLETE_WHOLE04_ZERO_ACTIONABLE_PENDING_TERMINAL_ADMIN' and latest_adoption['whole_reviews_completed']==4 and latest_adoption['minimum_whole_reviews']==2 and latest_adoption['actionable_P0_P1_P2_P3']==0,'dated ROOT whole04 adoption altered')
+ require(latest_adoption['terminal_administration_and_NEW_external_final_integrity_required'] is True and latest_adoption['publication_ready'] is False and latest_adoption['published'] is False and latest_adoption['services_held_after_pr']==1032,'dated ROOT whole04 terminal gate altered')
  require(load('support/CHECKS.json')['pass'] is True,'authored diagnostic record not passed')
  return allow
 
