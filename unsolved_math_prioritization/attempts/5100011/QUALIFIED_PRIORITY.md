@@ -32,4 +32,4 @@ The manuscript, verification package, exact metadata, NEW whole-package adversar
 
 
 
-Current published note: https://doi.org/10.5281/zenodo.23414057. Original-HEAD-safe merge accepted; factual completion pending. The dated decision above predates actual publication. CURRENT_STATUS.json supplies current verified facts.
+Current published note: https://doi.org/10.5281/zenodo.23414057. Published, tracked and merged; actual factual checkpoint accepted. The dated decision above predates actual publication. CURRENT_STATUS.json supplies current verified facts.

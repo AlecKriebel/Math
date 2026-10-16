@@ -10,7 +10,7 @@ The currently public original PR203 record gives server creation2026-10-01T05:24
 
 Original author metadata/log report two substantive turns, originalQUEUE2/5. Actual model/reasoning effort and historical optimized/ordinary runtime are unverified. Shared central-pedal mechanism was author input, not independent review. Later distinct mathematical families, bounded priority and whole-package reviews are separate AI work; the direct Euclidean route is partial for general N and is not counted as a full additional proof.
 
-Current published note: https://doi.org/10.5281/zenodo.23414057. Original-HEAD-safe merge accepted; factual completion pending.
+Current published note: https://doi.org/10.5281/zenodo.23414057. Published, tracked and merged; actual factual checkpoint accepted.
 
 Original SOURCES.md and its listed author-input/source claims are preserved unchanged in the custody archive. The earlier bounded search did not find the now-credited exact Ferudun theorem. The current complete source/priority records are under draft_pr_publication_program_20260930/audits/pr203_5100011/publication_package_v2/materials/audit/. No exhaustive novelty or worldwide openness certificate is claimed. Historical priority decision follows as dated preparation evidence; CURRENT_STATUS.json governs actual publication/integration.
 
