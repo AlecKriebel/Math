@@ -1,6 +1,6 @@
 # 5100007 / k115: the least-period criterion for outer focal products
 
-Published and tracked; original-HEAD-safe merge pending.
+Original-HEAD-safe merge accepted; factual completion pending.
 
 Research note: [10.5281/zenodo.23409879](https://doi.org/10.5281/zenodo.23409879). Alec Kriebel, ORCID0009-0001-9320-500X. Extensive AI use; unrefereed; no conventional independent human peer review or formal proof-assistant certification.
 

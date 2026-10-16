@@ -19,4 +19,4 @@ Prepare the note under the user's authorization for carefully attributed contemp
 Completion estimate for PR200 at this decision: 60 percent of the authorized review/publication workflow. The classification is mathematically cleared, historical priority is unresolved, and no publication has occurred.
 
 
-Current published note: https://doi.org/10.5281/zenodo.23409879. Published and tracked; original-HEAD-safe merge pending. The earlier60percent editorial decision above is a dated preparation checkpoint, not current lifecycle status. See CURRENT_STATUS.json.
+Current published note: https://doi.org/10.5281/zenodo.23409879. Original-HEAD-safe merge accepted; factual completion pending. The earlier60percent editorial decision above is a dated preparation checkpoint, not current lifecycle status. See CURRENT_STATUS.json.
