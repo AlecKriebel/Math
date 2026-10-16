@@ -18,4 +18,4 @@ The manuscript date is the actual October16 audit/drafting date. The original su
 Only editorial preparation is cleared. Publication-ready, Zenodo, tracker, merge, completion and next-PR intake require their actual later gates and receipts. No PR202 intake is authorized.
 
 
-Current published note: https://doi.org/10.5281/zenodo.23411482. Published and tracked; original-HEAD-safe merge pending. The60percent decision above is dated preparation evidence. CURRENT_STATUS.json supplies actual lifecycle facts.
+Current published note: https://doi.org/10.5281/zenodo.23411482. Original-HEAD-safe merge accepted; factual completion pending. The60percent decision above is dated preparation evidence. CURRENT_STATUS.json supplies actual lifecycle facts.

@@ -6,7 +6,7 @@ Alper Ferudun, Outer-Pedal Area Products in Elliptic Billiards, v1.0 DOI10.5281/
 
 Observed PR201 creation2026-10-01T05:18:49Z at original HEAD precedes current Zenodo v1.0 created16:56:14.316216Z/registered16:56:15Z and v1.1 created18:12:36.529602Z/registered18:12:37Z on that date. These are contemporaneous separate records, not first-public-visibility or independence certificates; earlier website disclosure unexcluded.
 
-Current published note: https://doi.org/10.5281/zenodo.23411482. Published and tracked; original-HEAD-safe merge pending.
+Current published note: https://doi.org/10.5281/zenodo.23411482. Original-HEAD-safe merge accepted; factual completion pending.
 
 # Literal-source qualification and current theorem scope
 
