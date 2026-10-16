@@ -1,0 +1,146 @@
+{
+  "utc": "2026-10-16T15:55:44.169500+00:00",
+  "result": "PASS",
+  "tested_exact_driver_sha256": "6c59308d34c38654550348e4d91aba8f38f960aed300359bca84530aac3bc102",
+  "method": "AST-isolated exact fresh_eligibility function, no remote mutation and no production API calls",
+  "positive_controls": 2,
+  "negative_controls": 21,
+  "controls": [
+    {
+      "name": "exact original-parent queued0/5 baseline accepted",
+      "expected_accept": true,
+      "accepted": true
+    },
+    {
+      "name": "exact reviewed claimed2/5 candidate on main accepted",
+      "expected_accept": true,
+      "accepted": true
+    },
+    {
+      "name": "candidate status queued",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Only claimed_solved PR-head status is eligible"
+    },
+    {
+      "name": "candidate status unsolved",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Only claimed_solved PR-head status is eligible"
+    },
+    {
+      "name": "candidate status already_solved",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Only claimed_solved PR-head status is eligible"
+    },
+    {
+      "name": "candidate status in_progress",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Only claimed_solved PR-head status is eligible"
+    },
+    {
+      "name": "candidate status published",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Only claimed_solved PR-head status is eligible"
+    },
+    {
+      "name": "candidate status claimed_Solved",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Only claimed_solved PR-head status is eligible"
+    },
+    {
+      "name": "changed candidate head",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Exact eligible PR changed"
+    },
+    {
+      "name": "closed candidate",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Exact eligible PR changed"
+    },
+    {
+      "name": "already merged",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Exact eligible PR changed"
+    },
+    {
+      "name": "native acceptance already present",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "An acceptance already exists; reconcile before publication"
+    },
+    {
+      "name": "changed queued budget",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main differs from both the exact original-parent baseline and exact eligible candidate; reconcile rather than overwrite"
+    },
+    {
+      "name": "changed queued note",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main differs from both the exact original-parent baseline and exact eligible candidate; reconcile rather than overwrite"
+    },
+    {
+      "name": "main unsolved instead of exact baseline",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main differs from both the exact original-parent baseline and exact eligible candidate; reconcile rather than overwrite"
+    },
+    {
+      "name": "main already_solved instead of exact baseline",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main differs from both the exact original-parent baseline and exact eligible candidate; reconcile rather than overwrite"
+    },
+    {
+      "name": "main claimed with different budget",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main differs from both the exact original-parent baseline and exact eligible candidate; reconcile rather than overwrite"
+    },
+    {
+      "name": "duplicate candidate rows",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Only claimed_solved PR-head status is eligible"
+    },
+    {
+      "name": "duplicate main rows",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main differs from both the exact original-parent baseline and exact eligible candidate; reconcile rather than overwrite"
+    },
+    {
+      "name": "main own source record missing",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main source identity changed"
+    },
+    {
+      "name": "main own source record duplicated",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main source identity changed"
+    },
+    {
+      "name": "main statement identity changed",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main source identity changed"
+    },
+    {
+      "name": "main review identity changed",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "Main source identity changed"
+    }
+  ]
+}

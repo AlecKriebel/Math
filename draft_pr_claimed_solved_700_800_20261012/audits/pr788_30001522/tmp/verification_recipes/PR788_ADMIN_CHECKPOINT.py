@@ -12,8 +12,8 @@ for name in["root-receipts","verification_recipes","publication"]:
 for n in["FINAL_READINESS.json","publication_driver.py","TRACKER_SCOPE.json","ADMIN_CHECKPOINT_PLAN.json"]:
  p=T/n;updates[p.relative_to(R).as_posix()]=p.read_bytes()
 if(T/"admin_scope/MANIFEST.json").exists():
- for p in(T/"admin_scope").iterdir():
-  if p.is_file():assert not p.is_symlink();updates[p.relative_to(R).as_posix()]=p.read_bytes()
+ for item in json.loads((T/"admin_scope/MANIFEST.json").read_text())["files"]+[{"path":"MANIFEST.json"}]:
+  p=T/"admin_scope"/item["path"];assert p.name==item["path"]and p.is_file()and not p.is_symlink();updates[p.relative_to(R).as_posix()]=p.read_bytes()
 now=datetime.datetime.now(datetime.timezone.utc).isoformat();entry="\n## "+now+" — "+plan["heading"]+"\n\n"+plan["notes"]+"\n\nCase "+str(plan["case_percent"])+"%; shard "+str(plan["shard_percent"])+"%.\n"
 for retry in range(3):
  r=Remote(head_oid());u=dict(updates)
