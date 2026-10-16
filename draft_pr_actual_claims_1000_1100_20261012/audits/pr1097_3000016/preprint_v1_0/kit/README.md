@@ -82,13 +82,17 @@ timestamps, Unix regular-file 0644 attributes, no comment or extra data.
 
 Supported writers require fresh nonexistent output leaves outside protected
 trees. Existing files, hardlinks, symlink leaves/ancestors, nested protected
-paths, traversal components and existing PDF-output directories are rejected
+paths, actual case/normalization aliases of protected directories, traversal
+components and existing PDF-output directories are rejected
 before writes. The PDF compiler receives only a newly allocated directory
 and fixed copied source. Read-only commands have no file-output option;
 caller-chosen shell redirection is outside their filesystem interface.
 `PROTECTED_PATHS.json` retains the original canonical audit root as an
 additional output guard even after extraction. It is not required to exist
-and is not a dependency for verification or calculation. The scripts create
+and is not a dependency for verification or calculation. Existing protected
+root identities are compared against every existing output ancestor, in addition
+to lexical containment. This does not promise safety against hostile concurrent
+filesystem mutation. The scripts create
 no bytecode cache.
 
 ## Integrity and upload interface
@@ -144,3 +148,21 @@ or equality between arXiv and publisher PDFs. Old status/acceptance/pending
 fields remain dated history and do not override the new paper's qualified
 attribution or later root decisions. Paper and original verification material
 are CC BY 4.0; source authors retain rights in their omitted bodies.
+
+## Repair-stage checkpoint, 16 October 2026
+
+`CURRENT_REPAIR.json` records one complete whole review and the sole P3 repair.
+A NEW complete whole review02 is required after root adoption; minimum two
+complete reviews, publication-ready/published false, services held at #1032.
+The 15 October zero-review preparation STATUS and copied historical pending
+records are preserved. No paper, mathematics, mathematical checker, priority
+qualification or native bibliographic metadata changed in this repair.
+
+`provenance/repair01/` gives the new hash-only capture, exact authored whole01
+and root-adoption copies, exact changed-interface before-bytes, one distribution
+decision per captured file and individual resolution of prior pin records.
+The original 83 copy decisions and 82 exclusions remain byte-exact. Before-byte
+interfaces are historical, not active commands. Copied reviewer programs are
+authored historical evidence, not supported kit controls or claims that omitted
+programs were replayed. Source bodies/text/pixels, raw compiler streams and old
+ZIPs remain omitted with hashes and individual reasons.

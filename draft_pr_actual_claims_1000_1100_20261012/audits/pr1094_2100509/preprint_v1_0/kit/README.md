@@ -10,7 +10,7 @@ AI tools were used extensively in solving, verification, source comparison and w
 
 ## Commands
 
-Use Python 3.10+ and its standard library. Run from the extracted kit root. Every output target must be absent; use a fresh sibling directory or filename. Do not redirect shell output onto an input: shell redirection occurs before Python can guard it. The guards protect all program-controlled paths, reject existing destinations (including hardlink aliases), reject leaf and ancestor symlinks before resolution, reject input-tree overlap, and create subprocess outputs only inside one fresh directory. These are ordinary accidental-overwrite guards, not a defense against concurrent hostile filesystem mutation.
+Use Python 3.10+ and its standard library. Run from the extracted kit root. Every output target must be absent; use a fresh sibling directory or filename. Do not redirect shell output onto an input: shell redirection occurs before Python can guard it. The guards protect all program-controlled paths, reject existing destinations (including hardlink aliases), reject leaf and ancestor symlinks before resolution, reject input-tree overlap, check every existing output ancestor against the protected kit's device/inode identity (including case aliases on a case-insensitive filesystem), and create subprocess outputs only inside one fresh directory. Safe ordinary `../` sibling destinations remain supported; a symlink component followed by `..` is rejected before normalization. These are ordinary accidental-overwrite guards, not a defense against concurrent hostile filesystem mutation.
 
 ```sh
 python3 -B scripts/verify_kit.py
@@ -34,8 +34,22 @@ The strict check verifies external paper/ZIP hashes, every archive header/member
 
 ## Package and historical evidence
 
-`CUSTODY_MAP.json` partitions every preexisting audit input individually into an exact selected authored copy or an exclusion. Source PDFs, extracted third-party text, images, raw private searches and duplicate snapshots are excluded. No source body is redistributed. Public source hashes and actual read scopes are retained. `historical/` contains exact dated submitted/reviewer/root evidence: its acceptance labels and pending fields retain captured-stage meaning. They do not override `CURRENT_STATUS.json` or claim that new whole-package reviews are complete. Historical executable environments are neither copied nor declared portable. The newly written `scripts/run_checks.py` is the portable checker.
+`CUSTODY_MAP.json` partitions every audit input captured before the 16 October 2026 repair individually into an exact selected authored copy or an exclusion. Its original 171-input stage remains intact as dated history. Selected whole-review/root evidence and the original bytes of every changed interface are appended under `historical/repair01/`; changed original paths resolve to those explicit before-repair copies. Source PDFs, extracted third-party text, images, raw private searches and duplicate snapshots are excluded. No source body is redistributed. Public source hashes and actual read scopes are retained. `historical/` contains exact dated submitted/reviewer/root evidence: its acceptance labels and pending fields retain captured-stage meaning. They do not override `CURRENT_STATUS.json` or claim that new whole-package reviews are complete. Historical executable environments are neither copied nor declared portable. The newly written `scripts/run_checks.py` is the portable checker.
 
 `metadata.json`, `.zenodo.json` and `metadata_api.json` encode one identical Zenodo API metadata object. The external native `zenodo-deposit.json` has exactly the repository uploader's `{metadata, files}` schema and selects the paper PDF and support ZIP. Its metadata equals the bare/API objects. The external `DEPOSIT_BINDING.json` binds those exact deliverables without a hash cycle; neither descriptor is inside its own selected ZIP. No DOI, external publication or PR merge is claimed at this stage.
 
 Copyright Alec Kriebel, 2026. Paper, authored notes and code: CC BY 4.0; see `LICENSE.txt`. Cited third-party works retain their own rights.
+
+## Current repair checkpoint (16 October 2026 UTC)
+
+One new complete whole-package review has finished. It accepted the complete
+mathematics and conservative priority framing, with one P3 mismatch between
+the advertised lexical symlink rejection and the shared path checker. This
+bounded repair checks lexical prefixes before normalization and also rejects
+physical input-tree aliases through differently cased existing ancestors.
+The manuscript, PDF and every native bibliographic metadata field are
+unchanged. The first review and original preparation receipts are exact
+captured-stage history. A NEW complete independent whole-package review is
+still required, with a minimum of two total new complete reviews and all
+actionable findings resolved. Readiness and publication remain false, and
+all external services remain held after the preceding PR #1032 disposition.

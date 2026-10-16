@@ -53,6 +53,15 @@ def verify(root=ROOT,bindings=None,archive=None,require_bindings=False):
     adoption=json.loads(safe_path(root,'custody/ROOT_WHOLE_PACKAGE_REVIEW_02.json').read_text())
     require(adoption['status']=='ADOPT_ZERO_ACTIONABLE_COMPLETE_WHOLE02_PENDING_TERMINAL_ADMIN' and adoption['full_whole_reviews_completed']==2 and adoption['minimum_whole_reviews']==2 and adoption['actionable_P0_P1_P2_P3']==0, 'Root full whole02 adoption missing.')
     require(adoption['output_pins_sha256']==sha(safe_path(root,'custody/reviews/package_02/OUTPUT_PINS.json')), 'Root adoption does not bind selected whole02 output seal.')
+    repair=json.loads(safe_path(root,'CASE_ALIAS_REPAIR_STATUS.json').read_text())
+    require(repair['state']=='PENDING_NEW_COMPLETE_WHOLE03_AFTER_CASE_ALIAS_REPAIR' and repair['pr']==1071 and repair['head']=='fc37aa5169a0fe6adae0a254c9ee6c1531a2911f', 'Current case-alias repair identity/state drift.')
+    require(repair['fresh_whole_package_reviews_completed']==2 and repair['minimum_fresh_reviews_required']==2 and repair['new_complete_whole_review_required']==3 and repair['new_complete_whole_review_completed'] is False, 'New complete whole03 requirement/accounting drift.')
+    require(repair['new_support_findings']=={'P0':0,'P1':0,'P2':0,'P3':1} and repair['bounded_repair_findings_fixed']==['CASE-1071'] and repair['prior_whole02_actionable_findings']==0, 'Dated review and new finding accounting drift.')
+    require(repair['root_repair_adoption_required'] is True and repair['root_terminal_adoption_required'] is True, 'Current root adoption requirements drift.')
+    require(repair['publication_ready'] is False and repair['issues_resolved'] is False and repair['published'] is False and repair['services_held_after_pr']==1032, 'Case-alias repair cannot confer readiness or bypass ordered hold.')
+    require(repair['program_source_evidence']=='CASE_ALIAS_SOURCE_EVIDENCE.json', 'Missing new support finding provenance.')
+    evidence=json.loads(safe_path(root,repair['program_source_evidence']).read_text())
+    require(evidence['kind']=='SCOPED_AUTHORED_EXCERPTS_WITH_FULL_SOURCE_PINS' and evidence['finding']=='CASE-1071' and evidence['root_status']=='ROOT_ADOPT_THREE_NEW_UNPUBLISHED_SUPPORT_P3_FINDINGS_PENDING_BOUNDED_REPAIRS_AND_NEW_COMPLETE_WHOLE_REVIEWS', 'Case-alias evidence scope drift.')
     for r in json.loads(safe_path(root,'INPUT_COPY_MAP.json').read_text())['copies']:
         p=safe_path(root,r['package_copy']);require(sha(p)==r['sha256'] and p.stat().st_size==r['bytes'],'Custody copy mismatch: '+r['package_copy'])
     selected=bindings if bindings is not None else root/'UPLOAD_BINDINGS.json'

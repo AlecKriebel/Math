@@ -15,13 +15,21 @@ def require(ok, message):
         raise ValueError(message)
 
 def no_links(path):
-    path = Path(os.path.abspath(path))
-    for node in [path, *path.parents]:
+    # Inspect the original lexical prefixes before abspath can erase a
+    # symlink followed by "..". Ordinary safe sibling "../" paths remain
+    # valid. No component is dereferenced through a symlink in this check.
+    raw = Path(path)
+    if not raw.is_absolute():
+        raw = Path.cwd() / raw
+    parts = raw.parts
+    node = Path(raw.anchor)
+    for index, part in enumerate(parts[1:], start=1):
+        node = node / part
         if node.is_symlink():
             raise ValueError('symlink component: ' + str(node))
-        if node.exists() and node != path:
+        if index < len(parts) - 1 and node.exists():
             require(node.is_dir(), 'ancestor is not a directory: ' + str(node))
-    return path
+    return Path(os.path.abspath(raw))
 
 def regular(path):
     path = no_links(path)
@@ -96,10 +104,18 @@ def fresh_output(path, directory=False):
     r = no_links(ROOT)
     require(p != r and r not in p.parents and p not in r.parents,
             'output overlaps protected kit: ' + str(p))
-    # Preflight all parent components before any mkdir or subprocess write.
+    # A case-insensitive filesystem can give the same protected directory
+    # a differently cased lexical name. Compare physical identity for EVERY
+    # existing output ancestor, including ancestors above absent components.
+    # This is a static preflight, not a concurrent-filesystem security claim.
+    root_stat = r.stat()
+    root_identity = (root_stat.st_dev, root_stat.st_ino)
     for parent in p.parents:
         if parent.exists():
             require(parent.is_dir(), 'output ancestor is not a directory')
+            parent_stat = parent.stat()
+            require((parent_stat.st_dev, parent_stat.st_ino) != root_identity,
+                    'output physically overlaps protected kit: ' + str(p))
     return p
 
 def create_output_dir(path):

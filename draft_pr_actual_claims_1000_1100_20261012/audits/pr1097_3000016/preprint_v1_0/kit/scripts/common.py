@@ -61,15 +61,28 @@ def fresh_output(path, is_directory=False):
 
     A file's parent must already exist. A directory is allocated as a new leaf.
     Canonical package/original audit roots remain protected even after extraction.
-    No subprocess or writer runs until this preflight has succeeded.
+    Existing directory identities also exclude filesystem case/normalization aliases.
+    No subprocess or writer runs until this preflight has succeeded. This is not
+    a guarantee against hostile concurrent changes to filesystem components.
     """
     p = lexical(path)
     no_links(p.parent, directory=True)
     require(not os.path.lexists(p), "output must be a fresh nonexistent path")
     config = read_json(KIT / "PROTECTED_PATHS.json")
     roots = [KIT] + [lexical(v) for v in config["original_protected_roots"]]
+    protected_identities = set()
     for root in roots:
         require(not inside(p, root), "output inside protected tree: " + str(root))
+        try:
+            root_stat = root.stat()
+        except FileNotFoundError:
+            # Original paths need not exist on another machine or after extraction.
+            continue
+        protected_identities.add((root_stat.st_dev, root_stat.st_ino))
+    for ancestor in p.parents:
+        ancestor_stat = ancestor.stat()  # no_links has already required real directories.
+        require((ancestor_stat.st_dev, ancestor_stat.st_ino) not in protected_identities,
+                "output ancestor aliases a protected root: " + str(ancestor))
     if is_directory:
         os.mkdir(p, 0o700)
         return p

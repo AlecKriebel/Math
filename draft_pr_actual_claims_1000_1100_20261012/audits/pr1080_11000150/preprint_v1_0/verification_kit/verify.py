@@ -118,12 +118,28 @@ def verify(binding=None, require_binding=False, pdf=None, archive=None):
         q = safe_path(r["destination"])
         require(q.stat().st_size == r["bytes"] and digest(q) == r["sha256"], "repair old-stage copy mismatch")
     history = json.loads((ROOT / "REPAIR01_HISTORY_RESOLUTION.json").read_text())
-    for r in history["references"]:
+    relocation_rows = json.loads(regular_input(ROOT / "TERMINAL_HISTORY_RELOCATIONS.json").read_text())["rows"]
+    relocations = {r["reference_index"]: r for r in relocation_rows}
+    require(len(relocations) == len(relocation_rows), "duplicate historical relocation")
+    for index, relocation in relocations.items():
+        require(type(index) is int and 0 <= index < 2312 and history["references"][index] == relocation["historical_reference"], "historical relocation changed original row")
+    for index, r in enumerate(history["references"]):
         if r["disposition"] == "exact_captured_stage_or_canonical_copy":
-            q = safe_path(r["destination"])
+            destination = relocations[index]["current_exact_destination"] if index in relocations else r["destination"]
+            q = safe_path(destination)
             require(q.stat().st_size == r["bytes"] and digest(q) == r["sha256"], "repair historical pin mismatch")
         else:
             require(r["disposition"] == "omitted" and bool(r["reason"]), "repair historical omission unexplained")
+    terminal = json.loads(regular_input(ROOT / "TERMINAL_ADMIN_STAGE.json").read_text())
+    require(type(terminal["whole_reviews_completed"]) is int and terminal["whole_reviews_completed"] == 2 and type(terminal["minimum_whole_reviews"]) is int and terminal["minimum_whole_reviews"] == 2, "terminal complete review count")
+    require(terminal["latest_complete_review"] == "whole02" and type(terminal["latest_review_actionable_P0_P1_P2_P3"]) is int and terminal["latest_review_actionable_P0_P1_P2_P3"] == 0, "terminal latest review findings")
+    require(terminal["new_complete_review_required"] is False and terminal["root_whole02_adopted"] is True and terminal["root_integrity_adoption_required"] is True and terminal["root_integrity_adopted"] is False, "terminal root adoption boundary")
+    require(terminal["publication_ready"] is False and terminal["issues_resolved"] is False and terminal["published"] is False and terminal["services_held_at"] == 1032, "terminal publication/service boundary")
+    require(terminal["full_original_maximum_classification_bundle"] == "PARTIAL" and terminal["exact_application_priority"] == "UNKNOWN", "terminal scope boundary")
+    latest = json.loads(regular_input(safe_path(terminal["whole02_verdict"])).read_text())
+    require(latest["status"] == "COMPLETE_WHOLE02_ZERO_ACTIONABLE_FINDINGS" and latest["findings"] == [] and latest["findings_by_priority"] == {"P0": 0, "P1": 0, "P2": 0, "P3": 0} and latest["whole_reviews_completed"] == 2 and latest["minimum_whole_reviews"] == 2, "captured whole02 status/count differs")
+    adoption = json.loads(regular_input(safe_path(terminal["root_whole02_adoption"])).read_text())
+    require(adoption["status"] == "ADOPT_COMPLETE_WHOLE02_ZERO_ACTIONABLE_PENDING_TERMINAL_ADMIN" and adoption["whole_reviews_completed"] == 2 and adoption["minimum_whole_reviews"] == 2 and adoption["actionable_P0_P1_P2_P3"] == 0, "captured root whole02 adoption differs")
     native = native_metadata()
     require(not require_binding or binding is not None, "external binding required")
     bound = False
@@ -142,9 +158,10 @@ def verify(binding=None, require_binding=False, pdf=None, archive=None):
         require(upload["files"] == [{"path": "preprint.pdf", "name": "preprint.pdf"},
                                     {"path": "verification_kit.zip", "name": "verification_kit.zip"}], "native upload attachments differ")
         require(regular_input(p.parent / "research_metadata.json").read_bytes() == (ROOT / "research_metadata.json").read_bytes(), "external research object differs")
+        require(regular_input(p.parent / "TERMINAL_ADMIN_STAGE.json").read_bytes() == (ROOT / "TERMINAL_ADMIN_STAGE.json").read_bytes(), "external terminal status differs")
         require(regular_input(p.parent / "CURRENT_STATUS_REPAIR01.json").read_bytes() == (ROOT / "CURRENT_STATUS_REPAIR01.json").read_bytes(), "external current status differs")
         require([r["filename"] for r in data["external_files"]] ==
-                ["CURRENT_STATUS_REPAIR01.json", "README.md", "deposit_metadata.json", "metadata.json", "preprint.tex", "research_metadata.json"], "external delivery file inventory differs")
+                ["CURRENT_STATUS_REPAIR01.json", "README.md", "TERMINAL_ADMIN_STAGE.json", "deposit_metadata.json", "metadata.json", "preprint.tex", "research_metadata.json"], "external delivery file inventory differs")
         for r in data["external_files"]:
             q = regular_input(p.parent / r["filename"])
             require(q.stat().st_size == r["bytes"] and digest(q) == r["sha256"], "external delivery member mismatch")

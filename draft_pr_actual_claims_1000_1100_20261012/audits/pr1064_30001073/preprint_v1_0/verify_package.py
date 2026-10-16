@@ -76,6 +76,12 @@ def check():
  require(review['verdict']=='ZERO_ACTIONABLE_FINDINGS' and all(review['severity_counts'][s]==0 for s in ['P0','P1','P2','P3']),'terminal complete-review verdict altered')
  adoption=load('support/history/ROOT_WHOLE_PACKAGE_REVIEW_03.json')
  require(adoption['whole_reviews_completed']==3 and adoption['minimum_whole_reviews']>=2 and adoption['actionable_P0_P1_P2_P3']==0,'terminal ROOT review adoption altered')
+ repaired=load('REPAIR_STATUS_CASE_ALIAS01.json')
+ require(repaired['stage']=='PENDING_ROOT_CASE_ALIAS_REPAIR_ADOPTION_AND_NEW_COMPLETE_WHOLE04' and repaired['snapshot_date']=='2026-10-16','case-alias repair stage altered')
+ require(repaired['whole_package_reviews_completed']==3 and repaired['whole_package_reviews_required']>=2 and repaired['latest_prior_complete_review_actionable_P0_P1_P2_P3']==0,'prior review count or verdict altered')
+ require(repaired['bounded_repair_applied'] is True and repaired['new_complete_whole04_required'] is True and repaired['root_repair_adoption_required'] is True and repaired['focused_validation_is_complete_whole_review'] is False,'required fresh review/adoption altered')
+ require(all(repaired[k] is False for k in ['ready_for_submission','publication_ready','published','issues_updated']),'current repair gate altered')
+ require(repaired['ascending_publication_hold_after_pr']==1032 and repaired['novelty']=='UNKNOWN' and repaired['historical_priority']=='UNKNOWN','repair hold or novelty boundary altered')
  require(load('support/CHECKS.json')['pass'] is True,'authored diagnostic record not passed')
  return allow
 

@@ -28,12 +28,20 @@ def safe_path(root, name):
 
 def fresh_output(path, root=ROOT):
     """Return a preflighted absent file/directory; no mkdir or write occurs."""
-    target = Path(os.path.abspath(os.fspath(path)))
+    raw = Path(path)
+    require('..' not in raw.parts, 'Parent traversal is not allowed in output paths.')
+    target = Path(os.path.abspath(os.fspath(raw)))
     require(not target.exists() and not target.is_symlink(), 'Output must be new; existing files/directories, symlinks and hardlinks are rejected: ' + str(target))
+    frozen = Path(root).resolve()
+    require(not target.is_relative_to(frozen) and not target.resolve().is_relative_to(frozen), 'Output must be outside all frozen package descendants.')
     parent = target.parent
-    require(parent.exists() and parent.is_dir(), 'Output parent must already exist: ' + str(parent))
+    # Inspect all existing ancestors even above absent intermediate directories.
+    # samefile compares physical device/inode identity, including case aliases;
+    # resolve() alone does not canonicalize case on a case-insensitive volume.
     for ancestor in (parent, *parent.parents):
         require(not ancestor.is_symlink(), 'Symlink output ancestor: ' + str(ancestor))
-        require(ancestor.is_dir(), 'Output ancestor is not a directory: ' + str(ancestor))
-    require(not target.is_relative_to(Path(root).resolve()) and not target.resolve().is_relative_to(Path(root).resolve()), 'Output must be outside all frozen package descendants.')
+        if ancestor.exists():
+            require(ancestor.is_dir(), 'Output ancestor is not a directory: ' + str(ancestor))
+            require(not ancestor.samefile(frozen), 'Output must be outside all frozen package descendants.')
+    require(parent.exists() and parent.is_dir(), 'Output parent must already exist: ' + str(parent))
     return target

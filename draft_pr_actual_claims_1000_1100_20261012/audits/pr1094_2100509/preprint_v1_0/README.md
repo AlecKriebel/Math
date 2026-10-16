@@ -17,8 +17,10 @@ Neither external descriptor is inside the archive it selects.
 
 The full analytic argument, prior-source qualifications and reading limits
 are in the paper and kit; they are not delegated to absent historical code.
-The support kit includes 57 exact selected authored historical copies and
-114 individually justified exclusions from a 171-file hash-only baseline.
+The initial preparation included 57 exact selected authored historical
+copies and 114 individually justified exclusions from a 171-file hash-only
+baseline. That dated stage is preserved; the current repair custody map
+appends exact whole-review/root evidence and before-repair interfaces.
 Third-party source bodies, extracted source text and images are not
 redistributed. All 171 prior inputs were rehashed unchanged; the eight
 original snapshots were additionally rechecked against their actual Git blobs.
@@ -38,7 +40,14 @@ been changed by preparation.
 
 This candidate is **not publication-ready yet**. Root adoption and at least
 two new independent whole-package adversarial reviews, with all actionable
-issues resolved, are required. `kit/CURRENT_STATUS.json` records zero such
-new reviews, false readiness/publication flags, and the ordered service hold
+issues resolved, are required. The initial preparation recorded zero such new reviews. After the
+16 October 2026 bounded path-check repair, `kit/CURRENT_STATUS.json` records
+one completed full review and requires a NEW complete full review, retaining
+false readiness/publication flags and the ordered service hold
 at the preceding #1032 disposition. No upload, DOI, tracker write, merge,
 Git mutation, release or outside communication occurred.
+
+The bounded repair report and full before/after code/prose diff are in
+`../repairs/package01/`. The paper, PDF and shared native metadata object
+are byte-identical to the reviewed preparation. No new compilation or layout
+change was needed for this shared-guard repair.
