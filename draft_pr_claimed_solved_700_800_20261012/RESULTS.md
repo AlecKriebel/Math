@@ -14,7 +14,6 @@ Only draft PRs whose immutable head QUEUE row is exactly claimed_solved are elig
 | [#767](https://github.com/AlecKriebel/Math/pull/767) | Closed without merge: Farinati–Solotar’s final2004 examples already answer the unrestricted question negatively. | [Earlier result](https://doi.org/10.1090/S0002-9939-04-07274-0) |
 | [#778](https://github.com/AlecKriebel/Math/pull/778) | Accepted the literal historical four-axiom realization obstruction and separated-input lemma; proper representation theorem credited, priority unresolved. | [Preprint](https://doi.org/10.5281/zenodo.23414444) |
 | [#781](https://github.com/AlecKriebel/Math/pull/781) | Accepted the complete effective prescribed block-code extension criterion, using credited published separation machinery. | [Preprint](https://doi.org/10.5281/zenodo.23416806) |
-
 | [#786](https://github.com/AlecKriebel/Math/pull/786) | Accepted complete historical Young-module counterexamples at q=1, all odd characteristic and every allowed rank; classical inputs credited, priority unresolved. | [Preprint](https://doi.org/10.5281/zenodo.23418581) |
 
 Next: **#788 /30001522**, pending fresh immutable-head eligibility screening.
