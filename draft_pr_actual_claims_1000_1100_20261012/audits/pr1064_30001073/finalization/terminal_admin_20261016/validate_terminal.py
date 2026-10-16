@@ -106,7 +106,7 @@ def main():
  variants=[('stage','UNREVIEWED'),('snapshot_date','2026-10-14'),('whole_package_reviews_completed',3),('whole_package_reviews_required',1),('latest_complete_review','support/history/reviews/package_03/VERDICT.json'),('root_complete_review_adoption','support/history/ROOT_WHOLE_PACKAGE_REVIEW_03.json'),('actionable_P0_P1_P2_P3',1),('latest_complete_review_root_adopted',False),('new_complete_whole_review_currently_required',True),('root_terminal_administration_adoption_required',False),('root_external_final_integrity_required',False),('ready_for_submission',True),('publication_ready',True),('published',True),('issues_updated',True),('issues_resolved',True),('ascending_publication_hold_after_pr',1033),('novelty','NEW'),('historical_priority','KNOWN'),('individual_unsupported_historical_reference_occurrences',0),('universal_historical_pointer_authentication_claim',True)]
  for opt in [False,True]:
   mode='optimized' if opt else 'normal'
-  # All protected bytes, including the13 exact local exclusion paths, are guarded.
+  # All protected bytes, including12 excluded input paths, are guarded. The designated support.zip output is mutable.
   for p in protected:
    out=fixture/'hardlink.zip';os.link(p,out)
    run(mode+' protected hardlink '+p.relative_to(KIT).as_posix(),cli(KIT/'build_archive.py','--output',out,optimized=opt),False,expected_text='cannot overwrite protected package input ')

@@ -140,6 +140,13 @@ def verify(binding=None, require_binding=False, pdf=None, archive=None):
         relocations[index] = relocation
     for index, relocation in {r["reference_index"]: r for r in relocation_rows}.items():
         require(type(index) is int and 0 <= index < 2312 and history["references"][index] == relocation["historical_reference"], "historical relocation changed original row")
+    terminal_after = json.loads(regular_input(ROOT / "TERMINAL_AFTER_WHOLE04_HISTORY_RELOCATIONS.json").read_text())["rows"]
+    for relocation in terminal_after:
+        index = relocation["reference_index"]
+        require(type(index) is int and 0 <= index < 4666 and index not in relocations
+                and history["references"][index] == relocation["historical_reference"],
+                "terminal after whole04 relocation changed original row")
+        relocations[index] = relocation
     for index, r in enumerate(history["references"]):
         if r["disposition"] == "exact_captured_stage_or_canonical_copy":
             destination = relocations[index]["current_exact_destination"] if index in relocations else r["destination"]
@@ -170,6 +177,32 @@ def verify(binding=None, require_binding=False, pdf=None, archive=None):
             and current["services_held_at"] == 1032, "case repair publication/service boundary")
     require(current["full_original_maximum_classification_bundle"] == "PARTIAL"
             and current["exact_application_priority"] == "UNKNOWN", "case repair scope boundary")
+    current = json.loads(regular_input(ROOT / "CURRENT_TERMINAL_AFTER_WHOLE04.json").read_text())
+    require(current["status"] == "TERMINAL_ADMIN_AFTER_ADOPTED_WHOLE04_PENDING_EXTERNAL_ROOT_FINAL_INTEGRITY",
+            "current terminal authority")
+    require(type(current["whole_reviews_completed"]) is int and current["whole_reviews_completed"] == 4
+            and type(current["minimum_whole_reviews"]) is int and current["minimum_whole_reviews"] == 2,
+            "current terminal complete review count")
+    require(current["latest_complete_review"] == "whole04" and current["latest_review_actionable_counts"] == {"P0": 0, "P1": 0, "P2": 0, "P3": 0}
+            and current["latest_complete_review_zero_findings"] is True, "current terminal latest findings")
+    require(current["root_whole04_adopted"] is True and current["root_archive_wording_repair01_adopted"] is True
+            and current["new_complete_review_required"] is False and current["required_next_review"] is None,
+            "current terminal adopted complete review boundary")
+    require(current["root_integrity_adoption_required"] is True and current["root_integrity_adopted"] is False
+            and all(current[k] is False for k in ["publication_ready", "issues_resolved", "published"])
+            and current["services_held_at"] == 1032, "current terminal publication/service boundary")
+    require(current["full_original_maximum_classification_bundle"] == "PARTIAL"
+            and current["exact_application_priority"] == "UNKNOWN", "current terminal scope boundary")
+    latest = json.loads(regular_input(safe_path(current["whole04_verdict"])).read_text())
+    require(latest["status"] == "COMPLETE_WHOLE04_ZERO_ACTIONABLE_FINDINGS" and latest["findings"] == []
+            and latest["findings_by_priority"] == {"P0": 0, "P1": 0, "P2": 0, "P3": 0}
+            and latest["whole_reviews_completed"] == 4 and latest["minimum_whole_reviews"] == 2,
+            "captured whole04 evidence differs")
+    adoption = json.loads(regular_input(safe_path(current["root_whole04_adoption"])).read_text())
+    require(adoption["status"] == "ROOT_ADOPT_COMPLETE_WHOLE04_ZERO_ACTIONABLE_PENDING_CURRENT_TERMINAL_ADMIN"
+            and adoption["whole_reviews_completed"] == 4 and adoption["minimum_whole_reviews"] == 2
+            and adoption["finding_counts"] == {"P0": 0, "P1": 0, "P2": 0, "P3": 0},
+            "captured root whole04 adoption differs")
     native = native_metadata()
     require(not require_binding or binding is not None, "external binding required")
     bound = False
@@ -196,6 +229,12 @@ def verify(binding=None, require_binding=False, pdf=None, archive=None):
         for r in data["external_files"]:
             q = regular_input(p.parent / r["filename"])
             require(q.stat().st_size == r["bytes"] and digest(q) == r["sha256"], "external delivery member mismatch")
+        require(regular_input(p.parent / "CURRENT_TERMINAL_AFTER_WHOLE04.json").read_bytes()
+                == (ROOT / "CURRENT_TERMINAL_AFTER_WHOLE04.json").read_bytes(), "external current terminal status differs")
+        record = data["current_terminal_after_whole04"]
+        require(record["filename"] == "CURRENT_TERMINAL_AFTER_WHOLE04.json"
+                and regular_input(p.parent / record["filename"]).stat().st_size == record["bytes"]
+                and digest(p.parent / record["filename"]) == record["sha256"], "external current terminal status binding")
         # Present bindings are always strict. Explicit artifact paths work after extraction.
         for key, override in [("pdf", pdf), ("archive", archive)]:
             record = data[key]

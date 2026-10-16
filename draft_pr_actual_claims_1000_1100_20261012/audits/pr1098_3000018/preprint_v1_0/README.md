@@ -29,6 +29,28 @@ AI tools were used extensively in solving, verifying, adversarial review,
 source comparison, programming and writing. The paper is unrefereed, without
 external human peer review, journal acceptance or proof-assistant certification.
 
+## Current terminal state — 16 October 2026 UTC
+
+TERMINAL_STATUS.json is the current workflow record. Two new complete
+whole-package reviews have completed, meeting the minimum of two. The
+latest, whole02, found zero actionable P0/P1/P2/P3 issues and was adopted
+by ROOT. No further complete whole review is currently required. These
+reviews apply to the unchanged paper and the preterminal support archive
+identified in that record. This administrative payload update still
+requires an external ROOT final integrity review, which is **unadopted**.
+Publication readiness, issues-resolved and published remain **false**;
+all ordered external actions remain held after PR #1032.
+
+Selected exact authored review reports, independent derivations, verdicts,
+seals, pinfiles and ROOT adoptions are in terminal/evidence/. They are
+dated evidence, not new human peer review or priority certification. The
+first reviewer accurately qualified its fixture ORIGINAL redirection;
+whole02 separately ran 116 actual unchanged external commands with
+ROOT and ORIGINAL unmodified. Both actual PDFs matched the canonical
+seven-page paper, and all seven pages were viewed. No new PDF build or
+render was needed for this unchanged source. The semantic verifier checks
+the current status against both dated verdict/seal/pin/adoption chains.
+
 ## Downloads and a clean reproduction
 
 The deposit is designed to contain paper.pdf and pr1098_support_v1_0.zip.
@@ -109,9 +131,24 @@ passed two independent families and ROOT adoption, and the two required
 priority credits had been incorporated into these materials. Zero **new
 complete whole-package** reviews had been completed, at least two were
 required, readiness and publication were false, and external actions were
-held behind PR #1032. STATUS.json records that past checkpoint. It does not
+held behind PR #1032. STATUS.json, the preparation seal/report/pins and the metadata notes
+record that past checkpoint. TERMINAL_STATUS.json supersedes their
+workflow count for current use without rewriting them. That history does not
 forecast or relabel a future review, DOI, merge or publication. All original
 PR bytes remain unchanged. No person was contacted.
+
+terminal/before/ retains the exact preterminal authored README, verifier,
+manifest and deposit binding as historical interfaces. Its old manifest
+and binding describe the old archive, not the current download. The old
+ZIP remains durably local to the research audit and is deliberately not
+redistributed. terminal/PREPARATION_PIN_RESOLUTION.json resolves every
+one of the 123 old preparation pins individually to unchanged portable bytes,
+an exact before interface, or an explicitly omitted local preparation output
+or old ZIP identity. The 18 undistributed preparation helpers, reports and
+validation records remain exact at their original local audit paths.
+terminal/REVIEW_STAGE_SELECTION.json likewise states each selected or
+omitted review output; pinfiles do not imply omitted programs or raw
+streams are present or replayed. Source bodies and pixels remain omitted.
 
 Author: Alec Kriebel, ORCID https://orcid.org/0009-0001-9320-500X.
 Version 1.0, 16 October 2026. Authored materials: CC BY 4.0.
