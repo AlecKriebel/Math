@@ -1,5 +1,5 @@
 # 5100014 / k303,a: an attributed flag-curve proof
-Original-HEAD-safe merge accepted; factual completion pending.
+Published, tracked and merged; actual factual checkpoint accepted.
 
 Research note: [10.5281/zenodo.23411482](https://doi.org/10.5281/zenodo.23411482). Alec Kriebel, ORCID0009-0001-9320-500X. Extensive AI use; unrefereed; no conventional independent human peer review or formal proof-assistant certification.
 
