@@ -72,3 +72,7 @@ The unchanged tracker, native-ledger and finalization helpers then consume
 the actual reconciled receipts and independently revalidate the full chain.
 Google CLI append/readback remains after publication; original declared4/5,
 unknown earlier native history and0audit proof responses remain honest.
+
+Actual update 2026-10-16T06:33:15.809542+00:00: entire08clean/all34resolved, original6approvalarchived and extended to8; existing23409904 published byonePOST and inspected. DOI10.5281/zenodo.23409904 resolvesHTTP200; bothpublicbodiesmatchfrozenSHA256. GWS exactrowA117:D117confirmed. Native stopped beforepushduringlocaltreeconstruction and is undergoingexplicitfreshstate/recoverychecks afterowncompletedmirrorcleanup; finalizationpending.
+
+Final actual completion 2026-10-16T06:36:14.696650+00:00: PR946 workflow100%. Native116a72ebc42fefc27ee5615fd962ef25a8862753, exactfinalPRmetadata and GWSrow117 verified; DOI10.5281/zenodo.23409904/publicfileSHA256 confirmed. Eightcompletefullreviews/all34issuesresolved, oldversions/approval retained, no science/metadata changes. Global previous-target convenience fields archived before next-status intake.

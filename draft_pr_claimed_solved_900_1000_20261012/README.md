@@ -39,3 +39,5 @@ PR #919 is accepted, merged and published: [10.5281/zenodo.23387550](https://doi
 PR #932 closed without merging on verified exact-priority grounds. Candidate mathematics has no unresolved gap found; Winter's prior finite theorem already covers the entire strengthening. No preprint/DOI/tracker entry.
 
 PR #938 accepted, merged and published: [10.5281/zenodo.23393596](https://doi.org/10.5281/zenodo.23393596); tracker 'Math Puzzles'!A108:D108. All finite derived depths, credited prior general inputs, bounded priority and unrefereed AI disclosures explicit; original observed1/5 preserved with one separately counted strengthening, known2/5.
+
+PR #946 accepted, merged and published: [10.5281/zenodo.23409904](https://doi.org/10.5281/zenodo.23409904); tracker 'Math Puzzles'!A117:D117. Fully credited global Hessian construction; original declared4/5 and native-history uncertainty preserved; audit adds0.
