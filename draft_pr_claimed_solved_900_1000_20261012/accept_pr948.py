@@ -367,10 +367,28 @@ def native_safety(parent, allow_event=None):
     return {'state_sha256':sha(state_raw),'history_sha256':sha(history_raw),'target_state_absent':KEY not in state,'target_history_entries':len(target),'historical_native_turn_count':'UNKNOWN','new_author_proof_responses':0}
 
 
+def live_base_pointer(node):
+    need(type(node) is dict and type(node.get('baseRef')) is dict,'live base ref metadata missing')
+    ref=node['baseRef'];target=ref.get('target')
+    need(type(node.get('baseRefName')) is str and bool(node['baseRefName']) and ref.get('name')==node['baseRefName'] and type(target) is dict,'live base ref name/target missing')
+    oid=target.get('oid')
+    need(type(oid) is str and re.fullmatch('[0-9a-f]{40}',oid) is not None,'live base branch target commit identity')
+    return oid
+
+
 def pr_view(number=PR):
-    fields='number,state,isDraft,headRefOid,headRefName,baseRefName,url'
+    fields='number,state,isDraft,headRefOid,headRefName,baseRefName,baseRefOid,url'
     if number==PR:fields+=',title,body,mergeCommit,mergedAt,files,mergeable,mergeStateStatus'
-    return strict_json(run(['gh','pr','view',str(number),'--repo','AlecKriebel/Math','--json',fields]))
+    observed=strict_json(run(['gh','pr','view',str(number),'--repo','AlecKriebel/Math','--json',fields]))
+    need(type(observed) is dict and observed.get('number')==number,'PR metadata identity')
+    query='query($number:Int!){repository(owner:"AlecKriebel",name:"Math"){pullRequest(number:$number){number state isDraft headRefOid headRefName baseRefName baseRefOid url baseRef{name target{oid}}}}}'
+    reply=strict_json(run(['gh','api','graphql','-f','query='+query,'-F','number='+str(number)]))
+    need(not reply.get('errors'),'live base pointer GraphQL errors')
+    node=reply.get('data',{}).get('repository',{}).get('pullRequest')
+    bound=('number','state','isDraft','headRefOid','headRefName','baseRefName','baseRefOid','url')
+    need(type(node) is dict and all(type(node.get(k)) is type(observed.get(k)) and node.get(k)==observed.get(k) for k in bound),'live base pointer PR metadata changed')
+    observed['currentBaseRefOid']=live_base_pointer(node)
+    return observed
 
 
 def main_destination(pr,merged=False):
@@ -485,10 +503,75 @@ def inherited_findings(freeze,base=D):
 
 def result_schema(result):
     required_record(result,{'pr':int,'problem_id':str,'original_pr_head':str,'reviewer_agent_id':str,'clean_context':bool,'full_reproducer_completed':bool,'entire_package_review':bool,'started_utc':str,'completed_utc':str,'candidate_revision':int,'candidate_pins':dict,'inspected_helper_hashes':dict,'required_issues':list,'optional_issues':list,'clean_for_preprint':bool,'strongest_verified_theorem':str,'prior_issue_resolution':dict,'inherited_finding_dispositions':dict},'whole-package RESULT')
-    need('mathematical_remaining_gap_for_stated_theorem' in result and (result['mathematical_remaining_gap_for_stated_theorem'] is None or type(result['mathematical_remaining_gap_for_stated_theorem']) is str),'explicit theorem gap')
-    need(result['pr']==PR and result['problem_id']==KEY and result['original_pr_head']==HEAD and result['clean_context'] and result['full_reproducer_completed'] and result['entire_package_review'],'fresh ENTIRE-package target/reproducer')
-    need(bool(result['reviewer_agent_id'].strip()) and bool(result['strongest_verified_theorem'].strip()),'reviewer and strongest theorem')
+    gap=result.get('mathematical_remaining_gap_for_stated_theorem','MISSING')
+    need('mathematical_remaining_gap_for_stated_theorem' in result and (gap is None or type(gap) is str),'explicit theorem gap')
+    need(result['pr']==PR and result['problem_id']==KEY and result['original_pr_head']==HEAD and result['candidate_revision']>=1,'review target/revision')
+    need(bool(result['reviewer_agent_id'].strip()) and bool(result['strongest_verified_theorem'].strip()),'reviewer and strongest verified result/limitation')
     need(set(result['candidate_pins'])=={'freeze','manifest','pdf'} and all(type(x) is str and re.fullmatch('[0-9a-f]{64}',x) for x in result['candidate_pins'].values()),'review candidate exact pins')
+    complete=all(result[k] for k in ('clean_context','full_reproducer_completed','entire_package_review'))
+    note=result.get('nonclean_history')
+    if note is not None:
+        need(type(note) is dict and set(note)=={'status','explanation','checks_not_passed'} and note['status'] in ('incomplete','failed'),'honest nonclean history schema/status')
+        need(type(note['explanation']) is str and bool(note['explanation'].strip()),'honest nonclean history explanation')
+        checks=note['checks_not_passed']
+        need(type(checks) is list and bool(checks) and all(type(x) is str and x.strip() for x in checks) and len(checks)==len(set(checks)),'honest nonclean unfinished/failed checks')
+        need(result['clean_for_preprint'] is False,'nonclean history cannot claim clean')
+    need(complete or note is not None,'incomplete completion flags need explicit honest history explanation')
+    if result['clean_for_preprint']:
+        need(complete and note is None and result['required_issues']==[] and result['optional_issues']==[] and gap is None,'clean claim needs complete entire review without findings/gap')
+    return complete
+
+
+def review_authentication(auth,pins,review_freeze,originals):
+    required_record(auth,{'status':str,'utc':str,'original_pr_head':str,'freeze_sha256':str,'package_manifest_sha256':str,'future_helpers':dict,'candidate_files':dict,'originals':dict},'review authentication')
+    status=auth['status']
+    need(status in ('PASS','FAIL','INCOMPLETE','NOT_RUN'),'review authentication declared status')
+    need(auth['original_pr_head']==HEAD and auth['freeze_sha256']==pins['freeze'] and auth['package_manifest_sha256']==pins['manifest'],'review authentication exact declared candidate')
+    for field,expected in (('future_helpers',review_freeze['future_helpers']),('candidate_files',review_freeze['files'])):
+        observed=auth[field]
+        need(set(observed)<=set(expected) and all(exact(value,expected[name]) for name,value in observed.items()),'review authentication positive subset: '+field)
+        if status=='PASS':need(exact(observed,expected),'PASS authentication entire '+field)
+    need(set(auth['originals'])<=set(originals),'authentication original subset identity')
+    if status=='PASS':need(set(auth['originals'])==set(originals),'PASS all24 original authentication')
+    for path,item in auth['originals'].items():
+        want=originals[path]
+        need(type(item) is dict and all(type(item.get(k)) is type(v) and item.get(k)==v for k,v in want.items()) and item.get('archive_mode')=='100644' and item.get('disk_and_archive_match') is True,'positive Git/disk/ZIP original identity')
+    if status!='PASS':
+        required_record(auth,{'explanation':str,'observations':dict},'non-PASS authentication evidence')
+        need(bool(auth['explanation'].strip()),'non-PASS authentication explanation')
+        if status=='NOT_RUN':need(not auth['future_helpers'] and not auth['candidate_files'] and not auth['originals'],'NOT_RUN authentication cannot assert completed checks')
+    return status=='PASS',utc(auth['utc'])
+
+
+def review_cold(cold,pins,review_freeze,review_base):
+    required_record(cold,{'status':str,'utc':str,'cold_extraction':bool,'package_manifest_sha256':str,'externally_pinned_verifier_sha256':str,'normalized_fields_ignored':list,'modes':list},'cold replay evidence')
+    status=cold['status']
+    need(status in ('PASS','FAIL','INCOMPLETE','NOT_RUN'),'cold replay declared status')
+    need(cold['package_manifest_sha256']==pins['manifest'] and cold['externally_pinned_verifier_sha256']==review_freeze['files']['package/'+review_freeze['package_verifier']]['sha256'],'cold replay exact declared candidate/verifier')
+    need(all(type(x) is str and x.strip() for x in cold['normalized_fields_ignored']),'cold replay ignored-field schema')
+    modes=cold['modes'];labels=['normal','O','OO','env2'];options=dict(zip(labels,[0,1,2,0]))
+    need(len(modes)<=4,'cold replay bounded mode observations')
+    seen=[]
+    for row in modes:
+        required_record(row,{'mode':str},'cold replay mode')
+        label=row['mode'];need(label in labels and label not in seen,'cold replay mode identity/duplicate');seen.append(label)
+        need(set(('observed_outer_optimization','returncode','receipt'))<=set(row),'cold replay mode observation fields')
+        opt,code,receipt=row['observed_outer_optimization'],row['returncode'],row['receipt']
+        need((opt is None or (type(opt) is int and 0<=opt<=2)) and (code is None or type(code) is int) and (receipt is None or type(receipt) is dict),'typed actual cold mode observations')
+        declared=row.get('status')
+        need(declared is None or declared in ('PASS','FAIL','INCOMPLETE','NOT_RUN'),'cold mode declared status')
+        if status=='PASS':need(declared in (None,'PASS'),'PASS cold cannot contain a declared non-PASS mode')
+        if status=='PASS' or declared=='PASS':
+            need(type(opt) is int and opt==options[label] and type(code) is int and code==0 and exact(receipt,load(review_base/('PACKAGE_REPLAY_'+label+'.json'))['receipt']),'PASS mode actual optimization/result/canonical receipt')
+        if declared=='NOT_RUN':need(opt is None and code is None and receipt is None,'NOT_RUN mode cannot assert observations')
+    if status=='PASS':
+        need(seen==sorted(seen,key=labels.index),'PASS cold mode chronology')
+        need(cold['cold_extraction'] is True and cold['normalized_fields_ignored']==[] and seen==labels,'PASS independent cold complete four-mode replay')
+    else:
+        required_record(cold,{'explanation':str,'observations':dict},'non-PASS cold evidence')
+        need(bool(cold['explanation'].strip()),'non-PASS cold explanation')
+        if status=='NOT_RUN':need(cold['cold_extraction'] is False and modes==[],'NOT_RUN cold replay cannot claim extraction or modes')
+    return status=='PASS',utc(cold['utc'])
 
 
 def review_check(specs,freeze,freeze_pin,context):
@@ -499,8 +582,7 @@ def review_check(specs,freeze,freeze_pin,context):
     need(actual=={'full_package_'+s.split(':')[0] for s in specs},'all numbered adverse/unfinished reviews must be supplied')
     prior=set();reviewers=set();last_end=None;rows=[];current_clean=[]
     mandatory={'RESULT.json','FULL_AUDIT.md','RESEARCH_LOG.md','AUTHENTICATION_START.json','AUTHENTICATION_END.json','COLD_REPLAY.json'}
-    originals=original_check()
-    inherited=inherited_findings(freeze)
+    originals=original_check();inherited=inherited_findings(freeze)
     for index,spec in enumerate(specs,1):
         number,pin=spec.split(':');base=folder/('full_package_'+number)
         raw=read_regular(base/'MANIFEST.json');need(sha(raw)==pin,'external complete review manifest')
@@ -508,7 +590,7 @@ def review_check(specs,freeze,freeze_pin,context):
         need(type(records) is dict and mandatory<=set(records) and type(allowed) is list and len(allowed)==len(set(allowed)) and set(allowed)==set(records) and 'MANIFEST.json' not in records,'sealed explicit review allowlist')
         captured={n:read_regular(base/n,pin=v) for n,v in records.items() if safe(n)}
         need(len(captured)==len(records) and all(captured[n].strip() for n in mandatory),'review paths/nonempty mandatory artifacts')
-        result=strict_json(captured['RESULT.json']);result_schema(result)
+        result=strict_json(captured['RESULT.json']);complete=result_schema(result)
         rid=result['reviewer_agent_id'];need(rid not in reviewers,'distinct independent reviewers');reviewers.add(rid)
         start,end=utc(result['started_utc']),utc(result['completed_utc'])
         need(start<end and (last_end is None or last_end<start),'sequential NEW review chronology');last_end=end
@@ -516,37 +598,32 @@ def review_check(specs,freeze,freeze_pin,context):
         if pins['freeze']!=freeze_pin:
             review_base=D/'reviewed_candidates'/('candidate'+str(result['candidate_revision']).zfill(2))
             review_freeze=freeze_check(read_regular(review_base/'FREEZE.json'),pins['freeze'],context,review_base,historical=True)
-        need(type(result['candidate_revision']) is int and result['candidate_revision']==review_freeze['revision_candidate'] and pins['manifest']==review_freeze['package_manifest_sha256'] and pins['pdf']==review_freeze['files'][PDF]['sha256'] and exact(result['inspected_helper_hashes'],review_freeze['future_helpers']),'entire scientific/operational candidate identity')
-        times=[]
-        for label in ('AUTHENTICATION_START.json','AUTHENTICATION_END.json'):
-            auth=strict_json(captured[label])
-            required_record(auth,{'status':str,'utc':str,'original_pr_head':str,'freeze_sha256':str,'package_manifest_sha256':str,'future_helpers':dict,'candidate_files':dict,'originals':dict},'review authentication')
-            need(auth['status']=='PASS' and auth['original_pr_head']==HEAD and auth['freeze_sha256']==pins['freeze'] and auth['package_manifest_sha256']==pins['manifest'] and exact(auth['future_helpers'],review_freeze['future_helpers']) and exact(auth['candidate_files'],review_freeze['files']),'review before/after whole payload authentication')
-            need(set(auth['originals'])==set(originals),'all24 originals authentication')
-            for path,want in originals.items():
-                item=auth['originals'][path]
-                need(type(item) is dict and all(type(item.get(k)) is type(v) and item.get(k)==v for k,v in want.items()) and item.get('archive_mode')=='100644' and item.get('disk_and_archive_match') is True,'Git/disk/ZIP original24 identity')
-            times.append(utc(auth['utc']))
-        need(start<=times[0]<=times[1]<=end,'before/after review timestamps')
-        cold=strict_json(captured['COLD_REPLAY.json'])
-        need(cold.get('status')=='PASS' and cold.get('cold_extraction') is True and cold.get('package_manifest_sha256')==pins['manifest'] and cold.get('externally_pinned_verifier_sha256')==review_freeze['files']['package/'+review_freeze['package_verifier']]['sha256'] and cold.get('normalized_fields_ignored')==[] and times[0]<=utc(cold['utc'])<=times[1],'independent cold full-package replay binding')
-        modes=cold.get('modes');need(type(modes) is list and len(modes)==4,'all four actual replay modes')
-        for row,label,opt in zip(modes,['normal','O','OO','env2'],[0,1,2,0]):
-            need(row.get('mode')==label and type(row.get('observed_outer_optimization')) is int and row['observed_outer_optimization']==opt and type(row.get('returncode')) is int and row['returncode']==0 and exact(row.get('receipt'),load(review_base/('PACKAGE_REPLAY_'+label+'.json'))['receipt']),'independent replay/canonical receipts')
+        need(result['candidate_revision']==review_freeze['revision_candidate'] and pins['manifest']==review_freeze['package_manifest_sha256'] and pins['pdf']==review_freeze['files'][PDF]['sha256'],'entire scientific/operational candidate identity')
+        inspected=result['inspected_helper_hashes'];expected=review_freeze['future_helpers']
+        need(set(inspected)<=set(expected) and all(exact(value,expected[name]) for name,value in inspected.items()),'partial inspected helper pins must bind exact candidate')
+        if complete:need(exact(inspected,expected),'completed review entire inspected helper inventory')
+        a_start,t_start=review_authentication(strict_json(captured['AUTHENTICATION_START.json']),pins,review_freeze,originals)
+        a_end,t_end=review_authentication(strict_json(captured['AUTHENTICATION_END.json']),pins,review_freeze,originals)
+        need(start<=t_start<=t_end<=end,'before/after review timestamps')
+        cold_pass,t_cold=review_cold(strict_json(captured['COLD_REPLAY.json']),pins,review_freeze,review_base)
+        need(t_start<=t_cold<=t_end,'cold observation outside authentication bracket')
+        full_evidence=a_start and a_end and cold_pass
+        if not complete or not full_evidence:
+            need(result.get('nonclean_history') is not None and result['clean_for_preprint'] is False,'incomplete/failed evidence requires honest nonclean RESULT')
         for issues in (result['required_issues'],result['optional_issues']):
             need(all(type(x) is dict and type(x.get('id')) is str and x['id'] for x in issues),'every required/optional finding ID')
         def verified(mapping,key):
             value=mapping.get(key)
             return type(value) is dict and value.get('verified') is True and type(value.get('evidence')) is str and bool(value['evidence'].strip())
-        if pins['freeze']==freeze_pin and result['clean_for_preprint'] is True and not result['required_issues'] and not result['optional_issues'] and result['mathematical_remaining_gap_for_stated_theorem'] is None:
+        clean_current=(pins['freeze']==freeze_pin and complete and full_evidence and result['clean_for_preprint'] is True and result.get('nonclean_history') is None)
+        if clean_current:
             need(all(verified(result['prior_issue_resolution'],key) for key in prior),'all earlier required AND optional findings independently dispositioned')
             need(all(verified(result['inherited_finding_dispositions'],key) for key in inherited),'fresh reviewers verify all50 inherited dispositions')
             need(utc(freeze['created_utc'])<=start,'current review starts after freeze')
             current_clean.append(index)
-        else:
-            current_clean=[]
+        else:current_clean=[]
         prior.update(x['id'] for x in result['required_issues']+result['optional_issues'])
-        rows.append({'round':index,'manifest_sha256':pin,'completed_utc':result['completed_utc'],'candidate_freeze_sha256':pins['freeze'],'required_issues':result['required_issues'],'optional_issues':result['optional_issues']})
+        rows.append({'round':index,'manifest_sha256':pin,'completed_utc':result['completed_utc'],'candidate_freeze_sha256':pins['freeze'],'required_issues':result['required_issues'],'optional_issues':result['optional_issues'],'completion_flags':{k:result[k] for k in ('clean_context','full_reproducer_completed','entire_package_review')},'evidence_statuses':{k:strict_json(captured[k])['status'] for k in ('AUTHENTICATION_START.json','AUTHENTICATION_END.json','COLD_REPLAY.json')},'nonclean_history':result.get('nonclean_history'),'eligible_clean_current':clean_current})
     need(len(current_clean)>=2 and current_clean[-1]==len(specs),'at least TWO fresh clean ENTIRE current-package reviews after every fix')
     return rows,result
 
@@ -979,20 +1056,22 @@ def native_verify(publication,merge,tracker,accepted,native):
 
 
 def next_identity(old,before):
-    """Use inherited identity only at the identical head; otherwise inspect paths.
+    """Reuse identity only at the identical authenticated head and base commit.
 
     GraphQL pages contain changed filenames and PR metadata only. Complete count,
-    uniqueness and per-page metadata are required before selecting one target.
+    uniqueness and per-page head/base metadata are required before selecting one target.
     The outer before/after bracket also covers every page and the QUEUE read.
     """
-    if before.get('headRefOid')==old.get('headRefOid'):
+    need(type(before.get('currentBaseRefOid')) is str and re.fullmatch('[0-9a-f]{40}',before['currentBaseRefOid']) is not None,'next PR live base commit identity')
+    original_base=old.get('currentBaseRefOid')
+    if before.get('headRefOid')==old.get('headRefOid') and type(original_base) is str and re.fullmatch('[0-9a-f]{40}',original_base) is not None and original_base==before['currentBaseRefOid']:
         ids=[str(x.get('id')) for x in old.get('entries',[])]
-        need(len(ids)==1 and re.fullmatch('[0-9]+',ids[0]) is not None,'unchanged-head initial target identity')
+        need(len(ids)==1 and re.fullmatch('[0-9]+',ids[0]) is not None,'unchanged-head-and-base initial target identity')
         return ids[0]
     number=before.get('number')
-    need(type(number) is int and PR<number<=1000,'changed-head next PR number')
-    fields=('number','state','isDraft','headRefOid','headRefName','baseRefName','url')
-    query='query($number:Int!,$cursor:String){repository(owner:"AlecKriebel",name:"Math"){pullRequest(number:$number){number state isDraft headRefOid headRefName baseRefName url changedFiles files(first:100,after:$cursor){nodes{path}pageInfo{hasNextPage endCursor}}}}}'
+    need(type(number) is int and PR<number<=1000,'changed-context next PR number')
+    fields=('number','state','isDraft','headRefOid','headRefName','baseRefName','baseRefOid','currentBaseRefOid','url')
+    query='query($number:Int!,$cursor:String){repository(owner:"AlecKriebel",name:"Math"){pullRequest(number:$number){number state isDraft headRefOid headRefName baseRefName baseRefOid url baseRef{name target{oid}} changedFiles files(first:100,after:$cursor){nodes{path}pageInfo{hasNextPage endCursor}}}}}'
     paths=[];cursor=None;seen_cursors=set();declared=None
     for page in range(30):
         args=['gh','api','graphql','-f','query='+query,'-F','number='+str(number)]
@@ -1000,6 +1079,8 @@ def next_identity(old,before):
         reply=strict_json(run(args))
         need(not reply.get('errors'),'changed-file metadata GraphQL errors')
         node=reply.get('data',{}).get('repository',{}).get('pullRequest')
+        need(type(node) is dict,'changed-file PR metadata missing')
+        node['currentBaseRefOid']=live_base_pointer(node)
         need(type(node) is dict and all(type(node.get(k)) is type(before.get(k)) and node.get(k)==before.get(k) for k in fields),'changed-file page live PR metadata changed')
         count=node.get('changedFiles')
         need(type(count) is int and 1<=count<=3000 and (declared is None or count==declared),'bounded stable complete changedFiles count')

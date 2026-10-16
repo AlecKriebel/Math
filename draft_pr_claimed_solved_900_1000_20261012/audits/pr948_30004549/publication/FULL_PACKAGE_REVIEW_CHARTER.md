@@ -8,6 +8,19 @@ consuming prior verdicts, then inspect all material inherited evidence and
 operational dependencies. Reviews may reject the candidate. There is no
 instruction to return a clean verdict or to manufacture an issue quota.
 
+The corrected candidate also carries the post-full01 ROOT02 base-context
+amendment. Inspect both exact synthetic witnesses: a base-only race and a
+stably advanced base at unchanged initial head. Cached identity reuse needs
+both independently recorded matching head and LIVE baseRef.target.oid pins.
+Associated baseRefOid is not the live branch pointer. Authenticate the actual
+GitHub metadata observation and exact851core synthetic witness in
+publication/root_live_base_context; earlier associated-base-only correction
+was insufficient. Verify live pointer on every page and final bracket. The real initial
+inventory lacks a base pin, so current complete filename derivation is needed.
+Check all page/final-bracket bindings and the honest incomplete/failed-history
+recovery repair of R948-FULL01-R01, in addition to every other whole-package
+obligation below. The first adverse review remains unchanged historical data.
+
 The source gate is PR948, problem30004549, immutable submitted head
 be4313efafa1af5962394e07d8a4debff2e94d92, exact queue status claimed_solved.
 Any changed head, status, identity or absent source must stop dependent work

@@ -193,13 +193,13 @@ def main():
     # This function is called only with fake gh/network reads; excluded mathematics
     # is never opened. The fake changed status chooses967 after952 is skipped.
     calls=[]
-    def fakepr(number):return {'number':number,'state':'OPEN','isDraft':True,'headRefOid':str(number).zfill(40),'baseRefName':'main','url':'https://example.invalid'}
+    def fakepr(number):return {'number':number,'state':'OPEN','isDraft':True,'headRefOid':str(number).zfill(40),'baseRefName':'main','baseRefOid':'f'*40,'currentBaseRefOid':'f'*40,'url':'https://example.invalid'}
     def fakerun(args,**kwargs):
         calls.append(args);head=args[-1].split('=',1)[1].split(':',1)[0];key='30000552' if head.endswith('952') else '30000967';status='unsolved' if key=='30000552' else 'claimed_solved'
         cells=['','1',key+' / CODE','title','0','0','0','0',status,'0/5','','','',''];queue='| '+ ' | '.join(cells[1:-1])+' |\n'
         return json.dumps({'data':{'repository':{'object':{'text':queue,'isBinary':False,'byteSize':len(queue.encode()),'oid':'x'}}}})
     with Patch(pr_view=fakepr,run=fakerun):
-        inventory=[{'number':952,'headRefOid':str(952).zfill(40),'entries':[{'id':'30000552'}]},{'number':967,'headRefOid':str(967).zfill(40),'entries':[{'id':'30000967'}]}]
+        inventory=[{'number':952,'headRefOid':str(952).zfill(40),'currentBaseRefOid':'f'*40,'entries':[{'id':'30000552'}]},{'number':967,'headRefOid':str(967).zfill(40),'currentBaseRefOid':'f'*40,'entries':[{'id':'30000967'}]}]
         check('dynamic_next952_skip_then967_status_only',lambda:must(N['gate_next'](inventory)[1]['number']==967 and len(calls)==2 and all(a[:3]==['gh','api','graphql'] for a in calls)))
 
 if __name__=='__main__':

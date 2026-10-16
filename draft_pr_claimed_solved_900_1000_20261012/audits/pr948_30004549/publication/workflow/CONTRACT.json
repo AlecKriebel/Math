@@ -98,26 +98,26 @@
     "problem_id": "string30004549",
     "original_pr_head": "exact immutable head",
     "reviewer_agent_id": "distinct nonempty agent id",
-    "clean_context": "true",
-    "full_reproducer_completed": "true",
-    "entire_package_review": "true",
+    "clean_context": "bool; true required for clean eligibility; false requires explicit nonclean_history",
+    "full_reproducer_completed": "bool; true required for clean eligibility; false requires explicit nonclean_history",
+    "entire_package_review": "bool; true required for clean eligibility; false requires explicit nonclean_history",
     "started_utc": "explicit UTC",
-    "completed_utc": "explicit UTC, later than start; rounds sequential",
+    "completed_utc": "explicit UTC round closing/record time later than start; not a completion claim for nonclean history; rounds strictly sequential",
     "candidate_revision": "int>=1 matching freeze",
     "candidate_pins": "exact dict freeze/manifest/pdf lowercase SHA256",
-    "inspected_helper_hashes": "exact six-basename future_helpers pins",
+    "inspected_helper_hashes": "exact six-basename future_helpers pins when all completion flags true; exact positively inspected subset otherwise",
     "required_issues": "list of objects with nonempty id",
     "optional_issues": "list of objects with nonempty id",
     "clean_for_preprint": "bool",
-    "strongest_verified_theorem": "nonempty scoped theorem prose",
+    "strongest_verified_theorem": "nonempty scoped verified result or explicit limitation prose",
     "mathematical_remaining_gap_for_stated_theorem": "null for clean review",
     "prior_issue_resolution": "every earlier required+optional id -> {verified:true,evidence:nonempty string} on each clean current round",
     "inherited_finding_dispositions": "all50 exact configured frozen IDs -> {verified:true,evidence:nonempty string} on each clean current round"
   },
-  "acceptance_rule": "At least TWO consecutive latest clean ENTIRE reviews of same CURRENT freeze, distinct fresh agents, after every fix. Both have no required/optional issues and no theorem gap. Historical candidates need D/reviewed_candidates/candidateNN/FREEZE.json + old OPERATIONS_INVENTORY.json + operations/REPO_RELATIVE_SOURCE copies and all frozen files.",
+  "acceptance_rule": "Preserve and validate every consecutively numbered externally sealed round and its exact candidate. Honest incomplete/failed/adverse rounds never count toward acceptance and reset the clean streak. At least TWO consecutive latest fully completed clean ENTIRE reviews of same CURRENT freeze, distinct fresh agents, after every fix; all strict PASS authentication/full four-mode cold requirements, no required/optional issues, gapnull, all earlier required AND optional dispositions, all50 inherited verified, and current-freeze chronology remain mandatory. Missing/invalid old rounds, archives, evidence, operations or times reject.",
   "conditional_inherited_obligation": "PF01-R04 can verify that the gate implements the two-new-review obligation; frozen package does not claim the future review obligation was already complete. Actual acceptance requires both independently sealed clean rounds.",
   "authentication_fields": [
-    "status:PASS",
+    "status:PASS|FAIL|INCOMPLETE|NOT_RUN",
     "utc",
     "original_pr_head",
     "freeze_sha256",
@@ -128,12 +128,12 @@
   ],
   "authentication_original_record": "Each of all24 exact original repo paths: bytes,sha256,git_blob,git_mode:100644,disk_mode:0644,archive_mode:100644,disk_and_archive_match:true. Authentication timestamps lie inside review interval, enclosing COLD timestamp.",
   "cold_required_fields": [
-    "status:PASS",
+    "status:PASS|FAIL|INCOMPLETE|NOT_RUN",
     "utc",
-    "cold_extraction:true",
+    "cold_extraction:boolean; true required for PASS",
     "package_manifest_sha256",
     "externally_pinned_verifier_sha256",
-    "normalized_fields_ignored:[]",
+    "normalized_fields_ignored:list of nonempty strings; [] required for PASS",
     "modes"
   ],
   "cold_mode_rule": "Four rows normal/O/OO/env2 observed_outer_optimization0/1/2/0, integer returncode0, receipt exact canonical D/PACKAGE_REPLAY_LABEL.json[receipt], no normalization or ignored fields. Root envelopes with timestamps/absolute commands are frozen separately.",
@@ -143,10 +143,10 @@
   "publication_verification": "Independent unauthenticated public record GET, exact PDF/archive downloads SHA256/size/file-set, and DOI resolution to same exact record required.",
   "tracker": "gws spreadsheet1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20 gid1254632077 Math Puzzles exact A-D headers; duplicate target/DOI reconciliation, RAW append, full-table duplicate check and exact row readback.",
   "finalization": "Actual DOI/record/tracker/merge/anchors appended to frozen PR_DESCRIPTION prose only after verified publication; metadata exact readback; native verification; local state/log update; next gates read only live PR metadata and immutable QUEUE statuses, no excluded mathematics.",
-  "engineering_revision": "root01_02_03_fixed_exact50",
+  "engineering_revision": "full01_history_and_ROOT02_live_branch_target_exact50",
   "historical_evidence_snapshot_rule": "Every historical evidence_files record is authenticated only at base/evidence/REPO_RELATIVE_KEY, with the exact old byte count and SHA256. All old evidence snapshots are required before profile execution or historical-candidate claims. There is NO fallback to living ROOT/key, even for apparently immutable evidence. Missing or changed snapshots reject. Current freezes still authenticate living ROOT/key and reject drift.",
   "historical_evidence_privacy": "Historical raw source/private bodies are local private evidence only: preserve under the historical evidence path with restrictive local access and explicitly exclude them and the private evidence subtree from all public package/ZIP/release/commit allowlists. Public historical candidate copies may include only explicitly curated source-free evidence. Do not commit a recursively selected historical evidence directory. Authenticate a private snapshot locally; publish its metadata/hash only. The workflow engineering history here contains no raw private source bodies.",
-  "next_identity_rule": "Reuse inventory.entries ID only when current headRefOid equals inventory.headRefOid. Otherwise obtain complete bounded GraphQL changed-filename pages, exact changedFiles count/unique canonical paths and matching PR metadata on every page; derive exactly one numeric attempts/<ID>/ target. Missing/ambiguous/incomplete/racing metadata rejects. Then read only that immutable head QUEUE status, enclosed by fresh before/after metadata. No mathematics is opened.",
+  "next_identity_rule": "Reuse inherited inventory target only when BOTH original headRefOid and independently recorded valid original currentBaseRefOid equal fresh metadata. currentBaseRefOid means the authenticated live baseRef.target.oid, NOT stored/associated baseRefOid. Missing/malformed/different original live context derives complete changed filenames even at same head. Real initial inventory lacks the live pin and must not be rewritten or supplied an invented pin. Fresh valid currentBaseRefOid is bound across augmented PR metadata, every bounded complete GraphQL filename page and the final bracket over all pages/immutable QUEUE status. Keep associated baseRefOid separately bound, exact changedFiles count, unique canonical filenames, one numeric attempts target and status exclusions. Missing/null/malformed/drifting live pointer rejects before selection. No mathematics is opened.",
   "native_absence_rule": "For unpublished baseline require KEY not in state and zero currently observed target history entries. Explicit KEY:null or any present entry rejects for reconciliation. Report absence by key membership. Exact already-published recovery requires the full expected state/history event, reporting absencefalse. Observed current history0 is not a certificate that historical author-turn count is0.",
   "inherited_finding_count": 50,
   "inherited_classification_counts": {
@@ -157,5 +157,29 @@
     "R948-WORKFLOW-ROOT-01",
     "R948-WORKFLOW-ROOT-02",
     "R948-WORKFLOW-ROOT-03"
-  ]
+  ],
+  "result_nonclean_history": {
+    "required_when": "Any completion flag false or any authentication/cold status not PASS",
+    "exact_keys": {
+      "status": "incomplete or failed",
+      "explanation": "nonempty string",
+      "checks_not_passed": "nonempty unique list of nonempty strings"
+    },
+    "clean_for_preprint": false,
+    "legacy_completed_adverse": "A completed adverse round with all PASS evidence may retain its original schema without nonclean_history. Its real findings and inherited false dispositions remain unchanged."
+  },
+  "authentication_nonpass_rule": "Every status binds exact declared head/freeze/manifest and UTC. All positive future_helpers/candidate_files/originals entries must be exact candidate subsets; PASS requires complete maps and all24. NonPASS requires nonempty explanation plus observations object; actual mismatches belong in observations, not positive maps. NOT_RUN requires all positive maps empty. Never fabricate completed authentication.",
+  "cold_nonpass_rule": "Every status binds exact candidate manifest/verifier and UTC. Observe at most four unique normal/O/OO/env2 rows. Each row requires mode, observed_outer_optimization (integer0..2 or null), returncode (integer or null), receipt (object or null); optional declared status uses PASS|FAIL|INCOMPLETE|NOT_RUN. Any declared PASS mode retains exact optimization/returncode0/canonical receipt checks. Top PASS requires all four canonical ordered rows, no declared nonPASS mode, extractiontrue and ignored[]. Top nonPASS requires nonempty explanation plus observations object and retains actual failed/partial evidence without clean credit. NOT_RUN requires extractionfalse/modes[]; per-mode NOT_RUN requires all three observationsnull. A nonPASS raw returncode0 is not a success certificate.",
+  "historical_candidate_rule": "For every old candidate authenticate FREEZE, all frozen files, complete old seven-source inventory and operations copies, and all old private evidence snapshots before historical claims. Incomplete review evidence never relaxes independent archive authentication. Preserve declared failed/partial observations and explanations without changing old sealed artifacts.",
+  "whole_review_prior_findings": {
+    "R948-FULL01-R01": "Separate earlier whole-review issue, not a 51st inherited finding; each eligible later clean round must independently verify its disposition."
+  },
+  "ROOT02_required_amendment": "LIVE_BASE_REF_TARGET_BINDING_AFTER_ENGINEERING_CC88 extends BASE_REF_OID_BINDING_AFTER_FULL01 under SAME inherited R948-WORKFLOW-ROOT-02. Associated baseRefOid may remain fixed while live baseRef.target.oid advances; reviewers must verify stable and racing live-pointer advances at unchanged head/stored base.",
+  "PR_live_base_metadata": {
+    "stored_baseRefOid": "Preserve associated/stored GH/GraphQL value separately. Equality never proves current branch context.",
+    "currentBaseRefOid": "Normalize GraphQL baseRef.target.oid; require lowercase40hex and matching nonempty baseRef.name/baseRefName.",
+    "augmentation": "Bounded GraphQL PR node must exactly match gh metadata number/state/isDraft/headRefOid/headRefName/baseRefName/baseRefOid/url before normalized live pointer is returned. GraphQL errors/missing ref/null target/invalid OID reject.",
+    "filename_pages": "Every page requests baseRef{name target{oid}}, normalizes currentBaseRefOid, and matches the complete before metadata binding before any target selection.",
+    "final_bracket": "pr_view returns normalized currentBaseRefOid, so complete before/after equality covers live-only base drift even when head/name/associated base/count stay equal."
+  }
 }

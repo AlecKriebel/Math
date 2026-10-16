@@ -25,7 +25,7 @@ with Patch(blob=lambda ref,name:b'{}' if name==N['STATE'] else b''):
  test('ROOT03_true_absence',lambda:must(N['native_safety']('fixture')['target_state_absent'] is True))
 with Patch(blob=lambda ref,name:json.dumps({N['KEY']:None}).encode() if name==N['STATE'] else b''):
  test('ROOT03_null_rejected',lambda:reject(lambda:N['native_safety']('fixture')))
-before={'number':952,'state':'OPEN','isDraft':True,'headRefOid':'a'*40,'headRefName':'new','baseRefName':'main','url':'https://github.com/AlecKriebel/Math/pull/952'}
+before={'number':952,'state':'OPEN','isDraft':True,'headRefOid':'a'*40,'headRefName':'new','baseRefName':'main','baseRefOid':'f'*40,'currentBaseRefOid':'f'*40,'baseRef':{'name':'main','target':{'oid':'f'*40}},'url':'https://github.com/AlecKriebel/Math/pull/952'}
 old={'number':952,'headRefOid':'b'*40,'entries':[{'id':'111'}]};calls=[]
 def service(args,**kw):
  calls.append(args)
@@ -39,7 +39,7 @@ with Patch(run=service,pr_view=lambda number:copy.deepcopy(before)):
  test('ROOT02_old_claimed_new_unsolved_changed_head_SKIPS_newID',changed)
  calls.clear()
  def unchanged():
-  skips,selected=N['gate_next']([{**old,'headRefOid':before['headRefOid']}]);must(selected['problem_id']=='111' and len(calls)==1)
+  skips,selected=N['gate_next']([{**old,'headRefOid':before['headRefOid'],'currentBaseRefOid':before['currentBaseRefOid']}]);must(selected['problem_id']=='111' and len(calls)==1)
  test('ROOT02_unchanged_head_reuse',unchanged)
 def ambiguous(args,**kw):
  return json.dumps({'data':{'repository':{'pullRequest':{**before,'changedFiles':2,'files':{'nodes':[{'path':'unsolved_math_prioritization/attempts/222/a'},{'path':'unsolved_math_prioritization/attempts/333/b'}],'pageInfo':{'hasNextPage':False,'endCursor':None}}}}}})
