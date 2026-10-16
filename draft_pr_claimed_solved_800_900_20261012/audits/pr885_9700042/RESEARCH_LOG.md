@@ -231,3 +231,58 @@ Checkable checkpoint evidence (in-memory V3 remains unwritten):
 ## 2026-10-16T04:39:27.493494+00:00 — Actual PR885 candidate and independent note/tooling validation (PR88555%; shard80%)
 
 V4 guard now written and mechanism independently verified; actual20 minimal-fixture CLI cases authenticated before rejection with zeroPopen, all13 explicit safe format payloads plus eight note-review payloads authenticated against externally returned envelopes and fully read as applicable. The fresh source-first note adversary found no blocking math defect and independently rederived the kernel; its finite code/output capture occurred after in-memory execution, not preregistered. Current candidate197 files, inner159 members, all30 inner originals unchanged; outer28 other historical files unchanged, activeREADME/logsupersedeoldprioritylanguage. Actual normal outside buildPASS64 nested, ZIP388193SHA824b7f037be72f7c7337dba4ea00c6d72b11be5a8cf026e928e4e1b751753f3b; actual currentnormal/O eachPASS64 nested and all197before/after unchanged. Sealbd07582e02490a57d5edd3f4438659b57b0fef8b5397f5865e3fe53220b5ec2a/indexa45d6799b5770cd51cfb4e0bdbcd4461d981f13be733dfb1f57236ad838f51b9. Earlier optimizedbuild failed checker-statusschedule during contemporaneous ENOSPC; exactcause unobserved, notcalledPASSorprovenstoragecaused. Parent print-only summary used wrong nested resultkey after both actual currentsuccess receipts; corrected raw-output/receiptreadback independentlyconfirmschildexit0, measuredflags/counts and sourceinvariance withoutrepeat. Fresh04:37RESTgate still exactCL5/5/open/draft/samehead. Initialformatcurrentadversary and NEWwhole-package01nowrunning; zero finalwhole-packageCLEARs. No PRsource/QUEUEchange, merge, DOI or sheetaction. Diskfluctuates; actualrestoredwrites/resumption recorded ratherthanassuming elapsedtime answeredresourcequestion. Original5/5 unchanged.
+
+Own superseded-page-render cleanup, all canonical files retained:
+{
+  "actual_disk_free_increase": "NOT_CLAIMED: APFS and concurrent writers",
+  "all_six_final_renders_retained": true,
+  "canonical_pdf_unchanged": true,
+  "removed": [
+    {
+      "allocated_bytes": 192512,
+      "bytes": 192159,
+      "path": "draft_pr_claimed_solved_800_900_20261012/audits/pr885_9700042/private_pdf_build/renders/note-1.png",
+      "sha256": "4adbf8106abf35d33ad19e7304c0d18822c07247a1b82238a1b7cb6b484d13a4"
+    },
+    {
+      "allocated_bytes": 233472,
+      "bytes": 232556,
+      "path": "draft_pr_claimed_solved_800_900_20261012/audits/pr885_9700042/private_pdf_build/renders/note-2.png",
+      "sha256": "6a0a6675d1ae3533a5f466859b62657d44203b83bf1ffd7c3783eaae0484c7f3"
+    },
+    {
+      "allocated_bytes": 196608,
+      "bytes": 195434,
+      "path": "draft_pr_claimed_solved_800_900_20261012/audits/pr885_9700042/private_pdf_build/renders/note-3.png",
+      "sha256": "55d91f0afd9aa98804f09baf4fd3491c7a54b1663b7d3748bac0929a572bcc55"
+    },
+    {
+      "allocated_bytes": 208896,
+      "bytes": 208616,
+      "path": "draft_pr_claimed_solved_800_900_20261012/audits/pr885_9700042/private_pdf_build/renders/note-4.png",
+      "sha256": "81b3bc2f784b4592bf3a747ddaca8fddde40075b778d39b22eb6db7b71ec0af0"
+    },
+    {
+      "allocated_bytes": 208896,
+      "bytes": 206983,
+      "path": "draft_pr_claimed_solved_800_900_20261012/audits/pr885_9700042/private_pdf_build/renders/note-5.png",
+      "sha256": "a14909a87b150e1e3e052a0541ff199d34d909a9fe0ff8eee0b33f737b9cacba"
+    },
+    {
+      "allocated_bytes": 233472,
+      "bytes": 229479,
+      "path": "draft_pr_claimed_solved_800_900_20261012/audits/pr885_9700042/private_pdf_build/renders/note-6.png",
+      "sha256": "f54bfa0ef4b91d205928ae8b1c43f34778a623d3e0a3bf1ebd722e6f1425eb8f"
+    }
+  ],
+  "selected_allocated_bytes": 1273856,
+  "status": "REMOVED_OWN_SIX_SUPERSEDED_RENDER_PNGS",
+  "timestamp_utc": "2026-10-16T04:54:53.852392+00:00",
+  "tracked_or_public_files_removed": false
+}
+
+## 2026-10-16T05:00:10.757080+00:00 — First full package CLEAR integrated; second new review active (PR88570%; shard82%)
+
+Parent fully read firstwhole REPORT/DECISION, sourcefirst/analyticfreezes and bothchecker/sealer code bodies; authenticated all20 safe payloads against externally returned ee97a3de06c65187f2223ab035ee00ba85744a7e0f2455813661a264387f8a12 envelope. All197 and13core same bd0758 seal; no issues requested. Independently authenticated four currentformat payloads from exact handoff rows (no saved historical envelope invented):40actualCLIcases,31coherentclones, zeroarchivalPopen and unchanged197/30/old13snapshot. Parent code/report reading complete. NEWpackage_review_02 started only after firstclear integration; its full pre-exposure analytic freeze is the actual04:53:41message, not an unsampled05:01draft timestamp or retrospectively claimed early file. It reports freshnormal/O64nestedPASS, fullsourceonlycorpora/4primarypins/Git30originchecks, complementaryall-tied finitecases andsemanticcontrols; outsideoptimizedbuild and finalverdict remainpending. Original5/5 fixed. Local kitcheck production/exact2assetsPASS; read-onlyGWSexactgid/headerpreflight04:48PASS, no rowappend. PRpreviewlocalcommit8c224154642dd86114033acf811b7b908d62f97b has all197actualGitblobs/modes/closedset and singleQUEUErowchecked; saving previewreadback thenfailedENOSPC, not a remotePRmutation. No branchpush/merge/Zenodostage/publish/sheetwrite. Public actualpackage checkpoint8ae006d40b6727c4d49dc71955948fc58317177b confirmedall40exactblobs+3actualAPIblobs in saved readback. Maincheckout/index/foreignfiles untouched. Own6 superseded-render cleanup was scoped/untracked; canonicalfinalPDF/all6finalrendersretained. Diskstillfluctuates, source/evidence preserved.
+
+2026-10-16T05:09:07.833629+00:00 — PR88585%, shard84%. Parent fully read second whole-package REPORT, new supplemental/sealing code, source/analytic capture and chronology; authenticated all33 safe payloads against external manifest a12929e52b92597138b14b6da9bfe7a5cf3f5c3c70b0d0c5ac899ebbea02063b. Reauthenticated both final reviews, all197 closed candidate files and13core, all normal/O measured replay receipts, actual optimized outside archive388193 bytes/159members and13 zero-Popen controls. Both new whole-package reviews CLEAR on identical unchanged core. Older failed optimized build retains unestablishedcause; no retroactive PASS. Review02 full04:53:41pre-exposure message is authoritative; compact unsampled05:01error candidly retained. Two final reviews will be published outside closed candidate, then inherited through fresh-main parent of acceptedPR. No merge/deposit/DOI/tracker mutation yet. Exact original effort5/5 unchanged.
