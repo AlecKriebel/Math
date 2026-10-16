@@ -1,0 +1,24 @@
+--- operations_engineering_03/test_native_recovery.py
++++ operations_engineering_04/test_native_recovery_proposal.py
+@@ -15,10 +15,10 @@
+  if not ok:raise RuntimeError(m)
+ def encode(x):return (json.dumps(x)+'\n').encode()
+ p=argparse.ArgumentParser();p.add_argument('--proposal-sha256',required=True);p.add_argument('--installed',action='store_true');a=p.parse_args()
+-base=(OWN/'BASE_accept_pr952.py').read_bytes();proposal_copy=(OWN/'PROPOSED_accept_pr952.py').read_bytes();proposed=(P/'accept_pr952.py').read_bytes() if a.installed else proposal_copy
++base=(OWN/'HISTORICAL_PRE_NATIVE_RECOVERY_accept_pr952.py').read_bytes();proposal_copy=(OWN/'PROPOSED_accept_pr952.py').read_bytes();proposed=(P/'accept_pr952.py').read_bytes() if a.installed else proposal_copy
+ need(proposed==proposal_copy,'installed actual bytes differ from tested proposal copy')
+ need(sha(base)==BASE_SHA and sha(proposed)==a.proposal_sha256,'external base/proposal source pins')
+-need(sha((P/'accept_pr952.py').read_bytes())==(a.proposal_sha256 if a.installed else BASE_SHA),'current core changed outside authorized phase')
++need(sha((P/'accept_pr952.py').read_bytes())==(a.proposal_sha256 if a.installed else '888a068e26e0adcc3f493817ef46c46b6bdd5a4f848a4d907e4f4af2b5f592a8'),'current core changed outside authorized phase')
+ source=(A/'source_record_private.txt').read_bytes();records=(A/'ORIGINAL_FILE_RECORDS.json').read_bytes();originals=json.loads(records)['files']
+ source_doc=json.loads(source)
+ ORIGINAL_BYTES={name:(A/'original'/name).read_bytes() for name in originals}
+@@ -35,7 +35,7 @@
+  constants={'base':'a'*40,'merge':'b'*40,'parent':'c'*40,'commit':'d'*40,'main':'e'*40}
+  n={};calls=[];cfg={};accepted={};freeze={};publication={};merge={};tracker={};blobs={};planned={};prepared={}
+  def make_namespace(body):
+-  space={'__name__':'_inert_native_actual_functions_','__file__':str(P/'accept_pr952.py')};exec(compile(body,str(OWN/'BASE_accept_pr952.py' if sha(body)==BASE_SHA else P/'accept_pr952.py' if a.installed else OWN/'PROPOSED_accept_pr952.py'),'exec',dont_inherit=True,optimize=0),space);return space
++  space={'__name__':'_inert_native_actual_functions_','__file__':str(P/'accept_pr952.py')};exec(compile(body,str(OWN/'BASE_accept_pr952.py' if sha(body)==BASE_SHA else P/'accept_pr952.py' if a.installed else OWN/'PROPOSED_accept_pr952.py'),'exec',dont_inherit=True,optimize=sys.flags.optimize),space);return space
+  def write(name,obj):
+   path=workflow/name;path.write_bytes(encode(obj));return obj
+  def blob(ref,path):
