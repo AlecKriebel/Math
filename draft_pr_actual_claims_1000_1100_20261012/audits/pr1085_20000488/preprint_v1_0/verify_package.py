@@ -63,6 +63,91 @@ def verify(check_archive=True, check_deposit=True, deposit=None, require_deposit
     for row in excluded:
         old = frozen[row["path"]]
         require(row["bytes"] == old["bytes"] and row["sha256"] == old["sha256"] and bool(row["reason"]), "individual exclusion custody")
+    # Original STATUS is an immutable preparation snapshot; terminal accounting
+    # is separate and cannot itself confer root release readiness.
+    terminal = read_json(ROOT / "TERMINAL_ACCOUNTING.json")
+    require(type(terminal.get("schema")) is int and terminal["schema"] == 1, "terminal schema")
+    require(terminal.get("pr") == 1085 and type(terminal["pr"]) is int and
+            terminal.get("problem_id") == 20000488 and
+            terminal.get("audited_head") == status["audited_head"], "terminal identity")
+    require(terminal.get("status") == "TERMINAL_ADMIN_CHECKED_PENDING_ROOT_INTEGRITY_ADOPTION", "terminal stage")
+    for key in ["whole_reviews_completed", "minimum_whole_reviews"]:
+        require(type(terminal.get(key)) is int and terminal[key] == 2, "terminal two reviews: " + key)
+    require(type(terminal.get("latest_actionable_P0_P1_P2_P3")) is int and
+            terminal["latest_actionable_P0_P1_P2_P3"] == 0, "latest review zero findings")
+    require(terminal.get("root_terminal_integrity_adoption_required") is True and
+            terminal.get("historical_STATUS_preserved") is True, "root adoption and historical stage")
+    for key in ["publication_ready", "all_actionable_issues_resolved", "published",
+                "human_peer_review", "formal_proof_certificate"]:
+        require(terminal.get(key) is False, "terminal forbidden promotion: " + key)
+    require(terminal.get("services_hold") == status["services_hold"], "terminal ordered hold")
+    for key in ["priority", "novelty", "worldwide_open_status", "independent_discovery"]:
+        require(terminal.get(key) == status[key], "terminal historical scope: " + key)
+    for name, key in [("paper.pdf", "paper_pdf_sha256"), ("paper.tex", "paper_tex_sha256")]:
+        require(sha(regular(ROOT / name).read_bytes()) == terminal.get(key), "unchanged paper identity")
+    terminal_inputs = read_json(ROOT / "TERMINAL_INPUT_PINS.json")["files"]
+    terminal_frozen = {r["path"]: r for r in terminal_inputs}
+    require(len(terminal_frozen) == len(terminal_inputs), "unique terminal input paths")
+    terminal_copies = read_json(ROOT / "TERMINAL_COPY_MAP.json")["files"]
+    terminal_exclusions = read_json(ROOT / "TERMINAL_EXCLUSIONS.json")["files"]
+    selected_paths = [r["source_relative_audit"] for r in terminal_copies]
+    excluded_paths = [r["path"] for r in terminal_exclusions]
+    require(len(set(selected_paths)) == len(selected_paths) and
+            len(set(excluded_paths)) == len(excluded_paths) and
+            set(selected_paths).isdisjoint(excluded_paths) and
+            set(selected_paths + excluded_paths) == set(terminal_frozen), "terminal complete custody partition")
+    require(len({r["copy"] for r in terminal_copies}) == len(terminal_copies), "unique terminal destinations")
+    for row in terminal_copies:
+        old = terminal_frozen[row["source_relative_audit"]]
+        require(row["copy"] == "evidence/terminal/" + row["source_relative_audit"] and
+                row["copy"] in names and row["bytes"] == old["bytes"] and
+                row["sha256"] == old["sha256"], "terminal source/copy identity")
+        data = regular(ROOT / row["copy"]).read_bytes()
+        require(len(data) == row["bytes"] and sha(data) == row["sha256"], "terminal exact copied bytes")
+    for row in terminal_exclusions:
+        old = terminal_frozen[row["path"]]
+        require(row["bytes"] == old["bytes"] and row["sha256"] == old["sha256"] and
+                isinstance(row.get("reason"), str) and bool(row["reason"]), "terminal individual exclusion")
+    expected_evidence = [{"review": n,
+        "verdict": "evidence/terminal/reviews/package_0" + str(n) + "/VERDICT.json",
+        "output_pins": "evidence/terminal/reviews/package_0" + str(n) + "/OUTPUT_PINS.json",
+        "seal": "evidence/terminal/reviews/package_0" + str(n) + ("/FINAL_SEAL.json" if n == 1 else "/SEAL.json"),
+        "root_adoption": "evidence/terminal/ROOT_WHOLE_PACKAGE_REVIEW_0" + str(n) + ".json"}
+        for n in [1, 2]]
+    require(terminal.get("review_evidence") == expected_evidence, "exact two review interfaces")
+    for evidence in expected_evidence:
+        verdict = read_json(ROOT / evidence["verdict"])
+        adoption = read_json(ROOT / evidence["root_adoption"])
+        seal = read_json(ROOT / evidence["seal"])
+        output_hash = sha(regular(ROOT / evidence["output_pins"]).read_bytes())
+        require(seal.get("output_pins_sha256") == adoption.get("output_pins_sha256") == output_hash,
+                "exact reviewed output-manifest/root adoption binding")
+        require(adoption.get("whole_reviews_completed") == evidence["review"] and
+                type(adoption["whole_reviews_completed"]) is int and
+                adoption.get("minimum_whole_reviews") == 2 and
+                type(adoption.get("actionable_P0_P1_P2_P3")) is int and
+                adoption["actionable_P0_P1_P2_P3"] == 0 and
+                adoption.get("publication_ready") is False and adoption.get("published") is False and
+                adoption.get("services_held_after_pr") == 1032, "root review adoption semantics")
+        expected_status = ("ADOPT_COMPLETE_WHOLE01_ZERO_ACTIONABLE_PENDING_REQUIRED_NEW_WHOLE02"
+                           if evidence["review"] == 1 else
+                           "ADOPT_COMPLETE_WHOLE02_ZERO_ACTIONABLE_PENDING_TERMINAL_ADMIN")
+        require(adoption.get("status") == expected_status, "captured root review stage")
+        require(verdict.get("audited_head") == status["audited_head"] and
+                verdict.get("pr") == 1085 and verdict.get("problem_id") == 20000488,
+                "review verdict identity")
+        if evidence["review"] == 1:
+            require(verdict.get("verdict") == "ZERO_ACTIONABLE_P0_P1_P2_P3" and
+                    verdict.get("findings") == [] and all(type(verdict.get(k)) is int and verdict[k] == 0
+                    for k in ["P0", "P1", "P2", "P3"]), "whole01 zero finding semantics")
+        else:
+            require(verdict.get("status") == "PASS_ZERO_ACTIONABLE_P0_P1_P2_P3" and
+                    verdict.get("actionable_findings") == [] and
+                    verdict.get("root_adoption_required") is True and
+                    verdict.get("publication_ready_set_by_this_review") is False and
+                    all(type(verdict.get("severity_counts", {}).get(k)) is int and
+                    verdict["severity_counts"][k] == 0 for k in ["P0", "P1", "P2", "P3"]),
+                    "whole02 zero finding semantics")
     require(regular(ROOT / "paper.pdf").read_bytes().startswith(b"%PDF-"), "paper PDF signature")
     archive_verified = False
     archive = ROOT / ARCHIVE
@@ -115,8 +200,9 @@ def verify(check_archive=True, check_deposit=True, deposit=None, require_deposit
     return {"passed": True, "payload_members_verified": len(names), "exact_historical_copies": len(copies),
             "individual_exclusions": len(excluded), "archive_verified": archive_verified,
             "external_deposit_binding_verified": binding_verified,
-            "publication_ready": False, "new_whole_reviews": 0,
-            "scope": "Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending."}
+            "publication_ready": False, "new_whole_reviews": 2,
+            "terminal_exact_copies": len(terminal_copies), "terminal_individual_exclusions": len(terminal_exclusions),
+            "scope": "Finite custody and declared-scope checks only. Universal proofs are in paper.tex; two complete whole reviews are recorded, external root terminal integrity adoption remains required, and services are held after PR1032."}
 
 def main():
     p = argparse.ArgumentParser()
