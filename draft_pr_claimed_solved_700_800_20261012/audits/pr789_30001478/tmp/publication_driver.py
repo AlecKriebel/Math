@@ -21,12 +21,83 @@ def load_tool():
     z.STATE_DIR=T/"zenodo-state-private"
     z.STATE_DIR.mkdir(mode=0o700,exist_ok=True);os.chmod(z.STATE_DIR,0o700)
     return z
+def review_path(relative):
+    need(isinstance(relative,str)and relative and"\\"not in relative
+         and not relative.startswith("/")and all(p not in("","..",".")for p in relative.split("/")),
+         "Unsafe review binding path")
+    p=T
+    for part in relative.split("/"):
+        p=p/part
+        need(not p.is_symlink(),"Review binding symlink")
+    need(p.is_file()and p.stat().st_nlink==1,"Review binding must be a single regular file")
+    return p
+def exact_hash(path,pin):
+    need(isinstance(pin,str)and len(pin)==64 and all(c in"0123456789abcdef"for c in pin)
+         and hashlib.sha256(path.read_bytes()).hexdigest()==pin,"Review artifact digest differs")
+def completed_reviews(g,inv):
+    need(type(g.get("actual_whole_preprint_rounds"))is int
+         and g["actual_whole_preprint_rounds"]>=2
+         and g.get("final_current_round_clean")is True,"Strict completed-review gate")
+    records=g.get("completed_whole_reviews")
+    need(type(records)is list and len(records)==g["actual_whole_preprint_rounds"],"Missing completed-review bindings")
+    identities=set()
+    for index,row in enumerate(records,1):
+        need(type(row)is dict and type(row.get("round"))is int and row["round"]==index
+             and row.get("freshly_initialized")is True
+             and isinstance(row.get("reviewer"),str)and row["reviewer"].startswith("/root/pr789_whole_preprint_round")
+             and row["reviewer"]not in identities,"Distinct fresh completed reviewers required")
+        identities.add(row["reviewer"])
+        packet=row.get("packet")
+        need(isinstance(packet,str)and"/"not in packet and packet.startswith("whole_preprint_round"),
+             "Unexpected review packet")
+        mf=review_path(packet+"/MANIFEST.json");exact_hash(mf,row["manifest_sha256"])
+        checker=row.get("checker_name")
+        need(isinstance(checker,str)and"/"not in checker and checker.endswith(".py"),"Unsafe review checker")
+        exact_hash(review_path(packet+"/"+checker),row["checker_sha256"])
+        entries=json.loads(mf.read_text())["files"]
+        entries=entries if isinstance(entries,list)else[dict(path=n,**v)for n,v in entries.items()]
+        actual=set()
+        for entry in entries:
+            name=entry["path"];need(name not in actual and name!="MANIFEST.json","Repeated review entry");actual.add(name)
+            p=review_path(packet+"/"+name);exact_hash(p,entry["sha256"]);need(p.stat().st_size==entry["bytes"],"Review size")
+        actual_files=set();actual_dirs=set()
+        for item in(T/packet).rglob("*"):
+            need(not item.is_symlink(),"Review packet symlink")
+            relative=item.relative_to(T/packet).as_posix()
+            if item.is_dir():actual_dirs.add(relative)
+            else:
+                need(item.is_file()and item.stat().st_nlink==1,"Nonregular/multiply linked review packet entry")
+                actual_files.add(relative)
+        expected_dirs={str(parent)for name in actual for parent in Path(name).parents if str(parent)!="."}
+        need(actual_files==actual|{"MANIFEST.json"}and actual_dirs==expected_dirs,
+             "Review closed inventory differs")
+        receipt_path=review_path(row["root_replay_receipt"]);exact_hash(receipt_path,row["root_replay_sha256"])
+        receipt=json.loads(receipt_path.read_text())
+        need(receipt.get("result")=="PASS"and receipt.get("completed")is True
+             and receipt.get("problem")=="30001478"and receipt.get("pr")==789
+             and receipt.get("original_scientific_head")=="aa44dec3baf8c1cd179cf8b55f32be95c74ee81a"
+             and receipt.get("reviewer")==row["reviewer"]
+             and receipt.get("manifest_sha256")==row["manifest_sha256"]
+             and receipt.get("checker_sha256")==row["checker_sha256"]
+             and receipt.get("source_manifest_sha256")==row["reviewed_source_manifest_sha256"]
+             and receipt.get("publication_files")==row["reviewed_publication_files"]
+             and type(row.get("actionable_issues"))is int
+             and type(receipt.get("review_actionable_issues"))is int
+             and receipt["review_actionable_issues"]==row["actionable_issues"]
+             and row["actionable_issues"]>=0,"Completed root-review receipt differs")
+        if index==len(records):
+            need(row["actionable_issues"]==0
+                 and row["reviewed_source_manifest_sha256"]==inv["source_manifest_sha256"]
+                 and row["reviewed_publication_files"]==inv["files"],"Final review does not clear the current exact package")
+    return records
+
 def gate():
     g=json.loads((T/"FINAL_READINESS.json").read_text())
     need(g["result"]=="PASS"and g["pr"]==789 and g["problem"]=="30001478"
          and g["actual_whole_preprint_rounds"]>=2 and g["final_current_round_clean"],
          "Completed independent whole-preprint reviews required")
     inv=json.loads((P/"PACKAGE_INVENTORY.json").read_text())
+    completed_reviews(g,inv)
     need(inv["source_manifest_sha256"]==g["source_manifest_sha256"]
          and inv["files"]==g["publication_files"],"Frozen inventory/gate differs")
     for row in inv["files"]:
@@ -92,6 +163,7 @@ def main():
     stage=json.loads((U/"STAGE_RECEIPT.json").read_text())
     need(stage["state"]=="ready_to_publish"and not stage["metadata_normalizations"],"Exact metadata stage required")
     if args.command=="publish":
+        fresh_eligibility(g)
         intent=U/"PUBLICATION_INTENT.json"
         if intent.exists():
             out=z.run(argparse.Namespace(command="inspect",manifest=manifest,sandbox=False,check_doi=True))
