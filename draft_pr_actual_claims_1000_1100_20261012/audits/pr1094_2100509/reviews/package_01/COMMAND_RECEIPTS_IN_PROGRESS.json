@@ -1,0 +1,1205 @@
+{
+  "commands": [
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "normal extracted default binding absent",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"binding\": {\"status\": \"ABSENT_ALLOWED\", \"strict\": false}, \"payload_files\": 73, \"status\": \"PASS\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-checks.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "normal fresh checks",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"arithmetic\": \"exact univariate rational polynomial coefficients\", \"detected_faults\": {\"distinct_eigenvalue_scalar_cutoff\": true, \"raw_nilpotent_cutoff\": true, \"reversed_arrow_order\": true, \"reversed_product_rejects_valid_stage\": true, \"unmatched_scalar_drift\": true}, \"direct_bracket_stages\": 515, \"generic_jet_scalar_components\": 1575, \"historical_program_replay\": false, \"n1\": \"Alternating two-form torsion vanishes; scalar plateau bump is the written proof.\", \"optimized_mode_uses_explicit_guards\": true, \"schedule_families\": 576, \"schedule_stages\": 4778, \"status\": \"PASS\", \"universal_proof\": \"paper.tex\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-support.zip"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "normal fresh ZIP",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "PASS: wrote closed deterministic stored ZIP (489979 bytes)\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-pdf"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "normal real Tectonic compile",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"compiler\": \"Tectonic 0.16.9\", \"layout_review_required\": \"Every newly changed PDF page must be visually inspected.\", \"overfull_boxes\": 0, \"pdf_bytes\": 69486, \"status\": \"PASS\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/kit/scripts/verify_kit.py",
+        "--require-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/kit",
+      "expected_success": true,
+      "label": "normal canonical strict binding",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"binding\": {\"files\": 2, \"status\": \"PRESENT_VERIFIED\", \"strict\": true}, \"payload_files\": 73, \"status\": \"PASS\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py",
+        "--binding",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/missing.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal explicitly missing binding",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 11, in main\n    'binding':binding_check(args.binding,args.require_binding)},sort_keys=True))\n              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 125, in binding_check\n    require(not required and path is None, 'required or explicit binding is absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: required or explicit binding is absent\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py",
+        "--require-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal required missing binding",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 11, in main\n    'binding':binding_check(args.binding,args.require_binding)},sort_keys=True))\n              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 125, in binding_check\n    require(not required and path is None, 'required or explicit binding is absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: required or explicit binding is absent\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject run_checks.py target 0",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject run_checks.py target 1",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-hardlink"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject run_checks.py target 2",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-hardlink\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-leaf-link"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject run_checks.py target 3",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-leaf-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-ancestor-link/absent"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject run_checks.py target 4",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-ancestor-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject run_checks.py target 5",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 97, in fresh_output\n    require(p != r and r not in p.parents and p not in r.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output overlaps protected kit: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject run_checks.py target 6",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-existing"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject run_checks.py target 7",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-existing\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject run_checks.py target 8",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_support.py target 0",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_support.py target 1",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-hardlink"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_support.py target 2",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-hardlink\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-leaf-link"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_support.py target 3",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-leaf-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-ancestor-link/absent"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_support.py target 4",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-ancestor-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_support.py target 5",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 97, in fresh_output\n    require(p != r and r not in p.parents and p not in r.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output overlaps protected kit: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_support.py target 6",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-existing"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_support.py target 7",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-existing\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_support.py target 8",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_pdf.py target 0",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_pdf.py target 1",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-hardlink"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_pdf.py target 2",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-hardlink\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-leaf-link"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_pdf.py target 3",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-leaf-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-ancestor-link/absent"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_pdf.py target 4",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-ancestor-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_pdf.py target 5",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 97, in fresh_output\n    require(p != r and r not in p.parents and p not in r.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output overlaps protected kit: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_pdf.py target 6",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-existing"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_pdf.py target 7",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/normal-existing\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal reject build_pdf.py target 8",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal dangling manifest symlink",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 9, in main\n    data=verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 62, in verify_payload\n    files = inventory()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 56, in inventory\n    result.append(regular(Path(base) / name))\n                  ~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 27, in regular\n    path = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/MANIFEST.json\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal duplicate manifest record",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 9, in main\n    data=verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 69, in verify_payload\n    require(len(names) == len(set(names)), 'duplicate manifest paths')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: duplicate manifest paths\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "normal corrupt present default binding",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 11, in main\n    'binding':binding_check(args.binding,args.require_binding)},sort_keys=True))\n              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 128, in binding_check\n    require(set(binding) == {'schema', 'metadata', 'files'}, 'binding keys')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: binding keys\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "optimized extracted default binding absent",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"binding\": {\"status\": \"ABSENT_ALLOWED\", \"strict\": false}, \"payload_files\": 73, \"status\": \"PASS\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-checks.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "optimized fresh checks",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"arithmetic\": \"exact univariate rational polynomial coefficients\", \"detected_faults\": {\"distinct_eigenvalue_scalar_cutoff\": true, \"raw_nilpotent_cutoff\": true, \"reversed_arrow_order\": true, \"reversed_product_rejects_valid_stage\": true, \"unmatched_scalar_drift\": true}, \"direct_bracket_stages\": 515, \"generic_jet_scalar_components\": 1575, \"historical_program_replay\": false, \"n1\": \"Alternating two-form torsion vanishes; scalar plateau bump is the written proof.\", \"optimized_mode_uses_explicit_guards\": true, \"schedule_families\": 576, \"schedule_stages\": 4778, \"status\": \"PASS\", \"universal_proof\": \"paper.tex\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-support.zip"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "optimized fresh ZIP",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "PASS: wrote closed deterministic stored ZIP (489979 bytes)\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-pdf"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "optimized real Tectonic compile",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"compiler\": \"Tectonic 0.16.9\", \"layout_review_required\": \"Every newly changed PDF page must be visually inspected.\", \"overfull_boxes\": 0, \"pdf_bytes\": 69486, \"status\": \"PASS\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/kit/scripts/verify_kit.py",
+        "--require-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/kit",
+      "expected_success": true,
+      "label": "optimized canonical strict binding",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"binding\": {\"files\": 2, \"status\": \"PRESENT_VERIFIED\", \"strict\": true}, \"payload_files\": 73, \"status\": \"PASS\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py",
+        "--binding",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/missing.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized explicitly missing binding",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 11, in main\n    'binding':binding_check(args.binding,args.require_binding)},sort_keys=True))\n              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 125, in binding_check\n    require(not required and path is None, 'required or explicit binding is absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: required or explicit binding is absent\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py",
+        "--require-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized required missing binding",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 11, in main\n    'binding':binding_check(args.binding,args.require_binding)},sort_keys=True))\n              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 125, in binding_check\n    require(not required and path is None, 'required or explicit binding is absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: required or explicit binding is absent\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject run_checks.py target 0",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject run_checks.py target 1",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-hardlink"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject run_checks.py target 2",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-hardlink\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-leaf-link"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject run_checks.py target 3",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-leaf-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-ancestor-link/absent"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject run_checks.py target 4",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-ancestor-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject run_checks.py target 5",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 97, in fresh_output\n    require(p != r and r not in p.parents and p not in r.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output overlaps protected kit: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject run_checks.py target 6",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-existing"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject run_checks.py target 7",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-existing\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject run_checks.py target 8",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 144, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py\", line 140, in main\n    out=fresh_output(args.out) if args.out else None\n        ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_support.py target 0",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_support.py target 1",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-hardlink"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_support.py target 2",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-hardlink\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-leaf-link"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_support.py target 3",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-leaf-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-ancestor-link/absent"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_support.py target 4",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-ancestor-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_support.py target 5",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 97, in fresh_output\n    require(p != r and r not in p.parents and p not in r.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output overlaps protected kit: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_support.py target 6",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-existing"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_support.py target 7",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-existing\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_support.py target 8",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 22, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_support.py\", line 20, in main\n    out=fresh_output(args.out);payload=archive_bytes();write_new(out,payload)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_pdf.py target 0",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_pdf.py target 1",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/paper.pdf\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-hardlink"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_pdf.py target 2",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-hardlink\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-leaf-link"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_pdf.py target 3",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-leaf-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-ancestor-link/absent"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_pdf.py target 4",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 94, in fresh_output\n    p = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-ancestor-link\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_pdf.py target 5",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 97, in fresh_output\n    require(p != r and r not in p.parents and p not in r.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output overlaps protected kit: ' + str(p))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output overlaps protected kit: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/new-member\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_pdf.py target 6",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-existing"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_pdf.py target 7",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/optimized-existing\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized reject build_pdf.py target 8",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 32, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/build_pdf.py\", line 13, in main\n    output=fresh_output(args.out_dir,True);verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 95, in fresh_output\n    require(not p.exists(), 'output must be absent: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: output must be absent: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized dangling manifest symlink",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 9, in main\n    data=verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 62, in verify_payload\n    files = inventory()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 56, in inventory\n    result.append(regular(Path(base) / name))\n                  ~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 27, in regular\n    path = no_links(path)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 21, in no_links\n    raise ValueError('symlink component: ' + str(node))\nValueError: symlink component: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/MANIFEST.json\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized duplicate manifest record",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 9, in main\n    data=verify_payload()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 69, in verify_payload\n    require(len(names) == len(set(names)), 'duplicate manifest paths')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: duplicate manifest paths\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": false,
+      "label": "optimized corrupt present default binding",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 12, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/verify_kit.py\", line 11, in main\n    'binding':binding_check(args.binding,args.require_binding)},sort_keys=True))\n              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 128, in binding_check\n    require(set(binding) == {'schema', 'metadata', 'files'}, 'binding keys')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/safety.py\", line 15, in require\n    raise ValueError(message)\nValueError: binding keys\n",
+      "stdout": ""
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/lexical-link/../normal-lexical-output.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "normal finding: lexical symlink dot-dot accepted",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"arithmetic\": \"exact univariate rational polynomial coefficients\", \"detected_faults\": {\"distinct_eigenvalue_scalar_cutoff\": true, \"raw_nilpotent_cutoff\": true, \"reversed_arrow_order\": true, \"reversed_product_rejects_valid_stage\": true, \"unmatched_scalar_drift\": true}, \"direct_bracket_stages\": 515, \"generic_jet_scalar_components\": 1575, \"historical_program_replay\": false, \"n1\": \"Alternating two-form torsion vanishes; scalar plateau bump is the written proof.\", \"optimized_mode_uses_explicit_guards\": true, \"schedule_families\": 576, \"schedule_stages\": 4778, \"status\": \"PASS\", \"universal_proof\": \"paper.tex\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit/scripts/run_checks.py",
+        "--out",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/lexical-link/../optimized-lexical-output.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/.scratch/kit",
+      "expected_success": true,
+      "label": "optimized finding: lexical symlink dot-dot accepted",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"arithmetic\": \"exact univariate rational polynomial coefficients\", \"detected_faults\": {\"distinct_eigenvalue_scalar_cutoff\": true, \"raw_nilpotent_cutoff\": true, \"reversed_arrow_order\": true, \"reversed_product_rejects_valid_stage\": true, \"unmatched_scalar_drift\": true}, \"direct_bracket_stages\": 515, \"generic_jet_scalar_components\": 1575, \"historical_program_replay\": false, \"n1\": \"Alternating two-form torsion vanishes; scalar plateau bump is the written proof.\", \"optimized_mode_uses_explicit_guards\": true, \"schedule_families\": 576, \"schedule_stages\": 4778, \"status\": \"PASS\", \"universal_proof\": \"paper.tex\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/independent_controls.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01",
+      "expected_success": true,
+      "label": "normal independent coordinate and geometry controls",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"fault_controls\": {\"last_arrow_first_nonzero\": true, \"nilpotent_cutoff_size4_detected_size3_correctly_allowed\": true, \"two_nonreal_pairs_both_become_real\": true, \"unmatched_scalar_nonzero\": true, \"wrong_order_rejects_valid\": true}, \"formal_certification\": false, \"free_transverse_derivative_checks\": 119, \"full_scalar_torsion_components\": 5474, \"generic_coordinate_jets\": 119, \"imports_candidate_code\": false, \"nontriangular_coordinate_conjugations\": 102, \"normal_bundle_models\": 48, \"status\": \"PASS\", \"universal_statement_basis\": \"Written independent derivation, not finite extrapolation\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01/independent_controls.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/reviews/package_01",
+      "expected_success": true,
+      "label": "optimized independent coordinate and geometry controls",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"fault_controls\": {\"last_arrow_first_nonzero\": true, \"nilpotent_cutoff_size4_detected_size3_correctly_allowed\": true, \"two_nonreal_pairs_both_become_real\": true, \"unmatched_scalar_nonzero\": true, \"wrong_order_rejects_valid\": true}, \"formal_certification\": false, \"free_transverse_derivative_checks\": 119, \"full_scalar_torsion_components\": 5474, \"generic_coordinate_jets\": 119, \"imports_candidate_code\": false, \"nontriangular_coordinate_conjugations\": 102, \"normal_bundle_models\": 48, \"status\": \"PASS\", \"universal_statement_basis\": \"Written independent derivation, not finite extrapolation\"}\n"
+    },
+    {
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/zenodo_deposit_tool/zenodo.py",
+        "check",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509/preprint_v1_0/zenodo-deposit.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1094_2100509",
+      "expected_success": true,
+      "label": "real repository uploader LOCAL check",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\n  \"environment\": \"production\",\n  \"title\": \"A torus-collar proof of the real-spectrum compact-support classification for Nijenhuis operators\",\n  \"files\": [\n    {\n      \"name\": \"paper.pdf\",\n      \"size\": 69486,\n      \"sha256\": \"a1e2da77dd739bcc7ddc4dd8ba916c99010450e4224ae7a52d01d34c98960e72\"\n    },\n    {\n      \"name\": \"pr1094_supportkit_v1.0.zip\",\n      \"size\": 489979,\n      \"sha256\": \"bbbaaf6e58b0c5ae90b7a873ab0032733ef2cf1452c54119d2ede126ad8f0677\"\n    }\n  ]\n}\n"
+    }
+  ],
+  "count": 79
+}

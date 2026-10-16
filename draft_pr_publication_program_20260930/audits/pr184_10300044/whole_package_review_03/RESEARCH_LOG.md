@@ -1,0 +1,9 @@
+# Whole-package review 03 research log
+
+- 2026-10-14T04:48:00.854881+00:00 — 35%: Independently read the entire current manuscript and critical primary statements; initial favorable proof assessment sealed before prior opinions. Candidate manifest SHA256 fd444f73098ff57853bd0e080b70b68bc85e008cccae5bad3b742a5db9c378dd. No candidate/package/native mutations. Historical priority and final2003 text comparison remain unresolved by design.
+
+- 2026-10-14T04:50:47.031375+00:00 — 70%: All four PDF pages visually read, no layout or content mismatch found. Packet180 entries/179 self-excluding payload hashes pass; 216 proposed native files match. Fresh eight baselines pass. Harness encountered ENOSPC after thirteen recorded negative runs; only own already-inspected PDF render/text intermediates removed, hashes retained in PDF_INSPECTION.json. This is a reviewer storage interruption, not a package failure. Rerunning to complete fresh evidence.
+
+- 2026-10-14T04:55:43.952945+00:00 — 100%: Whole assigned review completed. No substantive required repair remains. Eight fresh ordinary/optimized baselines and22 intended negative failures pass; all41metadata fields and read-only local uploader accepted; corrected MMT source identity and Calegari2003 citation independently metadata-authenticated. All6authored archive policies,172archived-source copies,180ZIPentries/179payloadpins,216nativefiles and17original preservations verified. Exact theorem passes with cited classical inputs; historical priority remains unresolved. No counters/publication/MAIN mutation. Final recheck and0444 SHA sealing follow.
+
+- 2026-10-14T04:57:36.350405+00:00 — 100% final checkpoint: exact current packet and pending02 reauthenticated unchanged; all17original source bytes and0444 modes pass. Final verdict PASS, no substantive repairs. All own public review artifacts now sealed0444; private source/copy/mutation material excluded.

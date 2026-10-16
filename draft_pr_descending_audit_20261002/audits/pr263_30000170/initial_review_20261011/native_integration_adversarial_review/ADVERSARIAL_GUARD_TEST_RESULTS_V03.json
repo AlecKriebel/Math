@@ -1,0 +1,283 @@
+{
+  "schema": "pr263-adversarial-initial-guard-tests-v3",
+  "UTC": "2026-10-11T23:27:23.824304+00:00",
+  "helper": {
+    "path": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr263_30000170/initial_review_20261011/integration_preparation/prepare_native_reconciliation.py",
+    "bytes": 13101,
+    "sha256": "7833158162faf6d68dc7d293ee42926fa357a6116004ab87636c6417ba0ece20"
+  },
+  "harness_source": {
+    "path": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr263_30000170/initial_review_20261011/native_integration_adversarial_review/adversarial_guard_harness_v02.py",
+    "bytes": 16650,
+    "sha256": "be7400a004598defda50a529d90bc1bad51e22df82b6679c22f940faa22820df"
+  },
+  "exact_source_executed": true,
+  "instrumentation": [
+    "W/ROOT redirect to review-owned synthetic fixture.",
+    "Pinned-reader import provides independent stub; stop at first read-tree.",
+    "Private Git configuration subprocess is stubbed."
+  ],
+  "provider_calls": 0,
+  "primary_Git_metadata_access": 0,
+  "remote_operations": 0,
+  "actual_Git_operations": 0,
+  "fixture_not_root_candidate": true,
+  "passed": 36,
+  "test_count": 36,
+  "tests": [
+    {
+      "name": "positive_complete_fixture",
+      "expected": "reached_private_writes",
+      "observed": "reached_private_writes",
+      "passed": true,
+      "reason": "Passed initial guards; stop before any private index/object write"
+    },
+    {
+      "name": "foreign_destination",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Unowned destination"
+    },
+    {
+      "name": "wrong_unsolved_target_placement",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Unowned destination"
+    },
+    {
+      "name": "path_traversal",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Noncanonical path"
+    },
+    {
+      "name": "doubled_slash",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Noncanonical path"
+    },
+    {
+      "name": "duplicate_destination",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Selection census/uniqueness"
+    },
+    {
+      "name": "missing_original17",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Root acceptance and complete target selection differ"
+    },
+    {
+      "name": "incorrect_sha256",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Full source drift: attempts/30000170/FROZEN_MANIFEST.json"
+    },
+    {
+      "name": "incorrect_byte_count",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Full source drift: attempts/30000170/FROZEN_MANIFEST.json"
+    },
+    {
+      "name": "source_destination_mismatch",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Source/destination candidate path differs"
+    },
+    {
+      "name": "wrong_author",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Selection literal bindings differ"
+    },
+    {
+      "name": "tree_oid_main",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Literal MAIN must be a commit"
+    },
+    {
+      "name": "main_kind_not_commit",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Literal MAIN must be a commit"
+    },
+    {
+      "name": "duplicate_json_key",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Duplicate JSON key author"
+    },
+    {
+      "name": "unbound_acceptance_pin",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Candidate acceptance drift"
+    },
+    {
+      "name": "unbound_original_manifest",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Original binding/manifest drift"
+    },
+    {
+      "name": "unbound_original_binding",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Original binding/manifest drift"
+    },
+    {
+      "name": "private_driver_remote_present",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Private driver must have no remotes"
+    },
+    {
+      "name": "queue_wrong_base_blob",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Whole QUEUE not explicit MAIN body"
+    },
+    {
+      "name": "queue_mode_100755",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "QUEUE mode/type changed"
+    },
+    {
+      "name": "existing_top_target",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Existing independent target cannot be overwritten"
+    },
+    {
+      "name": "existing_unsolved_target",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Existing independent target cannot be overwritten"
+    },
+    {
+      "name": "empty_tree_foreign",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Empty trees cannot be preserved by index"
+    },
+    {
+      "name": "target_ancestor_leaf",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Selected ancestor collision"
+    },
+    {
+      "name": "queue_exact_row_control_mismatch",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Root exact row controls differ"
+    },
+    {
+      "name": "queue_outside_target_row",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "QUEUE change must be exactly one row"
+    },
+    {
+      "name": "utf8_invalid_selected_body",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+    },
+    {
+      "name": "nul_selected_body",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Binary pretending to be UTF8"
+    },
+    {
+      "name": "unknown_binary_path",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Unknown binary body"
+    },
+    {
+      "name": "wrong_published_pdf_bytes",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Unknown binary body"
+    },
+    {
+      "name": "historical9_altered_despite_new_acceptance_pins",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Historical original body changed"
+    },
+    {
+      "name": "acceptance_wrong_schema",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Candidate not accepted"
+    },
+    {
+      "name": "acceptance_false",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Candidate not accepted"
+    },
+    {
+      "name": "acceptance_missing_target_body",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Root acceptance and complete target selection differ"
+    },
+    {
+      "name": "selected_source_symlink",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Nonregular/foreign source"
+    },
+    {
+      "name": "unselected_candidate_file",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "reason": "Candidate/accepted full inventory differs"
+    }
+  ],
+  "remaining_gap": "Actual selected bodies/raw tree/commit and native provider execution/readback require separate audit.",
+  "review_completion_estimate_percent": 45
+}

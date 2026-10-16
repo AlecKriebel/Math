@@ -1,0 +1,385 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\epi}{\operatorname{epi}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\title{Nonunique nearest stable complex quadratics}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{11 October 2026\quad\textnormal{(research note; unrefereed preprint)}}
+\begin{document}
+\maketitle
+\begin{abstract}
+The closed set of complex monic quadratics with roots in the closed left half-plane
+is not prox-regular at $z^2$. For every fixed positive-definite real inner product
+on coefficient space, unstable quadratics with multiple attained global nearest
+stable quadratics occur arbitrarily close to $z^2$. The conclusion also holds in
+the full exact-degree quadratic coefficient space. A direct proof exhibits a
+limiting normal whose cubic support dominates a quartic squared displacement.
+The same obstruction disproves set prox-regularity of the whole abscissa epigraph.
+In contrast, the monic quadratic abscissa is function prox-regular at the origin
+relative to each finite limiting subgradient. Thus the historical question about
+local unique stable-polynomial projection has a negative answer for complex
+coefficients, while this example does not refute the separate function condition.
+\end{abstract}
+
+\section{Question, conventions, and result}
+Lewis \cite[\S8, pp.~166--168]{Lewis2003} asks whether the stable monic set is
+prox-regular, after specifying complex coefficients and their real Euclidean
+coefficient metric. The later Oberwolfach question \cite[p.~106, Question~1]{OWR}
+asks whether every degree-$k$ polynomial near $z^k$ has a unique nearest stable
+polynomial. That short question does not specify its coefficient field,
+normalization, or metric. We address its complex coefficient convention, which
+is explicit in the earlier set question and in the cited variational theory
+\cite{BO,BLO}. No conclusion for the real-only general question is asserted.
+
+For $p_{a,b}(z)=z^2+az+b$, identify $(a,b)\in\C^2$ with $\R^4$, in the order
+$(\Rea a,\Ima a,\Rea b,\Ima b)$. Let $\alpha(p)$ be the maximum real part of
+a root, and set
+\[
+ S=\{(a,b):\alpha(p_{a,b})\leq0\},\qquad c_0=(0,0).
+\]
+Imaginary-axis roots, including multiple roots, are allowed. For a fixed real
+symmetric positive-definite matrix $G$, write
+$\ip{u}{v}_G=u^TGv$ and $\norm{u}_G^2=u^TGu$.
+In the full coefficient space put
+\[
+ S_{\rm full}=\{(\ell,a,b)\in\C^3:\ell\ne0,
+                 \alpha(\ell z^2+az+b)\leq0\},
+ \qquad c_{\rm full}=(1,0,0).
+\]
+A nearest point always refers to a global minimum over the stated stable set.
+
+\begin{theorem}\label{thm:main}
+For every fixed positive-definite real coefficient inner product, $S$ is not
+prox-regular at $c_0$, and every neighborhood of $c_0$ contains an unstable
+quadratic with at least two distinct attained global nearest points in $S$.
+The corresponding statements hold for $S_{\rm full}$ at $c_{\rm full}$.
+The abscissa epigraph is not prox-regular as a set at height zero over either
+base point, for every fixed positive-definite real inner product on the
+respective coefficient/height space.
+\end{theorem}
+
+The first-order polynomial root and normal calculus and the connection between
+prox-regularity and projection are classical \cite{BO,Lewis2003,PRT}.
+The underlying stability-boundary cusp is a positive Whitney-umbrella geometry;
+the related real-quartic boundary was studied by Bottema \cite{Bottema}
+and is reviewed as a Whitney umbrella by Kirillov--Overton \cite{KO}.
+We give the coefficient normal, metric obstruction, and global
+attainment arguments directly. This note makes no assertion of firstness or
+of the question's present-day openness. The accompanying priority memorandum
+records the primary sources checked and the remaining inaccessible bodies.
+Nearest-stable coefficient approximation was already studied by Moses--Liu
+\cite{ML} for real disk-stable polynomials, including recognition of possible
+global nonuniqueness, and by Orban de Xivry \cite[Chapter~4]{Orban} for complex
+half-plane coefficients. Our assertion concerns attained ties in every
+neighborhood of the specified quadratic base, with all fixed coefficient
+inner products; generic nonconvexity or competing local algorithmic minima
+alone do not establish that assertion.
+
+\section{A limiting normal that is not proximal}
+For a locally closed set $C$ in a finite-dimensional inner product space,
+a vector $v$ is a proximal normal at $x\in C$ if, for some $\tau>0$, $x$ is a
+nearest point to $x+\tau v$; equivalently, a local quadratic upper support
+can be used and the normal step made sufficiently small. Limits of proximal
+normals at convergent points are limiting normals. Set prox-regularity at
+$x_0$ requires a uniform local projection property near each limiting normal
+at $x_0$ \cite[Definition~1.1 and Proposition~1.2]{PRT}. In particular, every
+limiting normal at $x_0$ must itself be proximal there. For closed sets in finite
+dimension, set prox-regularity at $x_0$ is equivalent to single-valued nearest
+projection on some neighborhood of $x_0$ \cite[Theorem~1.3(a),(k)]{PRT}.
+These facts apply in any fixed inner product, by a linear isometry to Euclidean
+space. Locally closed sets may be clipped inside a closed ball, with the
+base point in its interior.
+
+For $t>0$ take the stable path
+\begin{equation}\label{eq:path}
+ p_t(z)=z^2+t^2z+t^2+it^3=(z+it)(z+t^2-it),
+ \qquad c_t=(t^2,0,t^2,t^3).
+\end{equation}
+The root $\lambda=-it$ is simple, with the other root strictly to its left.
+Thus $\alpha$ is smooth near $c_t$. Implicit differentiation in all complex
+coefficient directions gives
+\[
+ d\lambda=-\frac{\lambda\,da+db}{t^2-2it},\qquad
+ \nabla\alpha(c_t)=\gamma_t n_t,\qquad
+ \gamma_t=\frac{2}{t(t^2+4)},\quad
+ n_t=(-t,-t^2/2,-t/2,1).
+\]
+Here $n_t$ is a real support covector. In metric $G$ its representing normal
+vector is $G^{-1}n_t$.
+
+At each fixed $t$, Taylor's theorem for the local smooth constraint
+$\alpha\leq0$ yields
+$n_t^T(c-c_t)\leq K_t\norm{c-c_t}_G^2$ for nearby stable $c$.
+Expanding squared distances shows that, for a sufficiently small positive
+$\tau$, $c_t$ is the unique closest such point to $c_t+\tau G^{-1}n_t$.
+Choose the step smaller also than half the radius of that local metric ball;
+the triangle inequality excludes all points outside the ball. Consequently
+$G^{-1}n_t$ is an actual proximal normal to $S$, without requiring a uniform
+$K_t$ or a uniform root gap.
+
+Let $n_0=(0,0,0,1)$. Since $c_t\to c_0$ and $n_t\to n_0$,
+$G^{-1}n_0$ is a limiting normal at $c_0$. However,
+\begin{equation}\label{eq:obstruction}
+ n_0^Tc_t=t^3,\qquad
+ \norm{c_t}^2=2t^4+t^6.
+\end{equation}
+More generally, writing $e=(1,0,1,0)$ and $f=(0,0,0,1)$,
+\[
+ \norm{c_t}_G^2=t^4(e^TGe+2t e^TGf+t^2f^TGf),\qquad e^TGe>0.
+\]
+For every $\tau>0$,
+\[
+ \norm{c_t-\tau G^{-1}n_0}_G^2
+       -\norm{\tau G^{-1}n_0}_G^2
+       =\norm{c_t}_G^2-2\tau t^3<0
+\]
+when $t$ is sufficiently small. The competitors converge to the base point.
+Thus $G^{-1}n_0$ is not even a local proximal normal at $c_0$, disproving
+prox-regularity for every fixed $G$.
+
+The continuous quadratic formula
+\begin{equation}\label{eq:alpha}
+ \alpha(a,b)=-\frac{\Rea a}{2}
+  +\frac12\sqrt{\frac{|a^2-4b|+\Rea(a^2-4b)}{2}}
+\end{equation}
+shows that $S$ is closed. It is nonempty and all distances to it are attained:
+a minimizing sequence is bounded by comparison with $c_0$, and has a
+convergent subsequence. The projection characterization therefore gives
+non-single-valued projections in every neighborhood of $c_0$, with at least
+two distinct minimizers. Their inputs are unstable, since a stable input has
+only itself as a distance-zero nearest point. This proves the monic assertion.
+
+\begin{remark}[Boundary chart and real coefficients]\label{rem:chart}
+Writing $a=x+iy,b=u+iv$ and substituting $z=w-iy/2$ gives
+$w^2+xw+U+iV$, where $U=u+y^2/4$ and $V=v-xy/2$.
+The quadratic formula gives the exact closed stability chart
+\[
+ x\geq0,\qquad U\geq0,\qquad V^2\leq x^2U.
+\]
+Indeed its largest root real part is
+$(-x+\sqrt{(|x^2-4U-4iV|+x^2-4U)/2})/2$.
+Stability is equivalent to $x\geq0$ and
+$|x^2-4U-4iV|\leq x^2+4U$. Squaring with its right side nonnegative gives
+precisely the displayed inequalities, including $x=0$ and $U=0$.
+The path \eqref{eq:path} lies on the upper smooth
+sheet $V=x\sqrt U$. This is the positive umbrella solid discussed above.
+For real monic quadratics the stability set instead is the convex orthant
+$a\geq0,b\geq0$; projection is unique for every fixed inner product. The
+imaginary constant coefficient in \eqref{eq:path} is essential to this example.
+\end{remark}
+
+\section{Full degree and the epigraph}
+In coordinate order
+$(\Rea\ell,\Ima\ell,\Rea a,\Ima a,\Rea b,\Ima b)$,
+direct differentiation at the same monic points gives
+\[
+ d\lambda=-\frac{\lambda^2\,d\ell+\lambda\,da+db}{t^2-2it},\qquad
+ \nabla\alpha(1,t^2,t^2+it^3)=\gamma_t N_t,
+\]
+\[
+ N_t=(t^3/2,-t^2,-t,-t^2/2,-t/2,1)
+       \longrightarrow N_0=(0,0,0,0,0,1).
+\]
+Both leading-coefficient directions are included. The earlier argument makes
+$G^{-1}N_t$ proximal locally for each full coefficient metric $G$.
+The displacement from $c_{\rm full}$ has
+zero leading coordinates, support $t^3$, and a squared metric norm of order
+$t^4$ with a positive leading coefficient. Hence the limiting normal
+$G^{-1}N_0$ is not proximal.
+
+The exact-degree stable set is not globally closed, so attainment requires
+localization. On $\ell\ne0$ the abscissa equals $\alpha(a/\ell,b/\ell)$ and
+is continuous. Choose a closed metric ball $B$ of radius $R$ about
+$c_{\rm full}$ with $\ell\ne0$ throughout. Then
+$C=S_{\rm full}\cap B$ is nonempty and compact. Its local normals along
+the path are unchanged, so $C$ fails prox-regularity at the base. For an
+input $q$ with $\norm{q-c_{\rm full}}_G<R/3$, every stable point outside
+$B$ is more than $2R/3$ from $q$, while the stable base is less than $R/3$
+away. Boundary points of $B$ cannot minimize either. Thus the global nearest
+points in $C$ and $S_{\rm full}$ agree. Applying the closed-set projection
+characterization to $C$ proves the full-degree assertion of
+Theorem~\ref{thm:main}, including global attainment and unstable inputs.
+
+At $(c_t,0)$ the epigraph has smooth constraint $\alpha(c)-r\leq0$.
+Its outward proximal normal covectors can be scaled to
+\[
+ v_t=(n_t,-1/\gamma_t)\longrightarrow(n_0,0).
+\]
+For full degree replace $n_t$ by $N_t$.
+For any fixed positive-definite coefficient/height metric $H$, their
+representing proximal normal vectors are $H^{-1}v_t$. Comparison with the
+epigraph points $(c_t,0)$ again gives support $t^3$ and squared distance of
+order $t^4$. The limit is not proximal at height zero, proving the epigraph
+assertion. The monic epigraph is closed; in full degree a small closed ball
+inside $\ell\ne0$ supplies local closedness. The limiting support covector is
+horizontal. Its representing vector is horizontal for a coefficient/height
+product metric, and can tilt when the metric mixes those coordinates.
+
+\section{Why the function condition is different}
+Function prox-regularity at a point relative to a finite limiting subgradient
+$v_0$ localizes the subgradients near $v_0$ as well as the base points and
+function values. Its epigraph correspondence is at the normal $(v_0,-1)$
+\cite[Definition~1.1 and p.~205]{PR}. The preceding horizontal normal does
+not test that condition: the unscaled gradients along \eqref{eq:path}
+diverge. The distinction is substantive, as the next proposition shows.
+
+\begin{proposition}\label{prop:function}
+The monic complex quadratic abscissa \eqref{eq:alpha} is function prox-regular
+at $(0,0)$ relative to every finite limiting subgradient, in the real Euclidean
+coefficient metric. The constants may depend on the specified subgradient.
+\end{proposition}
+\begin{proof}
+Put $D=a^2-4b$, $L=(-\infty,0]\subset\C$, and
+$\Phi(D)=\sqrt{(|D|+\Rea D)/2}$. Real pairings on $\C$ are understood.
+For $D\notin L$, $\Phi$ is smooth and
+$\norm{\nabla\Phi(D)}=1/(2\sqrt{|D|})$.
+At $D=-s<0$, rationalizing the square root gives
+\[
+ \Phi(D+h)=\frac{|\Ima h|}{2\sqrt{s}}+O(|h|^2),
+\]
+so its regular, proximal, and limiting subdifferentials are the imaginary
+interval $\{iq:|q|\leq1/(2\sqrt{s})\}$. The limiting statement follows
+also by the two off-ray gradient limits at that fixed point.
+
+For $|D|\leq\delta$ one has
+\begin{equation}\label{eq:distance}
+ \Phi(D)\geq\frac{\dist(D,L)}{2\sqrt\delta}.
+\end{equation}
+For $\Rea D\geq0$, use $\dist(D,L)=|D|$ and
+$\Phi(D)\geq\sqrt{|D|/2}$. For $\Rea D<0$, use
+\[
+ \Phi(D)=\frac{|\Ima D|}{\sqrt{2(|D|-\Rea D)}}.
+\]
+At zero every finite $q$ in the convex normal cone
+$N_L(0)=\{q:\Rea q\geq0\}$ has local linear lower support by
+\eqref{eq:distance}, after choosing $\delta$ sufficiently small.
+Conversely, increments on the negative real ray force $\Rea q\geq0$.
+Off-ray gradients diverge in norm as $D\to0$, while bounded on-ray
+subgradients belong to $N_L(0)$. Hence all three subdifferentials at zero
+equal $N_L(0)$, with the limiting conclusion valid also when defined using
+limits of proximal subgradients.
+
+The global real smooth diffeomorphism $(a,b)\mapsto(a,a^2-4b)$, with inverse
+$b=(a^2-D)/4$, transports these subdifferentials exactly. First-order lower
+supports transform by the Jacobian; quadratic proximal supports transform
+by Taylor's theorem, and limits follow by continuity of the inverse
+Jacobian. In particular any limiting subgradient $v$ of $\alpha$ has
+\begin{equation}\label{eq:subgrad}
+ v=-\tfrac12e_{\Rea a}+\tfrac12 J_D(a,b)^Tq,
+ \qquad v_b=-2q,\qquad q\in\partial\Phi(D).
+\end{equation}
+This is a direct special case of the standard smooth composition calculus
+\cite[Theorem~3.1]{PR}.
+
+Fix a finite $v_0\in\partial\alpha(0,0)$. In a fixed neighborhood of $v_0$,
+\eqref{eq:subgrad} bounds $|q|\leq M$, for some $M\geq1$.
+Restrict the coefficient ball so $|D|<\delta=1/(16M^2)$ throughout.
+Every nearby base $x$ with a subgradient near $v_0$ must have $D_x\in L$:
+an off-ray gradient would have norm greater than $2M$.
+Then $\Phi(D_x)=0$ and $q\in N_L(D_x)$.
+For any comparison point $y$ in that ball and its nearest-ray point $z$,
+convex normal support and \eqref{eq:distance} give
+\[
+ q\mathbin{\cdot}(D_y-D_x)
+ \leq M\dist(D_y,L)\leq\Phi(D_y).
+\]
+Writing $\Delta=y-x$ and using the exact identity
+$D_y-D_x=J_D(x)\Delta+(\Delta a)^2$ now yields
+\[
+ \alpha(y)\geq\alpha(x)+v\mathbin{\cdot}\Delta
+       +\tfrac12q\mathbin{\cdot}(\Delta a)^2
+ \geq\alpha(x)+v\mathbin{\cdot}\Delta-\tfrac M2\norm\Delta^2.
+\]
+With curvature constant $M+1$ the inequality is strict for $y\ne x$, as in
+\cite[Definition~1.1]{PR}. It holds without needing a restriction on the
+base function value, hence in particular on the required function-attentive
+neighborhood. Formula \eqref{eq:alpha} supplies continuity. This proves the
+proposition.
+\end{proof}
+
+Cross \cite[Chapter~5]{Cross} studies the finite-subgradient function
+condition and gives a negative example for a nonlinear two-real-parameter
+matrix family (Example~5.38). Its coefficient map is
+$(x_1,x_2)\mapsto(a=0,b=-x_1^2+x_2^2)$, whose derivative at the origin
+vanishes. That example concerns the parameter metric and does not identify
+distinct nearest complex coefficient polynomials. His real-quadratic
+pointwise proximal-subgradient calculation on pp.~131--133 is also a
+different statement. Neither such parameter results nor partial smoothness
+replace the ambient support and attainment arguments above.
+
+\section*{Reproducibility and disclosure}
+The verification package contains this source, a standard-library exact
+rational verifier for the root, normal, and support identities, deterministic
+high-precision boundary controls for Proposition~\ref{prop:function}, and
+an authored source/priority memorandum. Finite checks support reproducibility;
+the limiting, universal-metric, and global projection conclusions follow
+from the proofs. No explicit unstable input together with its two minimizers
+is claimed, and no all-degree or real-only classification is supplied.
+
+AI tools were used extensively in deriving, repairing, checking, literature
+auditing, and writing this work, including independent adversarial AI-agent
+reviews. These reviews are not human peer review. This is an unrefereed
+preprint, without formal proof-assistant certification; the named author
+is responsible for the claims and citations. No outside individual was
+contacted during the research. The paper and accompanying original materials
+are licensed under Creative Commons Attribution 4.0 International.
+
+\begin{thebibliography}{10}
+\bibitem{Bottema} O. Bottema, \emph{The Routh-Hurwitz condition for the
+biquadratic equation}, Indagationes Mathematicae 18 (1956), 403--406.
+\href{https://doi.org/10.1016/S1385-7258(56)50054-6}{doi:10.1016/S1385-7258(56)50054-6}.
+\bibitem{Lewis2003} A.~S. Lewis, \emph{The mathematics of eigenvalue
+optimization}, Mathematical Programming 97 (2003), 155--176, especially
+\S8, pp.~166--168.
+\href{https://people.orie.cornell.edu/aslewis/publications/03-mathematics.pdf}{Author-hosted paper}.
+\bibitem{OWR} A.~S. Lewis, \emph{Local Structure and Algorithms in Nonsmooth
+Optimization} (joint work with J.~V. Burke and M.~L. Overton), in
+\emph{Optimization and Applications}, Oberwolfach Reports 2 (2005),
+104--106, Question~1 on p.~106.
+\href{https://doi.org/10.4171/OWR/2005/02}{doi:10.4171/OWR/2005/02}.
+\bibitem{BO} J.~V. Burke and M.~L. Overton, \emph{Variational analysis of
+the abscissa mapping for polynomials}, SIAM Journal on Control and
+Optimization 39 (2001), 1651--1676.
+\href{https://sites.math.washington.edu/~burke/papers/reprints/37-va-abs-poly.pdf}{Author-hosted paper}.
+\bibitem{BLO} J.~V. Burke, A.~S. Lewis, and M.~L. Overton,
+\emph{Variational analysis of functions of the roots of polynomials},
+Mathematical Programming 104 (2005), 263--292.
+\href{https://doi.org/10.1007/s10107-005-0616-1}{doi:10.1007/s10107-005-0616-1}.
+\bibitem{PRT} R.~A. Poliquin, R.~T. Rockafellar, and L. Thibault,
+\emph{Local differentiability of distance functions}, Transactions of the
+American Mathematical Society 352 (2000), 5231--5249.
+\href{https://sites.math.washington.edu/~rtr/papers/rtr170-LocalDiffDistance.pdf}{Author-hosted paper}.
+\bibitem{KO} O.~N. Kirillov and M.~L. Overton, \emph{Robust stability at
+the Swallowtail singularity}, Frontiers in Physics 1 (2013), Article~24.
+\href{https://doi.org/10.3389/fphy.2013.00024}{doi:10.3389/fphy.2013.00024}.
+\bibitem{PR} R.~A. Poliquin and R.~T. Rockafellar, \emph{A calculus of
+prox-regularity}, Journal of Convex Analysis 17 (2010), 203--210.
+\href{https://www.heldermann-verlag.de/jca/jca17/jca0849_b.pdf}{Publisher paper}.
+\bibitem{Cross} J.~A. Cross, \emph{Spectral Abscissa Optimization using
+Polynomial Stability Conditions}, Ph.D. dissertation, University of
+Washington, 2010, Chapter~5, pp.~80--133.
+\href{https://www.proquest.com/docview/288328008}{Open-access primary record}.
+\bibitem{ML} R.~L. Moses and D. Liu, \emph{Determining the closest stable
+polynomial to an unstable one}, IEEE Transactions on Signal Processing 39
+(1991), 901--906.
+\href{https://doi.org/10.1109/78.80912}{doi:10.1109/78.80912}.
+\bibitem{Orban} F.-X. Orban de Xivry, \emph{Nearest Stable System},
+doctoral thesis, Universit\'e catholique de Louvain, 2013,
+Chapters~2 and~4.
+\href{https://research.dial.uclouvain.be/entities/publication/650a4c86-3c4c-439e-9a8f-54c4d42eab7f}{Open-access primary record}.
+\end{thebibliography}
+\end{document}

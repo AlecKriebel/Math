@@ -1,0 +1,11 @@
+# PR117 later-binomial priority research log
+
+- 2026-10-06T18:46Z: Began independent later binomial-edge/threshold literature family. Read exact immutable candidate, complete source statement and empty prior report. Family completion10%; math accepted as hypothesis from actual source gate, priority unestablished.
+- 2026-10-06T18:48Z: Retrieved actual published LaClair2025 body plus2023v1 and Blanco2017v5. Read modified-program definitions and relevant full threshold-bound proof chain. Family completion45%; the difference of LPs alone is insufficient novelty evidence.
+- 2026-10-06T18:50Z: Independently identified Blanco's qualifying product ideal and all-degree minimality/no-monomial argument; derived the entire original-LP optimal rectangle. Retrieved2014v1 and verified same ideal already present. Family completion70%; no explicit numbered-question answer located yet, but direct prior consequences already obstruct a new-open-resolution claim.
+- 2026-10-06T18:52:52Z: Diagnostic caught an incorrect expected augmented rank7; preserved failed source and failure record, repaired expectation to rank6. Actual repaired normal run passed1175 exception guards. Candidate proof unchanged; added0 proof-search turns. Family completion80%.
+- 2026-10-06T18:53:39Z: Sealed independent LaClair/Blanco checkpoint before reading newly communicated Takagi2013 exact-prior body. Family completion85%; novelty clearance unsupported from independent evidence already.
+- 2026-10-06T18:53:57Z: Independently retrieved official Takagi2013 paper after parent citation lead. Read augmented matrix937, full Remark4.3 pp939 and Example4.4 pp940; inspected primary pixels. Exact same-example explicit prior negative answer confirmed. Family completion95%.
+- 2026-10-06T18:55:33.388361Z: Effective normal/optimized controls each passed1210 guards; both deliberate false controls rejected. Added exact third-sign/interleaving correspondence and omitted-swap mutation check. Family completion100%; recommendation already_solved, preserve valid elementary proof and attribution, no publication package required. Root performs final global/service disposition.
+
+Original substantive effort remains1/5; new central candidate proof-search turns0. All work confined to this dedicated audit folder. No external communication or shared writer mutation.

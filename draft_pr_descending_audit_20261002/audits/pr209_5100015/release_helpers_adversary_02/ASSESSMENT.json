@@ -1,0 +1,127 @@
+{
+  "schema": "pr209-release-helper-assessment-v1",
+  "reviewer": "release_helpers_adversary_02",
+  "completed_utc": "2026-10-16T06:59:51.437205+00:00",
+  "verdict": "REPAIRS_REQUIRED",
+  "frozen_sources": [
+    {
+      "path": "append_verified_tracker.py",
+      "bytes": 7715,
+      "sha256": "8d1bb75a20567be282b7d3a38bc325efa9a2e36304b7aa8e788f3bf804604909"
+    },
+    {
+      "path": "integrate_reviewed_pr.py",
+      "bytes": 32855,
+      "sha256": "0edc4e78be2d055d26cdd2886a6bb8076b6d87bfa36a4f5bae4da6695f2cc1bb"
+    },
+    {
+      "path": "publish_preprint.py",
+      "bytes": 5992,
+      "sha256": "abd76471ed0d8b283a06ae70fa633214791cc7031bd4587e3155928994ce23d2"
+    },
+    {
+      "path": "release_binding.py",
+      "bytes": 33660,
+      "sha256": "208b080ef950a6bd136050720f55b099a596ca9ecfd0068ebfc92138a474a600"
+    },
+    {
+      "path": "verify_and_merge.py",
+      "bytes": 27537,
+      "sha256": "696e634e4e6a0773f2317ad6e4fa2f2ffa984b763dc493fba27a178a6120b92f"
+    },
+    {
+      "path": "verify_published_readonly.py",
+      "bytes": 7633,
+      "sha256": "9b190d9e4903fbe2fae11dfe6f863f48e0b33c1e238b62e2bb6302062cadcdb0"
+    }
+  ],
+  "mandatory_findings": [
+    {
+      "id": "RH209-02-M01",
+      "title": "Tracker GET response range and dimension are not authenticated",
+      "source": "append_verified_tracker.py:40-43,53-68,105-110; release_binding.py:397-401",
+      "evidence": [
+        "RESULTS.json:tracker_wrong_response_range_and_dimension",
+        "FIXTURE_wrong_get_range.zip",
+        "FIXTURE_wrong_get_range_MANIFEST.json"
+      ],
+      "reproducer": "probes.py:range_mismatch; exact append_once and tracker accept explicit wrong-tab Z999:AC999/COLUMNS response and write verified receipt",
+      "actionable_change": "Validate ValueRange response range/tab/columns/row coverage and ROWS for every target/full-scan GET, both live and retained; allow legitimate A:D canonicalization to finite A1:Dgrid range. Use provider tab grid metadata to establish full-scan coverage, reject missing/wrong/truncated response identity, retain raw failed responses, and test canonical actual positive responses."
+    },
+    {
+      "id": "RH209-02-M02",
+      "title": "Interrupted HTTP and text-decoded provider streams lose available bytes",
+      "source": "verify_published_readonly.py:22-35,38-52; append_verified_tracker.py:20-36; publish_preprint.py:29-38",
+      "evidence": [
+        "RESULTS.json:public_partial_http_stream_loss",
+        "RESULTS.json:real_local_binary_decode_stream_loss",
+        "EDGE_RESULTS.json:real_binary_decode_loss_all_other_text_callers",
+        "EXPECTED_HTTP_PARTIAL.bin",
+        "EXPECTED_CHILD_STDOUT.bin",
+        "EXPECTED_CHILD_STDERR.bin",
+        "FIXTURE_partial_http.zip",
+        "FIXTURE_text_decode_loss.zip",
+        "FIXTURE_all_text_readers.zip"
+      ],
+      "reproducer": "probes.py:partial_http/decode_loss and edge_probes.py:text_readers; real local binary child and in-memory IncompleteRead response",
+      "actionable_change": "Capture subprocess stdout/stderr in binary mode and save both raw streams before JSON/text decoding in all three readers. Preserve available exception streams. Stream public downloads to retained partial payloads and retain IncompleteRead.partial/exception evidence, including a failure after earlier chunks. Fail closed, keep once-intents, and recover read-only without a second mutation."
+    },
+    {
+      "id": "RH209-02-M03",
+      "title": "Completion can promote stale PR metadata and a main ref that no longer contains the merge",
+      "source": "verify_and_merge.py:270-312",
+      "evidence": [
+        "FOLLOWUP_RESULTS.json:completion_drift_after_long_public_reads",
+        "FIXTURE_completion_drift_final.zip",
+        "FIXTURE_completion_drift_final_MANIFEST.json"
+      ],
+      "reproducer": "followup_probes.py:drift_completion invokes the exact preparation/merge workflow, then exact complete_merge. PR body and main change only during its live publication inspect; PR_MERGED still records100%.",
+      "actionable_change": "After lengthy public/tracker reads, progress authentication and packet rederivation, freshly validate exact closed/merged PR identity, canonical title/body, reviewed branch head/ref and exact merge event; freshly confirm current main still contains the verified merge immediately before creating or accepting completion. Preserve pending evidence on drift and permit read-only reconciliation only, never a second main write."
+    }
+  ],
+  "optional_findings": [],
+  "case_completion_percent": 65,
+  "helper_audit_completion_percent": 100,
+  "scope": {
+    "kind": "NEW independent end-to-end exact-source adversarial review",
+    "candidate_directory": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/publication",
+    "frozen_utc": "2026-10-16T06:41:34.694507+00:00",
+    "independent_contract": "INDEPENDENT_CONTRACT.md",
+    "pre_prior_logic_milestone": "INDEPENDENT_SOURCE_REVIEW.md",
+    "no_live_provider_actions": true,
+    "no_candidate_or_scientific_package_modifications": true,
+    "provider_substitutions_only": true,
+    "synthetic_controls_do_not_establish_scientific_truth": true
+  },
+  "verification": {
+    "recorded_completed_groups": 24,
+    "all_recorded_expected_observations_reproduced": true,
+    "subsequent_programs_exit_zero": [
+      "followup_probes.py",
+      "edge_probes.py",
+      "failure_path_probes.py"
+    ],
+    "initial_program_interrupted_by_storage": true,
+    "initial_wrapper_raw_streams_and_exit_unavailable": true,
+    "initial_incomplete_completion_probe_preserved_then_independently_completed": true,
+    "full_positive_native_pin_count": 419,
+    "actual_whole_review_chain": [
+      2,
+      1
+    ],
+    "actual_helper01_seal_and_all10_root_dispositions_authenticated_with_synthetic_successor": true,
+    "all6_inert_imports_and_optimized_rejection": true,
+    "all6_frozen_and_current_candidates_match": true,
+    "scientific8_pins_unchanged": true,
+    "all_generated_fixture_archives_exact_member_CRC_every_body_verified": true
+  },
+  "explicitly_unassessed": [
+    "Actual future release permission or events, deployed provider availability/credentials/CLI executables/remote topology or repository rules at execution time",
+    "Universal mathematical truth, absolute priority/firstness/non-derivation, and human peer review; accepted real scientific package was authenticated rather than reaudited",
+    "Complete implementation/dependency audit of gh, GWS, Zenodo toolkit, Python and operating system; toolkit read-only contract inspected, providers controlled",
+    "Atomic consistency across external services or an actor rewriting every local trust anchor",
+    "Initial interrupted full-program exit/raw stdout/stderr;11 completed group results, native positive stdout and all available fixtures preserved, later8+3+2 programs completed exit0"
+  ],
+  "report": "REPORT.md",
+  "required_next_step": "Repair all three mandatory findings, preserve current evidence, then obtain another NEW independent review of exact resulting six-source bytes before any actual release."
+}

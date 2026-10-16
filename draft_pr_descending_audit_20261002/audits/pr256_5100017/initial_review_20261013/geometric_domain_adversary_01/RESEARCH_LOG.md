@@ -1,0 +1,33 @@
+# Geometric and domain adversarial audit
+
+Authenticated target: PR 256, problem 5100017 / k307, head `9445a90b57f76493bd901edc544b09dec393e20f` (supplied by parent). This folder contains only the independently produced geometric/domain audit. No earlier review conclusions have been read.
+
+## 2026-10-13 03:12 UTC — initial checkpoint (5% complete)
+
+Exact hypothesis: for each strict confocal elliptic billiard pair supporting least even period N>=4, the signed first-area-moment quotient of the polygon obtained by projecting fixed M onto the outer tangent lines is phase independent wherever its signed area is nonzero. Submitted explicit formula (2) and exact area/undefined-domain description are also targets.
+
+Independent approach: construct an initial tangent to the inner ellipse, intersect its ray with the outer ellipse, and thereafter use actual specular reflection. Solve least-period closure from accumulated boundary angle, then test phases independently. This avoids sampling by the submitted Jacobi parameterization or assuming its formula. Verify edge tangency, reflection, least period, winding, antipodal pairing, normal-angle range, positive origin-pedal signed area, the first and cubic signed moments, scale covariance, and orientation reversal.
+
+Falsifiers specified before computation: any reflection-generated closed orbit with (i) incorrect antipodal pairing; (ii) consecutive normals not advancing in (0,pi); (iii) nonpositive origin-pedal signed area; (iv) phase-dependent centroid at fixed M with nonzero signed area; (v) signed area zero away from the claimed exceptional circle; (vi) formula residual surviving increasing precision; or (vii) a simple least-even-period orbit with d<0. Definition audit: source must mean signed area centroid and outer tangent-line projections, not arithmetic vertex mean. Boundary checks: four-period rectangles, lambda tending to 0 or b^2, d approximately 0, extreme aspect ratio, stars, and the exact proposed 8/3 example.
+
+Finite computations will be labeled corroboration. A full-real all-N proof still requires the circle-group and signed-moment deductions to hold without genericity assumptions. Outside input, if needed, will be noted only; no external communication is authorized.
+
+## 2026-10-13 03:19 UTC — geometric/exact checkpoint (70% complete)
+
+The independent 80-digit reflection generator passed its initial 15 families and four phases each. It solved closure from trajectory winding, confirmed actual reflection/tangency/antipodes, and directly expanded all area and cubic first-moment coefficients. Coverage included N=4..40, winding 1/3/5, a/b=1.0001..100, large pedal points, caustic endpoints approached within 6.4e-8 of b^2, and the zero circle with 1e-12 radial offsets. No falsifier triggered. Largest normalized centroid residual: 6.06e-55; finite evidence, not proof. Additional endpoint, near-d=0, and larger-period controls are running.
+
+An initial diagnostic failure came from treating a numerically negative d of order 1e-74 in a four-period closure approximation as a genuine exceptional circle. Its fictitious radius was order 1e37, amplifying closure error. Corrected the diagnostic by separating the exact boundary regime from d<0 stars. This is numerical stability evidence, not a candidate counterexample; exact d=0 is handled algebraically.
+
+Exact independent regeneration of the proposed 8/3 star succeeded from (0,b), the tangent slope sqrt(lambda), ray intersection, and actual reflection. It gives the submitted eight distinct normalized vertices, winding 3, and radius squared 123539/20736. Its directly computed signed area is `-sqrt(30)*(20736*X^2+20736*Y^2-123539)/134784`. At M=(sqrt(123539)/144,0), area is exactly zero but the unnormalized first moment is (221*sqrt(21930)/10368,0), so no finite signed centroid quotient exists there. The candidate's qualification is essential and is consistent with the source definition.
+
+Independent primary reads: arXiv v11, Table 4 and Section 3.4; final journal PDF p.346, Table 4 and centroid formula. Both distinguish area centroid from vertex centroid and specify projections onto outer polygon sides; introduction specifies two confocal ellipses. No source-definition mismatch found. Exact least-period-four converse exposition gap has an elementary repair from adjacent normal pairs, recorded in the report; no substantive theorem counterexample found.
+
+## 2026-10-13 03:31 UTC — final mathematical checkpoint (100% of this geometric/domain audit complete)
+
+Complete all-real independent Cartesian proof finalized in ALL_REAL_CARTESIAN_PROOF.md. Starting from real affine projections and antipodal averages, the exact certificate reduces each linear/cubic coefficient to a cyclic doubled-normal term plus an explicit telescoping single-normal potential. Every absent constant/quadratic term is also checked. Squared-support compatibility, the no-division unit-circle edge identities, and final real centroid quotient conversion all pass exact symbolic assertions. This supplies an all-N derivation, not a fitted or sampled identity. No remaining geometric/domain correctness gap was found under the candidate's strict elliptic, least-even-period, signed-area, nonzero-denominator assumptions.
+
+Final high-precision reflection run passed 21 families x 4 phases at 110 digits, with N<=200, a/b<=1,000,000, d approximately +2e-6/-1e-6, and b^2-lambda approximately 6.25e-20. It covers 2,488 actual edges, 2,184 polynomial coefficients, 500 defined centroids, 375 phase comparisons, and 40 zero-circle controls. Maximum normalized centroid residual 9.74e-73, maximum phase difference 8.34e-73. A 2.03e-48 conditioning residual in an added extreme-aspect star at the original 80-digit/root precision vanished after increasing precision; it was numerical error, not a surviving falsifier.
+
+The original mistaken N4 sign-noise zero-locus branch is forensically retained in reproduce_spurious_n4_diagnostic.py and SPURIOUS_N4_DIAGNOSTIC.json. Reproduction gives d=-4.6511234853e-74, fictitious radius 8.1066353371e36, direct area 3.6, residual 0.439024390243902439. Exact N4 has d=0, so it has no exceptional circle; approximate closure does not justify testing that spurious huge-M locus.
+
+Directly read candidate_repair_01/PROOF.md:99. Its new N4=>d0 argument correctly applies the support identity to (n0,n1) and (n1,-n0), adds the sign-reversed right sides, and uses h0 h1>0. The original converse exposition gap is closed. Independent proof and machine-checkable artifacts are finalized; no Git or external provider changes have been made. No priority conclusion is claimed.

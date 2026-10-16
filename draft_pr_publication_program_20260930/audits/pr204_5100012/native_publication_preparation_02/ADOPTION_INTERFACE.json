@@ -1,0 +1,174 @@
+{
+  "schema": "pr204-native02-adoption-interface-v1",
+  "evidence_scope": "PREPARATION_CONTRACT_NOT_ACTUAL_ROOT_RECEIPT",
+  "UTC": "2026-10-16T15:07:49Z",
+  "no_actual_Root_adoption_receipt_created": true,
+  "proposed_actual_Root_receipt_file": "ROOT_NATIVE_CONSTRUCTOR_PREPARATION_ACCEPTANCE_02.json",
+  "required_actual_Root_receipt": {
+    "schema": "pr204-root-native-constructor-preparation-acceptance-v1",
+    "evidence_scope": "ACTUAL_ROOT_RECEIPT",
+    "accepted": true,
+    "original_head": "551a524e2db65fec90684485ef676d0b4179378d",
+    "constructor": {
+      "path": "native_publication_preparation_02/make_native.py",
+      "bytes": 44120,
+      "sha256": "47e01e759f67e96db7151fe738bf18e21a1dc25dcaf624e5628abea59d49d1e9"
+    },
+    "UTC": "ACTUAL_ZERO_OFFSET_UTC_TO_BE_SUPPLIED_BY_ROOT"
+  },
+  "lifecycle_bind_requirement": "Root must issue and supply the exact actual acceptance file byte/SHA256 pin after reviewing this preparation. This contract is not that receipt; constructor does not consume its own adoption receipt.",
+  "API": {
+    "construct": "construct(stage, facts) -> dict[str, bytes]",
+    "construct_fixture": "construct_fixture(stage, facts, fixture_root) -> dict[str, bytes], forced SYNTHETIC_ONLY namespace; fixture_root beneath this preparation/fixtures",
+    "side_effects": "No writes, subprocesses, network, publication, tracker, merge or factual acceptance."
+  },
+  "stages": {
+    "published_pending_merge": {
+      "base_pin_keys": [
+        "publication_ready_gate",
+        "publication_receipt",
+        "tracker_receipt"
+      ],
+      "extra_pin_keys": []
+    },
+    "actual_merge_accepted": {
+      "base_pin_keys": [
+        "publication_ready_gate",
+        "publication_receipt",
+        "tracker_receipt"
+      ],
+      "extra_pin_keys": [
+        "merge_receipt"
+      ]
+    },
+    "factual_checkpoint_accepted": {
+      "base_pin_keys": [
+        "publication_ready_gate",
+        "publication_receipt",
+        "tracker_receipt"
+      ],
+      "extra_pin_keys": [
+        "merge_receipt",
+        "factual_receipt"
+      ]
+    }
+  },
+  "facts": {
+    "schema": "pr204-native-facts-v1",
+    "original_head": "551a524e2db65fec90684485ef676d0b4179378d",
+    "UTC": "ACTUAL_ZERO_OFFSET_FACTS_UTC_NOT_BEFORE_RECEIPTS",
+    "package_seal": "Exact path-bearing {path,bytes,sha256} equal to gate.package+'/'+gate.package_seal_file(default PACKAGE_SEAL.json) and gate plain seal",
+    "publication_ready_gate": "Exact path-bearing pin whose path is ROOT_PUBLICATION_GATE_01.json",
+    "publication_receipt": "Exact path-bearing pin whose path is ROOT_PUBLICATION_RECEIPT.json",
+    "tracker_receipt": "Exact path-bearing pin whose path is ROOT_TRACKER_RECEIPT.json",
+    "merge_receipt": "Exact actual95 receipt path-bearing pin, present iff stage requires it",
+    "factual_receipt": "Exact actual98 receipt path-bearing pin, present only for factual_checkpoint_accepted",
+    "unknown_fact_keys": "Refused"
+  },
+  "canonical_gate": "pr204-root-publication-ready-v1 / ACTUAL_ROOT_RECEIPT; dynamic package and plain package_seal; accepted/publication_ready/release_authorized and canonical scientific readiness flags; exact final whole_package_scope:true reviews, preparation receipts, package/history maps. No shadow gate.",
+  "authentic_publication_tracker_schemas": "Consume publication_operations_01/revision_02 emitted receipts directly; no invented schema/original_head wrappers. Full flag/DOI/metadata/download/resolver/context/baseline/row guards remain in source and CONTRACT.md.",
+  "ready_context_exact_keys": [
+    "gate_pin",
+    "ready_pointer_pin",
+    "ready_acceptance_pin",
+    "checkpoint_commit",
+    "package_seal",
+    "package",
+    "manifest_pin"
+  ],
+  "required_ready_acceptance_true_flags": [
+    "accepted",
+    "every_selected_identity_checked_at_actual_observed_MAIN",
+    "all_overlay_body_identities_verified",
+    "full_foreign_tree_scope_preserved",
+    "QUEUE_native_original_PR_unchanged",
+    "mathematical_clearance",
+    "source_contract_clearance",
+    "priority_clearance",
+    "bounded_priority_audit_complete",
+    "qualified_attributed_note_editorially_cleared",
+    "publication_ready"
+  ],
+  "ready_binding": "case_percent90; historical_firstness_independence_established:false; exact checkpoint and nonempty40hex accepted MAIN/pointer; authenticated selected map binds exact gate, complete final package and all20 archived originals. No future native-attempt identities required.",
+  "actual95": {
+    "schema": "pr204-root-merge-receipt-v1",
+    "evidence_scope": "ACTUAL_ROOT_RECEIPT",
+    "PR": 204,
+    "original_head": "551a524e2db65fec90684485ef676d0b4179378d",
+    "required_true_flags": [
+      "accepted",
+      "merged",
+      "original_HEAD_safe",
+      "full_scope_verified"
+    ],
+    "package_seal": "Same path-bearing seal",
+    "UTC": "At/after actual tracker and no later than facts",
+    "merge_commit": "Actual40hex checkpoint commit",
+    "additional_authentic_aliases": "Allowed, including actual_merge_accepted:true/case_percent95"
+  },
+  "actual98": {
+    "schema": "pr204-root-factual-receipt-v1",
+    "evidence_scope": "ACTUAL_ROOT_RECEIPT",
+    "PR": 204,
+    "original_head": "551a524e2db65fec90684485ef676d0b4179378d",
+    "required_true_flags": [
+      "accepted",
+      "full_scope_MAIN_accepted",
+      "actual_factual_accepted"
+    ],
+    "case_percent": 98,
+    "completed": false,
+    "package_seal": "Same path-bearing seal",
+    "receipt_digest_fields": [
+      "publication_receipt_sha256",
+      "tracker_receipt_sha256",
+      "merge_receipt_sha256"
+    ],
+    "completion_facts": {
+      "case_completed": false,
+      "goal_complete": false,
+      "fully_completed_count": 46,
+      "published_count": 30,
+      "last_completed_PR": 203,
+      "next_numeric_intake_cursor": 204,
+      "advance_to_next_PR_authorized_now": false
+    }
+  },
+  "native_program_completion": "Native CURRENT outputs omit completed/completion_facts/counts/cursor. goal_complete:false remains; actual100 program authority is separate.",
+  "payload": {
+    "files": 27,
+    "preserved_original_files": [
+      "PROOF.md",
+      "RESEARCH_LOG.md",
+      "TURN_1_CHECKPOINT.md",
+      "independent_review/FINAL_REVIEW.md",
+      "independent_review/SOURCE_NOTES.md",
+      "independent_review/author_rerun_verification.json",
+      "independent_review/independent_check.py",
+      "independent_review/independent_output.json",
+      "independent_review/reviewed_hashes.json",
+      "metadata.json",
+      "prior_imported_report.json",
+      "source_manifest.json",
+      "source_record.json",
+      "verification.json",
+      "verify.py"
+    ],
+    "changed_presentation_originals": [
+      "MANIFEST.json",
+      "PUBLICATION_MANIFEST.json",
+      "PUBLICATION_STATUS.md",
+      "README.md",
+      "SOURCES.md"
+    ],
+    "added_files": [
+      "CURRENT_STATUS.json",
+      "CURRENT_PROOF.md",
+      "CURRENT_SOURCE_AND_PRIORITY.json",
+      "QUALIFIED_PRIORITY.md",
+      "CURRENT_RESEARCH_LOG.md",
+      "NATIVE_PRESENTATION_RECEIPT.json",
+      "SHA256SUMS"
+    ]
+  }
+}

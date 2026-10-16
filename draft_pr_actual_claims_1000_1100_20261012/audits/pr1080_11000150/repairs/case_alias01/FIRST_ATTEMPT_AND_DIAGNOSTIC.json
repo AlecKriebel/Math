@@ -1,0 +1,23 @@
+{
+  "utc": "2026-10-16T04:32:51.859967+00:00",
+  "status": "FIRST_ACTUAL_ATTEMPT_FAILED_IN_UNCHANGED_FAULT_WRAPPER",
+  "prior_receipts": "REPRODUCTION_RECEIPTS.jsonl",
+  "prior_actual_commands": 3,
+  "prior_successes": 2,
+  "failure": "fault_checks.py reports mathematical fault escaped guard: erasing; inner stderr not exposed, cause unestablished",
+  "canonical_candidate_modified_by_attempt": false,
+  "direct_erasing_diagnostic": {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-I",
+      "preprint_v1_0/verification_kit/run_checks.py",
+      "--fault",
+      "erasing"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1080_11000150/preprint_v1_0/verification_kit/run_checks.py\", line 127, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1080_11000150/preprint_v1_0/verification_kit/run_checks.py\", line 123, in main\n    print(json.dumps(run(a.fault), indent=2))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1080_11000150/preprint_v1_0/verification_kit/run_checks.py\", line 93, in run\n    local = namespace[\"main\"]()\n  File \"/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/pr1080-controls-_gagw09d/priority/check_prior_corollary.py\", line 98, in main\nRuntimeError: portable reviewer guard at original line 98\n"
+  },
+  "note": "Expected direct fault rejection occurs. Do not infer the failed wrapper cause from disk pressure. New final receipts use a distinct filename; no prior receipt rewritten."
+}

@@ -1,0 +1,178 @@
+[
+  {
+    "name": "actual_whole_sealed_chain_compatibility",
+    "start_utc": "2026-10-16T06:46:45.718041+00:00",
+    "end_utc": "2026-10-16T06:46:45.874608+00:00",
+    "PASS": true,
+    "result": [
+      2,
+      1
+    ]
+  },
+  {
+    "name": "full_exact_workflow_300plus_native_paths",
+    "start_utc": "2026-10-16T06:46:45.874752+00:00",
+    "end_utc": "2026-10-16T06:46:54.443637+00:00",
+    "PASS": true,
+    "result": {
+      "pins": 419,
+      "counts": [
+        45,
+        22,
+        22,
+        0
+      ],
+      "fixture": "fixtures/full_baseline"
+    }
+  },
+  {
+    "name": "binding_queue_export_lock_negatives",
+    "start_utc": "2026-10-16T06:46:54.443835+00:00",
+    "end_utc": "2026-10-16T06:46:54.714823+00:00",
+    "PASS": true,
+    "result": {
+      "fresh_manuscript_reviews": {
+        "rejected": true,
+        "error": "RuntimeError('Manuscript review counter differs from actual sealed chain')"
+      },
+      "whole_package_reviews": {
+        "rejected": true,
+        "error": "RuntimeError('Two sequential sealed whole-package reviews required')"
+      },
+      "release_helper_reviews": {
+        "rejected": true,
+        "error": "RuntimeError('Two sequential sealed release-helper reviews required')"
+      },
+      "unresolved_optional_findings": {
+        "rejected": true,
+        "error": "RuntimeError('Unresolved findings prohibit release')"
+      },
+      "original_native_head": {
+        "rejected": true,
+        "error": "RuntimeError('Wrong original PR head')"
+      },
+      "helper_drift": {
+        "rejected": true,
+        "error": "RuntimeError('Cleared file bytes changed: append_verified_tracker.py')"
+      },
+      "unsafe_export": {
+        "rejected": true,
+        "error": "RuntimeError('Private or cache payload path')"
+      },
+      "bad_queue_year": {
+        "rejected": true,
+        "error": "RuntimeError('Main row differs from exact original/queued placeholder')"
+      },
+      "target_only_queue_preserved_foreign_crlf": true,
+      "concurrent_lock": {
+        "rejected": true,
+        "error": "RuntimeError('Another release stage is active; no parallel action allowed')"
+      },
+      "unexpected_top_file": {
+        "rejected": true,
+        "error": "RuntimeError('Unexpected top-level release file: /Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/release_helpers_adversary_02/fixtures/binding_negatives/preprint/unexpected.bin')"
+      }
+    }
+  },
+  {
+    "name": "tracker_wrong_response_range_and_dimension",
+    "start_utc": "2026-10-16T06:46:54.715046+00:00",
+    "end_utc": "2026-10-16T06:46:55.504842+00:00",
+    "PASS": true,
+    "result": {
+      "defect_reproduced": true,
+      "verified": true,
+      "wrong_range": "'Wrong tab'!Z999:AC999",
+      "wrong_dimension": "COLUMNS"
+    }
+  },
+  {
+    "name": "public_partial_http_stream_loss",
+    "start_utc": "2026-10-16T06:46:55.505008+00:00",
+    "end_utc": "2026-10-16T06:46:55.966398+00:00",
+    "PASS": true,
+    "result": {
+      "defect_reproduced": true,
+      "exception": {
+        "rejected": true,
+        "error": "IncompleteRead(19 bytes read, 100 more expected)"
+      },
+      "retained_file_count": 0,
+      "available_partial_bytes": 19
+    }
+  },
+  {
+    "name": "real_local_binary_decode_stream_loss",
+    "start_utc": "2026-10-16T06:46:55.966584+00:00",
+    "end_utc": "2026-10-16T06:46:55.985100+00:00",
+    "PASS": true,
+    "result": {
+      "defect_reproduced": true,
+      "exception": {
+        "rejected": true,
+        "error": "UnicodeDecodeError('utf-8', b'prefix\\x00\\xffsuffix', 7, 8, 'invalid start byte')"
+      },
+      "saved_stdout_bytes": 0,
+      "saved_stderr_bytes": 0,
+      "actual_stdout_bytes": 14,
+      "actual_stderr_bytes": 12
+    }
+  },
+  {
+    "name": "post_append_duplicate_no_second_write",
+    "start_utc": "2026-10-16T06:46:55.985370+00:00",
+    "end_utc": "2026-10-16T06:46:56.762958+00:00",
+    "PASS": true,
+    "result": {
+      "first": {
+        "rejected": true,
+        "error": "RuntimeError('Tracker uniqueness conflict; retain pending evidence and reconcile read-only')"
+      },
+      "second": {
+        "rejected": true,
+        "error": "RuntimeError('Conflicting/existing tracker row requires read-only reconciliation')"
+      },
+      "append_calls": 1
+    }
+  },
+  {
+    "name": "unknown_append_readonly_recovery",
+    "start_utc": "2026-10-16T06:46:56.763189+00:00",
+    "end_utc": "2026-10-16T06:46:57.666407+00:00",
+    "PASS": true,
+    "result": {
+      "recovered_with_zero_additional_writes": true
+    }
+  },
+  {
+    "name": "unknown_publish_readonly_recovery",
+    "start_utc": "2026-10-16T06:46:57.667322+00:00",
+    "end_utc": "2026-10-16T06:46:58.310050+00:00",
+    "PASS": true,
+    "result": {
+      "recovered_with_one_publish": true
+    }
+  },
+  {
+    "name": "native_metadata_rules_and_readonly_recovery",
+    "start_utc": "2026-10-16T06:46:58.310318+00:00",
+    "end_utc": "2026-10-16T06:47:04.938229+00:00",
+    "PASS": true,
+    "result": {
+      "stale_metadata_rejected": true,
+      "reconcile_readonly": true,
+      "protected_main_rejected": true
+    }
+  },
+  {
+    "name": "completion_drift_setup",
+    "start_utc": "2026-10-16T06:47:04.938620+00:00",
+    "end_utc": "2026-10-16T06:47:11.964263+00:00",
+    "PASS": true,
+    "result": {
+      "fixture": "completion_drift",
+      "actual_synthetic_merge": true,
+      "receipt_pending": true
+    }
+  }
+]

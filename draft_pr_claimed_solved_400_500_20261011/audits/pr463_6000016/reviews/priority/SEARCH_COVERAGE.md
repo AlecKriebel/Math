@@ -1,0 +1,24 @@
+# Authored priority search coverage
+
+Search date: 12 October 2026 UTC. Problem-only scope: PR #463 / 6000016. Early hypotheses were recorded before reading old priority verdicts. This ledger is the auditor's authored coverage summary, not foreign search-result text or a claim of exhaustive historical search.
+
+More than fifty distinct search queries were made, followed by adaptive opening of relevant primary articles, book metadata, version histories, original PDFs and official previews. Queries combined the following independent subjects and variants:
+
+| Search family | Representative auditor-entered concepts | Result and exact limitation |
+|---|---|---|
+| Original question | Furuhata / Matsuzoe / Urakawa; Shimizu; Hessian stability; small affine-structure deformation; Koszul deformation | Original 1998 p.126 located and visually inspected; the unrestricted reading is explicit. No source explicitly announcing an answer to the numbered question located. |
+| Complete compact Hessian structures | compact complete Hessian manifolds; parallel volume; affine torus; flat Riemannian replacement; Shima / Yagi / Koszul | Identified a relevant existential replacement theorem, distinct from any statement about the given metric. |
+| Original analytic existence | Cheng–Yau real Monge–Ampère affine flat structures; Corollary 2.3; Delanoë 1989 local Hessian; prescribed volume | Original Delanoë 1989 PDF obtained and read, decisive p.67 visually checked; original Cheng–Yau full chapter unavailable. |
+| Entire-plane rigidity | Jörgens rt−s²=1; original 1954 pages; BF01361114; entire Hessian determinant; Calabi/Pogorelov references | Original official Jörgens pp.130–131 preview obtained; Satz 1 p.130 visually checked and its estimate directly yields the needed entire rigidity. Later reproofs were discovery leads, not necessary premises. |
+| Exact affine-torus family | Baues–Goldman; deformation space complete affine two-torus; polynomial developing map; non-Euclidean shear torus | Both v1 and v2 obtained; v1 pp.24–25 and v2 p.20 visually checked. Official history fixes v1 to 20 January 2004 and v2 to 14 June 2005. |
+| Older classifications | Yagi On Hessian Structures 1981; compact Hessian two-torus classification; Nagano–Yagi 1974; Kuiper complete affine torus | Yagi official two-page preview obtained, but any relevant full classification theorem unverified. No classification used as a missing bridge. |
+| Shima monograph | The Geometry of Hessian Structures; Corollary 8.6; compact oriented; D-parallel volume; p.164 | Official Google Books searches expose exact hypotheses and existential conclusion. Publisher 403; all four official edition images returned the same unavailable placeholder. Full page/proof remains uninspected. |
+| Forward theorem accounts | Fox Schwarz lemma Kähler affine; parallel volume; full affine space; Shima 1997/2007; recent topology of Hessian manifolds | Fox 2013 §5.2 p.25 obtained and visually checked; broader theorem attribution corroborates the route. Recent given-metric overstatement excluded by explicit flat-torus counterexample. |
+
+The inspected originals were traced backward through Delanoë's Cheng–Yau/Shima citations and forward through Fox's account and Shima's official indexed corollary. Baues–Goldman version comparison tested whether the exact example was present in the first version, rather than incorrectly assigning the first-submission date to a later-added example. The indexed monograph supplied a separate route, and an independent chain from two fully inspected original papers avoids treating book access as resolved.
+
+Additional direct official searches used the exact terms `"The Geometry of Hessian Structures" "Corollary 8.6"`, `"Shima" "Corollary 8.6" "parallel"`, `"The Geometry of Hessian Structures" "164" "volume"`, and `"Hessian" "Corollary 8.6"`. Official Google Books within-volume searches used `parallel`, `compact oriented`, `Theorem 8.9`, and `Corollary 8.6`; their raw result objects remain private. Queries with page-specific parameters returned zero results and were not mistaken for absence of the theorem.
+
+Only primary-source content supports technical conclusions. Search snippets, secondary discussions and unofficial full-book mirrors were treated as discovery leads. No unofficial full-book copy was downloaded. Bibliographic metadata by itself was not promoted into theorem verification.
+
+Limits: the search is bounded by online discoverability and official source access. It does not include an exhaustive licensed citation-index search, all dissertations, all-language proceedings, unpublished correspondence, or physical library consultation. No outside researcher was contacted, no outreach was prepared, and no claim of historical first discovery is warranted. The affirmative priority concern instead rests on the complete authored application of verified classical results to an already published exact family.

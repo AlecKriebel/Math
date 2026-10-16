@@ -1,0 +1,19 @@
+# Algebra/geometry adversarial review of PR #618
+
+Reviewer: independent algebra/geometry audit agent.
+Frozen candidate: `native/unsolved_math_prioritization/attempts/30004609/PROOF.md`.
+Scope: freeness/formality hypotheses, exponent-one reduction, multiplicity bound, terminal-pencil pruning, modular-chain lifting, represented rank-three core, and boundary cases. No modification of the candidate, other reviewers' files, PRs, queue, or publication state.
+
+## 2026-10-13 03:37 UTC — review initialization (15% complete)
+
+Read the full candidate proof and diagnostic checker independently. The exact target is supersolvability of a finite central characteristic-zero free arrangement whose nonzero exponents belong to `{1,2,3}` with at most one `3`. Read the original OWR and withdrawn-manuscript source records through public web access. Initial scrutiny finds the low-degree divisibility argument and modular-flat criterion plausible; this is preliminary, not a certification. Main remaining checks: precise field assumptions on freeness implies formality; fresh counterexample-directed computations; direct derivation of pruning relations and modular-chain lifting; source-page visual inspection.
+
+## 2026-10-13 03:43 UTC — exact algebraic checkpoint (80% complete)
+
+Fresh `verify_algebra.py` completed using SymPy 1.14.0 in the shard-local environment. It imported no candidate code. Solving all homogeneous logarithmic tangency equations produced independent Saito certificates for the six-normal K4 arrangement, the seven-normal non-Fano arrangement, and the withdrawal example. The exponents are respectively `(1,2,3)`, `(1,3,3)`, and `(1,2,2,3)`; determinant ratios to their defining polynomials are `-1`, `1`, and `1/2`. Full lattices give supersolvability for the first and third and no modular coatom for the second. All 24 arbitrary-slope terminal-pencil additions passed kernel splitting, one-rank drop, flatness/modularity, and modular-flat lifting, including six additions to a formal nonsupersolvable base. A five-normal nonformal witness disproves the pruning and incidence-connectedness assertions when formality is omitted. This confirms that formality is an essential premise, and the candidate explicitly retains it. The author checker was reproduced exactly: parsed JSON equals its frozen `RESULTS.json`.
+
+Visually inspected original OWR printed pp. 283-284 and withdrawn v3 printed p. 14. The exact target and the erroneous historical factor-size inference match the candidate's account. Modern formality-paper pp. 3 and 7 support the stated field/definition/theorem setup. The original Yuzvinsky publisher PDF returned HTTP 403; direct corroboration is available from the modern primary paper and the independent proof of the stronger freeness-to-total-formality result in DiPasquale (2018), Corollary 4.10. Discovered that DiPasquale's Section 6 already uses rank-two incidence graphs for the independent-local-relation class; reported this relevant prior source to the parent for the separate priority audit. No mathematical counterexample or mandatory mathematical repair found. Remaining work: final proof-by-proof findings and source metadata.
+
+## 2026-10-13 03:49 UTC — final audit checkpoint (100% complete)
+
+Completed the authored universal lemma checks and `FINDINGS.md`. Re-read the relevant DiPasquale statements, including the precise `TF2` definition and Proposition 6.1, to delimit the prior tree mechanism from the dependent-relation K4 core. Reopened the serialized independent Saito certificates and checked their determinants against the original defining polynomials and all 71 tangency divisibilities; all passed. No mandatory mathematical repair or unresolved mathematical gap identified in the frozen candidate. Separate priority review must account for the pre-existing 2018 graph/tree work. No candidate, queue, Git, PR, sheet, or publication state was modified. No external outreach occurred.

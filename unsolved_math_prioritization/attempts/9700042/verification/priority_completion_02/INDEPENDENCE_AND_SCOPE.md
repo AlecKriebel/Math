@@ -1,0 +1,5 @@
+# Completion audit scope and chronology
+
+Started 2026-10-16T03:53:26.679575+00:00. This is a new adversarial completion audit of preserved priority outputs for PR885 / PID9700042. The assignment supplied the proposed old-input corollary, its key inequalities, earlier source-transcription correction, and intended scope. Before deriving an independent conclusion, I have read the preserved classical report/decision/full-corollary/model-map and parts of the recent/disposition outputs. I therefore claim independent verification, not blind discovery or source-first independence. Original files will remain unchanged.
+
+Scope: verify the exact BGT numerical-input corollary and its limits; authenticate existing safe recent/disposition outputs; supply a fresh report, decision, manifests, source ledger, and executable check receipts. No Git, remote, queue, public-preprint, release, outreach, or whole-preprint CLEAR operation is authorized. The source PDF is read-only. No authoring marker will be run.

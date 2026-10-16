@@ -1,0 +1,9 @@
+# PR952 operations repair log
+
+2026-10-16T17:05:00Z — Root actual read-only preflight reports failure in copied empty-prior assumption; no full review/acceptance/service mutation preceded it. Root archived candidate01 before changes. New dedicated02 family initialized; sealed01 own files untouched. Repair engineering completion estimate10%; finding unresolved operationally until real preflight.
+
+2026-10-16T17:06:00Z — Independently checked actual private hash, canonical nonempty prior-report SHA ad708f...629c25 and existing reconstructed review SHA12e089...266f5. Replaced only the empty-report assumption with exact frozen/raw report matching and an explicit canonical report pin. Existing nested statement/current catalog/no-holds/related/SQLite checks retained. Completion estimate55%.
+
+2026-10-16T17:07:00Z — Full actual source_gate runs against ephemeral RO-SQLite fixtures:18 positive/adverse controls pass under normal/O/OO without changing database bytes or retaining private bodies. Existing operations controls extended with mandatory root-finding review disposition:61 controls pass under normal/O/OO. Current freeze requires immutable ROOT_OPERATIONAL_FINDINGS.json; no new freeze key; unchanged28 inherited IDs. Completion estimate85%; actual live root source still not observed by this family.
+
+2026-10-16T17:08:51Z — Final repaired-code suites all pass:79 controls per mode,237 total. Candidate02 local whole freeze/descriptor validation passes with unchanged173-file scientific package; prospective inventorySHA91d3af8e23beb49921713e41276a34e83d1d436e29503448a73e5950dde9c740. Verified old01 seal unchanged, all48 own payloads byte-exact and original core authenticated in candidate01 archive. Repair implementation completion estimate100% for this family; actual root source preflight, independent full review and publication remain explicitly pending.

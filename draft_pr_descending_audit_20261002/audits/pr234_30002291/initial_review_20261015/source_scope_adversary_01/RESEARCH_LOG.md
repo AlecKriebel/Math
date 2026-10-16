@@ -1,0 +1,5 @@
+# UTC research log
+
+- 2026-10-15T05:27:27.942712+00:00: Independently retrieved and hashed all three specified primaries; read full relevant OWR contribution; froze direct interpretation before reading candidate. Estimated audit completion: 25%. Web screenshot request timed out on one OWR page; local Poppler rendering prepared for visual verification.
+- 2026-10-15T05:31:20.426556+00:00: Controlling BHP pp.2–6 and BLP pp.2–4 visually checked; final AOP primary theorem/model/definition cross-checked through web-readable author-institution PDF. Candidate scope compared only after direct interpretation. Independent source-scope verdict PASS conditional on mathematics; exact prior mapping and material nonnested restrictions documented. Estimated audit completion: 90%; provenance and authored-manifest verification remain.
+- 2026-10-15T05:32:45.072465+00:00: Reproducible provenance/source-anchor checks all passed (19 checks); all three frozen candidate inputs unchanged. Final report and safe authored manifest complete. Estimated audit completion: 100%. No novelty certification; overall mathematical disposition left to independent proof lane.

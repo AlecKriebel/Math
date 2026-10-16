@@ -59,3 +59,6 @@ Actual closure child89935exit0 independently checked the original OPENdraft head
 
 ### 2026-10-06T02:50:05.203864+00:00 — closure handoff goal-state alias reconciled
 The scheduler was actually last read as blocked; corrected the stale active metadata alias. Its former PR97 disposition gate is resolved by the verified human-directed closure, and no further PR97 publication choice is pending. The scheduler cannot be resumed through update_goal. Next ordered intake remains after97 when the goal resumes. Completion estimates unchanged: PR97workflow100%;14/99=14.14%. No mathematical, native-status, frozen-paper or service changes.
+
+### 2026-10-06T02:50:54.779966+00:00 — closure release pushed and verified
+Actual checkpoint91793exit0 committed54 selected regular artifacts at6d0010f800248b0c136d723bd2b2f8c79f2892df, pushed and read back remote main as a strict child ofbfbcc0d69197893fe3156cd7ed0d36acee45e25e. Fresh GitHub readback again confirms PR97 CLOSED at original fb50facb, mergedAt null. All findings preserved; no publication, tracker update or global historical-status rewrite. The human disposition is resolved. Late actual checkpoint/readback metadata join the next scoped checkpoint without a recursive self-commit claim. PR97workflow100%;14/99=14.14%; next numeric intake98 on goal resumption.

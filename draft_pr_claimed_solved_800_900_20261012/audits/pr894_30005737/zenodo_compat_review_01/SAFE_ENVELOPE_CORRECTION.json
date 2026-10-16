@@ -1,0 +1,54 @@
+{
+  "schema": "safe-evidence-envelope-correction-v1",
+  "timestamp_utc": "2026-10-16T09:26:07.925429+00:00",
+  "reason": "Initial public manifest included process metadata and a report containing local absolute paths; the envelope was not path-free as claimed.",
+  "before": {
+    "REPORT.md": {
+      "bytes": 7884,
+      "sha256": "010da184f3bf66ee81d55c05570d366fe91da9df0786076412ece6977aba65a6"
+    },
+    "SAFE_MANIFEST.json": {
+      "bytes": 3967,
+      "sha256": "fe0086b3b33fb92bfa2ba50d382223b39a70d593b9e6f4bc19456c5b81390eae"
+    }
+  },
+  "original_raw_process_records": {
+    "count": 9,
+    "unchanged": true
+  },
+  "preservation": "Exact original report and manifest are preserved privately; all original raw process receipts and streams remain private and unchanged.",
+  "changes": [
+    "Exclude all 3 raw process metadata files and all 6 raw stdout/stderr files from the safe manifest and Git publication",
+    "Add path-free SAFE_PROCESS_SUMMARY.json with actual PID, flags, UTC timestamps, return code and stream lengths/hashes",
+    "Use repository-relative planned executable path and repository-root relation in the public report",
+    "Add audit-local ignore rules for private original evidence"
+  ],
+  "proposed_code_tests_and_frozen_core_changed": false,
+  "tests_rerun": false,
+  "completion_percent": 100,
+  "receipt_hash_wording_correction": {
+    "timestamp_utc": "2026-10-16T09:35:41.769727+00:00",
+    "before": {
+      "REPORT.md": {
+        "bytes": 8136,
+        "sha256": "61374d159817344a341a28be1a4d5d94401c849b0ea2d9d2f3c450e6a6ca2729"
+      },
+      "SAFE_MANIFEST.json": {
+        "bytes": 3302,
+        "sha256": "7e0c7a2481e25a5142cb613fcb2c78f3ded7b1d87dc33fe6d56a6ab380a18d99"
+      }
+    },
+    "change": "Narrowed probe-source-hash claim to the two corrected successful raw receipts. First failed raw receipt has no probe_sha256 field; the first source snapshot is separately preserved.",
+    "first_failed_raw_receipt_has_probe_sha256": false,
+    "initial_source_snapshot_sha256": "659c9a6d966e536adeb663ba08dc3f40dbe94a9c1f52426b2f7733a53c51bc8e",
+    "two_successful_receipt_probe_sha256": [
+      "429f8cde239ae8498ce87815baafc20f393b923f9fd9ae57b9b51bd7e0422fb3",
+      "429f8cde239ae8498ce87815baafc20f393b923f9fd9ae57b9b51bd7e0422fb3"
+    ],
+    "parent_integration_readback_incident": "Parent read-only authorization check assumed the first receipt had this key and raised KeyError before clearance or writes; parent will validate actual first-receipt fields and record the limitation.",
+    "raw_process_records_preserved_unchanged": true,
+    "source_probes_tests_and_core_changed": false,
+    "tests_rerun": false,
+    "earlier_persistence_failures": "Four preservation attempts failed with ENOSPC before public edits; completed after parent reported restored storage capacity."
+  }
+}

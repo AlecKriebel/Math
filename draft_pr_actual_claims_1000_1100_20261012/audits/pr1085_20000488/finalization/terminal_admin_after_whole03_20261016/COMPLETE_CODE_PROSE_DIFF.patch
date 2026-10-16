@@ -1,0 +1,533 @@
+--- before/preprint_v1_0/README.md
++++ after/preprint_v1_0/README.md
+@@ -6,7 +6,7 @@
+ 
+ The convention is alpha=-beta<0, outward derivative beta u and threshold -beta². The printed HHRV journal formula permits theta=1/4 with denominator (1-2theta)²; its older arXiv v2 uses (1-4theta)² and does not permit that substitution. Magnetic BSZ's positive-field/large-strength model does not apply to zero field. The 2017 Robin passages are expectations, not theorems. There is no claim of all-strength absence for one fixed nonzero graph, a general higher-dimensional nongraph classification, or exclusion of embedded eigenvalues.
+ 
+-The paper is AI-assisted and unrefereed, with no human peer review or formal proof certificate. The unchanged dated preparation STATUS.json records the pre-review stage. TERMINAL_ACCOUNTING.json now records two completed **new** complete whole-package reviews (minimum two), both with zero actionable P0–P3 findings and both adopted by root. Those captured zero-finding verdicts predate the later case-alias finding. CASE_ALIAS_REPAIR_ACCOUNTING.json now requires external root repair adoption and a NEW complete whole03 review; current readiness and all-issues-clearance remain false. Publication services remain held behind PR #1032's priority cursor. Historical preparation and review records retain exact original bytes and their captured-stage meaning.
++The paper is AI-assisted and unrefereed, with no human peer review or formal proof certificate. The unchanged dated preparation STATUS.json records the pre-review stage. TERMINAL_ACCOUNTING.json now records two completed **new** complete whole-package reviews (minimum two), both with zero actionable P0–P3 findings and both adopted by root. Those captured zero-finding verdicts predate the later case-alias finding. The unchanged dated CASE_ALIAS_REPAIR_ACCOUNTING.json records the subsequent pending-repair stage. CURRENT_TERMINAL_ACCOUNTING_20261016.json records the current three-review state: root adopted the repair and the NEW complete whole03 ZERO-actionable review. No further complete review is currently required; external root terminal integrity adoption is required and unadopted, so current readiness and all-issues-clearance remain false. Publication services remain held behind PR #1032's priority cursor. Historical preparation and review records retain exact original bytes and their captured-stage meaning.
+ 
+ ## Portable reproduction
+ 
+@@ -51,6 +51,14 @@
+ 
+ ## Later case-alias repair and current review hold
+ 
+-CASE_ALIAS_REPAIR_ACCOUNTING.json supplements the unchanged dated TERMINAL_ACCOUNTING.json. It records CASE-1085 (P3), the static physical-ancestor guard repair, two completed historical whole reviews, the minimum of two reviews, mandatory external root repair adoption and a NEW complete whole03 review. The new review is pending; readiness, all-issues-clearance and publication remain false, and services remain held after PR1032. Historical zero-finding verdicts and their seals keep their captured-stage meaning. This focused repair is not a new whole-package review.
++CASE_ALIAS_REPAIR_ACCOUNTING.json supplements the unchanged dated TERMINAL_ACCOUNTING.json. It records CASE-1085 (P3), the static physical-ancestor guard repair, two completed historical whole reviews, the minimum of two reviews, mandatory external root repair adoption and a NEW complete whole03 review. That dated pending stage is preserved exactly. The later current record below supplies the adopted whole03 completion; readiness, all-issues-clearance and publication remain false, and services remain held after PR1032. Historical zero-finding verdicts and their seals keep their captured-stage meaning. This focused repair is not a new whole-package review.
+ 
+ CASE_ALIAS_REPAIR_COPY_MAP.json pins six necessary authored finding/root-hold and exact old-interface copies in evidence/case_alias01/. The original 66/126 preparation and 52/323 terminal copy/exclusion partitions remain exact. No raw streams, third-party bodies, pixels, runtimes or old ZIPs are added. The paper PDF/TeX, mathematical checker, credits, metadata constants and every native metadata field remain byte-exact. No new PDF compilation, render or authoring marker is needed for the unchanged paper.
++
++## Current terminal state after adopted whole03 (2026-10-16)
++
++CURRENT_TERMINAL_ACCOUNTING_20261016.json is byte-identical to the new outer administrative current record. Three NEW complete whole-package reviews are complete (minimum two); latest whole03 has ZERO actionable P0–P3 findings and root adoption, following root adoption of CASE-1085. No further complete review is currently required. External ROOT terminal integrity adoption remains REQUIRED and unadopted. Publication readiness, all-issues-clearance and publication remain false; services remain held after PR1032. Older status/accounting/review/seal records retain their exact captured-stage meanings.
++
++CURRENT_TERMINAL_COPY_MAP_20261016.json adds only selected authored whole03 report/verdict, frozen derivation, finite checker/results, source-read/custody identities, review pins/seal, root adoptions and five exact before interfaces. Every copied selected whole03 output is bound to its original review output manifest; the root adoption and seal bind that same manifest. Omitted source bodies, images, runtimes, raw operational streams and old ZIPs remain outside this new selection. The old ZIP is retained only in local before custody. Historical pin locators are not redirected to successor bytes.
++
++The verifier validates the older captured stages and then this separate current state and its evidence bindings. This administration leaves the paper, mathematics, source credits, all four writer/path guards and native bibliographic metadata exact. It performs no compilation, rendering, new mathematical review, service action, human refereeing or priority clearance. The unchanged paper was actually compiled in both modes and all seven pages viewed during complete whole03. Priority, novelty, independent discovery and worldwide openness remain UNKNOWN.
+--- before/preprint_v1_0/verify_package.py
++++ after/preprint_v1_0/verify_package.py
+@@ -191,6 +191,125 @@
+     require(hold.get("new_complete_whole03_required") is True and
+             hold.get("publication_ready") is False and hold.get("published") is False and
+             hold.get("services_held_after_pr") == 1032, "case repair root hold evidence")
++    # All earlier pending statuses are immutable captured-stage records.
++    # This separate dated state records adopted whole03, never release readiness.
++    current = read_json(ROOT / "CURRENT_TERMINAL_ACCOUNTING_20261016.json")
++    require(type(current.get("schema")) is int and current["schema"] == 1, "current terminal schema")
++    require(type(current.get("pr")) is int and current["pr"] == 1085 and
++            type(current.get("problem_id")) is int and current["problem_id"] == 20000488 and
++            current.get("audited_head") == status["audited_head"], "current terminal identity")
++    require(current.get("status") == "WHOLE03_ROOT_ADOPTED_TERMINAL_ADMIN_PENDING_EXTERNAL_ROOT_INTEGRITY",
++            "current terminal stage")
++    for key, value in [("whole_reviews_completed", 3), ("minimum_whole_reviews", 2),
++                       ("latest_complete_whole_review", 3), ("latest_actionable_P0_P1_P2_P3", 0)]:
++        require(type(current.get(key)) is int and current[key] == value, "current terminal review count: " + key)
++    for key in ["case_alias_repair_root_adopted", "latest_complete_whole_review_root_adopted",
++                "new_complete_whole03_completed", "root_terminal_integrity_adoption_required",
++                "historical_STATUS_TERMINAL_ACCOUNTING_CASE_REPAIR_preserved"]:
++        require(current.get(key) is True, "current terminal required adoption/history: " + key)
++    for key in ["new_complete_whole03_required", "further_complete_whole_review_currently_required",
++                "root_terminal_integrity_adopted", "publication_ready", "all_actionable_issues_resolved",
++                "issues_resolved", "published", "human_peer_review", "formal_proof_certificate"]:
++        require(current.get(key) is False, "current terminal forbidden promotion/stale hold: " + key)
++    require(current.get("services_hold") == status["services_hold"], "current terminal ordered hold")
++    for key in ["priority", "novelty", "worldwide_open_status", "independent_discovery"]:
++        require(current.get(key) == status[key], "current terminal historical scope: " + key)
++    for key in ["paper_pdf_sha256", "paper_tex_sha256"]:
++        require(current.get(key) == terminal[key], "current terminal unchanged paper")
++    prefix = "evidence/terminal_after_whole03/"
++    review_prefix = prefix + "reviews/package_03/"
++    require(current.get("latest_review_prefix") == review_prefix and
++            current.get("latest_root_adoption") == prefix + "ROOT_WHOLE_PACKAGE_REVIEW_03.json" and
++            current.get("repair_root_adoption") == prefix + "ROOT_CASE_ALIAS_REPAIR_REVIEW_01.json",
++            "current terminal exact evidence interfaces")
++    current_map = read_json(ROOT / "CURRENT_TERMINAL_COPY_MAP_20261016.json")
++    require(type(current_map.get("schema")) is int and current_map["schema"] == 1,
++            "current terminal copy schema")
++    review_files = ["REPORT.md", "VERDICT.json", "SEAL.json", "OUTPUT_PINS.json", "INPUT_FREEZE.json",
++                    "DERIVATION_FREEZE.json", "INDEPENDENT_DERIVATION.md", "SOURCE_READ_LEDGER.json",
++                    "check_independent.py", "NEW_MATH_RECEIPTS.json", "FINAL_CONSERVATION.json"]
++    expected_sources = ["ROOT_CASE_ALIAS_REPAIR_REVIEW_01.json", "ROOT_WHOLE_PACKAGE_REVIEW_03.json"] + [
++        "reviews/package_03/" + n for n in review_files] + ["preprint_v1_0/" + n for n in [
++        "README.md", "verify_package.py", "PAYLOAD_MEMBERS.txt", "SUPPORT_MANIFEST.json", "UPLOAD_BINDINGS.json"]]
++    current_copies = current_map["files"]
++    require([r["source_relative_audit"] for r in current_copies] == expected_sources and
++            [r["copy"] for r in current_copies] == [prefix + n for n in expected_sources],
++            "current terminal exact copy membership")
++    for row in current_copies:
++        require(type(row.get("bytes")) is int and row["bytes"] >= 0 and row["copy"] in names,
++                "current terminal copy fields")
++        if row["source_relative_audit"].startswith("preprint_v1_0/"):
++            require(row.get("source_snapshot_relative_audit") ==
++                    "finalization/terminal_admin_after_whole03_20261016/before/" + row["source_relative_audit"],
++                    "current terminal exact before locator")
++        data = regular(ROOT / row["copy"]).read_bytes()
++        require(len(data) == row["bytes"] and sha(data) == row["sha256"], "current terminal exact copied bytes")
++    adoption3 = read_json(ROOT / current["latest_root_adoption"])
++    repair_adoption = read_json(ROOT / current["repair_root_adoption"])
++    verdict3 = read_json(ROOT / (review_prefix + "VERDICT.json"))
++    seal3 = read_json(ROOT / (review_prefix + "SEAL.json"))
++    output_data = regular(ROOT / (review_prefix + "OUTPUT_PINS.json")).read_bytes()
++    output_hash = sha(output_data)
++    require(adoption3.get("output_pins_sha256") == seal3.get("output_pins_sha256") == output_hash and
++            seal3.get("output_pins_bytes") == len(output_data), "whole03 output-manifest root/seal binding")
++    output_rows = read_json(ROOT / (review_prefix + "OUTPUT_PINS.json"))["files"]
++    output_frozen = {r["path"]: r for r in output_rows}
++    require(len(output_frozen) == len(output_rows) == 30 and
++            type(seal3.get("output_records")) is int and seal3["output_records"] == 30,
++            "whole03 output inventory membership")
++    for name in review_files:
++        if name in ["SEAL.json", "OUTPUT_PINS.json"]:
++            continue
++        row = output_frozen[name]
++        data = regular(ROOT / (review_prefix + name)).read_bytes()
++        require(len(data) == row["bytes"] and sha(data) == row["sha256"],
++                "whole03 selected output pin: " + name)
++    for name, key in [("REPORT.md", "report_sha256"), ("VERDICT.json", "verdict_sha256"),
++                      ("INPUT_FREEZE.json", "input_freeze_sha256")]:
++        require(sha(regular(ROOT / (review_prefix + name)).read_bytes()) == seal3.get(key),
++                "whole03 seal body binding: " + name)
++    derivation = read_json(ROOT / (review_prefix + "DERIVATION_FREEZE.json"))
++    require(derivation.get("before_prior_review_reasoning") is True and
++            derivation.get("sha256") == sha(regular(ROOT / (review_prefix + "INDEPENDENT_DERIVATION.md")).read_bytes()),
++            "whole03 frozen independent derivation")
++    require(adoption3.get("status") == "ADOPT_COMPLETE_WHOLE03_ZERO_ACTIONABLE_PENDING_NEW_TERMINAL_ADMIN" and
++            type(adoption3.get("whole_reviews_completed")) is int and adoption3["whole_reviews_completed"] == 3 and
++            type(adoption3.get("minimum_whole_reviews")) is int and adoption3["minimum_whole_reviews"] == 2 and
++            type(adoption3.get("latest_complete_whole_review")) is int and adoption3["latest_complete_whole_review"] == 3 and
++            type(adoption3.get("actionable_P0_P1_P2_P3")) is int and adoption3["actionable_P0_P1_P2_P3"] == 0 and
++            adoption3.get("full_REPORT_frozen_independent_derivation_source_ledger_and_new_independent_code_read") is True and
++            adoption3.get("terminal_administrative_reconciliation_and_root_final_integrity_required") is True,
++            "whole03 root adoption semantics")
++    require(repair_adoption.get("status") == "ADOPT_BOUNDED_CASE_ALIAS_REPAIR_PENDING_NEW_COMPLETE_WHOLE03" and
++            repair_adoption.get("full_report_complete_code_prose_diff_read") is True and
++            repair_adoption.get("new_complete_whole03_required") is True,
++            "captured root case repair adoption")
++    require(verdict3.get("status") == "PASS_ZERO_ACTIONABLE_P0_P1_P2_P3" and
++            type(verdict3.get("pr")) is int and verdict3["pr"] == 1085 and
++            type(verdict3.get("problem_id")) is int and verdict3["problem_id"] == 20000488 and
++            verdict3.get("audited_head") == status["audited_head"] and
++            type(verdict3.get("review")) is int and verdict3["review"] == 3 and
++            verdict3.get("actionable_findings") == [] and
++            all(type(verdict3.get("severity_counts", {}).get(k)) is int and verdict3["severity_counts"][k] == 0
++                for k in ["P0", "P1", "P2", "P3"]) and
++            verdict3.get("root_adoption_required") is True and
++            verdict3.get("publication_ready_set_by_this_review") is False,
++            "whole03 zero finding verdict semantics")
++    for obj in [adoption3, repair_adoption, verdict3, seal3]:
++        require(obj.get("publication_ready") is False and obj.get("published") is False and
++                type(obj.get("services_held_after_pr")) is int and obj["services_held_after_pr"] == 1032,
++                "whole03 evidence no readiness/service promotion")
++    require(verdict3.get("human_peer_review") is False and verdict3.get("formal_proof_certificate") is False,
++            "whole03 evidence no refereeing promotion")
++    for key in ["priority", "novelty", "worldwide_open_status", "independent_discovery"]:
++        require(verdict3.get(key) == status[key], "whole03 evidence historical scope: " + key)
++    require(adoption3.get("priority_novelty_independent_discovery_worldwide_openness") == "UNKNOWN" and
++            adoption3.get("issues_resolved") is False and
++            verdict3.get("all_actionable_issues_resolved_set_by_this_review") is False and
++            seal3.get("root_adoption_required") is True and seal3.get("all_actionable_issues_resolved_set") is False and
++            type(seal3.get("actionable_P0_P1_P2_P3")) is int and seal3["actionable_P0_P1_P2_P3"] == 0 and
++            seal3.get("kind") == "INDEPENDENT_COMPLETE_WHOLE_PACKAGE_REVIEW_03_ZERO_ACTIONABLE",
++            "whole03 evidence scope and captured seal stage")
+     require(regular(ROOT / "paper.pdf").read_bytes().startswith(b"%PDF-"), "paper PDF signature")
+     archive_verified = False
+     archive = ROOT / ARCHIVE
+@@ -243,10 +362,14 @@
+     return {"passed": True, "payload_members_verified": len(names), "exact_historical_copies": len(copies),
+             "individual_exclusions": len(excluded), "archive_verified": archive_verified,
+             "external_deposit_binding_verified": binding_verified,
+-            "publication_ready": False, "new_whole_reviews": 2,
+-            "new_complete_whole03_required": True, "new_complete_whole03_completed": False,
++            "publication_ready": False, "new_whole_reviews": 3,
++            "latest_complete_whole_review": 3, "latest_actionable_P0_P1_P2_P3": 0,
++            "root_terminal_integrity_adoption_required": True, "root_terminal_integrity_adopted": False,
++            "further_complete_whole_review_currently_required": False,
++            "current_terminal_exact_copies": len(current_copies),
++            "new_complete_whole03_required": False, "new_complete_whole03_completed": True,
+             "terminal_exact_copies": len(terminal_copies), "terminal_individual_exclusions": len(terminal_exclusions),
+-            "scope": "Finite custody and declared-scope checks only. Universal proofs are in paper.tex; two historical complete whole reviews are recorded; the later case-alias repair requires external root adoption and NEW complete whole03, and services are held after PR1032."}
++            "scope": "Finite custody and declared-scope checks only. Universal proofs are in paper.tex; three complete whole reviews are recorded; root adopted the case-alias repair and latest ZERO-actionable whole03. No further complete review is currently required; external root terminal integrity adoption remains required and unadopted, and services are held after PR1032."}
+ 
+ def main():
+     p = argparse.ArgumentParser()
+--- before/preprint_v1_0/PAYLOAD_MEMBERS.txt
++++ after/preprint_v1_0/PAYLOAD_MEMBERS.txt
+@@ -3,6 +3,8 @@
+ CASE_ALIAS_REPAIR_ACCOUNTING.json
+ CASE_ALIAS_REPAIR_COPY_MAP.json
+ COPY_MAP.json
++CURRENT_TERMINAL_ACCOUNTING_20261016.json
++CURRENT_TERMINAL_COPY_MAP_20261016.json
+ EXCLUSIONS.json
+ LICENSE.txt
+ PAYLOAD_MEMBERS.txt
+@@ -142,6 +144,24 @@
+ evidence/terminal/reviews/package_02/VISUAL_REVIEW.json
+ evidence/terminal/reviews/package_02/ZENODO_LOCAL_CHECK.json
+ evidence/terminal/reviews/package_02/check_independent_forms.py
++evidence/terminal_after_whole03/ROOT_CASE_ALIAS_REPAIR_REVIEW_01.json
++evidence/terminal_after_whole03/ROOT_WHOLE_PACKAGE_REVIEW_03.json
++evidence/terminal_after_whole03/preprint_v1_0/PAYLOAD_MEMBERS.txt
++evidence/terminal_after_whole03/preprint_v1_0/README.md
++evidence/terminal_after_whole03/preprint_v1_0/SUPPORT_MANIFEST.json
++evidence/terminal_after_whole03/preprint_v1_0/UPLOAD_BINDINGS.json
++evidence/terminal_after_whole03/preprint_v1_0/verify_package.py
++evidence/terminal_after_whole03/reviews/package_03/DERIVATION_FREEZE.json
++evidence/terminal_after_whole03/reviews/package_03/FINAL_CONSERVATION.json
++evidence/terminal_after_whole03/reviews/package_03/INDEPENDENT_DERIVATION.md
++evidence/terminal_after_whole03/reviews/package_03/INPUT_FREEZE.json
++evidence/terminal_after_whole03/reviews/package_03/NEW_MATH_RECEIPTS.json
++evidence/terminal_after_whole03/reviews/package_03/OUTPUT_PINS.json
++evidence/terminal_after_whole03/reviews/package_03/REPORT.md
++evidence/terminal_after_whole03/reviews/package_03/SEAL.json
++evidence/terminal_after_whole03/reviews/package_03/SOURCE_READ_LEDGER.json
++evidence/terminal_after_whole03/reviews/package_03/VERDICT.json
++evidence/terminal_after_whole03/reviews/package_03/check_independent.py
+ kit_common.py
+ metadata.json
+ metadata_constants.py
+--- before/preprint_v1_0/SUPPORT_MANIFEST.json
++++ after/preprint_v1_0/SUPPORT_MANIFEST.json
+@@ -27,6 +27,16 @@
+       "sha256": "c6bbab5f59daf66cf56816361c8b9c5dfad0618a1c52e5a141120777cdb49038"
+     },
+     {
++      "path": "CURRENT_TERMINAL_ACCOUNTING_20261016.json",
++      "bytes": 2251,
++      "sha256": "ec8bb8dffce4075312bf0d0803be4f08fd0ab83005e888ddb8251a957e8fc4bd"
++    },
++    {
++      "path": "CURRENT_TERMINAL_COPY_MAP_20261016.json",
++      "bytes": 5940,
++      "sha256": "051d52d4b150810171a7a7dd80b96f8c96ed5596e8e8339bca3bffdc838d8861"
++    },
++    {
+       "path": "EXCLUSIONS.json",
+       "bytes": 39852,
+       "sha256": "7008d95f366940f99b1364235fba2bf3b50a151bd4b95c5e5088b02787a38502"
+@@ -38,8 +48,8 @@
+     },
+     {
+       "path": "PAYLOAD_MEMBERS.txt",
+-      "bytes": 7248,
+-      "sha256": "d7793c5583c7cac089e850b05e21b1c15c01f7bedb6c5017575c8ce0ff681b61"
++      "bytes": 8557,
++      "sha256": "0f0ea057d2b2ec81bf74b9bb6915bacfa581865c94765fcc13c7d704111e83ca"
+     },
+     {
+       "path": "PREPARATION_INPUT_PINS.json",
+@@ -53,8 +63,8 @@
+     },
+     {
+       "path": "README.md",
+-      "bytes": 9764,
+-      "sha256": "33979e20547ae25d28847059e5c16e8123d4433fb6011296f9abd99d4dbb542a"
++      "bytes": 11955,
++      "sha256": "3d41b3e0ce3788f15657bffdab2f29aa70edfd60d60b1f71673062269f8fd5b4"
+     },
+     {
+       "path": "SOURCE_METADATA.json",
+@@ -722,6 +732,96 @@
+       "sha256": "c736a9e07a227a76bccad8d7ac4d79efaaec12016a2a7210a0aa8e6050f4e8e3"
+     },
+     {
++      "path": "evidence/terminal_after_whole03/ROOT_CASE_ALIAS_REPAIR_REVIEW_01.json",
++      "bytes": 14104,
++      "sha256": "d54f4d029d036cf28b25e8e7b3bcbbe53518a5c8d3f91bb6a6668d2feaedd382"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/ROOT_WHOLE_PACKAGE_REVIEW_03.json",
++      "bytes": 3179,
++      "sha256": "ad06bb255f8510ace638286737e54698ec56c9c5dd677b24a8fe0c6d88d85078"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/preprint_v1_0/PAYLOAD_MEMBERS.txt",
++      "bytes": 7248,
++      "sha256": "d7793c5583c7cac089e850b05e21b1c15c01f7bedb6c5017575c8ce0ff681b61"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/preprint_v1_0/README.md",
++      "bytes": 9764,
++      "sha256": "33979e20547ae25d28847059e5c16e8123d4433fb6011296f9abd99d4dbb542a"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/preprint_v1_0/SUPPORT_MANIFEST.json",
++      "bytes": 28053,
++      "sha256": "1f4a0d8cfe7767a5790278b2c39e341ab52c2ff34e95b304fdbe338ea4b2e696"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/preprint_v1_0/UPLOAD_BINDINGS.json",
++      "bytes": 3536,
++      "sha256": "d383d67899df0da4d97ac77c889eb4583df0188fa70cf63a54469a13018ef95f"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/preprint_v1_0/verify_package.py",
++      "bytes": 19455,
++      "sha256": "51cca74fa4e5ab0251a1b95252687edbab45d16c309630cc296a1d326543433a"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/DERIVATION_FREEZE.json",
++      "bytes": 299,
++      "sha256": "8ee41ff323d1a9a4a14854181239aac7c7078e91f462ffc908bceae046b64dfe"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/FINAL_CONSERVATION.json",
++      "bytes": 564,
++      "sha256": "27b8738cf8390cc0a93e757d6990fbd4b3ad7ba800735973e75a91f7946b508c"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/INDEPENDENT_DERIVATION.md",
++      "bytes": 5727,
++      "sha256": "32ae1679628db6ffc764906a9bf36f18c699e9dda3bf858d9df81b8647598585"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/INPUT_FREEZE.json",
++      "bytes": 94692,
++      "sha256": "dfd7f649d01cf19a00669c423e49dd572c21f0cd93ad4bc6ebb49fbcce52f2e5"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/NEW_MATH_RECEIPTS.json",
++      "bytes": 10187,
++      "sha256": "da767a20df8db8919fbaf7597aaf9ef2460c1422f20d02fbacd86c71acf5466b"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/OUTPUT_PINS.json",
++      "bytes": 4993,
++      "sha256": "fafa28ba3523e4d0b520b43394910967e50a4e1893eb512f0ef63284fe6f8b5d"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/REPORT.md",
++      "bytes": 18609,
++      "sha256": "835deb758b6bd3a9e68799b194fba745f8d8c2b6c00931989d882d35bb6d5422"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/SEAL.json",
++      "bytes": 929,
++      "sha256": "ddc57b0c5649bd0f70b6cc4a1f82553c869e6635107753a0002170d9eb893fd0"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/SOURCE_READ_LEDGER.json",
++      "bytes": 7937,
++      "sha256": "73a7ce17197186789fd7ae459e2f32a4c304ed835f0710aa00476f4599a84843"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/VERDICT.json",
++      "bytes": 1511,
++      "sha256": "b431543e959ad1d08641b06c0d5674f875a04bbadf5c0bf0c4c0a209fdf4b624"
++    },
++    {
++      "path": "evidence/terminal_after_whole03/reviews/package_03/check_independent.py",
++      "bytes": 4291,
++      "sha256": "74371619f510b02b0276806a271249271517abe6123884ba8b375134a88f94fd"
++    },
++    {
+       "path": "kit_common.py",
+       "bytes": 3861,
+       "sha256": "9bd3f2ea5a91b70300a6dfd6d4f69509b9e00537eb5e2ab9311d10aea88bf570"
+@@ -768,8 +868,8 @@
+     },
+     {
+       "path": "verify_package.py",
+-      "bytes": 19455,
+-      "sha256": "51cca74fa4e5ab0251a1b95252687edbab45d16c309630cc296a1d326543433a"
++      "bytes": 29514,
++      "sha256": "aefbf96ded67821349d0362836f8f8d7155bc01ee692edaaf441a7d2c48945a7"
+     }
+   ],
+   "self_hash_excluded": [
+--- before/preprint_v1_0/UPLOAD_BINDINGS.json
++++ after/preprint_v1_0/UPLOAD_BINDINGS.json
+@@ -63,8 +63,8 @@
+     },
+     {
+       "filename": "pr1085_support_v1_0.zip",
+-      "bytes": 513981,
+-      "sha256": "e550ae4098acc41ea9ebf11d2f452de64acfceb375b63a4197853607b8c9c591"
++      "bytes": 592060,
++      "sha256": "f986ce010bfa91509497c17eed8369e80955cd1f4f44f2d81692112cab307a66"
+     }
+   ]
+ }
+--- /dev/null
++++ after/preprint_v1_0/CURRENT_TERMINAL_ACCOUNTING_20261016.json
+@@ -0,0 +1,37 @@
++{
++  "schema": 1,
++  "utc": "2026-10-16T04:59:24.534158+00:00",
++  "pr": 1085,
++  "problem_id": 20000488,
++  "audited_head": "5e23f0c801d23976830657d2eef2b32bdc7da05a",
++  "status": "WHOLE03_ROOT_ADOPTED_TERMINAL_ADMIN_PENDING_EXTERNAL_ROOT_INTEGRITY",
++  "whole_reviews_completed": 3,
++  "minimum_whole_reviews": 2,
++  "latest_complete_whole_review": 3,
++  "latest_actionable_P0_P1_P2_P3": 0,
++  "case_alias_repair_root_adopted": true,
++  "latest_complete_whole_review_root_adopted": true,
++  "new_complete_whole03_required": false,
++  "new_complete_whole03_completed": true,
++  "further_complete_whole_review_currently_required": false,
++  "root_terminal_integrity_adoption_required": true,
++  "root_terminal_integrity_adopted": false,
++  "publication_ready": false,
++  "all_actionable_issues_resolved": false,
++  "issues_resolved": false,
++  "published": false,
++  "human_peer_review": false,
++  "formal_proof_certificate": false,
++  "services_hold": "preceding PR1032 priority cursor",
++  "historical_STATUS_TERMINAL_ACCOUNTING_CASE_REPAIR_preserved": true,
++  "priority": "UNKNOWN_EXACT_REMAINING_GEOMETRIC_FORMULATIONS",
++  "novelty": "UNKNOWN",
++  "worldwide_open_status": "UNKNOWN",
++  "independent_discovery": "UNKNOWN",
++  "paper_pdf_sha256": "464de043ac6b723f3bd5c03dddb6efd1c0bfeb05b5209bb532006580b7aedc2d",
++  "paper_tex_sha256": "c18a6ed12250dcee413e85f9a6297c525015396f151cdab8d89a6eb76938046d",
++  "latest_review_prefix": "evidence/terminal_after_whole03/reviews/package_03/",
++  "latest_root_adoption": "evidence/terminal_after_whole03/ROOT_WHOLE_PACKAGE_REVIEW_03.json",
++  "repair_root_adoption": "evidence/terminal_after_whole03/ROOT_CASE_ALIAS_REPAIR_REVIEW_01.json",
++  "meaning": "Three NEW complete whole-package reviews have completed (minimum two). Whole01/02 zero findings predate CASE-1085. Root adopted the repair and the NEW complete whole03 ZERO-actionable result on the repaired candidate. No further complete review is currently required. This bounded terminal administration is not a new whole review or release grant. External ROOT terminal integrity adoption is required and unadopted; readiness/issue-clearance/publication remain false and services remain held after PR1032. Historical pending records retain their exact captured-stage meaning."
++}
+--- /dev/null
++++ after/preprint_v1_0/CURRENT_TERMINAL_COPY_MAP_20261016.json
+@@ -0,0 +1,119 @@
++{
++  "schema": 1,
++  "scope": "Minimal authored whole03/root interfaces and five exact before-interface copies only. Original preparation/terminal partitions and six repair copies are unchanged. Source locators refer to exact local audit custody, not distribution promises; omitted bodies and historical executable environments are not replay claims.",
++  "files": [
++    {
++      "source_relative_audit": "ROOT_CASE_ALIAS_REPAIR_REVIEW_01.json",
++      "copy": "evidence/terminal_after_whole03/ROOT_CASE_ALIAS_REPAIR_REVIEW_01.json",
++      "bytes": 14104,
++      "sha256": "d54f4d029d036cf28b25e8e7b3bcbbe53518a5c8d3f91bb6a6668d2feaedd382"
++    },
++    {
++      "source_relative_audit": "ROOT_WHOLE_PACKAGE_REVIEW_03.json",
++      "copy": "evidence/terminal_after_whole03/ROOT_WHOLE_PACKAGE_REVIEW_03.json",
++      "bytes": 3179,
++      "sha256": "ad06bb255f8510ace638286737e54698ec56c9c5dd677b24a8fe0c6d88d85078"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/REPORT.md",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/REPORT.md",
++      "bytes": 18609,
++      "sha256": "835deb758b6bd3a9e68799b194fba745f8d8c2b6c00931989d882d35bb6d5422"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/VERDICT.json",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/VERDICT.json",
++      "bytes": 1511,
++      "sha256": "b431543e959ad1d08641b06c0d5674f875a04bbadf5c0bf0c4c0a209fdf4b624"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/SEAL.json",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/SEAL.json",
++      "bytes": 929,
++      "sha256": "ddc57b0c5649bd0f70b6cc4a1f82553c869e6635107753a0002170d9eb893fd0"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/OUTPUT_PINS.json",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/OUTPUT_PINS.json",
++      "bytes": 4993,
++      "sha256": "fafa28ba3523e4d0b520b43394910967e50a4e1893eb512f0ef63284fe6f8b5d"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/INPUT_FREEZE.json",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/INPUT_FREEZE.json",
++      "bytes": 94692,
++      "sha256": "dfd7f649d01cf19a00669c423e49dd572c21f0cd93ad4bc6ebb49fbcce52f2e5"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/DERIVATION_FREEZE.json",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/DERIVATION_FREEZE.json",
++      "bytes": 299,
++      "sha256": "8ee41ff323d1a9a4a14854181239aac7c7078e91f462ffc908bceae046b64dfe"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/INDEPENDENT_DERIVATION.md",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/INDEPENDENT_DERIVATION.md",
++      "bytes": 5727,
++      "sha256": "32ae1679628db6ffc764906a9bf36f18c699e9dda3bf858d9df81b8647598585"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/SOURCE_READ_LEDGER.json",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/SOURCE_READ_LEDGER.json",
++      "bytes": 7937,
++      "sha256": "73a7ce17197186789fd7ae459e2f32a4c304ed835f0710aa00476f4599a84843"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/check_independent.py",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/check_independent.py",
++      "bytes": 4291,
++      "sha256": "74371619f510b02b0276806a271249271517abe6123884ba8b375134a88f94fd"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/NEW_MATH_RECEIPTS.json",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/NEW_MATH_RECEIPTS.json",
++      "bytes": 10187,
++      "sha256": "da767a20df8db8919fbaf7597aaf9ef2460c1422f20d02fbacd86c71acf5466b"
++    },
++    {
++      "source_relative_audit": "reviews/package_03/FINAL_CONSERVATION.json",
++      "copy": "evidence/terminal_after_whole03/reviews/package_03/FINAL_CONSERVATION.json",
++      "bytes": 564,
++      "sha256": "27b8738cf8390cc0a93e757d6990fbd4b3ad7ba800735973e75a91f7946b508c"
++    },
++    {
++      "source_relative_audit": "preprint_v1_0/README.md",
++      "copy": "evidence/terminal_after_whole03/preprint_v1_0/README.md",
++      "bytes": 9764,
++      "sha256": "33979e20547ae25d28847059e5c16e8123d4433fb6011296f9abd99d4dbb542a",
++      "source_snapshot_relative_audit": "finalization/terminal_admin_after_whole03_20261016/before/preprint_v1_0/README.md"
++    },
++    {
++      "source_relative_audit": "preprint_v1_0/verify_package.py",
++      "copy": "evidence/terminal_after_whole03/preprint_v1_0/verify_package.py",
++      "bytes": 19455,
++      "sha256": "51cca74fa4e5ab0251a1b95252687edbab45d16c309630cc296a1d326543433a",
++      "source_snapshot_relative_audit": "finalization/terminal_admin_after_whole03_20261016/before/preprint_v1_0/verify_package.py"
++    },
++    {
++      "source_relative_audit": "preprint_v1_0/PAYLOAD_MEMBERS.txt",
++      "copy": "evidence/terminal_after_whole03/preprint_v1_0/PAYLOAD_MEMBERS.txt",
++      "bytes": 7248,
++      "sha256": "d7793c5583c7cac089e850b05e21b1c15c01f7bedb6c5017575c8ce0ff681b61",
++      "source_snapshot_relative_audit": "finalization/terminal_admin_after_whole03_20261016/before/preprint_v1_0/PAYLOAD_MEMBERS.txt"
++    },
++    {
++      "source_relative_audit": "preprint_v1_0/SUPPORT_MANIFEST.json",
++      "copy": "evidence/terminal_after_whole03/preprint_v1_0/SUPPORT_MANIFEST.json",
++      "bytes": 28053,
++      "sha256": "1f4a0d8cfe7767a5790278b2c39e341ab52c2ff34e95b304fdbe338ea4b2e696",
++      "source_snapshot_relative_audit": "finalization/terminal_admin_after_whole03_20261016/before/preprint_v1_0/SUPPORT_MANIFEST.json"
++    },
++    {
++      "source_relative_audit": "preprint_v1_0/UPLOAD_BINDINGS.json",
++      "copy": "evidence/terminal_after_whole03/preprint_v1_0/UPLOAD_BINDINGS.json",
++      "bytes": 3536,
++      "sha256": "d383d67899df0da4d97ac77c889eb4583df0188fa70cf63a54469a13018ef95f",
++      "source_snapshot_relative_audit": "finalization/terminal_admin_after_whole03_20261016/before/preprint_v1_0/UPLOAD_BINDINGS.json"
++    }
++  ]
++}

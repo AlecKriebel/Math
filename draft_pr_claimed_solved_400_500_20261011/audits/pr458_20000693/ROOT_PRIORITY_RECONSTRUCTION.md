@@ -1,0 +1,45 @@
+# Root priority reconstruction: bounded scope comparison
+
+This is a research checkpoint, not a final disposition or publication approval. The root has seen provisional reviewer messages and does not claim an unprimed priority audit. Two no-history priority families preserve their own earlier claim maps and verdict checkpoints. No frozen or actual PR artifact has been changed.
+
+## Claim and success criterion
+
+The live AIM §5 Problem5.3 asks for a heuristic for imprimitive L-functions, giving a degree-one Dirichlet product and allowing different powers. The candidate chooses a fixed finite unshifted product, arbitrary fixed character moduli and nonnegative real weights. Its claimed deliverable is a leading Euler/Barnes constant and multiplicity-square logarithmic exponent under explicit statistical models, with the actual general asymptotic unproved. The assessment must compare this heuristic deliverable with earlier heuristics; demanding an unconditional high-moment theorem would change the target.
+
+The original author SOURCE_GATE already says the central idea is known and the work is a credited synthesis with no novelty claim. This is material evidence against advertising it as a new discovery, but it is not itself evidence that every displayed formula in the enlarged scope was previously printed. Neither a persistent open-problem webpage nor a paper's conditional theorem heading settles priority.
+
+## Direct primary substitutions
+
+1. Heap, arXiv:1303.6119v1 (2013), Conjecture4 and §7, printed36–39, gives a product of distinct primitive constituents with positive integer multiplicities e_j and a common real outer moment weight k. Set each constituent degree d_j=1 and put M_j=e_j k. Equations(186)–(188) then yield exponent sum M_j², local coefficients of the powered joint Euler product, and the constituent Barnes factors. The Gamma(n_L k²+1) in (186) cancels the Gamma in (187); it is not an extra factor in the candidate constant. Repeated primitive constituents are grouped before applying the formula. Printed37 equation(185) explicitly treats unequal integer powers. Taking k=1 covers the literal squared primitive Dirichlet-product example after this grouping.
+2. Sahay, arXiv:2103.13542, gives the common-modulus, nonnegative integer tuple formula already in v1 (2021), not first in v3 (2022). The v3 conditional Theorem1.7, printed8, supplies the joint coefficient Euler constant and the product of Barnes factors, including imprimitive Euler deletions. Its hypotheses are the splitting and zero-model conjectures. It does not prove the general asymptotic. Printed33–34 compares the two-character constants and explicitly notes the analogous distinct-modulus setting of Topacogullari's results. The complete two pages have now been visually read by the root.
+3. Milinovich–Turnage-Butterbaugh, *Moments of products of automorphic L-functions*, JNT139 (2014),175–204, author-copy printed1–2, equation(1.2), already conjectures the exponent sum k_j² for independently positive real weights and distinct primitives. It leaves C(vector) unspecified and credits Heap for precise natural-weight constants. Its Theorem1.1 supplies conditional upper bounds, not a leading-constant theorem. The root downloaded the official author copy and visually read both complete pages.
+4. Keating–Snaith gives the finite unitary real-power Gamma product, equation(6), and its Barnes asymptotic, equation(15). These are the matrix inputs used by the candidate. Frozen SOURCE_GATE's pointer to(10)–(12) is incorrect for this role: those equations concern cumulants. This citation defect remains one of the recorded required publication repairs.
+5. Topacogullari's proved two-factor result is a normalization benchmark and covers distinct primitive Dirichlet characters with potentially different moduli. Hagen2026 supplies sharp order bounds in its specified ranges, not the candidate's full leading constant or a proof of arbitrary high moments. Neither should be cited as proving the whole enlarged asymptotic.
+
+Primary references: [AIM target](http://aimpl.org/zetamoments/5/), [Heap v1](https://arxiv.org/pdf/1303.6119v1), [Sahay versions](https://arxiv.org/abs/2103.13542), [Milinovich–Turnage-Butterbaugh author copy](https://home.olemiss.edu/~mbmilino/automorphic.pdf), [Keating–Snaith author copy](https://people.maths.bris.ac.uk/~mancs/papers/RMTzeta.pdf), [Topacogullari v1](https://arxiv.org/pdf/1909.11517v1), [Hagen v1](https://arxiv.org/pdf/2609.11619v1).
+
+## What is and is not literally covered
+
+No single inspected prior statement jointly quantifies arbitrary independent nonnegative real weights and arbitrary original imprimitive modulus levels with every finite correction displayed. For instance (1,sqrt(2)) is not an integer multiplicity tuple times a common real parameter. Density of such tuples does not prove a new actual-moment asymptotic by continuity.
+
+At the model level the adaptations use already specified mechanisms. Replace integer local binomial powers by their analytic real-power series and use the same known real CUE moments. Let Q be the lcm of the original moduli. Lifting to Q changes only finitely many local Euler factors. The exact inverse restoration factors at p|Q with p not dividing an original modulus preserve the common prime phase; their joint mean changes the arithmetic constant. Uniqueness of the primitive inducer preserves the multiplicity grouping. Transport of a critical-line asymptotic across these changes is a model assumption here; the finite Euler identities themselves are exact. The candidate does not supply a new growing-cutoff, zero-independence or prime/zero-splitting mechanism.
+
+Consequently the enlarged literal quantifiers must be recorded honestly, while the absence of their joint wording in a single paper is insufficient evidence of a novel solution. A potential worthwhile expository extension is distinct from a newly solved open problem. Any proposed status repair must say that the core fixed-degree-one leading heuristic has prior coverage and the candidate is an attributed synthesis; it must not claim an earlier full theorem, every possible interpretation of Problem5.3, or first-solver priority.
+
+## Counterexample to transporting an older convergence argument
+
+Heap v1 equation(194) claims absolute convergence after only diagonal factors are stripped. Take L=ζ L(χ), with χ the primitive real nonprincipal character modulo3, and outer weight1. At every p≠3, put x=p^{-s}. The diagonal-normalized local factor is
+
+    (1-x²)/(1-χ(p)x)² = 1 + 2χ(p)x + O(x²).
+
+At s=1 the sum of absolute values of these first-order terms diverges, because |χ(p)|=1 for p≠3 and sum_p 1/p diverges. Thus that assertion cannot serve as a general absolute-convergence proof. This does not refute the heuristic constant or the candidate's separate argument: multiplying by the positive cross factor |1-χ(p)/p|² cancels the first-order term; the remaining factors are 1+O(p^{-2}). The ordered cross product is handled by nonprincipal L(1,χ) and fixed-modulus prime distribution. Heap §6 already makes a cross-L extraction in its quadratic example, and Sahay regularizes general integer cross terms by residue-class Mertens. The candidate's ordered real-weight bookkeeping should be checked on its own, not justified by the defective line.
+
+## Chronology and source-context limitations
+
+Heap v1 was submitted25March2013; the York thesis was deposited19November2013. Heap's journal article appeared online15November2019, with the January2021 issue. The AIM workshop occurred29August–2September2016, not2012. Milinovich–Turnage-Butterbaugh appeared in June2014. Sahay v1 was submitted25March2021, v3 on9November2022; the journal article appeared online28November2022 and in the May2023 issue.
+
+The official [workshop announcement](https://aimath.org/pastworkshops/zetamoments.html) and [two-page workshop report](https://aimath.org/pastworkshops/zetamomentsrep.pdf) place the questions in work on long Dirichlet polynomials and divisor correlations. The report was read as complete web-extracted text; a direct raw-PDF download returned HTTP403, so no root raw-byte hash or local visual-reading claim is made for that report. This context does not impose a particular new method or all lower-order terms on the literal5.3 statement. It also does not establish that the question's author overlooked the earlier heuristic, or that a named later paper explicitly closed this numbered question. No outside communication occurred.
+
+## Pending decision
+
+The primary evidence strongly supports a prior-known central heuristic and a routine model synthesis in the candidate's selected setting. Final priority-family reports, typed counts, complete evidence bindings and adversarial review of any concrete narrow classification repair remain required. Frozen publication blockers H1/V1 and correction groups H1/V1/P2/C3 remain unresolved in the actual PR. No status, source, preprint, DOI, tracker or merge action is authorized by this checkpoint alone.

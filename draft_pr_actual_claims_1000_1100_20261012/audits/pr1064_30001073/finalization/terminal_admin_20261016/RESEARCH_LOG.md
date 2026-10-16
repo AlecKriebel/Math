@@ -1,0 +1,13 @@
+# PR1064 terminal administration, 16 October 2026
+
+2026-10-16T04:56:11.394644+00:00 — 10% of bounded terminal administration: complete initial audit inputs frozen, and all nine permitted mutable files preserved as exact before bytes. Whole04 full report, ROOT adoption, operative verifier and current README read. Four complete reviews, latest ZERO and ROOT-adopted. No service, Git, outreach or other-shard operation. ROOT external final integrity remains required.
+
+2026-10-16T04:57:29.396346+00:00 — 40% of bounded terminal administration: separate dated outer/kit status, exact eleven-file whole04 evidence addition, append-only copies, current semantic guards and README reconciled. Archive and binding regenerated. All former statuses/seals, paper, metadata, native manifest and path guards remain protected. Validation and ROOT external final integrity remain.
+
+2026-10-16T05:02:06.296078+00:00 — 65% of bounded terminal administration: validation harness stopped after247 settled expected subprocess results at an incorrect str/str path operation while constructing a case alias. No operative candidate or protected bytes changed. Exact failed code, process ledger and scratch are preserved; correction and fresh complete validation follow.
+
+2026-10-16T05:03:36.094890+00:00 — 80% of bounded terminal administration: all 605 actual top-level commands settled with expected outcomes. Full mathematical JSON normal/optimized comparisons, rigorous finite faults, coherent current-status/evidence semantics, complete protected hardlinks, prewriter aliases, physical case containment, bootstrap links, strict binding and local native manifest checks passed. No PDF compile/render. Final custody/diffs/stage ledgers and terminal seal remain; ROOT external final integrity remains a separate required act.
+
+2026-10-16T05:03:43.868956+00:00 — 100% of bounded terminal administration: complete protected/before/current/copy/stage ledgers, historical exception preservation, full operative/code/prose diffs and report settled. All initial files retained exactly or in saved before copies; no mathematical change or readiness promotion. ROOT independent adoption and NEW external final integrity remain required. Output inventory/seal are the final writes.
+
+2026-10-16T05:04:27.981465+00:00 — 100% of bounded terminal administration: corrected local coverage wording before handoff: twelve protected excluded inputs plus the mutable designated support.zip comprise thirteen exclusions. Preserved exact prior report/output inventory/seal and executed validator; only a validator comment changed. No candidate or test result changed. Final output inventory/seal reissued after this correction; ROOT external final integrity remains required.

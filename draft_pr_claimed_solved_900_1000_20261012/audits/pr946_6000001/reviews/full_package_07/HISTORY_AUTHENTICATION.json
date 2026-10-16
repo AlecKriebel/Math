@@ -1,0 +1,267 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-16T05:55:17.456808+00:00",
+  "actual_six_whole_rounds": [
+    {
+      "round": 1,
+      "manifest": {
+        "bytes": 7433,
+        "sha256": "2f1a4ba73839b83280e9daba44fbe79e70b52a80761deded5314e0db99c7e834"
+      },
+      "payloads": 40,
+      "candidate_revision": 1,
+      "candidate_pins": {
+        "freeze": "715717bdbb17b9c20ded279496e7b5b4ceb439e7d86e20eb238a067efd308920",
+        "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+        "pdf": "5672873695bd71ff852fc8631e5ba980adffc4025b42ecb38d2617a8673ebb63"
+      },
+      "reviewer_agent_id": "/root/pr946_full_package_01",
+      "started_utc": "2026-10-15T12:57:29.914572+00:00",
+      "completed_utc": "2026-10-15T13:19:04.506804+00:00",
+      "required_issues": [
+        {
+          "id": "FP01-OPS-001",
+          "severity": "required",
+          "category": "operational_review_history",
+          "location": "accept_pr946.py:370-495",
+          "finding": "A later sealed adverse canonical full_package_NN round can be omitted from the supplied consecutive clean prefix and the earlier prefix accepted.",
+          "evidence": [
+            "OPERATIONS_ADVERSARY.json",
+            "operations_adversary.py"
+          ],
+          "repair": "Inventory all canonical review directories safely and require the complete sealed consecutive sequence; reject omitted, malformed and unsealed canonical rounds."
+        },
+        {
+          "id": "FP01-OPS-002",
+          "severity": "required",
+          "category": "operational_schema",
+          "location": "accept_pr946.py:377-495",
+          "finding": "Current-freeze reviews accept missing candidate_revision, mismatched revision999, and absent COLD.normalized_fields_ignored despite mandatory schema.",
+          "evidence": [
+            "SCHEMA_ADVERSARY.json",
+            "operations_adversary.py"
+          ],
+          "repair": "Require mandatory keys/types explicitly for all review paths, compare revision to authenticated freeze, and require explicit exact empty normalization list."
+        }
+      ],
+      "optional_issues": [
+        {
+          "id": "FP01-OPS-003",
+          "category": "state_consistency",
+          "location": "accept_pr946.py:1205-1235",
+          "finding": "Full finalize selects next target but leaves publication summary omitting946 and carries its portable_release_tooling field to next target.",
+          "evidence": [
+            "FINALIZE_STATE_ADVERSARY.json",
+            "finalize_state_adversary.py"
+          ],
+          "repair": "Refresh publication summary from completed records and clear or scope target-specific tooling before selecting next target."
+        },
+        {
+          "id": "FP01-DOC-001",
+          "category": "document_metadata",
+          "location": "research_note.tex title/status area",
+          "finding": "Descriptor declares version1.0 and CC-BY4.0 but standalone PDF has no visible version/license notice.",
+          "evidence": [
+            "PDF_RENDER_REVIEW.json"
+          ],
+          "repair": "Add compact version1.0 and CC-BY4.0 notice consistent with descriptor."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "manifest": {
+        "bytes": 7259,
+        "sha256": "e0361044f313b540f8a46b6a417a00a1777e22a33439e9a097aa0f9e7b54c3e6"
+      },
+      "payloads": 39,
+      "candidate_revision": 2,
+      "candidate_pins": {
+        "freeze": "bdd016d29f8647c92081990d8fe271e577bd01abe5f132790fdec00600d3bf67",
+        "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+        "pdf": "a3a1059bf762171d37dde836efb7ae0422477015d181102d0f323c369760ce90"
+      },
+      "reviewer_agent_id": "/root/pr946_full_package_02",
+      "started_utc": "2026-10-15T13:36:56.710649+00:00",
+      "completed_utc": "2026-10-15T13:59:59.429953+00:00",
+      "required_issues": [
+        {
+          "id": "FP02-OPS-001",
+          "severity": "required",
+          "category": "operational_review_history",
+          "location": "accept_pr946.py:620-633 accepted_package; merge/zenodo/tracker_append/native_write/finalize action boundaries",
+          "finding": "After acceptance, later actions neither reauthenticate the accepted complete sealed review chain nor inventory new canonical full_package_NN rounds. An adverse or unfinished round added after acceptance, including after readiness, can be ignored before merge and publication actions.",
+          "evidence": [
+            "INDEPENDENT_OPERATIONS_CONTROLS.json",
+            "independent_operations_controls.py",
+            "ACTION_BOUNDARY_REVIEW.json"
+          ],
+          "repair": "Revalidate accepted review seals/full records/current and historical freezes/issue resolutions and exact complete directory set at every later action, then recheck immediately before mutating dispatches, after readiness and per native CAS parent. Add new-adverse-round and changed-seal controls across all actions."
+        }
+      ],
+      "optional_issues": [
+        {
+          "id": "FP02-DOC-001",
+          "category": "source_link",
+          "location": "research_note.tex:455, PDF bibliography item7",
+          "finding": "Tubular-neighborhood citation uses non-www math.toronto.edu hostname, freshly HTTP404; www.math.toronto.edu serves the exact authenticated primary PDF.",
+          "evidence": [
+            "SOURCE_LINK_CONTROLS.json",
+            "PRIMARY_SOURCE_REVIEW.json"
+          ],
+          "repair": "Use https://www.math.toronto.edu/mgualt/courses/17-1300/docs/17-1300-notes-11.pdf and rebuild paper/archive/metadata pins consistently."
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "manifest": {
+        "bytes": 6702,
+        "sha256": "28f08795caf265a412463b3b30880f29bcbc615eb84baf4b92010d1720326370"
+      },
+      "payloads": 35,
+      "candidate_revision": 3,
+      "candidate_pins": {
+        "freeze": "fdff50b3a1c77523b1b1b7c3da42b2dfdbb1bc17ada7b19abfcbfbbd40d4c505",
+        "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+        "pdf": "b874d63619ec7abbd3d9109639eb017b69435118c4cc9d5fec450605e4316e42"
+      },
+      "reviewer_agent_id": "/root/pr946_full_package_03",
+      "started_utc": "2026-10-15T14:07:45+00:00",
+      "completed_utc": "2026-10-15T14:26:40.989469+00:00",
+      "required_issues": [
+        {
+          "id": "FP03-OPS-001",
+          "severity": "required",
+          "category": "operational_final_completion_review_history",
+          "location": "accept_pr946.py:1309-1316,1323-1350 finalize",
+          "finding": "The last accepted_review_check precedes CURRENT_STATE/inventory reads and gate_next. A new canonical pending/adverse review introduced during those reads is ignored before final workflow-completion state/log writes; pending review introduced during state reading also permits already_finalized=true recovery return.",
+          "evidence": [
+            "ACTION_CHAIN_CONTROLS.json",
+            "action_chain_controls.py",
+            "FULL_AUDIT.md"
+          ],
+          "repair": "Reauthenticate the complete accepted review history after all state/next-status reads immediately before the final completion-write sequence, and before the already-finalized return after state reading; add actual-directory behavioral pending/adverse/drift and positive-chain controls. Preserve candidate03 and older evidence, rebuild pins and commission a NEW entire full-package review."
+        }
+      ],
+      "optional_issues": []
+    },
+    {
+      "round": 4,
+      "manifest": {
+        "bytes": 7427,
+        "sha256": "7fb99b465473a17ad54a363c4ee6f410023b3857343a5df2c356a705d50180d0"
+      },
+      "payloads": 39,
+      "candidate_revision": 4,
+      "candidate_pins": {
+        "freeze": "4a5ad29c194c353bd1a8fe502767673d8cd335e9b60b9135b88e031b03cebad3",
+        "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+        "pdf": "b874d63619ec7abbd3d9109639eb017b69435118c4cc9d5fec450605e4316e42"
+      },
+      "reviewer_agent_id": "/root/pr946_full_package_04",
+      "started_utc": "2026-10-16T03:59:08.581894+00:00",
+      "completed_utc": "2026-10-16T04:17:35.425300+00:00",
+      "required_issues": [
+        {
+          "id": "FP04-OPS-001",
+          "severity": "required",
+          "category": "operational_canonical_acceptance_refresh",
+          "location": "accept_pr946.py:620-637,711-730,1311-1317,1328-1344",
+          "finding": "The immediate shared guard does not reload canonical ACCEPTANCE.json. Revocation or accepted theorem drift during late state/next-status reads still allows completion or already_finalized; acceptance revocation during ready still permits the subsequent merge dispatch.",
+          "evidence": [
+            "ACTION_CHAIN_CONTROLS.json",
+            "action_chain_controls.py",
+            "FULL_AUDIT.md"
+          ],
+          "repair": "Refresh and validate canonical acceptance at each immediate boundary, require exact consistency with the authenticated action snapshot and stop on revocation or drift, including after intervening service reads. Preserve captured execution and uncertain-action recovery semantics."
+        },
+        {
+          "id": "FP04-OPS-002",
+          "severity": "required",
+          "category": "operational_current_freeze_refresh",
+          "location": "accept_pr946.py:493-560,620-637,1311-1317,1328-1344",
+          "finding": "The immediate shared guard retains the already-loaded current freeze and does not reread every current frozen file. Standalone current TeX or FREEZE drift introduced during state/next-status reads still allows completion or already_finalized while a fresh accepted_package immediately rejects.",
+          "evidence": [
+            "ACTION_CHAIN_CONTROLS.json",
+            "action_chain_controls.py",
+            "FULL_AUDIT.md"
+          ],
+          "repair": "Reauthenticate the externally pinned current freeze and complete current payload/evidence context at existing immediate boundaries and compare the refreshed snapshot, including after reads inside the guard. Retain snapshot execution semantics; no atomic hostile-filesystem guarantee is required."
+        }
+      ],
+      "optional_issues": []
+    },
+    {
+      "round": 5,
+      "manifest": {
+        "bytes": 9038,
+        "sha256": "4d60602995d799a0850c4657b3401ad9c353460800f1fbd752c532b73b6963b2"
+      },
+      "payloads": 48,
+      "candidate_revision": 5,
+      "candidate_pins": {
+        "freeze": "adf39584e2645b7b530447523f690ca7e2bf68587c647f7bd5b218b758fa8068",
+        "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+        "pdf": "b874d63619ec7abbd3d9109639eb017b69435118c4cc9d5fec450605e4316e42"
+      },
+      "reviewer_agent_id": "/root/pr946_full_package_05",
+      "started_utc": "2026-10-16T04:30:36.608514+00:00",
+      "completed_utc": "2026-10-16T04:49:47.763011+00:00",
+      "required_issues": [
+        {
+          "id": "FP05-OPS-001",
+          "severity": "required",
+          "category": "initial_acceptance_final_canonical_refresh",
+          "location": "accept_pr946.py:696-726",
+          "finding": "Initial accept authenticates current candidate and full reviews, then performs a final premerge/source/original reread without refreshing current freeze/payload/dependency context afterward. A current TeX change during the final actual source_gate still writes canonical ACCEPTANCE for the stale freeze. Fresh accepted_package rejects the same tree, so later external actions remain blocked.",
+          "evidence": [
+            "LATE_REFRESH_CONTROLS.json",
+            "late_refresh_controls.py",
+            "CURRENT05_CONTROLS.json"
+          ],
+          "repair": "After final live/source/original/review reads, reauthenticate and compare the current externally pinned candidate and operational dependency context before writing acceptance. Cover currentFREEZE/payload/evidence/dependency drift. Preserve captured execution and no-OS-atomicity limits."
+        },
+        {
+          "id": "FP05-OPS-002",
+          "severity": "required",
+          "category": "late_sealed_review_content_refresh",
+          "location": "accept_pr946.py:634-655",
+          "finding": "The shared guard authenticates full reviews, refreshes canonical acceptance/current freeze/dependencies, then scans only review-directory names. Changing a sealed terminal review payload or MANIFEST during the intervening current-state refresh is missed and the guard returns. Fresh accepted_package rejects the same tree. This is a deterministic intervening-read gap, not an atomic hostile-filesystem requirement.",
+          "evidence": [
+            "LATE_REFRESH_CONTROLS.json",
+            "late_refresh_controls.py",
+            "SERVICE_BOUNDARIES.json",
+            "service_boundaries.py",
+            "CURRENT05_CONTROLS.json"
+          ],
+          "repair": "Reauthenticate externally sealed review contents/seals and the complete canonical directory set after intervening current-candidate reads, comparing with the accepted chain. Test payload and seal drift while canonical dependencies refresh plus valid complete-chain controls. Do not promise OS atomicity."
+        }
+      ],
+      "optional_issues": []
+    },
+    {
+      "round": 6,
+      "manifest": {
+        "bytes": 11151,
+        "sha256": "1c75fc274754826a9d189a7e5e5ac206782deddd0a91dc75d0636d9aa787de71"
+      },
+      "payloads": 61,
+      "candidate_revision": 6,
+      "candidate_pins": {
+        "freeze": "9af8f2570af53b6a6658a7998ac08927829c8747be7c764a8d2c392dc6c6afe1",
+        "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+        "pdf": "b874d63619ec7abbd3d9109639eb017b69435118c4cc9d5fec450605e4316e42"
+      },
+      "reviewer_agent_id": "/root/pr946_full_package_06",
+      "started_utc": "2026-10-16T05:02:37.457596+00:00",
+      "completed_utc": "2026-10-16T05:21:26.680525+00:00",
+      "required_issues": [],
+      "optional_issues": []
+    }
+  ],
+  "every_payload_and_complete_context_authenticated_by": "PRESERVATION_CHECKS.json; CURRENT07_CONTROLS.json; CONTRACT07_CONTROLS.json; OPERATOR_INTEGRATION.json",
+  "historical01_to05_complete_files": 223,
+  "historical01_to05_dependency_sources": 7,
+  "round06_uses_current_scientific_candidate06": true
+}

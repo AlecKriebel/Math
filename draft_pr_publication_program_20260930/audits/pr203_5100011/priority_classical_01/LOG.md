@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-16 07:56:43 UTC; 0%: task/source inventory and actual clock recorded. Dedicated folder only. No previous favorable report or original SOURCES read.
+- 2026-10-16 07:57 UTC; 5%: PLAN_FREEZE.md authored. Independent classical/radial, confocal area-product, curvature-center, and flag-method families frozen before source searches and original SOURCES. Timestamp rounded to minute in the frozen plan.
+- 2026-10-16 07:58:25 UTC; 25%: primary local RGK, Chavez, Stachel theorem contexts and AST/Bialy primary web sources inspected. Chavez flag and complementary-zero mechanism overlap established. First LOG write failed due ENOSPC; checkpoint sent to parent and later preserved in functions.store.
+- 2026-10-16 07:59:57 UTC; 40%: by this checkpoint, original_submitted_head/SOURCES.md had been inspected only after the initial independent search/source checkpoint at07:58:25. PROOF.md was then inspected. No earlier favorable review read. Classical exact remaining coefficients isolated. Frozen plan hash computed.
+- 2026-10-16 08:02:07 UTC; 50%: actual Steiner1838 primary OCR obtained in memory, no PDF copy. Sections XIV-XVI and introduction examined; weighted radial principle/sign/zero case already classical. Direct2016 flag method verified. No exact N>=8 prior implication yet.
+- 2026-10-16 08:04:37 UTC; 70%: completed N4 implication derived from Bialy--Tabachnikov Theorem4.3(2); sent explicit formula to parent. Connes--Zagier/Levi/Stachel adjacent primary texts distinguished from target. G&H access failure recorded, not counted as reading.
+- 2026-10-16 08:05:38 UTC; 90%: exact-fraction diagnostic confirms parallelogram identity for three M; formula remains the proof. Parent recovered room for small reports. Saving compact report and receipts, no fulltexts/renders. Discovery/novelty itself is not estimated by these percentages.

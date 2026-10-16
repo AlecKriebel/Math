@@ -1,0 +1,14 @@
+Resolves the construction request in OWR-10252925-004 (problem30005079): an explicit smooth Fano fivefold has a unique global H-minimizing valuation of rational rank two and a singular, non-isomorphic first canonical central fiber. The note proves the moment-defined weights have irrational ratio by a universal resultant argument and applies the established global minimization criterion to all valuations.
+
+The construction explicitly credits the earlier Li–Li examples and the Miao–Wang factor construction announced in January2024, together with Wang–Zhu, Han–Li and BLXZ analytic inputs. The bounded priority audit found no verified earlier complete instance of this exact construction request; it does not certify novelty, historical firstness or continued openness.
+
+Includes the final five-page preprint and a verification archive with pinned original evidence, exact arithmetic checks, recorded counterchecks, current-source reproduction and publication tools. Extensive AI assistance and AI review are disclosed. The work is unrefereed; human peer review and formal verification are incomplete. Original research effort remains1/5.
+
+Two NEW independent whole-package reviews cleared the same unchanged179-file candidate. Both reviewed the actual final source, all five PDF pages, mathematical scope and priority, and reproduced the actual verification pipeline. Parent authentication checked both reports and all49 safe evidence payloads. Historical failed checks and provenance repairs are retained with their limits.
+
+- [First final review](https://github.com/AlecKriebel/Math/blob/7fc1f4497980af6d95301cd88a4c53166267e154/draft_pr_claimed_solved_800_900_20261012/audits/pr888_30005079/package_review_01/REPORT.md)
+- [Second final review](https://github.com/AlecKriebel/Math/blob/7fc1f4497980af6d95301cd88a4c53166267e154/draft_pr_claimed_solved_800_900_20261012/audits/pr888_30005079/package_review_02/REPORT.md)
+- [Final clearance and exact file pins](https://github.com/AlecKriebel/Math/blob/7fc1f4497980af6d95301cd88a4c53166267e154/draft_pr_claimed_solved_800_900_20261012/audits/pr888_30005079/FINAL_PACKAGE_CLEARANCE.json)
+- [Paper and verification instructions](https://github.com/AlecKriebel/Math/blob/c866e131aa377c0d966c9855b8f9acc02072eb27/unsolved_math_prioritization/attempts/30005079/PUBLICATION.md)
+
+Validation: exact179-file accepted-tree readback; one QUEUE row changed; original status and1/5 effort retained; independent analytic proofs and exact arithmetic counterchecks; normal and optimized verification; fresh outside-directory builds; negative format, path, dependency and source-integrity controls; independent five-page visual checks. No hosted-CI result is claimed. Production Zenodo DOI and sheet receipt will be added after publication.

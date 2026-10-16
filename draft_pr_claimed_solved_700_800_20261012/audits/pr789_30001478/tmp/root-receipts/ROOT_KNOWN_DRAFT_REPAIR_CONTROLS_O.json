@@ -1,0 +1,862 @@
+{
+  "result": "MOCKED_KNOWN_DRAFT_REPAIR_CONTROLS_PASS",
+  "recipe_sha256": "e11b7f1426e28fbe0b3407dad777fb9ae4287213e1f5eabc96ad22f9bf36b8d2",
+  "driver_sha256": "a02c7910936f6d871fc760af4f5f41005f2ca055dc7cc99e84913a0893a47f96",
+  "original_tool_sha256": "a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca",
+  "source_manifest_sha256": "b20f39f39a33b18822cff51850f8b5b220e139af4d7badec23a7f5a7e17805aa",
+  "known_record_id": 23423736,
+  "controls": 40,
+  "credentials_read": false,
+  "network_accessed": false,
+  "real_mutations": false,
+  "driver_imported": false,
+  "upload_tool_imported": false,
+  "unchanged_upload_tool_functions_ast_extracted": true,
+  "cases": [
+    {
+      "case": "exact_same_draft_repair",
+      "completed": true,
+      "expected_completion": true,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": null,
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "UPLOAD",
+          "bucket": "https://zenodo.org/api/files/00000000-0000-4000-8000-000000000003",
+          "name": "source-and-verification.zip",
+          "sha256": "9dfb13a945de2fe4d088eef8cd86ca1f9ecdb75b87162285a8fa4b7c1aab94b6"
+        },
+        {
+          "method": "UPDATE",
+          "id": 23423736,
+          "exact_metadata": true
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": true,
+      "wrapper_negative_controls": [
+        {
+          "case": "different_get",
+          "control_pass": true
+        },
+        {
+          "case": "boolean_get",
+          "control_pass": true
+        },
+        {
+          "case": "string_get",
+          "control_pass": true
+        },
+        {
+          "case": "different_update",
+          "control_pass": true
+        },
+        {
+          "case": "changed_metadata_update",
+          "control_pass": true
+        },
+        {
+          "case": "pdf_upload",
+          "control_pass": true
+        },
+        {
+          "case": "second_zip_upload",
+          "control_pass": true
+        }
+      ]
+    },
+    {
+      "case": "three_round_gate",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Completed exact four-round final gate required",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "final_clean_false",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Completed exact four-round final gate required",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "wrong_source_manifest",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Wrong V4 source",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "snapshot_drift",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Exact final V4 publication snapshot required",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "missing_checkpoint",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Completed scoped prepublication checkpoint required",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "existing_publication_intent",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Publication already attempted; reconcile without mutations",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "existing_publish_receipt",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Publication already attempted; reconcile without mutations",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "existing_replacement_intent",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Replacement was attempted; use read-only known-ID reconciliation before any retry",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "driver_pin_drift",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Approved production driver pin differs before import",
+      "mock_events": [],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "fresh_claim_ineligible",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Mock claim no longer eligible",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "missing_initial_state",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: The sole known draft state is required; no create fallback",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "other_initial_state",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: The sole known draft state is required; no create fallback",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "already_published",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Only unpublished23423736 may be repaired",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "remote_metadata_drift",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Existing canonical metadata must exactly match every V4 supplied field",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "extra_remote_file",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Exact known two-file inventory required",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "old_zip_md5_drift",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Existing draft differs from the preserved exact V3 files",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "pdf_initial_md5_drift",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Existing draft differs from the preserved exact V3 files",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "malformed_file_uuid",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "ValueError: badly formed hexadecimal UUID string",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": false,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "delete_non204",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Unexpected removal response; reconcile known draft without repeating DELETE",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "delete_nonempty204",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Unexpected removal response; reconcile known draft without repeating DELETE",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "delete_redirect",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Known-file removal outcome unconfirmed; reconcile draft23423736 with GET before any retry",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "delete_unknown_outcome",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Known-file removal outcome unconfirmed; reconcile draft23423736 with GET before any retry",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "pdf_missing_after_delete",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Known draft after removal differs",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "returned_id_changed_after_delete",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "DepositError: Zenodo returned a different deposition ID",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "state_lost_before_stage",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: A second deposition creation is prohibited",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "state_changed_before_stage",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Refusing a different record ID before GET or stage mutation",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "pdf_missing_before_stage",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Refusing a different bucket, file, or PDF upload",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "bucket_changed_before_stage",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Refusing a different bucket, file, or PDF upload",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "zip_bytes_changed_before_upload",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Frozen approved ZIP path or bytes differ before upload",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "zip_hardlinked_before_upload",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Frozen approved ZIP path or bytes differ before upload",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "zip_symlinked_before_upload",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Frozen approved ZIP path or bytes differ before upload",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    },
+    {
+      "case": "stage_metadata_drift",
+      "completed": false,
+      "expected_completion": false,
+      "control_pass": true,
+      "intended_guard_hit": true,
+      "error": "RuntimeError: Refusing different record or metadata before PUT",
+      "mock_events": [
+        {
+          "method": "MOCK_DRIVER_IMPORT"
+        },
+        {
+          "method": "MOCK_FRESH_ELIGIBILITY"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "DELETE",
+          "id": 23423736,
+          "file_id": "00000000-0000-4000-8000-000000000001"
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "GET",
+          "id": 23423736
+        },
+        {
+          "method": "UPLOAD",
+          "bucket": "https://zenodo.org/api/files/00000000-0000-4000-8000-000000000003",
+          "name": "source-and-verification.zip",
+          "sha256": "9dfb13a945de2fe4d088eef8cd86ca1f9ecdb75b87162285a8fa4b7c1aab94b6"
+        }
+      ],
+      "replacement_intent_exists": true,
+      "stage_receipt_exists": false
+    }
+  ]
+}

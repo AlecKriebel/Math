@@ -1,0 +1,422 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\U}{\mathcal U_\rho}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\title{Failure of strong quadratic growth in unregularized\newline sparse control of a critical wave equation}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{October 14, 2026 \quad (version 1.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an explicit counterexample to retaining ordinary critical-cone
+strict positivity and strong control-$L^2$ quadratic growth after removing
+quadratic control regularization from the energy-critical quintic-wave
+problem of Kunisch and Meinlschmidt. On the three-dimensional unit ball,
+zero is the unique global optimizer for a sufficiently small positive
+pointwise control cap. Its ordinary critical cone is $\{0\}$, so the strict
+condition is vacuous, but feasible controls converging in $L^\infty$ have
+objective gap $o(\norm{u}_{L^2}^2)$. Nearby radial terminal targets admit
+global optimizers, and every such optimizer has $L^2$ displacement divided
+by target displacement tending to infinity. Local $L^1$ quadratic growth
+survives. The construction realizes the established concentration and
+noncoercivity mechanism in the actual nonlinear source model, using
+classical wave estimates.
+\end{abstract}
+
+\section{Question, conventions and precise result}
+
+Kunisch--Meinlschmidt's wave-control analysis \cite[Theorem~4.17]{KM} proves strong
+control-$L^2$ quadratic growth from strict positivity on the ordinary
+critical cone when the quadratic control coefficient $\beta_2$ is positive.
+The Oberwolfach contribution \cite{OWR}, printed pp.~438--440, places the
+$\beta_2=0$ question immediately after this implication. We answer the
+question of retaining that implication unchanged. Adapted sufficient
+conditions, enlarged cones and weaker growth metrics remain distinct
+questions. The counterexample uses the zero critical cone explicitly.
+
+Let $B$ be the unit ball in $\R^3$, $H=L^2(B)$ and $T=1$. All controls and
+states are real. The state is the unique energy/Strichartz mild solution of
+\begin{equation}\label{pde}
+ y_{tt}-\Delta y+y^5=u,\qquad y|_{\partial B}=0,\qquad
+ (y(0),y_t(0))=(0,0).
+\end{equation}
+Put $H^{-1}=H^{-1}(B)$, with the dual norm of $H_0^1(B)$, and define
+\begin{align}\label{objective}
+ J_{d,\nu}(u)&=\tfrac12\norm{y_u(1)-d}_H^2
+       +\tfrac\nu2\norm{(y_u)_t(1)}_{H^{-1}}^2\notag\\
+   &\quad+\tfrac14\norm{y_u}_{L^4(0,1;L^{12}(B))}^4
+       +\norm{u}_{L^1(0,1;H)},\qquad 0\le\nu<\infty,\\
+ \U&=\{u\in L^2(0,1;H):\norm{u(t)}_H\le\rho\text{ a.e.}\}.
+ \notag
+\end{align}
+Thus $\gamma=\beta_1=1$ and $\beta_2=0$. The velocity term is the optional
+term in \cite{OWR}; $\nu=0$ gives the objective in \cite{KM}. Throughout,
+$\norm{u}_1$ and $\norm{u}_2$ denote time-space $L^1(H)$ and $L^2(H)$ norms;
+$\norm{u}_\infty$ denotes $L^\infty(0,1;H)$.
+The normalized radial eigenfunction is
+\begin{equation}\label{mode}
+ e(x)=\frac{\sin(\pi|x|)}{\sqrt{2\pi}\,|x|},\qquad
+ e(0)=\frac\pi{\sqrt{2\pi}},\qquad
+ \norm e_H=1,\quad -\Delta e=\pi^2e.
+\end{equation}
+
+\begin{theorem}\label{main}
+There is $\rho_*>0$ such that, for every $0<\rho\le\rho_*$ and every fixed
+finite $\nu\ge0$, the problem \eqref{objective} with $d=\pi e$ has the
+following properties.
+\begin{enumerate}
+\item Zero is its unique global optimizer. With $A=\norm u_1$,
+\begin{equation}\label{cubic}
+ J_{\pi e,\nu}(u)-J_{\pi e,\nu}(0)\ge\frac{A^3}{12\rho^2}
+ \quad (u\in\U).
+\end{equation}
+\item The ordinary critical cone at zero is $C(0)=\{0\}$. The source's
+substitute second-variation strict condition on $C(0)\setminus\{0\}$ holds
+vacuously.
+\item The feasible controls $u_h=h e\,\mathbf1_{|t-1/2|<h}$, for
+$0<h<\min(\rho,1/2)$, satisfy
+\begin{equation}\label{pulseclaim}
+ \norm{u_h}_\infty=h,\quad \norm{u_h}_2^2=2h^3,\quad
+ J_{\pi e,\nu}(u_h)-J_{\pi e,\nu}(0)
+  =\left(\frac{\pi^2}{3}+\frac2{\pi^2}\right)h^4+O(h^6).
+\end{equation}
+Consequently no positive control-$L^2$ quadratic-growth constant exists
+in either an $L^2$ or an $L^\infty$ neighborhood of zero.
+\item For $d_\varepsilon=(\pi+\varepsilon)e$, global optimizers exist and
+every choice of global optimizers satisfies
+\begin{equation}\label{instability}
+ \frac{\norm{u_\varepsilon}_2}{\varepsilon}\longrightarrow\infty
+ \qquad(\varepsilon\downarrow0).
+\end{equation}
+\end{enumerate}
+The cap $\rho_*$ and the constants in \eqref{cubic} can be chosen
+independently of $\nu$. Small neighborhoods in the radial perturbation
+assertion may depend on the fixed $\nu$.
+\end{theorem}
+
+The distinction between exact-cone positivity and coercivity against
+normalized weakly null sequences is established in second-order control
+theory \cite{CT12,CHW,CW,BW}. The Dunn example, as reproduced in
+\cite[Example~4.16]{CT15}, already illustrates exact-cone insufficiency.
+Group-sparse threshold calculus is classical \cite{HSW}. Our contribution
+is the explicit realization with a genuine nonlinear-wave optimizer and
+the quantitative assertions above. An extensive bounded primary-source
+audit located no earlier covering realization; it does not certify
+worldwide firstness. The wave estimates used below are standard
+inputs from \cite{KM}.
+
+\section{Uniform small-input estimates and global optimality}
+
+Use the compatible state space
+\[
+ \Y=\{y\in C([0,1];H_0^1(B)):y_t\in C([0,1];H),\
+                    y\in L^4(0,1;L^{12}(B))\},
+\]
+with the sum norm and the distributional derivative compatibility.
+Let $L u=z_u$ denote the zero-data linear-wave solution. The bounded-domain
+energy/Strichartz estimate in \cite[Lemma~2.9]{KM} gives
+$\norm{Lu}_{\Y}\le K\norm u_1$. Sobolev embedding and interpolation give
+\begin{equation}\label{interp}
+ \norm y_{L^5L^{10}}^5\le
+ C\norm y_{L^4L^{12}}^4\norm y_{L^\infty H_0^1}.
+\end{equation}
+
+\begin{lemma}\label{small}
+There are $a_0,E,R>0$ such that, for every $u$ with $A=\norm u_1\le a_0$,
+\begin{equation}\label{remainder}
+ \norm{y_u}_{\Y}\le E A,\qquad
+ \norm{y_u-z_u}_{\Y}\le R A^5.
+\end{equation}
+The constants are independent of the terminal target and $\nu$.
+\end{lemma}
+\begin{proof}
+On the closed compatible zero-data subspace of $\Y$, consider
+$y\mapsto L(u-y^5)$. By \eqref{interp}, the quintic has norm at most
+$M\norm y_\Y^5$ in $L^1(H)$ and difference norm at most
+$M(\norm y_\Y+\norm w_\Y)^4\norm{y-w}_\Y$.
+For $A\le a_0$ sufficiently small this map preserves the radius-$2KA$
+ball and is a contraction there. The resulting mild solution agrees with
+the unique energy/Strichartz state in \cite{KM}. Its norm is at most
+$2KA$, and $y_u-z_u=-L(y_u^5)$ proves the second bound. Enlarge $E,R$
+as necessary to bound terminal position in $H$ and terminal velocity in
+$H^{-1}$. The compatible residual $y+L(y^5)-Lu$ has derivative the identity
+in $y$ at zero. Its quintic part is a bounded polynomial by
+\eqref{interp}, so the local implicit-function theorem also gives a
+smooth state map with $S'(0)=L$ and $S''(0)=0$.
+This direct argument does not require an inverse onto arbitrary
+continuous position/velocity pairs.
+\end{proof}
+
+For $u\in\U$, write $f(t)=\norm{u(t)}_H$, $A=\int f$ and $r=\norm u_2$.
+Then
+\begin{equation}\label{cap}
+ 0\le A\le\rho,\qquad A\le r,\qquad r^2\le\rho A.
+\end{equation}
+Projection of the linear state onto \eqref{mode} gives
+\begin{equation}\label{endpoint}
+ \ip e{z_u(1)}=\frac1\pi\int_0^1\sin(\pi t)\ip e{u(t)}\,dt.
+\end{equation}
+This is only a projection identity; the nonlinear state need not stay in
+the span of $e$. Expanding the terminal square, discarding nonnegative
+terms, and using \eqref{remainder} yield
+\begin{equation}\label{weighted}
+ \Delta(u):=J_{\pi e,\nu}(u)-J_{\pi e,\nu}(0)
+ \ge\int_0^1(1-\sin\pi t)f(t)\,dt-C_0 A^5,
+\end{equation}
+where $C_0$ is fixed independently of $\nu$.
+
+Since $1-\sin(\pi t)\ge2(t-1/2)^2$, a same-mass comparison gives
+\begin{equation}\label{moment}
+ \int_0^1(t-1/2)^2 f(t)\,dt\ge\frac{A^3}{12\rho^2}.
+\end{equation}
+Indeed, put $b=A/(2\rho)\le1/2$ and
+$f_*=\rho\mathbf1_{|t-1/2|<b}$. The product
+$((t-1/2)^2-b^2)(f-f_*)$ is nonnegative on both the centered interval
+and its complement. Its integral proves \eqref{moment}, because
+$\int(f-f_*)=0$. The cases $A=0$ and $A=\rho$ are included.
+Choose $\rho_*\le a_0$ with $C_0\rho_*^4\le1/12$. Equations
+\eqref{weighted}--\eqref{moment} then give
+\[
+ \Delta(u)\ge\frac{A^3}{6\rho^2}-C_0A^5
+              \ge\frac{A^3}{12\rho^2}.
+\]
+This proves global uniqueness in Theorem~\ref{main}. No numerical value
+for an unknown PDE constant is asserted.
+
+\section{Ordinary cone and loss of strong growth}
+
+In the source convention, the ordinary critical cone consists of tangent
+directions $v$ with zero first directional derivative of the whole cost.
+At zero, bounded truncations of any $v\in L^1(H)$ or $L^2(H)$ are radially
+feasible after sufficiently small scaling. They converge in the respective
+norm, so the closed tangent cone is the whole space. Pointwise constraint
+slack alone would not imply norm interiority in these two spaces.
+The adjoint and sparse subgradient are
+\[
+ p(t)=-\sin(\pi t)e,\qquad \lambda(t)=\sin(\pi t)e,
+ \qquad\norm{\lambda(t)}_H\le1,
+\]
+with zero constraint multiplier. Direct differentiation gives
+\begin{equation}\label{first}
+ DJ_{\pi e,\nu}(0;v)
+  =\int_0^1\big(\norm{v(t)}_H-\sin(\pi t)\ip e{v(t)}\big)\,dt
+  \ge\int_0^1(1-\sin\pi t)\norm{v(t)}_H\,dt.
+\end{equation}
+The right-hand side is positive for every nonzero Lebesgue equivalence
+class: its weight vanishes only at $t=1/2$. Hence $C(0)=\{0\}$.
+The source explicitly sets the substitute sparse $j''(0;v^2)$ to zero;
+this is not a classical second derivative of a norm. Its strict condition
+on nonzero critical directions is satisfied vacuously.
+
+For the pulse in Theorem~\ref{main}, direct linear-wave integration gives
+\begin{equation}\label{pulse}
+ A_h=2h^2,\quad r_h^2=2h^3,\quad
+ z_{u_h}(1)=\frac{2h\sin(\pi h)}{\pi^2}e,\quad
+ (z_{u_h})_t(1)=0.
+\end{equation}
+Its linear tracking-plus-sparse gap is
+\[
+ 2h^2-\frac{2h\sin(\pi h)}\pi
+       +\frac{2h^2\sin^2(\pi h)}{\pi^4}
+ =\left(\frac{\pi^2}{3}+\frac2{\pi^2}\right)h^4+O(h^6).
+\]
+Lemma~\ref{small} bounds the nonlinear terminal error by $O(h^{10})$,
+the quartic state cost by $O(h^8)$, and the velocity cost by
+$O(\nu h^{20})$. This proves \eqref{pulseclaim}. Dividing by $2h^3$
+proves the claimed failure of growth, even with $\norm{u_h}_\infty\to0$.
+
+For comparison with the established NDC framework \cite{CW,BW}, set
+$v_h=u_h/r_h$. These unit-norm $L^2(H)$ directions are weakly null:
+their pairing with an $L^2$ test is bounded by the test's norm on the
+shrinking interval. With $F$ the smooth costs and
+$G=\norm{\cdot}_1+I_{\U}$, the normalized second-order expression is
+\begin{align*}
+ \frac{G(u_h)-G(0)+F'(0)u_h}{r_h^2}
+   +\tfrac12 F''(0)[v_h,v_h]
+ &=\frac1h-\frac{\sin(\pi h)}{\pi h^2}
+                      +\frac{\sin^2(\pi h)}{\pi^4h}\\
+ &=\left(\frac{\pi^2}{6}+\frac1{\pi^2}\right)h+O(h^3)\to0.
+\end{align*}
+Thus exact-cone positivity misses this familiar weak-null obstruction.
+The direct pulse argument already handles both source localizations.
+
+\section{Existence and terminal-target perturbations}
+
+We record existence for the optional velocity term as well. The set $\U$
+is closed, convex and bounded in $L^2(H)$, hence weakly compact. Along a
+minimizing sequence, Lemma~\ref{small} bounds the states uniformly in
+energy and $L^4L^{12}$. Compactness of $H_0^1\hookrightarrow H$ and the
+bound on $y_t$ imply strong compactness of positions in $C([0,1];H)$.
+Moreover $y_{tt}=\Delta y-y^5+u$ is bounded in $L^\infty(H^{-1})$:
+$y\in L^\infty L^6$, so $y^5\in L^\infty L^{6/5}\hookrightarrow
+L^\infty H^{-1}$. Compactness of $H\hookrightarrow H^{-1}$ then gives
+strong compactness of velocities in $C([0,1];H^{-1})$.
+
+A subsequence of states converges almost everywhere. The bounded
+$L^{6/5}$ quintics converge weakly to the quintic of the limit; the limit
+also retains the weak energy and $L^4L^{12}$ bounds. Consequently its
+quintic lies in $L^1(H)$ by \eqref{interp}. Passing to the distributional
+equation and initial traces identifies a zero-data weak solution.
+Subtract the linear Duhamel solution forced by $u-y^5$. The remaining
+homogeneous Dirichlet wave has zero initial data; projection onto a
+complete Dirichlet eigenbasis proves it is zero. Thus the limit is the
+actual mild state, by uniqueness. Endpoint costs are continuous under the
+two strong convergences, and the sparse and quartic norms are weakly lower
+semicontinuous. The direct method therefore gives global optimizers for
+every $d\in H$ and every finite $\nu\ge0$ in this capped small-input setting.
+
+Fix $a=\rho/2$ and use the feasible trial
+\[
+ \widehat u_\varepsilon=a e\,
+ \mathbf1_{|t-1/2|<\pi\varepsilon/(2a)}.
+\]
+For sufficiently small $\varepsilon$, its mass is $\pi\varepsilon$,
+its linear endpoint is $\varepsilon e+O(\varepsilon^3)$ and its linear
+terminal velocity is zero. Expansion as above gives, for fixed $\nu$,
+\begin{equation}\label{negative}
+ J_{d_\varepsilon,\nu}(\widehat u_\varepsilon)
+       -J_{d_\varepsilon,\nu}(0)
+    =-\tfrac12\varepsilon^2+O(\varepsilon^3)
+    \le-\tfrac14\varepsilon^2.
+\end{equation}
+For all feasible $u$, discarding nonnegative costs gives instead
+\begin{equation}\label{pertlower}
+ J_{d_\varepsilon,\nu}(u)-J_{d_\varepsilon,\nu}(0)
+ \ge-\norm{g_\varepsilon}_{L^2(0,1)}r-C_1 A^5,
+ \quad
+ g_\varepsilon(t)=\big[(1+\varepsilon/\pi)\sin(\pi t)-1\big]_+.
+\end{equation}
+For small $\varepsilon$,
+\begin{equation}\label{dualbound}
+ g_\varepsilon(t)\le[\varepsilon/\pi-2(t-1/2)^2]_+,
+ \qquad
+ \norm{g_\varepsilon}_{L^2}
+       \le 2^{1/4}\pi^{-5/4}\varepsilon^{5/4}.
+\end{equation}
+If an optimizer had $r\le K\varepsilon$, then $A\le r$ and
+\eqref{pertlower} would be $-o(\varepsilon^2)$, contradicting
+\eqref{negative}. For every fixed $K$ this is impossible for sufficiently
+small $\varepsilon$, proving \eqref{instability} for every optimizer.
+
+\section{A surviving weaker-norm estimate}
+
+\begin{corollary}\label{weaker}
+For the same example there is $\delta>0$ with
+\begin{equation}\label{L1growth}
+ \Delta(u)\ge\frac{\norm u_1^2}{4\pi^2}
+ \quad (u\in\U,\ \norm u_1\le\delta).
+\end{equation}
+For any target $\pi e+w$, with $\varepsilon=\norm w_H$ sufficiently small,
+every global optimizer satisfies
+\begin{equation}\label{upperrates}
+ \norm u_1\le4\pi^2E\varepsilon,\qquad
+ \norm u_2\le2\pi\sqrt{\rho E}\sqrt\varepsilon.
+\end{equation}
+The constants and this upper-bound neighborhood can be chosen uniformly
+for all finite $\nu\ge0$. On $w=\varepsilon e$, for each fixed $\nu$,
+\begin{equation}\label{radialrates}
+ \norm{u_\varepsilon}_1=\Theta(\varepsilon),\qquad
+ c\varepsilon^{3/4}\le\norm{u_\varepsilon}_2\le C\sqrt\varepsilon
+\end{equation}
+for every global optimizer and sufficiently small $\varepsilon$.
+The lower-bound neighborhood in \eqref{radialrates} may depend on $\nu$.
+\end{corollary}
+\begin{proof}
+Set $x=\ip e{y_u(1)}\le b=A/\pi+RA^5$. The full tracking square gives
+$\Delta(u)\ge q_A(x)=A-\pi x+x^2/2$. Choose $\delta$ so that $b\le\pi/2$
+and $\pi R\delta^3\le1/(4\pi^2)$. Since $q_A$ decreases for $x<\pi$,
+\[
+ \Delta(u)\ge q_A(b)
+ =\frac{A^2}{2\pi^2}-\pi RA^5+\frac R\pi A^6+\frac{R^2}2A^{10}
+ \ge\frac{A^2}{4\pi^2}.
+\]
+For a perturbed global optimizer, comparison with zero gives
+$\Delta(u)\le\ip w{y_u(1)}\le E\varepsilon A$. First \eqref{cubic}
+implies $A\le\sqrt{12\rho^2E\varepsilon}$, placing it in the $\delta$
+neighborhood. Then \eqref{L1growth} yields the first upper bound, and
+$r^2\le\rho A$ gives the second. Every step discards the nonnegative
+velocity cost, so these upper conclusions are uniform in $\nu$.
+
+On the radial ray, the upper $A=O(\varepsilon)$ makes the last term in
+\eqref{pertlower} $O(\varepsilon^5)$. Combining \eqref{negative} with
+\eqref{dualbound} gives $r\ge c\varepsilon^{3/4}$. Also
+$\norm{g_\varepsilon}_\infty\le\varepsilon/\pi$, so the same comparison
+gives $A\ge c'\varepsilon$. This proves \eqref{radialrates}, with the
+smallness threshold inherited from the fixed-$\nu$ trial comparison.
+\end{proof}
+
+These are estimates relative to the fixed zero optimizer. They assert no
+pairwise Lipschitz selection, perturbed optimizer uniqueness,
+$L^\infty$ convergence, or sharpness of the exponent bracket.
+Weaker-norm and strengthened-cone theories are developed in
+\cite{WW,CHW,CW,BW}; the elementary estimate here uses the terminal
+tracking square and the cap. For example, taking target zero in the same
+model gives $J_{0,\nu}(u)\ge\norm u_1\ge\norm u_2^2/\rho$.
+Thus the theorem is a specific obstruction to the unchanged implication,
+not universal failure of all unregularized quadratic growth.
+
+\paragraph{Verification and review status.}
+The accompanying package contains this source, exact algebra/control
+checkers, reference receipts and independently authored proof/priority
+records. Finite checks do not numerically certify a nonlinear PDE solution,
+an unknown PDE constant, or historical novelty. AI tools were used
+extensively for construction, derivation, independent adversarial audits,
+computation and writing. This is an unrefereed research note; no external
+human peer review is claimed. The author takes responsibility for the
+stated mathematics. The package identifies the bounded priority audit and
+its access limitations.
+This note and its authored supporting materials are licensed under
+\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.
+
+\begin{thebibliography}{10}
+\bibitem{KM} K. Kunisch and H. Meinlschmidt,
+Optimal control of an energy-critical semilinear wave equation in 3D with
+spatially integrated control constraints, \emph{J. Math. Pures Appl.}
+138 (2020), 46--87. \href{https://doi.org/10.1016/j.matpur.2020.03.006}{doi:10.1016/j.matpur.2020.03.006}.
+Proof version inspected: \href{https://arxiv.org/pdf/1907.02744v1}{arXiv:1907.02744v1} (2019).
+\bibitem{OWR} H. Meinlschmidt, joint work with K. Kunisch,
+Optimal Control of a Semilinear Critical Wave Equation, in
+\emph{Challenges in Optimization with Complex PDE-Systems}, Oberwolfach
+Report 9/2021, 438--440.
+\href{https://doi.org/10.4171/OWR/2021/9}{doi:10.4171/OWR/2021/9}.
+\bibitem{HSW} R. Herzog, G. Stadler and G. Wachsmuth,
+Directional Sparsity in Optimal Control of Partial Differential Equations,
+\emph{SIAM J. Control Optim.} 50 (2012), 943--963.
+\href{https://doi.org/10.1137/100815037}{doi:10.1137/100815037}.
+\bibitem{CT12} E. Casas and F. Tr\"oltzsch,
+Second Order Analysis for Optimal Control Problems: Improving Results
+Expected From Abstract Theory, \emph{SIAM J. Optim.} 22 (2012), 261--279.
+\href{https://doi.org/10.1137/110840406}{doi:10.1137/110840406}.
+\bibitem{CT15} E. Casas and F. Tr\"oltzsch,
+Second Order Optimality Conditions and Their Role in PDE Control,
+\emph{Jahresber. Dtsch. Math.-Ver.} 117 (2015), 3--44.
+\href{https://doi.org/10.1365/s13291-014-0109-3}{doi:10.1365/s13291-014-0109-3}.
+\bibitem{CHW} E. Casas, R. Herzog and G. Wachsmuth,
+Analysis of Spatio-Temporally Sparse Optimal Control Problems of Semilinear
+Parabolic Equations, \emph{ESAIM COCV} 23 (2017), 263--295.
+\href{https://doi.org/10.1051/cocv/2015048}{doi:10.1051/cocv/2015048}.
+\bibitem{CW} C. Christof and G. Wachsmuth,
+No-Gap Second-Order Conditions via a Directional Curvature Functional,
+\emph{SIAM J. Optim.} 28 (2018), 2097--2130.
+\href{https://doi.org/10.1137/17M1140418}{doi:10.1137/17M1140418}.
+\bibitem{BW} N. Borchard and G. Wachsmuth,
+Second-order conditions for spatio-temporally sparse optimal control via
+second subderivatives, \emph{J. Nonsmooth Anal. Optim.} 5 (2024), 12604.
+\href{https://doi.org/10.46298/jnsao-2024-12604}{doi:10.46298/jnsao-2024-12604}.
+Original preprint: arXiv:2311.14538v1 (2023).
+\bibitem{WW} D. Wachsmuth and G. Wachsmuth,
+Second-order conditions for non-uniformly convex integrands: quadratic
+growth in $L^1$, \emph{J. Nonsmooth Anal. Optim.} 3 (2022), 8733.
+\href{https://doi.org/10.46298/jnsao-2022-8733}{doi:10.46298/jnsao-2022-8733}.
+\end{thebibliography}
+\end{document}

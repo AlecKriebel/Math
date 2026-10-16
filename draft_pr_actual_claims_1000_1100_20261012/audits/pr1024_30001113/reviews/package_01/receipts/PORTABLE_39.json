@@ -1,0 +1,627 @@
+{
+  "status": "PASS",
+  "total_runs": 39,
+  "counts": {
+    "baseline": 9,
+    "actual_source_mutation": 12,
+    "runtime_fault_control": 18
+  },
+  "complete_stdout_stderr_and_exit_codes_match": true,
+  "interpreter": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "historical_uid1000_permission_harness_replayed": false,
+  "limits": [
+    "Finite exact arithmetic; infinite formal-series and arbitrary-natural-map conclusions are written proofs.",
+    "Original source assertion predicates are unchanged in the explicit guard adaptation.",
+    "Normal/-O/-OO are tested; neither isolated flags nor controls provide a general security sandbox.",
+    "No formal proof-assistant, human peer-review, source-intent or exhaustive-priority certificate."
+  ],
+  "runs": [
+    {
+      "program": "checks/check_corrected_case.py",
+      "args": [
+        "none"
+      ],
+      "optimization_mode": 0,
+      "kind": "baseline",
+      "mutation": "none",
+      "exit_code": 0,
+      "stdout": "{\n  \"ring\": \"F_2[e]/(e^3)\",\n  \"encoding\": \"bit i is the coefficient of e^i\",\n  \"conjugacy_identity\": \"M_(e+e^2) C = (1+e) C M_e\",\n  \"conjugacy_verified\": true,\n  \"involution_verified\": true,\n  \"both_conjugacy_sides\": [\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      3\n    ]\n  ]\n}\n",
+      "stderr": "",
+      "stdout_sha256": "847961ae9cb9a6143a97080e522714d83010d96fe2bfc4f42480aeb9c82c50f5",
+      "source_sha256": "fdd16d644dd3e76d8bcd95951a6a4bc6b73dbb8066571f65e50de8307d38d431",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_corrected_case.py",
+      "args": [
+        "missing_parameter_shift"
+      ],
+      "optimization_mode": 0,
+      "kind": "actual_source_mutation",
+      "mutation": "missing_parameter_shift",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"Projective conjugacy identity failed\", \"mutant\": \"missing_parameter_shift\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "1d01ceb523ecf2b7ffe19aa73ee025a1577dcab3bed732dbdf86d2f6b0133d02",
+      "source_sha256": "fdd16d644dd3e76d8bcd95951a6a4bc6b73dbb8066571f65e50de8307d38d431",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_corrected_case.py",
+      "args": [
+        "wrong_involution_scalar"
+      ],
+      "optimization_mode": 0,
+      "kind": "actual_source_mutation",
+      "mutation": "wrong_involution_scalar",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"Involution identity failed\", \"mutant\": \"wrong_involution_scalar\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "453fa9477db9dbad075f8910b8c007d8ac446b02e8ca37be6382ae4e5e9ae5a9",
+      "source_sha256": "fdd16d644dd3e76d8bcd95951a6a4bc6b73dbb8066571f65e50de8307d38d431",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "none"
+      ],
+      "optimization_mode": 0,
+      "kind": "baseline",
+      "mutation": "none",
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"optimization_level\": 0,\n  \"mutant\": \"none\",\n  \"checks\": [\n    \"all 16 group-composition identities\",\n    \"quotient invariance, induced action, derivative\",\n    \"exact rational invariant and coboundary identities for z^0 through z^8\",\n    \"conjugacy and involution in F4[e]/e^3\",\n    \"all 64 elements: j-fixed iff linear coefficient is zero\"\n  ],\n  \"limitation\": \"Finite identities support but do not prove the formal power-series or functor arguments.\"\n}\n",
+      "stderr": "",
+      "stdout_sha256": "4505b0ccd786321759dc48f70a75df6a2670c5289a7423220468dfae04264652",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "quotient_action"
+      ],
+      "optimization_mode": 0,
+      "kind": "runtime_fault_control",
+      "mutation": "quotient_action",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"quotient_action\", \"failure\": \"induced Q-action\"}\n",
+      "stderr": "",
+      "stdout_sha256": "91e216c0660a499f22de1fbdb27d5b88cc1c1b17fefb3cbd7442cc0deecc34ab",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "derivation_weight"
+      ],
+      "optimization_mode": 0,
+      "kind": "runtime_fault_control",
+      "mutation": "derivation_weight",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"derivation_weight\", \"failure\": \"coboundary of y\"}\n",
+      "stderr": "",
+      "stdout_sha256": "49f645f079b056331834ba9445d663aaef9ae24c4beec03f55876da4bd729812",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "parameter_shift"
+      ],
+      "optimization_mode": 0,
+      "kind": "runtime_fault_control",
+      "mutation": "parameter_shift",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"parameter_shift\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": "",
+      "stdout_sha256": "0ee864495a04bbc893ff73f5782e403e9217ff05a4b69ea333c98266a011c0d5",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "conjugator_translation"
+      ],
+      "optimization_mode": 0,
+      "kind": "runtime_fault_control",
+      "mutation": "conjugator_translation",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"conjugator_translation\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": "",
+      "stdout_sha256": "08a13d3fe855b57e69a7dc3a84a2cad8cee53ea4f45b60ec509effee60f1bba1",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "projective_scalar"
+      ],
+      "optimization_mode": 0,
+      "kind": "runtime_fault_control",
+      "mutation": "projective_scalar",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"projective_scalar\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": "",
+      "stdout_sha256": "a6890a15cbfe8a8619292064268529909a7f8c32c2e02ee92960b89b6f74dfed",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "fixed_ring"
+      ],
+      "optimization_mode": 0,
+      "kind": "runtime_fault_control",
+      "mutation": "fixed_ring",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"fixed_ring\", \"failure\": \"j fixed-ring linear coefficient\"}\n",
+      "stderr": "",
+      "stdout_sha256": "49613349a25adaf2d356d6444216a0e5f002ab31210c4dde1eb1ff256a8df1fc",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_independent_case.py",
+      "args": [
+        "none"
+      ],
+      "optimization_mode": 0,
+      "kind": "baseline",
+      "mutation": "none",
+      "exit_code": 0,
+      "stdout": "{\n  \"all_first_order_constant_terms_cancel\": true,\n  \"conjugacy_matrix\": true,\n  \"fixed_elements\": 16,\n  \"fixed_reduction_is_exactly_constants\": true,\n  \"involution_matrix\": true,\n  \"pairwise_additive_checks\": 4096,\n  \"pairwise_multiplicative_checks\": 4096,\n  \"ring\": \"F4[e]/e^3\",\n  \"ring_elements\": 64,\n  \"status\": \"PASS\",\n  \"u_times_u_plus_one\": true,\n  \"warning\": \"Exact identities only; universal functor conclusion is proved in the report.\"\n}\n",
+      "stderr": "",
+      "stdout_sha256": "f7ea9d72c164b2ac2ad0726dff0fe4e07c2268517b932ef019ab452304416eb2",
+      "source_sha256": "603325cdfe251358b001f8d12f864a67db6b61b537af755d76bdd8c36a3d142e",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_independent_case.py",
+      "args": [
+        "missing_parameter_shift"
+      ],
+      "optimization_mode": 0,
+      "kind": "actual_source_mutation",
+      "mutation": "missing_parameter_shift",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"original assertion at line 49\", \"mutant\": \"missing_parameter_shift\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "88d2ac0cbcc2f9e1e029c473853b8e520d0f923b1528ad586ef42844424221a6",
+      "source_sha256": "603325cdfe251358b001f8d12f864a67db6b61b537af755d76bdd8c36a3d142e",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_independent_case.py",
+      "args": [
+        "fixed_ring_identity"
+      ],
+      "optimization_mode": 0,
+      "kind": "actual_source_mutation",
+      "mutation": "fixed_ring_identity",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"original assertion at line 55\", \"mutant\": \"fixed_ring_identity\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "998d8a2e8a4abde2f2fd1fda7dffa5d6fd6d474332973220586a4d96ac4aedc7",
+      "source_sha256": "603325cdfe251358b001f8d12f864a67db6b61b537af755d76bdd8c36a3d142e",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_corrected_case.py",
+      "args": [
+        "none"
+      ],
+      "optimization_mode": 1,
+      "kind": "baseline",
+      "mutation": "none",
+      "exit_code": 0,
+      "stdout": "{\n  \"ring\": \"F_2[e]/(e^3)\",\n  \"encoding\": \"bit i is the coefficient of e^i\",\n  \"conjugacy_identity\": \"M_(e+e^2) C = (1+e) C M_e\",\n  \"conjugacy_verified\": true,\n  \"involution_verified\": true,\n  \"both_conjugacy_sides\": [\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      3\n    ]\n  ]\n}\n",
+      "stderr": "",
+      "stdout_sha256": "847961ae9cb9a6143a97080e522714d83010d96fe2bfc4f42480aeb9c82c50f5",
+      "source_sha256": "fdd16d644dd3e76d8bcd95951a6a4bc6b73dbb8066571f65e50de8307d38d431",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_corrected_case.py",
+      "args": [
+        "missing_parameter_shift"
+      ],
+      "optimization_mode": 1,
+      "kind": "actual_source_mutation",
+      "mutation": "missing_parameter_shift",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"Projective conjugacy identity failed\", \"mutant\": \"missing_parameter_shift\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "1d01ceb523ecf2b7ffe19aa73ee025a1577dcab3bed732dbdf86d2f6b0133d02",
+      "source_sha256": "fdd16d644dd3e76d8bcd95951a6a4bc6b73dbb8066571f65e50de8307d38d431",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_corrected_case.py",
+      "args": [
+        "wrong_involution_scalar"
+      ],
+      "optimization_mode": 1,
+      "kind": "actual_source_mutation",
+      "mutation": "wrong_involution_scalar",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"Involution identity failed\", \"mutant\": \"wrong_involution_scalar\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "453fa9477db9dbad075f8910b8c007d8ac446b02e8ca37be6382ae4e5e9ae5a9",
+      "source_sha256": "fdd16d644dd3e76d8bcd95951a6a4bc6b73dbb8066571f65e50de8307d38d431",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "none"
+      ],
+      "optimization_mode": 1,
+      "kind": "baseline",
+      "mutation": "none",
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"optimization_level\": 1,\n  \"mutant\": \"none\",\n  \"checks\": [\n    \"all 16 group-composition identities\",\n    \"quotient invariance, induced action, derivative\",\n    \"exact rational invariant and coboundary identities for z^0 through z^8\",\n    \"conjugacy and involution in F4[e]/e^3\",\n    \"all 64 elements: j-fixed iff linear coefficient is zero\"\n  ],\n  \"limitation\": \"Finite identities support but do not prove the formal power-series or functor arguments.\"\n}\n",
+      "stderr": "",
+      "stdout_sha256": "bab712e61dd82cd647dd8f9f5908e4e65b5f968f21d705ca64dfb19c27e951de",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "quotient_action"
+      ],
+      "optimization_mode": 1,
+      "kind": "runtime_fault_control",
+      "mutation": "quotient_action",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"quotient_action\", \"failure\": \"induced Q-action\"}\n",
+      "stderr": "",
+      "stdout_sha256": "63d80e10cc53aafdbcbccb1374be19783d2094d6af152132e6ce96d7c3117c84",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "derivation_weight"
+      ],
+      "optimization_mode": 1,
+      "kind": "runtime_fault_control",
+      "mutation": "derivation_weight",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"derivation_weight\", \"failure\": \"coboundary of y\"}\n",
+      "stderr": "",
+      "stdout_sha256": "c9997c2141a9c6140eba554cf869afc450a8efb44baab72f6761339863b45dd6",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "parameter_shift"
+      ],
+      "optimization_mode": 1,
+      "kind": "runtime_fault_control",
+      "mutation": "parameter_shift",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"parameter_shift\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": "",
+      "stdout_sha256": "a6ad76d53d13467f66dd8a53c907bf07f01f494328b9f52e08ef45dec0508e17",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "conjugator_translation"
+      ],
+      "optimization_mode": 1,
+      "kind": "runtime_fault_control",
+      "mutation": "conjugator_translation",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"conjugator_translation\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": "",
+      "stdout_sha256": "f2a9e79ecf400adcc9459ac21f1a0a5230f7a7d62ad7077e0091103f8054b0e7",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "projective_scalar"
+      ],
+      "optimization_mode": 1,
+      "kind": "runtime_fault_control",
+      "mutation": "projective_scalar",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"projective_scalar\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": "",
+      "stdout_sha256": "dfd04844fccce9bf0a2f0a38c096ebd6d0759c56ca23452f66300633043a96b6",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "fixed_ring"
+      ],
+      "optimization_mode": 1,
+      "kind": "runtime_fault_control",
+      "mutation": "fixed_ring",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"fixed_ring\", \"failure\": \"j fixed-ring linear coefficient\"}\n",
+      "stderr": "",
+      "stdout_sha256": "17524604a6c6bcbb642d92258ea14d7bb8c4ab42231546c89b763fe21624e34a",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_independent_case.py",
+      "args": [
+        "none"
+      ],
+      "optimization_mode": 1,
+      "kind": "baseline",
+      "mutation": "none",
+      "exit_code": 0,
+      "stdout": "{\n  \"all_first_order_constant_terms_cancel\": true,\n  \"conjugacy_matrix\": true,\n  \"fixed_elements\": 16,\n  \"fixed_reduction_is_exactly_constants\": true,\n  \"involution_matrix\": true,\n  \"pairwise_additive_checks\": 4096,\n  \"pairwise_multiplicative_checks\": 4096,\n  \"ring\": \"F4[e]/e^3\",\n  \"ring_elements\": 64,\n  \"status\": \"PASS\",\n  \"u_times_u_plus_one\": true,\n  \"warning\": \"Exact identities only; universal functor conclusion is proved in the report.\"\n}\n",
+      "stderr": "",
+      "stdout_sha256": "f7ea9d72c164b2ac2ad0726dff0fe4e07c2268517b932ef019ab452304416eb2",
+      "source_sha256": "603325cdfe251358b001f8d12f864a67db6b61b537af755d76bdd8c36a3d142e",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_independent_case.py",
+      "args": [
+        "missing_parameter_shift"
+      ],
+      "optimization_mode": 1,
+      "kind": "actual_source_mutation",
+      "mutation": "missing_parameter_shift",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"original assertion at line 49\", \"mutant\": \"missing_parameter_shift\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "88d2ac0cbcc2f9e1e029c473853b8e520d0f923b1528ad586ef42844424221a6",
+      "source_sha256": "603325cdfe251358b001f8d12f864a67db6b61b537af755d76bdd8c36a3d142e",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_independent_case.py",
+      "args": [
+        "fixed_ring_identity"
+      ],
+      "optimization_mode": 1,
+      "kind": "actual_source_mutation",
+      "mutation": "fixed_ring_identity",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"original assertion at line 55\", \"mutant\": \"fixed_ring_identity\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "998d8a2e8a4abde2f2fd1fda7dffa5d6fd6d474332973220586a4d96ac4aedc7",
+      "source_sha256": "603325cdfe251358b001f8d12f864a67db6b61b537af755d76bdd8c36a3d142e",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_corrected_case.py",
+      "args": [
+        "none"
+      ],
+      "optimization_mode": 2,
+      "kind": "baseline",
+      "mutation": "none",
+      "exit_code": 0,
+      "stdout": "{\n  \"ring\": \"F_2[e]/(e^3)\",\n  \"encoding\": \"bit i is the coefficient of e^i\",\n  \"conjugacy_identity\": \"M_(e+e^2) C = (1+e) C M_e\",\n  \"conjugacy_verified\": true,\n  \"involution_verified\": true,\n  \"both_conjugacy_sides\": [\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      3\n    ]\n  ]\n}\n",
+      "stderr": "",
+      "stdout_sha256": "847961ae9cb9a6143a97080e522714d83010d96fe2bfc4f42480aeb9c82c50f5",
+      "source_sha256": "fdd16d644dd3e76d8bcd95951a6a4bc6b73dbb8066571f65e50de8307d38d431",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_corrected_case.py",
+      "args": [
+        "missing_parameter_shift"
+      ],
+      "optimization_mode": 2,
+      "kind": "actual_source_mutation",
+      "mutation": "missing_parameter_shift",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"Projective conjugacy identity failed\", \"mutant\": \"missing_parameter_shift\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "1d01ceb523ecf2b7ffe19aa73ee025a1577dcab3bed732dbdf86d2f6b0133d02",
+      "source_sha256": "fdd16d644dd3e76d8bcd95951a6a4bc6b73dbb8066571f65e50de8307d38d431",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_corrected_case.py",
+      "args": [
+        "wrong_involution_scalar"
+      ],
+      "optimization_mode": 2,
+      "kind": "actual_source_mutation",
+      "mutation": "wrong_involution_scalar",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"Involution identity failed\", \"mutant\": \"wrong_involution_scalar\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "453fa9477db9dbad075f8910b8c007d8ac446b02e8ca37be6382ae4e5e9ae5a9",
+      "source_sha256": "fdd16d644dd3e76d8bcd95951a6a4bc6b73dbb8066571f65e50de8307d38d431",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "none"
+      ],
+      "optimization_mode": 2,
+      "kind": "baseline",
+      "mutation": "none",
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"optimization_level\": 2,\n  \"mutant\": \"none\",\n  \"checks\": [\n    \"all 16 group-composition identities\",\n    \"quotient invariance, induced action, derivative\",\n    \"exact rational invariant and coboundary identities for z^0 through z^8\",\n    \"conjugacy and involution in F4[e]/e^3\",\n    \"all 64 elements: j-fixed iff linear coefficient is zero\"\n  ],\n  \"limitation\": \"Finite identities support but do not prove the formal power-series or functor arguments.\"\n}\n",
+      "stderr": "",
+      "stdout_sha256": "319ca63573413ca3274bf93bad79c077ce65498f986ee4a116c20f7e268b3331",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "quotient_action"
+      ],
+      "optimization_mode": 2,
+      "kind": "runtime_fault_control",
+      "mutation": "quotient_action",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"quotient_action\", \"failure\": \"induced Q-action\"}\n",
+      "stderr": "",
+      "stdout_sha256": "d30d85a0de407959335a18e72674e871038df58d6ace0e8e664a6b6c614a6498",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "derivation_weight"
+      ],
+      "optimization_mode": 2,
+      "kind": "runtime_fault_control",
+      "mutation": "derivation_weight",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"derivation_weight\", \"failure\": \"coboundary of y\"}\n",
+      "stderr": "",
+      "stdout_sha256": "de92f962bb056fff24b416288173a8263d18fc6b651d6f2f1c9c30423be5591d",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "parameter_shift"
+      ],
+      "optimization_mode": 2,
+      "kind": "runtime_fault_control",
+      "mutation": "parameter_shift",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"parameter_shift\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": "",
+      "stdout_sha256": "a691cbe02f8119879d30c78f0e70969c53c482b789749fcab3455b1f336f9bf7",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "conjugator_translation"
+      ],
+      "optimization_mode": 2,
+      "kind": "runtime_fault_control",
+      "mutation": "conjugator_translation",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"conjugator_translation\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": "",
+      "stdout_sha256": "da4f03f99dcd1bfd26611507218385f8d04b6accdd4e6b22a223e6194178ba4f",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "projective_scalar"
+      ],
+      "optimization_mode": 2,
+      "kind": "runtime_fault_control",
+      "mutation": "projective_scalar",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"projective_scalar\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": "",
+      "stdout_sha256": "4b774bcd51384a7d89f22dc36936a20a91b047c7722bc074d8b73ec9352d13bd",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/current/verify_exact.py",
+      "args": [
+        "--mutant",
+        "fixed_ring"
+      ],
+      "optimization_mode": 2,
+      "kind": "runtime_fault_control",
+      "mutation": "fixed_ring",
+      "exit_code": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"fixed_ring\", \"failure\": \"j fixed-ring linear coefficient\"}\n",
+      "stderr": "",
+      "stdout_sha256": "308a44a011c52e83c6f5fe3f79d63dd554ef69cafe9835242d0998a33790d40b",
+      "source_sha256": "bdd70c87b992382c51b84f14f9393dea56ea7c2146d5b20898339a33bbf912d4",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_independent_case.py",
+      "args": [
+        "none"
+      ],
+      "optimization_mode": 2,
+      "kind": "baseline",
+      "mutation": "none",
+      "exit_code": 0,
+      "stdout": "{\n  \"all_first_order_constant_terms_cancel\": true,\n  \"conjugacy_matrix\": true,\n  \"fixed_elements\": 16,\n  \"fixed_reduction_is_exactly_constants\": true,\n  \"involution_matrix\": true,\n  \"pairwise_additive_checks\": 4096,\n  \"pairwise_multiplicative_checks\": 4096,\n  \"ring\": \"F4[e]/e^3\",\n  \"ring_elements\": 64,\n  \"status\": \"PASS\",\n  \"u_times_u_plus_one\": true,\n  \"warning\": \"Exact identities only; universal functor conclusion is proved in the report.\"\n}\n",
+      "stderr": "",
+      "stdout_sha256": "f7ea9d72c164b2ac2ad0726dff0fe4e07c2268517b932ef019ab452304416eb2",
+      "source_sha256": "603325cdfe251358b001f8d12f864a67db6b61b537af755d76bdd8c36a3d142e",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_independent_case.py",
+      "args": [
+        "missing_parameter_shift"
+      ],
+      "optimization_mode": 2,
+      "kind": "actual_source_mutation",
+      "mutation": "missing_parameter_shift",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"original assertion at line 49\", \"mutant\": \"missing_parameter_shift\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "88d2ac0cbcc2f9e1e029c473853b8e520d0f923b1528ad586ef42844424221a6",
+      "source_sha256": "603325cdfe251358b001f8d12f864a67db6b61b537af755d76bdd8c36a3d142e",
+      "exact_reference_match": true
+    },
+    {
+      "program": "checks/check_independent_case.py",
+      "args": [
+        "fixed_ring_identity"
+      ],
+      "optimization_mode": 2,
+      "kind": "actual_source_mutation",
+      "mutation": "fixed_ring_identity",
+      "exit_code": 1,
+      "stdout": "{\"failure\": \"original assertion at line 55\", \"mutant\": \"fixed_ring_identity\", \"ok\": false}\n",
+      "stderr": "",
+      "stdout_sha256": "998d8a2e8a4abde2f2fd1fda7dffa5d6fd6d474332973220586a4d96ac4aedc7",
+      "source_sha256": "603325cdfe251358b001f8d12f864a67db6b61b537af755d76bdd8c36a3d142e",
+      "exact_reference_match": true
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "pr948-private-runtime-bootstrap-recipe-correction-v1",
+  "utc": "2026-10-16T15:12:48.408252+00:00",
+  "supersedes_recipe_in": "ROOT_RUNTIME_RECOVERY_REVALIDATION_20261016.json",
+  "earlier_record_sha256": "a9ce0e4a03b28ab0405364c39fac9f529af6840bf49aa0137104aca02435744e",
+  "reason": "Plain ensurepip may treat retained pip26.1.2 dist-info as already installed despite deliberately absent pip code. Do not rely on that bootstrap recipe. A retained functioning external pip26.1.2 supports explicit target-interpreter mode even when target pip code is absent.",
+  "read_only_actual_entrypoint_test": {
+    "argv": [
+      "python3",
+      "-I",
+      "-B",
+      "-m",
+      "pip",
+      "--python",
+      "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr906_30006419/reviews/computation_family/tmp/venv/bin/python",
+      "--disable-pip-version-check",
+      "--no-cache-dir",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "pip 26.1.2 from /opt/homebrew/Cellar/python@3.14/3.14.6/lib/python3.14/site-packages/pip (python 3.14)\n",
+    "actual_performed": true
+  },
+  "current_external_runtime_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+  "future_reconstruction_command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-I",
+    "-B",
+    "-m",
+    "pip",
+    "--python",
+    "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr906_30006419/reviews/computation_family/tmp/venv/bin/python",
+    "--disable-pip-version-check",
+    "--no-cache-dir",
+    "install",
+    "--force-reinstall",
+    "--no-deps",
+    "pip==26.1.2",
+    "numpy==2.3.5",
+    "scipy==1.17.0"
+  ],
+  "limits": "Only read-only --version entrypoint was actually run. No installation, dependency restoration, future upstream availability or exact futurewheelbytes certified. PR948 required Python/SymPy/mpmath works; these optionalPR906 numerical caches are unnecessary to current948replays."
+}

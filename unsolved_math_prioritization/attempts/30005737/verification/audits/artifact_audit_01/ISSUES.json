@@ -1,0 +1,99 @@
+{
+  "timestamp_utc": "2026-10-16T07:15:25.700Z",
+  "issues": [
+    {
+      "id": "A01",
+      "classification": "runtime_integrity_defect",
+      "severity": "high_for_hostile_runtime_certificate",
+      "original_code": "ORIGINAL_CODE/verify_publication.py",
+      "line": 51,
+      "mechanism": "Child Python subprocess inherits interpreter startup environment and omits -I/-S isolation.",
+      "evidence": [
+        "accepted_hostile_sitecustomize",
+        "inspect_accepted_hostile_sitecustomize",
+        "verifier_childflags_hostile_optimization"
+      ],
+      "observed": "All source bytes unchanged, but controlled sitecustomize printed frozen output and exited before checker execution; verifier returned 0. PYTHONOPTIMIZE=2 made actual child optimization levels [2,2].",
+      "exact_limit": "Controlled benign local adversarial environment, not evidence of a hostile original publication environment.",
+      "engineering_requirement": "Isolate every actual child interpreter and sanitize its environment; record real flags."
+    },
+    {
+      "id": "A02",
+      "classification": "unvalidated_manifest_semantics_and_parser_ambiguity",
+      "severity": "medium_for_packet_contract",
+      "original_code": "ORIGINAL_CODE/verify_publication.py",
+      "line": 20,
+      "mechanism": "json.loads duplicate keys accepted; problem identity/status/turns metadata ignored.",
+      "evidence": [
+        "accepted_wrong_metadata",
+        "accepted_duplicate_json_key",
+        "inspect_accepted_wrong_metadata",
+        "inspect_accepted_duplicate_json_key"
+      ],
+      "observed": "Conflicting duplicate files/problem_id keys and metadata problem_id=-1/status=formally_proved/turns=999/5 accepted.",
+      "exact_limit": "Changed PUBLICATION_MANIFEST bytes fail the independent external manifest pin.",
+      "engineering_requirement": "Authenticate publication manifest externally and reject duplicate keys; validate semantic fields separately."
+    },
+    {
+      "id": "A03",
+      "classification": "filesystem_contract_gap",
+      "severity": "medium_for_regular_allowlisted_packet_claim",
+      "original_code": "ORIGINAL_CODE/verify_publication.py",
+      "line": 24,
+      "mechanism": "is_file follows symlinks, dangling links are omitted, and all files below any __pycache__ component are ignored.",
+      "evidence": [
+        "accepted_nonbytecode_cache_file",
+        "accepted_external_symlink",
+        "accepted_dangling_symlink"
+      ],
+      "observed": "An arbitrary nonbytecode text file, matching-content external proof symlink, and an unlisted dangling symlink were accepted.",
+      "exact_limit": "The actual authenticated original export was regular and symlink-free; no original mutation occurred.",
+      "engineering_requirement": "Enumerate lstat types and explicit cache policy; enforce root containment and regular files."
+    },
+    {
+      "id": "A04",
+      "classification": "original_manifest_list_and_path_validation_gap",
+      "severity": "medium_for_original_archive_contract",
+      "original_code": "ORIGINAL_CODE/verify_publication.py",
+      "line": 34,
+      "mechanism": "Original manifest deduplicated into a set without entry-count/duplicate check and paths lack safety checks.",
+      "evidence": [
+        "accepted_original_manifest_duplicate",
+        "accepted_original_manifest_traversal"
+      ],
+      "observed": "Nine list entries/eight unique names and ../authored/PROOF.md in both original manifest and ZIP accepted after all relevant internal hashes refreshed.",
+      "exact_limit": "This verifier does not extract ZIPs. Rehashed controls fail the external original-manifest/archive pins.",
+      "engineering_requirement": "Validate original list entries, safe normalized member paths, and exact original name set."
+    },
+    {
+      "id": "A05",
+      "classification": "zip_raw_identity_scope",
+      "severity": "low_when_externally_pinned",
+      "original_code": "ORIGINAL_CODE/verify_publication.py",
+      "line": 42,
+      "mechanism": "Inner ZIP validation checks member names/payload bytes but omits modes, comments, and trailers.",
+      "evidence": [
+        "accepted_zip_symlink_metadata",
+        "accepted_zip_comment_trailer"
+      ],
+      "observed": "Unix symlink member mode and changed archive comment/trailing bytes accepted after outer ZIP hash refresh.",
+      "exact_limit": "Original ZIP raw external hash independently pins all such metadata; actual original ZIP is unchanged.",
+      "engineering_requirement": "Retain external complete-archive hash and explicit regular-member metadata policy."
+    },
+    {
+      "id": "A06",
+      "classification": "expected_semantic_scope_boundary",
+      "severity": "not_a_theorem_refutation",
+      "original_code": "ORIGINAL_CODE/verify_publication.py",
+      "line": 49,
+      "mechanism": "Mutually consistent frozen data, checker, and internal hashes do not authenticate mathematical proof or actual computation implementation.",
+      "evidence": [
+        "accepted_false_proof_rehashed",
+        "accepted_checker_stub_rehashed"
+      ],
+      "observed": "Explicitly false proof prose and checker stub printing frozen output accepted after internal refreeze.",
+      "exact_limit": "Original source pins reject these changes. The original verifier explicitly disclaims theorem proving.",
+      "engineering_requirement": "Keep integrity, finite algebra validation, and global mathematical review as separate conclusions."
+    }
+  ]
+}

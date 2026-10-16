@@ -1,0 +1,143 @@
+{
+  "result": "PASS",
+  "controls": [
+    {
+      "name": "baseline_source_core_zero_bodies",
+      "expected_accept": true,
+      "returncode": 0,
+      "matched_expectation": true,
+      "stdout": "{\n  \"exact_head\": \"aa44dec3baf8c1cd179cf8b55f32be95c74ee81a\",\n  \"external_evidence_files_rehashed\": 0,\n  \"finite_replay_processes\": [],\n  \"original_files\": 58,\n  \"pdf_binding_checked\": true,\n  \"priority\": \"UNRESOLVED\",\n  \"result\": \"PASS\",\n  \"scope\": \"Byte custody, complete original inventory and finite diagnostics; no proof assistant, exhaustive literature or firstness certification. Current selected record verified; historical full-dataset receipts remain historical. Optional body counts are distinct from reading scope.\",\n  \"source_files\": 151,\n  \"source_manifest_sha256\": \"6287da0dabdad505f3d312dfeefc9e75f34caaeccb267fada3f9119502cfa6be\"\n}",
+      "stderr": ""
+    },
+    {
+      "name": "wrong_external_manifest_pin",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"External source manifest pin differs\"}",
+      "stderr": ""
+    },
+    {
+      "name": "changed_source",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Source bytes differ: README.md\"}",
+      "stderr": ""
+    },
+    {
+      "name": "unexpected_source_file",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Closed source inventory differs\"}",
+      "stderr": ""
+    },
+    {
+      "name": "missing_source_file",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Closed source inventory differs\"}",
+      "stderr": ""
+    },
+    {
+      "name": "empty_source_directory",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Unexpected empty source directory\"}",
+      "stderr": ""
+    },
+    {
+      "name": "source_leaf_symlink",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Source symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round01_scratch/controls/source_leaf_symlink/LICENSE.txt\"}",
+      "stderr": ""
+    },
+    {
+      "name": "source_subdirectory_symlink",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Source symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round01_scratch/controls/source_subdirectory_symlink/audit/math_quotient_algebra\"}",
+      "stderr": ""
+    },
+    {
+      "name": "relocated_core_zero_bodies",
+      "expected_accept": true,
+      "returncode": 0,
+      "matched_expectation": true,
+      "stdout": "{\n  \"exact_head\": \"aa44dec3baf8c1cd179cf8b55f32be95c74ee81a\",\n  \"external_evidence_files_rehashed\": 0,\n  \"finite_replay_processes\": [],\n  \"original_files\": 58,\n  \"pdf_binding_checked\": true,\n  \"priority\": \"UNRESOLVED\",\n  \"result\": \"PASS\",\n  \"scope\": \"Byte custody, complete original inventory and finite diagnostics; no proof assistant, exhaustive literature or firstness certification. Current selected record verified; historical full-dataset receipts remain historical. Optional body counts are distinct from reading scope.\",\n  \"source_files\": 151,\n  \"source_manifest_sha256\": \"6287da0dabdad505f3d312dfeefc9e75f34caaeccb267fada3f9119502cfa6be\"\n}",
+      "stderr": ""
+    },
+    {
+      "name": "build_inside_source",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 99, in validate_outputs\n    need(canonical != closed and closed not in canonical.parents, \"Output lies inside closed source\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Output lies inside closed source"
+    },
+    {
+      "name": "wrong_pdf",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 132, in build\n    need(identity(pdf) == bindings[\"paper.pdf\"], \"PDF differs from exact reviewed binding\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: PDF differs from exact reviewed binding"
+    },
+    {
+      "name": "symlink_output_file",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 106, in validate_outputs\n    need(not target.is_symlink(), \"Output destination symlink\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Output destination symlink"
+    },
+    {
+      "name": "hardlinked_output_file",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 112, in validate_outputs\n    need(stat.S_ISREG(value.st_mode) and value.st_nlink == 1, \"Nonregular/multiply linked output\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Nonregular/multiply linked output"
+    },
+    {
+      "name": "symlink_output_ancestor",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 96, in validate_outputs\n    need(not directory.is_symlink(), \"Output ancestor symlink\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/preprint/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Output ancestor symlink"
+    },
+    {
+      "name": "historical_author_self_symlink_caveat",
+      "expected_accept": true,
+      "returncode": 0,
+      "matched_expectation": true,
+      "stdout": "{\n  \"characteristic_free_change\": \"beta*UU+(beta-1)*UV+(beta+1)*VU\",\n  \"coefficient_domain\": \"integer polynomials in alpha,beta\",\n  \"determinant\": \"1-beta^2\",\n  \"finite_checks_are_not_a_formal_proof\": true,\n  \"problem_id\": 30001478,\n  \"quotient_images\": [\n    \"0\",\n    \"0\",\n    \"0\",\n    \"0\",\n    \"beta*XX-XY+YX-beta*YY\",\n    \"beta*XX-XY+YX-beta*YY\"\n  ],\n  \"scalar_relation_images\": [\n    0,\n    0,\n    0,\n    0,\n    0,\n    0\n  ],\n  \"source_relations_verified\": 6,\n  \"status\": \"PASS\",\n  \"twisted_relation_images\": [\n    0,\n    0,\n    0,\n    0,\n    0,\n    0\n  ]\n}",
+      "stderr": ""
+    },
+    {
+      "name": "operative_original_wrapper_rejects_child_symlink",
+      "expected_accept": false,
+      "returncode": 1,
+      "matched_expectation": true,
+      "stdout": "",
+      "stderr": "REJECT: nonregular entry: author/verify.py"
+    },
+    {
+      "name": "source_rechecked_after_controls",
+      "expected_accept": true,
+      "returncode": 0,
+      "matched_expectation": true,
+      "stdout": "{\n  \"exact_head\": \"aa44dec3baf8c1cd179cf8b55f32be95c74ee81a\",\n  \"external_evidence_files_rehashed\": 0,\n  \"finite_replay_processes\": [],\n  \"original_files\": 58,\n  \"pdf_binding_checked\": true,\n  \"priority\": \"UNRESOLVED\",\n  \"result\": \"PASS\",\n  \"scope\": \"Byte custody, complete original inventory and finite diagnostics; no proof assistant, exhaustive literature or firstness certification. Current selected record verified; historical full-dataset receipts remain historical. Optional body counts are distinct from reading scope.\",\n  \"source_files\": 151,\n  \"source_manifest_sha256\": \"6287da0dabdad505f3d312dfeefc9e75f34caaeccb267fada3f9119502cfa6be\"\n}",
+      "stderr": ""
+    }
+  ],
+  "count": 17,
+  "scope": "No hostile concurrent filesystem actor tested. Historical self-symlink acceptance is reproduced and bounded by operative wrapper protection."
+}

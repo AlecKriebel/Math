@@ -1,0 +1,16 @@
+import OAI.Combinatorics.Automata.Main
+import OAI.Combinatorics.TwoWayAutomata.Main
+import OAI.Combinatorics.TwoWayAutomata.ExplicitFamily
+#print axioms OAI.OneWayLiveness.main_theorem
+#print axioms OAI.OneWayLiveness.deterministic_lower_bound
+#print axioms OAI.OneWayLiveness.rankLoss_all
+#print axioms OAI.OneWayLiveness.small_nfa
+#print axioms OAI.OneWayLiveness.no_polynomial_simulation
+#print axioms OAI.TwoWayComplementation.complementation_lower_bound
+#print axioms OAI.TwoWayComplementation.complementation_lower_bound_finite
+#print axioms OAI.TwoWayComplementation.explicit_complementation_family
+#print axioms OAI.TwoWayComplementation.explicit_family_main
+#print axioms OAI.TwoWayComplementation.diagram_recognition_lower_bound
+#print axioms OAI.TwoWayComplementation.sourceLanguage_state_bound
+#print axioms OAI.TwoWayComplementation.order_reversing_image_bound
+#print axioms OAI.TwoWayComplementation.no_polynomial_complementation

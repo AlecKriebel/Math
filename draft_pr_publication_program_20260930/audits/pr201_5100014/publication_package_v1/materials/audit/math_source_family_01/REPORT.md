@@ -1,0 +1,229 @@
+# PR201 / 5100014 — independent source and analytic-area audit
+
+Audit family: `math_source_family_01`. Frozen original candidate: commit `90bdb85235979f2ffa7496b9b689036654e55200`, candidate SHA-256 `e48aa989fb9282d09fdf58e7e4f6eee78e757ff0686f4cc35dc691e21f3d1fd3`. The parent authenticated the full 24-file, 54,661-byte original native submission. I have not changed it.
+
+## Factual correction record — 2026-10-16 05:50:39 UTC
+
+This revision corrects the registered arXiv title and distinguishes the 05:40:17 UTC mechanism/clock checkpoint from actual freeze-file persistence at 05:40:48.424654 UTC. The original report is preserved byte-for-byte as `REPORT_v1_20261016_054759.md` (SHA-256 `704e69fbff3cd4b20486bd9e1b7c182afb34911fbc700ab4731a9acf3cb78f9a`). No mathematical text, checks, or original freeze bytes were changed. This family verdict remains subject to the root reviewer's pending final mathematical gate.
+
+## Finding
+
+**The submitted argument establishes the claimed invariant under its stated strict confocal-ellipse, signed-area, primitive-period hypotheses. I found no unfilled substantive proof step in that theorem.** The every-fixed-M quantifier survives the audit; M need not be a focus or the center. Primitive stars and reversed traversal are covered. This is mathematical verification with credited published inputs, not novelty or publication clearance.
+
+There is one concrete source-report correction: `SOURCE_AUDIT.md` calls “primitive period” part of the “exact printed target.” The primary table prints a condition on N but does not print that word. The candidate itself correctly assumes primitive period. The conventional least-period interpretation is necessary: if N merely means a traversal count, the unrestricted every-M assertion is false. Section 6 below gives exact twice-traversed triangles with N=6 and different products. Thus retain the primitive hypothesis and describe it as the conventional/necessary interpretation, not a literal quotation from Table 4.
+
+## 1. Source contract and independence record
+
+Before any candidate proof or favorable review was read, I read the cached primary arXiv text and fixed the intended source contract and mechanism at the real-clock checkpoint **2026-10-16 05:40:17 UTC**. The approach document records that checkpoint; its actual filesystem persistence occurred at **2026-10-16 05:40:48.424654 UTC**, according to the file-birth time independently observed by the root reviewer, approximately 31 seconds later. Both precede candidate reading. The original `APPROACH_FREEZE_01.md` bytes are preserved unchanged. It specifies support-line area formulas, coefficient expansion in fixed M, and adversarial boundary cases. The original candidate and its review were then read. The divisor verification below was developed after that read; it independently checks the candidate's mechanism rather than claiming an uninfluenced discovery of that mechanism.
+
+Registered primary source: Reznik–Garcia–Koiller, [*Eighty New Invariants of N-Periodics in the Elliptic Billiard*](https://arxiv.org/abs/2004.12497v11), arXiv:2004.12497v11, 29 October 2020, Table 4, k303,a, printed p. 6. The PDF displays the shorter title *Eighty New Invariants in the Elliptic Billiard*; it is not the registered arXiv title. The source assumes a>b>0, confines EB to confocal ellipses, defines all polygon areas by signed shoelace sums, and defines the relevant feet on the outer tangent polygon. It records A' A'_m, N≡2 modulo 4, all M, and a historical proof-status question mark. That mark establishes no present-day openness.
+
+I separately checked the publisher-hosted [journal paper](https://armj.math.stonybrook.edu/pdf-Springer-final/021-0174.pdf), DOI [10.1007/s40598-021-00174-y](https://doi.org/10.1007/s40598-021-00174-y), *Fifty New Invariants of N-Periodics in the Elliptic Billiard*, 7 (2021), 341–355. Its Table 4, printed p. 346, agrees on this row and the signed-area convention. It is a distinct journal edition/title, not the registered arXiv version.
+
+Credited input checked directly: Chavez-Caliz, [*More About Areas and Centers of Poncelet Polygons*](https://armj.math.stonybrook.edu/pdf-Springer-final/020-0154.pdf), DOI [10.1007/s40598-020-00154-8](https://doi.org/10.1007/s40598-020-00154-8). Its flag construction on p. 98 gives the elliptic curve and translation; Theorems 3/6 give constancy of AA' for concentric transverse ellipses and even period. The signed areas and tangent polygon are the same objects used here. These statements do not supply the additional B_M/A proportionality.
+
+No deep novelty audit was performed. No communications, Git commands, native-file edits, installations, or large downloads were used.
+
+## 2. Independent elementary area identities
+
+Let L_i have outward unit normal n_i=(cos θ_i,sin θ_i) and equation n_i·X=h_i. Set Δ_i=θ_(i+1)−θ_i with the orientation supplied by the traversal. The formulas below use sin Δ_i and cos Δ_i, so choosing another lift of θ_i is immaterial. Consecutive tangent intersections are assumed finite.
+
+The orthogonal foot from a fixed M is
+
+    Q_i=M+r_i n_i,                 r_i=h_i−n_i·M.
+
+Shoelace area is translation invariant, because the sum of determinants involving a common translation telescopes. Therefore the pedal area is exactly
+
+    B_M = (1/2) Σ r_i r_(i+1) sin Δ_i.                         (2.1)
+
+This is valid for stars, pedals that cross themselves, negative signed areas, and feet lying on extensions of sides.
+
+For completeness, use coordinates (n_i,t_i), where t_i is n_i rotated counterclockwise by π/2. On L_i the two adjacent intersection points have coordinates
+
+    V_(i−1)=(h_i, −(h_(i−1)−h_i cos Δ_(i−1))/sin Δ_(i−1)),
+    V_i    =(h_i,  (h_(i+1)−h_i cos Δ_i)/sin Δ_i).
+
+Their determinant is h_i times the difference of their second coordinates. Summing its half and regrouping each pair of neighboring indices proves
+
+    A' = Σ [h_i h_(i+1) − (h_i²+h_(i+1)²)cos Δ_i/2]/sin Δ_i. (2.2)
+
+No convex-fill interpretation has entered this derivation.
+
+Expanding (2.1), its quadratic part in M is
+
+    (1/2) Σ sin Δ_i (n_i·M)(n_(i+1)·M).
+
+For M=(u,v), the anisotropic coefficients telescope by the elementary identities
+
+    sin(q−p) cos(p+q) = [sin 2q−sin 2p]/2,
+    sin(q−p) sin(p+q) = [cos 2p−cos 2q]/2.
+
+Consequently every polygon's pedal area is a scalar multiple of |M|² plus a linear function and a constant. For a centrally symmetric tangent polygon, n_(i+m)=−n_i and h_(i+m)=h_i. Opposite terms cancel the linear part. Hence
+
+    B_M = B_0 + |M|² C,
+    B_0 = (1/2) Σ h_i h_(i+1) sin Δ_i,
+    C   = (1/8) Σ sin(2Δ_i).                                 (2.3)
+
+Thus “every M” has only two scalar phase-dependence obligations: A'B_0 and A'C must each be constant. Merely proving radial dependence would not settle either one.
+
+For the ellipse x²/a²+y²/b²=1, write D=diag(a^−2,b^−2), R=DP and d=R·R. Its tangent is R·X=1, so
+
+    Q(P;M)=M+(1−R·M)R/d.                                     (2.4)
+
+The support variables satisfy n=R/sqrt(d) and h=1/sqrt(d), confirming (2.1) directly against the candidate's projection formula. Also
+
+    det(P_i,P_(i+1))=a²b² sin Δ_i/(h_i h_(i+1)),
+
+which independently fixes its sign and normalization relative to original area A.
+
+## 3. Analytic verification of the full phase dependence
+
+Here is a complete alternative ending of the analytic argument, using zeros and removable singularities instead of the candidate's Riemann–Roch basis step. Its pole analysis has been checked independently, but it uses the mechanism already read in the candidate.
+
+Let α²=a²−λ and β²=b²−λ with 0<λ<b². The complex conics E,C intersect at four affine points with
+
+    x²=a²α²/(a²−b²),       y²=−b²β²/(a²−b²).
+
+All coordinates are nonzero. The determinant of the two diagonal quadratic coefficients is
+
+    λ(a²−b²)/(a²b²α²β²) ≠ 0.
+
+Their gradients are therefore independent at each intersection. Neither of E's two infinite points [a:±ib:0] lies on C. This checks the published input's complex general-position hypothesis; real nesting alone would not suffice.
+
+Form the flags X={(P,l):P∈E, l tangent to C through P}. Its projection π to E is a double cover with four simple branch points E∩C, hence a smooth connected genus-one curve. Let σ change P along l, let τ change the tangent l at fixed P, and put T=τσ. The credited flag theorem makes T a translation. Primitive period N=2m means T has exact order N, hence all its nonidentity powers are fixed-point-free. Both involutions reverse T:
+
+    σ T^j=T^(−j)σ,          τ T^j=T^(−j)τ.
+
+Central inversion lifts to I commuting with T. On either real oriented flag component π is a diffeomorphism onto a circle. Central inversion preserves its orientation and is nontrivial. T has exact order N≥6 on this circle and preserves orientation; a finite-order orientation-reversing circle map could only have order two. The finite group generated by I and T can be made isometric by averaging a metric. A finite orientation-preserving group of circle isometries consists of rotations and has only one nontrivial involution. Thus I=T^m on the real component, and hence on all X by analytic continuation.
+
+The quotient Y=X/<T> is an unramified genus-one quotient. A and B_M descend to meromorphic functions on Y. Reversal by τ changes the signs of both, without moving the fixed point M.
+
+### 3.1 The two simple poles of A
+
+Each infinite point of E has two unramified flags above it, where the affine coordinates of P have simple poles. I exchanges those two flags, since I=T^m has no fixed flags. Thus their images in Y form a set S of at most two points.
+
+Adjacent vertices cannot both be infinite. Two different ones would make their chord the line at infinity, which is not tangent to C. If they coincide, the chord is the tangent to E there; its C-dual test has value
+
+    α²/a²−β²/b²=λ(1/b²−1/a²) ≠ 0,
+
+where a zero would be required for tangency. Every determinant in A therefore has at most one simple-pole factor. A has at most simple poles, supported on S.
+
+A is not globally constant. Orient a real orbit with C on the left of each side. Because O lies inside C, det(P_i,P_(i+1))>0 for every i, even for a star. Thus A>0 on this component. A globally constant A would instead be zero because reversal negates it. A nonconstant function on a genus-one curve cannot have just one simple pole: it would give a degree-one map to the sphere, hence a biholomorphism, which has the wrong genus. It follows that S contains two distinct points and A has a simple pole at each, with no others.
+
+### 3.2 All possible poles of B_M
+
+At either infinite point, R in (2.4) has a simple pole in direction (1/a,±i/b). The bilinear squared norm of that direction is 1/a²−1/b²≠0. Thus the expression (2.4) is bounded there, for each fixed M.
+
+Its other possible poles occur at the four simple zeros of d on E:
+
+    x²=a⁴/(a²−b²),         y²=−b⁴/(a²−b²).                  (3.1)
+
+They are precisely the E-contact points of common tangents to E and C, since
+
+    α²R_x²+β²R_y²=1−λd.
+
+Conversely the two normalized dual tangent equations force d=0. These contact points are not on C: their C-equation residual is −λ²/(α²β²), so π is unramified there. Every individual foot therefore has at most a simple pole at those flags.
+
+Take a common-tangent flag z with σz=z. Its other flag at the same base point is τz=Tz. Since m is odd, 2k≡1−m (mod 2m) is soluble. Then w=T^kz satisfies
+
+    τw=T^(1−k)z=T^(m+k)z=Iw.
+
+Projecting gives π(w)=Iπ(w), so π(w) is infinite: the only fixed points of central inversion on E are its two infinite points. Thus every possible pedal pole lies above S. This is the indispensable parity step; it fails for even m.
+
+On the T-orbit of z, the only σ-fixed indices are j=0,m, because σT^jz=T^(−j)z and T acts freely. Every flag above (3.1) is either σ-fixed or T times such a flag. Consequently the only possible singular feet have indices 0,1,m,m+1. For m≥3 their only adjacent pairs are (0,1) and (m,m+1). The two vertices in either pair coincide at the limiting common-tangent contact point, so their foot residues in a common local coordinate are scalar multiples of the same vector R(P). Their determinant's coefficient of t^−2 is zero, for any M, even if either residue vanishes. All other shoelace determinants have at most one singular factor. Therefore B_M has at most simple poles supported on S on Y.
+
+### 3.3 The zero divisor gives B_M/A constant
+
+There are four τ-fixed flags, above E∩C. Starting from a τ-fixed flag z, another T^jz is τ-fixed exactly when 2j≡0 (mod N), so these four flags form exactly two T-orbits.
+
+The σ-fixed flags also form exactly two T-orbits. By the preceding parity argument these are exactly the two orbits S of infinite vertices. A σ-fixed orbit cannot contain a τ-fixed flag when N is even: on such an orbit, τ acts by j↦1−j, and a fixed point would require 2j≡1 (mod N). Thus the two τ-fixed orbits are disjoint from S, and every original vertex and foot in each of them is finite.
+
+At a τ-fixed flag, π(T^iz)=π(T^(−i)z). The original polygon and its pedal are palindromic in traversal; paired shoelace determinants cancel. Hence A=B_M=0 at each of the two corresponding points of Y. A already has exactly two simple poles. The equality of the total zero and pole multiplicities of a nonzero meromorphic function shows that these two zeros are all its zeros, and both are simple.
+
+Now B_M/A has no poles. At a zero of A the numerator also vanishes; at a pole of A its numerator has at most a simple pole; elsewhere it is regular. It is therefore a holomorphic function on compact Y and is constant:
+
+    B_M=c_M A.
+
+Multiplication by the credited published invariant AA'=K yields
+
+    A' B_M=c_M K,
+
+as required. This also proves the two scalar obligations in (2.3). The candidate's own Riemann–Roch ending is valid as well: on genus one, a divisor of degree two has two-dimensional L(D); 1,A form a basis and reversal removes the constant term.
+
+## 4. Candidate lemma and dependency disposition
+
+- **Scope and objects:** match strict nested confocal ellipses, tangent outer polygon, feet to side lines, signed areas, and fixed M. Primitive period is explicit in the theorem, but must not be claimed to be literally printed in Table 4.
+- **Conic transversality / flag theorem:** the displayed algebra verifies the input's hypotheses, including complex intersections rather than only real geometry.
+- **Central involution:** valid on the full complex flag curve by the real-circle argument and analytic continuation. It covers every coprime star numerator and needs exact even order.
+- **Original area poles and nonconstancy:** valid, with at-most orders sufficient; positivity and reversal supply nonconstancy without assuming varying area from a numerical plot.
+- **Projection and pole exhaustion:** valid. Complex dot products are bilinear, not Hermitian. Four finite simple poles are possible; infinity is removable only because a>b.
+- **Odd-m congruence and four-index list:** valid and exhaustive. Fixed-point-freeness of nontrivial T powers is the critical credited translation property.
+- **Double-pole cancellation:** valid: residues in an adjacent pair are parallel. This does not require a nonzero residue or a special choice of M.
+- **Riemann–Roch and reversal:** valid. The quotient is unramified, and τ fixes M while reversing index order. No hidden spatial reflection of M occurs.
+- **AA' input:** correctly credited and applicable to this primitive even-period concentric transverse pair. It is an input, not a result of the finite checks.
+- **Exact controls:** the independently rebuilt horizontal/vertical six-period formulas agree. Their role remains diagnostic of definitions and arithmetic.
+
+## 5. Boundary and interpretation checks
+
+**Winding and reversal.** A real oriented star still has C on a fixed side of every chord and positive per-chord cross-products. The finite-circle involution proof requires coprimality of the star numerator with the primitive N, not numerator one. Reversing traversal negates A,A',B_M, so A'B_M keeps the same value.
+
+**All M and zeros.** The real denominator d is strictly positive. Orthogonal feet exist for every real M. No pedal-area division appears in the submitted conclusion, so a zero signed pedal area causes no exception. The complex ratio used in Section 3.3 has explicitly removable zeros.
+
+**Outer vertices.** Real parallel tangents of an ellipse have antipodal contact points. A chord between such points crosses the interior of C and cannot be tangent to it. Thus all real outer vertices are finite.
+
+**Signed and ordinary area.** The source requires signed shoelace area. Taking absolute values of both signed areas would trivially preserve constancy of the absolute product. Geometric union/fill area of a self-intersecting polygon is a different quantity, with no proof here. Neither candidate nor source licenses substituting it.
+
+**N=2.** A two-bounce periodic billiard chord is a diameter, incompatible with tangency to a strictly interior nondegenerate ellipse. Hence the smallest period covered is six.
+
+**Circle.** a=b is outside the source and outside the complex-pole proof. It can be checked separately: for a circle of radius R and a primitive regular star with step δ=2πr/N, the same elementary formulas give
+
+    A'=N R² tan(δ/2),
+    B_M=(N/2) sinδ [R²+(|M|²/2)cosδ].
+
+They are phase-independent for every N≥3, so the circular boundary does not suggest a counterexample. This independent elementary extension must not be used to justify the a>b pole proof at a=b.
+
+**Degeneracies.** λ=0, λ=b², a=b, or nonprimitive order can destroy the smooth-curve, simple-pole, or exact-order premises. The theorem makes no extension to the first two limits, a degenerate caustic, or a hyperbolic caustic. A hyperbolic billiard interpretation is outside the registered source's EB definition.
+
+## 6. Exact repetition counterexample and reasonable repair
+
+Let a=2,b=1,
+
+    d=sqrt(13),  g=sqrt(2d−5),
+    λ=4(2d−5)/9,  α=2(d−1)/3,  β=(4−d)/3.
+
+Then C has squared axes 4−λ and 1−λ. Consider the two primitive billiard triangles
+
+    H=[(2,0), (−α,g/3), (−α,−g/3)],
+    V=[(0,1), (−4g/3,−β), (4g/3,−β)].
+
+Each point lies on E, and each chord line l·X=1 satisfies
+
+    (4−λ)l_x²+(1−λ)l_y²=1,
+
+so the chords are tangent to the same strict confocal caustic. They give distinct phases in its Poncelet triangle family. Set M=(1,0), and traverse either triangle twice. The tangent intersections and feet repeat twice, hence each signed area doubles. Direct exact calculation gives the resulting six-entry products
+
+    (A' B_M)_H=(1166+322sqrt(13))/9,
+    (A' B_M)_V=(956+244sqrt(13))/9.
+
+Their difference is (210+78sqrt(13))/9>0. Thus an assertion that included all traversals with T^N=id and N≡2 mod4, without least-period qualification, would be false.
+
+The reasonable repair is small and already present in the candidate theorem: use primitive N, or explicitly require that the least period is even. For the latter formulation, if an N≡2 mod4 traversal repeats a least even period n, then n≡2 mod4 and the repetition factor is odd; multiplying both signed areas by that factor preserves invariance. Repeated odd periods are the excluded failure mode.
+
+## 7. Checkable artifacts, status, and remaining gap
+
+`independent_area_checks.py` reconstructs the exact tangent intersections and feet from their definitions; checks ellipse and caustic membership; verifies the support-pair algebra and telescoping anisotropy; verifies the full symbolic arbitrary-M products for two six-period phases; and constructs the exact repetition counterexample. Every check uses an explicit exception, so optimization does not remove checks. The final normal and -O runs both passed 154 checks and produced identical output bytes. They used only the existing isolated runtime packages, not candidate code or global installed packages.
+
+The two six-period results are
+
+    H: A=20sqrt(5)/9, A'=16sqrt(5)/5,
+       B_M=5sqrt(5)(u²+v²+9)/18;
+    V: A=32sqrt(2)/9, A'=5sqrt(2),
+       B_M=4sqrt(2)(u²+v²+9)/9.
+
+Both products equal 40(u²+v²+9)/9. These finite algebraic examples do not prove arbitrary period or novelty. The general mathematical conclusion rests on the audited analytic proof and its published inputs.
+
+**Strongest verified claim:** for a>b>0, 0<λ<b², fixed confocal pair whose Poncelet translation has exact order N≡2 mod4, and every fixed real M, the signed product A'B_M is constant across the entire real family, including primitive star trajectories and reversed traversal. No substantive proof gap was found for that claim.
+
+**Remaining gap before any promotion:** the source-audit phrasing about primitive period needs correction; a deep historical literature/novelty audit and the parent's independent review remain pending. Tests alone provide no publication clearance. No additional theorem beyond the credited inputs is silently required.
+
+Safe authored outputs are listed with hashes in `MANIFEST.json`. Third-party source PDFs/text, dependencies, caches, API data, and immutable native submission files are excluded.

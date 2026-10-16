@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "python_version": "3.14.6",
+  "command": "python3 reproduce.py --output reproduction-receipt.json",
+  "cwd": "/Users/alec/Documents/Math/openai_followon_weighted_hafnian/reviews/package_review_03/clean_package",
+  "payload_hashes_verified": 28,
+  "payload_unchanged": true,
+  "saved_data_semantics_reproduced": true,
+  "saved_upstream_stdout_reproduced": true,
+  "reports": {
+    "gadget_verification.json": {
+      "status": "all finite exact checks passed",
+      "evidence_scope": "Finite checks support the exact reduction only; they neither prove it nor certify any upstream FPRAS.",
+      "generated_utc": "2026-10-07T05:49:44.977124+00:00",
+      "python_version": "3.14.6",
+      "elapsed_seconds": 0.5587655420022202,
+      "source_sha256": {
+        "gadget.py": "fb5bda83d3474d2c123c58c6213879928bdb27bb25ef6cff43e7a1b447444225",
+        "test_gadget.py": "6372ed3b61ac1e9946b7c57a263206d2f6467f8bfe47be61fdf3107e5bbe57cc"
+      },
+      "exhaustive_integer_K4_tests": {
+        "weight_domain": [
+          0,
+          1,
+          2
+        ],
+        "number_of_cases": 729
+      },
+      "seeded_integer_K6_tests": {
+        "seed": 20261006,
+        "number_of_cases": 40,
+        "weight_domain": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "projection_fiber_tests": [
+        {
+          "matching": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "observed_fiber": 2,
+          "expected_product": 2
+        },
+        {
+          "matching": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "observed_fiber": 3,
+          "expected_product": 3
+        },
+        {
+          "matching": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "observed_fiber": 2,
+          "expected_product": 2
+        }
+      ],
+      "domain_rejection_tests": 8
+    },
+    "sampling_verification.json": {
+      "status": "passed",
+      "scope": "exact finite-instance validation of the reduction; no certification or implementation of the upstream FPRAS",
+      "python_version": "3.14.6",
+      "arithmetic": "Python arbitrary-precision integers and fractions.Fraction; no floating-point TV estimates",
+      "seed": 20261006,
+      "graph_instances": 203,
+      "feasible_graph_instances": 139,
+      "eta_values": [
+        "1/2",
+        "1/10",
+        "1/100"
+      ],
+      "exact_output_laws_integrated": 1827,
+      "imperative_sampler_runs": 1218,
+      "all_zero_estimate_fallbacks_observed": 243,
+      "maximum_observed_counters": {
+        "count_calls": 15,
+        "witness_calls": 17,
+        "decisions": 4,
+        "random_bits": 39
+      },
+      "checks": [
+        "all simple graphs on 0, 2, and 4 vertices; seeded six-vertex instances; explicit disconnected and complete fixtures",
+        "exact integration of every finite-bit choice via dyadic cumulative boundaries",
+        "relative-error endpoint perturbations dependent on the residual graph",
+        "exact integration of all independent per-call zero-estimate failures at the prescribed failure probability",
+        "output feasibility on arbitrary all-zero estimates and witness fallback",
+        "empty graph, odd infeasible graph, unique matching, disconnected support, tiny positive probability",
+        "per-execution count-call, witness-call, decision, and random-bit caps",
+        "exact gadget sampler pushforward to weighted matching laws, including rational weights below one"
+      ]
+    }
+  }
+}

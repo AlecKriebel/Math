@@ -1,0 +1,22 @@
+# Dynamical adversarial review log
+
+Reviewer: `/root/pr462_dynamical_adversary`.
+Frozen source: PR 462, problem 30005528, head `3d5701d67e18745715d384c3db3fbee588b42a98`.
+
+- 2026-10-12 16:39:21 UTC - 20% complete. Read root AGENTS.md, frozen receipt, release PROOF.md, and release SOURCE_GATE.md. No historical audit or peer review read. This is a verification task; zero new original proof-search turns are authorized. No source proof edits, git operations, services, or external-individual communication.
+
+## Independent hypotheses and falsification plan (recorded before peers)
+
+1. **Orbit enforcement**: a legal ordered-pair sequence in the graph of F is uniquely its starting orbit. Potential failures: tile equality might differ from point equality, or noninvertibility might allow an eventually periodic minimizing orbit. Check both directions of the tile/point equivalence and the displayed inverse.
+2. **All real heights and source average**: the cost is invariant along every orbit, not just rational sample heights. The N+1 symbols divided by N must converge to the cost. Potential failure: hidden averaging or packing restrictions in the primary definition.
+3. **Periodic classification**: every nonzero-circle orbit is periodic precisely at rational alpha+t; reducing a rational gives its least period. Potential failure: rational rounding near alpha, mistaken period n versus least period q, endpoint heights, or a planar zero creating a fixed minimizer.
+4. **Attained minimum**: every point on t=0 gives average 1, and none can be eventually periodic. Seek invariant-measure and compact fixed-period-set mechanisms independently of the author's main calculation.
+5. **Dense periodic competitors**: rational rotation heights must be dense in the entire closed interval, including both endpoints in its relative topology. Check explicit ceil(n sqrt(2))/n construction with exact integer arithmetic, including repeated denominators.
+6. **Universal bounded-period gap**: prove positivity first by compactness of the finite union of fixed-point sets, then independently verify the explicit sqrt(2) bound using exact integer inequalities. A finite test alone cannot certify this claim.
+7. **Topological robustness**: inspect compactness, closed graph, strict positivity, inverse, and annulus conjugacy. Do not infer any packing realization or historical-priority claim.
+
+Success criterion: checkable reconstruction of all mathematical claims at the frozen scope, explicit source assumptions and exact remaining gaps, and self-owned controls that remain effective under Python -O. Completion means the review is sealed, not that an unstated packing or priority problem is solved.
+
+- 2026-10-12 16:42:42 UTC - 75% complete. Independently reconstructed the orbit and tile-period equivalence, the all-height invariant-cost argument, an invariant-measure minimization check, and compactness of each finite union of fixed-period sets. Inspected official OWR report printed p.1254 as extracted text and local rendered image using the PDF skill. The printed definition matches ordered pairs and the N+1/N convention; its Question 1 imposes compact infinite alphabet and continuous positive size, with the packing motivation in a separate remark. No added packing assumption found.
+- 2026-10-12 16:42:42 UTC - 80% complete. Independent exact controls passed under system `/opt/homebrew/bin/python3` both normally and with `-O`: 10,003 explicit ceil-approximants (including 31-, 61-, and 121-digit n), 12,232 reduced rational rotations through denominator 200, four rational-phase tile controls, 16 averaging controls, and six deliberately false/corrupted in-memory controls rejected in both modes. Universal claims remain analytic proofs, not extrapolations from these tests. No historical or peer audit was consulted.
+- 2026-10-12 16:45:19 UTC - 100% complete. Sealed independent REPORT.md and RESULT.json with 0 blocking issues, 0 required repairs, and 0 unresolved mathematical gaps in the exact abstract target. Checked normal/-O output agreement apart from timestamp and optimization level and confirmed every negative control rejected. Frozen proof/source-gate receipt hashes verified. Positive public manifest contains only owned authored text/code/JSON outputs; downloaded source PDF and rendered image remain excluded in private_cases. Excluded packing-realization and historical-novelty claims are recorded as scope limitations, not hidden solved claims. No proof alteration or publication action taken.

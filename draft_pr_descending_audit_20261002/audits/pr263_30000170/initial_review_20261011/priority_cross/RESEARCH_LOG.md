@@ -1,0 +1,23 @@
+# Cross-family primary priority audit log
+
+## 2026-10-11T21:43:14.408687+00:00 - Initialization
+
+Read the root scoped acceptance and complete submitted PROOF and SOURCE_SCOPE. Scope is complex quadratic coefficient projection and whole-epigraph set prox-regularity, with every fixed SPD coefficient metric and monic/full exact degree variants. Finite-subgradient function prox-regularity and real-only variants are excluded. Primary UW archive and newsletter identify Cross talks and dissertation; thesis body not yet recovered. No mathematical conclusion inferred from metadata or abstracts. Private source bodies remain in ignored private_reading. No outreach, access bypass, shared mutations, or publication operations. Completion estimate: 15% of Cross-family priority audit; novelty certification remains 0%.
+
+## 2026-10-11T21:46:23.536348+00:00 - Catalog recovery checkpoint
+
+Live UW catalog title search returned two Cross dissertation records. CDI record cdi_proquest_journals_288328008 supplies ISBN 9781109738803 / 1109738803 and link https://www.proquest.com/docview/288328008?pq-origsite=primo&accountid=14784. Local record alma99112805780001452 reports Mathematics Research Library stacks QA3 Th60430. Catalog Open Access badge alone is not treated as evidence of access or contents. ProQuest link redirected to UW identity-provider page and timed out; no login, credential, paywall bypass, or download performed. UW guide reports full coverage 1997–2008 and 2012–present. Recovered complete primary Heß et al. 2015 draft and Heß 2017 thesis citing Cross; their relevant passages are being read. Completion estimate: 40% of bounded Cross-family audit; Cross conclusion comparison still unresolved.
+
+## 2026-10-11 21:54 UTC — primary thesis recovered; comparison checkpoint
+
+Completion estimate: 80% of this Cross-specific priority audit. Retrieved the entire public open-access ProQuest dissertation legally after the UW catalog supplied the canonical record. The 222-page PDF is privately preserved with SHA-256 f4d8e02b8393d9497144c32680f4fdc388ad7fb59c47a3d5743dafb74ea195d7. Read chapter 5 (printed pp80–133) in full through extracted body text, plus title/rights/contents, and searched the full body for projection/prox-regularity/nearest-stability evidence. Relevant Cross definition is standard finite-subgradient function prox-regularity (Definition 5.22, p103); Example5.38 is a nonlinear two-real-parameter restricted matrix example. The candidate's full complex coefficient, all-fixed-SPD nearest-stability and whole-epigraph result has no match in the read chapter. Exact comparison and visual checks remain.
+
+Correction to the earlier catalog checkpoint: the UW seminar titles do link to relative pages cross.html and cross2.html. Their complete archived abstracts have now been read. The November2009 abstract explicitly concerns one-parameter function prox-regularity. No full talk slides/notes/audio links were found on those pages. The abstract is used to document scope of the announcement, not to assert the talk contained no additional theorem.
+
+Cross's p103 informal projection-equivalence sentence must not be substituted for Definition 5.22: it does not handle horizontal epigraph normals. The conjecture on pp123–124 remains a function conjecture, and its domain notation deserves a scope caveat. The quadratic calculation pp131–133 is explicitly f:R²→R and only establishes proximality of individual subgradients at the origin.
+
+## 2026-10-11 21:58:31 UTC — authored evidence checkpoint
+
+Completion estimate: 95% of the Cross-specific audit. CROSS_PRIORITY_AUDIT.md and SOURCE_EVIDENCE.json now record the recovered thesis version, exact read extents, theorem comparison, private hashes, corrected seminar-link provenance, and remaining unrecovered 2009 talk body. Visual original-PDF checks confirm the source definition, one-parameter theorem, finite-v counterexample arithmetic typo, conjecture wording, and real-quadratic proximality calculation. The counterexample's typo was independently repaired without changing its scoped conclusion. Derived real-parameter nearest points both map to the same coefficient polynomial, giving a checkable obstruction to claiming coefficient projection nonuniqueness from that family.
+
+Disposition: HOLD unqualified novelty; GO accepted scoped reporting with explicit Cross comparison; no verified already-known match. No source-body gap remains for the thesis. The parent was asked to assign adversarial source comparison at this checkpoint. All copied sources and renderings remain ignored. No Git/provider/publication state changed.

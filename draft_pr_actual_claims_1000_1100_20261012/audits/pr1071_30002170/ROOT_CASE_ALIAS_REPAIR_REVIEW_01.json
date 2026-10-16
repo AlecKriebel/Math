@@ -1,0 +1,226 @@
+{
+  "utc": "2026-10-16T04:30:05.012352+00:00",
+  "status": "ADOPT_BOUNDED_CASE_ALIAS_REPAIR_PENDING_NEW_COMPLETE_WHOLE_REVIEW",
+  "full_report_operative_code_and_prose_diff_read_large_pin_arrays_rehashed": true,
+  "counts_rehashed": {
+    "outputs": 39,
+    "baseline": 668,
+    "changes": 9,
+    "unchanged": 659,
+    "current": 322,
+    "historical_rows": 4346,
+    "copies": 128,
+    "closed_zip_members": 166
+  },
+  "historical_states": {
+    "EXACT_CURRENT_OR_BEFORE": 4346
+  },
+  "historical_exceptions": "All4346original/laterstage rows resolve exact, no oldstage rewrite",
+  "independent_actual_commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/verify_package.py"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "ac466e71b819b672509e2a358e8bb0111c1baeeee9678f687e476e040c4e7f4c",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/check.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/checks-normal"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "b530f2ebd74c7293669b95cb707df09a66d17b07b66459e1cbb87d3114066852",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_archive.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/external-normal.zip"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "74f0d64997227842b500c6230f184d9db40f90da8fe2d4463700ee6ceb209949",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_archive.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/KIT/forbidden-build_archive.py-normal"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/build_archive.py\", line 9, in <module>\n    output=fresh_output(a.out)\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 45, in fresh_output\n    require(not ancestor.samefile(frozen), 'Output must be outside all frozen package descendants.')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 13, in require\n    raise RuntimeError(message)\nRuntimeError: Output must be outside all frozen package descendants.\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/check.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/KIT/forbidden-check.py-normal"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/check.py\", line 53, in <module>\n    run(args.out)\n    ~~~^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/check.py\", line 29, in run\n    out=fresh_output(out,root)\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 45, in fresh_output\n    require(not ancestor.samefile(frozen), 'Output must be outside all frozen package descendants.')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 13, in require\n    raise RuntimeError(message)\nRuntimeError: Output must be outside all frozen package descendants.\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_pdf.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/KIT/forbidden-build_pdf.py-normal"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/build_pdf.py\", line 8, in <module>\n    root=Path(__file__).resolve().parents[1];dest=fresh_output(a.out,root)\n                                                  ~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 45, in fresh_output\n    require(not ancestor.samefile(frozen), 'Output must be outside all frozen package descendants.')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 13, in require\n    raise RuntimeError(message)\nRuntimeError: Output must be outside all frozen package descendants.\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/scripts/verify_package.py",
+        "--require-bindings"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "dd58ac2b30c742dc5fe74adb424b10970678b97f9ce91e4356c61399a8ccc291",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/verify_package.py"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "ac466e71b819b672509e2a358e8bb0111c1baeeee9678f687e476e040c4e7f4c",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/check.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/checks-optimized"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "87ade1cef8ff547609cd3c0167f17e09059e722bd60d9c0cd7b0b9e9f78492f2",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_archive.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/external-optimized.zip"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "f6853d36d072d7ecd87e27bc1eb7eefa50b626c60c7de4930936b4a952b2e851",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_archive.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/KIT/forbidden-build_archive.py-optimized"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/build_archive.py\", line 9, in <module>\n    output=fresh_output(a.out)\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 45, in fresh_output\n    require(not ancestor.samefile(frozen), 'Output must be outside all frozen package descendants.')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 13, in require\n    raise RuntimeError(message)\nRuntimeError: Output must be outside all frozen package descendants.\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/check.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/KIT/forbidden-check.py-optimized"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/check.py\", line 53, in <module>\n    run(args.out)\n    ~~~^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/check.py\", line 29, in run\n    out=fresh_output(out,root)\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 45, in fresh_output\n    require(not ancestor.samefile(frozen), 'Output must be outside all frozen package descendants.')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 13, in require\n    raise RuntimeError(message)\nRuntimeError: Output must be outside all frozen package descendants.\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_pdf.py",
+        "--out",
+        "/private/tmp/root1071-case-repair-5b41n2xn/KIT/forbidden-build_pdf.py-optimized"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/build_pdf.py\", line 8, in <module>\n    root=Path(__file__).resolve().parents[1];dest=fresh_output(a.out,root)\n                                                  ~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 45, in fresh_output\n    require(not ancestor.samefile(frozen), 'Output must be outside all frozen package descendants.')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1071-case-repair-5b41n2xn/kit/scripts/package_paths.py\", line 13, in require\n    raise RuntimeError(message)\nRuntimeError: Output must be outside all frozen package descendants.\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/scripts/verify_package.py",
+        "--require-bindings"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "dd58ac2b30c742dc5fe74adb424b10970678b97f9ce91e4356c61399a8ccc291",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/alec/Documents/Math/zenodo_deposit_tool/zenodo.py",
+        "check",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/publication/zenodo-deposit.json"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "42bd13e25cd764d2420aaba569310b98ee0694640e72330a9ffc9cf354cbeb00",
+      "stderr": ""
+    }
+  ],
+  "independent_closed_zip_byte_equal": true,
+  "paper_TeX_PDF_math_checker_bibliographic_bytes_unchanged": true,
+  "no_new_compile_render": true,
+  "prior_complete_whole_reviews": 2,
+  "new_required_complete_whole_review": 3,
+  "minimum_whole_reviews": 2,
+  "publication_ready": false,
+  "published": false,
+  "services_held_after_pr": 1032
+}

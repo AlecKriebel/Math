@@ -1,0 +1,7 @@
+# PR788 postseal classical priority crosscheck
+
+- 2026-10-16T14:15:26.886954+00:00:50% complete. Released peer report pin verified and read; parent C1 agreement known. Mundetv1 Thm1.14/§15, VORThm1.11/§13 and CWYv3§2 Steps2–6 inspected from actual primary PDFs. C1 supported; nonabelian-pi1 exclusion verified. Old classical seal unchanged. No new proof turn.
+
+- 2026-10-16T14:18:37.923267+00:00:85% complete. Fresh primary v1/CWY bytes match supplied artifacts; liveVOR is a distinct paginated artifact, relevant theorem and full§13 normalized-equal with precise printed locators. C1 action accepted; nonabelian-pi1 argument independently traced without H-factor assumption. Old full51/48/31 custody replay PASS under-O; context/credit requirement recorded separately. Checker/simplecontrols pending.
+
+- 2026-10-16T14:21:42.079519+00:00:100% crosscheck complete. C1_SUPPORTED_REQUIRED_PUBLICATION_CONTEXT. Actual fixed freeCp actions for every oddp and no nontrivial continuouscircle verified from primary bodies; CWY nonabelianpi1 exclusion independent of H-factor established.2positive/30negative owned-copy normal/O controls PASS, including PDF/report FIFOs, valid-comment external-checker-pin failure and rejected scope inflation. A final prose clarification spells out nontrivial circle-action convention without changing tested flags. Old seal and allprotected inputs unchanged. Final strict seal follows; immutable normal/O receipts and externalpins outside packet. No newproofturn, source/Git/publication/contact changes; RAMonly.

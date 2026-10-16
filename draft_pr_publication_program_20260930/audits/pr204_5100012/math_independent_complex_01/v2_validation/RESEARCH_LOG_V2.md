@@ -1,0 +1,5 @@
+# V2 hardening research log
+
+- 2026-10-16T09:59:33Z — 10% of bounded code-hardening goal; mathematical audit remains100%, novelty/priority0%. Scope accepted: preserve sealed parent and create separate v2 kit. The issue is a potential NaN false acceptance in diagnostic code, not a mathematical counterexample.
+- 2026-10-16T10:01:33.806496Z — 95% of hardening goal. Two full valid runs (ordinary and -O) passed with five exact identities,27 configurations,81 phases, six enforced wrong-parity spreads and two actual repeated-list phases. Six early genuine mutation controls rejected at the expected checks. Parent five content artifacts and manifest pin verified before/after, all unchanged.
+- 2026-10-16T10:02:01Z — 100% of hardening goal. Inspected output and rejection records; valid outputs agree except timestamp/optimization marker. Every complete run recorded9679 finite-value guard calls in63 categories. Portable optional runtime environment setting and ancestor-relative fallback implemented without downloads or bytecode writes. README and exact v2 allowlist prepared. No new theorem issue and no novelty conclusion.

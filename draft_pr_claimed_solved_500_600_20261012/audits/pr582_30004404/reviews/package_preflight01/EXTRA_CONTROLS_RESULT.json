@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "controls": [
+    {
+      "case": "historical_manifested_source.pdf",
+      "historical_acceptance_confirmed": true,
+      "full_output": {
+        "audit_manifest_sha256": "b48c8afd46275ecffa62325d34ea5e3c8d68d8a104ee4ce6c3158c024003f72a",
+        "author_manifest_sha256": "4f6575af14a3e8b72e61202c45e411b4febcaa7770c3e7e8af45576eda6218f8",
+        "author_output_byte_identical": true,
+        "author_pair_checks": 30625,
+        "independent_matrix_pair_checks": 10125,
+        "independent_output_byte_identical": true,
+        "limits": [
+          "Integrity and replay checks are not formal proof verification.",
+          "Topology, source scope and priority require the written proof and audit."
+        ],
+        "mutants_rejected": [
+          "changed_proof",
+          "changed_audit",
+          "missing_expected_output",
+          "unexpected_file"
+        ],
+        "release_files_verified": 22,
+        "replay_output_sha256": [
+          "7034c750d744e98c7f2f6c27d595ab6a947d2060d9a3868abd85889caea03c28",
+          "605d27d976b1c125d3462e2fabf048827f2ea99daa300425978a193af8ffa07e"
+        ],
+        "result": "PASS",
+        "source_files_included": false
+      },
+      "stderr": ""
+    },
+    {
+      "case": "historical_manifested_imported_corpus.txt",
+      "historical_acceptance_confirmed": true,
+      "full_output": {
+        "audit_manifest_sha256": "b48c8afd46275ecffa62325d34ea5e3c8d68d8a104ee4ce6c3158c024003f72a",
+        "author_manifest_sha256": "4f6575af14a3e8b72e61202c45e411b4febcaa7770c3e7e8af45576eda6218f8",
+        "author_output_byte_identical": true,
+        "author_pair_checks": 30625,
+        "independent_matrix_pair_checks": 10125,
+        "independent_output_byte_identical": true,
+        "limits": [
+          "Integrity and replay checks are not formal proof verification.",
+          "Topology, source scope and priority require the written proof and audit."
+        ],
+        "mutants_rejected": [
+          "changed_proof",
+          "changed_audit",
+          "missing_expected_output",
+          "unexpected_file"
+        ],
+        "release_files_verified": 22,
+        "replay_output_sha256": [
+          "7034c750d744e98c7f2f6c27d595ab6a947d2060d9a3868abd85889caea03c28",
+          "605d27d976b1c125d3462e2fabf048827f2ea99daa300425978a193af8ffa07e"
+        ],
+        "result": "PASS",
+        "source_files_included": false
+      },
+      "stderr": ""
+    },
+    {
+      "label": "nested_seal_changed_outer_resealed",
+      "expected_diagnostic": "Seal binding differs",
+      "exit": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr582_30004404/reviews/package_preflight01/.cache/tamper/nested_seal_changed_outer_resealed/run_all.py\", line 83, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr582_30004404/reviews/package_preflight01/.cache/tamper/nested_seal_changed_outer_resealed/run_all.py\", line 45, in main\n    nested, original = verify_nested(before, registry)\n                       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr582_30004404/reviews/package_preflight01/.cache/tamper/nested_seal_changed_outer_resealed/integrity.py\", line 26, in verify_nested\n    raise RuntimeError(f\"Seal binding differs: {name}\")\nRuntimeError: Seal binding differs: reviews/priority02/SHA256SUMS\n"
+    },
+    {
+      "label": "actual_driver_symlink",
+      "expected_diagnostic": "Unexpected symlink",
+      "exit": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr582_30004404/reviews/package_preflight01/.cache/tamper/actual_driver_symlink/run_all.py\", line 83, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr582_30004404/reviews/package_preflight01/.cache/tamper/actual_driver_symlink/run_all.py\", line 32, in main\n    before = inventory()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr582_30004404/reviews/package_preflight01/.cache/tamper/actual_driver_symlink/run_all.py\", line 21, in inventory\n    raise RuntimeError(f\"Unexpected symlink: {path.relative_to(ROOT)}\")\nRuntimeError: Unexpected symlink: README.md\n"
+    },
+    {
+      "case": "unselected_raw_cache_private_fixtures",
+      "exact_zip": true,
+      "selected": false
+    }
+  ]
+}

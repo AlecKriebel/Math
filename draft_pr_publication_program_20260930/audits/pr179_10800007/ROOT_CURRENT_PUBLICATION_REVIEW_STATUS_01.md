@@ -1,0 +1,13 @@
+# Current publication review status
+
+SavedUTC: 2026-10-13T05:57:49.417899+00:00
+
+The complete literal allR6 exact/open theorem is mathematically verified. The bounded primary-body priority audit is finished; classical tools and the source's square-root slice are credited. Historical firstness and guaranteed novelty remain unestablished. Current supported publication scope is a short explicit diagnosis/answer to the printed formulation, excluding any unspecified repaired finite-genus or approximateProblem2B resolution.
+
+publication_package_v1 is the frozen initial three-page note/source/verificationZIP/metadata packet, SHA67ec1f902d4998c1de9756566efdf23e06b8a132207df216cb08f37de3ee51c5. Root compiled/exported/read all rendered text and visuallychecked allthreepages. The61member own verification archive has exact source/manifest/ZIP identity and30actualRootprocesses:4positivepasses,26invalid/unsupportedscientificrejections acrossordinary/optimizedmodes. High-degree inputs are explicitlyunsupported; topology remains the written connectedness argument.
+
+The first NEW whole-package adversary has sealed an independent initial proof/source assessment before stored verdicts; exact seal/ledger/body identities were authenticated. It has found a concrete reproducibility-documentation defect: verificationREADME saysPython3.10 but its replaydriver requires3.11APIs. This will be corrected consistently in a freshcurrentpackage once the complete first report is received. v1 is preserved unchanged as actual reviewhistory; it is not ready to publish. The first complete package review and the required second NEW independent whole-package review, plus any further repair/review loop, remain outstanding.
+
+General-priority custody count was corrected additively:42privatepayloads plusitsprivateinventory=43excludedfiles. There was no post-seal newsource; earlier draftingUTC05:20:53 differs fromactualfinalfreeze05:27:04. Alloldpublicsealsremainunchanged,14ownpublicsafe files nowinclude3custodyaddenda. The current verificationarchiveincludes thoseaddenda. No third-partybody/extract/render isselected.
+
+NoPR179Zenodo staging/publishing, DOI/trackerrow, originalhead merge/closure, QUEUE/nativeattempt/authorbranch change has occurred. Originalproofsearch1/5unchanged; audit/package controls are separate. The originalhead090b45356f5d6829f755fbc7c5b1fde5565de695 remainsopen/draft. Case60%;36/dated99completed,20published unchanged. The persistentgoal isactive/incomplete. An actual source/mathematical checkpoint wasaccepted earlier atf48edbd9b6a960b3ead12980924e524e65b7b925. This is a concrete unfinished publication-review checkpoint, not acceptance or historical-priority certification.

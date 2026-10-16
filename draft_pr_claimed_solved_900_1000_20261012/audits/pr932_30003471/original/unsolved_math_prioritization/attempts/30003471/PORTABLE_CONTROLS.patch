@@ -1,0 +1,51 @@
+--- audit_b/independent_controls.py
++++ PORTABLE_INDEPENDENT.py
+@@ -7,7 +7,14 @@
+ from scipy.optimize import brentq
+ from scipy.special import expn
+ 
+-ROOT=Path(__file__).resolve().parent.parent/'polytope_dihedral_30003471'
++# Portable I/O adapter only; the original is preserved in audit_b/.
++import argparse
++_parser=argparse.ArgumentParser()
++_parser.add_argument('--packet-root',type=Path,required=True)
++_parser.add_argument('--source-root',type=Path)
++_args=_parser.parse_args()
++ROOT=_args.packet_root.absolute()
++SOURCES=_args.source_root.absolute() if _args.source_root is not None else None
+ PIN_MANIFEST='1cd8291f2025524b351c5cc3cb5780b35ba5fa4c4afde78c6e288daddd350e9f'
+ PIN_PROOF='6015fcacefd914217ddadc816a5c84c1be250ec58838df891f267835f9198415'
+ counts={}
+@@ -16,7 +23,7 @@
+     counts[cat]=counts.get(cat,0)+1
+ 
+ for name,pin,size in [('MANIFEST.json',PIN_MANIFEST,1252),('PROOF.md',PIN_PROOF,21855)]:
+-    b=(ROOT/'packet'/name).read_bytes()
++    b=(ROOT/'public'/name).read_bytes()
+     check('frozen_input',hashlib.sha256(b).hexdigest()==pin)
+     check('frozen_input',len(b)==size)
+ 
+@@ -144,9 +151,13 @@
+ # Hash each locally available reference PDF against public-metadata pins only.
+ filemap={'Discrete Geometry, OWR 19/2017':'owr_2017_19.pdf','Bounding minimal solid angles of polytopes':'akopyan_karasev.pdf','Scalar curvature rigidity of convex polytopes':'brendle.pdf','On Gromov\'s rigidity theorem for polytopes with acute angles':'brendle_wang.pdf','Dihedral Rigidity for Convex Polytopes by Smooth Approximation':'bi.pdf','On Gromov\'s flat corner domination conjecture and Stoker\'s conjecture':'wang_xie.pdf','On Gromov\'s dihedral extremality and rigidity conjectures':'wang_xie_yu.pdf','Remarks on the paper On Gromov\'s dihedral extremality and rigidity conjectures':'bar_hanke_schick.pdf','Gromov\'s dihedral rigidity conjecture in dimension three':'wxy_3d.pdf'}
+ sourcepins=[]
+-for record in json.loads((ROOT/'packet'/'SOURCE_METADATA.json').read_text())['sources']:
+-    b=(ROOT/'private_sources'/filemap[record['title']]).read_bytes()
+-    check('source_pin',len(b)==record['bytes'] and hashlib.sha256(b).hexdigest()==record['sha256'])
++for record in json.loads((ROOT/'public'/'SOURCE_METADATA.json').read_text())['sources']:
++    if SOURCES is not None:
++        source_path=SOURCES/filemap[record['title']]
++        if source_path.is_symlink() or not source_path.is_file():
++            raise RuntimeError('Nonregular external source file')
++        b=source_path.read_bytes()
++        check('source_pin',len(b)==record['bytes'] and hashlib.sha256(b).hexdigest()==record['sha256'])
+     sourcepins.append({k:record[k] for k in ['title','url','bytes','sha256']})
+ 
+ print(json.dumps({'pass':True,'proof_sha256':PIN_PROOF,'manifest_sha256':PIN_MANIFEST,
+@@ -154,4 +165,5 @@
+  'numeric_max_jacobi_error':max_jacobi_error,'octahedron_many_active_samples':many_active,
+  'octahedron_max_lambda_vertex_distance':max_vertex_scaled_distance,
+  'octahedron_max_lambda_radial_shift':max_radial_scaled_distance,
+- 'source_pins':sourcepins,'analytic_proof_certified_by_computation':False},indent=2,sort_keys=True))
++ 'source_pins':sourcepins,'analytic_proof_certified_by_computation':False,
++ 'source_verification':'NOT_RUN_NO_SEPARATELY_SUPPLIED_SOURCES' if SOURCES is None else 'PASS_NINE_EXTERNAL_SOURCE_PINS'},indent=2,sort_keys=True))
