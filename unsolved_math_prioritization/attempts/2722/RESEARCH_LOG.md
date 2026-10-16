@@ -1,0 +1,8 @@
+# Research log
+
+- 2026-09-30 07:03 UTC: Started rank80 /2722, deadline09:03, maximum five attempts. Read pinned exact statement and null report. Prior campaign, branch, PR, history and duplicate gates passed; root instructions and current queue checked. No queue edits.
+- 07:10 UTC: Route1 stopped at the credited Etnyre–Honda/An peak product classification. Fixed connected sums do not produce infinitude from finite factor sets; any example requires a prime factor example. No novelty claim. Full-target completion estimate3%.
+- 07:16 UTC: Route2 stopped at Ng–Rutherford's published maximal-tb theorem for every positive finite-dimensional unital F2 DGA representation, not just scalar augmentations. A self-contained Leavitt-type algebra control prevents the invalid converse. The fixed-prime lower-bound/existence problem remains. Froze OBSTRUCTION.md SHA335a802ffaab7625ca227597a83121e31b6d6128d08d9c75fff01df414c36827; 2,045 exact controls passed. Separate reviewer has the snapshot. Full-target estimate5%; stop early on this precise stall.
+- 07:18 UTC: Source metadata and frozen package completed. Continuing the separately assigned independent ribbon-concordance audit while this record is reviewed.
+- 07:34 UTC: Separate scoped review PASS;2,045 submitted assertions reproduced and512 independent controls passed. Only the review-status sentence of the mathematical artifact changed for final-hash coverage. Original target remains unsolved2/5, no novelty claim.
+- 07:35 UTC: Published reviewed scoped unresolved draft PR64: https://github.com/AlecKriebel/Math/pull/64. Parent owns the queue row, unsolved2/5. Mathematical status remains unchanged.
