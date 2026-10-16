@@ -304,7 +304,8 @@ def main():
         # Confirmed outcome is printed and retained in the owned RAM workspace
         # BEFORE a potentially failing APFS receipt write. Never retry blindly.
         print(json.dumps(receipts), flush=True)
-        memory = audit / 'preprint/tmp/root-receipts'
+        memory = ((audit / 'tmp') if (audit / 'tmp').is_mount()
+                  else (audit / 'preprint/tmp')) / 'root-receipts'
         memory.mkdir(parents=True, exist_ok=True)
         (memory / 'NATIVE_ACCEPTANCE_RECEIPT.json').write_text(encode(receipts))
         try:
