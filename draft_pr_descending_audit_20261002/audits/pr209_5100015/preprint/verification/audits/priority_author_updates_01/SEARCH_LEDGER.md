@@ -1,0 +1,42 @@
+# Search and access ledger
+
+All searches and primary reads occurred on 2026-10-16 UTC. Search engines were used to discover leads; only primary manuscripts, author/provider pages and primary registry metadata support conclusions. Nonprimary hits (ResearchGate mirrors, Scribd, indexing sites, commercial k303 collisions) were not promoted to theorem evidence. No person or other chat was contacted. No account authentication was used.
+
+## Broad and exact queries actually issued
+
+The web tool was queried with the following distinct strings (capitalization/quoting retained where material):
+
+- `"k303" billiard area product`; `"Ferudun" "note0014"`; `"outer" "pedal" "area product" ellipse billiard`.
+- `"outer-pedal" "billiards"`; `"k303,b"`; `"k_{303,b}"`; `"area products" "Ferudun"`.
+- `"Reznik" "outer pedal" proof`; `"Garcia" "k303" billiard`; `"Koiller" "pedal" "area" invariant proof`; `"outer-pedal" invariant centered`.
+- `"elliptic billiard" "pedal" "area" proof` with arxiv.org filter; `"Reznik" "invariants" "2025" ellipse`; `"Reznik" "invariants" "2026" ellipse`; `"Garcia" "outer" "pedal" "product"` with arxiv.org filter.
+- `"k303" "ellipse"`; `"outer-pedal" "proof"`; `"outer polygon" "pedal polygon" "constant" "area"`; `"elliptic billiard" "area product" "pedal"`.
+- `"k_{303" billiard proof`; `"k303,b" ellipse invariant proof`; `"Outer-Pedal Area Products in Elliptic Billiards" -site:eulersolve.org`; `"outer pedal" "Poncelet" "area"`.
+- `"More about areas and centers of Poncelet polygons" arxiv`; `"Outer-Pedal" "billiards" before:2026-10-01`; `"k303" "proof" "elliptic"`.
+- `"outer tangent" "area product" "billiard"`; `"tangent-pedal" "area"`; `"center-pedal" billiard`; `"Poncelet" "pedal" "area product"`.
+
+Exact-code searches often normalize punctuation and return irrelevant industrial parts; these are weak negative evidence. Broad searches located the exact Ferudun paper, older original-author work, the July 2026 Murad preprints and a 2026 pedal-quadrilateral article. No negative search result is a novelty certificate.
+
+## Direct primary indexing and version reads
+
+- [arXiv original record](https://arxiv.org/abs/2004.12497), actual PDFs v1-v10 downloaded; v11 and journal PDF read in place and rehashed. All eleven target table passages read. Current version history ends at v11. Published primary page and Crossref fetched to check edition and correction metadata.
+- arXiv author searches for [Reznik, D](https://arxiv.org/search/?searchtype=author&query=Reznik%2C+D&abstracts=show&order=-announced_date_first&size=200), [Garcia, Ronaldo](https://arxiv.org/search/?searchtype=author&query=Garcia%2C+Ronaldo&abstracts=show&order=-announced_date_first&size=200), and [Koiller, Jair](https://arxiv.org/search/?searchtype=author&query=Koiller%2C+Jair&abstracts=show&order=-announced_date_first&size=200). These returned 113, 74 and 17 result blocks respectively, including homonyms. Abstract screening, not a full-text audit of every indexed paper, was used to select related work. The latest relevant original-author entry found is arXiv:2604.26035; it concerns triangle inversive circumcenters and circle power.
+- Current original-author [project page](https://dan-reznik.github.io/Elliptical-Billiards-Triangular-Orbits/) and public GitHub repository listing fetched. Current media page read through the web tool. These are useful discovery/status evidence, not an exhaustive record of every author communication or publication.
+- Full relevant passages of self-intersected arXiv:2011.06640 v1-v3; inversive arXiv:2012.03020 v1-v2; bicentric arXiv:2103.11260 v1-v3 and published edition; harmonic arXiv:2112.02545 v1-v3; pedal-like curves arXiv:2009.02581 v3; average invariants arXiv:2102.10899 v1; propellers arXiv:2101.10456 v1; Hsu et al. arXiv:2108.08293 v1. Existing large PDF bytes were used in place whenever available. Earlier pedal-curve revisions were indexed in its metadata but not read in full; no claim that every minor revision of all adjacent literature was exhaustively audited is made.
+- Primary abstract/version pages additionally fetched for 2409.19464 (latest v7), 2508.02368 (v3), 2512.16678 (v1), 2512.17440 (v2), 2604.26035 (v2). Their stated domains are triangle loci, special incircle families or circle-inscribed triangles. They are screened leads, not unread theorem coverage claims. No general-N exact product theorem is inferred from their titles or absence of a code.
+- Ferudun note0014: both Zenodo records, all-provider versions list, independent all-version title query, DOI registry records, current publisher page and metadata, both source archives, v1.0 PDF and v1.1 actual hash-matched PDF. Exact theorem/proof comparison is in COMPARISON_DERIVATION.md. Neither the author-controlled verification report nor its self-audits substitute for this independent proof reading. Downloaded code was inventoried but never executed.
+- The [July 2026 affine preprint](https://www.preprints.org/manuscript/202607.1243) was read through the web tool after direct HTTP 403; the provider reports v1 latest, submitted/posted July 16. Theorem 2 and its actual proof concern sums of power-circle areas in homothetic pairs. The [symmetric-polynomial preprint](https://www.preprints.org/manuscript/202607.1485) reports v1 latest, submitted July 17 and posted July 21; its Reduction Principle is expressly a circle-inscribed triangle parametrization and retains a separate constancy check. Neither statement supplies the target theorem. The [2026 pedal-quadrilateral paper](https://link.springer.com/article/10.1007/s00022-026-00818-4), Section 2 and Theorems 1-3, treats area as the pedal point moves for a fixed quadrilateral; no ellipse-family product theorem is supplied. These distinctions were read from statements/constructions, not assigned by keyword.
+- [DLMF 22.4](https://dlmf.nist.gov/22.4) and [22.8](https://dlmf.nist.gov/22.8) fetched as direct classical-data sources. Classical parametrization and these identities are credited ingredients, not novelty claims.
+
+## Failed, limited and corrected source-access attempts
+
+1. Web-tool direct open of Zenodo record 23088516 failed as inaccessible. Unauthenticated direct provider API then succeeded; failure is not absence of a source.
+2. Web-tool original-author index open failed its content-size limit. Direct HTTP succeeded, returning 10,569,317 bytes. The actual source is preserved privately; no embedded images were copied into public authored output.
+3. Zenodo versions query with `size=100` returned HTTP 400: unauthenticated maximum is 25. Retried exactly the public endpoint with size 25, which returns both versions. No authentication was sought.
+4. Direct HTTP requests to Preprints.org 202607.1243 and 202607.1485 returned 403; error bodies/hashes retained. The web tool could access their primary-provider rendered text, and that is the reading source used. No attempt bypassed authentication.
+5. The Springer original article request redirected through a cookie-not-supported query but returned a complete article page; exact redirect and bytes retained. This is recorded as a successful source fetch with a redirect, not a clean original-URL response.
+6. A guessed arXiv identifier 2004.01928 intended as a Chavez-Caliz lead resolved to an unrelated spare-parts-maintenance paper. It was rejected immediately after reading its title/abstract, retained as a mistaken lookup, and corrected using the actual primary identifier 2004.05404. No claim relies on the unrelated paper.
+7. Internet Archive CDX returned an empty list. This did not establish the time of the first publisher-page posting. No historical order is inferred from missing captures.
+8. Initial small-file patch failed; the retry succeeded. No source evidence was deleted or compacted. No package installation, Git/index/ref mutation, queue import, tracker write, publication or outreach occurred in this audit. No environment or cache creation was requested. All scientific Python invocations used the assigned existing interpreter with `-B`; absence of every possible library-level cache side effect is not separately certified.
+
+The exact HTTP requests, access timestamps, final URLs, response status and byte hashes are preserved in SOURCE_ACCESS_RECEIPTS.json. Existing in-place primary files and archive-member hashes are in SOURCE_BYTE_INVENTORY.json. Partial web-tool snapshots remain private reading aids; internal search identifiers are not public citations.
