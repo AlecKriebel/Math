@@ -1,0 +1,9 @@
+# PR767 / 30005902 audit research log
+
+## 2026-10-16T06:45:32.402746+00:00 — claimed-only intake and independent root position
+
+Exact open draft head a5ec91f3e11a8ec786a4761346f2b300348b8e0e has claimed_solved1/5. All34original files (153285bytes) frozen with exact hashes/Git blobs. Root read full source record/prior {}, author proof, and relevant primary source text before historical audit opinions. Mathematical hypothesis is the27-dimensional F3 nonzero Ext^1 bracket; finite-dimensional characteristic-zero and both-input-degrees>=2 extensions are excluded. Two distinct fresh independent mathematical families will now challenge it. No767 publication/merge/closure/priority verdict. PR15%; shard42%.
+
+## 2026-10-16T06:54:02.213801+00:00 — independent root reproduction and fresh math-family progress
+
+Root independently replayed the full frozen publication verifier in4modes(normal,-O,environment optimization2,bundledPython3.12). Every mode yields identical stdoutSHA5c79a41ba3ca5ddf42e444c3fdae2b7d7c876606cf1d7a4a12296c8d6c999fa7: author26584checks, independent29708checks,4mathematical negatives per implementation,8integrity negatives per historical packet,10publication negatives incl assertion-safety,25archive members and all34originals unchanged. External full-corpus/old full-QUEUE optional checks are explicitly NOT_RUN; full selected-record identity is freshly checked independently. Root has read full historical audit and both main implementations after preserving its independent position; primary OWR contribution text and actual KW/K comparison formulas support the field/degree/bracket scope. Both fresh families report no mathematical issue preliminarily, with independent exact algebra and categorical mechanisms; closed final records are pending. Transient ENOSPC failures happened before affected calculations, and only own completed765temporary extraction was removed. No767priority or publication conclusion yet. PR767completion35%; shard44%.
