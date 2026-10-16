@@ -1,6 +1,6 @@
 # 5100030 / k601: attributed odd-period focal-line verification
 
-Actual original-HEAD-safe merge accepted; factual checkpoint pending.
+Actual factual98 accepted; program completion100 remains separately gated.
 
 Research note: [10.5281/zenodo.23423290](https://doi.org/10.5281/zenodo.23423290). Alec Kriebel, ORCID0009-0001-9320-500X. Extensive AI; unrefereed; no conventional human peer review or formal proof-assistant certificate.
 
