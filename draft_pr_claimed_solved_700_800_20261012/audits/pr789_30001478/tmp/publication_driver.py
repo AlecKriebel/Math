@@ -107,6 +107,12 @@ def gate():
          "--expected-manifest-sha256",inv["source_manifest_sha256"],"--pdf",str(P/"output/pdf/paper.pdf")],
          cwd="/",capture_output=True,text=True,timeout=120)
     need(r.returncode==0 and not r.stderr and json.loads(r.stdout)["result"]=="PASS","Closed source changed")
+    source=json.loads((P/"source/audit/intake/ROOT_SOURCE_IDENTITY.json").read_text())
+    need(source["reviewed_head"]=="aa44dec3baf8c1cd179cf8b55f32be95c74ee81a"
+         and g.get("original_scientific_head",g["reviewed_head"])==source["reviewed_head"]
+         and g["statement_hash"]==source["statement_sha256"]=="628ed4ce70b7b62857ead560403291f24b890137a8073ce34a17c50d857aa3a6"
+         and g["review_hash"]==source["review_hash"]=="cf0071b62b0e096c74205deac1c8f7cad50cbbf50b4f37d8400170a2d742848f",
+         "Readiness scientific identity differs from the exact audited original source")
     return g,inv
 def fresh_eligibility(g):
     sys.path.insert(0,str(D))
@@ -145,6 +151,9 @@ def main():
         save(U/"LOCAL_CHECK_RECEIPT.json",{"utc":now(),"read_only":True,"check":out})
         print(json.dumps({"result":"PASS_LOCAL_CHECK","files":out["files"]}));return
     g,inv=gate()
+    if args.command in("stage","publish"):
+        need(g["reviewed_head"]=="aa44dec3baf8c1cd179cf8b55f32be95c74ee81a",
+             "Production publication requires the literal audited scientific head; postpublication merge integration is separate")
     if args.command=="stage":
         fresh_eligibility(g)
         place,state=z.local_state(manifest.resolve(),"production")
