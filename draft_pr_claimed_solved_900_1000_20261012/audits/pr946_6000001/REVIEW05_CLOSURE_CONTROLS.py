@@ -142,6 +142,15 @@ if not args.expect_defect:
                                 'rejected_before_acceptance':True,'error':error})
     N['accepted_package'](context)
     report['cases'].append({'case':'restored_actual_full_chain_after_all_root_closure_cases','pass':True})
+    acc_path.unlink()
+    with contextlib.redirect_stdout(io.StringIO()):
+        N['accept'](late_namespace['types'].SimpleNamespace(freeze=late_namespace['FP'],review=specs),context)
+    approved = json.loads(acc_path.read_bytes())
+    assert approved['accepted'] is True and approved['freeze_sha256'] == late_namespace['FP']
+    assert approved['exact_claim'] == accepted['exact_claim']
+    N['accepted_package'](context)
+    report['cases'].append({'case':'valid_initial_acceptance_and_fresh_complete_readback','pass':True})
+    acc_path.write_bytes(acc_bytes)
 
 report.update(status='DEFECTS_INDEPENDENTLY_REPRODUCED' if args.expect_defect else 'PASS',
               root_control_count=len(report['cases']), subject_core_sha256=args.core_sha256,
@@ -150,7 +159,7 @@ report.update(status='DEFECTS_INDEPENDENTLY_REPRODUCED' if args.expect_defect el
                                ('current05_controls.py','late_refresh_controls.py')},
               explicit_root_adaptations='Own scratch/output; immutable candidate05 transport inventory plus all4 actual sealed histories; subject core selected separately; terminal05 synthetic. New9 actual-source final-acceptance closure classes and restored full-chain positive. No production acceptance or external calls.',
               no_OS_atomic_filesystem_guarantee=True, actual_external_mutations=0)
-output = Path(args.output)
+output = Path(args.output).resolve()
 assert output.parent == A and output.suffix == '.json'
 output.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({'status':report['status'],'controls':report['root_control_count'],

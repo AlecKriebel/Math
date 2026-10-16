@@ -617,18 +617,59 @@ def premerge_gate(freeze, require_draft=False):
     return pr, parent, source, originals
 
 
-def accepted_state_check(accepted, freeze, context):
-    """Refresh canonical approval, dependency inventory and all frozen files."""
-    fresh_accepted = load(A / 'ACCEPTANCE.json')
-    need(exact(fresh_accepted, accepted), 'canonical acceptance changed during operation')
+def candidate_state_check(freeze, freeze_pin, context):
+    """Refresh exact current dependency and candidate bytes after outside reads."""
     fresh_context = capture_inventory(context['inventory_sha256'])
     need(exact(fresh_context['inventory'], context['inventory'])
          and fresh_context['captured'] == context['captured'],
          'canonical operation dependencies changed during operation')
-    fresh_freeze = freeze_check(read_regular(D / 'FREEZE.json'),
-                                accepted['freeze_sha256'], fresh_context)
+    fresh_freeze = freeze_check(read_regular(D / 'FREEZE.json'), freeze_pin, fresh_context)
     need(exact(fresh_freeze, freeze), 'canonical frozen candidate changed during operation')
     disposition_check()
+
+
+def review_state_check(specs, freeze, freeze_pin, context):
+    """Close sealed review and historical-candidate reads without Git/service calls.
+
+    This authenticates the exact already-validated, externally sealed closure.
+    The filesystem and interpreter remain trusted; these sequential descriptor
+    reads do not promise atomicity against a malicious concurrent OS user.
+    """
+    require_complete_review_history(specs)
+    for spec in specs:
+        number, pin = spec.split(':')
+        folder = A / 'reviews' / ('full_package_' + number)
+        raw = read_regular(folder / 'MANIFEST.json', 1024 * 1024)
+        need(sha(raw) == pin, 'external review seal changed at action boundary')
+        mapping = strict_json(raw)
+        records = mapping.get('files')
+        allowed = mapping.get('explicit_public_allowlist')
+        need(type(records) is dict and type(allowed) is list
+             and len(allowed) == len(set(allowed)) and set(allowed) == set(records)
+             and 'RESULT.json' in records and 'MANIFEST.json' not in records,
+             'closed review state inventory')
+        captured = {}
+        for name, record in records.items():
+            need(safe(name), 'review state relative path')
+            captured[name] = read_regular(folder / name, pin=record)
+        result = strict_json(captured['RESULT.json'])
+        result_schema(result)
+        pins = result['candidate_pins']
+        if pins['freeze'] != freeze_pin:
+            base = D / 'reviewed_candidates' / ('candidate' + str(result['candidate_revision']).zfill(2))
+            freeze_check(read_regular(base / 'FREEZE.json'), pins['freeze'], context,
+                         base=base, historical=True)
+        else:
+            need(result['candidate_revision'] == freeze['revision_candidate'],
+                 'current review state revision changed')
+    require_complete_review_history(specs)
+
+
+def accepted_state_check(accepted, freeze, context):
+    """Refresh canonical approval, dependency inventory and all frozen files."""
+    fresh_accepted = load(A / 'ACCEPTANCE.json')
+    need(exact(fresh_accepted, accepted), 'canonical acceptance changed during operation')
+    candidate_state_check(freeze, accepted['freeze_sha256'], context)
 
 
 def accepted_review_check(accepted, freeze, context):
@@ -651,7 +692,7 @@ def accepted_review_check(accepted, freeze, context):
     # Source/Git and full-chain reads may span time; refresh canonical state
     # after them, then close the review-directory set once more.
     accepted_state_check(accepted, freeze, context)
-    require_complete_review_history(specs)
+    review_state_check(specs, freeze, accepted['freeze_sha256'], context)
     return checked
 
 
@@ -723,6 +764,10 @@ def accept(args, context):
                                            'remote_main': parent, 'source_gate': source,
                                            'actual33_Git_disk_archive_preserved': True,
                                            'original_declared_turns': '4/5', 'native_events_authenticated': False})
+    # No source/Git/service read may intervene between this closure refresh
+    # and creation of the authoritative approval record.
+    candidate_state_check(freeze, args.freeze, context)
+    review_state_check(args.review, freeze, args.freeze, context)
     save(A / 'ACCEPTANCE.json', value, exclusive=True)
     print(json.dumps({'accepted': True, 'freeze_sha256': args.freeze, 'reviews': len(reviews), 'original_files': 33}))
 
