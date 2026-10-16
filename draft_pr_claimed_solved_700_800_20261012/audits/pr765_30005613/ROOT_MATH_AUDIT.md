@@ -183,3 +183,5 @@ are closed, read, and verified.
 Mathematical reconstruction: no candidate proof repair identified.
 Priority, whole-preprint review, human peer review, and publication remain
 separate decisions. No external communication occurred.
+
+Final integration addendum 2026-10-16T05:12:33.076331+00:00: both mathematical family manifests and the separate source-reading correction are closed and verified; MATH_GATE.json is PASS. Both bounded priority reviews are also closed and challenged, with no full predecessor or blocking credit issue located. PRIORITY_GATE.json permits only the narrowly credited construction framing and retains exact historical-coverage limits. No candidate proof repairs were required. Whole-preprint reviews remain pending.
