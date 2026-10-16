@@ -12,11 +12,15 @@ import json
 from pathlib import Path
 
 from finalize_native_acceptance import REPO, NATIVE, run, encode, replace_root_member, replace_array_record
-from remote_scoped_commit import Remote, api, commit_updates
+from graphql_scoped_commit import Remote, get_pr, head_oid
+from local_scoped_commit import commit_updates
 
 
 def append_event(raw, event):
-    return raw + ('' if not raw or raw.endswith('\n') else '\n') + json.dumps(event, ensure_ascii=False) + '\n'
+    line = json.dumps(event, ensure_ascii=False)
+    if line in raw.splitlines():
+        return raw
+    return raw + ('' if not raw or raw.endswith('\n') else '\n') + line + '\n'
 
 
 def main():
@@ -32,7 +36,7 @@ def main():
     if run('git', 'branch', '--show-current').strip() != 'main':
         raise ValueError('Shared checkout must remain on main')
     number, problem, head = disposition['pr'], disposition['problem'], disposition['reviewed_head']
-    pr = json.loads(run('gh', 'api', f'repos/AlecKriebel/Math/pulls/{number}'))
+    pr = get_pr(number)
     if pr['state'] != 'closed' or pr['merged'] or pr['head']['sha'] != head:
         raise ValueError('Exact eligible head must already be closed without merge')
     snapshot = json.loads((audit / 'SNAPSHOT.json').read_text())
@@ -44,8 +48,9 @@ def main():
     prior = disposition['prior_full_result']
     doi = prior['doi']
     sidecar = f'{NATIVE}/attempts/{problem}/PR{number}_PRIOR_RESULT.json'
+    now = datetime.datetime.now(datetime.timezone.utc).isoformat()
     for attempt in range(3):
-        parent = api('git/ref/heads/main')['object']['sha']
+        parent = head_oid()
         remote = Remote(parent)
         names = ['QUEUE.md', 'state.json', 'history.jsonl', 'catalog.json', 'ranking.csv',
                  'assessments.json', 'assessment_history.jsonl']
@@ -66,7 +71,6 @@ def main():
         current = target[0]
         if current['statement_hash'] != disposition['statement_hash'] or current['review_hash'] != disposition['review_hash']:
             raise ValueError('Source hashes changed after disposition')
-        now = datetime.datetime.now(datetime.timezone.utc).isoformat()
         sidecar_raw = encode({**disposition, 'native_mirror_at': now})
         evidence = {'disposition': {'path': disposition_path.relative_to(REPO).as_posix(),
                     'sha256': hashlib.sha256(disposition_path.read_bytes()).hexdigest()},
@@ -135,13 +139,15 @@ def main():
         for path, expected in updates.items():
             if readback.read(path) != expected:
                 raise ValueError('Committed resolution differs from intended bytes')
-        receipt = {'completed_utc': now, 'result': 'PASS', 'commit': commit, 'parent': parent,
+        receipt = {'completed_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'result': 'PASS', 'commit': commit, 'parent': parent,
                    'pr': number, 'problem': problem, 'prior_result_doi': doi, 'status': 'already_solved',
                    'paths': list(updates), 'unrelated_entries_and_shared_checkout_preserved': True,
                    'file_hashes': {path: hashlib.sha256(content.encode()).hexdigest() for path, content in updates.items()}}
         receipt.update(backend=published['backend'],
-                       entire_resulting_tree_sha_computed_and_verified=True,
-                       shared_checkout_index_objects_and_local_refs_untouched=True)
+                       entire_resulting_tree_sha_computed_before_mutation_and_verified_after=True,
+                       final_all_eight_files_read_back_exactly=True,
+                       shared_checkout_index_and_local_refs_untouched=True,
+                       ordinary_local_git_objects_written=True)
         print(json.dumps(receipt), flush=True)
         try:
             (audit / 'NATIVE_PRIORITY_MIRROR_RECEIPT.json').write_text(encode(receipt))
@@ -149,7 +155,7 @@ def main():
             print(json.dumps({'local_receipt_saved': False, 'confirmed_commit': commit,
                               'error': str(error), 'recovery': 'Use confirmed durable receipt above; do not repeat mutation.'}), flush=True)
         return
-    raise RuntimeError('Remote main advanced on all three attempts')
+    raise RuntimeError('Three fresh-parent attempts exhausted; no force update')
 
 if __name__ == '__main__':
     main()
