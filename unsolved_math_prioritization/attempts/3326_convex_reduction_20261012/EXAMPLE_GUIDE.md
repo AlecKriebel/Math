@@ -1,0 +1,13 @@
+# Exact authored examples
+
+[EXACT_EXAMPLES.json](EXACT_EXAMPLES.json) contains small explicit mathematical fixtures, not a raw search dataset. Coordinates are strings representing exact rationals; ordered vertex lists specify the closed convex hull. An order lists every vertex element and hyperedge element exactly once. Its intersection with the other listed orders is required to be precisely the incidence poset.
+
+The five-vertex segment example and all six maximal witnesses are printed in the complete proof. Its fixture includes the three-order realizer, two branch classes, and all nine subdivision paths. The incidence graph is a subdivision of K3,3 although the hypergraph has the exhibited segment representation. The induced incidence subposet with vertices 1,2,3 and edges a,b,e is S3, so its incidence dimension is exactly three.
+
+The nine-object fixed-neighbor fixture consists of the central square, four outward diagonal leaves, and four outer-square sides. Its three realizer orders are explicit concatenations of the displayed star and cycle orders. There are 511 nonempty subfamilies, 17 nonempty faces, and eight maximal edges. Any admissible central replacement must contain a quadrilateral of area at least 4 but avoid the outer boundary, putting it inside a square whose largest triangle has area 32/9. The strict inequality proves a fixed-neighbor obstruction, not nonrepresentability of this hypergraph.
+
+The exposed-star fixture is the k=4 member of p_i=(i,i²), with each leaf ending at (i,i²−1/4). For ell_i(x,y)=y−2ix+i², ell_i(p_j)=(j−i)² and its value at the downward leaf endpoint is −1/4. The three explicit orders realize the incidence poset. The complete convention proof treats arbitrary k, including the dimension-three lower bound for k≥3; this fixture alone makes no universal claim.
+
+The nested-singleton fixture records the dimension-two realizer for edges {a} and {a,b}. Such nested maximal-common-intersection edges are impossible for any sets; it diagnoses the scope mismatch only. The three-side empty-triple fixture has all three pairs intersecting but no common triple, illustrating why graph-only checks are inadequate.
+
+Finally, the inflated-five-vertex fixture uses eta=1/100000 and, for each old segment [a,b], u=b−a and its quarter-turn n. Its vertices are a−eta*u−eta*n, b+eta*u, and a−eta*u+eta*n. They are noncollinear and contain both old endpoints strictly inside. Exact full-nerve checks show that these explicit rational nondegenerate triangles have exactly the same six maximal edges as the five original segments. This concrete certificate supplements the written general perturbation proof; no universal value of eta is claimed.
