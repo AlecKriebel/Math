@@ -247,3 +247,7 @@ Overall73%; PR1136 mathematics fully accepted; two independent priority trails a
 ## 2026-10-17T22:21:54.555859+00:00
 
 Overall74%; PR1136 full mathematics and bounded priority complete, explicit unread Leung abstract gap preserved/no-firstness. Four-page note and portable source kit built/root-reproduced. Begin sequential fresh whole-package adversarial review rounds; no publication yet.
+
+## 2026-10-17T22:37:30.920499+00:00
+
+Overall78%; PR1136 published DOI10.5281/zenodo.23443039, trackerA162:D162 exact readback, exact reviewed head merged348318e459906871a98df9d722842c0b01cbb062. Seven published/tracked/merged, two prior-full skips untouched. Next explicit full-solution candidate1141; preserve strict actual-outcome gate and final range recheck.
