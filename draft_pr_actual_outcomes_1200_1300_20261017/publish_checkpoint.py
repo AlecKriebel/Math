@@ -1,70 +1,57 @@
 #!/usr/bin/env python3
-"""Publish this directory alone to remote main without touching the shared index."""
-import datetime
-import json
-import os
+"""Publish only this effort's subtree, preserving the shared checkout/index."""
 from pathlib import Path
-import subprocess
+import datetime,json,subprocess
+ROOT=Path(__file__).resolve().parent
+REPO=ROOT.parent
 
-ROOT = Path(__file__).resolve().parent
-REPO = ROOT.parent
-PRIVATE = ROOT / "_local"
-PRIVATE.mkdir(exist_ok=True)
-
-
-def git(*args, env=None):
-    result = subprocess.run(["git", "-c", "gc.auto=0", *args], cwd=REPO,
-                            env=env, text=True, capture_output=True)
-    if result.returncode:
-        raise RuntimeError(f"git {args[0]} failed: {result.stderr}")
-    return result.stdout.strip()
-
+def git(*args,data=None):
+ r=subprocess.run(["git","-c","gc.auto=0",*args],cwd=REPO,input=data,capture_output=True)
+ if r.returncode:raise RuntimeError(r.stderr.decode())
+ return r.stdout
 
 def main():
-    if git("branch", "--show-current") != "main":
-        raise RuntimeError("Shared checkout must remain on main")
-    message = PRIVATE / "commit-message.txt"
-    message.write_text("Audit actual full-solution claims in draft PRs 1200–1300\n\n"
-                       "Determine outcomes from immutable PR records; preserve review "
-                       "gates, exact verification, priority checks and publication evidence.\n")
-    for attempt in range(1, 5):
-        remote = git("ls-remote", "origin", "refs/heads/main").split()[0]
-        git("fetch", "--no-auto-maintenance", "--no-tags", "--no-write-fetch-head",
-            "origin", remote)
-        env = dict(os.environ, GIT_INDEX_FILE=str(PRIVATE / f"index-{attempt}"))
-        git("read-tree", remote, env=env)
-        git("add", "--", ROOT.name, env=env)
-        tree = git("write-tree", env=env)
-        commit = git("commit-tree", tree, "-p", remote, "-F", str(message))
-        changed = git("diff-tree", "--no-commit-id", "--name-only", "-r", commit).splitlines()
-        if not changed or any(not p.startswith(ROOT.name + "/") for p in changed):
-            raise RuntimeError("Checkpoint tree includes no change or a foreign path")
-        push = subprocess.run(["git", "-c", "gc.auto=0", "push", "origin",
-                               commit + ":refs/heads/main"], cwd=REPO,
-                              text=True, capture_output=True)
-        receipt = {"at_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                   "attempt": attempt, "base": remote, "commit": commit,
-                   "changed_files": changed, "push_returncode": push.returncode,
-                   "push_stdout": push.stdout, "push_stderr": push.stderr,
-                   "shared_branch": git("branch", "--show-current"),
-                   "shared_head": git("rev-parse", "HEAD"),
-                   "shared_index_modified_by_this_tool": False}
-        if push.returncode == 0:
-            tip = git("ls-remote", "origin", "refs/heads/main").split()[0]
-            if tip != commit:
-                git("fetch", "--no-auto-maintenance", "--no-tags", "--no-write-fetch-head",
-                    "origin", tip)
-                git("merge-base", "--is-ancestor", commit, tip)
-            receipt["verified_remote_tip"] = tip
-            (PRIVATE / "push_receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
-            print(json.dumps({"commit": commit, "base": remote,
-                              "verified_remote_tip": tip, "files": len(changed)}, indent=2))
-            return
-        (PRIVATE / f"push_attempt_{attempt}.json").write_text(json.dumps(receipt, indent=2) + "\n")
-        if "non-fast-forward" not in push.stderr and "fetch first" not in push.stderr:
-            raise RuntimeError(push.stderr)
-    raise RuntimeError("Remote main advanced on every bounded attempt; no force push attempted")
+ if git("branch","--show-current").strip()!=b"main":raise RuntimeError("Stay on main")
+ names=set(git("ls-files","-z","--cached","--others","--exclude-standard","--",ROOT.name).decode().split("\0"))
+ node={}
+ for name in sorted(names):
+  if not name:continue
+  p=REPO/name
+  if not p.exists():continue
+  if p.is_symlink() or not p.is_file():raise RuntimeError("Unexpected nonregular file")
+  parts=Path(name).parts
+  if parts[0]!=ROOT.name or len(parts)<2:raise RuntimeError("Foreign path")
+  here=node
+  for part in parts[1:-1]:here=here.setdefault(part,{})
+  mode="100755" if p.stat().st_mode&0o111 else "100644"
+  here[parts[-1]]=(mode,"blob",git("hash-object","-w","--",str(p)).decode().strip())
+ def build(tree):
+  lines=[]
+  for name,item in sorted(tree.items()):
+   mode,kind,oid=("040000","tree",build(item)) if isinstance(item,dict) else item
+   lines.append(f"{mode} {kind} {oid}\t{name}\0".encode())
+  return git("mktree","-z",data=b"".join(lines)).decode().strip()
+ own=build(node)
+ for attempt in range(1,5):
+  base=git("ls-remote","origin","refs/heads/main").split()[0].decode()
+  exists=subprocess.run(["git","cat-file","-e",base+"^{commit}"],cwd=REPO,capture_output=True)
+  if exists.returncode:git("fetch","--no-auto-maintenance","--no-tags","--no-write-fetch-head","origin",base)
+  lines=[s for s in git("ls-tree","-z",base).split(b"\0") if s and s.split(b"\t",1)[1]!=ROOT.name.encode()]
+  lines.append(f"040000 tree {own}\t{ROOT.name}".encode())
+  tree=git("mktree","-z",data=b"\0".join(lines)+b"\0").decode().strip()
+  message=b"Audit actual full-solution claims in draft PRs 1200-1300\n\nCheckpoint exact math, priority, corrected provenance and reviewed publication packages.\n"
+  commit=git("commit-tree",tree,"-p",base,data=message).decode().strip()
+  changed=git("diff-tree","--no-commit-id","--name-only","-r",commit).decode().splitlines()
+  if not changed:print("No changes");return
+  if any(not n.startswith(ROOT.name+"/") for n in changed):raise RuntimeError("Foreign changed path")
+  r=subprocess.run(["git","-c","gc.auto=0","push","origin",commit+":refs/heads/main"],cwd=REPO,capture_output=True,text=True)
+  receipt={"at_utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"base":base,"commit":commit,"files":len(changed),"changed_files":changed,"push_returncode":r.returncode,"push_stderr":r.stderr,"method":"own subtree; other remote root entries reused verbatim","shared_index_modified":False}
+  if r.returncode==0:
+   receipt["verified_remote_tip"]=git("ls-remote","origin","refs/heads/main").split()[0].decode()
+   print(json.dumps(receipt,indent=2),flush=True)
+   (ROOT/"_local/push_receipt.json").write_text(json.dumps(receipt,indent=2)+"\n")
+   return
+  if "non-fast-forward" not in r.stderr and "fetch first" not in r.stderr:raise RuntimeError(r.stderr)
+ raise RuntimeError("Remote main kept advancing; no force push attempted")
 
-
-if __name__ == "__main__":
-    main()
+if __name__=="__main__":main()

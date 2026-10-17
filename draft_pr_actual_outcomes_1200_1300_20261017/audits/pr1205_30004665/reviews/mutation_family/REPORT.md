@@ -1,3 +1,9 @@
+> **Root correction,17October2026:** This family inherited candidate-containing
+> context and was not blinded. Freezing before a local file comparison does not
+> establish prior ignorance. The historical account below is preserved; see
+> INDEPENDENCE_CORRECTION.md / the archive chronology correction for the current
+> interpretation. Its exact implementation and output remain checkable.
+
 # Independent canonical-potential reconstruction for PR #1205
 
 Review checkpoint: 2026-10-17, 09:29 America/Los_Angeles. Completion of this mathematical reconstruction/reproduction family: **100%**. This is not a priority audit or approval of the final publication package.

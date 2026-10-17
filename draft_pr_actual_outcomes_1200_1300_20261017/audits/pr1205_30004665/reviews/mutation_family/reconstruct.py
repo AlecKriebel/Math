@@ -161,7 +161,7 @@ def main():
     report['coefficient_set']=sorted({t['coefficient'] for t in allterms})
     path=HERE/'independent_output.json';path.write_text(json.dumps(report,indent=2)+'\n')
     digest=hashlib.sha256(path.read_bytes()).hexdigest()
-    (HERE/'INDEPENDENT_FREEZE.txt').write_text('Independent output frozen before candidate comparison.\nSHA256 independent_output.json '+digest+'\n')
+    (HERE/'OUTPUT_DIGEST.txt').write_text('Current replay output SHA256 independent_output.json '+digest+'\nThis replay does not recreate historical review chronology.\n')
     print({k:report[k] for k in ('total_support_size','max_abs_exponent','coefficient_set')})
     print('summand sizes',{k:len(v['support']) for k,v in results.items()})
     print('output sha256',digest)
