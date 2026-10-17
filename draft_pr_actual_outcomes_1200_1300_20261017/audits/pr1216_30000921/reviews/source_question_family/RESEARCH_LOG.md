@@ -1,0 +1,4 @@
+# Source-question reconstruction research log
+
+- 2026-10-17T18:16:20.960228+00:00 — 10%: Input boundary established. Read only the supplied original 2008 EMS report (Costakis, pp. 328–330, particularly Definition 4, Theorem 6, Question 5 on printed p. 330 / PDF page 34). No candidate, audit, outcome, sibling-family report, later priority literature, or parent-thread history accessed. Source PDF stored only under ignored `sources/`.
+- 2026-10-17T18:16:20.960228+00:00 — 70%: Derived a triangular Taylor-jet perturbation at a root of an arbitrary fixed nonconstant polynomial. It enforces a positive lower bound on all sufficiently high derivative values of the product while the perturbation's own derivatives tend locally uniformly to zero. Preparing a fully quantified proof and checking finite-prefix and zero-orbit edge cases.

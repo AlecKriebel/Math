@@ -1,0 +1,7 @@
+# PR1216 / problem30000921 audit
+
+2026-10-17T18:14:01.922548+00:00 — Completion estimate5%. Current OPEN draft head/body match immutable actual-outcome inventory: explicit complete negative answer to the original universal differentiation-hypercyclic polynomial multiplier question. Captured eight original submitted blobs with independent Git SHA1/SHA256/size identities, pinned read-only submitted ref; main checkout/index unchanged. Begin exact claim and adversarial mathematical reconstruction; no result accepted yet.
+
+## 2026-10-17T18:18:46.674548+00:00 — Root analytic and exact-algebra reconstruction passes
+
+PR completion estimate25%. Root read complete proof and audit, freshly downloaded/rendered/visually inspected original Question5/Definition4/Theorem6 on printed330/PDF34, and validated source quantifiers. All analytic existence, null-perturbation, all-order orbit exclusion, fixed-p triangular recursion/uniform density and simultaneous-monomial arguments pass root review. Current independent Gaussian-rational diagnostics pass in normal/O/OO with identical report SHA2560a73d922641756867631a272a72ae4d658606f8d6c0480b88ece98a97ab78b74:1215 threshold cases,36 polynomials/396 corrections,480 independent global-coordinate identities,1980 earlier-value checks,84 low derivatives,225 monomial factors,270 tail inequalities and3 actual changed algorithms rejected. Finite diagnostics are not the analytic proof. Source-question-only and candidate-aware source/analytic families remain independent/in progress. No acceptance/priority/preprint mutation yet.
