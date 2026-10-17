@@ -1,0 +1,36 @@
+{
+  "result": "passed",
+  "manifest_bytes_and_complete_file_list": "verified before and after checks",
+  "check_runs": [
+    {
+      "script": "check_metric_identities.py",
+      "expected_output": "CHECK_RESULTS.json",
+      "result": "passed",
+      "stdout_byte_identical": true,
+      "stdout_bytes": 555,
+      "stdout_sha256": "cb322f9782106b74a5aa65de207943e8e12004870d65bf3f1cb55325c8e5e7a6"
+    },
+    {
+      "script": "check_adversarial_sanity.py",
+      "expected_output": "ADVERSARIAL_CHECK_RESULTS.json",
+      "result": "passed",
+      "stdout_byte_identical": true,
+      "stdout_bytes": 914,
+      "stdout_sha256": "a4779f04c6fa3aac818f76e8074be614d725ad3f4a480ce797cb7855bbbfa18e"
+    }
+  ],
+  "isolation": {
+    "python_flags": [
+      "-I",
+      "-B"
+    ],
+    "optimization_disabled": true,
+    "fresh_temporary_working_directory": true,
+    "only_scripts_and_expected_outputs_copied": true,
+    "minimal_subprocess_environment": true,
+    "external_inputs_or_packages_required": false,
+    "network_calls_in_check_scripts": false,
+    "operating_system_security_sandbox_claimed": false
+  },
+  "scope": "Exact finite algebraic sanity checks and byte integrity only; not formal or global proof verification."
+}
