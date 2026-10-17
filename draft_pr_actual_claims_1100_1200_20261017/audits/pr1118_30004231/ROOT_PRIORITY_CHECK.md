@@ -1,0 +1,19 @@
+# Root priority decision: PR1118 / 30004231
+
+Checkpoint2026-10-17. Pinned head8592fb7297d3c4973f2778c47cfa8972cba896a6.
+
+The separate extensive priority audit identifies no prior resolution of the full literal printed target, after 105 fresh search executions (105 distinct strings), the inherited five-query screen, actual primary-body/version comparisons, and citation trails throughJune2026. Root additionally ran four targeted searches and directly inspected the original statement, the ABPPSv1 and published definition, Adiprasito's public2020body, the official2024publisher metadata/paywall, Sturmfels–Tevelev's tetrahedron example, and Fukuda–Weibel's classical uniqueness/simplex geometry. Negative searches are not a proof of historical novelty.
+
+The proper success criterion is ANY earlier nonshellability example or theorem for the exact positive-plus-additive poset. Together with the classical homology antecedent, that would already settle the two assertions, even with different examples. An identical prism or joint example is unnecessary. No such earlier exact-poset nonshellability result or verified theorem implication was identified; the full claim therefore is not excluded as already solved on present evidence.
+
+Required credits and scope repairs are bibliographic, not changes to the valid construction:
+- The standard canonical decomposition and simplex-difference face lattice are classical; cite Fukuda–Weibel and rederive only for completeness.
+- Scaled opposite tetrahedra and the six-ray geometry occur in Sturmfels–Tevelev2007/2008. The six-point example is a prior geometric control, not a new stand-alone discovery or nonshellability example.
+- ABPPS's published summand-facet definition differs from the printed exact filter. Its published Theorem1.4 ambient dimension differs from arXivv1 in addition to lemma renumbering. The paper uses only the published definition and invokes no counting theorem.
+- Adiprasito's public2020manuscript, underlying the renamed2024PAMQarticle, uses a subset-dimension mixed condition. The proper vertical face with dimensions(3,2,2) distinguishes it from the exact filter. The new note explicitly cites both publication and inspected manuscript, and does not claim a stable/generic tropical result.
+- The actual2024body is paywalled and uninspected. Metadata/abstract are verified; absence of unseen additional remarks is not asserted. This concrete coverage limit remains in the paper, metadata, README, audits and source ledger.
+- The2026projected-fan counterexample provides no two-polytopal exact-filter representation. Treating that absent realizability bridge as automatic would transfer the central problem to an unsupported claim.
+
+Root read the complete independent comparison/direct-consequence reports and checked the decisive dimension witness independently. No identified mathematical or priority block remains for a short, explicitly qualified note answering both assertions under the literal printed definition. This is authorization within the user's existing task to prepare the package and submit it to two sequential fresh adversarial reviews; publication and merge still depend on that gate. No first-ever/worldwide-openness certification or unprinted intended-variant resolution is claimed.
+
+The four-page note incorporates the new source credits and access limits throughout. Its complete analytic proof, exact verification and honest scope are the promotion criteria. Two fresh whole-package reviews remain pending at this checkpoint.
