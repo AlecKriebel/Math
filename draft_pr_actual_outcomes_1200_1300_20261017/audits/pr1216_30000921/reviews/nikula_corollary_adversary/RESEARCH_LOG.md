@@ -1,0 +1,3 @@
+# Nikula corollary adversarial review log
+
+- 2026-10-17T18:27:12Z — Checkpoint 1. Completion estimate: 20% of this bounded primary-source/corollary audit. Independently opened arXiv's version-specific abstract and PDF for 1209.6209v1, then downloaded the primary PDF directly from that endpoint. Abstract records submission 2012-09-27 12:45:47 UTC. PDF is 180409 bytes with SHA-256 b24a6e7469325963d5bc343aca141b2e40b7d578c41e56023e6f984ed4c27e2b. Source bodies and derived page images/text are confined to ignored sources/. Theorem 1 spans PDF pages 2–3. Main remaining checks: Gaussian BC exponents, deterministic quantifiers, exact clipping correction and relative support. No sibling reports, Git operations, publication or outside contact.

@@ -10,6 +10,7 @@ Started independently from the original question only; receipt recorded 2026-10-
 - Source URL: https://ems.press/content/serial-article-files/46147
 - DOI supplied in task: https://doi.org/10.4171/OWR/2008/06
 - Standard elementary complex analysis, Baire category, and mathematical reasoning developed in this family.
+- Mathematical feedback from a separate internal adversarial subagent, restricted to the standalone derivations sent to it. That reviewer was instructed not to read any files, candidate, other reports, parent history, outcomes, or later literature, and to use no tools except messages to this family. This was internal proof verification, not comparison with another approach family.
 
 ## Inputs not accessed
 
