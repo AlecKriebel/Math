@@ -33,3 +33,7 @@ Overall estimate15%; PR1205 estimate80%. Different fresh round2 reviewer finds n
 ## 2026-10-17T17:17:32.755764+00:00 — PR1205 complete; advance to1211
 
 Overall completion estimate20%; PR1205 estimate100%. Accepted the literal canonical-W counterexample as an attributed corrective and verification note, with earlier support/minuscule results credited and no firstness/current-open assertion. DOI10.5281/zenodo.23439776 published and resolves200; public files exactly match final cleared hashes. Tracker row150 appended once and read back. PR1205 merged at2026-10-17T17:16:41Z with expected reviewed head; merge commit5ddd448155e28b8d6d0dfaf6e5265534b5542a90. Preserve original8 proof-edition bytes and new corrected publication folder. Advance ascending to eligible1211; all89 exclusion decisions stay untouched.
+
+## 2026-10-17T18:13:32.239372+00:00 — PR1211 complete; advance1216
+
+Program estimate25%; PR1211 estimate100%. Published qualified historical tree-equality counterexample DOI10.5281/zenodo.23440389, exact public downloads, trackerA152:D152 readback and reviewed-head mergec415630ff4fe482575faeab05855d217e5bfa9e8 verified across13 files. Both fresh package reviews clean, with priority/openness limitations retained. Now advance ascending to1216;89 non-full outcomes remain skipped beyond the gate.
