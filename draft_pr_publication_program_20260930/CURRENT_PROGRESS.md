@@ -1,15 +1,9 @@
-# Current publication-program checkpoint
+PR209 completion checkpoint — 2026-10-17T02:43:46.772881+00:00
 
-PR209 — The outer center-pedal area product in elliptic billiards. Case estimate95%; fully completed50, published35; last completedPR207; numeric cursor209; advancement is false. The goal remains active.
+The original PR209 is merged at a4ad2608cb71096514c92a2e6f38daa216565b42. The existing preprint, DOI10.5281/zenodo.23413614, and tracker row121 have been verified and adopted without a duplicate publication or append. Two independent whole-package adversarial reviews and the mathematical and qualified priority audit are accepted. The source and exact native checkpoints were independently audited; full native body and scope readbacks and merge95 five-view synchronization are archived.
 
-The verified signed area-product theorem covers the precise k303,b elliptic-billiard target, including admitted star polygons and repeated traversals. Two new sequential whole-package adversaries found no unresolved issues. The frozen five-page note, metadata, PDF and verification ZIP are unchanged.
+Case workflow:100% after the separately verified completion checkpoint CAS and exact five-view installation. Program:51 completed,35 published or adopted, dated eligible denominator99. Last completed PR209; next numeric intake210. Only exactly claimed_solved preserved submissions are eligible. The persistent goal remains active and incomplete.
 
-Existing publication: https://doi.org/10.5281/zenodo.23413614. Existing unique tracker row: Math Puzzles!A121:D121. This checkpoint adopts those verified records without another upload or append.
+The exact contemporary theorem and classical mechanisms are credited. This is a qualified verification note; novelty, firstness, contemporaneous simultaneity and causal independence are not established. The paper and publication assets are unchanged, and no new Zenodo or tracker action occurred. External actual Root receipts certify the completion checkpoint identity and installation.
 
-The exact contemporary theorem of Alper Ferudun (v1.1, DOI10.5281/zenodo.23088516, Theorem2/Section6), KLS cyclic identities, Stachel coordinates and other classical mechanisms are credited. Historical priority, firstness, simultaneity and causal independence remain uncertified; no such claim is made. Extensive AI use and absence of conventional human refereeing are disclosed.
-
-Exact prepared own54 files and the original23 archive are retained. Only the own QUEUE row is replaced, preserving claimed_solved1/5; foreign bytes and the existing descending publication tree are retained. Native installation and genuine PR merge are certified by external actual Root receipts. Before native installation this file is a sealed proposal.
-
-The dated census denominator99 is retained;50/99 is workflow completion, not novelty or current openness. PR208 was skipped untouched for already_solved. Next: complete the separately verified100 checkpoint and exact five-view sync before intake210.
-
-<!-- PR209_NATIVE_PHASE_FACTS {"active_PR":209,"advance_to_next_PR_authorized_now":false,"case_workflow_estimate_percent":95,"completed":false,"fully_completed_count":50,"goal_complete":false,"last_completed_PR":207,"next_numeric_intake_cursor":209,"publication_ready":true,"published_count":35} -->
+<!-- PR209_NATIVE_PHASE_FACTS {"active_PR":209,"advance_to_next_PR_authorized_now":true,"case_workflow_estimate_percent":100,"completed":true,"fully_completed_count":51,"goal_complete":false,"last_completed_PR":209,"next_numeric_intake_cursor":210,"publication_ready":true,"published_count":35} -->

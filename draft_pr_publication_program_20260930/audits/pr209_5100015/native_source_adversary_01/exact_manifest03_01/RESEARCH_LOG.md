@@ -1,0 +1,3 @@
+2026-10-17T02:23:27.286847+00:00 —5% of exactmanifest03 audit. Separate folder; old02 preserved. Validate381 selected4533496B,228 unchanged identities, repaired source pins, native preimages and deterministic tree using earlier immutable native metadata; no service call or production effect.
+
+2026-10-17T02:24:27.481751+00:00 —100% of exactmanifest03 audit goal.4048 assertions PASS,381selected4533496B plus228reuse, deterministic treea10d2fb1f1657a95e599c99f3b64e8ace0bc4ba9 and commita4ad2608cb71096514c92a2e6f38daa216565b42 independently reproduced.0newGETs and0production effects. Conditional only; actualRoot/candidate609-body/freshness/CAS/sync checks remain external.
