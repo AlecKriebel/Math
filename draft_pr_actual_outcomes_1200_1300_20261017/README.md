@@ -13,17 +13,15 @@ eligibility adversary checked all101outcomes; root admitted1262 because prior
 credit applies to an imported ingredient rather than an explicitly earlier
 full target resolution. Twelve are eligible and89 are skipped.
 
-The first in-scope PR is1205, problem30004665. Its original canonical-W
-counterexample passed independent source-driven mutation reconstruction,
-exact-polyhedral adversarial review and separate root checks. The exact
-word and support are confirmed in older primary-author D4data. A corrective
-note credits those data and prior minuscule results, with no firstness or
-current-openness claim. The five-page preprint draft and portable verifier are
-in fresh whole-package adversarial review. The earlier inherited-context independence overstatement is corrected globally.
-A distinct no-history reconstruction has completed with matching frozen support,
-12504 chamber/braid checks and22 separate facet certificates. A second fresh
-whole-package review is underway.
-No preprint, DOI, tracker append, merge, closure or comment has occurred.
+The first in-scope PR, #1205 (problem 30004665), is complete and merged.
+The literal canonical-W counterexample passed exact reconstruction and multiple
+adversarial mathematical reviews. Older primary-author word/support data are
+fully credited. The [published corrective note and portable verification
+package](https://doi.org/10.5281/zenodo.23439776) make no firstness or current-
+openness claim. The earlier independence overstatement is corrected globally;
+a distinct no-history source-only reconstruction and a clean fresh second
+whole-package review are preserved. Public downloads match reviewed hashes;
+DOI and scoped details are verified in tracker row 150. Next is #1211.
 
 PR_OUTCOME_METADATA.json pins all101 captured bodies and head metadata.
 The eligibility/ folders retain exact outcome snippets, immutable acceptance

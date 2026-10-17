@@ -78,7 +78,7 @@ def main():
   if git("rev-parse",commit+":"+f["path"]).decode().strip()!=f["blob"]:raise RuntimeError("Historical original file changed")
  if pr()["headRefOid"]!=ORIGINAL:raise RuntimeError("PR changed before push")
  git("push","origin",commit+":refs/heads/"+BRANCH)
- if pr()["headRefOid"]!=commit:raise RuntimeError("PR head readback differs")
+ if git("ls-remote","origin","refs/heads/"+BRANCH).split()[0].decode()!=commit:raise RuntimeError("Remote branch readback differs")
  receipt={"at_utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"pr":1205,"base":ORIGINAL,"commit":commit,"branch":BRANCH,"paths":changed,"original_eight_blobs_preserved":True,"shared_index_modified":False,"doi":pub["doi"]}
  receipt_path.write_text(json.dumps(receipt,indent=2)+"\n")
  body=("## Accepted result and publication\n\n"+note+"\nThe original eight-file MANIFEST.json binds its historical proof/audit edition. The publication_20261017 child folder supplements that edition with the reviewed PDF, portable verification archive, matching Zenodo metadata and publication receipt. QUEUE.md is unchanged; eligibility was determined from this PR's explicit full-solution outcome.\n")

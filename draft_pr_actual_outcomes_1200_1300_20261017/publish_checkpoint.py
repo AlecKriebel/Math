@@ -13,6 +13,10 @@ def git(*args,data=None):
 def main():
  if git("branch","--show-current").strip()!=b"main":raise RuntimeError("Stay on main")
  names=set(git("ls-files","-z","--cached","--others","--exclude-standard","--",ROOT.name).decode().split("\0"))
+ names.discard("")
+ ignored=subprocess.run(["git","check-ignore","--no-index","-z","--stdin"],cwd=REPO,input=("\0".join(sorted(names))+"\0").encode(),capture_output=True)
+ if ignored.returncode not in (0,1):raise RuntimeError(ignored.stderr.decode())
+ names-=set(ignored.stdout.decode().split("\0"))
  node={}
  for name in sorted(names):
   if not name:continue
@@ -48,7 +52,7 @@ def main():
   receipt={"at_utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"base":base,"commit":commit,"files":len(changed),"changed_files":changed,"push_returncode":r.returncode,"push_stderr":r.stderr,"method":"own subtree; other remote root entries reused verbatim","shared_index_modified":False}
   if r.returncode==0:
    receipt["verified_remote_tip"]=git("ls-remote","origin","refs/heads/main").split()[0].decode()
-   print(json.dumps(receipt,indent=2),flush=True)
+   print(json.dumps({key:receipt[key] for key in ("at_utc","base","commit","files","verified_remote_tip")},indent=2),flush=True)
    (ROOT/"_local/push_receipt.json").write_text(json.dumps(receipt,indent=2)+"\n")
    return
   if "non-fast-forward" not in r.stderr and "fetch first" not in r.stderr:raise RuntimeError(r.stderr)
