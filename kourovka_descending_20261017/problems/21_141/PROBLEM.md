@@ -24,3 +24,5 @@ The intended meaning of polycyclic for pro-p groups and any properness
 convention for amalgams require primary-source verification. An abstract
 or locally compact combination theorem is not automatically a theorem in
 this category. No answer is assumed.
+
+Definition checkpoint 2026-10-17T21:26:33.045473+00:00: proposer-authored primary sources confirm a finite closed subnormal series with procyclic factors (polyprocyclic). Their amalgam convention is proper; the official statement itself leaves this implicit. The research notes preserve the distinction and do not promote a proper-only result to an unspecified pushout statement. See priority_20261017.md.
