@@ -1,0 +1,7 @@
+# Fourier adversary research log
+
+- 2026-10-17T22:23:59.365723+00:00 - 20% complete. Independently opened the exact target OLD_IMPLICATIONS.md (3839 bytes; SHA-256 dd102b1a668d4e76519d0451ee2c8b905130e8fbfdf093104bf35c6bfe3f4f77). Fresh primary author PDF obtained through web. Read definitions and displayed Lemmas 4-5, plus the concluding Lemma 4 and restated Lemma 5 context. No other new mathematical family, candidate, root proof or priority report read. Preparing normalization, endpoint and finite-Fourier adversarial checks.
+
+Completion estimates concern this bounded independent review, not the novelty or total completion of a research program. No external communication and no Git/index/ref/account/service writes by this reviewer.
+
+- 2026-10-17T22:25:20.961890+00:00 - 75% complete. Fresh Gilmer-Kopparty PDF matches the required 401939 bytes and SHA-256 fd7578b138e1e29b01dcd2cc12a6e4e19150cf2bf1e71bc7f934568c175c9eaa. Visually inspected PDF pp.6 and13. Reconstructed roots-of-unity proof and checked even q, negative frequencies, quasi-periodic centering, and absence of q-dependent constants. Exact graph enumeration checked 67728 states and eight rational moment cases; 320 Fourier cases (6560 residues) passed. Fresh Scott 2009 primary report confirms printed q=o(n²) obstruction at printed p.1279 (PDF p.55). Drafting report and provenance seals.

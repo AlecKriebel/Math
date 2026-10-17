@@ -1,0 +1,4 @@
+# Detached reverse cross-challenge
+
+- 2026-10-17T22:23:20.500158+00:00 — 5%: Began after independent A/B seals. Authenticated all12 B authored members and pinned B manifest. Initial A/B artifacts remain immutable. Fresh Fourier adversary outputs unread.
+- 2026-10-17T22:25:23.935252+00:00 — 80%: Read all12 B authored outputs. Freshly inspected GKp6 visually and p13 restatement; all Fourier-grid proof steps pass. Fresh Weber2022 pp1–6 confirms independent-sum scope and window/tail/Poisson precedent, without importing constants. Fresh KKp10 and DKRpp1–3 confirm fixed composite moduli and q-dependent constants. Fresh author HTML confirms SSZ preprint/to-appear labels. Checked20 retained B source/metadata byte records,52 literal query records and15 response strings; structured per-request service history is not retained, so query count is an internally checked author record. Fresh Fourier adversary outputs remain unread.

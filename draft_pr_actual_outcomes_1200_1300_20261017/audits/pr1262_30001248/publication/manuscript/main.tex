@@ -1,0 +1,311 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\Ee}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\title{Sharp modulus range for triangle counts\\in dense random graphs}
+\author{Alec Kriebel\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Version 1.0 --- 17 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Fix \(0<p<1\), and let \(T_n\) count each triangle once in \(G(n,p)\).
+For every positive integer sequence \(q_n\), we give the explicit deduction
+\[
+ \max_{0\leq a<q_n}
+ \left|q_n\Pp(T_n\equiv a\pmod {q_n})-1\right|\longrightarrow0
+ \quad\Longleftrightarrow\quad q_n=o(n^2).
+\]
+Sufficiency follows from the quantitative local limit theorem of Sah and
+Sawhney, concentration, and finite-window summation. Necessity follows from
+an elementary edge-projection central limit theorem and a modular Fourier
+coefficient. This covers arbitrary, possibly oscillating or composite,
+modulus sequences. We also reconcile density and Gaussian unit-cell
+conventions. The result is a credited corollary of earlier local limit
+work, addressing the sharp range in Scott's 2009 report of joint work with
+Tateno. No novelty, historical firstness, or new local limit theorem is claimed.
+\end{abstract}
+
+\section{Question, conventions, and result}
+
+Scott's report of joint work with Tateno \cite[pp.~1279--1280]{ST}
+asks how far equidistribution of the triangle count modulo \(q\) extends.
+It announces the relative, uniform-in-residue conclusion for
+\(q=o(n^2/\log n)\), without a primality restriction, already identifies
+\(o(n^2)\) as the necessary scale, and announces a triangle local limit
+theorem. Here we spell out the complete sharp-range deduction from a later
+quantitative local limit theorem. This is a present-day deduction from
+prior results, not an assertion that this corollary was explicitly stated
+in an earlier source or that the question remained open until this note.
+The accompanying bounded literature audit is not a certificate of novelty.
+
+The triangle local limit theorem was established by Gilmer and Kopparty
+\cite{GK}, and quantitative pointwise estimates were obtained by Berkowitz
+\cite{B}. These are substantive predecessors of the connected-count theorem
+used below, rather than new local limit results of this note.
+
+Throughout, \(p\in(0,1)\) is fixed, the edges of \(G(n,p)\) are independent,
+and \(T_n\) is the number of unordered three-vertex sets spanning a triangle.
+Thus each triangle is counted once; a labeled-embedding count would be
+\(6T_n\) and would have different modular restrictions. Write
+\[
+ \mu_n=\Ee T_n,\qquad \sigma_n^2=\Var T_n,\qquad
+ \Delta_n(q)=\max_{0\leq a<q}
+       \left|q\Pp(T_n\equiv a\pmod q)-1\right|.
+\]
+All asymptotic statements are as \(n\to\infty\), and implicit constants may
+depend on fixed \(p\). Standard-deviation normalization starts at \(n\geq3\).
+
+\begin{theorem}\label{thm:main}
+For every sequence of positive integers \(q_n\),
+\[
+ \Delta_n(q_n)\longrightarrow0
+       \quad\Longleftrightarrow\quad q_n=o(n^2).
+\]
+No monotonicity, primality, or lower growth condition on \(q_n\) is required.
+\end{theorem}
+
+In particular \(q_n=1\) is permitted. Sparse or varying \(p\), general
+subgraph counts, and induced-copy analogues are outside this theorem.
+The broader final conjecture in \cite{ST} concerns arbitrary fixed
+subgraphs and is a separate question. Its unrestricted Gaussian local
+limit part already has the ordinary \(2K_2\) counterexample of Sah and
+Sawhney \cite[Theorem~1.3]{SS}; that known obstruction is not a new result
+of this note.
+
+\section{Moments and the imported local theorem}
+
+Let \(I_e\) be the edge indicators, \(\xi_e=I_e-p\), and
+\(N=\binom n2\). Expanding the three factors for each triangle gives
+\begin{align}
+ T_n-\mu_n&=L_n+R_n,\qquad
+ L_n=p^2(n-2)\sum_e\xi_e, \label{eq:projection}\\
+ R_n&=p\sum_{\{e,f\}\ {\rm adjacent}}\xi_e\xi_f
+         +\sum_{\{e,f,g\}\ {\rm triangle}}\xi_e\xi_f\xi_g. \notag
+\end{align}
+Each unordered adjacent edge pair occurs once. Distinct edge sets index
+orthogonal centered products, since an edge in their symmetric difference
+has a centered factor occurring only once. There are \(3\binom n3\)
+adjacent pairs. Consequently, with \(\alpha=p^5(1-p)>0\) and
+\(D=N(n-2)^2\),
+\begin{align}
+ \mu_n&=\binom n3p^3, \notag\\
+ \sigma_n^2
+ &=\alpha D+3\binom n3p^4(1-p)^2+\binom n3p^3(1-p)^3 \label{eq:variance}\\
+ &=\binom n3p^3(1-p^3)+12\binom n4p^5(1-p)
+       \sim\frac{\alpha}{2}n^4. \notag
+\end{align}
+The coefficient \(12\binom n4\) counts ordered pairs of distinct triangles
+sharing an edge. Thus
+\begin{equation}\label{eq:scale}
+ \sigma_n^2\geq\alpha D,\qquad
+ \sigma_n\sim\sqrt{\alpha/2}\,n^2.
+\end{equation}
+The empty graph and a graph consisting of exactly one triangle and isolated
+vertices have positive probability, so the integer span is one. We do not
+assume every intermediate count is attainable.
+
+Our substantive external premise is Sah--Sawhney's quantitative
+local limit theorem \cite[Theorem~1.1]{SS}, in the inspected
+arXiv:2006.11369v1. For ordinary connected subgraph counts it uses the
+actual mean and standard deviation in \(G(n,p)\). Its ordinary-copy
+definition and independent-edge transfer are in Sections~4.1 and~5.
+Specializing to \(K_3\), and choosing
+\(\lambda=\min(p,1-p)/2\) in its density hypothesis, gives, for every
+fixed \(\varepsilon>0\),
+\begin{equation}\label{eq:llt}
+ \sup_{k\in\Z}\left|\Pp(T_n=k)-g_n(k)\right|
+ \leq\frac{\delta_n}{\sigma_n},\qquad
+ g_n(x)=\frac1{\sigma_n}\phi\!\left(\frac{x-\mu_n}{\sigma_n}\right),
+ \quad \delta_n=C_{p,\varepsilon}n^{-1/2+\varepsilon},
+\end{equation}
+where \(\phi(x)=(2\pi)^{-1/2}e^{-x^2/2}\). The theorem counts each
+triangle once, rather than its six embeddings. We import this established,
+deep Fourier/decoupling theorem; we do not reprove or independently certify
+its entire proof. Only its uniform pointwise bound is needed. Fix
+\(0<\varepsilon<1/2\), so \(\delta_n\sqrt{\log n}\to0\).
+An unquantified pointwise error cannot simply be summed over the full
+count support to obtain our relative modular assertion.
+
+\section{Sufficiency: finite-window summation}
+
+Changing one edge changes \(T_n\) by at most \(n-2\). The independent-edge
+exposure martingale and the bounded-range exponential-moment inequality
+give
+\begin{equation}\label{eq:concentration}
+ \Pp(|T_n-\mu_n|\geq u)\leq2e^{-2u^2/D}.
+\end{equation}
+Indeed, each martingale increment has conditional range length at most
+\(n-2\); its centered exponential moment is at most
+\(e^{t^2(n-2)^2/8}\). Multiplying these bounds, applying exponential
+Markov, and optimizing \(t=4u/D\) proves each one-sided bound and hence
+\eqref{eq:concentration}.
+
+Set
+\[
+ B_n=\sqrt{(16/\alpha)\log n}.
+\]
+By \eqref{eq:scale} and \eqref{eq:concentration}, the probability outside
+\(|T_n-\mu_n|\leq B_n\sigma_n\) is at most \(2n^{-32}\).
+For large \(n\), \(\sigma_n\geq1\) and \(B_n\geq4\).
+Comparing each Gaussian grid point on a tail with its adjacent interval
+toward the origin gives
+\begin{align}
+ \sum_{\substack{k\in\Z\\|k-\mu_n|>B_n\sigma_n}}g_n(k)
+ &\leq2\int_{B_n-1/\sigma_n}^{\infty}\phi(x)\,dx \notag\\
+ &\leq2e^{-(B_n-1)^2/2}
+ \leq2e^{-B_n^2/4}
+ =2n^{-4/\alpha}\leq2n^{-16}. \label{eq:gausstail}
+\end{align}
+Here \(\alpha\leq1/4\), and
+\((B-1)^2/2\geq B^2/4\) for \(B\geq4\). These are full tails, so they
+bound each residue's omitted mass as well.
+
+Fix \(1\leq q\leq\sigma_n\) and a residue \(a\). There are at most
+\(2B_n\sigma_n/q+1\) integers in \(a+q\Z\) inside the central interval.
+Use \eqref{eq:llt} only on those finitely many integers, and use the two
+full tails elsewhere. We obtain
+\begin{equation}\label{eq:window}
+ q\left|\Pp(T_n\equiv a\pmod q)
+                  -\sum_{k\in a+q\Z}g_n(k)\right|
+ \leq\delta_n(2B_n+q/\sigma_n)+2q(n^{-32}+n^{-16}).
+\end{equation}
+All factors of \(q\) are retained.
+
+We also use the elementary shifted-mesh inequality
+\begin{equation}\label{eq:mesh}
+ \left|h\sum_{j\in\Z}f(b+jh)-\int_{\R}f(x)\,dx\right|
+       \leq h\int_{\R}|f'(x)|\,dx
+       \qquad(h>0,\ b\in\R),
+\end{equation}
+for absolutely continuous \(f\) with \(f,f'\in L^1(\R)\).
+To prove it, compare \(h f(b+jh)\) with the integral over
+\([b+jh,b+(j+1)h]\); the difference is bounded by \(h\) times the
+integral of \(|f'|\) over that interval. Summation proves the bound.
+Applying the same comparison to \(|f|\) justifies absolute convergence.
+For \(\phi\), \(\int\phi=1\) and
+\(\int|\phi'|=\sqrt{2/\pi}\). Taking \(h=q/\sigma_n\) and
+\(b=(a-\mu_n)/\sigma_n\) in \eqref{eq:mesh} yields
+\[
+ \left|q\sum_{k\in a+q\Z}g_n(k)-1\right|
+           \leq\sqrt{2/\pi}\,q/\sigma_n .
+\]
+Together with \eqref{eq:window}, this proves the explicit uniform bound
+\begin{equation}\label{eq:discrepancy}
+ \Delta_n(q)\leq
+ \delta_n(2B_n+q/\sigma_n)
+ +2q(n^{-32}+n^{-16})+\sqrt{2/\pi}\,q/\sigma_n,
+ \qquad 1\leq q\leq\sigma_n .
+\end{equation}
+If \(q_n=o(\sigma_n)\), the bound applies eventually and every term tends
+to zero, since \(\sigma_n=O(n^2)\).
+This proves sufficiency even when \(q_n/\sigma_n\) tends to zero
+arbitrarily slowly.
+
+\section{Necessity and the original cell convention}
+
+For sharpness, the local limit theorem is unnecessary. From
+\eqref{eq:projection}--\eqref{eq:variance},
+\(\Var L_n=\alpha D=\Theta_p(n^4)\) and \(\Var R_n=O_p(n^3)\).
+The binomial central limit theorem for \(\sum_e I_e\), together with
+\(R_n/\sigma_n\to0\) in \(L^2\), gives
+\[
+ Z_n=(T_n-\mu_n)/\sigma_n\ \Longrightarrow\ N(0,1),
+ \qquad \Ee|Z_n|\leq1 .
+\]
+Suppose \(\Delta_n(q_n)\to0\) but \(q_n/\sigma_n\not\to0\).
+On an infinite subsequence \(q_n/\sigma_n\geq c>0\); passing to a further
+subsequence, \(r_n=\sigma_n/q_n\to r\in[0,1/c]\).
+Eventually \(q_n\geq2\), so the sum of the \(q_n\)-th roots of unity is zero
+and
+\begin{equation}\label{eq:fourier}
+ \left|\Ee e^{2\pi iT_n/q_n}\right|
+ \leq\sum_{a=0}^{q_n-1}
+       \left|\Pp(T_n\equiv a\pmod {q_n})-1/q_n\right|
+ \leq\Delta_n(q_n)\longrightarrow0 .
+\end{equation}
+Removing the centering phase leaves
+\(\left|\Ee e^{it_nZ_n}\right|\), where \(t_n=2\pi r_n\to2\pi r=t\).
+The varying frequency is legitimate because
+\[
+ \left|\Ee e^{it_nZ_n}-\Ee e^{itZ_n}\right|
+       \leq |t_n-t|\,\Ee|Z_n|\leq|t_n-t|\longrightarrow0 .
+\]
+The central limit theorem therefore makes the left side of
+\eqref{eq:fourier} tend to \(e^{-2\pi^2r^2}>0\), including \(1\) when
+\(r=0\), a contradiction. Thus \(q_n=o(\sigma_n)\), equivalently
+\(q_n=o(n^2)\). This subsequence argument includes nonmonotone, critical,
+and supercritical sequences, and completes the proof of
+Theorem~\ref{thm:main}.
+
+For comparison with the original local theorem in \cite{ST}, define its
+centered Gaussian unit-cell mass
+\[
+ c_n(k)=
+ \int_{(k-\mu_n-1/2)/\sigma_n}^{(k-\mu_n+1/2)/\sigma_n}\phi(x)\,dx .
+\]
+Taylor's theorem about \((k-\mu_n)/\sigma_n\), integrated symmetrically,
+cancels the linear term and proves, uniformly in \(k\),
+\[
+ |c_n(k)-g_n(k)|\leq\frac{\|\phi''\|_\infty}{24\sigma_n^3}.
+\]
+Hence \eqref{eq:llt} also gives
+\[
+ \sup_{k\in\Z}|\Pp(T_n=k)-c_n(k)|
+ =O_{p,\varepsilon}(n^{-5/2+\varepsilon})+O_p(n^{-6})
+ =o(n^{-2})\qquad(0<\varepsilon<1/2).
+\]
+Thus the density convention of the imported theorem also supplies the
+original cell convention; this is not a change of the triangle target.
+
+\paragraph{Verification and disclosure.}
+The supporting materials distinguish fresh exact finite checks, proof
+reviews, and source inspection from historical records. Finite enumeration
+checks the moment and counting identities; it does not establish an
+asymptotic theorem. AI tools were used extensively in developing,
+reconstructing, drafting, and verifying this work, including independent
+internal AI adversarial reviews. This note is unrefereed and has received
+no external human peer review or formal proof-assistant certification.
+The imported local limit theorem remains a named external mathematical
+premise. No novelty or historical-priority claim is made.
+
+\begin{thebibliography}{9}
+\bibitem{GK}
+J.~Gilmer and S.~Kopparty,
+\emph{A local central limit theorem for triangles in a random graph},
+Random Structures Algorithms \textbf{48} (2016), no.~4, 732--750.
+\href{https://doi.org/10.1002/rsa.20604}{doi:10.1002/rsa.20604}.
+Author manuscript dated 6 December 2014:
+\href{https://sites.math.rutgers.edu/~sk1233/triangles.pdf}{author PDF}.
+
+\bibitem{B}
+R.~Berkowitz,
+\emph{A Quantitative Local Limit Theorem for Triangles in Random Graphs},
+\href{https://arxiv.org/abs/1610.01281v3}{arXiv:1610.01281v3}
+(submitted 2016; archive revision 2017).
+
+\bibitem{ST}
+A.~Scott (joint work with A.~Tateno),
+\emph{On the Number of Triangles in a Random Graph},
+in \emph{Combinatorics and Probability}, Oberwolfach Report 23/2009,
+pp.~1279--1280.
+\href{https://doi.org/10.4171/OWR/2009/23}{doi:10.4171/OWR/2009/23}.
+
+\bibitem{SS}
+A.~Sah and M.~Sawhney,
+\emph{Local limit theorems for subgraph counts},
+J.~Lond.\ Math.\ Soc.\ (2) \textbf{105} (2022), no.~2, 950--1011.
+\href{https://doi.org/10.1112/jlms.12523}{doi:10.1112/jlms.12523}.
+Preprint version used:
+\href{https://arxiv.org/abs/2006.11369v1}{arXiv:2006.11369v1} (2020).
+\end{thebibliography}
+\end{document}
