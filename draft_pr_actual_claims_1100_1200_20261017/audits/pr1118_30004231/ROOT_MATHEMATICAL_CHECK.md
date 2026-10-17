@@ -1,6 +1,6 @@
 # Root mathematical reconstruction: PR1118 / 30004231
 
-Pinned head: 8592fb7297d3c4973f2778c47cfa8972cba896a6. Review started2026-10-17. This records the root's own deduction; independent geometry/topology adversaries remain pending. No mathematical acceptance or priority conclusion is presumed.
+Pinned head: 8592fb7297d3c4973f2778c47cfa8972cba896a6. Review started2026-10-17. This records the root's own deduction; both independent geometry/topology adversaries now pass and root has read their full reports and reproduced the final checkers. Mathematics is accepted for the literal printed scope; priority remains pending.
 
 ## Exact target
 
@@ -32,7 +32,7 @@ A wedge of3-spheres is connected and has no first rational homology. Both obstru
 
 The cited Adiprasito et al. arXiv:1607.00347v1, Section1.2 and Section3, defines totally mixed using summand facets, a different condition. Its positive counting theorem cannot be imported to this target without checking hypotheses. This is a definition comparison only, not a completed priority audit.
 
-Root has found no analytic or combinatorial gap in the self-contained proof. Independent exact coordinate reconstruction and exact chain computations remain pending. Priority audit will follow mathematical acceptance. No new-resolution preprint is prepared at this stage.
+Root has found no analytic or combinatorial gap in the self-contained proof. Independent exact coordinate reconstruction and exact signed rational chain computations both pass, with no required repair. Root's normal and optimized reruns agree; see ROOT_REPRODUCTION.json. Priority audit will follow mathematical acceptance. No new-resolution preprint is prepared at this stage.
 
 Primary sources inspected:
 - https://ems.press/content/serial-article-files/46818

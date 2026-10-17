@@ -389,6 +389,41 @@ def main():
     mixed3 = [f for f, r in r3.items() if r["mixed"]]
     check(len(mixed3) == 6 and all(not (a < b or b < a) for a, b in combinations(mixed3, 2)),
           "tetrahedron difference control")
+    # A lower-dimensional summand control deliberately ACCEPTS the whole sum.
+    # Two perpendicular segments have a full rectangle with additive dimension.
+    seg1 = ((0, 0), (1, 0))
+    seg2 = ((0, 0), (0, 1))
+    square, squarefacets = facet_hull(add(a, b) for a in seg1 for b in seg2)
+    squarefaces = face_lattice(square, squarefacets)
+    squarerecords = audit_exposures(square, squarefacets, squarefaces, seg1, seg2)
+    squarefull = frozenset(range(len(square)))
+    check(squarerecords[squarefull]["dims"] == (2, 1, 1) and
+          squarerecords[squarefull]["mixed"], "lower-dimensional whole-sum positive control")
+    check(sum(r["mixed"] for r in squarerecords.values()) == 1, "segment mixed-face control")
+    # Exact rational affine coordinates: shear/rescale and translate the summands
+    # independently. This destroys coordinate-level product appearance while
+    # preserving every incidence, canonical face and dimension.
+    def linear(p):
+        return (Fraction(p[0], 2)+Fraction(p[4], 3), p[1], p[2], p[3], 2*p[4])
+    shift1 = (Fraction(1, 7), 0, 2, 0, 0)
+    shift2 = (0, Fraction(-2, 5), 0, 0, 3)
+    shift_sum = add(shift1, shift2)
+    rp1 = tuple(add(linear(p), shift1) for p in p1)
+    rp2 = tuple(add(linear(p), shift2) for p in p2)
+    rsum = tuple(add(linear(p), shift_sum) for p in total)
+    rfacets = []
+    for n, h, f in sfacets:
+        rn = (12*n[0], 6*n[1], 6*n[2], 6*n[3], 3*n[4]-2*n[0])
+        rh = 6*h+dot(rn, shift_sum)
+        check(all(dot(p, rn) <= rh for p in rsum), "rational affine facet support")
+        check(f == frozenset(i for i, p in enumerate(rsum) if dot(p, rn) == rh),
+              "rational affine facet vertex set")
+        rfacets.append((rn, rh, f))
+    rrecords = audit_exposures(rsum, tuple(rfacets), sfaces, rp1, rp2)
+    for f, r in records.items():
+        rr = rrecords[f]
+        check((r["a"], r["b"], r["dims"], r["mixed"]) ==
+              (rr["a"], rr["b"], rr["dims"], rr["mixed"]), "rational affine invariance")
     output = {
         "status": "PASS", "arithmetic": "integer Bareiss determinants; Fraction Gaussian ranks; no asserts",
         "base_input_distinct_points_including_interior_origin": len(base_input),
@@ -406,6 +441,10 @@ def main():
         "whole_face_dimensions_sum_P1_P2": records[full]["dims"],
         "tetrahedron_control": {"vertices": len(q3), "facets": len(facets3),
                                 "faces_including_empty_whole": len(faces3), "mixed_antichain_size": len(mixed3)},
+        "lower_dimensional_control": {"whole_dimensions": [2, 1, 1], "whole_qualifies": True,
+                                      "mixed_face_count": 1},
+        "rational_affine_control": {"faces_rechecked": len(rrecords),
+                                    "all_dimensions_summands_and_incidences_preserved": True},
         "adverse_controls_rejected": rejected,
         "boundary_cases": "empty excluded; whole and both end faces tested; vertical faces exhaustively rejected"
     }
