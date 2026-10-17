@@ -1,3 +1,5 @@
 # Package round 2 independent review
 
 2026-10-17T17:56:15.310539+00:00 — 5%: Established fresh review boundary; read manuscript and deposit metadata, not round 1 conclusions. Candidate scope is exact tree/list values and outward-path family; priority remains bounded. No external mutations or contacts authorized.
+
+2026-10-17T18:00:40.384231+00:00 — 70%: Independently checked main forcing proof, BFS upper bound, all six extension quantifiers, rank-compression direction and guarded child-SDR recurrence. Fresh ZIP primary replay, -O, -OO and ordinary optional freeze replay passed. Own spine-elimination counts are0,0,0,0,8,6336; bad lists0. Cartesian crosschecks covered4578 recurrence states (2842 invalid leaf states),1728 rank-list/graph assignments and all729 extension length-vectors in{0,1,2}^6. Six real corruption controls fail at substantive input/hash/fresh-result checks; restored package passes. Source URL streams exactly match retained PDFs. All three publication pages visually clean; temporary renders removed to limit disk. Transient ENOSPC retry succeeded; no candidate/frozen original changed.
