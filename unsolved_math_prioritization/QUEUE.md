@@ -1783,7 +1783,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1772 | 30004307 / OWR-17294-007 | Second-Cohomology Torsion of Finite Abelian Quandles | 0.0576 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1773 | 30004316 / OWR-17294-017 | Bijectivity of the Quantum Symmetrizer | 0.0576 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1774 | 30004534 / OWR-2654827-016 | Eventual Lefschetz Dichotomies for Symmetric Ideal Chains | 0.0574 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 1775 | 30004611 / OWR-4990374-017 | Exact Sequences for Logarithmic Derivation Sheaves | 0.0571 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 1775 | 30004611 / OWR-4990374-017 | Exact Sequences for Logarithmic Derivation Sheaves | 0.0571 | 5.0 | 3 | 2021 | exhausted | 5 new shared passes; lifetime unknown |  | [Audited reader and source-version appendix](attempts/30004611/public/README.md): main question UNSOLVED. Proved generic-H (over infinite fields), low-rank and respective local-freeness short exact sequences; all-rank corrected complexes; ungraded fixed-poset epimorphism rigidity (dimension >= 3). Seven-plane application requires characteristic != 2. Separate counterexample to specified arXiv:2008.13700v3 statements; published version uninspected. No novelty claim. |  |
 | 1776 | 30005160 / OWR-11101912-009 | Strict Majorant Properties at Fixed Noneven Exponents | 0.0568 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1777 | 30005572 / OWR-13750341-006 | Eisenstein Maps from Bianchi Homology to K2 | 0.0564 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1778 | 30005770 / OWR-14298158-015 | Diagonal Permuton Limits for Skew-Sum Avoidance | 0.0559 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |

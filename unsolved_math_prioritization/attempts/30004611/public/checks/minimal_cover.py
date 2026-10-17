@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+# Reader edition: explicit runtime checks; results go only to stdout.
+"""Independent degree-zero Cech audit, using only the minimal-flat open cover.
+
+This does not import the author's full-poset cochain implementation. Each flat
+is recovered from normal equations, and D(A_X)_0 is reconstructed as X.
+"""
+from fractions import Fraction
+from itertools import combinations
+import json
+
+def test(n, p):
+
+    def value(x):
+        return Fraction(x) if not p else x % p
+
+    def invert(x):
+        return 1 / x if not p else pow(x, -1, p)
+
+    def clean(x):
+        return x if not p else x % p
+
+    def reduce_matrix(rows, width):
+        a = [[value(x) for x in row] for row in rows]
+        pivots = []
+        for col in range(width):
+            found = next((i for i in range(len(pivots), len(a)) if a[i][col]), None)
+            if found is None:
+                continue
+            j = len(pivots)
+            a[j], a[found] = (a[found], a[j])
+            inv = invert(a[j][col])
+            a[j] = [clean(x * inv) for x in a[j]]
+            for i in range(len(a)):
+                if i != j and a[i][col]:
+                    scale = a[i][col]
+                    a[i] = [clean(x - scale * y) for x, y in zip(a[i], a[j])]
+            pivots.append(col)
+            if len(pivots) == len(a):
+                break
+        return (a[:len(pivots)], pivots)
+
+    def kernel(rows):
+        rr, pp = reduce_matrix(rows, n)
+        ff = [j for j in range(n) if j not in pp]
+        basis = []
+        for j in ff:
+            b = [value(0)] * n
+            b[j] = value(1)
+            for row, k in zip(rr, pp):
+                b[k] = clean(-row[j])
+            basis.append(b)
+        return (basis, ff)
+    normals = [[1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 1]]
+    if n == 4:
+        normals = [a + [0] for a in normals] + [[0, 0, 0, 1]]
+    flats = set()
+    for size in range(len(normals) + 1):
+        for chosen in combinations(range(len(normals)), size):
+            basis, _ = kernel([normals[h] for h in chosen])
+            flats.add(frozenset((j for j, form in enumerate(normals) if all((clean(sum((a * b for a, b in zip(form, v)))) == 0 for v in basis)))))
+    nonzero = [a for a in flats if len(a) < len(normals)]
+    minimal = sorted([a for a in nonzero if not any((a < b for b in nonzero))], key=lambda a: tuple(sorted(a)))
+    if not all((len(kernel([normals[h] for h in a])[0]) == 1 for a in minimal)):
+        raise RuntimeError('Check failed at accepted-source line 60')
+    levels = [list(combinations(range(len(minimal)), k)) for k in range(1, len(minimal) + 1)]
+    data = {}
+    offsets = []
+    dims = []
+    for level in levels:
+        off = {}
+        dim = 0
+        for subset in level:
+            active = set.intersection(*(set(minimal[i]) for i in subset))
+            data[subset] = kernel([normals[h] for h in sorted(active)])
+            off[subset] = dim
+            dim += len(data[subset][0])
+        offsets.append(off)
+        dims.append(dim)
+    matrices = []
+    ranks = []
+    for k in range(len(levels) - 1):
+        rows = [[value(0)] * dims[k] for _ in range(dims[k + 1])]
+        for target in levels[k + 1]:
+            target_basis, target_free = data[target]
+            for omit in range(len(target)):
+                source = target[:omit] + target[omit + 1:]
+                source_basis, _ = data[source]
+                for j, b in enumerate(source_basis):
+                    coeffs = [b[i] for i in target_free]
+                    if not all((clean(sum((c * v[i] for c, v in zip(coeffs, target_basis))) - b[i]) == 0 for i in range(n))):
+                        raise RuntimeError('Check failed at accepted-source line 86')
+                    for i, c in enumerate(coeffs):
+                        row, col = (offsets[k + 1][target] + i, offsets[k][source] + j)
+                        rows[row][col] = clean(rows[row][col] + (-1) ** omit * c)
+        if matrices:
+            prev = matrices[-1]
+            for row in rows:
+                for col in range(len(prev[0])):
+                    if not clean(sum((a * prev[i][col] for i, a in enumerate(row) if a))) == 0:
+                        raise RuntimeError('Check failed at accepted-source line 94')
+        matrices.append(rows)
+        ranks.append(len(reduce_matrix(rows, dims[k])[1]))
+    betti = [d - (ranks[k - 1] if k else 0) - (ranks[k] if k < len(ranks) else 0) for k, d in enumerate(dims)]
+    expected = [0] * len(dims)
+    if n == 3:
+        expected[1] = 1
+    if not betti == expected:
+        raise RuntimeError((n, p, betti))
+    return dict(variables=n, field='Q' if not p else 'F' + str(p), degree=0, all_flats=len(flats), punctured_flats=len(nonzero), minimal_open_cover_size=len(minimal), cochain_dimensions=dims, differential_ranks=ranks, cohomology_dimensions=betti, inclusions_verified=True, differential_squared_zero=True)
+if __name__ == '__main__':
+    result = dict(method='Independent minimal-flat principal-open Cech complex in coefficient degree zero', checks=[test(n, p) for p in (0, 2, 3, 5) for n in (3, 4)])
+    print(json.dumps(result, indent=2))
