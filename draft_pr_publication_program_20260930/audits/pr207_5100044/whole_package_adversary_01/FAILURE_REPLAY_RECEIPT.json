@@ -1,0 +1,135 @@
+{
+  "schema": "fresh-failure-replay-public-receipt-v1",
+  "utc": "2026-10-17T00:01:16.357639+00:00",
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "exact_ordinary",
+      "optimized": false,
+      "returncode": 0,
+      "stdout_sha256": "8ae1bcb5b816affd98c538ee3831404c074a3a8b7eda7f6042c999c2a1940eea",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "exact_optimized",
+      "optimized": true,
+      "returncode": 0,
+      "stdout_sha256": "ad3d16be3e6cc36d9e8b365d980ab2148ef57c9723750e620c49f8b336ec94d0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "geometry_optimized",
+      "optimized": true,
+      "returncode": 0,
+      "stdout_sha256": "04b354b3cc9fcd07e4947d9aa78f31ea56a10f9f01c3e8e3fac69cfce9dec092",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "wrong_focal_area_factor",
+      "optimized": true,
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7f1c5a906b870e61bef88d4a1e548ce87c0a7d6a578d3dbc01d7df1161af1011",
+      "failure": {
+        "status": "FAIL",
+        "error_type": "VerificationError",
+        "error": "inverted_edge_shoelace_contribution_divided_by_b: nonzero exact residual -du*dv*h*(h - 1)**2*(h + 1)**2*(k*z + 1)**2*(h*k*z - 1)**3*(h*k*z + 1)**3*(h**4*k**3*z + h**4*k**2 - 2*h**2*k**2 - 2*h**2*k*z + k*z + 1)**2"
+      }
+    },
+    {
+      "name": "wrong_local_decomposition",
+      "optimized": true,
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d6f68bf937db39f284b10cc596a131fec8c1acaa2b14554582c687f51a51f1d8",
+      "failure": {
+        "status": "FAIL",
+        "error_type": "VerificationError",
+        "error": "generic_local_rational_decomposition: nonzero exact residual k**2*t*x*(-U + V*k)*(U - V)**2*(U + V*k)*(U**2 + 2*U*V*k**2*x + V**2*k**2*x)"
+      }
+    },
+    {
+      "name": "wrong_boundary_focus_sign",
+      "optimized": true,
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f5c99292561fcd96a1a9fc7c664eb2770e3369b93f0cd12ed2164b5fbc1996fa",
+      "failure": {
+        "status": "FAIL",
+        "error_type": "VerificationError",
+        "error": "boundary_inverse_minus_P: nonzero exact residual sqrt(3)"
+      }
+    },
+    {
+      "name": "nonfinite_geometric_vertex",
+      "optimized": true,
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9c4f0bc4f0b494dc8849741926751e1d4fab9ba5bffd305d8da10776208eb861",
+      "failure": {
+        "status": "FAIL",
+        "error_type": "VerificationError",
+        "error": "area vertex x: nonfinite scalar"
+      }
+    },
+    {
+      "name": "exact_output_exists",
+      "optimized": true,
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6cddae0731713fd779e69a51b0b100e71eca25ba02e0ffa7537b42bbe0953021",
+      "failure": {
+        "status": "FAIL",
+        "error_type": "FileExistsError",
+        "error": "[Errno 17] File exists: '/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr207_5100044/whole_package_adversary_01/owned_code/fresh_validation/protected_existing_file.txt'"
+      }
+    },
+    {
+      "name": "geometry_output_exists",
+      "optimized": true,
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6cddae0731713fd779e69a51b0b100e71eca25ba02e0ffa7537b42bbe0953021",
+      "failure": {
+        "status": "FAIL",
+        "error_type": "FileExistsError",
+        "error": "[Errno 17] File exists: '/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr207_5100044/whole_package_adversary_01/owned_code/fresh_validation/protected_existing_file.txt'"
+      }
+    },
+    {
+      "name": "insufficient_stress_precision",
+      "optimized": true,
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d62a63c83558b2eb24399250e6a32a7570b388b3daf402639d2c9e2f2b9243ca",
+      "failure": {
+        "status": "FAIL",
+        "error_type": "VerificationError",
+        "error": "--stress requires --dps at least 130"
+      }
+    },
+    {
+      "name": "invalid_physical_inputs",
+      "optimized": true,
+      "returncode": 0,
+      "stdout_sha256": "ed9ec0efc8c60e33403ef0a62c3257b1795b352c32fcc0abb712a3dd5e3d6eda",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejected_physical_cases": [
+        "nan_modulus",
+        "degenerate_modulus",
+        "repeated_label",
+        "wrong_parity_as_target"
+      ]
+    }
+  ],
+  "source_pins": {
+    "verify_exact.py": "89ebb64e6a0763fe80101cd4d6ef0a09db5aa31af6c6da7df3a1f85352f2186a",
+    "diagnose_geometry.py": "ac227c62554300526c147fd81abe7ec800f45cf87d589db95a2b7b241bec26c6"
+  },
+  "harness_sha256": "f5df95006c9e925153d4ee3b31f4789745b6696850883402b9b8a5eb7266f8ed",
+  "actual_validation_result_sha256": "6c863172522421522170914d6eeec52d23112483bacc88b29baa096d4ff57cf9",
+  "actual_validation_result_bytes": 8791,
+  "raw_run_directory": "owned_code/fresh_validation",
+  "raw_fixture_tree_selected_for_public_manifest": false,
+  "raw_results_are_actual_computation_not_fixtures": true
+}
