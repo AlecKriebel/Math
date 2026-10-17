@@ -1,9 +1,12 @@
-PR210 completion checkpoint — 2026-10-17T04:01:01.105037+00:00
+Conditional PR211 adoption100 proposal; no actual checkpoint receipt.
 
-The existing six-page note and source archive, DOI10.5281/zenodo.23398175, and tracker row113 are verified and adopted. The original PR210 was already merged at15cfbc62df85b211d6a5cbf257d25df06b4a044c. Two NEW sequential whole-package reviews and the mathematical/bounded-priority audit are accepted. Current attribution and dated-source coverage are in audits/pr210_5100033/ADOPTION_INDEX.md and CURRENT_ADOPTION_NOTE.md. No duplicate upload, version, row or merge.
+# Ordered publication program: PR211 final adoption proposal
 
-Case100% becomes current only after the separately verified native adoption CAS/readback and exact locked five-view installation. Ascending totals52 completed/36 published or adopted; dated denominator99; lastPR210/nextnumeric211. Only preserved status exactlyclaimed_solved is eligible. Goal remains active and incomplete.
+PR211: An odd-period product for focal inversions of outer billiard polygons. Existing DOI 10.5281/zenodo.23394004; tracker 'Math Puzzles'!A109:D109. Original PR already merged at ec6c938f1b734610ba37c21beaf10ec24cdd077c.
 
-Later exact-target and classical results are credited. Historical novelty outside the inspected corpus, firstness, simultaneous discovery and causal independence are not certified. AI use/unrefereed status remain disclosed. Actual checkpoint identity and installation are certified separately.
+Both fresh sequential whole-package reviews passed and were Root accepted. Universal proof and portable computations are verified; current addendum explicitly credits the later exact theorem. Historical priority, causal independence and exact simultaneity remain unresolved. Extensive AI use and lack of conventional human refereeing are disclosed.
 
-<!-- PR210_NATIVE_PHASE_FACTS {"active_PR":210,"advance_to_next_PR_authorized_now":true,"case_workflow_estimate_percent":100,"completed":true,"fully_completed_count":52,"goal_complete":false,"last_completed_PR":210,"next_numeric_intake_cursor":211,"publication_ready":true,"published_count":36} -->
+Proposed53 completed and37 published-or-adopted; last completed211; next numeric intake212;53/99 of the dated October3 eligible census. Goal incomplete and continuing. Actual terminal evidence is saved separately after native expected-SHA force-false CAS and exact locked five-view verification.
+
+
+<!-- PR211_NATIVE_PHASE_FACTS {"active_PR":211,"advance_to_next_PR_authorized_now":true,"case_workflow_estimate_percent":100,"completed":true,"fully_completed_count":53,"goal_complete":false,"last_completed_PR":211,"next_numeric_intake_cursor":212,"publication_ready":true,"published_count":37} -->
