@@ -1,0 +1,4 @@
+# Triangle-specific independent priority audit
+
+- 2026-10-17T22:15Z — 5%: Began only after root MATH_GATE PASS. Read original PROOF.md, AUDIT.md, SOURCES.json, ACCEPTANCE.md and root math review/gate. No other new priority or source-question outputs read. Scope fixed-p ordinary-triangle relative modular uniformity for arbitrary positive integer q(n).
+- 2026-10-17T22:18Z — 30%: Freshly retained nine primary PDFs, including Berkowitz v1/v3, 2009 report, Gilmer–Kopparty author version, SS v1, 2023 sparse-triangle work, joint-count work, and 2008/2017 talk reports. Began citation genealogy and version metadata; whole retention does not mean whole proof audit. Existing literature is substantive, so no firstness/new-LLT claim is justified. A mistyped speculative arXiv identifier 1412.0538 opened an unrelated graph-deployment paper; excluded from evidence, correct Gilmer–Kopparty identifier 1412.0257 subsequently located by citation.
