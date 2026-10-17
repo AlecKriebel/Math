@@ -1,0 +1,1482 @@
+            JOHN NASH’S NONLINEAR ITERATION
+
+            CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+
+
+
+                                  Contents
+  1. Introduction                                                                  1
+  1.1. The Nash-Kuiper theorem                                                     2
+  1.2. The Euler equations                                                         4
+  1.3. Rigidity and flexibility: a Hölder threshold?                              6
+  2. Nash’s C 1 iteration “stage”                                                  7
+  2.1. Nash’s spirals                                                              9
+  2.2. An unusual perturbation: the quadratic term wins                           12
+  3. Technical points                                                             13
+  4. The Euler-Reynolds system and the iteration stage for Euler                  15
+  4.1. The Euler-Reynolds system                                                  15
+  4.2. Selection of a good R̊                                                     16
+  4.3. The iteration stage in Euler                                               17
+  5. The oscillatory ansatz                                                       18
+  5.1. First condition on the fluctuation profile W : stationary phase
+              argument                                                            19
+  5.2. Second condition on the fluctuation profile: fast variables                21
+  6. Beltrami flows                                                               22
+  6.1. Decomposition of the Reynolds stress                                       22
+  6.2. Galilean transformations                                                   23
+  7. A two scale correction to the oscillatory ansatz                             25
+  7.1. The transport term and the second scale                                    25
+  7.2. The energy profile and conclusions                                         27
+  References                                                                      28
+
+
+
+                              1. Introduction
+   In this note we examine the analytical part of the famous 1954 paper
+of John F. Nash on the isometric embedding problem [48]. Our aim is to
+emphasize how Nash’s discovery reaches far beyond differential geometry
+and that, rather than a result in differential geometry, the construction of
+Nash should be seen as a fully nonlinear iteration scheme that has potential
+applications for constructing solutions to partial differential equations in
+
+  L.Sz. gratefully acknowledges the support of ERC Grant Agreement No. 277993 .
+                                        1
+2              CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+general. In classical perturbation methods for nonlinear equations, such as
+the Newton scheme, the linearization of the equation plays the key role. In
+contrast, in the scheme of Nash the leading order term is quadratic in the
+perturbation and the linearization becomes negligible. In some sense this
+means that the Nash scheme is genuinely infinite dimensional, there is no
+finite dimensional analogue! It is therefore not entirely surprising that a
+scheme of this type leads to highly irregular solutions.
+   After giving some of the details of Nash’s argument we discuss how we
+have taken advantage of this point of view in [30] to produce continuous
+solutions of the incompressible Euler equations which behave in a surprising
+way. Our paper has given the first approach to a well known conjecture of
+Lars Onsager in the theory of turbulence, but rather than focusing on the
+state of the art for the latter and similar problems in the PDE literature
+(for which we refer to the survey article [27]), here we focus instead on the
+main underlying ideas and their similarities to Nash’s astonishing iteration
+technique.
+1.1. The Nash-Kuiper theorem. The existence of isometric immersions
+(resp. embeddings) of Riemannian manifolds into some Euclidean space is
+a classical problem, explicitly formulated for the first time by Schläfli, see
+[57]. Given a Riemannian manifold (Σ, g), an immersion (resp. embedding)
+u : Σ → Rn is called an isometry if it preserves the length of curves, namely
+if
+              `g (γ) = `e (u ◦ γ)     for any C 1 curve γ : I → Σ.          (1)
+Here `e (η) denotes the usual euclidean length of a curve η, namely
+                                        ˆ
+                               `e (η) = |η̇(t)| dt ,
+
+whereas `g (γ) denotes the length of γ in the Riemannian manifold (Σ, g):
+                              ˆ p
+                     `g (γ) =     g(γ(t))[γ̇(t), γ̇(t)] dt .           (2)
+
+If U ⊂ Σ is a coordinate patch, we can express g as customary in local
+coordinates:
+                            g = gij dxi ⊗ dxj ,
+where we follow the Einstein’s summation convention. The square of the
+integrand in (2) is then
+                   g(γ(t))[γ̇(t), γ̇(t)] = gij (γ(t))γ̇ i (t)γ̇ j (t) .
+Nash started working at this question shortly after his PhD, apparently
+because of a bet with a colleague at the MIT department, where he had just
+moved as a young faculty, cf. [47]. The problem was considered a formidable
+one and at that time comparatively little was known. Janet [39], Cartan [15]
+and Burstin [14] had proved the existence of local isometric embeddings in
+the case of analytic metrics. For the very particular case of 2-dimensional
+spheres endowed with metrics of positive Gauss curvature, Weyl in [62] had
+                     JOHN NASH’S NONLINEAR ITERATION                             3
+
+raised the question of the existence of isometric embeddings in R3 . The
+Weyl’s problem was solved by Lewy in [44] for analytic metrics and only
+shortly before Nash’s work another brilliant young mathematician, Louis
+Nirenberg, had settled the case of smooth metrics (in fact C 4 , see [51] and
+[52]); the same problem had been solved independently by Pogorolev [54],
+building upon the work of Alexandrov [1] (see also [55]).
+   In his two celebrated works on the topic which appeared in 1954 and
+1956 (cf. [48, 49]; he wrote a third contribution in the sixties, cf. [50]) Nash
+completely revolutionized the subject. He first proved a very counterintu-
+itive fact which shocked the geometers of his time, namely the existence
+of C 1 isometric embeddings in codimension 2 in the absence of topologi-
+cal obstructions. He then showed the existence of smooth embeddings in
+sufficiently high codimension, introducing his celebrated approach to “hard
+implicit function theorems”.
+  When u : Σ → Γ is an immersion of a differentiable manifold Σ into a
+Riemannian manifold (Γ, h), it is customary to denote by u] h the induced
+pull-back metric on Σ, which is given by the relation
+     u] h(p)[X, Y ] = h(u(p))[du(X), du(Y )]          for X, Y tangent to Σ.
+If we denote by e the standard euclidean metric on RN , an isometric im-
+mersion of (Σ, g) into RN is characterized by the identity u] e = g (and note
+that the relation itself guarantees that u must be an immersion even if we
+do not assume it a priori). In a local coordinate patch the latter identity
+gives a system of partial differential equations:
+                                ∂i u · ∂j u = gij ,                            (3)
+consisting of n(n + 1)/2 equations in N unknowns.
+   A reasonable guess would therefore be that the system is solvable (at least
+locally) when N = n(n + 1)/2: this was in fact what Schläfli conjectured in
+the nineteenth century and what Janet, Cartan and Burstin proved locally
+for analytic metrics. However, to quote John Milnor, “Nash was never
+a reasonable person” (cf. [26]): in his first (very short) paper in 1954 he
+astonished the geometry world and proved that the only true obstructions to
+the existence of isometric immersions are topological. As soon as N ≥ n + 1
+and there are no such obstructions, then there are in fact plenty of such
+immersions. Indeed Nash gave a proof for N ≥ n + 2 and just remarked
+that a similar statement could be proved for N ≥ n + 1: the details were
+then given in two subsequent notes by Kuiper, [42].
+   The resulting theorem, which is nowadays called the Nash-Kuiper The-
+orem on C 1 isometric embeddings, is usually stated after introducing the
+concept of “short map”.
+Definition 1.1. Let (Σ, g) be a Riemannian manifold. An immersion v :
+Σ → RN is short if we have the inequality v ] e ≤ g in the sense of quadratic
+forms. If the inequality < holds we then say that v is strictly short.
+4              CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+  As usual, the inequality h ≤ g (in the sense of quadratic forms) is the
+requirement hij v i v j ≤ gij v i v j for any tangent vector v, whereas h < g means
+that the strict inequality holds whenever v is nonzero.
+  The Nash-Kuiper Theorem is then the following
+Theorem 1.2. Let (Σ, g) be a smooth closed n-dimensional Riemannian
+manifold and v : Σ → RN a C ∞ short immersion with N ≥ n + 1. Then,
+for any ε > 0 there exists a C 1 isometric immersion u : Σ → RN such that
+ku − vkC 0 ≤ ε. If v is, in addition, an embedding, then u can be assumed to
+be an embedding as well.
+  A suitable version of this theorem can be proved even for open manifolds
+and the smoothness of v and g can be considerably relaxed: the metric needs
+only to be continuous, whereas it is sufficient that the short map is C 1 .
+   If Σ is a smooth closed manifold, as soon as there is an immersion v :
+Σ → RN we can make it short by simply multiplying it by a small positive
+constant. Thus, Theorem 1.2 is not merely an existence theorem, but it
+shows that there exists a huge (essentially C 0 -dense) set of solutions in
+rather low codimension, even for the most general manifolds, because the
+classical Theorem of Whitney guarantees the existence of an embedding
+already in R2n−1 .
+   This type of abundance of solutions is a central aspect of Gromov’s h-
+principle, for which the isometric embedding problem is a primary example
+(see [35, 32]). For C 1 isometric embeddings of surfaces to R3 the h-principle
+is particularly striking: for classical (e.g. C 2 ) maps preservation of the met-
+ric (i.e. being isometric) leads to higher order constraints, most notably the
+Theorema Egregium of Gauss. In the Weyl problem, i.e. when (S2 , g) has
+positive Gauss curvature, this additional constraint is a crucial element in
+the proof of rigidity: C 2 isometric immersions into R3 are uniquely deter-
+mined up to a rigid motion ([18, 37], see also [59] for a thorough discussion).
+   In particular any C 2 isometric immersion of the standard sphere in R3
+must map it to the boundary of some ball of radius 1, whereas the Nash-
+Kuiper theorem implies the existence of C 1 isometric embeddings which
+crumple it in an arbitrarily small region of the 3-dimensional space. It
+is thus clear that solutions to (3) have a completely different qualitative
+behavior at low and high regularity (i.e. below and above C 2 ).
+
+1.2. The Euler equations. The original h-principle of Gromov pertains to
+various problems in differential geometry, where one expects high flexibility
+of the moduli space of solutions due to the underdetermined nature of the
+problem. It was not expected that the same principle and similar methods
+could be applied to problems in mathematical physics (we quote Gromov’s
+speech at the Balzan Prize [36]: The class of infinitesimal laws subjugated by
+the homotopy principle is wide, but it does not include most partial differen-
+tial equations (expressing infinitesimal laws) of physics with a few exceptions
+                     JOHN NASH’S NONLINEAR ITERATION                          5
+
+in favor of this principle leading to unexpected solutions. In fact, the pres-
+ence of the h-principle would invalidate the very idea of a physical law as it
+yields very limited global information effected by the infinitesimal data. See
+also the introduction in the book [32]).
+   In a first paper [28] (see also the survey article [29]) we however found
+that some well known (and hard to construct) examples of non-uniqueness
+of solutions due to Scheffer [56] and later to Shnirelman [58] for the incom-
+pressible Euler equations
+                       
+                        ∂t v + divx (v ⊗ v) + ∇p = 0,
+                                                                           (4)
+                          divx v = 0,
+                       
+
+could be interpreted as some kind of h-principle in a very natural way:
+after introducing a suitable notion of “subsolution” for (4) (in analogy to
+short maps) we could prove that it can be approximated arbitrarily well by
+bounded weak solutions, in an appropriate weak topology, following a well-
+known path in the literature for differential inclusions, see [16, 10, 21, 46].
+   Dealing with merely bounded (i.e. v ∈ L∞ ) weak solutions of the Euler
+equations (4) is somewhat reminiscent of dealing with Lipschitz solutions
+for the isometric embedding problem. Note that in this case one could give
+two different notions of “weak solution”:
+      • one sticking to requirement (1);
+      • the other postulating (3) to be valid almost everywhere.
+The first one is indeed stronger than the second. Of course if we consider
+Lipschitz solutions it means that we are allowed to “fold” our Riemannian
+manifold and thus an h-principle statement is much less surprising than the
+Nash-Kuiper theorem. Moreover in the Lipschitz category one can even
+impose the target to have the same dimension as the Riemannian manifold,
+cf. [41].
+   Coming back to the Euler equations, classical (C 1 ) solutions of (4) are
+“rigid” in the following sense:
+    (a) they are uniquely determined
+                                   ´ by their initial data at time t = 0;
+    (b) the total kinetic energy 21 |v(x, t)|2 dx is constant in time.
+Such additional constraints should be compared to the ones discussed for
+C 2 isometric embeddings of surfaces in R3 : by the Gauss theorem the Gauss
+curvature is preserved (which is true in general and can be considered as the
+analog of (b)), and in the particular case of the Weyl problem C 2 isometric
+embeddings are unique up to affine transformations (which can be considered
+as an analog of (a)). Both of these “rigidity statements” for the Euler
+equations fail for the L∞ weak solutions of (4) constructed in [56, 58, 28].
+   The relation between the constructions in the theory of differential in-
+clusions and those typical of the h-principle was first pointed out in an
+important paper by Müller and Šverak [46] (see also [40]). Inspired by this
+6              CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+connection and building upon some of the intuitions of Nash’s remarkable
+work, we were able to prove a very counterintuitive fact, namely the exis-
+tence of “badly behaved” continuous solutions, cf. [30]. More precisely, if
+we denote by T3 the 3-dimensional torus S1 × S1 × S1 , we then have the
+following theorem.
+Theorem 1.3. Let e : [0, 1] → R be a positive smooth function. For any
+ε > 0 there exists a continuous weak solution (v, p) : T3 × [0, 1] → R3 × R of
+the Euler equations (4) such that supt kvkH −1 (T3 ) ≤ ε and
+                  ˆ
+                      |v(x, t)|2 dx = e(t)        ∀t ∈ [0, 1] .            (5)
+                   T3
+   This theorem shows that the second “rigidity statement” (b) above fails
+for continuous solutions. Here we concentrate on the issue of energy con-
+servation because of its relevance to 3D turbulence (cf. Section 1.3 below),
+but similar techniques can be used to show non-uniqueness for continuous
+solutions as well [38, 22, 23]. Observe however a crucial difference between
+Theorem 1.2 and Theorem 1.3: Nash’s theorem shows that any short map
+can be approximated with isometries, whereas there is no reference to a
+similar “density” result in Theorem 1.3. It is however possible to prove an
+appropriate statement of that kind by improving upon the methods: we
+refer the reader to the recent note [23] for the precise statement.
+  In the next sections we will show the similarities and the differences be-
+tween the proofs of Theorem 1.2 and Theorem 1.3. Since the argument of
+Nash is short and rather elementary, we give it in full details. We then
+proceed to the main points in the proof of Theorem 1.3, highlighting how
+Nash’s ideas turned out to be decisive for our proof, but also pointing out
+some important differences.
+1.3. Rigidity and flexibility: a Hölder threshold? In both problems
+seen above a natural question is whether there is a sharp threshold regu-
+larity which distinguishes between the two different behaviors of solutions,
+i.e. between rigidity and h-principle statements. In the case of periodic
+                                                                        1
+solutions of the Euler equations, this threshold is expected to be C 0, 3 , due
+to the following longstanding conjecture of Lars Onsager in the theory of
+turbulence [53]:
+Conjecture 1.4. Consider solutions (v, p) on T3 × [0, 1] of (4) satisfying
+the Hölder condition
+                        |v(x, t) − v(x0 , t)| ≤ C|x − x0 |θ ,              (6)
+where the constant C is independent of x, x0 ∈ T3 and t. Then
+   (a) If θ > 31 , any weak solution (v, p) of (4) satisfying (6) conserves the
+       energy;
+   (b) For any θ < 31 there exist weak solutions (v, p) of (4) satisfying (6)
+       which do not conserve the energy.
+                     JOHN NASH’S NONLINEAR ITERATION                             7
+
+   It was proved in the nineties that above this threshold weak solutions
+satisfy the law of conservation of the energy (see [19, 33]). Concerning the
+lower regularity range, a first adaptation of the arguments in [30] showed
+                                                                    1
+that energy conservation is violated by some solutions in C 0, 10 −ε , see [31].
+The threshold was later improved in [38] to 15 , see also [12], whereas if one
+gives up the uniform control of the Hölder exponent in time, it is possi-
+ble to reach 31 − ε: more precisely there are non-conservative solutions in
+              1
+L1 ((0, 1), C 3 −ε (T3 )), see [13] for the exact statement (and [11] for an im-
+portant first step).
+   For the isometric embedding problem the natural scale of spaces would
+be C 1,α and remarkably the question of rigidity and flexibility for solutions
+in such spaces was already studied in the fifties and the sixties by Borisov.
+In a series of papers in the fifties (see [4, 5, 6, 7]) Borisov proved that the
+                                                                              2
+rigidity for the Weyl’s problem holds in fact when the immersion is C 1, 3 +ε
+(for a much shorter proof see [20]). Later in [8] he announced a general h-
+principle statement for sufficiently small exponents ( 17 in the case of isometric
+embeddings of 2-dimensional disks in R3 ) and published in [9] a proof of a
+weaker conclusion. A complete proof of Borisov’s announced results has
+been given in [20]. More recently in [25] the thresold for 2-dimensional
+disks in R3 has been improved to 15 . Differently from the case of the Euler
+equations, there is no physical motivation to guess the existence of a critical
+exponent: however Gromov conjectures that the threshold is in fact 21 (see
+[35]).
+   In this note we will not discuss how to pass from continuous to Hölder
+solutions: the basic methods and ideas remain the same, the main points are
+in carefully estimating the error terms which arise in the iterations leading
+to the proofs of Theorem 1.2 and Theorem 1.3. This is by no means easy
+and indeed there are several subtle points and new ideas involved, especially
+if one is interested in getting the sharp exponents. However in this note we
+have decided to focus on the most important ideas and in particular on the
+relations and differences between Theorem 1.2 and Theorem 1.3.
+
+                     2. Nash’s C 1 iteration “stage”
+   In this section we introduce the main proposition of Nash’s scheme in the
+proof of Theorem 1.2. We restrict on purpose to the codimension 2 case
+(the one of Nash’s paper) to avoid as many technical points as possible,
+although the codimension 1 case does not need much more conceptual work.
+From now on we fix therefore a smooth closed Riemannian manifold Σ as in
+Theorem 1.2 and a corresponding smooth atlas A = {U` } made of finitely
+many coordinate patches U` , whose closures we assume to be topological
+Euclidean balls.
+   Given any symmetric (0, 2) tensor h on Σ we write h = hij dxi ⊗ dxj
+and denote by khk0,U` the supremum of the Hilbert-Schmidt norm of the
+matrices hij (p) for p ∈ U` . Similarly, if v : Σ → RN is a C 1 map, we write
+8              CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+kDvk0,U` for the supremum of the Hilbert-Schmidt norms of the matrices
+Dv(p) = (∂1 v(p), . . . , ∂n v(p)), where p ∈ U` . Finally we set
+                              khk0 := sup khk0,U`
+                                         `
+                            kDvk0 := sup kDvk0,U` .
+                                         `
+
+We are now ready to formulate the main inductive statement, which Nash
+calls “a stage”, cf. [48, Page 391].
+Proposition 2.1. Let (Σ, g) be as in Theorem 1.2 and z : Σ → RN a
+smooth strictly short immersion. For any η, δ > 0 there exists a smooth
+short z1 : Σ → RN such that
+                            kz − z1 k0 ≤ η ,                                   (7)
+                           kg − z1] ek0 ≤ δ ,                                  (8)
+                                       q
+                        kDz1 − Dzk0 ≤ C kg − z ] ek0 ,                         (9)
+
+for a constant C which depends only upon Σ. If z is injective, then we can
+choose z1 injective.
+   If we are only concerned with the case of immersions, Theorem 1.2 can
+easily be reduced to Proposition 2.1: we start with the short map v =: v0 and
+assume without loss of generality that it is strictly short. Apply Proposition
+2.1 with z = v0 , η = 4ε and δ = 41 to produce a second short immersion
+                                                                            ε
+z1 =: v1 . We then apply inductively the Proposition to z = vi with η = 2i+2
+and δ = 4−i−1 to generate z1 =: vi+1 . Thus the sequence vi converge in C 0
+to a map u with kv − uk0 ≤ 2ε . On the other hand by (9) we have
+                                                          C
+                                        q
+                   kDvi+1 − Dvi k0 ≤ C kg − vi] ek0 ≤ i ,
+                                                          2
+which implies that the convergence of vi to u is in fact in C 1 . This fact
+clearly implies that vi] e converges to u] e uniformly and thus that u] e = g.
+As already observed, the latter identity guarantees that u is an immersion.
+   Note next that at each step of the iteration we can ensure that each vi
+is indeed injective if the starting map v0 = v is injective (and hence an
+embedding). This however does not guarantee the injectivity of the limit.
+Assume to have performed the q−1 step and generated the maps v0 , v1 , . . . vq ,
+guaranteeing that all of them are injective. Define then the positive numbers
+          2γi := min{|vi (x) − vi (y)| : d(x, y) ≥ 2−i }      for i < q,
+where d is the geodesic distance induced by the Riemannian metric g. We
+then set η := min{2−q−2 ε, 2−q−1 γ1 , 2−q−1 γ2 , . . . , 2−q−1 γq−1 } and apply the
+Proposition to w = vq with η and δ = 4−q−1 to generate vq+1 . Clearly all
+the conclusions above still apply: we claim however that now the limit u is
+                    JOHN NASH’S NONLINEAR ITERATION                        9
+
+injective. Fix indeed two points x 6= y and let q be some natural number
+such that d(x, y) ≥ 2−q . We can then estimate
+                                                 X
+              |u(x) − u(y)| ≥|vq (x) − vq (y)| −   kvk+1 − vk k0
+                                                         k≥q
+                                       X
+                                                 −k−1
+                          ≥2γq −             2          γq ≥ γq > 0 .
+                                       k≥q
+
+   As already said, in this note we wish to focus on the analytic aspects
+of Nash’s paper and for this reason we give the following “local” version
+of Proposition 2.1. Here “local” is understood in the following sense: (1)
+we work in a single chart and (2) the metric error g − z ] e is assumed to
+be in a suitable neighborhood of the flat metric. Such requirements might
+seem rather restrictive, but in fact even this weaker Proposition is enough
+to prove Nash’s original statement (for the details we refer to [20]).
+   We define the following cone of positive-definite matrices for any r < 1:
+                       (                                 )
+                                           A
+                 Cr := A ∈ Symn×n : 1           − Id < r .
+                                         n tr A
+Geometrically Cr is a convex cone of opening “angle” r centered around the
+half-line {λId : λ > 0}.
+Proposition 2.2. There exists a dimensional constant r0 (n) > 0 with the
+following property. Let U ⊂ Rn be a bounded simply connected open domain,
+g ∈ C ∞ (U ) a smooth metric and z : U → RN a smooth short map such that
+                     g − z ] e ∈ Cr0             for all x ∈ U .        (10)
+For any choice of positive numbers δ, η > 0 there exists a smooth short map
+z1 : U → RN such that
+                     g − z1] e ∈ Cr0             for all x ∈ U ,
+and the following estimates hold:
+                         kz1 − zk0 ≤ η ,                                (11)
+                        kg − z1] ek0 ≤ δ ,                              (12)
+                                    q
+                     kDz1 − Dzk0 ≤ M kg − z ] ek0 ,                     (13)
+for a dimensional constant M . If z is injective, then we can choose z1
+injective.
+2.1. Nash’s spirals. We now examine how Propositions 2.1 and 2.2 are
+proved. Nash splits each “stage” into a certain number of steps, where each
+step aims at decreasing the metric error in a single coordinate direction.
+To make this precise, we will call a “primitive metric” – following [32] –
+any (0, 2) tensor having the structure a2 dψ ⊗ dψ for some pair of smooth
+functions a and ψ. Note that such two-tensor is only positive semidefinite
+and not a Riemannian metric.
+10             CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+   In order to define the steps in a stage, we need to decompose a Riemannian
+metric on Σ into a locally finite sum of primitive metrics. This is the content
+of the next lemma.
+Lemma 2.3. Let Σ be a smooth n-dimensional manifold, h a smooth positive
+definite (0, 2) tensor on it and A = {U` } a finite atlas of charts on Σ.
+Then there is a finite collection
+                        P         hj of primitive metrics such that each hj is
+supported in some U` ,     hj = h and for each point p ∈ Σ there are at most
+                2
+K(n) = n(n+1)2    primitive metrics hj which do not vanish at p.
+   The local version, suitable for Proposition 2.2, is the following simple geo-
+metric lemma on matrices (we note in passing that this lemma is contained
+in the paper of Nash [48], but has also proved useful in other contexts, see
+[34, Lemma 17.13] and [45]):
+                                     n×n
+Lemma 2.4. Consider the space S+         of positive definite symmetric ma-
+trices. There exists a neighborhood W of the identity matrix Id and N (n) =
+n(n+1)
+   2    unit vectors vk ∈ Rn such that any symmetric matrix A ∈ W can be
+written in a unique way as a linear combination
+                                X
+                            A=      λk (A)vk ⊗ vk                       (14)
+                                   k
+with coefficients λk (A) ≥ ρ0 (n), where ρ0 (n) is a positive geometric constant.
+   Note that vk ⊗ vk can be thought as dψk ⊗ dψk for the linear function
+ψk (x) = vk · x. The latter lemma is therefore a very natural counterpart
+of Lemma 2.3: the factor n + 1 = K(n)/N (n) distinguishing the number
+of primitive metrics appearing in the respective decompositions is due to
+“global geometric aspects”, whereas the main (local) idea of both proofs
+remains the same.
+
+   Leaving aside for a moment the (elementary!) proofs of Lemma 2.3 and
+Lemma 2.4, we turn to the proofs of the Proposition 2.1 and Proposition
+2.2.
+   Let us first focus on Proposition 2.2. In the following we work in local
+coordinates in the set U . For a map z : U → RN we denote by Dz = (∂j z i )ij
+the Jacobian matrix consisting of all first order partial derivatives of z. Note
+that in local coordinates (z ] e)ij = h∂i z, ∂j ziRN , so that in matrix notation
+the tensor z ] e can be identified with the symmetric n × n matrix Dz T Dz.
+   By assumption the matrix (g − Dz T Dz)(x) is positive definite on U .
+Therefore, there exists γ > 0 so that g − Dz T Dz ≥ 2γId on U . We may
+assume without loss of generality that γ ≤ δ. Set
+                     h(x) = g(x) − Dz T (x)Dz(x) − γId.
+Then h(x) ∈ Cr0 for all x. Observe that by Lemma 2.4 and the “pinching”
+condition, we can write
+                          X                    X
+                  h(x) =     a2k (x)vk ⊗ vk =:   hk (x) .          (15)
+                             k                     k
+                     JOHN NASH’S NONLINEAR ITERATION                           11
+
+Indeed, observe that for any A ∈ Cr0 with r0 sufficiently small (depending
+only on W from Lemma 2.3) we have trnA A ∈ W , so that
+                                                     
+                                             n
+                           q
+                             1
+                  ak (x) = n tr h(x) λk           h(x) .
+                                          tr h(x)
+Observe moreover that, since clearly the coefficients λk (A) in (14) depend
+linearly on A, the positive coefficients ak (x) vary smoothly with x.
+   In the first step we wish to perturb the map z slightly to a new map z̃
+for which Dz̃ T Dz̃ is approximately Dz T Dz + a1 v1 ⊗ v1 , with a small error.
+This is achieved in the proposition below. We then repeat this step a finite
+number of times to “add” all primitive metrics in the decomposition and
+estimate the resulting total error.
+Proposition 2.5. Let U ⊂ Rn be a bounded simply connected open domain,
+a1 ∈ C ∞ (U ), v1 ∈ Rn a unit vector, and z : U → RN a smooth short map.
+For any choice of positive numbers δ̃, η̃ > 0 there exists a smooth short map
+z̃ : U → RN such that the following estimates hold:
+                                            kz̃ − zk0 ≤ η̃ ,                (16)
+                kDz̃ T Dz̃ − Dz T Dz − a21 v1 ⊗ v1 k0 ≤ δ̃ ,                (17)
+                                        kDz̃ − Dzk0 ≤ M̃ ka1 k0 ,           (18)
+
+for a dimensional constant M̃ .
+   The map z̃ is completely explicit: Fix two smooth unit length normal
+fields ν, b : U → RN , i.e. with the properties
+     • |ν(x)| = |b(x)| = 1 and ν(x) ⊥ b(x) for all x ∈ U ;
+     • ν(x) and b(x) are both orthogonal to Tω(x) (z(U )) for every x ∈ U .
+The existence of such vector fields is the consequence of the trivial topology
+of U and the fact that N ≥ n + 2. We then set
+         z̃(x) :=z(x) + zp (x)
+                         a1 (x)                                      
+               =z(x) +          ν(x) cos(λv1 · x) + b(x) sin(λv1 · x) ,     (19)
+                           λ
+where λ  1 is a large positive parameter, which will be chosen later. The
+perturbation above makes then very fast spirals around the map z. It is
+clear that z̃ satisfies the estimates (16) and (18) for sufficiently large λ  1.
+The heart of the matter is to verify estimate (17) – this will be done in
+Section 2.2 below.
+
+  In the case of Proposition 2.1 we follow a very similar scheme to define z̄.
+Let us fix Σ, g, w, η and δ as in the statement. Given the atlas A on Σ we
+                                                         ]
+apply first Lemma 2.3P to2 the metric h = (1 − γ)(g − w e) with some small
+γ > 0, and let h = j aj dψj ⊗ dψj be the corresponding decomposition in
+12               CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+primitive metrics. Recalling that hj = a2j dψj ⊗ dψj we set
+           z̄(x) =z(x) + zp (x)
+                       a1 (x)                                       
+                =z(x) +        ν(x) cos(λψ1 (x)) + b(x) sin(λψ1 (x)) . (20)
+                          λ
+We see that (19) is a particular case of (20), corresponding to a function
+ψ1 (x) which is simply linear in the given coordinate patch.
+2.2. An unusual perturbation: the quadratic term wins. Returning
+to the local perturbation (19) and Proposition 2.5, we compute the matrix
+Dz̃ T Dz̃ − Dz T Dz. First we calculate
+                  Dzp (x) = −a1 (x) sin λv1 · x ν(x) ⊗ v1
+                            |            {z             }
+                                         A(x)
+                             + a1 (x) cos λv1 · x b(x) ⊗ v1 +E(x) ,
+                               |            {z            }
+                                           B(x)
+
+where |E(x)| ≤ Cλ−1 , for a constant C which depends on the smooth func-
+tions a1 , b and ν, but not on λ (note that in the line above we understand
+all summands as N × n matrices). Next write the tensor h̃ := z̃ ] e − z ] e in
+coordinates as a symmetric matrix-valued function and observe that then
+we simply have
+          h̃ = Dz̃ T Dz̃ − Dz T Dz = (DzpT Dz + Dz T Dzp ) + DzpT Dzp .        (21)
+                                     |        {z        } | {z }
+                                                  =:L              =:Q
+
+The decomposition above gives simply the perturbation induced in the met-
+ric tensor by the perturbing map zp as a sum of the parts which are, respec-
+tively, linear and quadratic in zp . Recall that Dzp = A + B + E and, since
+ν and b are orthogonal to z(U ) we have
+                    0 = AT Dzp = DzpT A = DzpT B = B T Dzp .
+Therefore
+                                   kLk0 ≤ Cλ−1 .                               (22)
+On the other hand
+     (A + B)T (A + B) = a21 (cos2 λv1 · x + sin2 λv1 · x) v1 ⊗ v1 = a21 v1 ⊗ v1 .
+Hence we have
+                          Q = a21 v1 ⊗ v1 + O(λ−1 ) .                   (23)
+Thus a choice of a very large λ makes the quadratic part much more impor-
+tant than the linear one: this seems a rather “odd” approach from a classical
+“PDE” point of view. Nonetheless it achieves the desired goal, namely the
+addition of a primitive metric with an arbitrary small error. This concludes
+the proof of Proposition 2.5.
+
+   The proof of Proposition 2.2 (and of Proposition 2.1) follow now in a
+straightforward manner. Guided by the decomposition (15) we define z1 to
+                      JOHN NASH’S NONLINEAR ITERATION                             13
+
+be the resulting map after adding a finite number of spiraling perturbations
+as above. In this way we achieve (11) and for any fixed ε > 0
+                       kDz1T Dz1 − (Dz T Dz + h)k0 ≤ ε.
+Therefore
+                           Dz1T Dz1 − g = γId + O(ε),
+from which we easily deduce the “pinching condition” and (12) for ε suf-
+ficiently small.
+           p     Taking the trace of relation (15) leads to the estimate
+kak k0 ≤ C khk0 , whereas from (18) we obtain
+                                  X             p
+                 |Dz1 − Dzk0 ≤ M̃    kak k0 ≤ M khk0 .              (24)
+                                         k
+Finally, when z is injective the injectivity of the map z1 will again follow
+from taking λ very small, since the corresponding perturbation will then be
+a small normal displacement.
+   The argument for Proposition 2.1 is entirely analogous. Only slightly
+more care is needed: although the number of perturbations added might be
+very large, we do know that at any point p ∈ Σ at most K(n) perturbations
+give a nonzero contribution.
+
+                             3. Technical points
+  For the sake of completeness we present the arguments of Lemmas 2.3
+and 2.4 as well as the proof of existence of the normal fields ν and b.
+Proof of Lemma 2.4. We start with Lemma 2.4. Since the set of all matrices
+of the form v ⊗ v is a linear generator of Symn×n , there are N such
+                                                                  P matrices
+Ai = wi ⊗ wi which are linearly independent. Consider M := i A0i . Since
+  0                                                          0
+
+any pair of positive definite symmetric matrices are similar, we can find a
+linear isomorphism L of Rn such that LT M 0 L = Id, where Id denotes the
+                                             T 0
+identity matrix and thus,P if we set Ai = L Ai L = (Lwi ) ⊗ (Lwi ) = vi ⊗ vi ,
+we conclude that Id = i Ai . Next, since {vi ⊗vi } forms a basisP  for Symn×n ,
+there exist unique linear maps Li : Symn×n → R such that A = i Li (A)vi ⊗
+vi for every A ∈ Symn×n . The continuity of such maps obviously gives the
+claim that the coefficients will be positive in a neighborhood of the identity
+matrix. Note only that the vi ’s are not unique vectors: on the other hand
+they are all nonzero vectors and thus the condition |vi | = 1 after the obvious
+normalization.                                                               
+Proof of Lemma 2.3. As for Lemma 2.3, first of all, for each point p ∈ Σ
+we find a neighborhood Vp ⊂ U` (for some `) and N (n) = n(n+1)        2     primitive
+metrics hp1 , . . . , hpN on Vp such that h = hp1 + . . . + hpN . This follows easily
+from Lemma 2.4. Observe that, arguing as above, since we can write any
+symmetric matrix M as LT IdL for some linear isomorphism L, Lemma 2.4
+holds not only in a neighborhood of the identity matrix, but in fact it is
+valid in a suitable neighborhood of any symmetric positive definite matrix.
+14             CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+Hence for a suitable choice of Vp we find functions ψi (x) = vi · x (in local
+coordinates) and smooth αi : Vp → R such that
+                                  N
+                                  X
+                             h=         αi dψi ⊗ dψi .
+                                  i=1
+The “global aspect” of Lemma 2.4 can then be handled using the following
+elementary combinatorial fact (the reader can consult [20] for instance).
+Lemma 3.1. Let Σ be a closed differentiable n-dimensional manifold and
+{Vλ } an open cover of Σ. Then there is a finite open cover {W` } with the
+properties that:
+    (a) each W` is contained in some Vλ ;
+   (b) the closure of each W` is diffeomorphic to an n-dimensional ball;
+    (c) for point p ∈ Σ has a neighborhood contained in at most n + 1 ele-
+        ments of the cover.
+   Apply then Lemma 3.1 and refine the covering Vp to a new covering W`
+with the properties listed in the Lemma. For each W` we consider a Vp ⊃ W`
+and define the corresponding primitive metrics h(`1) = hp1 , . . . , h(`N ) = hpN
+(we use the subscript (`j) in order to avoid confusions with the explicity
+expression of the initial tensor h in a given coordinate system!). We then
+consider compactly supported functions β` ∈ Cc∞ (W` ) with the property
+that for any point p there is at least a β` which does not vanish at p and we
+set
+                                          β`
+                                ϕ` := qP         .
+                                             β 2
+                                           j j
+
+The tensors ϕ2` h(`j) satisfy all the requirements of the lemma.               
+Construction of normal fields. The pair of vector fields ν, b exists locally
+in a sufficiently small neighborhood of any point p following a standard
+procedure:
+      • select two orthonormal vectors ν(p) and b(p) which are normal to
+         Tω(p) (ω(B));
+      • set the functions ν̃ and b̃ constantly equal to these vectors in a neigh-
+         borhood of p;
+      • project ν̃(q) and b̃(q) to the vector space normal to Tω(q) (ω(B)) and
+         then use a Gram-Schmidt orthogonalization procedure to produce ν
+         and b.
+Furthermore the problem of passing from the local statement to the global
+one can be translated into the existence of a suitable section of a fiber
+bundle: since B is topologically trivial, the existence of a “global” pair ν, b
+is a classical conclusion.
+   However one can also use an elementary argument. If we set U = B1 (0)
+and we consider the set R of radii r for which a pair as required exists in the
+closed ball B r (0), it is not difficult to use the ideas above to see that such
+                      JOHN NASH’S NONLINEAR ITERATION                            15
+
+set is both open and closed and thus it must be the entire interval [0, 1]. For
+the full details of this elementary argument we refer to [24].
+
+   4. The Euler-Reynolds system and the iteration stage for
+                             Euler
+4.1. The Euler-Reynolds system. In order to start an iteration proce-
+dure for Theorem 1.3 following the approach of Nash, we need to measure
+the “distance” of a smooth pair (v, p) from being a solution of (4) and (5).
+For this reason we introduce a function R̊ which takes values in the space
+S03×3 of trace-free symmetric 3 × 3 matrices. Following [30] a (smooth) triple
+(v, p, R̊) is a solution of the Euler-Reynolds system if it satisfies the following
+system of partial differential equations
+                         
+                          ∂t v + div v ⊗ v + ∇p = div R̊
+                                                                               (25)
+                             div v = 0 .
+                         
+
+Note that for R̊ = 0 the pair (v, p) solves the incompressible Euler equations.
+   The tensor R̊ is closely related to the Reynolds stress tensor, a classical
+concept in fluid dynamics. It is generally accepted that the appearance of
+high-frequency oscillations in the velocity field is the main reason responsible
+for turbulent phenomena in incompressible flows. One related major prob-
+lem is therefore to understand the dynamics of the coarse-grained, in other
+words macroscopically averaged, velocity field. If v denotes such macro-
+scopic average, then the Reynolds stress is usually defined as the difference
+between the average of v ⊗ v and v ⊗ v. At this formal level the precise
+definition of averaging plays no role, be it long-time averages, ensemble-
+averages or local space-time averages. Indeed the latter can be interpreted
+as taking weak limits: weak limits of Leray solutions of the Navier-Stokes
+equations with vanishing viscosity have been proposed in the literature as a
+deterministic approach to turbulence (see [2, 3, 17, 43]).
+   There is therefore a close analogy with the metric error v ] e − g in Nash’s
+iteration and the Reynolds stress R:
+     • If a sequence of continuous solutions (vk , pk ) of the Euler equa-
+       tions converge weakly in L2 to some continuous pair (v, p), then
+       the Reynolds stress R is the limit of vk ⊗ vk minus v ⊗ v, namely
+                            R = lim vk ⊗ vk − v ⊗ v                           (26)
+                                   k
+
+        and we have the identity
+                   
+                    ∂t v + div v ⊗ v + ∇p = −div R
+                                                                              (27)
+                          div v = 0 .
+                      
+16              CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+      • If a sequence of C 1 isometric embeddings uk of (Σ, g) converges uni-
+        formly to a C 1 map u, then the metric error h is the limit of u]k e = g
+        minus u] e, namely h = g − u] e.
+Note moreover that both h and R are positive semidefinite in the context
+above: both short maps and the Euler-Reynolds system can be therefore
+understood as a (convex) relaxation of the corresponding systems of partial
+differential equations.
+   Observe that the field R̊ differs from the usual Reynolds stress because of
+the trace-free condition. However, keeping in mind that in Theorem 1.3 we
+aim at satisfying in addition (5), a natural analogy of the metric error and
+the Reynolds stress can be obtained by setting
+                       ˆ                
+           1                         2
+ρ(t) :=          e(t) −     |v(x, t)| dx     and R(x, t) := ρ(t)Id − R̊(x, t).
+        3(2π)            T3
+
+Thus, our approximations will consist of smooth solutions (v, p, R) of (27)
+such that                              ˆ                 
+                            1                         2
+                tr R(t) =        e(t) −      |v(x, t)| dx              (28)
+                          (2π)3           T3
+and we will use kRk0 to measure the distance of the pair (v, p) from being
+a solution of (4)-(5).
+   Notice that (28) is consistent with (26) if one assumes that
+                            ˆ
+                     e(t) = |vk |2 (x, t) dx     for all k.
+
+Furthermore, we will see below that our iteration, analogous to the Nash
+scheme, will require in addition that R be positive definite, in analogy with
+short maps.
+
+4.2. Selection of a good R̊. Note however an important difference be-
+tween the Reynolds stress and the metric error: the latter is uniquely de-
+termined from the metric g and the short map u, whereas the tensor R̊ is
+not at all uniquely defined from the system (25). However it is possible to
+select a good “elliptic operator” which solves the equations div R̊ = f for a
+trace free symmetric R̊ given a smooth vector field f . The relevant technical
+lemma is the following one.
+Lemma 4.1 (The operator div−1 ). There exists a homogeneous Fourier-
+multiplier operator of order −1, denoted
+                    div −1 : C ∞ (T3 ; R3 ) → C ∞ (T3 ; S03×3 )
+                                                    ffl
+such that, for any f ∈ C ∞ (T3 ; R3 ) with average T3 f = 0 we have
+     (a) div −1 f (x) is a symmetric trace-free matrix for each x ∈ T3 ;
+     (b) div div −1 f = f .
+                     JOHN NASH’S NONLINEAR ITERATION                           17
+
+Proof. The proof follows from direct calculation by defining div −1 as
+                  1                 3                   1
+      div −1 f :=   DPg + (DPg)T +          Dg + (Dg)T − (div g)Id,
+                  4                      4                  2
+              ∞
+                                                    ffl
+where g ∈ C (T ; R ) is the solution of ∆g = f − T3 f in T3 and P is the
+                  3 3
+
+Leray projector onto divergence-free fields with zero average.         
+   We recall that the Leray projection operator acts on a general smooth
+vector field z by returning the divergence-free vector field z̄ with zero average
+which is closest in L2 to z. As it is well known this is just one piece of the
+Helmholtz decomposition of z. Moreover z̄ = P(z) is achieved as well by
+solving an elliptic PDE: more precisely if
+                                     ∆α = div z ,
+                      ffl
+fflthen z̄ = z − ∇α − z. Observe moreover that the operator Q(z) = z −
+     z − P(z) is a Fourier-multiplier operator of order −1.
+4.3. The iteration stage in Euler. As in Nash’s iteration to prove The-
+orem 1.2, the proof of Theorem 1.3 is based on an iterative procedure
+which constructs a sequence of triples (vq , pq , Rq ) solving (27)-(28) and with
+kRq k0 → 0. The exact statement is the following, which we state in a
+slightly different way from [30, Proposition 2.2] in order to emphasize the
+similarities to Proposition 2.1 and Proposition 2.2. In particular, we again
+refer to the cone Cr from Proposition 2.2.
+Proposition 4.2. Let e be as in Theorem 1.3. Then there are positive
+constants r < 1 and M with the following property.
+   Let δ, η > 0 be any positive numbers and let (v, p, R) be a smooth solution
+of the Euler-Reynolds system (27)-(28) such that
+                            R(x, t) ∈ Cr     for all (x, t).                (29)
+Then there is a second smooth triple (v1 , p1 , R1 ) which solves as well (27)-
+(28), which satisfies
+                            R1 (x, t) ∈ Cr   for all (x, t),                (30)
+and such that the following estimates hold:
+                                  kv1 − vkH −1 ≤ η ,                        (31)
+                                     kR1 k0 ≤ δ ,                           (32)
+and
+                                               p
+                              kv1 − vk0 ≤ M     kRk0 ,
+                                                                            (33)
+                              kp1 − pk0 ≤ M kRk0 .
+   Observe that the tensor R is not only required to be positive definite,
+but its values are restricted to a small cone around positive multiples of the
+identity matrix. Hence Proposition 4.2 is really the analog of Proposition
+2.2, namely the “local version” of Proposition 2.1. In particular (29) can be
+18               CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+thought as a “pinching condition” for the Reynolds stress, in analogy with
+the “pinching condition” (10).
+   Concluding Theorem 1.3 from Proposition 4.2 is now a trivial task: one
+chooses δ = 12 and applies first the proposition to
+     • the triple (v, p, R) = (v0 , p0 , R0 ) with (v0 , p0 ) = (0, 0) and R0 =
+       e(t)Id,
+     • η = 4ε and δ = 14 .
+We thus produce a second triple (v1 , p1 , R1 ).
+   The proposition is then applied iteratively to
+     • the triple (v, p, R) = (vq , pq , Rq ),
+     • η = ε2−q−2 and δ = 4−q−1 ,
+to produce the next triple (vq+1 , pq+1 , Rq+1 ).
+     It is therefore obvious that
+      (a) kRq k0 converges exponentially fast to zero;
+      (b) The kinetic energy
+                                    ˆ
+                                  1
+                                      |vq |2 (x, t) dx
+                                  2
+        converges exponentially fast to e(t);
+   (c) (vq , pq ) converge exponentially fast to a continuous pair (v, p) (in the
+        k · k0 norm).
+We conclude that (v, p) is a continuous pair which solves the incompressible
+Euler equations and that the corresponding kinetic energy of v is e(t) at any
+time t.
+
+                         5. The oscillatory ansatz
+  In analogy with Nash’s approach to Proposition 2.1 our strategy for the
+proof of Proposition 4.2 is to perturb v to v1 by adding a highly oscillatory
+vector field, which we will call wo . In analogy with the Nash spirals in (19),
+we make the following ansatz on wo :
+                                                          
+                    wo (x, t) = W v(x, t), R̃(x, t), λx, λt ,              (34)
+where
+                        R̃(x, t) = (1 − γ)ρ(t)Id − R̊(x, t)                 (35)
+and γ < 12 is a small positive parameter which will be determined later.
+   A lot of work will be put in determining the correct function W (v, R, ξ, τ ),
+which turns out to be much more complicated then the corresponding map
+for Nash’s scheme. Since v1 must be 2π-periodic we will impose that W is
+2π-periodic in the variable ξ.
+   Notice next that v1 must satisfy the divergence-free condition div v1 = 0
+and v + wo is not likely to fulfill it. Indeed a stronger analogy with the
+isometric embedding problem would be to consider first a vector potential
+                     JOHN NASH’S NONLINEAR ITERATION                          19
+
+for v, namely to write v as ∇ × z for some smooth z. Subsequently we would
+like to perturb z to a new
+                                       1
+               z1 (x, t) = z(x, t) +     Z(v(x, t), R(x, t), λx, λt) .
+                                       λ
+The resulting map v1 would then be given by
+                                                                     
+                                                                     1
+       v1 (x, t) = v(x, t) + (∇ξ × Z)(v(x, t), R̃(x, t), λx, λt) +O     ,
+                             |             {z                  }     λ
+                                              (P )
+
+and thus our perturbation wo in (34) corresponds actually to the term (P).
+It is therefore natural to expect that one needs to add a further corrector
+term wc (x, t) in order to ensure that
+
+                    v1 (x, t) = v(x, t) + wo (x, t) + wc (x, t)             (36)
+                                          |         {z        }
+                                                     =:w(x,t)
+
+is divergence free. We can naturally expect that this perturbation will be
+negligible, namely of order O(λ−1 ), for λ large.
+
+  This is indeed the case and a canonical way of defining wc is through the
+Leray projector introduced above, namely
+                                          
+                       wc = P wo − wo − wo .                           (37)
+
+A rule of thumb here is the following:
+ (RT) If we apply an operator of order −1 to a function f which oscillates
+      at frequency λ and has a certain “size” S, we then expect an outcome
+      of order Sλ−1 .
+We will see later that indeed S can be taken to be kf k0 , at least under ap-
+propriate assumptions: this fact will play a crucial role, but for the moment
+we can ignore it. We also warn the reader that (RT) gives, in many ways,
+only a very simplistic point of view on a much more complicated picture.
+For instance, due to the failure of elliptic estimates at the endpoints of the
+Schauder scale, we can only claim an estimate of type Sλ−1+ε for arbitrarily
+small ε > 0.
+
+5.1. First condition on the fluctuation profile W : stationary phase
+argument. We now wish to determine the conditions upon the function W
+in order to achieve a new triple (v1 , p1 , R1 ) which satisfies the conclusions
+of Proposition 4.2. Recalling (35), we observe that
+
+                           R(x, t) − R̃(x, t) = γρ(t)Id
+
+is a function of t only.
+20               CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+
+     Thus, the triple (v, p, R̃) is also a solution of (27) and we can compute:
+                                    h                            i
+              R̊1 =          div −1 ∂t v1 + div (v1 ⊗ v1 ) + ∇p1
+                                    h              i
+                    =        div −1 ∂t w + v · ∇w
+                                    h                              i
+                       + div −1 div (w ⊗ w − R̃) + ∇(p1 − p)
+                                    h       i
+                       + div −1 w · ∇v
+                                    h                i
+                    =        div −1 ∂t wo + v · ∇wo
+                                    h                                i
+                       + div −1 div (wo ⊗ wo − R̃) + ∇(p1 − p)
+                                    h        i
+                                                   (4)
+                       + div −1 wo · ∇v + R̊1                               (38)
+
+                                                                            (4)
+where div −1 is the operator of order −1 from Lemma 4.1 and in R̊1 we
+                                                        (4)
+have included all terms involving wc . We expect that R̊1 is thus negligible,
+given that kwc k0 should be of size λ−1 . Note also that, since div −1 is an
+operator of order −1, by (RT) we can expect that the term
+                                        h       i
+                            (3)
+                          R̊1 := div −1 wo · ∇v                         (39)
+
+                                             (3)
+has also size O(λ−1 ). In fact the term R̊1 is the analog of the term L in
+(21) in the isometric embedding problem.
+   A way to get an intuition for this is by expanding W (v, R̃, ξ, τ ) as a Fourier
+series in ξ. We then could compute
+                           h         i
+                (3)
+                                                X
+              R̊1 = div −1 wo · ∇v = div −1         ck (x, t)eiλk·x ,          (40)
+                                                   k∈Z3
+
+where the coefficients ck (x, t) vary much slower than the rapidly oscillating
+exponentials. When we apply the operator div −1 we can therefore treat the
+ck as constants and gain a factor λ1 in the outcome : a typically “stationary
+phase argument”. Note however that this stationary phase argument cannot
+be applied to the c0 term, there is no reason for div −1 c0 to be of order λ−1 .
+  Thus, to gain the factor λ1 we impose that the trivial mode c0 in the
+Fourier expansion (40) vanishes. Indicating with h·, ·i the average in the
+2π-periodic ξ variable, this condition is equivalent to
+                                  ˆ
+                              1
+                   hW i :=            W (v, R̃, ξ, τ ) dξ = 0;        (H1)
+                            (2π)3 T3
+     It also seems quite clear that the error term
+                                h                            i
+                   (2)
+                 R̊1 := div −1 div (wo ⊗ wo − R̃) + ∇(p1 − p)                 (41)
+                          JOHN NASH’S NONLINEAR ITERATION                    21
+
+
+corresponds to the quadratic term Q (minus the metric change h̃!) in (21).
+Therefore we hope to make this term small, namely to exploit the quadratic
+expression wo ⊗ wo to cancel the error R.
+5.2. Second condition on the fluctuation profile: fast variables. Ob-
+serve however that there is a third error term, which is in fact not present
+in the isometric embedding problem:
+                                    h              i
+                       (1)
+                     R̊1 := div −1 ∂t wo + v · ∇wo .                    (42)
+                                                                (3)
+The latter “linear transport” term cannot be handled as R̊1 : since the
+derivatives inside the square bracket “fall onto” the perturbation wo , we
+should expect a factor λ. Even though we can expect to balance such factor
+λ with the factor λ−1 gained after applying the operator div −1 , we still do
+                                           (1)
+not have have any reason to expect that R̊1 will be small.
+  In order to gain some more insight, we plug in our ansatz for wo and
+                                                           (1)     (1)
+compute explicitly the sum of the remaining error terms R̊1 + R̊2 :
+            h               i        h                                 i
+      div −1 ∂t wo + v · ∇wo + div −1 div (wo ⊗ wo − R̃) + ∇(p1 − p)
+      |                              {z                                }
+                                              =:E
+
+Assume also that p1 − p is chosen of the form P (v(x, t), R̃(x, t), λx, λt). In
+differentiating the composite functions wo or p1 − p, there will be terms with
+a prefactor λ (the ones where the outer derivative falls on ξ or τ ), and other
+terms without the factor λ. We will denote these latter derivatives in the
+“slow variables” (v, R) as ∂tslow and ∇slow . Thus:
+     E = λ[∂τ W + v · ∇ξ W + div ξ (W ⊗ W ) + ∇ξ P ](v, R̊, λx, λt)]      (43)
+         |                          {z                             }
+                                              =:(F )
+                                  slow
+           + [(∂t + v · ∇)               W]                               (44)
+             |         {z                 }
+                          =:(S)
+                   slow
+           + div          [W ⊗ W − R̃] + ∇slow P                          (45)
+             |                  {z              }
+                                   =:(Q)
+
+Clearly we would like the “fast term” (F ) to disappear and this could be
+achieved by imposing the condition
+             
+              ∂τ W + v · ∇ξ W + div ξ (W ⊗ W ) + ∇ξ P = 0
+                                                                     (H3)
+               div ξ W = 0 .
+             
+
+Furtheremore we could hope to treat the slow term (S) as we have done with
+  (3)
+R̊1 : assuming that this picture is correct, we only need to understand the
+quadratic term (Q).
+                                                                 (3)
+   Again, we can use the same idea which helped us estimating R̊1 : we can
+expand W ⊗ W (v, R, ξ, τ ) in Fourier series of ξ. In order to gain a factor
+22             CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+λ−1 from the operator div −1 we need the following condition, analogous to
+(H1):
+                             hW ⊗ W i = R̃                           (H2)
+Summarizing the preceding discussion, if we could find a fluctuation profile
+satisfying the conditions (H1), (H2) and (H3), we would be at a good point
+in our proof of Proposition 4.2.
+
+                            6. Beltrami flows
+   In order to construct a “fluctuation profile” W satisfying (H1)-(H3), our
+building blocks (which in a sense play the same role as Nash’s spirals in
+the proof of Proposition 2.1) belong to a special class of stationary periodic
+solutions to the incompressible Euler equations, called Beltrami flows.
+   The starting point is the identity
+                    div (U ⊗ U ) = U × curl U − 21 ∇|U |2 ,
+for smooth 3-dimensional vector fields U . In particular any eigenspace of
+the curl operator, i.e. the solution space of the system
+                             
+                              curl U = λ0 U
+
+                                 div U      = 0
+                             
+
+for any λ0 constant, leads to a linear space of stationary flows of the incom-
+pressible Euler equations. These can be written as
+                                 X
+                                      ak Bk eik·ξ                          (46)
+                                 |k|=λ0
+
+for normalized complex vectors Bk ∈ C3 satisfying
+              |Bk | = 1,   k · Bk = 0       and   ik × Bk = λ0 Bk ,
+and arbitrary coefficients ak ∈ C. Choosing B−k = −Bk and a−k = ak
+ensures that U is real-valued. A calculation then shows
+                               1 X               k ⊗ k
+                   hU ⊗ U i =         |ak |2 Id −        .     (47)
+                               2                   |k|2
+                                   |k|=λ0
+
+Moreover, recalling the condition that W must be 2π-periodic in the ξ vari-
+able, we impose that
+                                  k ∈ Z3 .                            (48)
+
+6.1. Decomposition of the Reynolds stress. The identity (47) leads to
+the following decomposition Lemma which is the analogue of Lemma 2.4.
+Lemma 6.1. For every N ∈ N we can choose 0 < r0 < 1 and λ̄ > 1 with
+the following property. There exist pairwise disjoint subsets
+                 Λj ⊂ {k ∈ Z3 : |k| = λ̄}         j ∈ {1, . . . , N }
+                      JOHN NASH’S NONLINEAR ITERATION                        23
+
+and smooth positive functions
+                (j)
+              γk ∈ C ∞ (Br0 (Id))          j ∈ {1, . . . , N }, k ∈ Λj
+such that
+                                          (j)     (j)
+   (a) k ∈ Λj implies −k ∈ Λj and γk = γ−k ;
+   (b) For each R ∈ Br0 (Id) we have the identity
+          1 X  (j)      2       k     k
+                                           
+     R=          γk (R)      Id −    ⊗            ∀R ∈ Br0 (Id) .        (49)
+          2                       |k| |k|
+             k∈Λj
+
+   Note that the decomposition in (49) is valid only in the r0 -neighborhood
+of the identity matrix. Hence the latter statement is more similar to Lemma
+2.4, namely the “single coordinate patch version” of Lemma 2.3. Note also
+that Lemma 6.1 provides several “independent” decompositions of R, cor-
+                                   (j)
+responding to the N families (γk )k , j = 1 . . . N . We will return to the
+significance of this in the next section.
+   This lemma, taken from [30] (see also [38] for a geometric proof) allows
+us to choose the amplitudes as
+                                               !
+                                   √ (j) R̃
+                              ak = ρ γk          ,                       (50)
+                                             ρ
+
+where we recall that R̃ = (1 − γ)ρId − R̊ and ρ = 13 tr R. Observe that the
+restriction for the argument of γk to lie in Br0 (Id) then translates into the
+condition
+                             |R̊| ≤ (1 − γ)r0 ρ.
+In light of the assumption (29) this requirement is satisfied by choosing
+r = r20 (since γ ≤ 12 ).
+  With this choice of ak = ak (R̃),
+                                     X X
+                       Ws (R̃, ξ) :=     ak (R̃)Bk eik·ξ
+                                     j   k∈Λ(j)
+
+(defined through the Beltrami-flow relation (46)) satisfies (H1) and (H2).
+
+6.2. Galilean transformations. As for (H3), notice that Ws would satisfy
+it only for v = 0. For v 6= 0 a quick fix would be to use the Galilean
+invariance of the Euler equations. Indeed, since (H3) is an equation in the
+“fast” variables (ξ, τ ) in which v is constant,
+                        W (v, R̃, ξ, τ ) := W (R̃, ξ − vτ )              (51)
+does yield a solution of (H3). Unfortunately this is not a valid solution, but
+to see why, we need to return once more to the “rule of thumb” (RT) and
+look more carefully how the O(λ−1 ) estimates for R̊1 are obtained in the
+next section.
+24              CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+     Returning to (40) we see that the main point is to obtain a bound for
+                                   h              i
+                            div −1 ck (x, t)eiλk·x .
+We have already discussed this point: if ck were constant, we would immedi-
+ately obtain the bound ck λ−1 (assuming k 6= 0 of course). Then, for smooth
+ck and large λ one may expect that, if at the scale λ−1 ck does not vary too
+much, then we get an estimate of type
+                             h              i      kck k0
+                       div −1 c(x, t)eiλk·x     ≤C        .               (52)
+                                              0      λ
+One way to prove (52) is to use the Schauder theory in an apprioriate way.
+Unfortunately the latter does not work in C 0 for the elliptic operators which
+define div −1 and we can only reach an the estimate Cα kck k0 λ−1+α for any
+α ∈ (0, 1), with a constant Cα which blows up when α ↓ 0, (see [30]). Since
+this small loss in the exponent has little effect on the overall proof, we are
+going to ignore it in the sequel and assume the validity of (52).
+     Now, in the case of (40) the coefficients ck can be bounded by
+                             kck k0 ≤ kak k0 kDvk0 ,
+whereas, using the identity (49) we obtain
+                                               1/2
+                               kak k0 ≤ CkRk0 .
+Observe the strong similarity with (24) in case of the Nash spirals! Since
+(46) consists of a fixed finite sum, we conclude
+                                            1/2
+                             (3)    kRk0 kDvk0
+                          kR̊1 k0 ≤ C             .
+                                          λ
+Observe that the same estimate on ak also yields the square-root estimate
+(33) – in complete correspondence to (9).
+                                (1)
+   Next, let us again look at R̊1 and in particular at the “slow derivative
+term” (S) in (44). We calculate
+         (∂t + v · ∇)slow W = Dv W (∂t + v · ∇)v + DR W (∂t + v · ∇)R.
+The above expression is linear in W , hence, using (H1) we may (as in (40))
+write it as                             X
+               (∂t + v · ∇)slow W =           c̃k (x, t)eiλk·x ,
+                                        k∈Z3 ,k6=0
+for some coefficients c̃k . Recall that the Beltrami amplitudes ak are 1/2-
+homogeneous in R, so that kDR W (∂t + v · ∇)Rk0 can be bounded in terms
+of kRk1 . On the other hand, using the Galilean transformation (51) we
+obtain
+                               |Dv W | ∼ τ = λt.
+This means that, although using (52) we can remove the factor λ, again we
+do not arrive at the required smallness. We therefore see that using the
+Galilean transformation will not work to obtain sufficiently good bounds.
+                       JOHN NASH’S NONLINEAR ITERATION                        25
+
+  Indeed, there are at least two other problems:
+      • The Galilean transformation is incompatible with the 2π-periodicity
+        of W in the variable ξ, except for very particular values of v (in fact,
+        only when v ∈ Z3 );
+      • in our iteration v is not constant, only “slowly varying”, compared
+        to the scale λ−1 .
+However, the considerations of this section at least suggest which bounds
+the fluctuation W should satisfy. These should be independent of τ , hence
+considerations on the homogeneity with respect to R lead to
+             |W | ≤ C|R|1/2 , |Dv W | ≤ C|R|1/2 , |DR W | ≤ C|R|−1/2 ,     (H4)
+where C is just a geometric constant. Indeed, if we are able to find a
+fluctuation profile W = W (v, R, ξ, τ ) which satisfies (H1)-(H4), then the
+oscillatory estimate (52) and arguments as presented in this section lead to
+                                                C
+                                    kR̊1 k0 ≤     ,
+                                                λ
+as well as
+                                      1/2
+             kv1 − vk0 ≤ M kRk0 , kp1 − pk0 ≤ M kRk0 ,
+where C depends on v and R and M is a geometric constant.
+   More careful estimates along the same lines would even lead to an iteration
+which yields a C θ Hölder-continuous vector field for any θ < 1/3, namely to
+a solution of the Onsager’s conjecture. For a more detailed exposition we
+refer to [60] and to the lecture notes [61].
+   Unfortunately, we are not able to fulfill all criteria (H1)-(H4) as stated,
+and it will be necessary to introduce additional error terms. This is the
+main point of departure from the Nash’s scheme of Proposition 2.1. The
+troublesome “fast transport term” corresponds to the “fast derivative term”
+in the linear part L of (21). Nash can set this term to zero with a suitable
+choice of the perturbation, namely because the vector fields ν and b in (19)
+are perpendicular to the image of the starting map z. In Euler this seems
+impossible.
+
+      7. A two scale correction to the oscillatory ansatz
+   As shown in the previous sections, the Beltrami flow (46) with amplitudes
+given by (50) work well to satisfy (H1)-(H2), but we yet have to deal with
+the (fast) transport part of (H3). We demonstrated above that a simple
+Galilean transformation will not work, but we can still use the Galilean
+invariance of the Euler equations in subtler ways.
+7.1. The transport term and the second scale. Let us consider the
+following modification of (46):
+                          X
+                              ak (R̃)φk (v, τ )Bk eik·ξ ,    (53)
+                           |k|=λ0
+26             CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+where φk (v, τ ) is a “phase function”, i.e. a complex valued function with
+|φk (v, τ )| = 1. Plugging into (H3) leads then to the condition
+
+                              ∂τ φk + i(v · k)φk = 0                       (54)
+
+with exact solution
+                              φk (v, τ ) = e−i(v·k)τ .                     (55)
+As we explained above, this choice of φk , which corresponds to the Galilean
+transformation, is incompatible with (H4) because |∂v φk | ∼ |τ | is unbounded.
+   Thus, rather than solving (54) exactly we introduce a suitable “error”,
+namely we aim for
+
+              ∂τ φk + i(v · k)φk = O µ−1 ,
+                                          
+                                                 |∂v φk | ≤ Cµ ,           (56)
+
+where µ is a second large parameter. There are indeed several ways to solve
+(56). In [30] we use a suitable partition of unity over the space of velocities
+(with 8 families). However this approach turns out to have some drawbacks
+when constructing Hölder continuous solutions: more efficient methods have
+been found later in [38] and [12] (cf. Remark 7.1).
+
+  The introduction of this second scale leads to the following corrections to
+(H3) and (H4). (H3) is only satisfied approximately:
+
+        ∂τ W + v · ∇ξ W = O(µ−1 ),           div ξ (W ⊗ W ) + ∇ξ P = 0 .   (57)
+
+In (H4) the second inequality is replaced by
+
+                               |∂v W | ≤ Cµ|R|1/2 .                        (58)
+                        (1)
+These changes affect R̊1 , in particular the “fast derivative term” (F) in
+(43) and the “slow derivative term” (S) in (44). Now (F) is not identically
+zero, but we can still use the oscillatory estimate (52) on ∂τ W + v · ∇ξ W so
+that we obtain
+                                                       1/2 1
+                 kdiv −1 (∂τ + v · ∇ξ )W k0 ≤ CkRk0
+                                           
+                                                             ,             (59)
+                                                           µ
+whereas for (S) we obtain
+                                                    1/2 µ
+                kdiv −1 (∂t + v · ∇)slow W k0 ≤ CkRk0
+                                          
+                                                          .                (60)
+                                                        λ
+The optimal relation between the two parameters is then µ = λ1/2 (in fact
+we will only be able to ensure this up to constants, because we require that
+λ, µ, µλ ∈ N, cf. [30]). Hence the final estimate is
+                                                  1/2
+                                 (1)        kRk0
+                              kR̊1 k0 ≤ C         .
+                                             λ1/2
+                        JOHN NASH’S NONLINEAR ITERATION                              27
+
+7.2. The energy profile and conclusions. Overall, with the modified
+ansatz (53) we can ensure that (33) holds and
+                                               1
+                                    kR̊1 k0 ≤ C
+                                             λ1/2
+with some constant depending on v and R. In addition, using again the
+oscillatory estimate (52), it is not difficult to show that
+                                                          1/2
+                                              kRk0
+                          kv − v1 kH −1 ≤ C            .
+                                                 λ
+Hence, in order to complete the proof of Proposition 4.2 we only to estimate
+how far is the “kinetic energy” of v1 from the targeted profile e and we need
+to ensure (30).
+   Recall first that
+                         R1 (x, t) = ρ1 (t)Id − R̊1 (x, t)               (61)
+and                                          ˆ                      
+                                1                               2
+                    ρ1 (t) =           e(t) −          |v1 (x, t)| dx .            (62)
+                             3(2π)3               T3
+
+Thus it remains to show that ρ1 is small and that R̊1 is comparatively smaller
+(because we need to show (30) as well.
+  Recalling (H2) we can write
+                                     X
+                   wo ⊗ wo − R̃ =           Ak (x, t)eiλx·k ,
+                                         k∈Z3 ,k6=0
+
+where the Ak ’s are some matrix-valued smooth coefficients determined by v
+and R. In particular, after taking the trace we obtain
+                                        X
+              |wo |2 − 3(1 − γ)ρ(t) =         tr Ak (x, t)eiλx·k .
+                                            k∈Z3 ,k6=0
+
+By first integrating over x ∈ T3 and then integrating by parts we deduce
+                                                                    C
+                             |wo (x, t)|2 dx − 3(1 − γ)ρ(t) ≤         .
+                        T3                                          λ
+Recalling that v1 = v + wo + wc where wc = O(λ−1 ), we deduce
+    ˆ                     ˆ                                         
+                    2                  2          3                 1
+         |v1 (x, t)| dx =     |v(x, t)| dx + 3(2π) (1 − γ)ρ(t) + O     ,
+      T3                   T3                                       λ
+so that
+               ˆ                             ˆ                            
+                              2                                 2           1
+      e(t) −        |v1 (x, t)| dx = γ e(t) −             |v(x, t)| dx + O     .
+               T3                                     T 3                   λ
+Now, since v and e are continuous on the compact interval T3 × [0, 1] and
+                       ˆ
+                e(t) >    |v(x, t)|2 dx   for all t ∈ [0, 1],
+                               T3
+28               CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+there exists ε > 0 so that
+                       ˆ
+                e(t) −    |v(x, t)|2 dx ≥ ε             for all t ∈ [0, 1].
+                           T3
+  Fix γ so that 4γ ≤ δ. Then, choosing λ sufficiently large we can ensure
+that (33) and (31) hold, and furthermore kR̊1 k0 ≤ 2r γε and
+                                    ˆ                 
+               1         1                          2
+                 γε ≤         e(t) −     |v1 (x, t)| dx ≤ 2γ.
+               2      3(2π)3          T3
+Then
+                                              ˆ                      
+                    r        r                                    2           r
+           kR̊1 k0 ≤ γε ≤               e(t) −          |v1 (x, t)|       =     tr R1 ,
+                    2     3(2π)3                   T3                         3
+so that the tensor R1 of (61) satisfies (30) and (32). This concludes the
+proof of Proposition 4.2.
+Remark 7.1. The above is essentially following the ideas from [30] and [31].
+A better modification of the original ansatz was introduced subsequently by
+P. Isett in [38]: there the approximate Galilean phase function φk (v, τ ) was
+replaced by a nonlinear phase function, which is defined using the inverse
+flow generated by the vector field v. This correction is key to obtaining im-
+proved Hölder estimates, and lead to further progress in Onsager’s conjecture
+(see also [12]).
+
+                                     References
+ [1] Alexandrov, A. D. Intrinsic geometry of convex surfaces. OGIZ, Moscow-
+     Leningrad, 1948.
+ [2] Bardos, C., Ghidaglia, J.-M., and Kamvissis, S. Weak convergence and deter-
+     ministic approach to turbulent diffusion. In Nonlinear wave equations (Providence,
+     RI, 1998), vol. 263 of Contemp. Math. Amer. Math. Soc., 2000, pp. 1–15.
+ [3] Bardos, K., and Titi, È. S. Euler equations for an ideal incompressible fluid.
+     Uspekhi Mat. Nauk 62, 3(375) (2007), 5–46.
+ [4] Borisov, J. F. The parallel translation on a smooth surface. I. Vestnik Leningrad.
+     Univ. 13, 7 (1958), 160–171.
+ [5] Borisov, J. F. The parallel translation on a smooth surface. II. Vestnik Leningrad.
+     Univ. 13, 19 (1958), 45–54.
+ [6] Borisov, J. F. The parallel translation on a smooth surface. III. Vestnik Leningrad.
+     Univ. 14, 1 (1959), 34–50.
+ [7] Borisov, J. F. The parallel translation on a smooth surface. IV. Vestnik Leningrad.
+     Univ. 14, 13 (1959), 83–92.
+ [8] Borisov, J. F. C 1,α -isometric immersions of Riemannian spaces. Doklady 163 (1965),
+     869–871.
+ [9] Borisov, Y. Irregular C 1,β -surfaces with analytic metric. Sib. Mat. Zh. 45, 1 (2004),
+     25–61.
+[10] Bressan, A., and Flores, F. On total differential inclusions. Rend. Sem. Mat.
+     Univ. Padova 92 (1994), 9–16.
+[11] Buckmaster, T. Onsager’s conjecture almost everywhere in time. Comm. Math.
+     Phys. 333, 3 (2015), 1175–1198.
+[12] Buckmaster, T., De Lellis, C., Isett, P., and Székelyhidi, Jr., L. Anomalous
+     dissipation for 1/5-Hölder Euler flows. Ann. of Math. (2) 182, 1 (2015), 127–172.
+                        JOHN NASH’S NONLINEAR ITERATION                                  29
+
+[13] Buckmaster, T., De Lellis, C., and Székelyhidi, Jr, L. Dissipative Euler flows
+     with Onsager-critical spatial regularity. ArXiv e-prints, to appear in Comm. Pure
+     Appl. Math. (Apr. 2014).
+[14] Burstin, C. Ein Beitrag zum Problem der Einbettung der Riemannschen Räume in
+     euklidischen Räumen. Rec. Math. Moscou 38, 3-4 (1931), 74–85.
+[15] Cartan, E. Sur la possibilité de plonger un espace Riemannien donné dans un espace
+     Euclidien. Ann. Soc. Polon. Math. 6 (1928), 1–7.
+[16] Cellina, A. On the differential inclusion x0 ∈ [−1, +1]. Atti Accad. Naz. Lincei
+     Rend. Cl. Sci. Fis. Mat. Natur. (8) 69, 1-2 (1980), 1–6 (1981).
+[17] Chorin, A. J. Vorticity and turbulence, vol. 103 of Applied Mathematical Sciences.
+     Springer-Verlag, New York, 1994.
+[18] Cohn-Vossen, S. Zwei Sätze über die Starrheit der Eiflächen. Nachrichten Göttingen
+     1927 (1927), 125–137.
+[19] Constantin, P., E, W., and Titi, E. S. Onsager’s conjecture on the energy conser-
+     vation for solutions of Euler’s equation. Comm. Math. Phys. 165, 1 (1994), 207–209.
+[20] Conti, S., De Lellis, C., and Székelyhidi, Jr., L. h-principle and rigidity for
+     C 1,α isometric embeddings. In Nonlinear partial differential equations, vol. 7 of Abel
+     Symp. Springer, Heidelberg, 2012, pp. 83–116.
+[21] Dacorogna, B., and Marcellini, P. General existence theorems for Hamilton-
+     Jacobi equations in the scalar and vectorial cases. Acta Math. 178 (1997), 1–37.
+[22] Daneri, S. Cauchy problem for dissipative Hölder solutions to the incompressible
+     Euler equations. Comm. Math. Phys. 329, 2 (2014), 745–786.
+[23] Daneri, S., and Székelyhidi, Jr, L. Non-uniqueness and h-principle for H\”older-
+     continuous weak solutions of the Euler equations. ArXiv e-prints (Mar. 2016).
+[24] De Lellis, C. The masterpieces of John Forbes Nash, Jr. In preparation.
+[25] De Lellis, C., Inauen, D., and Székelyhidi, Jr, L. A Nash-Kuiper theorem for
+          1
+     C 1, 5 −δ immersions of surfaces in 3 dimensions. ArXiv e-prints (Oct. 2015).
+[26] De Lellis, C., King, H., Milnor, J., John, N., Székelyhidi, Jr., L., Villani,
+     C., and Weinstein, J. John Forbes Nash, Jr. 1928-2015. To appear in Notices of
+     the AMS .
+[27] De Lellis, C., and Székelyhidi, Jr., L. In preparation.
+[28] De Lellis, C., and Székelyhidi, Jr., L. The Euler equations as a differential
+     inclusion. Ann. of Math. (2) 170, 3 (2009), 1417–1436.
+[29] De Lellis, C., and Székelyhidi, Jr., L. The h-principle and the equations of fluid
+     dynamics. Bull. Amer. Math. Soc. (N.S.) 49, 3 (2012), 347–375.
+[30] De Lellis, C., and Székelyhidi, Jr., L. Dissipative continuous Euler flows. Invent.
+     Math. 193, 2 (2013), 377–407.
+[31] De Lellis, C., and Székelyhidi, Jr., L. Dissipative Euler flows and Onsager’s
+     conjecture. J. Eur. Math. Soc. (JEMS) 16, 7 (2014), 1467–1505.
+[32] Eliashberg, Y., and Mishachev, N. Introduction to the h-principle, vol. 48 of
+     Graduate Studies in Mathematics. American Mathematical Society, Providence, RI,
+     2002.
+[33] Eyink, G. L. Energy dissipation without viscosity in ideal hydrodynamics. I. Fourier
+     analysis and local energy transfer. Phys. D 78, 3-4 (1994), 222–240.
+[34] Gilbarg, D., and Trudinger, N. S. Elliptic partial differential equations of second
+     order. Classics in Mathematics. Springer-Verlag, Berlin, 2001. Reprint of the 1998
+     edition.
+[35] Gromov, M. Partial differential relations, vol. 9 of Ergebnisse der Mathematik und
+     ihrer Grenzgebiete (3). Springer-Verlag, Berlin, 1986.
+[36] Gromov, M. Local and global in geometry. Balzan Prize, 1999.
+[37] Herglotz, G. Über die Starrheit der Eiflächen. Abh. Math. Semin. Hansische Univ.
+     15 (1943), 127–129.
+30               CAMILLO DE LELLIS AND LÁSZLÓ SZÉKELYHIDI JR.
+
+[38] Isett, P. H\”older Continuous Euler Flows in Three Dimensions with Compact
+     Support in Time. ArXiv e-prints (Nov. 2012).
+[39] Janet, M. Sur la possibilité de plonger un espace Riemannien donné à n dimensions
+     dans un espace Euclidien à n(n+1)
+                                     2
+                                          dimensions. C. R. Acad. Sci., Paris 183 (1926),
+     942–943.
+[40] Kirchheim, B., Müller, S., and Šverák, V. Studying nonlinear PDE by geometry
+     in matrix space. In Geometric analysis and Nonlinear partial differential equations,
+     S. Hildebrandt and H. Karcher, Eds. Springer-Verlag, 2003, pp. 347–395.
+[41] Kirchheim, B., Spadaro, E., and Székelyhidi, Jr., L. Equidimensional isometric
+     maps. Comment. Math. Helv. 90, 4 (2015), 761–798.
+[42] Kuiper, N. H. On C 1 -isometric imbeddings. I, II. Nederl. Akad. Wetensch. Proc.
+     Ser. A. 58 = Indag. Math. 17 (1955), 545–556, 683–689.
+[43] Lax, P. D. Deterministic theories of turbulence. In Frontiers in pure and applied
+     mathematics. North-Holland, Amsterdam, 1991, pp. 179–184.
+[44] Lewy, H. On the existence of a closed convex surface realizing a given Riemannian
+     metric. Proc. Natl. Acad. Sci. USA 24 (1938), 104–106.
+[45] Motzkin, T. S., and Wasow, W. On the approximation of linear elliptic differen-
+     tial equations by difference equations with positive coefficients. J. Math. Physics 31
+     (1953), 253–259.
+[46] Müller, S., and Šverák, V. Convex integration for Lipschitz mappings and coun-
+     terexamples to regularity. Ann. of Math. (2) 157, 3 (2003), 715–742.
+[47] Nasar, S. A beautiful mind. Simon & Schuster, New York, 1998.
+[48] Nash, J. C 1 isometric imbeddings. Ann. of Math. (2) 60 (1954), 383–396.
+[49] Nash, J. The imbedding problem for Riemannian manifolds. Ann. of Math. (2) 63
+     (1956), 20–63.
+[50] Nash, J. Analyticity of the solutions of implicit function problems with analytic data.
+     Ann. of Math. (2) 84 (1966), 345–355.
+[51] Nirenberg, L. The determination of a closed convex surface having given line ele-
+     ment. ProQuest LLC, Ann Arbor, MI, 1949. Thesis (Ph.D.)–New York University.
+[52] Nirenberg, L. The Weyl and Minkowski problems in differential geometry in the
+     large. Comm. Pure Appl. Math. 6 (1953), 337–394.
+[53] Onsager, L. Statistical hydrodynamics. Nuovo Cimento (9) 6, Supplemento, 2(Con-
+     vegno Internazionale di Meccanica Statistica) (1949), 279–287.
+[54] Pogorelov, A. V. Izgibanie vypuklyh poverhnosteı̆. Gosudarstv. Izdat. Tehn.-Teor.
+     Lit., Moscow-Leningrad, 1951.
+[55] Pogorelov, A. V. Extrinsic geometry of convex surfaces. American Mathematical
+     Society, Providence, R.I., 1973. Translated from the Russian by Israel Program for
+     Scientific Translations, Translations of Mathematical Monographs, Vol. 35.
+[56] Scheffer, V. An inviscid flow with compact support in space-time. J. Geom. Anal.
+     3, 4 (1993), 343–401.
+[57] Schläfli, L. Nota alla memoria del sig. Beltrami, “Sugli spazii di curvatura
+     costante”. Annali di Mat. (2) 5 (1871), 178–193.
+[58] Shnirelman, A. On the nonuniqueness of weak solution of the Euler equation.
+     Comm. Pure Appl. Math. 50, 12 (1997), 1261–1286.
+[59] Spivak, M. A comprehensive introduction to differential geometry. Vol. V. 2nd ed.
+     Berkeley: Publish or Perish, Inc., 1979.
+[60] Székelyhidi Jr, L. The h-principle and turbulence. ICM 2014 Proceedings Volume
+     (2014).
+[61] Székelyhidi Jr, L. Weak solutions of the Euler equations: non-uniqueness and
+     dissipation. Journées Équations aux derivées partielles (2016).
+[62] Weyl, H. Über die Bestimmung einer geschlossenen konvexen Fläche durch ihr Lin-
+     ienelement. Zürich. Naturf. Ges. 61, 40-72, 1916.
+                  JOHN NASH’S NONLINEAR ITERATION                 31
+
+Institut für Mathematik, Universität Zürich, CH-8057 Zürich
+E-mail address: camillo.delellis@math.uzh.ch
+
+Mathematisches Institut, Universität Leipzig, D-04009 Leipzig
+E-mail address: laszlo.szekelyhidi@math.uni-leipzig.de
+

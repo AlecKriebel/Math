@@ -1,0 +1,3072 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                   Report No. 33/2012
+
+                             DOI: 10.4171/OWR/2012/33
+
+                 Geometric Aspects of Spectral Theory
+                                       Organised by
+                               Michiel van den Berg, Bristol
+                                Daniel Grieser, Oldenburg
+                             Thomas Hoffmann-Ostenhof, Wien
+                                Iosif Polterovich, Montreal
+
+
+                                July 1st – July 7th, 2012
+
+         Abstract. The workshop “Geometric Aspects of Spectral Theory” brought
+         together leading researchers working in various areas of this vast field of math-
+         ematics. The meeting featured presentations on some of the most fascinating
+         recent developments in the subject, including five survey talks given by top
+         experts, as well as reports on the progress made by graduate students and
+         postdocs. A number of new stimulating questions were formulated during the
+         open problem session.
+
+
+Mathematics Subject Classification (2000): 35J05, 35J10, 35J20, 58J05, 58J32, 58J50, 35P15,
+35P20, 35P99.
+
+
+
+                         Introduction by the Organisers
+
+Geometric spectral theory is a rapidly developing area of mathematics with con-
+nections to Riemannian geometry, mathematical physics, calculus of variations and
+other fields. The talks presented at the meeting covered a broad variety of topics,
+already well-established as well as relatively unexplored. The workshop featured
+daily survey talks given by Brian Davies, Bernard Helffer, Bruno Colbois, Aldo
+Pratelli and Rupert Frank. On Wednesday evening, Timo Weidl gave a lecture
+aimed at a general mathematical audience, attended by the participants of both
+workshops that were held at the Institute during the week.
+   Main topics of the meeting included optimisation problems for eigenvalues (talks
+by Aldo Pratelli, Dorin Bucur, Pedro Freitas, Mette Iversen, Richard Laugesen,
+and a related talk by Michael Loss), spectral properties of Dirac and Schrödinger
+operators (talks by Rupert Frank, Anna Dall’Acqua, Ari Laptev, Michael Levitin
+2014                                                Oberwolfach Report 33/2012
+
+and Timo Weidl), geometric estimates for Laplace and Steklov eigenvalues on Rie-
+mannian manifolds (talks by Bruno Colbois, Alexandre Girouard and Alessandro
+Savo), geometric features of nodal domains and spectral minimal partitions (talks
+by Bernard Helffer and Uzy Smilansky). Brian Davies presented an overview of
+recent developments in the spectral theory of non-self-adjoint operators, an ex-
+citing subject with lots of open questions. The talks of Vadim Kostrykin and
+Karsten Fritzsch focussed on applications of spectral theory to new problems aris-
+ing in physics and engineering, such as the study of plasmons and metamaterials.
+Alexander Strohmaier discussed new results on precise numerical computations of
+spectral quantities on Riemann surfaces. Emily Dryden reported on her recent
+work lying on the interface of spectral theory and symplectic geometry. In several
+talks the use of numerical computation for creating mathematical conjectures was
+emphasized (talks by Brian Davies, Alexander Strohmaier, Bernard Helffer, Uzy
+Smilansky and Pedro Freitas).
+   The talks presented at the workshop stimulated numerous fruitful interactions
+between the participants. The group included a large number of young researchers,
+in particular several Ph.D. students and postdocs, who benefitted from discussions
+with the renowned experts in the field.
+   One of the highlights of the workshop was the open problem session chaired
+by Michiel van den Berg. A list of open problems formulated at this session and
+discussed during the Workshop can be found below.
+Geometric Aspects of Spectral Theory                                                                                     2015
+
+
+
+
+Workshop: Geometric Aspects of Spectral Theory
+Table of Contents
+
+
+E. Brian Davies
+   Recent progress in the spectral theory of non-self-adjoint operators . . . . . 2017
+Michael Levitin (joint with Daniel M Elton, Iosif Polterovich)
+   Eigenvalues of a graphene operator pencil . . . . . . . . . . . . . . . . . . . . . . . . . . . 2019
+Alexander Strohmaier (joint with Ville Uski)
+   Eigenvalue inclusions and spectral determinants of hyperbolic surfaces . . 2022
+Karsten Fritzsch
+   A Spectral Problem on Two Almost Touching Domains . . . . . . . . . . . . . . . 2024
+Bernard Helffer (joint with T. Hoffmann-Ostenhof, V. Bonnaillie-Noel, G.
+   Vial, P. Bérard)
+   On nodal domains and spectral minimal partitions: a survey . . . . . . . . . . 2027
+Uzy Smilansky
+   Oscillations and vibrations – The Sturm and Courant theorems –
+   revisited . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2030
+Alessandro Savo (joint with Bruno Colbois)
+   Spectral gap and involutions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2030
+Emily B. Dryden (joint with Victor W. Guillemin and Rosa Sena-Dias)
+  Constructing Polytopes from Spectral Data . . . . . . . . . . . . . . . . . . . . . . . . . . 2033
+Bruno Colbois
+   Upper bounds for the spectrum of Riemannian manifolds . . . . . . . . . . . . . 2034
+Anna Dall’Acqua (joint with Jan Philip Solovej)
+  The ionization conjecture for pseudorelativistic atoms in Hartree-Fock
+  theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2036
+Alexandre Girouard (joint with Iosif Polterovich, Bruno Colbois, Ahmad
+   El Soufi)
+   Isoperimetric control of the Steklov spectrum . . . . . . . . . . . . . . . . . . . . . . . . 2038
+Aldo Pratelli
+   A survey on spectral minimization problems: existence, regularity and
+   stability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2040
+Mette Iversen
+  Torsional Rigidity of a Radially Perturbed Ball . . . . . . . . . . . . . . . . . . . . . . 2043
+Richard S. Laugesen (joint with B. A. Siudeja)
+   Sharp Spectral Bounds on Starlike Domains . . . . . . . . . . . . . . . . . . . . . . . . . 2045
+2016                                                                             Oberwolfach Report 33/2012
+
+Dorin Bucur
+   Minimization of eigenvalues by free boundary - free discontinuity
+   methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2048
+Pedro Freitas (joint with P.R.S. Antunes, J.B. Kennedy)
+   Asymptotic behaviour of some eigenvalue optimisation problems . . . . . . . 2050
+Rupert L. Frank (joint with Elliott H. Lieb, Mathieu Lewin, Robert
+  Seiringer)
+  Lieb–Thirring inequalities: A review and some recent results . . . . . . . . . . 2054
+Michael Loss (joint with Jean Dolbeault, Maria Esteban)
+   Sharp constants in the Caffarelli-Kohn-Nirenberg inequalities . . . . . . . . . . 2057
+Ari Laptev
+   Spectrum of 1D non-selfadjoint Dirac operators; sharp CLR inequalities
+   for radial potentials . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2059
+Timo Weidl
+   From the colour of the sun to modern spectral estimates . . . . . . . . . . . . . . 2060
+Vadim Kostrykin (joint with Amru Hussein, David Krejcirik, Stepan
+   Schmitz)
+   The div(A grad) operator without ellipticity. Self-adjointness and
+   spectrum . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2061
+
+     Open Problems Session . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2063
+Geometric Aspects of Spectral Theory                                           2017
+
+                                   Abstracts
+
+
+ Recent progress in the spectral theory of non-self-adjoint operators
+                          E. Brian Davies
+
+Since about 1990 there have been major advances in understanding the spectral
+theory of a variety of non-self-adjoint operators, based on geometric insights pro-
+vided by numerical computations. These have led to new spectral theorems that
+are in no sense generalizations of results for self-adjoint operators.
+   A general theory does not yet exist, but there are many exciting recent devel-
+opments. This review describes two particular problems, but they are typical in
+the sense that their solutions involve special techniques, often involving theorems
+from complex analysis. A range of methods that have been found useful in other
+non-self-adjoint (NSA) contexts may be found in [1, 2, 5].
+                               General problems
+Let A be a closed linear operator acting on a dense domain D in a Hilbert space
+H.
+   If Aen = λn en for all n ∈ N, the density of the linear span of {en } in H does
+not imply that one can use the en to expand a general vector f ∈ H in the form
+                                      ∞
+                                      X
+                                 f=       hf, un ien .
+                                      n=1
+
+where en , un is a biorthogonal system, i.e. hem , un i = δm,n for all m, n ∈ N. It
+may not help to weaken the requirement to Cesaro or Abel convergence for all
+f ∈ H or to assume that A has a compact resolvent.
+   There are are at least five inequivalent definitions of essential spectrum for
+operators in H that are not self-adjoint. (All coincide for self-adjoint operators.)
+The following two definitions are both important in applications. We say λ ∈
+Ess(A) if λI −A is not Fredholm; equivalently λI −A is invertible modulo compact
+operators or its image in the Calkin algebra is invertible. We say λ ∈ Stab(A)
+if λI − A is not Fredholm or it is Fredholm with a non-zero index; equivalently
+λ ∈ Spec(A + K) for all compact perturbations K of A.
+   If N is a normal operator acting in H and λ ∈ / Spec(N ) then
+                      k(λI − N )−1 k = [dist(λ, Spec(N ))]−1 .
+For non-normal operators the resolvent norm may be far larger than the quantity
+on the right hand side. Therefore the unique solubility of the equation λf −Af = g
+by f = (λI−A)−1 g does not imply its stable solubility, in the numerical sense. This
+issue was investigated by Trefethen in the 1990s using the notion of pseudospectra;
+see [5]. He provided many examples that demonstrated that this problem is so
+common, even for matrices of quite small sizes, that it cannot be regarded as
+pathological.
+2018                                                        Oberwolfach Report 33/2012
+
+                         The NSA harmonic oscillator
+Consider
+                                                    d2
+                            H = P 2 + aQ2 = −          + ax2
+                                                   dx2
+                                                                                   √
+acting in L2 (R), where a is not real. The eigenvalues of H are λn = (2n + 1) a,
+where n = 0, 1, 2, . . .. This operator arises in the study of a single mode laser with
+decay caused by losses in the cavity. It illustrates the first of the general problems
+described above, but the same operator also exhibits the phenomenon described
+in the third problem.
+Theorem 1 ([3]). Let Pn be the rank 1 spectral projections of the NSA harmonic
+oscillator H. If a = eiθ where 0 < θ < π then
+                                              n             o
+                      lim n−1 log(kPn k) = 2ℜ f (r(θ)eiθ/4 )
+                      n→∞
+
+where
+                    f (z) := log(z + (z 2 − 1)1/2 ) − z(z 2 − 1)1/2
+and
+                                                     −1/2
+                              r(θ) := (2 cos(θ/2))          .
+Corollary 2. The expansion
+                                          ∞
+                                          X
+                                e−Ht :=         e−λn t Pn
+                                          n=0
+
+is norm convergent if
+                                         ℜ f (r(θ)eiθ/4 )
+                                          
+                             t > ta :=
+                                            cos(θ/2)
+and norm divergent if 0 < t < ta .
+   The very precise results above are only available because the eigenfunctions of
+the operator H can be written down in closed form, as Hermite functions. Similar
+but weaker bounds can be proved for H = P 2 + p(Q) where p is a polynomial
+of even order with complex highest order coefficient. They may be extended to a
+wide class of NSA pseudodifferential operators. See [1, p. 426] and [6].
+                NSA perturbations of self-adjoint operators
+Consider
+                                     Aγ = A + γB
+acting on H where dim(H) = N < ∞, A = A∗ , 0 ≤ B = B ∗ has rank M and
+γ ∈ C+ = {z ∈ C : ℑ(z) > 0}. Such operators have been studied in great detail
+when γ is real, but several new phenomena arise for complex γ, of which we only
+mention one. The following theorem may be extended to sectorial perturbations
+B.
+Geometric Aspects of Spectral Theory                                                        2019
+
+Theorem 3 ([4]). Under certain genericity conditions, let g(t) = teiθ where 0 ≤
+t < ∞ and 0 < θ < π. Then there exist N real-analytic curves λr (t) lying in
+C+ such that Spec(Ag(t) ) = {λ1 (t), . . . , λN (t)} for all t ∈ [0, ∞). One can choose
+the ordering of these so that λr (0) = αr for all r ∈ {1, . . . , N }, where αr are the
+eigenvalues of A written in increasing order. Assuming this is done, there exists
+a θ-dependent permutation π on {1, . . . , N } such that
+                                             λπ(r) (t)
+                                       lim             = βr
+                                       t→∞    g(t)
+for 1 ≤ r ≤ M , where βr are the non-zero eigenvalues of B written in increasing
+order, and
+                              lim λπ(M+r) (t) = δr
+                                    t→∞
+for 1 ≤ r ≤ N − M , where δr are the non-zero eigenvalues of the truncation of A
+to Ker(B) written in increasing order.
+   The theorem states that the permutation π depends on the angle θ. In fact π is
+constant as θ increases except for discrete changes at certain non-generic values of
+θ for which two of the curves λr (t) meet. This happens at a value of γ for which
+Aγ has a multiple eigenvalue.
+   The situation changes substantially if one allows N = ∞ while keeping M < ∞.
+The number of curves λr (t) may be finite, and the curves that do exist may not
+appear until t reaches a positive critical value, which depends on r and θ.
+
+                                        References
+ [1] E. B. Davies, Linear Operators and their Spectra, Cambridge Univ. Press, (2007).
+ [2] E. B. Davies, Supplement to ‘Linear Operators and their Spectra’, This is available at
+     http://www.mth.kcl.ac.uk/staff/eb_davies/LOTS.html
+ [3] E. B. Davies and A. Kuijlaars, Spectral asymptotics of the non-self-adjoint harmonic oscil-
+     lator, J. London Math. Soc. (2) 70 (2004), 420–426.
+ [4] E. B. Davies, Sectorial perturbations of self-adjoint matrices and operators, arXiv 1206.1703
+ [5] L. N. Trefethen and M. Embree, Linear Operators and their Spectra, Cambridge Univ. Press,
+     (2007).
+ [6] M. Zworski, A remark on a paper of E. B. Davies, Proc. Amer. Math. Soc. 129 (2001),
+     2955–2957.
+
+
+
+                    Eigenvalues of a graphene operator pencil
+                                  Michael Levitin
+                  (joint work with Daniel M Elton, Iosif Polterovich)
+
+Let                                               
+                                        k    −iD
+                              T=                       = σ2 D + kσ3
+                                       iD    −k
+                                                   d
+(where k ∈ R \ {0} is a given parameter, D = −i dx   , and σj are Pauli matrices)
+be a formally self-adjoint one-dimensional Dirac operator. The study of the zero-
+energy modes for two-dimensional electron waveguides in graphene, see e.g. [3],
+2020                                                   Oberwolfach Report 33/2012
+
+leads after the separation of variables to the operator pencil problem,
+                                  (T + γV )ψ = 0.
+                   
+             ψ1 (x)
+Here ψ =             , V (x) is a given scalar potential decaying at ±∞ (always
+             ψ2 (x)
+assumed to be multiplied by the 2 × 2 identity matrix), and γ plays a rôle of the
+spectral parameter. In other words, we want to study the γ-spectrum associated
+to a potential V , which we define as
+                               
+                        ΣV = γ ∈ C : 0 ∈ spec(T + γV ) .
+   Our aim is to determine the key properties of ΣV under minimal assumptions
+on the potential V ; in particular, we consider symmetries, estimates for the dis-
+tribution of points in ΣV , and asymptotics for these points.
+   To state the precise results we need to make some basic restrictions on the
+local regularity and global decay of the potential V . We shall assume that all the
+potentials are real-valued and locally L2 . Let V0 denote the class of such potentials
+which additionally satisfy
+                         VL2 (x−1,x+1) → 0      as |x| → ∞;
+We shall also use V1 = V0 ∩ L1 to denote the class of locally L2 and integrable
+potentials.
+  The following results are obtained using standard techniques by showing that
+any V ∈ V0 is a relatively compact perturbation of T.
+Theorem 1. Suppose V ∈ V0 . Then T + V is an unbounded self-adjoint operator
+on (L2 (R))2 . Its essential spectrum specess (T + V ) = specess (T) = Ek := R \
+(−|k|, |k|). The operator T + V may have eigenvalues outside Ek if V 6≡ 0 but
+these must be isolated and of finite multiplicity. The operator pencil spectrum
+ΣV = {γ : 0 ∈ spec(T + γV )} is a discrete subset of C.
+   In common with other Dirac operators, T+ V possesses a number of elementary
+symmetries which lead to the symmetries for the set ΣV . In particular, if V ∈ V0
+then −ΣV = ΣV = ΣV , while ΣV is unchanged if we replace k with −k in the
+definition of T. With this last symmetry in mind we shall henceforth assume
+k > 0.
+   Even though the operator T + V is self-adjoint (recall that V is real-valued),
+the operator pencil T + γV is not! Extra conditions are required to ensure that
+ΣV contains only real points. In particular we have the following.
+Proposition 2. If V ∈ V0 is single-signed then ΣV ⊂ R.
+   For variable sign V the set ΣV may contain non-real points; we give in the talk
+some examples of explicit potentials which illustrate various possible behaviours
+for complex points in ΣV . As a general result illustrating the contrast with single-
+signed potentials we have the following (which is proved using a fairly direct ar-
+gument based on symmetry considerations).
+Geometric Aspects of Spectral Theory                                           2021
+
+Proposition 3. If V ∈ V0 is odd (that is, V (−x) = −V (x) for all x ∈ R) then
+ΣV ∩ R = ∅.
+    To obtain estimates for the distribution of points in ΣV we impose extra global
+decay conditions on the potential V , requiring V ∈ V1 .
+    Firstly we consider the number of points of ΣV lying inside the disc {z ∈ C :
+|z| ≤ R} of radius R > 0.
+Theorem 4. Suppose V ∈ V1 . Then
+                                             
+                     # ΣV ∩ {z ∈ C : |z| ≤ R} ≤ C kV kL1 R
+for any R ≥ 0, where C is a universal constant (we can take C = 4e/π).
+   Lower bounds which complement the upper bounds given by the previous The-
+orem can also be obtained. Restricting our attention to real points we have the
+following.
+Theorem 5. Suppose V ∈ V1 . Then
+                                      R
+                                           Z
+                     #(ΣV ∩ [0, R]) ≥           V (x)dx + o(R)
+                                      π     R
+
+as R → ∞. The same estimate holds for #(ΣV ∩ [−R, 0]) (by symmetry).
+                                                           R
+   In particular, ΣV ∩ R contains infinitely many points if R V (x)dx 6= 0. On the
+other hand, the fact that ΣV ∩ R = ∅ for odd potentials clearly limits the possible
+improvements to the previous Theorem.
+   For single-signed potentials we can improve the asymptotic upper bound to
+obtain the same leading order term as for the lower bound. This results in an
+asymptotic formula for the points in ΣV in this case.
+Theorem 6. Suppose V ∈ V1 is single-signed and non-trivial. Let {γn } denote
+the sequence of positive points in ΣV , arranged in order of increasing size. Then
+                                        π
+                               γn =         n + o(n)
+                                     kV kL1
+as n → ∞.
+   We obtain this result via the Prüfer angle technique, but similar results can be
+obtained by using the Birman-Schwinger principle, cf., e.g., [1, 4].
+   While we have not obtained a general asymptotic formulae for the points in ΣV
+when V is not single-signed, it is reasonable to conjecture that the leading order
+asymptotic for the number of points in ΣV ∩ [0, R] is between
+               R                        R                 1
+                  Z                       Z
+(1)                  V (x)dx     and         |V (x)|dx = kV kL1 R.
+               π R                      π R              π
+The former is certainly a lower bound but also a possible asymptotics (in the case
+of odd potentials, for example).R On the other hand, we have examples of potentials
+V with compact support and R V (x)dx = 0 which satisfy the latter asymptotics.
+Modifying these examples a bit it is probably possible to construct V ∈ V1 which
+2022                                                                  Oberwolfach Report 33/2012
+
+gives asymptotic behaviour anywhere between the above extremes. For somewhat
+related results involving sign-indefinite potentials cf. [5].
+   The full account will be published in [2].
+
+
+                                          References
+ [1] M. Sh. Birman and A. Laptev, Discrete spectrum of the perturbed Dirac operator, Ark. Mat
+     32, 13–32 (1994).
+ [2] D. M. Elton, M. Levitin, I. Polterovich, in preparation.
+ [3] R. R. Hartmann, N. J. Robinson, and M. E. Portnoi, Smooth electron waveguides in
+     graphene, Phys. Review B 81 245431 (2010),
+ [4] M. Klaus, On the point spectrum of Dirac operators, Helv. Phys. Acta 53, 453–462 (1980).
+ [5] O. L. Safronov, The discrete spectrum in the gaps of the continuous one for non-signdefinite
+     perturbations with a large coupling constant, Commun. Math. Phys. 193, 233–243 (1998).
+
+
+
+
+Eigenvalue inclusions and spectral determinants of hyperbolic surfaces
+                       Alexander Strohmaier
+                       (joint work with Ville Uski)
+
+
+   Suppose that X is a compact oriented surface of genus g > 1 equipped with a
+metric of constant negative curvature. We will be interested in the spectrum of
+the Laplace operator ∆X on functions and its derived spectral quantities. Such a
+surface may be specified by 6g − 6 Fenchel-Nielsen coordinates
+
+                               (ℓ1 , t1 ; ℓ2 , t2 ; . . . ; ℓ3g−3 , t3g−3 )
+
+together with a three valent graph and a labelling scheme, that fixes a decom-
+position of X into pairs of hyperbolic pants. Such a decomposition allows to
+decompose the surface into subsets Zi of hyperbolic cylinders with piecewise geo-
+desic boundaries ∂Zi . On the disjoint union Z of all these cylinders there exists a
+                                               (λ)
+special linearly independent set of functions Fj that satisfy
+
+                                                      (λ)
+                                        (∆ − λ)Fj           = 0,
+                                            (λ)
+                                        kFj kL2 (Z) ≥ 1.
+
+These functions are obtained by separation of variables on each of the cylinders
+and can be expressed in terms of hypergeometric functions and exponentials. Now
+choose an equidistant set of points {x1 , x2 , . . . , xM } ⊂ ∂Z that partition the
+boundary into intervals of length δ. These points correspond to another set of
+points {x̃1 , x̃2 , . . . , x̃M } on the boundary by the glueing map, i.e. on the surface
+the point xi is identified with the point x̃i . Now define the following M × N ′
+Geometric Aspects of Spectral Theory                                             2023
+
+matrices.
+                     √     (λ)        (λ)
+                                                  !
+                      am (Fj (xm ) − Fj (x̃m )))
+            Aλ =    √      (λ)          (λ)                                ,
+                     am (nFj (xm ) + nFj (x̃m )))                        ′
+                                                    m=1,...,M; j=1,...,N
+                           √     (λ)
+                                          !
+                             am Fj (xm )
+                    Bλ = √        (λ)                           ,
+                            am nFj (xm )                      ′
+                                               m=1,...,M; j=1,...,N
+
+where n is the exterior normal derivative and the coefficients am are the coefficients
+of the Simpson rule for integrating a function over the boundary ∂Z. Here N ′ is
+the number of basis functions with Fourier modes appearing in the separation of
+variables between −N and +N and we take only these basis functions to form the
+matrices. Thus, N ′ = 2b(2N + 1), where b is the number of connected components
+of Z. Now let σ1 (A, B) be the smallest relative singular value of the pair of
+matrices (A, B) and σ1 (A) be the smallest singular value for A. We have proved
+the following theorems.
+Theorem 1. There exists a constant C > 0 independent of N and M , and a
+quadratic form q depending only on N such that for a singular vector v with kvk = 1
+and kAλ vk = σ1 (Aλ )kvk the inequality
+                                                     1/2
+                       ǫ := C σ1 (Aλ )2 + δ 4 q(v, v)     <1
+implies
+                                                   ǫ(λ + 1)
+                            dist(spec(∆X ), λ) ≤            .
+                                                     1−ǫ
+Theorem 2. There exists Ñ (λ) > 0 such that for every N > Ñ there exists an
+M̃ > 0 such that for all M > M̃ we have
+                   σ1 (Aλ , Bλ ) ≥ βN (λ) + C ′ (λ)dist(spec(∆X ), λ),
+where βN decays exponentially fast in N for fixed λ > 0, and C ′ (λ) is a constant
+depending only on λ and the geometry of the problem.
+   It is important here that all the constants in the theorems can be made explicit.
+Therefore, these theorems can be used to prove eigenvalue inclusions by employing
+interval arithmetics. They also provide a powerful numerical algorithm for the nu-
+merical computation of eigenvalues on hyperbolic surfaces. A computer program
+that (non-rigorously) computes eigenvalues for given Fenchel-Nielsen coordinates
+of genus two hyperbolic surfaces was published under GPLv3 and can be down-
+loaded from www-staff.lboro.ac.uk/∼maas3/hyperbolic-surfaces/hypermodes.html.
+   Once a list of eigenvalues is found bounds on the heat kernel and on the counting
+function can be used to establish error bounds for values of spectral zeta functions
+and spectral determinants. We were able to compute spectral zeta functions and
+spectral determinants with high accuracy for genus two hyperbolic surfaces and
+study their behavior in Teichmüller space. For the Bolza surface it appears that
+2024                                                       Oberwolfach Report 33/2012
+
+both the first non-zero eigenvalue and the spectral determinants are maximized.
+The values we find for the Bolza surface are
+             λ1 ≈ 3.838887258842199518586622450435464597081915
+and
+                            detζ (∆) ≈ 4.72273280444557,
+                           ζ∆ (−1/2) ≈ −0.65000636917383,
+for spectral determinant and Casimir energy. In order to obtain explicit estimates
+for the error bounds we derived explicit bounds on the heat kernel, counting func-
+tion and C 1 -norms of eigenfunctions. The details as well as the precise statements
+of the theorems can be found in [1].
+
+                                       References
+[1] Alexander Strohmaier and Ville Uski, An Algorithm for the Computation of Eigenvalues,
+    Spectral Zeta Functions and Zeta-Determinants on Hyperbolic Surfaces, arXiv:1110.2150,
+    to appear in Commun. Math. Phys.
+
+
+        A Spectral Problem on Two Almost Touching Domains
+                         Karsten Fritzsch
+   Introduction. Consider the following setting: Let n ≥ 3 and Ω± ⊂ Rn be
+open, bounded and connected sets with smooth boundary such that Rn \ Ω− ∪ Ω+
+is connected and Ω− ∩ Ω+ = {0} ⊂ Rn . Suppose ∂Ω− , ∂Ω+ are tangent to
+second order at the origin. By translation of Ω± , perpendicular to their boundaries
+at 0, a parameter dependent
+                               setting is obtained: Ωa = Ω− (a) ∪ Ω+ (a), where
+a = dist Ω− (a), Ω+ (a) .
+   Then, for a > 0, consider the following boundary value problem:
+(1)       ∆u± = 0 and ∆u0 = 0                         in Ω± (a) resp. Rn \ Ωa
+(2)       u± − u0 = 0                                 at ∂Ω± (a)
+(3)       ε∂n u± + ∂n u0 = 0                          at ∂Ω± (a)
+                           2−n
+(4)       u0 (x) = O(|x|         )                    as |x| → ∞
+where u± : Ω± (a) → R and u0 : Rn \ Ωa → R are smooth up to the boundary and
+ε ∈ R; ∂n denotes the outward normal derivative with respect to ∂Ωa .
+   Now let
+          H = u : Rn → R u
+               
+                                    ,u n      solve (1), (2) and (4)
+                                     Ω± (a)   R \Ωa
+
+and N± denote the exterior respectively interior Dirichlet-to-Neumann operators,
+then:
+                       u ∈ H solves (3)
+                                                −1          1
+                  ⇐⇒ g = u        satisfies (−N+   N− )g = g
+                              ∂Ωa                           ε
+Geometric Aspects of Spectral Theory                                                 2025
+
+                  −1
+Note that −N+        N− is an elliptic zeroth order pseudodifferential operator on
+  1
+H 2 (∂Ωa ), self-adjoint with respect to the inner product (g, f )+ = (g, N+ f )L2 (∂Ωa ) .
+  If u ∈ H \ {0} solves (3) for ε, then ε is called an plasmonic eigenvalue for Ωa
+and u a corresponding plasmon.
+
+   Again, for fixed a > 0, in [4] and [1] this reformulation as a genuine eigenvalue
+problem and other techniques are used to show (including, but not limited to; cf.
+[2] as well):
+      • plasmonic eigenvalues form a sequence of positive numbers ε1 , ε2 , · · · → 1
+        and the corresponding eigenspaces are finite dimensional as long as ε 6= 1
+      • regularity results
+      • explicit formulae for the concerning the behaviour of solutions (ε, u) under
+        perturbation of ∂Ωa
+
+   Questions. Now, as a → 0 certain interesting questions arise:
+      • Are there solutions for a = 0? How should the equations be modified in
+        this singular case?
+      • Are there branches of solutions with qualitatively different behaviour? In
+        particular, solutions which...
+          – ...“localise” (in a sense still to be defined) between the domains?
+             Following numerical computations of [5] for two spheres in R3 this
+             is to be expected.
+          – ...are linear combinations of solutions to the respective single-domain
+             problems? (This corresponds to the “hybridisation” method used in
+             physics, cf. [6].)
+These questions are of particular importance in the study of or in applications
+using plasmon surface resonances, see [1, 2, 5] and [6] for further references.
+
+   Ansatz. The following general ansatz is proposed to answer these questions:
+After introducing a ≥ 0 as an additional coordinate, aSquasi-homogeneous blow-up
+of the origin is used to resolve the singularity of Ma = 0≤a ∂Ωa at 0. (Compare [8]
+and [3] for a background on blow-ups.) This leads to a manifold with corners with
+two boundary hypersurfaces, Hint corresponding to the half-sphere introduced by
+the blow-up, and Hext , corresponding to the ‘old boundary’ at a = 0.
+   Then, assume that solutions (ε, u) have asymptotic expansions
+                            X                           X
+                    ε(a) ∼      εi aαi and u(x, a) ∼       uH
+                                                            j a
+                                                                αj
+
+                             i                              j
+
+where εi ∈ R and the uH j are functions on the two boundary hypersurfaces. More-
+over, assume that equations (1)-(4) are solved locally uniformly in a with all deriva-
+tives and that the expansions are compatible at the corner. (More precisely, assume
+that u is polyhomogeneous.) Expanding the equations in suitable powers of a and
+comparing coefficients then leads to two model problems, i.e. systems of equations
+2026                                                         Oberwolfach Report 33/2012
+
+similar to (1)-(4), one for each boundary hypersurface, and matching conditions
+coupling these problems.
+    The geometry of the model problem on Hint is completely determined by curva-
+ture information and can be solved recursively. The model problem on Hext leads
+to a manifold with fibred boundary Mφ which corresponds to the boundaries of the
+touching domains with resolved singularity. In this case the φ-calculus developed
+in [7] and extended in [3] can be used: The interior and exterior Dirichlet-to-
+Neumann operators on functions on Mφ belong to the full φ-calculus; they are
+first-order, elliptic φ-pseudodifferential operators. As in [2, 4] this leads to a dis-
+crete spectrum for the model problem on Hext .
+
+
+  Conjectures. Combining explicit calculations on Hint and the results on Hext
+obtained via the φ-calculus, it should be possible to show the following:
+       • There exist formal solutions, i.e. sets of asymptotic data (εi , uH j )i,j,H
+         which solve the model problems and satisfy the matching conditions.
+       • In particular, there exist formal solutions which are localised and proper-
+         ties concerning localisation and hybridisation are decoded in the leading
+         order terms of the asymptotic data.
+       • Each formal solution leads to an a-dependent solution (ε(a), u(a)) (defined
+         for short distances a) with the corresponding asymptotic behaviour.
+
+
+
+                                       References
+[1] S.-A. Biehs, D. Grieser, M. Holthaus, O. Huth, F. Rüting, H. Uecker, Perturbation Theory
+    for Plasmonic Eigenvalues, Phys. Rev. B 80 245405 (2009)
+[2] D. Grieser, The Plasmonic Eigenvalue Problem, submitted
+[3] D. Grieser, E. Hunsicker, Pseudodifferential Operator Calculus for generalized Q-rank 1 lo-
+    cally symmetric spaces, I, J. Funct. Anal. 257 3748-3801 (2009)
+[4] D. Grieser, F. Rüting, Surface Plasmon Resonances of an Arbitrarily Shaped Nanoparticle:
+    High-Frequency Asymptotics via Pseudo-Differential Operators, J. Phys. A: Math. Theor 42
+    135204 (2009)
+[5] D. V. Guzatov, V. V. Klimov, Strongly Localized Plasmon Oscillations in a Cluster of Two
+    Metallic Nanospheres and their Influence on Spontaneous Emission of an Atom, Phys. Rev.
+    B 75 024303 (2007)
+[6] K. Li, P. Nordlander, C. Oubre, E. Prodan, M. I. Stockmann, Plasmon Hybridisation in
+    Nanoparticle Dimers, Nano Letters 4 899-903 (2004)
+[7] R. Mazzeo, R. B. Melrose, Pseudodifferential Operators on Manifolds with Fibred Boundaries,
+    Asian J. Math. 2 833-866 (1998)
+[8] R. B. Melrose, The Atiyah-Patodi-Singer Index Theorem, A. K. Peters, Newton, 1991.
+Geometric Aspects of Spectral Theory                                             2027
+
+      On nodal domains and spectral minimal partitions: a survey
+                            Bernard Helffer
+(joint work with T. Hoffmann-Ostenhof, V. Bonnaillie-Noel, G. Vial, P. Bérard)
+
+Given a bounded open set Ω in Rn (or in a Riemannian manifold) and a partition
+of Ω by k open sets Dj , we can consider the quantity maxj λ(Dj ) (which is called
+the energy of the partition) where λ(Dj ) is the ground state energy of the Dirichlet
+realization of the Laplacian in Dj . If we denote by Lk (Ω) the infimum over all
+the k-partitions of maxj λ(Dj ), a minimal k-partition is then a partition which
+realizes the infimum. Although the analysis is rather standard when k = 2 (we find
+the nodal domains of a second eigenfunction), the analysis of higher k’s becomes
+non trivial and quite interesting. In this talk, we consider the two-dimensional
+case and present the state of the art. The existence and the regularity of these
+spectral minimal partitions were proved in [11, 12, 13, 22] (see also [8, 10]). These
+minimal partitions are spectral equipartitions (all the λ(Dj ) are equal). It is
+actually enough to analyze regular minimal partitions. In this case the boundary
+set N (D) of the partition consists of singular points {yi }ai=1 inside Ω, of singular
+points {zi }bi=1 on ∂Ω, of C 1 arcs {γi }ci=1 which bound two adjacent domains of
+the partition, and of arcs {δi }di=1 contained in ∂Ω.
+   There is a nice criterion conjectured in [9] and proven in [22] permitting to de-
+termine when minimal partitions are nodal, i.e. consisting of nodal domains of an
+eigenfunction of the Dirichlet Laplacian in Ω. The eigenfunction has to be Courant
+sharp (situation corresponding to the equality in Courant’s theorem, which is usu-
+ally not true according to [25]). Many examples like the square, the disk, the
+rectangle or the sector have been analyzed, sometimes rigorously and sometimes
+only numerically [3, 6, 4, 14, 19]. A magnetic characterization of these minimal
+partitions is proven relating them to nodal partitions for suitable Aharonov-Bohm
+operators [17, 1, 20, 24]. Two cases of 2-dimensional compact manifolds have been
+analyzed: the sphere, where we are able to determine the minimal 3-partitions
+[23] and the anisotropic torus [21]. Some lower bounds on the length of these
+regular minimal partitions have been obtained with P. Bérard [2] in the spirit of
+Brüning-Gromes [5] using the techniques of [27, 15, 16]. Finally we will discuss
+below with more details the behavior for k large of Lk (Ω), describing the efforts
+to prove the hexagonal conjecture in connection with the proof of the honeycomb
+conjecture by Hales [16].
+
+Zoom on hexagonal conjectures
+Let us describe this hexagonal conjecture and what is known at the moment.
+The Faber-Krahn inequality implies that Lk (Ω) ≥ k λ(Disk1 )A(Ω)−1 , where A(Ω)
+denotes the area of Ω and Disk1 denotes the disk of area 1. We recall that
+λ(Disk1 ) = πj2 , where j is a zero of some Bessel function. Using an hexagonal
+tiling, it is easy to see that:
+                              Lk (Ω)
+                        lim sup      ≤ λ(Hexa1 )A(Ω)−1 .
+                         k→+∞   k
+2028                                                    Oberwolfach Report 33/2012
+
+where Hexa1 denotes the regular hexagon of area 1. The hexagonal conjecture
+for minimal partitions (transmitted to us by M. Van den Berg, see also [10] for a
+variant involving the sum instead of the max in the definition of the energy of a
+partition) says that
+
+                                 Lk (Ω)
+                           lim          = λ(Hexa1 )A(Ω)−1 .
+                          k→+∞     k
+There are various controls of the conjecture using numerics directly or indirectly on
+theoretical consequences of this conjecture [7, 6]. There is a corresponding (proved
+by Hales [16]) conjecture for k- partitions of equal area and minimal length called
+the honeycomb conjecture. We define the length of the boundary set N (D) by:
+                                        c
+                                        X           1
+                             P (D) :=       ℓ(γi ) + ℓ(∂Ω),
+                                        i=1
+                                                    2
+
+where ℓ denotes the length of the curves. Of course the hexagonal conjecture leads
+to a natural conjecture for the length of a minimal partition:
+                                     √    1              1
+(1)                     lim (P (Dk )/ k) = ℓ(Hexa1 )A(Ω) 2 ,
+                       k→+∞               2
+where ℓ(Hexa1 ) is the perimeter of Hexa1 . We obtain in [2] an asymptotic lower
+bound for the length:
+                                             s
+                                     √     1            Lk (Ω)
+(2)                 lim inf (P (Dk )/ k) ≥    lim inf (        ).
+                    k→+∞                   2j k→+∞        k
+
+Assuming that the elements of the minimal partitions have no hole, we could apply
+Polya’s inequality [26, 27] and get the sharper estimate:
+                                           √      j     1
+(3)                       lim inf (P (Dk )/ k) ≥ √ A(Ω) 2 .
+                          k→+∞                     π
+The techniques used here give more generally an information for spectral k-equi-
+partitions. Implementing an inequality of Hales [16] obtained in his proof of the
+honeycomb conjecture, we get:
+                     P (Dk )  1                                1      1
+(4)        lim inf     √     ≥ ℓ(Hexa1 ) (λ(Disk1 )/λ(Hexa1 )) 2 A(Ω) 2 .
+           k→+∞         k     2
+For a domain Ω with at most one hole, one can actually obtain a universal estimate
+for the length of a regular spectral k-equipartition Dk independent of the energy:
+                                1          1    1  π 1       1
+(5)                    P (Dk ) + ℓ(∂Ω) ≥ k 2 12 8 ( ) 4 A(Ω) 2 .
+                                2                  4
+Asymptotically this inequality is weaker than (4) but universal.
+Geometric Aspects of Spectral Theory                                                         2029
+
+                                         References
+ [1] B. Alziary, J. Fleckinger-Pellé, P. Takáč. Eigenfunctions and Hardy inequalities for a mag-
+     netic Schrödinger operator in R2 . Math. Methods Appl. Sci. 26 (13), 1093–1136 (2003).
+ [2] P. Bérard, and B. Helffer. Remarks on the boundary set of spectral equipartitions.
+     http://hal.archives-ouvertes.fr/hal-00678905.
+ [3] V. Bonnaillie, and B. Helffer. Numerical analysis of nodal sets for eigenvalues of Aharonov-
+     Bohm Hamiltonians on the square and application to minimal partitions. Experimental
+     Mathematics 20 (3), 931–945 (2010).
+ [4] V. Bonnaillie-Noël, B. Helffer and T. Hoffmann-Ostenhof. Spectral minimal partitions,
+     Aharonov-Bohm hamiltonians and application the case of the rectangle. Journal of Physics
+     A : Math. Theor. 42 (18) (2009) 185203.
+ [5] J. Brüning and D. Gromes. Über die Länge der Knotenlinien schwingender Membranen,
+     Math. Z. 124, (1972), 79-82.
+ [6] V. Bonnaillie-Noël, B. Helffer and G. Vial. Numerical simulations for nodal domains and
+     spectral minimal partitions. ESAIM Control Optim. Calc.Var. DOI:10.1051/cocv:2008074
+     (2009).
+ [7] B. Bourdin, D. Bucur, and E. Oudet. Optimal partitions for eigenvalues. Siam J. Sci.
+     Comput. 31 (6), 4100–4114 (2009-2010).
+ [8] D. Bucur, G. Buttazzo, and A. Henrot. Existence results for some optimal partition prob-
+     lems. Adv. Math. Sci. Appl. 8 , 571–579 (1998).
+ [9] K. Burdzy, R. Holyst, D. Ingerman, and P. March. Configurational transition in a Fleming-
+     Viot-type model and probabilistic interpretation of Laplacian eigenfunctions. J. Phys.A:
+     Math. Gen. 29 , 2633–2642 (1996).
+[10] L.A. Caffarelli and F.H. Lin. An optimal partition problem for eigenvalues. Journal of
+     scientific Computing 31 (1/2) DOI: 10.1007/s10915-006-9114.8 (2007).
+[11] M. Conti, S. Terracini, and G. Verzini. An optimal partition problem related to nonlinear
+     eigenvalues. Journal of Functional Analysis 198, 160–196 (2003).
+[12] M. Conti, S. Terracini, and G. Verzini. A variational problem for the spatial segregation of
+     reaction-diffusion systems. Indiana Univ. Math. J. 54, 779–815 (2005).
+[13] M. Conti, S. Terracini, and G. Verzini. On a class of optimal partition problems related to
+     the Fučik spectrum and to the monotonicity formula. Calc. Var. 22, 45–72 (2005).
+[14] O. Cybulski, V. Babin , and R. Holyst. Minimization of the Renyi entropy production in
+     the space-partitioning process. Physical Review E71 046130 (2005).
+[15] R.T. Dong. Nodal sets of eigenfunctions on Riemann surfaces. Journal of differential Ge-
+     ometry 36, p. 493-506 (1992).
+[16] T. C. Hales. The honeycomb conjecture. Disc. Comp. Geom. 25, 1–22 (2001).
+[17] B. Helffer, M. Hoffmann-Ostenhof, T. Hoffmann-Ostenhof, M. P. Owen. Nodal sets for
+     groundstates of Schrödinger operators with zero magnetic field in non-simply connected
+     domains. Comm. Math. Phys. 202 (3), 629–649 (1999).
+[18] B. Helffer, T. Hoffmann-Ostenhof. Converse spectral problems for nodal domains. Mosc.
+     Math. J. 7 (1), 67–84 (2007).
+[19] B. Helffer, T. Hoffmann-Ostenhof. On spectral minimal partitions : the case of the disk.
+     CRM proceedings 52, 119–136 (2010).
+[20] B. Helffer, T. Hoffmann-Ostenhof.On a magnetic characterization of spectral minimal par-
+     titions. To appear in the journal of the EMS (2012).
+[21] B. Helffer, T. Hoffmann-Ostenhof. On spectral minimal partitions : the case of the torus.
+     Submitted.
+[22] B. Helffer, T. Hoffmann-Ostenhof, S. Terracini. Nodal domains and spectral minimal par-
+     titions. Ann. Inst. H. Poincaré Anal. Non Linéaire 26, 101–138. (2009).
+[23] B. Helffer, T. Hoffmann-Ostenhof, S. Terracini. On spectral minimal partitions : the case
+     of the sphere. Around the Research of Vladimir Maz’ya III, International Math. Series,
+     Springer, Vol. 13, 153–178 (2010).
+2030                                                        Oberwolfach Report 33/2012
+
+[24] B. Noris and S. Terracini. Nodal sets of magnetic Schrödinger operators of Aharonov-Bohm
+     type and energy minimizing partitions. Indiana Univ. Math. J. 58(2), 617–676 (2009).
+[25] A. Pleijel. Remarks on Courant’s nodal theorem. Comm. Pure. Appl. Math. 9, 543–550
+     (1956).
+[26] G. Polya. Two more inequalities between physical and geometric quantities, Jour. Indian
+     Math. Soc. 24, 413–419 (1960).
+[27] A. Savo. Lower bounds for the nodal length of eigenfunctions of the Laplacian, Annals of
+     Global Analysis and Geometry 19, 133–151 (2001).
+
+
+
+   Oscillations and vibrations – The Sturm and Courant theorems –
+                                revisited
+                            Uzy Smilansky
+
+Consider the Laplace (Schrödinger) operator on a domain Ω ∈ Rd . Dirich-
+let boundary conditions are assumed on ∂Ω. Arrange the spectrum as a non-
+decreasing sequence, and consider the n’th eigenfunction f (n) . The number of
+nodal domains νn is the number of maximally connected subdomains where the
+eigenfunction has a constant sign.
+For d = 1 Sturm’s oscillation theory states that the number of sign changes of the
+wave function φn = n − 1 and consequently n = νn .
+For d > 1 φn is not defined, and Courant’s theorem states that n ≥ νn .
+In the present talk I shall discuss the nodal deficiency = n − νn , and show that it
+contains valuable information on the geometry of Ω. In particular I shall present
+recent result which show that the nodal deficiency can be derived from a new
+variational approach, and that it is equal to the Morse index (the number of
+unstabe directions) of a properly defined Energy functional at its critical points.
+The generalization of Sturm’s oscillation theorem will be presented for the discrete
+Schrödinger operator on graphs, where the variational principle mentioned above
+takes a simple form.
+
+
+                            Spectral gap and involutions
+                                   Alessandro Savo
+                            (joint work with Bruno Colbois)
+
+Let (M, g) be a closed Riemannian manifold of dimension n and D a Laplace-type
+operator acting on sections of a vector bundle over M . Examples of Laplace-type
+operators are given by the Laplacian acting on differential p-forms (in particular,
+the usual Laplacian acting on functions) and by the Schrödinger operator acting
+on functions. Let
+                               λ1 (D) ≤ λ2 (D) ≤ . . .
+be the sequence of the eigenvalues of D. The scope of this talk is to explain some
+upper bounds for the gap Γk+1 = λk+1 (D) − λ1 (D) obtained in [1] and [2].
+Geometric Aspects of Spectral Theory                                           2031
+
+   In the first part we assume that, for a fixed integer k, the gap Γk+1 is large.
+Fix any eigensection ψ1 associated to λ1 (D). We then show that, under some mild
+metric conditions, the measure
+                                  µ = |ψ1 |2 dvolg
+must concentrate around a certain set of k points. Let us give a precise formulation
+when D = ∆ is the usual Laplacian acting on functions. Then λ1 = 0, the gap
+coincides with the (k + 1)-th eigenvalue λk+1 , ψ1 is a constant function and µ is
+just a multiple of the Riemannian measure.
+Theorem. Let λj be the j-th eigenvalue of the Laplacian on functions. Fix an
+integer k and assume that λk+1 ≥ e. Then, there exist a constant ck and a set of
+k points S = {x1 , . . . , xk } such that, if
+                                                   log λk+1
+                                 r = ck C(M, d)2 · p        ,
+                                                      λk+1
+then
+                                  Vol(S r )
+                                            ≥ 1 − r.
+                                  Vol(M )
+Here S r is the r-tubular neighborhood of the set S, for the Riemannian distance d.
+   C(M, d) is called the packing constant of M ; it depends only on the distance d
+and is defined as follows. Fix r > 0 and let Cr (M, d) be the minimal number of
+balls of radius r needed to cover a ball of radius 2r. We now set:
+                            C(M, d) = sup Cr (M, d).
+                                       r∈(0,1]
+
+The theorem is interesting only when, for a fixed k, the eigenvalue λk+1 is very
+large: in that case one sees that, if the packing constant is uniformly bounded
+above, then r is small and consequently almost all the relative volume of the
+manifold lies in a small tubular neighborhood of a carefully chosen set of k points.
+                    √
+   The scale log λ/ λ is sharp. The corresponding statement for a generalpLaplace-
+type operator D is sligthly weaker: it is obtained replacing log λk+1 / λk+1 by
+(λk+1 − λ1 )−1/3 and the Riemannian measure dvolg by the measure µ (this is
+due to technical reasons, caused by the fact that the eigensection ψ1 might vanish
+somewhere). We refer to [1] for complete statements and for estimates of the
+packing constant in terms of curvature.
+   In the second part we assume that (M, g) admits an involutive isometry γ with
+no fixed points and derive some upper bounds for the gap (see [2]). Define the
+smallest displacement of γ by:
+                        β(γ, d) = inf{d(x, γ(x)) : x ∈ M },
+so that β(γ, d) > 0. We consider the gap Γ2 = λ2 (D) − λ1 (D) for a γ-invariant
+Laplace-type operator D and assume that λ1 (D) is simple (otherwise Γ2 is simply
+zero). An easy argument shows that the measure µ is γ-invariant and, as the
+dislacement is bounded below by a positive number, µ cannot concentrate too
+much near one single point. The theorem above suggests that then it should
+2032                                                         Oberwolfach Report 33/2012
+
+be possible to bound Γ2 from above simply in terms of β(γ, d) and the packing
+constant. In fact, one has the following estimate.
+Theorem. For any γ-invariant Laplace-type operator D on M one has the in-
+equality
+                                       16C(M, d)
+                  λ2 (D) − λ1 (D) ≤                   .
+                                    min{1, β(γ, d)2 }
+
+   Note that the upper bound is purely metric; in particular it does not depend
+on the operator D.
+   Finally, we focus on the particular case where M is a submanifold of RN , or
+SN , invariant under the antipodal map. In that case, using the classical barycenter
+method, we are able to find a sharp upper bound which depends only on the
+dimension; moreover, when D is the Laplacian acting on p-forms, the equality
+case leads to a rigidity theorem.
+Theorem. Let M n be a compact submanifold of SN , invariant under the antipodal
+isometry γ. Let D be any γ-invariant Laplace-type operator on M . Then:
+                                   λ2 (D) − λ1 (D) ≤ n.
+If equality holds, then M is minimal in SN and any eigensection associated to
+λ1 (D) must be parallel.
+   Now assume that M n is an antipodal invariant hypersurface of Sn+1 and let ∆p
+be the p-form Laplacian. Then ∆p is γ-invariant and the above inequality applies.
+Moreover, it is possible to show that the only compact, minimal hypersurface of
+Sn+1 supporting a parallel p-form is the (minimal) Clifford torus
+                                  r p         r n − p 
+                                p           n−p
+                      CLn,p = S          ×S                .
+                                     n               n
+This has the following consequence.
+Theorem. Let M n be a compact hypersurface of Sn+1 , invariant under the an-
+tipodal isometry γ. Let ∆p be the Laplacian acting on p-forms and p = 1, . . . , n−1.
+Then:
+                              λ2 (∆p ) − λ1 (∆p ) ≤ n.
+Moreover:
+a) If p = n/2 equality never holds;
+b) If p 6= n/2 equality holds if and only if M is isometric to the Clifford torus
+CLn,p .
+
+                                       References
+ [1] B. Colbois, A. Savo, Large eigenvalues and concentration, Pacific J. Math. 249 (2011), no.
+     2, 271-290.
+ [2] B. Colbois, A. Savo, Involutive isometries, eigenvalue bounds and a spectral property of
+     Clifford tori, Indiana U. Math. J. (to appear).
+Geometric Aspects of Spectral Theory                                             2033
+
+                Constructing Polytopes from Spectral Data
+                              Emily B. Dryden
+           (joint work with Victor W. Guillemin and Rosa Sena-Dias)
+
+In [1], Miguel Abreu asked, “Can one hear the shape of a Delzant polytope?” A
+convex polytope is Delzant if it is simple, rational, and smooth; these polytopes
+are of interest due to a theorem by Delzant which says that the Delzant, or mo-
+ment, polytope of a compact symplectic toric manifold M determines M up to
+symplectomorphism. (For background on symplectic toric manifolds and Delzant
+polytopes, see [3].) In fact, Delzant proved that the moment polytope indepen-
+dently determines both a symplectic and a complex structure. We may take either
+the symplectic or the complex perspective and generate a set of torus-invariant
+Riemannian metrics that we call toric metrics; the set of metrics generated is
+the same regardless of the perspective we choose. Thus Abreu’s question can be
+stated more technically as follows: Let M be a compact symplectic toric manifold
+equipped with a toric metric g. Does the spectrum of the Laplacian with respect
+to g determine the moment polytope, and hence the symplectomorphism type, of
+M?
+   Abreu’s original question remains open, although there has been progress in the
+setting of toric orbifolds (e.g., [2, 7]). A Riemannian orbifold is like a Riemannian
+manifold except that it is allowed to have a well-behaved singular set in which local
+neighborhoods are modelled by a quotient of Rn by a finite group. It was proved
+by Lerman and Tolman [8] that compact symplectic toric orbifolds are classified
+by rational simple polytopes with a positive integer attached to each open facet.
+Rational simple polytopes are more general than Delzant polytopes in that they do
+not have to be smooth; instead, the outward normals corresponding to the facets
+meeting at a vertex must form a basis for Qn . This added flexibility is one of the
+main reasons that Abreu’s question seems more tractable in the orbifold setting.
+   In addition to moving to the orbifold setting, we consider additional spectral
+data. Namely, to the usual list of all eigenvalues of the Laplacian, we add the
+weights of the representation of the torus on each eigenspace; we call this collection
+of data the equivariant spectrum. Our question, then, is whether the equivariant
+spectrum of a symplectic toric orbifold equipped with a toric metric determines
+the labelled moment polytope of the orbifold. The main tool we use to answer
+this question is the asymptotic expansion of the heat kernel on an orbifold in the
+presence of an isometry. This generalizes work of Donnelly [4] and follows the
+spirit of the construction in [5]. From this expansion, we see that the equivariant
+spectrum associated to a toric orbifold whose moment polytope has no parallel
+facets determines the (unsigned) normal directions to the facets, the volumes of
+the corresponding facets, and the labels of the facets. We would like to know
+that this data determines our labeled moment polytope uniquely, but that is too
+optimistic. The troublemakers in our data are subpolytopes and parallel facets,
+where a subpolytope is a proper subcollection of normals and associated volumes
+that themselves form a convex polytope. Parallel facets introduce indeterminants,
+2034                                                        Oberwolfach Report 33/2012
+
+in that we only know the sum of the volumes of the facets in a parallel pair
+and we do not know which normal directions are repeated. However, thanks to
+the flexibility of the moment polytopes associated to toric orbifolds, we can show
+that there is a moment polytope without subpolytopes and without parallel facets
+“close” to any rational simple polytope in Rn . Then, for these “generic” toric
+orbifolds, we can conclude that the equivariant spectrum determines the labelled
+moment polytope, up to two choices and up to translation. For more details, see
+[6].
+    We do not know if the genericity assumption in our theorem is necessary, i.e.,
+are there examples of non-generic non-isometric symplectic toric orbifolds with
+the same equivariant spectrum? Since our theorem holds for any toric metric on
+the symplectic toric orbifold, one is also tempted to look for metric results; for
+instance, one might ask whether the equivariant spectrum of a symplectic toric
+orbifold determines the toric metric. A positive answer to this question seems
+unlikely, but the equivariant spectrum might determine certain properties of the
+metric. In particular, we can show that the equivariant spectrum determines
+whether the metric has constant scalar curvature. Of course, the full force of the
+equivariant spectrum may not be needed for any of our results, and one could still
+hope to prove spectral uniqueness using just the usual Laplace spectrum.
+
+                                      References
+[1] Miguel Abreu, Kähler geometry of toric manifolds in symplectic coordinates, Symplectic
+    and contact topology: interactions and perspectives, Fields Inst. Commun. 35 (2003), 1–24.
+[2] Miguel Abreu, Emily B. Dryden, Pedro Freitas, and Leonor Godinho, Hearing the weights
+    of weighted projective planes, Ann. Global Anal. Geom. 33 (2008), 373–395.
+[3] Ana Cannas da Silva, Lectures on symplectic geometry, Lecture Notes in Mathematics, 1764,
+    Springer-Verlag, Berlin, 2001.
+[4] Harold Donnelly, Spectrum and the fixed point sets of isometries. I., Math. Ann., 224
+    (1976), 161–170.
+[5] Emily B. Dryden, Carolyn S. Gordon, Sarah J. Greenwald, and David L. Webb, Asymptotic
+    expansion of the heat kernel for orbifolds, Michigan Math. J., 56 (2008), 205–238.
+[6] Emily B. Dryden, Victor Guillemin, and Rosa Sena-Dias, Equivariant inverse spectral theory
+    and toric orbifolds, Adv. Math, to appear. arXiv:1107.0986.
+[7] V. Guillemin, A. Uribe, and Z. Wang, Geodesics on weighted projective spaces, Ann. Global
+    Anal. Geom., 36 (2009), 205–220.
+[8] Eugene Lerman and Susan Tolman, Hamiltonian torus actions on symplectic orbifolds and
+    toric varieties, Trans. Amer. Math. Soc., 349 (1997), 4201–4230.
+
+
+
+       Upper bounds for the spectrum of Riemannian manifolds
+                          Bruno Colbois
+
+This is a survey talk explaining how to get geometric and metric upper bounds
+for the spectrum of the Laplacian on a compact Riemannian manifolds (M, g) of
+dimension m. The idea behind these estimates is to construct a family of disjointly
+supported test functions, and then to use the classical min-max characterization
+of the spectrum.
+Geometric Aspects of Spectral Theory                                            2035
+
+   So we are lead to construct the support of these test functions. Originally, a
+rather powerful idea was to use metric balls, but for different kinds of problems,
+we need more elaborated constructions.
+   We first describe a construction coming from [Ko] and which is described in
+a very understandable way in [GNY]. This allows to prove the following theorem
+([Ko]):
+Theorem 1. (Korevaar) Let (M m , g0 ) be a compact Riemannian manifold. Then,
+there exist a constant C(g0 ) depending on g0 such that for any Riemannian metric
+g ∈ [g0 ], where [g0 ] denotes the conformal class of g0 , we have
+
+                       λk (M, g)V ol(M, g)2/m ≤ C(g0 )k 2/m .
+  Moreover, if the Ricci curvature of g0 is nonegative, we can replace the constant
+C(g0 ) by a constant depending only on the dimension m.
+  In the special case of surfaces, we have a bound depending only on the topology.
+Theorem 2. Let S be an oriented surface of genus γ. Then, there exist a universal
+constant C such that for any Riemannian metric g on S
+
+                           λk (S, g)V ol(S) ≤ C(γ + 1)k.
+   We then describe another construction given in [CM] and [CEG], particularly
+useful for submanifolds. It allows, for example, to get the following result given in
+[CEG]:
+Theorem 3. For any bounded domain Ω ⊂ Rm+1 with smooth boundary Σ = ∂Ω,
+and all k ≥ 1,
+(1)                   λk (Σ)V ol(Σ)2/m ≤ γm I(Ω)1+2/m k 2/m
+with γm explicit constant depending on m and I(Ω) denotes the isoperimetric ratio
+of Ω,
+                                         V ol(Σ)
+                             I(Ω) =                 .
+                                     V ol(Ω)m/(m+1)
+    These theorems are compatible with the Weyl law, but the coefficient term of
+k 2/m depends on the geometry and not only on the dimension, as we can expect.
+   We end with a construction mixing the two above methods, see [Ha]. It allows
+to improve the result of [Ko] in the following way:
+Theorem 4. There exist two constant Am , Bm depending only on m such that,
+if (M m , g0 ) is a compact Riemannian manifold, we have the following: for any
+g ∈ [g0 ],
+                    λk (M, g)V ol(M, g)2/m ≤ Am V ([g0 ]) + Bm k 2/m .
+   where V ([g0 ]) is a constant depending on the conformal class of g0 (the min-
+conformal volume) defined by
+            V ([g0 ]) = inf {V olg (M ) : g ∈ [g0 ], Ric(M, g) ≥ −(m − 1)}.
+2036                                                         Oberwolfach Report 33/2012
+
+   In particular, if there exist a metric g ∈ [g0 ] with Ricci(M, g) ≥ 0, then
+V ([g0 ]) = 0.
+   In the case of surfaces, we have the following:
+   There exist two universal constant A, B such that, if S is a compact surface of
+genus γ, then
+
+                              λk (S)V ol(S) ≤ A(γ + 1) + Bk.
+Open question: In Theorem 3, is it possible to get an estimate of the type
+                       λk (Σ)V ol(Σ)2/m ≤ Am I(Ω)1+2/m + Bm k 2/m
+for constants Am , Bm depending only on the dimension m?
+
+                                        References
+[CEG] B. Colbois, A. El Soufi, A. Girouard; Isoperimetric control of the spectrum of a compact
+    hypersurface; to appear in J. Reine und Angew. Math. 2012 or 2013.
+[CM] B. Colbois, D. Maerten; Eigenvalues estimate for the Neumann problem of a bounded
+    domain, J. Geom. Analysis 18 N.4 (2008) 1022-1032.
+[GNY] A. Grigor’yan, Y. Netrusov ,S-T. Yau; Eigenvalues of elliptic operators and geometric
+    applications, Surveys in Dif. Geom. IX, (147-217), 2004.
+[Ha] A. Hassannezhad; Conformal upper bounds for the eigenvalues of the Laplacian and Steklov
+    problem, J. Funct. Analysis 261, N.12 (2011), 3419-3436.
+[Ko] N. Korevaar; Upper bounds for eigenvalues of conformal metrics, J. of Diff. Geo. 37 (1993),
+    no. 1, 73-93.
+
+
+The ionization conjecture for pseudorelativistic atoms in Hartree-Fock
+                                 theory
+                           Anna Dall’Acqua
+                   (joint work with Jan Philip Solovej)
+
+The ionization conjecture can be formulated as follows. Considering atoms of
+arbitrarly large nuclear charge, the number of electrons that these atoms can bind
+is bounded by the nuclear charge plus a universal constant and moreover the
+atomic radius remain bounded. Indeed, in nature only negative ions of charge -1
+are present and looking at the periodic table of elements one sees that the atomic
+radius changes at most by a factor of two.
+   As a model for an atom with nuclear charge Z and N electrons we consider (in
+units where ~ = m = e = 1) the operator
+                N
+                X            p                  Zα               X          1
+(1)       H=           α−1    −∆i + α−2 − α−1 −       +                             ,
+                 i=1
+                                                |xi |                    |xi − xj |
+                                                               1≤i<j≤N
+
+where α is Sommerfeld’s fine structure constant. The operator H acts on a dense
+subset of the N body Hilbert space HF := ∧N      2   3  q
+                                            i=1 L (R ; C ) of antisymmetric wave
+functions, where q is the number of spin states. For simplicity we fix here q = 1.
+The operator H is bounded from below on this subspace if Zα ≤ 2/π. Here we
+Geometric Aspects of Spectral Theory                                            2037
+
+will consider the sub-critical case Zα < 2/π. This choice of the kinetic energy
+takes into account some relativistic effects and that is the reason for speaking of
+pseudo-relativistic atoms.
+   The quantum ground state energy is the infimum of the spectrum of H con-
+sidered as an operator acting on HF . In the Hartree-Fock approximation one
+restricts to wave-functions ψ which are pure wedge products, also called Slater
+determinants:
+(2)                 ψ(x1 , x2 , , . . . , xN ) = √1N ! det(ui (xj ))N
+                                                                    i,j=1 ,
+
+with {ui }N                   2  3
+          i=1 orthonormal in L (R ; C). The Hartree-Fock ground state energy is
+
+      E HF (N, Z, α) := inf{q(ψ, ψ)|ψ ∈ Q(H) and ψ a Slater determinant},
+with q the quadratic form defined by H and Q(H) the corresponding form domain.
+The one-particle density associated to a Slater determinant as in (2) is given by
+                                                      N
+                                                      X
+                                      ρHF (x) =             |ui (x)|2 .
+                                                      i=1
+                                          HF
+For ν ∈ (0, N ), we define the HF-radius RN,Z (ν) to the ν last electrons by
+                            Z
+                                        ρHF (x) dx = ν .
+                                  |x|≥RHF
+                                       N,Z (ν)
+
+  The main result presented in the talk is the following.
+Theorem 1. (See [1]) Let Z ≥ 1 and α > 0. Let Zα = κ and assume that
+0 ≤ κ < 2/π. There is a constant Q > 0 depending only on κ such that if N
+is such that a Hartree-Fock minimizer exists then N ≤ Z + Q. Moreover, both
+              HF                      HF
+lim inf Z→∞ RZ,Z (ν) and lim supZ→∞ RZ,Z (ν) are bounded and behave asymptoti-
+cally as
+                                          2
+                                  1
+                             4   22π3            1          1
+                         3   3
+                                      2       ν − 3 + o(ν − 3 ) as ν → ∞ .
+                                  q3
+   This extends the result obtained by Solovej in [2] for classical atoms, that is in
+the case when the kinetic energy is given by −∆.
+   In the proof one considers a number of electrons N such that a HF-minimiser
+exists. Let denote its density by ρHF . One considers the HF screened nuclear
+potential
+                                   Z            ρHF (y)
+                                        Z
+                         HF
+(3)                    ΦR (x) =       −                 dy .
+                                  |x|     |y|<R |x − y|
+This describe the charge that an electron at distance from the nucleus bigger than
+R feels, indeed one has
+                 1
+                     Z                            Z
+                             HF
+                           Φ (x) dω(x) = Z −             ρHF (x) dx .
+                4πR |x|=R R                        |x|<R
+
+Further one considers the Thomas-Fermi minimiser ρTF for the neutral atom of
+nuclear charge Z and associates to it the TF screened nuclear potential defined as
+2038                                                        Oberwolfach Report 33/2012
+
+in (3) replacing the HF density with the TF density. Theorem 1 follows from the
+following key estimate.
+         Let Zα = κ for 0 ≤ κ < 2/π. Then there exists universal con-
+         stants α0 , ǫ ∈ (0, 4), CM and CΦ such that for all α ≤ α0
+                       ΦTF         HF
+                        |x| (x) − Φ|x| (x) ≤ CΦ |x|
+                                                    −4+ǫ
+                                                         + CM .
+   This estimate is proven by an iterative procedure. We first prove the estimate
+for small |x| (i.e. |x| ≤ Z −1/3 ) by directly comparing the HF screened nuclear
+potential with the TF screened nuclear potential. At an intermediate distance the
+TF minimiser is not a good approximation of the HF minimiser, for this reason one
+defines an outside Thomas Fermi functional, that is a Thomas Fermi variational
+problem that takes into account that we are at a certain distance from the nucleus
+and also of the screening due to the other electrons present. The estimate is then
+obtained at intermediate distance by comparing the HF minimiser with the outside
+Thomas Fermi minimiser and at big distance via localisation.
+
+                                      References
+[1] A. Dall’Acqua, J.P. Solovej, Excess charge for pseudo-relativistic atoms in Hartree-Fock
+    theory, Doc. Math. 15 (2010), 285–345.
+[2] J.P. Solovej, The ionization conjecture in Hartree-Fock theory, Ann.Math. 158 (2003), 509–
+    576.
+
+
+               Isoperimetric control of the Steklov spectrum
+                             Alexandre Girouard
+       (joint work with Iosif Polterovich, Bruno Colbois, Ahmad El Soufi)
+
+   The goal of this talk is to survey isoperimetric upper bounds for the Steklov
+eigenvalues.
+    Let Ω be a smooth compact connected Riemannian manifold with boundary
+Σ = ∂Ω. The Dirichlet-to-Neumann map (DtN map for short) Λ : C ∞ (Σ) →
+C ∞ (Σ) is defined by Λf = ∂n f˜, where ∂n is the outward normal derivative along
+the boundary Σ, and f˜ is the harmonic extension of f to Ω. The DtN map is a
+first order pseudodifferential elliptic operator. The spectrum of the DtN map, also
+called [12] the Steklov spectrum of Ω is non-negative, discrete and unbounded. It is
+denoted 0 = σ0 < σ1 ≤ σ2 ≤ σ3 ≤ · · · ր ∞. It satisfies the Weyl type asymptotic
+formula [11]
+                                          1/n
+                                        k
+                          σk ∼ c(n)                as k ր ∞,
+                                       |Σ|
+where c(n) depends only on the dimension n = dim Σ. Of course the Steklov
+eigenvalues can also be directly represented by the eigenvalue problem
+                                  ∆f = 0,     ∂n f = σf.
+   The DtN map is closely related to the Calderón problem of determining the
+anisotropic conductivity of a body from measurements on its surface. It can be
+Geometric Aspects of Spectral Theory                                            2039
+
+thought of as a voltage–to–current map. The Steklov eigenvalues and eigenfunc-
+tions are used in heat transmission, vibration problems, and sloshing problems in
+hydrodynamics [2, 10].
+
+                          How large can σk be ?
+  For a fixed k ∈ N, the problem is to maximize the functional σk on the set
+R of Riemannian metrics g on Ω constrained by |Σ|g = 1, or equivalently to
+                                                        1/n
+maximize the scaling invariant functional g 7→ σk (g)|Σ|g on the space of all
+smooth Riemannian metrics.
+Simply connected planar domains. Let Ω be a simply connected bounded
+planar domain. For simplicity, assume its boundary to be smooth. In 1954, We-
+instock [13] proved σ1 (Ω)|∂Ω| ≤ 2π with equality if and only if Ω is a disk. In
+1974, Hersch, Payne and Schiffer [9] extended this result to higher eigenvalues. In
+particular, they proved that for each k ∈ N,
+(1)                              σk (Ω)|∂Ω| ≤ 2kπ.
+In [6], I. Polterovich and I proved that inequality (1) is sharp by constructing a
+family of simply connected domains Ωǫ such that
+                              lim σk (Ωǫ )|∂Ωǫ | = 2kπ.
+                              ǫ→0
+
+We also proved in [7] that inequality (1) is strict for k = 2.
+Surfaces. Let Ω be a compact surface with boundary. It was proved by Ahlfors [1]
+that there exists a proper conformal branched cover ψ : Ω → D with degree
+bounded above in terms of the genus γ of Ω and the number l of connected compo-
+nents of its boundary. Fraser and Schoen [4] used an improvement of this theorem
+due to A. Gabard [5] to prove σ1 (Ω)|Σ| ≤ 2π(γ + l). For higher eigenvalues, one
+recovers [8] the natural analogue of the Hersch–Payne–Schiffer bound (1); that is,
+σk (Ω)|Σ| ≤ 2π(γ + l)k. Fraser and Schoen have initiated a beautiful study of the
+maximizers for σ1 in terms of minimal surfaces in Euclidean balls with free bound-
+ary conditions. In particular, they have proved that for γ = 0 and l = 2, the first
+eigenvalue σ1 is maximized by the so-called critical catenoid. In [4], this result is
+presented as a conjecture, but they have since announced a complete proof.
+Higher dimension. Let N be a Riemannian manifold of dimension n + 1 which
+is conformally equivalent to a complete Riemannian manifold with non-negative
+Ricci curvature. The isoperimetric ratio of a bounded domain Ω ⊂ N is
+                                             |Σ|
+                                I(Ω) =              .
+                                         |Ω|n/(n+1)
+In collaboration with B. Colbois and A. El Soufi, we proved [3] that for any
+bounded domain Ω ⊂ N , and for each k ∈ N,
+                                           c(n)
+(2)                    σk (Ω)|Σ|1/n
+                                g   ≤               k 2/(n+1) .
+                                        I(Ω)(1−1/n)
+2040                                                           Oberwolfach Report 33/2012
+
+In particular, it follows from known isoperimetric inequalities that for any domain
+Ω in Rn+1 , Hn+1 or in an hemisphere of the sphere Sn+1 ,
+                                σk (Ω)|Σ|1/n
+                                         g   ≤ c′ (n)k 2/(n+1) .
+It is perhaps surprising that the isoperimetric ratio I(Ω) appears in the denomina-
+tor of inequality (2). For n = dim(Σ) ≥ 2, this implies that if a sequence of domains
+Ωl is such that liml→∞ I(Ωl ) → ∞, then for each k ∈ N, liml→∞ σk (Ωl ) = 0.
+
+                                         References
+ [1] L. Ahlfors, Open Riemann surfaces and extremal problems on compact subregions, Com-
+     ment. Math. Helv., 24 (1950), 100–134.
+ [2] R. Bañuelos, T. Kulczycki, I. Polterovich, B. Siudeja, Eigenvalue inequalities for mixed
+     Steklov problems, Operator theory and its applications, Amer. Math. Soc. Transl. Ser. 2,
+     231 (2010) 19–34.
+ [3] B. Colbois, A. El Soufi, A. Girouard, Isoperimetric control of the Steklov spectrum, J. Funct.
+     Anal. 261 (2011), no. 5, 1384–1399.
+ [4] A. Fraser, R. Schoen, The first Steklov eigenvalue, conformal geometry, and minimal sur-
+     faces, Adv. Math. 226 (2011), no. 5, 4011–4030.
+ [5] A. Gabard, Sur la représentation conforme des surfaces de Riemann à bord et une car-
+     actérisation des courbes séparantes, Comment. Math. Helv., 81 (2006) no. 4, 945–964.
+ [6] A. Girouard, I. Polterovich, On the Hersch-Payne-Schiffer estimates for the eigenvalues of
+     the Steklov problem, Funktsional. Anal. i Prilozhen. 44 (2010), no. 2, 33–47.
+ [7] A. Girouard, I. Polterovich, Shape optimization for low Neumann and Steklov eigenvalues,
+     Math. Methods Appl. Sci. 33 (2010), no. 4, 501–516.
+ [8] A. Girouard, I. Polterovich, Upper bounds for Steklov eigenvalues on surfaces, preprint:
+     arXiv:1202.5108.
+ [9] J. Hersch, L. E. Payne, M. M. Schiffer, Some inequalities for Stekloff eigenvalues, Arch.
+     Rational Mech. Anal. 57 (1975), 99–114.
+[10] H. Lamb, Hydrodynamics, Cambridge University Press, 1932.
+[11] L. Sandgren, A vibration problem, Medd. Lunds Univ. Mat. Sem. 13 (1955), 1–84.
+[12] W. Steklov, Sur les problemes fondamentaux de la physique mathematique Ann. Sci. Acole
+     Norm. Sup. 3, 19 (1902), pp. 191–259
+[13] R. Weinstock, Inequalities for a classical eigenvalue problem, J. Rational Mech. Anal. 3,
+     (1954). 745–753.
+
+
+
+A survey on spectral minimization problems: existence, regularity and
+                              stability
+                          Aldo Pratelli
+
+   The aim of this survey is to give a general overview on some problems of spectral
+minimization, putting together the main classical and recent results, as well as
+some important open questions.
+   It happens often for several reasons, both coming from abstract investigation
+or from many applications, that one is led to minimize a shape functional which
+depends on the eigenvalues. To be more precise, let us start fixing some notation:
+for any given open set Ω ⊆ RN , we will denote by
+           0 < λ1 (Ω) ≤ λ2 (Ω) ≤ · · ·         and       0 = µ1 (Ω) ≤ µ2 (Ω) ≤ · · ·
+Geometric Aspects of Spectral Theory                                             2041
+
+the eigenvalues of the standard Laplacian, with Dirichlet or Neumann boundary
+conditions respectively; recall that, by trivial rescaling, one obtains that
+(1)              λi (tΩ) = t−2/N λi (Ω) ,    µj (tΩ) = t−2/N µj (Ω) ,
+for any t > 0 and any i, j ∈ N. Then, a spectral minimization problem is the
+problem to minimize, among a class of sets Ω ⊆ RN , a certain functional depending
+on some of the eigenvalues of Ω. Usually, in view of (1), the class of sets which are
+considered is given by all the open sets of fixed measure.
+    The simplest problem of this kind is to minimize λ1 among the sets of given
+(say, unite) volume. It is classically known (see for instance [10]) that the solution
+of this problem is given by any unit ball: this is the Faber–Krahn inequality.
+Analogously, the minimizer of λ2 among the sets of unit volume is any disjoint
+union of two balls of volume 1/2: this is the Krahn–Szego inequality (see for
+instance [11, 14]). Concerning the third Dirichlet eigenvalue, it is still presently
+not known which is the minimizer: one only knows that some minimizer exists,
+and that it is connected in dimension N = 2, 3 (see [6]). A major conjecture is to
+show that the minimizer for λ3 in the plane is given by the unit ball; however, even
+if many numerical computations suggest this result, the problem is still completely
+open. On the other hand, concerning the Neumann eigenvalues, there is nothing
+to say concerning µ1 , since µ1 (Ω) = 0 for every Ω; more in general, µj (Ω) = 0 for
+any set Ω having at least j distinct connected components. Therefore, it becomes
+interesting the question to maximize the eigenvalues: for instance, the classical
+Szegő–Weinberger inequality (see for instance [15, 16]) tells that the maximum
+µ2 , among the sets of unit volume, is again attained by the unit ball. Another
+interesting problem, of which the solution is again the ball, is the minimization of
+the ratio λ1 /λ2 , proved in [1].
+    Except for those classical examples, very little is known about the exact shapes
+of the solutions of some spectral problems. The following very important result,
+due to Buttazzo and Dal Maso [8], ensures at least the existence for a wide class of
+problems, dealing with the first k eigenvalues (being k any given positive number).
+Theorem 1. Let F : Rk → R be a l.s.c. and increasing function, and for      any
+quasi-open set Ω ⊆ RN let us write F(Ω) := F λ1 (Ω), λ2 (Ω), . . . , λk (Ω) . Let
+also D ⊆ RN be a given bounded, open set. Then there exists Ω which minimizes
+F among all the quasi-open sets of given volume contained in D.
+   In this result, one considers a bounded ambient space D instead of the whole RN
+in order to overcome the possible concentration-compactness problems for a mini-
+mizing sequence. Moreover, one considers the class of the quasi-open sets, instead
+of that of the open sets, because it allows to obtain compactness results which oth-
+erwise would be missing. Hence, the main questions left after the Buttazzo–Dal
+Maso Theorem are whether one can consider the problem in the natural ambient
+space of RN , and whether one can show that the minimizers are actually regular.
+   We start with the first question, which has now a completely positive answer,
+thanks to the following two contemporary results.
+2042                                                   Oberwolfach Report 33/2012
+
+Theorem 2 (Mazzoleni–Pratelli, [13]). Let F : Rk → R be a l.s.c. and in-
+creasing function, and for any quasi-open set Ω ⊆ RN let us write F(Ω) :=
+F λ1 (Ω), λ2 (Ω), . . . , λk (Ω) . Then there exists Ω which minimizes F among all
+the quasi-open sets of given volume contained in RN . Moreover, such a minimizer
+is bounded.
+Theorem 3 (Bucur, [5]). For any natural number k, there exists a set Ω ⊆ RN
+which minimizes λk among the quasi-open sets of given volume contained in RN .
+Moreover, such a minimizer has finite perimeter.
+  It is to be mentioned that, in the paper [13], the existence of some bounded
+minimizer for the functional F is shown: the fact that any minimizer is bounded
+has been shown later in [12].
+   Let us now briefly discuss the regularity issue. Notice that, on one hand, in
+the few examples in which the actual minimizers are known, they are smooth
+sets. On the other hand, the available existence results are only able to find
+minimizers among the wide and unpleasant class of the quasi-open sets. Therefore,
+one would be happy to show at least that the optimal sets are open. In fact, Bucur
+and Velichkov have recently shown [7] that this is the case when one considers a
+functional depending only on the first two eigenvalues.
+   Let us now pass to the last problem that we want to address, namely, the
+stability of the main spectral inequalities. The question is very easy to explain; as
+said above, the Faber–Krahn inequality ensures that, if a set Ω ⊆ RN minimizes
+the first eigenvalue of the Dirichlet Laplacian among the sets of unit volume, then
+it must be some unit ball. The stability problem is the following: if a set Ω is
+almost minimizing the first eigenvalue, is it true in some suitable sense that it must
+be close to a unit ball? The most natural way to measure the distance between Ω
+and a ball is the so-called “Fraenkel asymmetry”, given by
+                                  n                           o
+                      A(Ω) = inf Ω∆B : B is a unit ball ,
+                                                                                    
+where Ω∆B is the volume of the symmetric difference Ω∆B = Ω \ B ∪ B \ Ω
+between the set Ω and the ball B. In words, the Fraenkel asymmetry measures
+how far the set Ω is from being a ball, and it is of course always strictly positive,
+unless Ω is a ball itself. The main results in this direction are the following.
+Theorem 4 (Bhattacharya [2]). For any open set Ω ⊆ R2 one has
+                            λ1 (Ω) − λ1 (B) ≥ CA(Ω)3 .
+Theorem 5 (Fusco–Maggi–Pratelli [9]). For any open set Ω ⊆ RN one has
+(2)                       λ1 (Ω) − λ1 (B) ≥ C(N )A(Ω)4 .
+   In fact, it is very reasonable to guess that the correct exponent, for any di-
+mension N , should always be 2. This is another important open problem. It is
+also to be mentioned that, in the paper [9], the authors consider the more general
+question of the p−Laplacian λp ; in fact, for any p ∈ (1, ∞), one can show that
+Geometric Aspects of Spectral Theory                                                      2043
+
+λp (Ω) − λp (B) ≥ C(N, p)A(Ω)2+p , of which of course the inequality (2) is nothing
+but the particular case corresponding to p = 2.
+   Other results of the same flavour, concerning the stability versions of the Krahn–
+Szego inequality and of the Szegő–Weinberger inequality, have been obtained in [4],
+while the extension to boundary conditions of Robin type has been studied in [3].
+
+                                        References
+ [1] M.S. Ashbaugh & R. Benguria, A sharp bound for the ratio of the first two eigenvalues of
+     Dirichlet Laplacians and extensions, Ann. of Math., 135 (1992), no. 3, 601–628.
+ [2] T. Bhattacharya, Some observations on the first eigenvalue of the p-Laplacian and its con-
+     nections with asymmetry, Electron. J. Differential Equations (2001), No. 35, 15 pp.
+ [3] L. Brasco & G. De Philippis, in preparation (2012).
+ [4] L. Brasco & A. Pratelli, Sharp stability of some spectral inequalities, to appear on GAFA
+     (2011).
+ [5] D. Bucur, Minimiziation of the k-th eigenvalue of the Dirichlet Laplacian, preprint (2011).
+ [6] D. Bucur & A. Henrot, Minimization of the third eigenvalue of the Dirichlet Laplacian,
+     Proc. Roy. Soc. London, 456 (2000), 985–996.
+ [7] D. Bucur & B. Velichkov, in preparation (2012).
+ [8] G. Buttazzo & G. Dal Maso, An existence result for a class of shape optimization problems,
+     Arch. Rational Mech. Anal. 122 (1993), 183–195.
+ [9] N. Fusco, F. Maggi, A. Pratelli, Stability estimates for certain Faber-Krahn, Isocapacitary
+     and Cheeger inequalities, Ann. Sc. Norm. Super. Pisa Cl. Sci., 8 (2009), 51–71.
+[10] A. Henrot, Extremum problems for eigenvalues of elliptic operators, Frontiers in Mathemat-
+     ics, Birkhäuser Verlag, Basel (2006).
+[11] E. Krahn, Über Minimaleigenschaften der Krugel in drei un mehr Dimensionen, Acta
+     Comm. Univ. Dorpat., A9 (1926), 1–44.
+[12] D. Mazzoleni, in preparation (2012).
+[13] D. Mazzoleni & A. Pratelli, Existence of minimizers for spectral problems, preprint (2011).
+[14] G. Pólya, On the characteristic frequencies of a symmetric membrane, Math. Zeitschr., 63
+     (1955), 331–337.
+[15] G. Szegő, Inequalities for certain eigenvalues of a membrane of given area, J. Rational
+     Mech. Anal., 3 (1954), 343–356.
+[16] H.F. Weinberger, An isoperimetric inequality for the N −dimensional free membrane prob-
+     lem, J. Rational Mech. Anal., 5 (1956), 633–636.
+
+
+
+               Torsional Rigidity of a Radially Perturbed Ball
+                               Mette Iversen
+The goal of this talk is to discuss bounds for the torsional rigidity of a radially
+perturbed ball in Rn . This problem was motivated by work in [6] minimising
+convex combinations of the first three eigenvalues of the Dirichlet Laplacian, and
+an analogous result for the first eigenvalue of the Dirichlet Laplacian given in [2].
+   For an open set Ω ⊆ Rn the torsional rigidity is defined by
+                                                 R 2
+                                                    u
+(1)                        P (Ω) := 4 sup R Ω 2 .
+                                           1
+                                       u∈H0 (Ω) Ω |∇u|
+The function u for which the supremum is achieved is known as the torsion func-
+tion. If Ω is a simply connected planar set then P (Ω) gives the torsional rigidity
+2044                                                            Oberwolfach Report 33/2012
+
+of a cylindrical beam of cross section Ω, and more generally the torsion function
+plays a role in a variety of areas including gamma convergence [3] and Brownian
+motion [1]. The torsion function is the unique weak solution of
+                                (
+                                    −∆u = 2 in Ω,
+                                     u = 0 on ∂Ω.
+
+   It follows from (1) that P satisfies the following scaling property: For an open
+set Ω ⊆ Rn and a homothety of ratio t > 0
+
+                                P (tΩ) = tn+2 P (Ω).
+
+For the ball B = B(0, 1) ⊂ Rn the maximum in (1) is achieved by the function
+
+                                               1
+                                u(x) =           (1 − |x|2 ),
+                                               n
+                 4ωn
+with P (B) = n(n+2)  , where ωn denotes the volume of the ball of radius 1 in Rn .
+   An important property is the analogue for the torsional rigidity of the Faber-
+Krahn inequality for the first Dirichlet eigenvalue [5]. It is proved in [4] that
+the ball in Rn maximises the torsional rigidity over sets of fixed volume. More
+precisely, for any open, bounded C 1 set Ω ⊂ Rn and any ball Ω∗ ⊂ Rn with the
+same volume as Ω, we have
+
+                                    P (Ω∗ ) ≥ P (Ω),
+
+with equality if and only if Ω is a ball. Taking scaling into account shows that this
+is equivalent to
+                                               n+2
+                                         |Ω|      n
+(2)                          P (B)                     ≥ P (Ω),
+                                         |B|
+
+if B is any ball.
+   We will consider the torsional rigidity for a class of radial perturbations of the
+unit ball in Rn to give an idea of the correction terms when moving away from the
+optimal set given by the analogue of the Faber-Krahn inequality. This is done by
+making an appropriate choice of test function in the variational characterisation
+(1), and is an improvement on that given in [7].
+   Let S n−1 be the unit sphere in Rn with ∇θ denoting the gradient on S n−1 , and
+let 0 ≤ ε ≤ 14 . Assume that R : S n−1 −→ [1 − ε, 1] is continuous, and that ∇θ R
+exists θ-almost everywhere. Let
+
+                      BR = {(r, θ) : 0 ≤ r < R(θ), θ ∈ S n−1 }.
+Geometric Aspects of Spectral Theory                                                       2045
+
+Theorem 1. We have
+                                                              
+                                            n+2
+                                                  Z
+               (i) P (BR ) ≤ P (B) 1 −                  (1 − R)
+                                             nωn S n−1
+                                    Z
+                           + C1 (n)         (1 − R)2 ,
+                                      S n−1
+                                                              
+                                            n+2
+                                                  Z
+              (ii) P (BR ) ≥ P (B) 1 −                  (1 − R)
+                                             nωn S n−1
+                                     Z                   Z             
+                           − C2 (n) ε           |∇θ R|2 +      (1 − R)2
+                                            S n−1                 S n−1
+                                      Z                      Z                 1/2
+                           − C2 (n)                (1 − R)2           |∇θ R|2          ,
+                                           S n−1              S n−1
+for positive constants C1 (n) and C2 (n) depending on n only.
+   The result is analogous to that given in Theorem 1 in [2] for the first Dirichlet
+eigenvalue, and the proof follows the method described there.
+
+                                       References
+[1] M. van den Berg, Estimates for the Torsion Function and Sobolev Constants, Potential
+    Analysis, DOI 10.1007/s11118-011-9246-9.
+[2] M. van den Berg, On Rayleigh’s formula for the first Dirichlet eigenvalue of a radial per-
+    turbation of a ball, Journal of Geometric Analysis, DOI 10.1007/s12220-012-9293-5.
+[3] D. Bucur, G. Buttazzo, Variational methods in shape optimization problems, Progress in
+    nonlinear differential equations and their applications, Birkhäuser Verlag, Boston (2005).
+[4] T. Carroll, J. Ratzkin, Interpolating Between Torsional Rigidity and Principal Frequency,
+    Journal of Mathematical Analysis and Applications, 379, 818-826, (2011)
+[5] A. Henrot, Extremum Problems for Eigenvalues of Elliptic Operators, Frontiers in Mathe-
+    matics, Birkhäuser Verlag, Basel (2006).
+[6] M. Iversen, D. Mazzoleni, Minimising convex combinations of low eigenvalues, In prepara-
+    tion (2011).
+[7] L.E. Payne, H.F. Weinberger, Some Isoperimetric Inequalities for Membrane Frequencies
+    and Torsional Rigidity, Journal of Mathematical Analysis and Applications, 8, 210-216
+    (1961).
+
+
+
+                Sharp Spectral Bounds on Starlike Domains
+                           Richard S. Laugesen
+                       (joint work with B. A. Siudeja)
+
+Write λj (Ω) for the eigenvalues of the Dirichlet Laplacian on a bounded plane
+domain Ω. Write uj for a corresponding orthonormal basis of eigenfunctions.
+Then                        (
+                              −∆uj = λj uj in Ω
+                                    uj = 0 on ∂Ω
+and
+                                 0 < λ1 < λ2 ≤ λ3 ≤ . . .
+2046                                                 Oberwolfach Report 33/2012
+
+How does the shape of the domain affect the eigenvalues?
+   This problem is long-standing and difficult. Our contribution is to establish
+geometrically sharp upper bounds on eigenvalues for the class of starlike domains
+(see Figure 1). The normalization on the starlike domain Ω involves the scale-
+invariant geometric factor G = max{G0 , G1 }, where
+
+                        1        1                     2πIorigin
+                          Z
+                G0 =                   ds(x),    G1 =            ,
+                       2π ∂Ω x · N (x)                    A2
+
+Rand N2 (x) is the outward unit normal vector, A is the area of Ω and Iorigin =
+  Ω |x| dA is its polar moment of inertia about the origin. Note that x · N (x) > 0
+ because the domain is starlike.
+
+
+                                         N (x)
+                                                 x
+
+
+                                          0
+
+
+
+
+             Figure 1. A starlike domain with outer normal N (x).
+
+
+   One has G ≥ 1 for all starlike domains, with equality for centered disks. Thus
+one may regard the value of G as measuring the deviation of the domain from
+roundness.
+   Here is our main result, in 2 dimensions.
+
+Theorem 1 (Dirichlet eigenvalues). Suppose the function R(θ) is 2π-periodic,
+positive, and Lipschitz continuous, and consider the starlike plane domain Ω =
+{reiθ : 0 ≤ r < R(θ)}. Let Φ : R+ → R be concave and   Pnincreasing.
+   Then for each n ≥ 1, the eigenvalue functional        j=1 Φ(λj A/G) is maximal
+when Ω is a disk centered at the origin.
+   In particular, the following spectral functionals are maximal for the centered
+disk: the first eigenvalue (fundamental tone), sums of arbitrarily many eigenvalues
+or roots of eigenvalues, and products of eigenvalues. That is, the value of each of
+the following functionals is less than or equal to the value attained when Ω is a
+centered disk:
+                                                       p
+           λ1 A/G0 ,      (λs1 + · · · + λsn )1/s A/G, n
+                                                         λ1 λ2 · · · λn A/G,
+
+for each exponent 0 < s ≤ 1.
+Geometric Aspects of Spectral Theory                                           2047
+
+   Further, the partial sums of the spectral zeta function and trace of the heat
+kernel are minimal when Ω is a centered disk. That is, the functionals
+                  Xn                        Xn
+                      (λj A/G)s    and          exp(−λj At/G)
+                   j=1                        j=1
+
+attain their smallest value when Ω is a centered disk.
+   The theorem extends to all dimensions, and to the Neumann and Robin spectra
+too.
+   Our theorem significantly strengthens the only known result of its type, which
+is the case of the fundamental tone λ1 with Dirichlet boundary conditions. That
+case is due to Pólya and Szegő in 2 dimensions [2] and Freitas and Krejčiřı́k in
+higher dimensions [1]. Those results rely crucially on the fundamental Dirichlet
+mode of the disk and ball being radial functions, and so this approach is limited
+to the first eigenvalue.
+Methods. To treat higher eigenvalues, we need to transform Ω into a ball while
+preserving angular information in the Rayleigh quotients of the eigenvalues. Any
+such transformation will change the Rayleigh quotients substantially, and so we
+must devise a scheme for extracting the geometric effect and leaving behind the
+portion of the Rayleigh quotient that corresponds to the disk.
+   Our new transformation maps linearly on rays and has constant Jacobian, as in-
+dicated in Figure 2. Wherever it stretches radially it must compress in the angular
+directions, and so on. We construct trial functions on the disk by composing eigen-
+functions of the disk with T and with a rotation. Then to extract the geometric
+contribution to the Rayleigh quotient, we average over all possible rotations.
+
+                                       T
+                                area-preserving
+
+               0                                                    0
+
+
+
+
+        Figure 2. An area-preserving, linear-on-rays transplanation
+        from a domain Ω to the disk.
+Reverse inequalities. The Faber–Krahn inequality says that λ1 A is minimal for the
+disk.
+P      Luttinger’s generalization asserts maximality for the disk of the heat trace
+   j exp(−λj At), for each t > 0. Notice that Theorem 1 produces inequalities
+in the reverse direction, after introducing the geometric factor G. The resulting
+theorem improves in two respects on Faber–Krahn and Luttinger’s results, namely
+that it holds even forl partial sums of the heat trace (and many other functionals
+besides), and that it handles all three of Dirichlet, Neumann and Robin boundary
+conditions.
+2048                                                             Oberwolfach Report 33/2012
+
+                                        References
+[1] P. Freitas and D. Krejčiřı́k, A sharp upper bound for the first Dirichlet eigenvalue and the
+    growth of the isoperimetric constant of convex domains, Proc. Amer. Math. Soc. 136 (2008),
+    no. 8, 2997–3006.
+[2] G. Pólya and G. Szegő, Isoperimetric Inequalities in Mathematical Physics. Annals of Math-
+    ematics Studies, no. 27. Princeton University Press, Princeton, N.J., 1951.
+
+
+
+   Minimization of eigenvalues by free boundary - free discontinuity
+                               methods
+                            Dorin Bucur
+I this talk I reported on new methods based on free boundary - free discontinu-
+ity techniques that can be used in order to obtain qualitative information on the
+optimal domains minimizing a shape functional. In particular, I considered func-
+tionals depending on the spectrum of the Laplace operator with Dirichlet or Robin
+boundary condition.
+
+Dirichlet boundary conditions. Let F : Rk → R be a lower semicontinuous
+function, non-decreasing in each variable. For every quasi-open set Ω ⊆ RN (N ≥
+2) we denote
+                            λ1 (Ω) ≤ λ2 (Ω) ≤ ... ≤ λk (Ω)
+the first k eigenvalues of the Laplacian with Dirichlet boundary conditions. Con-
+cerning the definition of quasi-open sets and of the Laplace operator on quasi-open
+sets, we refer to [3, Chapters 4, 5]. Denoting by |Ω| the measure of Ω, for some
+m > 0 we consider the following problems:
+                (P1 )                        min           F (λ1 (Ω), ..., λk (Ω));
+                                     Ω quasi-open,|Ω|=m
+
+                (P2 )                    min         F (λ1 (Ω), ..., λk (Ω)) + |Ω|.
+                                      Ω quasi-open
+   Below is a compilation, presented in a unified framework, of two recent existence-
+qualitative results obtained independently and using different methods by Maz-
+zoleni and Pratelli [8] and D. B. [2].
+     a) Under the hypotheses above, problems (P1 ) and (P2 ) have at least one
+        solution Ω, which is a bounded set.
+     b) If F is moreover locally Lipschitz, then every solution Ω of (P2 ) is a
+        bounded set with finite perimeter.
+     c) If in addition F is locally bi-Lipschitz in at least one variable, then every
+        solution Ω of (P1 ) is a bounded set with finite perimeter.
+   The existence result for (P1 ) and (P2 ) under the additional constraint that the
+competing domains are contained in a prescribed bounded open set was proved by
+Buttazzo and Dal Maso in [6]. Point a) is proved in [8] and is based on a geometric
+argument allowing to cut small (unbounded) regions of a set while keeping control
+on the spectrum. Points b) and c) are a consequence of the analysis of the shape
+subsolutions by free boundary methods (see [2]) and can be complemented with
+Geometric Aspects of Spectral Theory                                          2049
+
+more information related to the inner density of the optimal shapes. In all cases,
+the diameter of the optimal sets are controlled.
+
+Robin boundary conditions. Let β > 0 be fixed. For every bounded set with
+LipschitzR boundary Ω ⊆ RN we consider the Robin-torsional rigidity defined by
+P (Ω) = Ω udx, where u solves the problem
+                          
+                                 −∆u = 1 in Ω
+                              ∂u
+                              ∂n + βu = 0 ∂Ω
+In a joint work with A. Giacomini (in progress) we prove that
+                                  P (B) ≥ P (Ω),
+where B is the ball of the same measure as Ω. Moreover, equality holds if and
+only if Ω is the ball.
+   The method is based on a free discontinuity approach, via the analysis of the
+relaxed free discontinuity problem
+                         1              β
+                           Z              Z                          Z
+                                  2             + 2    − 2    N −1
+           min                |∇u| dx +      (|u | + |u | )dH      −      udx,
+ u2 ∈SBV (RN ),|{u>0}=m| 2 RN           2 Ju                          RN
+
+for which we prove existence of a solution and Ahlfors regularity of the jump set.
+Of crucial importance in the proof of the Ahlfors regularity is the monotonicity
+lemma obtained in a joint work with S. Luckhaus [4], as well as a regularity result
+for free discontinuity problems with Robin boundary conditions obtained in the
+same paper, asserting the existence of a positive constant α > 0 such that the
+solution of the free discontinuity problem above satisfies
+                          u(x) ≥ α a.e. x ∈ {u > 0}.
+This results would be a consequence of the Hopf maximum principle if the bound-
+ary of the positivity region were smooth.
+   Consequently, one proves that the minimizer of the relaxed free discontinuity
+problem above consists on a couple: an open set with finite perimeter Ω and the
+Robin torsion function on Ω extended by zero on its complement. Radial symmetry
+of the set Ω and its torsion function is obtained by a cut and reflect argument.
+   This method can be extended to semi-linear eigenvalue Robin problems
+                                      |∇u|2 dx + β ∂Ω |u|2 dHN −1
+                                   R                R
+                                    Ω
+                    min min                             q2       ,
+                   |Ω|=m u∈H 1 (Ω)
+                                           R
+                                                    q
+                                               Ω |u| dx
+
+for 1 ≤ q < N2N
+              −2 . The first Robin eigenvalue of the Laplacian corresponds to the
+case q = 2 and the torsional rigidity to q = 1. In the literature, only the case
+q = 2 was known (Bossel [1] in R2 , Daners [7] in RN within a Lipschitz setting
+and B.-Giacomini [5] for the general SBV framework). The proof of the case q = 2
+uses a key idea of Bossel related to the notion of extremal lengths which does not
+seem (easily) extendable to other values of q.
+2050                                                          Oberwolfach Report 33/2012
+
+                                        References
+ [1] M.-H. Bossel, Membranes élastiquement liées: extension du théorème de Rayleigh-Faber-
+     Krahn et de l’inégalité de Cheeger, C. R. Acad. Sci. Paris Sér. I Math.302 (1986), no. 1,
+     47–50.
+ [2] D. Bucur, Minimization of the k-th eigenvalue of the Dirichlet Laplacian, Arch. Ration.
+     Mech. Anal. (to appear) (2012).
+ [3] D. Bucur, G. Buttazzo, Variational methods in shape optimization problems. Progress
+     in Nonlinear Differential Equations and their Applications, 65. Birkhäuser Boston, Inc.,
+     Boston, MA, 2005.
+ [4] D. Bucur, S. Luckhaus, Monotonicity formula and regularity for general free discontinuity
+     problems, Preprint CVGMT, (2012).
+ [5] D. Bucur, A. Giacomini, A variational approach to the isoperimetric inequality for the Robin
+     eigenvalue problem, Arch. Ration. Mech. Anal. 198 (2010), no. 3, 927–961.
+ [6] G. Buttazzo,G. Dal Maso, An existence result for a class of shape optimization problems,
+     Arch. Rational Mech. Anal. 122 (1993), no. 2, 183–195.
+ [7] D. Daners, A Faber-Krahn inequality for Robin problems in any space dimension, Math.
+     Ann. 335 (2006), no. 4, 767–785.
+ [8] D. Mazzoleni, A. Pratelli, Existence of minimizers for spectral problems, Preprint CVGMT
+     (2011).
+
+
+
+   Asymptotic behaviour of some eigenvalue optimisation problems
+                            Pedro Freitas
+             (joint work with P.R.S. Antunes, J.B. Kennedy)
+
+   The isoperimetric structure of low eigenvalues of the Laplacian is a classical
+problem in spectral theory which has received a lot of the attention of mathemati-
+cians in the intervening 135 years since Rayleigh conjectured that, among all fixed
+membranes with a given area, the disk minimises the first frequency [R]. Although
+there are still some gaps in the theory waiting to be closed (i.e. the proof that two
+equal balls maximise the second nontrivial eigenvalue of the Neumann Laplacian
+among open sets in any dimension), the picture is now fairly clear regarding what
+happens to the first two eigenvalues for Dirichlet, Neumann and Robin boundary
+conditions [Bo, D, F, GNP, Ke, K1, K2, R, S, W].
+   In spite of this and several extensions in other directions (manifolds, higher
+order operators, etc), no progress whatsoever has been made regarding higher
+eigenvalues. As an example, we mention the conjecture that the third eigenvalue
+with Dirichlet boundary conditions is minimised by the disk in two dimensions,
+which has resisted all attempts to prove it so far. On the positive side, Bucur [Bu]
+and Mazzoleni and Pratelli [MP] have recently proved existence of optimisers for
+Dirichlet boundary conditions among quasi-open sets. The actual regularity of op-
+timisers and even the existence for other boundary conditions remain open prob-
+lems.
+   Maybe because of this, extensive numerical studies of optimal domains for
+higher eigenvalues have began appearing in the literature [O, AF, AFK]. Al-
+though the picture is still far from clear, it is by now apparent that in general and
+at least in two dimensions,
+Geometric Aspects of Spectral Theory                                          2051
+
+        i. optimal sets will not be disks or unions of disks
+       ii. the boundary of optimal sets cannot be described in terms of known func-
+           tions
+      iii. optimisers will be different for different boundary conditions
+      iv. optimal sets may not be unique
+To the above it should also be added that there seem to exist optimisers which do
+not possess any symmetry, the lowest example being that of the 13th eigenvalue
+with Dirichlet boundary conditions [AF].
+   On the other hand, there is the possibility that some structure is present with
+respect to the multiplicity of optimisers and also regarding high-order Robin min-
+imisers [AF, AFK].
+   In some sense, and with the possible exception of the lack of symmetry of some
+optimal sets which in any case still needs to be confirmed, the above is not really
+unexpected, since we are discussing intermediate frequencies.
+   With all of the above in mind, we have turned our attention to the other end
+of the spectrum, namely, what happens as k goes to infinity. Again even here
+there are some surprises, such as the fact that, for Robin boundary conditions, the
+asymptotic behaviour of optimal sets does not agree with the corresponding Weyl
+asymptotics not even to first term. More precisely, we have
+Theorem 1. [AFK] Consider the eigenvalue problem
+                                 −∆u = λu       in Ω,
+(1)                             ∂u
+                                   + αu = 0        on ∂Ω
+                                ∂ν
+where Ω is a bounded open set in Rn , ν is the outer unit normal to Ω and the
+boundary parameter α > 0 is constant. Given V > 0 and k ≥ 1, let Bk denote the
+domain of volume V consisting of k equal balls of radius r = (V /kωn )1/n , where
+ωn denotes the volume of the ball of unit radius in Rn . Then, for every α > 0, the
+optimal eigenvalue λ∗k (V, α) satisfies
+                                                         1
+                                                       kωn n
+(2)                    λ∗k (V, α) ≤ λk (Bk , α) ≤ nα         .
+                                                        V
+   We thus see that while the first term in Weyl’s law is of order k 2/n , optimal
+eigenvalues will grow at most with k 1/n , and it is also possible to show that the
+gap between optimisers goes to zero as k goes to infinity – see [AFK] for more
+details.
+   On the other hand, Dirichlet eigenvalues satisfy an added constraint in the form
+of the Berezin [B]–Li-Yau [LY] inequalities, namely,
+                                                   2/n
+                                    4π 2 n
+                                           
+                                              k
+                          λk (Ω) ≥                       .
+                                    n + 2 |Ω|ωn
+It follows that optimal eigenvalues in this case must grow at least with the same
+power as the first term in the Weyl asymptotics, where whether the constant in
+2052                                                                          Oberwolfach Report 33/2012
+
+front of k 2/n is the same will depend on whether the famous Pólya inequality holds
+for general domains or not [P].
+    In this full generality, this problem as a whole is probably quite difficult and,
+if nothing else, Theorem 1 above reminds us that not only is it not correct to use
+arguments based on asymptotics for problems of this type, but moreover the result
+in itself might not hold.
+    In order to gain further understanding of the issues at stake, we shall now turn to
+a simpler situation which still retains some of the ingredients of the problem above,
+namely, minimising the k th eigenvalue of the Dirichlet Laplacian on rectangles of
+fixed area. More precisely, and denoting by Ra a rectangle with sides a and 1/a
+(a ≥ 1) and its corresponding Dirichlet eigenvalues by λk = λk (a), k = 1, 2, ... we
+want to understand the behaviour of
+(3)                                    λ∗k = min λk (a), k = 1, 2, . . . .
+                                                      a≥1
+
+as k goes to infinity. Since these eigenvalues are given by
+                                     2        
+                                  2  p     2 2
+                       λk (a) = π       + a q , p, q = 1, · · · ,
+                                     a2
+this problem is related to the problem of counting integer lattice points and may
+be reformulated as
+
+         Among all ellipses centred at the origin with horizontal and ver-
+         tical axes, determine the one with the least area which contains k
+         integer lattice points in the first quadrant (excluding the axes)
+
+   This problem poses a computational challenge even for finite k, which we believe
+to be interesting in its own right – see, for instance, the graph of the function
+λ100000 (a) in Figure 1. In [AF2] we introduced an algorithm for this purpose and
+
+
+                                 1.2616 ´ 106
+
+
+
+
+                      Λ100 000
+                                 1.2614 ´ 106
+
+
+
+                                 1.2612 ´ 106
+
+
+
+                                 1.2610 ´ 106
+
+                                                1.0     1.1   1.2       1.3   1.4   1.5
+                                                                    a
+
+
+                   Figure 1. The function λ100 000 (a) for a ∈ [1, 1.5]
+
+in Figure 2–right we show the results for the first 50 000 values of a∗k . From this it
+is not very conclusive if any sort of convergence is to be expected, which prompted
+us to look further up in the spectrum. The results for k of the order of 108 are
+shown in Figure 2–left, and here we see, by comparison with the previous results,
+Geometric Aspects of Spectral Theory                                                                                  2053
+
+that the values of a∗k do seem to be decreasing, although very slowly. In fact, the
+
+        1.5
+                                                                           1.05
+        1.4
+                                                                           1.04
+
+        1.3
+                                                                           1.03
+ a k*                                                               a k*
+        1.2
+                                                                           1.02
+
+        1.1                                                                1.01
+
+
+        1.0                                                                1.00
+              0   10 000   20 000       30 000   40 000    50 000                 0   2000   4000       6000   8000   10 000
+                                    k                                                               k
+
+
+
+        Figure 2. The first 50 000 values of a∗k (left) and the first 10 000 after 108 (right).
+
+optimum set does converge to the square (and thus the optimal ellipse converges
+to the circle), which is our main result in this direction.
+Theorem 2. [AF2]
+                                                          lim a∗k = 1.
+                                                          k→∞
+
+   The crucial step of the proof is to show that optimal rectangles remain bounded
+uniformly in k, which is basically achieved by an improvement upon Pólya’s in-
+equalities for the case of rectangles. Once this is done, we can use existing results
+for the integer lattice problem to show that the limit of the sequence of optimal
+perimeters does converge to the perimeter of the square.
+
+                                                          References
+[AF]  P.R.S. Antunes and P. Freitas, Numerical optimisation of low eigenvalues of the Dirich-
+      let and Neumann Laplacians, J. Optim. Theory Appl. 154 (2012), 235–257; DOI
+      10.1007/s10957-011-9983-3.
+[AF2] P.R.S. Antunes and P. Freitas, Optimal spectral rectangles and lattice ellipses, preprint
+      (2012).
+[AFK] P.R.S. Antunes, P. Freitas and J.B. Kennedy, Asymptotic behaviour and numerical ap-
+      proximation of optimal eigenvalues of the Robin Laplacian, to appear in ESAIM: Control,
+      Optimisation and Calculus of Variations.
+[B]   F.A. Berezin, Covariant and contravariant symbols of operators. Izv. Akad. Nauk SSSR
+      Ser. Mat. 36, 1134–1167 (1972).
+[Bo]  M.-H. Bossel, Membranes élastiquement liées: Extension du théoréme de Rayleigh–
+      Faber–Krahn et de l’inégalité de Cheeger, C. R. Acad. Sci. Paris Sér. I Math. 302,
+      47–50 (1986).
+[Bu]  D. Bucur, Minimization of the k−th eigenvalue of the Dirichlet Laplacian, Arch. Rat.
+      Mech. Anal., to appear (2012).
+[D]   D. Daners, A Faber–Krahn inequality for Robin problems in any space dimension, Math.
+      Ann. 335, 767–785 (2006).
+[F]   G. Faber, Beweis, dass unter allen homogenen Membranen von gleicher Fläche und
+      gleicher Spannung die kreisförmige den tiefsten Grundton gibt, Sitz. ber. bayer. Akad.
+      Wiss., 169–172 (1923).
+[GNP] A. Girouard, N. Nadirashvili and I. Polterovich, Maximization of the second positive
+      Neumann eigenvalue for planar domains J. Differential Geom. 83 (2009), 637–661.
+2054                                                            Oberwolfach Report 33/2012
+
+[Ke]    J.B. Kennedy, An isoperimetric inequality for the second eigenvalue of the Laplacian
+        with Robin boundary conditions, Proc. Amer. Math. Soc. 137, 627–633 (2009).
+[K1]    E. Krahn, Über eine von Rayleigh Formulierte Minimaleigenschaft des Kreises, Math.
+        Annalen 94, 97–100 (1924).
+[K2]    E. Krahn, Über Minimaleigenshaften der Kugel in drei und mehr Dimensionen, Acta
+        Comm. Univ. Dorpat. A9, 1–44 (1926).
+[LY]    P. Li and S.T. Yau, On the Schrödinger equation and the eigenvalue problem, Commun.
+        Math. Phys. 88 (1983), 309–318.
+[MP]    D. Mazzoleni and A. Pratelli, Existence of minimizers for spectral problems, preprint
+        (2012).
+[O]     E. Oudet, Numerical minimization of eigenmodes of a membrane with respect to the
+        domain, ESAIM Control Optim. Calc. Var. 10, 315–330 (2004).
+[P]     G. Pólya, On the eigenvalues of vibrating membranes, Proc. London Math. Soc. 11
+        (1961), 419–433.
+[R]     J. W. S. Rayleigh, The theory of sound, 2nd Edition, Macmillan, London, 1896
+        (reprinted: Dover, New York, 1945).
+[S]     G. Szegö, Inequalities for certain eigenvalues of a membrane of given area, J. Rational
+        Mech. Anal. 3, 343–356 (1954).
+[W]     H. F. Weinberger, An isoperimetric inequality for the N -dimensional free membrane
+        problem, J. Rational Mech. Anal. 5, 633–636 (1956).
+
+
+
+       Lieb–Thirring inequalities: A review and some recent results
+                                Rupert L. Frank
+        (joint work with Elliott H. Lieb, Mathieu Lewin, Robert Seiringer)
+
+The classical Lieb–Thirring (LT) inequality [4] is a generalization of the Sobolev
+inequality to systems of orthonormal functions. It states that there is a constant
+Kd > 0, depending only on the dimensionR d, such that for any N ∈ N, any
+functions ψ1 , . . . , ψN ∈ H 1 (Rd ) satisfying Rd ψj ψk dx = δjk and any numbers
+λ1 , . . . , λN ∈ [0, 1] one has
+                                                              1+2/d
+                   N
+                  X Z                         Z   N
+                                                  X
+(1)                    λj     |∇ψj |2 dx ≥ Kd       λj |ψj |2       dx .
+               j=1      Rd                      Rd        j=1
+
+The important feature of this inequality is that the constant Kd is independent of
+N . For N = 1, the inequality is an easy consequence of Sobolev inequalities.
+   The inequality can be written in a more concise way as
+                                           Z
+(2)                       Tr(−∆)γ ≥ Kd         ρ1+2/d
+                                                γ     dx
+                                                     Rd
+                          2    d
+for any operator γ on L (R ) satisfying 0 ≤ γ ≤ 1. Here ργ (x) is (at least formally)
+                                                                     PN
+γ(x, x). The link between both formulations is the expansion γ = j=1 λj |ψj ihψj |.
+   The physical meaning of (2) is as follows. Let ρ ≥ 0 be a given function on Rd
+which is sufficiently regular and vanishes sufficiently
+                                                   R    fast at infinity. We interpret
+ρ as a density of electrons. Typically, we require Rd ρ dx ∈ N and interpret this as
+the number of electrons, but this is not necessary in what follows. The question
+we are interested in is the minimal amount of kinetic energy it costs to create a
+Geometric Aspects of Spectral Theory                                              2055
+
+system of electrons with the given density ρ. By ‘a system of electrons with the
+given density ρ’ we mean an operator γ on L2 (Rd ), a one-body density matrix,
+with 0 ≤ γ ≤ 1 and ργ = ρ. Thus, we are looking for a lower bound on
+                    Tρ = inf {Tr(−∆)γ : 0 ≤ γ ≤ 1 , ργ = ρ} .
+(Here we ignore spin and use units where ~ = 2m = 1.) The Pauli exclusion
+principle is encoded in the requirement γ ≤ 1. Now (2) provides the lower bound
+                                      Z
+                              Tρ ≥ Kd     ρ1+2/d dx .
+                                         Rd
+
+The right side is (up to the value of the constant) the approximation used in
+Thomas–Fermi and density functional theory. An important feature of this bound
+is that the right side is additive over position space in the sense that, if ρ consists
+of two pieces with disjoint support, then the integral on the right side is the sum
+of the integrals of the two pieces. This is an advantage of this bound over other
+                                                     (d−2)/d
+possible bounds like, e.g., Tρ ≥ Sd Rd ρd/(d−2) dx
+                                       R
+                                                              in d ≥ 3, which follows
+from the Hoffmann-Ostenhof and the Sobolev inequalities. Inequality (1) plays a
+crucial role in Lieb–Thirring’s proof of the stability of matter.
+    Despite considerable efforts the optimal constant in (1) is not known. For a
+conjecture, see [4], and for the best possible value at the moment, see [1].
+    The original proof of [4] used a duality argument, based on the observation that
+(1) is equivalent to a bound on the sum of negative eigenvalues of Schrödinger
+operators,
+                                               Z
+                                                    1+d/2
+(3)                       Tr(−∆ + V )− ≤ Ld        V−      dx
+                                                Rd
+
+for all V . Here a− = max{0, −a} denotes the negative part. There is a one-to-one
+correspondence between optimal constants in Kd in (1) and Ld in (3). Recently,
+Rumin [5, 6] found a direct proof of (1) without going via (3).
+   The motivation behind our recent work [3] (see also [2]) was to extend the
+classical LT inequalities to the case of a positive background density and to answer
+the question: How much energy does it cost to make a hole in the Fermi sea? More
+specifically, we are interested in local perturbations of a system of electrons which
+has a constant background density ρ0 > 0. We think of the Fermi sea with density
+ρ0 as being described by the operator Π0 = χ{−∆<µ} , where µ is defined by
+
+(4)                   ρ0 = (2π)−d |{p ∈ Rd : |p| < 1}| µd/2 .
+This equality means that Π0 (x, x) = ρ0 . Since this state has infinite kinetic energy,
+we are lead to estimating the change in kinetic energy. Our main result in [3] reads
+Theorem 1. Let d ≥ 2, ρ0 > 0 and define µ by (4). Then for any operator γ in
+L2 (Rd ) satisfying 0 ≤ γ ≤ 1 one has
+                               Z                                          
+                                               1+d/2          d/2
+ Tr ((−∆ − µ)(γ − Π0 )) ≥ Kd′       ργ1+d/2 − ρ0     − 1 + d2 ρ0 (ργ − ρ0 ) dx .
+                                 Rd
+2056                                                          Oberwolfach Report 33/2012
+
+   Remarks. (1) The right side is again additive as in the classical LT inequality
+and as desired in density functional theory. The integrand is non-negative. It
+              1+d/2
+behaves like ργ      if ργ ≫ ρ0 (as in the classical LT bound) and like ρ2γ if ργ ≪ ρ0 .
+(2) The left side is somewhat formal. Strictly speaking, it should read
+
+                                                                     1/2
+         Tr | − ∆ − µ|1/2 Π⊥           ⊥
+                                                         
+(5)                        0 (γ − Π0 )Π0 − Π0 (γ − Π0 )Π0 | − ∆ − µ|     ,
+
+
+which coincides with the left side if γ − Π0 is finite rank, say. Here, Π⊥  0 = 1 − Π0 .
+Note that Π⊥ 0 (γ  − Π 0 )Π⊥
+                           0 ≥ 0 ≥ Π0 (γ − Π0 )Π0 . Thus the  left side is non-negative
+as well. We argue that (5) is a natural definition for the kinetic energy shift, since
+it minimizes a variational principle and since it can be obtained by considering
+the thermodynamic limit of corresponding expressions on large tori.
+(3) We really prove four inequality, one for each of the operators Π0 (γ − Π0 )Π0 ,
+Π0 (γ − Π0 )Π⊥      ⊥                    ⊥            ⊥
+               0 , Π0 (γ − Π0 )Π0 and Π0 (γ − Π0 )Π0 . The proof for the ‘diagonal
+pieces’ uses the technique introduced in [5].
+(4) The corresponding inequality in d = 1 is not true. We prove a replacement,
+however, which involves a logarithmic correction term.
+(5) There is an equivalent inequality for Schrödinger operators. It involves both
+the discrete and the continuous spectrum of −∆ + V .
+(6) There are similar inequalities for the pressure at positive temperature.
+(7) It would be desirable to obtain good estimates on the constant Kd′ .
+
+
+
+
+                                        References
+ [1] J. Dolbeault, A. Laptev, M. Loss, Lieb-Thirring inequalities with improved constants. J.
+     Eur. Math. Soc. 10 (2008), no. 4, 1121–1126.
+ [2] R. L. Frank, M. Lewin, E. H. Lieb, R. Seiringer, Energy cost to make a hole in the Fermi
+     sea. Phys. Rev. Lett. 106 (2011), 150402.
+ [3] R. L. Frank, M. Lewin, E. H. Lieb, R. Seiringer, A positive density analogue of the Lieb-
+     Thirring inequality. Duke Math. J., to appear. Preprint: arXiv:1108.4246
+ [4] E. H. Lieb, W. Thirring, Inequalities for the moments of the eigenvalues of the Schrödinger
+     Hamiltonian and their relation to Sobolev inequalities. Studies in Mathematical Physics,
+     269–303. Princeton University Press, Princeton, NJ, 1976.
+ [5] M. Rumin, Spectral density and Sobolev inequalities for pure and mixed states. Geom. Funct.
+     Anal. 20 (2010), 817–844.
+ [6] M. Rumin, Balanced distribution-energy inequalities and related entropy bounds. Duke
+     Math. J. 160 (2011), no. 3, 567–597.
+Geometric Aspects of Spectral Theory                                           2057
+
+      Sharp constants in the Caffarelli-Kohn-Nirenberg inequalities
+                              Michael Loss
+              (joint work with Jean Dolbeault, Maria Esteban)
+
+The Caffarelli-Kohn-Nirenberg inequalities [3]
+                                  2/p Z
+                         |w|p                |∇w|2
+                   Z
+                N
+(1)           Ca,b          b p
+                                dx    ≤         2a
+                                                   dx       ∀ w ∈ Da,b
+                     RN |x|              RN |x|
+form a natural extension of Hardy and Sobolev inequalities. Here a ≤ b ≤ a + 1 if
+N ≥ 3 and a < b ≤ a + 1 if N = 2, and the exponent p is given by
+                                           2N
+(2)                             p=                    .
+                                     N − 2 + 2(b − a)
+We restrict our attention to the case where a ≤ ac = N 2−2 in which case the
+domain Da,b is given by
+                  n                                                 o
+          Da,b := w ∈ Lp (RN , |x|−b dx) : |x|−a |∇w| ∈ L2 (RN , dx) .
+                    N
+In what follows, Ca,b  denotes the optimal constant in the above inequality. It is
+straightforward to compute the extremals among radial functions. Employing
+rearrangement inequalities the extremals and hence the sharp constants have been
+explicitly computed for the cases where a ≥ 0 (see the references in [5]). For a ≤ 0
+the the situation is more complicated. Rearrangement inequalities are not readily
+available and, more interestingly, radial symmetry can be broken. In fact it was
+shown in [4] and in [6] that in the region a ≤ 0 and b < bFS (a) where
+                                   2 N (ac − a)
+                   b FS (a) := p                    + a − ac ,
+                                (ac − a)2 + (N − 1)
+the extremal functions are not radial. This report is about joint work with Jean
+Dolbeault and Maria Esteban concerning new symmetry results for the extremals
+for a ≤ 0, b ≥ bFS (a). In [5] it is shown that for b ≤ b⋆ (a) where
+                              N (N − 1) + 4 N (a − ac )2
+                  b⋆ (a) :=                              + a − ac .
+                               6 (N − 1) + 8 (a − ac )2
+the extremals are radial. Nothing is known in the region b FS (a) ≤ b ≤ b⋆ (a),
+although it is natural to expect radial symmetry there too. The situation is de-
+picted in the figure at the end of this report for N = 3. The proof proceeds by
+first writing the problem in logarithmic variables
+                                    x
+              s = log |x| , ω =        ∈ SN −1 , u(s, ω) = |x|ac −a w(x) ,
+                                   |x|
+                                                               
+(3)                    N
+                     Ca,b kuk2Lp(C) ≤ k∇uk2L2 (C) + Λ kuk2L2(C) ,
+
+where C = R × SN −1 and dω is the normalized uniform surface measure on the
+sphere. Here Λ = (ac − a)2 and the parameters a, b are uniquely specified by Λ
+2058                                                    Oberwolfach Report 33/2012
+
+and p. Thus, there is symmetry for all Λ ≤ Λ⋆ and symmetry breaking for all
+Λ > ΛFS where
+                              (N − 1)(6 − p)          N −1
+(4)                   Λ⋆ =                   < ΛFS = 4 2   .
+                                 4(p − 2)             p −4
+In this language, the radial extremals solve the equation
+(5)                           −u′′∗ + Λ u∗ = up−1
+                                              ∗      in R ,
+and are given by
+                              1           Λ
+(6)              u∗ (s) :=             √               2         ∀s∈R.
+                              2 cosh( 1 Λ (p − 2) s) p−2
+                                
+                                      2
+
+It was shown in [4] that the extremals for the sharp constant in (1) and thus in
+(3) exist for a < b < a + 1. The following theorem about the solutions of the
+variational equation is proved in [5].
+Theorem 1. Let N ≥ 2 and let u be a non-negative function on C = R × SN −1
+that satisfies
+(7)                   −∂s2 u − ∆SN −1 u + Λ u = up−1        on    C,
+and consider the solution u∗ given by (6). Assume that
+                       Z                     Z
+(8)                       |u(s, ω)|p ds dω ≤   |u∗ (s)|p ds ,
+                          C                      R
+
+for some p > 2 .   If a2c < Λ ≤ Λ⋆ (p) , then for a.e. ω ∈ SN −1 and s ∈ R , we have
+u(s, ω) = u∗ (s − C) for some constant C .
+   The symmetry results are an immediate consequence of this theorem. If u is an
+extremal, then after multiplying by a constant one can assume that it satisfies (7).
+One sees that the condition (8) is satisfied by multiplying (7) by u and integrating.
+This yields
+                                     
+            k∇uk2L2 (C) + Λ kuk2L2(C)             Z                 1−2/p
+                                             N                  p
+                                        =  Ca,b =     |u(s, ω)|   ds        ,
+                   kuk2Lp(C)                        C
+
+                                       1−2/p
+which is less or equal C |u∗ (s)|p ds
+                         R
+                                              since u is an extremal. The proof of
+Theorem 1 relies on the sharp Poincaré type inequality
+                                           N −1
+                   Z
+                           |∇F (ω)|2 dω ≥          kF k2q − kF k22
+                                                                   
+                     SN −1                 q − 2
+
+valid for all 2 < q ≤ 2(N −1)
+                        N −3 . This inequality is due to Bidaut-Véron – Véron
+[2] and, independently, Beckner [1]. In fact, the results in [2] allow to extend the
+above theorem to the case where SN −1 is replaced by a compact closed manifold
+with bounded Ricci curvature. For details the reader may consult [5].
+Geometric Aspects of Spectral Theory                                                       2059
+
+                                                                      b
+
+
+
+                                                              1
+
+                                         b=a+1
+                                                     Symmetry region
+
+
+
+
+                                                b = b LT(a)               N −2 1
+              −1                        − 12                               2 = 2
+
+                                                                  0                a
+                                  b = b FS(a)
+                                                 b=a
+
+       Symmetry breaking region
+
+
+
+                                           References
+[1] W. Beckner, Sharp Sobolev inequalities on the sphere and the Moser-Trudinger inequality,
+    Ann. of Math. (2), 138 (1993), pp. 213–242.
+[2] M.-F. Bidaut-Véron and L. Véron, Nonlinear elliptic equations on compact Riemannian
+    manifolds and asymptotics of Emden equations, Invent. Math., 106 (1991), pp. 489–539.
+[3] L. Caffarelli, R. Kohn, and L. Nirenberg, First order interpolation inequalities with
+    weights, Compositio Math., 53 (1984), pp. 259–275.
+[4] F. Catrina and Z.-Q. Wang, On the Caffarelli-Kohn-Nirenberg inequalities: sharp con-
+    stants, existence (and nonexistence), and symmetry of extremal functions, Comm. Pure
+    Appl. Math., 54 (2001), pp. 229–258.
+[5] J. Dolbeault, M. J. Esteban and M. Loss, Symmetry of extremals of functional inequal-
+    ities via spectral estimates for linear operators, http://arxiv.org/abs/1109.6212, to appear
+    in Journal of Mathematical Physics.
+[6] V. Felli and M. Schneider, Perturbation results of critical elliptic equations of Caffarelli-
+    Kohn-Nirenberg type, J. Differential Equations, 191 (2003), pp. 121–142.
+
+
+
+      Spectrum of 1D non-selfadjoint Dirac operators; sharp CLR
+                   inequalities for radial potentials
+                              Ari Laptev
+
+We show that the non-embedded eigenvalues of the Dirac operator on the real
+line with non-Hermitian potential V lie in the disjoint union of two disks in the
+right and left half plane, respectively, provided that the L1 -norm of V is bounded
+from above by the speed of light times the reduced Planck constant. An analogous
+result for the Schrödinger operator, originally proved by Abramov, Aslanyan and
+Davies, emerges in the nonrelativistic limit. For massless Dirac operators, the
+condition on V implies the absence of nonreal eigenvalues. Our results are further
+generalized to potentials with slower decay at infinity. As an application, we
+determine bounds on resonances and embedded eigenvalues of Dirac operators
+with Hermitian dilation-analytic potentials.
+2060                                                    Oberwolfach Report 33/2012
+
+         From the colour of the sun to modern spectral estimates
+                              Timo Weidl
+
+   From the colour of stars one can determine their surface temerature. The base
+for this is Planck’s law, which states that the radiation intensity per volume of a
+cavity radiator at the frequency ν is given by
+                                    8πν 2   hν
+                                          × hν  .
+                                     c3    e −1
+                                            kT
+
+
+  This formula is threefold remarkable:
+       - Firstly, in its entity it describes a universal law of interaction between heat
+         and radiation.
+       - Secondly, the second factor in this expression is the initial spark for the
+         development of quantum mechanics.
+       - Thirdly, as I outline with a few historic remarks, the first factor is the
+         outset for the modern theory of spectral asymptotics (see also [4].
+  Indeed, motivated by this formula H. Weyl showed 100 years ago that [10]
+                                                                dxdξ
+                                               Z Z
+           N (Λ, Ω) = #{λj < Λ} = (1 + o(1))                        d
+                                                    x∈Ω,|ξ|2 <Λ (2π)
+                                                 τd
+                                  = (1 + o(1))       Λd/2 vol(Ω) ,
+                                               (2π)d
+as Λ → +∞, where λj denote the ordered eigenvalue of the Dirichlet Laplacian
+                                                            d
+−∆ΩD including multiplicities on an open domain Ω ⊂ R . About fifty years ago
+G. Pólya [8] realized that the phase space expression on the r.h.s. serves also as
+an upper bound on the counting function
+                                   dxdξ      τd
+                   Z Z
+       N (Λ, Ω) ≤                      d
+                                         =      d
+                                                  Λd/2 vol(Ω) for all Λ > 0 ,
+                       x∈Ω,|ξ|2 <Λ (2π)    (2π)
+if Ω is tiling. He conjectured this bound to be true for all open Ω of finite vol-
+ume, but this hypothesis remains unresolved so far. Recalling related results on
+eigenvalue sums by Berezin [1] and Li and Yau [6] I outline, how the phase space
+bounds on moments of the negative eigenvalues of Schrödinger operators by Lieb
+and Thirring [7] played a crucial role in the proof of stability of matter (which is
+in some sense more a proof of the stability of quantum theory).
+   Finally, I include in this survey also some of my own recent results, namely
+   (a) the violation of Pólya’s conjecture in the presence of magnetic fields [2]
+       (jointly with R. Frank and M. Loss)
+   (b) an improvement of the Li-Yau bound with remainder terms of almost
+       correct order (jointly with S. Vugalter and H. Kovařı́k) [5]
+   (c) an improvement of Berezin’s bound for higher moments [9]
+   (d) a more geometric version of this improvement of Berezin’s bound for higher
+       moments (jointly with A. Laptev and L. Geisinger) [3] .
+Geometric Aspects of Spectral Theory                                                      2061
+
+                                        References
+ [1] F. A. Berezin Covariant and contravariant symbols of operators, Izv. Akad. Nauk SSSR Ser.
+     Mat. 36 (1972) 1134–1167.
+ [2] R. Frank, M. Loss, T. Weidl, Pólya’s conjecture in the presence of a constant magnetic
+     field, J. Eur. Math. Soc. (JEMS) 11 (2009), no. 6, 1365–1383.
+ [3] L. Geisinger, A. Laptev and T. Weidl Geometrical versions of improved Berezin-Li-Yau
+     inequalities, J. Spectr. Theory 1 (2011), 87–109.
+ [4] M. Kac Can one hear the shape of a drum?, Amer. Math. Monthly 73 (1966) no. 4, part
+     II, 1–23.
+ [5] H. Kovařı́k, S. Vugalter, T. Weidl Two-dimensional Berezin-Li-Yau inequalities with a cor-
+     rection term. Comm. Math. Phys. 287 (2009), no. 3, 959–981.
+ [6] P. Li and S.T. Yau On the Schrödinger equation and the eigenvalue problem, Comm. Math.
+     Phys. 88 (1988) 309–318.
+ [7] E.H. Lieb and W. Thirring Inequalities for the moments of the eigenvalues of the
+     Schrödinger Hamiltonian and their relation to Sobolev inequalities, Studies in Mathemati-
+     cal Physics (Essays in Honor of Valentine Bargmann). Princeton Univ. Press, Princeton, NJ
+     (1976) 269–303.
+ [8] G. Pólya On the eigenvalues of vibrating membranes, Proceedings of the London Mathe-
+     matical Society. Third Series 11 (1961) 419–433.
+ [9] T. Weidl Improved Berezin-Li-Yau inequalities with a remainder term, Spectral theory
+     of differential operators, Amer. Math. Soc. Transl. Ser. 2 225 (2008) Amer. Math. Soc.,
+     Providence, RI, 253–263.
+[10] H. Weyl, Das asymptotische Verteilungsgesetz der Eigenwerte linearer partieller Differen-
+     tialgleichungen (mit einer Anwendung auf die Theorie der Hohlraumstrahlung), Math. Ann.
+     71 (1912) 441–479.
+
+
+
+   The div(A grad) operator without ellipticity. Self-adjointness and
+                               spectrum
+                           Vadim Kostrykin
+      (joint work with Amru Hussein, David Krejcirik, Stepan Schmitz)
+
+   Artificial optical metamaterials with negative refractive index is a subject of
+active research due to their unusual properties. In particular, they provide a pos-
+sibility of constructing suitable devices making an object invisible, like a fabulous
+’invisibility cloak’.
+   A mathematical model of invisibility (see [1] and references quoted therein) is
+described by a Dirichlet boundary value problem for the differential equation
+                                    − ÷ A(x) grad u = 0
+with indefinite coefficient matrix A(x). The regions where A is positive definite
+correspond to the ’normal’ material and those where A is negative definite - to the
+metamaterial with negative refraction index. The main difficulty to treat bound-
+ary value problems of this type is the absence of coercivity of the corresponding
+quadratic form hgrad u, A grad ui.
+   In the present work using the representation theorem for indefinite quadratic
+forms (see [2] and references quoted therein) we prove the existence of a unique
+self-adjoint, boundedly invertible operator L, associated with this form for a wide
+2062                                                   Oberwolfach Report 33/2012
+
+                                                                         d          d
+class of coefficient matrices. A simplest example is the operator L = − dx sign(x) dx
+on a bounded interval with Dirichlet boundary conditions at the endpoints.
+   The subspace
+                     H := v ∈ L2 (Ω)n | v = grad ϕ, ϕ ∈ H01 (Ω)
+                          
+
+is closed in L2 (Ω)n , the space of vector valued square integrable functions on Ω.
+Here H01 (Ω) denote the closure of C0∞ (Ω) with respect to the Sobolev norm k · k2,1 .
+Let Q : L2 (Ω)n → H denote the partial isometry defined by
+                                     (
+                                       u, u ∈ Ran D,
+                              Qu :=
+                                       0, u ⊥ Ran D.
+The adjoint operator Q∗ : H → L2 (Ω)n is the embedding of H in L2 (Ω)n .
+Theorem 1. Let Ω ⊂ Rn , n ≥ 2, be a bounded Lipschitz domain or a bounded
+open interval if n = 1. Let A ∈ L∞ (Ω; C)n×n be such that
+   (a) A(x) is Hermitian for almost all x ∈ Ω,
+   (b) the operator QMA Q∗ : H → H is boundedly invertible, where MA is the
+        multiplication operator by A(x) on L2 (Ω)n .
+Then
+    (i) there exist a unique self-adjoint operator L with Dom(L) ⊂ H01 (Ω) such
+        that
+                      hv, LuiL2 (Ω) = hgrad v, A grad uiL2 (Ω)n
+        holds for all v ∈ H01 (Ω) and all u ∈ Dom(L). Its domain is given by
+                    Dom(L) = {u ∈ H01 (Ω) | MA Du ∈ E 2 (Ω)},
+        where
+                       E 2 (Ω) := {v ∈ L2 (Ω)n | ÷ v ∈ L2 (Ω)}.
+         For any u ∈ Dom(L) one has Lu = D∗ MA Du, the domain Dom(L) is a
+         core for the gradient operator D;
+    (ii) the operator L is semibounded if and only if QMA Q∗ is sign definite;
+   (iii) the open interval (−αµ, αµ) with
+                               α := k(QMA Q∗ )−1 k−1
+        and µ > 0 the smallest eigenvalue of the Dirichlet Laplacian −∆D in
+        L2 (Ω), belongs to the resolvent set of L. In particular, L is boundedly
+        invertible with kL−1 k ≤ 1/αµ;
+   (iv) the inverse L−1 is compact. In particular, the spectrum of L is purely
+        discrete.
+   Let λ+                 −
+        j respectively −λj denote the positive respectively negative eigenvalues
+of L enumerated in the increasing respectively decreasing order counting their
+multiplicities. Denote by N ± (λ) the counting functions for positive and negative
+eigenvalues, that is,
+                              N ± (λ) = #{λ±j ≤ λ}.
+Geometric Aspects of Spectral Theory                                                      2063
+
+Theorem 2. In addition to the assumption of Theorem 1 suppose that
+A(·)−1 ∈ L∞ (Ω; C)n×n and
+    (c) Ω either is convex or has a C 1,1 boundary, that is, ∂Ω is locally the graph
+        of a differentiable function with Lipschitz continuous derivative.
+Then the eigenvalue counting functions of the operator L defined in Theorem 1
+have the asymptotics
+                                      (2π)−n ± n/2
+(1)                       N ± (λ) ∼         ω λ ,          λ → ∞,
+                                         n
+where                       Z Z
+                                                        n/2
+                      ±
+                     ω =                 hξ, A(x)−1 ξiCn ± dσ(ξ)dx,
+                             Ω   |ξ|=1
+with (t)± := (|t| ± t)/2 and σ the Lebesgue measure on the unit sphere in Rn .
+In particular, if there are nonempty open sets Ω± ⊂ Ω such that Ω− ∩ Ω+ = ∅,
+Ω− ∪ Ω+ = Ω, and the matrix ±A(x) is positive definite for almost all x ∈ Ω± ,
+then
+(2)                           N± (λ) ∼ NΩ± (λ),        λ → ∞,
+where NΩ± (λ) are the eigenvalue counting functions of the elliptic differential
+operators ∓ ÷ A(x) grad in L2 (Ω± ) with Dirichlet boundary conditions on ∂Ω± .
+
+                                         References
+[1] G. Bouchitté, B. Schweizer, Cloaking of small objects by anomalous localized resonance,
+    Quart. J. Mech. Appl. Math. 63 (2010), 437 – 463.
+[2] L. Grubišić, V. Kostrykin, K. A. Makarov, K. Veselić, Representation theorems for indefi-
+    nite quadratic forms revisited, Mathematika (to appear). DOI: 10.1112/S0025579312000125.
+    Preprint arXiv:1003.1908 [math.FA] (2010).
+
+
+                               Open Problems Session
+
+
+      (i) Some inequalities involving harmonic functions and Dirichlet
+          eigenfunctions by Michael Levitin
+          Let m ≥ 2, and let Ω ⊂ Rm , be a bounded open set with a suffi-
+          ciently smooth boundary. Denote by λj , uj the eigenvalues (ordered
+          non-decreasingly with account of multiplicity) and the orthonormal eigen-
+          functions of the Dirichlet Laplacian on Ω. Denote also by H(λ) the set
+          {v ∈ L2 (Ω) : ∆v + λv = 0} of the λ-harmonic functions in Ω (they are just
+          harmonic when λ = 0). Let h·, ·i stand for the standard scalar product in
+          L2 (Ω).
+         Conjecture 1. For every λ > λ1 there exists a harmonic function h ∈
+         H(0) such that
+                           ∞
+                          X     λj
+                                     |hh, uj i|2 < 0.
+                          j=1
+                              λj − λ
+2064                                                      Oberwolfach Report 33/2012
+
+             An equivalent form of this conjecture is
+          Conjecture 2. For every λ > λ1 there exists a λ-harmonic function
+          g ∈ H(λ) such that
+                                ∞
+                                X λj − λ
+                                           |hg, uj i|2 < 0.
+                                j=1
+                                      λj
+
+               The conjectures can be also re-formulated in terms of Neumann or
+           Steklov spectra.
+               Very roughly, proving the conjecture for λ → λ2 − 0 would mean that
+           there always exists a harmonic function which is “almost parallel” to the
+           first Dirichlet eigenfunction.
+               It is easy to check that the conjectures fail in the one-dimensional set-
+           ting.
+      (ii) Bounds for eigenvalues and the barycentric method by Bruno Col-
+           bois
+           The barycentric method has been used to obtain upper bounds for the first
+           eigenvalue of the Laplace operator. A typical example is the following.
+           Fix a compact Riemannian manifold (M, g) and consider a Schrödinger
+           operator
+                                       L = ∆+q
+               2
+          on L (M ), where q is a continuous potential. An upper bound for the
+          second eigenvalue λ1 can be deduced
+                                        R       from Theorem 2.2 of [14], depending
+          on the mean of the potential M qdvolg :
+                                              2/m R
+                                                        qdvolg
+                                 
+                                     Vc (g)
+                      λ1 (L) ≤ m                   + M          .
+                                   V olg (M )        V olg (M )
+            where Vc (g) denotes the conformal volume. Problem: Can we get similar
+            upper bounds depending also on k for the other eigenvalues ? Grigor’yan-
+            Netrusov-Yau [19] and Hassannezhad [20] have obtained partial results
+            under additional hypothesis on q. For example that it has an uniform
+            lower bound. Hassannezhad also obtained estimates for λk with respect
+            to k, V olg (M ) and λ0 .
+      (iii) Bounds for Dirichlet eigenvalues by Bruno Colbois
+            Recall the following result by Colbois, El Soufi, and Girouard [9]. For
+            any bounded domain Ω ⊂ Rm+1 with smooth boundary Σ = ∂Ω, and all
+            k ≥ 1,
+(1)                     λk (Σ)V ol(Σ)2/m ≤ γm I(Ω)1+2/m k 2/m
+          with γm explicit constant depending on m and I(Ω) denotes the isoperi-
+          metric ratio. Problem: Is it possible to get a bound of the type
+                       λk (Σ)V ol(Σ)2/m ≤ Am I(Ω) + Bm k 2/m ?
+Geometric Aspects of Spectral Theory                                                  2065
+
+      (iv) Eigenvalue inequalities for convex hypersurfaces by Bruno Colbois
+           Let Σm ⊂ Rm+1 be a convex hypersurface.
+           If m ≥ 3 is it true that the round sphere maximizes λ1 (Σ)|Σ|2/m (here
+           λ1 (Σ) denotes the first non trivial eigenvalue of the Laplace-Beltrami op-
+           erator)? The result is known for m = 2, see J. Hersch.
+           Problem: If m = 2 what is the domain which maximizes λ2 (Σ)|Σ|?
+       (v) Lp bounds for Dirichlet eigenfunctions by Michiel van den Berg
+
+          A simple proof, using the monotonicity of the heat kernel with respect to
+          inclusion [12], shows that the j’th Dirichlet eigenfunction φj of any open
+          set Ω in Rm (for which the Dirichlet Laplacian has compact resolvent)
+          satisfies
+                                      e m/4
+(2)                         kφj k∞ ≤             λj (Ω)m/4 .
+                                       2πm
+          Problem: Find the sharp constant Cj,m in
+(3)                              kφj k∞ ≤ Cj,m λj (Ω)m/4 .
+        Inequality (2) shows that φj ∈ Lp (Ω) for all 2 ≤ p ≤ ∞. Problem: Find an
+        open set Ω such that the Dirichlet Laplacian acting in L2 (Ω) has compact
+        resolvent, and such that φj ∈/ L1 (Ω).
+   (vi) Sharp constants for the torsion function with Dirichlet boundary
+        conditions by Michiel van den Berg
+        Let uΩ be the torsion function of an open set Ω in Rm . M. van den Berg
+        and T. Carroll [6] showed that uΩ is bounded if and only if the bottom of
+        the spectrum of the Dirichlet Laplacian λΩ is strictly positive, and that in
+        that case
+                        λ−1
+                          Ω ≤ kuΩ k∞ ≤ (4 + 3m log 2)λΩ .
+                                                         −1
+
+        The question is to find the sharp constants on the left (infinite strip ?)
+        and on the right (ball ?) for the above inequalities.
+  (vii) Eigenvalue inequalities for the magnetic Laplacian by Richard
+        Laugesen
+        For β a real number, and Ω a bounded open set in R3 , let us consider the
+        first eigenvalue E1 of the magnetic Laplacian:
+                                          2
+                             β
+                       i∇ + (−x2 , x1 , 0) u = E1 u in Ω,
+                             2
+                                              u=0       on ∂Ω.
+
+
+          Note that the eigenfunction u(x) is complex-valued. The magnetic field
+          ∇× β2 (−x2 , x1 , 0) = (0, 0, β) is uniform, and points in the vertical direction.
+             Problem: Can one find Ω of fixed volume which minimizes E1 ? The
+          result is known in two dimensions, where the minimizer is the disk, see
+          [15]. But in three dimensions the minimizer is presumably not the ball,
+          due to the breaking of symmetry by the magnetic field.
+2066                                                  Oberwolfach Report 33/2012
+
+ (viii) Nodal count for eigenfunctions of the Dirichlet-to-Neumann op-
+        erator by Iosif Polterovich
+        Let M be a compact Riemannian manifold with boundary Σ. Consider
+        the Dirichlet-to-Neumann operator D : C ∞ (Σ) → C ∞ (Σ) which maps a
+        function u on Σ to the outward normal derivative of its harmonic extension
+        to M . The operator D is a first order elliptic pseudo-differential operator.
+        It has discrete spectrum and its eigenfunctions un , n = 1, 2, . . . form a
+        basis in L2 (Σ). Let νn be the number of nodal domains of an eigenfunction
+        un . Problem: Find an upper bound on νn .
+            If M is two–dimensional, such a bound follows from the Courant nodal
+        domain theorem for eigenfunctions of the Steklov eigenvalue problem:
+        ∆f = 0 in M , ∂n f = σf on Σ (here ∂n denotes the outward normal de-
+        rivative). The eigenvalues of the Dirichlet-to-Neumann operator coincide
+        with the Steklov eigenvalues of M , and the eigenfunctions un of D are the
+        restrictions of the Steklov eigenfunctions φn to the boundary: un = φn |Σ .
+        A simple topological argument following [1, Lemma 3.4] shows that for
+        surfaces, the bound on the number of interior nodal domains of φn implies
+        an estimate on the number of boundary nodal domains of φn , which are
+        precisely the nodal domains of un . However, it is easy to see that in higher
+        dimensions this argument fails, and while Courant’s theorem holds for φn ,
+        it does not imply any upper bound on νn .
+            Note that if M = Bm ⊂ Rm is a Euclidean ball, then the Courant
+        nodal domain theorem holds for the Dirichlet-to-Neumann eigenfunctions
+        un , because they coincide with the spherical harmonics (see [17, Example
+        2.1]). In general, the principal symbol of D is the square root of the
+        principal symbol of the Laplace-Beltrami operator on Σ. Since Courant’s
+        theorem holds for the eigenfunctions of the Laplacian on Σ, one may hope
+        to have at least a “semiclassical” (i.e. as n → ∞) bound for the number
+        of nodal domains νn . A related problem is discussed in (xvi).
+  (ix) Do there exist non-isometric planar domains that are Steklov
+        isospectral? by Iosif Polterovich
+        This variation of M. Kac’s famous question “Can one hear the shape of
+        a drum?” has been around for quite a while. It follows from Weyl’s law
+        for Steklov eigenvalues that the Steklov spectrum determines the perime-
+        ter of a planar domain. Moreover, if two smooth simply-connected planar
+        domains Ω1 and Ω2 have the same perimeter, the difference between the
+        corresponding Steklov eigenvalues satisfies |σn (Ω1 ) − σn (Ω2 )| = o(n−∞ ).
+        This result was proved independently by Rozenblium [28] and Guillemin–
+        Melrose (see [13]). It is also known that the disk is uniquely determined by
+        its Steklov spectrum among all simply–connected planar domains [29, 13].
+        If one considers a more general setting, namely Riemannian manifolds with
+        boundary, there are easy ways to construct manifolds that are Steklov
+        isospectral but not isometric. For instance, a conformal change of metric
+        by a factor that is equal to one near the boundary does not change the
+Geometric Aspects of Spectral Theory                                               2067
+
+           Steklov spectrum of a surface. Also, if Σ1 and Σ2 are two Laplace isospec-
+           tral compact closed Riemannian manifolds, than the cylinders Σ1 × L and
+           Σ2 × L are Steklov isospectral for any L > 0 (see [9, Lemma 6.1]).
+       (x) Does a finite number of Neumann eigenvalues determine a disk?
+           by Iosif Polterovich
+           It is well-known that a Euclidean ball is uniquely determined by either its
+           Dirichlet or Neumann spectrum. Indeed, the volume can be obtained from
+           the main term in Weyl’s law. At the same time, it follows from the Faber–
+           Krahn inequality that the ball is the unique minimizer of the first Dirichlet
+           eigenvalue among all Euclidean domains of the same volume. Similarly, the
+           Szegő–Weinberger inequality states that the ball is the unique maximizer
+           of the first nonzero Neumann eigenvalue among all domains of the same
+           volume.
+               The above argument requires the knowledge of infinitely many Dirichlet
+           or Neumann eigenvalues. Problem: Is it possible to determine a ball using
+           only a finite number of eigenvalues ? In the Dirichlet case the answer
+           is positive — in fact, one needs to know only the first two eigenvalues.
+           Indeed, by a theorem of Ashbaugh–Benguria [2], the ratio of the first two
+           Dirichlet eigenvalues of a Euclidean domain attains its maximum if and
+           only if the domain is a ball.
+               In the Neumann case the situation is drastically different. It follows
+           from the results of Colin de Verdière [11] that in dimensions ≥ 3 no finite
+           number of Neumann eigenvalues allows to determine whether a domain is
+           a ball. In dimension two the question is open. Note that [11, Theorem
+           1.4] is not applicable in this case because Neumann spectrum of a disk
+           contains multiple eigenvalues.
+      (xi) Optimal power in upper bounds for the Steklov spectrum by
+           Alexandre Girouard
+           The isoperimetric ratio of a bounded Euclidean domain Ω ⊂ Rm+1 with
+           smooth boundary Σ = ∂Ω is
+                                               |Σ|
+                                  I(Ω) =              .
+                                           |Ω|m/(m+1)
+          In [9] we proved that the Steklov eigenvalues of Ω satisfy for each k ∈ N,
+                                             c(m)
+(4)                      σk (Ω)|Σ|1/m ≤               k 2/(m+1) .
+                                          I(Ω)(1−1/m)
+          In particular, using the classical isoperimetric inequality, for any bounded
+          Euclidean domain Ω ⊂ Rm+1 ,
+(5)                          σk (Ω)|Σ|1/m ≤ c′ (m)k 2/(m+1) .
+          The Weyl type asymptotic formula for the Steklov spectrum σk is
+(6)                    σk (Ω)|∂Ω|1/m ∼ c′′ (m)k 1/m   as k ր ∞.
+2068                                                    Oberwolfach Report 33/2012
+
+        Problem: Does inequality (5) hold with the optimal exponent k 1/m ? For
+        m = 1, the exponent is already optimal. For m ≥ 2, it is impossible to
+        replace k 2/(m+1) by k 1/m in inequality (4) because this would imply, using
+        the asymptotic formula (6), an upper bound for the isoperimetric ratio
+        I(Ω).
+  (xii) Large isoperimetric ratio for planar domains by Alexandre Girouard
+        For m ≥ 2, inequality (4) implies that if a sequence of domains Ωl is
+        such that liml→∞ I(Ωl ) → ∞, then for each k ∈ N, liml→∞ σk (Ωl ) =
+        0. Let Ωl be a sequence of bounded planar domains (m = 1) such that
+        liml→∞ I(Ωl ) → ∞. Does liml→∞ σk (Ωl ) = 0 ? This really is a “planar
+        question”. On any compact surface with boundary, there exists a sequence
+        of Riemannian metrics gl such that the corresponding Steklov eigenvalues
+        do not depend on l, but the isoperimetric ratios tend to infinity.
+ (xiii) Surfaces with large Steklov eigenvalues by Alexandre Girouard
+        Let Ω be a compact surface of genus γ, with l > 0 boundary components.
+        Fraser and Schoen [17] proved σ1 (Ω)|Σ| ≤ 2π(γ + l). In [18], we extended
+        this result to higher eigenvalues and proved
+
+(7)                           σk (Ω)|Σ| ≤ 2π(γ + l)k.
+
+        For k = 1, γ = 0 and l = 2, Fraser and Schoen have identified a maximizer
+        for σ1 (Ω)|Σ|, which shows in particular that inequality (7) is not sharp in
+        this case. In [9] we proved the existence of a universal constant C > 0
+        such that σk (Ω)|Σ| ≤ C(γ + 1)k. See also Theorem A1 and Example
+        1.3 in [25], where G. Kokarev proved that one can choose C = 8π for
+        k = 1. Altogether, this means that the number l of boundary components
+        is not essential in inequality (7), and that this inequality is never sharp if
+        l is large enough. This raises the following problem. Does there exist a
+        sequence Ωl of compact Riemannian surfaces such that
+
+                              lim σ1 (Ωl )|∂Ωl | = +∞ ?
+                             l→∞
+
+
+        Of course, if such a sequence exists, the genera γ(Ωl ) must tend to infinity.
+  (xiv) Problems for the number of nodal domains by Thomas Hoffmann-
+        Ostenhof
+           Consider −∆ on a bounded domain Ω ⊂ Rd , say, with Dirichlet bound-
+        ary conditions. We could also consider a Schrödinger operator H = −∆+V
+        with, say, real valued bounded potential V and assume also other homoge-
+        nous boundary conditions. Instead of the Laplacian we could have also a
+        strictly elliptic operator in divergence form, also the Laplacian on a man-
+        ifold would be possible. H has compact resolvent and the eigenvalues in
+        increasing order so that
+
+                        λ1 < λ2 ≤ λ3 ≤ λ4 ≤ · · · ≤ λk ≤ . . .
+Geometric Aspects of Spectral Theory                                               2069
+
+        tend to infinity. Without loss we can assume the eigenfunctions uk to be
+        real valued. We define the nodal set of a uk by
+                              N (uk ) = {x ∈ Ω uk (x) = 0}.
+        The nodal domains of uk are then the connected components of Ω \ N (uk ).
+        The number of nodal domains of uk will be denoted by µk . One of the
+        classical results in spectral theory is Courant’s nodal theorem:
+
+(8)                                         µk ≤ k.
+        This is in fact an extension of Sturm’s oscillation theorem which says for a
+        Schrödinger operator on an interval, i.e. a Sturm Liouville problem, that
+        µk = k. In 1956 Pleijel [27] showed that in (8) equality holds only finitely
+        many times. In 1976, H. Lewy [26] showed for spherical harmonics that
+                                      lim inf µk = 2.
+                                           k→∞
+
+        Later on, [5], related results were obtained for eigenfunctions of Laplacians
+        on specific manifolds. Lewy’s result came quite as a surprise since for the
+        typical examples, rectangles, or other problems which can be constructed
+        from one-dimensional problems, the number of nodal domains tends to
+        infinity.
+        Problem: Is it possible that
+                                      lim sup µk < ∞
+                                           k→∞
+                                       d
+        for −∆ on some Ω ⊂ R ? Of course one might pose the same prob-
+        lem for Schrödinger operators on compact manifolds. We have a more
+        detailed problem for the 2-dimensional case. Consider −∆ on Ω ⊂ R2
+        with homogenous boundary conditions. Problem: Is there, for each pos-
+        itive integer n, a finite constant K(n) such that in the collection of the
+        eigenspaces of λ1 , λ2 , . . . , λK(n) , call it U(K(n)), there is a u ∈ U (K(n))
+        with the property that
+(9)                                        µ(u) ≥ n?
+          Note that in higher dimension (9) is probably not true. One can, see
+       Colin de Verdière [10], for a d-dimensional bounded manifold, d ≥ 3, for
+       each finite integer k construct a metric such that the second eigenvalue (
+       with the Laplace operator with this metric) has multiplicity k.
+  (xv) Spectral problems on the flat two-dimensional torus by Thomas
+       Hoffmann-Ostenhof
+       In [21] spectral minimal partitions where considered for the torus 1. Hence
+       we consider −∆ on the flat torus T (a, b). (A rectangle Q(a, b) = (0, a) ×
+       (0, b) with periodic boundary conditions.)
+
+  1see e.g.[22] for the definitions of those minimal partitions
+2070                                                Oberwolfach Report 33/2012
+
+       One problem with an isoperimetric touch is the following: Determine the
+       minimiser of the following variational problem
+              inf{λ1 (Ω) : Ω ⊂ T (a, b), Ω open, simply connected},
+       where λ1 (Ω) is the first eigenvalue of the Dirichlet Laplacian acting in
+       L2 (Ω).
+       We were also interested in the number of nodal domains of the eigen-
+       functions. A simple calculation shows that the eigenvalues are given by
+                       2
+                           n2
+       λm,n = 4π 2 ( m                                                      2 2
+                     a2 + b2 ) where m, n are non-negative integers. If a /b is
+       irrational and (m, n) ≥ 1 then the eigenvalues have multiplicity 4, if for
+       instance m = 0 and n > 0 then the multiplicity is 2. Furthermore the
+       eigenfunctions are given by cos(2πm ax + θ1 ) cos(2πn yb + θ2 ) and have an
+       even number of nodal domains. This holds for the irrational case. For the
+       case that a2 /b2 ∈ Q additional multiplicities occur.
+
+       Is there a flat torus so that for some eigenfunction in the eigenspace
+       U (λm,n ) for some λm,n there is an eigenfunction u with and odd num-
+       ber ≥ 3 of nodal domains ? The higher multiplicities for the rational case
+       must play a role. But if one tries to construct an explicit example one
+       runs into trigonometric and number theoretical problems. Also attempts
+       to show that there are no examples with and odd number of nodal domains
+       probably leads to such problems. It is not clear whether this problem is
+       easy or hard. But there is a lot of work on eigenfunctions and their zero
+       sets for the torus, mostly for problems with some ”generic” touch, see e.g.
+       [7], [8].
+
+       A related problem can be formulated for the Neumann case for rectan-
+       gles, actually the square will suffice. Hence we look Q = (0, 1)2 with
+       Neumann boundary conditions for the Laplacian.
+       Consider Neumann eigenfunctions {uk },
+(10)                          −∆uk = λuk on Q.
+       Problem: Is there a non-constant u satisfying (10) that satisfies u ≥ c > 0
+       at the boundary? It is easy to see that for rectangles R(a, b) with a2 /b2
+       irrational the nodal set will always hit the boundary and an eigenfunction
+       u, if it exists, whose nodal set does not hit the boundary must be in the
+       eigenspace of an eigenvalue that is not simple. As for the case of a torus
+       the construction of a possible example would lead also to trigonometric
+       and number theoretical problems. Attempts to show that such an example
+       does not exist would probably also lead to such problems.
+ (xvi) Nodal domains of fractional Schrödinger operators by Rupert Frank
+          We consider fractional Schrödinger operators (−∆)s +V in L2 (Rm ) with
+       0 < s < 1. The potential V is assumed to be real-valued and such that the
+       operator is lower semi-bounded. Both the case where V decays to zero at
+       infinity (in which case inf ess-spec ((−∆)s + V ) = 0) and where V diverges
+Geometric Aspects of Spectral Theory                                              2071
+
+        to infinity at infinity (in which case inf ess-spec ((−∆)s + V ) = +∞) are
+        interesting. Below we also consider the case where {V = +∞} is non-
+        empty.
+           Let λk < inf ess-spec ((−∆)s + V ) be the k-th eigenvalue of (−∆)s + V
+        (counting multiplicities) and let ψk be a corresponding real-valued eigen-
+        function. If ψk is continuous (which it is under suitable assumptions on
+        V ), we call the connected components of {ψk 6= 0} the nodal domains of
+        ψk . Problem: What can one say about the number of nodal domains of
+        ψk in terms of the index k?
+           Let us recall the classical case s = 1. Let λk < inf ess-spec (−∆ + V )
+        be the k-th eigenvalue (counting multiplicities) of −∆ + V with a cor-
+        responding real-valued eigenfunction ψk . If m = 1, Sturm’s oscillation
+        theorem says that ψk has exactly k nodal domains. For general dimen-
+        sions m ≥ 1, Courant’s nodal theorem says that ψk has at most k nodal
+        domains. The proofs of both theorems are essentially based on the locality
+        of the equation.
+           Returning to the fractional case 0 < s < 1, we first note that the ground
+        state (i.e., ψ1 corresponding to the lowest eigenvalue λ1 ) has a definite
+        sign and is unique. But already for an eigenfunction corresponding to the
+        second eigenvalue we do not know how many nodal domains it could have.
+        To prove that the second eigenfunction only has two nodal domains would
+        settle a problem in non-linear analysis [16].
+           In [16] we have proved that if m = 1 and if ψk corresponds to the k-
+        th eigenvalue λk < inf ess-spec ((−∆)s + V ), then ψk has at most 2k − 1
+        nodal domains. The same method leads to (unfortunately worse) bounds
+        for radial potentials in higher dimensions.
+           Of considerable interest is also the case of the fractional Dirichlet Lapla-
+        cian on a domain Ω ⊂ Rm , which is included in the above set-up with
+        V ≡ 0 in Ω and V ≡ +∞ in Rm \ Ω. If m = 1 and Ω is an interval,
+        Bañuelos and Kulczycki [4] have shown that λ2 and λ3 are simple and
+        the corresponding eigenfunctions ψ2 and ψ3 have two and three nodal do-
+        mains, respectively. We are not aware of any further results even for the
+        fractional Dirichlet Laplacian.
+ (xvii) Do bubbles tend to corners by Michael Loss
+        Let D be a bounded convex domain in Rm , m ≥ 2 with smooth boundary
+        and consider the operator
+(11)                            H = −∆ + q(· − a)
+        on D with Neumann boundary condition on ∂D. Here q(x) is a smooth
+        potential with compact support and a ∈ Rm is such that the support of
+        q(· − a) is contained in D. Denote by
+(12)                    G = {a ∈ Rm : supp q(· − a) ⊂ D} .
+        Denote the smallest eigenvalue of H by E0 (a) and by u0 (x; a) the corre-
+        sponding eigenfunction. It was shown in [3] that E0 (a) obeys a strong
+2072                                                             Oberwolfach Report 33/2012
+
+         minimum principle in the sense that if E0 (a) attains its minimum in G
+         then E0 (a) ≡ 0 on G and the eigenfunction u0 (x; a) is constant in the
+         complement of the support of q(x − a). We assume that the support of q
+         has no holes.
+            An important example is the case where D is a cube and the potential
+         q has the same reflection symmetries as the cube. In this case the region
+         G is also a cube, G = (−d, d)m and one can show that either the function
+         E0 (a) ≡ 0 or otherwise E0 (a) is, in each variable, strictly increasing on
+         (−d, 0) and strictly decreasing on (0, d) and the partial derivative can
+         only vanish at 0. In particular this implies that the function E0 (a) has its
+         minima not only at the boundary of G but in fact in the corners of G.
+         For a precise enunciation of this theorem the reader may consult [23, 24].
+         This fact is an important ingredient for the proof of localization in the
+         random displacement model [23, 24].
+            Problem: Let D be an equilateral triangle and q a potential with the
+         same reflection symmetries, e.g., radial symmetry. Thus, the domain G
+         is also an equilateral triangle centered at the origin. Prove that E0 (a)
+         is either identically zero or has strict minima in the corners of G. If in
+         addition the gradient vanishes only at the origin, then this fact would
+         immediately yield localization of the random displacement model where
+         the underlying two dimensional lattice is triangular.
+
+                                          References
+ [1] G. Alessandrini, R. Magnanini, Elliptic equations in divergence form, geometric critical
+     points of solutions and Stekloff eigenfunctions, SIAM J. Math. Anal., 25 (1994), 1259–
+     1268.
+ [2] M. Ashbaugh, R. Benguria, A Sharp Bound for the Ratio of the First Two Eigenvalues of
+     Dirichlet Laplacians and Extensions, Annals of Mathematics, 135 (1992), 601–628.
+ [3] J. Baker, M. Loss, G. Stolz, Minimizing the ground state energy of an electron in a randomly
+     deformed lattice, Commun. Math. Phys. 283 (2008), 397–415.
+ [4] R. Bañuelos, T. Kulczycki, The Cauchy process and the Steklov problem, J. Funct. Anal.,
+     211 (2004), 355–423
+ [5] L. Bérard-Bergery, L. Bourguignon, Laplacians and Riemannian submersions with totally
+     geodesic fibers, Illinois J. Math., 26 (1982), 181–200.
+ [6] M. van den Berg, T. Carroll Hardy inequality and Lp estimates for the torsion function,
+     Bull. Lond. Math. Soc., 36 (2009), 980–986.
+ [7] J. Bourgain, Z. Rudnick. On the sets of toral eigenfunctions, Invent. Math., 185 (2011),
+     185–237.
+ [8] J. Bourgain, Z. Rudnick On the geometry of the nodal lines of eigenfunctions of the two-
+     dimensional torus, Ann. Henri Poincaré, 12 (2011), 1027–1053.
+ [9] B. Colbois, A. El Soufi, A. Girouard, Isoperimetric control of the Steklov spectrum, J. Funct.
+     Anal., 261 (2011), 1384–1399.
+[10] Y. Colin de Verdière. Sur la multiplicité de la premiere valeur propre non nulle du Laplacien,
+     Comment. Math. Helvetica, 61 (1986), 254–270.
+[11] Y. Colin de Verdière, Construction de laplaciens dont une partie finie du spectre est donnée,
+     Ann. Scient. Éc. Norm. sup., 20 (1987), 599–615.
+[12] E.B. Davies, Heat kernels and spectral theory, Cambridge University Press, Cambridge
+     (1989).
+Geometric Aspects of Spectral Theory                                                        2073
+
+[13] J. Edward, An inverse spectral result for the Neumann operator on planar domains, J.
+     Funct. Anal., 111 (1993), 312–322.
+[14] A. El Soufi, S. Ilias Majoration de la seconde valeur propre d’un opérateur de Schrödinger
+     sur une variété compacte et applications, J. Funct. Anal., 103 (1992) 294–316.
+[15] L. Erdös, Rayleigh-type isoperimetric inequality with a homogeneous magnetic field, Calc.
+     Var. Partial Differential Equations, 4 (1996), 283–292.
+[16] R. L. Frank, E. Lenzmann, Uniqueness and nondegeneracy of ground states for (−∆)s Q +
+     Q − Qα+1 = 0 in R. Acta Math., to appear. Preprint: arXiv:1009.4042.
+[17] A. Fraser, R. Schoen, The first Steklov eigenvalue, conformal geometry, and minimal sur-
+     faces, Adv. Math., 226 (2011), 4011–4030.
+[18] A. Girouard, I. Polterovich, Upper bounds for Steklov eigenvalues on surfaces. Preprint:
+     arXiv:1202.5108.
+[19] A. Grigor’yan, Y. Netrusov, S. T. Yau, Eigenvalues of elliptic operators and geometric
+     applications. Surveys in differential geometry, Surv. Differ. Geom., IX 147–217, Int. Press,
+     Somerville, MA (2004).
+[20] A. Hassannezhad, Conformal upper bounds for the eigenvalues of the Laplacian and Steklof
+     problems, J. Funct. Anal., 261 (2011), 3419–3436.
+[21] B. Helffer, T. Hoffmann-Ostenhof Minimal partitions for anisotropic tori. To appear in
+     Journal of Spectral Theory (2012).
+[22] B. Helffer, T. Hoffmann-Ostenhof, S. Terracini, Nodal domains and Spectral Minimal Par-
+     titions, Ann. Inst. H. Poincaré Anal. Non Linéaire, 26 (2009), 101–138.
+[23] F. Klopp, M. Loss, S. Nakamura, G. Stolz Localization for the random displacement model,
+     Duke Math. J. 161 (2012), 587–621.
+[24] F. Klopp, M. Loss, S. Nakamura, G. Stolz Understanding the random displacement model:
+     From ground state properties to localization. Preprint: http://arxiv.org/abs/1107.0386.
+[25] G. Kokarev, Variational aspects of Laplace eigenvalues on Riemannian surfaces. Preprint:
+     arXiv:1103.2448.
+[26] H. Lewy, On the minimum number of domains in which the nodal lines of the spherical
+     harmonics divide the sphere, Comm. Partial Differential Equations, 2 (1977), 1233–1244.
+[27] A. Pleijel, Remarks on Courant’s nodal theorem, Comm. Pure. Appl. Math., 9 (1956), 543–
+     550.
+[28] G.V. Rozenbljum, Asymptotic behavior of the eigenvalues for some two-dimensional spectral
+     problems, Boundary value problems. Spectral theory (in Russian) pp. 188–203, 245, Probl.
+     Mat. Anal., 7, Leningrad. Univ., Leningrad, 1979.
+[29] R. Weinstock, Inequalities for a classical eigenvalue problem, J. Rat. Mech. Anal., 3 (1954),
+     745–753.
+
+
+
+
+                                                                     Reporter: Mette Iversen
+2074                                                  Oberwolfach Report 33/2012
+
+                                     Participants
+
+
+Prof. Dr. Dorin Bucur                      Prof. Dr. Pedro Freitas
+Laboratoire de Mathematiques               Group of Mathematical Physics
+Universite de Savoie                       University of Lisbon
+73376 LE BOURGET DU LAC Cedex              Complexo Interdisciplinar
+FRANCE                                     Av. Prof. Gama Pinto, 2
+                                           LISBOA 1649-003
+                                           PORTUGAL
+Prof. Dr. Bruno Colbois
+Institut de Mathematiques
+Universite de Neuchatel                    Karsten Fritzsch
+Unimail                                    Institut fuer Mathematik
+Rue Emile Argand 11                        Carl v. Ossietzky-Universität Oldenburg
+2000 NEUCHATEL                             Fakultät V: Mathematik &
+SWITZERLAND                                Naturwissensch.
+                                           26111 Oldenburg
+Dr. Anna Dall’Acqua
+Institut für Analysis und Numerik         Dr. Alexandre Girouard
+Otto-von-Guericke-Universität             Institut de Mathematiques
+Magdeburg                                  Universite de Neuchatel
+Postfach 4120                              Unimail
+39016 Magdeburg                            Rue Emile Argand 11
+                                           2000 NEUCHATEL
+                                           SWITZERLAND
+Prof. E. Brian Davies
+Department of Mathematics
+King’s College London                      Prof. Dr. Daniel Grieser
+Strand                                     Institut fuer Mathematik
+LONDON WC2R 2LS                            Carl v. Ossietzky-Universität Oldenburg
+UNITED KINGDOM                             Fakultät V: Mathematik &
+                                           Naturwissensch.
+                                           26111 Oldenburg
+Prof. Dr. Emily Dryden
+Department of Mathematics
+Bucknell University                        Prof. Dr. Bernard Helffer
+LEWISBURG, PA 17837                        Departement de Mathematiques
+UNITED STATES                              Universite de Paris-Sud
+                                           Bat. 425
+Dr. Rupert L. Frank                        91405 ORSAY Cedex
+Department of Mathematics                  FRANCE
+Princeton University
+Fine Hall
+Washington Road
+PRINCETON, NJ 08544-1000
+UNITED STATES
+Geometric Aspects of Spectral Theory                                         2075
+
+Prof. Dr. Thomas                       Prof. Dr. Michael Loss
+Hoffmann-Ostenhof                      Department of Mathematics
+Institut für Theoretische Chemie      Georgia Institute of Technology
+Universität Wien                      ATLANTA, GA 30332-0160
+Währingstr. 17                        UNITED STATES
+1090 WIEN
+AUSTRIA
+                                       Prof. Dr. Iosif Polterovich
+                                       Dept. of Mathematics and Statistics
+Mette Iversen                          University of Montreal
+Department of Mathematics              CP 6128, succ. Centre Ville
+University of Bristol                  MONTREAL, QC H3C 3J7
+University Walk                        CANADA
+BRISTOL BS8 1TW
+UNITED KINGDOM
+                                       Prof. Dr. Aldo Pratelli
+                                       Department Mathematik
+Prof. Dr. Vadim Kostrykin              FAU Erlangen-Nürnberg
+Fachbereich Mathematik                 Cauerstraße 11
+Johannes Gutenberg Universität        91058 Erlangen
+Staudingerweg 9
+55128 Mainz
+                                       Prof. Dr. Alessandro Savo
+                                       Dipartimento di Metodi e Modelli
+Prof. Dr. Ari Laptev                   Matematici per le Scienze Applicate
+Imperial College London                Universita di Roma ”La Sapienza”
+Department of Mathematics              Via A. Scarpa 16
+Huxley Building                        00161 ROMA
+180 Queen’s Gate                       ITALY
+LONDON SW7 2AZ
+UNITED KINGDOM
+                                       Prof. Dr. Uzy Smilansky
+                                       Dept. of Physics of Complex Systems
+Prof. Richard S. Laugesen              The Weizmann Institute of Science
+Department of Mathematics              76100 REHOVOT
+University of Illinois                 ISRAEL
+URBANA, IL 61801
+UNITED STATES
+                                       Prof. Dr. Alexander Strohmaier
+                                       Department of Mathematics
+Prof. Dr. Michael Levitin              Loughborough University
+Department of Mathematics              LOUGHBOROUGH, LE11 3TU
+University of Reading                  UNITED KINGDOM
+Whiteknights
+P.O.Box 220
+                                       Prof. Dr. Michiel van den Berg
+READING RG6 6AX
+UNITED KINGDOM                         School of Mathematics
+                                       University of Bristol
+                                       University Walk
+                                       BRISTOL BS8 1TW
+                                       UNITED KINGDOM
+2076                                     Oberwolfach Report 33/2012
+
+Prof. Dr. Timo Weidl
+Institut für Analysis, Dynamik und
+Modellierung, Fak. für Math. & Physik
+Universität Stuttgart
+Pfaffenwaldring 57
+70569 Stuttgart
+
