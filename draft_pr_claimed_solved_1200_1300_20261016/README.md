@@ -32,5 +32,6 @@ are distinct. Recorded status counts concern target rows; skip counts concern
 PRs.
 
 This is a finite snapshot, not a scheduled monitor. A future queue status change
-requires a new eligibility check. The persistent goal is complete only after
-the independent review and main-branch checkpoint have been verified.
+requires a new eligibility check. The independent review passed with no unresolved concern. The main-branch
+checkpoint was pushed and verified; its receipt is in `CHECKPOINT_RECEIPT.json`.
+The finite persistent goal is complete: every requested draft was skipped.
