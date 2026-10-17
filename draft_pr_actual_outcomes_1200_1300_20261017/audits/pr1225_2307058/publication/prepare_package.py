@@ -72,5 +72,6 @@ Original argument, source-question-only reconstruction, distinct Riesz adversary
         for p in authored(AUDIT/'reviews'/family):copy(p,'reviews/'+family+'/'+p.relative_to(AUDIT/'reviews'/family).as_posix())
     for p in authored(AUDIT/'priority'):copy(p,'priority/'+p.relative_to(AUDIT/'priority').as_posix())
     copy(ROOT/'manuscript/main.tex','manuscript/main.tex')
+    copy(ROOT/'BIBLIOGRAPHY_QA.json','provenance/BIBLIOGRAPHY_QA.json')
     print(json.dumps({'current_edition_files':8,'portable_files':sum(p.is_file() for p in PACKAGE.rglob('*')),'scope':'Authored research files only; external source bodies omitted.'}))
 if __name__=='__main__':main()

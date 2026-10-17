@@ -4,7 +4,7 @@ from pathlib import Path
 import hashlib,json,shutil,subprocess,sys,tempfile,zipfile
 ROOT=Path(__file__).resolve().parent
 PACKAGE=ROOT/'verification'
-EXPECTED_PDF_PAGES=8
+EXPECTED_PDF_PAGES=7
 def binding(p):
     b=p.read_bytes();return {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
 def document_bindings():

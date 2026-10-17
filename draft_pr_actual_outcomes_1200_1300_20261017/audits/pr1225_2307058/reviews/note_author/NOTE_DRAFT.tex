@@ -1,0 +1,448 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\Mod}{\operatorname{Mod}_2}
+\newcommand{\Adm}{\operatorname{Adm}}
+\newcommand{\length}{\mathcal L^1}
+\title{Infinite modulus between a compact real set and its real complement}
+\author{Alec Kriebel\\
+  \small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{17 October 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $E\subset[0,1]$ be compact and let $F=\R\setminus E$ be its complement
+within the real axis. We prove that positive planar $2$-modulus of the family
+joining $E$ to $\{|z|=2\}$ implies infinite modulus of the family joining $E$
+to $F$. Admissibility is imposed on every curve for pointwise extended Borel
+densities. A weighted-distance potential and a critical trace estimate first
+force any hypothetical finite-energy separator to have $\length(E)=0$; a
+separate small-circle argument then treats every such null set, including
+null sets of positive conformal capacity. The result is stated under explicit
+conventions for the question recorded as Hayman--Lingham Problem~7.58.
+\end{abstract}
+
+\section{Statement and conventions}
+
+We identify $\R$ with the horizontal axis in $\C=\R^2$, write $dA$ for
+planar Lebesgue measure, and put $S_2=\{z:|z|=2\}$. A connector from $A$ to
+$B$ is a continuous curve $\gamma:[0,1]\to\R^2$ with
+$\gamma(0)\in A$, $\gamma(1)\in B$, locally rectifiable on $(0,1)$.
+Equivalently, one may use the open parameter interval and require the stated
+endpoint limits. For a nonnegative Borel function $\rho$, its line integral
+is the increasing limit of the integrals on compact interior subcurves.
+Arclength is counted with multiplicity; constant portions have zero length.
+In particular, an infinite value at an endpoint alone contributes no mass.
+The integral may be infinite, and the whole curve need not have finite
+Euclidean length.
+
+Let $\Gamma(A,B)$ consist of \emph{all} such connectors in the whole plane.
+There is no condition that their interiors avoid either plate. Curves may
+cross or revisit $A$, $B$, or the real axis before their terminal endpoints.
+Define
+\[
+ \Mod\Gamma=\inf_{\rho\in\Adm(\Gamma)}\int_{\R^2}\rho^2\,dA,
+ \qquad
+ \Adm(\Gamma)=\left\{\rho:\R^2\to[0,\infty]\ \text{Borel}:
+       \int_\gamma\rho\,ds\geq1\quad\text{for every }\gamma\in\Gamma\right\}.
+\]
+The infimum of an empty set is $\infty$. Densities are pointwise functions,
+not equivalence classes modulo area-zero sets, and may be infinite on such
+sets. We also prove the theorem when $\Gamma(A,B)$ is defined using only
+globally rectifiable connectors, provided that convention is used
+consistently in both modulus families.
+
+\begin{theorem}\label{thm:main}
+For every compact $E\subset[0,1]$, with $F=\R\setminus E$, one has
+\[
+ \Mod\Gamma(E,S_2)>0\quad\Longrightarrow\quad
+ \Mod\Gamma(E,F)=\infty.
+\]
+\end{theorem}
+
+The complement here is the real complement, not the planar complement.
+Hayman and Lingham record the question, attributed to A.~A.~Gonchar and
+communicated by M.~Vuorinen, in Problem~7.58 of the 2018 version of their
+collection~\cite{HL}. The theorem specifies the curve and density conventions
+used here; no conclusion about other interpretations of unspecified source
+terminology is intended.
+
+We prove the contrapositive. The intermediate conclusion $\length(E)=0$
+is not sufficient: a compact null subset of the real axis can have positive
+conformal capacity. Section~\ref{sec:circles} supplies the additional argument
+at every endpoint of $E$.
+
+\section{A pointwise separating potential}
+
+The following majorization is pointwise, including at infinite values.
+
+\begin{lemma}\label{lem:majorant}
+If $Q$ is a compact rectangle and $r:Q\to[0,\infty]$ is Borel with
+$\int_Qr^2\,dA<\infty$, there is a relatively lower semicontinuous
+$g:Q\to[1,\infty]$ such that $g\geq r$ everywhere and
+$\int_Qg^2\,dA<\infty$.
+\end{lemma}
+\begin{proof}
+Set $h=r^2$ and $A_k=\{h>2^k\}$, $k\geq0$. By outer regularity choose
+relatively open $O_k\supset A_k$ with
+$|O_k|\leq|A_k|+2^{-2k-4}$, where $|\cdot|$ denotes planar area in this
+proof. Put
+\[
+ H=1+\sum_{k\geq0}2^{k+1}\ind_{O_k},\qquad g=\sqrt H.
+\]
+Open-set indicators, finite sums, and increasing limits are lower
+semicontinuous. Thus $g$ is lower semicontinuous. Dyadic geometric sums give
+$H\geq h$ at every point: the constant term covers $h\leq1$, and if
+$h=\infty$, the point belongs to every $O_k$. Moreover,
+$\sum_{k\geq0}2^{k+1}\ind_{\{h>2^k\}}\leq4h$ for finite $h\geq0$.
+Tonelli therefore gives
+\[
+ \int_Qg^2\,dA\leq |Q|+4\int_Qr^2\,dA+
+       \sum_{k\geq0}2^{-k-3}
+ =|Q|+4\int_Qr^2\,dA+\tfrac14<\infty.
+\]
+In particular, any infinite values retained by $g$ form an area-zero set.
+\end{proof}
+
+Fix $Q=[-2,3]\times[-2,2]$. For a nonempty compact $E\subset[0,1]$ and
+a lower semicontinuous $g\geq1$ on $Q$ with finite squared integral, define
+\begin{equation}\label{eq:distance}
+ d(z)=\inf_{\alpha:E\to z,\ \alpha\subset Q}\int_\alpha g\,ds,
+ \qquad u(z)=\min\{1,d(z)\},
+\end{equation}
+where the auxiliary paths are globally rectifiable. The infimum is $\infty$
+if there is no finite-cost path. Constant paths at points of $E$ are allowed.
+
+\begin{lemma}\label{lem:potential}
+The functions $d$ and $u$ are lower semicontinuous. For every rectifiable
+path $\beta\subset Q$ from $x$ to $y$,
+\begin{equation}\label{eq:uppergradient}
+ |u(x)-u(y)|\leq\int_\beta g\,ds.
+\end{equation}
+The actual pointwise function $u$ is absolutely continuous on almost every
+horizontal and vertical line in $Q$, and $u\in W^{1,2}(\operatorname{int}Q)$.
+\end{lemma}
+\begin{proof}
+We first justify the weighted-length compactness needed for measurability.
+For a nonnegative continuous weight $a$ on $Q$ and a rectifiable curve
+$\alpha:[0,1]\to Q$, consider the partition sums
+\[
+ S_P(\alpha)=\sum_i
+ \min_{t\in[t_{i-1},t_i]}a(\alpha(t))\,
+             |\alpha(t_i)-\alpha(t_{i-1})|.
+\]
+Each $S_P$ is continuous under uniform convergence of curves. Its supremum
+over finite partitions is $\int_\alpha a\,ds$. Indeed, fine partitions make
+the oscillation of $a\circ\alpha$ arbitrarily small, while further refinement
+approximates the total variation of $\alpha$ by chord sums. The resulting
+error is bounded by the weight oscillation times the curve length plus the
+chord-variation error times $\max_Qa$. Thus weighted length for $a$ is lower
+semicontinuous under uniform convergence.
+
+A nonnegative lower semicontinuous $g$ on compact $Q$ is the increasing
+pointwise limit of continuous nonnegative functions; explicitly one may use
+\[
+ a_m(x)=\min\left\{m,\inf_{y\in Q}\bigl(g(y)+m|x-y|\bigr)\right\}.
+\]
+These functions are continuous and increasing. If their limit at $x$ were
+strictly below $g(x)$, bounded-cost near-minimizers would tend to $x$, contrary
+to lower semicontinuity. This also proves convergence where $g(x)=\infty$.
+Monotone convergence of line integrals now shows that weighted length for
+$g$ is lower semicontinuous as well.
+
+Suppose $z_j\to z$ and $L=\liminf_jd(z_j)<\infty$. Pass to a subsequence
+with $d(z_j)\to L$, and choose paths $\alpha_j$ in~\eqref{eq:distance} of
+cost at most $d(z_j)+1/j$. Since $g\geq1$, their Euclidean lengths are
+bounded. Constant-speed parametrization on $[0,1]$ gives a common Lipschitz
+bound. Arzel\`a--Ascoli supplies a uniformly convergent subsequence in compact
+$Q$. Its limit $\alpha$ is rectifiable, starts in compact $E$, ends at $z$,
+and satisfies
+\[
+ d(z)\leq\int_\alpha g\,ds
+       \leq\liminf_j\int_{\alpha_j}g\,ds\leq L.
+\]
+Hence $d$ and its truncation $u$ are lower semicontinuous and Borel. This
+argument also covers infinite distances without assuming that the infimum
+is attained.
+
+Concatenation with $\beta$ gives the distance triangle inequality whenever
+the costs on its right side are finite. Reversing $x,y$ and truncating yields
+\eqref{eq:uppergradient}. If one distance is infinite and the other finite,
+any finite-cost connection would make both finite; if both are infinite,
+both truncated values are $1$. Thus the same inequality holds in all cases.
+
+By Fubini and Cauchy--Schwarz, $g$ is integrable on almost every coordinate
+line in $Q$. On each such line~\eqref{eq:uppergradient} holds for every
+subsegment. Applied to disjoint subintervals, it proves absolute continuity
+of the actual function $u$, with the coordinate derivative bounded by $g$
+almost everywhere. Slice integration by parts against a test function,
+followed by Fubini, identifies these derivatives as weak derivatives.
+Since $0\leq u\leq1$ and $|\nabla u|^2\leq2g^2$ almost everywhere,
+$u\in W^{1,2}(\operatorname{int}Q)$.
+\end{proof}
+
+Now suppose that a finite-energy Borel density $\rho$ is admissible for
+$\Gamma(E,F)$. Apply Lemma~\ref{lem:majorant} to its restriction to $Q$.
+Every auxiliary path ending at $F\cap Q$ is a member of the original
+connecting family. Its $g$-cost is therefore at least $1$. Constant paths
+at $E$ have cost zero, so the potential has the exact point values
+\begin{equation}\label{eq:plates}
+ u=0\text{ on }E,\qquad u=1\text{ on }F\cap Q.
+\end{equation}
+These values follow from admissibility for every curve. No arbitrary
+modification of a Sobolev representative on the real axis is being made.
+
+Choose $\eta\in C_c^\infty(\operatorname{int}Q)$ equal to $1$ near
+$[0,1]\times\{0\}$, and extend $w=\eta(1-u)$ by zero to $\R^2$.
+Then $w\in W^{1,2}(\R^2)$ has compact support. Its actual restrictions to
+almost every vertical line are absolutely continuous. By~\eqref{eq:plates}
+their values at height zero give
+\begin{equation}\label{eq:trace}
+ f(x)=w(x,0)=\ind_E(x)\quad\text{for almost every }x\in\R.
+\end{equation}
+The exceptional vertical lines have one-dimensional measure zero. No
+capacity statement about their intersection with $E$ is inferred.
+
+\section{The critical trace forces length zero}
+
+We give the required special cases of the standard flat trace and critical
+characteristic-function rigidity principles; compare
+\cite[Propositions 3.4 and 3.8]{DNPV} and
+\cite[Corollaries 1--2 and Remark 3]{Brezis}.
+
+\begin{lemma}\label{lem:trace}
+For compactly supported $w\in W^{1,2}(\R^2)$, let $f$ be its almost-everywhere
+vertical absolute-continuity trace. Then
+\begin{equation}\label{eq:gagliardo}
+ \int_\R\frac{\|f(\cdot+h)-f\|_{L^2(\R)}^2}{h^2}\,dh<\infty.
+\end{equation}
+\end{lemma}
+\begin{proof}
+First take $w$ smooth and compactly supported, with unitary horizontal
+Fourier transform $W(\xi,y)=\widehat{w(\cdot,y)}(\xi)$, using
+$e^{-ix\xi}$ as frequency convention. Integration of the derivative of
+$|W|^2$ on $y>0$, followed by $2ab\leq a^2+b^2$, gives
+\[
+ |\xi|\,|W(\xi,0)|^2
+ \leq2|\xi|\int_0^\infty|W|\,|\partial_yW|\,dy
+ \leq\int_0^\infty\bigl(\xi^2|W|^2+|\partial_yW|^2\bigr)\,dy.
+\]
+Consequently Plancherel implies
+\begin{equation}\label{eq:homtrace}
+ \int_\R|\xi|\,|\widehat f(\xi)|^2\,d\xi
+ \leq\int_{y>0}|\nabla w|^2\,dA.
+\end{equation}
+There is no division by $\xi$, including at zero frequency.
+
+For a general compactly supported $w$, mollification gives compactly
+supported smooth $w_j\to w$ in $W^{1,2}$. The traces converge to the actual
+vertical trace in $L^2$. To see this directly, absolute continuity on almost
+every vertical line gives, for each such compactly supported $v$,
+\[
+ |v(x,0)|^2\leq
+ \int_0^\infty\bigl(|v(x,y)|^2+|\partial_yv(x,y)|^2\bigr)\,dy.
+\]
+This follows by integrating $\partial_y|v|^2$ and using $2|v||v'|\leq
+|v|^2+|v'|^2$. Apply it to $v=w_j-w$ and integrate in $x$.
+Plancherel gives $L^2$ convergence of the trace Fourier transforms; a
+subsequence converges almost everywhere. Fatou then extends
+\eqref{eq:homtrace} to $w$.
+
+Finally Plancherel, Tonelli, and the substitution $t=\xi h$ give
+\[
+ \int_\R\frac{\|f(\cdot+h)-f\|_2^2}{h^2}\,dh
+ =C\int_\R|\xi|\,|\widehat f(\xi)|^2\,d\xi,
+ \qquad
+ C=\int_\R\frac{|e^{it}-1|^2}{t^2}\,dt\in(0,\infty).
+\]
+The defining integrand for $C$ is bounded near zero and at most $4/t^2$
+away from zero. This proves~\eqref{eq:gagliardo}.
+\end{proof}
+
+\begin{lemma}\label{lem:rigidity}
+If a measurable $E\subset[0,1]$ has $\ind_E$ satisfying
+\eqref{eq:gagliardo}, then $\length(E)=0$.
+\end{lemma}
+\begin{proof}
+Write $f=\ind_E$. For $0<h<1$, put $N=\lceil2/h\rceil\leq3/h$.
+Since $Nh\geq2$, the supports of $f$ and $f(\cdot+Nh)$ are disjoint.
+Telescoping $N$ translations in $L^1$ yields
+\[
+ 2\length(E)=\|f(\cdot+Nh)-f\|_1
+ \leq N\|f(\cdot+h)-f\|_1.
+\]
+Characteristic-function differences satisfy $|f(x+h)-f(x)|^2=
+|f(x+h)-f(x)|$. Hence
+\[
+ \|f(\cdot+h)-f\|_2^2\geq\tfrac23\length(E)h.
+\]
+The integral in~\eqref{eq:gagliardo}, restricted to $0<h<1$, is at least
+$\frac23\length(E)\int_0^1dh/h$. Its finiteness forces $\length(E)=0$.
+\end{proof}
+
+Applying these lemmas to~\eqref{eq:trace} proves
+\begin{equation}\label{eq:null}
+ \rho\in\Adm\Gamma(E,F),\quad \int_{\R^2}\rho^2\,dA<\infty
+ \quad\Longrightarrow\quad\length(E)=0.
+\end{equation}
+This argument includes positive-length sets without any interval. It gives
+no capacity conclusion for the remaining null sets.
+
+\section{Small circles at every endpoint}\label{sec:circles}
+
+\begin{lemma}\label{lem:circles}
+Let $E\subset[0,1]$ have length zero. If a Borel $\rho\in L^2(\R^2)$ is
+admissible for $\Gamma(E,\R\setminus E)$, set
+$q=\rho+\ind_{B(0,3)}$. Then
+\begin{equation}\label{eq:infinitecost}
+ \int_\gamma q\,ds=\infty
+ \qquad\text{for every }\gamma\in\Gamma(E,S_2).
+\end{equation}
+\end{lemma}
+\begin{proof}
+The function $q$ is Borel, belongs to $L^2(\R^2)$, and remains admissible
+for $\Gamma(E,F)$. Suppose a connector from a particular $e\in E$ to
+$S_2$ has finite $q$-cost. Stop it at its first hit of $S_2$. Its preceding
+image lies in $B(0,2)$, where $q\geq1$. Thus the lengths of all compact
+interior subcurves are bounded by its finite $q$-cost. Continuity and the
+endpoint limits show that the stopped curve has finite total variation,
+including at the initial endpoint. It is therefore a globally rectifiable
+curve and admits an arclength parametrization
+$\gamma:[0,L]\to\overline{B(0,2)}$ after constant portions are removed.
+Its line integral agrees with the increasing interior-subcurve integral:
+endpoints have zero arclength measure. In particular $q\circ\gamma$ is
+integrable on $[0,L]$. This explains why no infinite-length endpoint
+behavior is lost in passing to a finite-cost curve. Its terminal point is
+at distance at least $1$ from $e$.
+
+Keep this actual endpoint $e$ fixed. Define the extended circle energy
+\[
+ A_e(r)=\int_{|z-e|=r}q(z)^2\,ds.
+\]
+Polar integration gives $\int_0^\delta A_e(r)\,dr<\infty$ for every finite
+$\delta$. Also $e+r\notin E$ for almost every $r>0$, because
+$\length(E)=0$. There are therefore radii $r_j\downarrow0$, $r_j<1$,
+with
+\begin{equation}\label{eq:radii}
+ e+r_j\in F,\qquad r_jA_e(r_j)\longrightarrow0.
+\end{equation}
+For completeness, the radii with $e+r\in F$ and $A_e(r)<\infty$ have full
+measure. If, for some $\varepsilon,\delta>0$, all such $0<r<\delta$
+satisfied $rA_e(r)\geq\varepsilon$, then $\int_0^\delta A_e(r)\,dr$
+would dominate $\varepsilon\int_0^\delta dr/r=\infty$. Thus arbitrarily
+small good radii have arbitrarily small $rA_e(r)$, and a decreasing sequence
+can be chosen recursively. This selection is made separately for each
+fixed endpoint; no exceptional set of points of $E$ is discarded.
+
+Let $t_j$ be the first arclength parameter with
+$|\gamma(t_j)-e|=r_j$, and put $p_j=\gamma(t_j)$. Such parameters exist
+since the terminal distance is at least $1$. Moreover $t_j\to0$.
+Indeed, an arclength-parametrized curve is nonconstant on every initial
+interval $[0,t]$ of positive length. Some point of that interval has
+positive distance from $e$, so every sufficiently small disk centered at
+$e$ is exited before $t$. Absolute continuity of the finite cost integral
+therefore gives
+\begin{equation}\label{eq:initialcost}
+ \int_{\gamma|_{[0,t_j]}}q\,ds
+ =\int_0^{t_j}q(\gamma(s))\,ds\longrightarrow0.
+\end{equation}
+Returns to $e$, retracing, or winding do not affect this first-exit argument.
+
+Join $p_j$ to the real point $e+r_j\in F$ along a circular arc centered at
+$e$. Cauchy--Schwarz on the full circle bounds the added cost by
+\begin{equation}\label{eq:circlecost}
+ \int_{|z-e|=r_j}q\,ds
+ \leq\bigl(2\pi r_j A_e(r_j)\bigr)^{1/2}\longrightarrow0.
+\end{equation}
+The initial portion and this arc concatenate to an actual globally
+rectifiable connector from $E$ to the original real complement $F$.
+Interior plate contacts are allowed by definition. By
+\eqref{eq:initialcost}--\eqref{eq:circlecost}, its $q$-cost is eventually
+less than $1$, contradicting admissibility. This proves
+\eqref{eq:infinitecost} for every connector, under either stated curve
+convention.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For empty $E$, the family to $S_2$ is empty and has modulus zero. Otherwise
+suppose $\Mod\Gamma(E,F)<\infty$. By the definition of the infimum there
+exists an admissible Borel $\rho$ of finite squared integral; no extremal
+density is needed. Equation~\eqref{eq:null} gives $\length(E)=0$.
+Lemma~\ref{lem:circles} supplies $q\in L^2(\R^2)$ whose cost on every
+$E$-to-$S_2$ connector is infinite. Consequently $q/n$ is admissible for
+the entire family for every positive integer $n$, and
+\[
+ 0\leq\Mod\Gamma(E,S_2)
+ \leq n^{-2}\int_{\R^2}q^2\,dA\longrightarrow0.
+\]
+Infinite-cost curves are included in this assertion, rather than removed
+as an exceptional family. The contrapositive proves the theorem.
+\end{proof}
+
+\section{Context and status}
+
+The critical trace and rigidity principles are classical
+\cite{DNPV,Brezis}. Pointwise majorants, weighted-distance potentials,
+and all-curve upper-gradient inequalities also occur in the established
+framework of Heinonen--Koskela~\cite{HK}; no novelty of these mechanisms
+is asserted. The present proof supplies the needed pointwise construction
+and the separate null-set argument without importing a touching-plate
+capacity identity or quasicontinuous boundary values.
+
+The accompanying research audit also verifies a complete indirect
+deduction assembled in October 2026 from older compact-condenser and
+Sobolev theory, starting with compact-plate results such as
+Hesse's~\cite{Hesse}. That assembly is not evidence that an earlier author
+printed the exact resolution. No earlier explicit resolution was
+authenticated in the bounded search, and historical priority remains
+undetermined. In particular, the historical report in the 2018 source
+does not establish present openness. The complete problem page in the
+2019 Springer edition was unavailable for inspection, and the relevance
+of a 1982 Goldstein--Jackson conference item entitled ``A problem of
+A.~A.~Gon\v car'' remains unresolved. No firstness, current-openness, or
+new-mechanism claim is made here.
+
+\paragraph{Disclosure.}
+AI systems were used extensively in solving, proof drafting, source
+checking, and adversarial verification. This is an unrefereed research
+note. Its internal mathematical audits are not external human peer review,
+journal acceptance, or a formal proof-assistant certificate. The proof
+uses basic measure theory, Arzel\`a--Ascoli, elementary Sobolev
+mollification, and Plancherel; no computation is offered as a substitute
+for the analytic argument.
+
+\begin{thebibliography}{9}
+\bibitem{Brezis}
+H.~Brezis, \emph{How to recognize constant functions. Connections with
+Sobolev spaces} (2002), Corollaries~1--2 and Remark~3,
+\href{https://doi.org/10.1070/RM2002v057n04ABEH000533}{doi:10.1070/RM2002v057n04ABEH000533}.
+\bibitem{DNPV}
+E.~Di Nezza, G.~Palatucci, and E.~Valdinoci,
+\emph{Hitchhiker's guide to the fractional Sobolev spaces},
+arXiv:1104.4345v3 (19 November 2011), Propositions~3.4 and~3.8,
+\url{https://arxiv.org/abs/1104.4345v3}.
+\bibitem{HL}
+W.~K.~Hayman and E.~F.~Lingham,
+\emph{Research Problems in Function Theory (New Edition)},
+arXiv:1809.07200v2 (21 September 2018), Problem~7.58,
+printed p.~178, PDF p.~179,
+\url{https://arxiv.org/abs/1809.07200v2}.
+\bibitem{HK}
+J.~Heinonen and P.~Koskela,
+\emph{Quasiconformal maps in metric spaces with controlled geometry},
+Acta Math. \textbf{180} (1998), 1--61,
+\href{https://doi.org/10.1007/BF02392747}{doi:10.1007/BF02392747}.
+\bibitem{Hesse}
+J.~Hesse, \emph{A $p$-extremal length and $p$-capacity equality},
+Ark. Mat. \textbf{13} (1975), 131--144, Theorem~5.5,
+\href{https://doi.org/10.1007/BF02386202}{doi:10.1007/BF02386202}.
+\end{thebibliography}
+\end{document}
