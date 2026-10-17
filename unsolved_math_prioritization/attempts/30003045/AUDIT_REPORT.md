@@ -1,115 +1,25 @@
-# Independent audit of the mixed Kato kernel counterexample
+# PR1150 root mathematical review
 
-## Verdict
+2026-10-17 UTC. **PASS for REVIEWED_PROOF.md after one auxiliary repair.** Current proof12322 bytes SHA2567f63c1f6e4f79a78b979903db59e8030a8222266a65d296a4a6fc1a29a6e2e1b. Priority and publication readiness are separately recorded; this mathematical report does not certify them.
 
-**ACCEPT. No mathematical correction is required.**
+Root reconstructed the full original-target argument before reading historical audits, checked primary cohomology/cyclic norm hypotheses, read all eleven original inputs, and read all three complete new mathematical family reports. Fresh OWR/predecessor/mixed-manuscript files match advertised historical identities. The entire original talk and rendered projective convention/Question2 permit the binary case and exponent-two extension. The predecessor's affine convention adds a rational variable; the fields are distinguished and the pertinent kernels coincide by rational-extension injectivity.
 
-The reviewed argument gives a counterexample at the original index `n=1` to Question 2 in Ahmed Laghribi's contribution, joint with Roberto Aravire and Manuel O'Ryan, to Oberwolfach Report 5/2016. It excludes the full sum of three kernels. The separate assertion that the equality holds at `n=0` is also correct, with the stated convention that the bilinear Pfister form has dimension at least two.
+The main universal proof is sound: two logarithmic Artin–Schreier relations place the class in the composite kernel; restriction to M annihilates both the inseparable and Pfister summands; the entire separable relative kernel is a fixed-slot cyclic symbol with an arbitrary base scalar. Completion forces an impossible residue square-class descent for every such scalar. An independent explicit formula N(A+Bpi)=A²+sAB+sB² proves square residue for unit norms without a defect assumption. Two alternative universal residue arguments, coefficient independence and quotient differentiation, agree. The index0 equality holds for positive-fold forms; if zero-fold is conventionally assigned F(B)=F its case is immediate. No function field for an empty literal projective quadric is asserted.
 
-The accepted document is *A higher-exponent counterexample to the three-summand Kato-kernel equality*, 12,061 bytes, SHA-256 `b1533a032e031d82a0d124cdb410e86e5ee59af477dd711d2157a5d72f36e2ca`. This is mathematical review of that specific argument, not a claim of formal proof verification, journal acceptance, novelty, or priority.
+One auxiliary exponent-one shortcut in the historical input dropped the base differential du. The symbols family independently found it. Root's REQUIRED_REPAIRS.md records the exact issue and avoids claiming that a differential-identity failure alone proves a class inequality. REVIEWED_PROOF.md changes only that first Section6 bullet: the original calculation occurs over L, giving membership in the SUM of the inseparable and separable kernels. Root, symbols and target families verified the concrete repair. The central exponent-two theorem is unchanged. Historical acceptance reports claiming no correction remain preserved as historical inputs and are not treated as review of the repaired edition. Any new paper/support/acceptance must carry this correction globally; no PR mutation has yet occurred.
 
-## The problem and its hypotheses
+The three materially distinct families are target_quadric_01, norm_obstruction_01 and symbols_01. Exact primary read scopes, version/access limits and independence disclosures accompany their reports. Target reconstructed the original question before reading the candidate; symbols found the auxiliary issue before parent feedback; target's later repair check explicitly discloses that feedback; norm reviewed only its independent obstruction scope and did not claim to review original-target history or priority. All essential Kato/Brauer and cyclic-algebra inputs are established theorems; no full foundational reproof or proof-assistant certification is claimed.
 
-The original source uses the projective quadric of the quasilinear quadratic form associated with a bilinear form. Its Question 2 allows an arbitrary finite purely inseparable extension, not only an exponent-one extension, and requires anisotropy after that extension. The adjacent question concerning quadratic Pfister forms is different. These points were checked in the source text and rendered pages 248 and 251. [Original report](https://ems.press/content/serial-article-files/46609)
+Root authenticated all64 current receipt entries (22 target,20 norm,22 symbols) and replayed each mathematical program without rewriting sealed review artifacts. Complete normal/optimized outputs match byte-for-byte. Norm checks formal identities,961 valuation pairs and62 zero-coefficient cases. Symbols checks13 symbolic assertions,1023 bounded coefficient pairs,143 quotient derivatives,24 rational pairs and49 quadratic norm examples. All9 wrong-result controls fail in both modes,18 actual exits from their computed false assertions; the unconditional unexpected-success fallback was excluded by checking the precise ValueError diagnostics. Root records are under root_reproduction/. These are finite algebra/representative diagnostics, not a decision oracle for Kato classes or substitutes for the universal proof. The original advertised13/25 programs were absent and are not represented as rerun.
 
-Let
+Current external receipt seals:
 
-\[
-F=\mathbb F_2(b,z,s,t),\quad L=F(\beta),\quad \beta^4=b,
-\quad K=F(\theta),\quad \theta^2+\theta=s^{-1},
-\quad B=\langle1,t\rangle_b.
-\]
+- target:1d4ead534dfcc657d34d1840d731579d4c8ef17d4a8b3aa350729baeea718465.
+- norm:1cbc2d264af24d80be96730ddfe5a273225008a2c41c034da156a45e15fec049.
+- symbols:1aa864c7aaaefbcd3419b8cce4a751a2ce4cef067d7797c66bf1c662d2a60abe.
 
-All four base variables are algebraically independent. The `b`-adic valuation proves that `b` is not a square and that `X^4-b` has purely inseparable degree four. Thus `L/F` has exponent two. An Artin–Schreier coboundary with negative `s`-valuation has even pole order, so `s^{-1}` is not one; `K/F` is separable quadratic. The `t`-adic valuation on `L` shows that `t` is not a square. Therefore `B` is an anisotropic one-fold bilinear Pfister form over both `F` and `L`.
+No mathematical concern remains within the stated repaired scope. Proceed to extensive primary priority audit, distinguishing the old mixed-generator mechanism from the full three-summand result.
 
-Write `gamma^2=t`. The entire projective quadric `X^2+tY^2=0` lies in the chart `Y != 0`, whose coordinate ring is the field `F[X/Y]/((X/Y)^2+t)`. Consequently `F(B)=F(gamma)`, including in the binary, zero-dimensional case. There is no requirement here that this function field have positive transcendence degree. A separable extension cannot contain a new purely inseparable square root, so
+## Edition and provenance
 
-\[
-K(B)=K(\gamma),\qquad
-M=L F(B)=\mathbb F_2(\beta,z,s,\gamma),\qquad
-L K(B)=M(\theta).
-\]
-
-These are compatible subfields of one algebraic closure. In particular, `[M:F]=8` and `[M(theta):M]=2`.
-
-## Cohomological dependencies
-
-The natural symbol identification `H_2^2(E) = Br(E)[2]`, taking `a dlog c` to the quaternion class `[a,c)`, is valid for arbitrary fields of characteristic two, including these imperfect rational function fields. It was checked against Chapman and Quéguiner-Mathieu, page 3. [Paper](https://arxiv.org/pdf/2111.15251)
-
-Milne's Theorem IV.3.14 identifies the relative Brauer group of a finite Galois extension with its second group cohomology through crossed products. For a quadratic extension `D/E` with involution `sigma`, a normalized two-cocycle has the single nontrivial value `c` at `(sigma,sigma)`. The cocycle equation says `sigma(c)=c`; changing the one-cochain multiplies `c` by `r sigma(r)`. Thus the relative group is `E*/N(D*)`, and the crossed product is `[a,c)` when `D=E(theta)` and `theta^2+theta=a`. This verifies that every element of the separable quadratic kernel has one symbol with the fixed first slot. [Milne, Class Field Theory, IV.3.14](https://www.jmilne.org/math/CourseNotes/CFT.pdf)
-
-The splitting criterion `[a,c)=0` if and only if `c` is a norm is also directly stated in Voight's Theorem 6.4.11, equivalence of (i) and (vi), specifically in characteristic two. There is no perfectness hypothesis. [Voight, Characteristic 2](https://link.springer.com/chapter/10.1007/978-3-030-56694-4_6)
-
-## Membership in the composite kernel
-
-Set
-
-\[
-\xi=\overline{s^{-4}\frac{bz^2}{1+bz^2}\,d\log z},\quad
-f=1+\beta^2z,\quad h=\frac{\beta^2z}{1+\beta^2z}.
-\]
-
-All denominators are nonzero. In `L`, `d(beta^2)=0`, so `dlog f=h dlog z`; also `h^2=bz^2/(1+bz^2)`. The difference between `s^{-4}h^2 dlog z` and `s^{-2}h dlog z` is the Artin–Schreier differential of `s^{-2}h dlog z`. A second Artin–Schreier differential, now with logarithmic factor `dlog f`, replaces `s^{-2}` by `s^{-1}`. Hence
-
-\[
-\xi_L=[s^{-1},f)_L.
-\]
-
-It vanishes over `LK`, since `s^{-1}=theta^2+theta`, and therefore vanishes over the larger field `L K(B)`. These are equalities of classes in the quotient defining Kato cohomology; they do not assert that squaring is a linear operation on ordinary differential forms.
-
-## Exclusion of the entire three-summand sum
-
-Suppose that `xi=x+y+w` with `x`, `y`, and `w` in the kernels for `L/F`, `K/F`, and `F(B)/F`, respectively. The relative Brauer result gives `y=[s^{-1},c)_F` for some `c in F*`. Restriction to `M` kills **both** `x` and `w`. It therefore gives
-
-\[
-[s^{-1},f/c)_M=0.
-\]
-
-Here taking a quotient rather than a product causes no sign issue: the second slot is multiplicative and the classes have exponent two.
-
-Let `k=F_2(b,z,t)` and `k'=F_2(beta,z,gamma)`. Complete `M=k'(s)` at `s` to obtain `D=k'((s))`. The same Artin–Schreier polynomial is irreducible over `D` by its odd pole. If `T=D(theta)` and `pi=theta^{-1}`, then
-
-\[
-\pi^2+s\pi+s=0,\qquad N_{T/D}(\pi)=s.
-\]
-
-The polynomial is Eisenstein. Thus `T/D` is totally ramified of degree two, has residue field `k'`, and has no defect. For any `c in k(s)*`, write `c=s^r c_0(1+O(s))` with `c_0 in k*`. The norm criterion and the displayed norm of `pi` imply that `u=s^r f/c` is a unit norm. Its residue is `f/c_0`.
-
-The usual valuation-of-norm argument in the submitted proof is correct. Independently, it can be checked without that formula as follows. Every element of `T` is uniquely `A+B pi` with `A,B in D`, and
-
-\[
-N(A+B\pi)=A^2+sAB+sB^2.
-\]
-
-If `A` and `B` are nonzero with valuations `a` and `b`, respectively, the valuations `2a` and `2b+1` have different parity, and `a+b+1` is strictly larger than their minimum. Thus the norm has valuation `min(2a,2b+1)`. It is a unit only when `a=0` and `b>=0`; its residue is then the square of the residue of `A`. The cases `A=0` or `B=0` give the same conclusion whenever the norm is a unit. Therefore
-
-\[
-f/c_0\in k'^{*2}.
-\]
-
-Now put
-
-\[
-S=k'^2=\mathbb F_2(\beta^2,z^2,\gamma^2),\qquad
-R=\mathbb F_2(\beta^4,z^2,\gamma^2).
-\]
-
-The square field is exactly `S`, not merely a subfield of it: square rational functions have these coefficients, and Frobenius gives the converse. Also `k=R(z)`, `[k:R]=2`, `z` is not in `S`, and `beta^2` is not in `R`. The latter two facts follow from the odd valuations of the corresponding independent variables versus the even valuations in the smaller square fields.
-
-Write `c_0=u+vz` uniquely with `u,v in R`. The square condition would give `1+beta^2 z=q(u+vz)` for some nonzero `q in S`. Independence of `1,z` over `S` forces `qu=1` and `qv=beta^2`, whence `beta^2=v/u in R`, a contradiction. This excludes every possible `c`, not merely tested rational functions. The proof therefore genuinely excludes the sum of all three kernels.
-
-## The boundary index and adverse variants
-
-At `n=0`, `H_2^1(E)=E/wp(E)`. An Artin–Schreier root cannot first appear in a purely inseparable extension, since it is separable over the base. Nor can it first appear in a rational function field, whose algebraic constants are its base field. An anisotropic quasilinear quadratic form of dimension at least two has projective-quadric function field purely inseparable quadratic over a rational function field, so this field also adds no Artin–Schreier roots over its base. For a binary form there are zero rational variables in this statement.
-
-Anisotropy of a quasilinear form is preserved by separable extension: its coefficients remain independent over the relevant square field by linear disjointness of separable and purely inseparable extensions. Thus the preceding observation applies after passing from `L` to `KL`. Any Artin–Schreier root over `F` in `L K(B)` already lies in `KL`, and then in `K`, because `KL/K` is purely inseparable. Consequently the `L/F` and `F(B)/F` kernels in degree one are zero and the composite kernel is exactly the `K/F` kernel. The submitted `n=0` qualification is valid.
-
-If `b` is already the square of a base element, the displayed logarithmic factor descends and the obstruction disappears. If the Pfister slot is changed from the independent variable `t` to `z`, adjoining its function field kills `dz` and puts `xi` in the Pfister kernel. Both adverse controls confirm why the submitted hypotheses and slot choice matter; neither is a counterexample to the accepted argument.
-
-## Relation to the literature
-
-The exponent-one restriction in the 2016 graded-kernel predecessor is explicit in Theorems 1.1 and 1.2. Its affine-cone convention differs from the original question by one rational variable, which does not alter the pertinent kernel. [2016 manuscript](https://laghribi.perso.math.cnrs.fr/Witt-kernels%28new-version%29-2.pdf)
-
-In the 15 August 2019 mixed-kernel manuscript, Definition 1.3 and Theorem 1.4 contain the same mixed-generator mechanism: its parameters `n=m=1`, Artin–Schreier representative `a=s^{-4}`, and coefficients `f_0=1`, `f_1=z` give the displayed differential class. This correspondence is correct, but it alone does not exclude the extra Pfister summand. The independent residue argument above supplies that essential step. The publication is Journal of Algebra **542** (2020), 249–276. [Mixed-kernel manuscript](https://laghribi.perso.math.cnrs.fr/cohom-kernels.pdf), [author publication list](https://laghribi.perso.math.cnrs.fr/research.html)
-
-The literature inspection was targeted, not exhaustive. No claim is made that this explicit example or the obstruction is new.
+This current report supersedes the historical no-correction report for the ancillary Section6 claim. COUNTEREXAMPLE.md matches FINAL_PROOF.md in the dedicated audit; its sole later change from the mathematically reviewed repaired proof is the stronger exact prior-art paragraph. The two supplied programs and exact baselines are the new independently reproduced diagnostics. Precise source/read/custody/independence receipts remain in draft_pr_actual_claims_1100_1200_20261017/audits/pr1150_30003045. No old program absent from the original public files is claimed as rerun.

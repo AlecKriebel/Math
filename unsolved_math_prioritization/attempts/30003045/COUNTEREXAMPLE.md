@@ -6,7 +6,7 @@ The equality in Question 2 of Ahmed Laghribi's contribution *Differential and Qu
 
 All function fields below use the **projective quasilinear quadric** of the quadratic form `v ↦ B(v,v)`. No nonsingular quadratic Pfister form, zero-fold Pfister form, or one-dimensional degenerate quadric is used. Kernels are always subgroups of the cohomology of the indicated base field.
 
-The construction is consistent with the higher-exponent mixed-kernel obstruction studied by Aravire, Laghribi, and O'Ryan in their manuscript dated 15 August 2019, subsequently published in *Journal of Algebra* **542** (2020), 249–276. The proof below establishes the needed three-summand nonmembership directly; it does not infer it merely from two-field nonsplitting or depend on their Theorem 1.4. No claim of priority for the obstruction or this particular example is made.
+The displayed class is an exact specialization of the mixed-generator family in Aravire, Laghribi, and O'Ryan, Definition 1.3 and Lemma 3.1, also appearing in their Theorem 1.4 (author manuscript dated 15 August 2019; *Journal of Algebra* **542** (2020), 249–276). In their notation take extension parameter `n=1`, differential degree `m=1`, `f_0=1`, `f_1=z`, and Artin–Schreier representative `a=s^(-4)`, which defines the same quadratic field as `s^(-1)`. The mixed class and its vanishing mechanism are credited to that work. The proof below supplies the direct all-parameter nonmembership after the additional Pfister kernel is included; this conclusion is not inferred merely from two-field nonsplitting. No firstness or priority claim for the obstruction, example, or full target deduction is made.
 
 ## 1. Notation and two standard facts
 
@@ -249,7 +249,7 @@ which is exactly the three-summand equality at `n=0`.
 
 ## 6. Checks against misleading variants
 
-- **Exponent one is not contradicted.** If in the construction `b` is replaced by a square `u²` already in the base field, then `f=1+uz` is in the base field and the same differential calculation gives `ξ=[s⁻¹,1+uz)`, which belongs to the separable quadratic kernel. The obstruction really uses exponent two.
+- **Exponent one is not contradicted.** If `b=u²` is already a square in the base field and `β²=u`, then `L/F` has exponent at most one. The original calculation applies over `L`, where `du=0`, and gives `ξ_L=[s⁻¹,1+uz)_L`. Since `f=1+uz` belongs to the base field, `ξ-[s⁻¹,f)` lies in `H_2^2(L/F)`, while `[s⁻¹,f)` lies in `H_2^2(K/F)`. Therefore `ξ` lies in the sum of these two kernels. No direct equality with that single symbol in the base is needed: there `df=u dz+z du`, so the former shortcut was unjustified. The obstruction really uses exponent two.
 - **The choice of Pfister slot matters.** Replacing `B=⟨1,t⟩` by `⟨1,z⟩` makes `ξ` vanish over `F(B)=F(√z)` because `dz=0` there. Such a choice would not yield the claimed counterexample. The independent slot `t` is essential to this construction.
 - **The separable extension is genuine.** The odd `s`-adic pole verifies that the defining Artin–Schreier polynomial is irreducible, both over `F` and over `k'((s))`.
 - **No finite test proves the conclusion.** The obstruction excludes every `c∈F*` by valuation and rational-function-field linear independence. The accompanying algebra checks are diagnostics only.

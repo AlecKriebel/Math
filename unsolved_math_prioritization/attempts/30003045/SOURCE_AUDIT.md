@@ -1,64 +1,21 @@
-# Source and scope audit
+# PR1150 priority disposition
 
-## Exact question
+2026-10-17 UTC. **Proceed with a credited explicit counterexample and the repaired proof.** Root and three materially distinct priority approaches did not verify an earlier recorded full answer to the original three-summand Question2 in the inspected literature. This is a bounded audit, not proof of novelty, firstness, causal independence, or continued global openness until this work. It supplies no positive prior-full skip certificate.
 
-Ahmed Laghribi's contribution, *Differential and Quadratic Forms in Characteristic Two*, joint with Roberto Aravire and Manuel O'Ryan, appears on printed pages 248–251 of Oberwolfach Report 5/2016, *Algebraic Cobordism and Projective Homogeneous Varieties*. The relevant item is Question 2 on printed page 251 (PDF page 37). The function-field convention is stated on printed page 248 (PDF page 34).
+The exact mixed class is already a specialization of Aravire–Laghribi–O'Ryan, Definition1.3/Lemma3.1 and Theorem1.4, dated15August2019 author manuscript, Journal of Algebra542(2020),249–276, DOI10.1016/j.jalgebra.2019.09.012. Take their n=m=1, f0=1,f1=z, f=1+beta²z and a=s^-4 in F^4. The nonzero differential term is bz²/(1+bz²)dlogz. The representatives s^-4 and s^-1 differ by wp(s^-2+s^-1), giving the same quadratic field. This exact antecedent must be credited in abstract/introduction, proof, metadata and supporting documentation. FINAL_PROOF.md strengthens the former 'consistent with' language accordingly; its only change from the mathematically reviewed proof is the credit paragraph. The earlier auxiliary exponent-one correction remains operative.
 
-The field has characteristic two; the inseparable extension is arbitrary finite, not restricted to exponent one. The form is bilinear Pfister and must remain anisotropic over the inseparable extension. Its function field comes from the projective quasilinear quadratic form `B(v,v)`. The adjacent nonsingular quadratic-Pfister question is Question 1 and is a different problem.
+An earlier two-field nonsplitting statement does not alone exclude an added third subgroup. The candidate independently proves the required survival after adjoining F(B), accounting for its full kernel by restriction to M. The all-scalar norm/residue obstruction, not an assertion about the name of a generator group, supplies the exact original-target deduction. The original source permits arbitrary finite purely inseparable extension and positive-fold binary bilinear Pfister forms. The predecessor's exponent-one positive result is not contradicted. The index1 negative instance refutes the universal equality; no all-index failure is claimed, and index0 is separately positive.
 
-Full source: https://ems.press/content/serial-article-files/46609
+The target/history family inspected the full original contribution and complete relevant ALO2019 Section3/Section6 and predecessor Section5. The mixed family read both complete core ALO mathematical bodies, plus relevant pure-kernel/annihilator results and later literature. The Brauer family read precise quartic-kernel theorems/proofs, short mixed-splitting main text, norm sources and 2026 descent statements. Root independently read the universal proof, exact original target, main ALO definitions/lemma, full pure-compositum example, and selected 2025/2026 primary results. Exact per-family read scopes/version/access limits are preserved. Total168 executed query inputs across root20, target53, mixed47 and Brauer48 include overlaps and low-yield searches; they are not168 distinct relevant works or evidence of exhaustive coverage.
 
-The complete PDF and its text extraction were available for inspection. The exact Question 2 and the convention on printed page 248 were additionally checked visually. The report's full contribution and its preceding exponent-one theorem were read in extracted text.
+Checked nearby results concern exponent-one multiquadratic splitting, total-degree-four Brauer kernels, purely inseparable composita or higher Witt-coefficient length, and residue/transfer/descent sequences. Those hypotheses are not silently substituted for the degree16 full composite with an exponent-two factor. A 2022 Sobiech correction addresses a base-field coefficient issue in a different ALO pure-extension differential-kernel theorem; the present direct quaternion-norm proof does not use that disputed statement. No conclusion about every uninspected theorem follows from selective screening.
 
-## Exponent-one predecessor
+Material limits: final ALO2020 typeset body was not compared to the fully read dated author manuscript. The adjacent Aravire–Jacob–O'Ryan Comm.Algebra2020 DOI10.1080/00927872.2019.1686510 body was inaccessible and its exact relevance remains unresolved. The2022 transfer DOI10.1016/j.jpaa.2021.106930 was screened at primary-abstract level, not cleared by full-body review. An unlinked2026 generator-counting preprint was not inspected. Current experimental HTML and exact v1 PDFs of a2025 paper show differing internal dates; no identity or revision chronology was inferred. The publication must not claim absence of prior work based on these access gaps.
 
-Aravire–Laghribi–O'Ryan, *Graded Witt kernels of the compositum of multiquadratic extensions with the function fields of Pfister forms*, Journal of Algebra 449 (2016), 635–659.
+Root read all three complete final reports and authenticated162 current receipt entries (target48,mixed57,Brauer57): root_reproduction/PRIORITY_TARGET_BRAUER_AUTH.json and PRIORITY_MIXED_AUTH.json. External seals: target99c4a09207b19aeb0381146f945d2c98abbe23ad489604f93165f50cd9881173; mixed20700dd23e09cec9f0455702b2f5399c7a902af44cddb0d79e57f5eb3ebe4eeb; Brauer3b9056a6e6d8bf906f82f7ce50dd4825caf779e4bc129b9a15e54816a0ab6377. Custody authentication is distinct from semantic assessment. REVIEW_INDEPENDENCE.md discloses inherited parent context; no perfect early information isolation is claimed. Final package reviewers will start without inherited history.
 
-Author manuscript: https://laghribi.perso.math.cnrs.fr/Witt-kernels%28new-version%29-2.pdf
+A concise preprint, portable exact verification and repaired PR edition require two successive newly launched complete-package reviews with no remaining issues on identical release bytes before production deposit. Subsequent publication, tracker and merge facts are recorded separately; this priority report does not certify them.
 
-Theorems 1.1–1.2 use purely inseparable multiquadratic extensions, hence exponent one. Their hypotheses and formula were visually checked on manuscript page 3. The definitions on manuscript page 4 use an affine quadric convention. For an integral homogeneous quadric, its affine-cone function field is a one-variable purely transcendental extension of its projective function field; injectivity of Kato cohomology under pure transcendental extension makes the relevant kernels equal. This translation does not enlarge the exponent-one theorem to exponent two.
+## Current edition boundary
 
-The counterexample uses a simple purely inseparable extension of degree four and exponent two. It therefore does not contradict that predecessor.
-
-## Higher-exponent mixed extensions
-
-Aravire–Laghribi–O'Ryan, *Cohomological kernels of mixed extensions in characteristic 2*, author manuscript dated 15 August 2019; Journal of Algebra **542** (2020), 249–276; DOI https://doi.org/10.1016/j.jalgebra.2019.09.012
-
-Author manuscript: https://laghribi.perso.math.cnrs.fr/cohom-kernels.pdf
-
-The manuscript's introduction, Definition 1.3, Theorem 1.4, the relevant membership argument in Lemma 3.1, and the final examples were inspected in text. Definition 1.3 and Theorem 1.4 were additionally checked visually on pages 3–4. Its abstract and introduction describe the failure of two-field mixed kernel splitting at higher inseparability exponent. Section 6's displayed explicit example is about purely inseparable composita; it should not be silently substituted for the mixed three-summand question.
-
-For correspondence with Theorem 1.4, use its inseparability parameter `n=1`, differential degree `m=1`, and Artin–Schreier representative `a=s⁻⁴∈F⁴` (so its parameter `l=2>1`). This gives the same separable quadratic extension as `s⁻¹`. In Definition 1.3 take `f₀=1`, `f₁=z`; the displayed differential generator becomes
-
-`bz²/(1+bz²) dlog z`.
-
-Thus the candidate class is a concrete member of the paper's additional mixed-generator term. The self-contained membership calculation in the proof checks this correspondence directly. The norm-residue argument then proves its nonmembership even after the extra, independent bilinear-Pfister summand is included.
-
-The manuscript defines its kernel-splitting property for `m≥1`. Its formal definition does not settle the original `n=0` case; the candidate proof supplies that case separately.
-
-The publisher landing page could not be fetched with the web retrieval tool (403), so no byte-level comparison against the published typeset PDF is claimed. The author publication list and publisher-deposited Crossref record independently confirm **volume 542**, not 537:
-
-- https://laghribi.perso.math.cnrs.fr/research.html
-- https://api.crossref.org/works/10.1016/j.jalgebra.2019.09.012
-
-## Independent standard-fact references
-
-The differential-symbol identification `H₂²(E) ≅ Br(E)[2]`, with `a dlog b` corresponding to the cyclic quaternion class `[a,b)`, was independently checked in Adam Chapman and Anne Quéguiner-Mathieu, *Minimal quadratic forms for the function field of a conic in characteristic 2*, arXiv:2111.15251, PDF page 3: https://arxiv.org/pdf/2111.15251. This was a targeted check of the preliminary identification, not an inspection of every argument in that paper.
-
-The characteristic-two splitting/norm criterion was independently checked in John Voight, *Quaternion Algebras*, Chapter 6, Theorem 6.4.11, especially equivalence of the split-algebra and norm conditions: https://link.springer.com/chapter/10.1007/978-3-030-56694-4_6. The publisher HTML supplies the theorem; no claim of a full-book audit is made.
-
-The cyclic relative-kernel description is recalled in the inspected mixed-kernel manuscript and explained via cyclic two-cocycles in the authored proof. None of these standard facts is attributed to a new calculation here.
-
-## Source identity metadata
-
-The PDF bytes inspected have the following SHA-256 identities:
-
-- OWR 5/2016: 514,462 bytes; `75a01e6e34988e672e0b6b48a56a3467ef7de59ee7fecc850a71e29110bf748c`
-- 2016 graded Witt kernels author manuscript: 380,905 bytes; `f6fd774bef7afe291a24ea87d253ef3548cdfb070c29793b1482ed1932df5507`
-- 15 August 2019 mixed-kernels author manuscript: 406,587 bytes; `6bee75060598e61159fb78dd1f3167c5dfc3de24611d8af280a791bb1f8a5b03`
-
-These are source-identification metadata, not proof of their mathematical claims. The authored counterexample does not rely on an unverified blanket assertion that every two-field obstruction survives every choice of bilinear Pfister form. In fact, choosing the slot `z` would absorb the displayed class; the proof explicitly uses the independent slot `t`.
-
-## Status and limits
-
-The deliverable is an authored counterexample argument with exact algebra diagnostics, accepted by the independent internal AI mathematical audit in AUDIT_REPORT.md. This acceptance is not external human peer review, journal acceptance, or formal proof-assistant certification. It makes no priority claim and no exhaustive claim about later literature. The original universal equality is addressed by a counterexample at its allowed index `n=1`; there is no claim that every index or every field fails. No copied third-party source text or PDF is part of the authored proof.
+This file records the completed mathematical priority audit. The preprint/final-package and production-publication gates are separate, and their subsequent state is recorded in the program audit folder. The exact original recorded hypotheses and binary projective convention were independently checked. All copied source bodies, extracts, images and raw service outputs are excluded from this PR edition.
