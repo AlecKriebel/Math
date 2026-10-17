@@ -1,0 +1,35 @@
+{
+  "UTC": "2026-10-17T21:43:32.439802+00:00",
+  "actual_AST_functions_extracted": [
+    "need",
+    "own_queue_row"
+  ],
+  "audit_completion_percent": 10,
+  "cases": [
+    {
+      "duplicate_own_row_accepted_as_single_unchanged_row": true,
+      "prefix_hex": "20"
+    },
+    {
+      "duplicate_own_row_accepted_as_single_unchanged_row": true,
+      "prefix_hex": "2020"
+    },
+    {
+      "duplicate_own_row_accepted_as_single_unchanged_row": true,
+      "prefix_hex": "202020"
+    },
+    {
+      "duplicate_own_row_accepted_as_single_unchanged_row": true,
+      "prefix_hex": "09"
+    }
+  ],
+  "finding": "Leading-whitespace duplicate own QUEUE rows are ignored by startswith(b\"|\"); the valid exact original row remains the unique accepted row. A descendant can introduce a Markdown-valid indented own duplicate while protected own row pin remains exact.",
+  "production_effects": false,
+  "requires_source_repair_before_final_acceptance": true,
+  "schema": "pr212-preliminary-source-blocker-reproduction-v1",
+  "source_pin": {
+    "bytes": 31809,
+    "sha256": "09c41cad02ffc6119e808ce633ff67c901b3b66f11c855140f58858f0a09a110"
+  },
+  "source_status": "PRODUCER_DRAFT_NOT_FINAL"
+}

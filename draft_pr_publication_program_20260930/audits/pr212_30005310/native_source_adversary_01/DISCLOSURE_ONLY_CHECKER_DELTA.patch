@@ -1,0 +1,23 @@
+--- independent_source_controls_run01.py
++++ independent_source_controls.py
+@@ -1,8 +1,9 @@
+ """PR212 actual-source adversary. All operational effects are owned fakes.
+ 
+ Compile frozen production files unchanged in a temporary checkout. Real process
+-and network dispatch are denied. Only the fixture executor's transport and lock
+-identity adapter are substituted; full Seed/Runtime refresh remains executable.
++and network dispatch are denied. Fixture transport/lock identity adapters and
++scoped e.put/os.open failure-injection hooks are used. Full Seed/Runtime refresh
++bodies remain unchanged and executable.
+ Synthetic Root-shaped objects are never operational authority.
+ """
+ from pathlib import Path
+@@ -328,7 +329,7 @@
+     with tempfile.TemporaryDirectory(prefix='_synthetic_independent_extra_',dir=D)as tmp:
+         f=F(Path(tmp)/'checkout',extra=True);f.ref='f'*40;proof=f.v.verify_immutable(f.rt,f.api('DYNAMIC_ELEVEN'))
+         yes(proof['selected_count']==11 and len(proof['changed_leaves'])==11,'second_dynamic_scope11_actual_full_verifier')
+-    return {'schema':'pr212-independent-actual-source-adversarial-controls-v1','UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'PASS','source_manifest_pin':MP,'protocol_pin':SP,'checks':CHECKS,'check_count':len(CHECKS),'production_source_or_packet_gate_or_admission_CAS_terminal_created':False,'production_CLI_network_Git_original_lock_currentfive_PR_provider_or_otherchat_effects':False,'unchanged_production_source_compiled_in_temporary_fixture':True,'actual_Seed_Runtime_refresh_API_origin_and_candidate_sync_paths_exercised':True,'only_fixture_transport_and_lock_identity_adapter_substituted':True,'temporary_synthetic_Root_records_not_authority':True}
++    return {'schema':'pr212-independent-actual-source-adversarial-controls-v1','UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'PASS','source_manifest_pin':MP,'protocol_pin':SP,'checks':CHECKS,'check_count':len(CHECKS),'production_source_or_packet_gate_or_admission_CAS_terminal_created':False,'production_CLI_network_Git_original_lock_currentfive_PR_provider_or_otherchat_effects':False,'unchanged_production_source_compiled_in_temporary_fixture':True,'actual_Seed_Runtime_refresh_API_origin_and_candidate_sync_paths_exercised':True,'fixture_adapters':['executor_transport','lock_inode_identity'],'fixture_fault_injection_hooks':['e.put','os.open'],'full_Seed_Runtime_refresh_bodies_unmodified':True,'temporary_synthetic_Root_records_not_authority':True}
+ if __name__=='__main__':
+     need(sys.flags.ignore_environment and sys.flags.no_site and sys.dont_write_bytecode and sys.flags.safe_path and not sys.flags.optimize,'Python -E -S -B -P required')
+     print(json.dumps(run(),sort_keys=True,indent=2))
