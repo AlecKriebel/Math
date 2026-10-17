@@ -32,11 +32,11 @@ def check(name,got,want):
  checks.append(name)
 one=[Q(1)];x=[Q(0),Q(1)]
 q=[Q(0),Q(0),Q(1,2)]
-# Solve factorial-count moments, without assuming iid triples.
+# Solve E N and E binom(N,2), without assuming iid triples.
 P=[add([Q(1),-3,3],scale(q,-1)),add([Q(0),3,-6],scale(q,3)),add([Q(0),0,3],scale(q,-3)),q]
 check('total probability',add(*P),one)
-check('first factorial moment',add(*(scale(P[k],k) for k in range(4))),[Q(0),3])
-check('second factorial moment',add(*(scale(P[k],comb(k,2)) for k in range(4))),[Q(0),0,3])
+check('expected indexed count E N',add(*(scale(P[k],k) for k in range(4))),[Q(0),3])
+check('expected unordered pairs E binom(N,2)',add(*(scale(P[k],comb(k,2)) for k in range(4))),[Q(0),0,3])
 F=add(*(mul(P[k],power([Q(k,3),Q(-1)],4)) for k in range(4)))
 check('derived lattice integrand',F,[Q(0),Q(1,27),Q(8,27),Q(-10,9),Q(1)])
 lattice=2*integral(F,b=Q(1,2))

@@ -99,7 +99,9 @@ if __name__ == "__main__":
     require(iid(3) + later_excess == F(19, 1620), "later-preprint-full-target-value")
     # Negative controls deliberately reject tempting law/normalization errors.
     negative_controls = {
-        "replace-energy-with-iid-triple": energy(3) != 3 ** 2,
+        # Iid uniform complex phases have two pairings of n^2 terms each;
+        # subtract their n all-equal overlaps, giving 2*n^2-n (15 at n=3).
+        "replace-energy-with-iid-triple": energy(3) != 2 * 3 ** 2 - 3,
         "omit-normalization-n4": F(energy(3), 16) != F(energy(3), 16 * 3 ** 4),
         "Fourier-bound-alone-atn3-provesfailure": bound(3, F(22, 7)) <= iid(3),
         "replace-phi2-by-iid": phi2 != F(2, 5),

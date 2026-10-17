@@ -18,7 +18,7 @@ REVIEWS={
  'probability_01':'4f65617dc88cbb53e52475d1d46ed5dc4f1055ee136abe6ae4e2146a95287d3d',
  'exact_01':'9a2cde68433eefb9a828faf8570afa9fc8b3a0c9fde7b85d01a9e643d441b754',
  'tail_01':'aaf58efd70cff1ae0f07c9cfedb9779e7b3788365752e7ec7e2c5266604ee36f',
- 'priority_01':'354b316fbee280468bff3891e068637553c2c467f192ee6833179067efa419c6',
+ 'priority_01':'9cec554af8853e23ad555133037c0492a3d30dc69449a02a53947d75c0f53c8b',
  'priority_rotations_01':'5ac8b78d68991527a2e5c80054f424c9f63b44e3274278cae44d96d12eabe712',
  'priority_classification_01':'1f353da177162af5dfbfc033bf8e49d3c60965d81dde0c8910a36e0758f93591',
 }
@@ -107,7 +107,7 @@ def main():
   'later_full_overlap':{'author':'Alper Ferudun','date':'2026-10-14','doi':'10.5281/zenodo.23372668','scope':'Same exact counterexample and broader dimension/exponent results, prominently credited.'},
   'chronology':'Source PR GitHub creation record2026-10-10; related preprint2026-10-14; this note2026-10-17. Historical public visibility/first discovery/publication not certified; no causal attribution.',
   'priority':'No pre-PR full answer identified in bounded audit; exhaustive priority uncertified. Inaccessible full/final bodies and incomplete citation coverage documented. New classical Fourier application is not mislabeled an earlier recorded solution.',
-  'verification':'Seven unchanged stdlib programs ordinary/optimized; exact results and guards supplement universal analytic proofs.',
+  'verification':'Seven pinned stdlib programs ordinary/optimized; exact results and guards supplement universal analytic proofs.',
   'review_status':'Extensive AI assistance; unrefereed; no external human peer review, journal acceptance or formal proof-assistant certification.',
   'source_bodies':'Third-party full bodies, extracts, images, raw API responses and private caches excluded.',
  })
@@ -120,7 +120,7 @@ def main():
  files=[pdf,source,out/'zenodo-upload-kit.zip',HERE/'main.tex',HERE/'zenodo-metadata.json',HERE/'zenodo-deposit.json']
  receipt={'files':{str(f.relative_to(HERE)):pin(f) for f in files},'source_members':manifest,
           'source_members_including_manifest':len(members),'kit_members':5,'operative_paper_pages':4,
-          'verifiers':'Seven unchanged standard-library programs PASS ordinary/optimized; complete outputs compared'}
+          'verifiers':'Seven pinned standard-library programs PASS ordinary/optimized; complete outputs compared'}
  (HERE/'PACKAGE_RECEIPT.json').write_bytes(encoded(receipt))
  print(json.dumps({k:v for k,v in receipt.items() if k!='source_members'},indent=2))
 

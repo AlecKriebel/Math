@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run seven unchanged exact controls in temporary mirrors; Python3.10+ stdlib.
+"""Run seven pinned exact controls in temporary mirrors; Python3.10+ stdlib.
 
 The analytic proofs establish universal claims. These checks corroborate them.
 No networking, package installation, or mutation of supplied material occurs.
