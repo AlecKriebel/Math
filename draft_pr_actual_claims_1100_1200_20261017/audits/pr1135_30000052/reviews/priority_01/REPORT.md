@@ -156,3 +156,7 @@ The current mathematical result is sound. The priority evidence supports transpa
 No earlier *explicit full-target answer* was identified in the inspected literature. Several source bodies/final editions remain unavailable, forward-citation coverage is incomplete, and an unindexed or unpublished prior answer is possible. A dated open-problem label and unsuccessful queries cannot settle those gaps. These limits must survive in global research notes and any package description; they are not mathematical gaps in either the PR proof or the newly checked Fourier proof.
 
 The report and metadata are the authored audit artifacts. All downloaded third-party bodies, extracted texts, HTML, ZIPs and rendered images remain under ignored `sources/private/`; temporary files remain ignored. `INPUT_PINS.json` ties this audit to every frozen PR input. `ARTIFACT_RECEIPT.json` pins all authored deliverables and excludes itself.
+
+## Revision after whole-package review
+
+2026-10-17T21:20:05.609701+00:00 — A P3 wording issue in the supplemental checker header was corrected: it now says “new audit Fourier/Dirichlet application using classical tools.” Only the first docstring line changed. The complete normal and optimized checks were rerun: all 129 checks and five adverse controls pass, with identical outputs. Relative to the previous outputs, only the embedded checker SHA-256 changed. No proof, calculation, source assessment, chronology finding, or priority verdict changed. `HEADER_CLARITY_REVISION.json` records the previous and refreshed artifact identities.

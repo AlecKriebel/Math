@@ -215,3 +215,7 @@ Parent read all3fullnewreports andcode, verified7+14+10authored artifacts, and r
 - 2026-10-17T21:04:08.436767+00:00 — PR1135 complete math PASS and normal/optimized reproduction; active priority review now includes a possible pre-existing full Fourier consequence, distinct from later overlapping publication. Overall66%.
 
 - 2026-10-17T21:13:29.715665+00:00 — PR1135 frozen four-page note, explicit later-overlap credit and123-member source package checkpointc5ba8f9dfe39ae283d1e8021bb34e55365c5f932. Parent extracted rebuild matches allsixreleaseassets and receipt byteexact; sevenprograms ordinary/O. Fresh whole-package reviewer1 active. Overall67%.
+
+- 2026-10-17T21:19:53.013339+00:00 — PR1135 first whole-package pass found one P3 supporting-prose ambiguity, no mathematical issue. Parent authenticated19 review artifacts and reproduced new15814-check control both modes. Global editorial fixes and dependent fingerprints/rebuild underway before restarting two successive fresh clean reviews. Overall67%.
+
+- 2026-10-17T21:21:56.264396+00:00 — PR1135 supporting-prose correction complete globally with dependent receipts and immutable-input preservation. Corrected125-member archive rebuilds all six assets byte-exact after extraction; full14-run verification passes. New independent whole-package reviewer active; two successive clean passes still required. Overall67%.

@@ -1,4 +1,4 @@
-"""Independent exact controls for the earlier Fourier/Dirichlet implication.
+"""Independent exact controls for the new audit Fourier/Dirichlet application using classical tools.
 
 No candidate or external-paper program is imported. The analytic Fourier identity,
 Holder inequality, and orthogonality argument are supplied in REPORT.md.

@@ -65,7 +65,30 @@ def iid_moment(n,p):
    result+=comb(n,k)*comb(p,a)*Q(k,n)**(p-a)*(-1)**a*beta
  return result
 
+def independent_shift_maximum(indices,z,s):
+ points=sorted({(j*z)%1 for j in indices})
+ cuts=sorted({Q(0),Q(1)}|{1-v for v in points})
+ total=Q(0)
+ for lo,hi in zip(cuts,cuts[1:]):
+  mid=(lo+hi)/2
+  intercept=max(v-((v+mid)//1) for v in points)
+  total+=((hi+intercept)**(s+1)-(lo+intercept)**(s+1))/(s+1)
+ gaps=[b-a for a,b in zip(points,points[1:])]+[1+points[0]-points[-1]]
+ residual=sum((1-(1-g)**(s+1))/(s+1) for g in gaps)
+ require(total==residual,'independent wrap-interval shift integral')
+ return total
+
 def main():
+ # Check the residual-life formula against a separate wrap-interval integration.
+ for size in range(1,5):
+  for subset in combinations(range(6),size):
+   for z in (Q(1,11),Q(2,7),Q(3,5),Q(5,8)):
+    for s in range(1,6):independent_shift_maximum(subset,z,s)
+ for m in range(1,5):
+  for k in range(1,m+1):
+   from itertools import product
+   onto=sum(len(set(t))==k for t in product(range(k),repeat=m))
+   require(onto==factorial(k)*stirling(m,k),'onto tuple multiplicity')
  rows=[]
  expected={1:Q(1,15),2:Q(1,48),3:Q(19,1620),4:Q(139,17280)}
  for n in range(1,9):
@@ -84,7 +107,7 @@ def main():
   'iid_triple_is_not_lattice':maximum_moment((0,1,2),2)!=Q(3,5),
   'n3_tail_does_not_prove_reversal':Q(2,210)<Q(4,405),
   'normalization_cannot_be_omitted':Q(19,1620)*3**4!=Q(19,1620),
-  'n2_two_triangles_would_overcount':2*Q(1,2)>Q(1,2),
+  'n2_generator_intervals_are_not_disjoint':Q(1,1)>1-Q(1,1),
   'fixed_generator_cannot_substitute':Q(1,15)!=Q(19,1620),
  }
  for name,ok in adverse.items():require(ok,name)

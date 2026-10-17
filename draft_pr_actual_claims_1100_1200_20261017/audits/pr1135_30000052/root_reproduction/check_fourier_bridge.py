@@ -1,4 +1,4 @@
-"""Parent exact checks for the older-Fourier-result consequence.
+"""Parent exact checks for the new audit Fourier proof using classical tools.
 Written independently of reviewer programs. The analytic inequalities are
 proved in ROOT_FOURIER_PRIORITY_BRIDGE.md, not certified by these finite checks.
 """

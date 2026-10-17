@@ -18,9 +18,9 @@ REVIEWS={
  'probability_01':'4f65617dc88cbb53e52475d1d46ed5dc4f1055ee136abe6ae4e2146a95287d3d',
  'exact_01':'9a2cde68433eefb9a828faf8570afa9fc8b3a0c9fde7b85d01a9e643d441b754',
  'tail_01':'aaf58efd70cff1ae0f07c9cfedb9779e7b3788365752e7ec7e2c5266604ee36f',
- 'priority_01':'09678b2d4a6c835a21aecdf8d212a685f83c53947685d1bb8708a67e625e2bbb',
+ 'priority_01':'354b316fbee280468bff3891e068637553c2c467f192ee6833179067efa419c6',
  'priority_rotations_01':'5ac8b78d68991527a2e5c80054f424c9f63b44e3274278cae44d96d12eabe712',
- 'priority_classification_01':'f02d201b107eb037a4217fbcf26c40d06e78264a075b62a86cfe81b2095bcd5d',
+ 'priority_classification_01':'1f353da177162af5dfbfc033bf8e49d3c60965d81dde0c8910a36e0758f93591',
 }
 DOCUMENTS=[
  'PR_BODY.md','PR_SNAPSHOT.json','RETRIEVAL_RECEIPT.json','ROOT_MATHEMATICAL_CHECK.md',
@@ -32,7 +32,7 @@ DOCUMENTS=[
  'root_reproduction/check_fourier_bridge.py','root_reproduction/PROBABILITY_01_REPLAY.json',
  'root_reproduction/EXACT_01_REPLAY.json','root_reproduction/TAIL_01_REPLAY.json',
  'root_reproduction/PRIORITY_01_REPLAY.json','root_reproduction/PRIORITY_ROTATIONS_01_REPLAY.json',
- 'root_reproduction/PRIORITY_FINGERPRINT_CHECK.json',
+ 'root_reproduction/PRIORITY_FINGERPRINT_CHECK.json','root_reproduction/PACKAGE_EDITORIAL_FIX.json',
 ]
 
 def digest(raw):return hashlib.sha256(raw).hexdigest()
