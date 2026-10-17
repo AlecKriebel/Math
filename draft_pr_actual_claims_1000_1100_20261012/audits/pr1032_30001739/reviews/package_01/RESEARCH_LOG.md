@@ -1,0 +1,7 @@
+# Complete independent package review 1 research log
+
+2026-10-17T03:58:44.389255+00:00 — 2% complete. Created dedicated new review directory and froze all existing audit files before reading mathematical conclusions. Luo–Zha priority comparison remains UNKNOWN under explicit human direction; no retrieval attempted.
+
+2026-10-17T04:01:28.467121+00:00 — 38% complete. Primary-interface independent derivation recorded before historical audit conclusions. New independent finite checks pass identically in normal/-O/-OO; all16 coordinates,40 germs,30 pair-order tests,15 partitions and30 directed graphs covered. Remaining: source-comparison details, full package hostile controls, metadata, PDF compile/all9page inspection, final custody.
+
+2026-10-17T04:04:58.364897+00:00 — 82% complete. Complete new math derivation and full historical-report comparison agree. Canonical and cold-extracted kits pass in3modes;57recorded local package commands meet expectations; nine file/semantic mutation cases and five hostile archive structures rejected. Native uploader check only resolves both manifests to original exact PDF/ZIP, without credentials/network. Standalone TeX compiles from isolated copied source, all9pages viewed; rebuilt rasters match. One P3builder-output finding independently reproduced; a second P3bibliographic title error found by checking OWR cover/contents against manuscript. Remaining: write complete findings/source scope, final preservation/inventory seal.
