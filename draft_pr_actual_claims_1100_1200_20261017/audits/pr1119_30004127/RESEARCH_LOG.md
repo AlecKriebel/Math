@@ -38,3 +38,7 @@ Rootreadcomplete24,106byte report andverified11evidenceartifacts plus34operative
 ## 2026-10-17T20:05:12.826814+00:00 — PR1119 publication gate ready (46%)
 
 The second new independent whole-package reviewer passed the identical first-frozen five-page package with no required repairs. Parent read the full report, verified all 13 authored artifact fingerprints and all six release pins, and accepted both successive clean reviews. Mathematical and bounded priority gates remain accepted; priority is not certified, with journal-body and citation-coverage limits disclosed. Live PR remains open/draft at exact reviewed head. Publication, tracker, and merge are authorized next. No release asset was edited or rebuilt.
+
+## 2026-10-17T20:07:08.701656+00:00 — PR1119 published, tracked, and merged (program 48%; PR1119 100%)
+
+Production Zenodo record 23441523 published the exact frozen PDF and source/verification ZIP after two successive clean new independent package reviews. DOI 10.5281/zenodo.23441523 resolves HTTP200. Canonical readback confirmed files and metadata; only description apostrophe formatting was normalized. Google Workspace CLI appended one row at 'Math Puzzles'!A155:D155 after DOI duplicate check and exact readback. The accepted body discloses the full scope, prior credits, bounded priority limits and AI/unrefereed status. Exact source head 786fff9ba06951209e8c1e3bc6114efbfa2c9d16 merged as 059fe14329ff3f3db2aa275cf84e1bfe414d3898. Next eligible claim is PR1121; other statuses remain skipped.
