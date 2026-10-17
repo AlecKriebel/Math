@@ -1,0 +1,4 @@
+# Norm-obstruction review research log
+
+- 2026-10-17T23:31:38.986112+00:00 — 15% complete. Created local source exclusions before source collection. Read only the specified 12,061-byte COUNTEREXAMPLE.md (SHA256 b1533a032e031d82a0d124cdb410e86e5ee59af477dd711d2157a5d72f36e2ca). The target is universal exclusion of all base-field cyclic slots after the two inseparable kernel summands vanish. No sibling reviews or old audit read.
+- 2026-10-17T23:32:16.396856+00:00 — 60% complete. Universal obstruction reconstructed. Independently derived explicit norm formula and parity proof, avoiding any appeal to a defectless-extension theorem. Verified complete Milne relative-Brauer and cyclic-periodicity theorem bodies, Voight characteristic-two norm criterion, and the Kato symbol identification in the specified author preprint version. Rendering critical statements for typography confirmation.
