@@ -1,3 +1,19 @@
+# Current mathematical record - 17 October 2026
+
+For fixed p in (0,1), ordinary triangles T_n counted once in G(n,p), and every positive integer sequence q_n, max over all residues a of |q_n P(T_n = a mod q_n)-1| tends to zero if and only if q_n=o(n^2). This includes q=1, bounded, composite, oscillating, arbitrarily slowly subcritical, critical and supercritical sequences. Triangle standard-deviation normalization starts at n>=3; the known ordinary 2K2 supplement starts at n>=4.
+
+This is a credited complete consequence of earlier estimates. Scott's 2009 report of joint work with Tateno states the smaller all-integer modulus range, the necessary standard-deviation scale and a triangle Gaussian-cell local limit theorem. Gilmer and Kopparty's 2014 manuscript Lemmas 4-5 already imply the full sufficient range by direct modular Fourier-grid summation; the supporting deduction is assembled in the current audit and is not backdated as a printed 2014 corollary. Berkowitz supplies earlier quantitative triangle input. The main probability-mass proof imports Sah-Sawhney arXiv:2006.11369v1 Theorem 1.1; its known 2K2 obstruction, Theorem 1.3, is credited. Weber supplies a finite-window/tail/Gaussian mechanism precedent only: his independent-sum theorem and constants are not imported for dependent triangle counts. No novelty, firstness, new deep method, new local limit theorem, current worldwide openness or independent-discovery lineage is certified.
+
+Deep Sah-Sawhney Fourier/decoupling and Gilmer-Kopparty conditioning proofs are named external imports, not fully reconstructed or audited. Mathematical transfer proofs, exact counting and moment diagnostics, scoped source-read ledgers, independently sealed AI mathematical/priority reviews and detached cross-challenges are retained. Finite tests do not prove asymptotic convergence. Floating diagnostic results have declared tolerances and are retained for normal-only scratch execution, not bitwise numerical certification. Adjacent problem30001249 overlap is not a separate discovery. Sparse/varying p and unrestricted induced, disconnected or joint-count classifications are not solved here.
+
+AI tools were used extensively in research, solving and reconstruction, source review, verification, drafting, and independent internal AI adversarial review. This work is unrefereed: no external human peer review, formal proof-assistant certification, or journal acceptance is claimed.
+
+Current actual decisions: MATH_GATE.json and PRIORITY_ADJUDICATION.json in the audit evidence. Their PASS judgments are relative to the named external premises; they are not final whole-package publication approval.
+
+The complete submitted proof follows as a historical 11 October record with the explicit Section8 boundary clarification. Its recovery, prior-source-read and no-new-computation sentences describe that edition only. Fresh October17 computations/reviews and broader prior credit are above and in the current structured records. No historical source-body inspection is retroactively expanded.
+
+---
+
 # Triangle modulus threshold: credited coverage for 30001248 / OWR-3473-009
 
 Date: 2026-10-11 (UTC). This is a source audit and a complete reduction from a cited quantitative local limit theorem, not a claim to a new triangle local limit theorem or to priority for the corollary. It does not certify every proof in the cited papers.
@@ -153,6 +169,8 @@ The CLT from Section 3 implies E exp(i t Z_n)→exp(−t²/2). The limiting modu
 This is a qualitative necessity argument based on the CLT; it does not claim a finite-n lower bound uniform in every q. A sequence with q/σ bounded below only on a subsequence already fails convergence of Δ to zero. The argument therefore covers oscillating sequences as well as q≈cσ and q≫σ.
 
 ## 8. Compact reconstruction of the credited disconnected obstruction
+
+Current clarification: this nondegenerate ordinary 2K2 conditional reconstruction is for n>=4; triangle normalization elsewhere starts at n>=3.
 
 This section independently reconstructs Sah–Sawhney's 2K₂ example for ordinary unlabeled copies, using elementary conditional moments. It is not a new counterexample claim.
 

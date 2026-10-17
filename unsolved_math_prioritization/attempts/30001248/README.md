@@ -1,65 +1,13 @@
-# Sharp triangle modular threshold: credited coverage
+# Sharp modulus range for triangle counts in dense random graphs
 
-Problem 30001248 / OWR-3473-009.
+For fixed p in (0,1), ordinary triangles T_n counted once in G(n,p), and every positive integer sequence q_n, max over all residues a of |q_n P(T_n = a mod q_n)-1| tends to zero if and only if q_n=o(n^2). This includes q=1, bounded, composite, oscillating, arbitrarily slowly subcritical, critical and supercritical sequences. Triangle standard-deviation normalization starts at n>=3; the known ordinary 2K2 supplement starts at n>=4.
 
-Review and distribution status: AI-assisted and unrefereed. Acceptance means an
-internal AI mathematical audit, not external human peer review or formal
-proof-assistant certification. This is a prose edition, not a computational
-reproduction package. No new LLT, first-resolution, or priority claim is made.
+This is a credited complete consequence of earlier estimates. Scott's 2009 report of joint work with Tateno states the smaller all-integer modulus range, the necessary standard-deviation scale and a triangle Gaussian-cell local limit theorem. Gilmer and Kopparty's 2014 manuscript Lemmas 4-5 already imply the full sufficient range by direct modular Fourier-grid summation; the supporting deduction is assembled in the current audit and is not backdated as a printed 2014 corollary. Berkowitz supplies earlier quantitative triangle input. The main probability-mass proof imports Sah-Sawhney arXiv:2006.11369v1 Theorem 1.1; its known 2K2 obstruction, Theorem 1.3, is credited. Weber supplies a finite-window/tail/Gaussian mechanism precedent only: his independent-sum theorem and constants are not imported for dependent triangle counts. No novelty, firstness, new deep method, new local limit theorem, current worldwide openness or independent-discovery lineage is certified.
 
-## Exact result and prior credit
+Deep Sah-Sawhney Fourier/decoupling and Gilmer-Kopparty conditioning proofs are named external imports, not fully reconstructed or audited. Mathematical transfer proofs, exact counting and moment diagnostics, scoped source-read ledgers, independently sealed AI mathematical/priority reviews and detached cross-challenges are retained. Finite tests do not prove asymptotic convergence. Floating diagnostic results have declared tolerances and are retained for normal-only scratch execution, not bitwise numerical certification. Adjacent problem30001249 overlap is not a separate discovery. Sparse/varying p and unrestricted induced, disconnected or joint-count classifications are not solved here.
 
-For fixed p in (0,1), let T count ordinary unlabeled triangles in G(n,p).
-For every sequence of positive integers q_n,
+AI tools were used extensively in research, solving and reconstruction, source review, verification, drafting, and independent internal AI adversarial review. This work is unrefereed: no external human peer review, formal proof-assistant certification, or journal acceptance is claimed.
 
-    max_a |q_n P(T = a mod q_n) - 1| -> 0  iff  q_n = o(n^2).
+This eight-file current edition preserves the original eight-file submission separately in the supporting archive. Current PROOF/AUDIT headers distinguish October17 checks and credit from historical recovery text. Structured v3 records wrap the exact older parsed records under historical_submitted_record_20261011; old hashes refer to the historical files only. MANIFEST.json binds the seven nonself current records using entries/file/bytes/sha256.
 
-This is a credited consequence of Sah–Sawhney's quantitative LLT,
-arXiv:2006.11369v1, Theorem 1.1. Scott–Tateno's 2009 contribution had
-already stated a triangle LLT and modular uniformity for q=o(n^2/log n).
-The present reduction uses concentration and finite central-window summation
-for sufficiency and an independently derived CLT/Fourier obstruction for
-necessity. It makes no new LLT or bibliographic-priority claim.
-
-The exact variance is binom(n,3)p^3(1-p^3)+12binom(n,4)p^5(1-p),
-asymptotic to p^5(1-p)n^4/2. Sigma is its square root. The count has span
-one; labeled embeddings instead give 6T. All modulus edge cases are covered,
-including q=1, bounded or composite q, oscillating sequences and moduli
-arbitrarily slowly below, at, or above the standard-deviation scale.
-
-## Complete reports and overlap
-
-PROOF.md retains the full corrected coverage proof. AUDIT.md combines the
-full independent derivation and the full cross-audit. The n>=3 concentration
-boundary, explicit L1 assumption, true sigma, Gaussian-cell comparison,
-concentration/window argument and varying-frequency justification all remain.
-
-The complete reconstruction of Sah–Sawhney's ordinary-unlabeled 2K2 Gaussian
-LLT obstruction is also retained. Its atom bound is of order n^(-5/2), while
-its standard deviation is of order n^3. This overlaps the adjacent general
-subgraph problem 30001249 / OWR-3473-010 and is not counted as a separate
-discovery. No complete classification of disconnected modular ranges is claimed.
-
-The essential source theorem was historically inspected in the required
-count and standard-deviation conventions. Its deep Fourier/decoupling proof
-is imported, not fully reconstructed. The independent audit checks the core
-triangle and 2K2 mathematics, not every peripheral literature-table assertion.
-Berkowitz normalization defects are limited to the identified displays in
-the recorded PDF, without extrapolating to every version.
-
-## Recovery and distribution limits
-
-Recovery scope: all three complete authored mathematical reports were recovered
-byte-for-byte and match the previously recorded SHA-256 hashes. The earlier
-full evidence packages and their external seals are unavailable in this edition.
-Statements below about earlier source inspection and finite checks describe
-historical work recorded in those exact reports; they are not claims that the
-old supporting packages were recovered or that the checks were newly rerun.
-
-Only the eight authored prose/metadata files in MANIFEST.json are public.
-No copied source documents, dataset contents, code, raw enumeration outputs,
-private sources or private coordination material are distributed. Exact report
-hashes establish byte identity, not truth, novelty or formal verification.
-ACCEPTANCE.json binds the original and edited reports; SOURCES.json records
-historical source metadata and its limits; VERIFICATION.json separates fresh
-recovery checks from unavailable earlier evidence packages.
+The portable archive includes independent proof/priority reports and explicit outside-anchored manifests. See PORTABLE_README.md for verification and diagnostic limits. The note-author seal binds its first draft; the context binds the final source. The detached source-count correction records sixteen pins. No current DOI or final whole-package approval is invented here.
