@@ -1,0 +1,15 @@
+# Independent analytic antecedent and geometry comparison
+
+This is an audit derivation, not evidence that an earlier source printed the outer focal-pedal application.
+
+For modulus k in (0,1), let q=exp(-pi K'/K). The absolutely convergent real Fourier series (DLMF 22.11.3) is
+dn(u,k)=pi/(2K)+(2pi/K) sum_{n>=1} q^n/(1+q^{2n}) cos(n pi u/K).
+Summing u+2jK/N over j=0,...,N-1 kills exactly the Fourier modes whose index is not divisible by N. If k_N is the modulus with nome q^N, the surviving series is exactly
+sum_j dn(u+2jK/N,k) = (N K_N/K) dn((N K_N/K)u,k_N).
+Absolute convergence justifies the finite sum exchange. Coprime star winding only permutes the summands. Under u -> u+K the reduced argument changes by N K_N; for odd N this is K_N modulo 2K_N. The classical dn half-period identity yields constant product with the shifted trace. In Khare-Sukhatme's Pramana 63 (2004), equation(7), printed923, alpha=K/(N K_N), so their normalization agrees. Their equation(7) and proof section2.1 explicitly concern arbitrary integer order. There is no geometric focal-foot or bicentric contact-area reduction in the inspected published passage923-926.
+
+The outer foot is the restriction to the original ellipse of T(x,y)=(a^2(x+c)/(a^2+cx),a^2 y/(a^2+cx)). Its image is the radius-a auxiliary circle. Its pointwise connection to the original inverse at the OPPOSITE focus is Q_+(P)=(a^2+cx) R_-(P). That multiplier varies with P, so a constant area ratio does not follow from the pointwise relation alone. The auxiliary caustic is displaced and noncircular; a second, specified radius-a polarity gives a genuine bicentric pair with radius r=a, center d=-c lambda/beta^2, circumradius R=alpha b^2/beta^2. Incidence theorems do not supply Euclidean area invariance by themselves.
+
+The two old audit bridges were read as derivations and checked against their displayed geometry, rather than accepted as documentary priority evidence. The Landen route still needs the contact-area telescope and exact original-focus phase alignment. The inversion route still needs the at-most-simple outer-foot pole lemma and anti-character before the one-dimensional residue comparison. Neither supplementary step is a tautological label change. Independent finite symbolic controls in CHECKABLE_COMPARISON_RESULTS.json check the pointwise projection, auxiliary circle, noncircular image caustic, negative dual-circle center, and actual triangular ordered area ratios. These controls support the finite comparisons; universal phase invariance and Root's mathematical acceptance are separate.
+
+The later Ferudun Five Focal paper (2026-10-15, DOI10.5281/zenodo.23404834) DOES print the exact outer-foot pole proof in Lemma5.3 and the all-odd product in TheoremC/common proofB-D. Remark6.6 explicitly prints the same opposite-focus proportionality as the earlier audit transfer. Its source reading discussion says it read Kriebel's deposit, and its independent-proof claim is an attributed author statement, not an independently certified causal history.

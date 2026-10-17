@@ -1,0 +1,131 @@
+--- preserved_V1/native210_future_executor.py
++++ current_V2/native210_future_executor.py
+@@ -110,6 +110,12 @@
+     return path
+ 
+ 
++def api_argv(method,path,has_body):
++    """Canonical GitHub host is explicit, independent of GH_HOST."""
++    return [GH,'api','--hostname','github.com','--method',method,
++            'repos/AlecKriebel/Math/'+path]+(['--input','-'] if has_body else [])
++
++
+ class API:
+     """No ref/service route; no semantic or transport retry. Intents precede POST."""
+     def __init__(self,h,journal,mutate=False):
+@@ -135,9 +141,7 @@
+             put(self.journal,name+'.OBJECT_INTENT.json',{
+                 **request,'exact_request':body,'expected_oid':expected_oid,
+                 'semantics':'One dispatch only; uncertainty stops. Reconcile this expected oid with GET; never automatically retry.'})
+-        argv = [GH,'api','--method',method,'repos/AlecKriebel/Math/'+path]
+-        if body is not None:
+-            argv += ['--input','-']
++        argv = api_argv(method,path,body is not None)
+         try:
+             if immutable is not None and path in self._immutable_cache:
+                 raw,expected,origin = self._immutable_cache[path]
+@@ -360,54 +364,57 @@
+ 
+ def candidate(h,load,api,journal):
+     c,m,overlay,pre,reused = load()
+-    need(journal == BASE/m['candidate_journal'], 'Only exact one-use manifest-bound candidate journal allowed')
+-    local_preimages(h,m,overlay)
+-    s = h.state(c,m,overlay,pre,reused,api)
+-    need(bool(s['changed']), 'Empty candidate refused')
+-    commit_body,commit_oid = h.commit_request(m,s['wanted'],s['parents'])
+-    put(journal,'CANDIDATE_DISPATCH_RESERVATION.json',{'manifest_candidate_journal':m['candidate_journal'],
+-        'expected_commit':commit_oid,'exact_commit_request':commit_body,
+-        'semantics':'Exclusive one-use candidate attempt. Never reuse this or another journal for this manifest after uncertainty.'})
+-    def effect_guard():
+-        load()
++    with WriterLock(m['writer_lock']) as lock:
++        need(journal == BASE/m['candidate_journal'], 'Only exact one-use manifest-bound candidate journal allowed')
+         local_preimages(h,m,overlay)
+-        need(api('GET','git/ref/heads/main')['object']['sha'] == s['parent'], 'Fresh MAIN lease lost before object effect')
+-        h.pr_identity(h.GetOnly(api),m)
+-        local_preimages(h,m,overlay)
+-        load()
+-        need(api('GET','git/ref/heads/main')['object']['sha'] == s['parent'], 'Lease lost immediately before object effect')
+-    entries,binary = [],set()
+-    for path,body in sorted(overlay.items()):
+-        try:
+-            value = body.decode('utf-8')
+-            inline = '\0' not in value
+-        except UnicodeError:
+-            inline = False
+-        entry = {'path':path,'mode':'100644','type':'blob'}
+-        if inline:
+-            entry['content'] = value
+-        else:
+-            oid = h.native('blob',body)
+-            if oid not in binary:
+-                effect_guard()
+-                result = api('POST','git/blobs',{'content':base64.b64encode(body).decode('ascii'),'encoding':'base64'},expected_oid=oid)
+-                need(result.get('sha') == oid, 'Binary object result differs')
+-                binary.add(oid)
+-            entry['sha'] = oid
+-        entries.append(entry)
+-    effect_guard()
+-    result = api('POST','git/trees',{'base_tree':s['parent_tree'],'tree':entries},expected_oid=s['wanted'])
+-    need(result.get('sha') == s['wanted'], 'Tree object result differs')
+-    effect_guard()
+-    result = api('POST','git/commits',commit_body,expected_oid=commit_oid)
+-    oid = result.get('sha')
+-    need(h.hexid(oid), 'Commit response native identity')
+-    put(journal,'CANDIDATE_IDENTITY.json',{'parent':s['parent'],'parents':s['parents'],'candidate':oid,'tree':s['wanted']})
+-    read_api = API(h,journal,mutate=False)
+-    read_api.number = api.number
+-    result = h.verify(c,m,overlay,pre,reused,read_api,oid)
+-    put(journal,'CANDIDATE_VERIFIED.json',result)
+-    return result
++        s = h.state(c,m,overlay,pre,reused,api)
++        need(bool(s['changed']), 'Empty candidate refused')
++        commit_body,commit_oid = h.commit_request(m,s['wanted'],s['parents'])
++        put(journal,'CANDIDATE_DISPATCH_RESERVATION.json',{'manifest_candidate_journal':m['candidate_journal'],
++            'expected_commit':commit_oid,'exact_commit_request':commit_body,
++            'semantics':'Exclusive one-use candidate attempt. Never reuse this or another journal for this manifest after uncertainty.'})
++        def effect_guard():
++            lock.check()
++            load()
++            local_preimages(h,m,overlay)
++            need(api('GET','git/ref/heads/main')['object']['sha'] == s['parent'], 'Fresh MAIN lease lost before object effect')
++            h.pr_identity(h.GetOnly(api),m)
++            local_preimages(h,m,overlay)
++            load()
++            need(api('GET','git/ref/heads/main')['object']['sha'] == s['parent'], 'Lease lost immediately before object effect')
++            lock.check()
++        entries,binary = [],set()
++        for path,body in sorted(overlay.items()):
++            try:
++                value = body.decode('utf-8')
++                inline = '\0' not in value
++            except UnicodeError:
++                inline = False
++            entry = {'path':path,'mode':'100644','type':'blob'}
++            if inline:
++                entry['content'] = value
++            else:
++                oid = h.native('blob',body)
++                if oid not in binary:
++                    effect_guard()
++                    result = api('POST','git/blobs',{'content':base64.b64encode(body).decode('ascii'),'encoding':'base64'},expected_oid=oid)
++                    need(result.get('sha') == oid, 'Binary object result differs')
++                    binary.add(oid)
++                entry['sha'] = oid
++            entries.append(entry)
++        effect_guard()
++        result = api('POST','git/trees',{'base_tree':s['parent_tree'],'tree':entries},expected_oid=s['wanted'])
++        need(result.get('sha') == s['wanted'], 'Tree object result differs')
++        effect_guard()
++        result = api('POST','git/commits',commit_body,expected_oid=commit_oid)
++        oid = result.get('sha')
++        need(h.hexid(oid), 'Commit response native identity')
++        put(journal,'CANDIDATE_IDENTITY.json',{'parent':s['parent'],'parents':s['parents'],'candidate':oid,'tree':s['wanted']})
++        read_api = API(h,journal,mutate=False)
++        read_api.number = api.number
++        result = h.verify(c,m,overlay,pre,reused,read_api,oid)
++        put(journal,'CANDIDATE_VERIFIED.json',result)
++        return result
+ 
+ 
+ def actual_acceptance(h,m,wanted,name,expected):
