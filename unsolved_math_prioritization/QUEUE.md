@@ -1780,7 +1780,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1769 | 30003809 / OWR-16163-011 | Distributions of Self-Adjoint Bimonotone Limit Operators | 0.0579 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1770 | 30003821 / OWR-16164-019 | Pattern-Avoidance Inequalities on Digitally Convex Shapes | 0.0579 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1771 | 30003992 / OWR-16633-009 | Fast Low-Rank Maximum-Weight Assignment | 0.0579 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 1772 | 30004307 / OWR-17294-007 | Second-Cohomology Torsion of Finite Abelian Quandles | 0.0576 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
+| 1772 | 30004307 / OWR-17294-007 | Second-Cohomology Torsion of Finite Abelian Quandles | 0.0576 | 5.0 | 3 | 2019 | deferred | 0 new proof-search passes; lifetime unknown |  | [Accepted source-scope audit](attempts/30004307/reader/README.md): original H² omits coefficients while cited formulas concern integral rack H₂. Coefficient choices change torsion; no silent homological correction or integer/Smith-form resolution. Mathematical target unresolved pending conventions and computation criterion. |  |
 | 1773 | 30004316 / OWR-17294-017 | Bijectivity of the Quantum Symmetrizer | 0.0576 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1774 | 30004534 / OWR-2654827-016 | Eventual Lefschetz Dichotomies for Symmetric Ideal Chains | 0.0574 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 1775 | 30004611 / OWR-4990374-017 | Exact Sequences for Logarithmic Derivation Sheaves | 0.0571 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
