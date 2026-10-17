@@ -6,6 +6,7 @@ The analytic inequalities and historical statements require the accompanying pro
 from fractions import Fraction as F
 from collections import Counter
 import json,sys,hashlib
+from math import comb,factorial
 from pathlib import Path
 checks=0
 neg=[]
@@ -60,6 +61,15 @@ for n in range(1,15):
    numer[0]-=1
    require(all(numer[k]==expected[k] for k in set(numer)|set(expected)),
            'indicator primitive incl t=0 and t=1 representatives')
+# Independent exact iid integral: integrate the full Binomial(n,x) distribution,
+# expanding (k/n-x)^4 and using the beta integral, not a fourth-moment oracle.
+for n in range(1,97):
+ result=F(0)
+ for k in range(n+1):
+  for l in range(5):
+   beta=F(factorial(k+l)*factorial(n-k),factorial(n+l+1))
+   result+=comb(n,k)*comb(4,l)*F(k,n)**(4-l)*(-1)**l*beta
+ require(result==F(3*n-1,30*n**3),'iid full Binomial/Beta integral')
 # Exact pi bounds of Archimedes suffice to isolate the least threshold n=234.
 lo,hi=F(223,71),F(22,7)
 def gap_poly(n,pi_bound):return 60*n*n+30-48*pi_bound**4*(3*n-1)

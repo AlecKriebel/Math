@@ -1,0 +1,59 @@
+# Independent adversarial priority classification of PR #1135
+
+## Verdict
+
+**RETAIN ELIGIBILITY, SUBJECT TO EXPLICIT OVERLAP DISCLOSURE.** The identified Su 2000 and Anderson–Ash–Jones–Rider–Saffari 2007 sources do not establish that the original comparison had an earlier recorded full resolution. The parent's Fourier argument is a valid, short new application of classical facts. Its existence is insufficient to classify the problem as `already_solved` before the source PR. This finding is narrower than a certificate of novelty or first priority.
+
+A later, explicit and materially overlapping resolution exists: Alper Ferudun's 14 October 2026 unrefereed preprint, DOI [10.5281/zenodo.23372668](https://doi.org/10.5281/zenodo.23372668). It must be cited prominently. A publication prepared now must not present the negative answer or the fraction 19/1620 as new relative to all presently available literature. It can present the verified source result, its dated repository record, and a concise alternative proof with exact overlap acknowledged. No inference about influence, causation, or copying is warranted.
+
+This assessment addresses classification only. It imports the parent's and separate mathematical reviewers' accepted exact result; it does not claim to repeat their complete numerical or geometric verification. No paper, external communication, PR mutation, deposit, tracker entry, or Git mutation was made in this review.
+
+## Claim and exclusion test
+
+The target is the universal inequality for the expectation of the **p-th power** of normalized anchored Lp discrepancy, when both the continuous generator and the continuous shift are uniform and independent. A single reversed case settles that universal target. The exact candidate n=3,d=1,p=4 and the larger-n Fourier argument therefore each give a full negative answer. The same question reappears, with these laws and moment convention, as Open Problem 41 on printed p. 69 of the [Novak–Woźniakowski Volume II draft dated 11 February 2010](https://web.maths.unsw.edu.au/~josefdick/preprints/Novak_Wozniakowski_book_2.pdf). I independently fetched the PDF, read its surrounding definitions, and visually inspected that page. Its historical open label does not certify openness in 2026.
+
+A sufficient exclusion would be an earlier demonstrated counterexample, or an earlier theorem whose conclusion already controls this random model's high discrepancy moment strongly enough to reverse the iid comparison after routine hypothesis checks. A theorem need not name Novak to qualify. Conversely, a demand for a new foundational technique would exclude elementary new solutions merely because their ingredients were known. Proof length is not a reliable boundary.
+
+The practical distinction here is the location of the problem-specific deduction. In an earlier full-model theorem it has already been proved. Here it is supplied by the new audit: choose a single frequency of the anchored discrepancy, retain its dependence on the random generator, take the fourth power before averaging, recognize the Dirichlet energy, and compare its order to the iid fourth moment. Those operations form the new argument; they are not merely checks that a point set belongs to the hypotheses of a previously published theorem about this expectation.
+
+## What the two classical sources cover
+
+[Su, *A LeVeque-type lower bound for discrepancy*, Springer 2000, pp. 448–458](https://math.hmc.edu/su/wp-content/uploads/sites/10/2019/06/A-LeVeque-type.pdf), is about discrepancy of probability measures and sequences. The proof of Lemma 4 on printed p. 451 gives the nonzero Fourier coefficient identity for centered cumulative discrepancy. The centering constant changes only frequency zero. Its fixed-rotation applications on pp. 454–456 concern supremum discrepancy and Diophantine type, not an average fourth anchored moment under uniform generator and shift. I read the identity and those applications. Replacing the supremum discrepancy in its stated lower-bound theorems by an L4 norm would be invalid; the parent's argument correctly uses the cumulative Fourier identity instead.
+
+[Anderson et al., *Exponential sums with coefficients 0 or 1 and concentrated Lp norms*, Annales de l'Institut Fourier 57 (2007), 1377–1404](https://aif.centre-mersenne.org/item/10.5802/aif.2298.pdf), defines the length-n one-sided Dirichlet kernel in (1.1). Lemma 2.1 on p. 1383 gives its Lp moment asymptotic for p>1 and explicitly describes this as classical, with a proof. This is the same kernel needed by the audit, but the lemma has no empirical distribution function, random-point law, discrepancy normalization, iid comparator, or Novak comparison in its statement. Reading it as an earlier theorem that already bounds the exact random-model discrepancy expectation would import the new bridge into the source's conclusion.
+
+Both are proper method citations for a Fourier proof. Neither has been shown to be an earlier full resolution of the target. This classification does not turn their ingredients into new mathematics.
+
+## Adversarial examination of the Fourier bridge
+
+I checked the logic relevant to this classification directly. For the anchored function F(x)=n^-1 sum_j 1[t_j<x]−x, the nonzero frequency coefficient equals the normalized exponential sum divided by 2πi. Hölder therefore bounds the fourth power of that coefficient by the anchored fourth discrepancy moment. For t_j={jz+Delta}, the shift contributes only a unit phase and the sum is the length-n Dirichlet kernel. Its fourth moment is of order n^3, so the resulting discrepancy expectation lower bound is of order n^-1. The iid fourth moment is of order n^-2. This proves reversal for sufficiently large n in the actual source model, without needing any typical-generator assertion.
+
+The finite comparison and n≥234 certificate are refinements of that same argument, not necessary to the priority classification. Nor is the n=3 minimum-point-count result needed to make the negative answer complete. If a genuinely earlier full reversal were located, the smaller counterexample would not justify continuing the full-solution publication process under the user's strict skip policy merely because it is a sharper witness.
+
+The strongest argument for exclusion is that the Fourier proof is almost immediate once its mechanism is noticed, and every inequality it uses is elementary or classical. That establishes low technical novelty of this alternative route. It does **not**, without a source for the model-specific conclusion, establish a historical priority defect or that an earlier author had already answered the question. The 2010 book's repetition of the exact question after both sources is consistent with this distinction, although an author's later open question could itself be stale. The conclusion rests on the examined theorem coverage, not the authority of an open label.
+
+A conservative label for the bridge is: **newly recorded application of classical Fourier facts giving another full proof; first recognition unestablished**. An earlier draft heading of ROOT_FOURIER_PRIORITY_BRIDGE.md said “older full-result consequence.” Before publication, the parent corrected it to “Root Fourier proof using classical tools” and explicitly stated that the model-specific argument is a NEW audit application, not a verified earlier resolution. I read and accept that corrected opening; the substantive priority distinction is now expressed accurately. Nothing in the bridge supports “previously solved” or “known negative answer in 2007” in disposition or publication metadata.
+
+## Chronology and later exact overlap
+
+The supplied GitHub receipt records PR creation and its last update at 2026-10-10T11:34:20Z and its only commit at 11:33:05Z. The repository is currently public. Historical public visibility of the source content on that date has **not** been certified. Commit dates alone are not secure independent publication timestamps, and these facts do not establish first public disclosure.
+
+I independently refetched [Ferudun's paper](https://eulersolve.org/papers/owr-723-005/paper.pdf?v=edb268431856) and [Zenodo record 23372668](https://zenodo.org/api/records/23372668). The record was created on 14 October 2026 and gives publication date 14 October 2026. Its Theorem 1.2 explicitly contains the same one-dimensional three-point values; its further results cover additional dimensions and exponents. The paper and record match the parent's fingerprints. These are a later recorded explicit overlap, not an older classical full-resolution source. No claim of the other author's independence or dependence is inferred from the timestamps.
+
+The source PR may be described as recorded on 10 October according to GitHub, with the historical-access caveat where priority is discussed. It must not be called a certified first publication. The later paper's exact result and broader scope should be credited as such. The source's originally bounded literature review must be updated globally in any prepared package; leaving “no exact resolution located” without this new explicit overlap would be materially misleading.
+
+The mere fact that a later explicit result is available by the current publication date does not retroactively show that the 10 October full-solution claim was already a rediscovery. It does constrain what can now honestly be claimed. Under the user's clarified actual-PR-outcome gate, that distinction supports continuing evaluation and preparation with explicit overlap, rather than reclassifying the recorded full claim solely from the old-tools bridge. Final editorial disposition remains with the parent; this review does not certify novelty.
+
+## Required claims discipline and residual limits
+
+1. Retain the mathematical full-negative conclusion and its exact model. State the p-th-power convention clearly; no conclusion about E disc_p itself follows.
+2. Cite Novak/Hinrichs for the question and Ferudun for the overlapping explicit preprint, including its broader scope and date.
+3. Cite Su and Anderson et al. if the Fourier alternative is included; describe the target application as supplied here and make no novel Fourier-identity claim.
+4. Do not assert first resolution, first public disclosure, absence of prior work, or superiority to the later preprint. A dated-source and overlap paragraph is sufficient; no outreach is appropriate or authorized.
+5. If an older theorem giving this same random-model moment lower bound, an older exact counterexample, or another fully covering general result emerges, reconsider classification and apply the user's strict skip rule. This report is not permission to ignore such evidence.
+
+This was a focused adversarial classification, with seven searches and five independent primary-artifact fetches, rather than a replacement for the separate broad priority audit. Search precision was poor; unrelated returned material was not used. I did not certify every inaccessible source, all citation descendants, repository historical visibility, or worldwide first recognition. The assigned classification review is complete at 100%; the global priority/publication process is not thereby complete.
+
+## Reproducibility and evidence
+
+INPUT_PINS.json freezes the six supplied inputs. SOURCE_FETCH.json records fresh URLs, timestamps, sizes, and SHA256 fingerprints. Third-party PDFs, extracted text, metadata, and the inspected book-page render are retained only in ignored sources/private/. QUERY_LEDGER.json lists the seven focused searches and their limits. CLAIMS.json is the machine-readable disposition. ARTIFACT_RECEIPT.json hashes every authored public artifact except itself.

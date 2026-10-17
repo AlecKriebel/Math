@@ -22,8 +22,11 @@ def fetch(row):
         with urlopen(Request(url, headers={"User-Agent": "Mozilla/5.0"}), timeout=40) as response:
             body = response.read()
             target.write_bytes(body)
+            allowed = {"content-type", "content-length", "date", "etag", "last-modified", "cache-control", "location"}
             result.update(status=response.status, resolved_url=response.url,
-                          headers=dict(response.headers), bytes=len(body),
+                          headers={key: value for key, value in response.headers.items()
+                                   if key.lower() in allowed}, bytes=len(body),
+                          is_pdf_content=body.startswith(b"%PDF"),
                           sha256=hashlib.sha256(body).hexdigest(),
                           md5=hashlib.md5(body).hexdigest())
         if body.startswith(b"%PDF"):
