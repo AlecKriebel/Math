@@ -2,15 +2,27 @@
 """Portable read-only authored-member integrity and exact mathematical diagnostics."""
 from pathlib import Path
 import hashlib,json,subprocess,sys
-HERE=Path(__file__).resolve().parent.parent
+HERE=Path(__file__).absolute().parent.parent
 PREFIX='draft_pr_actual_claims_1100_1200_20261017/audits/pr1150_30003045'
 AUDIT=HERE/PREFIX if (HERE/PREFIX).is_dir() else HERE.parent
 def need(ok,msg):
  if not ok:raise ValueError(msg)
+def safe(p):
+ p=p.absolute()
+ for root in (HERE,AUDIT):
+  try:rel=p.relative_to(root)
+  except ValueError:continue
+  need('..' not in rel.parts,'unsafe path '+str(p))
+  cursor=root;need(not cursor.is_symlink(),'symlink root '+str(cursor))
+  for part in rel.parts:
+   cursor=cursor/part;need(not cursor.is_symlink(),'symlink ancestor/member '+str(cursor))
+  return p
+ raise ValueError('path outside distribution roots '+str(p))
 def pin(p):
- need(p.is_file() and not p.is_symlink(),'missing/symlink file '+str(p));raw=p.read_bytes();return {'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+ p=safe(p);need(p.is_file(),'missing file '+str(p));b=p.read_bytes();return {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+
 def main():
- allowed=json.loads((HERE/'verification/AUDIT_MEMBERS.json').read_text());plan=json.loads((HERE/'verification/CONTROL_PLAN.json').read_text())
+ pin(HERE/'verification/AUDIT_MEMBERS.json');pin(HERE/'verification/CONTROL_PLAN.json');allowed=json.loads((HERE/'verification/AUDIT_MEMBERS.json').read_text());plan=json.loads((HERE/'verification/CONTROL_PLAN.json').read_text())
  for n,want in allowed.items():
   rel=Path(n);need(not rel.is_absolute() and '..' not in rel.parts,'unsafe member');need(not any(x in rel.parts for x in ['private','tmp','rendered','__pycache__']),'private member');need(pin(AUDIT/rel)==want,'authored member pin mismatch '+n)
  current=AUDIT/plan['current_pr_root'];need(pin(current/'MANIFEST.json')==plan['current_pr_manifest'],'current PR manifest mismatch');need(pin(AUDIT/'FINAL_PROOF.md')==plan['operative_proof'],'operative proof mismatch');need((current/'COUNTEREXAMPLE.md').read_bytes()==(AUDIT/'FINAL_PROOF.md').read_bytes(),'current proof differs')

@@ -1,6 +1,6 @@
 # PR1150 root mathematical review
 
-2026-10-17 UTC. **PASS for REVIEWED_PROOF.md after one auxiliary repair.** Current proof12322 bytes SHA2567f63c1f6e4f79a78b979903db59e8030a8222266a65d296a4a6fc1a29a6e2e1b. Priority and publication readiness are separately recorded; this mathematical report does not certify them.
+2026-10-17 UTC. **PASS for REVIEWED_PROOF.md after one auxiliary repair.** Intermediate mathematically reviewed proof REVIEWED_PROOF.md:12322 bytes, SHA2567f63c1f6e4f79a78b979903db59e8030a8222266a65d296a4a6fc1a29a6e2e1b. The operative COUNTEREXAMPLE.md/FINAL_PROOF.md is12651 bytes, SHA2567808df31d74049fe649231a905e6dc330929caa87c86dca6ebfa6dcfb6d6c275; its subsequent change only strengthens the exact antecedent-credit paragraph. Priority and publication readiness are separately recorded; this mathematical report does not certify them.
 
 Root reconstructed the full original-target argument before reading historical audits, checked primary cohomology/cyclic norm hypotheses, read all eleven original inputs, and read all three complete new mathematical family reports. Fresh OWR/predecessor/mixed-manuscript files match advertised historical identities. The entire original talk and rendered projective convention/Question2 permit the binary case and exponent-two extension. The predecessor's affine convention adds a rational variable; the fields are distinguished and the pertinent kernels coincide by rational-extension injectivity.
 

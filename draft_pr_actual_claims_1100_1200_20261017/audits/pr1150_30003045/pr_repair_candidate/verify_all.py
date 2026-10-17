@@ -2,12 +2,12 @@
 """Read-only exact diagnostics and member integrity; not a cohomology oracle."""
 from pathlib import Path
 import hashlib,json,subprocess,sys
-D=Path(__file__).resolve().parent
+D=Path(__file__).absolute().parent
 def need(ok,msg):
  if not ok:raise ValueError(msg)
 def main():
- m=json.loads((D/'MANIFEST.json').read_text());need(m['self_hash_excluded']=='MANIFEST.json','manifest rule');names=m['members'];need(len(names)==len(set(names)),'duplicate members')
- actual={p.name for p in D.iterdir() if p.is_file()};need(actual==set(names),'unexpected or missing file inventory')
+ need(not D.is_symlink(),'symlink edition directory');need(all(not p.is_symlink() and p.is_file() for p in D.iterdir()),'unexpected non-file or symlink entry');m=json.loads((D/'MANIFEST.json').read_text());need(m['self_hash_excluded']=='MANIFEST.json','manifest rule');names=m['members'];need(len(names)==len(set(names)),'duplicate members')
+ actual={p.name for p in D.iterdir()};need(actual==set(names),'unexpected or missing file inventory')
  for n in names:
   p=D/n;need(not Path(n).is_absolute() and len(Path(n).parts)==1 and not p.is_symlink() and p.is_file(),'unsafe member '+n)
  for n,want in m['entries'].items():
