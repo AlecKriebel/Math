@@ -137,3 +137,7 @@ Broad current primary-source audit72queries, focused prior-implication audit and
 ### 2026-10-17T19:42:44.094965+00:00 — PR1119 first package frozen for fresh reviews (overall43%)
 
 Five-page note,98sourcearchive members and5upload-kit members checked byhash. Sixpublicguardedprograms pass12ordinary/optimizedruns and retainoriginalreports/code/results. Rootcheckedallarchiveentries, exactkitmetadata/assets, no sourcecachebodies, PDFvisualQAall5pages, currentbuilt-incompiler success, pinnedPRstillOPENdraftunchanged. Sourcearchive includesitsdepositmanifest andportablebuilder. Firstfresh fullpackageadversary nowrequired, followed bynewfreshreview sequentially; publication remainsdisableduntil2successivecleanpasses.
+
+### 2026-10-17T19:44:49.339396+00:00 — PR1119 portable release reconstruction PASS (overall43%)
+
+Extracted the frozen98member sourcearchive into an isolated ignored directory; its includedbuilder reproduces the complete package receipt, allsixassetfingerprints andeverymembermanifest exactly, including12finitecontrolruns. Entirelylocal repositoryZenodo check validatesfrozenPDF/sourcezip paths andhashes. No draftcreated orpublicationrequestmade. Firstfreshfullpackage adversary remainsactive. Frozenoperativeassetsunchanged.

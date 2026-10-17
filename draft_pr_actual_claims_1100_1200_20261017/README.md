@@ -20,3 +20,7 @@ The independently checked initial inventory has 101 PRs: 14 explicit full-target
 | [1118](https://github.com/AlecKriebel/Math/pull/1118) | Complete printed negative answer accepted; first-review version omission repaired, two new clean fresh reviews passed; published, tracker row153 verified, exact head merged | [10.5281/zenodo.23440943](https://doi.org/10.5281/zenodo.23440943) |
 
 Remaining eligible PRs, in order: 1119, 1121, 1129, 1135, 1136, 1141, 1142, 1150, 1151, 1155. Their eligibility is an outcome classification, not mathematical acceptance. See `PROGRAM_STATE.json`, `OUTCOME_INVENTORY.json`, and timestamped `RESEARCH_LOG.md` for exact current state and evidence. The persistent goal remains active until all eligible claims have a final disposition.
+
+## Current research checkpoint
+
+PR1119 (problem30004127) has passed three original mathematical families, an additional independent cover-reduction review, extensive bounded priority review and a focused prior-implication audit. A five-page note uses a factor36cover/apex reduction from established two-sided triangle hardness; the original direct proof and six verification programs are retained. The first frozen package is undergoing new sequential whole-package reviews. No1119deposit, tracker row orPRmutation has been made. Overall completion estimate:43%.

@@ -1,3 +1,5 @@
 # Fresh whole-package adversarial audit, round 1
 
 2026-10-17T19:43:22.768288+00:00 — Began independent reconstruction from frozen main.tex before prior reviews. Package is read-only; outputs confined here; third-party source bodies confined to ignored tmp/. Completion estimate: 5%.
+
+2026-10-17T19:44:38.451817+00:00 — Independent reconstruction complete for operative note and original direct proof before reading historical root/reviewer conclusions. Re-derived color-list potential/tree union bound; two disjoint witnesses/coupon split; arbitrary-edit heavy-apex identity; cover projection (1/9) and composite (1/36); direct AP-free host, parity/exposure coupling, constants and rational scale. No mathematical counterexample found. Fresh AS04 primary body confirms Theorem 4(ii), known-n pair queries, full induced/inspected-vertex convention and explicit undirected consequence. Twelve verification runs passed. Extracted-source cached Tectonic compilation and all five page views passed initial visual review. Completion estimate: 55%.
