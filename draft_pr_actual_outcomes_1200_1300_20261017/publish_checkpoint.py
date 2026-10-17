@@ -36,15 +36,20 @@ def main():
    lines.append(f"{mode} {kind} {oid}\t{name}\0".encode())
   return git("mktree","-z",data=b"".join(lines)).decode().strip()
  own=build(node)
+ git("update-ref","refs/math-audit/1200-1300-20261017/own-tree",own)
  for attempt in range(1,5):
   base=git("ls-remote","origin","refs/heads/main").split()[0].decode()
   exists=subprocess.run(["git","cat-file","-e",base+"^{commit}"],cwd=REPO,capture_output=True)
   if exists.returncode:git("fetch","--no-auto-maintenance","--no-tags","--no-write-fetch-head","origin",base)
+  git("update-ref","refs/math-audit/1200-1300-20261017/base",base)
   lines=[s for s in git("ls-tree","-z",base).split(b"\0") if s and s.split(b"\t",1)[1]!=ROOT.name.encode()]
   lines.append(f"040000 tree {own}\t{ROOT.name}".encode())
   tree=git("mktree","-z",data=b"\0".join(lines)+b"\0").decode().strip()
   message=b"Audit actual full-solution claims in draft PRs 1200-1300\n\nCheckpoint exact math, priority, corrected provenance and reviewed publication packages.\n"
+  git("update-ref","refs/math-audit/1200-1300-20261017/final-tree",tree)
+  (ROOT/"_local/checkpoint-object-intent.json").write_text(json.dumps({"base":base,"own_tree":own,"tree":tree})+"\n")
   commit=git("commit-tree",tree,"-p",base,data=message).decode().strip()
+  git("update-ref","refs/math-audit/1200-1300-20261017/commit",commit)
   changed=git("diff-tree","--no-commit-id","--name-only","-r",commit).decode().splitlines()
   if not changed:print("No changes");return
   if any(not n.startswith(ROOT.name+"/") for n in changed):raise RuntimeError("Foreign changed path")
