@@ -51,3 +51,31 @@ Complete corrected 21.149 resolution published as **10.5281/zenodo.23441890**, h
 Final prepublication checkpoint pushed to main as 03610486565c0031ccb0a9d436abfd3353622964, without changing the shared checkout branch/index or unrelated files. Publication receipts are being preserved in the next scoped checkpoint.
 
 Official starred solutions exclude 21.148 and 21.147. Next eligible candidate is 21.146. A September prior manuscript claims every finitely presented group embeds in one F_infinity group, which would settle the whole question if sound; priority/validity audit starts at 5%. No new result is asserted for it.
+
+## 2026-10-17T20:45:58.590996+00:00 — 21.146 overlapping theorem under independent audit (20%)
+
+The prior theorem is strictly stronger than both original questions: all inputs are finitely presented. Root checked the coprime finite-idempotent construction and faithful nested group-algebra model, finding no algebraic flaw. An attempted uniform-control objection was rejected because simplex-type bounds do not bound chain length. Separate fresh adversaries are checking chain/geometry arguments, current priority and formalization scope. No new result is claimed and no new publication is authorized by this audit alone. Latest completed publication receipts and state were pushed to main as 680537261f396b275425f8fae1e0c10b6b888355.
+
+## 2026-10-17T20:47:26.326521+00:00 — 21.146 prior proof and proposer recognition (70%)
+
+Independent chain and geometry audits pass their scoped implications; root’s separate finite-diagram, faithful-envelope and universal-input checks close their construction assumptions, relying on the standard Higman embedding theorem. A fresh exact chain checker passed 4,998 identities and root reproduced it. Root visually confirmed that proposer Zaremsky’s 8 October primary problem list crosses out the exact embedding question under its AI-solved convention. This is stronger status evidence than an unreviewed catalogue listing, and postdates the official Notebook’s 6 October update. Formal-scope and final priority reports are pending. No original result or further publication is claimed.
+
+## 2026-10-17T20:48:54.389451+00:00 — 21.146 excluded as prior complete solution (100% screening); 21.145 opened (5%)
+
+Combined independent proof coverage closes the prior manuscript’s construction and geometric hypotheses; no mathematical objection remains in that audit. It supplies both original quantifiers. The current proposer list also recognizes the question as AI-solved. Disposition: already_solved, credit OpenAI prior public manuscript; no duplicate paper or tracker row. A separate Lean source-scope check is supplementary, with no full local kernel build claimed.
+
+Descending candidate 21.145 asks whether Thompson F is quasi-isometric to F x Z and to F x F. Both parts and coarse surjectivity are essential. New literature screening and distinct mathematical routes begin at 5%.
+
+## 2026-10-17T20:52:00.408489+00:00 — 21.145: explicit construction failures and restricted coset obstruction (15%)
+
+Root proved that the midpoint stabilizer has trivial virtual centralizer in F, using local simple commutator groups. This blocks both elementary coset-product parametrizations s(p)h and h s(p): the upper quasi-isometry estimate forces the section constant or finite-valued. It does not block variable compensated coordinates or arbitrary QIs. A separate constructive agent found an explicit adjacent-element sequence on which canonical Cantor–Bernstein patching of known embeddings has image distance2n+1. Independent metric routes are testing invariants beyond mutually quasi-isometrically monotone ones. Both original questions remain unresolved in this effort; these are route obstructions, not claimed original solutions.
+
+## 2026-10-17T20:59:04.647558+00:00 — 21.145 remains unsolved after multi-route work;21.144 opened
+
+Both21.145clauses remain unsolved, with substantial distinct approaches, explicit construction failure certificates, reviewed algebraic slice obstructions, a nonlinear counterexample to excess slice rigidity, and a reviewed M(C)-in-cones partial deduction preserved. Exact computational checks independently reproduced. Discovery estimate revised from15%to8%because the surviving nonlinear/coarse-product gap is substantial; no partial result is promoted to a complete solution or publication. Full attempt record synthesized in STATUS.md.
+
+Next descending candidate21.144 is Brin–Sapir’s elementary-amenable-or-contains-F subgroup dichotomy. All-subgroup quantifiers matter; directed-union closure reduces them to finitely generated subgroups. Current status and distinct mathematical mechanisms will be audited. Selection/discovery estimate5%.
+
+## 2026-10-17T21:02:13.099745+00:00 —21.144 residual, marked-limit and extension routes(10%)
+
+Current primary status checks retain both official/proposer open entries. Root and counterexample route independently derive a no-F marked-limit closure certificate using finite presentation and F’s proper-quotient structure. Residually solvable/EA groups give sufficient no-F certificates, but finding a nonelementary-amenable such subgroup inside finite-pieceF remains unachieved. Infinite invariant-cell diagonal maps generally leaveF; restricted sums/wreath extensions ofEA factors stayEA. A nonsplit extension surjecting ontoF is another candidate mechanism, but both PL realization and no-F remain unsupported. No complete claim or counterexample.
