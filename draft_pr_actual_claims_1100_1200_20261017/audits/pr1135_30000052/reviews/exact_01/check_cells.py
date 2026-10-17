@@ -253,6 +253,8 @@ def run():
     pins = {p.name: {'bytes': len(p.read_bytes()),
                     'sha256': hashlib.sha256(p.read_bytes()).hexdigest()}
             for p in sorted(root.iterdir()) if p.is_file()}
+    expected_pins = json.loads((Path(__file__).parent/'INPUT_PINS.json').read_text())
+    require(pins == expected_pins, 'frozen input inventory or digest mismatch')
     values = []
     all_records = {}
     for n in range(1, 8):
@@ -294,4 +296,8 @@ def run():
 
 if __name__ == '__main__':
     result = run()
+    if sys.argv[1:] == ['--negative-guard']:
+        require(False, 'deliberate negative guard remains active under optimization')
+    elif sys.argv[1:]:
+        raise ValueError('unknown command-line arguments')
     print(json.dumps(result, indent=2, default=str, sort_keys=True))

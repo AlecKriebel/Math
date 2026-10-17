@@ -249,7 +249,7 @@ def main():
     adverse(lattice*3**4!=lattice,'fourth-power normalization is essential to fractions')
     adverse(Q(1,2)*2**4>Q(5,4)**4 and Q(1,2)*2<Q(5,4),
             'fourth-moment ordering does not order expected norms')
-    adverse(Q(1,n-1)>0,'a single fixed generator has zero parameter measure')
+    adverse(Q(1,15)!=lattice,'fixed-zero-generator average differs from full average')
     # On a finite torus, multiplication by 2 fails uniformity for even modulus;
     # such a finite-grid control is not a substitute for continuous Haar measure.
     adverse(len({(2*z)%2 for z in range(2)})!=2,'finite even grid is not continuous Haar multiplication')

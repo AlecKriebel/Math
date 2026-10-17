@@ -1,3 +1,13 @@
 # Tail-based independent review log
 
 2026-10-17T20:58:57.065869+00:00 — 10% complete. Defined scope: independently reconstruct the empty-tail lower bound, admissibility against the original question, all-n/d second moment, and n<=2 law. Original inputs pinned; no original files or Git state modified.
+
+2026-10-17T21:00:28.692980+00:00 — 65% complete. Fresh EMS primary PDF fetched and rendered printed pp. 697–699, exact known source bytes/hash reproduced. Independently derived both triangles and Jacobian, even-p simplex integral, all n>=4 strict reversal via an explicit positive cubic, all-n/d p=2 equality and n<=2 complete-law identity. First standalone stdlib exact verifier passes. No mathematical defect identified; report and optimized/adverse checks remain.
+
+2026-10-17T21:01:02.479707+00:00 — 80% complete. Reviewer construction-stage adversarial check corrected my own overly coarse n=2 triangle assertion: generator projections overlap there, but the full triangles are separated by Delta=1-z. Extended the verifier to certify n=2 as a boundary control; its lower bound remains below iid. This was not a candidate defect or repair. The candidate only requires n>=3, where its simpler generator-interval disjointness proof is sound.
+
+2026-10-17T21:02:17.640922+00:00 — 100% complete. Mathematical PASS, no candidate repair. Complete standalone adversarial proof and source inspection written. Exact stdlib verifier: 57,837 counted requirements per mode, 17 adverse controls; normal/-O output bytes identical; --force-failure exits 1 in both modes. All ten current input pins still match. Strict authored-file SHA manifest prepared; private source bodies and renders excluded. No Git state, originals, PR, publication or tracker actions.
+
+2026-10-17T21:02:55.404400+00:00 — 90% complete for requested diagnostic refresh. Root requested explicit open-interior descending-membership expression for an ascending control point: use its generator step > 1-1/(n-1), rather than the reflected-coordinate expression. Updated this isolated finite-control predicate; all candidate inputs and mathematical claims unchanged. Reruns and refreshed manifest remain.
+
+2026-10-17T21:03:10.830945+00:00 — 100% complete for diagnostic refresh. Corrected open-interior membership predicate passed normal/-O with the same 57,837 counted requirements, 17 adverse controls and byte-identical 2,094-byte result JSON. Both forced-failure runs exit 1. All ten original input fingerprints still match. Code/report/run receipt/log hashes refreshed globally in the nine-file manifest. Mathematical PASS and all exact values unchanged; no candidate repair.
