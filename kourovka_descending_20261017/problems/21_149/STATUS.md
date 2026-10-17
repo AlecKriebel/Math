@@ -1,8 +1,8 @@
 # Kourovka 21.149
 
-Updated 2026-10-17T20:41:37.119686+00:00. Status: **solved_verified**; publication not yet performed.
+Updated 2026-10-17T20:41:37.119686+00:00. Status: **published**.
 
-Best-guess completion toward the complete problem research/publication workflow: **95%**. This estimate is not a probability of correctness or priority.
+Best-guess completion toward the complete problem research/publication workflow: **100%**. This estimate is not a probability of correctness or priority.
 
 ## Exact outcome
 
@@ -18,4 +18,4 @@ Initial and fresh proof reviews and two sequential independent full-package revi
 
 ## Publication
 
-Not yet uploaded. Zenodo publication, DOI confirmation, and Google Sheets save/readback remain required before the status can become **published**.
+Published 2026-10-17. DOI: https://doi.org/10.5281/zenodo.23441890. Permanent record: https://zenodo.org/records/23441890. Public PDF and source archive downloaded and verified byte-for-byte against the final reviewed package. DOI resolves with HTTP 200. Tracker saved and verified at 'Math Puzzles'!A157:D157; existing four-column structure and formatting retained.

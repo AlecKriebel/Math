@@ -43,3 +43,11 @@ The first independent full-package review passed with no substantive objections.
 ## 2026-10-17T20:41:37.119686+00:00 — Complete proof and package pass final fresh review (95%)
 
 Second fresh full-package review completed with no substantive objections. Reviewer independently reproduced primary pp. 538, 542 and 543, reconstructed the arbitrary-embedding proof, checked the prior Lean and September theorem scopes, reran exact checks, rebuilt the PDF, and inspected all six pages. A separate centralizer adversary also found no mathematical objection. The reviewed PDF and TeX hashes are unchanged. Status is now solved_verified; priority is apparently original with explicitly bounded literature access, not certified first discovery. No human review or formal verification is claimed. Publication and tracker are still pending. Adding the final review report to the reproducibility archive changes only the documentary bundle; the reviewed mathematical source and PDF remain fixed.
+
+## 2026-10-17T20:43:59.987236+00:00 — 21.149 published and tracked (100%); descending research continues
+
+Complete corrected 21.149 resolution published as **10.5281/zenodo.23441890**, https://zenodo.org/records/23441890. DOI resolves HTTP 200. Zenodo tool verifies exact metadata and file checksums; independent public downloads of both files match the final reviewed package byte-for-byte. Google Workspace CLI duplicate check was clear, then saved the publication at Math Puzzles!A157:D157. Exact row readback and existing formatting were verified. Status is published, with the stated bounded originality and no-human-review limitations.
+
+Final prepublication checkpoint pushed to main as 03610486565c0031ccb0a9d436abfd3353622964, without changing the shared checkout branch/index or unrelated files. Publication receipts are being preserved in the next scoped checkpoint.
+
+Official starred solutions exclude 21.148 and 21.147. Next eligible candidate is 21.146. A September prior manuscript claims every finitely presented group embeds in one F_infinity group, which would settle the whole question if sound; priority/validity audit starts at 5%. No new result is asserted for it.
