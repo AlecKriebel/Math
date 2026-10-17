@@ -1,0 +1,76 @@
+{
+  "task": "Grushin converse Bessel-pair criterion",
+  "kind": "source_formulation_acceptance_contract",
+  "mathematical_passes": 0,
+  "mathematical_resolution": null,
+  "source_fixed": {
+    "geometry": "alpha=1; m=1; x in R^n; t in R; Q=n+2",
+    "domain": "rho-gauge ball B_R minus the origin; 0<R<=infinity",
+    "test_class": "C_c^infinity(B_R minus {0})",
+    "weights": "V,W are real C^1 radial profiles on (0,R); V>=0 in cited inequalities; no explicit W sign",
+    "ode": "(r^(Q-1) V f_prime)_prime + r^(Q-1) W f = 0",
+    "ode_interval": "entire (0,R)",
+    "ode_positivity": "f>0",
+    "ode_coefficient_W": 1
+  },
+  "branches": [
+    {
+      "id": "H_G",
+      "statement": "full-gradient Hardy inequality implies B_Q",
+      "formula_status": "source-fixed",
+      "mathematical_status": "unattempted"
+    },
+    {
+      "id": "H_rho",
+      "statement": "radial-gradient Hardy inequality for all tests implies B_Q",
+      "formula_status": "source-fixed",
+      "mathematical_status": "unattempted"
+    },
+    {
+      "id": "HR_source_f",
+      "statement": "source Hardy-Rellich inequality with f already a positive ODE solution",
+      "formula_status": "source-fixed; cannot serve as noncircular necessity premise",
+      "mathematical_status": "no necessity theorem asserted"
+    },
+    {
+      "id": "HR_core",
+      "statement": "remainder-free core implies B_Q",
+      "formula_status": "proposed; requires explicit selection and side-condition choice",
+      "mathematical_status": "unattempted"
+    },
+    {
+      "id": "HR_independent_g",
+      "statement": "existence of one independent positive g satisfying the remainder inequality for all tests implies B_Q",
+      "formula_status": "proposed; quantifiers and regularity unresolved",
+      "mathematical_status": "unattempted"
+    }
+  ],
+  "unresolved_dimensions": [
+    "v1 n>=1/Q>=3",
+    "v2/v3 n>=2/Q>=4"
+  ],
+  "unresolved_weight_classes": [
+    "literal V>=0 including zeros",
+    "regular V>0",
+    "W real versus W>=0 versus W>0"
+  ],
+  "other_gates": [
+    "V second derivative convention for Hardy-Rellich side condition",
+    "classical versus flux-classical or weak positive ODE solution when V vanishes",
+    "open endpoints versus added endpoint integrability or boundary conditions",
+    "Hardy-Rellich axis and finite-energy convention",
+    "compactly supported derivatives versus arbitrary one-dimensional tests",
+    "fixed coefficient one and full-interval positive solution",
+    "Unresolved future proof question, not a source fact: density of compactly supported radial derivatives of zero ordinary integral in the relevant weighted one-dimensional energy space under S_Q[V]>=0."
+  ],
+  "acceptance": "A result is accepted only for its explicitly frozen branch. Full source-question resolution requires coverage or explicit disposition of all remaining source-relevant branches.",
+  "excluded_full_resolution_claims": [
+    "circular ODE-solution premise",
+    "degenerate-only objection presented as settling the regular problem",
+    "unannounced deletion of the Hardy-Rellich remainder or correction",
+    "unannounced restriction to Q>=4",
+    "positive solution only for cW at unspecified c>0",
+    "only local or truncated-interval existence",
+    "numerical or finite-test evidence for a universal inequality"
+  ]
+}
