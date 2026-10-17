@@ -1,0 +1,27 @@
+# Exact theorem dependencies
+
+## Source target and prior results
+
+- Target: Praeger, joint with Dixon and Seress, OWR 37/2016, printed pp.2160–2161. The intended modified target is C_G(t)'', with independent uniform samples and separate fixed-eigenspace marginals. Its informal singular description of that subgroup does not replace the actual product calculation.
+- Natural family convention and asymptotics: Leedham-Green–O’Brien, *Constructive recognition of classical groups in odd characteristic*, author-manuscript Sections 1.1–1.2, pp.2–3, and Section 2.1, p.7. DPS’s introduction independently lists the same families. These identify the source’s context; the OWR contribution itself does not print a complete family list or numerical confidence threshold.
+- Credited GL marginal: Dixon–Praeger–Seress Theorem 1.1 and Remark 1.2, author-manuscript p.4; uniform GL sampling, n≥700, κ=0.0002.
+- Credited GU marginal and GL/GU generation: Glasby–Praeger–Roney-Dougal, arXiv 1812.01362v2, Theorems 1–2, p.2; odd q, sufficiently large dimension, independent nearly-uniform samples. Uniform samples qualify. Their full proofs are invoked as literature, not claimed newly re-audited. Their Theorem 3 or Theorem 4 is not needed to claim a new all-family runtime bound.
+- SL/SU transfer: the elementary proof in the [integrated theorem](README.md) and [scope acceptance](audits/SCOPE_ACCEPTANCE.md), under determinant-surjectivity of C_D(t). This is necessary to pass from the actual full-group sampling law to the special-group law.
+
+## Authored mathematical chain
+
+- [Symplectic marginal](proofs/SYMPLECTIC_MARGINAL_PROOF.md), Sections 1–5: exact graph/fiber measure → spectral relation → distinguished 2-part factors → squarefree remainder count → separate balance intervals. [Audit](audits/SYMPLECTIC_AUDIT.md), Sections 1–5, verifies each step. Section 6 explains why the natural separable-polynomial linear count cannot be copied.
+- [Orthogonal marginal](proofs/ORTHOGONAL_MARGINAL_PROOF.md), Sections 1–7: O/SO/Ω orbit equality → graph isometry and codimension-zero discriminant constraints → actual orthogonal self-adjoint class sum → spectrum → determinant signs → all four character sectors → intervals. [Audit](audits/ORTHOGONAL_AUDIT.md), Sections 1–7, independently verifies these steps. Taylor’s form, spinor, and order facts are cited; each subsequent orbit weight is explicitly derived.
+- [Replacement class generation](proofs/CLASS_GENERATION.md), Sections 3–4: full-isometry subspace counts and Ω-class equality → at most 13q^(−11e) reducibility error for e≥384. [Independent subspace proof](proofs/SUBSPACE_LEMMA.md) also proves the sufficient weaker exponent at e≥192. Both include maximal singular-space and split-orbit issues.
+- Same replacement, Section 5: inspected Burness Theorem 1, Corollary 1 and Definitions 1–2 → non-subspace membership bound q^(−e²/15); inspected Liebeck–Pyber–Shalev Theorem 1.1 → at most Cq^(e²) actual maximal subgroups; 192 independent samples → error at most Cq^(−59e²/5). [Supporting non-subspace lemma](proofs/NON_SUBSPACE_LEMMA.md). No numerical C is supplied by this reader.
+- Same replacement, Section 6: |Z(J)|≤2 and perfectness yield natural generation from simple-quotient generation; Section 7 makes the substitution. [Independent replacement audit](audits/CLASS_GENERATION_AUDIT.md), Sections 1–5, verifies the cited scope, class sequences, central fibers, thresholds, and substitution.
+- [Bridge](proofs/GENERATION_BRIDGE.md), Section 3: exact half-mass square-discriminant refinement places both orthogonal restrictions in Ω. Section 4: output invariance and orbit equality establish conditional product-class laws. Section 5: perfectness and abelian factor quotients prove C'=C''=L_A×L_B. Sections 6–7 and 9: Goursat on simple quotients, central-cover lifting, scalar centralizers, and strong-class size defeat a fixed subdirect graph. Section 8: disjoint blocks, first-success law, union bound, and repetition. [Bridge audit](audits/GENERATION_BRIDGE_AUDIT.md), Sections 2–7, verifies these active deductions.
+- [Scope acceptance](audits/SCOPE_ACCEPTANCE.md) checks family interpretation, prior-theorem boundaries, confidence quantifiers, and the necessary GL→SL/GU→SU transfer. It provides the explicit Sp₄ small-dimensional counterexample.
+
+## Replaced and excluded dependencies
+
+Only the bridge’s provisional CR input in Section 2 is replaced. The replacement is the sufficient strong-class theorem, not an assertion of its broader balance interval. The full historical conditional text is preserved once, with a front notice. Original PS2011 full-text and exact Ω scope remain unverified, and are no longer prerequisites of this proof.
+
+The inspected 2013 survey is historical support only. The literal SO-generation sentence in a later DPS introduction is not an input: classes contained in the proper subgroup Ω cannot generate SO. The independent audit gives an infinite counterexample family. Neither a generalized-Fitting convention nor an unverified supergroup theorem is used to cure this problem.
+
+The mathematical result depends on the stated published theorems and standard classical-group facts. It is not a new proof of Burness’s entire series, the maximal-subgroup theorem, or the credited GL/GU results. The [source register](metadata/SOURCES.json) distinguishes active inputs, contextual sources, and bypassed routes.
