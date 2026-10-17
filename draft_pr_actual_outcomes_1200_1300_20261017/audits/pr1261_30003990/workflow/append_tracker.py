@@ -64,7 +64,9 @@ def main():
   # Record intent before the one external mutation. A lost response is recovered
   # by the exact DOI/problem search above, never by blindly appending again.
   if old.exists():raise RuntimeError("Earlier append intent has no exact matching row; reconcile before retrying")
-  save(old,intent)
+  try:
+   with old.open('x') as stream:stream.write(json.dumps(intent,indent=2)+'\n')
+  except FileExistsError:raise RuntimeError('Concurrent/earlier append intent exists; reconcile read-only')
   result=call(["spreadsheets","values","append"],{"spreadsheetId":SID,"range":full,"valueInputOption":"RAW","insertDataOption":"INSERT_ROWS","includeValuesInResponse":True}, {"majorDimension":"ROWS","values":[row]})
   save(out/"APPEND_RECEIPT.json",result)
   updated=result["updates"]["updatedRange"]

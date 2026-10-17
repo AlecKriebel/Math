@@ -8,7 +8,7 @@ from pathlib import Path
 import contextlib,copy,datetime,hashlib,importlib.util,io,json,os,shutil,subprocess,sys,tempfile,types,zipfile
 ROOT=Path(__file__).resolve().parent
 NAMES=['prepare_package.py','build_package.py','compile_note.py','verification/verify.py','append_tracker.py','update_pr_publication.py','check_public_downloads.py','workflow_regression.py']
-DEPLOY={name:('verification_verify.py' if name=='verification/verify.py' else name) for name in NAMES}
+DEPLOY={name:(('verification_verify.py' if (ROOT/'verification_verify.py').exists() else name) if name=='verification/verify.py' else name) for name in NAMES}
 DEPLOY['deposit_coordinator.py']='deposit_coordinator.py'
 
 def need(value,message):
@@ -72,14 +72,14 @@ def fixture(folder):
     # An actual release must obtain different fresh reviewers. These fabricated
     # records are fixture data in ignored scratch and confer no approval.
     u=load(pub/'update_pr_publication.py');required=[pub/name for name in NAMES]+[pub/name for name in ['deposit_coordinator.py',build['pdf']['path'],build['verification_zip']['path'],'zenodo-deposit.json','manuscript/main.tex','COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json','BUILD_RECEIPT.json']]+[audit/name for name in ['CURRENT_PR1261_CONTEXT.json','MATH_GATE.json','PRIORITY_ADJUDICATION.json','SUBMITTED_SNAPSHOT.json']]
-    records=[]
+    required.append(u.SHARED_KIT);records=[]
     for i in [1,2]:
         review=audit/'reviews'/('synthetic_final_'+str(i));review.mkdir();(review/'REPORT.md').write_text('SYNTHETIC REVIEW FIXTURE ONLY; NOT AN ACTUAL REVIEW\n')
         save(review/'INPUT_FREEZE.json',{'synthetic_fixture_only':True,'files':[{'path':str(path),**binding(path)} for path in required],'external_readonly_inputs':[]})
         save(review/'VERDICT.json',{'schema':'math-pr1261-whole-package-review-v1','status':'CLEAN','actual_review':True,'synthetic_fixture_only':True,'reviewer_id':'fixture-'+str(i),'pr':1261,'problem_id':30003990,'original_head':v.ORIGINAL,'current_context_sha256':sha(audit/'CURRENT_PR1261_CONTEXT.json'),'input_freeze_sha256':sha(review/'INPUT_FREEZE.json'),'at_utc':'2026-10-17T21:00:0'+str(i)+'Z'})
         records.append({'status':'CLEAN','actual_review':True,'reviewer_id':'fixture-'+str(i),**{key:('../reviews/'+review.name+'/'+filename) for key,filename in [('report','REPORT.md'),('verdict','VERDICT.json'),('input_freeze','INPUT_FREEZE.json')]},**{key+'_sha256':sha(review/filename) for key,filename in [('report','REPORT.md'),('verdict','VERDICT.json'),('input_freeze','INPUT_FREEZE.json')]}})
     gate={'schema':'math-preprint-final-review-gate-v1','pr':1261,'problem_id':30003990,'original_head':v.ORIGINAL,'status':'pass','workflow':{name:sha(pub/name) for name in NAMES},'deposit_coordinator_sha256':sha(pub/'deposit_coordinator.py'),'pdf_sha256':sha(pub/build['pdf']['path']),'verification_zip_sha256':sha(pub/build['verification_zip']['path']),'metadata_sha256':sha(pub/'zenodo-deposit.json'),'source_sha256':sha(pub/'manuscript/main.tex'),'current_context_sha256':sha(audit/'CURRENT_PR1261_CONTEXT.json'),'reviews':records,'latest_review':records[-1],'synthetic_fixture_only':True}
-    save(pub/'FINAL_REVIEW_GATE.json',gate);u.validate_workflow_gate(gate)
+    gate['shared_kit_sha256']=sha(u.SHARED_KIT);save(pub/'FINAL_REVIEW_GATE.json',gate);u.validate_workflow_gate(gate)
     return {'audit':audit,'pub':pub,'v':v,'context':context,'snapshot':snapshot,'build':build,'gate':gate,'env':env}
 
 def context_and_portable_controls(f):
@@ -110,10 +110,30 @@ def context_and_portable_controls(f):
 
 def review_controls(f):
     pub=f['pub'];u=load(pub/'update_pr_publication.py');gate=f['gate'];rejected=[]
-    for label,change in [('empty_workflow',lambda x:x.update(workflow={})),('missing_eighth_script',lambda x:x['workflow'].pop('workflow_regression.py')),('wrong_script_hash',lambda x:x['workflow'].update({'append_tracker.py':'0'*64})),('extra_equivalent_path',lambda x:x['workflow'].update({'./append_tracker.py':'0'*64})),('wrong_coordinator',lambda x:x.update(deposit_coordinator_sha256='0'*64)),('wrong_pdf',lambda x:x.update(pdf_sha256='0'*64)),('one_review',lambda x:x.update(reviews=x['reviews'][:1])),('nonactual_review',lambda x:x['reviews'][0].update(actual_review=False)),('wrong_verdict_hash',lambda x:x['reviews'][0].update(verdict_sha256='0'*64)),('outside_report',lambda x:x['reviews'][0].update(report='../SUBMITTED_SNAPSHOT.json')),('stale_latest',lambda x:x.update(latest_review=x['reviews'][0]))]:
+    for label,change in [('empty_workflow',lambda x:x.update(workflow={})),('missing_eighth_script',lambda x:x['workflow'].pop('workflow_regression.py')),('wrong_script_hash',lambda x:x['workflow'].update({'append_tracker.py':'0'*64})),('extra_equivalent_path',lambda x:x['workflow'].update({'./append_tracker.py':'0'*64})),('wrong_coordinator',lambda x:x.update(deposit_coordinator_sha256='0'*64)),('wrong_shared_kit',lambda x:x.update(shared_kit_sha256='0'*64)),('wrong_pdf',lambda x:x.update(pdf_sha256='0'*64)),('one_review',lambda x:x.update(reviews=x['reviews'][:1])),('nonactual_review',lambda x:x['reviews'][0].update(actual_review=False)),('wrong_verdict_hash',lambda x:x['reviews'][0].update(verdict_sha256='0'*64)),('outside_report',lambda x:x['reviews'][0].update(report='../SUBMITTED_SNAPSHOT.json')),('stale_latest',lambda x:x.update(latest_review=x['reviews'][0]))]:
         bad=copy.deepcopy(gate);change(bad);rejected.append(reject(lambda:u.validate_workflow_gate(bad),label))
     verdict=f['audit']/'reviews/synthetic_final_2/VERDICT.json';old=verdict.read_bytes();obj=json.loads(old);obj['status']='FAIL';save(verdict,obj);bad=copy.deepcopy(gate);bad['reviews'][1]['verdict_sha256']=sha(verdict);bad['latest_review']=bad['reviews'][1]
     rejected.append(reject(lambda:u.validate_workflow_gate(bad),'actual_file_nonclean_despite_clean_gate'));verdict.write_bytes(old)
+    return rejected
+
+def document_controls(f):
+    pub=f['pub'];cp=f['audit']/'CURRENT_PR1261_CONTEXT.json';b=load(pub/'build_package.py');os.environ['PATH']=f['env']['PATH'];b.document_bindings();rejected=[]
+    for label in ['failed_compile','missing_actual_compile_time','wrong_epoch','wrong_compile_source','wrong_compile_pdf','partial_visual','wrong_layout_source','wrong_layout_pdf','missing_actual_layout_time','wrong_positive_page_count','partial_page_indices']:
+        compiled_path=pub/'COMPILE_RECEIPT.json';layout_path=pub/'LAYOUT_VERIFICATION.json';originals=[path.read_bytes() for path in [cp,compiled_path,layout_path]];context=json.loads(originals[0]);compiled=json.loads(originals[1]);layout=json.loads(originals[2])
+        if label=='failed_compile':compiled['returncode']=1
+        elif label=='missing_actual_compile_time':compiled.pop('at_utc')
+        elif label=='wrong_epoch':compiled['source_date_epoch']='0'
+        elif label=='wrong_compile_source':compiled['source_sha256']='0'*64
+        elif label=='wrong_compile_pdf':compiled['pdf_sha256']='0'*64
+        elif label=='partial_visual':layout['all_pages_visually_inspected']=False
+        elif label=='wrong_layout_source':layout['source_sha256']='0'*64
+        elif label=='wrong_layout_pdf':layout['pdf_sha256']='0'*64
+        elif label=='missing_actual_layout_time':layout.pop('at_utc')
+        elif label=='wrong_positive_page_count':context['expected_pdf_pages']=4;layout['pages']=4;layout['page_indices_inspected']=[1,2,3,4]
+        else:layout['page_indices_inspected']=[1,2]
+        save(compiled_path,compiled);save(layout_path,layout);context['document_bindings']['compile_receipt_sha256']=sha(compiled_path);context['document_bindings']['layout_receipt_sha256']=sha(layout_path);save(cp,context)
+        rejected.append(reject(b.document_bindings,label))
+        for path,data in zip([cp,compiled_path,layout_path],originals):path.write_bytes(data)
     return rejected
 
 def coordinator_case(f,case):
@@ -218,11 +238,15 @@ def update_controls(f,pubrecord,tracker):
 def worker():
     scratch=ROOT/'_local';scratch.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='synthetic-offline-',dir=scratch) as tmp:
-        base=Path(tmp);f=fixture(base/'main');context=context_and_portable_controls(f);reviews=review_controls(f);p,t,public=publication_and_tracker_controls(f);updates=update_controls(f,p,t)
+        base=Path(tmp);f=fixture(base/'main');context=context_and_portable_controls(f);documents=document_controls(f);reviews=review_controls(f);p,t,public=publication_and_tracker_controls(f);updates=update_controls(f,p,t)
         coordinator=[]
         for case in ['successful_publish','normalization_between_inspect_and_POST','uncertain_then_published_recovery']:
             other=fixture(base/case);coordinator.append(coordinator_case(other,case))
-        return {'status':'PASS','context_and_portable':context,'review_gate_rejections':reviews,'tracker_and_public':public,'PR_update':updates,'deposit_coordinator_actual_kit_mocked_clients':coordinator,'scope':'Synthetic fixture metadata/gates/compiler/pdfinfo/reviewer evidence only. No real mathematical/priority adjudication, actual PDF compilation/rendering, service integration, Git mutation, staging/upload/publication/tracker append or PR change occurred.'}
+        current_metadata={'scope':'Actual current metadata absent; only eleven-field synthetic metadata was tested.','sha256':None}
+        if (ROOT/'zenodo-deposit.json').exists():
+            wanted=json.loads((ROOT/'zenodo-deposit.json').read_text())['metadata'];v=load(ROOT/DEPLOY['verification/verify.py']);v.metadata_contract(wanted);m=load(ROOT/'check_public_downloads.py');actual=copy.deepcopy(wanted);actual['resource_type']={'type':actual.pop('upload_type'),'subtype':actual.pop('publication_type')};actual['license']={'id':actual['license']};fields=m.verify_public_metadata(actual,wanted)
+            current_metadata={'scope':'Actual current local metadata projected and compared offline; no public API/record is implied.','sha256':sha(ROOT/'zenodo-deposit.json'),'fields':fields}
+        return {'status':'PASS','context_and_portable':context,'document_assurance_rejections':documents,'review_gate_rejections':reviews,'tracker_and_public':public,'current_local_metadata_projection':current_metadata,'PR_update':updates,'deposit_coordinator_actual_kit_mocked_clients':coordinator,'scope':'Synthetic fixture metadata/gates/compiler/pdfinfo/reviewer evidence only, except any explicitly reported actual local metadata projection. No real mathematical/priority adjudication, actual PDF compilation/rendering, service integration, Git mutation, staging/upload/publication/tracker append or PR change occurred.'}
 
 def main():
     if '--worker' in sys.argv:print(json.dumps(worker(),sort_keys=True));return

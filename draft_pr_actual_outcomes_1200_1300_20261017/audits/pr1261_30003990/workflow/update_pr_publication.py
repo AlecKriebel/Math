@@ -4,6 +4,7 @@ from pathlib import Path
 import datetime,hashlib,json,runpy,shutil,subprocess,zipfile
 ROOT=Path(__file__).resolve().parent
 REPO=Path('/Users/alec/Documents/Math')
+SHARED_KIT=REPO/'zenodo_deposit_tool/zenodo.py'
 BASE='unsolved_math_prioritization/attempts/30003990'
 BRANCH='convex-body-sos-30003990-reviewed'
 ORIGINAL='d1ecd7c4368f4909653a44db0c9ca4a5463e6552'
@@ -78,6 +79,7 @@ def validate_workflow_gate(gate):
     for name in REQUIRED_WORKFLOW:
         if digest(ROOT/name)!=gate['workflow'][name]:raise RuntimeError('Reviewed workflow drift '+name)
     if digest(ROOT/'deposit_coordinator.py')!=gate.get('deposit_coordinator_sha256'):raise RuntimeError('Reviewed deposit coordinator drift')
+    if digest(SHARED_KIT)!=gate.get('shared_kit_sha256'):raise RuntimeError('Reviewed read-only shared kit drift')
     for key,raw in [('pdf_sha256','Convex_Body_SOS_Density_Note_v1.0.pdf'),('verification_zip_sha256','Convex_Body_SOS_Density_Verification_v1.0.zip'),('metadata_sha256','zenodo-deposit.json'),('source_sha256','manuscript/main.tex'),('current_context_sha256','../CURRENT_PR1261_CONTEXT.json')]:
         if digest(ROOT/raw)!=gate.get(key):raise RuntimeError('Current reviewed artifact drift '+raw)
     context=current_context()
@@ -87,8 +89,8 @@ def validate_workflow_gate(gate):
     latest=gate.get('latest_review',{})
     if latest.get('status')!='CLEAN':raise RuntimeError('Fresh final clean review required')
     allowed=(ROOT.parent/'reviews').resolve()
-    previous=''
-    required={str((ROOT/name).resolve()) for name in REQUIRED_WORKFLOW}|{str((ROOT/raw).resolve()) for raw in ['deposit_coordinator.py','Convex_Body_SOS_Density_Note_v1.0.pdf','Convex_Body_SOS_Density_Verification_v1.0.zip','zenodo-deposit.json','manuscript/main.tex','COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json','BUILD_RECEIPT.json','../CURRENT_PR1261_CONTEXT.json','../MATH_GATE.json','../PRIORITY_ADJUDICATION.json','../SUBMITTED_SNAPSHOT.json']}
+    previous=None
+    required={str((ROOT/name).resolve()) for name in REQUIRED_WORKFLOW}|{str((ROOT/raw).resolve()) for raw in ['deposit_coordinator.py','Convex_Body_SOS_Density_Note_v1.0.pdf','Convex_Body_SOS_Density_Verification_v1.0.zip','zenodo-deposit.json','manuscript/main.tex','COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json','BUILD_RECEIPT.json','../CURRENT_PR1261_CONTEXT.json','../MATH_GATE.json','../PRIORITY_ADJUDICATION.json','../SUBMITTED_SNAPSHOT.json']}|{str(SHARED_KIT.resolve())}
     for record in sequence:
         if record.get('status')!='CLEAN' or record.get('actual_review') is not True:raise RuntimeError('Literal actual CLEAN reviewer evidence required')
         checked={}
@@ -100,8 +102,9 @@ def validate_workflow_gate(gate):
             checked[key]=path
         verdict=json.loads(checked['verdict'].read_text())
         if verdict.get('schema')!='math-pr1261-whole-package-review-v1' or verdict.get('status')!='CLEAN' or verdict.get('actual_review') is not True or verdict.get('reviewer_id')!=record.get('reviewer_id') or verdict.get('pr')!=1261 or verdict.get('problem_id')!=30003990 or verdict.get('original_head')!=ORIGINAL or verdict.get('current_context_sha256')!=gate['current_context_sha256'] or verdict.get('input_freeze_sha256')!=record['input_freeze_sha256']:raise RuntimeError('Current actual whole-package CLEAN verdict required')
-        at=verdict.get('at_utc','')
-        if not at or at<=previous:raise RuntimeError('Strictly sequential actual review timestamps required')
+        try:at=datetime.datetime.fromisoformat(verdict.get('at_utc','').replace('Z','+00:00'))
+        except (ValueError,AttributeError):raise RuntimeError('Actual ISO UTC review timestamp required')
+        if at.tzinfo is None or at.utcoffset()!=datetime.timedelta(0) or (previous is not None and at<=previous):raise RuntimeError('Strictly sequential actual UTC review timestamps required')
         previous=at
         freeze=json.loads(checked['input_freeze'].read_text());bound=set()
         for entry in freeze.get('files',[])+freeze.get('external_readonly_inputs',[]):

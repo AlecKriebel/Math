@@ -31,7 +31,7 @@ def main():
     shared=runpy.run_path(str(ROOT/'append_tracker.py'))
     identity=shared['validate_publication_identity'](pub,wanted['title'])
     raw=fetch('https://zenodo.org/api/records/'+str(pub['id']),1000000);actual=json.loads(raw)
-    if int(actual['id'])!=pub['id'] or actual['doi']!=pub['doi'] or actual['metadata']['doi']!=pub['doi']:raise RuntimeError('Public record identity mismatch')
+    if type(actual.get('id')) is not int or actual['id']!=pub['id'] or actual['doi']!=pub['doi'] or actual['metadata']['doi']!=pub['doi']:raise RuntimeError('Public record identity mismatch')
     checked=verify_public_metadata(actual['metadata'],wanted)
     expected={build[k]['path']:build[k] for k in ['pdf','verification_zip']}
     if set(f['key'] for f in actual['files'])!=set(expected) or len(actual['files'])!=len(expected):raise RuntimeError('Public file inventory mismatch')

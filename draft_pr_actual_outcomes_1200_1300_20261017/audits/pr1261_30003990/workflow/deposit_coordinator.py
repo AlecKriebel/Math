@@ -10,6 +10,10 @@ def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def require(c,m):
  if not c:raise RuntimeError(m)
 def write(p,d):p.write_text(json.dumps(d,indent=2)+'\n')
+def write_intent(p,d):
+ try:
+  with p.open('x') as stream:stream.write(json.dumps(d,indent=2)+'\n')
+ except FileExistsError:raise RuntimeError('Prior attempt intent exists; reconcile read-only')
 def authenticate_release():
  g=json.loads((P/'FINAL_REVIEW_GATE.json').read_text());runpy.run_path(str(P/'update_pr_publication.py'))['validate_workflow_gate'](g)
  for n,k in [('Convex_Body_SOS_Density_Note_v1.0.pdf','pdf_sha256'),('Convex_Body_SOS_Density_Verification_v1.0.zip','verification_zip_sha256'),('zenodo-deposit.json','metadata_sha256'),('manuscript/main.tex','source_sha256')]:require(digest(P/n)==g[k],'Reviewed release drift '+n)
@@ -65,7 +69,7 @@ def execute(action,kit=None):
   require(not any((P/n).exists() for n in ['STAGE_RECEIPT.json','STAGE_INTENT.json','PUBLISH_INTENT.json','PUBLICATION_RECEIPT.json']),'Earlier stage/publication state exists; reconcile saved ID read-only')
   _,saved=kit.local_state((P/'zenodo-deposit.json').resolve(),'production');require(not saved,'Kit draft exists; inspect saved ID read-only')
   live_preflight();require(authenticate_release()==g,'Release gate changed during preflight')
-  write(P/'STAGE_INTENT.json',{'metadata_sha256':g['metadata_sha256'],'pdf_sha256':g['pdf_sha256'],'verification_zip_sha256':g['verification_zip_sha256'],'policy':'One stage attempt; uncertain creation requires saved-ID/account read-only reconciliation, never blind restaging'})
+  write_intent(P/'STAGE_INTENT.json',{'metadata_sha256':g['metadata_sha256'],'pdf_sha256':g['pdf_sha256'],'verification_zip_sha256':g['verification_zip_sha256'],'policy':'One stage attempt; uncertain creation requires saved-ID/account read-only reconciliation, never blind restaging'})
   d=call_kit(kit,'stage');validate_summary(d,kit,state='ready_to_publish');write(P/'STAGE_RECEIPT.json',d);return d
  if action in {'inspect','inspect-doi'}:
   d=call_kit(kit,'inspect',check_doi=action=='inspect-doi');validate_summary(d,kit)
@@ -85,7 +89,7 @@ def execute(action,kit=None):
   return d
  require(not receipt.exists(),'Saved publication not confirmed by server; reconcile read-only');require(not intent.exists(),'Prior attempt unresolved; inspect known ID, never retry blindly');validate_summary(d,kit,known,'ready_to_publish');live_preflight()
  require(authenticate_release()==g,'Release gate changed during preflight')
- write(intent,{'id':known,'metadata_sha256':g['metadata_sha256'],'pdf_sha256':g['pdf_sha256'],'verification_zip_sha256':g['verification_zip_sha256'],'inspection_sha256':digest(P/'STAGE_INSPECT.json'),'policy':'One attempt; reconcile known ID read-only on uncertain outcome'})
+ write_intent(intent,{'id':known,'metadata_sha256':g['metadata_sha256'],'pdf_sha256':g['pdf_sha256'],'verification_zip_sha256':g['verification_zip_sha256'],'inspection_sha256':digest(P/'STAGE_INSPECT.json'),'policy':'One attempt; reconcile known ID read-only on uncertain outcome'})
  # kit.run performs another GET and our strict verify BEFORE its publish POST.
  d=call_kit(kit,'publish',known);validate_summary(d,kit,known,'published');write(receipt,d);return d
 
