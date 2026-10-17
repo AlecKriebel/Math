@@ -1,0 +1,69 @@
+# Whole-package adversarial review, round 1
+
+**Verdict: PASS for the qualified historical-counterexample theorem note. No concrete mathematical, source-attribution, reproducibility, metadata, or presentation defect requiring a correction was found in the reviewed current bytes.** This is a new candidate-aware review. It does not certify historical firstness, present openness, external peer review, formal verification, or discovery independence.
+
+The assigned bounded review is complete (100%). No candidate/publication file, Git state, PR, release, Zenodo record, sheet, or other research effort was changed. No person was contacted. Executions and corruptions occurred only in this review's ignored extraction/control folders.
+
+## Frozen objects and acceptance scope
+
+| Current object | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `Tree_Five_List_Note_v1.0.pdf` | 52194 | `2b98b7f4129114bf98434ae285a67736976cb4aa3d49b56298c2ee7fec5c6f6f` |
+| `Tree_Five_List_Verification_v1.0.zip` | 132313 | `65cf534be55648b0d501a3af2834b8397f8f18e8680804ba96f7d405876c3cbb` |
+| `manuscript/main.tex` | 9402 | `4202d9c50e4be6677fded9db501658df62491ee9ef5b0e79d0cccaa751d0a11c` |
+
+The root manifest SHA-256 is `3d4efc6ee77dc0eacdfe937c55b60905598dbbf3d13a0c790b819b282bc3b6b4`. The build receipt correctly binds it and both deliverables. The archived and external TeX sources are byte-identical.
+
+The exact mathematical claim reviewed is: with positive-integer labels, adjacent gap at least 2 and distance-two inequality, the displayed finite simple tree has initial-segment ordinary palette minimum 5 (zero-based span 4) and arbitrary-list parameter 6; each of the six original leaves may independently receive one outward path of any nonnegative finite length while preserving both exact values. The historical claim is incompatibility with Kohl's printed 2006 universal equality. Novelty and the conjecture's status immediately before this work are expressly outside acceptance.
+
+## Independent mathematical checks
+
+The forcing proof is sound. At each of b and d, three A-list neighbors need distinct labels, eliminating center labels 2, 3, and 4. Their distance-two constraint forces opposite endpoint values 1 and 5, and c is then 3. Reversing the spine preserves all lists, so it is valid to orient the argument with b=1. Vertex a is 4 or 5; its two B-list leaves are respectively both forced to 6 or both to 3 after avoiding b's label. Their mutual distance-two constraint supplies the contradiction. The reflection concerns vertices, not a label reflection falsely assumed to preserve B.
+
+The displayed ordinary witness passes every edge and distance-two constraint. The degree-three lower bound on a common four-palette is sufficient: no center label leaves three mutually distinct admissible neighbor labels. Failure of one five-list assignment implies list number at least six by monotonicity under choosing smaller sublists.
+
+The universal six-list guarantee has a complete analytic proof. In breadth-first order, a nonroot vertex has one earlier neighbor (its parent), forbidding at most three integer values. Its earlier distance-two vertices are exactly earlier siblings and a possible grandparent, all in the parent's other neighbor set; there are at most Delta-1. Thus at most Delta+2 distinct list entries are forbidden. This count holds at the first/last child, for a root parent, when Delta is small, and with overlapping forbidden values. The singleton root has no constraint. For Delta=3 every arbitrary six-element list leaves a choice. The seeded numerical checks are not the proof of this quantifier.
+
+The entire independent pendant-path family is covered analytically. At a new vertex on any appended path, the previously labeled vertices within distance two are its parent and grandparent, forbidding at most four values of [5]. The first new vertex has the old leaf as parent and that leaf's old neighbor as grandparent, so no base step is omitted. Two new vertices on distinct appended paths have distance at least 1+2+1=4. Length zero at any or all of the six leaves is harmless. Original distances stay unchanged, the original degree-three vertices survive, and no degree exceeds three. Restriction to the original obstruction gives the list lower bound for arbitrary new five-lists; the same universal tree bound gives six. Increasing one length proves unbounded diameter. No bounded vector enumeration is used to establish these statements.
+
+The supporting rank-compression assertion has the correct direction. If distinct union labels are x_1<...<x_m, integer spacing gives x_j-x_i >= j-i. A solution after replacing labels by ranks therefore lifts to a solution before compression. An infeasible original instance remains infeasible after compression, with m<=nk. The reverse feasibility implication fails, as the supplement explicitly recognizes. There is no claim that all finite-universe assignments were enumerated.
+
+The corrected supplementary recurrence includes the necessary local guard, including at leaves: q belongs to the current list and, at nonroots, p belongs to the parent's list with |p-q|>=2. For an admissible local pair, child root labels must come from feasible child states, avoid p, and be pairwise distinct. Different child subtrees interact within distance two only through their child roots. These observations establish the recurrence by induction; an invalid local leaf state cannot become true merely because its empty child family has an SDR. The recurrence is supporting material and is not a premise of the elementary obstruction.
+
+For a computational check independent of the package's MRV enumerator, `review_checks.py` explicitly enumerates the five spine labels and multiplies counts for the two endpoint leaf pairs and two single leaves. This construction-based factorization reproduces common-palette counts 0,0,0,0,8,6336 for sizes 1 through 6, and zero for the bad lists. It imports no candidate solver. It is candidate-aware verification, not an independent discovery.
+
+## Fresh executions and byte bindings
+
+`CHECKS.json` records actual current executions and exact rejection messages. The fresh extraction's root replay passes. Direct `verify.py` runs in ordinary, `-O`, and `-OO` modes produce exactly the 4498 expected result bytes, SHA-256 `206e0c6e60d010f3dc1e863baf218a2391f21283d37d8f5af9b7ebf882ac2234`. Root replay also passes in all three modes; its subprocess intentionally invokes the primary verifier in ordinary mode, so the direct optimized runs are the evidence for the verifier's optimized-mode behavior.
+
+Thirty real corrupted-input executions were rejected: deletion of an edge, a different but still tree-shaped edge set, a changed list value, a four-element list, invalid edge/distance-two/outside-list witnesses, boolean list and witness values, and altered count metadata, each in the three primary modes. These use the actual verifier with mutated JSON rather than fabricated status flags. Four archive-member corruptions were rejected and restored: appended bytes in specimen, manuscript, and frozen independent result, plus a same-size changed manuscript title that reaches the digest check. Post-restoration authentication passes.
+
+The ZIP has exactly 61 distinct archive entries: the root manifest and its 60 listed files, with no missing or unlisted archived payload. All member sizes and digests match. The corrected edition's seven nonself entries and its complete eight-name inventory match; all three `ACCEPTANCE.json` current-document bindings match. The construction-input family's six member hashes and external freeze pin match. The independently frozen priority audit's 15 members and adversarial priority audit's eight members match. These are current byte checks, not newly manufactured execution or historical-date receipts.
+
+The optional input-family replay passes in ordinary Python mode and preserves every frozen file. Its assertions are visible in the frozen implementation. Ordinary-only support is explicitly stated at the root README; optimized optional-family certification is neither promised nor inferred. Its information-boundary receipt says the construction/definitions and topic cues were supplied, without expected counts or candidate proof. The note and README accurately describe this as reconstruction rather than wholly blind work or independent discovery. File hashes authenticate the declared records; they cannot externally certify every historical information-flow statement.
+
+Both archived priority-comparison scripts freshly pass on their frozen transcriptions, including all 66 spanning trees of the older cyclic figure. Neither original scholarly source-author code nor an external solver was executed.
+
+## Primary sources, attribution, and limits
+
+I read the actual original OWR PDF at printed 414-417 and the thesis at printed 124-130, rather than adopting previous verdicts. OWR's arbitrary k-assignment definition and initial-segment ordinary convention match the note. Conjecture 4 is on printed 416; dissertation Conjecture 4.4 is on printed 124. The earlier thesis Conjecture 4.3 is a broader path/cycle assertion and is not the target tree conjecture. The inspected positive results concern radius-at-most-two comets and specified caterpillars of Delta at least four; they do not cover this radius-three, Delta-three specimen. The full OWR contribution ends with references on 417, consistent with the corrected citation range. The actual source on 416 explicitly credits the tree bound to Voigt through reference 8, given on 417. The note's self-contained bound is properly labeled known.
+
+The authenticated original source digests are recorded in `SOURCE_CHECKS.json`. This run reused the OWR/thesis originals without copying them. It independently downloaded the 246202-byte Fiala preprint (SHA-256 `3a6820ddad634ee58f4fc6810518f824148abf39abc7217ece5370787fee421f`) and visually inspected printed page 14/Figure 4. That page gives the ten-vertex cyclic five-list gap claimed in the note. The institutional [KAM index](https://www.mff.cuni.cz/cs/kam/vyzkum/kam-dimatia-series) and [ITI 2001 index](https://iti.mff.cuni.cz/series/2001.html) confirm the title and 2001-530 / 2001-28 identifiers. The [actual inspected preprint](https://kam.mff.cuni.cz/kamserie/clanky/2001/s530.pdf) is distinguished from the differently titled journal article.
+
+The old figure has twelve edges and cycles. Its exact displayed lists becoming feasible on all 66 spanning trees excludes only the direct inherited-list deletion transfer. It does not eliminate another old list assignment, construction, reduction, countertree, or stronger theorem. The package states that limit. No first five-list separation, first noninterval mechanism, or first tree resolution is claimed.
+
+I read both frozen priority reports and the reconciliation/cross-challenge. Their unresolved final Fiala2005, full TCS2005, Chen/Jonas/Waters, later tightness-construction, and other source-body gaps remain material obstacles to historical priority/current-openness clearance. This round is not a fresh exhaustive literature search or a clearance of those missing bodies. The manuscript and deposit description preserve the limitation. A qualified historical-counterexample theorem remains mathematically meaningful without a firstness claim.
+
+The root README correctly says third-party papers, extracts, and images are excluded and treats source-receipt local filenames as research locators, not archive promises. Parent reported deleting some of its disposable source/download duplicates after their freeze to recover disk space; audit-time storage-location statements in frozen records need not resolve in the current workspace. This does not invalidate authenticated historical retrieval receipts or create an undisclosed missing archive member. The originals needed for this review were read or refetched. No new historical-source completeness claim is made here.
+
+## PDF, metadata, and provenance assessment
+
+All three current PDF pages were rendered at modest resolution and visually inspected. The title, equations, table, continuation of proof, references, fonts, page numbers, and margins are legible and show no clipping or overlap. The page-two/page-three paragraph continuation is normal. The PDF is three pages, agreeing with deposit metadata. The archived source describes the same graph, lists, witness, counts, theorem, and caveats as the rendered note.
+
+The author name and ORCID, version 1.0, date, preprint type, title, file names, license statement, source identifiers, and qualified historical framing are consistent between note, README, and `zenodo-deposit.json`. The two named deposit files exist at the pinned sizes/digests. The preprint and metadata disclose extensive AI assistance and unrefereed status and explicitly disavow external human peer review/formal certification. The corrected acceptance's internal mathematical status is qualified, and its publication gate is separate. Historical receipts in corrected support files are explicitly identified as historical; no stale global firstness/open-problem claim was found.
+
+The build receipt is an identity/verification record. This review does not treat it as a publication receipt, an independent timestamp proving earlier possession, or evidence of a Zenodo/GitHub action. None was performed by this reviewer.
+
+## Remaining boundary
+
+No correction is requested for these current bytes. Acceptance applies to the exact objects above and the present limited claims. It does not extend to a future firstness, minimality, new-mechanism, exhaustive literature, present-openness, peer-review, or formally certified claim. A later source exposing earlier tree work could change attribution or novelty without invalidating the explicit mathematical theorem.
