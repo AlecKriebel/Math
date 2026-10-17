@@ -1,12 +1,19 @@
 # Independent mathematical audit: target 30000418
 
+> Current clarification, 17 October 2026: the retained audit below records
+> historical checks. The supplementary state recurrence now explicitly includes
+> its local list/parent-edge domain, and the complete OWR bibliographic span is
+> distinguished from the mathematical-text locator. The core counterexample and
+> exact values are unchanged. Fresh review and executable evidence are recorded
+> separately in the current audit; historical receipts are not new executions.
+
 This AI-assisted manuscript is unrefereed. Acceptance records an independent internal AI audit, not external human peer review, journal acceptance, or formal proof-assistant certification.
 
 The complete human-readable proof, explicit graph, bad lists, ordinary labeling, infinite family and logical audit are retained. This is not a computational reproduction package: raw state tables, Hall-certificate datasets, enumeration tables, executable code, copied source documents and images, and private coordination material are omitted. Historical counts and hashes are supporting metadata. The historical computations cannot be reproduced from this edition alone; all mathematical conclusions rest on the written proofs.
 
 The stated universal tree-equality conjecture is answered negatively. No historical novelty, priority, minimal-order, exhaustive-literature-review, or current-openness claim is made.
 
-This edition retains the complete independent logical review. Computational and source-inspection statements report the historical audit; editorial preparation did not rerun mathematical programs or inspect scholarly sources anew. Raw-certificate locations and the small enumeration table are replaced by historical descriptions and count metadata. No mathematical correction was required.
+This corrected edition retains the complete logical review. Computational and source-inspection claims in the historical-audit passages refer to the earlier audit and original prose-editing pass, which did not rerun programs or inspect sources anew. Fresh 17 October 2026 executions and source inspections are recorded separately. The core result is unchanged; the supplementary recurrence domain and bibliographic span are clarified explicitly.
 
 ## Verdict
 
@@ -22,7 +29,7 @@ This acceptance applies to the immutable candidate manifest SHA-256 `dc4873f40dc
 
 ## 1. Exact problem and convention
 
-Kohl's [OWR contribution](https://doi.org/10.4171/owr/2006/07), printed pages 414–416 (PDF pages 36–38), defines a k-assignment by assigning each vertex an arbitrary k-element set of natural numbers. A valid labeling chooses one number from each assigned list, has difference at least 2 on edges, and distinct labels at distance two. The list parameter is the least k for which **every** k-assignment admits such a labeling. No interval-list restriction is present.
+Kohl's [OWR contribution](https://doi.org/10.4171/owr/2006/07), full printed span 414–417 (mathematical text 414–416; PDF pages 36–38), defines a k-assignment by assigning each vertex an arbitrary k-element set of natural numbers. A valid labeling chooses one number from each assigned list, has difference at least 2 on edges, and distinct labels at distance two. The list parameter is the least k for which **every** k-assignment admits such a labeling. No interval-list restriction is present.
 
 Conjecture 4 on printed page 416 asks equality with the ordinary parameter for every tree. That parameter permits the common palette {1,...,k}. Kohl's [2006 dissertation](https://webdoc.sub.gwdg.de/ebook/dissts/Freiberg/Kohl2006.pdf), printed page 124 (PDF page 128), separately gives the convention chi = lambda + 1 and the same tree statement as Conjecture 4.4. Both defining/conjecture pages were visually checked; this is not an inference from a later algorithm paper.
 
@@ -105,7 +112,7 @@ The pendant-path extension is correct. Attach paths independently beyond the six
 
 The rank-compression claim is also correct, with its stated direction. For an n-vertex k-list assignment, the union has at most nk labels. Replacing distinct values by sorted ranks produces lists in {1,...,nk}. A valid labeling of the compressed instance lifts to a valid labeling of the original because differences between original integer values are at least the corresponding rank differences. Consequently an infeasible original assignment compresses to an infeasible one. Feasibility need not survive compression in the other direction. This is a finite-universe principle, not a claim that all such assignments were enumerated.
 
-The tree-state certificate description is sound: a state retains the vertex label and its parent's label; its children's roots must choose distinct feasible child labels avoiding the parent label. All additional interactions between different child subtrees have distance greater than two. Induction from the leaves justifies this recurrence. The audit checks it by enumerating child-label tuples, not by trusting candidate state truth values.
+The tree-state certificate description uses an explicit local domain: a state (v,p,q) requires q in L(v), and for a non-root vertex p in L(parent(v)) with |p−q|≥2. Invalid pairs are infeasible before the child test; the root has p=null and no parent-edge test. For such a locally valid state, its children's roots must choose distinct feasible child labels avoiding the parent label. All additional interactions between different child subtrees have distance greater than two. Induction from the leaves justifies this recurrence. The audit checks it by enumerating child-label tuples, not by trusting candidate state truth values.
 
 ## 7. Independent computations and adversarial controls
 
@@ -133,6 +140,10 @@ The dissertation's remark about trees already forced to ordinary value Delta+3 a
 
 ## 9. Acceptance scope and remaining limits
 
-The human proof establishes every quantifier needed for the counterexample and exact values. Computation is corroboration, not a replacement for the arbitrary-list upper bound. No mathematical repair is required.
+The human proof establishes every quantifier needed for the counterexample and exact values. Computation is corroboration, not a replacement for the arbitrary-list upper bound. No change to the core counterexample is required. The supplementary state-domain clarification is included in this corrected edition.
 
-This audit does not certify minimal order, exhaustive enumeration of all trees or all list assignments, discovery-algorithm novelty, peer review, source-author endorsement, or historical priority. The original candidate and audit remain unchanged. No source documents, raw datasets, executable code, or private coordination material are distributed in this public edition. The full explicit mathematical construction remains in Sections 2–6. This document does not claim a new mathematical execution or scholarly-source inspection during editorial preparation.
+This audit does not certify minimal order, exhaustive enumeration of all trees or all list assignments, discovery-algorithm novelty, peer review, source-author endorsement, or historical priority. The original submitted candidate and audit bytes remain preserved in the immutable submission snapshot. This corrected edition has new file identities and explicitly clarifies the supplementary state domain and citation range. No source documents, raw datasets, executable code, or private coordination material are distributed in this public edition. The full explicit mathematical construction remains in Sections 2–6. Historical checks described above retain their historical identity. Fresh17October2026 executions and primary-source inspections are separately recorded in VERIFICATION.json and SOURCES.json; they are not retroactive claims about the original audits.
+
+## 12. Current bounded priority reconciliation
+
+The independent and skeptical priority families froze before cross-comparison. Both verified the earlier Fiala–Škrekovski2001 Fig.4 cyclic five-list obstruction and independently checked all66 displayed-list spanning trees as feasible. This only excludes the immediate deletion transfer, not all historical transformations or other prior countertrees. They found no verified earlier tree resolution in inspected source portions, and expressly left historical priority and present openness unestablished. The final2005 Fiala paper, TCS2005 full body, Chen/Jonas theses and later planar sharpness sources remain material access/content gaps. The current publication scope is the exact counterexample to the printed historical equality, with known bounds and general-graph predecessors credited. No firstness, minimality, new-method or current-open-status claim follows. The separate supporting priority audit records the full bounded coverage and gaps.
