@@ -1,6 +1,6 @@
 # Parent mathematical assessment: PR1121 / problem 30004311
 
-2026-10-17. In progress pending independent final reports and unchanged-code replays.
+2026-10-17. **PASS** after complete parent review, three independent final family reports, and unchanged-code parent replays.
 Original head: `f86b108ac1bc024302648eee9f47f74e26c810ec`.
 Original proof SHA-256:
 `68c040d5bfe5d536e6f33f0f319a2d721bac5c562ec60f802fc516f293205b75`.
@@ -109,9 +109,19 @@ S-coordinate and an invariant T-coordinate; orthogonality annihilates its
 pairings with H=T, forcing it into the zero radical. These arguments concern
 this construction class only, rather than arbitrary simple braces.
 
-## Outstanding gate
+## Mathematical disposition and remaining priority gate
 
-No mathematical defect identified by the parent. Independent final family
-reports and fingerprinted unchanged-program replays remain required before
-promoting this to mathematical acceptance. Current historical novelty is not
-asserted and has not yet passed the fresh extensive priority gate.
+All three new independent families passed with no required repairs. Parent read
+all three complete reports and verified their authored artifact fingerprints.
+The original independent programs were copied unchanged into isolated trees and
+replayed in both ordinary and optimized Python. Construction and obstruction
+outputs match exactly. Finite mathematical fields match exactly after removing
+only execution timestamps and stage durations; both per-seed and sample-trace
+certificates are byte-identical. The separate parent symbolic program also
+passed in both modes. See the three root replay receipts.
+
+The full original-target mathematical claim is accepted subject to ordinary
+unrefereed mathematical-review limits. No historical novelty is presumed.
+Extensive current priority review and an independent prior-implication audit
+remain active; no paper, deposit, tracker row, comment, or PR mutation is made
+until the subsequent gates warrant it.
