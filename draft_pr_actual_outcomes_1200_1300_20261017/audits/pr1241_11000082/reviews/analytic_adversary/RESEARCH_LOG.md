@@ -1,0 +1,4 @@
+# Analytic adversary research log
+
+- 2026-10-17T20:18:43.875242+00:00 — 5%: Opened the submitted eight-file candidate and repository instructions. Review scope is source-based mathematical validation of the fixed-genus, fixed-depth ambient-conjugacy claim. Original bytes are read-only. No Git or external communications.
+- 2026-10-17T20:19:31.580587+00:00 — 65%: Independently retrieved five primary PDFs; inspected the explicit target, Teichmuller stabilizer and unique-disk statements, full two-parabolic argument, square construction, Johnson indexing and lower-central containment, separating filling-pair lemma/proof, and Horowitz Example 8.2/proof. Visually inspected Horowitz pp.648–649 and Leininger pp.1314–1315. No fatal mathematical gap found so far. Remaining work: detailed independent derivations, edge-case ledger, receipt, and final freeze.
