@@ -1,0 +1,3 @@
+# Note author research log
+
+2026-10-17T23:53:55.578961+00:00 - Drafting checkpoint: 25% complete. Read the accepted mathematical and priority gates, controlling corrections, and submitted proof. Checked the exact Question 7.2 formula and preceding no-PID setup visually; checked the journal definition, Section 3 and Theorem 3.1, Lenstra Proposition 2.2, Dummit p. 13, and Lopez Definition 52 and Theorem 55 against local page images. Draft will give a full-integer-ring prime-element counterexample with values 2 and 4, without novelty, firstness, or current-openness claims. No Git or service writes, source redistribution, outreach, compilation, or external human review.
