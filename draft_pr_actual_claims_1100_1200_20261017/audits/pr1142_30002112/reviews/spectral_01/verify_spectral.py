@@ -223,7 +223,9 @@ def main(destination):
         ('replace_multiplicity_by_distinct_level_count', q + 2, normal_cavity),
         ('omit_second_binomial_in_N', comb(q + m - 1, m) + 2, normal_cavity),
         ('additional_low_positive_cavity_mode', N + 2, [(Fraction(0), 1), (Fraction(T - 1), 1)]),
-        ('two_cavity_zeros', N + 2, [(Fraction(0), 2), (Fraction(high), 1)])
+        ('two_cavity_zeros', N + 2, [(Fraction(0), 2), (Fraction(high), 1)]),
+        ('mistake_cavity_first_positive_for_boundary_lambda_2', 2, normal_cavity),
+        ('mistake_boundary_first_positive_for_target_at_q_2', 3, normal_cavity)
     ]:
         row = multiset_snapshot(m, q, candidate, cavity)
         negatives.append(expect_rejection(name, lambda row=row: verify_index(row), row))

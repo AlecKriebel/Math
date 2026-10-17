@@ -12,6 +12,21 @@
   recorded before any old audit/concurrent report exposure. No core gap
   found. Completion estimate: 70%. Exact remaining work: algebra diagnostics,
   final adversarial report, sealed receipts.
+- 2026-10-17 23:17:18 UTC -- Exact fractions diagnostics passed under normal
+  and optimized Python, with byte-identical outputs; the combined
+  area-correction exponent m+2 was independently checked. Explicit v1 CDE
+  download matches the earlier unversioned PDF byte-for-byte. Primary source
+  metadata is pinned without confusing PDF compilation dates with result
+  dates. Completion estimate: 90%. Remaining work: final report quality
+  check and receipt sealing.
+- 2026-10-17 23:19:19 UTC -- Completed the final geometry report and direct
+  C1 embedding-stability argument; recorded the explicit universal tolerance
+  c=1+1/(4(m+2)), whose combined gap loss is less than 4/3. No material
+  findings or repair needed in the assigned mechanism. Source/exposure
+  receipt and read-only verifier are ready for sealing; all report contents
+  are final. Completion estimate: 100% of the assigned geometry review.
+  Historical theorem reproof, novelty, and the original problem-scope gate
+  remain outside this shard's claims.
 
 All timestamps UTC. Completion percentages measure this assigned review,
 not a new theorem-discovery program. No outreach, subagents, Git mutations,
