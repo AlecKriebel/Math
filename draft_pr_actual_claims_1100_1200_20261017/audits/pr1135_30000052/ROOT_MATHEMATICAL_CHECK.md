@@ -12,7 +12,7 @@ Let T_j={jZ+Delta} with independent continuous uniforms. Conditional on Z, T_j i
 
 At n=3 set U=T_0,V=T_1; this pair is iid uniform and T_2={2V−U}. For0≤x≤1/2, on U,V<x the quantity2V−U lies between−x and2x. The negative part cannot wrap into[0,x), and the positive part does not wrap. The remaining inclusion condition is U/2≤V<(U+x)/2. The entire interval lies in[0,x], and its length is x/2 for every U∈[0,x]. Its area is q(x)=x²/2. Boundary choices change no expectation.
 
-For N_x the indexed count, the first two factorial moments are3x and3x². Together with P(N_x=3)=q and total probability1 they force
+For N_x the indexed count, E N_x=3x and E binom(N_x,2)=3x². Together with P(N_x=3)=q and total probability1 they force
 
 P_0=1−3x+3x²−q, P_1=3x−6x²+3q, P_2=3x²−3q, P_3=q.
 
