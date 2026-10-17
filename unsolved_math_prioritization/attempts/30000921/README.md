@@ -1,38 +1,11 @@
-# Polynomial multiplication need not preserve differentiation hypercyclicity
+# Problem30000921 / OWR-1787-006: attributed negative-answer note
 
-Complete negative answer to target 30000921 / OWR-1787-006, with no mathematical correction required by the independent audit.
+The original PR explicitly claimed a complete negative answer to the pointwise polynomial preservation question and was therefore in scope under the actual-outcome gate. Its mathematics passed fresh extensive review. The current edition additionally proves a dense family of differentiation-hypercyclic entire functions simultaneously defeating every nonconstant complex polynomial, with escaping product derivative evaluations.
 
-This is an AI-assisted, unrefereed mathematical review edition. Acceptance is an independent internal AI audit judgment, not external human peer review, journal acceptance, formal proof-assistant certification, or novelty clearance.
+Priority audit found positive older implications: Nikula arXiv1209.6209v1 Theorem1 already yields an even stronger frequently hypercyclic conclusion by elementary Gaussian bounds. An earlier general Bayart–Matheron eigenfield theorem also supplies that Gaussian law. The exact multiplier corollary was not located explicitly in a read older source; first explicit recognition and earliest priority remain undetermined. We publish an attributed historical negative answer and self-contained elementary alternative proof, with no new first-solution/current-openness/first-existence claim.
 
-## Result
+PROOF.md contains the current self-contained simultaneous argument and retained original fixed-p argument. AUDIT.md explicitly separates current and historical reviews. SOURCES.json and VERIFICATION.json distinguish current acts from original historical metadata. ACCEPTANCE.json binds the current documents; MANIFEST.json binds all other seven current edition files. Original submitted bytes are separately captured in SUBMITTED_SNAPSHOT.json and the verification archive, without silently changing old records.
 
-Let H(C) carry the compact-open topology and let D be differentiation. There exists an entire F in HC(D) such that zF is not in HC(D). Thus the universal pointwise-polynomial-multiplication assertion in Costakis's Question 5 is false.
+The separate preprint verification archive contains executable stdlib exact diagnostics, new receipts, source-question reconstruction freeze, independent analytic and annular reviews, prior-implication derivations and extensive bounded priority reports. Finite checks corroborate coefficient algebra; the infinite-dimensional conclusions rest on written proofs. Downloaded third-party source bodies and images are not distributed. Historical omitted checks remain metadata, not authenticated replays.
 
-The proof establishes more:
-
-- For every fixed nonconstant complex polynomial p, counterexamples F in HC(D) with pF outside HC(D) are dense in H(C), and can be obtained in every neighborhood of every starting f in HC(D).
-- One particular F from the p=z construction simultaneously makes every z^m F nonhypercyclic, for integers m>=1.
-- The polynomial multipliers that preserve every member of HC(D) are exactly the nonzero constants.
-
-The general polynomial p is fixed before F is constructed. No single F failing for every nonconstant polynomial is claimed. The simultaneous statement concerns monomials only.
-
-## Proof and source context
-
-The manuscript gives the full Baire proof of existence and density, dense-tail and null-orbit perturbation lemmas, an entire-coefficient bound, the explicit z counterexample, and a triangular recursion at a root of each fixed p. The correction is explicit relative to a starting hypercyclic function; no numerical explicit starting function is asserted.
-
-The original Question 5 is on printed page 330, PDF page 34, in George Costakis's 2008 contribution, “Which maps preserve universal functions?” Its neighboring Theorem 6 gives a residual positive class. That theorem is compatible with the dense counterexample sets proved here. This result is about pointwise p(z)f(z), not composition P(f), polynomial differential operators P(D), or translation hypercyclicity.
-
-No historical priority or novelty is established. The 2018 multiplicative-structure paper and the 2010 common Cesàro hypercyclicity paper have distinct operations or generic quantifiers; neither was treated as a proof of the universal assertion. Detailed historical inspection limits, including failed web-reader retrievals during the audit, are retained in SOURCES.json.
-
-The full authored mathematical proof and independent audit are retained, including every written argument, formula, and counterexample. This is not a computational reproduction package: executable code, raw computational datasets, copied source PDFs/text/images, search responses, and private coordination material are not distributed. Historical finite checks support the written proof and cannot be reproduced from this edition alone.
-
-## Reading order
-
-- PROOF.md: the complete accepted analytic proof and public references.
-- AUDIT.md: the full independent mathematical reconstruction, quantifier checks, and historical verification scope.
-- ACCEPTANCE.md and ACCEPTANCE.json: exact accepted claims and document bindings.
-- SOURCES.json: scholarly titles, public URLs, PDF and derived-text identities, and separate historical inspection bounds.
-- VERIFICATION.json: historical finite checks and integrity metadata, with no code or raw datasets.
-- MANIFEST.json: the exact eight-file inventory, hashing the other seven files.
-
-Source retrieval, inspection, and mathematical executions described below are historical acts of the original investigation or audit. Publication preparation performed no new scholarly-source retrieval, source-body inspection, literature survey, or mathematical execution. The original proof and audit remain unchanged.
+AI tools were used extensively in proof development, source research, independent internal adversarial checking, exact computation and writing. This preprint is unrefereed; no external human peer review, journal acceptance or formal proof-assistant certification is claimed. Publication and sequential fresh whole-package review receipts are kept separately from this mathematical edition.

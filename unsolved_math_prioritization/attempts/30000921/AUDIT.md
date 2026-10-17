@@ -1,4 +1,11 @@
-# Independent audit of polynomial multiplication and differentiation hypercyclicity
+# Current audit record and retained historical audit
+
+The original submitted mathematical argument passes fresh root and independent adversarial review without mathematical repair. A source-question-only reconstruction and a separate candidate-aware adversary additionally prove dense simultaneous all-polynomial failure by relative Baire and direct successive-block mechanisms. Two initially independent priority families find positive older implications from Nikula and an earlier Gaussian eigenfield route. Current publication is an attributed historical negative-answer / elementary alternative-proof note, without a new first solution or first existence claim. The dated current reports and fresh exact executables accompany the portable verification package. AI use was extensive; no external human review or formal certification is claimed.
+
+## Historical audit, retained verbatim below
+
+All first-person inspection, execution, independence and distribution statements in the following historical audit refer to that earlier edition. In particular its statement that publication preparation made no new executions is historical; the current2026-10-17 preparation DID perform fresh source reads and new exact executions, separately recorded in current SOURCES.json and VERIFICATION.json. The historical audit covers fixed-p and monomial claims, not the added simultaneous theorem.
+
 
 This is an AI-assisted, unrefereed mathematical review edition. Acceptance is an independent internal AI audit judgment, not external human peer review, journal acceptance, formal proof-assistant certification, or novelty clearance.
 
