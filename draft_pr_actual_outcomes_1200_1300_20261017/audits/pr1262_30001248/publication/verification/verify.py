@@ -17,7 +17,7 @@ NAMES = {'ACCEPTANCE.json','ACCEPTANCE.md','AUDIT.md','MANIFEST.json','PROOF.md'
 PROSE = {'ACCEPTANCE.md','AUDIT.md','PROOF.md','README.md'}
 STRUCTURED = {'ACCEPTANCE.json','SOURCES.json','VERIFICATION.json'}
 FIELDS = {'title','upload_type','publication_type','description','creators','access_right','license','version','publication_date','keywords','related_identifiers'}
-SCHEMAS = {('files','relative_path','size_bytes'),('files','relative_path','bytes'),('authored_files','relative_path','bytes'),('authored_artifacts','relative_path','bytes'),('entries','path','bytes'),('entries','file','bytes'),('authored_files','path','bytes'),('files','path','bytes'),('all_authored_content_files','path_relative_to_authored_root','bytes'),('members','path','bytes'),('authored_members','path','bytes'),('authored_outputs','path','bytes')}
+SCHEMAS = {('files','relative_path','size_bytes'),('files','relative_path','bytes'),('authored_files','relative_path','bytes'),('authored_artifacts','relative_path','bytes'),('entries','path','bytes'),('entries','relative_path','bytes'),('entries','file','bytes'),('authored_files','path','bytes'),('files','path','bytes'),('all_authored_content_files','path_relative_to_authored_root','bytes'),('members','path','bytes'),('authored_members','path','bytes'),('authored_outputs','path','bytes')}
 MINIMUM = {'reviews/source_question_family/manifest.json':('reviews/source_question_family','files','relative_path','size_bytes'), 'reviews/analytic_adversary/MANIFEST.json':('reviews/analytic_adversary','authored_files','path','bytes')}
 
 def need(value, message):
