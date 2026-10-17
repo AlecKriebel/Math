@@ -1,0 +1,5 @@
+# Independent priority audit research log
+
+2026-10-17T17:25:42.572851+00:00 — Started primary-source priority audit. Goal: identify any earlier negative resolution (not merely the same 11-vertex graph) of universal equality of ordinary initial-palette and arbitrary-list L(2,1) parameters on finite trees. Mathematical correctness is out of scope except implication/overlap checks. No contact with individuals, no external communication, no Git writes or publishing. Initial completion estimate: 5%.
+
+2026-10-17T17:27:36.775358+00:00 — Checkpoint 1 (25%): authenticated and read original OWR contribution pp414–417 and dissertation title/section4.4 pp124–130, bibliography, conclusionpp139–140. Conjecture targeted correctly. Original dissertation explicitly distinguishes a broader earlier Fiala–Škrekovski all-constraints path/cycle conjecture (already too optimistic) from its new P=(2,1) tree conjecture. No novelty/current-openness inference. Research trails now include TCS2005, updated Calamoneri surveys, total-labeling incidence subdivisions, backbone coloring, Chen manuscript, Asian theses, author records.
