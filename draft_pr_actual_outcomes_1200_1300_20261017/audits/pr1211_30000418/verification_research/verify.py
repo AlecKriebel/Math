@@ -74,6 +74,7 @@ def main():
  outputs['bad_five_lists']=solve(BAD)
  require(outputs['common_4']['solutions']==0 and outputs['common_5']['solutions']>0,'ordinary exact5')
  require(outputs['bad_five_lists']['solutions']==0,'bad list assignment')
+ for key,value in DATA['expected_counts'].items():require(outputs[key]['solutions']==value,'exact claimed count '+key)
  r=random.Random(20261017);greedy_max=0
  for _ in range(1000):greedy_max=max(greedy_max,greedy({v:tuple(sorted(r.sample(range(1,45),6))) for v in VERTICES}))
  common=outputs['common_5']['first_witness'];require(check(common,{v:A for v in VERTICES}),'ordinary witness')

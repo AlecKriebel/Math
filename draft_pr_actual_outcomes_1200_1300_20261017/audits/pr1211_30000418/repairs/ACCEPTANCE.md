@@ -23,9 +23,8 @@ that review. Historical audits and receipts remain labeled historical. Current
 source downloads, inspected pages, independent mechanisms and replay limits
 are recorded explicitly; there is no retroactive upgrade of independence.
 
-Priority and publication gates are pending. This record does not claim a
+The bounded priority review accepts publication of the explicit historical counterexample with attribution and limits; historical priority and present openness remain unresolved. Publication and whole-package review receipts are maintained separately. This record does not claim a
 first discovery, current openness, minimal-order example, journal acceptance,
 external human peer review or formal proof-assistant certificate. Extensive
 AI assistance and unrefereed status apply. The eight-file manifest binds the
-corrected prose/metadata edition; later preprint/verification materials require
-separate exact artifact bindings and fresh whole-package reviews.
+corrected prose/metadata edition; the accompanying preprint and verification materials have separate exact artifact bindings and fresh whole-package review receipts.
