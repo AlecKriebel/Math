@@ -16,7 +16,6 @@ The independently checked initial inventory has 101 PRs: 14 explicit full-target
 | --- | --- | --- |
 | [1102](https://github.com/AlecKriebel/Math/pull/1102) | Mathematically accepted; two fresh reviews passed; published, tracker row 149 verified, exact reviewed head merged | [10.5281/zenodo.23439582](https://doi.org/10.5281/zenodo.23439582) |
 | [1108](https://github.com/AlecKriebel/Math/pull/1108) | Mathematically accepted; two fresh reviews passed; published, tracker row 151 verified, exact reviewed head merged | [10.5281/zenodo.23440119](https://doi.org/10.5281/zenodo.23440119) |
+| [1114](https://github.com/AlecKriebel/Math/pull/1114) | Skipped after priority: full target follows from earlier work; PR untouched | No publication |
 
-| [1114](https://github.com/AlecKriebel/Math/pull/1114) | Mathematical audits passed; prior full-target implication under independent priority audit | No publication decision |
-
-Remaining eligible PRs, in order: 1114, 1118, 1119, 1121, 1129, 1135, 1136, 1141, 1142, 1150, 1151, 1155. Their eligibility is an outcome classification, not mathematical acceptance. See `PROGRAM_STATE.json`, `OUTCOME_INVENTORY.json`, and timestamped `RESEARCH_LOG.md` for exact current state and evidence. The persistent goal remains active until all eligible claims have a final disposition.
+Remaining eligible PRs, in order: 1118, 1119, 1121, 1129, 1135, 1136, 1141, 1142, 1150, 1151, 1155. Their eligibility is an outcome classification, not mathematical acceptance. See `PROGRAM_STATE.json`, `OUTCOME_INVENTORY.json`, and timestamped `RESEARCH_LOG.md` for exact current state and evidence. The persistent goal remains active until all eligible claims have a final disposition.
