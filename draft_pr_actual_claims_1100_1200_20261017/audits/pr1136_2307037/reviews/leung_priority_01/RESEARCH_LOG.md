@@ -1,3 +1,7 @@
 # Leung priority lead research log
 
 - 2026-10-17T22:13:03.222042+00:00 — Initialized sibling audit; sources/private/ and tmp/ ignored before downloads. Sealed earlier public files hashed without modifying them. Completion estimate toward bounded lead resolution: 10%.
+
+- 2026-10-17T22:16:28.110462+00:00 — Public AMS annual index PDFs downloaded and rendered. Visual inspection confirms 1990 printed index p546 points to abstract p181; 1992 printed index p566 points to abstract p440. Public issue metadata/scandata place these in March 1990 issue68 and October 1992 issue83, respectively. Both full bodies are marked restricted/private; none was downloaded. Crossref/ORCID/OpenAlex discovery inspected; 33 OpenAlex title records yielded no identified continuation. Scoped completion estimate: 85%; substantive relevance of both abstract bodies remains unknown.
+
+- 2026-10-17T22:17:48.390954+00:00 — Scoped bounded-lead report and separate coverage correction finalized. Both primary index entries visually authenticated; exact issue/page metadata pinned. Bodies remain unread, and no substantive exclusion or first-priority certification is made. Root independently reviewed report/correction and accepted this bounded disposition. Earlier audit public files and input proof rehashed unchanged. Completion estimate: 100% of resolve-or-bound task; historical relevance unresolved. Final authored manifest prepared; no external outreach or Git/reference/publication mutation.
