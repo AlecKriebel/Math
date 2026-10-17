@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Authenticate all supplied public metadata and the publicly served artifacts."""
 from pathlib import Path
-import datetime,hashlib,json,urllib.request
+import datetime,hashlib,json,runpy,urllib.request
 ROOT=Path(__file__).resolve().parent
 
 def fetch(url,limit):
@@ -25,7 +25,8 @@ def verify_public_metadata(actual,wanted):
 def main():
     pub=json.loads((ROOT/'PUBLICATION_RECEIPT.json').read_text());build=json.loads((ROOT/'BUILD_RECEIPT.json').read_text())
     manifest=ROOT/'zenodo-deposit.json';wanted=json.loads(manifest.read_text())['metadata']
-    if pub['state']!='published' or pub.get('metadata_normalizations')!=[]:raise RuntimeError('Confirmed exact-metadata publication required')
+    shared=runpy.run_path(str(ROOT/'append_tracker.py'))
+    identity=shared['validate_publication_identity'](pub,wanted['title'])
     raw=fetch('https://zenodo.org/api/records/'+str(pub['id']),1000000);actual=json.loads(raw)
     if int(actual['id'])!=pub['id'] or actual['doi']!=pub['doi'] or actual['metadata']['doi']!=pub['doi']:raise RuntimeError('Public record identity mismatch')
     checked=verify_public_metadata(actual['metadata'],wanted)
@@ -36,7 +37,7 @@ def main():
         item=expected[f['key']];url=f['links']['self'];data=fetch(url,item['bytes']+1024);sha=hashlib.sha256(data).hexdigest()
         if len(data)!=item['bytes'] or sha!=item['sha256']:raise RuntimeError('Public artifact mismatch')
         checks.append({'name':f['key'],'url':url,'bytes':len(data),'sha256':sha,'matches_reviewed_artifact':True})
-    report={'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'doi':pub['doi'],'id':pub['id'],'public_record_identity_verified':True,'all_supplied_metadata_exact':True,'metadata_fields_verified':checked,'metadata_manifest_sha256':hashlib.sha256(manifest.read_bytes()).hexdigest(),'metadata_comparison':'Every supplied field exactly equal after explicit legacy/public schema projection only; no content normalization accepted. Server-generated extra fields are not supplied metadata.','files':checks,'authentication':'No credentials; public HTTPS record/content endpoints.'}
+    report={'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'doi':pub['doi'],'id':pub['id'],'doi_url':identity['doi_url'],'record_url':identity['record_url'],'public_record_identity_verified':True,'all_supplied_metadata_exact':True,'metadata_fields_verified':checked,'metadata_manifest_sha256':hashlib.sha256(manifest.read_bytes()).hexdigest(),'metadata_comparison':'Every supplied field exactly equal after explicit legacy/public schema projection only; no content normalization accepted. Server-generated extra fields are not supplied metadata.','files':checks,'authentication':'No credentials; public HTTPS record/content endpoints.'}
     (ROOT/'PUBLIC_DOWNLOAD_VERIFICATION.json').write_text(json.dumps(report,indent=2)+'\n')
     local=ROOT.parent/'_local';local.mkdir(exist_ok=True);(local/'zenodo_public_record_api.json').write_bytes(raw)
     print(json.dumps(report,indent=2))

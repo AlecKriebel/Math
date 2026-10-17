@@ -13,12 +13,28 @@ def replay(script,flags):
         run=subprocess.run([sys.executable,'-B',*flags,str(target)],capture_output=True,text=True)
         need(run.returncode==0,'exact run failed: '+run.stderr)
         return json.loads(run.stdout)
+def authenticate_nested_manifests(root):
+    """Check every authored nested manifest, including post-freeze challenges."""
+    checked=[]
+    for path in sorted(root.rglob('MANIFEST.json')):
+        if path==root/'MANIFEST.json':continue
+        obj=json.loads(path.read_text());need(('entries' in obj)!=('files' in obj),'ambiguous nested manifest schema');entries=obj.get('entries',obj.get('files'))
+        need(isinstance(entries,list) and len(entries)>0,'invalid nested manifest '+str(path))
+        seen=set()
+        for entry in entries:
+            raw=entry.get('file',entry.get('path'));need(isinstance(raw,str),'invalid nested member')
+            rel=PurePosixPath(raw);need(not rel.is_absolute() and '..' not in rel.parts,'unsafe nested member');need(str(rel) not in seen,'duplicate nested member');seen.add(str(rel))
+            check_binding(path.parent/raw,entry)
+        checked.append({'path':path.relative_to(root).as_posix(),'entries':len(entries)})
+    return checked
+
 def main():
     manifest=json.loads((ROOT/'MANIFEST.json').read_text());seen=set()
     for e in manifest['files']:
         rel=PurePosixPath(e['path']);need(not rel.is_absolute() and '..' not in rel.parts,'unsafe path');need(str(rel) not in seen,'duplicate path');seen.add(str(rel));check_binding(ROOT/str(rel),e)
     actual={p.relative_to(ROOT).as_posix() for p in ROOT.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
     need(actual==seen|{'MANIFEST.json'},'unlisted/missing archive member')
+    nested=authenticate_nested_manifests(ROOT)
     for edition in ['original_submitted','current_edition']:
         m=json.loads((ROOT/edition/'MANIFEST.json').read_text())
         for e in m['entries']:check_binding(ROOT/edition/e['file'],e)
@@ -52,6 +68,6 @@ def main():
         need(primary==expected['root'],'fresh root exact result differs')
         need(independent==expected['analytic'],'fresh independent exact result differs')
         runs.append({'flags':flags,'root_match':True,'analytic_match':True})
-    result={'status':'PASS','authenticated_members':len(seen),'submitted_files':len(original['files']),'current_and_original_nested_manifests':True,'source_question_freeze_files':len(frozen['files']),'external_source_receipt_only_not_reauthenticated':len(external),'analytic_evidence_files':len(json.loads((analytical/'EVIDENCE.json').read_text())['entries']),'exact_modes':runs,'root_executed_mutated_algorithms':3,'analytic_fixed_fixture_fault_model_predicates':5,'limits':'Checks archive byte identities, original object identities and finite coefficient algebra only. Infinite conclusions and prior implications rest on written analytic proofs. External source bodies are not included or reauthenticated by this replay; unavailable historical receipts are not certified.'}
+    result={'status':'PASS','authenticated_members':len(seen),'submitted_files':len(original['files']),'all_nested_manifests':nested,'current_and_original_nested_manifests':True,'source_question_freeze_files':len(frozen['files']),'external_source_receipt_only_not_reauthenticated':len(external),'analytic_evidence_files':len(json.loads((analytical/'EVIDENCE.json').read_text())['entries']),'exact_modes':runs,'root_executed_mutated_algorithms':3,'analytic_fixed_fixture_fault_model_predicates':5,'limits':'Checks archive byte identities, original object identities and finite coefficient algebra only. Infinite conclusions and prior implications rest on written analytic proofs. External source bodies are not included or reauthenticated by this replay; unavailable historical receipts are not certified.'}
     print(json.dumps(result,indent=2))
 if __name__=='__main__':main()
