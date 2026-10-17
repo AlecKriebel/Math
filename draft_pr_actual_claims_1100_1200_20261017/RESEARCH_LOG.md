@@ -207,3 +207,7 @@ Open drafthead26fed29c1130e539ba018a37200f133870f0e036 andcurrentbody matchiniti
 Parent read all3fullnewreports andcode, verified7+14+10authored artifacts, and reproducedall3original programsunchanged inordinary/optimized modes withcompleteexpectedresult equality.335180+181634+79582=596396requirements permode; no mathematical repair. OriginalquestionandScheidererfull theoremproof/positivityinterface independentlyinspected. Optionaldelta6validuniformly0<c<3. Actual earlierStubbornv1Theorem6.4appears toturnthatcalculation intoafullthresholdanswer;2NEWindependentpriority/implication adversariesare verifyingtheexactsourceproofandtargetbridge. Nopaper,Zenodo,trackerorPR1129mutation pendingdisposition.
 
 - 2026-10-17T20:57:59.796287+00:00 — PR1129 finalized as untouched verified-prior-full skip after complete mathematical reproduction and two independent priority audits. Full target follows from earlier Stubborn v1 criterion with real delta6 and credited BKR mixed theorem. Five publications unchanged. Next1135; overall completion64%.
+
+- 2026-10-17T20:58:22.243526+00:00 — Began PR1135 actual-full-negative intake at unchanged head e809a9c40f4ccdaced6f45f10b1dc8b7725a2119. Ten body pins verified; original expectation-of-pth-power target requires fresh primary-source check. Overall64%.
+
+- 2026-10-17T20:59:59.607361+00:00 — PR1135 root analytic reconstruction and primary-target visual check pass; three independent math families active. Overall65%.
