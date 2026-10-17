@@ -28,4 +28,4 @@ Remaining eligible PRs, in order: 1141, 1142, 1150, 1151, 1155. Their eligibilit
 
 ## Current research checkpoint
 
-PR1136 is published, tracked and merged after two successive fresh clean whole-package reviews of the identical four-page note and portable release. Its established EH/LP inputs and related Lin/Guerra work are credited; unread Leung abstracts and other historical gaps remain explicit, with no first-priority claim. Seven results have been published/tracked/merged;1114 and1129 remain untouched prior-full skips. PR1141 is next for fresh actual-outcome intake and full validation if still eligible. Overall completion estimate:78%.
+PR1141's exact two-polynomial affirmative theorem has passed root reconstruction and three independent mathematical adversaries, with full executable reproduction in both modes. Extensive primary priority review is active. The exact adaptive covariance inequality is OSSS2005 prior work and will receive explicit credit. No PR1141 paper or publication has been created. Seven earlier results are published/tracked/merged;1114 and1129 remain untouched prior-full skips. Overall completion estimate:79%.

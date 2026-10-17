@@ -1,0 +1,7 @@
+# Covariance and square-influence independent review
+
+- 2026-10-17T22:39:16.187880+00:00 — 15% complete. Input pinned and first independent proof pass completed. No covariance conditioning flaw found. Controls will enumerate adaptive total trees, all indicator-function cuts, and exact hybrid pair laws. Separator and historical priority are outside this shard.
+
+- 2026-10-17T22:40:56.695027+00:00 — 85% complete. Universal proofs and conditional final constants written independently; ordinary exact enumeration passed every tree/cut/hybrid law through n=3 and all ternary square-function checks. Four wrong mathematical mutations were actually rejected in both ordinary and optimized Python. Optimized full run is pending collection; final receipt and cross-check remain. No source beyond the assigned proof read.
+
+- 2026-10-17T22:41:25.677062+00:00 — 100% complete for the assigned covariance/square-influence shard. Final ordinary and optimized control reports match after removing timestamps; every input hash is unchanged and all eight mathematical mutation runs fail as intended. Scoped verdict PASS, no repair found. Strongest verified result: universal covariance coefficient 1/2 (sharp), universal square bridge including full-norm and rho=0/1 boundaries, and the claimed constants conditional on the separator. Separator correctness, target-source fidelity, priority, and publication status remain outside this shard. No commits, pushes, external communications, or writes outside this review folder were made.

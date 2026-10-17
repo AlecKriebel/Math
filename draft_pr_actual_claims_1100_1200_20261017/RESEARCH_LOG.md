@@ -251,3 +251,7 @@ Overall74%; PR1136 full mathematics and bounded priority complete, explicit unre
 ## 2026-10-17T22:37:30.920499+00:00
 
 Overall78%; PR1136 published DOI10.5281/zenodo.23443039, trackerA162:D162 exact readback, exact reviewed head merged348318e459906871a98df9d722842c0b01cbb062. Seven published/tracked/merged, two prior-full skips untouched. Next explicit full-solution candidate1141; preserve strict actual-outcome gate and final range recheck.
+
+## 2026-10-17T22:45:18.889643+00:00 — PR1141 mathematics complete, priority active; program79%
+
+Root and three new adversarial families verify the full real uniform-cube two-polynomial theorem and stronger disjoint-support bound. All complete checker outputs reproduced normal/-O,40 actual incorrect-control exits. Priority review independently identifies the covariance inequality as directly OSSS2005 prior work; target-specific recorded priority remains under investigation. No1141 publication or PR changes.
