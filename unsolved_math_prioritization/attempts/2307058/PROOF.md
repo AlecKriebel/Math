@@ -1,3 +1,11 @@
+# Current accepted real-complement modulus theorem
+
+For compact E contained in [0,1], F=R\E within the real line and S2={|z|=2}, positive planar 2-modulus of the E-to-S2 family implies infinite 2-modulus of the E-to-F family. The full implication, including zero-length positive-capacity sets, passes fresh root and independent adversarial checks without mathematical repair. Curves are whole-plane endpoint connectors, with no extra interior-avoidance condition, and either globally rectifiable or locally rectifiable off endpoints with actual endpoint limits. Densities are extended nonnegative Borel functions admissible on every curve.
+
+The original proof is retained verbatim below as a historical argument. Its original status, source-inspection and execution statements describe its own earlier preparation only; the current priority conclusion supersedes its historical priority language. The present note makes no firstness, new-mechanism or current-openness claim. Complete new source-question Riesz and classical compact-exhaustion deductions, their distinct adversarial checks, and the scoped energy argument are supplied separately in the verification archive. The paper gives the complete direct proof.
+
+## Immutable original argument, reproduced verbatim
+
 # Publication edition: infinite real-complement modulus
 
 Status: accepted_full_stated_target. No mathematical correction is required.
