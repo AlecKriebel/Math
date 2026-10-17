@@ -22,6 +22,7 @@ def document_bindings():
     source=ROOT/'manuscript/main.tex';pdf=ROOT/'output/pdf/main.pdf'
     compiled=json.loads((ROOT/'COMPILE_RECEIPT.json').read_text());layout=json.loads((ROOT/'LAYOUT_VERIFICATION.json').read_text())
     source_sha=binding(source)['sha256'];pdf_sha=binding(pdf)['sha256']
+    if compiled.get('source_date_epoch')!='1792267200':raise RuntimeError('Current compilation must record the chosen reproducible build stamp')
     if compiled.get('returncode')!=0 or compiled.get('source_sha256')!=source_sha or compiled.get('pdf_sha256')!=pdf_sha:raise RuntimeError('Current source/PDF compilation binding missing or stale')
     if layout.get('status')!='pass' or layout.get('source_sha256')!=source_sha or layout.get('pdf_sha256')!=pdf_sha or not layout.get('all_pages_visually_inspected') or layout.get('page_indices_inspected')!=list(range(1,layout.get('pages',0)+1)) or layout.get('pages')!=expected_pdf_pages() or pdf_pages(pdf)!=expected_pdf_pages():raise RuntimeError('Current source/PDF all-page layout binding missing or stale')
     return {'source_sha256':source_sha,'pdf_sha256':pdf_sha,'compile_receipt_sha256':binding(ROOT/'COMPILE_RECEIPT.json')['sha256'],'layout_receipt_sha256':binding(ROOT/'LAYOUT_VERIFICATION.json')['sha256'],'current_context_sha256':binding(ROOT.parent/'CURRENT_PR1241_CONTEXT.json')['sha256'],'priority_adjudication_sha256':binding(ROOT.parent/'PRIORITY_ADJUDICATION.json')['sha256']}

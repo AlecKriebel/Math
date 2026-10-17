@@ -8,6 +8,7 @@ MINIMUM_FREEZES={
  'reviews/source_question_family/FREEZE_MANIFEST.json':('reviews/source_question_family','authored_files','path'),
  'reviews/convex_core_adversary/FREEZE_MANIFEST.json':('reviews/convex_core_adversary','authored_files','path'),
  'priority/independent/FREEZE_MANIFEST.json':('priority/independent','all_authored_content_files','path_relative_to_authored_root'),
+ 'priority/adversary/FREEZE_MANIFEST.json':('priority/adversary','authored_files','path'),
 }
 def need(c,m):
  if not c:raise ValueError(m)
@@ -31,7 +32,7 @@ def authenticate_nested_manifests(root,registry=None,require_complete=True):
   need(set(item)=={'path','base','entries_key','path_key','sha256'},'invalid registry schema')
   raw=safe(item['path']);safe(item['base']);need(raw not in listed,'duplicate registered freeze');listed[raw]=item
   need(raw.startswith(('reviews/','priority/')),'freeze outside authored family trees')
-  need(item['entries_key'] in {'entries','files','authored_files','all_authored_content_files'} and item['path_key'] in {'file','path','path_relative_to_authored_root'},'unsupported freeze schema')
+  need(item['entries_key'] in {'entries','files','authored_files','all_authored_content_files','new_authored_files'} and item['path_key'] in {'file','path','path_relative_to_authored_root','path_relative_to_family_root'},'unsupported freeze schema')
   path=member(root,raw);need(hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256'],'freeze anchor '+raw)
  if require_complete:
   for raw,shape in MINIMUM_FREEZES.items():

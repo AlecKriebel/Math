@@ -10,6 +10,42 @@ def load(name):
 def need(c,m):
     if not c:raise RuntimeError(m)
 
+def prepare_context_controls():
+    p=load('prepare_package');rejected=[]
+    with tempfile.TemporaryDirectory(prefix='pr1241-context-guards-') as tmp:
+        audit=Path(tmp);p.AUDIT=audit;registry=[]
+        for raw,(base,entries_key,path_key) in p.MINIMUM_FREEZES.items():
+            path=audit/raw;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps({entries_key:[{path_key:'payload.md','bytes':1,'sha256':'0'*64}]}));registry.append({'path':raw,'base':base,'entries_key':entries_key,'path_key':path_key,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
+        context={'schema':'math-pr1241-current-context-v1','pr':1241,'problem_id':11000082,'original_head':p.ORIGINAL,'title':p.TITLE,'edition_text':{n:'Explicit fixture prose' for n in ['PROOF.md','AUDIT.md','README.md','ACCEPTANCE.md']},'acceptance':{'fixture':True},'sources':{'fixture':True},'verification':{'fixture':True},'authored_freezes':registry}
+        priority={'novelty_clearance':False,'firstness_claim':False,'current_openness_claim':False,'new_existence_claim':False,'matching_publication_doi':p.MATCHING_DOI}
+        cp=audit/'CURRENT_PR1241_CONTEXT.json';pp=audit/'PRIORITY_ADJUDICATION.json';mp=audit/'MATH_GATE.json';math_gate={'pr':1241,'problem_id':11000082,'original_head':p.ORIGINAL,'status':'PASS_fixture'}
+        def restore():cp.write_text(json.dumps(context));pp.write_text(json.dumps(priority));mp.write_text(json.dumps(math_gate))
+        restore();p.load_context()
+        for key in ['missing_context','missing_priority','wrong_context_schema','wrong_context_pr','wrong_context_problem','wrong_context_head','wrong_context_title','missing_prose','extra_prose','empty_structured_record','missing_novelty_disclaimer','firstness_claim','wrong_matching_doi','wrong_math_gate','missing_required_freeze','wrong_freeze_schema','changed_freeze_anchor','duplicate_freeze','escaped_freeze_base']:
+            restore();x=copy.deepcopy(context);y=copy.deepcopy(priority)
+            if key=='missing_context':cp.unlink()
+            elif key=='missing_priority':pp.unlink()
+            elif key.startswith('wrong_context'):
+                field={'schema':'schema','pr':'pr','problem':'problem_id','head':'original_head','title':'title'}[key[len('wrong_context_'):]];x[field]='wrong'
+            elif key=='missing_prose':x['edition_text'].pop('PROOF.md')
+            elif key=='extra_prose':x['edition_text']['OTHER.md']='wrong'
+            elif key=='empty_structured_record':x['verification']={}
+            elif key=='missing_novelty_disclaimer':y.pop('novelty_clearance')
+            elif key=='firstness_claim':y['firstness_claim']=True
+            elif key=='wrong_matching_doi':y['matching_publication_doi']='10.5281/zenodo.999'
+            elif key=='wrong_math_gate':mp.write_text(json.dumps({**math_gate,'status':'PENDING'}))
+            elif key=='missing_required_freeze':x['authored_freezes'].pop()
+            elif key=='wrong_freeze_schema':x['authored_freezes'][0]['entries_key']='files'
+            elif key=='changed_freeze_anchor':x['authored_freezes'][0]['sha256']='0'*64
+            elif key=='duplicate_freeze':x['authored_freezes'].append(copy.deepcopy(x['authored_freezes'][0]))
+            else:x['authored_freezes'][0]['base']='../../outside'
+            if key!='missing_context':cp.write_text(json.dumps(x))
+            if key!='missing_priority':pp.write_text(json.dumps(y))
+            try:p.load_context()
+            except (RuntimeError,FileNotFoundError):rejected.append(key)
+            else:raise RuntimeError('Bad pre-authoring current context accepted '+key)
+    return rejected
+
 def additional_guards():
     u=load('update_pr_publication');t=load('append_tracker');b=load('build_package');v=load('verification/verify')
     pub={'environment':'production','state':'published','metadata_normalizations':[],'id':123,'doi':'10.5281/zenodo.123','doi_url':'https://doi.org/10.5281/zenodo.123','record_url':'https://zenodo.org/records/123','url':'https://doi.org/10.5281/zenodo.123','title':'Reviewed title'}
@@ -72,17 +108,18 @@ def additional_guards():
             else:raise RuntimeError('Bad review coverage/evidence accepted '+key)
             (review/'VERDICT.json').write_text('{"status":"CLEAN"}')
         # Source/PDF fixtures exercise byte coupling only; no fake rendering is claimed.
-        b.ROOT=root;(root/'manuscript').mkdir(exist_ok=True);(root/'output/pdf').mkdir(parents=True);source=root/'manuscript/main.tex';pdf=root/'output/pdf/main.pdf';source.write_bytes(b'source v1');pdf.write_bytes(b'%PDF-fixture v1')
-        compiled={'returncode':0,'source_sha256':b.binding(source)['sha256'],'pdf_sha256':b.binding(pdf)['sha256']};layout={**compiled,'status':'pass','pages':b.EXPECTED_PDF_PAGES,'all_pages_visually_inspected':True,'page_indices_inspected':list(range(1,b.EXPECTED_PDF_PAGES+1))}
+        b.ROOT=root;b.pdf_pages=lambda path:7;(root.parent/'CURRENT_PR1241_CONTEXT.json').write_text(json.dumps({'expected_pdf_pages':7}));(root.parent/'PRIORITY_ADJUDICATION.json').write_text('{}');(root/'manuscript').mkdir(exist_ok=True);(root/'output/pdf').mkdir(parents=True);source=root/'manuscript/main.tex';pdf=root/'output/pdf/main.pdf';source.write_bytes(b'source v1');pdf.write_bytes(b'%PDF-fixture v1')
+        compiled={'returncode':0,'source_date_epoch':'1792267200','source_sha256':b.binding(source)['sha256'],'pdf_sha256':b.binding(pdf)['sha256']};layout={**compiled,'status':'pass','pages':b.expected_pdf_pages(),'all_pages_visually_inspected':True,'page_indices_inspected':list(range(1,b.expected_pdf_pages()+1))}
         cp=root/'COMPILE_RECEIPT.json';lp=root/'LAYOUT_VERIFICATION.json'
         def restore():source.write_bytes(b'source v1');pdf.write_bytes(b'%PDF-fixture v1');cp.write_text(json.dumps(compiled));lp.write_text(json.dumps(layout))
         restore();b.document_bindings();baddoc=[]
-        for key in ['stale_source','stale_pdf','missing_compile','missing_layout','failed_compile','wrong_compile_source','wrong_compile_pdf','wrong_layout_source','wrong_layout_pdf','wrong_pages','partial_visual_qa']:
+        for key in ['stale_source','stale_pdf','missing_compile','missing_layout','wrong_build_stamp','failed_compile','wrong_compile_source','wrong_compile_pdf','wrong_layout_source','wrong_layout_pdf','wrong_pages','partial_visual_qa']:
             restore()
             if key=='stale_source':source.write_bytes(b'source v2')
             elif key=='stale_pdf':pdf.write_bytes(b'%PDF-fixture v2')
             elif key=='missing_compile':cp.unlink()
             elif key=='missing_layout':lp.unlink()
+            elif key=='wrong_build_stamp':cp.write_text(json.dumps({**compiled,'source_date_epoch':'0'}))
             elif key.startswith('wrong_compile') or key=='failed_compile':
                 x=copy.deepcopy(compiled);x['returncode' if key=='failed_compile' else 'source_sha256' if key.endswith('source') else 'pdf_sha256']=1 if key=='failed_compile' else '0'*64;cp.write_text(json.dumps(x))
             else:
@@ -94,11 +131,28 @@ def additional_guards():
             try:b.document_bindings()
             except (RuntimeError,FileNotFoundError):baddoc.append(key)
             else:raise RuntimeError('Stale/missing document assurance accepted '+key)
-        # A coupled outer-manifest change must not hide a stale nested freeze.
-        archive=root/'archive';nested=archive/'priority/independent/cross_freeze';nested.mkdir(parents=True);payload=nested/'CROSS.md';payload.write_bytes(b'frozen challenge');entry={'path':'CROSS.md','bytes':len(payload.read_bytes()),'sha256':hashlib.sha256(payload.read_bytes()).hexdigest()};(nested/'MANIFEST.json').write_text(json.dumps({'files':[entry]}));(archive/'MANIFEST.json').write_text('{"files":[]}');need(len(v.authenticate_nested_manifests(archive))==1,'nested positive failed');payload.write_bytes(b'changed challenge');(archive/'MANIFEST.json').write_text(json.dumps({'files':[{'path':'priority/independent/cross_freeze/CROSS.md','bytes':len(payload.read_bytes()),'sha256':hashlib.sha256(payload.read_bytes()).hexdigest()}]}))
-        try:v.authenticate_nested_manifests(archive)
-        except ValueError:nested_rejected=True
-        else:raise RuntimeError('Changed cross-freeze escaped nested verification')
+        # Each real custom schema is exercised. Omitted-source inventories are
+        # ordinary receipts and are deliberately absent from the registry.
+        archive=root/'archive';archive.mkdir();registry=[];nested_schema_controls=[]
+        for index,(entries_key,path_key) in enumerate([('entries','file'),('files','path'),('authored_files','path'),('all_authored_content_files','path_relative_to_authored_root')]):
+            folder=archive/'priority'/('fixture'+str(index));folder.mkdir(parents=True);payload=folder/'CROSS.md';payload.write_bytes(b'frozen challenge');entry={path_key:'CROSS.md','bytes':len(payload.read_bytes()),'sha256':hashlib.sha256(payload.read_bytes()).hexdigest()};freeze=folder/'FREEZE_MANIFEST.json';freeze.write_text(json.dumps({entries_key:[entry]}));registry.append({'path':freeze.relative_to(archive).as_posix(),'base':folder.relative_to(archive).as_posix(),'entries_key':entries_key,'path_key':path_key,'sha256':hashlib.sha256(freeze.read_bytes()).hexdigest()})
+        (archive/'RAW_SOURCE_INVENTORY.json').write_text(json.dumps({'files':[{'path':'omitted.pdf','bytes':100,'sha256':'0'*64}]}))
+        need(len(v.authenticate_nested_manifests(archive,registry,require_complete=False))==4,'custom nested positive failed')
+        for index,item in enumerate(registry):
+            payload=archive/item['base']/'CROSS.md';payload.write_bytes(b'changed challenge');(archive/'MANIFEST.json').write_text(json.dumps({'files':[{'path':str(payload.relative_to(archive)),'bytes':len(payload.read_bytes()),'sha256':hashlib.sha256(payload.read_bytes()).hexdigest()}]}))
+            try:v.authenticate_nested_manifests(archive,registry,require_complete=False)
+            except ValueError:nested_schema_controls.append([item['entries_key'],item['path_key']])
+            else:raise RuntimeError('Changed freeze escaped custom nested verification')
+            payload.write_bytes(b'frozen challenge')
+        nested_rejected=len(nested_schema_controls)==4
+        bad_registry=copy.deepcopy(registry);bad_registry[0]['sha256']='0'*64
+        try:v.authenticate_nested_manifests(archive,bad_registry,require_complete=False)
+        except ValueError:pass
+        else:raise RuntimeError('Changed outside freeze anchor accepted')
+        bad_registry=copy.deepcopy(registry);bad_registry[0]['base']='../../outside'
+        try:v.authenticate_nested_manifests(archive,bad_registry,require_complete=False)
+        except ValueError:pass
+        else:raise RuntimeError('Escaped registry base accepted')
         # Full body step is mocked, including accepted write with lost response.
         state={'headRefOid':'a'*40,'headRefName':u.BRANCH,'state':'OPEN','body':'original body'};body='reviewed final body';(root/'PR_BODY_FINAL.md').write_text(body);(root/'FINAL_REVIEW_GATE.json').write_text('{}');calls=[];fail_once={'value':False}
         u.pr=lambda:copy.deepcopy(state)
@@ -119,7 +173,7 @@ def additional_guards():
         except RuntimeError:pass
         else:raise RuntimeError('Lost body response falsely completed')
         fail_once['value']=False;u.synchronize_pr_body('a'*40,body,original);need(len(calls)==2,'lost-response recovery repeated idempotent body write')
-    return {'canonical_publication_controls':badpub,'full_tracker_row_and_range_controls':badrow,'complete_review_gate_controls':badgate,'stale_document_controls':baddoc,'coupled_outer_change_nested_freeze_rejected':nested_rejected,'renamed_tracker_complete_main_zero_appends':True,'body_edit_readback_idempotence_lost_response_and_unknown_body':'PASS','scope':'Pure fixtures/mocks; document test checks hash/QA coupling, not real PDF rendering. No Git/network/application operation.'}
+    return {'canonical_publication_controls':badpub,'full_tracker_row_and_range_controls':badrow,'complete_review_gate_controls':badgate,'stale_document_controls':baddoc,'coupled_outer_change_nested_freeze_rejected':nested_rejected,'custom_nested_schemas':nested_schema_controls,'outside_freeze_anchor_and_base_escape_rejected':True,'omitted_raw_inventory_treated_as_receipt_only':True,'renamed_tracker_complete_main_zero_appends':True,'body_edit_readback_idempotence_lost_response_and_unknown_body':'PASS','scope':'Pure fixtures/mocks; document test checks hash/QA coupling, not real PDF rendering. No Git/network/application operation.'}
 
 def worker():
     m=load('update_pr_publication');metadata=load('check_public_downloads')
@@ -160,7 +214,13 @@ def worker():
     try:m.validate_saved(bad,wanted,files)
     except RuntimeError:rejected.append('invalid_commit')
     else:raise RuntimeError('Invalid commit syntax accepted')
-    wanted_meta=json.loads((ROOT/'zenodo-deposit.json').read_text())['metadata']
+    meta_path=ROOT/'zenodo-deposit.json'
+    if meta_path.exists():
+        wanted_meta=json.loads(meta_path.read_text())['metadata'];metadata_scope='actual current local deposit metadata, compared offline'
+    else:
+        # Pure pre-authoring fixture; this is not a real paper/deposit metadata record.
+        wanted_meta={'title':'Offline reviewed title fixture','upload_type':'publication','publication_type':'preprint','description':'Offline fixture','creators':[{'name':'Fixture author'}],'access_right':'open','license':'cc-by-4.0','version':'1.0','publication_date':'2026-10-17','keywords':['fixture'],'related_identifiers':[{'identifier':'10.5281/zenodo.23301731','relation':'references','scheme':'doi'}]};metadata_scope='11-field offline fixture only; real deposit metadata does not yet exist'
+
     public=copy.deepcopy(wanted_meta)
     public['resource_type']={'type':public.pop('upload_type'),'subtype':public.pop('publication_type'),'title':'Preprint'}
     public['license']={'id':public['license']};public['doi']='10.5281/zenodo.generated';public['relations']={'generated':True}
@@ -175,7 +235,7 @@ def worker():
         try:metadata.verify_public_metadata(bad,wanted_meta)
         except RuntimeError:rejected_meta.append(key)
         else:raise RuntimeError('Changed supplied public metadata accepted: '+key)
-    return {'status':'PASS','additional_guards':additional_guards(),'valid_saved_identity_and_tree':True,'stale_saved_or_tree_controls_rejected':rejected,'all_public_metadata_fields_exact_fixture':fields,'each_supplied_public_metadata_field_corruption_rejected':sorted(rejected_meta),'scope':'Tests saved-identity validator and full metadata projection with offline fixtures, not a live GitHub/Zenodo/GWS integration test. Publication main guards receive an additional independent whole-package review. No actual Git, network or application call is allowed.'}
+    return {'status':'PASS','explicit_current_context_controls':prepare_context_controls(),'additional_guards':additional_guards(),'valid_saved_identity_and_tree':True,'stale_saved_or_tree_controls_rejected':rejected,'metadata_fixture_scope':metadata_scope,'all_public_metadata_fields_exact_fixture':fields,'each_supplied_public_metadata_field_corruption_rejected':sorted(rejected_meta),'scope':'Tests saved-identity validator and full metadata projection with offline fixtures, not a live GitHub/Zenodo/GWS integration test. Publication main guards receive an additional independent whole-package review. No actual Git, network or application call is allowed.'}
 
 def main():
     if '--worker' in sys.argv:print(json.dumps(worker(),sort_keys=True));return

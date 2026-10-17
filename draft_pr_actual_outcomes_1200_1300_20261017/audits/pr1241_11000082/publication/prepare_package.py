@@ -17,6 +17,7 @@ MINIMUM_FREEZES={
  'reviews/source_question_family/FREEZE_MANIFEST.json':('reviews/source_question_family','authored_files','path'),
  'reviews/convex_core_adversary/FREEZE_MANIFEST.json':('reviews/convex_core_adversary','authored_files','path'),
  'priority/independent/FREEZE_MANIFEST.json':('priority/independent','all_authored_content_files','path_relative_to_authored_root'),
+ 'priority/adversary/FREEZE_MANIFEST.json':('priority/adversary','authored_files','path'),
 }
 def need(c,m):
  if not c:raise RuntimeError(m)
@@ -48,6 +49,8 @@ def load_context():
  for key in ['novelty_clearance','firstness_claim','current_openness_claim','new_existence_claim']:
   need(priority.get(key) is False,'Priority record must explicitly disclaim '+key)
  need(priority.get('matching_publication_doi')==MATCHING_DOI,'Positive matching printed theorem must be credited explicitly')
+ math_gate=json.loads((AUDIT/'MATH_GATE.json').read_text())
+ need(math_gate.get('pr')==PR and math_gate.get('problem_id')==PROBLEM and math_gate.get('original_head')==ORIGINAL and isinstance(math_gate.get('status'),str) and math_gate['status'].startswith('PASS'),'Current mathematical gate must pass for this exact original target')
  texts=context.get('edition_text',{})
  need(set(texts)=={'PROOF.md','AUDIT.md','README.md','ACCEPTANCE.md'},'Exactly four explicit current prose records required')
  for name,text in texts.items():need(isinstance(text,str) and bool(text.strip()),'Empty current edition '+name)
@@ -58,7 +61,7 @@ def load_context():
   need(set(entry)=={'path','base','entries_key','path_key','sha256'},'Unexpected authored freeze registry schema')
   path=safe(entry['path']);safe(entry['base']);need(path not in seen,'Duplicate authored freeze');seen.add(path)
   need(path.startswith(('reviews/','priority/')),'Freeze outside own review/priority trees')
-  need(entry['entries_key'] in {'entries','files','authored_files','all_authored_content_files'} and entry['path_key'] in {'file','path','path_relative_to_authored_root'},'Unsupported explicit freeze schema')
+  need(entry['entries_key'] in {'entries','files','authored_files','all_authored_content_files','new_authored_files'} and entry['path_key'] in {'file','path','path_relative_to_authored_root','path_relative_to_family_root'},'Unsupported explicit freeze schema')
   need(binding(within(AUDIT,path))['sha256']==entry['sha256'],'Authored freeze differs from outside anchor '+path)
  for path,shape in MINIMUM_FREEZES.items():
   found=next((e for e in registry if e['path']==path),None)
