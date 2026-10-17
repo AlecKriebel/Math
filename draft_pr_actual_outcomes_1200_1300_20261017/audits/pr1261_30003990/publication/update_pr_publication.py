@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Update only the audited problem paths on the pinned PR, using Git objects."""
 from pathlib import Path
-import datetime,hashlib,json,runpy,shutil,subprocess,zipfile
+import datetime,hashlib,json,re,runpy,shutil,subprocess,zipfile
 ROOT=Path(__file__).resolve().parent
 REPO=Path('/Users/alec/Documents/Math')
 SHARED_KIT=REPO/'zenodo_deposit_tool/zenodo.py'
+COORDINATOR=ROOT.parents[2]/'publication_coordinators/pr1261.py'
 BASE='unsolved_math_prioritization/attempts/30003990'
 BRANCH='convex-body-sos-30003990-reviewed'
 ORIGINAL='d1ecd7c4368f4909653a44db0c9ca4a5463e6552'
@@ -15,7 +16,9 @@ def git(*args,data=None):
     return run.stdout
 def save(p,d):p.write_text(json.dumps(d,indent=2)+'\n')
 def read(n):return json.loads((ROOT/n).read_text())
-def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def digest(p):
+    if p.is_symlink() or not p.is_file():raise RuntimeError('Missing/nonregular reviewed file '+str(p))
+    return hashlib.sha256(p.read_bytes()).hexdigest()
 def pr():return json.loads(subprocess.check_output(['gh','pr','view',NUMBER,'--repo','AlecKriebel/Math','--json','headRefOid,headRefName,state,isDraft,body'],cwd=REPO,text=True))
 def tree(entries):return git('mktree','-z',data=b'\0'.join(entries)+b'\0').decode().strip()
 def put(base,parts,oid,kind='blob',mode='100644'):
@@ -73,12 +76,32 @@ def validate_saved(saved,wanted,files):
     return commit
 
 REQUIRED_WORKFLOW={'prepare_package.py','build_package.py','compile_note.py','verification/verify.py','append_tracker.py','update_pr_publication.py','check_public_downloads.py','workflow_regression.py'}
+def utc_time(raw):
+    try:value=datetime.datetime.fromisoformat(raw.replace('Z','+00:00'))
+    except (ValueError,AttributeError):raise RuntimeError('Actual ISO UTC review timestamp required')
+    if value.tzinfo is None or value.utcoffset()!=datetime.timedelta(0):raise RuntimeError('Actual UTC review timestamp required')
+    return value
+
+def frozen_input_inventory(path,check_current):
+    """Historical inventories remain immutable evidence, not current-byte gates."""
+    obj=json.loads(path.read_text());entries=obj.get('files',[])+obj.get('external_readonly_inputs',[]);bound={}
+    if not entries:raise RuntimeError('Empty reviewer input inventory')
+    for entry in entries:
+        if not isinstance(entry,dict) or not isinstance(entry.get('path'),str) or type(entry.get('bytes')) is not int or entry['bytes']<0 or re.fullmatch('[0-9a-f]{64}',entry.get('sha256','')) is None:raise RuntimeError('Malformed historical/current input binding')
+        target=Path(entry['path']);target=target if target.is_absolute() else ROOT.parent/target
+        if '..' in Path(entry['path']).parts:raise RuntimeError('Unsafe reviewer input path')
+        resolved=str(target.resolve())
+        if resolved in bound:raise RuntimeError('Duplicate reviewer input binding')
+        bound[resolved]=entry
+        if check_current and (target.is_symlink() or not target.is_file() or target.stat().st_size!=entry['bytes'] or digest(target)!=entry['sha256']):raise RuntimeError('Latest reviewer frozen input drift '+str(target))
+    return bound
+
 def validate_workflow_gate(gate):
     if gate.get('schema')!='math-preprint-final-review-gate-v1' or gate.get('pr')!=int(NUMBER) or gate.get('problem_id')!=30003990 or gate.get('original_head')!=ORIGINAL or gate.get('status')!='pass':raise RuntimeError('Invalid final review gate schema/target/status')
     if set(gate.get('workflow',{}))!=REQUIRED_WORKFLOW:raise RuntimeError('Review gate must cover exactly every required workflow script')
     for name in REQUIRED_WORKFLOW:
         if digest(ROOT/name)!=gate['workflow'][name]:raise RuntimeError('Reviewed workflow drift '+name)
-    if digest(ROOT/'deposit_coordinator.py')!=gate.get('deposit_coordinator_sha256'):raise RuntimeError('Reviewed deposit coordinator drift')
+    if digest(COORDINATOR)!=gate.get('deposit_coordinator_sha256'):raise RuntimeError('Reviewed deposit coordinator drift')
     if digest(SHARED_KIT)!=gate.get('shared_kit_sha256'):raise RuntimeError('Reviewed read-only shared kit drift')
     for key,raw in [('pdf_sha256','Convex_Body_SOS_Density_Note_v1.0.pdf'),('verification_zip_sha256','Convex_Body_SOS_Density_Verification_v1.0.zip'),('metadata_sha256','zenodo-deposit.json'),('source_sha256','manuscript/main.tex'),('current_context_sha256','../CURRENT_PR1261_CONTEXT.json')]:
         if digest(ROOT/raw)!=gate.get(key):raise RuntimeError('Current reviewed artifact drift '+raw)
@@ -90,28 +113,67 @@ def validate_workflow_gate(gate):
     if latest.get('status')!='CLEAN':raise RuntimeError('Fresh final clean review required')
     allowed=(ROOT.parent/'reviews').resolve()
     previous=None
-    required={str((ROOT/name).resolve()) for name in REQUIRED_WORKFLOW}|{str((ROOT/raw).resolve()) for raw in ['deposit_coordinator.py','Convex_Body_SOS_Density_Note_v1.0.pdf','Convex_Body_SOS_Density_Verification_v1.0.zip','zenodo-deposit.json','manuscript/main.tex','COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json','BUILD_RECEIPT.json','../CURRENT_PR1261_CONTEXT.json','../MATH_GATE.json','../PRIORITY_ADJUDICATION.json','../SUBMITTED_SNAPSHOT.json']}|{str(SHARED_KIT.resolve())}
-    for record in sequence:
-        if record.get('status')!='CLEAN' or record.get('actual_review') is not True:raise RuntimeError('Literal actual CLEAN reviewer evidence required')
+    required={str((ROOT/name).resolve()) for name in REQUIRED_WORKFLOW}|{str((ROOT/raw).resolve()) for raw in ['Convex_Body_SOS_Density_Note_v1.0.pdf','Convex_Body_SOS_Density_Verification_v1.0.zip','zenodo-deposit.json','manuscript/main.tex','COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json','BUILD_RECEIPT.json','../CURRENT_PR1261_CONTEXT.json','../MATH_GATE.json','../PRIORITY_ADJUDICATION.json','../SUBMITTED_SNAPSHOT.json']}|{str(SHARED_KIT.resolve()),str(COORDINATOR.resolve())}
+    names={'ACCEPTANCE.json','AUDIT.md','MOMENT_FORMULATION.md','PROOF.md','PUBLIC_MANIFEST.json','RESULT.md','SOURCE_VERIFICATION.json'}
+    required|={str((ROOT.parent/folder/name).resolve()) for folder in ['submitted','current_edition'] for name in names}
+    required|={str((ROOT.parent/item['path']).resolve()) for item in context['portable_files']}
+    required|={str(path.resolve()) for path in (ROOT/'verification').rglob('*') if path.is_file()}
+    pending_resolutions=[]
+    verifier=runpy.run_path(str(ROOT/'verification/verify.py'))
+    verifier['authenticate_snapshot'](ROOT.parent/'submitted',json.loads((ROOT.parent/'SUBMITTED_SNAPSHOT.json').read_text()))
+    verifier['authenticate_edition'](ROOT.parent/'current_edition')
+    for name,text in context['edition_text'].items():
+        if (ROOT.parent/'current_edition'/name).read_text()!=text:raise RuntimeError('Current explicit prose/edition drift')
+    for name,obj in context['structured_records'].items():
+        if json.loads((ROOT.parent/'current_edition'/name).read_text())!=obj:raise RuntimeError('Current explicit structured/edition drift')
+    for index,record in enumerate(sequence):
+        is_latest=index==len(sequence)-1
+        if record.get('status') not in {'CLEAN','CHANGES_REQUIRED'} or record.get('actual_review') is not True:raise RuntimeError('Literal actual whole-package review evidence required')
+        if is_latest and record['status']!='CLEAN':raise RuntimeError('Latest whole-package review must be CLEAN')
         checked={}
-        for key in ['report','verdict','input_freeze']:
+        for key in ['report','verdict','manifest','input_freeze']:
             path=(ROOT/record.get(key,'')).resolve()
             try:path.relative_to(allowed)
             except ValueError:raise RuntimeError('Review evidence outside this problem review folder')
             if digest(path)!=record.get(key+'_sha256'):raise RuntimeError('Final review evidence drift '+key)
             checked[key]=path
+        if not is_latest:required|={str(path) for path in checked.values()}
         verdict=json.loads(checked['verdict'].read_text())
-        if verdict.get('schema')!='math-pr1261-whole-package-review-v1' or verdict.get('status')!='CLEAN' or verdict.get('actual_review') is not True or verdict.get('reviewer_id')!=record.get('reviewer_id') or verdict.get('pr')!=1261 or verdict.get('problem_id')!=30003990 or verdict.get('original_head')!=ORIGINAL or verdict.get('current_context_sha256')!=gate['current_context_sha256'] or verdict.get('input_freeze_sha256')!=record['input_freeze_sha256']:raise RuntimeError('Current actual whole-package CLEAN verdict required')
-        try:at=datetime.datetime.fromisoformat(verdict.get('at_utc','').replace('Z','+00:00'))
-        except (ValueError,AttributeError):raise RuntimeError('Actual ISO UTC review timestamp required')
-        if at.tzinfo is None or at.utcoffset()!=datetime.timedelta(0) or (previous is not None and at<=previous):raise RuntimeError('Strictly sequential actual UTC review timestamps required')
+        if verdict.get('schema')!='math-pr1261-whole-package-review-v1' or verdict.get('status')!=record['status'] or verdict.get('actual_review') is not True or verdict.get('reviewer_id')!=record.get('reviewer_id') or verdict.get('pr')!=1261 or verdict.get('problem_id')!=30003990 or verdict.get('original_head')!=ORIGINAL or verdict.get('current_context_sha256')!=record.get('context_sha256') or re.fullmatch('[0-9a-f]{64}',record.get('context_sha256','')) is None or verdict.get('input_freeze_sha256')!=record['input_freeze_sha256']:raise RuntimeError('Actual exact review identity/context/verdict required')
+        if is_latest and record['context_sha256']!=gate['current_context_sha256']:raise RuntimeError('Latest review context is not current')
+        at=utc_time(verdict.get('at_utc',''))
+        if previous is not None and at<=previous:raise RuntimeError('Strictly sequential actual UTC review timestamps required')
         previous=at
-        freeze=json.loads(checked['input_freeze'].read_text());bound=set()
-        for entry in freeze.get('files',[])+freeze.get('external_readonly_inputs',[]):
-            path=Path(entry['path']);path=path if path.is_absolute() else ROOT.parent/path
-            if path.is_symlink() or not path.is_file() or path.stat().st_size!=entry['bytes'] or digest(path)!=entry['sha256']:raise RuntimeError('Actual reviewer frozen input drift '+str(path))
-            bound.add(str(path.resolve()))
-        if not required<=bound:raise RuntimeError('Actual reviewer input freeze omits current artifact/workflow')
+        shape=record.get('manifest_schema',{})
+        if set(shape)!={'entries_key','path_key','size_key'} or tuple(shape[k] for k in ['entries_key','path_key','size_key']) not in verifier['SCHEMAS'] or shape['entries_key'] in {'members','authored_members','authored_outputs'}:raise RuntimeError('Explicit relative authored reviewer manifest schema required')
+        manifest=json.loads(checked['manifest'].read_text());members=manifest.get(shape['entries_key']);listed=set()
+        if not isinstance(members,list) or not members:raise RuntimeError('Empty authored reviewer manifest')
+        for entry in members:
+            name=verifier['safe'](entry.get(shape['path_key']))
+            if name in listed:raise RuntimeError('Duplicate authored review member')
+            listed.add(name);verifier['check_binding'](verifier['member'](checked['manifest'].parent,name),entry,shape['size_key'])
+        for key in ['report','verdict']:
+            try:name=checked[key].relative_to(checked['manifest'].parent).as_posix()
+            except ValueError:raise RuntimeError('Reviewer manifest/report/verdict family mismatch')
+            if name not in listed:raise RuntimeError('Reviewer manifest omits report/verdict')
+        bound=frozen_input_inventory(checked['input_freeze'],is_latest)
+        context_entry=bound.get(str((ROOT.parent/'CURRENT_PR1261_CONTEXT.json').resolve()))
+        if context_entry is None or context_entry['sha256']!=record['context_sha256']:raise RuntimeError('Review inventory/context anchor mismatch')
+        if is_latest and not required<=set(bound):raise RuntimeError('Latest input freeze omits actual code/context/gates/package')
+        if record['status']=='CHANGES_REQUIRED':
+            path=(ROOT/record.get('resolution','')).resolve()
+            try:path.relative_to(ROOT.parent.resolve())
+            except ValueError:raise RuntimeError('Root resolution outside this audit')
+            if digest(path)!=record.get('resolution_sha256'):raise RuntimeError('Root resolution receipt drift')
+            required.add(str(path))
+            resolution=json.loads(path.read_text())
+            if resolution.get('schema')!='math-pr1261-review-resolution-v1' or resolution.get('status')!='RESOLVED' or resolution.get('pr')!=1261 or resolution.get('problem_id')!=30003990 or resolution.get('original_head')!=ORIGINAL or resolution.get('reviewer_id')!=record['reviewer_id'] or resolution.get('review_verdict_sha256')!=record['verdict_sha256'] or resolution.get('review_input_freeze_sha256')!=record['input_freeze_sha256'] or resolution.get('review_context_sha256')!=record['context_sha256'] or resolution.get('resolved_context_sha256')!=gate['current_context_sha256']:raise RuntimeError('Explicit root resolution identity/anchors required')
+            items=resolution.get('items')
+            if not isinstance(items,list) or not items or any(not isinstance(item,dict) or set(item)!={'finding','resolution','evidence'} or not all(isinstance(text,str) and text.strip() for text in item.values()) for item in items):raise RuntimeError('Explicit root finding/resolution/evidence required')
+            resolved_at=utc_time(resolution.get('at_utc',''))
+            if resolved_at<=at:raise RuntimeError('Root resolution must follow reviewed findings')
+            pending_resolutions.append(resolved_at)
+    if any(at>=previous for at in pending_resolutions):raise RuntimeError('Root resolution must precede latest CLEAN review')
 
 def synchronize_pr_body(commit,body,original_body_sha256):
     """Idempotent final-body edit; a branch receipt is complete only after readback."""

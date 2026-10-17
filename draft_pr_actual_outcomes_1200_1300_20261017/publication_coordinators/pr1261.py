@@ -5,7 +5,8 @@ verification before its POST. Uncertain attempts reconcile read-only.
 from pathlib import Path
 import argparse,hashlib,importlib.util,json,runpy,subprocess,sys,zipfile
 REPO=Path('/Users/alec/Documents/Math')
-P=Path(__file__).resolve().parent;A=P.parent
+PROGRAM=Path(__file__).resolve().parents[1]
+A=PROGRAM/'audits/pr1261_30003990';P=A/'publication'
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def require(c,m):
  if not c:raise RuntimeError(m)
@@ -20,7 +21,8 @@ def authenticate_release():
  f=(P/g['latest_review']['input_freeze']).resolve();require(digest(f)==g['latest_review']['input_freeze_sha256'],'Latest input-freeze anchor differs');freeze=json.loads(f.read_text())
  for e in freeze['files']+freeze['external_readonly_inputs']:
   p=Path(e['path']);p=p if p.is_absolute() else A/p;b=p.read_bytes();require(len(b)==e['bytes'] and hashlib.sha256(b).hexdigest()==e['sha256'],'Frozen input drift '+str(p))
- runpy.run_path(str(P/'build_package.py'))['document_bindings']()
+ current_documents=runpy.run_path(str(P/'build_package.py'))['document_bindings']()
+ require(json.loads((P/'BUILD_RECEIPT.json').read_text())['document_bindings']==current_documents,'Built artifact current document/context/gate bindings differ')
  context=runpy.run_path(str(P/'prepare_package.py'))['load_context']()
  manifest=json.loads((P/'zenodo-deposit.json').read_text())
  require(set(manifest)=={'metadata','files'} and manifest['metadata']==context['metadata'] and manifest['files']==[{'path':'Convex_Body_SOS_Density_Note_v1.0.pdf'},{'path':'Convex_Body_SOS_Density_Verification_v1.0.zip'}],'Exact two-file metadata manifest required')
@@ -28,6 +30,8 @@ def authenticate_release():
   require(z.read('manuscript/main.tex')==(P/'manuscript/main.tex').read_bytes(),'Archive source drift')
   for n in ['ACCEPTANCE.json','AUDIT.md','MOMENT_FORMULATION.md','PROOF.md','PUBLIC_MANIFEST.json','RESULT.md','SOURCE_VERIFICATION.json']:require(z.read('current_edition/'+n)==(A/'current_edition'/n).read_bytes(),'Current edition drift '+n)
   require(z.read('provenance/SUBMITTED_SNAPSHOT.json')==(A/'SUBMITTED_SNAPSHOT.json').read_bytes(),'Archive original snapshot drift')
+  require(z.read('provenance/CURRENT_PR1261_CONTEXT.json')==(A/'CURRENT_PR1261_CONTEXT.json').read_bytes(),'Archive current context drift')
+  for n in ['COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json']:require(z.read('provenance/'+n)==(P/n).read_bytes(),'Archive current assurance drift '+n)
  return g
 
 def live_preflight():

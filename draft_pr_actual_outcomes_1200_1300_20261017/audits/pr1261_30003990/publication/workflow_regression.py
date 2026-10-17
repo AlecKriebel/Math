@@ -7,9 +7,10 @@ ignored _local temporary fixtures. These tests do not clear a real release.
 from pathlib import Path
 import contextlib,copy,datetime,hashlib,importlib.util,io,json,os,shutil,subprocess,sys,tempfile,types,zipfile
 ROOT=Path(__file__).resolve().parent
+COORDINATOR=ROOT.parents[2]/'publication_coordinators/pr1261.py'
+REPORT_ROOT=ROOT.parent/'tooling_deployment'
 NAMES=['prepare_package.py','build_package.py','compile_note.py','verification/verify.py','append_tracker.py','update_pr_publication.py','check_public_downloads.py','workflow_regression.py']
 DEPLOY={name:(('verification_verify.py' if (ROOT/'verification_verify.py').exists() else name) if name=='verification/verify.py' else name) for name in NAMES}
-DEPLOY['deposit_coordinator.py']='deposit_coordinator.py'
 
 def need(value,message):
     if not value:raise RuntimeError(message)
@@ -26,9 +27,10 @@ def capture(fn):
     with contextlib.redirect_stdout(io.StringIO()):return fn()
 
 def fixture(folder):
-    audit=folder/'audit';pub=audit/'publication';pub.mkdir(parents=True)
+    audit=folder/'program/audits/pr1261_30003990';pub=audit/'publication';pub.mkdir(parents=True)
     for deployed,source in DEPLOY.items():
         path=pub/deployed;path.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/source,path)
+    coordinator=pub.parents[2]/'publication_coordinators/pr1261.py';coordinator.parent.mkdir();shutil.copyfile(COORDINATOR,coordinator)
     v=load(pub/'verification/verify.py');submitted=audit/'submitted';submitted.mkdir()
     for name in sorted(v.NAMES-{'PUBLIC_MANIFEST.json'}):
         (submitted/name).write_text(json.dumps({'synthetic_historical_fixture':name})+'\n' if name.endswith('.json') else 'SYNTHETIC HISTORICAL FIXTURE '+name+'\n')
@@ -71,14 +73,16 @@ def fixture(folder):
     build=json.loads((pub/'BUILD_RECEIPT.json').read_text());save(pub/'zenodo-deposit.json',{'metadata':metadata,'files':[{'path':build[key]['path']} for key in ['pdf','verification_zip']]})
     # An actual release must obtain different fresh reviewers. These fabricated
     # records are fixture data in ignored scratch and confer no approval.
-    u=load(pub/'update_pr_publication.py');required=[pub/name for name in NAMES]+[pub/name for name in ['deposit_coordinator.py',build['pdf']['path'],build['verification_zip']['path'],'zenodo-deposit.json','manuscript/main.tex','COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json','BUILD_RECEIPT.json']]+[audit/name for name in ['CURRENT_PR1261_CONTEXT.json','MATH_GATE.json','PRIORITY_ADJUDICATION.json','SUBMITTED_SNAPSHOT.json']]
-    required.append(u.SHARED_KIT);records=[]
+    u=load(pub/'update_pr_publication.py');required=[pub/name for name in NAMES]+[pub/name for name in [build['pdf']['path'],build['verification_zip']['path'],'zenodo-deposit.json','manuscript/main.tex','COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json','BUILD_RECEIPT.json']]+[audit/name for name in ['CURRENT_PR1261_CONTEXT.json','MATH_GATE.json','PRIORITY_ADJUDICATION.json','SUBMITTED_SNAPSHOT.json']]
+    required+=[u.SHARED_KIT,coordinator]+[audit/part/name for part in ['submitted','current_edition'] for name in v.NAMES]+[audit/e['path'] for e in context['portable_files']]+[p for p in (pub/'verification').rglob('*') if p.is_file()];records=[]
     for i in [1,2]:
         review=audit/'reviews'/('synthetic_final_'+str(i));review.mkdir();(review/'REPORT.md').write_text('SYNTHETIC REVIEW FIXTURE ONLY; NOT AN ACTUAL REVIEW\n')
-        save(review/'INPUT_FREEZE.json',{'synthetic_fixture_only':True,'files':[{'path':str(path),**binding(path)} for path in required],'external_readonly_inputs':[]})
+        save(review/'INPUT_FREEZE.json',{'synthetic_fixture_only':True,'files':[{'path':str(path),**binding(path)} for path in dict.fromkeys(required)],'external_readonly_inputs':[]})
         save(review/'VERDICT.json',{'schema':'math-pr1261-whole-package-review-v1','status':'CLEAN','actual_review':True,'synthetic_fixture_only':True,'reviewer_id':'fixture-'+str(i),'pr':1261,'problem_id':30003990,'original_head':v.ORIGINAL,'current_context_sha256':sha(audit/'CURRENT_PR1261_CONTEXT.json'),'input_freeze_sha256':sha(review/'INPUT_FREEZE.json'),'at_utc':'2026-10-17T21:00:0'+str(i)+'Z'})
-        records.append({'status':'CLEAN','actual_review':True,'reviewer_id':'fixture-'+str(i),**{key:('../reviews/'+review.name+'/'+filename) for key,filename in [('report','REPORT.md'),('verdict','VERDICT.json'),('input_freeze','INPUT_FREEZE.json')]},**{key+'_sha256':sha(review/filename) for key,filename in [('report','REPORT.md'),('verdict','VERDICT.json'),('input_freeze','INPUT_FREEZE.json')]}})
-    gate={'schema':'math-preprint-final-review-gate-v1','pr':1261,'problem_id':30003990,'original_head':v.ORIGINAL,'status':'pass','workflow':{name:sha(pub/name) for name in NAMES},'deposit_coordinator_sha256':sha(pub/'deposit_coordinator.py'),'pdf_sha256':sha(pub/build['pdf']['path']),'verification_zip_sha256':sha(pub/build['verification_zip']['path']),'metadata_sha256':sha(pub/'zenodo-deposit.json'),'source_sha256':sha(pub/'manuscript/main.tex'),'current_context_sha256':sha(audit/'CURRENT_PR1261_CONTEXT.json'),'reviews':records,'latest_review':records[-1],'synthetic_fixture_only':True}
+        save(review/'MANIFEST.json',{'authored_files':[{'path':name,**binding(review/name)} for name in ['REPORT.md','VERDICT.json']]})
+        records.append({'status':'CLEAN','actual_review':True,'reviewer_id':'fixture-'+str(i),'context_sha256':sha(audit/'CURRENT_PR1261_CONTEXT.json'),'manifest_schema':{'entries_key':'authored_files','path_key':'path','size_key':'bytes'},**{key:('../reviews/'+review.name+'/'+filename) for key,filename in [('report','REPORT.md'),('verdict','VERDICT.json'),('manifest','MANIFEST.json'),('input_freeze','INPUT_FREEZE.json')]},**{key+'_sha256':sha(review/filename) for key,filename in [('report','REPORT.md'),('verdict','VERDICT.json'),('manifest','MANIFEST.json'),('input_freeze','INPUT_FREEZE.json')]}})
+        required += [review/name for name in ['REPORT.md','VERDICT.json','MANIFEST.json','INPUT_FREEZE.json']]
+    gate={'schema':'math-preprint-final-review-gate-v1','pr':1261,'problem_id':30003990,'original_head':v.ORIGINAL,'status':'pass','workflow':{name:sha(pub/name) for name in NAMES},'deposit_coordinator_sha256':sha(coordinator),'pdf_sha256':sha(pub/build['pdf']['path']),'verification_zip_sha256':sha(pub/build['verification_zip']['path']),'metadata_sha256':sha(pub/'zenodo-deposit.json'),'source_sha256':sha(pub/'manuscript/main.tex'),'current_context_sha256':sha(audit/'CURRENT_PR1261_CONTEXT.json'),'reviews':records,'latest_review':records[-1],'synthetic_fixture_only':True}
     gate['shared_kit_sha256']=sha(u.SHARED_KIT);save(pub/'FINAL_REVIEW_GATE.json',gate);u.validate_workflow_gate(gate)
     return {'audit':audit,'pub':pub,'v':v,'context':context,'snapshot':snapshot,'build':build,'gate':gate,'env':env}
 
@@ -136,9 +140,69 @@ def document_controls(f):
         for path,data in zip([cp,compiled_path,layout_path],originals):path.write_bytes(data)
     return rejected
 
+def relocation_and_root_replay_controls(folder):
+    v=load(ROOT/'verification/verify.py');folder.mkdir(parents=True);registry=[]
+    for n,(ek,pk,sk) in enumerate([('files','relative_path','bytes'),('authored_files','relative_path','bytes')]):
+        base='reviews/extra'+str(n);path=folder/base/'MANIFEST.json';path.parent.mkdir(parents=True);payload=path.parent/'payload.md';payload.write_text('SYNTHETIC SCHEMA PAYLOAD\n');save(path,{ek:[{pk:'payload.md',sk:payload.stat().st_size,'sha256':sha(payload),'path':'/MUST/NOT/READ/THIS'}]});registry.append({'path':path.relative_to(folder).as_posix(),'base':base,'entries_key':ek,'path_key':pk,'size_key':sk,'sha256':sha(path)})
+    base='priority/independent';anchor='/ORIGINAL/HOST/AUDIT/'+base;path=folder/base/'MANIFEST.json';path.parent.mkdir(parents=True);payload=path.parent/'payload.md';payload.write_text('SYNTHETIC RELOCATED PAYLOAD\n');obj={'family_root':anchor,'members':[{'path':anchor+'/payload.md',**binding(payload)}]};save(path,obj);reg={'path':base+'/MANIFEST.json','base':base,'entries_key':'members','path_key':'path','size_key':'bytes','path_mode':'absolute_under_family_root','sha256':sha(path)};registry.append(reg)
+    cross_payload=path.parent/'cross.md';cross_payload.write_text('SYNTHETIC DETACHED CROSS\n');cross=path.parent/'CROSS_CHALLENGE_MANIFEST.json';save(cross,{'family_root':anchor,'authored_members':[{'path':anchor+'/cross.md',**binding(cross_payload)}],'members':[{'path':'/MUST/NOT/READ/DECOY'}],'authenticated_inputs':[{'path':'/MUST/NOT/READ/INPUT'}]});registry.append({**reg,'path':base+'/CROSS_CHALLENGE_MANIFEST.json','entries_key':'authored_members','sha256':sha(cross)})
+    other=path.parent/'REVIEW_ROOT_MANIFEST.json';save(other,{'review_root':anchor,'family_root':'/DECOY/MUST/NOT/SELECT','authored_outputs':[{'path':anchor+'/cross.md',**binding(cross_payload)}],'source_receipts':[{'path':'/MUST/NOT/READ/SOURCE'}]});registry.append({**reg,'path':base+'/REVIEW_ROOT_MANIFEST.json','entries_key':'authored_outputs','absolute_root_key':'review_root','sha256':sha(other)})
+    v.authenticate_nested_manifests(folder,registry,require_complete=False)
+    relocated=folder.parent/'relocated-copy';shutil.copytree(folder,relocated);v.authenticate_nested_manifests(relocated,registry,require_complete=False)
+    rejected=[]
+    for label,mutate in [('missing_absolute_optin',lambda r,o:r.pop('path_mode')),('wrong_mode',lambda r,o:r.update(path_mode='relative')),('outside_anchor',lambda r,o:o['members'][0].update(path='/OUTSIDE/payload.md')),('sibling_prefix',lambda r,o:o['members'][0].update(path=anchor+'_evil/payload.md')),('dotdot_absolute',lambda r,o:o['members'][0].update(path=anchor+'/../payload.md')),('relative_member_in_absolute_mode',lambda r,o:o['members'][0].update(path='payload.md')),('wrong_family_root_suffix',lambda r,o:o.update(family_root='/WRONG/BASE')),('duplicate_normalized_member',lambda r,o:o['members'].append(copy.deepcopy(o['members'][0])))]:
+        badreg=copy.deepcopy(reg);badobj=copy.deepcopy(obj);mutate(badreg,badobj);save(path,badobj);badreg['sha256']=sha(path);rejected.append(reject(lambda:v.authenticate_nested_manifests(folder,[badreg],require_complete=False),label))
+    save(path,obj)
+    program=folder/'root_exact_fixture.py';program.write_text("from pathlib import Path\nimport datetime,hashlib,json\np=Path(__file__);print(json.dumps({'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'program_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'result':{'static':7,'at_utc':'NESTED_MUST_REMAIN','run_utc':'NESTED_MUST_REMAIN','python':'NESTED_MUST_REMAIN','optimization':'NESTED_MUST_REMAIN'}}))\n")
+    expected={'at_utc':'HISTORICAL TOP LEVEL ONLY','program_sha256':sha(program),'result':{'static':7,'at_utc':'NESTED_MUST_REMAIN','run_utc':'NESTED_MUST_REMAIN','python':'NESTED_MUST_REMAIN','optimization':'NESTED_MUST_REMAIN'}};save(folder/'expected.json',expected)
+    context={'diagnostic_replays':[{'program':program.name,'mode':'normal_O_OO','result':'expected.json','output_mode':'stdout','scope':'Synthetic root deterministic replay contract only.','layout':'isolated','arguments':[],'comparison':'json_ignore_at_utc'}]};v.replay_diagnostics(folder,context)
+    for label in ['program_sha256','nested_at_utc','nested_run_utc','nested_python','nested_optimization','result_static']:
+        bad=copy.deepcopy(expected)
+        if label=='program_sha256':bad[label]='0'*64
+        else:bad['result'][label.removeprefix('nested_').removeprefix('result_')]='CORRUPTED'
+        save(folder/'expected.json',bad);rejected.append(reject(lambda:v.replay_diagnostics(folder,context),label))
+    return {'explicit_new_relative_schemas':[['files','relative_path','bytes'],['authored_files','relative_path','bytes']],'absolute_members_authored_members_authored_outputs_relocated_without_original_host_reads':True,'explicit_review_root_selected_without_guessing':True,'only_selected_membership_key_followed_not_other_input_or_source_lists':True,'immutable_original_manifest_preserved':True,'root_replay_only_top_level_at_utc_ignored':True,'negative_controls':rejected}
+
+def historical_review_controls(f):
+    pub=f['pub'];audit=f['audit'];u=load(pub/'update_pr_publication.py');gate=copy.deepcopy(f['gate']);first=gate['reviews'][0];latest=gate['reviews'][-1]
+    def refresh(record):
+        review=(pub/record['verdict']).parent;record['input_freeze_sha256']=sha(review/'INPUT_FREEZE.json');verdict=json.loads((review/'VERDICT.json').read_text());verdict.update(status=record['status'],current_context_sha256=record['context_sha256'],input_freeze_sha256=record['input_freeze_sha256']);save(review/'VERDICT.json',verdict);record['verdict_sha256']=sha(review/'VERDICT.json');manifest=json.loads((review/'MANIFEST.json').read_text())
+        for entry in manifest['authored_files']:entry.update(binding(review/entry['path']))
+        save(review/'MANIFEST.json',manifest);record['manifest_sha256']=sha(review/'MANIFEST.json')
+    first['status']='CHANGES_REQUIRED';first['context_sha256']='1'*64;review=(pub/first['input_freeze']).parent;freeze=json.loads((review/'INPUT_FREEZE.json').read_text())
+    for entry in freeze['files']:
+        if entry['path']==str(audit/'CURRENT_PR1261_CONTEXT.json'):entry['sha256']='1'*64
+        if entry['path']==str(audit/'current_edition/PROOF.md'):entry['sha256']='2'*64;entry['bytes']=1
+    save(review/'INPUT_FREEZE.json',freeze);refresh(first)
+    resolution=audit/'ROOT_R1_RESOLUTION.json';resolved={'schema':'math-pr1261-review-resolution-v1','status':'RESOLVED','pr':1261,'problem_id':30003990,'original_head':u.ORIGINAL,'reviewer_id':first['reviewer_id'],'review_verdict_sha256':first['verdict_sha256'],'review_input_freeze_sha256':first['input_freeze_sha256'],'review_context_sha256':first['context_sha256'],'resolved_context_sha256':gate['current_context_sha256'],'at_utc':'2026-10-17T21:00:01.500000Z','items':[{'finding':'Synthetic first-review correction.','resolution':'Synthetic repair in current context.','evidence':'Synthetic current proof bytes, not actual mathematical approval.'}]};save(resolution,resolved);first['resolution']='../ROOT_R1_RESOLUTION.json';first['resolution_sha256']=sha(resolution)
+    later=(pub/latest['input_freeze']).parent;current=json.loads((later/'INPUT_FREEZE.json').read_text())
+    for entry in current['files']:entry.update(binding(Path(entry['path'])))
+    current['files'].append({'path':str(resolution),**binding(resolution)});save(later/'INPUT_FREEZE.json',current);refresh(latest);gate['latest_review']=latest;u.validate_workflow_gate(gate)
+    save(pub/'FINAL_REVIEW_GATE.json',gate);os.environ['PATH']=f['env']['PATH'];operative=load(pub.parents[2]/'publication_coordinators/pr1261.py');need(operative.P.resolve()==pub.resolve(),'operative coordinator layout differs');need(operative.authenticate_release()==gate,'actual release preflight rejected repaired historical review sequence')
+    rejected=[]
+    for label,mutate in [('missing_resolution',lambda x:x['reviews'][0].pop('resolution')),('wrong_resolution_hash',lambda x:x['reviews'][0].update(resolution_sha256='0'*64)),('wrong_historical_context_identity',lambda x:x['reviews'][0].update(context_sha256='3'*64)),('wrong_historical_manifest_anchor',lambda x:x['reviews'][0].update(manifest_sha256='0'*64)),('latest_historical_context',lambda x:x['reviews'][-1].update(context_sha256='1'*64)),('latest_changes_required',lambda x:x['reviews'][-1].update(status='CHANGES_REQUIRED'))]:
+        bad=copy.deepcopy(gate);mutate(bad);rejected.append(reject(lambda:u.validate_workflow_gate(bad),label))
+    original=resolution.read_bytes()
+    for label,mutate in [('unresolved_status',lambda x:x.update(status='PENDING')),('wrong_resolution_head',lambda x:x.update(original_head='0'*40)),('wrong_resolved_context',lambda x:x.update(resolved_context_sha256='0'*64)),('empty_resolution_items',lambda x:x.update(items=[])),('resolution_after_clean',lambda x:x.update(at_utc='2026-10-17T21:00:03Z'))]:
+        changed=copy.deepcopy(resolved);mutate(changed);save(resolution,changed);bad=copy.deepcopy(gate);bad['reviews'][0]['resolution_sha256']=sha(resolution)
+        if label=='resolution_after_clean':
+            changed_freeze=json.loads((later/'INPUT_FREEZE.json').read_text())
+            for entry in changed_freeze['files']:
+                if entry['path']==str(resolution):entry.update(binding(resolution))
+            save(later/'INPUT_FREEZE.json',changed_freeze);refresh(bad['reviews'][-1]);bad['latest_review']=bad['reviews'][-1]
+        rejected.append(reject(lambda:u.validate_workflow_gate(bad),label))
+    resolution.write_bytes(original)
+    # Update the latest inventory hash after corrupting its own member binding:
+    # current-byte verification must still reject it; historical bytes may differ.
+    original_freeze=(later/'INPUT_FREEZE.json').read_bytes();bad=copy.deepcopy(gate);changed=json.loads(original_freeze)
+    for entry in changed['files']:
+        if entry['path']==str(pub/'prepare_package.py'):entry['sha256']='0'*64
+    save(later/'INPUT_FREEZE.json',changed);refresh(bad['reviews'][-1]);bad['latest_review']=bad['reviews'][-1];rejected.append(reject(lambda:u.validate_workflow_gate(bad),'latest_current_bytes_still_required'))
+    return {'changes_required_then_one_clean_accepted':True,'operative_full_authenticate_release_accepts_repaired_sequence':True,'earlier_historical_context_and_proof_hashes_preserved_without_current_byte_demand':True,'explicit_root_resolution_required':True,'actual_review_manifest_report_verdict_input_anchors_required':True,'negative_controls':rejected}
+
 def coordinator_case(f,case):
     os.environ['PATH']=f['env']['PATH']  # This worker process contains only synthetic fixtures.
-    pub=f['pub'];c=load(pub/'deposit_coordinator.py');kit=c.load_exact_kit();kit.STATE_DIR=pub/'synthetic-kit-state';kit.doi_status=lambda doi:{'status':'not_checked_fixture'}
+    pub=f['pub'];c=load(pub.parents[2]/'publication_coordinators/pr1261.py');kit=c.load_exact_kit();kit.STATE_DIR=pub/'synthetic-kit-state';kit.doi_status=lambda doi:{'status':'not_checked_fixture'}
     events=[];state={'deposit':None,'mutate_second_get':False,'lost_publish':False,'lose_followup':False}
     class Client:
         def create(self,metadata):events.append('POST create');state['deposit']={'id':123,'submitted':False,'metadata':copy.deepcopy(metadata),'files':[],'links':{'bucket':'fixture://bucket'}};return copy.deepcopy(state['deposit'])
@@ -236,17 +300,17 @@ def update_controls(f,pubrecord,tracker):
     return {'desired_files':len(files),'current_edition':7,'publication_additions':5,'stale_identity_and_actual_tree_rejected':badkeys,'complete_update_main_saved_intent_recovery_and_completed_readback':True,'body_lost_response_exact_readback_and_outside_change':True,'no_index_or_force_or_git_mutation_in_test':True,'fresh_object_construction_not_executed':'Actual Git object/tree creation and branch push remain a later integration operation.'}
 
 def worker():
-    scratch=ROOT/'_local';scratch.mkdir(exist_ok=True)
+    scratch=REPORT_ROOT/'_local';scratch.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='synthetic-offline-',dir=scratch) as tmp:
         base=Path(tmp);f=fixture(base/'main');context=context_and_portable_controls(f);documents=document_controls(f);reviews=review_controls(f);p,t,public=publication_and_tracker_controls(f);updates=update_controls(f,p,t)
-        coordinator=[]
+        relocation=relocation_and_root_replay_controls(base/'relocation');history=historical_review_controls(fixture(base/'historical-reviews'));coordinator=[]
         for case in ['successful_publish','normalization_between_inspect_and_POST','uncertain_then_published_recovery']:
             other=fixture(base/case);coordinator.append(coordinator_case(other,case))
         current_metadata={'scope':'Actual current metadata absent; only eleven-field synthetic metadata was tested.','sha256':None}
         if (ROOT/'zenodo-deposit.json').exists():
             wanted=json.loads((ROOT/'zenodo-deposit.json').read_text())['metadata'];v=load(ROOT/DEPLOY['verification/verify.py']);v.metadata_contract(wanted);m=load(ROOT/'check_public_downloads.py');actual=copy.deepcopy(wanted);actual['resource_type']={'type':actual.pop('upload_type'),'subtype':actual.pop('publication_type')};actual['license']={'id':actual['license']};fields=m.verify_public_metadata(actual,wanted)
             current_metadata={'scope':'Actual current local metadata projected and compared offline; no public API/record is implied.','sha256':sha(ROOT/'zenodo-deposit.json'),'fields':fields}
-        return {'status':'PASS','context_and_portable':context,'document_assurance_rejections':documents,'review_gate_rejections':reviews,'tracker_and_public':public,'current_local_metadata_projection':current_metadata,'PR_update':updates,'deposit_coordinator_actual_kit_mocked_clients':coordinator,'scope':'Synthetic fixture metadata/gates/compiler/pdfinfo/reviewer evidence only, except any explicitly reported actual local metadata projection. No real mathematical/priority adjudication, actual PDF compilation/rendering, service integration, Git mutation, staging/upload/publication/tracker append or PR change occurred.'}
+        return {'status':'PASS','context_and_portable':context,'document_assurance_rejections':documents,'review_gate_rejections':reviews,'relocation_and_root_replay':relocation,'historical_review_sequence':history,'tracker_and_public':public,'current_local_metadata_projection':current_metadata,'PR_update':updates,'deposit_coordinator_actual_kit_mocked_clients':coordinator,'operative_coordinator_layout':'program/publication_coordinators/pr1261.py resolves program/audits/pr1261_30003990/publication','scope':'Synthetic fixture metadata/gates/compiler/pdfinfo/reviewer evidence only, except any explicitly reported actual local metadata projection. No real mathematical/priority adjudication, actual PDF compilation/rendering, service integration, Git mutation, staging/upload/publication/tracker append or PR change occurred.'}
 
 def main():
     if '--worker' in sys.argv:print(json.dumps(worker(),sort_keys=True));return
@@ -254,6 +318,6 @@ def main():
     for flags in [[],['-O'],['-OO']]:
         run=subprocess.run([sys.executable,'-B',*flags,str(Path(__file__).resolve()),'--worker'],capture_output=True,text=True);need(run.returncode==0,run.stderr);runs.append({'flags':flags,'result':json.loads(run.stdout)})
     need(all(item['result']==runs[0]['result'] for item in runs),'optimization-dependent guards')
-    receipt={'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runs':runs,'all_modes_identical':True,'authored_workflow_sha256':{source:sha(ROOT/source) for source in DEPLOY.values()},'scope':'Offline synthetic fixture regressions only; final actual package requires rerun and independent whole-package review.'}
-    save(ROOT/'WORKFLOW_REGRESSION_RECEIPT.json',receipt);print(json.dumps(receipt,indent=2))
+    receipt={'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runs':runs,'all_modes_identical':True,'authored_workflow_sha256':{str(ROOT/source):sha(ROOT/source) for source in DEPLOY.values()}|{str(COORDINATOR):sha(COORDINATOR)},'scope':'Offline synthetic fixture regressions only; final actual package requires rerun and independent whole-package review.'}
+    save(REPORT_ROOT/'_local/WORKFLOW_REGRESSION_RECEIPT.json',receipt);print(json.dumps(receipt,indent=2))
 if __name__=='__main__':main()

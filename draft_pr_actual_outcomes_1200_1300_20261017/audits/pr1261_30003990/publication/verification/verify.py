@@ -17,7 +17,7 @@ NAMES = {'ACCEPTANCE.json','AUDIT.md','MOMENT_FORMULATION.md','PROOF.md','PUBLIC
 PROSE = {'AUDIT.md','MOMENT_FORMULATION.md','PROOF.md','RESULT.md'}
 STRUCTURED = {'ACCEPTANCE.json','SOURCE_VERIFICATION.json'}
 FIELDS = {'title','upload_type','publication_type','description','creators','access_right','license','version','publication_date','keywords','related_identifiers'}
-SCHEMAS = {('files','relative_path','size_bytes'),('files','relative_path','bytes'),('authored_files','relative_path','bytes'),('authored_artifacts','relative_path','bytes'),('entries','path','bytes'),('entries','file','bytes'),('authored_files','path','bytes'),('files','path','bytes'),('all_authored_content_files','path_relative_to_authored_root','bytes'),('members','path','bytes')}
+SCHEMAS = {('files','relative_path','size_bytes'),('files','relative_path','bytes'),('authored_files','relative_path','bytes'),('authored_artifacts','relative_path','bytes'),('entries','path','bytes'),('entries','file','bytes'),('authored_files','path','bytes'),('files','path','bytes'),('all_authored_content_files','path_relative_to_authored_root','bytes'),('members','path','bytes'),('authored_members','path','bytes'),('authored_outputs','path','bytes')}
 MINIMUM = {'reviews/source_question_family/manifest.json':('reviews/source_question_family','files','relative_path','size_bytes'), 'reviews/analytic_adversary/MANIFEST.json':('reviews/analytic_adversary','authored_artifacts','relative_path','bytes')}
 
 def need(value, message):
@@ -64,19 +64,20 @@ def metadata_contract(metadata):
 
 def registry_schema(item):
     fields={'path','base','entries_key','path_key','size_key','sha256'}
-    need(isinstance(item,dict) and set(item) in [fields,fields|{'path_mode'}],'registry exact schema required')
+    need(isinstance(item,dict) and set(item) in [fields,fields|{'path_mode'},fields|{'path_mode','absolute_root_key'}],'registry exact schema required')
     triple=tuple(item[k] for k in ['entries_key','path_key','size_key'])
     need(triple in SCHEMAS,'unsupported explicit registry schema')
     mode=item.get('path_mode','relative')
     need(mode in {'relative','absolute_under_family_root'},'unsupported explicit member path mode')
-    need((triple==('members','path','bytes')) == (mode=='absolute_under_family_root'),'legacy members/path requires explicit absolute_under_family_root mode')
+    need((triple in {('members','path','bytes'),('authored_members','path','bytes'),('authored_outputs','path','bytes')}) == (mode=='absolute_under_family_root'),'legacy absolute membership requires explicit absolute_under_family_root mode')
+    need(item.get('absolute_root_key','family_root') in {'family_root','review_root'} and ('absolute_root_key' not in item or mode=='absolute_under_family_root'),'unsupported explicit absolute root key')
     return mode
 
 def manifest_member_name(registry, entry, manifest):
     """Normalize strings only; never resolve or open historical host absolutes."""
     mode=registry_schema(registry);raw=entry.get(registry['path_key'])
     if mode=='relative':return safe(raw)
-    anchor=manifest.get('family_root')
+    anchor=manifest.get(registry.get('absolute_root_key','family_root'))
     need(isinstance(anchor,str) and isinstance(raw,str) and '\\' not in anchor and '\\' not in raw,'absolute legacy path/anchor required')
     base=PurePosixPath(anchor);path=PurePosixPath(raw)
     need(base.is_absolute() and path.is_absolute() and '..' not in base.parts and '..' not in path.parts and str(base)==anchor and str(path)==raw and anchor.endswith('/'+safe(registry['base'])),'noncanonical/mismatched historical family root')
