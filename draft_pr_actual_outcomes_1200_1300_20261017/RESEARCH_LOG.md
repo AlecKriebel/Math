@@ -1,0 +1,15 @@
+# Actual-outcome audit: draft PRs #1200–#1300
+
+## 2026-10-17T09:25:11.055553-07:00 — New eligibility gate
+
+Goal completion estimate: 0%. The human has superseded the earlier literal QUEUE gate because QUEUE.md may be stale. Determine actual PR-recorded outcomes, including complete vs scoped/prior/conditional claims. Only explicit full solutions of the original target enter mathematical/publication review. Preserve the prior queue-only audit as historical evidence, not a current eligibility decision. Capture immutable head metadata and PR bodies; inspect recorded outcome documents for eligibility before reading proof material. Process eligible drafts ascending. No existing shard agents or individuals will be contacted.
+
+## 2026-10-17T09:30:42.630943-07:00 — Actual-outcome inventory complete; independent math gate positive
+
+Overall completion estimate: 8%. Two outcome readers cover all101 drafts, immutable README/acceptance statements, current PR states/heads, and empty comments/reviews. Preliminary eligible full claims: #1205,#1211,#1216,#1225,#1241,#1261,#1268,#1271,#1274,#1280,#1283. Recorded partial/conditional and explicit prior-result outcomes are skipped. #1235 has no full affine-convex triangulation resolution claim, so is not admitted. #1289 identifies its result as an exposition of a standard rank-one example with prior credit, so is provisionally a prior-result skip. Fresh global eligibility adversary is checking all decisions.
+
+PR1205 completion estimate: 40%. Root exact standard-library verifier reproduces all484 certificate products,22 distinct coefficient1 terms with two squared sixth coordinates, full root sequence/w0, rank12, strict rational facet points and unimodular chamber map with transformed absolute exponents<=1; three tampering controls rejected. Independent mutation family froze reconstruction before candidate inspection and found different fixed-label optimized routes with identical canonical support. Independent polyhedral family likewise reproduces both submitted certificate tables and facet dimensions. Original OWR2021 p1125 was visually checked and explicitly states the canonical-W converse; later pullback-coordinate conjectures are different. Extensive independent and root priority audits are now running. No mathematical defect presently known, and no preprint/publication yet authorized by the evidence gates.
+
+## 2026-10-17T09:32:49.352346-07:00 — Priority concern preserved
+
+Overall completion estimate: 8%; PR1205 completion estimate: 45%. Both independent mathematical families completed with no gap. Broad primary-source priority audit found public older D4 data in mironovd/crystal, including the same word at Case267 and22 squarefree pullback monomials. This may be earlier computational discovery of the same example. A distinct fresh priority adversary is independently testing exact data equality, facet results and whether the original conjecture conclusion was already established or follows immediately from published stronger results. No novelty finding or preprint preparation has been promoted.
