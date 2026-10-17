@@ -36,6 +36,18 @@ def additional_guards():
         else:raise RuntimeError('Bad full tracker receipt accepted '+key)
     with tempfile.TemporaryDirectory(prefix='publication-guard-fixtures-') as tmp:
         root=Path(tmp)/'publication';root.mkdir();u.ROOT=root
+        # Complete append main must reject a renamed designated gid before writes.
+        tracker_root=Path(tmp)/'tracker-main';tracker_root.mkdir();t.ROOT=tracker_root
+        (tracker_root/'PUBLICATION_RECEIPT.json').write_text(json.dumps(pub));(tracker_root/'zenodo-deposit.json').write_text(json.dumps({'metadata':{'title':pub['title']}}));append_calls=[]
+        def renamed_call(parts,params,body=None):
+            if parts==['spreadsheets','get']:return {'sheets':[{'properties':{'sheetId':t.GID,'title':'Renamed Math Puzzles'}}]}
+            if parts==['spreadsheets','values','append']:append_calls.append(body);raise RuntimeError('unexpected append after rename')
+            raise RuntimeError('unexpected call before rename refusal '+repr(parts))
+        t.call=renamed_call
+        try:t.main()
+        except RuntimeError as error:need(str(error)=='Tracker tab title changed; reconcile before append','rename test failed at wrong precondition')
+        else:raise RuntimeError('Renamed tracker unexpectedly completed')
+        need(append_calls==[],'Renamed tracker was mutated before rejection')
         for n in u.REQUIRED_WORKFLOW:
             f=root/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_text('fixture workflow '+n)
         review=Path(tmp)/'reviews/r3';review.mkdir(parents=True);(review/'REPORT.md').write_text('clean fixture report');(review/'VERDICT.json').write_text('{"status":"CLEAN"}')
@@ -107,7 +119,7 @@ def additional_guards():
         except RuntimeError:pass
         else:raise RuntimeError('Lost body response falsely completed')
         fail_once['value']=False;u.synchronize_pr_body('a'*40,body,original);need(len(calls)==2,'lost-response recovery repeated idempotent body write')
-    return {'canonical_publication_controls':badpub,'full_tracker_row_and_range_controls':badrow,'complete_review_gate_controls':badgate,'stale_document_controls':baddoc,'coupled_outer_change_nested_freeze_rejected':nested_rejected,'body_edit_readback_idempotence_lost_response_and_unknown_body':'PASS','scope':'Pure fixtures/mocks; document test checks hash/QA coupling, not real PDF rendering. No Git/network/application operation.'}
+    return {'canonical_publication_controls':badpub,'full_tracker_row_and_range_controls':badrow,'complete_review_gate_controls':badgate,'stale_document_controls':baddoc,'coupled_outer_change_nested_freeze_rejected':nested_rejected,'renamed_tracker_complete_main_zero_appends':True,'body_edit_readback_idempotence_lost_response_and_unknown_body':'PASS','scope':'Pure fixtures/mocks; document test checks hash/QA coupling, not real PDF rendering. No Git/network/application operation.'}
 
 def worker():
     m=load('update_pr_publication');metadata=load('check_public_downloads')

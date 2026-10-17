@@ -41,6 +41,7 @@ def main():
  validate_publication_identity(pub,title)
  metadata=call(["spreadsheets","get"],{"spreadsheetId":SID,"fields":"sheets.properties"})
  tab=next(s["properties"] for s in metadata["sheets"] if s["properties"]["sheetId"]==GID)
+ if tab["title"]!="Math Puzzles":raise RuntimeError("Tracker tab title changed; reconcile before append")
  name=tab["title"].replace("'","''"); full="'"+name+"'!A:D"
  data=call(["spreadsheets","values","get"],{"spreadsheetId":SID,"range":full,"valueRenderOption":"UNFORMATTED_VALUE"})
  rows=data.get("values",[])
