@@ -1,4 +1,4 @@
-# Indirect deduction from established compact-condensor and Sobolev theory
+# Indirect deduction from established compact-condenser and Sobolev theory
 
 This deduction was assembled independently in this audit on 17 October 2026. It is **not** represented as a theorem explicitly printed in an earlier source, nor as a priority claim. It supplies a checkable indirect-overlap test for the exact target without using the submitted proof's lower-semicontinuous density majorant, weighted path-distance construction, or small-circle argument.
 
@@ -55,7 +55,7 @@ This conclusion alone would not settle the target. A zero-length compact set can
 
 ## 4. Use the zero-trace theorem at the level of capacity
 
-The restrictions of w to the upper and lower half-planes have zero ordinary trace. The half-space trace-kernel theorem places them in W^{1,2}_0 of the respective half-planes. The zero-extension theorem gives quasicontinuous functions w_+ and w_- on the whole plane agreeing almost everywhere with these restrictions and vanishing quasi-everywhere outside their respective half-planes.
+The restrictions of w to the upper and lower half-planes have zero ordinary trace. The half-space trace-kernel theorem places them in W^{1,2}_0 of the respective half-planes. This particular first-order implication can also be checked directly: on almost every vertical slice in the upper half-plane, w(x,y)=integral_0^y partial_y w(x,t)dt. If a cutoff removes 0<y<epsilon and equals 1 for y>2epsilon, its derivative error has squared integral at most a fixed constant times integral_{0<y<2epsilon}|partial_y w|^2, by Cauchy–Schwarz and integration in y. This tends to zero; the other errors are integrals of |w|^2+|grad w|^2 over a shrinking layer. The cutoff functions, whose support remains compact and away from the boundary, can be smoothed within the half-plane. The lower half-plane is identical. The zero-extension theorem gives quasicontinuous functions w_+ and w_- on the whole plane agreeing almost everywhere with these restrictions and vanishing quasi-everywhere outside their respective half-planes.
 
 Their sum agrees with w almost everywhere in the plane and vanishes quasi-everywhere on the real line. It is quasicontinuous. Uniqueness of quasicontinuous representatives then gives
 
