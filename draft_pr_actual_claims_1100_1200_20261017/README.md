@@ -19,11 +19,10 @@ The independently checked initial inventory has 101 PRs: 14 explicit full-target
 | [1114](https://github.com/AlecKriebel/Math/pull/1114) | Skipped after priority: full target follows from earlier work; PR untouched | No publication |
 | [1118](https://github.com/AlecKriebel/Math/pull/1118) | Complete printed negative answer accepted; first-review version omission repaired, two new clean fresh reviews passed; published, tracker row153 verified, exact head merged | [10.5281/zenodo.23440943](https://doi.org/10.5281/zenodo.23440943) |
 | [1119](https://github.com/AlecKriebel/Math/pull/1119) | Full negative answer accepted; two fresh clean reviews; published, tracker row155 verified, exact head merged | [10.5281/zenodo.23441523](https://doi.org/10.5281/zenodo.23441523) |
-
 | [1121](https://github.com/AlecKriebel/Math/pull/1121) | Full negative answer accepted; two fresh clean reviews; published, tracker row158 verified, exact head merged | [10.5281/zenodo.23441906](https://doi.org/10.5281/zenodo.23441906) |
 
 Remaining eligible PRs, in order: 1129, 1135, 1136, 1141, 1142, 1150, 1151, 1155. Their eligibility is an outcome classification, not mathematical acceptance. See `PROGRAM_STATE.json`, `OUTCOME_INVENTORY.json`, and timestamped `RESEARCH_LOG.md` for exact current state and evidence. The persistent goal remains active until all eligible claims have a final disposition.
 
 ## Current research checkpoint
 
-PR1121 is complete: five-page full negative answer accepted after parent/three-family mathematics, extensive bounded priority/implication audits, and two successive NEW clean whole-package reviews. Exact production files/metadata and DOI verified; tracker row158 read back exactly; exact reviewed head merged. Five results are published/tracked/merged, with1114 separately finalized as prior-full skip. Next eligible PR1129 requires a fresh actual-outcome gate before mathematical review. Persistent goal remains active. Overall completion estimate:59%.
+PR1129 (problem30005461) passed full parent reconstruction and three distinct new independent mathematical audits. All unchanged exact programs reproduce in ordinary/optimized modes. An earlier preprint classification may already imply the full threshold result via the independently verified real-delta6 calculation; two new priority/implication adversaries are checking this before any paper or PR mutation. Five other results are published/tracked/merged;1114 remains an untouched prior-full skip. Overall completion estimate:61%.
