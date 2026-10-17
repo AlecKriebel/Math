@@ -1,3 +1,7 @@
 # Independent priority audit research log
 
 - 2026-10-17: Initiated independent direct-question, author, edition and multilingual priority audit. Completion estimate: 5%. Full theorem includes zero-length compact positive-capacity sets; no novelty or current-openness certification is sought. No external individuals will be contacted.
+
+- 2026-10-17T19:37:15.205543+00:00: Checkpoint. Completion estimate: 40%. arXiv target text and rendered page179/printed178 reauthenticated. Official Springer2021 supplementary update list inspected; no7.58 entry. Primary publisher-permitted Google Books snippet corroborates partial terminology remark at206, but205/206 withheld; no actual2019 page authentication. Direct, author and Russian/transliteration searches have so far yielded different Gonchar condenser problems, not a verified resolution of target.
+
+- 2026-10-17T19:41:15.157413+00:00: Checkpoint. Completion estimate: 75%. Direct exact-question, author/transliteration, Russian, French, German and Chinese probes complete within this bounded search. Positive overlap established: Brezis critical characteristic rigidity; standard trace estimates; Bagby separated-condenser energy duality; Kallunki–Shanmugalingam compact-plate modulus/continuous-capacity theorem. An authored smoothing/truncation deduction supplies a plausible classical corollary route for the zero-length branch. No exact printed prior resolution authenticated. Need complete lead ledger and independent freeze before comparison.
