@@ -25,3 +25,7 @@
 ## 2026-10-17T21:53:49.840449+00:00
 
 1135 disposition completion85%; two successive fresh clean whole-package reviews04/05 of identical six-file release authenticated; complete reports read and exact independent controls reproduced ordinary/optimized with actual failure guards. Publication gate ready, no remote writes yet.
+
+## 2026-10-17T21:54:55.152360+00:00
+
+PR1135 disposition100%: production Zenodo23442649 exact metadata/files/no normalizations, canonical DOI200. Single GWS row160 exact readback. Accepted body/ready/exact reviewed source head merged f59bab23c65bd18716808cf13495bdac60978a0f; all confirmed. Later full overlap credited; first priority unclaimed.
