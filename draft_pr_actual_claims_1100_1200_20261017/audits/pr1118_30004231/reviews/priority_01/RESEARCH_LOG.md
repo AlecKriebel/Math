@@ -16,3 +16,14 @@ Scope: problem 30004231 / OWR-17135-028, pinned head `8592fb7297d3c4973f2778c47c
 Final artifact set: PRIORITY_AUDIT.md; COMPARISON_MATRIX.md; DIRECT_CONSEQUENCE_CHECK.md; QUERY_LEDGER.json; SOURCE_LEDGER.json; RESEARCH_LOG.md. ARTIFACT_RECEIPT.json records own final report identities.
 
 No outside individual was contacted. No PR, Git reference, input manuscript, commit, push, publication, release, purchase, or journal action was performed. No subagent was spawned. Full source bodies were read in memory; no source copies or caches were written. Parent alone decides disposition and any separately authorized action.
+
+## Reopened current-version correction
+
+- 2026-10-17 18:35:42 UTC — 70%: Fresh package review found that the initial audit inspected only HSWW arXiv2606.10817v1 and missed current v2, submitted 24 July 2026 23:56:23 UTC, comments: improved counterexample. The earlier 100% checkpoint described the first bounded pass and is superseded while this correction is active. Publication remains ON HOLD under the parent. Preserve all 105 original fresh queries and v1 analysis; inspect current v2§8/reference bridges before a renewed verdict. No external mutation authorized or performed.
+
+- 2026-10-17 18:37:47 UTC — 85%: Independently retrieved current v2 HTML,32-pagePDF and current arXiv record in memory; hashed all three. Read improved §8 schön construction, proof statements, AppendixA and references. Confirmed v2 submission24July2026 23:56:23UTC; v1 retained as historical.
+- 2026-10-17 18:40:00 UTC — 92%: Own exact rational chain check reproduced current link: before vertex identification f=(12,51,124),ranks(11,40),Betti(1,0,84); after f=(11,51,124),ranks(10,40),Betti(1,1,84). Proved equal-sum-normal-fan/different-exact-filter example; rechecked universality/Cayley conditions. Optional restricted reverse-poset obstruction kept separate from verdict; no general nonrealizability or codimension-only claim.
+
+- 2026-10-17 18:44:17 UTC — 100%: Current-version correction complete. The first pass missed current HSWW v2; this was an avoidable revision-history error and is preserved above. Current v2 §8/reference uses now inspected; renewed bounded verdict remains NO_IDENTIFIED_FULL_TARGET_PRIORITY_BLOCK, without novelty certification. All six substantive own reports/ledgers updated; counts109 fresh queries(103numbered+6supplemental),20source/version records. Final receipt regenerated after validation. Parent/global required changes listed in PRIORITY_AUDIT.md. Publication hold remains parent-controlled; no external action performed.
+
+- 2026-10-17 18:45:37 UTC — 100%: Final corrected artifacts PASS JSON parsing,109-query/20-source counts, currentv2 hash/version receipts, historicalv1 preservation, math delimiters, table columns, and unchanged input hashes. Revised artifact receipt generated from final bytes. Current-version correction and required parent/package changes fully recorded; no external mutation.

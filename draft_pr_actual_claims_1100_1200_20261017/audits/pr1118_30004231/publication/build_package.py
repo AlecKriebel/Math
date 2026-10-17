@@ -36,6 +36,7 @@ def main():
   ('ROOT_MATHEMATICAL_CHECK.md','audits/ROOT_MATHEMATICAL_CHECK.md'),
   ('ROOT_RELATED_DEFINITIONS.md','audits/ROOT_RELATED_DEFINITIONS.md'),
   ('ROOT_PRIORITY_CHECK.md','audits/ROOT_PRIORITY_CHECK.md'),
+  ('ROOT_HSWW_V2_CHECK.md','audits/ROOT_HSWW_V2_CHECK.md'),
   ('ROOT_PRIORITY_SEARCH.json','audits/ROOT_PRIORITY_SEARCH.json'),
   ('ROOT_REPRODUCTION.json','audits/ROOT_REPRODUCTION.json'),
   ('reviews/geometry_01/REPORT.md','audits/geometry_01/REPORT.md'),
