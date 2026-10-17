@@ -23,3 +23,11 @@ Final saved source compiles with both desktop and isolated cached Tectonic; all 
 ## 2026-10-17T20:29:36.736509+00:00 — PR1121 first full package frozen; fresh review begins (PR75%; program55%)
 
 Four unchanged exact programs pass all eight normal/optimized runs, including exact per-seed certificate fingerprints. Source archive79members and uploadkit5members share exact metadata/assets. Local production-tool check succeeds without creating any draft or making external writes. A NEW no-history whole-package adversary is independently auditing all math, current priority/implications, original scope, archive reconstruction, program guards and allfivePDFpages. Parent extracted portable reconstruction is running. No release edits are allowed without resetting fresh clean-review count.
+
+## 2026-10-17T20:32:07.189958+00:00 — PR1121 portable reconstruction and cross-runtime replay PASS (PR75%; program55%)
+
+Extracted source rebuild reproduces all six operative files, all79members and full package receipt exactly; kitmetadata and portable paths match. All archived Python programs parse under3.10grammar. The four unchanged programs also pass both modes under actualPython3.12.14, matching every retained mathematical field and both deterministic seed certificates. Five-page PDF metadata/13external link annotations checked. Operative release remains unchanged while first fresh adversarial review continues.
+
+## 2026-10-17T20:36:12.940851+00:00 — PR1121 first fresh whole-package PASS accepted; second NEW review starts (PR82%; program56%)
+
+Parent read the entire14083byte report and13754byte independent mathematics review, checked18authored artifact hashes and6operative pins, and reproduced the new independent all19999seed certificate consumer unchanged in an isolated mirror, including259858valid steps and3rejected mutations. First reviewer performed20fresh searches and9primaryPDF retrievals with actualinspectionboundaries. Both releasearchives byteidentically rebuilt; all5PDFpages visually passed. Parent additionally checked28internalGoTo links against34named destinations. No requiredrepair. One of2successiveclean passes onidenticalfirstfreeze accepted; a NEW no-history reviewer nowaudits it independently. No1121Zenodo draft,trackerwriteorPRmutation.
