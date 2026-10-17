@@ -1,0 +1,659 @@
+{
+  "assertions_enabled": true,
+  "checks": [
+    {
+      "assertions_enabled": true,
+      "result": {
+        "ballistic_adaptive_trap_time": 8,
+        "ballistic_announcement_rounds": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "ballistic_parameter_pairs_tested": 2304,
+        "bounded_lookahead_cases_tested": 101,
+        "fixed_schedule_survival_measure_lower_bound": 0.8387664832879433,
+        "initial_lookahead_cases": [
+          {
+            "H": 0,
+            "announcements": 9,
+            "death_move": 10
+          },
+          {
+            "H": 1,
+            "announcements": 25,
+            "death_move": 27
+          },
+          {
+            "H": 2,
+            "announcements": 49,
+            "death_move": 52
+          },
+          {
+            "H": 3,
+            "announcements": 81,
+            "death_move": 85
+          },
+          {
+            "H": 4,
+            "announcements": 121,
+            "death_move": 126
+          }
+        ],
+        "negative_velocities_included": true,
+        "scope": "finite implementation checks accompanying, not replacing, the proofs",
+        "status": "passed"
+      },
+      "returncode": 0,
+      "script": "pass1_devil/check_restricted_obstructions.py",
+      "sha256": "68da331b76e4faf7a48e9d70088cbe70d77cda83316dc47da36b9ab100bc942a"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "kind": "Exact rational arithmetic checks; not exhaustive game solving",
+        "remaining_time_cases": 20000,
+        "report_sha256": "dfb554c9156c7108ced1b169ae148b3d4dddfe970a2c8354d642994815128cda",
+        "sparse_sequence_cases": 10000,
+        "status": "PASS",
+        "three_time_composition_obstruction": {
+          "allowed_times": [
+            13,
+            17,
+            21
+          ],
+          "meaning": "The stated sufficient bound fails; no losing-game assertion.",
+          "successive_effective_budgets": [
+            "81/53",
+            "81/25"
+          ],
+          "terminal_upper_bound": "36/25"
+        },
+        "total_parameter_cases": 30000
+      },
+      "returncode": 0,
+      "script": "pass1_fixed_time/verify_bounds.py",
+      "sha256": "6f997604046d886797142734c17ae03bdf619512d74fc7af3082418ff218e605"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "finite_horizons": [
+          {
+            "angel_wins": true,
+            "cache_states_so_far": 2,
+            "cone_pairs": 9,
+            "horizon": 1
+          },
+          {
+            "angel_wins": true,
+            "cache_states_so_far": 12,
+            "cone_pairs": 34,
+            "horizon": 2
+          },
+          {
+            "angel_wins": true,
+            "cache_states_so_far": 83,
+            "cone_pairs": 83,
+            "horizon": 3
+          },
+          {
+            "angel_wins": true,
+            "cache_states_so_far": 812,
+            "cone_pairs": 164,
+            "horizon": 4
+          }
+        ],
+        "geometry": {
+          "minimum_union_bound_slack": 0,
+          "nonempty_center_subsets_verified": 511
+        },
+        "model": "Full 2D adaptive game, Angel first, only previous announcements lethal",
+        "scope": "Executable finite-game specification and small smoke tests; survival through17 is proved analytically."
+      },
+      "returncode": 0,
+      "script": "pass1_game_audit/finite_game_reference.py",
+      "sha256": "7db203cf29f7459039c67c7c90e6e6a9f2de9aa1a2821e5159c8e6b4b727c9ab"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "certificate": {
+          "announcement_count_before_final_move": 5,
+          "lethal_leaf_states": 1,
+          "reachable_states": 8,
+          "verified": true
+        },
+        "terminal_game_results": [
+          {
+            "angel_wins": true,
+            "horizon": 1
+          },
+          {
+            "angel_wins": true,
+            "horizon": 2
+          },
+          {
+            "angel_wins": true,
+            "horizon": 3
+          },
+          {
+            "angel_wins": true,
+            "horizon": 4
+          },
+          {
+            "angel_wins": true,
+            "horizon": 5
+          },
+          {
+            "angel_wins": false,
+            "horizon": 6
+          }
+        ]
+      },
+      "returncode": 0,
+      "script": "pass1_survival/certify_terminal_1d.py",
+      "sha256": "577f91277c7e5cb49e0d8937a08611bc3cce9f802e7f6b2ff97d9b804f44c6f1"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "certificate_bytes": 4133,
+        "certificate_sha256": "2cae818fae1b394cf439ca5ebcfff410f50650fab70cc7c5f6cc3f2882c6c206",
+        "method": "Absolute-coordinate exhaustive replay, retaining all actual bombs; no imported search code.",
+        "prior_announcements_per_play": 5,
+        "reachable_certificate_states": 8,
+        "replayed_angel_words": 729,
+        "scope": "One-dimensional king-step game; every bomb detonates at time 6. Not a two-dimensional loss.",
+        "terminal_time": 6,
+        "verified": true
+      },
+      "returncode": 0,
+      "script": "pass1_game_audit/replay_1d_certificate_independent.py",
+      "sha256": "68d29e6fe814133a5c4f781afc0f46dc36ff19a51d5a6c4ee0b7761a2b57e571"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "first_nonpositive_step": 27,
+        "last_divisor_approx": -12.929173525020653,
+        "replay_sha256": "90a57ef2c10953d1de3d403ffb12d5d01aae00934a74aaf41fb5b8e063fab3e8",
+        "verified": true
+      },
+      "returncode": 0,
+      "script": "pass2_audit/check_profile_recursion_independent.py",
+      "sha256": "59e9e9504936ca7013ffdc64e52445a3a9c205dd76cf55bab16a290b521251d8"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "dyadic_gap_scale_pairs": 196,
+        "four_deadline_certificate_failure": {
+          "bound": "1",
+          "meaning": "Insufficient strict bound, not a Devil win",
+          "times": [
+            7,
+            9,
+            11,
+            13
+          ]
+        },
+        "induction_limit_sha256": "fa95892809c2131fc5bddebb78e86eb530065f6079e45134bfd683298b6af621",
+        "initial_deadline_scale_checks": 3136,
+        "maximal_infinite_cost": "4/5",
+        "maximizing_gap_scales": [
+          1,
+          1
+        ],
+        "profile_band_checks": 3528,
+        "proof_sha256": "8f28f7e3c47dae09fb1fa3067dccaa940b7e2862eda756f8f6020d5d4d386403",
+        "scope": "Exact checks accompanying a symbolic arbitrary-three-known-deadline proof; not exhaustive strategy search",
+        "status": "PASS"
+      },
+      "returncode": 0,
+      "script": "pass2_deadlines/verify_three_deadlines.py",
+      "sha256": "040307d69059879f3a00098afa700a6e1b2e2629249fa7b5c2d2cf571c0afe7e"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "geometry_checks": [
+          {
+            "radius": 1,
+            "scale": 1,
+            "size": 9
+          },
+          {
+            "radius": 3,
+            "scale": 2,
+            "size": 36
+          },
+          {
+            "radius": 7,
+            "scale": 4,
+            "size": 144
+          },
+          {
+            "radius": 15,
+            "scale": 8,
+            "size": 576
+          },
+          {
+            "radius": 31,
+            "scale": 16,
+            "size": 2304
+          }
+        ],
+        "regime_A_largest_tested_bound": {
+          "fraction": "5/7",
+          "scales": [
+            1,
+            2
+          ]
+        },
+        "regime_B_largest_tested_bound": {
+          "fraction": "4/5",
+          "scales": [
+            1,
+            1
+          ]
+        },
+        "scale_pairs_tested": 121,
+        "scope": "finite sanity checks accompanying the independently audited universal proof",
+        "status": "passed"
+      },
+      "returncode": 0,
+      "script": "pass2_devil/check_three_deadline_constants.py",
+      "sha256": "acbe586f4a5f66d7b9991c357f7f13a1d6cf08bf7a9c6040de089e33455d4b8c"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "consecutive_gap_recursion_failure": {
+          "divisor_sign": "nonpositive",
+          "meaning": "Failure of this sufficient certificate only",
+          "smoothing_step": 27
+        },
+        "three_times": {
+          "certified": true,
+          "steps": [
+            {
+              "divisor": "53",
+              "earlier": 17,
+              "later": 21
+            },
+            {
+              "divisor": "2781/53",
+              "earlier": 13,
+              "later": 17
+            }
+          ],
+          "terminal_bound": "52/103"
+        }
+      },
+      "returncode": 0,
+      "script": "pass2_invariant/profile_certificate.py",
+      "sha256": "bc2c62874c2a9710d8839a75e782c349b4adbded87a78d52923d2e7bf4261409"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "bad_center_cases": [
+          {
+            "bombs": 32,
+            "danger_centers": 16,
+            "losing_centers": 4,
+            "m": 2,
+            "ratio": "1/8"
+          },
+          {
+            "bombs": 72,
+            "danger_centers": 49,
+            "losing_centers": 25,
+            "m": 3,
+            "ratio": "25/72"
+          },
+          {
+            "bombs": 800,
+            "danger_centers": 784,
+            "losing_centers": 676,
+            "m": 10,
+            "ratio": "169/200"
+          },
+          {
+            "bombs": 7200,
+            "danger_centers": 7744,
+            "losing_centers": 7396,
+            "m": 30,
+            "ratio": "1849/1800"
+          }
+        ],
+        "cubic": {
+          "certified_upper_on_partial_plus_tail": "4779/200000",
+          "less_than": "1/6",
+          "terms": 1000
+        },
+        "deadline_budget_checks_through_k": 100,
+        "integer_delay_checks_through_block": 10000,
+        "logarithmic": {
+          "certified_upper_on_partial_plus_tail": "42869/500000",
+          "less_than": "1/2",
+          "terms": 1023
+        },
+        "room_minimum_reachable_cells": 2,
+        "scope": "Supplementary exact checks, not substitutes for proofs",
+        "status": "PASS"
+      },
+      "returncode": 0,
+      "script": "pass2_survival/verify_exact_bounds.py",
+      "sha256": "456f559afcd333921039e3ebebbbc0b817c445f1a076dd8047115eb0c4bf552e"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "case_count": 180,
+        "certificate_sha256": "c295edb3319fc2f8b9a3ac780a749b998775e75dcc6cc57bb9abc4bf2fb43eb3",
+        "checker_sha256": "ae7af7721077a63ba505dc8f67bc966596b580e2c344a2138827ee6c6e91502e",
+        "max_infinite_cost": "34777/50976",
+        "maximizing_gap_scales": [
+          2,
+          2,
+          2
+        ],
+        "method": "Exact Python integers and fractions; no floating-point arithmetic",
+        "proof_sha256": "08de8b73684d080eacf1d1f558f126bccb1e8a500d6e71d3802cf715c1c678e8",
+        "status": "PASS"
+      },
+      "returncode": 0,
+      "script": "pass3_deadlines/verify_four_deadlines.py",
+      "sha256": "ae7af7721077a63ba505dc8f67bc966596b580e2c344a2138827ee6c6e91502e"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "all_producer_costs_and_divisors_match": true,
+        "case_count": 180,
+        "checker_sha256": "9739c5c57c939bf375683cbc84ce0d6f6a55ba1e5cd9bf159435ad335804d68f",
+        "maximizing_scales": [
+          2,
+          2,
+          2
+        ],
+        "maximum_cost": "34777/50976",
+        "method": "Independent sparse integer products and residue-prefix translated windows; exact Fraction arithmetic",
+        "producer_certificate_sha256": "c295edb3319fc2f8b9a3ac780a749b998775e75dcc6cc57bb9abc4bf2fb43eb3",
+        "proof_sha256": "08de8b73684d080eacf1d1f558f126bccb1e8a500d6e71d3802cf715c1c678e8",
+        "status": "PASS",
+        "tail_checked_directly_at_two_scales_per_kernel": true
+      },
+      "returncode": 0,
+      "script": "pass3_devil/replay_four_deadlines_independent.py",
+      "sha256": "9739c5c57c939bf375683cbc84ce0d6f6a55ba1e5cd9bf159435ad335804d68f"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "conservative_tracking_radius": 80,
+        "integer_guard_charge_cases": 228,
+        "long_collision_union_bound_strict_upper": "25921/30000",
+        "rank_losses": [
+          "0",
+          "1/2",
+          "2/3",
+          "1",
+          "1",
+          "4/3",
+          "2",
+          "2",
+          "2"
+        ],
+        "status": "passed",
+        "survival_probability_strict_lower": "4079/30000",
+        "tracking_speed": "1/100"
+      },
+      "returncode": 0,
+      "script": "pass3_independent/check_tracking_constants.py",
+      "sha256": "be22441842755efff058fe905369a4d0f3a29c0e78b1924d7f59627f4f4e9a68"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "endpoint_containment_radii_checked": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "pause_formula_cases_checked": 196,
+        "per_block_charge": "1/800",
+        "scope": "Supplementary exact checks only; no full-game solution",
+        "selected_pause_cases": [
+          {
+            "L": 1,
+            "M": 1,
+            "R": 0,
+            "pause_probability": "1/9"
+          },
+          {
+            "L": 25,
+            "M": 1,
+            "R": 0,
+            "pause_probability": "2401/2601"
+          },
+          {
+            "L": 25,
+            "M": 25,
+            "R": 1,
+            "pause_probability": "1/2601"
+          },
+          {
+            "L": 50,
+            "M": 1,
+            "R": 0,
+            "pause_probability": "9801/10201"
+          },
+          {
+            "L": 50,
+            "M": 25,
+            "R": 1,
+            "pause_probability": "2601/10201"
+          },
+          {
+            "L": 81,
+            "M": 1,
+            "R": 0,
+            "pause_probability": "25921/26569"
+          },
+          {
+            "L": 81,
+            "M": 25,
+            "R": 1,
+            "pause_probability": "12769/26569"
+          },
+          {
+            "L": 81,
+            "M": 81,
+            "R": 2,
+            "pause_probability": "1/26569"
+          },
+          {
+            "L": 100,
+            "M": 1,
+            "R": 0,
+            "pause_probability": "39601/40401"
+          },
+          {
+            "L": 100,
+            "M": 25,
+            "R": 1,
+            "pause_probability": "22801/40401"
+          },
+          {
+            "L": 100,
+            "M": 81,
+            "R": 2,
+            "pause_probability": "169/4489"
+          }
+        ],
+        "status": "PASS",
+        "union_lower_bound_lengths_checked": 10000
+      },
+      "returncode": 0,
+      "script": "pass3_survival/verify_bridge_bounds.py",
+      "sha256": "10b17ba95c2d97594cb0c8b674b570fd8ce630f91ef2a4b49ea5f85b03efb452"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "block_union_expression_checked_for_L": 10000,
+        "minimum_rounds_to_interpolate_every_king_step_at_speed_1_over_100": 142,
+        "report_sha256": "52044362abf69c83eb23e51061ec0951d35de7bca8e4d4ec9b0af5fa98772d89",
+        "scope": "Exact example and algebra spot checks; no full-game losing claim",
+        "status": "PASS",
+        "two_class_history": {
+          "all_nine_move_18_destinations_bombed": true,
+          "boundary_announcement": {
+            "position": [
+              0,
+              0
+            ],
+            "round": 17,
+            "target_time": 18
+          },
+          "maximum_lead": 17,
+          "meaning": "Reachable under the specified stay-put path, not forced against every Angel",
+          "only_safe_move_17": [
+            0,
+            0
+          ],
+          "preload_announcements": 16,
+          "safe_stay_moves_through": 16
+        }
+      },
+      "returncode": 0,
+      "script": "pass4_multiscale/verify_examples.py",
+      "sha256": "82259e77e7f60afa4f6ed16f168f27da3607cd4fbd2141a1a297bd4a2aaf7648"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "examples": [
+          {
+            "amplification_lower_bound": "289/288",
+            "bombs": 4608,
+            "k": 2,
+            "losing_center_lower_bound": 4624,
+            "m": 24,
+            "max_lead": 4609,
+            "verified_penultimate_centers": 4900
+          },
+          {
+            "amplification_lower_bound": "289/288",
+            "bombs": 10368,
+            "k": 3,
+            "losing_center_lower_bound": 10404,
+            "m": 36,
+            "max_lead": 10370,
+            "verified_penultimate_centers": 11236
+          },
+          {
+            "amplification_lower_bound": "289/288",
+            "bombs": 28800,
+            "k": 5,
+            "losing_center_lower_bound": 28900,
+            "m": 60,
+            "max_lead": 28804,
+            "verified_penultimate_centers": 31684
+          }
+        ],
+        "status": "passed"
+      },
+      "returncode": 0,
+      "script": "pass5_coupling/verify_mass_family.py",
+      "sha256": "c047b80222a967214d72ccc980c1990bcd5d932af7fe2048e306017c9ffafd5d"
+    },
+    {
+      "assertions_enabled": true,
+      "result": "PASS: direct-history reconstruction of 15552 post-transient states",
+      "returncode": 0,
+      "script": "pass5_devil/replay_periodic_history.py",
+      "sha256": "f75dbe359ba77098e51a9f1f168f6932062a090fe1928a2c6a96bad76ad4b4d0"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "angel_stays_at_origin_and_survives": true,
+        "heavy_time_spacing": 9,
+        "maximum_leads_tested": {
+          "from": 9,
+          "through": 200
+        },
+        "one_announcement_per_round": true,
+        "post_transient_states_checked": 15552,
+        "relevant_pending_minimum_formula": "H-8",
+        "report_sha256": "acdd49078fca3010de2682d4edf6cb27220034f9afcfea9e1581305ed840f26d",
+        "scope": "Exact replay of a safe legal history that defeats automatic-flushing inference",
+        "status": "PASS"
+      },
+      "returncode": 0,
+      "script": "pass5_multiscale/verify_periodic_schedule.py",
+      "sha256": "57471dbae3457221979ae2c604960a3615c20bb5e29a0f4deef7af8c30520432"
+    },
+    {
+      "assertions_enabled": true,
+      "result": {
+        "death_round_counts": {
+          "1": 648,
+          "2": 45,
+          "3": 36
+        },
+        "dense_centers_after": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "dense_centers_before": [],
+        "history_rounds": 24,
+        "maximum_lead": 24,
+        "preload_sizes": [
+          8,
+          5,
+          11
+        ],
+        "words": 729
+      },
+      "returncode": 0,
+      "script": "pass5_survival/verify_adaptive_threshold_example.py",
+      "sha256": "c2de59229c17f9b8b9635d977e24ca314e3367d410040e599c6d1eed67af50b7"
+    }
+  ],
+  "malformed_1d_certificates_rejected": [
+    "wrong_horizon",
+    "wrong_dimension",
+    "wrong_first_announcement",
+    "missing_response",
+    "wrong_root_state",
+    "nonlethal_leaf"
+  ],
+  "python_version": "3.12.14",
+  "scope": "Four-time finite certificate and 1D certificate replay are proof components. Other finite checks are supplementary diagnostics, not general-game proofs.",
+  "script_count": 19,
+  "source_tree_modified": false,
+  "status": "PASS"
+}

@@ -1,0 +1,476 @@
+{
+  "status": "PASS",
+  "test_count": 67,
+  "scope": "Selected negative controls; not a claim that every possible malformed input is rejected. Rehashed tampering requires an external manifest/archive pin. Link resolution is a separate independent check.",
+  "tests": [
+    {
+      "test": "valid_manifest_normal",
+      "expected_success": true,
+      "returncode": 0,
+      "stdout": "{\"all_hashes_and_sizes_match\": true, \"exact_file_set\": true, \"file_count\": 150, \"manifest_sha256\": \"44457862aebd0698e1468340e3e96a14246e33f680ab8dbf033ba540ce630c28\", \"status\": \"PASS\"}",
+      "stderr_last_line": ""
+    },
+    {
+      "test": "valid_manifest_-O",
+      "expected_success": true,
+      "returncode": 0,
+      "stdout": "{\"all_hashes_and_sizes_match\": true, \"exact_file_set\": true, \"file_count\": 150, \"manifest_sha256\": \"44457862aebd0698e1468340e3e96a14246e33f680ab8dbf033ba540ce630c28\", \"status\": \"PASS\"}",
+      "stderr_last_line": ""
+    },
+    {
+      "test": "valid_manifest_-OO",
+      "expected_success": true,
+      "returncode": 0,
+      "stdout": "{\"all_hashes_and_sizes_match\": true, \"exact_file_set\": true, \"file_count\": 150, \"manifest_sha256\": \"44457862aebd0698e1468340e3e96a14246e33f680ab8dbf033ba540ce630c28\", \"status\": \"PASS\"}",
+      "stderr_last_line": ""
+    },
+    {
+      "test": "runner_refuses_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "Refusing optimized Python: run python run_checks.py without -O or -OO."
+    },
+    {
+      "test": "runner_refuses_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "Refusing optimized Python: run python run_checks.py without -O or -OO."
+    },
+    {
+      "test": "isolated_child_assertions_enabled",
+      "expected_success": true,
+      "returncode": 0,
+      "stdout": "assertions enabled; optimize=0",
+      "stderr_last_line": ""
+    },
+    {
+      "test": "changed_file_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong byte count: README.md"
+    },
+    {
+      "test": "changed_file_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong byte count: README.md"
+    },
+    {
+      "test": "changed_file_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong byte count: README.md"
+    },
+    {
+      "test": "truncated_file_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong byte count: README.md"
+    },
+    {
+      "test": "truncated_file_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong byte count: README.md"
+    },
+    {
+      "test": "truncated_file_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong byte count: README.md"
+    },
+    {
+      "test": "missing_file_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Missing file or symlink: README.md"
+    },
+    {
+      "test": "missing_file_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Missing file or symlink: README.md"
+    },
+    {
+      "test": "missing_file_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Missing file or symlink: README.md"
+    },
+    {
+      "test": "extra_file_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unexpected or unlisted payload files"
+    },
+    {
+      "test": "extra_file_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unexpected or unlisted payload files"
+    },
+    {
+      "test": "extra_file_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unexpected or unlisted payload files"
+    },
+    {
+      "test": "extra_empty_directory_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unexpected or missing payload directory"
+    },
+    {
+      "test": "extra_empty_directory_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unexpected or missing payload directory"
+    },
+    {
+      "test": "extra_empty_directory_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unexpected or missing payload directory"
+    },
+    {
+      "test": "wrong_manifest_hash_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong hash: CHECK_REPLAY.json"
+    },
+    {
+      "test": "wrong_manifest_hash_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong hash: CHECK_REPLAY.json"
+    },
+    {
+      "test": "wrong_manifest_hash_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong hash: CHECK_REPLAY.json"
+    },
+    {
+      "test": "wrong_manifest_size_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong byte count: CHECK_REPLAY.json"
+    },
+    {
+      "test": "wrong_manifest_size_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong byte count: CHECK_REPLAY.json"
+    },
+    {
+      "test": "wrong_manifest_size_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Wrong byte count: CHECK_REPLAY.json"
+    },
+    {
+      "test": "duplicate_manifest_entry_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Duplicate manifest path"
+    },
+    {
+      "test": "duplicate_manifest_entry_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Duplicate manifest path"
+    },
+    {
+      "test": "duplicate_manifest_entry_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Duplicate manifest path"
+    },
+    {
+      "test": "omitted_manifest_entry_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unexpected or unlisted payload files"
+    },
+    {
+      "test": "omitted_manifest_entry_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unexpected or unlisted payload files"
+    },
+    {
+      "test": "omitted_manifest_entry_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unexpected or unlisted payload files"
+    },
+    {
+      "test": "traversal_manifest_path_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "traversal_manifest_path_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "traversal_manifest_path_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "absolute_manifest_path_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "absolute_manifest_path_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "absolute_manifest_path_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "nonnormal_manifest_path_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "nonnormal_manifest_path_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "nonnormal_manifest_path_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "windows_separator_manifest_path_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "windows_separator_manifest_path_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "windows_separator_manifest_path_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Unsafe path"
+    },
+    {
+      "test": "extra_dangling_symlink_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Symlink in public payload"
+    },
+    {
+      "test": "extra_dangling_symlink_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Symlink in public payload"
+    },
+    {
+      "test": "extra_dangling_symlink_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Symlink in public payload"
+    },
+    {
+      "test": "extra_file_symlink_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Symlink in public payload"
+    },
+    {
+      "test": "extra_file_symlink_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Symlink in public payload"
+    },
+    {
+      "test": "extra_file_symlink_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Symlink in public payload"
+    },
+    {
+      "test": "extra_directory_symlink_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Symlink in public payload"
+    },
+    {
+      "test": "extra_directory_symlink_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Symlink in public payload"
+    },
+    {
+      "test": "extra_directory_symlink_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Symlink in public payload"
+    },
+    {
+      "test": "extra_fifo_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Nonregular object in public payload"
+    },
+    {
+      "test": "extra_fifo_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Nonregular object in public payload"
+    },
+    {
+      "test": "extra_fifo_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: Nonregular object in public payload"
+    },
+    {
+      "test": "rehashed_broken_link_passes_hash_only_verifier",
+      "expected_success": true,
+      "returncode": 0,
+      "stdout": "{\"all_hashes_and_sizes_match\": true, \"exact_file_set\": true, \"file_count\": 150, \"manifest_sha256\": \"8a98a3e571bfd59babcce46ea684f4b97a5e11ad8af4e3bf3ddefd88363c5497\", \"status\": \"PASS\"}",
+      "stderr_last_line": ""
+    },
+    {
+      "test": "rehashed_broken_link_rejected_by_independent_link_audit",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: broken/escaping link README.md MISSING_TARGET.md"
+    },
+    {
+      "test": "four_wrong_cost_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: ('producer disagreement', (1, 1, 1), Fraction(184, 279), ['7', '45/7', '31/5'], {'gap_scales': [1, 1, 1], 'denominators_last_to_first': ['7', '45/7', '31/5'], 'infinite_cost': '1', 'tail_start_scale': 16})"
+    },
+    {
+      "test": "four_wrong_cost_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: ('producer disagreement', (1, 1, 1), Fraction(184, 279), ['7', '45/7', '31/5'], {'gap_scales': [1, 1, 1], 'denominators_last_to_first': ['7', '45/7', '31/5'], 'infinite_cost': '1', 'tail_start_scale': 16})"
+    },
+    {
+      "test": "four_wrong_cost_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: ('producer disagreement', (1, 1, 1), Fraction(184, 279), ['7', '45/7', '31/5'], {'gap_scales': [1, 1, 1], 'denominators_last_to_first': ['7', '45/7', '31/5'], 'infinite_cost': '1', 'tail_start_scale': 16})"
+    },
+    {
+      "test": "four_missing_case_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: ('missing row', (1, 1, 1))"
+    },
+    {
+      "test": "four_missing_case_-O",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: ('missing row', (1, 1, 1))"
+    },
+    {
+      "test": "four_missing_case_-OO",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "RuntimeError: ('missing row', (1, 1, 1))"
+    },
+    {
+      "test": "one_wrong_dimension_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "AssertionError"
+    },
+    {
+      "test": "one_wrong_root_normal",
+      "expected_success": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr_last_line": "AssertionError"
+    }
+  ]
+}
