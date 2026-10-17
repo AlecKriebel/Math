@@ -9,7 +9,7 @@ No mathematical statement or sealed result changes.
 
 `reconstruction_replay.py` is the corrected current entry point. It resolves
 paths before calling the unchanged sealed orchestrator and rejects overlapping
-source/scratch directories or output into the sealed source. From this audit
+source/scratch directories; any output must remain inside scratch. From this audit
 folder, a complete fresh replay is:
 
 ```text

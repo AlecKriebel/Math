@@ -32,6 +32,8 @@ def main():
         source, scratch = args.source.resolve(), args.scratch.resolve()
         if scratch == source or source in scratch.parents or scratch in source.parents:
             raise RuntimeError('Scratch and sealed source must be disjoint directories')
+        if args.output is not None and scratch not in args.output.resolve().parents:
+            raise RuntimeError('Output must remain inside the declared scratch directory')
         result = module.orchestrate(source, scratch)
     text = json.dumps(result, indent=2, sort_keys=True) + '\n'
     if args.output is None:
