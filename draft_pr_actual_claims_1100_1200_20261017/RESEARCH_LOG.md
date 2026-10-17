@@ -141,3 +141,11 @@ Five-page note,98sourcearchive members and5upload-kit members checked byhash. Si
 ### 2026-10-17T19:44:49.339396+00:00 — PR1119 portable release reconstruction PASS (overall43%)
 
 Extracted the frozen98member sourcearchive into an isolated ignored directory; its includedbuilder reproduces the complete package receipt, allsixassetfingerprints andeverymembermanifest exactly, including12finitecontrolruns. Entirelylocal repositoryZenodo check validatesfrozenPDF/sourcezip paths andhashes. No draftcreated orpublicationrequestmade. Firstfreshfullpackage adversary remainsactive. Frozenoperativeassetsunchanged.
+
+### 2026-10-17T19:50:51.383950+00:00 — PR1119 cross-version verification PASS (overall43%)
+
+Allsixpublicprograms passbothmodesunderbundledPython3.12.14 aswellaspreviousPython3.14.6 (12runsperversion). All8publicrunner/converter/checkerfilesparseunderPython3.10grammar; actual3.10runtimewasnotavailableortested. Compatibilityreceiptretainedoutsidefrozenassets; operativepaper/metadata/archivesunchanged. Firstfullpackage reviewcontinues.
+
+### 2026-10-17T19:52:23.653524+00:00 — PR1119 first fresh whole-package PASS accepted; second fresh review next (overall44%)
+
+Rootreadcomplete24,106byte report andverified11evidenceartifacts plus34operativefilefingerprints, allunchanged. Freshreviewindependentlyreconstructsbothproofroutes, fetchesbothAS04authorversions, verifiesoriginalmodel and2Qcostbridge, all12checks/guards/byteidenticalrebuilds, all5PDFpages(pixelidentical), metadata98+5members,19freshqueries32directsourceattempts. No requiredrepair. Sourcejournal/citationlimits remainexplicit. One of2requiredsuccessivecleanpasses oninitialfreeze; newagentwithoutinheritedhistory willreviewthesameassetsnext. No1119publication,trackerwriteorPRmutationyet.
