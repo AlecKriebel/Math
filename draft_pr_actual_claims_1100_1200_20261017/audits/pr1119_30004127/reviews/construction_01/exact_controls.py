@@ -277,7 +277,7 @@ def assumptions_attacks():
         edge(i + 5, j)
         edge(j + 5, i)
         edge(i + 5, 10)
-    assert triangle_free(a) and not colorable(a)
+    assert triangle_free(a) and not colorable(a) and colorable(a, colors=4)
     joined = [set(neighbors) | {11} for neighbors in a] + [set(range(11))]
     assert not has_k4(joined) and not in_property(joined)
     # If the apex is too light, deleting one apex edge is cheaper than

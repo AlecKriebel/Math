@@ -78,8 +78,9 @@ def run():
                 out['isolated_extension_checks'] += 1
                 for v in range(n):
                     # Deleting v without renaming is equivalent for the property.
-                    b = [av & ~(1 << v) for av in a]
-                    b[v] = 0
+                    vs = [w for w in range(n) if w != v]
+                    b = [sum((1 << j) for j, y in enumerate(vs) if a[x] >> y & 1)
+                         for x in vs]
                     assert property_p(b)
                     out['p_vertex_deletion_checks'] += 1
                 for bit in range(m):
@@ -92,7 +93,7 @@ def run():
                             for cs in product(range(3), repeat=n))
                 assert exact == d3[s]
                 out['exact_color_assignment_optima'] += 1
-            if n > 5 or not d3[s]:
+            if not d3[s] or (n > 5 and not pp[s]):
                 continue
             for cs in product(range(4), repeat=n):
                 if any((s >> bit & 1) and cs[x] and cs[x] == cs[y]
@@ -136,18 +137,18 @@ def run():
     wheel = [(0, i) for i in range(1, 6)] + [(i, 1+i%5) for i in range(1, 6)]
     shared = wheel + [(x+5 if x else 0, y+5 if y else 0) for x, y in wheel]
     disjoint = wheel + [(x+6, y+6) for x, y in wheel]
-    labels = [0, 0, 1, 2, 3, 4, 5]
+    labels = [v for v in range(6) for _ in range(2)]
     wheelset = {frozenset(e) for e in wheel}
-    expansion = [(i,j) for i,j in combinations(range(7),2)
+    expansion = [(i,j) for i,j in combinations(range(12),2)
                  if frozenset((labels[i],labels[j])) in wheelset]
     mutations = {'one_wheel': eval_graph(6,wheel),
                  'two_shared_center_wheels': eval_graph(11,shared),
                  'two_disjoint_wheels': eval_graph(12,disjoint),
-                 'duplicate_center_occurrence_expansion': eval_graph(7,expansion)}
+                 'doubled_wheel_occurrence_expansion': eval_graph(12,expansion)}
     assert mutations == {'one_wheel': {'C3':False,'P':True},
                          'two_shared_center_wheels': {'C3':False,'P':True},
                          'two_disjoint_wheels': {'C3':False,'P':False},
-                         'duplicate_center_occurrence_expansion': {'C3':False,'P':False}}
+                         'doubled_wheel_occurrence_expansion': {'C3':False,'P':False}}
     out['partial_by_n'] = partial_by_n
     out['mutation_controls'] = mutations
     out['result'] = 'PASS'
