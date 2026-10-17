@@ -1,3 +1,5 @@
+> Superseded on 17 October 2026: the user directed inspection of actual PR outcomes because QUEUE.md may be stale. The queue-only skip decision does not determine the current processing scope. See ../draft_pr_actual_claims_1100_1200_20261017/ for the corrected active program.
+
 # Disposition of PRs #1100–#1200
 
 All 101 PR numbers were checked in ascending order. Every PR is open and draft; every associated problem has status exactly `queued` in the workspace queue, pinned remote-main queue, and each pinned draft-head queue. None has status `claimed_solved`.

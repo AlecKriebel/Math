@@ -1,0 +1,9 @@
+# Actual-outcome review and publication program, PRs #1100–#1200
+
+The user corrected the previous queue-only eligibility gate on 17 October 2026. QUEUE.md may be stale. This program inspects each PR's actual recorded outcome and proceeds in ascending order. Only an explicit full-resolution claim is eligible for the original mathematical, priority, package, publication, tracker, and merge workflow. Partial/unsolved outcomes and already-published source-credit outcomes are skipped after outcome identification. Ambiguous wording requires consulting the referenced outcome record before a decision; a title or stale queue cell is insufficient.
+
+The prior program remains historical evidence, not a completed actual-outcome pass. All new program artifacts belong in this folder, with one subfolder per eligible problem. The shared branch stays main, other agents' work is preserved, and no individuals or other shard workers are contacted. Internal adversarial subagents perform independent verification.
+
+For each eligible claim, reproduce and adversarially audit the exact full mathematical target, then audit priority. Reasonably repair concrete issues; do not replace an unfinished original target with a special case. Close irreparable eligible claims with a factual explanatory comment only after the repair assessment. Sound novel results require a submission-ready preprint, verification materials, extensive AI-use and actual peer-review disclosures, successive fresh independent adversarial review/fix cycles, the repository Zenodo upload kit, a Google Workspace CLI DOI tracker row, and merger.
+
+Logs include timestamps and best-guess completion percentages for this program; these are not mathematical confidence scores. Meaningful checkpoints are committed and pushed to main without including other workers' changes.

@@ -1,3 +1,5 @@
+> Superseded on 17 October 2026: the user directed inspection of actual PR outcomes because QUEUE.md may be stale. The queue-only skip decision does not determine the current processing scope. See ../draft_pr_actual_claims_1100_1200_20261017/ for the corrected active program.
+
 # Draft PR claimed-solved publication program, #1100–#1200
 
 Process PRs in ascending order from #1100 through #1200 inclusive. Only open
