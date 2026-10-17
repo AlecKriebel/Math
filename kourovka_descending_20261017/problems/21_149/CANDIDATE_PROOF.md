@@ -70,3 +70,8 @@ If the uniform orientation of section 4 is preserving, the C_m give infinitely m
 ## Dependencies and unresolved promotion gates
 
 The support proof above is proposed as self-contained. Dlab 1968 supplies simplicity and the two source bi-orders. Exact 1999 master-group definitions, all intended ambient groups, originality relative to Gong--Yang--Zeng and subsequent literature, and repeated fresh full-document adversarial review are still required. A true finite-local-but-not-eventually-affine real target would invalidate the scope: a twisted diagonal construction can absorb automorphisms there, which is why the endpoint condition must never be omitted.
+
+
+## 2026-10-17T20:30:06.031703+00:00 — Scope reconciliation
+
+The root and fresh independent scope reviewer reproduced the complete relevant primary p. 542 paragraph using the exact batch in primary_left_germ_evidence.md. It factors EVERY full real Dlab element into an affine map and an element fixing an initial ray. Along with p. 538 and the reflected-subgroup inclusion on p. 543, this closes the standard-real-family left-germ scope gate. The lack of downloadable PDF pixels remains an access limitation, not an unresolved mathematical ambiguity. Older pending-scope statements above are historical. Final assembled-package adversarial reviews and publication checks are still required.

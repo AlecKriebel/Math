@@ -13,3 +13,8 @@ Boundary cases: trivial slope group (no embedding); arbitrary higher-rank and no
 External dependencies: Dlab 1968 simplicity and group-order theorem for the compact source and its local groups; exact extended-real definitions from Zenkov--Medvedev 1999. All other proof steps should be reproduced in the note. September 2026 Gong--Yang--Zeng result is prior art for the rank-one ambient theorem and one-tail construction.
 
 Publication gate remains closed pending full written proof, primary-definition reconciliation, independent fresh adversarial reviews, exhaustive priority audit, compiled/visually checked paper, and reproducibility package.
+
+
+## 2026-10-17T20:30:06.031908+00:00 — Scope reconciliation
+
+The root and fresh independent scope reviewer reproduced the complete relevant primary p. 542 paragraph using the exact batch in primary_left_germ_evidence.md. It factors EVERY full real Dlab element into an affine map and an element fixing an initial ray. Along with p. 538 and the reflected-subgroup inclusion on p. 543, this closes the standard-real-family left-germ scope gate. The lack of downloadable PDF pixels remains an access limitation, not an unresolved mathematical ambiguity. Older pending-scope statements above are historical. Final assembled-package adversarial reviews and publication checks are still required.

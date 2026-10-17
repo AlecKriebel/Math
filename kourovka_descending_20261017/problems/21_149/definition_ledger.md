@@ -1,6 +1,6 @@
 # Dlab definition ledger and priority refresh
 
-Checkpoint: 2026-10-17 13:36 America/Los_Angeles (20:36 UTC).
+Checkpoint: 2026-10-17T20:23:26.836192+00:00 (file write time; root corrected an erroneous future timestamp supplied by the subagent).
 Completion estimate: 70% of endpoint-definition audit, 95% of preliminary priority refresh. No mathematical solution status is assigned by this ledger.
 
 ## Evidence provenance
@@ -11,11 +11,7 @@ Completion estimate: 70% of endpoint-definition audit, 95% of preliminary priori
 
 **Indexed primary excerpt, NOT downloaded or inspected page image:** Zenkov–Medvedev (1999), printed p. 543, indexed by the search engine under [the MathNet full-text PDF URL](https://www.mathnet.ru/php/getFT.phtml?jrnid=al&option_lang=eng&paperid=2480&what=fullt). Direct web opening and command-line downloading timed out. The indexed page title is “О группах Длаба 543.” Therefore the following evidence should be checked against actual PDF pixels before a preprint relies on it.
 
-Short exact indexed excerpts (combined below 25 Russian words, mathematical symbols treated as symbols):
-
-> Группа \(\overline{D}_H\) содержит подгруппу \(D_{*H}\) функций с ограниченным сверху носителем.
-
-> Группа \(D_{*H}\) допускает континуум различных линейных порядков.
+The indexed passage places the reflected group inside the full group and states that the reflected group has continuum many bi-orders. The only preserved verbatim primary excerpt is in primary_left_germ_evidence.md.
 
 The same indexed Proposition 2.3 gives the displayed group decomposition, here transcribed mathematically rather than copying its prose:
 
@@ -72,3 +68,8 @@ Only the September Gong–Yang–Zeng preprint, the original-formulation Aristot
 ## Candidate-mechanism originality gate
 
 The one-endpoint descending support obstruction is already prior art in the September preprint. A two-endpoint modification alone is not automatically a new solution: its added mathematical content must be precisely the treatment of previously omitted embeddings or ambient orders. The all-slope embedding theorem, if established, would need comparison with general topological action/reconstruction rigidity results, including results stated under piecewise-linear rather than Dlab terminology. No equivalence/immediate implication was found in the searches above, but that broader comparison remains required before first-discovery language.
+
+
+## 2026-10-17T20:30:06.031317+00:00 — Scope reconciliation
+
+The root and fresh independent scope reviewer reproduced the complete relevant primary p. 542 paragraph using the exact batch in primary_left_germ_evidence.md. It factors EVERY full real Dlab element into an affine map and an element fixing an initial ray. Along with p. 538 and the reflected-subgroup inclusion on p. 543, this closes the standard-real-family left-germ scope gate. The lack of downloadable PDF pixels remains an access limitation, not an unresolved mathematical ambiguity. Older pending-scope statements above are historical. Final assembled-package adversarial reviews and publication checks are still required.
