@@ -1776,7 +1776,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1765 | 30003225 / OWR-14754-011 | Contact Loci and Nash Sets of Prime Divisors | 0.0582 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 1766 | 30003375 / OWR-15208-029 | Harmonic Fibrations of Exotic Complex Projective Space Bundles | 0.0580 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 1767 | 30003527 / OWR-15575-006 | Movable Invariant Neighborhoods of Compact Flow Sets | 0.0580 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 1768 | 30003758 / OWR-15999-007 | Extrapolating Clusterings from Semidefinite Subsamples | 0.0579 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 1768 | 30003758 / OWR-15999-007 | Extrapolating Clusterings from Semidefinite Subsamples | 0.0579 | 5.5 | 3 | 2018 | deferred | 0 new; lifetime unknown |  | Source-scope hold: historical question lacks a quantified residual; conditional sketch-and-lift/solve results exist (2022, 2024). Specify quality, sampling, access, probability, complexity and data assumptions before proof work. No impossibility or already-solved claim. [Scope audit](attempts/30003758/reader/README.md). |  |
 | 1769 | 30003809 / OWR-16163-011 | Distributions of Self-Adjoint Bimonotone Limit Operators | 0.0579 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1770 | 30003821 / OWR-16164-019 | Pattern-Avoidance Inequalities on Digitally Convex Shapes | 0.0579 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1771 | 30003992 / OWR-16633-009 | Fast Low-Rank Maximum-Weight Assignment | 0.0579 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
