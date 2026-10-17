@@ -23,3 +23,7 @@ Four mathematical checkers, eight baseline runs, all exact mathematical fields a
 ## 2026-10-17T22:56:28.414072+00:00 — first complete frozen candidate; disposition70%
 
 PDF/source/metadata/kit assembled and pinned in PACKAGE_RECEIPT;111source members,98authored audit members,5kit members. Full builder replay passed8baselines/40actual failures. First NEW whole-package reviewer dispatched, instructed to reconstruct paper first, inspect full packet, reproduce controls and exact extracted rebuild, and check all source/priority/AI/privacy limits. No operative file may change during review.
+
+## 2026-10-17T23:02:26.864920+00:00 — first fresh complete package pass; disposition80%
+
+NEW package01 CLEAN_PASS sealed ac0cdd65... with247 receipt input/artifact pins authenticated by root. Root fully read report and both new checker sources, reproduced exact fresh rational outputs normal/-O and all packet controls (9 comparison/runtime corruptions,5 actual disposable-file failures,249 source-heading hashes,282 custody pins). Existing extracted full replay/rebuild also authenticated. All six operative files unchanged. NEW package02 dispatched with paper/primary reconstruction before old audits, full packet review and fresh independent controls; no publication or PR writes. Program82%.

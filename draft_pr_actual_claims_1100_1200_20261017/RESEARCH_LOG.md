@@ -255,3 +255,7 @@ Overall78%; PR1136 published DOI10.5281/zenodo.23443039, trackerA162:D162 exact 
 ## 2026-10-17T22:45:18.889643+00:00 — PR1141 mathematics complete, priority active; program79%
 
 Root and three new adversarial families verify the full real uniform-cube two-polynomial theorem and stronger disjoint-support bound. All complete checker outputs reproduced normal/-O,40 actual incorrect-control exits. Priority review independently identifies the covariance inequality as directly OSSS2005 prior work; target-specific recorded priority remains under investigation. No1141 publication or PR changes.
+
+## 2026-10-17T23:02:26.864920+00:00 — first fresh complete package pass; PR1141 disposition80%
+
+NEW package01 CLEAN_PASS sealed ac0cdd65... with247 receipt input/artifact pins authenticated by root. Root fully read report and both new checker sources, reproduced exact fresh rational outputs normal/-O and all packet controls (9 comparison/runtime corruptions,5 actual disposable-file failures,249 source-heading hashes,282 custody pins). Existing extracted full replay/rebuild also authenticated. All six operative files unchanged. NEW package02 dispatched with paper/primary reconstruction before old audits, full packet review and fresh independent controls; no publication or PR writes. Program82%.
