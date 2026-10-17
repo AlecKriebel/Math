@@ -30,3 +30,12 @@ The original Oberwolfach contribution has an incomplete displayed integral const
 - Independent mathematical review is not a machine-checked formal proof, peer review, or a novelty certification.
 
 The original problem identifier is OWR-16633-006 (corpus ID 30003990).
+
+
+## Current acceptance and preprint scope
+
+The full original normalized convex-body/Lebesgue target passes the root audit, fresh candidate-aware adversary, independently sealed question-only reconstruction, a fresh adversary of that reconstruction and the known lower example, and a materially distinct spectral derivation with its own fresh adversary. The spectral route imports the explicitly named standard Totik-Varga3.1 estimate; its empirical floating-point stress tests are not proof certificates.
+
+The bounded historical and general-theory priority audits were sealed independently, then reverse-challenged. They establish substantial classical mechanism overlap and a complete consequence assembled from older endpoint-polynomial theory. They located no earlier explicit full-target theorem in inspected passages; this does not establish firstness or current openness. The known worst-case lower example is credited to de Klerk-Laurent2020. The current note, metadata and supporting records claim a complete proof of the historical target with that attribution, and no new-method or disclosure-lineage claim. See archive PRIORITY_ADJUDICATION.json under provenance and ROOT_PRIORITY_CLARIFICATIONS.md.
+
+The preprint is titled "Quadratic convergence of SOS-density bounds on convex bodies" by Alec Kriebel, ORCID0009-0001-9320-500X. AI tools were used extensively in research, source checks, proofs, verification, writing and adversarial review. The note is unrefereed and has no external human peer review or formal machine-proof certification. Final package review and publication service receipts are maintained separately in the repository; this mathematical edition does not itself certify those operations.
