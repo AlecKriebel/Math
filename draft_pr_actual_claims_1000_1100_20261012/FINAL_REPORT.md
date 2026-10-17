@@ -8,7 +8,7 @@ Accepted scopes retain their boundaries: some results settle a separately explic
 
 The unchanged final auditor freshly checked the current assertions for all 101 PRs, 389 intake evidence references, adopted package file bindings, live Zenodo metadata/assets/DOIs, exact merge parents and saved acceptance wording, and unique exact tracker rows. No unrelated sheet rows were saved in the final evidence.
 
-Repository checkpoint status at report generation: final isolated main push and readback pending. The successful release receipt and subsequent closure record will supply that evidence.
+Repository release verified: [c814c97ed4733653d6bdbed0dcbf4510d5461771](https://github.com/AlecKriebel/Math/commit/c814c97ed4733653d6bdbed0dcbf4510d5461771). The actual remote tree matches the reviewed publication files and fresh audit, excludes private live data, and preserves the shared checkout. This closure record includes the corrected registry navigation and fresh independent administrative clearance with zero actionable findings.
 
 | PR | Problem | Published paper | Whole reviews | Tracker row |
 |---|---|---|---:|---:|
