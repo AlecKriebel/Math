@@ -28,4 +28,4 @@ Remaining eligible PRs, in order: 1136, 1141, 1142, 1150, 1151, 1155. Their elig
 
 ## Current research checkpoint
 
-PR1135 is published, tracked and merged after two successive fresh clean whole-package reviews of the identical release. Its four-page note prominently credits the later14Oct overlapping preprint and makes no first-priority claim. Six results have been published/tracked/merged;1114 and1129 remain untouched prior-full skips. Continuing the actual-outcome and mathematical audit at PR1136. Overall completion estimate:71%.
+PR1135 is published, tracked and merged after two successive fresh clean whole-package reviews of the identical release. Its four-page note prominently credits the later14Oct overlapping preprint and makes no first-priority claim. Six results have been published/tracked/merged;1114 and1129 remain untouched prior-full skips. PR1136 mathematics passes root and three distinct adversarial families; extensive priority review is in progress before paper preparation. Overall completion estimate:73%.
