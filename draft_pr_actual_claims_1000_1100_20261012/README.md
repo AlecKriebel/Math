@@ -36,7 +36,7 @@ completed Zenodo publication, exact tracker readback and exact-head merge.
 The latest completed result is #1031: [DOI](https://doi.org/10.5281/zenodo.23353160),
 tracker row 81, merge `9182035ca5205514a32f003007fbe5c8100e4855`.
 
-Current checkpoint 2026-10-17T04:52:47.530187+00:00: 8 accepted results have completed Zenodo publication, exact tracker read-back and exact-head merge: #1001, #1024, #1025, #1031, #1032, #1033, #1034, #1037. All 10 remaining packages are ROOT ready after at least two complete independent AI reviews and a latest review with zero actionable findings. The next ascending candidate is #1041. Overall estimate 79%.
+Current checkpoint 2026-10-17T20:16:45.939729+00:00: all 18 accepted scoped results have completed Zenodo publication, exact tracker read-back and exact-head merge. The fresh full-range completion audit passed for all 101 current assertions, 389 intake evidence references and all 18 publications/merges/tracker rows. No remaining publication cursor or whole-package review is pending. The final isolated repository checkpoint is being prepared; overall estimate 99%. See [FINAL_REPORT.md](FINAL_REPORT.md) for papers, DOIs, review counts, tracker rows and accepted scope.
 
 All 101 actual assertions were screened; 83 partial or credited-prior exclusions remain outside processing. Accepted results preserve their exact scoped conclusions and any other unresolved original clauses. PR1032 is published with Luo–Zha full-body overlap explicitly UNKNOWN under human direction; no novelty, firstness or worldwide current openness certification is supplied. Earlier source holds, preparation flags, seals and reviews remain dated history. Current per-result publication, tracker and merge receipts are in STATE.json and each audit service_receipts_20261016 folder. Raw full-sheet command reads remain local; only each own verified row is included in public receipts.
 
@@ -69,3 +69,23 @@ Publication checkpoint 2026-10-17T04:49:42.238610+00:00: #1033 [preprint](https:
 Publication checkpoint 2026-10-17T04:51:08.226824+00:00: #1034 [preprint](https://doi.org/10.5281/zenodo.23430498), tracker row137, exact-head merge`b4766cea01243ce5e956c58e1766a3d2410dd493`; overall76%. Next candidate1037. [EXTERNAL_COMPLETION_PR_1034]
 
 Publication checkpoint 2026-10-17T04:52:03.906618+00:00: #1037 [preprint](https://doi.org/10.5281/zenodo.23430530), tracker row138, exact-head merge`e79a30397636faa1d5a9efbd7c3faf6be68ef913`; overall79%. Next candidate1041. [EXTERNAL_COMPLETION_PR_1037]
+
+Publication checkpoint 2026-10-17T04:58:22.147016+00:00: #1041 [preprint](https://doi.org/10.5281/zenodo.23430642), tracker row139, exact-head merge`2dbaabbafea37b1fb1bb758373fc2d9921109347`; overall81%. Next candidate1047. [EXTERNAL_COMPLETION_PR_1041]
+
+Publication checkpoint 2026-10-17T04:59:27.491623+00:00: #1047 [preprint](https://doi.org/10.5281/zenodo.23430660), tracker row140, exact-head merge`f6b1a3cbe069a60d2db26f8ae7d6ec1e23b35f41`; overall83%. Next candidate1052. [EXTERNAL_COMPLETION_PR_1047]
+
+Publication checkpoint 2026-10-17T05:05:49.523181+00:00: #1052 [preprint](https://doi.org/10.5281/zenodo.23430681), tracker row141, exact-head merge`b58488e712cb74e30cf43785f1d770efa2a6774d`; overall85%. Next candidate1064. [EXTERNAL_COMPLETION_PR_1052]
+
+Publication checkpoint 2026-10-17T05:06:39.253660+00:00: #1064 [preprint](https://doi.org/10.5281/zenodo.23430776), tracker row142, exact-head merge`97ad1143ac9f0e01ff9e9a1b4fe930b42df0638a`; overall87%. Next candidate1071. [EXTERNAL_COMPLETION_PR_1064]
+
+Publication checkpoint 2026-10-17T05:15:04.137014+00:00: #1071 [preprint](https://doi.org/10.5281/zenodo.23430906), tracker row143, exact-head merge`e9cd6d3550f5492005199264575cbfe647ef9d81`; overall89%. Next candidate1080. [EXTERNAL_COMPLETION_PR_1071]
+
+Publication checkpoint 2026-10-17T05:25:13.173671+00:00: #1080 [preprint](https://doi.org/10.5281/zenodo.23430927), tracker row144, exact-head merge`07f5185c5d0af43ca94d1d08020146c1d050e9dc`; overall91%. Next candidate1085. [EXTERNAL_COMPLETION_PR_1080]
+
+Publication checkpoint 2026-10-17T05:26:58.955575+00:00: #1085 [preprint](https://doi.org/10.5281/zenodo.23431279), tracker row145, exact-head merge`c3e7519f1ed785ba8ef642e3410080cea85d6737`; overall94%. Next candidate1094. [EXTERNAL_COMPLETION_PR_1085]
+
+Publication checkpoint 2026-10-17T05:42:48.512646+00:00: #1094 [preprint](https://doi.org/10.5281/zenodo.23431313), tracker row146, exact-head merge`66f51a49feed7a1d73ab99c9db26fc3fdd6e2c2e`; overall96%. Next candidate1097. [EXTERNAL_COMPLETION_PR_1094]
+
+Publication checkpoint 2026-10-17T05:46:38.389443+00:00: #1097 [preprint](https://doi.org/10.5281/zenodo.23431676), tracker row147, exact-head merge`d341e1b028c3b75167f29a27b2cf7272c8fc1f43`; overall98%. Next candidate1098. [EXTERNAL_COMPLETION_PR_1097]
+
+Publication checkpoint 2026-10-17T20:14:29.108954+00:00: #1098 [preprint](https://doi.org/10.5281/zenodo.23431716), tracker row148, exact-head merge`e128aab7d0c68d238ae3607ac4388f3b15701bbb`; overall100%. Next candidateNone. [EXTERNAL_COMPLETION_PR_1098]

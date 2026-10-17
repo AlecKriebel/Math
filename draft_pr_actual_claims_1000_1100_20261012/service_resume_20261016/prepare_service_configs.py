@@ -8,7 +8,7 @@ def need(c,s):
 def identity(p):
  b=p.read_bytes();return {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
 registry={r['pr']:r for r in read(D/'CLAIM_REGISTRY.json')['records']};state=read(D/'STATE.json')
-manifest_paths={1033:'publication/zenodo-deposit.json',1034:'publication/zenodo-deposit.json',1037:'preprint/zenodo-deposit.json',1041:'preprint_v1_0/zenodo-deposit.json',1047:'preprint_v1_0/zenodo-deposit.json',1052:'publication/zenodo-deposit.json',1064:'preprint_v1_0/publication/zenodo-deposit.json',1071:'publication/zenodo-deposit.json',1080:'preprint_v1_0/deposit_metadata.json',1085:'preprint_v1_0/zenodo-deposit.json',1094:'preprint_v1_0/zenodo-deposit.json',1097:'preprint_v1_0/zenodo-deposit.json',1098:'preprint_v1_0/publication/zenodo-deposit.json'}
+manifest_paths={1033:'publication/zenodo-deposit.json',1034:'publication/zenodo-deposit.json',1037:'preprint/zenodo-deposit.json',1041:'preprint_v1_0/zenodo-deposit.json',1047:'preprint_v1_0/zenodo-deposit.json',1052:'publication/zenodo-deposit.json',1064:'preprint_v1_0/publication/zenodo-deposit.json',1071:'publication/zenodo-deposit.json',1080:'preprint_v1_0/deposit_metadata.json',1085:'preprint_v1_0/zenodo-deposit.json',1094:'publication_transport_20261017/zenodo-deposit-html-transport.json',1097:'preprint_v1_0/zenodo-deposit.json',1098:'preprint_v1_0/publication/zenodo-deposit.json'}
 expected={
 1033:[(81135,'9d10b9dbfd7540cdd6e5dd298c079c6834bc3c404d3494dd4e485dd654ca1e56'),(341341,'889e7f50364adafff6211e5edbdeea7845ef26e3822430ec4e1f26dc8f3a54d8')],
 1034:[(132958,'3a3f2a9e4bbd002217fca218f963957245b767e4a782e80b917031a3ef2d250f'),(1899507,'55448cdcfb582cf2869f8b421f2141ed1d03d30a528e112df4935499280004d1')],
