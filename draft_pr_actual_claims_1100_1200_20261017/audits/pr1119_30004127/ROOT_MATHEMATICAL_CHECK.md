@@ -1,0 +1,39 @@
+# Root independent mathematical reconstruction: PR1119
+
+2026-10-17. Pinned head786fff9ba06951209e8c1e3bc6114efbfa2c9d16, proofSHA2561483bcaa29473616799fa9c04937e55fc249bd27e293c45d580af236d38709f3. Root reconstructed the complete proof before reading the historical mathematical audit. New independent family reviews remain pending. This is a preliminary reconstruction, not final acceptance; three independent distinct families are still testing it.
+
+## Claim, assumptions, success criteria
+
+For the single fixed hereditary, extendable and edge-deletion-closed property P = K4-free intersect graphs rendered 3-colorable by deleting at most one vertex, the claim is a polynomial classical canonical testing upper bound on every finite input size, and a superpolynomial VDF total-oracle-cost lower bound along explicit positive rational proximity parameters. A separate sample-only statement restricts adjacency endpoints to sampled names. No polynomial runtime or sample-only bound with unlimited free arbitrary-name queries is asserted. A valid full answer must match the original oracle convention, not substitute a weaker canonical model.
+
+Root directly read the original OWR19/2019 contribution, physical26/printed1138 model and physical27/printed1139 Problem5, and current arXiv1905.09903v5 Problem5.6. The original defines its sample/query complexity as the total number of vertex samples and adjacency queries. The distance sums unordered pairs weighted by D(x)D(y); the uniform denominator is n². Thus the stronger unrestricted total-cost theorem matches the actual original question. Source: https://ems.press/content/serial-article-files/46798 ; https://arxiv.org/html/1905.09903v5 . A generic no-priority disclaimer does not remove the explicit full original-target claim.
+
+## Classical upper bound
+
+For each proper partial 3-coloring, lists exclude colors seen on its colored neighbors. Empty-list vertices U and vertices W with every feasible color having at least epsilon*n/2 compatible neighbors comprise at least epsilon*n/2 vertices: otherwise the explicitly constructed full coloring would yield fewer than epsilon*n² monochromatic edges. This uses a conservative n|U| bound and sum(delta), so double counting only weakens the estimate. Every feasible W choice loses at least epsilon*n/2 from the nonnegative list potential initially3n; an empty-list choice kills its branch. The h>6/epsilon levels cannot support a full feasible branch.
+
+Blocks are independent of prior tree levels. At any fixed tree address, conditional failure probability is at most exp(-epsilon*l/2); summing over fewer than3^h addresses needs no within-block node independence. The constructed tree is only a proof device. The actual tester merely decides P on the distinct sampled labels, by a finite procedure with no runtime bound claimed. Any proper coloring of those labels would follow a feasible branch, including repeated samples, a contradiction. This is valid for all n, not just n large.
+
+Since C3 is a subset of P, epsilon-farness from P implies farness from C3. When n>=12r², two r-blocks yield disjoint non-3-colorable witnesses with probability at least3/4. Removing one vertex cannot destroy both witnesses. When n<12r², M=ceil(N log(3N)) samples see all vertices with probability at least2/3. The algorithm need not know which case holds. The resulting sample and adjacency exponents are polynomial; epsilon>1/8 is handled monotonically, and empty/singleton inputs do not create a false rejection requirement.
+
+## Weighted repair identity and explicit hard family
+
+The heavy apex has weight1/2 and each tail weight1/(2n). If the tail is3-colorable, deleting triangle-hitting tail edges gives a P repair at one quarter the uniform triangle-free distance. For any arbitrary P repair, let S be tail vertices losing their apex adjacency. K4-freeness forces repaired tail outsideS to be triangle-free. IsolatingS and adopting that repaired outside-tail gives a triangle-free repair of H at normalized cost at most4delta_t+|S|/n=4(delta_t+delta_a). Tail additions are included in delta_t; no deletion-only assumption enters the lower bound. Hence equality holds for the full permitted edit metric.
+
+The sphere/digits construction gives a 3AP-free set of exactlyK=floor(2^(d²-2d)/d) points. Base2B digits avoid carries after the added1 cancels; equal norms and midpoint equality force equal vectors. In the tripartite host, each edge determines its designated (x,a), and every triangle would yield a+b=2c in the AP-free set. Thus there are exactlyT=mK edge-disjoint triangles on6m vertices and no unintended triangles.
+
+Even/odd parity edge patterns agree on every proper coordinate subset. GOOD contains no full designated triangle; BAD full triangles have independent probability1/4. Every BAD tail remains3-partite. The exact repair identity gives distanceZ0/(4n²), while epsilon=T/(32n²), so Z0>=T/8 suffices. The displayed exponential-moment estimate bounds the failure probability by exp(-T/32). This is unconditional BAD farness, rather than an assumption that every BAD draw is far.
+
+## Adaptive lower bound and exact quantifiers
+
+The random secret bijection is independent of patterns. Conditional on all exposed host identities and observations among them, every unassigned name still has a uniformly random remaining image. Uniform tail samples carry no pattern-dependent host information. Hence choosing a fresh name adaptively does not bias its new host image. Coupling fresh images and algorithm/sample coins works until a full host triangle is exposed. At that time exposure is already counted as failure, even if an actual weaker oracle has not asked all its edges. Prior to it all seen coordinates of each triangle have equal GOOD/BAD marginals, with independent different-triangle pattern choices. Repeated names expose no extra host vertex.
+
+Padding any stopping exposure sequence to k fresh images gives a uniform sample without replacement; decisions to stop depend on the past, not unseen images. A triangle union bound yields TV<=T(k)_3/(n)_3. For n>=6, the coarser2Tk³/n³ is valid, and k>=n is handled by the trivial bound. At mosts+2e labels are exposed; a single variable-split worst-case total budgetQ exposes at most2Q. The induced graph on exposed labels is gifted for free, making the lower bound stronger than the actual oracle model.
+
+GOOD members reject with probability at most1/3. Unconditional BAD rejects with probability at least(2/3)(1-p), giving a difference at least1/6 whenp<=1/4. There is no guarantee used for BAD draws not far. This yields Q>=(n³/(96T))^(1/3)>=m^(1/3), also for adaptive randomized algorithms since the coupling includes their coins. Rational epsilon_d is between constant multiples of1/(d2^(3d)); log(1/epsilon_d)=Theta(d), whereas logm=Theta(d²). Thus no fixed polynomial comparison survives, even after constant proximity rescaling. This does not claim a bound solely on samples when arbitrary-name adjacency queries are free.
+
+## Structural boundary
+
+The six-vertex wheel is K4-free and becomes3-colorable by deleting its center. Every vertex lies in a triangle. In any doubled blowup, an internal class edge producesK4 with two adjacent neighboring classes. With no internal edges, deleting one vertex leaves a full wheel transversal, which remains4-chromatic. Thus every such blowup is outsideP. Under the source's arbitrary-internal-edge blowup convention, avoidance would forbid every minimal forbidden copy on a blowup of a member, since a transversal copy would project into the member. This proves the claimed non-avoidability without circular reliance on the separation theorem.
+
+Strongest currently root-verified content: the complete analytic separation as stated, subject to independent adversarial reports and reproduction controls. No mathematical gap identified in this reconstruction; no novelty conclusion or final publication acceptance yet.

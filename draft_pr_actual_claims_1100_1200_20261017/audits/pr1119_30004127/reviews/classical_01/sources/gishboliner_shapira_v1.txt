@@ -1,0 +1,1673 @@
+                                                             Testing Graphs against an Unknown Distribution∗
+                                                                                Lior Gishboliner †                  Asaf Shapira ‡
+
+
+
+
+arXiv:1905.09903v1 [math.CO] 23 May 2019
+                                                                                                     Abstract
+                                                      The area of graph property testing seeks to understand the relation between the global properties of
+                                                  a graph and its local statistics. In the classical model, the local statistics of a graph is defined relative to
+                                                  a uniform distribution over the graphs vertex set. A graph property P is said to be testable if the local
+                                                  statistics of a graph can allow one to distinguish between graphs satisfying P and those that are far from
+                                                  satisfying it.
+                                                      Goldreich recently introduced a generalization of this model in which one endows the vertex set of the
+                                                  input graph with an arbitrary and unknown distribution, and asked which of the properties that can be
+                                                  tested in the classical model can also be tested in this more general setting. We completely resolve this
+                                                  problem by giving a (surprisingly “clean”) characterization of these properties. To this end, we prove a
+                                                  removal lemma for vertex weighted graphs which is of independent interest.
+
+
+                                           1      Introduction
+                                           1.1      Background and the main result
+                                           Property testers are fast randomized algorithms whose goal is to distinguish (with high probability, say, 2/3)
+                                           between objects satisfying some fixed property P and those that are ε-far from satisfying it. Here, ε-far means
+                                           that an ε-fraction of the input object should be modified in order to obtain an object satisfying P. The study
+                                           of such problems originated in the seminal papers of Rubinfeld and Sudan [28], Blum, Luby and Rubinfeld [9],
+                                           and Goldreich, Goldwasser and Ron [20]. Problems of this nature have been studied in so many areas that it
+                                           will be impossible to survey them here. Instead, the reader is referred to the recent monograph [18] for more
+                                           background and references. While this area studies questions in theoretical computer science, it has several
+                                           strong connections with central problems in extremal combinatorics, most notably to the regularity method
+                                           and the removal lemma, see Subsection 1.2.
+                                               The classical property testing model assumes that one can uniformly sample entries of the input. In
+                                           distribution-free testing one assumes that the input is endowed with some arbitrary and unknown distribution
+                                           D, which also affects the way one defines the distance to satisfying a property. As discussed in [19], one
+                                           motivation for this model is that it can handle settings in which one cannot produce uniformly distributed
+                                           entries from the input. Another motivation is that the distribution D can assign higher weight/importance
+                                           to parts of the input which we want to have higher impact on the distance to satisfying the given property.
+                                           Until very recently, problems of this type were studied almost exclusively in the setting of testing properties
+                                           of functions, see [10, 11, 15, 17, 24]. Let us mention that distribution-free testing is similar in spirit to the
+                                           celebrated PAC learning model of Valiant [31], see also the discussion in [27].
+                                               Our investigation here concerns a distribution-free variant of the adjacency matrix model, also known as
+                                           the dense graph model. The adjacency matrix model was first defined and studied in [20], where the area of
+                                           property testing was first introduced. This model has been extensively studied in the past two decades, see
+                                           Chapter 8 of [18]. For a selected (but certainly not comprehensive) list of works on the dense graph model of
+                                           property testing, see [2, 21, 23].
+                                               ∗ A preliminary version of this paper will appear in the Proceedings of STOC ’19.
+                                             † School of Mathematics, Tel Aviv University, Tel Aviv 69978, Israel. Email: liorgis1@post.tau.ac.il. Supported in part by
+
+                                           ERC Starting Grant 633509.
+                                             ‡ School of Mathematics, Tel Aviv University, Tel Aviv 69978, Israel. Email: asafico@tau.ac.il. Supported in part by ISF
+
+                                           Grant 1028/16 and ERC Starting Grant 633509.
+
+
+                                                                                                           1
+    Instead of defining the adjacency matrix model of [20], let us directly define its distribution-free variant
+which was introduced recently by Goldreich [19]. Since the distribution in this model is over the input’s
+vertices, it is called the Vertex-Distribution-Free (VDF) model1 . The input to the algorithm is a graph G
+and some arbitrary and unknown distribution D on V (G). We will thus usually refer to the input as the pair
+(G, D). For a pair of graphs G1 , G2 on the same vertex-set
+                                                      P       V , and for a distribution D on V , the (edit) distance
+between G1 and G2 with respect to D is defined as {x,y}∈E(G1 )△E(G2 ) D(x)D(y). We say that (G, D) is ε-far
+from satisfying a graph property P if for every G′ ∈ P, the distance between G and G′ with respect to D
+is at least ε. A tester for a graph property P is an algorithm that receives as input a pair (G, D) and a
+proximity parameter ε, and distinguishes with high probability (say 32 ) between the case that G satisfies P
+and the case that (G, D) is ε-far from P. The algorithm has access to a device that produces random vertices
+from G distributed according to D. The only2 other way the algorithm can access G is by performing “edge
+queries” of the form “is (u, v) an edge of G?”. We say that property P is testable in the VDF model if there
+is a function q(ε) and a tester for P that always performs a total number of at most q(ε) vertex samples and
+edge queries to the input. We stress again that D is unknown to the tester, so (in particular) that q should be
+independent of D. The function q is sometimes referred to as the sample (or query) complexity of the tester.
+A tester has 1-sided error if it always accepts an input satisfying P. Otherwise it has 2-sided error.
+    Suppose we assume that in the VDF model, the distribution D is restricted to be the uniform distribution3 .
+In this paper we will refer to this model as the standard model. This model is “basically” equivalent to the
+adjacency matrix model, which was introduced in [20]. We refer the reader to [19] for a discussion on the
+subtle differences between the adjacency matrix model and the above defined standard model4 .
+    A very elegant result proved in [19], states that if P is testable in the VDF model then it is testable in the
+standard model with one-sided error. A natural follow-up question, raised by Goldreich in [19], asks whether
+every property which is testable with one-sided error in the standard model, is also testable in the VDF model.
+A characterization of the properties testable with one-sided error in the standard model was given in [5], where
+it was shown that these are precisely the semi-hereditary properties (see [5] for the definition of this term).
+We show (see Proposition 4.2), that if P is testable in the VDF model then P is hereditary5 . Since there
+are properties which are semi-hereditary but not hereditary, this implies a negative answer to Goldreich’s
+question. Thus, it is natural to ask the following revised version of Goldreich’s question:
+Problem 1.1. Are all hereditary graph properties testable in the VDF model?
+
+    It might be natural to guess6 that every hereditary property is testable in the VDF model, the justification
+being that all lemmas that were used in [5] should also hold for weighted graphs. As it turns out, this is indeed
+the case. However, putting all these lemmas together does not seem to work in the VDF model. As our main
+result, Theorem 1 below, shows, it is no coincidence that the proof technique of [5] does not carry over as is
+to the weighted setting.
+    We start with an important definition. Let us say that a graph property P is extendable if for every graph
+G satisfying P there is a graph G′ on |V (G)| + 1 vertices which satisfies P and contains G as an induced
+subgraph. In other words, P is extendable if whenever G is a graph satisfying P and v is a “new” vertex (i.e.
+v ∈/ V (G)), one can connect v to V (G) in such a way that this larger graph will also satisfy P. Note that
+if P is extendable then in fact for every graph G ∈ P and for every n > |V (G)|, there is an n-vertex graph
+satisfying P which contains G as an induced subgraph. Our main result in this paper is the following:
+Theorem 1. A graph property is testable in the VDF model if and only if it is hereditary and extendable.
+
+    It is interesting to compare the above (rather) simple characterization of the properties that are testable
+in the VDF model, with the (very) complicated characterization of [2] of the properties that are testable in
+the standard model.
+  1 Goldreich suggested to study variants of this model in other settings (such as bounded degree graphs [22]) as well. For brevity,
+
+we will use the term “VDF model” to refer to the “VDF variant of the adjacency matrix model”.
+  2 Note that the algorithm does not receive |V (G)| as part of the input.
+  3 In particular, G is ε-far from P if one needs to change at least εn2 edges to turn G into a graph satisfying P.
+  4 Just as an example, in [20] the tester “knows” |V (G)| while in the VDF model (and thus also in the standard model) it does not.
+  5 A graph property is hereditary if it is closed under removal of vertices.
+  6 This was at least our initial guess.
+
+
+
+
+                                                                 2
+   Let us mention some immediate consequences of Theorem 1. Since a graph cannot contain both an isolated
+vertex and a vertex connected to all other vertices, we infer that for every fixed H the (hereditary) property
+of being induced H-free is extendable. We thus infer that:
+Corollary 2. The property of being induced H-free is testable in the VDF model for every fixed H.
+   It is also clear that the property of being H-free is extendable if and only if H has no isolated vertices. We
+thus infer that:
+Corollary 3. The property of being H-free is testable in the VDF model if and only if H has no isolated
+vertices.
+    It is easy to see that most (natural) hereditary graph properties are extendable, so Theorem 1 immediately
+implies that they are all testable in the VDF model. These include the properties of being Perfect, Interval,
+Chordal and k-Colorable. In the other direction, Theorem 1 implies that if H has an isolated vertex then H-
+freeness is not testable in the VDF model. If one is interested in a more “natural” non-extendable hereditary
+property, then it is not hard to see that another such example is the property P of being induced {A, B}-free,
+where A (resp. B) is the graph obtained from the 2-edge path P2 by adding a new vertex which is adjacent
+to all 3 vertices of P2 (resp. not adjacent to any vertex of P2 ). It is easy to see that C5 satisfies P but is not
+extendable. It was proved in [19] that the properties of being Hamiltonian, Eulerian and Connected are not
+testable in the VDF model. Those three results follow immediately from our Theorem 1 since these properties
+are not hereditary.
+
+1.2     The combinatorial interpretation of Theorem 1
+Let us discuss the combinatorial implications of Theorem 1 and its relation to other results in the area of
+extremal combinatorics. The famous triangle removal lemma of Ruzsa and Szemerédi [29] states that if a
+graph G is ε-far from being triangle free (with respect to the uniform distribution), then a (uniform) sample
+of s(ε) vertices from G contains a triangle with probability at least 32 . We refer the reader to [13] for more
+background on this lemma and its variants. The result of [5] mentioned above, can be thought of as a
+generalization of this lemma to arbitrary hereditary properties. It can be stated as saying that for every
+hereditary graph property P there is a function sP : (0, 1) → N such that the following holds for every ε > 0.
+If a graph G is ε-far from P (with respect to the uniform distribution) then a (uniform) sample of sP (ε)
+vertices from G induces a graph not satisfying P with probability at least 2/3.
+    To prove (the “if” direction of) Theorem 1, we will actually prove the following combinatorial statement,
+which can be thought of as a vertex-weighted version of the graph removal lemma.
+Theorem 4. For every hereditary and extendable graph property P there is a function sP : (0, 1) → N such
+that the following holds for every ε > 0 and for every vertex-weighted graph (G, D) which is ε-far from P.
+Let u1 , . . . , us , s = sP (ε), be a sequence of random vertices of G, sampled according to D and independently.
+Then G[{u1 , . . . , us }] does not satisfy P with probability at least 23 .
+The following similar-looking result7 was (implicitly) proved by Austin and Tao [7] and Lovász and Szegedy [26].
+Theorem 5. For every hereditary graph property P there is a function sP : (0, 1) → N such that the following
+holds for every ε > 0 and for every vertex-weighted graph (G, D) which is ε-far from P. Let u1 , . . . , us ,
+s = sP (ε), be a sequence of random vertices of G, sampled according to D and independently. Construct a
+graph S on s by letting {i, j} ∈ E(S) if and only if {ui , uj } ∈ E(G). Then S does not satisfy P with probability
+at least 23 .
+    Note that Theorem 5 holds for all hereditary properties, while Theorem 4 only holds for hereditary prop-
+erties which are extendable. Observe that the graph S in Theorem 5 is a blowup of the graph G[U ], where
+U = {u1 , . . . , us }. Thus, the difference between Theorems 4 and 5 is that Theorem 5 only guarantees that a
+  7 We note that the results of [7] and [26] are more general. The authors of [26] actually prove that the conclusion of Theorem
+
+5 holds for all graphons. The authors of [7] prove extensions of Theorem 5 in several directions, including a version for uniform
+hypergraphs, and a strengthening in which the notion of testability is replaced with the stronger notion of repairability.
+
+
+                                                               3
+blowup of G[U ] does not satisfy P w.h.p., while Theorem 4 guarantees the stronger assertion that G[U ] itself
+does not satisfy P w.h.p. This is an important difference: while Theorem 4 immediately implies the existence
+of a VDF-tester for every hereditary and extendable property P (see Subsection 3.3), we do not know of any
+way of using Theorem 5 to prove the existence of such a tester. One natural candidate for a tester derived
+from Theorem 5 would be the algorithm which accepts if and only if the graph S (defined in Theorem 5) does
+not satisfy P. It turns out, however, that this algorithm often fails to be a valid tester8 .
+    It is worth noting that Theorem 5 can be deduced from the “unweighted” case, i.e. the result of [5], via a
+simple argument, see Lemma 5.5 and the discussion following it. On the other hand, the proof of Theorem 4
+requires several new ideas on top of those used in [5].
+
+1.3     VDF models with restricted distributions
+The proof of the “only if” part of Theorem 1, showing that if P is either non-extendable or non-hereditary
+then P is not testable in the VDF model, relies on allowing the input graph to have only O(1) vertices (where
+the constant is independent of ε), as well as on having distributions D that assign to some vertices weight
+Θ(1) and to some vertices weight o(1/|V (G)|). This raises the natural question of what happens if we only
+require the tester to work on sufficiently large graphs, or if we forbid D from assigning such very low or very
+high weights. As the following three theorems show, either one of these restrictions has a dramatic effect on
+the model, since it then allows all hereditary properties to be testable.
+    We start with the setting in which the input graph is guaranteed to be large enough. In a revised version
+of [19], Goldreich asked whether every hereditary property P is testable (in the VDF model) on graphs of
+order at least M = MP , for M which is independent of ε. As we show in Proposition 5.2, this turns out to be
+false. On the positive side, we show that under the stronger assumption that the input size is at least MP (ε)
+(where MP : (0, 1) → N is a function dependent on P), all hereditary properties are testable.
+Theorem 6. If |V (G)| ≥ Ω(1) then every hereditary property is testable in the VDF model.
+
+   We now move on to settings in which we pose restrictions on the weights that the distribution D can assign.
+Theorem 7. If maxv∈V (G) D(v) = o(1) then every hereditary property is testable in the VDF model.
+
+Theorem 8. If minv∈V (G) D(v) = Ω n1 then every hereditary property is testable in the VDF model.
+                                    
+
+   We note that the implied constant in the Ω-notation in Theorem 8 is allowed to depend on ε. We refer
+the reader to Section 5 for the precise statements of Theorems 6, 7 and 8. Let us mention that the proof of
+Theorem 7 proceeds by a reduction to the standard model (i.e. to the result of [5]), and that en route we solve
+another problem raised in [19]. The proofs of Theorems 6 and 8 are completely different, using a reduction to
+Theorem 1.
+
+1.4     Paper overview
+The rest of the paper is organized as follows. Section 2 is devoted to proving vertex-weighted analogues of
+several lemmas that were used in prior works (most notably regularity and counting lemmas, and corollaries
+thereof). Some more routine parts of these proofs are deferred to the appendix. In Section 3 we prove the
+“if” direction of Theorem 1 (i.e. Theorem 4). This is by far the most challenging (and interesting) part of
+this paper. The main step towards proving Theorem 1 is establishing Lemma 3.1, which is the key lemma of
+this paper. For the reader’s convenience, we give in Subsection 3.1 an overview of the key ideas of the proof.
+As the proofs in Section 2 are somewhat routine, we encourage readers who are familiar with the regularity
+method to skip Section 2 (at least on their first read), and go directly to Section 3.
+    The “only if” direction of Theorem 1 is proved in Section 4. In Section 5 we prove Theorems 6, 7 and 8.
+We also raise two additional problems related to the VDF model; one is to what extent can one extend the
+results of Theorems 6, 7 and 8 beyond hereditary properties, and the other asks if the sample complexity in
+   8 For example, if P = C -freeness then this tester will reject w.h.p if the input graph is a triangle with uniform vertex
+                             5
+distribution (as the graph S will be a blowup of a triangle, and thus contain C5 ), even though this input graph clearly satisfies P.
+
+
+
+                                                                 4
+the VDF model is the same as in the standard model (for properties that are testable in the VDF model), see
+Subsection 5.3. Along the way we resolve another open problem raised in [19] (see Lemma 5.5). Throughout
+the paper, when we say that a function is increasing/decreasing we mean weakly increasing/decreasing (i.e.
+non-decreasing/non-increasing).
+
+
+2     Preliminary Lemmas
+In this section we introduce vertex-weighted analogues of some key tools of the regularity method, most notable
+Szemerédi’s regularity lemma [30], the strong regularity lemma [1], and the counting lemma, as well as some
+standard corollaries thereof. We also prove some other auxiliary lemmas needed for the proof of Theorem 1.
+    We start with two simple lemmas regarding probabilityP distributions on a finite set. Given a distribution
+D on a set U and a subset W ⊆ U , we set D(W ) := w∈W D(w). We denote by DW the distribution D
+                                        D(w)
+conditioned on W , namely DW (w) = D(W     ) for every w ∈ W .
+
+Lemma 2.1. For every set UP          P η ∈ (0, 1) and for every distribution D on U , there is a partition P
+                             , for every
+of U into 1/η parts such that W ∈P {x,y}∈(W ) D(x)D(y) ≤ η.
+                                                    2
+
+
+Proof. Let P be a random partition of U into k := 1/η parts, where each element is assigned to one of the
+parts uniformly at random and independently of all other elements. Then for every pair of distinct elements
+x, y ∈ U , the probability that x and y belong to the same part is exactly k1 . By linearity of expectation we have
+                                                      
+                             X        X                      X                    1
+                           E                  D(x)D(y) ≤            D(x)D(y) · ≤ η,
+                                                       
+                                                                                   k
+                               W ∈P {x,y}∈(W )             {x,y}∈(U
+                                           2                       2)
+
+
+so there is a choice of P with the required property.                                                            
+                                                                                                                 1
+Lemma 2.2. Let a be an integer, let U be a finite set and let D be a distribution on U such that D(u) ≤ 2a
+                                                                                          1
+for every u ∈ U . Then there is a partition U = U1 ∪ · · · ∪ . . . Ua such that D(Ui ) ≥ 2a for every 1 ≤ i ≤ a.
+
+Proof. We proof is by induction on a. The base case a = 1 is trivial, so we assume from now on that a ≥ 2.
+Let U1 ⊆ U be a set of minimal size satisfying D(U1 ) ≥ 2a 1
+                                                             . Then D(U1 ) ≤ a1 , because otherwise we could
+                                                                            1
+remove an arbitrary element of U1 (whose weight by assumption is at most 2a   ) and thus get a proper subset
+                                1
+of U1 having weight at least 2a , in contradiction the minimality of U1 . Now set U ′ := U \ U1 , noting that
+D(U ′ ) ≥ 1 − a1 . Then every u ∈ U ′ satisfies
+                                                             1
+                                                   D(u)     2a        1
+                                      DU ′ (u) =      ′
+                                                         ≤     1 =          .
+                                                   D(U )   1− a    2(a − 1)
+
+So by the induction hypothesis for (U ′ , DU ′ ), there is a partition U ′ = U2 ∪ · · · ∪ Ua such that
+                                                                                           
+                                           ′          1           ′        1              1      1
+                  D(Ui ) = DU ′ (Ui ) · D(U ) ≥             · D(U ) ≥           · 1−          =
+                                                   2(a − 1)            2(a − 1)           a     2a
+for every 2 ≤ i ≤ a. This completes the proof.                                                                   
+
+   We consider vertex-weighted graphs, i.e. pairs (G, D) such that G is a graph and D is a distribution on
+V (G). For a set X ⊆ V (G), the subgraph of (G, D) induced by X is defined to be (G[X], DX ), where DX is
+the distribution D conditioned on X. The weight of an edge/non-edge {x, y} (with respect to D) is defined
+as D(x)D(y). For a P pair of disjoint sets X, Y ⊆ V (G), define the density of (X, Y ), denoted d(X, Y ), to be
+                1
+d(X, Y ) = D(X)D(Y )   (x,y)∈E(X,Y ) D(x)D(y), where E(X, Y ) is the set of edges with one endpoint in X and
+one endpoint in Y . A pair of disjoint vertex-sets (X, Y ) is called ε-regular if for every X ′ ⊆ X and Y ′ ⊆ Y
+with D(X ′ ) ≥ εD(X) and D(Y ′ ) ≥ εD(Y ), it holds that |d(X ′ , Y ′ ) − d(X, Y )| ≤ ε. The following lemma
+describes some basic properties of ε-regular pairs.
+
+                                                          5
+Lemma 2.3. Let (X, Y ) be an ε-regular pair with density d. Then the following holds.
+   1. For every α ≥ ε and X ′ ⊆ X, Y ′ ⊆ Y with D(X ′ ) ≥ αD(X) and D(Y ′ ) ≥ αD(Y ), the pair (X ′ , Y ′ ) has
+      density at least d − ε and at most d + ε, and is ε′ -regular with ε′ = max{ε/α, 2ε}.
+   2. The set of vertices x ∈ X which satisfy |d(x, Y ) − d| > ε has weight less than 2ε · D(X).
+
+Proof. Starting with Item 1, let X ′ ⊆ X and Y ′ ⊆ Y be such that D(X ′ ) ≥ αD(X) and D(Y ′ ) ≥ αD(Y ).
+Since α ≥ ε, the ε-regularity of (X, Y ) implies that d − ε ≤ d(X ′ , Y ′ ) ≤ d + ε. Now let us show that (X ′ , Y ′ )
+is ε′ -regular with ε′ = max{ε/α, 2ε}. Let X ′′ ⊆ X ′ and Y ′′ ⊆ Y ′ be such that D(X ′′ ) ≥ ε′ D(X ′ ) and
+D(Y ′′ ) ≥ ε′ D(Y ′ ). Then D(X ′′ ) ≥ αε D(X ′ ) ≥ εD(X) and similarly D(Y ′′ ) ≥ εD(Y ). So by the ε-regularity of
+(X, Y ) we have |d(X ′′ , Y ′′ ) − d(X, Y )| ≤ ε and hence |d(X ′′ , Y ′′ ) − d(X ′ , Y ′ )| ≤ 2ε ≤ ε′ , as required.
+    We now prove Item 2. Let X + (resp. X − ) be the set of all x ∈ X satisfying d(x, Y ) > d + ε (resp.
+d(x, Y ) > d − ε). We have
+                                 1         X           X                          1         X
+        d(X + , Y ) =                    ·                     D(x)D(y) =                 ·    D(x) · D(Y ) · d(x, Y )
+                            D(X + )D(Y )    +
+                                                                             D(X + )D(Y )    +
+                                           x∈X   y∈NY (x)                                   x∈X
+                             1
+                      >              · D(X + )D(Y ) · (d + ε) = d + ε.
+                        D(X + )D(Y )
+So unless D(X + ) < εD(X), we get a contradiction to the ε-regularity of (X, Y ). Similarly, we must have
+D(X − ) < εD(X). The assertion follows.                                                                
+
+The following is a vertex-weighted counting lemma.
+Lemma 2.4 (Counting lemma for vertex-weighted graphs). For every integer h ≥ 2 and η ∈ (0, 1) there is
+δ = δ2.4 (h, η) such that the following holds. Let H be a graph on [h] and let U1 , . . . , Uh be pairwise-disjoint
+vertex-sets in a vertex-weighted graph (G, D), such that the following holds.
+   1. For every 1 ≤ i < j ≤ h, if {i, j} ∈ E(H) then d(Ui , Uj ) ≥ η, and if {i, j} ∈
+                                                                                    / E(H) then d(Ui , Uj ) ≤ 1−η.
+   2. For every 1 ≤ i < j ≤ h, the pair (Ui , Uj ) is δ-regular.
+Let U be the set of all (u1 , . . . , uh ) ∈ U1 × · · · × Uh such that u1 , . . . , uh induce a copy of H in which ui plays
+the role of i for every 1 ≤ i ≤ h. Then (u1 ,...,uh )∈U hi=1 D(ui ) ≥ δ hi=1 D(Ui ).
+                                               P               Q                    Q
+
+Proof. The proof is by induction on h. The base case h = 2 trivially holds with δ = δ(2, η) = η. So from now
+on we assume that h ≥ 3, and set
+                                                                                  
+                                             1      η 1  η h−1
+                      δ = δ(h, η) = min           , , ·             · δ(h − 1, η/2) .
+                                          4(h − 1) 2 2      2
+For each 2 ≤ i ≤ h, let Wi be the set of all vertices u1 ∈ U1 for which |d(u1 , Ui ) − d(U1 , Ui )| > δ. By
+                                                                                             Sh
+Item 2 of Lemma 2.3, we have D(Wi ) < 2δ · D(U1 ). Hence, the set U1′ := U1 \ i=2 Wi satisfies D(U1′ ) >
+D(U1 ) − (h − 1) · 2δ · D(U1 ) ≥ 12 D(U1 ), where in the last inequality we used our choice of δ. Now fix any
+u1 ∈ U1′ . We define sets U2′ , . . . , Uh′ as follows: for 2 ≤ i ≤ h, if {1, i} ∈ E(H) then set Ui′ = NUi (u1 ),
+and if {1, i} ∈    / E(H) then set Ui′ = Ui \ NUi (u1 ). By using Item 1 and the fact that u1 ∈ U1′ , we get that
+D(Ui ) ≥ (η − δ)D(Ui ) ≥ η2 · D(Ui ) for every 2 ≤ i ≤ h. By Item 1 of Lemma 2.3, and by Conditions 1-2 of the
+       ′
+
+current lemma, we get that for every 2 ≤ i < j ≤ h, the pair (Ui′ , Uj′ ) is δ ′ -regular with δ ′ = 2δ/η ≤ δ(h−1, η/2),
+and that if {i, j} ∈ E(H) then d(Ui′ , Uj′ ) ≥ η − δ ≥ η/2 and if {i, j} ∈/ E(H) then d(Ui′ , Uj′ ) ≤ 1 − η + δ ≤ 1 − η2 .
+     We now see that the sets U2′ , . . . , Uh′ satisfy the requirements of the lemma with respect to the graph
+H = H[{2, . . . , h}] and with η2 in place of η. Let U ′ be the set of all (u2 , . . . , uh ) ∈ U1′ × · · · × Uh′ such that
+  ′
+
+u2 , . . . , uh induce a copy of H ′ with ui playing the role of i for every 2 ≤ i ≤ h. By the induction hypothesis,
+we have
+         X          h
+                    Y                                  h
+                                                       Y                                            h
+                                                                                                    Y                   h
+                                                                                                                        Y
+                            D(ui ) ≥ δ(h − 1, η/2) ·         D(Ui′ ) ≥ δ(h − 1, η/2) · (η/2)h−1 ·         D(Ui ) ≥ 2δ         D(Ui ).
+    (u2 ,...,uh )∈U ′ i=2                              i=2                                          i=2                 i=2
+
+
+
+                                                                     6
+For every (u2 , . . . , uh ) ∈ U ′ , the tuple (u1 , . . . , uh ) induces a copy of H with ui playing the role of i for every
+1 ≤ i ≤ h. Hence, for every (u2 , . . . , uh ) ∈ U ′ we have (u1 , . . . , uh ) ∈ U (where U is defined in the statement
+of the lemma). Since this is true for every u1 ∈ U1′ , we get that
+
+                    X         h
+                              Y                  X                      h
+                                                                        Y                             h
+                                                                                                      Y                  h
+                                                                                                                         Y
+                                     D(ui ) ≥             D(u1 ) · 2δ         D(Ui ) = D(U1′ ) · 2δ         D(Ui ) ≥ δ         D(Ui ),
+               (u1 ,...,uh )∈U i=1              u1 ∈U1′                 i=2                           i=2                i=1
+
+as required.                                                                                                                             
+
+   A partition P = {V1 , . . . , Vr } of the vertex-set of a vertex-weighted graph (G, D) is called ε-regular if the
+sum of D(Vi )D(Vj ) over all pairs 1 ≤ i < j ≤ r for which (Vi , Vj ) is not ε-regular, is at most ε. We now state
+vertex-weighted versions9 of Szemerédi’s regularity lemma [30] and of the strong regularity lemma [1]. The
+proofs of these lemmas appear in the appendix.
+Lemma 2.5 (Szemerédi’s regularity lemma for vertex-weighted graphs). For every ε ∈ (0, 1) and m ≥ 0 there
+is T = T2.5 (ε, m) such that for every vertex-weighted graph (G, D) and for every partition P0 of V (G) of size
+not larger than m, there is an ε-regular partition P of V (G) which has at most T parts and refines P0 .
+Lemma 2.6 (Strong regularity lemma for vertex-weighted graphs). For every function E : N → (0, 1) and
+for every integer m, there is S = S2.6 (E, m) such that for every vertex-weighted graph (G, D) and for every
+partition P0 of V (G) of size at most m, there is a refinement P of P0 , and a refinement Q of P, such that
+the following hold.
+   1. |Q| ≤ S.
+   2. The partition Q is E(|P|)-regular.
+      P            P
+   3.    P1 ,P2 ∈P   Q1 ⊆P1 ,Q2 ⊆P2 D(Q1 )D(Q2 ) · |d(Qi , Qj ) − d(Pi , Pj )| ≤ E(0). Here the outer sum is over all
+      unordered pairs of distinct P1 , P2 ∈ P, and the inner sum is over all Q1 , Q2 ∈ Q such that Qi ⊆ Pi for
+      i = 1, 2.
+   Our last two lemmas are vertex-weighted analogues of well-known corollaries to Szemerédi’s regularity
+lemma and the strong regularity lemma, respectively. The “unweighted” versions of these corollaries were
+used in [5] in order to prove that every hereditary property is testable in the standard model.
+Lemma 2.7. For every integer t ≥ 1 and for every δ > 0 there is ζ = ζ2.7 (t, δ) > 0, such that the following
+holds. Let (G, D) be a vertex-weighted graph such that all vertices in G have weight less than ζ. Then there
+are pairwise-disjoint vertex-sets Q1 , . . . , Qt ⊆ V (G) with the following properties.
+   1. D(Qi ) ≥ ζ for every 1 ≤ i ≤ t.
+   2. (Qi , Qj ) is δ-regular for every 1 ≤ i < j ≤ t.
+   3. Either all pairs (Qi , Qj ) have density at least 12 , or all pairs (Qi , Qj ) have density less than 12 .
+
+Proof. Setting a = 4t and ε = 4aδ 4 , we will prove the lemma with
+                                                                                      1
+                                                   ζ = ζ2.7 (t, δ) =                             .
+                                                                              4a2 · T2.5 (ε, 2a)
+
+Let (G, D) satisfying D(v) < ζ for every v ∈ V (G). Apply Lemma 2.2 with U = V (G), with the distribution D,
+                                                                                                              1
+and with a as defined above. Lemma 2.2 supplies a partition V (G) = U1 ∪ · · · ∪ . . . Ua such that D(Ui ) ≥ 2a  for
+every 1 ≤ i ≤ a. Now apply Lemma 2.5 to (G, D) with parameter and with the partition P0 := {U1 , . . . , Ua }, to
+obtain a ε-regular partition P which refines P0 . For each 1 ≤ i ≤ a, put Pi = {P ∈ Pi : P ⊆ Ui }, and sample
+                                                                                                           D(P )
+Pi ∈ Pi with probability proportional to the weight of the parts, i.e. Pi = P holds with probability D(U      i)
+                                                                                                                 for
+  9 We note that a weighted version of Szemerédi’s regularity lemma, where both vertex-weights and edge-weights are allowed,
+
+was proved in [14], but only under the assumption that all vertex-weights are o(1). Hence this lemma is unsuitable in our setting.
+
+
+                                                                              7
+every P ∈ Pi . We claim that with positive probability, D(Pi ) ≥ ζ for every 1 ≤ i ≤ a, and all pairs (Pi , Pj )
+                                                                                            ζ·T
+are δ-regular. For every 1 ≤ i ≤ a, the probability that D(Pi ) < ζ is at less than ζ·|P| ≤    2.5 (ε,2a) ≤ 1 ,
+                                                                                                 D(Ui )     1/2a        2a
+where in the first inequality we used the guarantees of Lemma 2.5. By the union bound, with probability
+larger than 12 we have D(Pi ) ≥ ζ for every 1 ≤ i ≤ a. Next, observe that since P is ε-regular, the probability
+                                                                                        ε
+that (Pi , Pj ) is not δ-regular (for some specific 1 ≤ i < j ≤ a) is at most D(Ui )D(U    j)
+                                                                                              ≤ 4aε 2 ≤ a12 . So by taking
+the union bound over all pairs 1 ≤ i < j ≤ a, we get that with probability at least 1 − a2 · a12 > 12 , all pairs
+                                                                                                      
+(Pi , Pj ) are δ-regular. This proves our assertion.
+    We thus showed that there is a choice of P1 , . . . , Pa such that D(Pi ) ≥ ζ for every 1 ≤ i ≤ a and such that
+(Pi , Pj ) is δ-regular for every 1 ≤ i < j ≤ a. Now consider an auxiliary graph on [a] in which {i, j} is an edge
+if d(Pi , Pj ) ≥ 21 and {i, j} is a non-edge if d(Pi , Pj ) < 21 . As a = 4t , a well-known bound on Ramsey numbers
+implies that this graph contains either a clique or an independent set {i1 , . . . , it }. Then Q1 = Pi1 , . . . , Qt = Pit
+satisfy the requirements of the lemma.                                                                                   
+Lemma 2.8. For every function E : N → (0, 1) and for every integer m, there is S = S2.8 (E, m) such that
+for every vertex-weighted graph (G, D) and for every partition P0 of V (G) having size at most m, there is a
+partition P = {P0 , P1 , . . . , Pr } of V (G) and vertex-sets Qi ⊆ Pi for 1 ≤ i ≤ r, such that the following holds:
+
+   1. D(P0 ) < E(0).
+   2. For every 1 ≤ i ≤ r, Pi is contained in some part of P0 .
+   3. D(Qi ) ≥ 1/S for every 1 ≤ i ≤ r. In particular, r ≤ S.
+   4. For every 1 ≤ i < j ≤ r, the pair (Qi , Qj ) is E(r)-regular.
+      P
+   5.   1≤i<j≤r D(Pi )D(Pj ) · |d(Qi , Qj ) − d(Pi , Pj )| ≤ E(0).
+
+                                                           10                                     ′
+Proof. We may and will assume Enis monotone    o decreasing . For convenience, put ε = E(0). Let E : N →
+                        ′                ε2 ε
+(0, 1) be the function E (r) = min E(r), r4 , 4 . We will show that one can choose S = S2.8 (E, m) to be
+       2
+S = 4sε , where s := S2.6 (E ′ , m). Apply Lemma 2.6 to (G, D) with parameter E ′ and with the given partition
+P0 , to obtain partitions P ′ and Q such that P ′ refines P0 , Q refines P ′ , and Items 1-3 in Lemma 2.6 hold. Let
+P0 be the union of all parts of P ′ of weight less than ε/|P ′ |, and let P1 , . . . , Pr be the parts of P ′ of weight at
+least ε/|P ′ |. Then we have D(P0 ) < |P ′ | · ε/|P ′ | = ε, establishing Item 1. Now set P = {P0 , P1 , . . . , Pr }. It is
+evident that Item 2 holds.
+    For each 1 ≤ i ≤ r, denote Qi = {Q ∈ Q : Q ⊆ Pi }, and sample Qi ∈ Qi with probability proportional
+                                                                                                          w(Q)
+to the weight of the parts; in other words, for each Q ∈ Qi , the probability that Qi = Q is w(P              i)
+                                                                                                                 . We will
+show that with positive probability, Q1 , . . . , Qr satisfy Items 3-5. For each 1 ≤ i ≤ r, the probability that
+                                   D(Pi )   D(Pi )
+D(Qi ) < D(P    i)
+           4|Q| is less than |Q| · 4|Q| =      4 . So by the union bound, the probability that there is 1 ≤ i ≤ r
+for which D(Qi ) < D(Pi)             1                                 3
+                   4|Q| is less than 4 . So we probability larger than 4 , for every 1 ≤ i ≤ r we have
+
+                                              D(Pi )      ε           ε     ε  1
+                                  D(Qi ) ≥           ≥            ≥       ≥ 2 = ,
+                                              4|Q|     4|P ′ ||Q|   4|Q|2  4s  S
+
+where in the last inequality is due to our choice of Q via Lemma 2.6.
+                                                                     1
+  We now prove that Item 4 holds nwith probability   o greater than 2 . Fix any 1 ≤ i < j ≤ r. Since Q is
+                                                        2
+ε′ -regular with ε′ = E ′ (|P|′ ) ≤ min E(|P ′ |), |Pε′ |4 , and since E(|P ′ |) ≤ E(r) (by the monotonicity of E),
+                                                                                     2    ′ 4
+                                                                            ε /|P |
+the probability that the pair (Qi , Qj ) is not E(r)-regular is at most D(P   i )D(Pj )
+                                                                                        ≤ |P ′ |−2 ≤ r−2 , where the
+                                                     ′
+first inequality holds because D(Pi ), D(Pj ) ≥ ε/|P |. By the union bound over all pairs 1 ≤ i < j ≤ r, the
+probability that there is 1 ≤ i < j ≤ r for which (Qi , Qj ) is not E(r)-regular is at most r2 · r−2 < 12 .
+ 10 Indeed, we can replace E with E ′ (r) = min
+                                               s≤r E(s), which is clearly monotone decreasing.
+
+
+
+
+                                                               8
+    It remains to show that Item 5 holds with probability at least 41 . Observe that
+                                                                            
+                             X
+                        E         D(Pi )D(Pj ) · |d(Qi , Qj ) − d(Pi , Pj )| =
+                               1≤i<j≤r
+                              X            X                                                            ε
+                                                       D(Q′i )D(Q′j ) · d(Q′i , Q′j ) − d(Pi , Pj ) ≤     ,
+                                                                                                        4
+                            1≤i<j≤r Q′i ∈Qi ,Q′j ∈Qj
+
+where in the inequality we used Item 3 of Lemma 2.6, our choice of E ′ , and the fact that P1 , . . . , Pr ∈ P ′ . So
+by Markov’s inequality, the probability that Item 5 fails is at most 14 , as required.                              
+
+
+3     The Main Proof
+In this section we prove the “if” direction of Theorem 1. In Subsection 3.1 we give a high-level overview of the
+main obstacle one needs to overcome in proving Theorem 1, and the main idea behind the way we overcome
+it. In Subsection 3.2 we state and prove Lemma 3.1, which constitutes the main ingredient in the proof of
+Theorem 1. Finally, we prove (the “if” direction of) Theorem 1 in Subsection 3.3.
+
+3.1    Proof overview
+The main difficulty: Suppose P is an extendable hereditary graph property. We are given a graph G and
+a distribution D so that G is ε-far from P with respect to D. Our goal is to show that a sample of O(1)
+vertices11 from G finds with high probability (whp) an induced subgraph F of G which does not satisfy P.
+There are two ways one can try to tackle this problem. First, one can take a blowup G′ of G, in which a
+vertex is replaced by a cluster of vertices whose size is proportional to the vertex’s weight under D, and thus
+(try to) “reduce” the problem to the non-weighted case. While this approach can allow one to handle some
+properties12 , it seems that the main bottleneck is that a copy of F in G′ does not correspond necessarily to
+a copy of F in G, since F might contain several of the vertices that replaced a vertex of G. Moreover, if this
+vertex v has weight Ω(1) then even a sample of size O(1) will very likely contain several of the vertices of G′
+that replaced v.
+   A second approach would be to just reprove the result of [5], while replacing the regularity lemmas used
+there with regularity lemmas for vertex-weighted graphs. While such lemmas are indeed not hard to prove
+(see e.g. Lemmas 2.4 and 2.5-2.8), the main problem is again vertices of high weight. Now the issue is that
+clusters of the regular partition might contain only a single vertex of high weight, a situation in which one
+would not be able to embed graphs F that need to use more than one vertex from the same cluster.
+
+The key new idea: The main idea is then to prove a lemma that allows one to partition G into three sets
+X, Y, Z with the following properties: (i) Z will have total weight at most ε/2, (ii) all vertices in X will have
+weight at least Ω(1), (iii) Y will have a highly regular Szemerédi partition, that is, there will be a partition of
+the vertices of Y into sets P1 , . . . , Pr so that the bipartite graphs between all pairs (Pi , Pj ) are pseudo-random
+(or regular in the sense of the regularity lemma), (iv) each of the clusters Pi will have “enough” vertices, and
+(v) for each x ∈ X and set Pi , either x will be connected to all vertices of Pi or to none of them. Let us now
+see how a partition with the above five properties can allow one to test P.
+    We first claim that G[X ∪ Y ] (i.e. the graph induced by X ∪ Y ) is ε/2-far from satisfying P. Indeed, if this
+is not the case, then we can first turn the graph induced by these sets into a graph satisfying P by making
+changes of total weight at most ε/2, and then use the fact that P is extendable and the fact that the total
+weight of Z is at most ε/2 in order to reconnect the vertices of Z to X ∪ Y (and amongst themselves) so that
+the resulting graph will be in P. The total weight of edges we thus change is less than ε, a contradiction.
+    We now examine the partition P1 , . . . , Pr of Y and perform a “cleaning” procedure analogous to the one
+performed in applications of the regularity lemma. By this we mean that we make (only!) within Y changes of
+ 11 Throughout this subsection, Ω(1) and O(1) mean positive quantities that depend only on ε and not on n or D.
+ 12 Indeed, this is the approach used in [19].
+
+
+
+
+                                                                  9
+total weight less than ε/2 so that if after these changes the set Y contains an induced copy of some graph F ,
+then in the original graph, a sample of O(1) vertices from Y finds one such copy with high probability (whp).
+Here we will also rely on property (iv) of the partition. The fact that G[X ∪ Y ] is ε/2-far from satisfying P
+and that we made changes of total weight less than ε/2 when cleaning Y , means that G[X ∪ Y ] (after the
+cleaning) indeed has an induced copy of a graph F that does not satisfy P. We now claim that a sample of
+size O(1) from G (before the cleaning) finds a copy of F whp. First, since the total weight of Z is small, then
+sampling from G is (effectively) like sampling from G[X ∪ Y ]. Now let FX (resp. FY ) be the subgraph of F
+induced by X (resp. Y ). By the above discussion, a sample of size O(1) finds a copy of FY whp. Now, and
+this is the first crucial point, property (v) mentioned above guarantees that the vertices of X which form the
+copy of FX , form a copy of F with every set of vertices in Y which forms a copy of FY . Now, and this is
+the second crucial point, property (ii) above guarantees that a sample of O(1) vertices finds the13 copy of FX
+contained in X whp. Altogether, the algorithm finds an induced copy of F using O(1) queries.
+
+The new regularity lemma: As it turns out, one cannot hope to partition G as described in the first
+paragraph above, and instead we will have to define a partition with a much more complicated set of features.
+This is stated in Lemma 3.1 in the next subsection. One of the main difficulties is making sure that parts
+Pi of the partition of Y will not contain only few (or even a single) vertices of high weight (i.e. we want to
+guarantee property (iv) stated above). This is done by making sure that the weight of the vertices in Y is
+very small compared to the weight of the parts P1 , . . . , Pr . This in itself is challenging, because at the same
+time we need to have many parts Pi in order to satisfy property (v) above. The proof of Lemma 3.1 will use
+some of the lemmas of Section 2, most notably Lemma 2.8, which we will need to iterate (at least implicitly)
+in order to find the sought-after partition in the statement of Lemma 3.1.
+
+3.2     The Key Lemma
+In this subsection we state and prove Lemma 3.1, which is the main ingredient in the proof of the “if” direction
+of Theorem 1.
+Lemma 3.1. For every function Ψ : N → N and ε > 0 there is S = S3.1 (Ψ, ε) such that for every vertex-
+weighted graph (G, D) there is a partition V (G) = X ∪ Y ∪ Z, a partition P = {P1 , . . . , Pr } of Y , vertex-sets
+Qi ⊆ Pi , and pairwise-disjoint vertex-sets Qi,1 , . . . , Qi,t ⊆ Qi , where t = Ψ(|X| + r), such that the following
+holds:
+
+   1. D(Z) < ε.
+
+   2. Every vertex in X has weight at least 1/S.
+   3. For every x ∈ X and for every 1 ≤ i ≤ r, either x is adjacent to all vertices of Pi , or to none of the
+      vertices of Pi .
+      P        P
+   4.   1≤i≤r     {x,y}∈(P2i ) D(x)D(y) ≤ ε.
+      P
+   5.   1≤i<j≤r D(Pi )D(Pj ) · |d(Qi , Qj ) − d(Pi , Pj )| ≤ ε.
+
+                                                                 1
+   6. For every 1 ≤ i ≤ r, all pairs (Qi,k , Qi,ℓ ) are Ψ(|X|+r)      -regular, and either all pairs (Qi,k , Qi,ℓ ) have
+                       1
+      density at least 2 , or all pairs (Qi,k , Qi,ℓ ) have density less than 12 .
+                                                                              1
+   7. For every 1 ≤ i < j ≤ r and 1 ≤ k, ℓ ≤ t, the pair (Qi,k , Qj,ℓ ) is Ψ(|X|+r) -regular and |d(Qi,k , Qj,ℓ ) −
+                        1
+      d(Qi , Qj )| ≤ Ψ(|X|+r) .
+
+   8. For every 1 ≤ i ≤ r and 1 ≤ k ≤ t, D(Qi,k ) ≥ 1/S.
+  13 By “the” we mean that X might contain only a single copy of F
+                                                                     X , but this copy has to be of weight Ω(1). This is in sharp
+contrast to the situation within Y , where each copy of FY might have very small weight, but the total weight of such copies must
+be Ω(1).
+
+
+
+
+                                                               10
+   Note that Items 2 and 8 in Lemma 3.1 together imply that |X| + rt ≤ S. The following lemma constitutes
+the main part of the proof of Lemma 3.1. After proving Lemma 3.2, we deduce Lemma 3.1 from Lemmas 3.2
+and 2.7.
+Lemma 3.2. For every function Ψ : N → N and ε > 0 there is S = S3.2 (Ψ, ε) such that for every vertex-
+weighted graph (G, D) there is a partition V (G) = X ∪Y ∪Z, a partition P = {P1 , . . . , Pr } of Y and vertex-sets
+Qi ⊆ Pi (for 1 ≤ i ≤ r) such that Items 1-5 in Lemma 3.1 hold (with respect to S = S3.2 (Ψ, ε)), and such
+that the following two conditions are satisfied.
+                                                        1
+ (a) For every 1 ≤ i < j ≤ r, the pair (Qi , Qj ) is Ψ(|X|+r) -regular.
+
+ (b) For every 1 ≤ i ≤ r the following holds: D(Qi ) ≥ 1/S, and all vertices in Qi have weight less than
+        1
+     Ψ(|X|+r) · D(Qi ).
+
+Proof. We may and will assume that the function Ψ is monotone increasing14, and that the function
+S2.8 (E, m), whose existence is guaranteed by Lemma 2.8, is monotone decreasing in E and monotone in-
+creasing in m. Here, being monotone decreasing in E means that if a pair of functions E1 , E2 : N → (0, 1)
+satisfy E1 (r) ≤ E2 (r) for every r ∈ N, then S2.8 (E1 , m) ≥ S2.8 (E2 , m) for every m. For each s ∈ N, define the
+function Es : N → (0, 1) by                                             
+                                                            ε    1
+                                           Es (r) = min       ,            .
+                                                            2 Ψ(s + r)
+Now define the functions S ′ , S ′′ : N → N by setting:
+
+                                                          2S ′ (s)
+                                                                               
+                     ′                   1 s        ′′                       ′
+                   S (s) = S2.8 Es , · 2 , S (s) = max s,          · Ψ (s + S (s)) .
+                                         ε                  ε
+
+Note that S ′′ (s) ≥ s for every s ∈ N, and that S ′ and S ′′ are monotone increasing. We define a monotone
+increasing sequence s1 , s2 , . . . as follows: s1 = 1, and for each i ≥ 2, si = S ′′ (si−1 ). We will show that the
+lemma holds with
+                                                 S = S3.2 (Ψ, ε) = s2/ε .
+    Let (G, D) be a vertex-weighted graph. We iteratively define a sequence of pairwise-disjoint vertex-sets
+X1 , X2 , . . . ⊆ V (G) as follows: let X1 be the set of all vertices of G of weight at least 1/s1 ; for each i ≥ 2,
+let Xi be the set of all vertices in V (G) \ (X1 ∪ · · · ∪ Xi−1 ) having weight at least 1/si . Since X1 , X2 , . . . are
+pairwise-disjoint, there must be 1 ≤ i ≤ 2ε for which D(Xi ) ≤ 2ε . We now set Z ′ = Xi , X = X1 ∪ · · · ∪ Xi−1
+and Y ′ = V (G) \ (X ∪ Z ′ ) = V (G) \ (X1 ∪ · · · ∪ Xi ). Note that D(Z ′ ) ≤ 2ε . Setting s = si−1 ≤ s2/ε−1 ≤ S,
+note that every vertex in X has weight at least 1s (so in particular |X| ≤ s), while every vertex in Y ′ has
+weight less than s1i = S ′′1(s) .
+    If D(Y ′ ) < 2ε then D(Y ′ ∪ Z ′ ) < ε, so the assertion of the lemma holds for Y = ∅ and Z = Z ′ ∪ Y ′ , and
+we are done. So P    we mayP and will assume from now on that D(Y ′ ) ≥ 2ε . Let P0′ be a partition of Y ′ into 1/ε
+parts such that P ∈P ′ {x,y}∈(P ) D(x)D(y) ≤ ε, as guaranteed by Lemma 2.1. For every x ∈ X, consider
+                         0            2
+the partition Px := {NY ′ (x), Y ′ \ NY ′ (x)} of Y ′ . Let P0 be the common refinement of the partitions P0′ and
+(Px )x∈X . Then for every x ∈ X and P ∈ P0 , either x is adjacent to every vertex of P , or x is not adjacent to
+any vertex of P . Moreover, we have |P0 | ≤ 1ε · 2|X| ≤ 1ε · 2s .
+   Now apply Lemma 2.8 to (G[Y ′ ], DY ′ ) with parameters Es and m = 1ε ·2s , and with the partition P0 (noting
+that |P0 | ≤ m), to obtain a partition P = {P0 , P1 , . . . , Pr } of Y ′ and vertex-sets Qi ⊆ Pi (for 1 ≤ i ≤ r), with
+the properties stated in that lemma. Note that in particular we have
+                                                                  
+                                                             1 s
+                                            r ≤ S2.8 Es , · 2 = S ′ (s).                                            (1)
+                                                             ε
+
+Set Z = Z ′ ∪ P0 and Y = Y ′ \ P0 , noting that D(P0 ) < Es (0) ≤ 2ε , and hence D(Z) = D(Z ′ ) + D(P0 ) < ε,
+as required by Item 1 in Lemma 3.1. Items 3 and 4 in Lemma 3.1 hold because each of the sets P1 , . . . , Pr is
+ 14 To guarantee that Ψ is monotone increasing, we can simply replace Ψ with the function Ψ′ (s) := max{Ψ(0), . . . , Ψ(s)}.
+
+
+
+
+                                                              11
+contained in some part of P0 , and hence also in some part of P0′ . Item 2 of Lemma 3.1 was already verified
+above, and Item 5 of Lemma 3.1 is guaranteed by Lemma 2.8. Item (a) holds because Lemma 2.8 guarantees
+                                                                         1           1
+that all pairs (Qi , Qj ) are Es (r)-regular, and because Es (r) ≤ Ψ(s+r)      ≤ Ψ(|X|+r)   (here we used our choice of
+Es , the fact that |X| ≤ s, and the monotonicity of Ψ). It remains to prove Item (b). For each 1 ≤ i ≤ r, we
+have
+                                                                       ε            ε
+                           D(Qi ) ≥ DY ′ (Qi ) · D(Y ′ ) ≥ DY ′ (Qi ) · ≥                                           (2)
+                                                                            2S2.8 Es , 1ε · 2s
+                                                                                               
+                                                                       2
+                                         ε         1             1           1     1
+                                   =           ≥ ′′      ≥ ′′            =      = ,
+                                      2S ′ (s)   S (s)     S (s2/ε−1 )     s2/ε    S
+
+where in the third inequality we used the guarantees of Lemma 2.8, and later we used our choice of S ′ and
+S ′′ , the monotonicity of Ψ and S ′′ , and the fact that s = si−1 for some i ≤ 2/ε. Next, recall that all vertices
+of Y have weight less than
+                                    1               1            ε
+                                            ≤               ·
+                                 S ′′ (s)     Ψ (s + S (s)) 2S ′ (s)
+                                                      ′
+
+                                                  1                    1
+                                            ≤           · D(Qi ) ≤            · D(Qi ),
+                                              Ψ(s + r)             Ψ(|X| + r)
+
+where in all inequalities we used the monotonicity of Ψ, and in the second inequality we also used (1) and (2).
+                              1
+This shows that D(u) ≤ Ψ(|X|+r)    · D(Qi ) for every u ∈ Qi , as required.                                  
+
+Proof of Lemma 3.1. Define the functions
+                                                                                  
+                                                                             1
+                                   ζ : N → (0, 1), ζ(m) = ζ2.7 Ψ(m),                   ,
+                                                                            Ψ(m)
+and
+                                                                       2Ψ(m)
+                                                Ψ′ : N → N, Ψ′ (m) =         .
+                                                                        ζ(m)
+We may and will assume that the function ζ2.7 (t, δ) is monotone decreasing in t and monotone increasing in
+δ. This assumption implies that the function ζ defined above is monotone decreasing. We prove the lemma
+with
+                                                  S3.2 (Ψ′ , ε)
+                             S = S3.1 (Ψ, ε) :=                  ≥ S3.2 (Ψ′ , ε) .
+                                                ζ(S3.2 (Ψ′ , ε))
+   Let (G, D) be a vertex-weighted graph. Apply Lemma 3.2 to (G, D) with parameters Ψ′ and ε, to obtain
+a partition V (G) = X ∪ Y ∪ Z, a partition P = {P1 , . . . , Pr } of Y , and subsets Qi ⊆ Pi (for 1 ≤ i ≤ r) such
+that Items 1-5 of Lemma 3.1 hold (with respect to S3.2 (Ψ′ , ε)), and so do Items (a) and (b) of Lemma 3.2.
+   Let us now prove that Items 6-8 (in Lemma 3.1) hold. It will be convenient to put m := |X| + r. By Item
+(b) in Lemma 3.2 and by our choice of Ψ′ , we have
+
+                                           1              ζ(m)
+                             D(u) <            · D(Qi ) <      · D(Qi ) ≤ ζ(m) · D(Qi )                            (3)
+                                        Ψ′ (m)            Ψ(m)
+
+for every 1 ≤ i ≤ r and u ∈ Qi . Recalling our choice of ζ, we see that Lemma 2.7 is applicable to (G[Qi ], DQi )
+                                                          1          1
+with parameters t = Ψ(m) = Ψ(|X| + r) and δ = Ψ(m)            = Ψ(|X|+r) . Applying Lemma 2.7 with this input, we
+obtain pairwise-disjoint vertex-sets Qi,1 , . . . , Qi,t ⊆ Qi satisfying the properties stated in that lemma. The
+guarantees of Lemma 2.7 immediately establish Item 6, and also imply that for every 1 ≤ k ≤ t we have
+                                                                                 1         ζ(S3.2 (Ψ′ , ε))  1
+        D(Qi,k ) ≥ ζ(m) · D(Qi ) = ζ(|X| + r) · D(Qi ) ≥ ζ(|X| + r) ·              ′
+                                                                                         ≥                  = ,
+                                                                            S3.2 (Ψ , ε)    S3.2 (Ψ′ , ε)    S
+                                                                            1
+where in the second and third inequalities we used the fact that |X| + r, D(Q i)
+                                                                                 ≤ S3.2 (Ψ′ , ε), as guaranteed
+by Item 2 (of Lemma 3.1) and Item (b) (of Lemma 3.2); in the third inequality we also used the monotonicity
+
+                                                            12
+of ζ. This establishes Item 8. It remains to prove Item 7. By Item (a) of Lemma 3.2, the pair (Qi , Qj ) is
+   1                                                             1        ζ(m)
+Ψ′ (m) -regular for every 1 ≤ i < j ≤ r. Recalling that Ψ′ (m) = 2Ψ(m) , we apply Item 1 of Lemma 2.3 to
+                                                                                                   1       1
+Qi , Qj , Qi,k , Qj,ℓ (for any 1 ≤ k, ℓ ≤ t), to conclude that |d(Qi,k , Qj,ℓ ) − d(Qi , Qj )| ≤ Ψ(m) = Ψ(|X|+r) , and
+                                   1
+that the pair (Qi,k , Qj,ℓ ) is Ψ(|X|+r) -regular, as required.                                                      
+
+3.3    Proof of the Main Result
+In this subsection we prove (the “if” direction of) Theorem 1. For a hereditary and extendable graph property
+P, our tester for P will work as follows: given an input (G, D) and a proximity parameter ε, the tester samples
+a sequence of vertices u1 , . . . , us ∈ V (G) independently and with distribution D, where s = sP (ε) is as in
+Theorem 4; the tester then accepts if and only if G[u1 , . . . , us ] satisfies P. Since P is hereditary, this tester
+accepts with probability 1 if the input graph satisfies P. In the other direction, Theorem 4 immediately implies
+that if the input (G, D) is ε-far from P then the tester rejects with probability at least 32 . So we see that the
+“if” direction of Theorem 1 follows from Theorem 4.
+    From now on our goal is to prove Theorem 4. We start by introducing variants of some definitions from
+[5]. An embedding scheme is a complete graph K with a vertex partition AK ∪ BK , such that every vertex in
+BK is colored black or white, every edge with an endpoint in AK is colored black or white, and every edge
+contained in B is colored black, white or grey. Note that one of Ak , Bk may be empty; that the vertices of
+AK are not colored; and that the edges with an endpoint in AK cannot be colored grey. An embedding from
+a graph F to an embedding scheme K is a map ϕ : V (F ) → V (K) such that the following holds:
+
+   1. For every α ∈ AK we have |ϕ−1 (α)| ≤ 1.
+   2. For every β ∈ BK , if β is colored black then ϕ−1 (β) induces a complete graph, and if β is colored white
+      then ϕ−1 (β) induces an empty graph.
+
+   3. For every {λ, µ} ∈ V (K)   , if {λ, µ} is colored black then the bipartite graph between ϕ−1 (λ) and ϕ−1 (µ)
+                                
+                            2
+      is complete, and if {λ, µ} is colored white then the bipartite graph between ϕ−1 (λ) and ϕ−1 (µ) is empty
+      (note that there are no restrictions in the case that {λ, µ} is colored grey).
+
+Note that Condition 3 implies that for every α ∈ AK and λ ∈ V (K) \ {α}, the bipartite graph between ϕ−1 (α)
+and ϕ−1 (λ) is either complete or empty. We use the notation F → K to mean that there is an embedding
+from F to K. For a graph-family F and an integer m, let Fm be the family of all embedding schemes K on
+at most m vertices, such that there is an embedding from some F ∈ F to K. We now introduce a variant of
+the function ΨF defined in [5].
+Definition 3.3. For a graph-family F and an integer m for which Fm 6= ∅, define
+
+                                        ΨF (m) = max          min    |V (F )|.
+                                                   K∈Fm F ∈F :F →K
+
+If Fm = ∅ then define ΨF (m) = 0.
+
+We are now ready to prove Theorem 4 (and thus also the “if” direction of Theorem 1).
+
+Proof of Theorem 4. Let P be a hereditary and extendable graph property. Let F = F (P) be the family
+of minimal forbidden induced subgraphs for P. Fix ε ∈ (0, 1), and let Ψ : N → N be the function
+                                                                            
+                                              8                  1
+                               Ψ(m) = max       , ΨF (m),                      ,
+                                              ε           δ2.4 (ΨF (m), 8ε )
+
+where ΨF is defined in Definition 3.3. We may and will assume that the function δ2.4 (h, η) is monotone
+decreasing in h and monotone increasing in η. Set S := S3.1 (Ψ, 8ε ). We prove the theorem with
+
+                                                                  2S Ψ(S)
+                                       s = sP (ε) := Ψ(S) ·                 .                                    (4)
+                                                              δ2.4 Ψ(S), 8ε
+
+                                                         13
+   Let (G, D) be a vertex-weighted graph which is ε-far from P. Apply Lemma 3.1 to (G, D) with parameter
+ε
+4 and with Ψ as above, to obtain a partition V (G) = X ∪ Y ∪ Z, a partition {P1 , . . . , Pr } of Y , subsets Qi ⊆ Pi
+(for 1 ≤ i ≤ r), and pairwise-disjoint subsets Qi,1 , . . . , Qi,t ⊆ Qi , such that t = Ψ(|X| + r) and Items 1-8 in
+Lemma 3.1 hold.
+   We claim that G is 3ε                            ′                           ′
+                          4 -far from any graph G on V (G) which satisfies G [X ∪ Y ] ∈ P. So suppose by
+contradiction that there is a graph G on V (G) such that G [X ∪ Y ] satisfies P and such that G′ is 3ε
+                                       ′                       ′
+                                                                                                         4 -close
+to G. Since P is extendable, there is a graph G′′ on V (G) = V (G′ ) such that G′′ [X ∪ Y ] = G′ [X ∪ Y ] and
+such that G′′ satisfies P. In order to turn G′ into G′′ , we only need to add/delete edges which are incident
+to vertices of Z. Therefore, the total weight of edge-changes needed to turn G′ into G′′ is at most D(Z) < 4ε ,
+as guaranteed by Lemma 3.1. So we see that G can be turned into G′′ , which satisfies P, by adding/deleting
+edges whose total weight is less than 3ε    ε
+                                        4 + 4 = ε, in contradiction the assumption that (G, D) is ε-far from P.
+                                3ε
+   We thus proved that G is 4 -far from any graph G′ satisfying G′ [X ∪ Y ] ∈ P. Now, let G′ be the graph
+obtained from G by doing the following changes:
+
+   1. For every 1 ≤ i ≤ r, if d(Qi,k , Qi,ℓ ) ≥ 21 for every 1 ≤ k < ℓ ≤ t then turn Pi into a clique, and if
+      d(Qi,k , Qi,ℓ ) < 21 for every 1 ≤ k < ℓ ≤ t, then turn Pi into an independent set. By Item 6 in Lemma
+      3.1, one of these options has to hold. The total weight of edge-changes needed in this item is at most 4ε
+      by Item 4 of Lemma 3.1.
+   2. For every 1 ≤ i < j ≤ r, if d(Qi , Qj ) > 1 − 4ε then add all edges between Pi and Pj , and if d(Qi , Qj ) < 4ε
+      then remove all edges between Pi and Pj (note that if 4ε ≤ d(Qi , Qj ) ≤ 1 − 4ε then no changes are made
+      in the bipartite graph between Pi and Pj ). The total weight of edge-changes needed in this item is less
+      than 2ε by Item 5 of Lemma 3.1.
+
+Note that no edge with an endpoint in X was added/deleted in Items 1-2, so G′ and G agree on all edges that
+are incident to vertices of X.
+    We see that the total weight of edge-changes made in Items 1-2 is less than 3ε                  ′
+                                                                                            4 . So G [X∪Y ] cannot satisfy P,
+implying that G′ [X ∪ Y ] contains an induced copy of some F ∈ F . With a slight abuse of notation, we identify
+V (F ) with the vertex-set of this copy. Let x1 , . . . , xa be the elements of V (F ) ∩ X, and suppose without loss of
+generality that P1 , . . . , Pb are the parts of {P1 , . . . , Pr } which intersect V (F ). Put Yi := V (F )∩Pi for 1 ≤ i ≤ b.
+    It follows from Item 1 in the definition of G′ that for every 1 ≤ i ≤ b, Yi is either a clique or an independent
+set in F . Moreover, if Yi is a clique then Pi is a clique in G′ , implying that dG (Qi,k , Qi,ℓ ) ≥ 12 for every
+1 ≤ k < ℓ ≤ t; and if Yi is an independent set then Pi is an independent set in G′ , implying that
+dG (Qi,k , Qi,ℓ ) < 21 for every 1 ≤ k < ℓ ≤ t.
+    Similarly, it follows from Item 2 in the definition of G′ that the following holds for every pair 1 ≤ i < j ≤ b.
+If there is an edge in F between Yi and Yj then the bipartite graph in G′ between Pi and Pj is not empty,
+and hence dG (Qi , Qj ) ≥ 4ε . By Item 7 of Lemma 3.1, this implies that dG (Qi,k , Qj,ℓ ) ≥ 4ε − Ψ(|X|+r)      1
+                                                                                                                      ≥ 8ε for
+every 1 ≤ k, ℓ ≤ t. Analogously, if there is a non-edge in F between Yi and Yj then the bipartite graph in G′
+between Pi and Pj is not complete, and hence dG (Qi , Qj ) ≤ 1 − 4ε . By Item 7 of Lemma 3.1, this implies that
+                                   1
+dG (Qi,k , Qj,ℓ ) ≤ 1 − 4ε + Ψ(|X|+r)    ≤ 1 − 8ε for every 1 ≤ k, ℓ ≤ t.
+    Let K be the following embedding scheme: AK = {α1 , . . . , αa } and BK = {β1 , . . . , βb }; for each 1 ≤ i ≤ b,
+vertex βi is colored black if Yi is a clique and white if Yi is an independent set; for each 1 ≤ i < j ≤ a, edge
+{αi , αj } is colored black if {xi , xj } ∈ E(F ) and white otherwise; for each 1 ≤ i ≤ a, 1 ≤ j ≤ b, edge {αi , βj } is
+colored black if the bipartite graph between xi and Yj is complete and white if this bipartite graph is empty
+(Item 3 in Lemma 3.1 implies that one of these options must hold); finally, for every 1 ≤ i < j ≤ b, edge
+{βi , βj } is colored black if the bipartite graph between Yi and Yj is complete, white if the bipartite graph
+between Yi and Yj is empty, and grey otherwise.
+    Observe that the map ϕ : V (F ) → V (K) which maps xi to αi (for every 1 ≤ i ≤ a) and Yj to βj (for
+every 1 ≤ j ≤ b), is an embedding from F to K. Since |V (K)| = a + b ≤ |X| + r, we have K ∈ Fm for
+m := |X| + r. By the definition of the function ΨF (see Definition 3.3), there is F ′ ∈ Fm such that F ′ → K
+and |V (F ′ )| ≤ ΨF (m) = ΨF (|X| + r) ≤ Ψ(|X| + r) = t.
+    Now, fixing an embedding ρ from F ′ to K, write Wi := ρ−1 (βi ) = {wi,1 , . . . , wi,fi } for 1 ≤ i ≤ b. Put
+W = W1 ∪ · · · ∪ Wb and H = F ′ [W ]. We claim that the sets (Qi,k )1≤i≤b,1≤k≤fi satisfy the requirements
+
+
+                                                             14
+1-2 in Lemma 2.4 with respect to h = |V (F ′ )| ≤ ΨF (m), η = 8ε and H as above, in the graph G. In other
+words, we show that we can apply Lemma 2.4 with the sets U1 , . . . , Uh being (Qi,k )1≤i≤b,1≤k≤fi , and with G
+as the host graph. We actually already proved that Item 1 in Lemma 2.4 holds (indeed, this follows from the
+fact that F ′ , F → K, the definition of the embedding scheme K, and the properties of the sets Qi,k which
+were established above). As for Item 2 (of Lemma 2.4), we infer from Items 6-7 of Lemma 3.1 that for every
+1 ≤ i ≤ j ≤ b and 1 ≤ k ≤ fi , 1 ≤ ℓ ≤ fj (with the exception of (i, k) = (j, ℓ)), the pair (Qi,k , Qj,ℓ ) is δ-regular
+with δ = Ψ(m)1
+                 ≤ δ2.4 (ΨF (m), 8ε ) ≤ δ2.4 (h, 8ε ), as required.
+     We thus showed that Lemma 2.4 is applicable to the tuple of sets (Qi,k )1≤i≤b,1≤k≤fi and the graph H =
+F ′ [W ] (with the parameters defined above). Let U be the set of all tuples (ui,k )1≤i≤b,1≤k≤fi where ui,k ∈ Qi,k ,
+which induce (in G) a copy of F ′ [W ] in which ui,k plays the role of wi,k for every 1 ≤ i ≤ b, 1 ≤ k ≤ fi . By
+Lemma 2.4, we have
+                          b fi                               b fi
+                  X       YY                            ε Y Y                          ε  −|W |
+                                      D(ui,k ) ≥ δ2.4 h,   ·      D(Ui,k ) ≥ δ2.4 ΨF (m),    ·S     ,                    (5)
+                                                         8 i=1                            8
+              (ui,k )i,k ∈U i=1 k=1                               k=1
+
+where in the last inequality we used the guarantees of Item 8 in Lemma 3.1 and the monotonicity of the
+function δ2.4 . Observe that for every (ui,k )i,k ∈ U, the subgraph of G induced by the vertex-set {ui,k : 1 ≤ i ≤
+b, 1 ≤ k ≤ fi } ∪ {x1 , . . . , xa } contains an induced copy of F ′ . Indeed, this follows from our choice of F ′ , the
+definition of U, and Item 3 in Lemma 3.1. Now sample an (a + |W |)-tuple of vertices from G according to the
+distribution D and independently, and denote those vertices as u′i , 1 ≤ i ≤ a, and ui,k , 1 ≤ i ≤ b, 1 ≤ k ≤ fi .
+We see that {u′i : 1 ≤ i ≤ a} ∪ {ui,k : 1 ≤ i ≤ b, 1 ≤ k ≤ fi } contains an induced copy of F ′ in which ui,k plays
+the role of wi,k and u′i plays the role of xi (whenever xi ∈ V (F ′ )), with probability at least
+                                               a
+                                  ε  −|W | Y                         ε  −|W | −a
+                      δ2.4 ΨF (m),    ·S    ·     D(xi ) ≥ δ2.4 ΨF (m),    ·S    ·S .
+                                   8          i=1
+                                                                        8
+
+Here we used (5) and Item 2 in Lemma 3.1. Next, note that a + |W | ≤ |X| + rt ≤ S, where in the last
+inequality we used Items 2 and 8 of Lemma 3.1. Similarly, ΨF (m) ≤ t ≤ S. So we see that      a sample of S
+random vertices induces a graph which does not satisfy P with probability at least δ2.4 S, 8ε ·S −S . Therefore,
+a sample of s = sP (ε) vertices (see (4)) induces a graph not satisfying P with probability at least
+                                             ε         2SS ε               2
+                                                  · S −S 2.4 ( 8 ) ≥ 1 − e−2 ≥ ,
+                                   
+                                                         δ    S,
+                                1 − 1 − δ2.4 S,
+                                                8                             3
+as required. This completes the proof.                                                                                    
+   It is natural to ask about the dependence of the sample complexity s (of the tester described by Theorem
+1) on ε. One answer is that one cannot prove any upper bound on this relation, because it was shown in [6]
+that no such bound exists even in the standard model. Suppose then that one is interested only in “simple”
+properties such as induced H-freeness (for some fixed H). In this case, it is not too hard to see that although
+we are iterating Lemma 2.8, which has wowzer-type (that is, iterated-tower) bounds15 in this setting even for
+unweighted graphs (see [12, 25]), we are still getting “only” a wowzer-type bound. We should also point that
+it might be possible to use the ideas in [12], together with those presented here, in order to get tower-type
+bounds on the sample complexity of testing induced H-freeness in the VDF model.
+
+
+4     VDF-Testable Properties are Extendable and Hereditary
+In this section we prove the “only if” direction of Theorem 1. The proof is divided between Propositions 4.1
+and 4.2. As shown in [19], we can (and will) always assume that a VDF tester only queries the input graph
+on pairs of vertices which it has sampled.
+  15 To be precise, we mean here that the “standard” way of establishing Lemma 2.8 (which is also the way we prove this lemma
+
+in this paper) is via the strong regularity lemma (see Lemma 2.6), which is known to only give wowzer-type bounds [12, 25].
+In [12], (an unweighted variant of) Lemma 2.8 was proved without the use of the strong regularity lemma, thus giving better,
+tower-type, bounds. This is alluded to in the following sentence.
+
+
+                                                             15
+Proposition 4.1. If a graph property P is not extendable, then P is not testable in the VDF model.
+
+Proof. Since P is not extendable, there is a graph G1 ∈ P, such that no (|V (G1 )| + 1)-vertex graph satisfying
+P contains G1 as an induced subgraph. Let G2 be a graph obtained from G1 by adding a “new” vertex v (and
+putting an arbitrary bipartite graph between v and V (G1 )), let D1 be the uniform distribution on V (G1 ), and
+                                                                   1
+let D2 be the distribution on V (G2 ) which assigns weight |V (G     1 )|
+                                                                          to each u ∈ V (G1 ) ⊆ V (G2 ) and weight16 0
+to v.
+    It is clear that for every integer q, a sample of q vertices from G1 according to D1 is indistinguishable from
+a sample of q vertices from G2 according to D2 . Observe that G1 satisfies P while (G2 , D2 ) is |V (G1 1 )|2 -far
+from P. To see that the latter statement is true, observe that by our choice of G1 , no matter how we change
+the bipartite graph between v and V (G1 ), we will always get a graph that does not satisfy P. Hence, in order
+to make G2 satisfy P, one must change the adjacency relation between a pair of vertices from V (G1 ), whose
+                            1
+weight (under D2 ) is |V (G   1 )|
+                                   .
+    Now, the fact that (G1 , D1 ) and (G2 , D2 ) are indistinguishable implies that P is not testable17 in the
+VDF model.                                                                                                          
+Proposition 4.2. If a graph property P is not hereditary, then P is not testable in the VDF model.
+
+Proof. Since P is not hereditary, there is a graph G1 and an induced subgraph G2 of G1 , such that G1
+satisfies P but G2 does not. Let D2 be the uniform distribution on V (G2 ), and let D1 be the distribution on
+                                                                                                                 1
+V (G1 ) which is supported on V (G2 ) ⊆ V (G1 ) and uniform when conditioned on V (G2 ), i.e. D1 (u) = |V (G       2 )|
+if u ∈ V (G2 ) and D1 (u) = 0 if u ∈ V (G1 ) \ V (G2 ). Clearly, for every integer q, a sample of q vertices from G1
+according to D1 is indistinguishable from a sample of q vertices from G2 according to D2 . Also, G1 satisfies
+P, whereas (G2 , D2 ) is |V (G1 2 )|2 -far from P because G2 ∈
+                                                             / P. Thus, P is not testable18 in the VDF model. 
+
+
+5     On Restricted VDF Models and Related Problems
+In the following two subsections we prove Theorems 6, 7 and 8. We then consider two additional problems
+related to the VDF model; one problem asks if the query complexity in the VDF model is the same as in the
+standard model (for P that are testable in the VDF model), and the other asks for a characterization of the
+properties that are testable in restricted VDF models (as in Theorems 6-8).
+    We start by giving the precise definitions of the settings considered in Theorems 6-8. In each of the following
+three variants of the VDF model, we place some restriction on the input graphs (G, D) that can be fed to the
+tester.
+
+The “large inputs” model In this model, a property P is testable if there exists a function
+MP : (0, 1) → N such that for every ε > 0, P is ε-testable on graphs (G, D) satisfying |V (G)| ≥ MP (ε),
+with sample complexity depending only on ε.
+
+The “no heavy-weights” (NHW) model In this model, a property P is testable if there exists a function
+cP : (0, 1) → (0, 1) such that for every ε > 0, P is ε-testable on graphs (G, D) satisfying maxv∈V (G) D(v) ≤
+cP (ε), with sample complexity depending only on ε.
+  16 Evidently, if one does not wish to allow vertices of weight 0, then one can instead assign to v a weight tending to 0; or, more
+
+accurately, a weight that is small enough with respect to (the inverse of) the sample complexity of an alleged tester for P (in a
+proof by contradiction that such a tester does not exist).
+  17 We note that if P is non-extendable but hereditary, then one can easily obtain infinitely many examples showing that P is
+
+not testable (rather than just the one example given in the proof of Proposition 4.1). Indeed, instead of adding just one vertex
+to G1 , one can add to G1 any number k of vertices (for a large k), and give these new vertices weight o(1/k), while distributing
+the remaining weight uniformly among the vertices of G1 (note that such an assignment is precisely what the setting of Theorem
+8 forbids). The assumption that P is hereditary implies that every graph obtained in this way is |V1−o(1)
+                                                                                                        (G1 )|2
+                                                                                                                -far from satisfying P.
+  18 In analogy to Footnote 17, we note that if P is non-hereditary but extendable then one can obtain infinitely many examples
+
+showing that P is not testable (rather than just the one given in the proof of Proposition 4.2). Indeed, the extendability of P
+implies that there are arbitrarily large graphs which satisfy P and contain G1 (and hence also G2 ) as an induced subgraph. Each of
+these graphs (together with an appropriate distribution, as in the proof of Proposition 4.2) is a witness to the non-testability of P.
+
+
+                                                                  16
+The “no light-weights” (NLW) model In this model, a property P is testable if for every ε, δ > 0, P is
+                                                            δ
+ε-testable on graphs (G, D) satisfying minv∈V (G) D(v) ≥ |V (G)| , with sample complexity depending only on ε
+and δ.
+
+  Theorem 6 (resp. 7, 8) then states that every hereditary property is testable in the “large inputs” (resp.
+NHW, NLW) model19 .
+
+5.1     Proof of Theorems 6 and 8
+In this subsection we prove Theorems 6 and 8, i.e. we show that every hereditary property is testable in
+the “large inputs” model and in the NLW model. Let us introduce some definitions that we will use in both
+proofs. Let P be a hereditary graph property. A graph F is called P-good if F satisfies P and for every
+r > |V (F )| there is an r-vertex graph which satisfies P and contains F as an induced subgraph; otherwise F
+is called P-bad, and we denote by rP (F ) the minimal r > |V (F )| such that there is no r-vertex graph which
+satisfies P and contains F as an induced subgraph. Note that since P is hereditary, there is no graph on r
+vertices for any r ≥ rP (F ) which satisfies P and contains F as an induced subgraph. For an integer s ≥ 1, let
+RP (s) be the maximum of rP (F ) over all P-bad graphs F with at most s vertices. Now define the property
+H = H(P) := induced {F : F is P-bad}-freeness. Observe that H is hereditary and extendable (in fact, if P
+itself is extendable then H = P), and that H ⊆ P We are now ready to prove Theorem 6, which we rephrase
+as follows.
+Lemma 5.1. For every hereditary property P there are functions MP , tP : (0, 1) → N such that for every
+ε > 0, P is ε-testable on vertex-weighted graphs with at least MP (ε) vertices with one-sided error and sample
+complexity tP (ε).
+
+Proof. Consider the (extendable and hereditary) property H = H(P) defined above. By (the proof of)
+Theorem 1, there is a function sH : (0, 1) → N such that for every ε > 0 and for every vertex-weighted graph
+(G, D) which is ε-far from H, a sample of s vertices from G (taken from D) induces a subgraph which does
+not satisfy H with probability at least 32 .
+    Our tester for P samples tP (ε) := sH (ε) vertices, and accepts if and only if the subgraph induced by the
+sample satisfies H. We prove the lemma with M = MP (ε) := RP (sH (ε)).
+    Let (G, D) be a vertex-weighted graph with |V (G)| ≥ M . Suppose first that G satisfies P. Our goal is to
+show that the subgraph induced by a sample of sH (ε) vertices, taken from D and independently, satisfies H
+with probability 1. So suppose by contradiction that G contains an induced subgraph F on at most sH (ε)
+vertices which does not satisfy H. By the definition of rP (F ), there is no graph on rP (F ) vertices which
+satisfies P and contains F as an induced subgraph. As |V (G)| ≥ M = RP (sH (ε)) ≥ rP (F ), and as P is
+hereditary, we get that G does not satisfy P, a contradiction.
+    Suppose now that (G, D) is ε-far from P. Then (G, D) is also ε-far from H, as H ⊆ P. By our choice of
+sH (ε), a sample of sH (ε) vertices of G, taken from D and independently, does not satisfy H with probability
+at least 23 . So our tester rejects (G, D) with probability at least 23 , as required.                      
+
+   It is natural to ask whether we can replace the function MP (ε) in Lemma 5.1 by a constant depending
+only on P (and not on ε). As is shown in the following proposition, we cannot.
+Proposition 5.2. There is a hereditary property P such that for every M > 0, there is no tester for P in the
+VDF model even if we are guaranteed that the input graph has at least M vertices.
+
+Proof. For each k ≥ 3, let Ck∗ be the graph obtained from the k-cycle Ck by adding an isolated vertex.
+Consider the property P = {Ck∗ : k ≥ 3}-freeness. Let M > 0. Set G = CM and G′ = CM ∗
+                                                                                      . Let D be the
+  19 Note that if P is testable in the “large inputs” model then it is also testable in the NHW model (because by setting
+
+cP (ε) := 1/MP (ε) we can make sure that the input graph has at least MP (ε) vertices). Still, we decided to include a separate
+proof for Theorem 7 (instead of deducing it from Theorem 6) for two reasons: one is that in the course of the proof we resolve
+another open question raised in [19]; and the other is that our proof of Theorem 7 shows that P is testable (in the NHW model)
+by a tester that accepts if and only if the subgraph induced by the sample satisfies P, whereas the tester given by the proof of
+Theorem 6 is not always of this form.
+
+
+
+                                                              17
+uniform distribution on V (G), and let D′ be the distribution on V (G′ ) which assigns weight 0 to the isolated
+vertex in G′ , and is uniform on the rest of the vertices of G′ . Then G ∈ P and (G′ , D′ ) is M12 -far from P,
+but a sample (of any number of vertices) from (G, D) is indistinguishable from a sample of the same size from
+(G′ , D′ ). This shows that P is not testable even if we require input graphs to have at least M vertices.   
+
+    We now move on to prove Theorem 8, i.e. that every hereditary property is testable in the NLW model.
+In this model, our tester for a hereditary property P simply samples a sequence of vertices and accepts if and
+only if the subgraph induced by the sample satisfies P. The tester’s correctness is established in the following
+lemma.
+Lemma 5.3. For every hereditary graph property P there is a function tP : (0, 1)2 → N, such that for
+every ε, δ > 0 and for every vertex-weighted graph (G, D) the following holds: if (G, D) is ε-far from P,
+                                              δ
+and all vertices in G have weight at least |V (G)| , then a sample of tP (ε, δ) vertices of G, taken from D and
+independently, induces a graph which does not satisfy P with probability at least 32 .
+
+Proof. Consider the (extendable and hereditary) property H = H(P) defined above. By (the proof of)
+Theorem 1, there is a function sH : (0, 1) → N such that for every ε > 0 and for every vertex-weighted graph
+(G, D) which is ε-far from H, a sample of sH (ε) vertices of G (taken from D) induces a subgraph which does
+not satisfy H with probability20 at least 56 . Setting R := RP (sH (ε)), we prove the lemma with
+
+                                t = tP (ε, δ) := max sH (ε), 2R2 log(6R)/δ .
+                                                       
+
+
+    Let ε > 0 and let (G, D) be a vertex-weighted graph on n vertices which is ε-far from P, and in which
+all vertices have weight at least nδ . Let u1 , . . . , ut be a sequence of t = tP (ε, δ) random vertices of G, taken
+according to D and independently, and set U = {u1 , . . . , ut }. We need to show that with probability at least
+2
+3 , G[U ] does not satisfy P. Suppose first that n < 2R. We claim that in this case we have U = V (G) with
+probability at least 23 (this is clearly sufficient because G itself does not satisfy P). For a vertex v ∈ V (G),
+the probability that ui 6= v for every 1 ≤ i ≤ t is
+                                                              t             t
+                                             t             δ                 δ         δt    1
+                                (1 − D(v)) ≤          1−            <    1−       ≤ e− 2R ≤    .
+                                                           n                2R              6R
+
+So by the union bound over all n < 2R vertices of G, we see that with probability at least 32 , U = V (G), as
+required.
+    Suppose now that n ≥ 2R. By our choice of s = sH (ε) we get that G[{u1 , . . . , us }] does not satisfy H with
+probability at least 56 . By the definition of H, if G[{u1 , . . . , us }] does not satisfy H then some P-bad graph
+F is an induced subgraph of G[{u1 , . . . , us }]. We will now show that with probability at least 56 , we have
+|U | ≥ R. This will imply that with probability at least 32 , G[U ] contains as an induced subgraph a P-bad
+graph F on at most sH (ε) vertices, and also |U | ≥ R = RP (sH (ε)) ≥ rP (F ). By the definition of rP (F ), this
+would imply that G[U ] does not satisfy P, as required.
+    So from now on, our goal is to show that |U | ≥ R with probability at least 65 . Fix a partition of V (G) into
+                                                 n      n
+R sets V1 , . . . , VR , each of size at least ⌊ R ⌋ ≥ 2R . For each 1 ≤ i ≤ R, set Ii = {u(i−1)· Rt +1 , . . . , ui· Rt }, and let
+Ai be the event that Ii ∩ Vi 6= ∅. Note that if Ai occurs for every 1 ≤ i ≤ R, then |U | ≥ R. The probability
+that Ai does not occur is at most
+                                                                   t/R
+                                                 t/R            n δ            δt    1
+                                  (1 − D(Vi ))         ≤    1−   ·       ≤ e− 2R2 ≤    .
+                                                               2R n                 6R
+
+By the union bound, the probability that there is 1 ≤ i ≤ R for which Ai does not occur, is at most 61 , as
+required.                                                                                                
+  20 The proof of Theorem 1 only guarantees a success probability of 2 , but this can clearly be amplified to 5 by repeating the
+                                                                     3                                        6
+experiment O(1) times.
+
+
+
+
+                                                                    18
+5.2     Proof of Theorem 7
+In this subsection we prove Theorem 7, i.e. we show that every hereditary property is testable in the NHW
+model. Our tester for a hereditary property P simply samples a sequence of vertices and accepts if and only
+if the subgraph induced by the sample satisfies P. The tester’s correctness follows from the following lemma.
+Lemma 5.4. For every hereditary graph property P there are functions tP : (0, 1) → N and cP : (0, 1) → (0, 1)
+such that for every ε > 0 and for every vertex-weighted graph (G, D), if (G, D) is ε-far from P and all vertices
+in G have weight at most cP (ε), then a sample of tP (ε) vertices of G, taken from D and independently, induces
+a graph which does not satisfy P with probability at least 32 .
+
+     The key idea in the proof of Lemma 5.4, which appeared in [19], is to “blow up” the vertex-weighted graph
+(G, D) by replacing each vertex v with a vertex-set whose size is proportional to D(v), and thus obtain an
+(unweighted) graph G′ , to which one can apply known testability results in the standard model.
+     Let us introduce some definitions. For a graph G, say on V (G) = {v1 , . . . , vn }, and for integers b1 , . . . , bn ≥
+0, a (b1 , . . . , bn )-blowup of G is any graph admitting a vertex-partition V1 ∪ · · · ∪ Vn such that |Vi | = bi for
+every 1 ≤ i ≤ n, and such that the bipartite graph between Vi and Vj is complete if {vi , vj } ∈ E(G) and empty
+if {vi , vj } ∈  / E(G). The sets V1 , . . . , Vn are called the blowup-sets. Note that we do not pose any restrictions
+on the graphs induced by the sets V1 , . . . , Vn ; these graphs may be arbitrary. Now let D be a distribution on
+V (G), and let N ∈ N be such that D(vi ) · N is an integer for every 1 ≤ i ≤ n. A (D, N )-blowup of G is a
+(b1 , . . . , bn )-blowup of G with bi = D(vi ) · N for every 1 ≤ i ≤ n. Note that a blowup is always treated as
+“unweighted” (in other words, the distribution on its vertices is uniform). For simplicity of presentation, we
+assume henceforth that all vertex-weights (i.e. D(v1 ), . . . , D(vn )) are rational21. Goldreich [19] proved that
+for every graph F and ε ∈ (0, 1), if a vertex-weighted graph (G, D) is ε-far from being F -free, then for every
+                                                       ε
+suitable22 N , any (D, N )-blowup of G is |V (F             -far from being F -free. Goldreich further asked whether the
+                                                    ( 2 )|)
+  |V (F )|
+            −1
+     2          -factor can be avoided. In the following lemma we show that this is indeed the case, and moreover
+that an analogous statement holds for every hereditary property. This lemma is also the key ingredient in the
+proof of Lemma 5.4.
+Lemma 5.5. Let P be a hereditary graph property and let (G, D) be a vertex-weighted graph which is ε-far
+from P. Then for every suitable N , any (D, N )-blowup of G is ε-far from P.
+
+Proof. Fix any suitable N and let G′ be a (D, N )-blowup of G. As above, we use v1 , . . . , vn to denote the
+vertices of G, and V1 , . . . , Vn to denote the corresponding blowup sets. Suppose by contradiction that there
+is a graph H ′ on V (G′ ) that satisfies P and is ε-close to G′ . Let H be the random graph defined as follows:
+the vertex-set of H is V (H) = V (G) = {v1 , . . . , vn }. To define the edge-set of H, sample for each 1 ≤ i ≤ n
+a vertex ui ∈ Vi uniformly at random, and make {vi , vj } an edge in H if and only if {ui , uj } is an edge in H ′
+(for 1 ≤ i < j ≤ n). Then H satisfies P (with probability 1) because H is isomorphic to an induced subgraph
+of H ′ and P is hereditary. Let us compute the expected distance between H and G (here the distance is with
+respect to the distribution D). For each 1 ≤ i < j ≤ n, the probability that {vi , vj } ∈ E(G)△E(H) is precisely
+
+                               |EG′ (Vi , Vj )△EH ′ (Vi , Vj )|   |EG′ (Vi , Vj )△EH ′ (Vi , Vj )|
+                                                                =                                  .
+                                           |Vi ||Vj |                   D(vi )D(vj )N 2
+
+Hence, the expected distance between H and G is
+                                      X                       |EG′ (Vi , Vj )△EH ′ (Vi , Vj )|
+                                             D(vi )D(vj ) ·                                    =
+                                                                    D(vi )D(vj )N 2
+                                   1≤i<j≤n
+
+  21 If one allows general (i.e. possibly irrational) weights, then it is necessary to change the definition of a (D, N )-blowup by
+                                                                                 n
+rounding D(vi ) · N to the closest integer. This results in an additive error of N in the conclusion of Lemma 5.5, due to rounding.
+Consequently, in (the proofs of) Lemma 5.4 and Proposition 5.7 we need to consider (D, N )-blowups with N → ∞ in order to
+have this error go to 0. We also need to replace ε in several places with (say) 2ε (or any other number smaller than ε). For
+example, the conclusion of Proposition 5.7 should be that P is testable in the VDF model by a tester having one-sided error and
+sample complexity qP (ε/2).
+  22 We call N suitable if D(v) · N is an integer for every v ∈ V (G).
+
+
+
+
+                                                                19
+                                1      X
+                                               |EG′ (Vi , Vj )△EH ′ (Vi , Vj )| ≤ ε,
+                                N2
+                                     1≤i<j≤n
+
+where the last inequality uses the assumption that G′ is ε-close to H ′ . So G is ε-close to a graph H which
+satisfies P, a contradiction.                                                                             
+
+    By combining Lemma 5.5 with the result of [5] (that all hereditary properties are testable with one-sided
+error in the standard model), we obtain the following: for every hereditary property P, for every vertex-
+weighted graph (G, D) which is ε-far from P, for every suitable N and for every (D, N )-blowup G′ of G, it holds
+that G′ is ε-far from P with respect to the uniform distribution, and hence a sample of some s = sP (ε) vertices
+of G′ , taken uniformly and independently, induces a graph which w.h.p. does not satisfy P. Observe that this
+induced subgraph of G′ has (essentially) the same distribution as the graph S on [s] obtained by sampling
+vertices u1 , . . . , us ∈ V (G) from D independently, and letting {i, j} ∈ E(S) if and only if {ui , uj } ∈ E(S) (this
+is precisely the graph defined in Theorem 5). We thus established Theorem 5, as promised in Subsection 1.2.
+    As noted in Subsection 1.2, the graph S defined above is a blowup of an induced subgraph of G, but
+is not necessarily a subgraph of G in itself. This is because the sequence u1 , . . . , us might contain several
+vertices which belong to the same blowup-set. In other words, it may be the case that G′ contains “forbidden
+subgraphs” which use several vertices from one of the blowup-sets, and thus do not correspond to “forbidden
+subgraphs” in G. This creates an obstacle for proving Lemma 5.4, because this lemma asserts that a (suitably
+chosen) random induced subgraph of G (and not just the blowup thereof) does not satisfy P w.h.p. To avoid
+this obstacle, we use the assumption that all vertices in G have relatively small weight, which guarantees
+that it is unlikely to sample more than once from some blowup-set (or in other words, that S is isomorphic
+to G[{u1 , . . . , us }].). We note that a different way of dealing with this obstacle is to restrict ourselves to
+properties for which we can guarantee, by appropriately choosing the graphs inside the blowup-sets, that
+there would not be any minimal forbidden subgraph which uses several vertices from one of the blowup-sets,
+see Subsection 5.3.
+
+Proof of Lemma 5.4. Let P be a hereditary graph property. By the main result of [5], there is a function
+qP : (0, 1) → N such that for every ε > 0 and for every (unweighted) graph G which is ε-far from P, a
+sample of qP (ε) vertices from G, taken uniformly at random and independently, induces a graph which does
+not satisfy P with probability at least 56 . We will show that the lemma holds with t = tP (ε) := qP (ε) and
+c = cP (ε) := 3q21(ε) .
+                P
+     Let ε > 0 and let (G, D) be a vertex-weighted graph on n vertices which is ε-far from P, and in which all
+vertices have weight at most c, where c = cP (ε). Write V (G) = {v1 , . . . , vn } and fix a positive integer N such
+that D(vi ) · N is an integer for every 1 ≤ i ≤ n. Let G′ be an arbitrary (D, N )-blowup of G, and denote the
+blowup-sets by V1 , . . . , Vn . By Lemma 5.5, G′ is ε-far from P. This implies that a random sequence u1 , . . . , uq
+of q = qP (ε) vertices of G′ , sampled uniformly and independently, induces a graph which does not satisfy P
+with probability at least 23 .
+     Let ϕ : V (G′ ) → V (G) be the map which maps all elements of Vi to vi (for every 1 ≤ i ≤ n). Observe
+that for u ∈ V (G′ ) sampled uniformly, the random vertex ϕ(u) ∈ V (G) has the distribution D (because
+|Vi | = D(vi ) · N = D(vi ) · |V (G′ )|). Furthermore, if a set U ⊆ V (G′ ) satisfies |Vi ∩ U | ≤ 1 for every 1 ≤ i ≤ n,
+then G[ϕ(U )] is isomorphic to G′ [U ]. Let u1 , . . . , uq be a random sequence of vertices of G′ , sampled uniformly
+and independently, and set U := {u1 , . . . , uq }. Recall that G′ [U ] does not satisfy P with probability at least
+5
+6 . Furthermore, the probability that |Vi ∩ U | ≥ 2 for some 1 ≤ i ≤ n is at most
+                                    n                           n
+                                   X      q               q2     X            q2      1
+                                             · D2 (vi ) ≤    ·c·     D(vi ) =    ·c= .
+                                   i=1
+                                          2               2      i=1
+                                                                              2       6
+
+We conclude that with probability at least 23 , G′ [U ] does not satisfy P and |Vi ∩ U | ≤ 1 for every 1 ≤ i ≤ n,
+implying that G[ϕ(U )] does not satisfy P either. This completes the proof.                                    
+
+   It is natural to ask whether the function cP (ε) from Lemma 5.4 needs to depend on ε, namely whether
+the statement of Lemma 5.4 holds even if cP is a constant function (depending only on P). It follows from
+Proposition 5.2, however, that this is not the case. In other words, allowing cP (ε) to depend on ε is unavoidable.
+
+                                                             20
+5.3     Testing in the VDF Model vs. Testing in the Standard Model
+It is natural to ask about the relation between the sample complexity for testing a property in the VDF model
+and the sample complexity for testing it in the standard model. More specifically, it will be interesting to
+resolve the following:
+Problem 5.6. Is it true that every extendable hereditary property P can be tested in the VDF model with the
+same (or close to the same) sample complexity as in the (standard) dense graph model?
+    While at present we cannot answer this question, we can show that many natural properties P can be
+tested in the VDF model with (exactly) the same sample complexity as that of the (optimal) tester for P in
+the standard model, which works by sampling a certain number of vertices and accepting if and only if they
+induce a graph which satisfies P. This is explained in the following paragraph.
+    As mentioned in Subsection 5.2, the assumption made in Lemma 5.4 regarding the non-existence of high-
+weight vertices is needed in order to handle the possibility of having copies of some (forbidden) graph F in
+G′ which do not correspond to copies of F in G. For some graph properties, however, such an assumption
+is not required, as we can make sure that every copy of a minimal forbidden graph in G′ will correspond to
+such a copy in G. To make this precise, we need the following definition. A family of graphs F is said to be
+blowup-avoidable if for every graph G, say on {v1 , . . . , vn }, and for every n-tuple of integers b1 , . . . , bn ≥ 0,
+there is a (b1 , . . . , bn )-blowup G′ of G with blowup-sets V1 , . . . , Vn , such that there is no induced copy of any
+F ∈ F in G′ which intersects some Vi in at least 2 vertices; in other words, for every F ∈ F , every induced copy
+of F in G′ corresponds to an induced copy of F in G. We say that a hereditary property P is blowup-avoidable
+if the family of minimal forbidden induced subgraphs for P is blowup-avoidable. We now prove the following
+proposition, which partially resolves Problem 5.6. The proof is similar to that of Lemma 5.4.
+Proposition 5.7. Let P be a hereditary graph property which is blowup-avoidable, and suppose that P admits
+a tester in the standard model, which works by sampling qP (ε) vertices uniformly at random and independently,
+and accepting if and only if the subgraph induced by the sample satisfies P. Then P is testable in the VDF
+model by a tester having one-sided error and sample complexity23 qP (ε).
+
+Proof. Given an input (G, D), the required VDF tester for P samples (from D) a sequence of qP (ε) vertices,
+and accepts if and only if the subgraph induced by the sample satisfies P. Since P is hereditary, this tester
+accepts with probability 1 if the input graph satisfies P. So it remains to show that if the input (G, D) is
+ε-far from P, then with probability at least 23 , a sequence of qP (ε) vertices of G, sampled according to D and
+independently, induces a graph which does not satisfy P.
+     Let F = F (P) be the family of minimal forbidden induced subgraphs for P. Let (G, D) be a vertex-
+weighted graph on n vertices, which is ε-far from P. Write V (G) = {v1 , . . . , vn } and fix a positive integer N
+such that D(vi ) · N is an integer for every 1 ≤ i ≤ n. As P is blowup-avoidable, there is a (D, N )-blowup G′ of
+G with blowup-sets V1 , . . . , Vn , such that there is no induced copy of any F ∈ F in G′ which intersects some
+Vi in at least 2 vertices. By Lemma 5.5, G′ is ε-far from P. So by our choice of qP (ε), with probability at
+least 32 a sequence of qP (ε) vertices of G′ , sampled uniformly and independently, induces a graph which does
+not satisfy P, and hence contains an induced copy of some F ∈ F .
+     Let ϕ : V (G′ ) → V (G) be the map which maps all elements of Vi to vi (for every 1 ≤ i ≤ n). Observe
+that for u ∈ V (G′ ) sampled uniformly, the random vertex ϕ(u) ∈ V (G) has the distribution D. Note that if
+u1 , . . . , ur ∈ V (G′ ) span an induced copy of some F ∈ F (in the graph G′ ), and if |{u1 , . . . , ur } ∩ Vi | ≤ 1 for
+every 1 ≤ i ≤ n, then ϕ(u1 ), . . . , ϕ(ur ) span an induced copy of F in G. It is now easy to see that a sequence
+of qP (ε) vertices of G (sampled from D and independently) does not satisfy P, as required.                             
+
+    To demonstrate the usefulness of Proposition 5.7, observe that induced F -freeness is blowup-avoidable for
+every F ∈ {P2 , P3 , C4 } (here Pk is the path with k edges). Indeed, this is established by taking the blowup-sets
+(in the definition of blowup-avoidability) to be cliques. By combining Proposition 5.7 with known results for
+the standard model [5, 3, 16], we immediately get that induced F -freeness is testable in the VDF model with
+sample complexity poly(1/ε) if F ∈ {P2 , P3 }, and with sample complexity at most 2poly(1/ε) if F = C4 .
+  23 Provided that the input distributions are only allowed to assign rational weights. If irrational weights are allowed, then the
+
+sample complexity (of the VDF tester for P) should be slightly increased to (say) qP (ε/2), see Footnote 21.
+
+
+                                                                21
+     We now describe another corollary of Proposition 5.7. We say that a graph property P is closed under
+blowups if for every graph G satisfying P, every blowup of G in which the blowup-sets are independent sets also
+satisfies P. We claim that if a hereditary property P is closed under blowups then it is also blowup-avoidable.
+To see this, let F be the set of minimal forbidden induced subgraphs for P, let G be an n-vertex graph, let
+b1 , . . . , bn ≥ 0 be integers and let G′ be the (b1 , . . . , bn )-blowup of G in which the blowup-sets, V1 , . . . , Vn , are
+independent. Let F ∈ F and suppose that G′ contains an induced copy of F . If, by contradiction, this copy
+intersects some Vi in more than one vertex, then F is a blowup of some graph F ′ with |V (F ′ )| < |V (F )|, where
+the blowup-sets are independent sets. Since P is closed under blowups and F ∈             / P, we must have F ′ ∈    / P; but
+this contradicts the fact that F is a minimal forbidden induced subgraph for P.
+     So we see that the conclusion of Proposition 5.7 applies to hereditary properties which are closed under
+blowups. Some examples of such properties include Kt -freeness; the property of having a homomorphism into
+a fixed graph H (and in particular the property of being k-colorable); and the property of being the blowup
+of a fixed graph H (cf. [8]).
+     On the negative side, there are many natural hereditary properties which are extendable but not blowup-
+avoidable, such as the property of being H-free for a graph H which is neither a clique nor contains isolated
+vertices. It would be interesting to resolve Problem 5.6 for these properties.
+
+5.4     Which Properties are Testable in the Restricted VDF Models?
+It may be interesting to characterize the graph properties which are testable in each of the restricted VDF
+models (defined at the beginning of Section 5).
+Problem 5.8. Which graph properties are testable in the “large inputs”/NHW/NLW model?
+
+    While at the moment we are unable to resolve Problem 5.8, we can rule out some initial guesses. A first
+guess might be that only hereditary properties are testable in these models. This, however, turns out to
+be false; for example, connectivity and hamiltonicity are testable in each of these models, as implied by the
+following proposition.
+Proposition 5.9. Let P be a property such that for every ε > 0 there is M (ε) so that every vertex-weighted
+graph on at least M (ε) vertices is ε-close to P. Then P is testable in all three restricted models.
+
+Proof. The fact that P is testable in the “large inputs” (resp. NHW) model is trivial; indeed, by choosing
+MP (ε) := M (ε) (resp. cP (ε) := 1/M (ε)) we can make sure that every input graph will be ε-close to P, so a
+tester that simply accepts without making any queries is a valid tester for P.
+    So from now on we consider the NLW model. Given ε, δ > 0 and an input graph (G, D) with all
+                            δ
+vertex-weights at least |V (G)| , our tester for P works as follows: setting M := M (ε), the tester samples
+O (M log(M )/δ) vertices according to D and independently; if the number of distinct vertices in the sample
+is at least M then the tester accepts (without making any queries), and otherwise the tester accepts if and
+only if the subgraph induced by the sample satisfies P. To see that this is a valid tester, observe that if G
+has less than M vertices then w.h.p. the tester samples all the vertices (because they all have weight at least
+   δ       δ
+|V (G)| > M ), and if G has at least M vertices then (G, D) is ε-close to P by assumption.                   
+
+    To see that connectivity and hamiltonicity satisfy the condition in Proposition 5.9, observe that any vertex-
+weighted graph (G, D) with |V (G)| ≥ 1ε is ε-close to being connected (because there must be v ∈ V (G) with
+D(v) ≤ ε, and we can make G connected by connecting v to all other vertices); and any vertex-weighted graph
+(G, D) with |V (G)| ≥ 2ε + 1 is ε-close to being hamiltonian
+                                                           Pn(to see this, take a random ordering    v1 , . . . , vn of
+                                                                                            2
+the vertices of G, and observe that the expected value of i=1 D(vi )D(vi+1 ) is at most n−1   ). These examples
+show that the restricted models allow for properties which are testable with 2-sided error but not with 1-sided
+error (unlike the “unrestricted” VDF model, see [19, Theorem 2.3]).
+    Another natural guess regarding the answer to Problem 5.8 would be that every property which is testable
+in the standard model is also testable in the restricted models (see [2] for a characterization of the properties
+testable in the standard model). This guess is ruled out by the following proposition, which describes a
+property which is testable in the standard model but not in the restricted models.
+
+
+                                                              22
+Proposition 5.10. The property P of having edge-density24 at most 41 is not testable in either of the restricted
+models.
+
+Proof. Let G1 be the n-vertex graph consisting of a clique of size n2 and n2 isolated vertices, and let D1 be
+the uniform distribution on V (G1 ). Let G2 be the n-vertex graph consisting of a clique X of size 3n     4 and 4
+                                                                                                                  n
+                                                                                      2
+isolated vertices, and let D2 be the distribution on V (G2 ) that assigns weight 3n to every vertex of X, and
+weight n2 to every vertex of V (G2 ) \ X. Note that (G1 , D1 ) and (G2 , D2 ) are valid inputs in each of the three
+restricted models (provided that n is large enough), and that G1 satisfies P while (G2 , D2 ) is Ω(1)-far from
+P. On the other hand, we now show that for every q, a sample of q vertices from (G1 , D1 ) is indistinguishable
+from a sample of q vertices from (G2 , D2 ) (provided that n is large enough with respect to q). To this end,
+let Ui be a set of q random vertices of Gi sampled according to Di and independently (for i = 1, 2). Then
+for both i = 1, 2, the graph Gi [Ui ] consists of a clique and some isolated vertices. Letting Xi be the clique in
+Gi [Ui ], we have
+                                                  k−1
+                                                  q    Y n       q−k−1
+                                                                    Y n       1 q
+                          P[|X1 | = k] = o(1) +      ·        −i ·         −i ·
+                                                  k    i=0
+                                                            2       i=0
+                                                                         2       n
+                                                       q
+                                                     q     1
+                                       = (1 + o(1))      ·     ,
+                                                     k     2
+
+
+                         P[|X2 | = k] =
+                                   k−1Y  3n     q−k−1
+                                                     Y n       2 k  2 q−k
+                                  q
+                         o(1) +       ·         −i ·        −i ·      ·         =
+                                  k     i=0
+                                              4      i=0
+                                                          4      3n      n
+                                       q
+                                      q     1
+                         (1 + o(1))       ·     ,
+                                     k      2
+
+where in both cases, the additive term o(1) accounts for the event that some vertex has been sampled more
+than once. So we see that |P[|X1 | = k] − P[|X2 | = k]| = o(1). This implies that the total variation distance
+between the distribution of G1 [U1 ] and the distribution of G2 [U2 ] is o(1). The proposition follows.     
+
+   Finally, we note that the proof of Proposition 5.10 can be adapted to show that other properties are also
+not testable in either of the restricted VDF models. These properties include the property of having a cut
+with at least αn2 edges (for 0 < α < 14 ) and the property of containing a clique with at least αn vertices (for
+0 < α < 1).
+
+Acknowledgements We are grateful to an anonymous referee for spotting a gap in the proof of Theorem
+1 in a preliminary version of the paper.
+
+
+References
+ [1] N. Alon, E. Fischer, M. Krivelevich and M. Szegedy, Efficient testing of large graphs. Combinatorica 20
+     (2000), 451–476.
+ [2] N. Alon, E. Fischer, I. Newman and A. Shapira, A combinatorial characterization of the testable graph
+     properties: it’s all about regularity. SIAM Journal on Computing, 39(1) (2009), 143–167.
+ [3] N. Alon and J. Fox, Easily testable graph properties, Combin. Probab. Comput. 24 (2015), 646–657.
+ [4] N. Alon and A. Shapira, A characterization of easily testable induced subgraphs. Combinatorics, Proba-
+     bility and Computing 15 (2006), 791–805.
+  24 The edge-density of a (vertex-weighted) graph G is defined as 2e(G)/|V (G)|2 ; in other words, the density is defined with
+
+respect to the uniform distribution on V (G), and not with respect to the given distribution D.
+
+
+                                                              23
+ [5] N. Alon and A. Shapira, A characterization of the (natural) graph properties testable with one-sided
+     error. SIAM Journal on Computing 37 (2008), 1703–1727.
+ [6] N. Alon and A. Shapira, Every monotone graph property is testable. SIAM Journal on Computing, 38(2)
+     (2008), 505–522.
+ [7] T. Austin and T. Tao, On the testability and repair of hereditary hypergraph properties, Random Struc-
+     tures and Algorithms 36 (2010), 373–463.
+ [8] L. Avigad and O. Goldreich, Testing graph blow-up. In Studies in Complexity and Cryptography, Mis-
+     cellanea on the Interplay between Randomness and Computation (2011), pp. 156–172. Springer, Berlin,
+     Heidelberg.
+ [9] M. Blum, M. Luby and R. Rubinfeld, Self-testing/correcting with applications to numerical problems,
+     Journal of Computer and System Sciences 47 (1993), 549–595.
+[10] X. Chen, Z. Liu, R.A. Servedio, Y. Sheng and J. Xie, Distribution-free junta testing. In Proceedings of
+     the 50th Annual ACM SIGACT Symposium on Theory of Computing (2018), 749–759.
+[11] X. Chen and J. Xie, Tight bounds for the distribution-free testing of monotone conjunctions. In Pro-
+     ceedings of the Twenty-Seventh Annual ACM-SIAM Symposium on Discrete Algorithms, SODA (2016),
+     54–71.
+[12] D. Conlon and J. Fox, Bounds for graph regularity and removal lemmas. GAFA 22 (2012), 1191–1256.
+[13] D. Conlon and J. Fox, Graph removal lemmas, Surveys in Combinatorics, Cambridge university press,
+     2013, 1–50.
+[14] B. Csaba and A. Pluhár, A weighted regularity lemma with applications. International Journal of Com-
+     binatorics, 2014.
+[15] E. Dolev and D. Ron, Distribution-free testing for monomials with a sublinear number of queries. Theory
+     of Computing, 7(1) (2011), 155–176.
+[16] L. Gishboliner and A. Shapira, Efficient removal without efficient regularity. Combinatorica, to appear.
+[17] D. Glasner and R. A. Servedio. Distribution-free testing lower bound for basic boolean functions. Theory
+     of Computing 5 (2009), 191–216.
+[18] O. Goldreich, Introduction to Property Testing. Cambridge University Press, 2017.
+[19] O. Goldreich, Testing Graphs in Vertex-Distribution-Free Models. Preprint available online.
+[20] O. Goldreich, S. Goldwasser, and D. Ron, Property testing and its connection to learning and approxi-
+     mation. J. ACM 45 (1998), 653–750.
+[21] O. Goldreich and D. Ron, On proximity-oblivious testing. SIAM Journal on Computing 40 (2011), 534–
+     566.
+[22] O. Goldreich and D. Ron, Property testing in bounded degree graphs. Algorithmica 32 (2002), 302–343.
+[23] O. Goldreich and L. Trevisan, Three theorems regarding testing graph properties. Random Structures &
+     Algorithms 23 (2003), 23–57.
+[24] S. Halevy and E. Kushilevitz, Distribution-free property testing. In Approximation, Randomization, and
+     Combinatorial Optimization: Algorithms and Techniques (2003) (pp. 302-317). Springer, Berlin, Heidel-
+     berg.
+[25] S. Kalyanasundaram and A. Shapira, A Wowzer-type lower bound for the strong regularity-lemma, Proc.
+     of the London Math Soc 106 (2013), 621–649.
+
+                                                     24
+[26] L. Lovász and B. Szegedy, Testing properties of graphs and functions, Israel J. Math. 178 (2010), 113–156.
+[27] D. Ron, Property Testing: A Learning Theory Perspective. Foundations and Trends in Machine Learning,
+     1 (2008), 307–402.
+[28] R. Rubinfeld and M. Sudan, Robust characterizations of polynomials with applications to program testing,
+     SIAM Journal on Computing 25 (1996), 252–271.
+[29] I.Z. Ruzsa and E. Szemerédi, Triple systems with no six points carrying three triangles, in Combinatorics
+     (Keszthely, 1976), Coll. Math. Soc. J. Bolyai 18, Volume II, 939–945.
+[30] E. Szemerédi, Regular partitions of graphs. In: Proc. Colloque Inter. CNRS, 1978, 399–401.
+[31] L. Valiant, A theory of the learnable. Communications of the ACM, 27(11):1134–1142, 1984.
+
+
+6     Proof of Lemmas 2.5 and 2.6
+Here we prove lemmas 2.5 and 2.6. We start by extending some basic results about regular partitions to the
+vertex-weighted setting.
+Lemma 6.1. Let X, Y be disjoint vertex sets in a vertex-weighted graph (G, D) and let PX , PY be partitions
+of X, Y , respectively. Then
+                                            X            D(X ′ ) D(Y ′ )
+                                                                ·        · d(X ′ , Y ′ ) = d(X, Y ),
+                                                         D(X) D(Y )
+                                      X ′ ∈PX ,Y ′ ∈PY
+
+and
+                          X           D(X ′ ) D(Y ′ ) 2 ′ ′
+                                             ·       · d (X , Y ) =
+                                      D(X) D(Y )
+                   X ′ ∈PX ,Y ′ ∈PY
+                                                           X            D(X ′ ) D(Y ′ )                             2
+                                      d2 (X, Y ) +                             ·        · (d(X ′ , Y ′ ) − d(X, Y )) .
+                                                                        D(X) D(Y )
+                                                     X ′ ∈PX ,Y ′ ∈PY
+
+Proof. We start with the first part of the lemma.
+                X            D(X ′ ) D(Y ′ )                      1                       X                 X
+                                    ·        · d(X ′ , Y ′ ) =                                                            D(x)D(y)
+                             D(X) D(Y )                        D(X)D(Y )
+          X ′ ∈PX ,Y ′ ∈PY                                                          X ′ ∈PX ,Y ′ ∈PY (x,y)∈E(X ′ ,Y ′ )
+                                                                       1                 X
+                                                                =                                   D(x)D(y) = d(X, Y ).
+                                                                    D(X)D(Y )
+                                                                                    (x,y)∈E(X,Y )
+
+Next, for each X ′ ∈ PX , Y ′ ∈ PY , set ε(X ′ , Y ′ ) = d(X ′ , Y ′ ) − d(X, Y ).
+            X            D(X ′ ) D(Y ′ ) 2 ′ ′                          X          D(X ′ ) D(Y ′ )                             2
+                                ·       · d (X , Y ) =                                    ·        · (d(X, Y ) + ε(X ′ , Y ′ )) =
+                         D(X) D(Y )                                                D(X) D(Y )
+      X ′ ∈PX ,Y ′ ∈PY                                          X ′ ∈PX ,Y ′ ∈PY
+            X            D(X ′ ) D(Y ′ )
+                                         · d2 (X, Y ) + 2d(X, Y )ε(X ′ , Y ′ ) + ε2 (X ′ , Y ′ ) =
+                                                                                                
+                                ·
+                         D(X) D(Y )
+      X ′ ∈PX ,Y ′ ∈PY
+                             X          D(X ′ ) D(Y ′ ) 2 ′ ′
+      d2 (X, Y ) +                             ·       · ε (X , Y ),
+                                        D(X) D(Y )
+                     X ′ ∈PX ,Y ′ ∈PY
+
+where in the last equality we used the first part of the lemma.                                                                      
+
+    The index of P is defined as
+                                                           X
+                                             q(P) =                D(Vi )D(Vj ) · d2 (Vi , Vj ).
+                                                         1≤i<j≤r
+
+
+                                                                        25
+Lemma 6.2. For every vertex-partition P of a vertex-weighted graph (G, D), and for every refinement P ′ of
+P, we have q(P ′ ) ≥ q(P).
+Proof. Write P = {P1 , . . . , Pr }, and for each 1 ≤ i ≤ r put Pi′ = {P ′ ∈ P ′ : P ′ ⊆ Pi }. Then
+                X             X                                           X
+      q(P ′ ) ≥                        D(Pi′ )D(Pj′ ) · d2 (Pi′ , Pj′ ) ≥   D(Pi )D(Pj ) · d2 (Pi , Pj ) = q(P),
+                     1≤i<j≤r Pi′ ∈P ′ i ,Pj′ ∈Pj′                                  1≤i<j≤r
+
+where in the second inequality we used the second part of Lemma 6.1.                                                                 
+Lemma 6.3. Let (G, D) be a vertex-weighted graph and let P = {V1 , . . . , Vr } be a non-ε-regular partition of
+V (G). Then there is a refinement P ′ of P such that |P ′ | ≤ |P| · 2|P| and q(P ′ ) ≥ q(P) + ε5 .
+                                                                                         ′           ′
+Proof. For each 1 ≤ i < j ≤ r for which (Vi , Vj ) is not ε-regular, let Vi,j               ⊆ Vi , Vj,i ⊆ Vj be such that
+D(Vi,j ) ≥ εD(Vi ), D(Vj,i ) ≥ εD(Vj ), and |d(Vi,j , Vj,i ) − d(Vi , Vj )| > ε. For each 1 ≤ i ≤ r, let P ′ be
+      ′                       ′                             ′     ′
+                                                        ′
+the common refinement of the partitions {Vi,j             , Vi′ \ Vi,j
+                                                                    ′
+                                                                       } where j runs over all indices for which (Vi , Vj ) is
+                                      Sr
+not ε-regular, and let P = i=1 Pi be the resulting refinement of P. Then clearly |P ′ | ≤ |P| · 2|P| . We
+                                ′             ′
+
+now show that q(P ′ ) ≥ q(P) + ε5 . First, observe that by Lemma 6.1, for every 1 ≤ i < j ≤ r we have
+P                   D(X ′ ) D(Y ′ )     2   ′   ′     2
+   X ′ ∈Pi ,Y ′ ∈Pj D(Vi ) · D(Vj ) · d (X , Y ) ≥ d (Vi , Vj ). Next, fix any pair 1 ≤ i < j ≤ r for which (Vi , Vj ) is not
+ε-regular. By Lemma 6.1 we have
+        X          D(X ′ ) D(Y ′ ) 2 ′ ′
+                            ·          · d (X , Y ) =
+    ′        ′
+                    D(Vi ) D(Vj )
+  X ∈Pi ,Y ∈Pj
+                        X             D(X ′ ) D(Y ′ )                                2
+ d2 (Vi , Vj ) +                             ·        · (d(X ′ , Y ′ ) − d(Vi , Vj )) ≥
+                                      D(Vi ) D(Vj )
+                   X ′ ∈Pi ,Y ′ ∈Pj
+                       ′       ′
+                   D(Vi,j )D(Vj,i )                 X           D(X ′ ) D(Y ′ )         ′   ′                2
+ d2 (Vi , Vj ) +                    ·                               ′ ) · D(V ′ ) · (d(X , Y ) − d(Vi , Vj )) ≥
+                    D(Vi )D(Vj )                 ′ ,Y ′ ⊆V ′
+                                                                D(Vi,j       j,i
+                                          X ′ ⊆Vi,j       j,i
+
+                               X              D(X ′ ) D(Y ′ )                                                                   2
+ d2 (Vi , Vj ) + ε2 ·                                           · d(X ′ , Y ′ ) − d(Vi,j
+                                                                                      ′      ′          ′      ′
+                                                                                                 
+                                                  ′   ·    ′                             , Vj,i ) + d(Vi,j , Vj,i ) − d(Vi , Vj )    ≥
+                               ′ ,Y ′ ⊆V ′
+                                              D(Vi,j ) D(Vj,i )
+                        X ′ ⊆Vi,j       j,i
+
+                          ′      ′
+                                                   2
+ d2 (Vi , Vj ) + ε2 · d(Vi,j , Vj,i ) − d(Vi , Vj ) ≥ d2 (Vi , Vj ) + ε4 ,
+where in the penultimate inequality we used the first part of Lemma 6.1 to infer that
+                            X        D(X ′ ) D(Y ′ )          ′  ′        ′      ′
+                                                                                     
+                                     D(V  ′ ) · D(V ′ ) · d(X , Y ) − d(Vi,j , Vj,i ) = 0.
+                        ′   ′  ′   ′     i,j
+                                X ⊆Vi,j ,Y ⊆Vj,i   j,i
+
+
+Denoting by N the set of pairs 1 ≤ i < j ≤ r for which (Vi , Vj ) is not ε-regular, we see that
+                                           X                              X     D(X ′ ) D(Y ′ ) 2 ′ ′
+                            q(P ′ ) ≥               D(Vi )D(Vj ) ·                     ·       · d (X , Y )
+                                                                                D(Vi ) D(Vj )
+                                        1≤i<j≤r                X ′ ∈Pi ,Y ′ ∈Pj
+                                          X                                      X
+                                      ≥         D(Vi )D(Vj ) · d2 (Vi , Vj ) +         D(Vi )D(Vj ) · ε4
+                                         1≤i<j≤r                                  (i,j)∈N
+                                                         X
+                                      = q(P) + ε4 ·               D(Vi )D(Vj ) ≥ q(P) + ε5 ,
+                                                        (i,j)∈N
+
+where in the last inequality we used the assumption that P is not ε-regular.                                                         
+Proof of Lemma 2.5. For i ≥ 0, if Pi is not ε-regular then we apply Lemma 6.3 to obtain a partition Pi+1
+which refines Pi and satisfies |Pi+1 | ≤ |Pi | · 2|Pi | and q(Pi+1 ) ≥ q(Pi ) + ε5 . Since the index of any partition
+is at most 1, this process must end after at most ε−5 steps. When the process ends, we have an ε-regular
+partition. Since the size of P0 and the number of steps depend only on ε and P0 , the size of this partition can
+be upper-bounded by a function of ε and P0 , as required.                                                           
+
+                                                                         26
+Proof of Lemma 2.6. We may assume, without loss of generality, that E is monotone decreasing. Let P1
+be the partition obtained by applying Lemma 2.5 with parameter ε = E(0) and with the partition P0 . Next,
+for each i ≥ 1, apply Lemma 2.5 with parameter E(|Pi |) and with the partition Pi to obtain a partition Pi+1
+which is E(|Pi |)-regular and refines Pi . In light of Lemma 6.2, and as the index of any partition is at most 1,
+there must be 1 ≤ i ≤ E 21(0) for which q(Pi+1 ) ≤ q(Pi ) + E 2 (0). For this i, set P = Pi and Q = Pi+1 . Since
+the size of P0 and the number of steps in the process are bounded from above by functions of E(0) and m,
+and since the size of the partition guaranteed by Lemma 2.5 can be bounded from above by a function of the
+parameters of this lemma (which in our case depend only on E and m), we see that |Q| too can be bounded
+from above by a function of E and m. This proves Item 1.
+    Item 2 is immediate from our choice of Q. It remains to prove Item 3. By the definition of the index and
+by our choice of P and Q, we have
+                                  X           X
+       q(P) + E 2 (0) ≥ q(Q) =                         D(Q1 )D(Q2 ) · d2 (Q1 , Q2 ) =
+                                    P1 ,P2 ∈P Q1 ⊆P1 ,Q2 ⊆P2
+                                                                                                                       2
+         X                                            X           X
+                                    2
+                   D(P1 )D(P2 ) · d (P1 , P2 ) +                               D(Q1 )D(Q2 ) · (d(Q1 , Q2 ) − d(P1 , P2 )) =
+       P1 ,P2 ∈P                                    P1 ,P2 ∈P Q1 ⊆P1 ,Q2 ⊆P2
+                                                                                          2
+                    X           X
+      q(P) +                              D(Q1 )D(Q2 ) · (d(Q1 , Q2 ) − d(P1 , P2 )) ,
+               P1 ,P2 ∈P Q1 ⊆P1 ,Q2 ⊆P2
+
+where in the second inequality we used the second part of Lemma 6.1. The above implies that
+                                                                                  2
+                      X         X
+                                        D(Q1 )D(Q2 ) · (d(Q1 , Q2 ) − d(P1 , P2 )) ≤ E 2 (0),
+                         P1 ,P2 ∈P Q1 ⊆P1 ,Q2 ⊆P2
+
+and hence
+                           X            X
+                                                    D(Q1 )D(Q2 ) · |d(Q1 , Q2 ) − d(P1 , P2 )| ≤
+                         P1 ,P2 ∈P Q1 ⊆P1 ,Q2 ⊆P2
+                        s X
+                                                                                                   2
+                                          X
+                                                      D(Q1 )D(Q2 ) · (d(Q1 , Q2 ) − d(P1 , P2 )) ≤ E(0),
+                           P1 ,P2 ∈P Q1 ⊆P1 ,Q2 ⊆P2
+
+
+where the second inequality follows from Cauchy-Schwarz. This completes the proof.                                            
+
+
+
+
+                                                                  27
+
