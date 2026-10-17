@@ -26,4 +26,4 @@ Remaining eligible PRs, in order: 1135, 1136, 1141, 1142, 1150, 1151, 1155. Thei
 
 ## Current research checkpoint
 
-PR1135 passed root reconstruction and three independent mathematical families; all72816 exact requirements reproduce in both modes. Its priority audit distinguishes a later14Oct overlapping preprint from the10Oct source PR and is testing an older published Fourier/Dirichlet theorem consequence. Five results are published/tracked/merged;1114 and1129 remain untouched prior-full skips. Overall completion estimate:66%.
+PR1135 has complete mathematical PASS and bounded current priority audits. The four-page note prominently credits the later14Oct overlapping preprint and makes no first-priority claim. Its123-member authored source archive and seven unchanged portable programs reproduce; root extracted rebuild gives allsixreleaseassets byteidentical. The first fresh whole-package adversarial review is active. Five results remain published/tracked/merged;1114 and1129 are untouched prior-full skips. Overall completion estimate:67%.
