@@ -79,3 +79,9 @@ Next descending candidate21.144 is Brin–Sapir’s elementary-amenable-or-conta
 ## 2026-10-17T21:02:13.099745+00:00 —21.144 residual, marked-limit and extension routes(10%)
 
 Current primary status checks retain both official/proposer open entries. Root and counterexample route independently derive a no-F marked-limit closure certificate using finite presentation and F’s proper-quotient structure. Residually solvable/EA groups give sufficient no-F certificates, but finding a nonelementary-amenable such subgroup inside finite-pieceF remains unachieved. Infinite invariant-cell diagonal maps generally leaveF; restricted sums/wreath extensions ofEA factors stayEA. A nonsplit extension surjecting ontoF is another candidate mechanism, but both PL realization and no-F remain unsupported. No complete claim or counterexample.
+
+## 2026-10-17T21:06:09.333273+00:00 — 21.144 unsolved after distinct routes; 21.143 selected (5%)
+
+The Brin–Sapir attempt produced reviewed endpoint-kernel descent, residual-solvability and residual-finiteness filters, finite-breakpoint/marked-limit/subdirect-product obstructions, and exact boundary examples. Root reproduced the exact filter checks. No full positive argument or actual counterexample exists; status unsolved, discovery estimate revised to 8%. In particular the perfect subgroup in an EA wreath limit prevents conflating perfectness with nonelementary amenability. Full remaining gaps and source boundaries are recorded in STATUS.md.
+
+Next descending source entry 21.143 asks whether Thompson F is automatic. Initial priority and definition audit begins at 5%. Prior research checkpoint was pushed to main as f099b6a11079827629ebe4293db98f27e16d4b2b, with active-agent files excluded except explicit root notes.
