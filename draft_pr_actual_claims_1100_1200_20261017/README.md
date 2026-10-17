@@ -7,3 +7,14 @@ The prior program remains historical evidence, not a completed actual-outcome pa
 For each eligible claim, reproduce and adversarially audit the exact full mathematical target, then audit priority. Reasonably repair concrete issues; do not replace an unfinished original target with a special case. Close irreparable eligible claims with a factual explanatory comment only after the repair assessment. Sound novel results require a submission-ready preprint, verification materials, extensive AI-use and actual peer-review disclosures, successive fresh independent adversarial review/fix cycles, the repository Zenodo upload kit, a Google Workspace CLI DOI tracker row, and merger.
 
 Logs include timestamps and best-guess completion percentages for this program; these are not mathematical confidence scores. Meaningful checkpoints are committed and pushed to main without including other workers' changes.
+
+## Progress
+
+The independently checked initial inventory has 101 PRs: 14 explicit full-target claims, 68 partial/unsolved outcomes, and 19 expressly credited prior resolutions. The latter 87 are excluded after outcome identification.
+
+| PR | Current disposition | Public result |
+| --- | --- | --- |
+| [1102](https://github.com/AlecKriebel/Math/pull/1102) | Mathematically accepted; two fresh reviews passed; published, tracker row 149 verified, exact reviewed head merged | [10.5281/zenodo.23439582](https://doi.org/10.5281/zenodo.23439582) |
+| [1108](https://github.com/AlecKriebel/Math/pull/1108) | Mathematical and bounded priority audits passed; first fresh package review passed; second fresh review underway | Not yet published |
+
+Remaining eligible PRs, in order: 1114, 1118, 1119, 1121, 1129, 1135, 1136, 1141, 1142, 1150, 1151, 1155. Their eligibility is an outcome classification, not mathematical acceptance. See `PROGRAM_STATE.json`, `OUTCOME_INVENTORY.json`, and timestamped `RESEARCH_LOG.md` for exact current state and evidence. The persistent goal remains active until all eligible claims have a final disposition.
