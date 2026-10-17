@@ -1,0 +1,531 @@
+                                                                   List version of (p,1)-total labellings ∗
+
+                                                                     Yong Yu, Guanghui Wang, Guizhen Liu †
+
+
+
+
+arXiv:1105.1906v1 [math.CO] 10 May 2011
+                                                              School of Mathematics, Shandong University, Jinan 250100, P.R.China
+
+
+
+
+                                                                                               Abstract
+                                                       The (p,1)-total number λTp (G) of a graph G is the width of the smallest range of integers
+                                                   that suffices to label the vertices and the edges of G such that no two adjacent vertices have the
+                                                   same label, no two incident edges have the same label and the difference between the labels
+                                                   of a vertex and its incident edges is at least p. In this paper we consider the list version. Let
+                                                   L(x) be a list of possible colors for all x ∈ V(G) ∪ E(G). Define C Tp,1 (G) to be the smallest
+                                                   integer k such that for every list assignment with |L(x)| = k for all x ∈ V(G) ∪ E(G), G has
+                                                   a (p,1)-total labelling c such that c(x) ∈ L(x) for all x ∈ V(G) ∪ E(G). We call C Tp,1 (G) the
+                                                   (p,1)-total labelling choosability and G is list L-(p,1)-total labelable.
+                                                       In this paper, we present a conjecture on the upper bound of C Tp,1 . Furthermore, we study
+                                                   this parameter for paths and trees in Section 2. We also prove that C Tp,1 (K1,n ) ≤ n + 2p − 1 for
+                                                   star K1,n with p ≥ 2, n ≥ 3 in Section 3 and C Tp,1 (G) ≤ ∆ + 2p − 1 for outerplanar graph with
+                                                   ∆ ≥ p + 3 in Section 4.
+
+                                                    2000 Mathematics Subject Classification : 05C15
+                                                   Keywords: list (p,1)-total labelling; (p,1)-total labelling; L(p, q)-labelling; stars; outerplanar
+                                                   graph
+
+
+
+
+                                          1 Introduction
+
+                                              In this paper, the term graph is used to denote a simple connected graph G with a finite vertex
+                                          set V(G) and a finite edge set E(G). The degree of a vertex v in G is the number of edges incident
+                                          with v and denoted by dG (v). We write δ(G) = min{dG (v) : v ∈ V(G)} and ∆(G) = max{dG (v) :
+                                          v ∈ V(G)} to denote the minimum degree and maximum degree of G, respectively. We sometimes
+                                          write V, E, d(v), ∆, δ instead of V(G), E(G), dG (v), ∆(G), δ(G), respectively. A function L is called
+                                          an assignment for a graph G if it assigns a list L(x) of possible labels (or colors) to each element
+                                          x ∈ V(G) ∪ E(G). A k-assignment is a list assignment where all lists have the same cardinality k,
+                                          that is, |L(x)| = k for all x ∈ V(G)∪E(G). We shall assume throughout that the labels (or colors) are
+                                             ∗
+                                                 This work is supported by IIFSDU, NNSF(10871119) and RSDP(200804220001) of China.
+                                             †
+                                                 Corresponding author. E-mail address: gzliu@sdu.edu.cn.
+
+
+                                                                                                   1
+natural numbers. Our terminology and notation will be standard except where indicated. Readers
+are referred to [2] for undefined terms.
+      Let p be a nonnegative integer. A k-(p,1)-total labelling of a graph G is a function c from
+V(G) ∪ E(G) to the color set {0, 1, · · · , k} such that c(u) , c(v) if uv ∈ E(G), c(e) , c(e′ ) if e
+and e′ are two adjacent edges, and |c(u) − c(e)| ≥ p if vertex u is incident to the edge e. The
+minimum k such that G has a k-(p,1)-total labelling is called the (p,1)-total labelling number and
+denoted by λTp (G). Let us denote by χTp,1 (G) the minimum number of colors(labels) needed for
+an ordinary (p,1)-total labelling for describing conveniently in this paper. Obviously, we have
+χTp,1 (G) = λTp (G) + 1. When p = 1, the (1,1)-total labelling is the well-known total coloring of
+graphs, and χT1,1 (G) = χ′′ (G) where χ′′ (G) denotes the total chromatic number.
+      Here we present the concept list (p,1)-total labelling. Suppose L is an assignment for a graph
+G. If G has a (p,1)-total labelling c such that c(x) ∈ L(x) for all x ∈ V(G) ∪ E(G), then we say that
+c is an L-(p,1)-total labelling of G, and G is L-(p,1)-total labelable. Furthermore, if G is L-(p,1)-
+total labelable for any L with |L(x)| = k for each x ∈ V(G) ∪ E(G), we say that G is k-(p,1)-total
+choosable. The (p,1)-total labelling choosability, denoted by C Tp,1 (G), is the minimum k such that
+G is k-(p,1)-total choosable.
+      Obviously, this concept is a common generalization of list colorings and (p,1)-total labellings.
+The (p,1)-total labelling of graphs was introduced by Havet and Yu [6]. It was shown that λTp (G) ≤
+2∆ + p − 1 for any graph G, and if ∆ ≥ 3 then λTp (G) ≤ 2∆, if ∆ ≥ 5 is odd then λTp (G) ≤ 2∆ − 1.
+The special cases for p = 2 were also investigated in this paper. Some kind of special graphs have
+also been studied, e.g., complete bipartite graphs for p = 2 [9], planar graphs [1], trees for p = 2
+[12], graphs with a given maximum average degree [10], complete graphs [6], etc. In [6], Havet
+and Yu gave a conjecture that λTp (G) ≤ ∆ + 2p − 1 for any graph G, which extends the well known
+Total Coloring Conjecture in which p = 1.
+      The incidence graph of a graph G, denoted by S I (G), is the graph obtained from G by re-
+placed each edge by a path of length 2. Motivated by the Frequency Channel Assignment Problem,
+Griggs and Yeh [5] first introduced the L(2, 1)-labelling of graphs. This notion was subsequently
+extended to a general form, named as L(p, q)-labelling of graphs. The L(p, q)-labelling, especially
+the L(2,1)-labelling, of graphs have been studied rather extensively in recent years. Kohl et al. [4]
+investigated the list version of L(p, q)-labellings and obtained some interesting results. As men-
+tioned in [6], the L(p, 1)-labelling of S I (G) is equivalent to the (p,1)-total labelling of graph G.
+We still noticed that the (p,1)-total labelling is a special case of an [r, s, t]-coloring of graphs with
+r = s = 1, t = p, which was introduced in [7]. Hence it is easy to see :
+
+    Observation 1. Let G be a graph. Then
+                                   p,1                        1,1,p
+                                 χl (S I (G)) = C Tp,1 (G) = χl       (G),
+
+where χlp,1 (G) and χ1,1,p
+                      l
+                           (G) denote the minimum number k such that G is k-L(p, 1)-labelling
+choosable and k-[1, 1, p]-coloring choosable, respectively.
+    In Section 2, we give some general bounds for C Tp,1 for paths and trees. After that, we present
+a conjecture on the upper bound of C Tp,1 for any graph G.
+    In Section 3, we show that C Tp,1 (K1,n ) ≤ n + 2p − 1 where p ≥ 2, n ≥ 3.
+
+
+                                                   2
+     In Section 4, we discuss the value for C Tp for outerplanar graphs. We prove that C Tp,1 (G) ≤
+∆ + 2p − 1 for all outerplanar graph G with ∆ ≥ p + 3, and we conjecture that the upper bound is
+still true without the maximum degree restriction.
+
+
+2 Basic results on C Tp,1
+    At first, by using Observation 1 we try to give some bounds for paths and trees. Then we give
+a conjecture on the upper bound for any graph G.
+Lemma 2.1 ([8]or[4]) Let Pk be a path with k vertices. Then
+                                            
+                                            
+                                             p + 1, k = 2;
+                              χ p,1 (Pk ) = 
+                                            
+                                              p + 2, k = 3, 4;
+                                            
+                                            
+                                            
+                                             p + 3, k ≥ 5.
+
+Theorem 2.2 Let Pk be a path with k vertices. Then
+                                             (
+                                 T             p + 2, k = 2;
+                               χ p,1 (Pk ) =
+                                               p + 3, k ≥ 3.
+
+Proof. Let S I (Pk ) be the incidence graph of Pk , then S I (Pk ) = Pk′ is still a path with k′ = 2k − 1.
+By Observation 1 and Lemma 2.1, we have χTp,1 (P2 ) = χ p,1 (P3 ) = p + 2, and when k ≥ 3 we have
+χTp,1 (Pk ) = χ p,1 (Pk′ ) = p + 3 since k′ = 2k − 1 ≥ 5.
+                                                                                          p,1
+Lemma 2.3 ([8]) Let Pk = v1 · · · vk be a path and k > 2p. Then we have 2p ≤ χl (Pk ) ≤ 2p + 1.
+
+Theorem 2.4 Let Pk = v1 · · · vk be a path. Then C Tp,1 (Pk ) ≤ 2p + 1. Moreover, if k > p, then we
+have 2p ≤ C Tp,1 (Pk ) ≤ 2p + 1.
+
+Proof. C Tp,1 (Pk ) ≤ 2p + 1 is obvious since we can color the vertices and edges of the path
+sequentially in its order by a greedy algorithm. When k > p, an analogous argument with
+                                                    p,1
+the proof in Theorem 2.2 shows that C Tp,1 (Pk ) = χl (S I (Pk )). Then by Lemma 2.3 we have
+2p ≤ C Tp,1 (Pk ) ≤ 2p + 1.
+
+                         T (P ) ≤ 5 with k ≤ 3 by Theorem 2.4. By the definition of C T , it
+    When p = 2, we have C2,1 k                                                        p,1
+                                   p,1         T (P ) ≥ χ2,1 (P ) = 5 by Theorem 2.2. Therefore,
+is easy to see that C Tp,1 (G) ≥ χl (G). Then C2,1 k     l     k
+  T
+C2,1 (Pk ) = 5 = 2p + 1 when k ≥ 3. So the upper bound of Theorem 2.4 is tight.
+
+Lemma 2.5 ([8]) For all trees T , all d and all s ≥ 1, we have χd,s
+                                                                l (T ) ≤ 2d − 1 + s∆.
+
+Theorem 2.6 Let T n be a tree with n vertices. Then we have C Tp,1 (T n ) ≤ ∆ + 2p − 1.
+
+Proof. Let S I (T n ) be the incidence graph of T n . S I (T n ) is still a tree with n′ = 2n − 1 vertices and
+∆(T n′ ) = ∆(T n ). By Lemma 2.5, let d = p, s = 1 we have χlp,1 (T n′ ) ≤ ∆ + 2p − 1. Therefore, by
+                                         p,1
+Observation 1 we obtain C Tp,1 (T n ) = χl (T n′ ) ≤ ∆ + 2p − 1.
+
+                                                      3
+Lemma 2.7 ([8]) If T is a tree with maximum degree ∆, p ≤ ∆, and there is a vertex v ∈ V(G)
+                                                          p,1
+such that v and all of its neighbors have degree ∆, then χl (T n ) = ∆ + 2p − 1.
+
+                                                                                  p,1
+                                                      T (T ) = χ2,1 (S (T )) = χ (T ′ ) = ∆(T ′ ) +
+    By Lemma 2.7, if T = Pn , n ≥ 5 and p = 2, C2,1        n     l     I n       l     n          n
+2p − 1 = ∆(T n ) + 2p − 1. That is to say, the upper bound of Theorem 2.6 is also tight.
+    It is known to all that for list version of edge colorings and total colorings there are list edge
+coloring conjecture (LECC) and list total coloring conjecture (LTCC) as follows:
+
+                               (1)χ′l (G) = χ′ (G); (2)χ′′       ′′
+                                                        l (G) = χ (G).
+
+Therefore, it is natural for us to conjecture that it may be also true for (p,1)-total labellings. That
+is, C Tp,1 (G) = χTp,1 (G)(= λTp (G) + 1). Unfortunately, we could find counterexamples with C Tp,1 (G)
+is strictly greater than χTp,1 (G). Taking Pk with k > p as an example, we have χTp,1 (G) ≤ p + 3
+by Theorem 2.2 but C Tp,1 (Pk ) ≥ 2p by Theorem 2.4, which is strictly greater than χTp,1 (Pk ) when
+p ≥ 4.
+   Although we can not present a conjecture like LECC or LTCC, we may conjecture an upper
+bound for C Tp,1 (G) for any graph G:
+
+Conjecture 2.8 Let G be a simple graph with maximum degree ∆. Then
+
+                                         C Tp,1 (G) ≤ ∆ + 2p.
+
+    Obviously, the conjecture is true for paths and trees by Theorem 2.4 and 2.6. Havet and Yu [6]
+gave a similar conjecture on λTp (G). They also showed that λTp (Kn ) = n + 2p − 2 for complete graph
+with n ≥ 6p2 − 10p + 4 was even. Then C Tp,1 (Kn ) ≥ χTp,1 (Kn ) = λTp (Kn ) + 1 = ∆ + 2p. Therefore,
+the bound in Conjecture 2.8 is tight.
+
+
+
+3 Stars
+    In this section, we prove that the conjecture above is true for stars. Actually, we can improve
+the bound by one for stars.
+                   T (K ) = χ′′ (K ) = n + 1. When n ≤ 2, K
+    Obviously, C1,1    1,n      l   1,n                             1,n is equivalent to Pn+1 , which
+condition have been shown in Theorem 2.4. Therefore, we only need to consider the case when
+p ≥ 2 and n ≥ 3.
+
+                                                          v1
+                                                  e1
+                                                   e2     v2
+
+
+                                                 en
+                                                          vn
+                                               Figure 1
+
+
+                                                  4
+Theorem 3.1 Let K1,n be a star with n ≥ 3 and p ≥ 2. Then
+
+                                             C Tp,1 (K1,n ) ≤ n + 2p − 1.
+
+Proof. Assume |L(x)| = k with k = n + 2p − 1 for all x ∈ V ∪ E. Denote the maximum vertex by
+w and the others by v1 , · · · , vn . Denote the edges by e1 , · · · , en , respectively (see Figure 1). Denote
+the colors {x − (p − 1), · · · , x − 1, x, x + 1, · · · , x + (p − 1)} by kxk p and the labelling of K1,n by c.
+Then if we label x ∈ V ∪ E with color α ∈ L(x), we sometimes denote that by c(x) = α.
+     First, label w by the minimum color α of its list and let L′ (e j ) = L(e j ) \ {||α|| p },L′ (v j ) = L(v j ) \
+{α, ||c(e j )|| p } for all j ∈ {1, 2, · · · , n}. Then we have |L′ (e j )| ≥ n − 1 and |L′ (v j )| ≥ k − (2p − 1 + 1) =
+n − 1 ≥ 1. Therefore, we just need to consider the coloring, denoted by c, of edges e j for all j. The
+coloring of vertices v j is obvious since |L′ (v j )| ≥ 1. Then we get an L-(p,1)-total labelling of K1,n
+with the assignment L.
+     Assume that at least one of the lists, say L′ (e1 ), still contains at least n colors. We give an
+algorithm for the edge coloring as follows:
+    Step 1: Let i = 1, S = ∅, ai = e1 ;
+     Step 2: Determine the minimum color m of the union of the lists of all uncolored edges. That
+is, m = min{x | x ∈ L′ (e p )} where e p ∈ E \ S ;
+                   S
+                        ep
+
+    Step 3: If L′ (e1 ) contains m and no other uncolored edges has m in its list, then let e′i = ai ;
+otherwise, choose another ek with m ∈ L′ (ek ) and let e′i = ek .
+    Step 4: Let c(e′i ) = m, S = S ∪ {e′i };
+     Step 5: If i = n, then stop; otherwise, delete m from the lists of uncolored edges, that is, let
+L′ (e p ) = L′ (e p ) \ {m} for all e p ∈ E \ S ;
+    Step 6: If e′i = ai , then ai+1 = e p where |L′ (e p )| ≥ n − i, e p ∈ E \ S ; else ai+1 = ai ;
+    Step 7: i = i + 1, turn Step 2.
+     We delete at most one color in every step. So if e1 is the last edge colored by our algorithm,
+then the coloring is possible since the list of e1 has at least one color left by assumption. If e1 is
+not the last edge, then the coloring of e1 deletes no color from any list of E \ S . Suppose e1 get
+colored by the ith loop for some i. Then we have deleted at most i − 1 colors from the list of e p for
+all e p ∈ E \ S , and we can choose some e p as the new beginning of our algorithm since we have
+|L′ (e p )| ≥ n − i at the beginning of the next loop.
+     Thus, each edge list L′ (e j ) has exactly n − 1 colors. That means ||α|| p ⊆ L(e j ) for all j. If we
+could not finish the coloring, then an analogous fact must hold for every color β ∈ L(w). Therefore,
+{α − (p − 1), · · · , α − 1} ∪ L(w) ⊆ L(e j ). So we have k = |L(e j )| ≥ |{α − (p − 1), · · · , α − 1} ∪ L(w)| =
+p − 1 + k, which is a contradiction.
+
+Lemma 3.2 ([6]) Let G be a bipartite graph. Then
+
+                                          ∆ + p − 1 ≤ λTp (G) ≤ ∆ + p.
+
+Moreover, if p ≥ ∆ or G is regular, then λTp (G) = ∆ + p.
+
+
+                                                           5
+Theorem 3.3 Let K1,n be a star. Then
+                                                     (
+                                                         n + p,           p < n;
+                                   χTp,1 (K1,n ) =
+                                                         n + p + 1,       p ≥ n.
+
+Proof. By Lemma 3.2 and χTp,1 = λTp + 1, we have n + p ≤ χTp,1 (K1,n ) ≤ n + p + 1 and χTp,1 (K1,n ) =
+n + p + 1 when p ≥ n. If p ≤ n − 1, then we give a (p,1)-total labelling of K1,n with colors
+{1, 2, · · · , n + p}. Suppose K1,n is defined as Figure 1. We color w with n + p and color e j with j for
+all j ∈ {1, 2, · · · , n}. After that we color v j with p + j for j = 1, · · · , n − 1 and color vn with color 1.
+Since n − 1 ≥ p, this coloring is a proper (p,1)-total labelling of K1,n . Therefore, χTp,1 (K1,n ) = n + p
+when p < n.
+
+    When p = 2, we have χT2,1 (K1,n ) = n + 2 by Theorem 3.3. Then C2,1
+                                                                    T (K ) ≥ χT (K ) = n + 2.
+                                                                        1,n    2,1 1,n
+                                     T
+On the other hand, we also have C2,1 (K1,n ) ≤ n + 2 × 2 − 1 = n + 2 by Theorem 3.1. That is,
+ T (K ) = n + 2 = n + 2 × p − 1. Therefore, the upper bound of Theorem 3.1 is tight when p = 2.
+C2,1  1,n
+
+
+
+
+4 Outerplanar graphs
+    In this section, we discuss the C Tp,1 of outerplanar graphs G. An outerplanar graph is a planar
+graph that can be drawn on the Eucliden plane such that there exists a face f with all v ∈ V(G)
+belong to f . For these special graphs, we give a theorem as follows:
+
+Theorem 4.1 Let G be an outerplanar graph with maximum degree ∆ ≥ p + 3. Then
+
+                                           C Tp,1 (G) ≤ ∆ + 2p − 1.
+
+    We will prove Theorem 4.1 by contradiction. Before that, we need a configuration lemma as
+follows:
+
+Lemma 4.2 ([3]) Every outerplanar graph G with δ(G) = 2 contains one of the following config-
+urations (see Figure 2):
+(C1) two adjacent 2-vertices u and v;
+(C2) a 3-face [uv1 v2 ] with d(u) = 2 and d(v1 ) = 3;
+(C3) two 3-face [u1 v1 x] and [u2 v2 x] such that d(x) = 4 and d(u1 ) = d(u2 ) = 2.
+
+                                                         u                u1 u2
+
+                                               v1                 v2 v1            v2
+                                x u v y                                     x
+                                                 z               y1 y2
+                                  (C1)               (C 2)                 (C 3)
+                                                     Figure 2
+
+                                                             6
+Proof of Theorem 4.1. Let H be a minimal counterexample in terms of |V(G)|+|E(G)| to Theorem
+4.1. L is the k assignment defined on V(H) ∪ E(H) and k = ∆ + 2p − 1. Denote the (p,1)-total la-
+belling of H by c. Then if we label x ∈ V(H)∪E(H) with color α ∈ L(x), we sometimes denote that
+by c(x) = α. Denote by L′ (x) the set of colors still available to color the element x ∈ V(H) ∪ E(H)
+such that the labelling is a proper (p,1)-total labelling. We still use kxk p to denote the color set
+{x − (p − 1), · · · , x − 1, x, x + 1, · · · , x + (p − 1)}.
+
+
+Claim 1. δ(H) ≥ 2.
+
+Proof. If δ(H) = 1. Suppose that e = uv ∈ E(H) and d(v) = 1. The graph H ′ = H \ {v}
+still satisfies the demands of the theorem. By the minimality of H, H ′ is L-(p,1)-total labelable.
+Without loss of generality, we suppose the labelling is c. Then at most ∆ − 1 + 2p − 1 colors are
+forbidden for the labelling of edge e. So we can choose a color for e from L′ (e) since |L′ (e)| ≥
+|L(e)| − (∆ − 1 + 2p − 1) = 1. After that we color v from L′ (v) = L(v) \ {c(u), ||c(e)|| p }. It is
+possible since |L′ (v)| ≥ k − (1 + 2p − 1) = ∆ − 1. Then we extend the labelling c to H, which is a
+contradiction.
+    Therefore, δ(H) = 2. By Lemma 4.2, H contains one of the configurations C1–C3. Next,
+we will show that in each case of C1–C3 we can obtain a labelling such that H is L-(p,1)-total
+labelable. Then we get a contradiction:
+
+(C1) Let x be the neighbor of u different from v and y the neighbor of v different from u. Let
+H ′ = H \ e where e = uv. Then H ′ still satisfies the demands of the theorem. By the minimality
+of H, H ′ is L-(p,1)-total labelable. Remove the colors of vertex u and v. After that we define a list
+of available colors for each of u, v and e as follows.
+
+                                    L′ (u) = L(u) \ {c(x), kc(ux)k p },
+
+                                    L′ (v) = L(v) \ {c(y), kc(vy)k p },
+                                      L′ (e) = L(e) \ {c(ux), c(vy)}.
+Since |L| = k = ∆ + 2p − 1 and ∆ ≥ p + 3, it follows that
+
+                                  |L′ (u)| ≥ k − (1 + 2p − 1) ≥ p + 2,
+
+                                  |L′ (v)| ≥ k − (1 + 2p − 1) ≥ p + 2,
+                                          |L′ (e)| ≥ k − 2 ≥ 3p.
+Let m = min{x | x ∈ L′ (u) ∪ L′ (v) ∪ L′ (e)}.
+Case 1. m < L′ (u) ∪ L′ (v). Let c(e) = m and at most p − 1 colors are unavailable for coloring u, v.
+Then at least 3 colors are left in L′ (u) and L′ (v). So we can choose two left colors from the list of
+u, v such than c(u) , c(v).
+Case 2. m ∈ L′ (u) or L′ (v). Without loss of generality, say m ∈ L′ (u). Let c(u) = m. Then at most
+p colors are unavailable for coloring e and at most one color for v. Let
+
+                          L′′ (v) = L′ (v) \ {c(u)}, L′′ (e) = L′ (e) \ {kc(u)k p }.
+
+                                                      7
+Then we have
+
+                    |L′′ (v)| ≥ p + 2 − 1 ≥ p + 1, |L′′ (e)| ≥ 3p − (2p − 1) ≥ p + 1.
+
+Let m1 = min{x | x ∈ L′′ (v) ∪ L′′ (e)}.
+Case 2.1. m1 ∈ L′′ (v). Let c(v) = m1 then we delete at most p colors from L′′ (e). So we can color
+e since at least |L′′ (e)| − p ≥ 1 colors are still available for e.
+Case 2.2. m1 < L′′ (v). Let c(e) = m1 then we delete at most p − 1 colors from L′′ (v). So we can
+color v since at least |L′′ (v)| − (p − 1) ≥ 2 colors are still available for v.
+In any case, we extend the labelling c to H for (C1), which is a contradiction.
+
+(C2) Let z be the neighbor of v1 and v2 . Let H ′ = H \ uv1 . Then H ′ still satisfies the demands of
+the theorem. By the minimality of H, H ′ is L-(p,1)-total labelable. Remove the colors of vertex u.
+After that we define a list of available colors for each of u and uv1 as follows.
+
+                                 L′ (u) = L(u) \ {c(v1 ), c(v2 ), kc(uv2 )k p },
+
+                         L′ (uv1 ) = L(uv1 ) \ {c(v1 z), c(v1 v2 ), c(uv2 ), kc(v1 )k p }.
+Since |L| = k = ∆ + 2p − 1 and ∆ ≥ p + 3, it follows that
+
+                                   |L′ (u)| ≥ k − (2 + 2p − 1) ≥ p + 1,
+
+                                     |L′ (uv1 )| ≥ k − (3 + 2p − 1) ≥ p.
+Let m = min{x | x ∈ L′ (u) ∪ L′ (uv1 )}. If m ∈ L′ (uv1 ), let c(uv1 ) = m. Then at most p colors are
+unavailable for coloring u. So we can color u since at least |L′ (u)| − p ≥ 1 colors are still available
+for u; otherwise, let c(u) = m and at most p − 1 colors are unavailable for coloring uv1 . So we can
+color uv1 since at least |L′ (uv1 )| − (p − 1) ≥ 1 colors are still available for uv1 . Then we extend the
+labelling c to H for (C2), which is a contradiction.
+
+(C3) Let H ′ = H \ xu1 . By the minimality of H, H ′ is L-(p,1)-total labelable. Remove the colors
+of vertex u1 . After that we define the lists of available labels for u1 and xu1 as follows.
+
+                                L′ (u1 ) = L(u1 ) \ {c(v1 ), c(x), kc(u1 v1 )k p },
+
+                     L′ (xu1 ) = L(xu1 ) \ {c(v1 x), c(v1 u1 ), c(xv2 ), c(xu2 ), kc(x)k p }.
+Since |L| = k = ∆ + 2p − 1 and ∆ ≥ p + 3, it follows that
+
+                                   |L′ (u1 )| ≥ k − (2 + 2p − 1) ≥ p + 1,
+
+                                  |L′ (xu1 )| ≥ k − (4 + 2p − 1) ≥ p − 1.
+If |L′ (xu1 )| ≥ p, we can color xu1 and u1 as we have done in Case (C2); otherwise, we have
+|L′ (xu1 )| = p − 1 and ∆ = p + 3. Let
+
+                                   m = min{x | x ∈ L′ (u1 ) ∪ L′ (xu1 )},
+
+
+                                                        8
+                                  M = max{x | x ∈ L′ (u1 ) ∪ L′ (xu1 )},
+                                       L′0 (u1 ) = L′ (u1 ) \ {m, M}.
+Denote by m1 (M1 ) and a (b) the minimum (maximum) number of L′0 (u1 ) and L′ (xu1 ), respectively.
+
+    If P = xu1 has not a partial list L-(p,1)-total labelling for u1 and xu1 , then we have some
+claims as follows.
+
+Claim 2. L′ (xu1 ) is a series of p − 1 successively integers. That is, |L′ (xu1 )| = p − 1 and
+b − a + 1 = p − 1.
+
+Proof. If m ∈ L′ (xu1 ), let c(xu1 ) = m. Then at most colors {m, m + 1, · · · , m + (p − 1)} are forbidden
+for list L′ (u1 ). Therefore, we can color u1 with at least one color from the available colors of
+L′ (u1 ). If M ∈ L′ (xu1 ), then we can finish the partial list-(p,1)-total labelling for u1 and xu1 with
+an analogous analysis. Therefore, we have a ≥ m + 1. If b − a + 1 ≥ p, then b − m ≥ b − (a − 1) ≥ p.
+We can color u1 with m and xu1 with b. Obviously, this is a partial list-(p,1)-total labelling for u1
+and xu1 , which is a contradiction to our assumption. Therefore, b − a + 1 = p − 1.
+
+Claim 3. L′ (xu1 ) = L′0 (u1 ) and m1 = m + 1, M1 = M − 1.
+
+Proof. If a ≤ m1 −1 or b ≥ M1 +1, then we have M −a ≥ (M1 +1)−(m1 −1) = (M1 −m1 +1)+1 ≥ p
+or b − m ≥ (M1 + 1) − (m1 − 1) = (M1 − m1 + 1) + 1 ≥ p. We can color u1 with m and xu1 with
+b or we can color u1 with M and xu1 with a. Then we obtain a partial list-(p,1)-total labelling for
+u1 and xu1 . Therefore, a ≥ m1 and b ≤ M1 . If a ≥ m1 + 1 or b ≤ M1 − 1, then we also have
+b − m ≥ b − (m1 − 1) ≥ b − a + 2 = p or M − a ≥ (M1 + 1) − a ≥ (b + 1) + 1 − a = p since
+b − a + 1 = p − 1 by Claim 2. We still obtain a partial list-(p,1)-total labelling for u1 and xu1 .
+Therefore, a = m1 and b = M1 . By our assumption, M1 − m1 + 1 ≥ |L′0 (u1 )| = |L′ (u1 )| − 2 ≥ p − 1.
+Thus, we have M1 − m1 + 1 = |L′0 (u1 )| = p − 1. Together with a = m1 , b = M1 and Claim 2, we
+obtain L′ (xu1 ) = L′0 (u1 ).
+
+Claim 4. m1 = m + 1 and M1 = M − 1.
+
+Proof. If m1 ≥ m + 2 or M1 ≤ M − 2, then we have b − m ≥ b − (m1 − 2) = M1 − m1 + 2 = p or
+M − a ≥ (M1 + 2) − a = M1 − m1 + 2 = p by Claim 3. We can color u1 with m and xu1 with b or
+we can color u1 with M and xu1 with a. Then we obtain a partial list-(p,1)-total labelling for u1
+and xu1 , which is a contradiction to our assumption.
+
+    That is to say,
+                             L′ (u1 ) = {m, m + 1, · · · , m + (p − 1), m + p},
+                                  L′ (xu1 ) = {m + 1, · · · , m + (p − 1)}
+where a = m1 = m + 1, b = M1 = m + (p − 1), M = m + p.
+    Claim 2–4 show that if L′ (u1 ), L′ (xu1 ) are not defined as above, we can obtain a partial list-
+(p,1)-total labelling for u1 and xu1 . Next, we show that we can obtain a partial list-(p,1)-total
+labelling for u1 and xu1 even if L′ (u1 ), L′ (xu1 ) satisfies Claim 2–4 :
+
+                                                     9
+     Since |L′ (xu1 )| = p − 1, it follows that ∆ = p + 3 and {c(v1 x), c(v1 u1 ), c(xv2 ), c(xu2 ), kc(x)k p }
+are all distinct. Otherwise, |L′ (xu1 )| > ∆ + 2p − 1 − (2p + 3) = p − 1 which is a contradiction.
+     In particular, c(v1 u1 ) < {c(v1 x), c(xv2 ), c(xu2 ), kc(x)k p }. We interchange the colors of xv1 and
+u1 v1 . After that, we define a new list L′′ of available colors for u1 and xu1 , then
+
+                L′′ (xu1 ) = L′ (xu1 ) = L(xu1 ) \ {c(v1 x), c(v1 u1 ), c(xv2 ), c(xu2 ), kc(x)k p },
+
+                                  L′′ (u1 ) = L(u1 ) \ {c(v1 ), c(x), kc(xv1 )k p }.
+      Since c(xv1 ) , c(u1 v1 ), we see that L′′ (u1 ) , L′ (u1 ) and |L′′ (u1 )| ≥ |L′ (u1 )|. Then we have
+m ≤ m − 1 or M ′ ≥ M + 1 where m′ , M ′ denote the minimum and maximum number of L′′ (u1 ).
+  ′
+
+Otherwise, we have m′ ≥ m, M ′ ≤ M and |L′′ (u1 )| ≤ M ′ − m′ + 1 ≤ M − m + 1 = |L′ (u1 )|. Since
+|L′′ (u1 )| ≥ |L′ (u1 )|, |L′′ (u1 )| = |L′ (u1 )| and m′ = m, M ′ = M. That is, L′′ (u1 ) = L′ (u1 ),which is a
+contradiction.
+     If m′ ≤ m − 1 then we have m + (p − 1) − m′ ≥ m + (p − 1) − (m − 1) = p. Let c(u1 ) = m′
+and c(xu1 ) = m + (p − 1). Then we obtain a partial list-(p,1)-total labelling for u1 and xu1 . If
+M ′ ≥ M + 1, then we have M ′ − a = M ′ − (m + 1) ≥ (M + 1) − (m + 1) = (p + 1) − 1 = p. Let
+c(u1 ) = M ′ and c(xu1 ) = a = m + 1. Then we obtain a partial list-(p,1)-total labelling for u1 and
+xu1 .
+     Any way, we extend the labelling c to H for (C3), which is a contradiction.
+
+    Then we complete the proof of Theorem 4.1.
+
+    When p = 2, our result generalized a result of Chen and Wang [3]:
+
+Corollary 4.3 ([3]Theorem 7) If G is an outerplanar graph with ∆(G) ≥ 5, then λT2 (G) ≤ ∆(G)+2.
+
+Proof. Obviously, when ∆ ≥ p + 3 we have χTp,1 (G) ≤ C Tp,1 (G) ≤ ∆ + 2p − 1 by Theorem 4.1. Since
+χTp,1 (G) = λTp (G) + 1, let p = 2, we have λT2 (G) = χT2,1 (G) − 1 ≤ ∆ + 3 − 1 = ∆ + 2 with ∆ ≥ 5.
+    In [3], the author showed that there existed infinitely many outerplanar graphs G such that
+χT2,1 (G) = ∆ + 3. So we have C2,1
+                               T (G) = ∆ + 3 by Theorem 4.1. That is to say, the upper bound in
+
+Theorem 4.1 can not be improved when p = 2.
+   Finally, we conjecture that Theorem 4.1 is also true when ∆ ≤ p + 2.
+
+Conjecture 4.4 Let G be an outerplanar graph. Then
+
+                                            C Tp,1 (G) ≤ ∆ + 2p − 1.
+
+
+
+
+References
+
+[1] F. Bazzaro, M. Montassier, A. Raspaud, (d,1)-Total labelling of planar graphs with large girth
+   and high maximum degree, Discrete Math. 307(2007) 2141–2151.
+
+
+                                                         10
+[2] J. A. Bondy, U. S. R. Murty, Graph theory with applications, MacMillan, London, 1976.
+
+[3] D. Chen, W. F. Wang, (2,1)-Total labelling of outerplanar graphs, Discrete Appl. Math.
+   155(2007) 2585–2593.
+
+[4] J. P. Georges, D. W. Mauro, Generalized vertex labelling with a condition at distance 2, Congr.
+   Mumer. 109(1995) 141–159.
+
+[5] J. R. Griggs, R. K. Yeh, Labelling graphs with a condition at dictance 2, SIAM J. Discrete
+   Math. 5(1992) 586–595.
+
+[6] F. Havet, M. L. Yu, (p, 1)-Total labelling of graphs, Discrete Math. 308(2008) 496–513.
+
+[7] A. Kemnitz, M. Marangio, [r, s, t]-colorings of graphs, Discrete Math. 307(2007) 199–207.
+
+[8] A. Kohl, J. Schreyer, Z. Tuza, M. Voigt, List version of L(d, s)-labellings, Theoret. Comput.
+   Sci. 349(2005) 92–98.
+
+[9] K. W. Lih, D. D. F. Liu, W. Wang, On (d,1)-total numbers of graphs, Discrete Math. 309(2009)
+   3767–3773.
+
+[10] M. Montassier, A. Raspaud, (d,1)-Total labelling of graphs with a given maximum average
+   degeree, J. G. T. 51(2006) 93–109.
+
+[11] B. A. Tesman, List T -colorings of graphs, Discrete Appl. Math. 45(1993) 277–289.
+
+[12] W. Wang, D. Chen, (2,1)-Total labelling of trees, Information Processing Letters 109(2009)
+   805–810.
+
+
+
+
+                                                11
+

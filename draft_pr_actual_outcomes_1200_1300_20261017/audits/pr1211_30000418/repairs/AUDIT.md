@@ -13,7 +13,7 @@ The complete human-readable proof, explicit graph, bad lists, ordinary labeling,
 
 The stated universal tree-equality conjecture is answered negatively. No historical novelty, priority, minimal-order, exhaustive-literature-review, or current-openness claim is made.
 
-This edition retains the complete independent logical review. Computational and source-inspection statements report the historical audit; editorial preparation did not rerun mathematical programs or inspect scholarly sources anew. Raw-certificate locations and the small enumeration table are replaced by historical descriptions and count metadata. No mathematical correction was required.
+This corrected edition retains the complete logical review. Computational and source-inspection claims in the historical-audit passages refer to the earlier audit and original prose-editing pass, which did not rerun programs or inspect sources anew. Fresh 17 October 2026 executions and source inspections are recorded separately. The core result is unchanged; the supplementary recurrence domain and bibliographic span are clarified explicitly.
 
 ## Verdict
 
@@ -140,6 +140,6 @@ The dissertation's remark about trees already forced to ordinary value Delta+3 a
 
 ## 9. Acceptance scope and remaining limits
 
-The human proof establishes every quantifier needed for the counterexample and exact values. Computation is corroboration, not a replacement for the arbitrary-list upper bound. No mathematical repair is required.
+The human proof establishes every quantifier needed for the counterexample and exact values. Computation is corroboration, not a replacement for the arbitrary-list upper bound. No change to the core counterexample is required. The supplementary state-domain clarification is included in this corrected edition.
 
-This audit does not certify minimal order, exhaustive enumeration of all trees or all list assignments, discovery-algorithm novelty, peer review, source-author endorsement, or historical priority. The original candidate and audit remain unchanged. No source documents, raw datasets, executable code, or private coordination material are distributed in this public edition. The full explicit mathematical construction remains in Sections 2–6. This document does not claim a new mathematical execution or scholarly-source inspection during editorial preparation.
+This audit does not certify minimal order, exhaustive enumeration of all trees or all list assignments, discovery-algorithm novelty, peer review, source-author endorsement, or historical priority. The original submitted candidate and audit bytes remain preserved in the immutable submission snapshot. This corrected edition has new file identities and explicitly clarifies the supplementary state domain and citation range. No source documents, raw datasets, executable code, or private coordination material are distributed in this public edition. The full explicit mathematical construction remains in Sections 2–6. This document does not claim a new mathematical execution or scholarly-source inspection during editorial preparation.
