@@ -5,7 +5,8 @@
                                       October 17, 2026         Version 1.0.0
 
 
-                                                         Abstract
+
+                                                     Abstract
               We give an explicit aﬃrmative answer to Tunçel’s 2017 existential question about alge-
           braic convex cones with negative-curvature normal barriers. (     The one-sided
                                                                                      )       power cone K =
@@ -22,84 +23,95 @@ Tunçel [1, p. 799, Open Problem 1] asks whether an algebraic convex cone can ad
 barrier with negative curvature without being a hyperbolicity cone. Here algebraic means deﬁned by
 homogeneous polynomial inequalities. For a regular cone (closed, pointed, convex, with nonempty
 interior), negative curvature means
+
                                D3 F (a)[h, u, u] ≤ 0 (a ∈ int K, h ∈ K, u ∈ R3 ).                              (1)
+
 This is the third-derivative convention of [1, 2], equivalently the concavity of a 7→ DF (a)[h] for
 ﬁxed h ∈ K [3, Deﬁnition 3.1]. A normal barrier is a logarithmically homogeneous self-concordant
 barrier; we also verify its gradient bound directly.
+
 Theorem 1. Let
+
                          K = {(x, y, z) ∈ R3 : x, y, z ≥ 0, p(x, y, z) := xy 2 − z 3 ≥ 0}.
+
 Then K is a regular algebraic convex cone. On int K, the function
+
                                         f = − log p − log z,       F = 25f
+
 is a normal barrier with parameter 100 satisfying (1). No homogeneous polynomial in three variables
 has K as its hyperbolicity cone.
-   The underlying cone appears in Hildebrand [4, Theorem 3.2, family 5]: take the conjugate
-exponents 3, 3/2 and coordinates (x1 , x2 , x3 ) = (x, z, y). We claim no new cone. The theorem
-concerns this one-sided cone and the original existential question. It does not resolve the broader
-question whether every regular cone admits such a barrier [3, Section 6]. All arguments below are
-analytic; the accompanying exact computations are independently checkable supplements.
     ∗
         Independent researcher. ORCID: 0009-0001-9320-500X.
 
 
+
+
                                                           1
-2    Geometry and normality
+   The underlying cone appears in Hildebrand [4, Theorem 3.2, family 5]: take the conjugate
+exponents 3, 3/2 and coordinates (x1 , x2 , x3 ) = (x, z, y). Self-concordant barriers for this same
+nonnegative power-cone family are also known: Roy–Xiao [5, Theorem 2] give, for this cone, the
+parameter-3 barrier
+                          B = − log(x1/3 y 2/3 − z) − 23 log x − 13 log y − log z.
+Our parameter 100 is not an improvement of their self-concordance parameter. The property es-
+tablished here is the negative-curvature certiﬁcate for the displayed polynomial-logarithmic barrier,
+together with the all-polynomial hyperbolicity obstruction. The theorem concerns this one-sided
+cone and the original existential question. It does not resolve the broader question whether every
+regular cone admits such a barrier [3, Section 6]. All arguments below are analytic; the accompa-
+nying exact computations are independently checkable supplements.
+
+
+2    Geometry and normality
 The displayed homogeneous inequalities make K closed and conic. The nonnegative orthant makes
 it pointed; (2, 1, 1) is strictly feasible, and
-
                                        int K = {x, y, z > 0 : xy 2 > z 3 }.
-
 For m(x, y) = x1/3 y 2/3 on the positive orthant,
-                                                             (              )
+                                                                 (                 )
                                        2              y 2 −xy
                                 ∇ m = − x−5/3 y −4/3
                                    2
-                                                                                 0.
+                                                                                        0.
                                        9             −xy x2
 
 Concavity extends to the closed orthant by continuity. Thus K = {x, y ≥ 0, 0 ≤ z ≤ m(x, y)} is
 convex.
    Put g = z 3 /y 2 and δ = x − g > 0. Then f = − log δ − 2 log y − log z. At a ﬁxed base point, for
 any direction u, deﬁne the linear functionals
-                                         ux − g(3cu − 2bu )               √
-    bu = uy /y,   cu = uz /z,     wu =                      ,      vu =       6g/δ (cu − bu ),   ℓu = cu − 4bu .
+                                         ux − g(3cu − 2bu )                       √
+    bu = uy /y,   cu = uz /z,     wu =                      ,              vu =       6g/δ (cu − bu ),   ℓu = cu − 4bu .
                                                  δ
 Direct diﬀerentiation gives
-
-                       kuk2f := D2 f [u, u] = wu2 + vu2 + 2b2u + c2u ,                                             (2)
-                                D f [u, u, u] = −2wu3 − 3wu vu2 + ℓu vu2 − 4b3u − 2c3u .
-                                  3
-                                                                                                                   (3)
-
+                       kuk2f := D2 f [u, u] = wu2 + vu2 + 2b2u + c2u ,                                                     (2)
+                                D3 f [u, u, u] = −2wu3 − 3wu vu2 + ℓu vu2 − 4b3u − 2c3u .                                  (3)
 For example, Dg[u] = g(3cu −2bu ), D2 g[u, u] = 6g(cu −bu )2 , and D3 g[u, u, u] = 6g(cu −bu )2 (cu −4bu ),
 which yield these identities. Equation (2) is positive deﬁnite: zero forces bu = cu = wu = 0 and
 hence u = 0.
     For completeness we prove the mixed form of self-concordance used in [3, Section 2.2]. Polarizing
 (3) gives
-
                          D3 f [h, u, u] = − 2wh wu2 − wh vu2 − 2wu vh vu
                                             + 13 (ℓh vu2 + 2ℓu vh vu ) − 4bh b2u − 2ch c2u .
                                                √
 Weighted Cauchy–Schwarz gives |ℓa | ≤ 3 2b2a + c2a ≤ 3kakf . The four groups in this display have
 absolute values bounded respectively by 2, 3, 3, 2 times khkf kuk2f . For the last bound, use
-                                                √            √
-                        |4bh b2u + 2ch c2u | ≤ 2 2b2h + c2h 2b4u + c4u ≤ 2khkf kuk2f .
+                                                   √                √
+                        |4bh b2u + 2ch c2u | ≤ 2       2b2h + c2h       2b4u + c4u ≤ 2khkf kuk2f .
 
-Consequently |D3 f [h, u, u]| ≤ 10khkf kuk2f . Since kukF = 5kukf , scaling by 25 gives
+                                                             2
+Consequently |D3 f [h, u, u]| ≤ 10khkf kuk2f . Since kukF = 5kukf , scaling by 25 gives
 
-                                         |D3 F [h, u, u]| ≤ 2khkF kuk2F ,
+                                      |D3 F [h, u, u]| ≤ 2khkF kuk2F ,
 
 including the standard scalar self-concordance inequality when h = u.
     The polynomial zp has degree four, so F (ta) = F (a)−100 log t. Diﬀerentiation yields ∇2 F (a)a =
 −∇F (a) and aT ∇2 F (a)a = 100; hence
 
-                                       ∇F (a)T ∇2 F (a)−1 ∇F (a) = 100.
+                                    ∇F (a)T ∇2 F (a)−1 ∇F (a) = 100.
 
 At every ﬁnite boundary point of K, either z = 0 or p = 0. Thus along every interior sequence
 tending to that point, zp → 0+ and F → +∞. Extended by +∞ outside int K, F is a closed
 convex function. These facts prove its claimed normality.
 
-                                                         2
-3    The negative-curvature certiﬁcate
+
+3    The negative-curvature certiﬁcate
 The diagonal maps D = diag(α, β, γ) with positive entries and αβ 2 = γ 3 are automorphisms of K,
 and f (Dq) = f (q) − 4 log γ. For a ﬁxed interior point (x, y, z), take D = diag(y 2 /z 3 , 1/y, 1/z). It
 sends that point to (r, 1, 1), where r = xy 2 /z 3 > 1. Diﬀerentiating with this D held ﬁxed gives
@@ -109,7 +121,7 @@ sends that point to (r, 1, 1), where r = xy 2 /z 3 > 1. Diﬀerentiating with th
 It is therefore enough to prove the matrix inequality at (r, 1, 1) for every r > 1.
     Every h ∈ K with hy > 0 has the decomposition
                                             (             )
-                        h = hy (t3 , 1, t) + hx − h3z /h2y ex ,   t = hz /hy ≥ 0,
+                        h = hy (t3 , 1, t) + hx − h3z /h2y ex ,    t = hz /hy ≥ 0,
 
 with both coeﬃcients nonnegative. If hy = 0, then hz = 0 and h is a nonnegative multiple of ex .
 By linearity in h, it remains to check h(t) = (t3 , 1, t) for t ≥ 0, and ex .
@@ -129,85 +141,74 @@ minors are the following polynomial identities:
                                                2
                                                   = 4s(t − 1)2 P,                                    (4)
                                                 det M = 8s (t − 1) R,
-                                                              4   2
+                                                              4    2
                                                                                                      (5)
 
 where
 
                    P = 2(t + 2)s2 − 3(t − 1)(3t + 5)s + 3(t − 1)2 (t + 2)2 ,
-                                (                                                   )
+                                (                                                    )
                    R = (t + 2) 2ts2 − 3(t − 1)(3t + 1)s + 3(t − 1)2 (t2 + 4t + 1) .
 
-For 0 ≤ t < 1, every term in these expressions is nonnegative and the constant terms are positive.
-At t = 1, P = R = 6s2 > 0. For t ≥ 1 use the exact square identities
 
+                                                      3
+For 0 ≤ t < 1, every term in these expressions is nonnegative and the constant terms are positive.
+At t = 1, P = R = 6s2 > 0. For t ≥ 1 use the exact square identities
                            8(t + 2)P = [4(t + 2)s − 3(t − 1)(3t + 5)]2
-                                           + 3(t − 1)2 (8t3 + 21t2 + 6t − 11),                       (6)
+                                          + 3(t − 1)2 (8t3 + 21t2 + 6t − 11),                        (6)
                                 8tR
                                     = [4ts − 3(t − 1)(3t + 1)]2
                                 t+2
                                        + 3(t − 1)3 (8t2 + 13t + 3).                                  (7)
-
 The ﬁrst remainder polynomial, at t = 1 + v, equals 8v 3 + 45v 2 + 72v + 24 > 0 for v ≥ 0. Both
 remainders are strictly positive for t > 1, and all divisors used are positive. Hence P, R > 0
 throughout s > 0, t ≥ 0. If t 6= 1, the ﬁrst three leading minors are positive, so Sylvester’s criterion
 gives M  0.
-
-                                                      3
-    At the exceptional direction t = 1, substitution instead gives
+    At the exceptional direction t = 1, substitution instead gives
                                                                 
-                                           0   0    0
-                                        2             
-                                  M = 2s 0 2r + 1 −3   0,
-                                           0 −3    r+2
-
+                                            0   0    0
+                                                       
+                                  M = 2s2 0 2r + 1 −3   0,
+                                            0 −3    r+2
 because the lower block has positive diagonal and determinant (2r+1)(r+2)−9 = (r−1)(2r+7) > 0.
 For the remaining endpoint there is a direct Gram certiﬁcate:
-
           −s3 D3 f (r, 1, 1)[ex ] = 2aaT + 6sbbT  0,       a = (1, 2, −3)T ,   b = (0, 1, −1)T .
-
 Thus all cone directions are covered. Congruence under D, linearity in h, and multiplication by 25
 prove (1).
 
 
 4    Excluding every hyperbolicity polynomial
-Recall that a homogeneous polynomial H is hyperbolic in e if H(e) > 0 and H(v + te) has only real
-roots for every v. Its closed hyperbolicity cone is the closure of the positive-eigenvalue region in the
-convention of [1]. The direction e lies in the interior of that cone. The boundary lies in {H = 0}:
-if all eigenvalues at a boundary point were positive, continuity of roots (with ﬁxed nonzero leading
-coeﬃcient) would give an interior neighborhood.
-     Suppose that this cone were K. Then e ∈ int K, and the curved boundary patch implies
-
+Recall that a homogeneous polynomial H is hyperbolic in e if H(e) > 0 and H(v + te) has only
+real roots for every v. Its closed hyperbolicity cone is the closure of the positive-eigenvalue region
+in the convention of [1]. The direction e lies in the interior of that cone. Boundary eigenvalues
+are nonnegative by continuity from the positive region. The boundary lies in {H = 0}: if all
+eigenvalues there were positive, continuity of roots (with ﬁxed nonzero leading coeﬃcient) would
+give an interior neighborhood.
+    Suppose that this cone were K. Then e ∈ int K, and the curved boundary patch implies
                                    H(z 3 /y 2 , y, z) = 0   (y, z > 0).
-
 Clearing denominators gives a polynomial identity on an open set in R2 , hence an identity every-
 where. In R(y, z)[x] this says x − z 3 /y 2 divides H. The polynomial p = y 2 x − z 3 is primitive over
 R[y, z], since gcd(y 2 , z 3 ) = 1, and is irreducible over the fraction ﬁeld, being linear in x. Gauss’s
 lemma gives p | H in R[x, y, z].
    Write a = (ex e2y )1/3 and b = ez , so a > b > 0. For v = (0, 0, 1),
-
                      p(v + te) = a3 t3 − (1 + bt)3
                                                  (                                  )
                                = ((a − b)t − 1) (a2 + ab + b2 )t2 + (a + 2b)t + 1 .
-
 The quadratic discriminant is (a + 2b)2 − 4(a2 + ab + b2 ) = −3a2 < 0. Therefore p(v + te) has
 nonreal roots. Since p | H and H(e) > 0, the restricted product is nonzero and these roots cannot
 cancel. This contradicts hyperbolicity in e, proving the ﬁnal assertion of Theorem 1. The argument
 treats arbitrary homogeneous H, without an assumed degree or a particular deﬁning polynomial.
 
-
-Veriﬁcation, attribution, and research status
+                                                      4
+Veriﬁcation, attribution, and research status
 The supplement supplies independently authored exact rational-polynomial checkers for the deriva-
 tive, minor, square, and endpoint identities, with additional logarithm-series checks and deliberately
 false controls. The proof above establishes the universal inequalities; ﬁnite samples are supplemen-
-tary evidence. The term − log z is substantive: omitting it makes the negative-curvature matrix
-have determinant −24576 after multiplication by s3 at base (5, 1, 1) and direction (8, 1, 2).
+tary evidence. The term − log z is substantive: for f0 = − log p, the matrix −s3 D3 f0 [h] has
+determinant −24576 at base (5, 1, 1) and direction h = (8, 1, 2).
     The cone’s prior occurrence in [4] is explicitly credited; its hyperbolic aﬃne spheres are distinct
 from polynomial hyperbolicity. Deﬁnitions and related barrier results are credited to [2, 3]. A
-
-
-                                                      4
-bounded primary-source priority audit accompanies the supplement; no assertion of exhaustive
+bounded primary-source priority audit accompanies the supplement; no assertion of exhaustive
 literature coverage or ﬁrst-ever priority is made.
     AI and review disclosure. AI tools were used extensively in developing, checking, and
 writing this result and its veriﬁcation materials. This preprint is unrefereed. The accompanying
@@ -225,13 +226,17 @@ References
 
 [3] J. Dahl, L. Tunçel, and L. Vandenberghe, New complexity bounds for primal–dual interior-point
     algorithms in conic optimization, arXiv:2509.10263v2 (version record June 12, 2026). Sections
-    2.2, 3.1, and 6.
+    2.2, 3.1, and 6. The inspected PDF is internally revised June 16; the HTML representation
+    instead says August 24. Both representations were checked.
 
 [4] R. Hildebrand, Analytic formulas for complete hyperbolic aﬃne spheres, arXiv:1305.4814, The-
     orem 3.2, family 5.
 
+[5] S. Roy and L. Xiao, On self-concordant barriers for generalized power cones, Microsoft Research
+    Technical Report MSR-TR-2018-3, January 30, 2018, Theorem 2. Optimization Online.
 
 
 
-                                                5
+
+                                                  5
 
