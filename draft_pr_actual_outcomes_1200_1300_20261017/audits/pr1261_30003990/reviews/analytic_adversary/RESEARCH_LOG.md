@@ -19,3 +19,13 @@ Primary PDFs retrieved at their public URLs. Original OWR contribution PDF pp.23
 New exact checker passed under normal Python, -O and -OO, with identical mathematical payload across modes: 16 kernel coefficient identities, 1536 envelope grid cases, 780 core grid cases, 20000 degree cases, 60 all-mass shell cases, 567 pyramid moments, 15 exact positive-definite matrices, 6 full-pyramid witnesses, 20 proxy-family cases, and 3 rejected negative controls in each mode. The pyramid r=1 smallest generalized eigenvalue is independently (10-sqrt(10))/15. These finite results supplement the proof only.
 
 Remaining work: finish a written adversarial report, classify all nonclaims/source-inspection limits, and seal outputs. No source-author code executed. No claim relies on historical test bodies absent from the submission.
+
+## 2026-10-17T21:25:00.505178+00:00 - Final checkpoint (100% complete)
+
+Verdict: PASS for the exact normalized Lebesgue global-SOS O(r^-2) theorem at every integer order, and PASS for the exact square-pyramid moment/eigenvalue and full-mass witness supplement. No actionable mathematical defects or required repairs were found. The independent Stieltjes/Tonelli calculation bounds the numerator by [(n+1)h-nh^2]F(h), providing a separate cross-check of the decisive core-normalization cancellation with a smaller constant. The original larger constant remains valid; no original file was changed.
+
+Checker was updated once to add this new independently derived inequality, then all three Python modes were rerun successfully. Current exact results share the current checker SHA256 and identical mathematical payloads across normal, -O and -OO modes. The verifier uses exceptions rather than removable assertions. Source-copy hashes match submitted source metadata, but only the explicitly listed pages were read, and current openness/priority are unverified.
+
+The strongest verified theorem, full derivation, adversarial families, low-order exact eigenvalue, imports, source interpretation, finite-test scope and limitations are in REPORT.md and VERDICT.json. The only source-scope qualification is the explicit unit-mass interpretation of the original report's incomplete display; arbitrary measures, general s(f) restrictions and objective-wise two-sided rates are excluded. No exact-target mathematical gap remains identified.
+
+Next and final operation: seal every root authored artifact in MANIFEST.json with explicit path, bytes and SHA256, separately inventory ignored source/scratch copies, then report manifest/report/verdict digests outside the manifest. No authored artifact will be edited after sealing.

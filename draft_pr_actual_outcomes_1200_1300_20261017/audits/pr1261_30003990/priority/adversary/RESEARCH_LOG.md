@@ -1,0 +1,9 @@
+# Independent priority / approximation-theory audit log
+
+Scope: PR1261 / problem30003990. All authored work is at this family root; ignored `_local/` retains retrieved bodies and renders. No other new priority-family outputs were read. No contact, subdelegation, Git/index/ref, PR, Zenodo, or GWS mutation occurred.
+
+- 2026-10-17 21:27:25 UTC (observed clock): independent audit underway; submitted proof, old AUDIT, and SOURCE_VERIFICATION read as prior work rather than accepted priority conclusions. Exact target is the normalized Lebesgue global-SOS hierarchy on every fixed compact convex body with interior. Completion estimate: 10% of this bounded audit, 0% claim of comprehensive priority clearance.
+- 2026-10-17 21:27:58 UTC (retrieval timestamps): retrieved eight full primary PDFs; all match PDF signatures and text extraction succeeded. Receipt records URL, bytes, and SHA256. Whole retrieval is not whole reading. Completion estimate: 25%.
+- 2026-10-17 21:28:59 UTC (observed clock): source expansion found Totik-Varga (2012) Theorem 3.2, which permits globally doubling measures centered only on a specified set; taking that set to be the singleton endpoint is compatible with one-ended cumulative growth. Theorem 3.1 / zero-spacing theorem require stronger interval doubling and must be distinguished. Read Theorem 2.1 and its complete printed proof, Sections 3-4 relevant proofs, and survey's endpoint-shell argument. Theorem 2.1 at endpoint plus Markov derivative control gives an alternative complete deduction assembled in 2026; this does not establish an explicit printed 2012 resolution. Completion estimate: 60%.
+
+Query timestamps are recorded only when observed. Early query calls have no observed per-call timestamp; unverified drafting time labels were removed from chronology. Literal strings and call groupings remain in QUERY_LEDGER.json, and raw tool responses remain under `_local/`.

@@ -10,7 +10,9 @@ Thus 0<=q(t)<=(r+1)²=M, since the squared norms sum to one. Set α=1/(2M). Then
 
     ∫_0^1 t q(t)dt >= α ∫_α^1 q >= 1/(4M)=1/[4(r+1)²].
 
-Taking the infimum proves H_r>=1/[4(r+1)²]. Combining with the general upper theorem proves Θ(r^-2) for this fixed interval/linear instance and excludes a universal o(r^-2) rate over all fixed instances. A layer-cake argument improves this particular coarse constant to1/2, but the weaker1/4 constant suffices and is simpler.
+Taking the infimum proves H_r>=1/[4(r+1)²]. Combining with the general upper theorem proves Θ(r^-2) for this fixed interval/linear instance and excludes a universal o(r^-2) rate over all fixed instances. For each fixed dimension n>1, use K=[0,1] x [-1,1]^(n-1), f(t,y)=t. Apply the same Legendre bound to each p_j(t,y) with y fixed and integrate over y. The marginal density in t is at most M and has unit mass, so the same lower bound follows. This gives a fixed sharpness instance in each dimension, without needing to assert a marginal SOS representation.
+
+A layer-cake argument improves this particular coarse constant to1/2, but the weaker1/4 constant suffices and is simpler.
 
 The Legendre identities are classical, not discoveries. A self-contained note can recall Rodrigues P_i(x)=(2^i i!)^-1 d^i/dx^i (x²−1)^i; i integration-by-parts steps give orthogonality and ∫_-1^1P_i²=2/(2i+1). The bound |P_i|<=1 follows from the finite-polynomial identity
 
