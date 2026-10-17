@@ -38,6 +38,19 @@ as exact copies in reviews/tooling_deployment_final/, with provenance receipts
 separating initial deployment from later explicit schema adaptation and actual
 metadata projection tests. No outside file is claimed as manifest membership.
 
+## Explicit prepublication metadata representation
+
+A first production staging attempt stopped before any publish POST because
+Zenodo represented the two HTML-text bounds `n>=3` and `n>=4` as `n&gt;=3`
+and `n&gt;=4`. The current local metadata explicitly authors those exact HTML
+entities; HTML-unescaped content and every other supplied value are unchanged.
+METADATA_HTML_REPRESENTATION_CORRECTION.json records the amendment. Earlier
+metadata/context/archive/gate and review receipts remain immutable history,
+not current release approval. The actual source and five-page PDF are unchanged.
+The rebuilt archive binds this current context. Any same-ID unpublished-draft
+file repair is a separately reviewed operation using the repository kit; no
+normalization or duplicate-deposit publication is silently accepted.
+
 ## Integrity verification
 
 Extract the ZIP into a fresh writable directory without replacing existing
