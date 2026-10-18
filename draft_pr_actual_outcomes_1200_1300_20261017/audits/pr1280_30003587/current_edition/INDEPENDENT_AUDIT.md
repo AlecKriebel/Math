@@ -2,7 +2,7 @@
 
 Date of historical audit: 11 October 2026. Current editorial qualification: 17 October 2026 local date.
 
-Editorial provenance: the original submitted report remains verbatim in the verification package. This current edition qualifies the former absolute pinching-necessity sentence. Its historical first-person source and execution statements are retained as historical claims, not as newly authenticated events. The older frozen proof, audit and supplement named below are unavailable in the submitted nine-file packet; current independent mathematical review does not certify those missing bytes or the old execution history.
+Editorial provenance: the original submitted report remains verbatim in the verification package. This current edition qualifies the former absolute pinching-necessity sentence. Its historical first-person source and execution statements are retained as historical claims, not as newly authenticated events. The intermediate graph statements are now explicitly restricted to graphs with at least one edge, excluding the edgeless singleton before the Kirchberg and infinite-path arguments; essentiality already guarantees this for the original target. The older frozen proof, audit and supplement named below are unavailable in the submitted nine-file packet; current independent mathematical review does not certify those missing bytes or the old execution history.
 
 This is an AI-assisted audit. Independence refers to a separately authored mathematical review and separately authored finite checks. It does not mean external human peer review or formal proof-assistant certification. First-person inspection statements below describe that AI audit. The frozen audited proof and this public editorial edition are bound in ACCEPTANCE.json.
 

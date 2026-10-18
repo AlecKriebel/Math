@@ -1,0 +1,379 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=26mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\Ad}{\operatorname{Ad}}
+\newcommand{\U}{\mathcal U}
+\newcommand{\T}{\mathbb T}
+\newcommand{\CK}{C^*}
+\title{Strong approximate innerness of finite abelian\protect\\
+diagonal actions on Cuntz--Krieger algebras}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{17 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a complete affirmative answer to the historical Question~1 in
+Barlak's Oberwolfach report on diagonal quasi-free automorphisms: every
+finite abelian diagonal quasi-free action on a simple purely infinite
+Cuntz--Krieger algebra associated with a finite essential $0$--$1$ matrix
+is strongly approximately inner. The proof is an explicit deduction from
+Gabe--Szab\'o's equivariant uniqueness theorem, together with the established
+diagonal-coboundary mechanism and elementary finite-group averaging.
+It covers periodic matrices, nonouter actions and nonfaithful actions.
+This note is an exposition and verification of consequences of prior
+theorems; it makes no claim of a first solution or a new mechanism.
+\end{abstract}
+
+\noindent\textbf{AI-use and verification disclosure.}
+Extensive AI assistance was used in mathematical reasoning, proof drafting,
+source auditing, diagnostic computations and manuscript review. This
+manuscript is unrefereed; no external human peer review or formal
+proof-assistant certification is claimed. Finite computations in the
+accompanying verification material are diagnostics, not proofs of the
+operator-algebra assertions.
+
+\section{Statement and prior results}
+
+An action $\alpha:G\curvearrowright A$ on a unital $C^*$-algebra is
+\emph{strongly approximately inner} if, for every $g\in G$, there are
+$u_{g,n}\in\U(A^\alpha)$ such that
+\[
+ \lim_n\|u_{g,n}a u_{g,n}^*-\alpha_g(a)\|=0\qquad(a\in A).
+\]
+Here $A^\alpha$ is fixed by the \emph{entire} action. The sequences for
+different $g$ need not satisfy any approximate representation relation.
+This is the property in Izumi's definition and in
+\cite[Definition~2.5]{BS}; it is weaker than approximate representability.
+
+Let $M$ be a finite $0$--$1$ matrix with no zero rows or columns. Write
+$\mathcal O_M$ for its Cuntz--Krieger algebra, with canonical generators
+$s_i$ and mutually orthogonal range projections $p_i=s_i s_i^*$ summing
+to $1$, where $s_i^*s_i=\sum_j M(i,j)p_j$. We use the original workshop
+definition of diagonal quasi-free: the action preserves
+$\operatorname{span}\{s_i\}$ and fixes every $p_i$.
+
+\begin{theorem}\label{thm:ck}
+If $\mathcal O_M$ is simple and purely infinite, every action of a finite
+abelian group on $\mathcal O_M$ by these diagonal quasi-free automorphisms
+is strongly approximately inner.
+\end{theorem}
+
+This answers the full question in \cite[p.~2621, Question~1]{OWR}, without
+the outerness and aperiodicity assumptions of the adjacent positive
+result. The report has bibliographic year 2017 and was published online
+on 5 July 2018. Izumi had already established the standard finite Cuntz
+algebra case without outerness; the precise inspected source is his
+2002 preprint, Proposition~5.6(2) \cite{Izumi}. Barlak--Szab\'o proved the
+outer aperiodic Cuntz--Krieger and graph cases
+\cite[Theorems~1--2]{BS}; these are Corollaries~2.7--2.8 in their arXiv v3.
+
+Our shorter proof uses the general uniqueness theorem of Gabe--Szab\'o,
+first available in 2022 \cite{GS}. It does not assert that they printed
+Theorem~\ref{thm:ck}. The diagonal-inner argument below is the finite-graph
+form of Matsumoto's earlier coboundary and periodic-point mechanism
+\cite[Lemma~5.14 and Proposition~6.4]{Matsumoto}. An alternative explicit
+return-corner proof from the Barlak--Szab\'o theorem is retained in the
+verification material. Its graph corner is a special case of
+Crisp--Gow \cite[Theorem~3.1 in v1]{CG}. These are prior mechanisms.
+The present source audit does not establish priority for an explicit
+older statement of the combined full theorem. In particular, the full
+Zacharias chapter and Izumi's final 2004 typeset body were not available
+in that audit; negative search results give no priority certificate.
+
+\section{Two finite-group facts}
+
+We first record the exact fixed-algebra correction that will be used twice.
+If $x_n$ are unitaries and
+$\max_{h\in G}\|\gamma_h(x_n)-x_n\|\to0$ for a finite-group action
+$\gamma$, then
+\[
+ b_n=|G|^{-1}\sum_{h\in G}\gamma_h(x_n)\in A^\gamma,
+ \qquad \|b_n-x_n\|\longrightarrow0.
+\]
+Thus $b_n$ is eventually invertible and its polar unitary
+$b_n(b_n^*b_n)^{-1/2}$ belongs to $A^\gamma$ and is norm-close to $x_n$.
+Replacing $x_n$ by this unitary preserves any point-norm implementing limit.
+
+\begin{lemma}\label{lem:cocycle}
+Let $G$ be finite abelian and $\beta:G\curvearrowright A$ strongly
+approximately inner. If $d:G\to\U(A)$ is an honest $\beta$-cocycle,
+so $d_{gh}=d_g\beta_g(d_h)$ and $d_1=1$, then
+$\alpha_g=\Ad(d_g)\beta_g$ is strongly approximately inner.
+\end{lemma}
+\begin{proof}
+Fix $g$ and choose $v_n\in\U(A^\beta)$ implementing $\beta_g$ in the
+point-norm limit. Put $t_n=d_gv_n$. These unitaries implement $\alpha_g$
+asymptotically. For $h\in G$, abelianness and the cocycle law give
+\[
+ \alpha_h(t_n)=d_h\beta_h(d_g)v_nd_h^*
+              =d_g\beta_g(d_h)v_nd_h^*.
+\]
+Consequently
+\[
+ \|\alpha_h(t_n)-t_n\|
+   =\|\beta_g(d_h)-v_nd_hv_n^*\|\longrightarrow0.
+\]
+There are only finitely many $h$. Averaging over $\alpha$ and taking the
+polar unitary as above produces unitaries in $A^\alpha$ with the same
+implementing limit.
+\end{proof}
+
+The hypothesis is an actual cocycle law, not a scalar-projective law for
+arbitrary pointwise inner implementers. It imposes no group law on the
+final approximating sequences. The converse follows by applying the lemma
+to the honest $\alpha$-cocycle $g\mapsto d_g^*$.
+The general framework of \cite[Remark~3.2 and Theorem~3.7]{CNS} supplies
+prior duality results for precisely this weaker strong approximate
+innerness property; the displayed elementary proof makes the transfer
+needed here explicit.
+
+\begin{lemma}\label{lem:outer}
+Let $G$ be finite abelian and let $\gamma:G\curvearrowright A$ be a
+pointwise outer action on a unital Kirchberg algebra. Suppose every
+$\gamma_g$ is homotopic to $\mathrm{id}_A$ through unital
+$G$-equivariant homomorphisms. Then $\gamma$ is strongly approximately inner.
+\end{lemma}
+\begin{proof}
+Apply Gabe--Szab\'o's unital equivariant uniqueness theorem
+\cite[Theorem~5.8]{GS} to the cocycle embeddings
+$(\mathrm{id}_A,1)$ and $(\gamma_g,1)$, separately for each $g$.
+Here $G$ is exact; $A$ is separable, unital and exact; the finite-group
+action is amenable; and pointwise outerness implies isometric shift
+absorption by \cite[Proposition~3.14 in v1]{GS}.
+The proposed homotopy is equivariant, so the two embeddings have equal
+$KK^G$ classes. Theorem~5.8 and Definition~1.15 of that source give
+unitaries $u_t\in\U(A)$ with
+\[
+ \Ad(u_t)(a)\longrightarrow\gamma_g(a),\qquad
+ \max_{h\in G}\|\gamma_h(u_t)-u_t\|\longrightarrow0.
+\]
+The second conclusion is the cocycle-defect limit for the two trivial
+cocycles. The target is unital, so these are unitaries in $A$ itself.
+Average and take polar unitaries, then sample times tending to infinity.
+This gives the required sequence in $A^\gamma$.
+\end{proof}
+
+For clarity, the cited v1 locators are Definition~1.15, p.~13;
+Proposition~3.14, p.~29; and Theorem~5.8, pp.~45--46. In v3 the proposition
+is numbered 3.15 and Theorem~5.8 is on p.~46. We use these inspected
+preprint statements, with their version-specific numbers, rather than
+guessing final article numbers. The unital theorem has no UCT hypothesis,
+additional stable-target hypothesis, or requirement that the implementing
+path start at $1$.
+
+\section{Edge phases and the inner kernel}
+
+Let $E$ be a finite strongly connected directed graph which is not a
+directed cycle. Use graph generators $p_v,S_e$ with
+\[
+ S_e^*S_e=p_{r(e)},\qquad
+ p_v=\sum_{s(e)=v}S_eS_e^*.
+\]
+Distinct edges have orthogonal range projections. For a path $\mu$, use
+$S_\mu$ for its product, and include vertices as paths of length zero.
+An edge-diagonal action has the form
+\[
+ \alpha_g(p_v)=p_v,\qquad \alpha_g(S_e)=\chi_e(g)S_e,
+\]
+where $\chi_e:G\to\T$ is a character. Set
+$\chi_\mu=\prod_{e\text{ in }\mu}\chi_e$, with vertex character $1$.
+
+\begin{lemma}\label{lem:inner}
+If $\sigma(S_e)=z_eS_e$ and $\sigma(p_v)=p_v$, then $\sigma$ is inner
+if and only if there are $t_v\in\T$ with
+$z_e=t_{s(e)}\overline{t_{r(e)}}$. In that case
+$\sigma=\Ad(\sum_vt_vp_v)$. The $t_v$ are unique after normalizing one of
+them to $1$.
+\end{lemma}
+\begin{proof}
+Every cycle has an exit: otherwise strong connectivity would make that
+exitless cycle the whole graph. The path diagonal
+$D_E=\overline{\operatorname{span}}\{S_\mu S_\mu^*\}$ is therefore a
+MASA \cite[Theorem~5.2]{HPP}; see also the convention-compatible statement
+in \cite[\S2.1]{CHS}. Since $\sigma$ fixes $D_E$ pointwise, an inner
+implementer $h$ must lie in $\U(D_E)$.
+
+Identify $D_E$ with $C(E^\infty)$, with path-range projections the cylinder
+functions. The relation $hS_\mu=z_\mu S_\mu h$ gives
+$h(\mu x)=z_\mu h(x)$ for every infinite tail $x$ starting at $r(\mu)$.
+For a closed path $\mu$ choose $x=\mu\mu\cdots$. Then $\mu x=x$ and
+$|h(x)|=1$, so $z_\mu=1$.
+
+Fix a base vertex $b$ and directed paths $\theta_v:b\to v$, with
+$\theta_b$ empty. Put $t_v=z_{\theta_v}^{-1}$. If $e:v\to w$, append
+any path $\eta:w\to b$. Both $\theta_v e\eta$ and $\theta_w\eta$ are
+closed, giving $z_{\theta_v}z_e=z_{\theta_w}$ and hence the claimed
+formula. Conversely that formula makes conjugation by $\sum_vt_vp_v$
+agree with $\sigma$ on generators. Two such potentials have ratio
+constant along edges, hence constant by connectivity; normalization gives
+uniqueness.
+\end{proof}
+
+\begin{theorem}\label{thm:graph}
+Every edge-diagonal action of a finite abelian group on $C^*(E)$, for $E$
+as above, is strongly approximately inner.
+\end{theorem}
+\begin{proof}
+Put $A=C^*(E)$, a unital Kirchberg algebra by the standard graph
+simplicity and pure-infiniteness criteria. First suppose the action is
+pointwise outer. For fixed $g$, choose real $a_e$ with
+$e^{ia_e}=\chi_e(g)$. The assignments
+\[
+ \delta_t(p_v)=p_v,\qquad
+ \delta_t(S_e)=e^{ita_e}S_e\quad(0\leq t\leq1)
+\]
+preserve the graph relations and have inverse phases, so give
+automorphisms. They are point-norm continuous, first on generator
+polynomials and then by density. All commute with every $\alpha_h$.
+They form an equivariant homotopy from $\mathrm{id}$ to $\alpha_g$.
+Lemma~\ref{lem:outer} applies. No graph-period condition occurs.
+
+For the general action let
+$K=\{k\in G:\alpha_k\text{ is inner}\}$, the kernel of the homomorphism
+$G\to\operatorname{Out}(A)$. Fix the paths $\theta_v$ in
+Lemma~\ref{lem:inner}, once for all group elements, and define on all of $G$
+\[
+ D_g=\sum_v\chi_{\theta_v}(g)^{-1}p_v.
+\]
+These unitaries form a genuine representation: $D_gD_h=D_{gh}$.
+They are fixed by every $\alpha_h$. Lemma~\ref{lem:inner} gives
+$\alpha_k=\Ad(D_k)$ for $k\in K$. Thus
+\[
+ \beta_g=\Ad(D_g^*)\alpha_g
+\]
+is an edge-diagonal action, trivial on $K$, with phases
+$\chi_{\theta_{s(e)}}(g)\chi_e(g)\chi_{\theta_{r(e)}}(g)^{-1}$.
+It descends to $H=G/K$. This quotient action is pointwise outer:
+if $\beta_g$ is inner, then $\alpha_g=\Ad(D_g)\beta_g$ is inner, hence
+$g\in K$. The outer case proves strong approximate innerness of the
+$H$-action and therefore of its inflation $\beta$, with the same fixed
+algebra. If $H$ is trivial, $\beta$ is trivial and the unit implements
+every $\beta_g$ exactly.
+
+Finally $\beta_g(D_h)=D_h$ and $D_gD_h=D_{gh}$, so $D$ is an honest
+$\beta$-cocycle and $\alpha_g=\Ad(D_g)\beta_g$.
+Lemma~\ref{lem:cocycle} proves the assertion with unitaries in the
+original $A^\alpha$. This also covers $K=G$, where the $D_g$ already
+implement $\alpha_g$ exactly in $A^\alpha$, and covers nonfaithful actions.
+\end{proof}
+
+\section{The original matrix presentation}
+
+\begin{proof}[Proof of Theorem~\ref{thm:ck}]
+Write $\alpha_g(s_i)=\sum_j c_{ji}(g)s_j$. For $j\ne i$, multiply by
+$p_j$: the fixed range condition gives
+$p_j\alpha_g(s_i)=0$, hence $c_{ji}(g)s_j=0$. Thus
+$\alpha_g(s_i)=\chi_i(g)s_i$, where $\chi_i$ is a character by the action
+law. No simultaneous diagonalization is needed for this original
+definition. The broader domain-projection convention in \cite{BS} can
+instead be reduced to eigenvectors using its Proposition~1.8(2).
+
+Let $E$ have vertices $1,\ldots,n$ and an edge $i\to j$ whenever
+$M(i,j)=1$. In $\mathcal O_M$ put $T_{ij}=s_ip_j$ for these edges.
+Then
+\[
+ T_{ij}^*T_{ij}=p_j,\qquad
+ \sum_{j:M(i,j)=1}T_{ij}T_{ij}^*=p_i.
+\]
+These give a graph Cuntz--Krieger family. Conversely the outgoing sums
+$s_i=\sum_{j:M(i,j)=1}T_{ij}$ in $C^*(E)$ satisfy the matrix relations;
+cross terms vanish since the edge initial projections $p_j$ are
+orthogonal. The two formulas are inverse on generators. Thus
+$\mathcal O_M\cong C^*(E)$ equivariantly, with edge phases $\chi_i$.
+
+Essentiality gives both no sinks and no sources. In this finite setting,
+simplicity forces strong connectivity. Indeed, if the condensation graph
+has more than one component, choose a terminal component $T$ and a
+different source component $S$. Since the original graph has no sources,
+$S$ contains a cycle. The hereditary set $T$ is nonempty and its saturated
+closure cannot absorb that cycle: at each stage, every still excluded
+cycle vertex has its next cycle edge outside the set. Its saturated
+closure is therefore proper. The associated nonzero proper graph ideal
+contradicts simplicity. This uses the standard saturated-hereditary ideal
+construction for graph algebras \cite{KPR}.
+
+A directed cycle has algebra $M_m(C(\T))$, so is excluded by the
+hypotheses. Theorem~\ref{thm:graph} applies and proves the full assertion.
+\end{proof}
+
+\noindent\textbf{Scope.}
+All sequences obtained above lie exactly in the fixed algebra of the
+whole original action. The proof does not replace this condition by
+ordinary approximate innerness or by fixedness under a single group
+element. It uses neither matrix primitivity nor action faithfulness.
+The verification package preserves the longer return-corner deduction
+and the versioned source checks separately from this note; neither
+AI review nor those diagnostics certify novelty or replace the cited
+mathematical inputs.
+
+\begin{thebibliography}{10}\small
+\bibitem{OWR} S.~Barlak, Diagonal quasi-free automorphisms of
+Cuntz--Krieger algebras, in \emph{Oberwolfach Reports} \textbf{14}
+(2017), no.~3, report 42, p.~2621.
+\href{https://doi.org/10.4171/OWR/2017/42}{doi:10.4171/OWR/2017/42}.
+
+\bibitem{BS} S.~Barlak and G.~Szab\'o, On diagonal quasi-free
+automorphisms of simple Cuntz--Krieger algebras,
+\emph{Math. Scand.} \textbf{125} (2019), 210--226.
+\href{https://doi.org/10.7146/math.scand.a-114823}{doi:10.7146/math.scand.a-114823}.
+Versioned source: \href{https://arxiv.org/abs/1708.08258v3}{arXiv:1708.08258v3}.
+
+\bibitem{CHS} R.~Conti, J.~H.~Hong and W.~Szyma\'nski, Endomorphisms
+of graph algebras, \emph{J. Funct. Anal.} \textbf{263} (2012), 2529--2554.
+\href{https://doi.org/10.1016/j.jfa.2012.08.024}{doi:10.1016/j.jfa.2012.08.024}.
+Versioned source: \href{https://arxiv.org/abs/1101.4210v3}{arXiv:1101.4210v3}, \S2.1, p.~5.
+
+\bibitem{CNS} J.~Christensen, R.~Neagu and G.~Szab\'o, On a Rokhlin
+property for abelian group actions on $C^*$-algebras,
+\emph{J. Noncommut. Geom.}, published online 10 December 2025.
+\href{https://doi.org/10.4171/JNCG/648}{doi:10.4171/JNCG/648}.
+Inspected source: \href{https://arxiv.org/abs/2504.12730v2}{arXiv:2504.12730v2},
+Remark~3.2, p.~11; Theorem~3.7, pp.~15--16.
+
+\bibitem{CG} T.~Crisp and D.~Gow, Contractible subgraphs and Morita
+equivalence of graph $C^*$-algebras, \emph{Proc. Amer. Math. Soc.}
+\textbf{134} (2006), 2003--2013.
+\href{https://doi.org/10.1090/S0002-9939-06-08216-5}{doi:10.1090/S0002-9939-06-08216-5}.
+Inspected source: \href{https://arxiv.org/abs/math/0404542v1}{arXiv:math/0404542v1},
+29 April 2004, Theorem~3.1.
+
+\bibitem{GS} J.~Gabe and G.~Szab\'o, The dynamical Kirchberg--Phillips
+theorem, \emph{Acta Math.} \textbf{232} (2024), 1--77.
+\href{https://doi.org/10.4310/ACTA.2024.v232.n1.a1}{doi:10.4310/ACTA.2024.v232.n1.a1}.
+Inspected sources: \href{https://arxiv.org/abs/2205.04933v1}{arXiv:2205.04933v1},
+10 May 2022, Definition~1.15, Proposition~3.14, Theorem~5.8;
+\href{https://arxiv.org/abs/2205.04933v3}{v3}, Proposition~3.15, Theorem~5.8.
+
+\bibitem{HPP} A.~Hopenwasser, J.~R.~Peters and S.~C.~Power,
+Subalgebras of graph $C^*$-algebras, \emph{New York J. Math.}
+\textbf{11} (2005), 351--386, Theorem~5.2, p.~360.
+\href{https://nyjm.albany.edu/j/2005/11-18.html}{Publisher article}.
+The paper's source/range convention is reversed from ours.
+
+\bibitem{Izumi} M.~Izumi, Finite group actions on $C^*$-algebras with
+the Rohlin property, I, \emph{Duke Math. J.} \textbf{122} (2004), 233--280.
+\href{https://doi.org/10.1215/S0012-7094-04-12221-3}{doi:10.1215/S0012-7094-04-12221-3}.
+Inspected source: \href{https://www.math.kyoto-u.ac.jp/preprint/2002/4.ps}{Kyoto 2002 preprint no.~4},
+Definition~3.6 and Remark~3.7, p.~13; Proposition~5.6(2), pp.~28--29.
+
+\bibitem{KPR} A.~Kumjian, D.~Pask and I.~Raeburn,
+Cuntz--Krieger algebras of directed graphs, \emph{Pacific J. Math.}
+\textbf{184} (1998), 161--174.
+\href{https://doi.org/10.2140/pjm.1998.184.161}{doi:10.2140/pjm.1998.184.161}.
+
+\bibitem{Matsumoto} K.~Matsumoto, On automorphisms of $C^*$-algebras
+associated with subshifts, \emph{J. Operator Theory} \textbf{44} (2000),
+91--112, Lemma~5.14, p.~109, and Proposition~6.4, p.~111.
+\href{https://jot.theta.ro/jot/archive/2000-044-001/2000-044-001-005.pdf}{Publisher PDF}.
+\end{thebibliography}
+\end{document}

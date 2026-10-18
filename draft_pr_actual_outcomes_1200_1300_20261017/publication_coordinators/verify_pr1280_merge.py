@@ -22,8 +22,8 @@ def main():
     wanted=u['expected_identity'](pub,tracker,files,body)
     receipt=load(P/'PR_BRANCH_RECEIPT.json'); head=u['validate_saved'](receipt,wanted,files)
     need(receipt['body_readback_verified'] and receipt['remote_readback_verified'],'Incomplete branch/body receipt')
-    live=json.loads(subprocess.check_output(['gh','pr','view','1280','--repo','AlecKriebel/Math','--json','state,headRefOid,headRefName,mergeCommit,mergedAt,body,url'],text=True))
-    need(live['url']=='https://github.com/AlecKriebel/Math/pull/1280' and live['state']=='MERGED' and live['headRefOid']==head and live['headRefName']==u['BRANCH'] and live['body']==body,'Merged PR state/head/body differs')
+    live=json.loads(subprocess.check_output(['gh','pr','view','1280','--repo','AlecKriebel/Math','--json','state,headRefOid,headRefName,baseRefName,mergeCommit,mergedAt,body,url'],text=True))
+    need(live.get('baseRefName')=='main' and live['url']=='https://github.com/AlecKriebel/Math/pull/1280' and live['state']=='MERGED' and live['headRefOid']==head and live['headRefName']==u['BRANCH'] and live['body']==body,'Merged PR state/head/body differs')
     merge=live['mergeCommit']['oid']
     git('fetch','--no-auto-maintenance','--no-tags','--no-write-fetch-head','origin',merge)
     git('update-ref','refs/math-audit/1200-1300-20261017/merged-pr1280',merge)
@@ -57,7 +57,7 @@ def main():
         doi=inspected.get('doi_resolution')
     need(isinstance(doi,dict) and doi.get('status')=='resolved' and doi.get('http_status')==200,'DOI has not resolved successfully')
     now=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    save(P/'tracker/POSTMERGE_READBACK.json',{'at_utc':now,'spreadsheetId':t['SID'],'gid':observed_tab['sheetId'],'observed_sheet_properties':observed_tab,'range':tracker['updatedRange'],'values':[matches[0][1]],'readback_verified':True,'matching_problem_rows':1,'uniqueness_identifiers':['canonical DOI URL','bare DOI','numeric problem ID','OWR alias','PR URL']})
+    save(P/'tracker/POSTMERGE_READBACK.json',{'at_utc':now,'spreadsheetId':t['SID'],'gid':observed_tab['sheetId'],'observed_sheet_properties':observed_tab,'range':tracker['updatedRange'],'values':[matches[0][1]],'readback_verified':True,'matching_problem_rows':1,'uniqueness_identifiers':['canonical DOI URL','bare DOI','numeric problem ID','OWR alias','PR URL','explicit PR marker']})
     merged={'at_utc':now,'pr':1280,'state':'MERGED','merged_at':live['mergedAt'],'merge_commit':merge,'reviewed_head':head,'parents':parents,'final_body_exact':True,'all14_merged_files_exact':True,'files':checks,'shared_index_modified':False,'checkout_branch':'main','method':'Expected-head merge; immutable merge object fetched into own ref, fourteen exact blobs and unique exact full tracker row checked.'}
     save(P/'MERGE_RECEIPT.json',merged)
     context=u['current_context']()

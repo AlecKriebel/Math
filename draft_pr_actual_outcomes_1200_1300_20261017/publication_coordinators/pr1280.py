@@ -36,8 +36,8 @@ def authenticate_release():
  return g
 
 def live_preflight():
- s=json.loads((A/'SUBMITTED_SNAPSHOT.json').read_text());l=json.loads(subprocess.check_output(['gh','pr','view','1280','--repo','AlecKriebel/Math','--json','state,isDraft,headRefOid,headRefName,body'],text=True))
- require(l['state']=='OPEN' and l['isDraft'] is True and l['headRefOid']==s['head'] and l['headRefName']==s['branch'] and hashlib.sha256(l['body'].encode()).hexdigest()==s['body_sha256'],'Live original draft/head/body changed; no deposit mutation')
+ s=json.loads((A/'SUBMITTED_SNAPSHOT.json').read_text());l=json.loads(subprocess.check_output(['gh','pr','view','1280','--repo','AlecKriebel/Math','--json','state,isDraft,headRefOid,headRefName,baseRefName,body'],text=True))
+ require(l.get('baseRefName')=='main' and l['state']=='OPEN' and l['isDraft'] is True and l['headRefOid']==s['head'] and l['headRefName']==s['branch'] and hashlib.sha256(l['body'].encode()).hexdigest()==s['body_sha256'],'Live original draft/head/body changed; no deposit mutation')
  remote=subprocess.check_output(['git','ls-remote','origin','refs/heads/'+s['branch']],cwd=REPO,text=True).split();require(remote and remote[0]==s['head'],'Live branch changed; no deposit mutation')
  t=runpy.run_path(str(P/'append_tracker.py'));m=t['call'](['spreadsheets','get'],{'spreadsheetId':t['SID'],'fields':'sheets.properties'});tabs=[e['properties'] for e in m.get('sheets',[]) if e.get('properties',{}).get('sheetId')==t['GID']];require(len(tabs)==1 and tabs[0].get('title')=='Math Puzzles','Tracker designated ID/title changed')
  rows=t['call'](['spreadsheets','values','get'],{'spreadsheetId':t['SID'],'range':"'Math Puzzles'!A:D",'valueRenderOption':'UNFORMATTED_VALUE'}).get('values',[])

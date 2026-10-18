@@ -9,11 +9,16 @@ import contextlib,copy,datetime,hashlib,importlib.util,io,json,os,shutil,subproc
 ROOT=Path(__file__).resolve().parent
 COORDINATOR=ROOT.parents[2]/'publication_coordinators/pr1280.py'
 POSTMERGE=ROOT.parents[2]/'publication_coordinators/verify_pr1280_merge.py'
-REPORT_ROOT=ROOT.parent/'reviews/workflow_tooling'
+READY=ROOT.parent/'_local/ready_and_merge.py'
+REPORT_ROOT=ROOT.parent/'reviews/workflow_revision1'
 NAMES=['prepare_package.py','build_package.py','compile_note.py','verification/verify.py','append_tracker.py','update_pr_publication.py','check_public_downloads.py','workflow_regression.py']
 DEPLOY={name:(('verification_verify.py' if (ROOT/'verification_verify.py').exists() else name) if name=='verification/verify.py' else name) for name in NAMES}
 ALIAS_VARIANTS={'alias':'oWr15585006','aliasHyphen':'OWR-15585-006','aliasSpace':'oWR 15585 006','aliasUnderscore':'OWR_15585_006','aliasMixed':'oWr - 15585_006','aliasUnpadded':'OWR-15585-6','aliasZeroPad':'OWR_0015585_0006','aliasZeroPadCompact':'OWR00155850006'}
 ALIAS_NEAR_COLLISIONS={'nearHyphen':'OWR-15585-0069','nearSpace':'OWR 15585 0069','nearUnderscore':'OWR_15585_0069','nearCompact':'OWR155850069','nearWrongGroup':'OWR-115585-006','nearTrailingLetter':'OWR-15585-006x','nearLeadingLetter':'XOWR-15585-006'}
+PROBLEM_IDENTITIES={'numeric':'30003587','numericProse':'Problem (30003587), checked.',**ALIAS_VARIANTS,'PR':'https://github.com/AlecKriebel/Math/pull/1280','PRColon':'PR:https://github.com/AlecKriebel/Math/pull/1280','PRFiles':'https://github.com/AlecKriebel/Math/pull/1280/files','PRCommits':'https://github.com/AlecKriebel/Math/pull/1280/commits','PRChecks':'https://github.com/AlecKriebel/Math/pull/1280/checks','PRQuery':'https://github.com/AlecKriebel/Math/pull/1280?extra','PRFragment':'https://github.com/AlecKriebel/Math/pull/1280#extra','PRProse':'Reviewed (https://github.com/AlecKriebel/Math/pull/1280).','PRMarker':'PR1280','PRSpace':'PR 1280','PRHash':'PR#1280','PRSpaceHash':'PR #1280','PRMarkerProse':'Reviewed PR1280; accepted.','PRSpaceProse':'Reviewed (PR 1280).','PRHashProse':'Reviewed PR #1280, accepted.'}
+DOI_IDENTITIES={'DOIColon':'DOI:10.5281/zenodo.123;','DOIURLColon':'See:https://doi.org/10.5281/zenodo.123;','DOIURLDownload':'https://doi.org/10.5281/zenodo.123?download=1','DOIURLQuery':'https://doi.org/10.5281/zenodo.123?extra','DOIURLFragment':'https://doi.org/10.5281/zenodo.123#extra','bareDOI':'  10.5281/zenodo.123  ','DOIURL':'  https://doi.org/10.5281/zenodo.123  ','bareDOIProse':'Published result (10.5281/zenodo.123), checked.','DOIURLProse':'Published result https://doi.org/10.5281/zenodo.123.'}
+IDENTITY_NEAR_COLLISIONS={'nearPRSubviewSuffix':'PR:https://github.com/AlecKriebel/Math/pull/1280/filesx','nearPRSubviewNumber':'https://github.com/AlecKriebel/Math/pull/12800/files','nearPRColonNumber':'PR:https://github.com/AlecKriebel/Math/pull/12800','nearDOIColonSuffix':'DOI:10.5281/zenodo.1234;','nearDOIURLColonSuffix':'See:https://doi.org/10.5281/zenodo.1234;','nearDOIQueryNumber':'https://doi.org/10.5281/zenodo.1234?download=1','bareProblemHash':'#1280','bareProblemHashProse':'Math problem #1280, independent.',**ALIAS_NEAR_COLLISIONS,'nearNumericSuffix':'300035870','nearNumericPrefix':'130003587','nearNumericLetterPrefix':'X30003587','nearNumericLetterSuffix':'30003587x','nearPRURLSuffix':'https://github.com/AlecKriebel/Math/pull/12800','nearPRURLPrefix':'xhttps://github.com/AlecKriebel/Math/pull/1280','nearPRURLLetter':'https://github.com/AlecKriebel/Math/pull/1280x','nearPRURLPath':'https://github.com/AlecKriebel/Math/pull/1280/extra','nearPRMarkerSuffix':'PR12800','nearPRSpaceSuffix':'PR 12800','nearPRHashSuffix':'#12800','nearPRMarkerPrefix':'XPR1280','nearPRMarkerLetter':'PR1280x','nearPRHashPrefix':'X#1280','nearDOISuffix':'10.5281/zenodo.1234','nearDOIPrefix':'x10.5281/zenodo.123','nearDOILetter':'10.5281/zenodo.123x','nearDOIPath':'10.5281/zenodo.123/extra','nearDOIDot':'10.5281/zenodo.123.1','nearDOIHyphen':'10.5281/zenodo.123-extra','nearDOIURLSuffix':'https://doi.org/10.5281/zenodo.1234','nearDOIURLPrefix':'xhttps://doi.org/10.5281/zenodo.123','nearDOIURLPath':'https://doi.org/10.5281/zenodo.123/extra','otherDOI':'An unrelated DOI 10.5281/zenodo.456.','otherDOIURL':'An unrelated DOI https://doi.org/10.5281/zenodo.456.'}
+
 
 def need(value,message):
     if not value:raise RuntimeError(message)
@@ -34,6 +39,7 @@ def fixture(folder):
     for deployed,source in DEPLOY.items():
         path=pub/deployed;path.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/source,path)
     coordinator=pub.parents[2]/'publication_coordinators/pr1280.py';coordinator.parent.mkdir();shutil.copyfile(COORDINATOR,coordinator);postmerge=coordinator.parent/'verify_pr1280_merge.py';shutil.copyfile(POSTMERGE,postmerge)
+    ready=audit/'_local/ready_and_merge.py';ready.parent.mkdir();shutil.copyfile(READY,ready)
     v=load(pub/'verification/verify.py');submitted=audit/'submitted';submitted.mkdir()
     for name in sorted(v.NAMES-{'MANIFEST.json'}):
         (submitted/name).write_text(json.dumps({'synthetic_historical_fixture':name})+'\n' if name.endswith('.json') else 'SYNTHETIC HISTORICAL FIXTURE '+name+'\n')
@@ -311,16 +317,26 @@ def publication_and_tracker_controls(f):
 def update_controls(f,pubrecord,tracker):
     pub=f['pub'];u=load(pub/'update_pr_publication.py');files,publication,note=u.desired_files(f['build'],pubrecord,tracker,f['snapshot']);need(len(files)==14 and len(publication)==5,'wrong intended9+5 scope')
     body=note+'\nThe current nine-file MANIFEST.json binds the eight other current edition records through files dictionary keys and bytes/sha256; its documentary correction and immutable original snapshot are separately authenticated. publication_20261017/ adds the reviewed preprint, portable verification archive, matching deposit metadata, publication receipt and README. Original historical files are preserved in the portable archive.\n'
-    wanted=u.expected_identity(pubrecord,tracker,files,body);commit='a'*40;calls=[];mode={'bad':None};state={'headRefOid':commit,'headRefName':u.BRANCH,'state':'OPEN','isDraft':True,'body':body}
+    wanted=u.expected_identity(pubrecord,tracker,files,body);commit='a'*40;calls=[];mode={'bad':None};state={'headRefOid':commit,'headRefName':u.BRANCH,'baseRefName':'main','state':'OPEN','isDraft':True,'body':body}
     def git(*args,data=None):
         calls.append(args)
         if args==('branch','--show-current'):return b'main\n'
         if args[0]=='rev-list':return (commit+' '+('b'*40 if mode['bad']=='parent' else u.ORIGINAL)+'\n').encode()
         if args[0]=='diff-tree':return ('\n'.join(sorted(files)+(['foreign/path'] if mode['bad']=='paths' else []))+'\n').encode()
         if args[0]=='show':return b'wrong' if mode['bad']=='bytes' else files[args[1].split(':',1)[1]]
-        if args[0]=='ls-remote':return (commit+' refs/heads/'+u.BRANCH+'\n').encode()
+        if args[0]=='ls-remote':return ((u.ORIGINAL if mode.get('remote_original') else commit)+' refs/heads/'+u.BRANCH+'\n').encode()
         raise RuntimeError('Forbidden unmocked/new Git operation '+repr(args))
-    u.git=git;u.pr=lambda:copy.deepcopy(state);intent={**wanted,'commit':commit};u.validate_saved(intent,wanted,files);badkeys=[]
+    u.git=git;actual_pr=u.pr;query_calls=[]
+    def query(args,**kwargs):query_calls.append(args);return json.dumps(state)
+    u.subprocess=types.SimpleNamespace(check_output=query)
+    need(actual_pr()['baseRefName']=='main','central PR query rejected main')
+    base_rejections=[]
+    for base in ['other',None]:
+        if base is None:state.pop('baseRefName')
+        else:state['baseRefName']=base
+        base_rejections.append(reject(actual_pr,'central_base_'+str(base)))
+    state['baseRefName']='main';need(all('baseRefName' in args[args.index('--json')+1].split(',') for args in query_calls),'central live query omitted baseRefName')
+    u.pr=lambda:copy.deepcopy(state);intent={**wanted,'commit':commit};u.validate_saved(intent,wanted,files);badkeys=[]
     for key in wanted:
         bad=copy.deepcopy(intent)
         if key=='files':bad[key][sorted(files)[0]]['sha256']='0'*64
@@ -332,23 +348,173 @@ def update_controls(f,pubrecord,tracker):
     for key in ['parent','paths','bytes']:
         mode['bad']=key;badkeys.append(reject(lambda:u.validate_saved(intent,wanted,files),'actual_tree_'+key))
     mode['bad']=None;save(pub/'PR_BRANCH_INTENT.json',intent);capture(u.main);capture(u.main)
-    need(all(args[0] in {'branch','rev-list','diff-tree','show','ls-remote'} for args in calls),'recovery made Git mutation')
+    # Direct pr stubs deliberately bypass the central guard: every phase must
+    # independently reject a changed or absent base before accepting its state.
+    saved_receipt=(pub/'PR_BRANCH_RECEIPT.json').read_bytes()
+    for base in ['other',None]:
+        if base is None:state.pop('baseRefName')
+        else:state['baseRefName']=base
+        base_rejections.append(reject(lambda:capture(u.main),'branch_initial_base_'+str(base)))
+        base_rejections.append(reject(lambda:u.synchronize_pr_body(commit,body,'0'*64),'body_before_base_'+str(base)))
+        need((pub/'PR_BRANCH_RECEIPT.json').read_bytes()==saved_receipt,'wrong base changed completed receipt')
+    state['baseRefName']='main'
+    for base in ['other',None]:
+        reads=[]
+        def changed_base():
+            out=copy.deepcopy(state)
+            if reads:
+                if base is None:out.pop('baseRefName')
+                else:out['baseRefName']=base
+            reads.append(True);return out
+        u.pr=changed_base;base_rejections.append(reject(lambda:u.synchronize_pr_body(commit,body,'0'*64),'body_after_base_'+str(base)))
+        need(len(reads)==2,'body post-readback base control did not reach second query')
+    (pub/'PR_BRANCH_RECEIPT.json').unlink();state['headRefOid']=u.ORIGINAL;mode['remote_original']=True
+    for base in ['other',None]:
+        reads=[]
+        u.pr=changed_base;base_rejections.append(reject(lambda:capture(u.main),'branch_prepush_base_'+str(base)))
+        need(len(reads)==2 and not (pub/'PR_BRANCH_RECEIPT.json').exists(),'prepush base control did not stop before receipt')
+    mode['remote_original']=False;state['headRefOid']=commit;state['baseRefName']='main';u.pr=lambda:copy.deepcopy(state);(pub/'PR_BRANCH_RECEIPT.json').write_bytes(saved_receipt)
+    need(all(args[0] in {'branch','rev-list','diff-tree','show','ls-remote'} for args in calls),'recovery/base rejection made Git mutation')
     bodycalls=[];state['body']='synthetic original body';original=hashlib.sha256(state['body'].encode()).hexdigest();(pub/'PR_BODY_FINAL.md').write_text(body)
     def edit(args,**kwargs):bodycalls.append(args);state['body']=body;return types.SimpleNamespace(returncode=1,stderr='synthetic lost edit response')
     u.subprocess=types.SimpleNamespace(run=edit);reject(lambda:u.synchronize_pr_body(commit,body,original),'lost_body_response');u.synchronize_pr_body(commit,body,original);need(len(bodycalls)==1,'lost body response repeated already accepted edit')
     state['body']='unknown outside edit';reject(lambda:u.synchronize_pr_body(commit,body,original),'outside_body_change')
-    return {'desired_files':len(files),'current_edition':9,'publication_additions':5,'stale_identity_and_actual_tree_rejected':badkeys,'complete_update_main_saved_intent_recovery_and_completed_readback':True,'body_lost_response_exact_readback_and_outside_change':True,'no_index_or_force_or_git_mutation_in_test':True,'fresh_object_construction_not_executed':'Actual Git object/tree creation and branch push remain a later integration operation.'}
+    return {'desired_files':len(files),'current_edition':9,'publication_additions':5,'stale_identity_and_actual_tree_rejected':badkeys,'complete_update_main_saved_intent_recovery_and_completed_readback':True,'body_lost_response_exact_readback_and_outside_change':True,'central_and_explicit_phase_base_rejections':base_rejections,'no_index_or_force_or_git_mutation_in_test':True,'fresh_object_construction_not_executed':'Actual Git object/tree creation and branch push remain a later integration operation.'}
+
+def ready_controls(f):
+    """Real guarded ready main and full operative updater; services/Git mocked."""
+    pub=f['pub'];r=load(f['audit']/'_local/ready_and_merge.py');u=load(pub/'update_pr_publication.py').__dict__
+    publication=json.loads((pub/'PUBLICATION_RECEIPT.json').read_text());tracker=json.loads((pub/'tracker/TRACKER_RECEIPT.json').read_text())
+    files,_,_=u['desired_files'](f['build'],publication,tracker,f['snapshot']);body=(pub/'PR_BODY_FINAL.md').read_text();head='a'*40
+    baseline={path:path.read_bytes() for path in f['audit'].rglob('*') if path.is_file()}
+    attempts=['READY_REQUEST_INTENT.json','MERGE_REQUEST_INTENT.json','READY_COMMAND_RECEIPT.json','MERGE_COMMAND_RECEIPT.json']
+    results=[];mode={};state={};events=[];reads=[]
+    def reset():
+        for name in attempts:
+            path=pub/name
+            if path.exists() or path.is_symlink():path.unlink()
+        for path,data in baseline.items():
+            if path.is_symlink():path.unlink()
+            if not path.exists() or path.read_bytes()!=data:path.write_bytes(data)
+        state.clear();state.update({'url':r.URL,'state':'OPEN','isDraft':True,'headRefOid':head,'headRefName':r.BRANCH,'baseRefName':'main','body':body,'files':[{'path':name} for name in sorted(files)]})
+        mode.clear();events.clear();reads.clear()
+        u['main']=actual_main
+    def git(*args,data=None):
+        reads.append(args)
+        if args==('branch','--show-current'):return b'main\n'
+        if args[0]=='rev-list':return (head+' '+mode.get('parents',u['ORIGINAL'])+'\n').encode()
+        if args[0]=='diff-tree':return ('\n'.join(sorted(files)+mode.get('extra_paths',[]))+'\n').encode()
+        if args[0]=='show':
+            name=args[1].split(':',1)[1]
+            return b'CORRUPT ACTUAL COMMIT BLOB' if mode.get('blob')==name else files[name]
+        if args[0]=='ls-remote':return (mode.get('remote',head)+' refs/heads/'+r.BRANCH+'\n').encode()
+        raise RuntimeError('Forbidden Git mutation in ready regression '+repr(args))
+    def pr():return copy.deepcopy(state)
+    u['git']=git;u['pr']=pr
+    # Even a missing completed receipt cannot fall through into updater writes.
+    def forbidden(*args,**kwargs):raise RuntimeError('No subprocess mutation permitted in ready fixture')
+    u['subprocess']=types.SimpleNamespace(run=forbidden,check_output=forbidden)
+    actual_main=u['main']
+    class Service:
+        def live(self):
+            if mode.get('live_hook'):mode['live_hook']()
+            return copy.deepcopy(state)
+        def ready(self):
+            events.append(('ready',head));state['isDraft']=False
+            if mode.get('after_ready'):mode['after_ready']()
+            if mode.get('ready_unknown'):raise TimeoutError('Synthetic accepted ready with lost response')
+            return types.SimpleNamespace(returncode=mode.get('ready_return',0),stdout='fixture ready',stderr='')
+        def merge(self,expected):
+            events.append(('merge',expected));need(expected==head,'merge omitted expected head')
+            if not mode.get('merge_unaccepted'):state['state']='MERGED'
+            if mode.get('merge_unknown'):raise TimeoutError('Synthetic accepted merge with lost response')
+            return types.SimpleNamespace(returncode=mode.get('merge_return',0),stdout='fixture merge',stderr='')
+    service=Service()
+    def invoke():return r.guarded_main(u,service)
+    def mutate_json(name,key,value):
+        path=pub/name;obj=json.loads(path.read_text());obj[key]=value;save(path,obj)
+    def negative(label,change):
+        reset();change();reject(invoke,'ready_'+label);need(not events,'Invalid ready case mutated a service: '+label);results.append(label)
+    reset();result=invoke();need(events==[('ready',head),('merge',head)] and result['new_merge_requests']==1,'Valid ready/expected-head merge did not occur exactly once')
+    recovered=invoke();need(recovered['status']=='existing_attempt_read_only_reconciliation' and events==[('ready',head),('merge',head)],'Completed attempt retried a mutation')
+    positives=['draft_ready_merge_once_and_readonly_reconcile']
+    reset();state['isDraft']=False;invoke();need(events==[('merge',head)],'Already-ready positive changed draft again');positives.append('already_ready_merge_once')
+    for name in ['PR_BRANCH_RECEIPT.json','PR_BRANCH_INTENT.json','PR_BODY_FINAL.md']:
+        negative('missing_'+name,lambda name=name:(pub/name).unlink())
+        def symlink(name=name):
+            path=pub/name;path.unlink();path.symlink_to(pub/'BUILD_RECEIPT.json')
+        negative('symlink_'+name,symlink)
+    negative('forged_minimal_receipt',lambda:save(pub/'PR_BRANCH_RECEIPT.json',{'commit':head,'branch':r.BRANCH,'paths':sorted(files),'body_readback_verified':True,'remote_readback_verified':True,'operation_stage':'reviewed_branch_and_final_body_verified'}))
+    for name in ['PR_BRANCH_RECEIPT.json','PR_BRANCH_INTENT.json']:
+        wanted=json.loads(baseline[pub/name])
+        for key in u['expected_identity'](publication,tracker,files,body):
+            def bad(name=name,key=key,wanted=wanted):
+                value=copy.deepcopy(wanted[key])
+                if isinstance(value,dict):value={}
+                elif isinstance(value,list):value=[]
+                elif isinstance(value,bool):value=not value
+                elif isinstance(value,int):value+=1
+                else:value='CORRUPT IDENTITY'
+                mutate_json(name,key,value)
+            negative(name+'_'+key,bad)
+        negative(name+'_commit',lambda name=name:mutate_json(name,'commit','b'*40))
+    for key in ['body_readback_verified','remote_readback_verified','operation_stage']:
+        negative('completed_'+key,lambda key=key:mutate_json('PR_BRANCH_RECEIPT.json',key,False))
+    for name in sorted(files):negative('blob_'+name,lambda name=name:mode.update(blob=name))
+    for label,parents in [('no_parent',''),('wrong_parent','b'*40),('two_parents',u['ORIGINAL']+' '+'b'*40)]:negative(label,lambda parents=parents:mode.update(parents=parents))
+    negative('foreign_changed_path',lambda:mode.update(extra_paths=['foreign/path']))
+    negative('body_control',lambda:(pub/'PR_BODY_FINAL.md').write_text('FORGED BODY'))
+    for key,value in [('url','https://github.com/AlecKriebel/Math/pull/12800'),('state','CLOSED'),('headRefOid','b'*40),('headRefName','other'),('baseRefName','other'),('body','FORGED LIVE BODY'),('isDraft',None),('files',[{'path':name} for name in sorted(files)[:-1]])]:negative('live_'+key,lambda key=key,value=value:state.update({key:value}))
+    negative('live_base_missing',lambda:state.pop('baseRefName'))
+    negative('live_duplicate_paths',lambda:state.update(files=[{'path':sorted(files)[0]}]*14))
+    negative('remote_head',lambda:mode.update(remote='b'*40))
+    for name,key,value in [('PUBLICATION_RECEIPT.json','state','draft'),('PUBLICATION_RECEIPT.json','doi','10.5281/zenodo.124'),('PUBLICATION_RECEIPT.json','metadata_normalizations',[{}]),('tracker/TRACKER_RECEIPT.json','readback_verified',False),('tracker/TRACKER_RECEIPT.json','row',['wrong','','','']),('PUBLIC_DOWNLOAD_VERIFICATION.json','all_supplied_metadata_exact',False),('PUBLIC_DOWNLOAD_VERIFICATION.json','files',[])]:negative(name+'_'+key,lambda name=name,key=key,value=value:mutate_json(name,key,value))
+    negative('artifact_bytes',lambda:(pub/f['build']['pdf']['path']).write_bytes(b'CORRUPT PDF'))
+    negative('final_gate',lambda:mutate_json('FINAL_REVIEW_GATE.json','status','fail'))
+    for name in ['PR_BRANCH_RECEIPT.json','PR_BRANCH_INTENT.json','PR_BODY_FINAL.md']:
+        def during(name=name):
+            def wrapped():
+                actual_main();path=pub/name;path.write_bytes(path.read_bytes()+b'\n')
+            u['main']=wrapped
+        negative('control_changed_during_auth_'+name,during)
+    reset()
+    # Authentication is repeated immediately before both service boundaries.
+    def after_ready():state['baseRefName']='other'
+    mode['after_ready']=after_ready;reject(invoke,'retarget_after_ready');need(events==[('ready',head)],'Retargeted PR merged');results.append('retarget_after_ready_blocks_merge')
+    for kind in ['ready','merge']:
+        reset();mode[kind+'_unknown']=True
+        reject(invoke,'uncertain_'+kind);before=list(events);recovery=invoke();need(events==before and recovery['new_ready_requests']==0 and recovery['new_merge_requests']==0,'Uncertain request was retried');positives.append('uncertain_'+kind+'_readonly_recovery')
+    reset();mode.update(merge_unaccepted=True,merge_return=1);reject(invoke,'failed_merge');before=list(events);invoke();need(events==before,'Failed unaccepted merge retried');positives.append('failed_merge_readonly_recovery')
+    reset()
+    def race():
+        if mode.get('raced'):return
+        # The second service read follows the second complete authentication.
+        mode['live_count']=mode.get('live_count',0)+1
+        if mode['live_count']==2:
+            mode['raced']=True;save(pub/'READY_REQUEST_INTENT.json',{'concurrent_fixture':True})
+    mode['live_hook']=race;reject(invoke,'exclusive_ready_intent_race');need(not events,'Concurrent ready intent allowed mutation');results.append('exclusive_ready_intent_race')
+    reset();auth=r.authenticate_completed(u)
+    need(len(auth['paths'])==14 and all(args[0] in {'branch','rev-list','diff-tree','show','ls-remote'} for args in reads),'Ready validator omitted exact intended tree checks or made Git mutation')
+    # Service query shape is checked independently from its mocked state.
+    seen=[];original_subprocess=r.subprocess
+    r.subprocess=types.SimpleNamespace(check_output=lambda args,**kwargs:(seen.append(args) or json.dumps(state)))
+    try:r.Services().live()
+    finally:r.subprocess=original_subprocess
+    need('baseRefName' in seen[0][seen[0].index('--json')+1].split(','),'Ready live query omitted baseRefName')
+    reset()
+    return {'full_operative_update_main_reexecuted':True,'all_fourteen_commit_blobs_corrupted_separately':14,'single_original_parent_required':True,'negative_controls':results,'positive_controls':positives,'base_query_and_phase_checked':True,'all_external_operations_mocked':True,'existing_attempts_never_mutate':True}
 
 def identity_matrix(folder):
     """Current operative preflight/append predicates in every one of four cells."""
-    folder.mkdir(parents=True);out=[]
+    folder.mkdir(parents=True);out=[];previous=None
     context={'title':'SYNTHETIC IDENTITY MATRIX','tracker':{'original_problem':'30003587 (OWR15585006); https://github.com/AlecKriebel/Math/pull/1280','notes':'Synthetic notes'}}
     pub={'environment':'production','state':'published','metadata_normalizations':[],'id':123,'doi':'10.5281/zenodo.123','doi_url':'https://doi.org/10.5281/zenodo.123','record_url':'https://zenodo.org/records/123','title':context['title']}
-    identities={'numeric':'30003587',**ALIAS_VARIANTS,'PR':'https://github.com/AlecKriebel/Math/pull/1280','bareDOI':'  10.5281/zenodo.123  ','DOIURL':'  https://doi.org/10.5281/zenodo.123  ','unrelated':'Unrelated42',**ALIAS_NEAR_COLLISIONS}
+    identities={**PROBLEM_IDENTITIES,**DOI_IDENTITIES,'unrelated':'Unrelated42',**IDENTITY_NEAR_COLLISIONS}
     for kind in ['preflight_unknown','preflight_known','append']:
       for label,identity in identities.items():
        for column in range(4):
-        root=folder/(kind+'_'+label+'_'+str(column));p=root/'publication';p.mkdir(parents=True)
+        if previous is not None:shutil.rmtree(previous)
+        root=folder/(kind+'_'+label+'_'+str(column));previous=root;p=root/'publication';p.mkdir(parents=True)
         t=load(ROOT/'append_tracker.py');t.ROOT=p;c=load(COORDINATOR);c.P=p;c.A=root
         save(p/'PUBLICATION_RECEIPT.json',pub);save(p/'zenodo-deposit.json',{'metadata':{'title':context['title']}});save(p/'FINAL_REVIEW_GATE.json',{'synthetic_fixture_only':True})
         if kind=='preflight_unknown':(p/'PUBLICATION_RECEIPT.json').unlink()
@@ -369,27 +535,35 @@ def identity_matrix(folder):
             raise RuntimeError('Unexpected mocked module '+name)
         t.runpy=types.SimpleNamespace(run_path=run_path);c.runpy=types.SimpleNamespace(run_path=run_path)
         body='SYNTHETIC ORIGINAL BODY';snapshot={'head':'f5085a4c954f814cde1bc3be0727ff30373aea95','branch':'publish-diagonal-30003587-20261011','body_sha256':hashlib.sha256(body.encode()).hexdigest()};save(root/'SUBMITTED_SNAPSHOT.json',snapshot)
-        live={'state':'OPEN','isDraft':True,'headRefOid':snapshot['head'],'headRefName':snapshot['branch'],'body':body}
-        def external(args,**kw):return json.dumps(live) if args[0]=='gh' else snapshot['head']+' refs/heads/'+snapshot['branch']+'\n'
+        live={'state':'OPEN','isDraft':True,'headRefOid':snapshot['head'],'headRefName':snapshot['branch'],'baseRefName':'main','body':body}
+        def external(args,**kw):
+            if args[0]=='gh':need('baseRefName' in args[args.index('--json')+1].split(','),'deposit live query omitted baseRefName');return json.dumps(live)
+            return snapshot['head']+' refs/heads/'+snapshot['branch']+'\n'
         c.subprocess=types.SimpleNamespace(check_output=external)
         try:capture(t.main if kind=='append' else c.live_preflight);accepted=True
         except (RuntimeError,ValueError,KeyError):accepted=False
-        unrelated=label=='unrelated' or label in ALIAS_NEAR_COLLISIONS
-        wanted=unrelated or kind=='preflight_unknown' and label in {'bareDOI','DOIURL'}
+        unrelated=label=='unrelated' or label in IDENTITY_NEAR_COLLISIONS
+        wanted=unrelated or kind=='preflight_unknown' and label in DOI_IDENTITIES
         count=events.count(['spreadsheets','values','append']);need(accepted==wanted and count==(1 if kind=='append' and unrelated else 0),'Identity action matrix differs '+repr((kind,label,column,accepted,count)))
         out.append({'stage':kind,'identity':label,'column':column,'accepted':accepted,'appends':count})
     # Exact intended row is recoverable without any append mutation, even with no previous intent.
     row=t.expected_row(pub,context['title']);rows[:]=[rows[0],row];capture(t.main);need(events.count(['spreadsheets','values','append'])==1,'Exact row recovery made another append')
-    return {'cases':out,'exact_full_row_recovered_readonly':True,'predicate_source':'actual append_tracker.py shared by all three action times','known_DOI_preflight_required':True,'all_external_operations_mocked':True}
+    base_rejections=[]
+    for base in ['other',None]:
+        if base is None:live.pop('baseRefName')
+        else:live['baseRefName']=base
+        before=len(events);base_rejections.append(reject(c.live_preflight,'deposit_preflight_base_'+str(base)));need(len(events)==before,'wrong-base deposit preflight reached tracker service')
+    shutil.rmtree(previous)
+    return {'cases':out,'deposit_preflight_base_rejections':base_rejections,'exact_full_row_recovered_readonly':True,'predicate_source':'actual append_tracker.py shared by all three action times','known_DOI_preflight_required':True,'unknown_DOI_preflight_allows_unrelated_DOIs':True,'embedded_known_DOI_and_explicit_PR_markers_checked':True,'all_external_operations_mocked':True}
 
 def postmerge_controls(f):
     """Complete actual current verifier main; all services/Git calls are mocked."""
     pubpath=f['pub'];audit=f['audit'];program=audit.parents[1];u=load(pubpath/'update_pr_publication.py');t=load(pubpath/'append_tracker.py');m=load(pubpath.parents[2]/'publication_coordinators/verify_pr1280_merge.py')
     original_pub=json.loads((pubpath/'PUBLICATION_RECEIPT.json').read_text());original_tracker=json.loads((pubpath/'tracker/TRACKER_RECEIPT.json').read_text());original_public=json.loads((pubpath/'PUBLIC_DOWNLOAD_VERIFICATION.json').read_text())
-    cases=['baseline','doi_fallback_valid','wrong_gid_same_title','missing_gid','duplicate_designated_gid','wrong_title','bad_headers','missing_row',*[f'wrong_cell_{i}' for i in range(4)],'range_wrong','checkout_wrong','merge_parent_wrong','merge_single_parent','merge_three_parents','merged_bytes_wrong','live_open','live_head_wrong','live_branch_wrong','live_body_wrong','live_url_wrong','saved_body_unverified','saved_remote_unverified','public_false','public_identity_false','public_id_wrong','public_doi_wrong','doi_unresolved','doi_wrong_status','state_current_wrong','state_completed_wrong','state_eligible_wrong','state_publications_wrong']
-    aliases={'numeric':'30003587',**ALIAS_VARIANTS,'PR':'https://github.com/AlecKriebel/Math/pull/1280','bareDOI':'  10.5281/zenodo.123  ','DOIURL':'  https://doi.org/10.5281/zenodo.123  '}
+    cases=['baseline','doi_fallback_valid','wrong_gid_same_title','missing_gid','duplicate_designated_gid','wrong_title','bad_headers','missing_row',*[f'wrong_cell_{i}' for i in range(4)],'range_wrong','checkout_wrong','merge_parent_wrong','merge_single_parent','merge_three_parents','merged_bytes_wrong','live_open','live_head_wrong','live_branch_wrong','live_base_wrong','live_base_missing','live_body_wrong','live_url_wrong','saved_body_unverified','saved_remote_unverified','public_false','public_identity_false','public_id_wrong','public_doi_wrong','doi_unresolved','doi_wrong_status','state_current_wrong','state_completed_wrong','state_eligible_wrong','state_publications_wrong']
+    aliases={**PROBLEM_IDENTITIES,**DOI_IDENTITIES}
     cases += ['duplicate_'+label+'_'+str(column) for label in aliases for column in range(4)]
-    cases += ['unrelated_'+label+'_'+str(column) for label in ALIAS_NEAR_COLLISIONS for column in range(4)]
+    cases += ['unrelated_'+label+'_'+str(column) for label in IDENTITY_NEAR_COLLISIONS for column in range(4)]
     cases += ['merged_blob_'+str(index) for index in range(14)]
     cases += ['state_eligible_count_wrong','state_completed_duplicate','state_publications_duplicate'];out=[]
     for case in cases:
@@ -435,7 +609,7 @@ def postmerge_controls(f):
         if case.startswith('duplicate_') and case!='duplicate_designated_gid':
             _,label,column=case.split('_');row=['','','',''];row[int(column)]=aliases[label];rows.append(row)
         if case.startswith('unrelated_'):
-            _,label,column=case.split('_');row=['','','',''];row[int(column)]=ALIAS_NEAR_COLLISIONS[label];rows.append(row)
+            _,label,column=case.split('_');row=['','','',''];row[int(column)]=IDENTITY_NEAR_COLLISIONS[label];rows.append(row)
         def call(parts,params,body=None):
             events.append({'gws':parts})
             if parts==['spreadsheets','get']:return {'sheets':copy.deepcopy(tabs)}
@@ -447,10 +621,12 @@ def postmerge_controls(f):
             if Path(path).name=='append_tracker.py':return t.__dict__
             raise RuntimeError('Unexpected mocked module')
         m.runpy=types.SimpleNamespace(run_path=run_path)
-        live={'state':'MERGED','headRefOid':head,'headRefName':u.BRANCH,'mergeCommit':{'oid':merge},'mergedAt':'2026-10-17T21:00:00Z','body':body,'url':'https://github.com/AlecKriebel/Math/pull/1280'}
-        for label,key,value in [('live_open','state','OPEN'),('live_head_wrong','headRefOid','e'*40),('live_branch_wrong','headRefName','other'),('live_body_wrong','body','wrong'),('live_url_wrong','url','https://github.com/AlecKriebel/Math/pull/1283')]:
+        live={'state':'MERGED','headRefOid':head,'headRefName':u.BRANCH,'baseRefName':'main','mergeCommit':{'oid':merge},'mergedAt':'2026-10-17T21:00:00Z','body':body,'url':'https://github.com/AlecKriebel/Math/pull/1280'}
+        for label,key,value in [('live_open','state','OPEN'),('live_head_wrong','headRefOid','e'*40),('live_branch_wrong','headRefName','other'),('live_base_wrong','baseRefName','other'),('live_body_wrong','body','wrong'),('live_url_wrong','url','https://github.com/AlecKriebel/Math/pull/1283')]:
             if case==label:live[key]=value
-        def external(args,**kwargs):events.append({'gh':args});return json.dumps(live)
+        if case=='live_base_missing':live.pop('baseRefName')
+        def external(args,**kwargs):
+            events.append({'gh':args});need('baseRefName' in args[args.index('--json')+1].split(','),'postmerge live query omitted baseRefName');return json.dumps(live)
         m.subprocess=types.SimpleNamespace(check_output=external)
         state={'current_pr':1280,'completed_prs':copy.deepcopy(m.COMPLETED_BEFORE),'publications':[{'pr':n} for n in m.COMPLETED_BEFORE],'eligible_prs':copy.deepcopy(m.ELIGIBLE),'eligible_count':12}
         if case=='state_current_wrong':state['current_pr']=1283
@@ -467,6 +643,7 @@ def postmerge_controls(f):
         after=json.loads((program/'PROGRAM_STATE.json').read_text());wanted_accept=case in {'baseline','doi_fallback_valid'} or case.startswith('unrelated_');need(accepted==wanted_accept,'Postmerge guard differs '+case)
         need(after['current_pr']==(1283 if wanted_accept else state['current_pr']),'Postmerge state advanced despite failure '+case)
         if not wanted_accept:need(after==state,'Postmerge program state mutated despite failure '+case)
+        if case in {'live_base_wrong','live_base_missing'}:need(not any(event.get('git',[''])[0] in {'fetch','update-ref'} for event in events),'Wrong-base postmerge reached Git mutation')
         if case.startswith('duplicate_') and case!='duplicate_designated_gid':need(rejection=='Missing/different/duplicate problem or DOI row','Alias duplicate did not reach the exact actual postmerge identity check '+case)
         if case.startswith('merged_blob_'):
             target=sorted(files)[int(case.removeprefix('merged_blob_'))]
@@ -479,14 +656,17 @@ def worker():
     scratch=REPORT_ROOT/'_local';scratch.mkdir(parents=True,exist_ok=True);os.environ['TMPDIR']=str(scratch);tempfile.tempdir=str(scratch)
     with tempfile.TemporaryDirectory(prefix='synthetic-offline-',dir=scratch) as tmp:
         base=Path(tmp);f=fixture(base/'main');context=context_and_portable_controls(f);corrections=correction_controls(f);documents=document_controls(f);reviews=review_controls(f);p,t,public=publication_and_tracker_controls(f);updates=update_controls(f,p,t)
-        identities=identity_matrix(base/'identity-matrix');postmerge=postmerge_controls(f);relocation=relocation_and_root_replay_controls(base/'relocation');history=historical_review_controls(fixture(base/'historical-reviews'));coordinator=[]
+        ready=ready_controls(f);identities=identity_matrix(base/'identity-matrix');postmerge=postmerge_controls(f);relocation=relocation_and_root_replay_controls(base/'relocation');history=historical_review_controls(fixture(base/'historical-reviews'));coordinator=[]
         for case in ['successful_publish','uncertain_stage_known_id_recovery','normalization_between_inspect_and_POST','wrong_id_first_fresh_inspection','wrong_id_second_fresh_inspection','uncertain_then_published_recovery']+['server_field_'+name for name in sorted(f['context']['metadata'])]:
-            other=fixture(base/case);coordinator.append(coordinator_case(other,case))
+            case_root=base/case
+            try:other=fixture(case_root);coordinator.append(coordinator_case(other,case))
+            finally:
+                if case_root.exists():shutil.rmtree(case_root)
         current_metadata={'scope':'Actual current metadata absent; only eleven-field synthetic metadata was tested.','sha256':None}
         if (ROOT/'zenodo-deposit.json').exists():
             wanted=json.loads((ROOT/'zenodo-deposit.json').read_text())['metadata'];v=load(ROOT/DEPLOY['verification/verify.py']);v.metadata_contract(wanted);m=load(ROOT/'check_public_downloads.py');actual=copy.deepcopy(wanted);actual['resource_type']={'type':actual.pop('upload_type'),'subtype':actual.pop('publication_type')};actual['license']={'id':actual['license']};fields=m.verify_public_metadata(actual,wanted)
             current_metadata={'scope':'Actual current local metadata projected and compared offline; no public API/record is implied.','sha256':sha(ROOT/'zenodo-deposit.json'),'fields':fields}
-        return {'status':'PASS','context_and_portable':context,'documented_correction_controls':corrections,'identity_action_matrix':identities,'postmerge_complete_main':postmerge,'document_assurance_rejections':documents,'review_gate_rejections':reviews,'relocation_and_root_replay':relocation,'historical_review_sequence':history,'tracker_and_public':public,'current_local_metadata_projection':current_metadata,'PR_update':updates,'deposit_coordinator_actual_kit_mocked_clients':coordinator,'operative_coordinator_layout':'program/publication_coordinators/pr1280.py resolves program/audits/pr1280_30003587/publication','scope':'Synthetic fixture metadata/gates/compiler/pdfinfo/reviewer evidence only, except any explicitly reported actual local metadata projection. No real mathematical/priority adjudication, actual PDF compilation/rendering, service integration, Git mutation, staging/upload/publication/tracker append or PR change occurred.'}
+        return {'status':'PASS','context_and_portable':context,'documented_correction_controls':corrections,'identity_action_matrix':identities,'postmerge_complete_main':postmerge,'document_assurance_rejections':documents,'review_gate_rejections':reviews,'relocation_and_root_replay':relocation,'historical_review_sequence':history,'tracker_and_public':public,'current_local_metadata_projection':current_metadata,'PR_update':updates,'ready_and_expected_head_merge':ready,'deposit_coordinator_actual_kit_mocked_clients':coordinator,'operative_coordinator_layout':'program/publication_coordinators/pr1280.py resolves program/audits/pr1280_30003587/publication','scope':'Synthetic fixture metadata/gates/compiler/pdfinfo/reviewer evidence only, except any explicitly reported actual local metadata projection. No real mathematical/priority adjudication, actual PDF compilation/rendering, service integration, Git mutation, staging/upload/publication/tracker append or PR change occurred.'}
 
 def main():
     if '--worker' in sys.argv:print(json.dumps(worker(),sort_keys=True));return
@@ -494,6 +674,6 @@ def main():
     for flags in [[],['-O'],['-OO']]:
         run=subprocess.run([sys.executable,'-B',*flags,str(Path(__file__).resolve()),'--worker'],capture_output=True,text=True);need(run.returncode==0,run.stderr);runs.append({'flags':flags,'result':json.loads(run.stdout)})
     need(all(item['result']==runs[0]['result'] for item in runs),'optimization-dependent guards')
-    receipt={'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runs':runs,'all_modes_identical':True,'authored_workflow_sha256':{str(ROOT/source):sha(ROOT/source) for source in DEPLOY.values()}|{str(COORDINATOR):sha(COORDINATOR),str(POSTMERGE):sha(POSTMERGE)},'scope':'Offline synthetic fixture regressions only; final actual package requires rerun and independent whole-package review.'}
+    receipt={'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runs':runs,'all_modes_identical':True,'authored_workflow_sha256':{str(ROOT/source):sha(ROOT/source) for source in DEPLOY.values()}|{str(COORDINATOR):sha(COORDINATOR),str(POSTMERGE):sha(POSTMERGE),str(READY):sha(READY)},'scope':'Offline synthetic fixture regressions only; final actual package requires rerun and independent whole-package review.'}
     save(REPORT_ROOT/'_local/WORKFLOW_REGRESSION_RECEIPT.json',receipt);print(json.dumps(receipt,indent=2))
 if __name__=='__main__':main()

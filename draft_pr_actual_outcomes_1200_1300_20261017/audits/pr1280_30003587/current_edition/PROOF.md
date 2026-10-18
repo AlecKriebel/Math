@@ -10,7 +10,7 @@ Date: 11 October 2026. Problem 30003587, OWR-15585-006.
 
 Here strongly approximately inner means: for each g in G there is a sequence u_{g,n} of unitaries in the **whole action's fixed-point algebra** O_M^α such that Ad(u_{g,n})(a) tends to α_g(a) in norm for every a. No approximate representation relation between different g is asserted or needed.
 
-We prove the more general edge-diagonal statement for a finite strongly connected graph which is not a directed cycle. Write A=C*(E), with vertex projections p_v and edges S_e satisfying S_e* S_e=p_{r(e)}, S_e S_e*≤p_{s(e)}, and p_v=Σ_{s(e)=v}S_e S_e*. Assume
+We prove the more general edge-diagonal statement for a finite strongly connected graph with at least one edge which is not a directed cycle. Write A=C*(E), with vertex projections p_v and edges S_e satisfying S_e* S_e=p_{r(e)}, S_e S_e*≤p_{s(e)}, and p_v=Σ_{s(e)=v}S_e S_e*. Assume
 
 α_g(p_v)=p_v,    α_g(S_e)=χ_e(g)S_e,
 
@@ -32,7 +32,7 @@ Public links:
 
 ## 3. Inner edge-diagonal automorphisms are vertex coboundaries
 
-**Lemma 1.** If E is finite, strongly connected, and not a directed cycle, and an edge-diagonal automorphism σ(S_e)=z_eS_e is inner, there are numbers t_v in the circle such that
+**Lemma 1.** If E is finite, strongly connected, has at least one edge, and is not a directed cycle, and an edge-diagonal automorphism σ(S_e)=z_eS_e is inner, there are numbers t_v in the circle such that
 
 z_e=t_{s(e)} conjugate(t_{r(e)}),
 
@@ -96,7 +96,7 @@ belongs exactly to A^α, satisfies ||w_n−V_n||→0, and implements α_g asympt
 
 ## 5. Removing graph aperiodicity for outer actions
 
-**Lemma 4.** Every outer edge-diagonal finite abelian action on C*(E), for E finite strongly connected and not a directed cycle, is strongly approximately inner, regardless of the graph's period.
+**Lemma 4.** Every outer edge-diagonal finite abelian action on C*(E), for E finite strongly connected with at least one edge and not a directed cycle, is strongly approximately inner, regardless of the graph's period.
 
 **Proof.** Let d be the period of E. Partition E^0 into cyclic classes V_0,…,V_{d−1}, with edges going from V_j to V_{j+1 mod d}. Let p=Σ_{v∈V_0}p_v. This projection is nonzero and α-invariant.
 
@@ -185,6 +185,8 @@ The substantive external theorem remains Barlak–Szabó's aperiodic outer-actio
 - Siegfried Echterhoff and Mikael Rørdam, “Inclusions of C*-algebras arising from fixed-point algebras,” Groups Geom. Dyn. 18 (2024), 127–145. [DOI](https://doi.org/10.4171/GGD/743); [final publisher PDF](https://ems.press/content/serial-article-files/42588), printed pp.127,129/PDF pp.1,3.
 
 Source hashes, version distinctions and retrieval limitations are recorded in SOURCE_METADATA.json and SOURCE_VERIFICATION.md. They establish which sources were inspected, not formal verification of the mathematics.
+
+Intermediate graph scope: all graph reductions assume at least one edge. In the finite strongly connected case this guarantees no sinks or sources and excludes the edgeless singleton, whose standard graph algebra is C and whose edge-phase action is trivial. The original essential-matrix target automatically supplies edges, no sinks and no sources; its full theorem is unchanged.
 
 ## Current review qualification (17 October 2026 local date)
 

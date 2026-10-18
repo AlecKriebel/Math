@@ -5,15 +5,29 @@ import datetime,json,re,subprocess,runpy
 ROOT=Path(__file__).resolve().parent
 SID="1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20"
 GID=1254632077
-PROBLEM_IDENTIFIERS=('30003587','https://github.com/aleckriebel/math/pull/1280')
+# Match complete identifiers in any cell, including identifiers in prose.
+NUMERIC_ID=re.compile(r'(?<![a-z0-9_])30003587(?![a-z0-9_])',re.IGNORECASE)
+PR_MARKER=re.compile(r'(?<![a-z0-9_])pr[ \t]*#?[ \t]*1280(?![a-z0-9_])',re.IGNORECASE)
+# URL/DOI tokens may be quoted or followed by sentence punctuation. A period
+# followed by another token character is a suffix, not terminal punctuation.
+TOKEN_LEFT=r'(?<![a-z0-9_./%+?=&~#-])'
+TOKEN_RIGHT=r'(?![a-z0-9_/:@%+?=&~#-]|\.[a-z0-9_./:@%+?=&~#-])'
+# URLs may identify the exact resource while carrying a query or fragment.
+# GitHub's explicit PR subviews also preserve the exact PR number. Arbitrary
+# path continuations and identifier/number suffixes remain collisions.
+URL_RIGHT=r'(?![a-z0-9_/:@%+&=~-]|\.[a-z0-9_./:@%+?=&~#-])'
+PR_URL=re.compile(TOKEN_LEFT+re.escape('https://github.com/aleckriebel/math/pull/1280')+r'(?:/(?:files|commits|checks))?'+URL_RIGHT,re.IGNORECASE)
 # Canonical OWR-15585-006 and common separator/zero-padding variants.
 OWR_ALIAS=re.compile(r'(?<![a-z0-9])owr[\s_-]*0*15585[\s_-]*0*6(?![a-z0-9])',re.IGNORECASE)
 
 def row_has_problem_identity(row,publication=None):
- """Known problem aliases at every stage; DOI forms when publication is known."""
+ """Bounded known aliases; exact DOI tokens only after its identity is known."""
  if not isinstance(row,list):raise RuntimeError('Tracker row must be a cell array')
- dois={publication['doi'].casefold(),publication['doi_url'].casefold()} if publication is not None else set()
- return any(any(token in str(cell).casefold() for token in PROBLEM_IDENTIFIERS) or OWR_ALIAS.search(str(cell)) is not None or str(cell).strip().casefold() in dois for cell in row)
+ patterns=[NUMERIC_ID,PR_URL,PR_MARKER,OWR_ALIAS]
+ if publication is not None:
+  patterns.append(re.compile(TOKEN_LEFT+re.escape(publication['doi'])+TOKEN_RIGHT,re.IGNORECASE))
+  patterns.append(re.compile(TOKEN_LEFT+re.escape(publication['doi_url'])+URL_RIGHT,re.IGNORECASE))
+ return any(pattern.search(str(cell)) is not None for cell in row for pattern in patterns)
 
 def call(parts,params,body=None):
  args=["gws","sheets",*parts,"--params",json.dumps(params)]

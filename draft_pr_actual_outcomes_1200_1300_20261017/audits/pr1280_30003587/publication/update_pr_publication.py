@@ -20,7 +20,10 @@ def read(n):return json.loads((ROOT/n).read_text())
 def digest(p):
     if p.is_symlink() or not p.is_file():raise RuntimeError('Missing/nonregular reviewed file '+str(p))
     return hashlib.sha256(p.read_bytes()).hexdigest()
-def pr():return json.loads(subprocess.check_output(['gh','pr','view',NUMBER,'--repo','AlecKriebel/Math','--json','headRefOid,headRefName,state,isDraft,body'],cwd=REPO,text=True))
+def pr():
+    live=json.loads(subprocess.check_output(['gh','pr','view',NUMBER,'--repo','AlecKriebel/Math','--json','headRefOid,headRefName,baseRefName,state,isDraft,body'],cwd=REPO,text=True))
+    if live.get('baseRefName')!='main':raise RuntimeError('PR base must be main')
+    return live
 def tree(entries):return git('mktree','-z',data=b'\0'.join(entries)+b'\0').decode().strip()
 def put(base,parts,oid,kind='blob',mode='100644'):
     entries=[s for s in git('ls-tree','-z',base).split(b'\0') if s] if base else []
@@ -186,7 +189,7 @@ def validate_workflow_gate(gate):
 def synchronize_pr_body(commit,body,original_body_sha256):
     """Idempotent final-body edit; a branch receipt is complete only after readback."""
     before=pr()
-    if before['state']!='OPEN' or before['headRefName']!=BRANCH or before['headRefOid']!=commit:raise RuntimeError('PR API head/state not yet the intended commit; reconcile read-only before retry')
+    if before.get('baseRefName')!='main' or before['state']!='OPEN' or before['headRefName']!=BRANCH or before['headRefOid']!=commit:raise RuntimeError('PR API head/state not yet the intended commit; reconcile read-only before retry')
     if git('ls-remote','origin','refs/heads/'+BRANCH).split()[0].decode()!=commit:raise RuntimeError('PR branch changed before body update')
     if hashlib.sha256(before['body'].encode()).hexdigest() not in {original_body_sha256,hashlib.sha256(body.encode()).hexdigest()}:raise RuntimeError('PR body changed outside original/intended text')
     if before['body']!=body:
@@ -195,7 +198,7 @@ def synchronize_pr_body(commit,body,original_body_sha256):
         run=subprocess.run(['gh','pr','edit',NUMBER,'--repo','AlecKriebel/Math','--body-file',str(ROOT/'PR_BODY_FINAL.md')],cwd=REPO,capture_output=True,text=True,timeout=60)
         if run.returncode:raise RuntimeError('PR body outcome needs read-only reconciliation: '+run.stderr)
     after=pr()
-    if after['state']!='OPEN' or after['headRefName']!=BRANCH or after['headRefOid']!=commit or after['body']!=body:raise RuntimeError('Final PR head/body readback differs; no completed receipt saved')
+    if after.get('baseRefName')!='main' or after['state']!='OPEN' or after['headRefName']!=BRANCH or after['headRefOid']!=commit or after['body']!=body:raise RuntimeError('Final PR head/body readback differs; no completed receipt saved')
     if git('ls-remote','origin','refs/heads/'+BRANCH).split()[0].decode()!=commit:raise RuntimeError('PR branch changed after body update')
     return {'body_sha256':hashlib.sha256(body.encode()).hexdigest(),'body_readback_verified':True,'operation_stage':'reviewed_branch_and_final_body_verified'}
 
@@ -220,7 +223,7 @@ def main():
     expected_public={build[k]['path']:(build[k]['bytes'],build[k]['sha256']) for k in ['pdf','verification_zip']}
     if len(public['files'])!=2 or {f['name']:(f['bytes'],f['sha256']) for f in public['files']}!=expected_public:raise RuntimeError('Public artifact check differs')
     current=pr()
-    if current['headRefName']!=BRANCH or current['state']!='OPEN':raise RuntimeError('Unexpected PR branch/state')
+    if current.get('baseRefName')!='main' or current['headRefName']!=BRANCH or current['state']!='OPEN':raise RuntimeError('Unexpected PR branch/state')
     snapshot=json.loads((ROOT.parent/'SUBMITTED_SNAPSHOT.json').read_text())
     files,publication,note=desired_files(build,pub,tracker,snapshot)
     body=note+'\nThe current nine-file MANIFEST.json binds the eight other current edition records through files dictionary keys and bytes/sha256; its documentary correction and immutable original snapshot are separately authenticated. publication_20261017/ adds the reviewed preprint, portable verification archive, matching deposit metadata, publication receipt and README. Original historical files are preserved in the portable archive.\n'
@@ -257,7 +260,8 @@ def main():
     if remote==ORIGINAL:
         validate_workflow_gate(gate)
         if digest(ROOT/'FINAL_REVIEW_GATE.json')!=wanted['review_gate_sha256']:raise RuntimeError('Review gate changed before push')
-        if pr()['headRefOid']!=ORIGINAL:raise RuntimeError('PR changed before push')
+        before_push=pr()
+        if before_push.get('baseRefName')!='main' or before_push['headRefOid']!=ORIGINAL:raise RuntimeError('PR base/head changed before push')
         git('push','origin',commit+':refs/heads/'+BRANCH)
     elif remote!=commit:raise RuntimeError('Remote differs from original and intended update')
     if git('ls-remote','origin','refs/heads/'+BRANCH).split()[0].decode()!=commit:raise RuntimeError('Remote readback differs')
