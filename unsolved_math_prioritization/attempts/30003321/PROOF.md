@@ -1,6 +1,6 @@
 # Discrete initial surreal groups admit initial omnific models
 
-Problem 30003321. Publication edition, 10 October 2026. The complete proof received an affirmative independent internal mathematical audit; no mathematical correction was required.
+Problem 30003321. Current publication edition, 17 October 2026. The full group construction is unchanged. A new detailed dependency proof closes two literal support-exhaustion/cut-option gaps in the imported characterization proof; see DEPENDENCY_PROOF.md. CURRENT_REVIEW.md supersedes the historical audit framing.
 
 ## Review status of this edition
 
@@ -20,6 +20,8 @@ Use the following results of Ehrlich and Kaplan, *Number systems with simplicity
 2. The nonzero initial additive subgroups of R are precisely 2^(-n) Z for n a nonnegative integer, and the subgroups containing D = Z[1/2] (Lemma 5.1).
 3. An additive subgroup is initial precisely when its corresponding Hahn-series subgroup A is truncation closed and cross sectional, its exponent class Gamma is initial, each coefficient group R_y is initial in R, and D is contained in R_y whenever y is a right simplicity predecessor of another exponent x in Gamma (Theorem 5.1). A right simplicity predecessor means y is a proper sign prefix of x and y > x.
 4. A surreal lies in Oz precisely when every exponent in its normal form is nonnegative and the coefficient of exponent zero, if present, is an integer (Section 6.2).
+
+The sufficiency direction of item3 is checked in full in [DEPENDENCY_PROOF.md](DEPENDENCY_PROOF.md), with the explicit foundational imports listed there. The theorem statement is retained; the two proof details are repaired.
 
 Public sources: https://arxiv.org/abs/1512.04001 ; https://elliotakaplan.github.io/Number_systems_with_simplicity_hierarchies_II.pdf . The original Oberwolfach question is Question 1 in the Kaplan–Ehrlich contribution to DOI 10.4171/owr/2016/60.
 
@@ -60,6 +62,8 @@ In case A this follows by stripping the first plus. In case B, a prefix of (+) �
 
 Proof of the right-predecessor assertion. If f(y) is a right predecessor of f(x), then neither image is zero: zero is least in Delta and has no predecessors. Thus x,y differ from a. The proper-prefix equivalence proved above and strict monotonicity yield y a proper prefix of x and y > x. QED.
 
+The full-ray inverse is h(empty)=a. For z=(+)v, set h(z)=a(+)t when v=at; otherwise set h(z)=v. These formulas are mutually inverse, with concatenation interpreted as ordered blocks.
+
 For alpha = 0 the formula is the identity on nonnegative surreals. At a limit alpha, the string (+) · (minus)^alpha is an actual set-length sign sequence; it occurs as the image of a · (+), if that source node is present. Its proper prefixes arise from the source nodes (minus)^beta, beta < alpha. No completion node is assumed to exist in Gamma unless it is forced by a node actually in Gamma.
 
 ## Theorem: the required initial Oz model
@@ -80,7 +84,7 @@ We check every hypothesis of Theorem 5.1 for H:
 - Coefficient groups: at zero the group is c_m R_m = Z; at f(y) for y != m it is exactly R_y. These are all initial subgroups of R. Exactness follows from injectivity of exponent relabeling: a one-term image can only come from a one-term source.
 - Right-predecessor condition: if z = f(y) is a right simplicity predecessor of f(x), Lemma 2 gives y a right predecessor of x in Gamma. Moreover y != m, since f(m) = 0 is the minimum. The source condition gives D contained in R_y, and this coefficient group is unchanged at z. Thus the target condition holds.
 
-Theorem 5.1 therefore shows that H is initial in No. All of its exponents are nonnegative and its zero coefficient is integral, so H is a subgroup of Oz. Since Oz has the inherited simplicity order, initiality in No in particular implies initiality in Oz. This proves the theorem. QED.
+Theorem 5.1, with sufficiency detailed in DEPENDENCY_PROOF.md, therefore shows that H is initial in No. Every actual coefficient belongs to its pure coefficient group: subtract adjacent truncations, using the full series at a last term. All of its exponents are nonnegative and its zero coefficient belongs to R0=Z, so H is a subgroup of Oz. Since Oz has the inherited simplicity order, initiality in No in particular implies initiality in Oz. This proves the theorem. QED.
 
 ## Set and proper-class bookkeeping
 
@@ -90,4 +94,4 @@ No global enumeration or class-length support is used. The ordinal alpha and the
 
 This proof uses the additive-group characterization, not the theorem about initial subdomains. It changes the exponent embedding and rescales the bottom coefficient group; it does not claim that G is originally contained in Oz or that T preserves simplicity. The two elementary transformations combine to eliminate negative exponents without creating a new dyadic-divisibility obligation.
 
-A targeted public literature search on 10 October 2026 located the original question, the 2018 article, and the earlier thesis formulation, but no later resolution. This limited search does not establish novelty or certify that the problem remained open through that date. The proof's mathematical validity is separate from priority. The independent internal audit in AUDIT_REPORT.md accepts the complete stated target; further external review remains welcome.
+The current root plus three fresh priority approaches found no earlier explicitly recorded full target in the accessible material inspected. Earlier least-positive classification, negative-ordinal minimum and generic exponent/coefficient transport are credited in CURRENT_REVIEW.md. The2024 handbook chapter and other fulltexts remain material unread leads. This bounded no-find is not a novelty, firstness, causal-independence or current-global-openness certificate. The paper and all internal reviews are extensively AI-assisted and unrefereed.

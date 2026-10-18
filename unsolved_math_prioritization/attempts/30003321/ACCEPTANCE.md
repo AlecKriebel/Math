@@ -1,3 +1,7 @@
+# Historical10October2026 report — superseded review framing
+
+The following is retained as historical evidence. Its old diagnostic programs and original10925-byte proof are not distributed here and are not represented as freshly reproduced. Its no-correction assessment does not review the new dependency supplement. CURRENT_REVIEW.md, current ACCEPTANCE.json and VERIFICATION_SUMMARY.md govern this edition.
+
 # Independent acceptance report
 
 Problem 30003321. Review date: 10 October 2026.
