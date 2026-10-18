@@ -22,8 +22,8 @@ def main():
     v['need'](not EDITION.is_symlink() and not PACKAGE.is_symlink(),'unsafe edition/package directory')
     EDITION.mkdir(exist_ok=True);PACKAGE.mkdir(exist_ok=True)
     v['need'](not any(p.name not in v['NAMES'] for p in EDITION.iterdir()),'unexpected current edition child')
-    v['need'](context['edition_mode']=='preserve_submitted','Only exact original-nine preservation is authorized')
-    for name in sorted(v['NAMES']):shutil.copyfile(AUDIT/'submitted'/name,EDITION/name)
+    v['need'](context['edition_mode'] in {'preserve_submitted','documented_correction'},'Explicit current edition mode required')
+    # The current edition is already exactly bound; never overwrite a reviewed correction.
     v['authenticate_current'](EDITION,context,AUDIT/'submitted')
     verifier=(PACKAGE/'verify.py').read_bytes()
     for child in PACKAGE.iterdir():
@@ -35,6 +35,7 @@ def main():
         dest=v['member'](PACKAGE,raw);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,dest)
     for name in sorted(v['NAMES']):copy(EDITION/name,'current_edition/'+name);copy(AUDIT/'submitted'/name,'original_submitted/'+name)
     for name in ['CURRENT_PR1280_CONTEXT.json','SUBMITTED_SNAPSHOT.json','PRIORITY_ADJUDICATION.json','MATH_GATE.json']:copy(AUDIT/name,'provenance/'+name)
+    if context['edition_mode']=='documented_correction':copy(AUDIT/'CURRENT_EDITION_CORRECTION.json','provenance/CURRENT_EDITION_CORRECTION.json')
     for name in ['COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json']:copy(ROOT/name,'provenance/'+name)
     copy(ROOT/'manuscript/main.tex','manuscript/main.tex')
     for entry in context['portable_files']:copy(v['member'](AUDIT,entry['path']),entry['path'])

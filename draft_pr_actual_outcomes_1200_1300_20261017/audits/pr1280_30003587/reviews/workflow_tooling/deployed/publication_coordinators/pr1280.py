@@ -31,6 +31,7 @@ def authenticate_release():
   for n in sorted({'ACCEPTANCE.json','CHECK_RESULTS.json','EDITORIAL_CHANGE_MAP.json','INDEPENDENT_AUDIT.md','MANIFEST.json','PROOF.md','README.md','SOURCE_METADATA.json','SOURCE_VERIFICATION.md'}):require(z.read('current_edition/'+n)==(A/'current_edition'/n).read_bytes(),'Current edition drift '+n)
   require(z.read('provenance/SUBMITTED_SNAPSHOT.json')==(A/'SUBMITTED_SNAPSHOT.json').read_bytes(),'Archive original snapshot drift')
   require(z.read('provenance/CURRENT_PR1280_CONTEXT.json')==(A/'CURRENT_PR1280_CONTEXT.json').read_bytes(),'Archive current context drift')
+  if context['edition_mode']=='documented_correction':require(z.read('provenance/CURRENT_EDITION_CORRECTION.json')==(A/'CURRENT_EDITION_CORRECTION.json').read_bytes(),'Archive correction drift')
   for n in ['COMPILE_RECEIPT.json','LAYOUT_VERIFICATION.json']:require(z.read('provenance/'+n)==(P/n).read_bytes(),'Archive current assurance drift '+n)
  return g
 

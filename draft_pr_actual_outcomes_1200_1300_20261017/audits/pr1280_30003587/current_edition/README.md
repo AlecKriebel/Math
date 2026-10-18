@@ -1,25 +1,22 @@
 # Strong approximate innerness of finite abelian diagonal quasi-free actions
 
-Problem 30003587; OWR-15585-006. Prepared 11 October 2026.
+Problem30003587; OWR-15585-006. Original submitted edition:11October2026. Current qualification:17October2026 local date.
 
-## Result and review status
+For an essential finite0–1 matrix M with simple purely infinite O_M, every finite abelian diagonal quasi-free action is strongly approximately inner. For each group element the implementing sequence is fixed by the entire action. No group law or approximate-representability conclusion for these sequences is asserted.
 
-For a finite 0–1 matrix with no zero rows or columns and simple purely infinite O_M, every finite abelian diagonal quasi-free action is strongly approximately inner. Each group element has implementing unitaries in the fixed algebra of the entire action. No group-law relation between different implementing sequences, or stronger approximate-representability conclusion, is asserted.
+The proof reduces the full original question to Barlak–Szabó's published outer aperiodic theorem. Current independent AI reviews include a source-only reconstruction and fresh adversarial checks of that reconstruction and of a distinct full-corner/cocycle argument. The proof remains dependent on the expressly cited published operator-algebra and graph inputs. AI tools were used extensively. There is no external human peer review or formal proof-assistant certification.
 
-The full proof has been accepted in a separately authored AI mathematical audit, with no mathematical repair requested. This is an AI-assisted manuscript, not externally human-peer-reviewed or formally certified. No novelty, priority or community-acceptance claim is made.
+The former assertion that pinching is necessary was too strong. The current proof and current editorial audit now give or identify a genuine finite abelian cocycle averaging/polar alternative. The original submitted files remain preserved separately. This qualification does not weaken the full theorem or repair a gap in its sufficient pinching argument.
 
-The substantive external result is Barlak–Szabó's theorem with its original outer-action and aperiodicity hypotheses. The authored reductions remove those two restrictions using full-frame corner lifting, an aperiodic return graph, path-defined vertex coboundaries, and pinch/polar corrections. The broader theorem is not attributed to Barlak–Szabó.
+Matsumoto2000 precedes the diagonal-coboundary/periodic-orbit mechanism. Crisp–Gow's29April2004 preprint Theorem3.1 subsumes the return-corner construction. The full target is also a composed consequence of Gabe–Szabó's10May2022 general equivariant uniqueness theorem (arXiv:2205.04933v1 Theorem5.8, Proposition3.14 and Definition1.15), normalized inner-kernel reduction and genuine-cocycle averaging. The short current note uses that route without any graph-period restriction. Christensen–Neagu–Szabó's2025 duality gives prior infrastructure for the weaker strong approximate innerness and its transfer mechanisms. This is an attributed exposition and complete verification of prior-theorem consequences. No first solution, firstness, new-mechanism, earliest consequence date, current worldwide openness or community-acceptance claim is made. No inspected old source is asserted to print the entire combined CK statement. Priority and publication readiness are separate from the historical audit and are documented in the current verification package.
 
-## Reading order
+Reading order:
 
-1. PROOF.md: complete theorem and proof, including the full original mathematical argument and verified public source citations.
-2. INDEPENDENT_AUDIT.md: full mathematical AI audit, with public-safe editorial clarification.
-3. SOURCE_VERIFICATION.md and SOURCE_METADATA.json: source scope, supplementary elementary proofs, citations, hashes, version distinctions and inspection limitations.
-4. ACCEPTANCE.json: binding between the exact audited inputs and this editorial edition.
-5. EDITORIAL_CHANGE_MAP.json: exact UTF-8 byte-span changes and unchanged mathematical-region hashes.
-6. CHECK_RESULTS.json: aggregate independently authored finite checks and their limited scope.
-7. MANIFEST.json: exact public-file inventory, byte counts and SHA-256 hashes. Its own digest must be recorded separately because a manifest cannot contain its own conventional content hash.
+1. PROOF.md gives the full theorem, its sufficient proof and the current qualification.
+2. INDEPENDENT_AUDIT.md is the historically dated AI audit with an explicitly marked current editorial qualification. Its historical first-person and execution claims are not new events.
+3. SOURCE_VERIFICATION.md and SOURCE_METADATA.json preserve the11October source-scope records. Fresh source versions and current priority checks are documented separately in the verification package.
+4. ACCEPTANCE.json separates the historical acceptance data from the current qualification; EDITORIAL_CHANGE_MAP.json separates the historical change map from the new byte changes.
+5. CHECK_RESULTS.json remains the historical aggregate summary. Its old check program and old raw inputs are not supplied in that historical packet and were not replayed as new evidence. Current authored diagnostic code, explicit limits, actual run receipts and durable normal/-O/-OO checks are in the verification package.
+6. MANIFEST.json binds the eight other current files. Its own conventional hash is anchored outside this directory.
 
-The source supplement's Hopenwasser–Peters–Power convention locator is corrected to printed p.354/PDF p.4. The audit's Echterhoff–Rørdam link is aligned with the final 2024 publisher PDF. These are bibliographic editorial changes; the mathematics is unchanged.
-
-This directory contains authored mathematical material and public verification metadata only. It excludes raw matrix/phase data, graph datasets, check programs, source documents, source extracts, source images and coordination material. Hashes document identity and preservation; they do not constitute formal mathematical verification.
+The current preprint and supporting package are maintained under publication/. All third-party source PDFs, extracts, page images and raw provider outputs are excluded from public authored membership. Hashes establish byte identity, not mathematical truth. The original historical frozen inputs named by the older acceptance cannot be independently authenticated without their bytes.

@@ -14,8 +14,6 @@ BRANCH = 'publish-diagonal-30003587-20261011'
 BODY = '6ab00d803d8a28f0ac3450dc33c69752561482d2f4bb37e29024707c2ef6c213'
 BASE = 'attempts/30003587'
 NAMES = {'ACCEPTANCE.json','CHECK_RESULTS.json','EDITORIAL_CHANGE_MAP.json','INDEPENDENT_AUDIT.md','MANIFEST.json','PROOF.md','README.md','SOURCE_METADATA.json','SOURCE_VERIFICATION.md'}
-PROSE = {'AUDIT.md','PROOF.md','README.md'}
-STRUCTURED = {'EDITORIAL_MAP.json','SOURCE_VERIFICATION.json'}
 FIELDS = {'title','upload_type','publication_type','description','creators','access_right','license','version','publication_date','keywords','related_identifiers'}
 SCHEMAS = {('files','relative_path','size_bytes'),('files','relative_path','bytes'),('authored_files','relative_path','bytes'),('authored_artifacts','relative_path','bytes'),('entries','path','bytes'),('entries','relative_path','bytes'),('entries','file','bytes'),('authored_files','path','bytes'),('files','path','bytes'),('members','path','bytes'),('all_authored_content_files','path_relative_to_authored_root','bytes')}
 
@@ -127,26 +125,49 @@ def authenticate_edition(root):
 
 def authenticate_current(root,context,original):
     authenticate_edition(root)
-    if context['edition_mode']=='preserve_submitted':
+    mode=context.get('edition_mode');need(mode in {'preserve_submitted','documented_correction'},'explicit current edition mode required')
+    supplied=context.get('source_bindings',{}).get('current_edition')
+    if supplied is not None:
+        need(isinstance(supplied,dict) and set(supplied)==NAMES,'exact nine current source bindings required')
+        for name in NAMES:check_binding(member(root,name),supplied[name])
+    if mode=='preserve_submitted':
         for name in NAMES:need(member(root,name).read_bytes()==member(original,name).read_bytes(),'preserved current original differs '+name)
-    else:
-        for name,text in context['edition_text'].items():need(member(root,name).read_text()==text,'explicit current prose differs')
-        for name,obj in context['structured_records'].items():need(json.loads(member(root,name).read_text())==obj,'explicit current structured record differs')
+    else:need(supplied is not None,'documented correction requires current source bindings')
+
+def authenticate_source_bindings(audit,evidence_root,context):
+    supplied=context.get('source_bindings');need(isinstance(supplied,dict) and set(supplied)=={'submitted_snapshot_sha256','current_edition_correction_sha256','current_edition'},'exact source bindings schema required')
+    snapshot_path=member(audit,'SUBMITTED_SNAPSHOT.json');need(digest(snapshot_path)==supplied['submitted_snapshot_sha256'],'source original snapshot anchor differs')
+    snapshot=json.loads(snapshot_path.read_text());original_map={Path(e['path']).name:{'bytes':e['bytes'],'sha256':e['sha256']} for e in snapshot['files']}
+    need(len(snapshot['files'])==9 and set(original_map)==NAMES,'source snapshot exact nine names required')
+    current_map=supplied['current_edition'];need(isinstance(current_map,dict) and set(current_map)==NAMES,'exact nine current source bindings required')
+    same_root=audit.resolve()==evidence_root.resolve();original=evidence_root/('submitted' if same_root else 'original_submitted')
+    authenticate_snapshot(original,snapshot);authenticate_current(evidence_root/'current_edition',context,original)
+    if context['edition_mode']=='preserve_submitted':
+        need(supplied['current_edition_correction_sha256'] is None and current_map==original_map,'preserved mode source bindings differ');return None
+    correction_path=member(audit,'CURRENT_EDITION_CORRECTION.json');need(digest(correction_path)==supplied['current_edition_correction_sha256'],'current correction anchor differs')
+    record=json.loads(correction_path.read_text())
+    keys={'schema','at_utc','pr','problem_id','original_head','submitted_snapshot_sha256','original_files','current_files','changes','scope'}
+    need(set(record)==keys and record['schema']=='math-pr1280-current-edition-correction-v1' and record['pr']==PR and record['problem_id']==PROBLEM and record['original_head']==ORIGINAL,'exact documented correction schema/target required')
+    need(record['submitted_snapshot_sha256']==supplied['submitted_snapshot_sha256'] and record['original_files']==original_map and record['current_files']==current_map,'documented correction original/current bindings differ')
+    need(isinstance(record['at_utc'],str) and bool(record['at_utc']) and isinstance(record['scope'],str) and bool(record['scope'].strip()),'actual correction time and scope required')
+    changed={name for name in NAMES if original_map[name]!=current_map[name]};need(bool(changed),'documented correction must identify an actual byte change')
+    entries=record['changes'];need(isinstance(entries,list) and len(entries)==len(changed),'one declaration for every changed current file required');seen=set()
+    for entry in entries:
+        need(isinstance(entry,dict) and set(entry)=={'path','original_sha256','current_sha256','reason'},'explicit correction change schema required')
+        name=entry['path'];need(name in changed and name not in seen,'undeclared/duplicate current correction change');seen.add(name)
+        need(entry['original_sha256']==original_map[name]['sha256'] and entry['current_sha256']==current_map[name]['sha256'] and isinstance(entry['reason'],str) and bool(entry['reason'].strip()),'correction exact before/after and reason required')
+    need(seen==changed,'correction changed-file inventory differs');return record
 
 def load_context(audit, document_root=None, evidence_root=None):
     evidence_root=audit if evidence_root is None else evidence_root
     context=json.loads(member(audit,'CURRENT_PR1280_CONTEXT.json').read_text())
-    keys={'edition_mode','schema','pr','problem_id','original_head','original_branch','original_body_sha256','title','expected_pdf_pages','source_date_epoch','edition_text','structured_records','disclosures','metadata','publication_text','tracker','authored_freezes','portable_files','diagnostic_replays','gate_bindings','document_bindings'}
+    keys={'edition_mode','schema','pr','problem_id','original_head','original_branch','original_body_sha256','title','expected_pdf_pages','source_date_epoch','edition_text','structured_records','disclosures','metadata','publication_text','tracker','authored_freezes','portable_files','diagnostic_replays','gate_bindings','document_bindings','source_bindings'}
     need(set(context)==keys,'current context exact keys required')
     need(context['schema']=='math-pr1280-current-context-v1' and context['pr']==PR and context['problem_id']==PROBLEM and context['original_head']==ORIGINAL and context['original_branch']==BRANCH and context['original_body_sha256']==BODY,'current context identity differs')
     need(type(context['expected_pdf_pages']) is int and context['expected_pdf_pages']>0,'actual expected PDF page count required')
     need(context['source_date_epoch']=='1792195200','explicit reproducible build stamp required')
-    need(context['edition_mode']=='preserve_submitted','explicit current edition mode required')
-    if context['edition_mode']=='preserve_submitted':
-        need(context['edition_text']=={} and context['structured_records']=={},'preserved submission mode cannot invent current prose/records')
-    else:
-        need(set(context['edition_text'])==PROSE and all(isinstance(t,str) and t.strip() for t in context['edition_text'].values()),'exact three explicit current prose records required')
-        need(set(context['structured_records'])==STRUCTURED and all(isinstance(t,dict) and t for t in context['structured_records'].values()),'exact two explicit current structured records required')
+    need(context['edition_mode'] in {'preserve_submitted','documented_correction'},'explicit current edition mode required')
+    need(context['edition_text']=={} and context['structured_records']=={},'current edition bytes must use explicit source bindings, no inferred prose/record schema')
     need(context['disclosures']=={'firstness_claim':False,'current_openness_claim':False,'ai_assisted':True,'unrefereed':True},'explicit no-firstness/AI/unrefereed disclosures required')
     metadata_contract(context['metadata']);need(context['title']==context['metadata']['title'],'explicit current title differs')
     need(set(context['publication_text'])=={'summary','priority_statement','verification_scope'} and all(isinstance(t,str) and t.strip() for t in context['publication_text'].values()),'explicit publication text required')
@@ -159,6 +180,7 @@ def load_context(audit, document_root=None, evidence_root=None):
         need(gate.get('pr')==PR and gate.get('problem_id')==PROBLEM and gate.get('original_head')==ORIGINAL and gate.get('status')=='PASS','exact actual PASS gate required '+filename)
         if filename=='PRIORITY_ADJUDICATION.json':
             need(gate.get('firstness_claim') is False and gate.get('current_openness_claim') is False,'priority no-firstness/open disclaimer required')
+    authenticate_source_bindings(audit,evidence_root,context)
     authenticate_nested_manifests(evidence_root,context['authored_freezes'])
     need(isinstance(context['portable_files'],list) and bool(context['portable_files']),'explicit portable authored/receipt inventory required')
     seen=set()

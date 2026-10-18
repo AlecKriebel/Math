@@ -43,7 +43,7 @@ def publication_note(pub,tracker):
 def desired_files(build,pub,tracker,snapshot):
     files={}
     context=current_context()
-    if context['edition_mode']!='preserve_submitted':raise RuntimeError('PR1280 preserves the nine submitted files')
+    if context['edition_mode'] not in {'preserve_submitted','documented_correction'}:raise RuntimeError('Explicit bound current nine-file edition required')
     with zipfile.ZipFile(ROOT/build['verification_zip']['path']) as archive:
         if archive.read('provenance/SUBMITTED_SNAPSHOT.json')!=(ROOT.parent/'SUBMITTED_SNAPSHOT.json').read_bytes():raise RuntimeError('Submitted snapshot differs from reviewed archive')
         names={'ACCEPTANCE.json','CHECK_RESULTS.json','EDITORIAL_CHANGE_MAP.json','INDEPENDENT_AUDIT.md','MANIFEST.json','PROOF.md','README.md','SOURCE_METADATA.json','SOURCE_VERIFICATION.md'}
@@ -52,7 +52,8 @@ def desired_files(build,pub,tracker,snapshot):
         for f in snapshot['files']:
             name=Path(f['path']).name;data=(ROOT.parent/'current_edition'/name).read_bytes()
             if archive.read('current_edition/'+name)!=data:raise RuntimeError('Current edition differs from reviewed archive')
-            if data!=(ROOT.parent/'submitted'/name).read_bytes():raise RuntimeError('Original preserved byte drift '+name)
+            if archive.read('original_submitted/'+name)!=(ROOT.parent/'submitted'/name).read_bytes():raise RuntimeError('Archived original byte drift '+name)
+            if context['source_bindings']['current_edition'][name]!={'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()}:raise RuntimeError('Current source binding drift '+name)
             files[f['path']]=data
     if build['pdf']['path']!='Diagonal_Actions_Strong_Approximate_Innerness_Note_v1.0.pdf' or build['verification_zip']['path']!='Diagonal_Actions_Strong_Approximate_Innerness_Verification_v1.0.zip':raise RuntimeError('Unexpected target artifact basenames')
     publication={build[k]['path']:(ROOT/build[k]['path']).read_bytes() for k in ['pdf','verification_zip']}
@@ -124,6 +125,7 @@ def validate_workflow_gate(gate):
     required|={str((ROOT.parent/folder/name).resolve()) for folder in ['submitted','current_edition'] for name in names}
     required|={str((ROOT.parent/item['path']).resolve()) for item in context['portable_files']}
     required|={str(path.resolve()) for path in (ROOT/'verification').rglob('*') if path.is_file()}
+    if context['edition_mode']=='documented_correction':required.add(str((ROOT.parent/'CURRENT_EDITION_CORRECTION.json').resolve()))
     pending_resolutions=[]
     verifier=runpy.run_path(str(ROOT/'verification/verify.py'))
     verifier['authenticate_snapshot'](ROOT.parent/'submitted',json.loads((ROOT.parent/'SUBMITTED_SNAPSHOT.json').read_text()))
@@ -221,7 +223,7 @@ def main():
     if current['headRefName']!=BRANCH or current['state']!='OPEN':raise RuntimeError('Unexpected PR branch/state')
     snapshot=json.loads((ROOT.parent/'SUBMITTED_SNAPSHOT.json').read_text())
     files,publication,note=desired_files(build,pub,tracker,snapshot)
-    body=note+'\nThe original nine-file MANIFEST.json binds the eight other submitted records through files dictionary keys and bytes/sha256. publication_20261017/ adds the reviewed preprint, portable verification archive, matching deposit metadata, publication receipt and README. Original historical files are preserved in the portable archive.\n'
+    body=note+'\nThe current nine-file MANIFEST.json binds the eight other current edition records through files dictionary keys and bytes/sha256; its documentary correction and immutable original snapshot are separately authenticated. publication_20261017/ adds the reviewed preprint, portable verification archive, matching deposit metadata, publication receipt and README. Original historical files are preserved in the portable archive.\n'
     wanted=expected_identity(pub,tracker,files,body)
     permitted_bodies={snapshot['body_sha256'],hashlib.sha256(body.encode()).hexdigest()}
     if hashlib.sha256(current['body'].encode()).hexdigest() not in permitted_bodies:raise RuntimeError('PR body differs from original and intended final body')

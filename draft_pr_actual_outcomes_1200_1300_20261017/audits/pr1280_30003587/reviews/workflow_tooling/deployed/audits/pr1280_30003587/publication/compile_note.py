@@ -5,10 +5,24 @@ import datetime,hashlib,json,os,shutil,subprocess,runpy
 ROOT=Path(__file__).resolve().parent
 
 def main():
-    context=runpy.run_path(str(ROOT/'verification/verify.py'))['load_context'](ROOT.parent)
-    if context.get('schema')!='math-pr1280-current-context-v1' or context.get('pr')!=1280 or context.get('problem_id')!=30003587 or context.get('original_head')!='f5085a4c954f814cde1bc3be0727ff30373aea95' or context.get('original_branch')!='publish-diagonal-30003587-20261011' or context.get('original_body_sha256')!='6ab00d803d8a28f0ac3450dc33c69752561482d2f4bb37e29024707c2ef6c213' or context.get('edition_mode')!='preserve_submitted':raise RuntimeError('Explicit current compilation context required')
+    context=json.loads((ROOT.parent/'CURRENT_PR1280_CONTEXT.json').read_text())
+    if context.get('schema')!='math-pr1280-current-context-v1' or context.get('pr')!=1280 or context.get('problem_id')!=30003587 or context.get('original_head')!='f5085a4c954f814cde1bc3be0727ff30373aea95' or context.get('original_branch')!='publish-diagonal-30003587-20261011' or context.get('original_body_sha256')!='6ab00d803d8a28f0ac3450dc33c69752561482d2f4bb37e29024707c2ef6c213' or context.get('edition_mode') not in {'preserve_submitted','documented_correction'}:raise RuntimeError('Explicit current compilation context required')
     epoch=context.get('source_date_epoch')
     if epoch!='1792195200':raise RuntimeError('Explicit SOURCE_DATE_EPOCH required')
+    # First compilation precedes PDF/receipt hashes. Authenticate actual inputs
+    # and target gates here; complete document bindings are required by build.
+    v=runpy.run_path(str(ROOT/'verification/verify.py'));v['metadata_contract'](context['metadata'])
+    anchors=context.get('gate_bindings',{})
+    if set(anchors)!={'math_gate_sha256','priority_adjudication_sha256','submitted_snapshot_sha256'}:raise RuntimeError('Explicit compilation gate bindings required')
+    for filename,key in [('MATH_GATE.json','math_gate_sha256'),('PRIORITY_ADJUDICATION.json','priority_adjudication_sha256'),('SUBMITTED_SNAPSHOT.json','submitted_snapshot_sha256')]:
+        path=ROOT.parent/filename
+        if hashlib.sha256(path.read_bytes()).hexdigest()!=anchors[key]:raise RuntimeError('Compilation gate anchor differs '+filename)
+        obj=json.loads(path.read_text())
+        if filename=='SUBMITTED_SNAPSHOT.json':v['authenticate_snapshot'](ROOT.parent/'submitted',obj)
+        else:
+            if obj.get('pr')!=1280 or obj.get('problem_id')!=30003587 or obj.get('original_head')!='f5085a4c954f814cde1bc3be0727ff30373aea95' or obj.get('status')!='PASS':raise RuntimeError('Actual compilation PASS gate required '+filename)
+            if filename=='PRIORITY_ADJUDICATION.json' and (obj.get('firstness_claim') is not False or obj.get('current_openness_claim') is not False):raise RuntimeError('Compilation priority disclosures required')
+    v['authenticate_source_bindings'](ROOT.parent,ROOT.parent,context)
     compiler=shutil.which('tectonic')
     if not compiler:raise RuntimeError('Tectonic unavailable; preserve source and obtain an actual compile receipt')
     source=ROOT/'manuscript/main.tex';before=hashlib.sha256(source.read_bytes()).hexdigest()

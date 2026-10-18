@@ -152,7 +152,7 @@ Thus w_n∈A^α exactly. Each D_g is also α-fixed, so D_g w_n∈U(A^α), and
 
 Ad(D_g w_n)→Ad(D_g)β_g=α_g.
 
-This proves the edge-diagonal theorem with neither extra hypothesis. Notice that the pinch/polar step is necessary: strong approximate innerness cannot simply be claimed invariant under arbitrary exterior equivalence.
+This proves the edge-diagonal theorem with neither extra hypothesis. Pinching and polar decomposition supply the original fixed-algebra membership in this proof. An alternative is available for genuine cocycle perturbations of finite abelian actions: if alpha_g=Ad(d_g) beta_g and d is an honest beta-cocycle, beta-fixed implementers v_n for beta_g give t_n=d_g v_n with ||alpha_h(t_n)-t_n||=||beta_g(d_h)-v_n d_h v_n*|| tending to zero. Finite averaging over alpha, followed by polar decomposition, gives exactly alpha-fixed implementers. This alternative requires the genuine cocycle law; a projective family of pointwise inner implementers does not supply it.
 
 ## 7. Returning to the exact queued CK question
 
@@ -185,3 +185,16 @@ The substantive external theorem remains Barlak–Szabó's aperiodic outer-actio
 - Siegfried Echterhoff and Mikael Rørdam, “Inclusions of C*-algebras arising from fixed-point algebras,” Groups Geom. Dyn. 18 (2024), 127–145. [DOI](https://doi.org/10.4171/GGD/743); [final publisher PDF](https://ems.press/content/serial-article-files/42588), printed pp.127,129/PDF pp.1,3.
 
 Source hashes, version distinctions and retrieval limitations are recorded in SOURCE_METADATA.json and SOURCE_VERIFICATION.md. They establish which sources were inspected, not formal verification of the mathematics.
+
+## Current review qualification (17 October 2026 local date)
+
+The complete deduction above is retained. The claim that one specific pinch/polar construction is necessary has been replaced by the explicit alternative for genuine finite abelian cocycles. This changes no theorem, graph reduction, or implementing sequence used in the original proof. Matsumoto's 2000 diagonal-coboundary and periodic-point arguments precede the inner-phase mechanism (Lemma 5.14 and Proposition 6.4), and the return corner is a special case of Crisp–Gow's 2004 preprint Theorem 3.1. These mechanisms are credited prior work. The current audit does not establish firstness of the combined full statement or current worldwide openness. Current verification is supplied separately from the historical 11October acceptance and check summaries.
+
+- K. Matsumoto, On automorphisms of C*-algebras associated with subshifts, J. Operator Theory 44 (2000), 91–112, Lemma 5.14 and Proposition 6.4: https://jot.theta.ro/jot/archive/2000-044-001/2000-044-001-005.pdf .
+- T. Crisp and D. Gow, Contractible subgraphs and Morita equivalence of graph C*-algebras, arXiv:math/0404542v1 (29April2004), Theorem 3.1 and canonical path map: https://arxiv.org/abs/math/0404542v1 . The current source inspection uses the preprint; final DOI10.1090/S0002-9939-06-08216-5 is bibliographic metadata, without assuming final-body identity.
+
+### Broader prior-theorem consequence identified in the current audit
+
+The full target is also an explicit consequence of Gabe–Szabó's general equivariant uniqueness theorem: arXiv:2205.04933v1 (10 May 2022), Definition 1.15 p.13, Proposition 3.14 p.29 and Theorem 5.8 pp.45–46 (https://arxiv.org/abs/2205.04933v1). For an outer finite abelian edge-phase action, each automorphism is equivariantly homotopic to the identity by interpolating its edge phases. Equivariant uniqueness gives asymptotically implementing, asymptotically whole-action-fixed unitaries; finite averaging and polar decomposition give exactly fixed unitaries. The normalized all-group vertex representation above removes the inner kernel, giving an outer quotient with no graph-period restriction. The genuine-cocycle averaging argument restores the original action. This complete assembly was written and checked in the current audit; it is not attributed as a printed Cuntz–Krieger theorem in that source. Final publication metadata is Acta Math.232(2024),1–77, DOI10.4310/ACTA.2024.v232.n1.a1; inspected theorem locators refer to the actual preprint, not an unavailable final body.
+
+Christensen–Neagu–Szabó, arXiv:2504.12730v1 (17 April 2025), Definition3.1/Remark3.2 pp.11–12 and Theorem3.7 p.15 (https://arxiv.org/abs/2504.12730v1), supplies a prior duality framework for exactly the weaker strong approximate innerness used here. Genuine-cocycle and ambient-full-corner transfer can also be composed from that framework; these are not claimed as newly discovered invariance mechanisms. The current paper is an attributed exposition and complete verification of prior-theorem consequences. No first solution, new mechanism, earliest consequence date, or present worldwide openness is certified.
