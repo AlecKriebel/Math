@@ -1,0 +1,289 @@
+{
+  "UTC": "2026-10-17T22:52:11.077732+00:00",
+  "status": "PASS",
+  "scenario_count": 16,
+  "source_pin": {
+    "bytes": 31054,
+    "sha256": "2678047b38c9362fa9cef09c7e67bad886eeec21a298b9b77d327997e9157e3f"
+  },
+  "primitive_pin": {
+    "bytes": 16405,
+    "sha256": "5971428cd56b4fbbabb41a985f6a36599aea4f69e46fa048f88b971e405d9df9"
+  },
+  "scenarios": [
+    {
+      "name": "success",
+      "outcome": "success",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link",
+        "fsync3",
+        "identity1",
+        "unlink",
+        "fsync4",
+        "identity2"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 2,
+      "link_dispatches": 1,
+      "final_exists": true,
+      "pending_entries": 0,
+      "uncertainty_stage": null
+    },
+    {
+      "name": "guard_fail",
+      "outcome": "RuntimeError",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "unlink",
+        "fsync3"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 0,
+      "link_dispatches": 0,
+      "final_exists": false,
+      "pending_entries": 0,
+      "uncertainty_stage": null
+    },
+    {
+      "name": "pending_file_fsync",
+      "outcome": "RuntimeError",
+      "events": [
+        "fsync1"
+      ],
+      "guard_calls": 0,
+      "identity_calls": 0,
+      "link_dispatches": 0,
+      "final_exists": false,
+      "pending_entries": 1,
+      "uncertainty_stage": null
+    },
+    {
+      "name": "pending_dir_fsync",
+      "outcome": "OSError",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "unlink",
+        "fsync3"
+      ],
+      "guard_calls": 0,
+      "identity_calls": 0,
+      "link_dispatches": 0,
+      "final_exists": false,
+      "pending_entries": 0,
+      "uncertainty_stage": null
+    },
+    {
+      "name": "pending_mode",
+      "outcome": "RuntimeError",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "unlink",
+        "fsync3"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 0,
+      "link_dispatches": 0,
+      "final_exists": false,
+      "pending_entries": 0,
+      "uncertainty_stage": null
+    },
+    {
+      "name": "pending_inode",
+      "outcome": "RuntimeError",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 0,
+      "link_dispatches": 0,
+      "final_exists": false,
+      "pending_entries": 1,
+      "uncertainty_stage": null
+    },
+    {
+      "name": "link_known_collision",
+      "outcome": "publication_uncertain",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 0,
+      "link_dispatches": 1,
+      "final_exists": true,
+      "pending_entries": 1,
+      "uncertainty_stage": "exclusive_publication"
+    },
+    {
+      "name": "unknown_link_absent",
+      "outcome": "publication_uncertain",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 0,
+      "link_dispatches": 1,
+      "final_exists": false,
+      "pending_entries": 1,
+      "uncertainty_stage": "exclusive_publication"
+    },
+    {
+      "name": "unknown_link_present",
+      "outcome": "publication_uncertain",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 0,
+      "link_dispatches": 1,
+      "final_exists": true,
+      "pending_entries": 1,
+      "uncertainty_stage": "exclusive_publication"
+    },
+    {
+      "name": "published_dir_fsync",
+      "outcome": "publication_uncertain",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link",
+        "fsync3"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 0,
+      "link_dispatches": 1,
+      "final_exists": true,
+      "pending_entries": 1,
+      "uncertainty_stage": "published_directory_fsync"
+    },
+    {
+      "name": "published_readback",
+      "outcome": "publication_uncertain",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link",
+        "fsync3"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 0,
+      "link_dispatches": 1,
+      "final_exists": true,
+      "pending_entries": 1,
+      "uncertainty_stage": "published_file_readback"
+    },
+    {
+      "name": "identity_first",
+      "outcome": "publication_uncertain",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link",
+        "fsync3",
+        "identity1"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 1,
+      "link_dispatches": 1,
+      "final_exists": true,
+      "pending_entries": 1,
+      "uncertainty_stage": "published_source_lock_identity"
+    },
+    {
+      "name": "identity_last",
+      "outcome": "publication_uncertain",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link",
+        "fsync3",
+        "identity1",
+        "unlink",
+        "fsync4",
+        "identity2"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 2,
+      "link_dispatches": 1,
+      "final_exists": true,
+      "pending_entries": 0,
+      "uncertainty_stage": "final_source_lock_identity"
+    },
+    {
+      "name": "pending_cleanup",
+      "outcome": "publication_uncertain",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link",
+        "fsync3",
+        "identity1",
+        "unlink"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 1,
+      "link_dispatches": 1,
+      "final_exists": true,
+      "pending_entries": 1,
+      "uncertainty_stage": "pending_cleanup"
+    },
+    {
+      "name": "cleanup_dir_fsync",
+      "outcome": "publication_uncertain",
+      "events": [
+        "fsync1",
+        "fsync2",
+        "final_guard",
+        "link",
+        "fsync3",
+        "identity1",
+        "unlink",
+        "fsync4"
+      ],
+      "guard_calls": 1,
+      "identity_calls": 1,
+      "link_dispatches": 1,
+      "final_exists": true,
+      "pending_entries": 0,
+      "uncertainty_stage": "cleanup_directory_fsync"
+    },
+    {
+      "name": "existing_final",
+      "outcome": "FileExistsError",
+      "events": [],
+      "guard_calls": 0,
+      "identity_calls": 0,
+      "link_dispatches": 0,
+      "final_exists": true,
+      "pending_entries": 0,
+      "uncertainty_stage": null
+    }
+  ],
+  "all_owned_fixtures_removed": true,
+  "hooks": "Unchanged repaired publisher and ParentHandle. Explicit local_ops delegates actual owned fsync/link/unlink and injects declared faults; explicit final/identity guards inspect only synthetic paths. These are independent controls, not the producer test code. No production inspector context/Runtime/lock/gate/receipt/current-five/native/ref/PR/intake action.",
+  "production_actions": 0,
+  "meaning": "Tests atomic publication, failure classification and no overwrite/final unlink. A post-dispatch exception can conservatively report uncertainty even if final is absent; actual durability/Root authority is not established by these fixtures."
+}
