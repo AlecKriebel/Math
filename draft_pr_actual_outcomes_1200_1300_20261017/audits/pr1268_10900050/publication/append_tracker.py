@@ -5,6 +5,13 @@ import datetime,json,re,subprocess,runpy
 ROOT=Path(__file__).resolve().parent
 SID="1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20"
 GID=1254632077
+PROBLEM_IDENTIFIERS=('10900050','amr-108-0050','https://github.com/aleckriebel/math/pull/1268')
+
+def row_has_problem_identity(row,publication=None):
+ """Known problem aliases at every stage; DOI forms when publication is known."""
+ if not isinstance(row,list):raise RuntimeError('Tracker row must be a cell array')
+ dois={publication['doi'].casefold(),publication['doi_url'].casefold()} if publication is not None else set()
+ return any(any(token in str(cell).casefold() for token in PROBLEM_IDENTIFIERS) or str(cell).strip().casefold() in dois for cell in row)
 
 def call(parts,params,body=None):
  args=["gws","sheets",*parts,"--params",json.dumps(params)]
@@ -51,7 +58,7 @@ def main():
  rows=data.get("values",[])
  if not rows or rows[0]!=["Original Problem","Solution Chat URL","DOI","Notes"]:raise RuntimeError("Unexpected tracker headers")
  row=expected_row(pub,title)
- matches=[(i+1,r) for i,r in enumerate(rows) if any(pub["doi_url"]==str(c) or pub["doi"]==str(c) or "10900050" in str(c) or "https://github.com/AlecKriebel/Math/pull/1268" in str(c) for c in r)]
+ matches=[(i+1,r) for i,r in enumerate(rows) if row_has_problem_identity(r,pub)]
  out=ROOT/"tracker"; out.mkdir(exist_ok=True)
  intent={"spreadsheetId":SID,"gid":GID,"range":full,"row":row}
  old=out/"INTENT.json"

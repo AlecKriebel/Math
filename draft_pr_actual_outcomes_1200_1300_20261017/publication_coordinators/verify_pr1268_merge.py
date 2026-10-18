@@ -40,8 +40,7 @@ def main():
     full="'"+observed_tab['title'].replace("'","''")+"'!A:D"
     rows=t['call'](['spreadsheets','values','get'],{'spreadsheetId':t['SID'],'range':full,'valueRenderOption':'UNFORMATTED_VALUE'}).get('values',[])
     need(rows and rows[0]==['Original Problem','Solution Chat URL','DOI','Notes'],'Postmerge tracker headers differ')
-    problem_tokens=('10900050','AMR-108-0050','https://github.com/AlecKriebel/Math/pull/1268')
-    matches=[(i+1,row) for i,row in enumerate(rows) if any(str(c) in {pub['doi_url'],pub['doi']} or any(token in str(c) for token in problem_tokens) for c in row)]
+    matches=[(i+1,row) for i,row in enumerate(rows) if t['row_has_problem_identity'](row,pub)]
     need(len(matches)==1 and matches[0][1]==tracker['row'],'Missing/different/duplicate problem or DOI row')
     number=matches[0][0]
     need(tracker['updatedRange']==f"'Math Puzzles'!A{number}:D{number}",'Postmerge row range differs')

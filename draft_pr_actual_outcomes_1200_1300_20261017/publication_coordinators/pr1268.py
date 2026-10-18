@@ -41,7 +41,7 @@ def live_preflight():
  t=runpy.run_path(str(P/'append_tracker.py'));m=t['call'](['spreadsheets','get'],{'spreadsheetId':t['SID'],'fields':'sheets.properties'});tab=next(e['properties'] for e in m['sheets'] if e['properties']['sheetId']==t['GID']);require(tab['title']=='Math Puzzles','Tracker tab changed')
  rows=t['call'](['spreadsheets','values','get'],{'spreadsheetId':t['SID'],'range':"'Math Puzzles'!A:D",'valueRenderOption':'UNFORMATTED_VALUE'}).get('values',[])
  require(rows and rows[0]==['Original Problem','Solution Chat URL','DOI','Notes'],'Tracker headers changed')
- require(not any(any('10900050' in str(c) or 'https://github.com/AlecKriebel/Math/pull/1268' in str(c) for c in row) for row in rows),'Existing problem row; reconcile before deposit mutation')
+ require(not any(t['row_has_problem_identity'](row) for row in rows),'Existing problem row; reconcile before deposit mutation')
 
 def install_exact_verifier(kit):
  if getattr(kit,'pr1268_exact_verifier',False):return kit
