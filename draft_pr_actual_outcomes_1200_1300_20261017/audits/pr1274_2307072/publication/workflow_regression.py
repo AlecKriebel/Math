@@ -9,9 +9,11 @@ import contextlib,copy,datetime,hashlib,importlib.util,io,json,os,shutil,subproc
 ROOT=Path(__file__).resolve().parent
 COORDINATOR=ROOT.parents[2]/'publication_coordinators/pr1274.py'
 POSTMERGE=ROOT.parents[2]/'publication_coordinators/verify_pr1274_merge.py'
-REPORT_ROOT=ROOT.parent/'reviews/workflow_tooling'
+REPORT_ROOT=ROOT.parent/'reviews/workflow_identity_revision1'
 NAMES=['prepare_package.py','build_package.py','compile_note.py','verification/verify.py','append_tracker.py','update_pr_publication.py','check_public_downloads.py','workflow_regression.py']
 DEPLOY={name:(('verification_verify.py' if (ROOT/'verification_verify.py').exists() else name) if name=='verification/verify.py' else name) for name in NAMES}
+ALIAS_VARIANTS={'alias':'aMr0227072','aliasHyphen':'AMR-022-7072','aliasSpace':'aMR 022 7072','aliasUnderscore':'AMR_022_7072','aliasMixed':'aMr - 022_7072','aliasUnpadded':'AMR-22-7072','aliasZeroPad':'AMR_00022_0007072','aliasZeroPadCompact':'AMR000220007072'}
+ALIAS_NEAR_COLLISIONS={'nearHyphen':'AMR-022-70729','nearSpace':'AMR 022 70729','nearUnderscore':'AMR_022_70729','nearCompact':'AMR02270729','nearWrongGroup':'AMR-122-7072','nearTrailingLetter':'AMR-022-7072x','nearLeadingLetter':'XAMR-022-7072'}
 
 def need(value,message):
     if not value:raise RuntimeError(message)
@@ -306,7 +308,7 @@ def identity_matrix(folder):
     folder.mkdir(parents=True);out=[]
     context={'title':'SYNTHETIC IDENTITY MATRIX','tracker':{'original_problem':'2307072 (AMR0227072); https://github.com/AlecKriebel/Math/pull/1274','notes':'Synthetic notes'}}
     pub={'environment':'production','state':'published','metadata_normalizations':[],'id':123,'doi':'10.5281/zenodo.123','doi_url':'https://doi.org/10.5281/zenodo.123','record_url':'https://zenodo.org/records/123','title':context['title']}
-    identities={'numeric':'2307072','alias':'aMr0227072','PR':'https://github.com/AlecKriebel/Math/pull/1274','bareDOI':'  10.5281/zenodo.123  ','DOIURL':'  https://doi.org/10.5281/zenodo.123  ','unrelated':'Unrelated42'}
+    identities={'numeric':'2307072',**ALIAS_VARIANTS,'PR':'https://github.com/AlecKriebel/Math/pull/1274','bareDOI':'  10.5281/zenodo.123  ','DOIURL':'  https://doi.org/10.5281/zenodo.123  ','unrelated':'Unrelated42',**ALIAS_NEAR_COLLISIONS}
     for kind in ['preflight_unknown','preflight_known','append']:
       for label,identity in identities.items():
        for column in range(4):
@@ -336,8 +338,9 @@ def identity_matrix(folder):
         c.subprocess=types.SimpleNamespace(check_output=external)
         try:capture(t.main if kind=='append' else c.live_preflight);accepted=True
         except (RuntimeError,ValueError,KeyError):accepted=False
-        wanted=label=='unrelated' or kind=='preflight_unknown' and label in {'bareDOI','DOIURL'}
-        count=events.count(['spreadsheets','values','append']);need(accepted==wanted and count==(1 if kind=='append' and label=='unrelated' else 0),'Identity action matrix differs '+repr((kind,label,column,accepted,count)))
+        unrelated=label=='unrelated' or label in ALIAS_NEAR_COLLISIONS
+        wanted=unrelated or kind=='preflight_unknown' and label in {'bareDOI','DOIURL'}
+        count=events.count(['spreadsheets','values','append']);need(accepted==wanted and count==(1 if kind=='append' and unrelated else 0),'Identity action matrix differs '+repr((kind,label,column,accepted,count)))
         out.append({'stage':kind,'identity':label,'column':column,'accepted':accepted,'appends':count})
     # Exact intended row is recoverable without any append mutation, even with no previous intent.
     row=t.expected_row(pub,context['title']);rows[:]=[rows[0],row];capture(t.main);need(events.count(['spreadsheets','values','append'])==1,'Exact row recovery made another append')
@@ -348,8 +351,9 @@ def postmerge_controls(f):
     pubpath=f['pub'];audit=f['audit'];program=audit.parents[1];u=load(pubpath/'update_pr_publication.py');t=load(pubpath/'append_tracker.py');m=load(pubpath.parents[2]/'publication_coordinators/verify_pr1274_merge.py')
     original_pub=json.loads((pubpath/'PUBLICATION_RECEIPT.json').read_text());original_tracker=json.loads((pubpath/'tracker/TRACKER_RECEIPT.json').read_text());original_public=json.loads((pubpath/'PUBLIC_DOWNLOAD_VERIFICATION.json').read_text())
     cases=['baseline','doi_fallback_valid','wrong_gid_same_title','missing_gid','duplicate_designated_gid','wrong_title','bad_headers','missing_row',*[f'wrong_cell_{i}' for i in range(4)],'range_wrong','checkout_wrong','merge_parent_wrong','merge_single_parent','merge_three_parents','merged_bytes_wrong','live_open','live_head_wrong','live_branch_wrong','live_body_wrong','live_url_wrong','saved_body_unverified','saved_remote_unverified','public_false','public_identity_false','public_id_wrong','public_doi_wrong','doi_unresolved','doi_wrong_status','state_current_wrong','state_completed_wrong','state_eligible_wrong','state_publications_wrong']
-    aliases={'numeric':'2307072','alias':'aMr0227072','PR':'https://github.com/AlecKriebel/Math/pull/1274','bareDOI':'  10.5281/zenodo.123  ','DOIURL':'  https://doi.org/10.5281/zenodo.123  '}
+    aliases={'numeric':'2307072',**ALIAS_VARIANTS,'PR':'https://github.com/AlecKriebel/Math/pull/1274','bareDOI':'  10.5281/zenodo.123  ','DOIURL':'  https://doi.org/10.5281/zenodo.123  '}
     cases += ['duplicate_'+label+'_'+str(column) for label in aliases for column in range(4)]
+    cases += ['unrelated_'+label+'_'+str(column) for label in ALIAS_NEAR_COLLISIONS for column in range(4)]
     cases += ['merged_blob_'+str(index) for index in range(11)]
     cases += ['state_eligible_count_wrong','state_completed_duplicate','state_publications_duplicate'];out=[]
     for case in cases:
@@ -394,6 +398,8 @@ def postmerge_controls(f):
         if case.startswith('wrong_cell_'):rows[1][int(case[-1])]='Wrong'
         if case.startswith('duplicate_') and case!='duplicate_designated_gid':
             _,label,column=case.split('_');row=['','','',''];row[int(column)]=aliases[label];rows.append(row)
+        if case.startswith('unrelated_'):
+            _,label,column=case.split('_');row=['','','',''];row[int(column)]=ALIAS_NEAR_COLLISIONS[label];rows.append(row)
         def call(parts,params,body=None):
             events.append({'gws':parts})
             if parts==['spreadsheets','get']:return {'sheets':copy.deepcopy(tabs)}
@@ -422,9 +428,10 @@ def postmerge_controls(f):
         rejection=None
         try:capture(m.main);accepted=True
         except (RuntimeError,ValueError,KeyError,FileNotFoundError) as error:accepted=False;rejection=str(error)
-        after=json.loads((program/'PROGRAM_STATE.json').read_text());wanted_accept=case in {'baseline','doi_fallback_valid'};need(accepted==wanted_accept,'Postmerge guard differs '+case)
+        after=json.loads((program/'PROGRAM_STATE.json').read_text());wanted_accept=case in {'baseline','doi_fallback_valid'} or case.startswith('unrelated_');need(accepted==wanted_accept,'Postmerge guard differs '+case)
         need(after['current_pr']==(1280 if wanted_accept else state['current_pr']),'Postmerge state advanced despite failure '+case)
         if not wanted_accept:need(after==state,'Postmerge program state mutated despite failure '+case)
+        if case.startswith('duplicate_') and case!='duplicate_designated_gid':need(rejection=='Missing/different/duplicate problem or DOI row','Alias duplicate did not reach the exact actual postmerge identity check '+case)
         if case.startswith('merged_blob_'):
             target=sorted(files)[int(case.removeprefix('merged_blob_'))]
             need(rejection=='Merged bytes differ '+target,'Per-file corruption did not reach its exact merged-blob check '+case)

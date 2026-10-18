@@ -5,13 +5,16 @@ import datetime,json,re,subprocess,runpy
 ROOT=Path(__file__).resolve().parent
 SID="1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20"
 GID=1254632077
-PROBLEM_IDENTIFIERS=('2307072','amr0227072','https://github.com/aleckriebel/math/pull/1274')
+PROBLEM_IDENTIFIERS=('2307072','https://github.com/aleckriebel/math/pull/1274')
+# The original problem uses AMR-022-7072; accept its common separator and
+# group-zero-padding variants, but never the prefix of a longer alias.
+AMR_ALIAS=re.compile(r'(?<![a-z0-9])amr[\s_-]*0*22[\s_-]*0*7072(?![a-z0-9])',re.IGNORECASE)
 
 def row_has_problem_identity(row,publication=None):
  """Known problem aliases at every stage; DOI forms when publication is known."""
  if not isinstance(row,list):raise RuntimeError('Tracker row must be a cell array')
  dois={publication['doi'].casefold(),publication['doi_url'].casefold()} if publication is not None else set()
- return any(any(token in str(cell).casefold() for token in PROBLEM_IDENTIFIERS) or str(cell).strip().casefold() in dois for cell in row)
+ return any(any(token in str(cell).casefold() for token in PROBLEM_IDENTIFIERS) or AMR_ALIAS.search(str(cell)) is not None or str(cell).strip().casefold() in dois for cell in row)
 
 def call(parts,params,body=None):
  args=["gws","sheets",*parts,"--params",json.dumps(params)]
