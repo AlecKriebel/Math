@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Publish only this effort's subtree, preserving the shared checkout/index."""
 from pathlib import Path
-import datetime,json,subprocess
+import argparse,datetime,json,re,subprocess
 ROOT=Path(__file__).resolve().parent
 REPO=ROOT.parent
 
@@ -11,12 +11,21 @@ def git(*args,data=None):
  return r.stdout
 
 def main():
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--exclude-review',action='append',default=[],help='Exact program-relative active whole-review folder; no wildcard or global round exclusion')
+ args=parser.parse_args()
+ exclusions=[]
+ for raw in args.exclude_review:
+  if re.fullmatch(r'audits/pr[1-9][0-9]*_[0-9]+/reviews/package_round[1-9][0-9]*',raw) is None:raise RuntimeError('Exact named active review folder required')
+  if not (ROOT/raw/'INPUT_FREEZE.json').is_file():raise RuntimeError('Active review input freeze missing')
+  exclusions.append(ROOT.name+'/'+raw+'/')
  if git("branch","--show-current").strip()!=b"main":raise RuntimeError("Stay on main")
  names=set(git("ls-files","-z","--cached","--others","--exclude-standard","--",ROOT.name).decode().split("\0"))
  names.discard("")
  ignored=subprocess.run(["git","check-ignore","--no-index","-z","--stdin"],cwd=REPO,input=("\0".join(sorted(names))+"\0").encode(),capture_output=True)
  if ignored.returncode not in (0,1):raise RuntimeError(ignored.stderr.decode())
  names-=set(ignored.stdout.decode().split("\0"))
+ names={name for name in names if not any(name.startswith(prefix) for prefix in exclusions)}
  node={}
  for name in sorted(names):
   if not name:continue
