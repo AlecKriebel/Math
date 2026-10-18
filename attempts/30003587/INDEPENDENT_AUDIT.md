@@ -1,6 +1,8 @@
 # Independent AI mathematical audit: diagonal quasi-free finite abelian actions
 
-Date: 11 October 2026.
+Date of historical audit: 11 October 2026. Current editorial qualification: 17 October 2026 local date.
+
+Editorial provenance: the original submitted report remains verbatim in the verification package. This current edition qualifies the former absolute pinching-necessity sentence. Its historical first-person source and execution statements are retained as historical claims, not as newly authenticated events. The intermediate graph statements are now explicitly restricted to graphs with at least one edge, excluding the edgeless singleton before the Kirchberg and infinite-path arguments; essentiality already guarantees this for the original target. The older frozen proof, audit and supplement named below are unavailable in the submitted nine-file packet; current independent mathematical review does not certify those missing bytes or the old execution history.
 
 This is an AI-assisted audit. Independence refers to a separately authored mathematical review and separately authored finite checks. It does not mean external human peer review or formal proof-assistant certification. First-person inspection statements below describe that AI audit. The frozen audited proof and this public editorial edition are bound in ACCEPTANCE.json.
 
@@ -110,7 +112,7 @@ Sources: [Kishimoto original article, author-uploaded full text](https://www.res
 
 ## 6. Restoring the original fixed algebra
 
-The final pinching step is essential and correct; arbitrary exterior equivalence alone would not justify fixed-point membership.
+The final pinching step correctly supplies fixed-point membership in this argument. A genuine finite abelian cocycle perturbation also admits an averaging/polar alternative, so pinching is not a necessary form of the argument. Exact fixed-algebra membership must still be proved.
 
 For β-fixed implementing unitaries v_n and each vertex p_v, β_g(p_v)=p_v implies ||[v_n,p_v]||→0. Therefore z_n=Σ_v p_v v_n p_v is norm-close to v_n, lies exactly in A^β, and commutes with all vertex projections. Its polar unitary w_n has those same exact memberships and still implements β_g. Every D_h is a vertex-diagonal unitary, so
 
