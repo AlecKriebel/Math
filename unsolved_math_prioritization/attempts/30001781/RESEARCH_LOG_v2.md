@@ -1,0 +1,3 @@
+# Turn1 checkpoint
+
+2026-10-01 14:52 UTC — Completed substantive turn1: common isometric quotient/rotation class has the exact corrected scale and benchmark tail. Published Chevet theorem is applied only to the unconditional latent matrix; a separate marginal tail-count estimate controls the transformed exponential width. The degenerate-body limit and a genuine non-unconditional rational rotation are explicit.12,911 exact controls pass. Original arbitrary-row conjecture unresolved, four substantive turns remain. Completion estimate25%. No novelty or full-result claim. The initial source checkpoint remains unchanged.

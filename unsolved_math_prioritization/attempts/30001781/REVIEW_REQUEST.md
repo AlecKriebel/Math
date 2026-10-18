@@ -1,0 +1,14 @@
+# Independent full scoped-partial review request
+
+Audit the complete analytic arguments and exact source correspondence, not only finite controls. The proposed original outcome is **unsolved, 5/5**. No PR or final status change is authorized by this request itself.
+
+1. Verify OWR pp. 1343–1344 have sqrt(m)*log and sqrt(k)*log; distinguish the malformed imported expression from the original. Check independent nonidentical centered isotropic log-concave rows, full coordinatewise unconditionality, exact sparse Euclidean operator norm and qualitative high-probability wording.
+2. Turn 1: check the actual final Chevet/Corollary 3.2 assumptions, whole latent matrix isotropy/unconditionality, both exponential widths, sigma and sigma-prime, D>N body regularization and the strict-event tail passage. Verify the non-unconditional rotation example and common-map restriction.
+3. Turn 2: check scalar symmetrization, every Gamma/Dirichlet normalization, the affine-simplex injectivity and covariance, common kernel from shared weight ratios, exact independence of sum and normalized vector, conditional Jensen for all p and the diagonal bound. Do not assume normalizers independent of unnormalized entries. Check all-n validity and moment-to-small-deviation conversion.
+4. Turn 3: audit Bernstein's variance/max-coefficient terms, net sizes and s>=m sharp simplification. Verify the harmonic-vector lower obstruction and layer-cake upper bound; it is deterministic and not a probabilistic counterexample.
+5. Turn 4: independently reconstruct the nonidentical independent order-statistic lemma, all k sum bounds, exact top-k optimization and the column-net operator passage. Check m=1 and row-dominated scopes, prefactor/deviation constants and the explicit nonimprovement relative to the 2014 theorem.
+6. Turn 5: check Q/T/M equivalence with atoms, all sample sizes and real p>=1; necessity uses iid copies while sufficiency works for nonidentical rows. Verify a>=1, dual unit ball conv U_m, the merely conditional weak–strong step, and why it supplies no full k>1 chaining theorem. A source-era conjecture label is not a current-status proof.
+7. Replay all five deterministic receipts and every historical manifest; verify the six full PDF hashes. Finite counts are algebraic controls, never substitutes for uniform analytic proof. Sources remain separate from public artifacts.
+8. Judge the final gap honestly: no unrestricted sharp theorem, no valid matrix counterexample, no replacement of an unresolved target by the source transcription error. If a retained partial has a gap, identify exactly which claim and version requires correction before publication.
+
+No coauthorship in the derivation has been requested from the reviewer. Preserve the frozen author files; return a separate portable audit with explicit scope and any mandatory corrections. The parent retains publication authority.

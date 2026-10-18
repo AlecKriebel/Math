@@ -1,0 +1,3 @@
+# Turn2 checkpoint
+
+2026-10-01 15:02 UTC — Completed substantive turn2. Symmetrization reduces all-p norm bounds for asymmetric independent scalar latent entries to turn1. The exact Gamma/Dirichlet independence then transfers moments by conditional Jensen, proving the corrected sharp order and benchmark tail for common-weight-ratio Dirichlet rows with every shape>=1, including uniform regular simplices. This avoids a false union bound over Gamma normalizers and covers arbitrary n. Different rowwise geometries and arbitrary log-concave laws remain outside the reduction. Original unresolved after2/5, three substantive turns remain. Completion estimate30%; no full-result or novelty claim.
