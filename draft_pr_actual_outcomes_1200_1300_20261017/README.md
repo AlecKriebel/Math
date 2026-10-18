@@ -2,7 +2,7 @@
 
 The human superseded the stale QUEUE.md gate: admission uses an explicit full solution of the original target in each actual PR outcome. Partial, unsolved, conditional-only and recorded prior-result outcomes are excluded from mathematical review and publication. Two initial readers and a fresh global eligibility adversary checked the scope; twelve claims were admitted and 89 PRs skipped.
 
-11 of twelve admitted claims are complete. Current PR: 1283. Current stage: qualified_priority_pass_actual_package_preparation. Overall estimate: 95%. The publication register below contains completed, verified cases only.
+11 of twelve admitted claims are complete. Current PR: 1283. Current stage: second_fresh_whole_package_review. Overall estimate: 98%. The publication register below contains completed, verified cases only.
 
 The notes give the precise mathematical conclusions and literature qualifications. They make no firstness or current-worldwide-openness claim. AI tools were used extensively; the manuscripts are unrefereed, without external human or formal certification.
 
