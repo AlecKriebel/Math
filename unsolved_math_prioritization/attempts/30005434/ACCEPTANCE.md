@@ -1,3 +1,17 @@
+# Current editorial qualification — 17 October 2026
+
+This edition retains the original submitted mathematical text below and adds current attribution and evidence qualifications. The full existence classification under the four equations printed in Dietzel, *Some problems on L-algebras*, OWR9/2023, Definition2 and Problem3, is accepted after fresh root verification, a genuinely source-only reconstruction and separate independent adversarial reviews. No all-products classification, self-similarity, cancellation, or extra unstated axiom is claimed. Under the separately attested meet-monoid convention both existence questions require a greatest element; that convention predates the workshop, including arXiv:2206.04955v1 (10June2022), Definition3.1.
+
+**Prior construction credit.** The joint operation x·y=e for x≤y, and x·y=x∧y otherwise, is already printed by José Luis Castiglioni and Hernán Javier San Martín, *On a symmetrization of hemiimplicative semilattices*, arXiv:1611.09589v1 (29November2016), p7, Example3.5, formula(4). Their p2 defines bounded as having a greatest element; this formula needs no bottom or distributivity. The final publication is titled *l-Hemi-Implicative Semilattices*, Studia Logica106(2018),675–690, DOI10.1007/s11225-017-9759-3 (online3October2017). The version-pinned body and final bibliographic metadata are distinct evidence. This is attributed verification and deduction of the full printed existence answer, not a claim of a new solution, operation, mechanism, first combined statement, independent discovery or current worldwide openness. Earlier L-algebra and closure theory is due to Rump; the question is credited to Dietzel. Historical priority for an earlier explicit combined conclusion remains unestablished after a bounded audit, with missing earlier source bodies disclosed separately.
+
+**Historical versus current evidence.** All eight submitted Git-authenticated files are retained verbatim in original_submitted/ of the verification package. The earlier6872-byte candidate,10375-byte audit and original finite-enumeration programs referred to in the submitted receipts were unavailable in this audit. Their hashes, old acceptance declarations, old counts and first-person statements below are historical records, not fresh certification of absent inputs or rerun results. Available public-side byte ranges were checked, but that does not authenticate missing old-side bytes. Fresh reproducible programs/results and independent review records are separately identified in the package. Any historical wording such as new refers to progress relative to an earlier partial candidate and grants no literature-priority claim. The original mathematical proof below remains an object of the current verification.
+
+AI tools were used extensively for reconstruction, mathematical checking, computation, literature auditing and preparation. This work is unrefereed, with no external human peer review or formal proof certification. The present qualification governs the historical text that follows.
+
+---
+
+## Original submitted text, preserved verbatim
+
 # Acceptance report: complete semibrace existence classification
 
 ## Decision
