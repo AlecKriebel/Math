@@ -11,3 +11,15 @@ Original-target and pre-verdict candidate-core notes sealed. Root full proof ins
 ## 2026-10-18T00:38:27.043920+00:00 — dependency check (35%)
 
 Root and two complete fresh families accept candidate core. Third fresh reviewer identified two literal details in imported Theorem5.1 proof needing precise check. Priority/publication gate held pending rigorous repair or independent resolution; fourth fresh dependency-only reviewer assigned. Root provisional alternate monomial-then-limit-generator proof and class-to-set reduction recorded. No unsupported result promoted, no PR mutation.
+
+## 2026-10-18T00:39:58.956162+00:00 — explicit dependency repair (45%)
+
+Root read full class-family reformulation and checked monomial/terminal-limit stages, legal unit cut cofinality, exact current-group partition and actual set restrictions for class scope. Fourth fresh dependency reviewer independently reports reconstructing same mechanism before sibling access and additionally deriving initial cut adjunction directly. Final adversarial report pending; no priority or publication gate advance.
+
+## 2026-10-18T00:41:32.530658+00:00 — full mathematics pass; priority begins (60%)
+
+Root and three fresh initial adversaries verify full candidate; two independent explicit dependency reconstructions repair source-proof details. Root read entire fourth sealed proof, directly rederived cut adjunction, and found no unsupported bridge. All3 initial reports+57pins authenticated and all3 diagnostics replayed; fourth final receipt pending administrative seal. Extensive bounded primary priority audit now begins, with no novelty/global-openness assumption. PR remains untouched.
+
+## 2026-10-18T00:45:14.476077+00:00 — fourth final report authenticated (60%)
+
+Root fullread fourth report+proof; all6 declared hashes/source/fresh repair verified and final13-file custody inventory sealed. Counterexample checker reproduced with real assertions. Three fresh independent priority families plus root20queryinputs are active. No prior full witness established yet; decision remains open.
