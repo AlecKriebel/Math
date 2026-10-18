@@ -1,40 +1,25 @@
 # Actual PR outcomes: #1200–#1300
 
-The human superseded the earlier literal QUEUE.md gate on 17 October 2026:
-QUEUE may be stale, so use each PR's explicit actual outcome. Only claims of a
-full resolution of the original target are admitted. Explicitly partial,
-conditional, restricted-only and attributed prior-solution outcomes are skipped.
-A generic disclaimer of novelty is not itself evidence of an earlier solution.
+The human superseded the stale QUEUE.md gate: admission uses an explicit full solution of the original target in each actual PR outcome. Partial, unsolved, conditional-only and recorded prior-result outcomes are excluded from mathematical review and publication. Two initial readers and a fresh global eligibility adversary checked the scope; twelve claims were admitted and 89 PRs skipped.
 
-Two initial readers inspected all101 draft PR bodies and202 immutable outcome
-files, with latest-state/comment/review checks. The final eligible list
-is 1205,1211,1216,1225,1241,1261,1262,1268,1271,1274,1280,1283. A fresh global
-eligibility adversary checked all101outcomes; root admitted1262 because prior
-credit applies to an imported ingredient rather than an explicitly earlier
-full target resolution. Twelve are eligible and89 are skipped.
+11 of twelve admitted claims are complete. Current PR: 1283. Current stage: qualified_priority_pass_actual_package_preparation. Overall estimate: 95%. The publication register below contains completed, verified cases only.
 
-The first in-scope PR, #1205 (problem 30004665), is complete and merged.
-The literal canonical-W counterexample passed exact reconstruction and multiple
-adversarial mathematical reviews. Older primary-author word/support data are
-fully credited. The [published corrective note and portable verification
-package](https://doi.org/10.5281/zenodo.23439776) make no firstness or current-
-openness claim. The earlier independence overstatement is corrected globally;
-a distinct no-history source-only reconstruction and a clean fresh second
-whole-package review are preserved. Public downloads match reviewed hashes;
-DOI and scoped details are verified in tracker row 150. Next is #1211.
+The notes give the precise mathematical conclusions and literature qualifications. They make no firstness or current-worldwide-openness claim. AI tools were used extensively; the manuscripts are unrefereed, without external human or formal certification.
 
-PR_OUTCOME_METADATA.json pins all101 captured bodies and head metadata.
-The eligibility/ folders retain exact outcome snippets, immutable acceptance
-summaries and retrieval hashes. audits/pr1205_30004665/ contains the current
-proof review, executable checks, source-scope evidence and priority work.
-PROGRAM_STATE.json and RESEARCH_LOG.md record the next action and estimates.
+| PR | Problem | Published preprint and verification package | Tracker row |
+|---|---|---|---|
+| [#1205](https://github.com/AlecKriebel/Math/pull/1205) | 30004665 | [10.5281/zenodo.23439776](https://doi.org/10.5281/zenodo.23439776) | 'Math Puzzles'!A150:D150 |
+| [#1211](https://github.com/AlecKriebel/Math/pull/1211) | 30000418 | [10.5281/zenodo.23440389](https://doi.org/10.5281/zenodo.23440389) | 'Math Puzzles'!A152:D152 |
+| [#1216](https://github.com/AlecKriebel/Math/pull/1216) | 30000921 | [10.5281/zenodo.23441167](https://doi.org/10.5281/zenodo.23441167) | 'Math Puzzles'!A154:D154 |
+| [#1225](https://github.com/AlecKriebel/Math/pull/1225) | 2307058 | [10.5281/zenodo.23441617](https://doi.org/10.5281/zenodo.23441617) | 'Math Puzzles'!A156:D156 |
+| [#1241](https://github.com/AlecKriebel/Math/pull/1241) | 11000082 | [10.5281/zenodo.23442218](https://doi.org/10.5281/zenodo.23442218) | 'Math Puzzles'!A159:D159 |
+| [#1261](https://github.com/AlecKriebel/Math/pull/1261) | 30003990 | [10.5281/zenodo.23442760](https://doi.org/10.5281/zenodo.23442760) | 'Math Puzzles'!A161:D161 |
+| [#1262](https://github.com/AlecKriebel/Math/pull/1262) | 30001248 | [10.5281/zenodo.23443230](https://doi.org/10.5281/zenodo.23443230) | 'Math Puzzles'!A164:D164 |
+| [#1268](https://github.com/AlecKriebel/Math/pull/1268) | 10900050 | [10.5281/zenodo.23444093](https://doi.org/10.5281/zenodo.23444093) | 'Math Puzzles'!A166:D166 |
+| [#1271](https://github.com/AlecKriebel/Math/pull/1271) | 30003042 | [10.5281/zenodo.23444707](https://doi.org/10.5281/zenodo.23444707) | 'Math Puzzles'!A168:D168 |
+| [#1274](https://github.com/AlecKriebel/Math/pull/1274) | 2307072 | [10.5281/zenodo.23445096](https://doi.org/10.5281/zenodo.23445096) | 'Math Puzzles'!A170:D170 |
+| [#1280](https://github.com/AlecKriebel/Math/pull/1280) | 30003587 | [10.5281/zenodo.23445709](https://doi.org/10.5281/zenodo.23445709) | 'Math Puzzles'!A172:D172 |
 
-The earlier draft_pr_claimed_solved_1200_1300_20261016/ checkpoint remains an
-accurate historical queue-only snapshot. Its all-skipped disposition is
-superseded by this actual-outcome program, not silently rewritten.
+[PROGRAM_STATE.json](PROGRAM_STATE.json) records dispositions and immutable merge identities; [RESEARCH_LOG.md](RESEARCH_LOG.md) records checkpoints and estimates. Each audits/pr... folder retains its own original/current editions, proofs, source/access receipts, independently sealed reviews, exact publication records and postmerge checks. The initial eligibility files remain immutable historical scope evidence.
 
-All work stays on main. Narrow checkpoint commits are based on remote main,
-using an isolated subtree and fast-forward-only pushes, leaving the common
-checkout/index and unrelated working files untouched. Downloaded source texts,
-PDFs, local toolchains and virtual environments are ignored review inputs,
-not distributed source material. No external individual is contacted.
+Work stays on main. Narrow regular pushes preserve other remote root entries and leave the shared checkout/index untouched. Third-party primary bodies, extracts, renders and raw retrieval data remain private review inputs. No outside individual is contacted, no outreach is prepared, and no GitHub release is created. The earlier queue-only checkpoint is preserved as superseded historical evidence.
