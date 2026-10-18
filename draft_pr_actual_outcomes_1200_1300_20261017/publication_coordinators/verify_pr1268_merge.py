@@ -33,9 +33,15 @@ def main():
         checks.append({'path':name,'bytes':len(actual),'sha256':hashlib.sha256(actual).hexdigest(),'matches':True})
     title=load(P/'zenodo-deposit.json')['metadata']['title']
     t=runpy.run_path(str(P/'append_tracker.py')); t['validate_tracker_receipt'](tracker,pub,title)
-    rows=t['call'](['spreadsheets','values','get'],{'spreadsheetId':t['SID'],'range':"'Math Puzzles'!A:D",'valueRenderOption':'UNFORMATTED_VALUE'}).get('values',[])
+    metadata=t['call'](['spreadsheets','get'],{'spreadsheetId':t['SID'],'fields':'sheets.properties'})
+    tabs=[s['properties'] for s in metadata.get('sheets',[]) if s.get('properties',{}).get('sheetId')==t['GID']]
+    need(len(tabs)==1 and tabs[0].get('title')=='Math Puzzles','Postmerge designated tracker sheet ID/title association differs')
+    observed_tab={'sheetId':tabs[0]['sheetId'],'title':tabs[0]['title']}
+    full="'"+observed_tab['title'].replace("'","''")+"'!A:D"
+    rows=t['call'](['spreadsheets','values','get'],{'spreadsheetId':t['SID'],'range':full,'valueRenderOption':'UNFORMATTED_VALUE'}).get('values',[])
     need(rows and rows[0]==['Original Problem','Solution Chat URL','DOI','Notes'],'Postmerge tracker headers differ')
-    matches=[(i+1,row) for i,row in enumerate(rows) if any(pub['doi_url']==str(c) or '10900050' in str(c) or 'AMR-108-0050' in str(c) for c in row)]
+    problem_tokens=('10900050','AMR-108-0050','https://github.com/AlecKriebel/Math/pull/1268')
+    matches=[(i+1,row) for i,row in enumerate(rows) if any(str(c) in {pub['doi_url'],pub['doi']} or any(token in str(c) for token in problem_tokens) for c in row)]
     need(len(matches)==1 and matches[0][1]==tracker['row'],'Missing/different/duplicate problem or DOI row')
     number=matches[0][0]
     need(tracker['updatedRange']==f"'Math Puzzles'!A{number}:D{number}",'Postmerge row range differs')
@@ -50,7 +56,7 @@ def main():
         doi=inspected.get('doi_resolution')
     need(isinstance(doi,dict) and doi.get('status')=='resolved' and doi.get('http_status')==200,'DOI has not resolved successfully')
     now=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    save(P/'tracker/POSTMERGE_READBACK.json',{'at_utc':now,'spreadsheetId':t['SID'],'gid':t['GID'],'range':tracker['updatedRange'],'values':[matches[0][1]],'readback_verified':True,'matching_problem_rows':1})
+    save(P/'tracker/POSTMERGE_READBACK.json',{'at_utc':now,'spreadsheetId':t['SID'],'gid':observed_tab['sheetId'],'observed_sheet_properties':observed_tab,'range':tracker['updatedRange'],'values':[matches[0][1]],'readback_verified':True,'matching_problem_rows':1,'uniqueness_identifiers':['canonical DOI URL','bare DOI','numeric problem ID','AMR alias','PR URL']})
     merged={'at_utc':now,'pr':1268,'state':'MERGED','merged_at':live['mergedAt'],'merge_commit':merge,'reviewed_head':head,'parents':parents,'final_body_exact':True,'all15_merged_files_exact':True,'files':checks,'shared_index_modified':False,'checkout_branch':'main','method':'Expected-head merge; immutable merge object fetched into own ref, fifteen exact blobs and unique exact full tracker row checked.'}
     save(P/'MERGE_RECEIPT.json',merged)
     context=u['current_context']()
