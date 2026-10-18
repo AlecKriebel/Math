@@ -1,0 +1,11 @@
+Reviewer-owned initial diagnostic failed, not a prepared-package defect. Initial script SHA256 65bfc4ec9e959542cb0d9f25f895db56c67d88d6f068ed04aa432d52004de73e.
+The cycloid failure uses (x,y,z)=(1,2,0), whereas S3 fails at reversed x,y=(2,1,0). Initial diagnostic accidentally reused the cycloid tuple for S3. Corrected only the reviewer-owned witness, and retained this failure.
+
+Traceback (most recent call last):
+  File "independent_math.py", line 73, in <module>
+    main()
+  File "independent_math.py", line 55, in main
+    need(op(min(1,2),0)!=op(op(1,2),op(1,0)),'hIS4 S3 must fail')
+  File "independent_math.py", line 4, in need
+    if not b:raise ReviewFailure(m)
+ReviewFailure: hIS4 S3 must fail
