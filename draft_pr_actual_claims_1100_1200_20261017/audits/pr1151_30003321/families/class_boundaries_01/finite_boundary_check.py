@@ -100,7 +100,7 @@ for alpha in range(depth+1):
             chosen=rng.sample(domain,min(len(domain),rng.randrange(1,7)))
             # Forced-D coordinates admit arbitrary dyadics; other coordinates
             # may be discrete lattices. All are modeled with finite samples.
-            return {k:(Fraction(rng.randrange(-9,10),2**(n if k==a else rng.randrange(0,5)))) for k in chosen if k}
+            return {k:(Fraction(rng.randrange(-9,10),2**(n if k==a else rng.randrange(0,5)))) for k in chosen}
         x,y=vector(),vector()
         x={k:v for k,v in x.items() if v}; y={k:v for k,v in y.items() if v}
         assert transform(add(x,y),alpha,n)==add(transform(x,alpha,n),transform(y,alpha,n))
