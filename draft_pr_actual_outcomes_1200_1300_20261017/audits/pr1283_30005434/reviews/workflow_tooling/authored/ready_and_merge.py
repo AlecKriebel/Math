@@ -11,6 +11,9 @@ A=Path(__file__).resolve().parents[1]
 P=A/'publication'
 PR='1283';URL='https://github.com/AlecKriebel/Math/pull/1283'
 BRANCH='dot/semibrace-30005434-complete-existence-20261011'
+ORIGINAL='4624244af725a80a2b7faf111f6b1ca62aaefe37'
+WORKFLOW={'prepare_package.py','build_package.py','compile_note.py','verification/verify.py','append_tracker.py','update_pr_publication.py','check_public_downloads.py','workflow_regression.py'}
+PINNED_KIT='a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca'
 PDF='Semibrace_Existence_Classification_Note_v1.0.pdf'
 ZIP='Semibrace_Existence_Classification_Verification_v1.0.zip'
 EDITION={'ACCEPTANCE.md','AGGREGATE_CHECKS.json','BYTE_PRESERVATION.json','INDEPENDENT_AUDIT.md','MANIFEST.json','PROOF_CLASSIFICATION.md','README.md','SOURCE_METADATA.json'}
@@ -30,7 +33,40 @@ def stamp(path):
     need((before.st_dev,before.st_ino,before.st_size,before.st_mtime_ns,before.st_mode)==(after.st_dev,after.st_ino,after.st_size,after.st_mtime_ns,after.st_mode),'Control changed while reading '+str(path))
     return {'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'device':after.st_dev,'inode':after.st_ino,'mtime_ns':after.st_mtime_ns,'mode':stat.S_IMODE(after.st_mode)}
 
+def authenticate_preimport():
+    """Authenticate reviewed bytes without executing any project source."""
+    gate=read(P/'FINAL_REVIEW_GATE.json')
+    need(gate.get('schema')=='math-preprint-final-review-gate-v1' and gate.get('pr')==1283 and gate.get('problem_id')==30005434 and gate.get('original_head')==ORIGINAL and gate.get('status')=='pass','Exact reviewed gate required before importing updater')
+    need(isinstance(gate.get('workflow'),dict) and set(gate['workflow'])==WORKFLOW,'Exact eight workflow bindings required before importing updater')
+    program=A.parents[1];repo=Path('/Users/alec/Documents/Math')
+    code={P/name:gate['workflow'][name] for name in WORKFLOW}
+    code.update({program/'publication_coordinators/pr1283.py':gate.get('deposit_coordinator_sha256'),program/'publication_coordinators/verify_pr1283_merge.py':gate.get('postmerge_coordinator_sha256'),repo/'zenodo_deposit_tool/zenodo.py':gate.get('shared_kit_sha256')})
+    need(gate.get('shared_kit_sha256')==PINNED_KIT,'Pinned kit differs before importing updater')
+    for path,expected in code.items():
+        need(isinstance(expected,str) and re.fullmatch('[0-9a-f]{64}',expected) is not None and stamp(path)['sha256']==expected,'Reviewed code differs before importing updater '+str(path))
+    latest=gate.get('latest_review',{})
+    need(latest.get('status')=='CLEAN' and latest.get('actual_review') is True and latest.get('fresh_reviewer') is True,'Latest actual clean review required before importing updater')
+    raw=latest.get('input_freeze');need(isinstance(raw,str) and bool(raw),'Latest reviewed input freeze required')
+    freeze=regular(P/raw).resolve()
+    try:freeze.relative_to((A/'reviews').resolve())
+    except ValueError:raise RuntimeError('Pre-import freeze outside own audit reviews')
+    need(stamp(freeze)['sha256']==latest.get('input_freeze_sha256'),'Latest reviewed input freeze anchor differs before import')
+    inventory=read(freeze);local=inventory.get('files',[]);external=inventory.get('external_readonly_inputs',[]);need(isinstance(local,list) and isinstance(external,list),'Explicit latest input arrays required before import');entries=local+external;bound={}
+    need(isinstance(entries,list) and bool(entries),'Nonempty latest frozen inputs required before import')
+    for entry in entries:
+        need(isinstance(entry,dict) and isinstance(entry.get('path'),str) and type(entry.get('bytes')) is int and entry['bytes']>=0 and isinstance(entry.get('sha256'),str) and re.fullmatch('[0-9a-f]{64}',entry['sha256']) is not None,'Invalid latest frozen input before import')
+        raw=entry['path'];need('..' not in Path(raw).parts,'Unsafe latest input path before import')
+        path=Path(raw);path=path if path.is_absolute() else A/path;identity=str(path.resolve())
+        need(identity not in bound,'Duplicate latest frozen input before import');bound[identity]=entry
+        actual=stamp(path);need(actual['bytes']==entry['bytes'] and actual['sha256']==entry['sha256'],'Latest frozen input differs before import '+str(path))
+    # The private entrypoint is an explicit external control, never a portable
+    # member inferred from a receipt. Its reviewed bytes must also match.
+    required={str(path.resolve()) for path in code}|{str(Path(__file__).resolve())}
+    need(required<=set(bound),'Latest review freeze omits code/private ready control before import')
+    return gate
+
 def load_updater():
+    authenticate_preimport()
     path=regular(P/'update_pr_publication.py');spec=importlib.util.spec_from_file_location('pr1283_ready_operative_updater',path);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module.__dict__
 
 def controls(u):

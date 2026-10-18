@@ -15,7 +15,7 @@ BODY = 'd60b38cf473a47e035624677092725f307da72628f935f80147622a28aef6f93'
 BASE = 'unsolved_math_prioritization/attempts/30005434'
 NAMES = {'ACCEPTANCE.md','AGGREGATE_CHECKS.json','BYTE_PRESERVATION.json','INDEPENDENT_AUDIT.md','MANIFEST.json','PROOF_CLASSIFICATION.md','README.md','SOURCE_METADATA.json'}
 FIELDS = {'title','upload_type','publication_type','description','creators','access_right','license','version','publication_date','keywords','related_identifiers'}
-SCHEMAS = {('files','relative_path','size_bytes'),('files','relative_path','bytes'),('authored_files','relative_path','bytes'),('authored_artifacts','relative_path','bytes'),('entries','path','bytes'),('entries','relative_path','bytes'),('entries','file','bytes'),('authored_files','path','bytes'),('files','path','bytes'),('members','path','bytes'),('all_authored_content_files','path_relative_to_authored_root','bytes')}
+SCHEMAS = {('files','relative_path','size_bytes'),('files','relative_path','bytes'),('authored_files','relative_path','bytes'),('authored_artifacts','relative_path','bytes'),('entries','path','bytes'),('entries','relative_path','bytes'),('entries','file','bytes'),('authored_files','path','bytes'),('files','path','bytes'),('members','path','bytes'),('members','relative_path','bytes'),('all_authored_content_files','path_relative_to_authored_root','bytes')}
 
 
 def need(value, message):
