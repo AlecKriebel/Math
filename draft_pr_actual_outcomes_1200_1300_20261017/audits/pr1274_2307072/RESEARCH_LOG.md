@@ -34,3 +34,11 @@ Root read the complete manuscript proof and attribution; no mathematical concern
 ## 2026-10-18T02:14:06.937868+00:00 — extensive priority audit PASS for credited exposition (65%)
 
 Five priority seals authenticated: two initial no-history families, two informed reverse cross-reviews, and root extension. Root read their reports/ledgers and adjudicated the1964 complex-field mechanism,2019 attribution/account gap,1986 exact precedent,2010 matching theorem, later repetitions and convention corrections. No current mathematical or attribution concern remains under the explicitly expository framing; historical firstness remains unestablished and is not claimed. Actual current-code offline regressions passed all three modes with eleven supplied metadata fields and canonical source aliases. The four-page note and173 explicitly selected portable files in12 authored families are being packaged. Fresh complete-package reviews remain required.
+
+## 2026-10-18T02:22:43.270328+00:00 — first fresh complete-package adversary active (70%)
+
+Current release is frozen at404 authored inputs plus161 readonly source/tool inputs. A NEW no-history reviewer reports independent original-commit/six-file authentication, exact four-page compilation/all-page visual reading, all194 ZIP members and current verifier/three diagnostics in normal/-O/-OO, critical primary-source/correction checks, and all11 metadata-corruption rejections. No blocker reported at80% of its assigned review; final offline guards and reauthentication/seal remain pending. This progress report is not a CLEAN verdict or publication clearance. Current frozen files are unchanged.
+
+## 2026-10-18T02:24:35.105941+00:00 — first fresh complete-package review CLEAN (75%)
+
+New reviewer pr1274-package-round1-20261018T021523Z-6df0f15c completed at02:23:58.907632Z with no required changes. Root read full report/verdict and new targeted-control source/results, authenticated21 sealed outputs, and accepted the stated limited CLEAN disposition. All565 frozen inputs unchanged, exact current PDF/ZIP reproduced, all3verifier/workflow modes and27new targeted rejection controls per mode passed. No package repair was required. A different new reviewer is next, after this completed seal.
