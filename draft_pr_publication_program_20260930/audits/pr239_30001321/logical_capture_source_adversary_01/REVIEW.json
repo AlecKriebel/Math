@@ -1,0 +1,25 @@
+{
+  "schema": "pr239-independent-logical-capture-source-adversary-review-v1",
+  "PR": 239,
+  "source_only": true,
+  "evidence_scope": "INDEPENDENT_SOURCE_REVIEW_NOT_ROOT_ACCEPTANCE",
+  "accepted": false,
+  "disposition": "SOURCE_REPAIRS_REQUIRED_BEFORE_ANY_HELPER_USE",
+  "review_completion_percent": 100,
+  "source_pin": {"bytes": 41132, "sha256": "09f0e6ab2c22aae6f611f62cb72340ac9c01be237d38962cd577c3b5e015aed1"},
+  "source_manifest_pin": {"bytes": 1585, "sha256": "fadf2dae7fe902d6825d8180361dc0acb0bf418a7fd58ea7f9311478b1eb1575"},
+  "engine_source_manifest_pin": {"bytes": 3198, "sha256": "96b0b248f390f67860b435b57cde34b2d2142206b9fc5c8166417f9c98d0db6c"},
+  "fully_read_executable_sources": ["logical_capture_preparation_01/capture_logical_packet.py", "logical_capture_preparation_01/offline_controls.py", "operational_source_preparation_01/native239_model.py", "operational_source_preparation_01/native239_primitives.py", "operational_source_preparation_01/native_trees_readonly.py"],
+  "findings": [
+    {"id": "F01", "severity": "P2", "verified": true, "source": "capture_logical_packet.py", "line": 415, "claim": "Empty attempt overlays unnecessarily descend the opaque attempt subtree.", "required_repair": "Return the existing attempt tuple on an empty overlay; prove no subtree request with a fresh cache."},
+    {"id": "F02", "severity": "P2", "verified": true, "source": "capture_logical_packet.py", "line": 451, "claim": "Final prior-case target selection can exceed accepted carry membership and yield a strict-model-incompatible packet.", "required_repair": "Apply the frozen strict payload target predicate against actual accepted carry before output creation; test omission refusal and explicit-membership acceptance."}
+  ],
+  "provided_exact_source_controls_passed": 67,
+  "independent_controls_passed": 18,
+  "no_high_level_or_actual_effect_execution": true,
+  "actual_config_selection_exact_packet_or_operational_acceptance": false,
+  "no_secret_source_read_or_export_demonstrated": true,
+  "root_exact_positive_origin_selection_review_still_required": true,
+  "published_scientific_result_unchanged": true,
+  "operational_authority": false
+}

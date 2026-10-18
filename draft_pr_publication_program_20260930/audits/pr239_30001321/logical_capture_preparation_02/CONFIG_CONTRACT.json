@@ -1,0 +1,114 @@
+{
+  "functions": {
+    "capture": {
+      "exact_match_expressions": [
+        "h.matches(config, {'schema': 'pr239-readonly-factual-capture-config-v1', 'PR': 239}, 'Capture config')"
+      ],
+      "literal_key_or_role_sets": [
+        [
+          "PR",
+          "deferred_targets",
+          "evidence_references",
+          "journal",
+          "output_name",
+          "own_row_post",
+          "phase",
+          "protected_body_paths",
+          "retired_candidates",
+          "schema"
+        ],
+        [
+          "case_ready"
+        ],
+        [
+          "carry_inventory",
+          "case_ready",
+          "native_identity"
+        ],
+        [
+          "bytes",
+          "path",
+          "sha256"
+        ]
+      ]
+    },
+    "final_target_admissibility": {
+      "exact_match_expressions": [],
+      "literal_key_or_role_sets": [
+        [
+          "bytes",
+          "path",
+          "sha256"
+        ]
+      ]
+    },
+    "finalize": {
+      "exact_match_expressions": [
+        "h.matches(config, {'schema': 'pr239-offline-logical-finalize-config-v1', 'PR': 239}, 'Offline finalize')",
+        "h.matches(snapshot, {'schema': 'pr239-factual-logical-capture-v1', 'PR': 239, 'coherent_before_after_Main': True, 'Root_acceptance_candidate_CAS_sync_completion_or_numeric_advance_inferred': False}, 'Successful actual factual capture required')"
+      ],
+      "literal_key_or_role_sets": [
+        [
+          "PR",
+          "carry_inventory",
+          "case_ready",
+          "native_identity",
+          "schema",
+          "snapshot",
+          "stage_name"
+        ]
+      ]
+    },
+    "postimages": {
+      "exact_match_expressions": [
+        "h.matches(value, h.baseline_facts(phase), 'Exact actual baseline counters/cursor ' + label)"
+      ],
+      "literal_key_or_role_sets": []
+    },
+    "selection": {
+      "exact_match_expressions": [
+        "h.matches(value, {'schema': 'pr239-root-positive-public-selection-v1', 'PR': 239, 'operational_authority': False}, 'Root finite selection')"
+      ],
+      "literal_key_or_role_sets": [
+        [
+          "PR",
+          "files",
+          "operational_authority",
+          "schema",
+          "total_bytes",
+          "total_files"
+        ],
+        [
+          "bytes",
+          "git_blob",
+          "observed_source_mode",
+          "origin",
+          "path",
+          "role",
+          "selection_basis",
+          "sha256"
+        ]
+      ]
+    },
+    "source_guard": {
+      "exact_match_expressions": [
+        "h.matches(h.decode(acceptance_raw), {'schema': 'pr239-root-logical-capture-source-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT_SOURCE_ONLY', 'PR': 239, 'accepted': True, 'action': action, 'configuration_reference': config_ref, 'selection_reference': selection_ref, 'capture_source_pin': pin(source), 'capture_source_manifest_pin': pin(own_raw), 'engine_source_manifest_pin': ENGINE_MANIFEST_PIN, 'Root_full_source_read': True, 'independent_source_review_accepted': True, 'only_readonly_capture_or_offline_conditional_staging_authorized': True, 'Seed_Runtime_original_lock_actual_five_native_POST_ref_PR_provider_or_intake_authorized': False}, 'Separate exact Root source/config/selection acceptance')",
+        "h.matches(value, {'schema': schema, 'source_only': True, 'self_excluded': True}, 'Finite source closure')"
+      ],
+      "literal_key_or_role_sets": [
+        [
+          "bytes",
+          "path",
+          "sha256"
+        ]
+      ]
+    }
+  },
+  "operational_authority": false,
+  "schema": "pr239-capture-extracted-contract-v1",
+  "source_only": true,
+  "source_pin": {
+    "bytes": 42168,
+    "sha256": "313a9fdfeb37407f94a5950ab91120e52850b85acb178d1f7a83e5bef8851a3b"
+  }
+}
