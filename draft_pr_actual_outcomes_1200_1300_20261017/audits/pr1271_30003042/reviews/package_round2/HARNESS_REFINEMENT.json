@@ -1,0 +1,14 @@
+{
+  "at_utc": "2026-10-18T01:25:20.751738+00:00",
+  "issues_in_review_harness_only": [
+    "Initial guard injector wrongly required every check to live in a function; the source-only program uses top-level hard guards. Initial attempt stopped before changing any frozen input.",
+    "Python3.14 ast.parse inherits the host optimization unless optimize=0 is explicit. The first -OO guard-injection run therefore removed source docstrings, changing only the temporary mutated-copy hash and line numbers. Every original check still rejected, but exact mutated-copy comparison required the explicit mode."
+  ],
+  "corrections": [
+    "Force the existing hard guard to reject whether top-level or function-based.",
+    "Parse original program with optimize=0 before guard mutation; retain all source AST assertions if any. Rerun all three modes with the same temporary source bytes."
+  ],
+  "prior_harness_and_mode_outputs_preserved_under": "_local/",
+  "frozen_inputs_modified": false,
+  "production_or_mathematical_finding": false
+}
