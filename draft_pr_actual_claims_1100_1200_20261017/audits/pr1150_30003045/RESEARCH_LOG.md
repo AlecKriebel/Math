@@ -25,3 +25,11 @@ Output-symlink overwrite independently reproduced only against owned disposable 
 ## 2026-10-18T00:06:02.223950+00:00 — edition3 extracted replay checkpoint (85%)
 
 All141source members authenticated, kit5exact. Extracted builder reproducesall6release files byte-for-byte; both full replay modes match.22actual package integrity rejection controls and2successful hardlink-preservation controls pass, separate from18mathematical wrong-result exits. New no-history package03 whole review running. Local production file check passes; no external deposit/append/ready/merge attempted.
+
+## 2026-10-18T00:12:31.970915+00:00 — third package repair complete (85%)
+
+All3builderdestinations and existing ancestors now have static type checks before any output write. Root confirms old source ZIP rewrite preserved bytes but changed inode. Prepared14actual type controls preserve all other outputs including inode/mtime. No paper, PDF, mathematics, metadata or currentPR16-file change. New package needs two successive NEW clean no-history whole-package reviews. No external deposit/append/ready/merge.
+
+## 2026-10-18T00:13:54.067429+00:00 — edition4 extracted checkpoint (85%)
+
+All143source members and5kit members verified; both full offline replay modes and all6extracted regenerated release identities match.36actual integrity-rejection controls and2positive hardlink-preservation controls pass, distinct from18mathematical wrong-result exits. Local production file check passes. New no-history package04 review active, clean count0. No production deposit/append/ready/merge attempted.
