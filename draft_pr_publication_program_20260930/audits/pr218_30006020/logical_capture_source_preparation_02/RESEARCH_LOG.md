@@ -1,0 +1,5 @@
+# PR218 logical capture source preparation02
+
+2026-10-18T01:44:41.749420+00:00 — Source preparation100%; actual PR218 completion not asserted. Preserved frozen01 and its private failed actual capture without edits/copies. Root reported a pre-staging guard failure caused by QUEUE bytes shadowing the decoded source-manifest `own` variable. Version02 changes exactly three identifier uses to `own_row`. Actual extracted guard+QUEUE assignment regressions reproduce old failure and verify two new guarded passes with manifest and row preserved;49 pure/owned source controls PASS. No full run(), actual API, Seed/Runtime, original lock, actual five, native object/ref, provider/PR/tracker or intake effect was performed here.
+
+Actual baseline remains54/38,last214. Proposed55/39,last218,cursor219 remains conditional. New exact Root selection/source acceptance, future successful factual capture, concrete packet review, native checkpoint and separate actual Root terminal remain outstanding. Future proposal UTC must come from the actual Root clock; actual receipt UTC is independently generated at observation.
