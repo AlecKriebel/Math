@@ -1,0 +1,7 @@
+# Hahn image independent audit log
+
+- 2026-10-18T00:33:09.131181+00:00 — Read supplied AGENTS.md; retrieved and inspected primary target and theorem excerpts only. Reconstructed full target and sealed independent mechanism/tests before candidate exposure. Completion estimate: 15%. Seal SHA-256: d88f88d0abcf9cf5d60ccd0653d50892726af7775cba58da4ff91d05362fd3b4.
+
+- 2026-10-18T00:33:47.963561+00:00 — Read candidate inputs/PROOF.md and primary Theorem 5.1 proof/Corollary 5.1 and Section 6.2. No source misapplication found. The candidate relabels only source-supported series; exact target coefficient groups and dyadic obligations follow without assuming a full Hahn product. Prefix surgery appears to be an elementary binary-tree rotation with a deleted minimum, including limit-length all-minus trunks. Testing the structural identity and full theorem bookkeeping next. Completion estimate: 55%.
+
+- 2026-10-18T00:34:40.397034+00:00 — Finite prefix diagnostics passed for every alpha=0,...,12 on all sign sequences of length at most 12 above the selected minimum. Independently checked ordinal-concatenation prefix decomposition for successor and limit alpha; no ordinal-index subtraction is required. Constructed three failed alternatives (arbitrary initial order relocation, uniform scaling, and full Hahn completion) to test that the candidate avoids each pitfall. No candidate counterexample found. Completion estimate: 80%.

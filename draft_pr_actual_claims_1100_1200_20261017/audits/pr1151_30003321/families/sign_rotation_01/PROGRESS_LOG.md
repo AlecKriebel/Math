@@ -1,0 +1,5 @@
+# Progress log
+
+- 2026-10-18T00:33:04.241577+00:00 — 15%: Primary target reconstructed; independent hypotheses and sign-tree attack sealed before candidate access. No candidate/old-verdict/sibling reading.
+- 2026-10-18T00:34:00.035091+00:00 — 50%: Read the candidate PROOF.md after seal. Verified primary Lemma 5.1, Theorem 5.1 including its full printed proof, Proposition 3.3 and normal-form setup, and section 6.2 Oz criterion. Derived explicit inverse on the entire interval [−alpha, infinity); no order/prefix/right-predecessor counterexample found. Finite diagnostics and detailed ordinal case proof remain.
+- 2026-10-18T00:35:04.436100+00:00 — 80%: Exact finite diagnostics passed on 4,097 source nodes and 1,923,413 ordered pairs for finite alpha 0 through 8 and sign length at most 8. Explicit inverse, prefix identity, order, and no-new-right-predecessor checks passed. A stronger, unneeded right-relation equivalence failed only at an old-minimum pair and was corrected transparently (DIAGNOSTIC_HISTORY.md). Arbitrary-ordinal case proof and limit examples are complete in working analysis; final report/receipt remain.

@@ -41,3 +41,11 @@ Package04 CLEAN_PASS fullreport read; all33external pins and separate handoff au
 ## 2026-10-18T00:28:40.312783+00:00 — two successive NEW clean whole-package reviews (94%)
 
 Full package05report read, external4712-byte seal+all32pins authenticated. Both04and05CLEAN_PASS bind IDENTICAL six-file edition4 after all repairs; each sealed original-target/paper core before older verdicts and independently reproduced fullmath/metadata/kit/rebuild. Root36integrity rejections+2atomic controls and all4mathoutputs/18actual mathfailures verified. Publication now awaits immutable review checkpoint and fresh source/tracker guards; no deposit/append/ready/merge yet.
+
+## 2026-10-18T00:29:04.763014+00:00 — production publication ready (97%)
+
+Two successive new clean reviews bind identical six-file edition4 at immutable checkpointd5caa147534835f84f53242241cff65aa6a889e2. Complete reports and receipt pins authenticated; root extracted36static guard rejections+2atomic controls pass. Fresh source state/head/body and tracker gid/title/duplicate checks pass. Production stage/publish, row append and merge remain separately guarded authorized actions.
+
+## 2026-10-18T00:31:45.016788+00:00 — published, tracked and merged (100%)
+
+Production canonical readback and DOI200 confirmed 10.5281/zenodo.23444050. Exact reviewed files/metadata contract verified; normalization record []. One GWSrow 'Math Puzzles'!A165:D165 read back exactly. Reviewed head4e8e5db5c47fb879d97cb1a734a76fd59d8f633a merged asf2856ae48b06e282b4a7046c78baa0b2f4447397. Final release remains frozen; no GitHub release created. Next1151.
