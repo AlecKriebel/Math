@@ -17,3 +17,11 @@ Reviewer01 independently reconstructed the paper and original target before olde
 ## 2026-10-17T23:58:32.898576+00:00 — package review repairs complete (85%)
 
 All four package01 findings fixed across operative PR/paper/runner/builder/docs. Exact reviewed head4e8e5db5c47fb879d97cb1a734a76fd59d8f633a. NewPDF4pages visually checked and both compilers passed. Root replays4complete algebra outputs,18actual wrong-result failures and16separate integrity guard failures. New frozen release must receive two successive NEW clean no-history whole-package reviews; none counted yet. No production deposit or tracker append.
+
+## 2026-10-18T00:05:06.048480+00:00 — second package repair complete (85%)
+
+Output-symlink overwrite independently reproduced only against owned disposable target. All3builderoutputs now preflighted before any write and generated files atomically replaced. Prepared controls6actual symlink rejections and2hardlink preservation successes pass. No math, paper, PDF, metadata or currentPR16-file change. New source/kit frozen; two new clean whole-package reviews still required. No deposit/tracker append.
+
+## 2026-10-18T00:06:02.223950+00:00 — edition3 extracted replay checkpoint (85%)
+
+All141source members authenticated, kit5exact. Extracted builder reproducesall6release files byte-for-byte; both full replay modes match.22actual package integrity rejection controls and2successful hardlink-preservation controls pass, separate from18mathematical wrong-result exits. New no-history package03 whole review running. Local production file check passes; no external deposit/append/ready/merge attempted.
