@@ -162,3 +162,15 @@ R2sealed CHANGES_REQUIRED oneP2AMR-onlyrowgap atpreflight/append; rootauthentica
 2026-10-18T01:30:00.358144+00:00 — PR1271 final publication gate PASS, SHA25675b05cca2b750e5caf2da28cf13deb9171ab07f91bd9834a0107c9a684b25dce. Two distinct strictly sequential NEW actual whole-package reviews CLEAN; root authenticated22+24authoredoutputs and510/536frozeninputs, actualPDF5pages,ZIP169members,fourmathcheckers/all3modes/current10toolingfiles/sharedkit/all11metadata/all13mergedblobnegatives. No repairs required. Actual coordinator release authentication PASS. Current PR90%,program74%. Next exact kit stage/inspection/publication, public metadata+two-file+DOI200 checks, GWS row, native13path PR, expected-head merge and immutable postmerge verification. No real publication action yet.
 
 2026-10-18T01:37:10.678634+00:00 — PR1271 COMPLETE100%. Published https://doi.org/10.5281/zenodo.23444707; exact11metadata/two public artifacts, resolved DOI200, tracker 'Math Puzzles'!A168:D168; expected-head merge 6466cf0f74a105e2ce3487af7b0cd77cc259f1c0, all13 immutable merged blobs/body/parents and unique full row verified. Actual reviewed attribution recorded; no firstness/current-openness claim. 9 eligible PRs complete; next1274. Program estimate75%. Shared checkout/index untouched.
+
+## 2026-10-18T01:42:23.864341+00:00 — PR1274 admitted; mathematical audit in progress
+
+PR1271 completion checkpoint a649bc4378b99ca501fc40938f6460d9863a5870 pushed and its program subtree checked free of private/raw folders. PR1274 live original full negative-answer claim remains at fc334f4bd5d8cbc2a241293e2b1419d35c7eead1; six original Git blobs captured. Root reconstruction and 1,280 exact coefficient/isometry checks in each Python mode pass. Three separate mathematics families are pending; source-only family saved its derivation before any candidate exposure. No priority or publication promotion yet. PR1274 completion estimate15%; shard9/12 (75%).
+
+## 2026-10-18T01:43:44.319558+00:00 — review exposure correction (15%)
+
+Default full-history fork exposed the purported source-only family to candidate content inherited from root. Its sealed outputs are preserved and explicitly disqualified as candidate-blind evidence by SOURCE_ONLY_EXPOSURE_CORRECTION.json. Earlier root no-exposure wording is superseded. A new source-only reconstruction was commissioned with fork_turns=none and candidate access forbidden until its own derivation is sealed. No mathematical claim or publication has been promoted.
+
+## 2026-10-18T01:48:33.876432+00:00 — PR1274 mathematics PASS (30%)
+
+Full original two-part negative answer verified under printed conventions. Candidate and distinct PDE adversaries passed; the true no-history source-only replacement independently sealed the same witnesses. Root reproduced all exact checks, weak identities and ancillary quadratures in all3 modes. Initial inherited-exposure review preserved with detached correction/resolution, never counted as blind. No original mathematical repair. Extensive independent priority audit is next; no publication clearance. Shard9/12 complete (75%).
