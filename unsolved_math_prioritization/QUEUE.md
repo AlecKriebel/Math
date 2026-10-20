@@ -1822,7 +1822,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1811 | 3000010 / AMR-029-0010 | Changing conservative weightings in bipartite graphs | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1812 | 3000053 / AMR-029-0053 | Maximum weight bounded fractional matching | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1813 | 3000064 / AMR-029-0064 | Partition median problem | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1814 | 3000080 / AMR-029-0080 | Smooth well-balanced orientations with prescribed in-degrees | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1814 | 3000080 / AMR-029-0080 | Smooth well-balanced orientations with prescribed in-degrees | 0.0540 | 5.5 | 3 | unknown | already_solved | 1/5 |  | Prior NP-completeness result of Hoersch-Szigeti, J. Combin. Optim. 45, 30 (2023), DOI 10.1007/s10878-022-00962-y. Exact prescribed-indegree formulation follows by reversing the degree-three constrained vertices in the best-balanced reduction. Full proof and independent scope audit inspected; no novelty claim. Verification: 4060 finite mapping checks in each normal/-O/-OO mode. |  |
 | 1815 | 30006626 / OWR-14299911-028 | Characterization of Graphical Apiculate and Generalized Median Algebras | 0.0540 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1816 | 3039 / OPG-478 | Rainbow AP(4) in an almost equinumerous coloring | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1817 | 3100003 / AMR-030-0003 | For every non-equilateral triangle T, show that it is possible to color the plane with three colors so that there is no | 0.0540 | 5.5 | 2 | unknown | queued | 0/5 |  |  |  |
