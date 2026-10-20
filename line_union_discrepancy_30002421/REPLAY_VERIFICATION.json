@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "purpose": "Isolated reproducibility check of floating-point diagnostic output, not a proof certificate.",
+  "result": "PASS",
+  "experiment_script_sha256": "274aae42d485a2bfffb87f7c559761f519d0dadcc4eb291b96952e006db4f82b",
+  "baseline_sha256": "caa55145628e0868061c4656daf905670d0169e40e86d0c98a6be5ec2f9ea437",
+  "isolated_output_sha256": "caa55145628e0868061c4656daf905670d0169e40e86d0c98a6be5ec2f9ea437",
+  "environment": {
+    "python_version": "3.12.14",
+    "python_implementation": "CPython",
+    "numpy_version": "2.3.5",
+    "operating_system": "Linux",
+    "architecture": "x86_64"
+  },
+  "isolation": {
+    "fresh_temporary_directory": true,
+    "run_working_directory_differs_from_script_directory": true,
+    "output_written_beside_script_only": true,
+    "baseline_preserved": true
+  },
+  "comparison": {
+    "scope": "All JSON fields after recursive removal of timing keys. Integers and metadata exact; floating values at declared tolerances.",
+    "excluded_timing_keys": [
+      "duration_seconds",
+      "elapsed_seconds",
+      "elapsed_time",
+      "runtime_seconds",
+      "timing",
+      "timings"
+    ],
+    "relative_tolerance": 1e-11,
+    "absolute_tolerance": 1e-12,
+    "parsed_output_exact_match_excluding_timing": true,
+    "compared_numeric_fields": 271,
+    "maximum_absolute_difference": 0.0,
+    "maximum_relative_difference": 0.0,
+    "differences": []
+  },
+  "stdout_lines": [
+    "8 1.3564772167365038 1.6471652602550322",
+    "16 1.3678243196627604 2.259748226732604",
+    "32 2.2579384565807383 2.9007041708892163",
+    "64 3.3633983862625856 4.345833238694988",
+    "128 3.7835908828318967 5.735915610831349",
+    "256 5.849862380846594 5.488241476226691"
+  ],
+  "stderr_empty": true,
+  "limitations": [
+    "Floating-point computation only; no exact arithmetic or interval certificate.",
+    "No certification of cube containment, clipping, event ordering, or roundoff.",
+    "No certified supremum lower or upper bound and no numerical counterexample."
+  ]
+}
