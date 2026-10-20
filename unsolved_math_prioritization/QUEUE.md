@@ -1827,7 +1827,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1816 | 3039 / OPG-478 | Rainbow AP(4) in an almost equinumerous coloring | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1817 | 3100003 / AMR-030-0003 | For every non-equilateral triangle T, show that it is possible to color the plane with three colors so that there is no | 0.0540 | 5.5 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1818 | 3227 / OPG-401 | Circular coloring triangle-free subcubic planar graphs | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1819 | 3264 / OPG-46432 | Ádám's Conjecture | 0.0540 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
+| 1819 | 3264 / OPG-46432 | Ádám's Conjecture | 0.0540 | 5.0 | 2 | unknown | already_solved | 1/5 |  | Prior disproof of the arc-reversal conjecture for simple oriented graphs: Thomassen (2023), JCTB161,15-20, DOI10.1016/j.jctb.2023.01.005. Two independent implementations certify a d64,k24 instance with1530vertices and80520arcs, exact exterior count margins, reverse isomorphism and strong2connectivity. Interior reversals never decrease counts; some preserve them. No new disproof, minimality or tournament claim. |  |
 | 1820 | 3700006 / AMR-036-0006 | Completely invariant Fatou components | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1821 | 8700065 / AMR-086-0065 | Question 5.2 — Bugeaud | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1822 | 8800068 / AMR-087-0068 | Worst cases for LLL on ideal lattices | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
