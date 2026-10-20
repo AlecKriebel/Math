@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "checked_at_utc": "2026-10-20T23:45:30.354820+00:00",
+  "python_version": "3.12.14",
+  "dependencies": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "mpmath": "1.3.0"
+  },
+  "matches_recorded_dependency_versions": true,
+  "execution": "Fresh temporary directory containing only four checker scripts; subprocesses use Python -I -B and installed site packages. Only that temporary directory is re-added for the Strang sibling import. Checker scripts make no network requests and use no external datasets or source documents. Package is not modified.",
+  "elapsed_seconds": 0.644,
+  "tolerances": {
+    "numpy_scipy_result_comparison": {
+      "absolute": "1e-12",
+      "relative": "1e-10"
+    },
+    "mpmath_result_comparison": {
+      "absolute": "1e-45",
+      "relative": "1e-12"
+    },
+    "literal_vs_rearranged_residual_maximum": "1e-40",
+    "literal_affine_identity_residual_maximum": "1e-40",
+    "rank_two_identity_residual_maximum": "1e-10",
+    "rank_two_local_bound_slack": "1e-12",
+    "strang_identity_residual_maximum": "1e-50",
+    "strang_lsk_bound_slack": "1e-50"
+  },
+  "checks": [
+    {
+      "script": "check_affine_counterexample.py",
+      "script_sha256": "dd1740ae52d1e5b322bff51223a52d53b0043b5d235d10f1b117a98e6c8bf21a",
+      "result_file": "affine_counterexample_results.json",
+      "reference_result_sha256": "306fb85385d0f5290b63bca08466d35272d428119c6e9d91a320fe1443be0861",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout_sha256": "306fb85385d0f5290b63bca08466d35272d428119c6e9d91a320fe1443be0861",
+      "exact_json_match_this_run": true,
+      "numerical_agreement_within_tolerances": true,
+      "comparison_tolerance": {
+        "absolute": "1e-45",
+        "relative": "1e-12"
+      },
+      "semantic_checks": {
+        "cases": 9,
+        "maximum_literal_vs_stable_residual": 1.2308877280218867e-99,
+        "last_sequence_error": 0.17677739851571403
+      }
+    },
+    {
+      "script": "check_subclass_identities.py",
+      "script_sha256": "4d0ecbc9b27580c9d22449e4e771d6b190a4af1c4adc2c44f78fbe8f50fb77a5",
+      "result_file": "subclass_identity_results.json",
+      "reference_result_sha256": "74ed976e01d5209fd1b00205abb254d87abea2dee68e7ffe312d327df91b4b77",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout_sha256": "74ed976e01d5209fd1b00205abb254d87abea2dee68e7ffe312d327df91b4b77",
+      "exact_json_match_this_run": true,
+      "numerical_agreement_within_tolerances": true,
+      "comparison_tolerance": {
+        "absolute": "1e-12",
+        "relative": "1e-10"
+      },
+      "semantic_checks": {
+        "trials": 24,
+        "maximum_identity_residual": 5.58677922968374e-16,
+        "conditional_local_bound_passes": 24
+      }
+    },
+    {
+      "script": "audit_exact_subflows.py",
+      "script_sha256": "b526e23100afd3395bd182b2c17a296555beddbe2dab28c25e2feb64629a53fe",
+      "result_file": "audit_exact_subflows_results.json",
+      "reference_result_sha256": "7bc1334af2ee7f233cb8c8361fd78e429f0382a78f8c7f99503da566f2b59108",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout_sha256": "7bc1334af2ee7f233cb8c8361fd78e429f0382a78f8c7f99503da566f2b59108",
+      "exact_json_match_this_run": true,
+      "numerical_agreement_within_tolerances": true,
+      "comparison_tolerance": {
+        "absolute": "1e-45",
+        "relative": "1e-12"
+      },
+      "semantic_checks": {
+        "cases": 9,
+        "maximum_affine_identity_residual": "1.7055921E-95",
+        "two_sided_error_at_n300": "0.1767844081603991119326690060218",
+        "one_sided_error_at_n300": "0.70710678118654752440084436210485",
+        "rough_initializer_error_at_n10000": "1.0"
+      }
+    },
+    {
+      "script": "check_strang_obstruction.py",
+      "script_sha256": "197f3de71b5ae028c44d76755d9e4c0775ae382e5e160af6821232a8ad1bc40a",
+      "result_file": "strang_obstruction_results.json",
+      "reference_result_sha256": "e054693d34ce9d8eda9a9b7461672270c81c6f50d758fd72833ac617180cdb19",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout_sha256": "e054693d34ce9d8eda9a9b7461672270c81c6f50d758fd72833ac617180cdb19",
+      "exact_json_match_this_run": true,
+      "numerical_agreement_within_tolerances": true,
+      "comparison_tolerance": {
+        "absolute": "1e-45",
+        "relative": "1e-12"
+      },
+      "semantic_checks": {
+        "cases": 4,
+        "strang_error_at_n300": "1.0",
+        "tested_scalar_and_qr_endpoint_checks": "PASS; interval rank preservation is proved analytically"
+      }
+    }
+  ],
+  "claim_limit": "NUMERICAL corroboration only, using floating-point and arbitrary-precision matrix exponentials. Not exact-arithmetic, interval, symbolic, or formal proof certificates. Analytic proofs and the mathematical audit are the acceptance basis; original problem remains UNSOLVED (5/5 avenues)."
+}
