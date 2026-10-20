@@ -1824,7 +1824,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1813 | 3000064 / AMR-029-0064 | Partition median problem | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1814 | 3000080 / AMR-029-0080 | Smooth well-balanced orientations with prescribed in-degrees | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1815 | 30006626 / OWR-14299911-028 | Characterization of Graphical Apiculate and Generalized Median Algebras | 0.0540 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
-| 1816 | 3039 / OPG-478 | Rainbow AP(4) in an almost equinumerous coloring | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1816 | 3039 / OPG-478 | Rainbow AP(4) in an almost equinumerous coloring | 0.0540 | 5.0 | 1 | unknown | unsolved | 5/5 |  | Audited partials only: exact count and pair-marginal obstruction; conditional U3 criterion; quartic-coset positive result p>=263681; exhaustive balanced searches through prime29 (prime31 UNKNOWN timeout); interval-wrap witnesses; specified arc-consistency barrier and pair-link criterion. General asymptotic prime-modulus conjecture and uniform large-component lemma remain unproved. No novelty claim. |  |
 | 1817 | 3100003 / AMR-030-0003 | For every non-equilateral triangle T, show that it is possible to color the plane with three colors so that there is no | 0.0540 | 5.5 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1818 | 3227 / OPG-401 | Circular coloring triangle-free subcubic planar graphs | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1819 | 3264 / OPG-46432 | Ádám's Conjecture | 0.0540 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
