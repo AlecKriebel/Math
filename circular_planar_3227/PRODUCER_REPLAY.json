@@ -1,0 +1,95 @@
+{
+  "disposable_copy": true,
+  "networkx_version": "3.7",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-B",
+        "run_search.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\"name\": \"cycle5\", \"p\": 20, \"q\": 7, \"graph_properties\": {\"n\": 5, \"m\": 5, \"planar\": true, \"max_degree\": 2, \"triangle_count\": 0}, \"nodes\": 5, \"propagations\": 58, \"status\": \"SAT\", \"seconds\": 0.000245, \"verification\": {\"verified\": true, \"vertices\": 5, \"edges\": 5, \"p\": 20, \"q\": 7}}\n{\"name\": \"cycle7\", \"p\": 20, \"q\": 7, \"graph_properties\": {\"n\": 7, \"m\": 7, \"planar\": true, \"max_degree\": 2, \"triangle_count\": 0}, \"nodes\": 7, \"propagations\": 112, \"status\": \"SAT\", \"seconds\": 0.000148, \"verification\": {\"verified\": true, \"vertices\": 7, \"edges\": 7, \"p\": 20, \"q\": 7}}\n{\"name\": \"cube\", \"p\": 20, \"q\": 7, \"graph_properties\": {\"n\": 8, \"m\": 12, \"planar\": true, \"max_degree\": 3, \"triangle_count\": 0}, \"nodes\": 8, \"propagations\": 214, \"status\": \"SAT\", \"seconds\": 0.000224, \"verification\": {\"verified\": true, \"vertices\": 8, \"edges\": 12, \"p\": 20, \"q\": 7}}\n{\"name\": \"pentagonal_prism\", \"p\": 20, \"q\": 7, \"graph_properties\": {\"n\": 10, \"m\": 15, \"planar\": true, \"max_degree\": 3, \"triangle_count\": 0}, \"nodes\": 10, \"propagations\": 348, \"status\": \"SAT\", \"seconds\": 0.000324, \"verification\": {\"verified\": true, \"vertices\": 10, \"edges\": 15, \"p\": 20, \"q\": 7}}\n{\"name\": \"heptagonal_prism\", \"p\": 20, \"q\": 7, \"graph_properties\": {\"n\": 14, \"m\": 21, \"planar\": true, \"max_degree\": 3, \"triangle_count\": 0}, \"nodes\": 14, \"propagations\": 662, \"status\": \"SAT\", \"seconds\": 0.000702, \"verification\": {\"verified\": true, \"vertices\": 14, \"edges\": 21, \"p\": 20, \"q\": 7}}\n{\"name\": \"hexagonal_patch_3x3\", \"p\": 20, \"q\": 7, \"graph_properties\": {\"n\": 30, \"m\": 38, \"planar\": true, \"max_degree\": 3, \"triangle_count\": 0}, \"nodes\": 30, \"propagations\": 2406, \"status\": \"SAT\", \"seconds\": 0.002587, \"verification\": {\"verified\": true, \"vertices\": 30, \"edges\": 38, \"p\": 20, \"q\": 7}}\n{\"name\": \"dodecahedron\", \"p\": 20, \"q\": 7, \"graph_properties\": {\"n\": 20, \"m\": 30, \"planar\": true, \"max_degree\": 3, \"triangle_count\": 0}, \"nodes\": 5, \"propagations\": 538, \"status\": \"SAT\", \"seconds\": 0.000879, \"verification\": {\"verified\": true, \"vertices\": 20, \"edges\": 30, \"p\": 20, \"q\": 7}}\n{\"name\": \"dodecahedron\", \"p\": 17, \"q\": 6, \"nodes\": 172, \"propagations\": 13808, \"status\": \"EXHAUSTED_SEARCH_NOT_FORMAL_CERTIFICATE\", \"seconds\": 0.011423}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "make_unsat_certificate.py"
+      ],
+      "returncode": 0,
+      "stdout": "{'nodes': 172, 'leaves': 108}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "verify_certificate.py",
+        "cube_20_7.json",
+        "cycle5_20_7.json",
+        "cycle7_20_7.json",
+        "dodecahedron_20_7.json",
+        "heptagonal_prism_20_7.json",
+        "hexagonal_patch_3x3_20_7.json",
+        "pentagonal_prism_20_7.json"
+      ],
+      "returncode": 0,
+      "stdout": "cube_20_7.json {\"edges\": 12, \"p\": 20, \"q\": 7, \"verified\": true, \"vertices\": 8}\ncycle5_20_7.json {\"edges\": 5, \"p\": 20, \"q\": 7, \"verified\": true, \"vertices\": 5}\ncycle7_20_7.json {\"edges\": 7, \"p\": 20, \"q\": 7, \"verified\": true, \"vertices\": 7}\ndodecahedron_20_7.json {\"edges\": 30, \"p\": 20, \"q\": 7, \"verified\": true, \"vertices\": 20}\nheptagonal_prism_20_7.json {\"edges\": 21, \"p\": 20, \"q\": 7, \"verified\": true, \"vertices\": 14}\nhexagonal_patch_3x3_20_7.json {\"edges\": 38, \"p\": 20, \"q\": 7, \"verified\": true, \"vertices\": 30}\npentagonal_prism_20_7.json {\"edges\": 15, \"p\": 20, \"q\": 7, \"verified\": true, \"vertices\": 10}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "verify_unsat_certificate.py",
+        "dodecahedron_17_6_unsat.json"
+      ],
+      "returncode": 0,
+      "stdout": "dodecahedron_17_6_unsat.json {\"edges\": 30, \"leaves\": 108, \"nodes\": 172, \"p\": 17, \"q\": 6, \"verified_exhaustive_unsat\": true, \"vertices\": 20}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "test_verifier.py"
+      ],
+      "returncode": 0,
+      "stdout": "PASS: seven valid certificates accepted; 35 corruptions rejected.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "test_unsat_verifier.py"
+      ],
+      "returncode": 0,
+      "stdout": "PASS: exhaustive UNSAT certificate accepted; six corruptions rejected.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "check_exact_benchmark.py"
+      ],
+      "returncode": 0,
+      "stdout": "{'verified': True, 'vertices': 20, 'edges': 30, 'p': 20, 'q': 7}\n{'verified_exhaustive_unsat': True, 'p': 17, 'q': 6, 'vertices': 20, 'edges': 30, 'nodes': 172, 'leaves': 108}\nPASS: same edge-list graph; K20/7 SAT, K17/6 UNSAT, numerator-gap check.\nTogether with the written tight-cycle and rounding lemmas: chi_c = 20/7.\n",
+      "stderr": ""
+    }
+  ],
+  "certificate_bytes_identical": {
+    "dodecahedron_20_7.json": true,
+    "pentagonal_prism_20_7.json": true,
+    "hexagonal_patch_3x3_20_7.json": true,
+    "cube_20_7.json": true,
+    "cycle7_20_7.json": true,
+    "heptagonal_prism_20_7.json": true,
+    "dodecahedron_17_6_unsat.json": true,
+    "cycle5_20_7.json": true
+  },
+  "result": "PASS"
+}
