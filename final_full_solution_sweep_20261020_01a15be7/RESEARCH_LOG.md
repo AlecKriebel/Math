@@ -613,3 +613,13 @@ Existing885/888/894publications verifiedwithuniquerows115/119/123,publicexactfil
 2026-10-21T20:18:13.456515+00:00 checkpoint —932complete: no substantivegap inconditional3Dproof, exactWinterpriorTheorem1andvalidbridge blocksnovelresolutionpublication. NewSept4platformdeployment evidenceaccepted. Twofreshindependentreviews7publicpayloads and15review+39privatesourcepayloads rootverified/copiedreplayed;29originals retained. FinalGWSbroadleadrow61 is distinctFuchsregularpolygonratio; noexacttargetledger/account/localstate. Existingclosure6187562014/headunchangedretained,noexternalwrite. Candidate100%,overall64%; next933.
 
 2026-10-21T20:19:13.815334+00:00 checkpoint — orderedprefix9–937 complete(929PRs),65%bestguessoverall.932freshcorrectness/priorityreconciliation completewithsameexistingclosedunmergedhold andnewSept4platformevidence;933–937explicitnegative skips. Freshbounded906–937adversarialreview commissioned independently;938existingpublicationcheckpending. No newDOI/ledger/PRmutation thischeckpoint.
+
+2026-10-21T20:20:05.186796+00:00 —938verifiedalready-published23393596/row108:44originals,213members/212payloads andidenticalPDF; allfinite-depththeorem/finite104letterwitness/knowncombined2of5accountingconsistentlyseparate. Overall65%; next939.
+
+2026-10-21T20:21:55.307048+00:00 —946existingpublication23409904/row117 verified:33originals/220members/219outerand207innerpayloads,identicalPDF; globalproperordereddualpair scope,nonconvex/incompletelimits,ancestryandpriorityaccessgaps consistent.939–945explicitnegative skips. Overall65%; next947.
+
+2026-10-21T20:23:09.091657+00:00 —948existingpublication23422055/row129 verified:24originals,258members/257payloads andnested7memberauthorarchive,identicalPDF. Integrabilitycounterexample separatedfrompriorgenericvanishing; sourceaccess/noveltylimits retained.947explicitnegative. Overall65%; next949.
+
+2026-10-21T20:24:25.086734+00:00 —952existingpublication23425412/row132 verified:33originals/173members/172payloads,identicalPDF. Literalordinarycompletion/nonzeroCassonscopeandpriorquantuminputs/reproductionlimits consistent.949–951explicitnegative skips. Overall66%; next953.
+
+2026-10-21T20:25:18.997483+00:00 checkpoint — orderedprefix9–966 complete(958PRs),67%bestguessoverall. Existing-publicationcoverage938/946/948/952 fullyverified with originalsourcepreservation/PDFs/closedarchives andcorrectledger; allothernewprefixexplicitnegative skips.906–937independentboundedreviewstillrunning;967claimedclosedcandidate freshduplicate/closureinspection underwaybeforemath. No newpublication/providerwrites thisinterval.

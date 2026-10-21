@@ -610,3 +610,15 @@ NAMES += ['CHECKPOINT0932_TRANSIENT_RETRY.json']
 
 # Completed932priorityreconciliation and sanitizedsealedfreshreview, rawsourcebodies excluded.
 NAMES += ['audits/pr0932_30003471/ROOT_PRIORITY_REVIEW_ACCEPTANCE.json', 'audits/pr0932_30003471/ROOT_FINAL_LIVE_CHECK.json', 'audits/pr0932_30003471/ROOT_FINAL_ASSESSMENT.json', 'audits/pr0932_30003471/reviews/priority_recheck01/.gitignore', 'audits/pr0932_30003471/reviews/priority_recheck01/CHECKS.json', 'audits/pr0932_30003471/reviews/priority_recheck01/INPUT_PINS.json', 'audits/pr0932_30003471/reviews/priority_recheck01/ORIGINAL_PIN_CHECK.json', 'audits/pr0932_30003471/reviews/priority_recheck01/PRIVATE_SOURCE_MANIFEST.json', 'audits/pr0932_30003471/reviews/priority_recheck01/REPORT.md', 'audits/pr0932_30003471/reviews/priority_recheck01/RESEARCH_LOG.md', 'audits/pr0932_30003471/reviews/priority_recheck01/fetch_sources.py', 'audits/pr0932_30003471/reviews/priority_recheck01/public/DERIVATION.md', 'audits/pr0932_30003471/reviews/priority_recheck01/public/PROVENANCE.json', 'audits/pr0932_30003471/reviews/priority_recheck01/public/REVIEW_SUMMARY.md', 'audits/pr0932_30003471/reviews/priority_recheck01/public/SOURCE_PINS.json', 'audits/pr0932_30003471/reviews/priority_recheck01/public/STATUS.json', 'audits/pr0932_30003471/reviews/priority_recheck01/public/check_bridge.py', 'audits/pr0932_30003471/reviews/priority_recheck01/verify_review.py', 'audits/pr0932_30003471/reviews/priority_recheck01/MANIFEST.json', 'audits/pr0932_30003471/reviews/priority_recheck01/MANIFEST.json.sha256']
+
+# PR938existingall-depthpublication andoriginalfinitewitnesspreservation.
+NAMES += ['PR0938_PINNED_SCOPE_VERIFICATION.json', 'PR0938_PUBLICATION_COVERAGE_DETAILS.json']
+
+# PR946existingglobalHessianpublicationwithouterandinnerinventories.
+NAMES += ['PR0946_PINNED_SCOPE_VERIFICATION.json', 'PR0946_PUBLICATION_COVERAGE_DETAILS.json']
+
+# PR948existingpublicationcoverage andnestedoriginalauthorarchive.
+NAMES += ['PR0948_PINNED_SCOPE_VERIFICATION.json', 'PR0948_PUBLICATION_COVERAGE_DETAILS.json']
+
+# PR952existingliteralordinaryHabirorankobstructionpublication.
+NAMES += ['PR0952_PINNED_SCOPE_VERIFICATION.json', 'PR0952_PUBLICATION_COVERAGE_DETAILS.json']
