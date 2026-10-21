@@ -537,3 +537,9 @@ Verified all409 sealed outputs and148 captured inputs against their recorded has
 
 ### 2026-10-21T18:21:04.959296+00:00 — Full live inventory refresh; overall43%
 Refreshed every live PR page through the empty terminal page and independently checked count and maximum. Highest PR is1446; 0 previously inventoried metadata changes and 0 newly discovered PRs. Tail remains pending numerical consideration; inventory metadata in STATE refreshed.
+
+### 2026-10-21T18:23:13.891817+00:00 — PR630 classified; overall43%
+Correct counterexamples/classification verified, but the original universal negative answer follows directly from a published2009quadratic after checked rescaling. New source-first independent review accepted; existing closed unmerged disposition retained without provider writes. Cursor631, no duplicate publication.
+
+### 2026-10-21T18:28:24.741561+00:00 — Through PR671; overall46%
+Completed631–661 explicit exclusions, verified existing PR662publication DOI23384924 with unique row94, two files/100positive archive payloads and24original science files. Completed663–671 explicit exclusions. PR672 is under independent exact prior-application/scope review; all24originals and finite checks reproduce. Assigned bounded independent coverage review628–671.
