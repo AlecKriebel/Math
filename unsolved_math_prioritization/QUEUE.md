@@ -1863,7 +1863,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1852 | 30005647 / OWR-14297740-019 | Next-Most-Probable Galois Groups of Random Polynomials | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1853 | 6000013 / AMR-059-0013 | Affine Vertices and Inflection Points | 0.0499 | 5.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 1854 | 30005762 / OWR-14298158-007 | Rationality Below Growth Rate Four | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 1855 | 30006081 / OWR-14298796-001 | Adjoint-Free Approximation of Nonsymmetric Low-Rank Matrices | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 1855 | 30006081 / OWR-14298796-001 | Adjoint-Free Approximation of Nonsymmetric Low-Rank Matrices | 0.0497 | 5.5 | 3 | 2024 | unsolved | 5/5 |  | 2026-10-21: UNSOLVED after five approaches. Scoped partials: sharp expected minimax pn (not pointwise); row-space priors and squared-additive tails; r-query EP reconstruction; rank-one candidate geometry; constant-real-drift Dirichlet PDE bounds. Real finite-query theorem credited to the arXiv preprint Transpose-free linear algebra; field/aspect/norm extensions proved separately. General asymmetric geometry and PDE questions remain open; no novelty claim. [Report and audits](../adjoint_free_limits_30006081/README.md). |  |
 | 1856 | 1963 / EP-156 | Erdős Problem #156 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1857 | 20000012 / AIM-ALGEBRAIC_GEOMETRY-0012 | Cox-chart Morse theory for cellular virtual resolutions | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1858 | 20000143 / AIM-ALGEBRAIC_GEOMETRY-0143 | Exact boundary mobility counts and explicit mixed-face estimates | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
