@@ -1854,7 +1854,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1843 | 30005478 / OWR-12697711-014 | Algorithms for Amoeba Dimensions from Tropical Fans | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1844 | 30005529 / OWR-13750333-010 | Compatible Geodesic and Horocycle Symbolic Codings | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1845 | 30005732 / OWR-14298011-003 | Well-Defined Trajectories in Controlled Set Motions | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 1846 | 30005740 / OWR-14298013-004 | BV Structures with Nonsemisimple Nakayama Automorphisms | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 1846 | 30005740 / OWR-14298013-004 | BV Structures with Nonsemisimple Nakayama Automorphisms | 0.0517 | 5.0 | 3 | 2023 | claimed_solved | 5/5 |  | 2026-10-21: Independently audited classification for nonzero h over any characteristic-zero field: the canonical Hochschild cup/bracket admits a BV generator iff h is squarefree. Repeated factors forbid even a bracket generator without square-zero; squarefree h admits Delta=0. The actual embedded h=0 algebra is k[x] and lies outside the theorem. Authored proof, audits, exact checks and public verification metadata: nakayama_bv_classification_30005740/. No novelty or peer-review claim. |  |
 | 1847 | 30003654 / OWR-15957-007 | Certificates of Polynomial Nonnegativity in Copositive Optimization | 0.0516 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 1848 | 30005757 / OWR-14298158-002 | Rationality of Separable Permutation Subclasses | 0.0513 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1849 | 30004262 / OWR-17288-004 | Finite-Dimensional Uniform Embeddings of Compact Metric Spaces | 0.0512 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
