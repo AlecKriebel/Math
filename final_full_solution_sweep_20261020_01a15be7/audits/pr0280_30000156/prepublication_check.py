@@ -71,12 +71,10 @@ def gather(phase, expected_head, expected_deposit_id=None):
         'spreadsheetId': SHEET, 'range': "'Math Puzzles'!A:AQ", 'valueRenderOption':'FORMATTED_VALUE'})])
     atomic_json(raw/'ledger.json', sheet)
     rows = schema_rows(sheet)
+    row_leads=[row_identity_leads(row) for row in rows]
     baseline = ledger_baseline(json.loads((ROOT/'raw/pr0280/ledger_live.json').read_text()))
     changed = [i+1 for i in range(max(len(rows),len(baseline)))
                if (rows[i] if i<len(rows) else None) != (baseline[i] if i<len(baseline) else None)]
-    ledger_matches = [{'row':i,'values':r} for i,r in enumerate(rows,1)
-                      if PATTERN.search(' '.join(r)) or (expected_deposit_id is not None
-                      and target_in_row(r,expected_deposit_id))]
     client = zenodo.ZenodoClient('production', zenodo.token_for('production'))
     positive = account_search(client, 'Fibonacci')
     if 23174283 not in {int(r['id']) for r in positive['records']}:
@@ -100,8 +98,9 @@ def gather(phase, expected_head, expected_deposit_id=None):
         raise RuntimeError('Exact expected draft/record absent from complete model/file comparison')
     identity_ids=(record_identity_ids(next(r for r in full['records'] if int(r['id'])==expected_deposit_id),expected_deposit_id)
                   if expected_deposit_id is not None else [])
+    target_names={'10.5281/zenodo.'+str(identifier) for identifier in identity_ids}
     ledger_matches=[{'row':i,'values':r} for i,r in enumerate(rows,1) if PATTERN.search(' '.join(r))
-                    or (expected_deposit_id is not None and target_in_row(r,expected_deposit_id,identity_ids))]
+                    or bool(target_names & row_leads[i-1])]
     pr = read_command(['gh','api','--hostname','github.com','repos/AlecKriebel/Math/pulls/280'])
     main = read_command(['gh','api','--hostname','github.com','repos/AlecKriebel/Math/git/ref/heads/main'])
     atomic_json(raw/'pr.json',pr)

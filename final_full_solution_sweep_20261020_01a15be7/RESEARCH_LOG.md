@@ -389,3 +389,7 @@ Read complete independently authored analytic_controls.py, reranactualnormal/O; 
 ### 2026-10-21T14:37:56.589385+00:00 — Newtailstructuralevidencecapturedthrough1440 (sweepestimate27%)
 
 Collectorcompletedall1432metadatareceiptsinascendingPRorder,including36new1405–1440. Rootverifiedall36head/basebindingsandfilelistreceiptidentities. Everynewtailentryremainspendingorderedinspection; no newduplicate/math/priorityverdictorcursoradvance. Active399and280recordURLrepairscontinue.
+
+### 2026-10-21T14:42:36.189838+00:00 — PR280390-artifact route repair independently reproduced (sweepestimate27%)
+
+RootreadfullREPORT/fourhelperdiff/currenttestlogicandbinding, verifiedall390beforeandafternewactualnormal/O994+404+303+3=1704controls/mode. Allpassed,zeroproviders;296positivelexicalcases295lead/1explicitreject/nosilentmisses,7nearbynegativesdistinct. Original17/scientific5/rootlead unchanged. Restoredonly280canonical7checkpointselectionafterfreeze;399heldduringactiveownrepair. NEWfullhistoryfree05 next; rootclearanceremainssuspended.390seal’scapturedsuspendedrootdecisionwillneedexplicitpreservedtransitionaftercleanreview,notunexplainedsourcechanges. Already-pushedhead8aebb819resumepathpasses3offlineguards/mode; no newbranchupdate/merge/publication.

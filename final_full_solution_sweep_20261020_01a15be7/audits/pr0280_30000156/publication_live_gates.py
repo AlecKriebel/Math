@@ -109,6 +109,7 @@ def reconcile(gate, phase, expected_head, expected_deposit_id=None, allow_target
         exact_target=None
     for match in gate['ledger_matches']:
         row=match['values']
+        row_identity_leads(row)  # Validate all cells even before allocation/exemptions.
         has_current_doi=(expected_deposit_id is not None and target_in_row(row,expected_deposit_id,identity_ids))
         if has_current_doi:
             if digest(row) in prior_rows:
