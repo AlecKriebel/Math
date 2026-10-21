@@ -1864,7 +1864,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1853 | 6000013 / AMR-059-0013 | Affine Vertices and Inflection Points | 0.0499 | 5.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 1854 | 30005762 / OWR-14298158-007 | Rationality Below Growth Rate Four | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1855 | 30006081 / OWR-14298796-001 | Adjoint-Free Approximation of Nonsymmetric Low-Rank Matrices | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 1856 | 1963 / EP-156 | Erdős Problem #156 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1856 | 1963 / EP-156 | Erdős Problem #156 | 0.0495 | 5.0 | 1 | unknown | unsolved | 5/5 |  | Audited elementary interval-Sidon partials: parity bound, conditional completion/interpolation, independent N<=15 checks (author N<=16 reviewed), and N=144 eight-mark existence certificate; no logarithm removal or novelty claim. [Package](../maximal_sidon_1963/README.md) |  |
 | 1857 | 20000012 / AIM-ALGEBRAIC_GEOMETRY-0012 | Cox-chart Morse theory for cellular virtual resolutions | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1858 | 20000143 / AIM-ALGEBRAIC_GEOMETRY-0143 | Exact boundary mobility counts and explicit mixed-face estimates | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1859 | 20000204 / AIM-ALGEBRAIC_GEOMETRY-0204 | Edge and tritangent surfaces are the only generic smooth visual-hull event types | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
