@@ -589,3 +589,13 @@ Existing885/888/894publications verifiedwithuniquerows115/119/123,publicexactfil
 2026-10-21T19:55:49.890611+00:00 checkpoint — accepted independent bounded PR833–882 review: 50 cases, 2234 paths, 46 explicit negatives, 3 previously published results, 833 unverified lower-bound claim. All218 sealed payloads/14570849 bytes and69 public payloads verified; copied scope and custody/algebra checkers replayed normally and optimized with complete certificates equal except execution timestamp. Initial private-copy read-only permissions corrected only in replay copy. Existing-publication/source limits and unseen final-journal proof caveat retained. Overall sweep estimate62%; cursor905.
 
 2026-10-21T19:56:08.838442+00:00 checkpoint — PR905 already published and correctly represented in row76/DOI23333002: both ideal readings/all epsilon>=0 covered; all30originals unchanged,85members/84payloads and separate PDF exact. Skip publication. Overall estimate62%; next906.
+
+2026-10-21T19:57:36.349886+00:00 — PR906 verified existing publication23356680/row83,30originals,117members/116payloads and identical embedded/externalPDF. Exact local Reshetnyak scope and separate nonsharpKS theorem consistently disclosed. Overall62%; next907.
+
+2026-10-21T19:58:34.695772+00:00 — PR908 verified existing23383930/row89,26unchangedoriginals,110members/109payloads; precise varying-witness operatornorm scope and priorSiebert mechanism preserved.907explicitunsolvedskip. Overall63%; next909.
+
+2026-10-21T19:59:33.646084+00:00 — PR909 existingpublication23384938/row93,28originals/106members/105payloads andidenticalPDF; attributedclassicalcorollary limitedtosummedrough reading, notunibranchedconjecture. Overall63%; next910.
+
+2026-10-21T20:00:52.704468+00:00 — 910–916/918explicitnegative skips; custom917boundownalready_solvedrow25paths.919existingpublication23387550/row98,27originals/134members/133payloads andidenticalPDF, precise matrix-prescribed scope/classicalAPVpriorimplicationdisclosed. Overall63%; next920.
+
+2026-10-21T20:02:08.417757+00:00 checkpoint — complete orderedprefix9–931(923PRs),64%bestguessoverall.906/908/909/919verifiedalready-publishedcoverage; custom917already_solved and920unsolved exactownrow/completepaths/cachedblobs bound; otherexplicitnegative dispositions912etc preserved.932claimed solution preliminaryliveGWS178rows has no candidate match; authenticated account investigation underway before mathematics. No new publication/provider writes this interval.

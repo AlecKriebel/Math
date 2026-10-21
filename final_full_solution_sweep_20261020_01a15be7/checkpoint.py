@@ -577,3 +577,21 @@ NAMES += ['ROOT_RANGE0833_0882_ACCEPTANCE.json', 'reviews/range0833_0882_adversa
 
 # Complete904/905existingpublication packet/manifest/source scope checks.
 NAMES += ['PR0904_PINNED_SCOPE_VERIFICATION.json', 'PR0904_PUBLICATION_COVERAGE_DETAILS.json', 'PR0905_PINNED_SCOPE_VERIFICATION.json', 'PR0905_PUBLICATION_COVERAGE_DETAILS.json']
+
+# PR906 existingpublication coverage.
+NAMES += ['PR0906_PINNED_SCOPE_VERIFICATION.json', 'PR0906_PUBLICATION_COVERAGE_DETAILS.json']
+
+# PR908 existingpublication coverage.
+NAMES += ['PR0908_PINNED_SCOPE_VERIFICATION.json', 'PR0908_PUBLICATION_COVERAGE_DETAILS.json']
+
+# PR909 existingpublication scope and preservation.
+NAMES += ['PR0909_PINNED_SCOPE_VERIFICATION.json', 'PR0909_PUBLICATION_COVERAGE_DETAILS.json']
+
+# Custom917explicitnegative correspondence.
+NAMES += ['PR0917_PINNED_SCOPE_VERIFICATION.json']
+
+# PR919existingpublication coverage.
+NAMES += ['PR0919_PINNED_SCOPE_VERIFICATION.json', 'PR0919_PUBLICATION_COVERAGE_DETAILS.json']
+
+# Custom920explicitnegative correspondence.
+NAMES += ['PR0920_PINNED_SCOPE_VERIFICATION.json']
