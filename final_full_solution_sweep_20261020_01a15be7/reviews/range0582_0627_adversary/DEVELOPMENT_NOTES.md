@@ -1,0 +1,3 @@
+# Review development notes
+
+The first successful publication script reused its response variable for successive Zenodo records. Its ledger receipt therefore initially hashed the last record response rather than the ledger response. This affected one custody summary digest, not the row comparisons, provider reads or publication checks. The old receipt is preserved privately. The script now retains ledger_wire separately; a fresh direct GWS CLI read was captured exactly, allfour complete target rows were compared unchanged, and the receipt digest was repaired to that exact wire. No provider, canonical input or prior review was modified.
