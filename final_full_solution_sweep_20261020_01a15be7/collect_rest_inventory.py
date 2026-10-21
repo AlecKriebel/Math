@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Exhaustive REST inventory; numeric tail is discovered, never hardcoded."""
 import datetime as dt
+import argparse
+import gzip
 import hashlib
 import json
 from pathlib import Path
 import subprocess
 import time
 import uuid
-from sweep_io import atomic_json
+from sweep_io import atomic_json, atomic_bytes
 
 ROOT = Path(__file__).resolve().parent
 RAW = ROOT/'raw'
@@ -19,7 +21,7 @@ def now():
 
 def api(endpoint):
     for attempt in range(5):
-        p = subprocess.run(['gh','api',endpoint],text=True,capture_output=True)
+        p = subprocess.run(['gh','api','--hostname','github.com',endpoint],text=True,capture_output=True)
         if not p.returncode:
             return json.loads(p.stdout)
         if not any(s in p.stderr for s in ('HTTP 502','HTTP 503','HTTP 504')) or attempt==4:
@@ -28,6 +30,12 @@ def api(endpoint):
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--compact-wire',action='store_true',
+                        help='Save exact REST JSON pages in gzip to reduce local cache growth')
+    args=parser.parse_args()
+    if RAW.is_symlink() or not RAW.resolve().is_relative_to(ROOT.resolve()):
+        raise RuntimeError('Unsafe raw metadata output directory')
     RAW.mkdir(exist_ok=True)
     started=now()
     stamp=started.replace(':','').replace('-','').split('.')[0]+'_'+uuid.uuid4().hex
@@ -38,8 +46,19 @@ def main():
         endpoint=f'repos/AlecKriebel/Math/pulls?state=all&sort=created&direction=asc&per_page=100&page={page}'
         data=api(endpoint)
         path=RAW/f'rest_inventory_{stamp}_{page:03d}.json'
-        atomic_json(path,data)
-        pages.append({'path':str(path.relative_to(ROOT)),'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'count':len(data)})
+        decoded=(json.dumps(data,indent=2)+'\n').encode('utf-8')
+        if args.compact_wire:
+            path=path.with_suffix('.json.gz')
+            encoded=gzip.compress(decoded,mtime=0)
+            if gzip.decompress(encoded)!=decoded:raise RuntimeError('Metadata compression roundtrip failed')
+            atomic_bytes(path,encoded)
+        else:
+            encoded=decoded
+            atomic_bytes(path,encoded)
+        pages.append({'path':str(path.relative_to(ROOT)),
+                      'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+                      'encoding':'gzip' if args.compact_wire else 'utf-8-json',
+                      'decoded_json_sha256':hashlib.sha256(decoded).hexdigest(),'count':len(data)})
         for p in data:
             n=p['number']
             if nodes and n<=max(nodes):
@@ -67,7 +86,7 @@ def main():
     if not latest or latest[0]['number']!=highest:
         raise RuntimeError('Newest-PR response did not match the collected maximum; extend or investigate inventory')
     query='query { repository(owner:"AlecKriebel",name:"Math") { pullRequests(first:1,orderBy:{field:CREATED_AT,direction:DESC}) { totalCount nodes { number } } } }'
-    p=subprocess.run(['gh','api','graphql','--input','-'],input=json.dumps({'query':query}),capture_output=True,text=True)
+    p=subprocess.run(['gh','api','--hostname','github.com','graphql','--input','-'],input=json.dumps({'query':query}),capture_output=True,text=True)
     if p.returncode:
         raise RuntimeError('Independent total/max query failed: '+p.stderr[:1000])
     independent=json.loads(p.stdout)
