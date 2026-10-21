@@ -573,3 +573,6 @@ Fresh immutable-tree/ref recapture verifies original832checkpoint0eb09e0f2ec5bf8
 
 ### 2026-10-21T19:29:14.325481+00:00 — PR833classified; through837; overall58%
 Twofreshindependentfamilies androotexplicitcochain/dualityreconstruction confirm failure of entire citeddegree7lowerdetector.83sealedreviewfilesverify; both copiedfiniteprograms reproduce normal/-O outputs. Fullordinarysectiongenusequalityunverified, strongerliteralOWRformulationunaddressed; actual2025finalproofnotretrieved andnotdeclaredfalse. Existingclosure6185756578retained, verifiedpartialupper<=8 andall28originals preserved. Explicitnegatives834–837advanced; cursor838. No new DOI, spreadsheet, merge, closureorcomment.
+
+### 2026-10-21T19:31:51.227995+00:00 — Through PR871; overall60%
+838existingpublication DOI23387753/uniquerow100verified with exactpublicfiles107manifestentriesand27historicaloriginals;24currentmatchesandthreeupdatedouterwrappersdisclosed. Explicitnonsolutions839–866and868/870/871advanced. Customtop-levelquadratic_two_type_2931/PR867andstable_pseudoisotopy_2950/PR869boundtoactual43/31pathsandownexplicitunsolvedrows, allheadblobsverify;sciencebodiesskipped. Cursor872, four earlier ownpublications remaincomplete; no newproviderwrites.
