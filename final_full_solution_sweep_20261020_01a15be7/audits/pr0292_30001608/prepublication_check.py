@@ -81,6 +81,10 @@ def main():
     rows = sheet.get("values", [])
     if not rows or rows[0] != ["Original Problem", "Solution Chat URL", "DOI", "Notes"]:
         raise RuntimeError("Ledger schema changed")
+    baseline = json.loads((EFFORT / "raw/pr0292/ledger_live.json").read_text())["response"].get("values", [])
+    changed_rows = [index + 1 for index in range(max(len(rows), len(baseline)))
+                    if (rows[index] if index < len(rows) else None)
+                    != (baseline[index] if index < len(baseline) else None)]
     pattern = re.compile(r"30001608|OWR[- ]4530[- ]006|/pull/292(?!\d)|\bPR\s*#?292(?!\d)|chunk|Norros|file[- ]sharing|deterministic.first|Poisson.corrector", re.I)
     matches = []
     for number, row in enumerate(rows, 1):
@@ -115,7 +119,7 @@ def main():
         if re.search(r"30001608|pr0292|deterministic[- ]first[- ]chunk|dfc_stability", json.dumps(value), re.I):
             state_matches.append({"path": path.relative_to(REPO).as_posix(),
                                   "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-                                  "deposit_id": value.get("deposit_id")})
+                                  "deposit_id": value.get("id", value.get("deposit_id"))})
     release = json.loads((AUDIT / "preprint/publication/RELEASE_FILES.json").read_text())
     for entry in release["files"]:
         content = (AUDIT / "preprint/publication" / entry["path"]).read_bytes()
@@ -124,6 +128,7 @@ def main():
     receipt = {"started_utc": now, "completed_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
                "operation": operation, "phase": args.phase, "read_only": True,
                "ledger_rows": len(rows), "ledger_matches": matches,
+               "ledger_changed_rows_since_initial_candidate_check": changed_rows,
                "account_query": search["query"], "account_total": search["total"],
                "account_positive_control": "PASS_23174283", "unexpected_account_matches": [
                    {"id": item["id"], "title": item.get("metadata", {}).get("title"), "status": item.get("status")} for item in unexpected],
@@ -132,7 +137,7 @@ def main():
                "live_pr": {"state": pr["state"], "merged": pr.get("merged"), "draft": pr["draft"], "head": pr["head"]["sha"]},
                "live_main": main_ref["object"]["sha"], "release_files": release["files"],
                "raw_receipts": raw.relative_to(EFFORT).as_posix(),
-               "identity_verdict": "No unexpected leads" if not matches and not unexpected else "Root reconciliation required; this script does not decide mathematical identity",
+               "identity_verdict": "No unexpected leads" if not matches and not unexpected and not changed_rows else "Root reconciliation required; this script does not decide mathematical identity",
                "scope": "Live read-only custody/deduplication evidence, not mathematical/priority clearance or an atomic lock across services."}
     output = AUDIT / ("PREPUBLICATION_" + args.phase.upper() + "_" + operation + ".json")
     atomic_json(output, receipt)
