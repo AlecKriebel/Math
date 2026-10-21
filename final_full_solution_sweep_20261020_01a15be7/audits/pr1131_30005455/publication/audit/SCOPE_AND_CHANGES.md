@@ -1,0 +1,13 @@
+# Scope reconciliation and changes from the historical submission
+
+The original OWR12/2023 contribution is Victor Kleptsyn, Graph-based interacting Polya urns, printed653–655. Its two finite-graph questions request improvements of2 and25. Its subsequent4/3 sharpness suggestion is a stronger target. The historical eight-file submission incorrectly made completion of that stronger whisker interval a requirement for answering both literal requests. Those original bytes are preserved in original/ and their historical OPEN/PARTIAL labels are superseded by this explicit distinction.
+
+The paper supplies the original weighted-cycle proof and full whisker interval/tail argument, plus an explicit positive-integer initialization extension by finite positive-probability reachability and conditioning. That extension applies to almost-sure tail conclusions; it does not reverse the stable-attainment implication. The matching property excludes cycles directly, making the whisker proof independent of the new weighted odd-cycle theorem.
+
+The finite simple loopless graph convention is explicit. No generalization to positive real offsets, initially zero edges, loops or infinite graphs is made. No stochastic assertion at alpha=4/3 or sharp whisker classification on4/3<alpha<17/4 is made. An allowed unit triangle suffices for the known lower obstruction.
+
+The even-cycle mechanism, uniform bare odd-cycle threshold, triangle obstruction, least-weight/champion argument and stochastic convergence/support theorem are credited to the published primary sources. Two independent priority investigations recovered a positive earlier implication alpha>=24 from HK2017's displayed constants plus HHK2023, despite the stated theorem's25. The paper uses the conservative >24 consequence and gives its exact derivation. It claims the stronger17/4 bound, not the first possible numerical improvement of25. Neither investigation recovered an earlier full implication for the arbitrary-equilibrium weighted odd-cycle bound, arbitrary-rate forest>4/3 or equal-rate whiskers>=17/4. These bounded searches do not certify worldwide firstness.
+
+The published source theorem interfaces are imported at their stated hypotheses. All finite arithmetic is explicit in the paper. Numerical tree searches are not proof dependencies. The rational unequal-rate path example remains in the original proof solely as a credited scope control.
+
+All research, verification, literature work, drafting and adversarial review used extensive AI assistance. These internal reviews do not constitute external human peer review or formal certification. The paper is an unrefereed preprint.
