@@ -357,3 +357,7 @@ Completion estimate **28%**, orderedcursor399/390completePRs. Root read complete
 ### 2026-10-21T13:58:24.566795+00:00 — PR399 final operational repair independently replayed (sweep estimate28%)
 
 Read complete repair report and five-helper diff; all156 artifact hashes verified before and after new root runs of123 integrated,83 targeted and324 preserved regression controls in each of normal and optimized Python. All530 per mode passed with zero actual provider access. Canonical seven helper paths restored to explicit checkpoint selection only after freezing. Science, archive,11 original files and root lead reconciliation remain unchanged. Fresh complete reviewer03 is the next gate; no publication clearance or live publication action.
+
+### 2026-10-21T14:01:36.114064+00:00 — Dynamic inventory extended to PR1440 (sweep estimate27%)
+
+Complete REST capture reached empty terminalpage, newestPR and independentGraphQL total/max both1440,1432 in scope with no numericgaps. Thirtysix new PRs1405–1440 remain in scope. Journal remains contiguous9–398, cursor399; comparison against prior processedmetadata recorded in INVENTORY_REFRESH_20261021T1400.json for finalreconciliation. Lower percentage reflects enlarged denominator, not lost work. Read-only originalhead/17+5 and11+5 integrationplans bothpassed; no branchmutation. Newcomplete399review03 active,280review04active.
