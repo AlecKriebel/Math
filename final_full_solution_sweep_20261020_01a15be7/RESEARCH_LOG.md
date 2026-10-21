@@ -451,3 +451,8 @@ Completion estimate:27%. PR399 marked ready after fresh full gates. GitHub previ
 ### 2026-10-21T16:33:42.729781+00:00 — PR399 exact package staged once
 
 Completion estimate:27%. Guarded per-mutation live gates completed stage on single saved production record23539283, state ready_to_publish. PDF109650bytes/f1fb805e... and ZIP174397bytes/0ef15978... match reviewed release; metadata normalizations empty. No publication or row yet. Record ID/state/intents preserved; next action is freshly gated publication of this existing record, never another allocation. Both papers full scientific reviews complete;280 exact v1.1 revision remains next after399 fully recorded.
+
+
+### 2026-10-21T16:43:59.654957+00:00 — PR399 fully published, verified and recorded; ordered cursor400
+
+Completion estimate:27% (391/1434 current inventory entries considered). Exact reviewed head 8758d9b730f295ccb6ef6020fd776ca1d1945666 merged as 1a80b81ce940d9f67d9a45b48176b47ab266a652. Single record23539283 published once; actual public PDF109650 bytes and ZIP174397 bytes match reviewed SHA/MD5, all81 payloads/82 safe members verified, metadata and DOI200 exact canonical destination verified. GWS CLI final row177 uniquely matches target/DOI and all four cells read back exactly;177 rows total. Live PR merged status/head/merge independently GET-confirmed. Root final verification and contiguous decision9–399 now durable locally, next400. Reopened280 exact v1.1 revision next, then ordered sweep continues through refreshed maximum1442 and beyond if it grows. No final completion claim.

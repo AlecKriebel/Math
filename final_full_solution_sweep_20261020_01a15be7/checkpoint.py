@@ -378,3 +378,6 @@ NAMES.extend(['audits/pr0399_30001179/PR_READY_INTENT.json', 'audits/pr0399_3000
 
 # Exact existing Zenodo draft stage receipt, no duplicate allocation.
 NAMES.extend(["audits/pr0399_30001179/ZENODO_STAGE.json"])
+
+# Actual PR399 final publication/public-byte/DOI/unique-ledger verification and ordered disposition.
+NAMES.extend(['PR0399_PUBLICATION_VERIFICATION.json', 'PR0399_DISPOSITION.json', 'audits/pr0399_30001179/ZENODO_PUBLISH.json', 'audits/pr0399_30001179/ZENODO_PUBLIC_FILE_VERIFICATION.json', 'audits/pr0399_30001179/ZENODO_PUBLISHED_INSPECTION.json', 'audits/pr0399_30001179/LEDGER_APPEND_INTENT.json', 'audits/pr0399_30001179/LEDGER_PUBLICATION_VERIFICATION.json', 'audits/pr0399_30001179/ROOT_FINAL_LIVE_PR_VERIFICATION.json', 'audits/pr0399_30001179/ROOT_BEFORE_PUBLISH_MAIN_PACKAGE_CHECK.json', 'audits/pr0399_30001179/ZENODO_STAGE_INTENT.json', 'audits/pr0399_30001179/LEDGER_APPEND_RESPONSE.json', 'audits/pr0399_30001179/ZENODO_STAGE.json', 'audits/pr0399_30001179/ZENODO_PUBLISH_INTENT.json'])
