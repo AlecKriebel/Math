@@ -1852,7 +1852,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1841 | 30003131 / OWR-14604-008 | Quadratic-Length Universal Random Permutations | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 1842 | 30003172 / OWR-14741-004 | Simultaneously Adaptive Universal Source Coding | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 1843 | 30005478 / OWR-12697711-014 | Algorithms for Amoeba Dimensions from Tropical Fans | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 1844 | 30005529 / OWR-13750333-010 | Compatible Geodesic and Horocycle Symbolic Codings | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 1844 | 30005529 / OWR-13750333-010 | Compatible Geodesic and Horocycle Symbolic Codings | 0.0517 | 5.0 | 3 | 2023 | unsolved | 5/5 |  | 2026-10-21: Five-turn partial checkpoint. Same-sheet tangency and flow-slide obstruction, local transversality, endpoint decoder with external sorting, and finite exact-collision bound audited. No compatible geodesic successor/return coding proved; no impossibility or global current-status claim. Arnoux-Schmidt background researcher-checked, not independently source-certified. See geodesic_gap_coding_30005529/REPORT.md and CLAIM_LEDGER.json. |  |
 | 1845 | 30005732 / OWR-14298011-003 | Well-Defined Trajectories in Controlled Set Motions | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1846 | 30005740 / OWR-14298013-004 | BV Structures with Nonsemisimple Nakayama Automorphisms | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1847 | 30003654 / OWR-15957-007 | Certificates of Polynomial Nonnegativity in Copositive Optimization | 0.0516 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
