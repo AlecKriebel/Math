@@ -1858,7 +1858,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1847 | 30003654 / OWR-15957-007 | Certificates of Polynomial Nonnegativity in Copositive Optimization | 0.0516 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 1848 | 30005757 / OWR-14298158-002 | Rationality of Separable Permutation Subclasses | 0.0513 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1849 | 30004262 / OWR-17288-004 | Finite-Dimensional Uniform Embeddings of Compact Metric Spaces | 0.0512 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 1850 | 30004632 / OWR-4990379-002 | Global Optimality of Domain-Decomposition Transport Algorithms | 0.0508 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 1850 | 30004632 / OWR-4990379-002 | Global Optimality of Domain-Decomposition Transport Algorithms | 0.0508 | 5.5 | 3 | 2021 | UNSOLVED | 5/5 |  | Restricted original-algorithm continuum theorem: uniform midpoint source on [0,1], two targets, C1 cost difference D with -D'>=gamma_min>0. Finite eta sorts by coth(gamma_min/(4eta)); quadratic bound coth((b-a)/(2eta)); eta=0 sorts by time 1, eta=infinity freezes. Five approaches; general problem remains open. Known zero-entropy benchmark credited; no novelty claim. Proof and audits: [transport_continuum_30004632](../transport_continuum_30004632/README.md). |  |
 | 1851 | 30005646 / OWR-14297740-018 | Strict Higher Étale-Homotopy Obstructions over Global Fields | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1852 | 30005647 / OWR-14297740-019 | Next-Most-Probable Galois Groups of Random Polynomials | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1853 | 6000013 / AMR-059-0013 | Affine Vertices and Inflection Points | 0.0499 | 5.0 | 3 | 1998 | queued | 0/5 |  |  |  |
