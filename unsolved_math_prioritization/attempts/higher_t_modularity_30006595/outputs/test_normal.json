@@ -1,0 +1,161 @@
+{
+  "normal": {
+    "returncode": 0,
+    "stdout": "{\n  \"arithmetic\": \"exact rational\",\n  \"q_powers_checked\": [\n    0,\n    13\n  ],\n  \"t_powers_checked\": [\n    0,\n    2,\n    4,\n    6,\n    8,\n    10,\n    12\n  ],\n  \"direct_hypergeometric_vs_fixed_alphabet\": \"PASS\",\n  \"eta_vs_Eisenstein_f\": \"PASS\",\n  \"h2_q1_to_q4\": [\n    \"-32\",\n    \"-192\",\n    \"-3200/9\",\n    \"-1408/9\"\n  ],\n  \"h4_q1_to_q4\": [\n    \"0\",\n    \"384\",\n    \"13312/9\",\n    \"1792/3\"\n  ]\n}\n",
+    "stderr": ""
+  },
+  "optimized": {
+    "returncode": 0,
+    "stdout": "{\n  \"arithmetic\": \"exact rational\",\n  \"q_powers_checked\": [\n    0,\n    13\n  ],\n  \"t_powers_checked\": [\n    0,\n    2,\n    4,\n    6,\n    8,\n    10,\n    12\n  ],\n  \"direct_hypergeometric_vs_fixed_alphabet\": \"PASS\",\n  \"eta_vs_Eisenstein_f\": \"PASS\",\n  \"h2_q1_to_q4\": [\n    \"-32\",\n    \"-192\",\n    \"-3200/9\",\n    \"-1408/9\"\n  ],\n  \"h4_q1_to_q4\": [\n    \"0\",\n    \"384\",\n    \"13312/9\",\n    \"1792/3\"\n  ]\n}\n",
+    "stderr": ""
+  },
+  "mathematical_mutations": [
+    {
+      "name": "gauge_sign",
+      "old": "I2(mul(f, U[-1])), -1",
+      "new": "I2(mul(f, U[-1])), 1",
+      "runs": {
+        "False": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        },
+        "True": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        }
+      }
+    },
+    {
+      "name": "kernel_normalization",
+      "old": "{1: 8, 2: -8, 4: 8}, 1, 16",
+      "new": "{1: 8, 2: -8, 4: 8}, 1, 8",
+      "runs": {
+        "False": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        },
+        "True": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        }
+      }
+    },
+    {
+      "name": "double_primitive",
+      "old": "a[n] / n ** 2",
+      "new": "a[n] / n",
+      "runs": {
+        "False": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        },
+        "True": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        }
+      }
+    },
+    {
+      "name": "eta_substitution",
+      "old": "{1: 24, 2: -48, 4: 24}, 1, 64",
+      "new": "{1: 24, 2: -48, 4: 24}, 1, 32",
+      "runs": {
+        "False": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        },
+        "True": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        }
+      }
+    },
+    {
+      "name": "parameter_sign",
+      "old": "B[k] * j * j -",
+      "new": "B[k] * j * j +",
+      "runs": {
+        "False": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        },
+        "True": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 66, in <module>\nRuntimeError: Exact check failed: direct == formula\n"
+        }
+      }
+    },
+    {
+      "name": "eisenstein_coefficient",
+      "old": "if not f == scale(add(add(scale(E4(1), 1), scale(E4(2), -17))",
+      "new": "if not f == scale(add(add(scale(E4(1), 1), scale(E4(2), -16))",
+      "runs": {
+        "False": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 74, in <module>\nRuntimeError: Exact check failed: f == scale(add(add(scale(E4(1), 1), scale(E4(2), -17)), scale(E4(4), 16)), F(1, 15))\n"
+        },
+        "True": {
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 74, in <module>\nRuntimeError: Exact check failed: f == scale(add(add(scale(E4(1), 1), scale(E4(2), -17)), scale(E4(4), 16)), F(1, 15))\n"
+        }
+      }
+    }
+  ],
+  "inventory_tests": [
+    {
+      "test": "symlink",
+      "status": "REJECTED",
+      "method": "synthetic stat mode; no special object created"
+    },
+    {
+      "test": "fifo",
+      "status": "REJECTED",
+      "method": "synthetic stat mode; no special object created"
+    },
+    {
+      "test": "socket_mode_synthetic",
+      "status": "REJECTED",
+      "method": "synthetic stat mode; no special object created"
+    },
+    {
+      "test": "character_device",
+      "status": "REJECTED",
+      "method": "synthetic stat mode; no special object created"
+    },
+    {
+      "test": "block_device",
+      "status": "REJECTED",
+      "method": "synthetic stat mode; no special object created"
+    },
+    {
+      "test": "nested_socket_mode_synthetic",
+      "status": "REJECTED_BEFORE_READ",
+      "method": "mocked stat for ordinary file; no socket created"
+    },
+    {
+      "test": "nested_symlink",
+      "status": "REJECTED_BEFORE_READ"
+    },
+    {
+      "test": "nested_fifo",
+      "status": "REJECTED_BEFORE_READ"
+    },
+    {
+      "test": "empty_directory_extra_file_changed_bytes",
+      "status": "DETECTED"
+    }
+  ],
+  "status": "PASS"
+}

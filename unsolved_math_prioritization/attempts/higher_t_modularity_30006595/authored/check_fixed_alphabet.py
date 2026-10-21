@@ -1,0 +1,76 @@
+"""Exact rational, independently constructed q-series consistency checks."""
+from fractions import Fraction as F
+import json
+N = 14
+K = 6
+zero = lambda: [F(0)] * N
+one = zero()
+one[0] = 1
+
+def add(a, b):
+    return [x + y for x, y in zip(a, b)]
+
+def scale(a, c):
+    return [x * c for x in a]
+
+def mul(a, b):
+    return [sum((a[j] * b[n - j] for j in range(n + 1))) for n in range(N)]
+
+def inv(a):
+    b = zero()
+    b[0] = F(1) / a[0]
+    for n in range(1, N):
+        b[n] = -sum((a[j] * b[n - j] for j in range(1, n + 1))) / a[0]
+    return b
+
+def power(a, k):
+    if k < 0:
+        return power(inv(a), -k)
+    b = one[:]
+    for _ in range(k):
+        b = mul(b, a)
+    return b
+
+def eta_product(rs, leading, coefficient):
+    a = zero()
+    a[leading] = F(coefficient)
+    for d, r in rs.items():
+        for n in range(d, N, d):
+            term = one[:]
+            term[n] = -1
+            a = mul(a, power(term, r))
+    return a
+z = eta_product({1: 24, 2: -48, 4: 24}, 1, 64)
+f = eta_product({1: 8, 2: -8, 4: 8}, 1, 16)
+th = zero()
+th[0] = 1
+for n in range(1, N):
+    if n * n < N:
+        th[n * n] = 2
+A = power(th, 4)
+I2 = lambda a: [F(0)] + [a[n] / n ** 2 for n in range(1, N)]
+U = [one]
+for k in range(1, K + 1):
+    U.append(scale(I2(mul(f, U[-1])), -1))
+formula = [mul(A, [sum((mul(U[j], U[k - j])[n] for j in range(k + 1))) for n in range(N)]) for k in range(K + 1)]
+direct = [zero() for _ in range(K + 1)]
+zp = one
+B = [F(1)] + [F(0)] * K
+for n in range(N):
+    for k in range(K + 1):
+        direct[k] = add(direct[k], scale(zp, B[k]))
+    j = F(2 * n + 1, 2)
+    B = [(B[k] * j * j - (B[k - 1] if k else 0)) * j / F((n + 1) ** 3) for k in range(K + 1)]
+    zp = mul(zp, z)
+if not direct == formula:
+    raise RuntimeError('Exact check failed: direct == formula')
+
+def E4(d):
+    a = one[:]
+    for n in range(d, N, d):
+        a[n] = 240 * sum((j ** 3 for j in range(1, n // d + 1) if n // d % j == 0))
+    return a
+if not f == scale(add(add(scale(E4(1), 1), scale(E4(2), -17)), scale(E4(4), 16)), F(1, 15)):
+    raise RuntimeError('Exact check failed: f == scale(add(add(scale(E4(1), 1), scale(E4(2), -17)), scale(E4(4), 16)), F(1, 15))')
+result = {'arithmetic': 'exact rational', 'q_powers_checked': [0, N - 1], 't_powers_checked': [2 * k for k in range(K + 1)], 'direct_hypergeometric_vs_fixed_alphabet': 'PASS', 'eta_vs_Eisenstein_f': 'PASS', 'h2_q1_to_q4': [str(x) for x in formula[1][1:5]], 'h4_q1_to_q4': [str(x) for x in formula[2][1:5]]}
+print(json.dumps(result, indent=2))
