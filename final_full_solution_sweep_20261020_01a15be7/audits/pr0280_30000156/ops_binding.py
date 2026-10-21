@@ -21,7 +21,7 @@ PROBLEM = 'unsolved_math_prioritization/attempts/30000156'
 QUEUE = 'unsolved_math_prioritization/QUEUE.md'
 TITLE = 'A fixed birational map without a prime-field cycle-distribution limit'
 PREFIX = 'birational-cycle-verification/'
-RELEASE_SHA = '548b7a4ae1f13a92029255fc9ef485002b7c33376b9dd9168ffcdb532fc4c20e'
+RELEASE_SHA = 'da0388503e1c6f03c809ec256989d10039b1f1a1b2eba87528d77651a7863e60'
 NAMES = {'fixed-birational-cycle-nonlimit.pdf', 'fixed-birational-cycle-nonlimit.tex',
          'fixed-birational-cycle-nonlimit-verification.zip', 'zenodo-deposit.json', 'README.md'}
 UPLOADS = {'fixed-birational-cycle-nonlimit.pdf', 'fixed-birational-cycle-nonlimit-verification.zip'}
@@ -82,7 +82,7 @@ def release():
         raise RuntimeError('Unexpected exact five-file publication inventory')
     if (value.get('intended_uploads') != ['fixed-birational-cycle-nonlimit.pdf',
             'fixed-birational-cycle-nonlimit-verification.zip']
-            or value.get('archive_members') != 65 or value.get('archive_payloads') != 64):
+            or value.get('archive_members') != 69 or value.get('archive_payloads') != 68):
         raise RuntimeError('Unexpected upload/archive inventory')
     return value
 
@@ -90,24 +90,24 @@ def release():
 def check_zip(data):
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
         names = archive.namelist()
-        if len(names) != 65 or len(set(names)) != 65 or archive.testzip() is not None:
+        if len(names) != 69 or len(set(names)) != 69 or archive.testzip() is not None:
             raise RuntimeError('ZIP inventory, duplicates or CRC invalid')
         for info in archive.infolist():
             safe_file(Path('/synthetic'), info.filename)
             if info.is_dir() or (info.external_attr >> 16 & 0o170000) == 0o120000:
                 raise RuntimeError('Directory or symlink ZIP member')
         declared = json.loads(archive.read(PREFIX + 'MANIFEST.json'))['files']
-        if not isinstance(declared, list) or len(declared) != 64:
-            raise RuntimeError('PR280 manifest must be a list of 64 payloads')
+        if not isinstance(declared, list) or len(declared) != 68:
+            raise RuntimeError('PR280 manifest must be a list of 68 payloads')
         keys = [v['path'] for v in declared]
-        if len(set(keys)) != 64 or set(names) != {PREFIX+'MANIFEST.json'} | {PREFIX+p for p in keys}:
+        if len(set(keys)) != 68 or set(names) != {PREFIX+'MANIFEST.json'} | {PREFIX+p for p in keys}:
             raise RuntimeError('ZIP manifest member set differs')
         for item in declared:
             safe_file(Path('/synthetic'), item['path'])
             body = archive.read(PREFIX + item['path'])
             if len(body) != item['bytes'] or sha(body) != item['sha256']:
                 raise RuntimeError('ZIP manifest payload changed: ' + item['path'])
-        return {'members': 65, 'all_manifest_payloads_verified': 64, 'zip_crc_safe_unique_pass': True}
+        return {'members': 69, 'all_manifest_payloads_verified': 68, 'zip_crc_safe_unique_pass': True}
 
 
 def manifest():
@@ -118,7 +118,7 @@ def manifest():
             'fixed-birational-cycle-nonlimit.pdf', 'fixed-birational-cycle-nonlimit-verification.zip']]:
         raise RuntimeError('Manifest local paths/names must be the exact two adjacent uploads')
     metadata, files = zenodo.load_manifest(path)
-    if (metadata['title'] != TITLE or metadata.get('version') != '1.0'
+    if (metadata['title'] != TITLE or metadata.get('version') != '1.1'
             or not any(v.get('identifier') == 'https://github.com/AlecKriebel/Math/pull/280'
                        for v in metadata.get('related_identifiers', []))):
         raise RuntimeError('Publication metadata identity changed')
@@ -296,6 +296,78 @@ def _decode(text,unreserved_only):
     return _PERCENT.sub(replace,text)
 
 
+_SHORT_CODE=re.compile(r'(?<![a-z0-9.])10/')
+_OWR_CONTEXT=re.compile(r'(?<![a-z0-9_])owr[ \t]+(?P<token>10/(?P<year>[0-9]{4}))')
+_OWR_SOURCE_HINT=re.compile(r'(?<![a-z0-9.])10\.4171/owr(?:/|$)')
+_OWR_SOURCE=re.compile(r'10\.4171/owr/(?P<year>[0-9]{4})/(?P<report>[1-9][0-9]*)')
+_BARE_SHORT_RESOLVER=re.compile(r'(?<![a-z0-9._@/-])(?:www\.)?shortdoi\.org\.*(?=[:/]|$)[^\s<>"\']*',re.I|re.ASCII)
+
+
+def _unresolved_short_resolver(value):
+    """Known resolver hosts with unknown aliases stay review-only.
+
+    This deliberately makes no claim about route reachability or a valid code
+    alphabet. Full numeric DOI-prefix paths remain with the DOI recognizer.
+    """
+    if re.search(r'(?<![a-z0-9+.-])[a-z][a-z0-9+.-]*:/(?!/)(?:www\.)?(?:shortdoi|doi)\.org(?=[:./\\%\]]|$)',ascii_lower(value)):
+        return True
+    candidates=[m.group(0) for m in _URL_CANDIDATE.finditer(value)]
+    candidates+=['https://'+m.group(0) for m in _BARE_SHORT_RESOLVER.finditer(value)]
+    for token in candidates:
+        try:parsed=urlsplit(token.rstrip(_URL_TRAILING));host=ascii_lower(parsed.hostname or '').rstrip('.')
+        except ValueError:
+            if re.search(r'[/@\[](?:www\.)?(?:shortdoi|doi)\.org',ascii_lower(token)):
+                return True
+            continue
+        if ('\\' in parsed.netloc or '%' in parsed.netloc) and re.search(r'(?:^|[@\[])(?:www\.)?(?:shortdoi|doi)\.org(?=[:./\\%\]]|$)',ascii_lower(parsed.netloc)):
+            return True
+        if host in {'shortdoi.org','www.shortdoi.org'}:return True
+        if host in {'doi.org','dx.doi.org'}:
+            path=_decode(parsed.path,True)
+            parts=[]
+            for part in path.split('/'):
+                if part in {'','.'}:continue
+                if part=='..':
+                    if not parts:return True
+                    parts.pop()
+                else:parts.append(part)
+            if len(parts)<2 or not re.fullmatch(r'10\.[0-9]+',parts[0]):return True
+    return False
+
+
+def _unresolved_short_code(value):
+    """Mask one qualified *literal* report token, then detect all other codes.
+
+    This does not infer a shortDOI alphabet, resolve an alias, or exempt any
+    target DOI/record identity. Duplicate contexts/source hints fail closed.
+    """
+    literal=ascii_lower(value)
+    contexts=[m for m in _OWR_CONTEXT.finditer(literal)
+              if _bounded_token(literal,m.start('token'),m.end('token'))]
+    sources=[m for m in _OWR_SOURCE.finditer(literal)
+             if _bounded_token(literal,m.start(),m.end())]
+    hints=list(_OWR_SOURCE_HINT.finditer(literal))
+    decoded_sources=literal
+    for unused in range(8):
+        decoded=_decode(decoded_sources,False)
+        if decoded==decoded_sources:break
+        decoded_sources=decoded
+    decoded_hints=list(_OWR_SOURCE_HINT.finditer(ascii_lower(decoded_sources)))
+    candidate=value
+    if (len(contexts)==len(sources)==len(hints)==len(decoded_hints)==1
+            and contexts[0].group('year')==sources[0].group('year')
+            and sources[0].group('report')=='10'):
+        first,last=contexts[0].span('token')
+        candidate=value[:first]+(' '*(last-first))+value[last:]
+    # Do not let literal contextual recognition exempt an encoded, nested or
+    # additional short code anywhere else in this same cell.
+    for unused in range(8):
+        decoded=_decode(candidate,False)
+        if decoded==candidate:break
+        candidate=decoded
+    return bool(_SHORT_CODE.search(ascii_lower(candidate)))
+
+
 def inspect_identity(value):
     if not isinstance(value,str):
         raise RuntimeError('DOI identity input must be text')
@@ -322,7 +394,8 @@ def inspect_identity(value):
                 malformed=True
     return {'canonical_names':frozenset(canonical),'review_names':frozenset(review-canonical),
             'ambiguous_encoding':depth_limited or malformed or bool(
-                re.search(r'(?<![a-z0-9.])10/[a-z0-9]+(?:$|[\s?#.,;)])',ascii_lower(current))
+                _unresolved_short_code(value)
+                or _unresolved_short_resolver(current)
                 or re.search(r'https?://(?:www\.)?shortdoi\.org(?:/|$)',ascii_lower(current))
                 or re.search(r'https?://(?:dx\.)?doi\.org/[a-z][a-z0-9]*(?:$|[\s?#.,;)])',ascii_lower(current))),
             'scope':'Lexical identity/dedup leads only; reserved/nested encodings are not certified URI equivalence.'}

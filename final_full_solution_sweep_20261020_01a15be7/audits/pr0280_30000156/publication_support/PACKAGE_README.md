@@ -1,14 +1,19 @@
 # A fixed birational map without a prime-field cycle-distribution limit
 
 Alec Kriebel, independent researcher. ORCID: https://orcid.org/0009-0001-9320-500X
-Version 1.0, 21 October 2026 UTC. Unrefereed preprint.
+Version 1.1, 21 October 2026 UTC. Unrefereed preprint.
 
 The paper gives the exact application for L(u,v)=(u,(u^2+1)v), at primes p = 3 (mod 4),
 with point-weighted period threshold px. It credits the established triangular
 family, primitive-value estimate, shifted-prime totient mean and continuous
 scalar law. It proves the interval CDF failure, explicit subsequences and failure
 of weak convergence on every further positive-upper-density prime subset of the
-admissible class. Its exact hypotheses and boundaries are in paper/main.tex.
+admissible class. A separate proposition treats every odd prime on the regular
+domain of size p(p-r), and under uniform-point exceptional-fiber deletion or
+arbitrary finite nonnegative assigned periods only on exceptional points. It
+excludes convergence on every positive-upper-prime-density selection under
+those stated conventions. Class1 full-affine maps remain nonpermutations.
+Its exact hypotheses and boundaries are in paper/main.tex and ROBUSTNESS_SCOPE.md.
 
 Run `python3 -B verify.py` from this extracted directory, using Python 3.9 or later.
 The verifier writes no files, checks every payload's length/SHA256 and the exact
@@ -19,6 +24,11 @@ The expected result has 147,619 exact checks over 87 admissible primes through 1
 eight raw affine orbit graphs containing 6,088 points, six bad-prime controls and
 the elementary totient lower bound through 10,000. These are finite diagnostics,
 not proofs of the infinite-prime statements or of atomlessness.
+A separate check_all_odd_primes.py replay supplies46,298 exact controls over
+all167 odd primes through1000 (80 class1,87 class3), including10,178 raw
+regular graph points and completion/deletion with assigned periods beyond p.
+expected_all_odd_checks.json and ALL_ODD_REPLAY_RECEIPT.json bind that separate run.
+The verifier replays both checkers in normal and optimized Python.
 
 Build paper/main.tex with a standard LaTeX distribution that supplies the listed
 packages (for example Tectonic 0.17.0, or a compatible XeLaTeX installation).

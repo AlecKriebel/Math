@@ -39,3 +39,8 @@ Review, integration, publication and ledger outcomes are recorded separately in
 the repository audit receipts. This package does not itself certify those actions.
 Source checks and internal AI audits do not constitute formal independent human
 peer review or a declaration that any external publication has occurred.
+
+Version1.1 adds an explicit all-odd-prime regular-domain/exceptional-completion
+robustness proposition from the same credited classical inputs. The bounded
+priority search was not silently expanded into worldwide priority certification.
+The unrecovered2011 lead and all historical caveats remain.

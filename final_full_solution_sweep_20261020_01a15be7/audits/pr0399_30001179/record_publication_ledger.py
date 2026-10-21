@@ -73,6 +73,12 @@ def append_verified(expected_head,identifier):
             or public.get('doi_resolution',{}).get('status')!=200
             or public.get('release_manifest_sha256')!=RELEASE_SHA):
         raise RuntimeError('Fresh public DOI/files verification incomplete')
+    resolution=public['doi_resolution']
+    destination=doi_destination_evidence(identifier,resolution.get('status'),resolution.get('resolved_url'))
+    evidence=resolution.get('destination_verified')
+    if (not isinstance(evidence,dict) or evidence!=destination
+            or type(evidence.get('record')) is not int or type(evidence.get('status')) is not int):
+        raise RuntimeError('Fresh exact DOI destination evidence absent or inconsistent')
     gate,acceptance=collect('before_ledger',expected_head,identifier,allow_target_row=True)
     family_ids=gate.get('expected_identity_record_ids',[identifier])
     operation=uuid.uuid4().hex

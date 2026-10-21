@@ -513,3 +513,20 @@ def record_identity_ids(record,identifier):
         add_parent(parent['id'])
     if len(parents)>1:raise RuntimeError('Contradictory concept/version-parent IDs require root review')
     return sorted(result)
+
+
+def doi_destination_evidence(identifier, status, resolved_url):
+    """Authenticated DOI outcome policy; independent of lexical ledger leads.
+
+    Accept only literal HTTPS zenodo.org /records/{exact positive ASCII ID}.
+    Explicit ports (including443), userinfo, host aliases/case variations,
+    trailing slash, query, fragment, encoding and route variants all reject.
+    Root may review a new policy separately; never infer identity from them.
+    """
+    if type(identifier) is not int or identifier<=0:
+        raise RuntimeError('Exact positive intended record ID required')
+    expected='https://zenodo.org/records/'+str(identifier)
+    if type(status) is not int or status!=200 or not isinstance(resolved_url,str) or resolved_url!=expected:
+        raise RuntimeError('DOI final destination is not the exact intended HTTPS Zenodo record')
+    return {'policy':'pr399-exact-https-record-v1','record':identifier,
+            'status':200,'resolved_url':expected}

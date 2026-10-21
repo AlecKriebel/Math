@@ -49,10 +49,16 @@ def main():
     result = module["calculate"]()
     baseline = json.loads((ROOT / "expected_checks.json").read_text(encoding="utf-8"))
     require(result == baseline, "Exact finite replay differs from recorded baseline")
+    extension = runpy.run_path(str(ROOT / "check_all_odd_primes.py"))["calculate"]()
+    extension_baseline = json.loads((ROOT / "expected_all_odd_checks.json").read_text(encoding="utf-8"))
+    require(extension == extension_baseline, "All-odd-prime regular/completion replay differs")
     print(json.dumps({"status": "PASS", "manifest_files_verified": len(expected),
                       "finite_checks": result["exact_checks"],
                       "admissible_primes": result["admissible_primes"],
                       "raw_graph_points": result["raw_graph_points"],
+                      "all_odd_prime_checks": extension["exact_checks"],
+                      "all_odd_primes": extension["odd_primes"],
+                      "regular_graph_points": extension["regular_graph_points"],
                       "scope": "Integrity and finite reproducibility only; analytic proof remains essential"},
                      indent=2, sort_keys=True))
 

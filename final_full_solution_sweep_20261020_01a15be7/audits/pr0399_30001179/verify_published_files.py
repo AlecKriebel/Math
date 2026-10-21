@@ -36,6 +36,8 @@ def verify_public_record(identifier, metadata, selected, inspection, public, dow
             or inspection.get('doi_resolution',{}).get('http_status')!=200
             or status!=200 or int(public['id'])!=identifier or public['doi']!=doi):
         raise RuntimeError('Exact published record/DOI200 identity not verified')
+    destination_proof=doi_destination_evidence(identifier,inspection['doi_resolution'].get('http_status'),
+                                         inspection['doi_resolution'].get('resolved_url'))
     # Compare every intended field on the public record as well as authenticated
     # inspection; only the existing tool's explicit normalizations are allowed.
     normalizations=zenodo.verify(public_metadata_projection(public,metadata),metadata,selected)
@@ -58,7 +60,8 @@ def verify_public_record(identifier, metadata, selected, inspection, public, dow
         'all_intended_authenticated_and_public_metadata_verified':True,
         'metadata_normalizations':normalizations,'record_http_status':status,
         'doi_resolution':{'status':inspection['doi_resolution']['http_status'],
-                          'resolved_url':inspection['doi_resolution']['resolved_url']},
+                          'resolved_url':inspection['doi_resolution']['resolved_url'],
+                          'destination_verified':destination_proof},
         'read_only_remote_operations':True}
 
 

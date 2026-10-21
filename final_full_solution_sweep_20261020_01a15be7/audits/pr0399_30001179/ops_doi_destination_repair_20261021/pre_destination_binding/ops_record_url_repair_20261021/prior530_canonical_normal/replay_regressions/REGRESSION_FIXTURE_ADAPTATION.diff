@@ -1,0 +1,56 @@
+--- preserved324/offline_controls.py
++++ recursive_fixture_only/offline_controls.py
+@@ -288,7 +288,7 @@
+     def run(label,mutation=lambda a,b,c:None,ok=False):
+         a,b,c=fixture();mutation(a,b,c)
+         with patch.object(I,'leaves',lambda commit,path:a[commit]),patch.object(I,'blob',lambda commit,path:b[commit]),\
+-             patch.object(I,'subtree',lambda commit,path,recursive:c[commit,path]),\
++             patch.object(I,'subtree',lambda commit,path,recursive=True:(_regression_dirs(a[commit] if commit in a else original) if path==B.PROBLEM else c[commit,path])),\
+              patch.object(I,'api',lambda endpoint:{'parents':[{'sha':B.ORIGINAL_PARENT}]}):
+             expect(label,lambda:I.verify_integrated_tree('b','m','h'),ok)
+     run('exact11_plus5_preserves_all_nested_siblings_and_other_queue',ok=True)
+@@ -350,7 +350,7 @@
+              patch.object(I,'collect',collect),patch.object(I,'require_release_clearance',clearance),\
+              patch.object(I,'leaves',leaves),patch.object(I,'originals',lambda:original),\
+              patch.object(I,'blob',lambda c,p:I.BASELINE_ROW if c==B.ORIGINAL_PARENT else I.DESIRED_ROW),\
+-             patch.object(I,'subtree',lambda c,p,r:{}),\
++             patch.object(I,'subtree',lambda c,p,r=True:(_regression_dirs(original if c==B.ORIGINAL else {**original,**selected}) if p==B.PROBLEM else {})),\
+              patch.object(sys,'argv',['repository_integration.py','commit','--expected-pr-head',B.ORIGINAL]):
+             from contextlib import redirect_stdout
+             with redirect_stdout(io.StringIO()):expect(label,I.main,ok)
+@@ -521,3 +521,12 @@
+ 
+ if __name__=='__main__':
+     main()
++
++
++def _regression_dirs(names):
++    result={}
++    for name in names:
++        parts=Path(name).parts
++        for end in range(1,len(parts)):
++            result['/'.join(parts[:end])]={'mode':'040000','type':'tree','sha':'synthetic-directory'}
++    return result
+--- preserved324/candidate_controls.py
++++ recursive_fixture_only/candidate_controls.py
+@@ -179,6 +179,7 @@
+                 calls.append(body);return {'merged':cfg['merged'],'sha':actual}
+             raise RuntimeError('Unexpected synthetic API '+endpoint)
+         def subtree(commit,path,recursive=True):
++            if path==B.PROBLEM:return _regression_dirs(original if commit==B.ORIGINAL else leaf[commit])
+             if path=='':return {'unsolved_math_prioritization':{'mode':'040000','type':'tree','sha':commit},'other':{'mode':'100644','type':'blob','sha':'unchanged'}}
+             if path=='unsolved_math_prioritization':return {'attempts':{'mode':'040000','type':'tree','sha':commit},'QUEUE.md':{'mode':'100644','type':'blob','sha':commit},'sibling':{'mode':'100644','type':'blob','sha':'unchanged'}}
+             return {'30001179':{'mode':'040000','type':'tree','sha':commit},'sibling':{'mode':'040000','type':'tree','sha':'unchanged'}}
+@@ -228,3 +229,12 @@
+     write(HERE/('CANDIDATE_CONTROLS_OPTIMIZED.json' if sys.flags.optimize else 'CANDIDATE_CONTROLS.json'),result)
+     print(json.dumps({k:v for k,v in result.items() if k!='cases'},indent=2))
+ if __name__=='__main__':main()
++
++
++def _regression_dirs(names):
++    result={}
++    for name in names:
++        parts=Path(name).parts
++        for end in range(1,len(parts)):
++            result['/'.join(parts[:end])]={'mode':'040000','type':'tree','sha':'synthetic-directory'}
++    return result

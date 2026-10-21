@@ -7,18 +7,22 @@ import subprocess
 import uuid
 from ops_binding import *
 from publication_live_gates import collect
-from verify_published_files import verify_live
+from verify_published_files import verify_live, verify_doi_destination
 
 
 def desired_row(identifier):
     return [
         '30000156 / OWR-768-006: Limiting Cycle Distributions of Birational Maps',
         '', 'https://doi.org/10.5281/zenodo.'+str(identifier),
-        TITLE+' — Alec Kriebel (ORCID 0009-0001-9320-500X), v1.0 (2026-10-21). '
+        TITLE+' — Alec Kriebel (ORCID 0009-0001-9320-500X), v1.1 (2026-10-21). '
         'Unrefereed preprint. Fixed L(u,v)=(u,(u²+1)v) permutes the full affine plane for p≡3 mod4; '
         'point-weighted periods normalized by p have, at each fixed 1/2≤x<1, CDF '
         '1−φ(p−1)/(p−1)+o(1), limsup 1 and liminf at most 23/24. Neither those CDF values '
         'nor the period measures converge on any admissible prime subset of positive upper relative density. '
+        'A separate all-odd-prime proposition treats the regular domain p(p-r), r=0 or2, and uniform-point '
+        'exceptional-fiber deletion or arbitrary finite nonnegative assigned periods only there. Bounded '
+        'statistics change by O(1/p); no positive-upper-prime-density selection restores convergence '
+        'under these conventions. Completed measures lie on nonnegative reals; assigned periods may exceed p. '
         'The triangular family, primitive quadratic values, shifted-prime totient mean and continuous scalar '
         'law are established and credited; this is a scoped application to Vivaldi’s 2004 broad existence assertion '
         '(joint work with Roberts). No new map family, character-sum theorem, arithmetic mean/scalar law, '
@@ -66,6 +70,11 @@ def append_verified(expected_head,identifier):
     # Never trust old saved booleans: make a new read-only actual public download
     # and DOI200 inspection before the last full-account/full-sheet gate.
     public=verify_live(identifier)
+    if not isinstance(public,dict) or not isinstance(public.get('doi_resolution'),dict):
+        raise RuntimeError('Fresh exact DOI destination evidence is missing')
+    resolution=public['doi_resolution']
+    verify_doi_destination(identifier,{'http_status':resolution.get('status'),
+                                      'resolved_url':resolution.get('resolved_url')})
     if (public.get('record')!=identifier or public.get('all_public_file_bytes_match_reviewed') is not True
             or public.get('doi_resolution',{}).get('status')!=200
             or public.get('release_manifest_sha256')!=RELEASE_SHA):
