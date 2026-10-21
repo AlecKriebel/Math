@@ -524,3 +524,16 @@ NAMES.extend(['PR0765_PINNED_SCOPE_VERIFICATION.json','PR0765_PUBLICATION_COVERA
 NAMES.extend(['PR0767_PINNED_SCOPE_VERIFICATION.json','PR0767_WITHDRAWAL_VERIFICATION.json'])
 
 NAMES.extend(['INVENTORY_REFRESH_20261021T1850.json'])
+
+NAMES.extend(['PR0778_PINNED_SCOPE_VERIFICATION.json','PR0778_PUBLICATION_COVERAGE_DETAILS.json'])
+
+NAMES.extend(['PR0781_PINNED_SCOPE_VERIFICATION.json','PR0781_PUBLICATION_COVERAGE_DETAILS.json'])
+
+NAMES.extend(['PR0786_PINNED_SCOPE_VERIFICATION.json','PR0786_PUBLICATION_COVERAGE_DETAILS.json'])
+
+NAMES.extend(['PR0788_PINNED_SCOPE_VERIFICATION.json','PR0788_PUBLICATION_COVERAGE_DETAILS.json'])
+
+NAMES.extend(['PR0789_PINNED_SCOPE_VERIFICATION.json','PR0789_PUBLICATION_COVERAGE_DETAILS.json'])
+
+# Accepted independent range672-741 coverage; private source/provider evidence excluded.
+NAMES.extend(['ROOT_RANGE0672_0741_ACCEPTANCE.json', 'reviews/range0672_0741_adversary/GIT_BLOB_INPUT_MANIFEST.json', 'reviews/range0672_0741_adversary/INPUT_MANIFEST.json', 'reviews/range0672_0741_adversary/REPORT.md', 'reviews/range0672_0741_adversary/RESEARCH_LOG.json', 'reviews/range0672_0741_adversary/RESULT.json', 'reviews/range0672_0741_adversary/capture_and_pin.py', 'reviews/range0672_0741_adversary/capture_coherence.json', 'reviews/range0672_0741_adversary/check_hold_custody.py', 'reviews/range0672_0741_adversary/check_public_and_withdrawal.py', 'reviews/range0672_0741_adversary/final_input_recheck.json', 'reviews/range0672_0741_adversary/final_live_capture.py', 'reviews/range0672_0741_adversary/final_live_recheck.json', 'reviews/range0672_0741_adversary/fresh_primary_source_receipts.json', 'reviews/range0672_0741_adversary/hold_custody_checks.json', 'reviews/range0672_0741_adversary/initial_live_metadata_receipt.json', 'reviews/range0672_0741_adversary/ledger_fresh_receipt.json', 'reviews/range0672_0741_adversary/per_pr_assessments.json', 'reviews/range0672_0741_adversary/pinned_blob_values.json', 'reviews/range0672_0741_adversary/pinned_scope_checks.json', 'reviews/range0672_0741_adversary/publication_integrity_checks.json', 'reviews/range0672_0741_adversary/seal_outputs.py', 'reviews/range0672_0741_adversary/semantic_dedup_assessment.json', 'reviews/range0672_0741_adversary/special_681_original_and_comparison.json', 'reviews/range0672_0741_adversary/verification_normal.stderr', 'reviews/range0672_0741_adversary/verification_normal.stdout', 'reviews/range0672_0741_adversary/verification_optimized.stderr', 'reviews/range0672_0741_adversary/verification_optimized.stdout', 'reviews/range0672_0741_adversary/verification_replay.json', 'reviews/range0672_0741_adversary/verify_review_evidence.py', 'reviews/range0672_0741_adversary/withdrawal_current_binding.json', 'reviews/range0672_0741_adversary/OUTPUT_MANIFEST.json', 'reviews/range0672_0741_adversary/OUTPUT_MANIFEST.sha256'])

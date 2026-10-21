@@ -555,3 +555,6 @@ Fresh exactmain QUEUE snapshot retains1951rows and explicitly marks2515already_s
 
 ### 2026-10-21T18:49:43.290415+00:00 — Through PR767 and full inventory refreshed; overall53%
 Live all-state inventory still ends at1446, with0 changed prior metadata records and0 new PRs; all numeric gaps accounted. Existing publications742,764,765 verified against public files, mathematical scope, unique ledgerrows and26/63/39originals. Explicit current withdrawal767 and custom-folderunsolved755 excluded under userrule2. Cursor768, completed759. Four new publications from earlier work remain unique and fully recorded; no new provider mutation in this interval.
+
+### 2026-10-21T18:59:29.624114+00:00 — Through PR789; overall54%
+Accepted independent672–741review after reading fullreport and verifying578sealedoutputs/226captures; no missedcase or correction. Current metadata/progress changes remain explicitly separated from immutable reviewed receipts. Existing publications778,781,786,788,789 checked against exact publicPDF/source archives, semantic scope, unique ledgerrows and32/48/41/48/58original files. Cursor790. No new DOI, ledgerrow, merge or closure in this interval.
