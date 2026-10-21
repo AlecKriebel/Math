@@ -1,0 +1,33 @@
+# Erdős #734: source and status gate
+
+Review date: 2026-10-21 UTC. Classification: **OPEN TARGET WITH HISTORICAL PARTIAL PROGRESS; LIVE TRACKER STATUS UNVERIFIED**. This is a literature/source recovery, not a new mathematical solution or a proof audit of omitted probabilistic estimates.
+
+## Precise target
+
+Let a design on [n] consist of subsets A_i with 2 ≤ |A_i| ≤ n−1, with every unordered pair of distinct points in exactly one block. Define M_t = #{i: |A_i|=t} and F(n) = min_design max_t M_t.
+
+The target is: there exist absolute C and n_0 such that for every integer n ≥ n_0 there exists such a design with M_t ≤ C sqrt(n) simultaneously for every t. C cannot depend on n or t. The design may depend on n. Neither infinitely many admissible orders, nor a bound for one chosen size, suffices. No real-plane realization is required. Empty/singleton blocks are irrelevant and should be removed; merely requiring more than one listed block while allowing a full [n] block plus singletons would introduce a trivial loophole.
+
+The official statement matches this target. Its nontriviality qualification excludes the one-block design. [Official tracker](https://www.erdosproblems.com/734).
+
+## Original sources and proof strength
+
+1. **Erdős (1981), On the combinatorial problems which I would most like to see solved**, Combinatorica 1, 25–42, DOI [10.1007/BF02579174](https://doi.org/10.1007/BF02579174). The paragraph cited by the tracker as p.35 is in Section VI, item 2, at PDF index 11 (printed retypeset page 12) of the [Rényi version](https://www.renyi.hu/~p_erdos/1981-16.pdf). It requests an absolute-constant sqrt(n) multiplicity bound and states a matching-order obstruction. This archive copy is retypeset and has different pagination from the journal citation; do not call its PDF page 11 journal p.35. Its neighboring profile-count questions are separate problems.
+
+2. **de Bruijn–Erdős (1948), On a combinatorial problem**, Proceedings 51, 1277–1279 = Indagationes Math. 10, 421–423. [Primary text](https://www.renyi.hu/~p_erdos/1948-01.pdf). Theorem 1 establishes at least n blocks for a nontrivial pairwise design; equality is characterized by near-pencils and finite projective planes. This is a lower-bound ingredient, not the requested upper construction. At least n blocks alone, with up to n possible sizes, does not yield sqrt(n) multiplicity without a bound on the number of distinct sizes.
+
+3. **Erdős–Purdy (1978), Some Combinatorial Problems in the Plane**, JCTA 25, 205–210, DOI [10.1016/0097-3165(78)90085-7](https://doi.org/10.1016/0097-3165(78)90085-7). [Primary text](https://renyi.hu/~p_erdos/1978-42.pdf), §2, p.208, Theorem 2: F(n)=O(n^(3/4)). The paper uses a random n-point subset of a finite projective plane; it expressly gives a proof outline and suppresses the laborious probability computations. This is published partial progress, not merely a forum assertion, but the omitted estimates have not been independently reconstructed here. The surrounding stronger conjecture asks for an asymptotic constant at the sqrt(n) scale, rather than only a big-O bound. Theorem 1 treats real-planar configurations, establishing at least n−1 lines of one size (2 or 3) for n≥25; the near-pencil attains n−1. Thus the real-planar analogue cannot satisfy the EP-734 bound.
+
+4. **Gyárfás (2002), Erdős Problems on Irregularities of Line Sizes and Point Degrees**, Paul Erdős and his Mathematics II, 367–373. [Primary text](https://www.renyi.hu/~gyarfas/Cikkek/101_Gyarfas_ErdosProblemsOnIrregularitiesOfLineSizesAndPointDegrees.pdf). Section 2 retains the sqrt(n) bound as Conjecture 1 and reports the 1978 n^(3/4) result. Theorem 1 corrects a 1985 distinct-size count: with k=floor(sqrt(n)), its maximum is 2k−2 for k²≤n<k²+k, and 2k−1 for k²+k≤n<(k+1)². Together with the 1948 theorem this gives F(n)>sqrt(n)/2 (Corollary 2). This is a proved lower bound. The paper's projective-plane-method limitation is attributed to personal communication; its displayed exponent/OCR is not used as an independently proved barrier here. Its point-degree-repetition result concerns a different invariant, not block-size multiplicity. Its prose definition of f_2 as a 'minimum r' for a universal lower bound is inconsistent literally; use the minimax definition above.
+
+5. **Colbourn–Phelps–Rödl (1984), Block sizes in pairwise balanced designs**, Canad. Math. Bull. 27, 375–380, DOI [10.4153/CMB-1984-057-0](https://doi.org/10.4153/CMB-1984-057-0). Theorems 2.4, 3.3, and 4.1 count distinct profile sets, count profiles, and establish profile-recognition NP-completeness, respectively. These solve adjacent questions about the number/recognition of profiles, not the minimax multiplicity problem. [Publisher PDF](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6C08378F909F579D157715429990439A/S0008439500068016a.pdf/block_sizes_in_pairwise_balanced_designs.pdf).
+
+6. **Erdős–Duke–Fowler–Phelps (1985), Extremal problems for pairwise balanced designs**, Congressus Numerantium 48, 55–66. [Primary text](https://www.renyi.hu/~p_erdos/1985-12.pdf). Its results on profile/degree counts, maximum distinct block sizes, and sums of largest blocks are related but not an EP-734 solution. Use Gyárfás's corrected distinct-size formula rather than its uncorrected formula.
+
+## Current status and limits
+
+The search-index representation of the official #734 page says OPEN, with an access date embedded as 2026-06-26. Direct retrieval of the official page and forum on 2026-10-21 returned HTTP 403; a search cache is not a verified live page. No primary paper resolving the sqrt(n) target was located in the bounded title, identifier, multiplicity, and line-size searches through this review date. This is not proof that no later work exists.
+
+An indexed April 30, 2026 forum-user post describes a conditional reduction to a finite-field support-realization/code-existence problem. It is not an unconditional construction, and its supporting note was not proof-audited. Third-party indexes also display unverified AI candidate solutions; these are not accepted proofs. The older official cache's no-solution-claims banner cannot certify the current discussion state.
+
+**Acceptance gate:** do not mark solved. Preserve the all-large-n, uniform-in-t target. Record the published n^(3/4) partial bound and sqrt(n) lower obstruction separately. A future claimed solution must provide an unconditional pair-covering design for every sufficiently large n and control every size multiplicity, including size 2 and all repair blocks. Proving a sharper asymptotic constant is stronger than the requested target; finite computations, profile counts, real-planar constructions, and point-degree bounds do not substitute.

@@ -1,0 +1,98 @@
+[
+  {
+    "source": "research_erdos734_1868_20261021/RESEARCH.md",
+    "source_sha256": "2f43e21fd8d2f8fcc1027f7bf0615616741990e3f1fb76c876267f5f7c94b56e",
+    "source_bytes": 13146,
+    "destination": "RESEARCH.md",
+    "destination_sha256": "fb636cb6b5bb81736843c8994d9a690f8f7c146cdb17b0927123385c7e9614ed",
+    "destination_bytes": 13107,
+    "transformations": [
+      {
+        "old": "recovery_erdos734_1868_20261021/public/SOURCE_GATE.md",
+        "new": "SOURCE_GATE.md",
+        "operation": "literal replace all"
+      }
+    ]
+  },
+  {
+    "source": "recovery_erdos734_1868_20261021/public/SOURCE_GATE.md",
+    "source_sha256": "bca94529b93679938fe614f851c49cd0d6590d064e435fa49d3778260ae0a1ee",
+    "source_bytes": 6811,
+    "destination": "SOURCE_GATE.md",
+    "destination_sha256": "bca94529b93679938fe614f851c49cd0d6590d064e435fa49d3778260ae0a1ee",
+    "destination_bytes": 6811,
+    "transformations": []
+  },
+  {
+    "source": "recovery_erdos734_1868_20261021/public/INDEPENDENT_BOUND_AUDIT.md",
+    "source_sha256": "de4e9aebb04aaa7fe5db7a106461481bdad811c6076dc8db16d1b2cea8aabdf0",
+    "source_bytes": 4685,
+    "destination": "INDEPENDENT_BOUND_AUDIT.md",
+    "destination_sha256": "de4e9aebb04aaa7fe5db7a106461481bdad811c6076dc8db16d1b2cea8aabdf0",
+    "destination_bytes": 4685,
+    "transformations": []
+  },
+  {
+    "source": "recovery_erdos734_1868_20261021/public/RECONSTRUCTION_AUDIT.md",
+    "source_sha256": "4ce680d76443fff19245b381ec0af5d1c9f69c42f9ed28a3bb4828f30fd761df",
+    "source_bytes": 4835,
+    "destination": "RECONSTRUCTION_AUDIT.md",
+    "destination_sha256": "4ce680d76443fff19245b381ec0af5d1c9f69c42f9ed28a3bb4828f30fd761df",
+    "destination_bytes": 4835,
+    "transformations": []
+  },
+  {
+    "source": "recovery_erdos734_1868_20261021/public/public_metadata.json",
+    "source_sha256": "79717a98b83af67949721353747a9fd8c451ca6ae48d82b2414e991859350ac0",
+    "source_bytes": 2344,
+    "destination": "public_metadata.json",
+    "destination_sha256": "79717a98b83af67949721353747a9fd8c451ca6ae48d82b2414e991859350ac0",
+    "destination_bytes": 2344,
+    "transformations": []
+  },
+  {
+    "source": "research_erdos734_1868_20261021/checks.py",
+    "source_sha256": "9b4a45513c1d76d9450c132222b474e65dbc738649571f9e3b4f11090b1f8a5e",
+    "source_bytes": 2885,
+    "destination": "original_checks.py",
+    "destination_sha256": "9b4a45513c1d76d9450c132222b474e65dbc738649571f9e3b4f11090b1f8a5e",
+    "destination_bytes": 2885,
+    "transformations": []
+  },
+  {
+    "source": "research_erdos734_1868_20261021/CHECKS.json",
+    "source_sha256": "d916fa308786346b617e1a0ef01d1bd3d5bca288beb8671f5ef8d960efd7a35c",
+    "source_bytes": 376,
+    "destination": "original_CHECKS.json",
+    "destination_sha256": "d916fa308786346b617e1a0ef01d1bd3d5bca288beb8671f5ef8d960efd7a35c",
+    "destination_bytes": 376,
+    "transformations": []
+  },
+  {
+    "source": "research_erdos734_1868_20261021/CHECKS_NOTE.md",
+    "source_sha256": "31a8defd51db4d93ad97921feefa2a4a34de6165ef73d0360f220905d919d71b",
+    "source_bytes": 1303,
+    "destination": "original_CHECKS_NOTE.md",
+    "destination_sha256": "31a8defd51db4d93ad97921feefa2a4a34de6165ef73d0360f220905d919d71b",
+    "destination_bytes": 1303,
+    "transformations": []
+  },
+  {
+    "source": "original_checks.py",
+    "source_sha256": "9b4a45513c1d76d9450c132222b474e65dbc738649571f9e3b4f11090b1f8a5e",
+    "destination": "checks.py",
+    "destination_sha256": "6c77d9bfbb1595f472fe79dfb820ca9fe28167eea651d183c4847fc74009feae",
+    "transformation": "Python AST: every Assert(test) becomes If(Not(test)): raise RuntimeError with unparsed test diagnostic. Remove sole top-level write_text expression for CHECKS.json; retain stdout JSON. ast.unparse, newline. No mathematical test changes."
+  },
+  {
+    "revision": "filesystem-type hardening after independent audit",
+    "scope": "Authored packaging verifier and controls only; mathematical content unchanged",
+    "changes": [
+      "verify.py uses lstat and permits only regular files and directories; rejects symlink roots/entries and non-directory roots.",
+      "controls.py adds unlisted FIFO and symlink-root rejection tests in normal and optimized modes.",
+      "README.md documents supported filesystem types.",
+      "VALIDATION_LOG.json, MANIFEST.json, and external FREEZE_RECEIPT.json regenerated after rerunning checks."
+    ],
+    "supersedes_receipt_sha256": "bc117a7a6e6284fc6673add9458678a569ab87e812302de1e41b83f0404ec577"
+  }
+]
