@@ -57,9 +57,11 @@ def read(label,operation):
 
 
 def matches(rows,identifier,family_ids=()):
-    doi='10.5281/zenodo.'+str(identifier)
-    return [(i,r) for i,r in enumerate(rows[1:],2) if PATTERN.search(' '.join(r))
-            or target_in_row(r,identifier,family_ids)]
+    found=[]
+    for i,row in enumerate(rows[1:],2):
+        is_target=target_in_row(row,identifier,family_ids)
+        if PATTERN.search(' '.join(row)) or is_target:found.append((i,row))
+    return found
 
 
 def append_verified(expected_head,identifier):
