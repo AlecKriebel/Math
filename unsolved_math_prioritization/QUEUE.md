@@ -1888,7 +1888,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1877 | 30001258 / OWR-3476-007 | Sublinear Lane–Emden Ground-State Asymptotics | 0.0492 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 1878 | 30001414 / OWR-4209-004 | Boundary Conditions Preserving Optimal Hardy–Sobolev Constants | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 1879 | 30001553 / OWR-4425-008 | Sharp Bounds for Alternating Involution Periods | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 1880 | 30001558 / OWR-4425-014 | Fragile and Robust Squarefree Infinite Words | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 1880 | 30001558 / OWR-4425-014 | Fragile and Robust Squarefree Infinite Words | 0.0491 | 5.0 | 3 | 2010 | unsolved | 5/5 |  | Scoped candidate counterexample: replacing initial 10 by 21 in the specified first-gap-deleted Thue-Morse word preserves squarefreeness. General fragile-word existence remains unresolved; finite forcing witnesses terminate, and no novelty claim is made. [Audited package](attempts/30001558/README.md). |  |
 | 1881 | 30002208 / OWR-12173-004 | Additive Sets Preserving Piecewise Syndeticity | 0.0490 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1882 | 30002506 / OWR-12866-016 | Bohr-Radius Characterization of $\ell^1$ | 0.0488 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 1883 | 30002965 / OWR-13941-005 | Volume of the Boolean Quadric Polytope | 0.0486 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |

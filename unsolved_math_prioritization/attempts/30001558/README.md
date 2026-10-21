@@ -1,0 +1,11 @@
+# Frozen local package: row 1880 / ID 30001558
+
+The exact suggested first-gap-deleted Thue–Morse candidate is not fragile: replacing its initial 10 by 21 preserves squarefreeness. This is a construction-specific obstruction, not a solution of the general existence question, an impossibility theorem, or a novelty certification. RESULT.md preserves five substantive approaches and their limits. INDEPENDENT_AUDIT.md binds the exact proof.
+
+Run `python validate.py` or `python -O validate.py`. Each validates the exact flat inventory before any content reads, byte hashes, original authored bindings and whole-module AST provenance, independent finite predicate controls, and all four original scripts in both modes against complete original stdout. No assertion statements are relied upon. The infinite claim rests on the symbolic proof, not these bounded computations.
+
+The original scripts are unchanged byte-for-byte, including extend.py's original loading of the app predicate from frozen32.py. Inventory and hashes are checked before execution. Provenance hashes cover whole modules, not just extracted functions; semantic tests separately extract named functions only as finite regression oracles. No mathematical code transformations were made. ORIGINAL_MANIFEST.json is the original manifest under a new filename; its historical authored-analysis paths are provenance labels, not runtime dependencies.
+
+SOURCE_GATE.md, SOURCE_METADATA.json and DATASET_METADATA.json are copied unchanged after inspection for public-safe authored metadata. They contain public titles, URLs, hashes, sizes, match counts and stated inspection limits; no primary-source text, corpus contents or private coordination paths are included. Source retrieval/inspection statements are historical evidence from the source gate, not new retrievals performed by this packaging step. No sockets or external services are used.
+
+MANIFEST.json covers every file except itself. An external freeze receipt binds all files including MANIFEST.json and validate.py; a malicious replacement of both validator and manifest is outside a self-contained validator's trust boundary. Negative controls and their results live outside the frozen package. The inventory guard assumes a quiescent local directory, not an adversary racing filesystem operations. No publication or QUEUE edit was performed.
