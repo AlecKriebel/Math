@@ -543,3 +543,9 @@ Correct counterexamples/classification verified, but the original universal nega
 
 ### 2026-10-21T18:28:24.741561+00:00 — Through PR671; overall46%
 Completed631–661 explicit exclusions, verified existing PR662publication DOI23384924 with unique row94, two files/100positive archive payloads and24original science files. Completed663–671 explicit exclusions. PR672 is under independent exact prior-application/scope review; all24originals and finite checks reproduce. Assigned bounded independent coverage review628–671.
+
+### 2026-10-21T18:37:50.783642+00:00 — PR672 classified; overall46%
+New independent review confirms only an openly credited immediate application of Bi2026v1 in the explicit ambient-smooth category. No fresh analytic foundation certificate or broader singular-corner solution claimed. Fiftysealed payloads and358exactcontrols/mode accepted; correct existing closure retained without provider action. Cursor673.
+
+### 2026-10-21T18:41:00.686074+00:00 — Independent628–671 review accepted; overall50%
+All538sealedoutputs and268capturedinputs verified; only expected mutable state/journal have advanced. All44classifications passed, including two precisely scoped priority holds and unique existing PR662publication. PR681and718existingpublications also confirmed with exact public payloads and original input preservation; upward scan continues at734. No new publication or ledger mutation in this interval.
