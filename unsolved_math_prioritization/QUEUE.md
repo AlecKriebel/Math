@@ -1905,7 +1905,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1894 | 158 / GREEN-070 | Sets with No Unique Sum Representations | 0.0450 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1895 | 20000022 / AIM-ALGEBRAIC_GEOMETRY-0022 | Immaculate line bundles as unit-orthogonal toric branes | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1896 | 20000162 / AIM-ALGEBRAIC_GEOMETRY-0162 | A modern étale criterion and an all-characteristic constant-functor test | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1897 | 20000726 / AIM-ANALYTIC_NUMBER_THEORY-0090 | A rational j-equation for a mixed mock Kaneko-Zagier solution | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1897 | 20000726 / AIM-ANALYTIC_NUMBER_THEORY-0090 | A rational j-equation for a mixed mock Kaneko-Zagier solution | 0.0450 | 5.0 | 3 | unknown | UNSOLVED | 5/5 |  | Five partial approaches; raw weight-minus-six scalar-linear obstruction only. Normalized, nonlinear and broader differential-equation questions remain unresolved. [Audit package](attempts/20000726/README.md). |  |
 | 1898 | 20000750 / AIM-ANALYTIC_NUMBER_THEORY-0114 | Alternative GPY weights: exact perturbation geometry and a radial escape | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1899 | 20001232 / AIM-COMPUTATION-0070 | Arbitrary logistic cell gaps with positive margins and ordinary-margin obstructions | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1900 | 20002401 / AIM-PDES-0013 | A two-level validated certificate for Maslov indices of planar elliptic problems | 0.0450 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
