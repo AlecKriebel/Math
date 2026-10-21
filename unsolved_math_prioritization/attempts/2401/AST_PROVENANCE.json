@@ -1,0 +1,84 @@
+{
+  "checks": [
+    {
+      "id": 1,
+      "original_ast": "Assert(test=Call(func=Name(id='any', ctx=Load()), args=[GeneratorExp(elt=BoolOp(op=And(), values=[Compare(left=BinOp(left=Name(id='k', ctx=Load()), op=Mult(), right=Name(id='s', ctx=Load())), ops=[NotIn()], comparators=[Name(id='S', ctx=Load())]), Compare(left=BinOp(left=BinOp(left=Constant(value=2), op=Mult(), right=Name(id='k', ctx=Load())), op=Mult(), right=Name(id='s', ctx=Load())), ops=[NotIn()], comparators=[Name(id='S', ctx=Load())])]), generators=[comprehension(target=Name(id='k', ctx=Store()), iter=Tuple(elts=[Constant(value=2), Constant(value=3), Constant(value=5)], ctx=Load()), ifs=[], is_async=0)])], keywords=[]))",
+      "original_line": 21,
+      "original_source": "assert any(k*s not in S and 2*k*s not in S for k in (2,3,5))",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=Call(func=Name(id='any', ctx=Load()), args=[GeneratorExp(elt=BoolOp(op=And(), values=[Compare(left=BinOp(left=Name(id='k', ctx=Load()), op=Mult(), right=Name(id='s', ctx=Load())), ops=[NotIn()], comparators=[Name(id='S', ctx=Load())]), Compare(left=BinOp(left=BinOp(left=Constant(value=2), op=Mult(), right=Name(id='k', ctx=Load())), op=Mult(), right=Name(id='s', ctx=Load())), ops=[NotIn()], comparators=[Name(id='S', ctx=Load())])]), generators=[comprehension(target=Name(id='k', ctx=Store()), iter=Tuple(elts=[Constant(value=2), Constant(value=3), Constant(value=5)], ctx=Load()), ifs=[], is_async=0)])], keywords=[])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_01 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 2,
+      "original_ast": "Assert(test=Call(func=Name(id='witness', ctx=Load()), args=[Name(id='S', ctx=Load()), Name(id='A', ctx=Load())], keywords=[]))",
+      "original_line": 25,
+      "original_source": "assert witness(S,A)",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=Call(func=Name(id='witness', ctx=Load()), args=[Name(id='S', ctx=Load()), Name(id='A', ctx=Load())], keywords=[])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_02 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 3,
+      "original_ast": "Assert(test=BoolOp(op=And(), values=[Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]), UnaryOp(op=Not(), operand=Call(func=Name(id='witness', ctx=Load()), args=[Name(id='S', ctx=Load()), Name(id='A', ctx=Load())], keywords=[]))]))",
+      "original_line": 30,
+      "original_source": "assert sumfree(S) and not witness(S,A)",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=BoolOp(op=And(), values=[Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]), UnaryOp(op=Not(), operand=Call(func=Name(id='witness', ctx=Load()), args=[Name(id='S', ctx=Load()), Name(id='A', ctx=Load())], keywords=[]))])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_03 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 4,
+      "original_ast": "Assert(test=BoolOp(op=And(), values=[Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]), UnaryOp(op=Not(), operand=BinOp(left=Name(id='S', ctx=Load()), op=BitAnd(), right=Name(id='A', ctx=Load()))), Compare(left=Constant(value=8), ops=[In()], comparators=[BinOp(left=Name(id='S', ctx=Load()), op=BitAnd(), right=Call(func=Name(id='sumset', ctx=Load()), args=[Name(id='A', ctx=Load())], keywords=[]))])]))",
+      "original_line": 32,
+      "original_source": "assert sumfree(S) and not (S&A) and 8 in S&sumset(A)",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=BoolOp(op=And(), values=[Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]), UnaryOp(op=Not(), operand=BinOp(left=Name(id='S', ctx=Load()), op=BitAnd(), right=Name(id='A', ctx=Load()))), Compare(left=Constant(value=8), ops=[In()], comparators=[BinOp(left=Name(id='S', ctx=Load()), op=BitAnd(), right=Call(func=Name(id='sumset', ctx=Load()), args=[Name(id='A', ctx=Load())], keywords=[]))])])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_04 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 5,
+      "original_ast": "Assert(test=BoolOp(op=And(), values=[Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]), UnaryOp(op=Not(), operand=BinOp(left=Name(id='S', ctx=Load()), op=BitAnd(), right=Name(id='A', ctx=Load()))), Compare(left=Constant(value=5), ops=[In()], comparators=[Call(func=Name(id='sumset', ctx=Load()), args=[Name(id='A', ctx=Load())], keywords=[])])]))",
+      "original_line": 34,
+      "original_source": "assert sumfree(S) and not (S&A) and 5 in sumset(A)",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=BoolOp(op=And(), values=[Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]), UnaryOp(op=Not(), operand=BinOp(left=Name(id='S', ctx=Load()), op=BitAnd(), right=Name(id='A', ctx=Load()))), Compare(left=Constant(value=5), ops=[In()], comparators=[Call(func=Name(id='sumset', ctx=Load()), args=[Name(id='A', ctx=Load())], keywords=[])])])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_05 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 6,
+      "original_ast": "Assert(test=Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]))",
+      "original_line": 42,
+      "original_source": "assert sumfree(S)",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_06 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 7,
+      "original_ast": "Assert(test=Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=BoolOp(op=And(), values=[Compare(left=Name(id='x', ctx=Load()), ops=[NotIn()], comparators=[Name(id='S', ctx=Load())]), Compare(left=BinOp(left=Constant(value=2), op=Mult(), right=Name(id='x', ctx=Load())), ops=[NotIn()], comparators=[Name(id='S', ctx=Load())])]), generators=[comprehension(target=Name(id='x', ctx=Store()), iter=Name(id='V', ctx=Load()), ifs=[], is_async=0)])], keywords=[]))",
+      "original_line": 43,
+      "original_source": "assert all(x not in S and 2*x not in S for x in V)",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=BoolOp(op=And(), values=[Compare(left=Name(id='x', ctx=Load()), ops=[NotIn()], comparators=[Name(id='S', ctx=Load())]), Compare(left=BinOp(left=Constant(value=2), op=Mult(), right=Name(id='x', ctx=Load())), ops=[NotIn()], comparators=[Name(id='S', ctx=Load())])]), generators=[comprehension(target=Name(id='x', ctx=Store()), iter=Name(id='V', ctx=Load()), ifs=[], is_async=0)])], keywords=[])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_07 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 8,
+      "original_ast": "Assert(test=Compare(left=SetComp(elt=Tuple(elts=[Name(id='i', ctx=Load()), Name(id='j', ctx=Load())], ctx=Load()), generators=[comprehension(target=Tuple(elts=[Name(id='i', ctx=Store()), Name(id='j', ctx=Store())], ctx=Store()), iter=Name(id='edges', ctx=Load()), ifs=[Compare(left=BinOp(left=Subscript(value=Name(id='V', ctx=Load()), slice=Name(id='i', ctx=Load()), ctx=Load()), op=Add(), right=Subscript(value=Name(id='V', ctx=Load()), slice=Name(id='j', ctx=Load()), ctx=Load())), ops=[In()], comparators=[Name(id='S', ctx=Load())])], is_async=0)]), ops=[Eq()], comparators=[Name(id='E', ctx=Load())]))",
+      "original_line": 44,
+      "original_source": "assert {(i,j) for i,j in edges if V[i]+V[j] in S}==E",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=Compare(left=SetComp(elt=Tuple(elts=[Name(id='i', ctx=Load()), Name(id='j', ctx=Load())], ctx=Load()), generators=[comprehension(target=Tuple(elts=[Name(id='i', ctx=Store()), Name(id='j', ctx=Store())], ctx=Store()), iter=Name(id='edges', ctx=Load()), ifs=[Compare(left=BinOp(left=Subscript(value=Name(id='V', ctx=Load()), slice=Name(id='i', ctx=Load()), ctx=Load()), op=Add(), right=Subscript(value=Name(id='V', ctx=Load()), slice=Name(id='j', ctx=Load()), ctx=Load())), ops=[In()], comparators=[Name(id='S', ctx=Load())])], is_async=0)]), ops=[Eq()], comparators=[Name(id='E', ctx=Load())])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_08 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 9,
+      "original_ast": "Assert(test=Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]))",
+      "original_line": 48,
+      "original_source": "assert sumfree(S)",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=Call(func=Name(id='sumfree', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_09 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 10,
+      "original_ast": "Assert(test=Compare(left=Call(func=Name(id='max', ctx=Load()), args=[Call(func=Attribute(value=Name(id='cores', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[])], keywords=[]), ops=[Eq()], comparators=[Constant(value=3)]))",
+      "original_line": 50,
+      "original_source": "assert max(cores.values())==3",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=Compare(left=Call(func=Name(id='max', ctx=Load()), args=[Call(func=Attribute(value=Name(id='cores', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[])], keywords=[]), ops=[Eq()], comparators=[Constant(value=3)])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_10 failed')], keywords=[]))], orelse=[])"
+    },
+    {
+      "id": 11,
+      "original_ast": "Assert(test=Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='fiber', ctx=Load())], keywords=[]), ops=[GtE()], comparators=[Name(id='n', ctx=Load())]))",
+      "original_line": 53,
+      "original_source": "assert len(fiber)>=n",
+      "replacement_ast": "If(test=UnaryOp(op=Not(), operand=Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='fiber', ctx=Load())], keywords=[]), ops=[GtE()], comparators=[Name(id='n', ctx=Load())])), body=[Raise(exc=Call(func=Name(id='AssertionError', ctx=Load()), args=[Constant(value='check_11 failed')], keywords=[]))], orelse=[])"
+    }
+  ],
+  "hardened_sha256": "6998781dae470c676ad704a343b285d57057f0152327948817b1d52924a15c1f",
+  "original_sha256": "858aa34f132dff4aea909842c60e9ce58cb89878cadfbfd0d47e4cf64f316c00",
+  "transform": "Replace each Assert(test) with If(Not(test), Raise(AssertionError(stable_id))); no other AST changes. Original has no assert messages."
+}

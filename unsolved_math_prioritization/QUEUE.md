@@ -1878,7 +1878,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1867 | 2225 / EP-635 | Erdős Problem #635 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1868 | 2285 / EP-734 | Erdős Problem #734 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1869 | 2299 / EP-776 | Erdős Problem #776 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1870 | 2401 / EP-949 | Erdős Problem #949 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1870 | 2401 / EP-949 | Erdős Problem #949 | 0.0495 | 5.0 | 1 | unknown | UNSOLVED | 5/5 |  | Five partial or obstructed approaches; repeated summands and both A and A+A exclusion retained. Restricted cases are prior work; no general continuum solution. [Audit package](attempts/2401/README.md). |  |
 | 1871 | 3000040 / AMR-029-0040 | Gonality and edge subdivisions | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1872 | 3000062 / AMR-029-0062 | Orientation-compatible w-vertex cover | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1873 | 30006522 / OWR-14299904-004 | Weak-Order Growth of Grothendieck Schubert Supports | 0.0495 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
