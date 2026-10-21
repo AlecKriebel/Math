@@ -561,3 +561,9 @@ Accepted independent672–741review after reading fullreport and verifying578sea
 
 ### 2026-10-21T19:09:34.925320+00:00 — Through PR814; overall56%
 Completed790–814 with one current explicit already_solved withdrawal799, existing published810 verified with unique ledgerrow74 and complete65-entry supplement preserving all40historical originals, and23 ordinary exclusions (790–798,800–809,811–814). No new publication or provider mutation. Original810packet differs from current updated outer manifest/README/log only; exact manuscript and publicPDF match current head. Cursor815; fresh inventory still1446, independent742–789 review finishing.
+
+### 2026-10-21T19:16:47.553960+00:00 — Through PR832, candidate833; overall57%
+Existing publications815,822,826 verified with unique rows84/91/96, public exact files,120/109/139manifestedarchiveentries and61/42/65 historical originals. Updated outer wrappers disclosed, no original science lost. Explicit nonsolutions advanced816–821,823–825,827–832. Candidate833freshGWS and all197authenticatedZenodorecords found no duplicate or draft; original28files pinned and two fresh independent lower-bound/source-version repair families assigned. Current PRalreadyclosed/unmerged with equality clearance withdrawn; no irreversible action taken.
+
+### 2026-10-21T19:18:18.571828+00:00 — Independent742–789review accepted; overall57%
+Read fullreport; all2406sealedpayloads and126capturedinputs verify. Private-copy sealed checker passed15284checks/mode with identical outputs (additional seal inventory checks explain increase from10470unsealed). All48cases pass, eight accuratelyqualifiedexistingpublications/355originalblobs complete.1199manifestedentries include29validemptyhistoricaloutputs; count does not assert positive size.26changingopen-PRsynthetictestmergeSHAs disclosed separately from stableactualheads. Only expected global cursor/journal have advanced. No source or decision repair.
