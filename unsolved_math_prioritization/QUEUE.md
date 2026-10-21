@@ -1898,7 +1898,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1887 | 30004758 / OWR-8415338-005 | Monge–Ampère Singularities for Nonpolyhedral Obstacles | 0.0476 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 1888 | 30004800 / OWR-8415343-001 | Weighted Sobolev Stability Under Nonlinear Composition | 0.0476 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 1889 | 30005097 / OWR-10252929-010 | Hermite and GL2 Equivalence Classes of Number Fields | 0.0474 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 1890 | 30005760 / OWR-14298158-005 | Inversion Monotonicity in the Domino Subclass | 0.0466 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 1890 | 30005760 / OWR-14298158-005 | Inversion Monotonicity in the Domino Subclass | 0.0466 | 5.0 | 3 | 2024 | unsolved | 5/5 |  | Literal horizontal ungridded 231-cell class: monotonicity established for k<=n using cited injection theorem and small cases; equality for n>=k+2, finite data through n=11. Unbounded k>n remains unresolved; map failures are not counting counterexamples; no novelty claim. [Report](attempts/domino_monotonicity_30005760/README.md). |  |
 | 1891 | 30000903 / OWR-1782-017 | Real-Rooted Barycentric h-Polynomials and g-Theorem Conditions | 0.0460 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 1892 | 11000162 / AMR-109-0162 | Problem 2.5 — Knowing that d(φ)≥ 1, can we decide whether it is ≥ 2? | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1893 | 1200024 / AMR-011-0024 | Some Questions — Question 24 | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
