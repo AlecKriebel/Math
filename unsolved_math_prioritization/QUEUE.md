@@ -439,7 +439,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 428 | 30000997 / OWR-2042-006 | Degenerate Versus Full Ma–Trudinger–Wang Conditions | 0.1315 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 429 | 30001070 / OWR-2090-023 | Circumscribed $2n$-Facet Polytopes around the Unit Ball | 0.1315 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 430 | 30001084 / OWR-2093-008 | Randomized-Transport Characterizations of Palm Measures | 0.1315 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 431 | 30001179 / OWR-3392-005 | Generation of Free Product Systems by Tensor Subsystems | 0.1313 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 431 | 30001179 / OWR-3392-005 | Generation of Free Product Systems by Tensor Subsystems | 0.1313 | 6.0 | 3 | 2009 | claimed_solved | 3/5 |  |  |  |
 | 432 | 30001568 / OWR-4426-005 | Symmetry-Preserving Evaluation of Orbitwise Generating Functions | 0.1311 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 433 | 30001895 / OWR-11136-027 | Exact Transversals for Families with the (p,q)-Property | 0.1308 | 6.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 434 | 30001957 / OWR-11570-002 | Entropy Production on Folded Hyperbolic Fractals | 0.1306 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
