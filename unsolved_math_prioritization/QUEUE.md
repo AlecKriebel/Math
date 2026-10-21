@@ -1917,7 +1917,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1906 | 30006520 / OWR-14299904-002 | Upward Closure of Grothendieck Schubert Supports | 0.0450 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1907 | 8800088 / AMR-087-0088 | Converting between divisor-class and infrastructure discrete logarithms | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1908 | 30005119 / OWR-10252930-032 | Uncommon Pairs of Linear Equations | 0.0442 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 1909 | 30001941 / OWR-11453-002 | Sharp Free-Energy Decay for Fast Diffusion | 0.0441 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 1909 | 30001941 / OWR-11453-002 | Sharp Free-Energy Decay for Fast Diffusion | 0.0441 | 5.0 | 3 | 2011 | unsolved | 5/5 |  | Qualified audit of credited decay estimates, tail assumptions and fixed/adaptive clocks; conditional spectral-entry bounds only. Apparent auxiliary Remark 4 normalization discrepancy does not affect the cited main theorem. Full sharp unrestricted target not proved here; no novelty or current-openness certification. Audit: attempts/30001941_fast_diffusion. |  |
 | 1910 | 30002271 / OWR-12330-013 | Counterexamples to Averaged Local Fractional-Coloring Bounds | 0.0440 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 1911 | 30003699 / OWR-15987-008 | Coefficient Complexity of Braid-Matroid Kazhdan–Lusztig Polynomials | 0.0434 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1912 | 30004105 / OWR-16775-009 | Theta Invariants and New Families of MRD Codes | 0.0432 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
