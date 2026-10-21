@@ -1867,7 +1867,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1856 | 1963 / EP-156 | Erdős Problem #156 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1857 | 20000012 / AIM-ALGEBRAIC_GEOMETRY-0012 | Cox-chart Morse theory for cellular virtual resolutions | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1858 | 20000143 / AIM-ALGEBRAIC_GEOMETRY-0143 | Exact boundary mobility counts and explicit mixed-face estimates | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1859 | 20000204 / AIM-ALGEBRAIC_GEOMETRY-0204 | Edge and tritangent surfaces are the only generic smooth visual-hull event types | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1859 | 20000204 / AIM-ALGEBRAIC_GEOMETRY-0204 | Edge and tritangent surfaces are the only generic smooth visual-hull event types | 0.0495 | 5.0 | 3 | unknown | unsolved | 5/5 |  | Five scoped partials: exact global quantified criterion, necessary local pruning, counterexamples, and conditional two-dimensional patch-envelope degree bookkeeping for d>=3; no full classification, novelty or realization claim. Prior 2004/2018 work credited. [Research](../visual_hull_events_20000204/RESEARCH.md), [review](../visual_hull_events_20000204/INDEPENDENT_REVIEW.md). |  |
 | 1860 | 20000566 / AIM-ANALYSIS-0098 | Fixed-diagonal geometry and an exact 4x4 two-paving profile | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1861 | 20000691 / AIM-ANALYTIC_NUMBER_THEORY-0055 | Quadratic moments, Poisson squares, and swap terms | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1862 | 20000707 / AIM-ANALYTIC_NUMBER_THEORY-0071 | Smoothed second moments and the sigma=1 boundary term | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
