@@ -1,0 +1,56 @@
+{
+  "checked_at": "2026-10-21T16:56:27.998936+00:00",
+  "helper_sha256": "2ba3115b4102bc0afedafed1d6d203a6f6b94a01869246f74ffe21526a9e3169",
+  "actual_range_pass_count": 21,
+  "controls": [
+    {
+      "case": "evidence_wrong_head",
+      "expected": "reject",
+      "observed": "reject",
+      "expected_behavior_met": true,
+      "error": "Inventory/evidence identity mismatch",
+      "queue_blob_equal": null
+    },
+    {
+      "case": "evidence_missing_real_path",
+      "expected": "reject",
+      "observed": "reject",
+      "expected_behavior_met": true,
+      "error": "Actual pinned complete path set differs from cached inventory",
+      "queue_blob_equal": null
+    },
+    {
+      "case": "cached_added_status_tampered",
+      "expected": "reject",
+      "observed": "reject",
+      "expected_behavior_met": true,
+      "error": "Actual pinned added QUEUE rows differ from cached rows",
+      "queue_blob_equal": null
+    },
+    {
+      "case": "cached_queue_blob_tampered_disclosed_only",
+      "expected": "pass",
+      "observed": "pass",
+      "expected_behavior_met": true,
+      "error": null,
+      "queue_blob_equal": false
+    },
+    {
+      "case": "cached_duplicate_path_is_accepted_as_set",
+      "expected": "pass",
+      "observed": "pass",
+      "expected_behavior_met": true,
+      "error": null,
+      "queue_blob_equal": true
+    },
+    {
+      "case": "cached_file_count_unchecked",
+      "expected": "pass",
+      "observed": "pass",
+      "expected_behavior_met": true,
+      "error": null,
+      "queue_blob_equal": true
+    }
+  ],
+  "interpretation": "No provider or shared-repository mutation. Patched output writer writes no root receipt; cached blob disagreement is an explicitly disclosed observation, not identity certification. Missing cache duplicate/file_count checks are validation limits, not disposition blockers on this independently checked range."
+}

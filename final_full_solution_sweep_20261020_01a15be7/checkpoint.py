@@ -417,3 +417,19 @@ NAMES.extend(["PR0437_PINNED_SCOPE_VERIFICATION.json"])
 NAMES.extend(["PR0438_PINNED_SCOPE_VERIFICATION.json"])
 
 NAMES.extend(["PR0440_PINNED_SCOPE_VERIFICATION.json"])
+
+NAMES.extend(["PR0441_PINNED_SCOPE_VERIFICATION.json"])
+
+# Independent complete400–420 range review, sanitized evidence projection.
+NAMES.extend(['ROOT_RANGE0400_0420_ACCEPTANCE.json', 'reviews/range0400_0420_adversary/REVIEW.md', 'reviews/range0400_0420_adversary/VERDICT.json', 'reviews/range0400_0420_adversary/OUTPUT_MANIFEST.json', 'reviews/range0400_0420_adversary/INPUT_MANIFEST.json', 'reviews/range0400_0420_adversary/ALL_PINNED_BLOB_INPUTS.json', 'reviews/range0400_0420_adversary/GIT_BLOB_INPUT_MANIFEST.json', 'reviews/range0400_0420_adversary/RESEARCH_LOG.md', 'reviews/range0400_0420_adversary/pinned_checks.json', 'reviews/range0400_0420_adversary/custom_entrypoint_inputs.json', 'reviews/range0400_0420_adversary/pr0411_merge_provenance.json', 'reviews/range0400_0420_adversary/pr0411_public_vs_branch.json', 'reviews/range0400_0420_adversary/positive_manifest_checks.json', 'reviews/range0400_0420_adversary/public_recheck.json', 'reviews/range0400_0420_adversary/ledger_identity_checks.json', 'reviews/range0400_0420_adversary/original_source_receipt.json', 'reviews/range0400_0420_adversary/pr0415_header_check.json', 'reviews/range0400_0420_adversary/scope_helper_controls.json', 'reviews/range0400_0420_adversary/scope_helper_actual_range_receipts.json', 'reviews/range0400_0420_adversary/verify_pinned.py', 'reviews/range0400_0420_adversary/check_publication.py', 'reviews/range0400_0420_adversary/check_scope_helper.py', 'reviews/range0400_0420_adversary/finalize_evidence.py'])
+
+NAMES.extend(["PINNED_SCOPE_HELPER_HARDENING.json","scope_check_history/initial_20261021T1652.py"])
+
+NAMES.extend(["PR0446_PINNED_SCOPE_VERIFICATION.json"])
+
+NAMES.extend(["PR0449_PINNED_SCOPE_VERIFICATION.json"])
+
+# Complete pre-repair independent four-publication accounting review; raw public payloads/full ledger remain local.
+NAMES.extend(['ROOT_ACCOUNTING_PRE_REPAIR_REVIEW_ACCEPTANCE.json', 'accounting_history/pre_repair_20261021T1704/coverage_snapshot.py', 'reviews/completed_publications_accounting_adversary/REPORT.md', 'reviews/completed_publications_accounting_adversary/OUTPUT_MANIFEST.json', 'reviews/completed_publications_accounting_adversary/INPUT_MANIFEST.json', 'reviews/completed_publications_accounting_adversary/OVERRIDE_CONTROLS.json', 'reviews/completed_publications_accounting_adversary/INDEPENDENT_ACCOUNTING.json', 'reviews/completed_publications_accounting_adversary/PUBLIC_VALIDATION.json', 'reviews/completed_publications_accounting_adversary/IMMUTABLE_SOURCE_VALIDATION.json', 'reviews/completed_publications_accounting_adversary/LEDGER_VALIDATION.json', 'reviews/completed_publications_accounting_adversary/INCIDENT.json', 'reviews/completed_publications_accounting_adversary/RESEARCH_LOG.json', 'reviews/completed_publications_accounting_adversary/override_controls.py', 'reviews/completed_publications_accounting_adversary/validate_evidence.py', 'reviews/completed_publications_accounting_adversary/capture_review.py', 'reviews/completed_publications_accounting_adversary/coverage_baseline.json'])
+
+NAMES.extend(["ACCOUNTING_REPAIR_ROOT_REPLAY.json"])

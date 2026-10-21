@@ -30,7 +30,13 @@ def check(number):
     comparison = pr['baseRefOid']+'...'+pr['headRefOid']
     wire = run(['git', 'diff', '--no-ext-diff', '--no-renames', '--name-only', '-z', comparison])
     paths = wire.decode().rstrip('\0').split('\0') if wire else []
-    if len(paths) != len(set(paths)) or set(paths) != set(evidence['changed_paths']):
+    cached = evidence['changed_paths']
+    if (len(paths) != len(set(paths)) or not isinstance(cached, list)
+            or any(not isinstance(path, str) for path in cached)
+            or len(cached) != len(set(cached)) or set(paths) != set(cached)
+            or type(evidence['file_count']) is not int or evidence['file_count'] != len(paths)
+            or len(evidence['files']) != len(paths)
+            or sorted(item['filename'] for item in evidence['files']) != sorted(paths)):
         raise RuntimeError('Actual pinned complete path set differs from cached inventory')
     rows = []
     blobs = []
