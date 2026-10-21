@@ -1,0 +1,27 @@
+--- original_review04
++++ owned_review05_old_replay
+@@ -4,7 +4,7 @@
+ from contextlib import ExitStack
+ from unittest.mock import patch
+ import argparse,copy,hashlib,json,socket,subprocess,sys,types
+-R=Path(__file__).resolve().parent;A=R.parents[1];P=A.parents[1]/'private/pr0399_package04'
++R=Path(__file__).resolve().parent;A=R.parents[1];P=A.parents[1]/'private/pr0399_package05'
+ parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path);args=parser.parse_args()
+ OUTPUT=R
+ if args.output is not None:
+@@ -14,7 +14,7 @@
+ mods=[]
+ for name in NAMES:
+  m=types.ModuleType(name);m.__file__=str(A/(name+'.py'));sys.modules[name]=m
+- exec(compile((A/(name+'.py')).read_bytes(),str(A/(name+'.py')),'exec'),m.__dict__);mods.append(m)
++ exec(compile((Path('/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0399_30001179/ops_doi_destination_repair_20261021/pre_destination_binding')/(name+'.py')).read_bytes(),str(A/(name+'.py')),'exec'),m.__dict__);mods.append(m)
+ B,C,G,I,V,Y,L=mods
+ results=[];attempts=[]
+ def require(v,m):
+@@ -105,5 +105,5 @@
+  require(receipt['new_row'] and receipt['unique_target_and_DOI'] and len(appends)==1,'full appender fixture')
+  doi_findings.append({'pipeline':'actual verify_live -> actual append_verified','wrong_destination':'https://zenodo.org/records/29999990','synthetic_appends':len(appends),'readback_exact':receipt['read_back_exact'],'gate_clearance_prerequisites':'explicitly simulated; no real permission or provider state claimed'})
+  require(not attempts,'actual provider attempt')
+-output={'optimization':sys.flags.optimize,'helper_bindings':[{'path':n+'.py','sha256':hashlib.sha256((A/(n+'.py')).read_bytes()).hexdigest()} for n in NAMES],'passing_controls':results,'new_material_finding':{'id':'P399-04-OPS-01','mechanism':'DOI200 final destination not checked against target record','reproductions':doi_findings},'actual_provider_attempts':len(attempts)}
++output={'optimization':sys.flags.optimize,'helper_bindings':[{'path':n+'.py','sha256':hashlib.sha256((Path('/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0399_30001179/ops_doi_destination_repair_20261021/pre_destination_binding')/(n+'.py')).read_bytes()).hexdigest()} for n in NAMES],'passing_controls':results,'new_material_finding':{'id':'P399-04-OPS-01','mechanism':'DOI200 final destination not checked against target record','reproductions':doi_findings},'actual_provider_attempts':len(attempts)}
+ (OUTPUT/('OPERATIONS.normal.json' if not sys.flags.optimize else 'OPERATIONS.optimized.json')).write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'controls':len(results),'wrong_destination_acceptances':len(doi_findings),'actual_provider_attempts':len(attempts)},indent=2))
