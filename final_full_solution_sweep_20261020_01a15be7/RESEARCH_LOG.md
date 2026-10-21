@@ -549,3 +549,9 @@ New independent review confirms only an openly credited immediate application of
 
 ### 2026-10-21T18:41:00.686074+00:00 — Independent628–671 review accepted; overall50%
 All538sealedoutputs and268capturedinputs verified; only expected mutable state/journal have advanced. All44classifications passed, including two precisely scoped priority holds and unique existing PR662publication. PR681and718existingpublications also confirmed with exact public payloads and original input preservation; upward scan continues at734. No new publication or ledger mutation in this interval.
+
+### 2026-10-21T18:42:33.768158+00:00 — PR734 explicit withdrawal; overall50%
+Fresh exactmain QUEUE snapshot retains1951rows and explicitly marks2515already_solved, with a dated priority correction and consistent closed/unmerged PR. Historical snapshot preserved before refresh. Per userrule2, skipped entirely without new mathematical or priority work or provider mutation. Cursor735.
+
+### 2026-10-21T18:49:43.290415+00:00 — Through PR767 and full inventory refreshed; overall53%
+Live all-state inventory still ends at1446, with0 changed prior metadata records and0 new PRs; all numeric gaps accounted. Existing publications742,764,765 verified against public files, mathematical scope, unique ledgerrows and26/63/39originals. Explicit current withdrawal767 and custom-folderunsolved755 excluded under userrule2. Cursor768, completed759. Four new publications from earlier work remain unique and fully recorded; no new provider mutation in this interval.

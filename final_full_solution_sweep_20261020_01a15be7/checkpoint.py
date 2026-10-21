@@ -510,3 +510,17 @@ NAMES.extend(['PR0718_PINNED_SCOPE_VERIFICATION.json','PR0718_PUBLICATION_COVERA
 
 # Accepted bounded independent range628-671 review; private provider/source bodies excluded.
 NAMES.extend(['ROOT_RANGE0628_0671_ACCEPTANCE.json', 'reviews/range0628_0671_adversary/GIT_BLOB_INPUT_MANIFEST.json', 'reviews/range0628_0671_adversary/INPUT_MANIFEST.json', 'reviews/range0628_0671_adversary/REPORT.md', 'reviews/range0628_0671_adversary/RESEARCH_LOG.json', 'reviews/range0628_0671_adversary/RESULT.json', 'reviews/range0628_0671_adversary/capture_and_pin.py', 'reviews/range0628_0671_adversary/capture_coherence.json', 'reviews/range0628_0671_adversary/check_hold_custody.py', 'reviews/range0628_0671_adversary/check_public.py', 'reviews/range0628_0671_adversary/final_input_recheck.json', 'reviews/range0628_0671_adversary/final_live_recheck.json', 'reviews/range0628_0671_adversary/finalize.py', 'reviews/range0628_0671_adversary/fresh_primary_source_receipts.json', 'reviews/range0628_0671_adversary/fresh_source_checks.py', 'reviews/range0628_0671_adversary/hold_custody_checks.json', 'reviews/range0628_0671_adversary/initial_live_metadata_receipt.json', 'reviews/range0628_0671_adversary/ledger_fresh_receipt.json', 'reviews/range0628_0671_adversary/per_pr_assessments.json', 'reviews/range0628_0671_adversary/pinned_blob_values.json', 'reviews/range0628_0671_adversary/pinned_scope_checks.json', 'reviews/range0628_0671_adversary/publication_integrity_checks.json', 'reviews/range0628_0671_adversary/seal_outputs.py', 'reviews/range0628_0671_adversary/semantic_dedup_assessment.json', 'reviews/range0628_0671_adversary/special_662_comparison_check.json', 'reviews/range0628_0671_adversary/verification_normal.stderr', 'reviews/range0628_0671_adversary/verification_normal.stdout', 'reviews/range0628_0671_adversary/verification_optimized.stderr', 'reviews/range0628_0671_adversary/verification_optimized.stdout', 'reviews/range0628_0671_adversary/verification_replay.json', 'reviews/range0628_0671_adversary/verify_review_evidence.py', 'reviews/range0628_0671_adversary/OUTPUT_MANIFEST.json', 'reviews/range0628_0671_adversary/OUTPUT_MANIFEST.sha256'])
+
+NAMES.extend(['canonical_queue_history/snapshot_20261021T1842.json','PR0734_PINNED_SCOPE_VERIFICATION.json','PR0734_WITHDRAWAL_VERIFICATION.json'])
+
+NAMES.extend(['PR0742_PINNED_SCOPE_VERIFICATION.json','PR0742_PUBLICATION_COVERAGE_DETAILS.json'])
+
+NAMES.extend(['PR0755_PINNED_SCOPE_VERIFICATION.json'])
+
+NAMES.extend(['PR0764_PINNED_SCOPE_VERIFICATION.json','PR0764_PUBLICATION_COVERAGE_DETAILS.json'])
+
+NAMES.extend(['PR0765_PINNED_SCOPE_VERIFICATION.json','PR0765_PUBLICATION_COVERAGE_DETAILS.json'])
+
+NAMES.extend(['PR0767_PINNED_SCOPE_VERIFICATION.json','PR0767_WITHDRAWAL_VERIFICATION.json'])
+
+NAMES.extend(['INVENTORY_REFRESH_20261021T1850.json'])
