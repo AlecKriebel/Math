@@ -1844,7 +1844,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1833 | 30003983 / OWR-16629-009 | Decomposition of Equiangular Tight Frames | 0.0530 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1834 | 30004154 / OWR-16938-002 | Exact Higher-Order Matrix Decomposability | 0.0528 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1835 | 30000859 / OWR-1731-004 | RSW Theory for Anisotropic Square-Lattice Percolation | 0.0527 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 1836 | 30002028 / OWR-11781-001 | Supersaturation Blow-Ups in Uniform Hypergraphs | 0.0522 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 1836 | 30002028 / OWR-11781-001 | Supersaturation Blow-Ups in Uniform Hypergraphs | 0.0522 | 5.5 | 3 | 2012 | unsolved | 5/5 |  | 2026-10-21: UNSOLVED after 5/5 turns and six audited approaches. Known baseline exponent 1/(ell-1); random upper-scale sharpness does not prove the target 1/(r-1). Joint-link, Jensen, regularity and energy routes leave explicit gaps; no new unconditional improvement or disproof. Authored analysis and accepted scoped audit in [hypergraph_blowups_30002028](../hypergraph_blowups_30002028/ACCEPTANCE_AUDIT.md). General clique blow-up target remains unresolved. |  |
 | 1837 | 30002123 / OWR-12006-004 | Shellability of Barycentric Subdivisions of Convex Complexes | 0.0522 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1838 | 30002169 / OWR-12013-001 | Intrinsic Viscosity Solutions for Rough Hamilton–Jacobi Equations | 0.0522 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1839 | 30005048 / OWR-9790364-002 | Elementary Proofs of Laguerre–Pólya Total Positivity | 0.0521 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
