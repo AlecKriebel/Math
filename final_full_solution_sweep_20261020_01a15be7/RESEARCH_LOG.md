@@ -373,3 +373,11 @@ Own fresh399review03 supplied four new actual URL-route mechanisms. Root indepen
 ### 2026-10-21T14:15:51.081135+00:00 — PR399 new route counterexamples and structural coverage (sweep estimate27%)
 
 Root read complete new actual-function control program and reran72 false-unique route cases plus7 recognized rejection controls per normal/O mode; zeroactualproviders. Root independently verified four complete cached publicbody hashes and selectedcanonical/title/DOI or parsedJSONrecord identity for23333353; webtoolopen accesserrors not bodyevidence. Finalwholepackage03 report stillpending, no canonical399 edits authorized untilsealed conclusion. Added read-only coverage_snapshot.py: exactper-PR/journal equality, contiguous390numbers9–398, currentmaximum1440,1042remaining, nofinalcompletionclaim; reopened280mustreceive explicitlateroverride.
+
+### 2026-10-21T14:21:24.863762+00:00 — Prior two publications retain unique live tracker rows (sweep estimate27%)
+
+Fresh actual GWSfullsheet176rows independently screened with bounded ASCII/percent DOI recognition and conservative official-record-URL host/path normalization. Own23524971 appears exactlyrow174;23527793 exactlyrow176. No rowmutation, no newpublication, no wholeworld or genericURIequivalence claim. Oldhelperrootmetamorphic296-case baseline independently produced27recognized/269silentlymissed conservativeleads; not269authenticatedHTTPduplicatecases. Newroute repair active280;399wholepackage03 completionpending.
+
+### 2026-10-21T14:30:55.177496+00:00 — PR399 complete freshreview03 accepted with soleURLfinding (sweep estimate27%)
+
+Root read full32994byte report, verdict, source-reading ledger and canonicalbinding, verifiedall26authoredfiles plus156repair/108preparer/8release entries/current7+rootbindings. Full analytic theorem/archive/priorityscope/visualchecks remainedclean; soleP399-03-OPS-01 root independentlyreproduced72falseunique+7rejectioncontrol per mode. Authorize own399newrepairsubtree/canonicalhelperonly afterpreservation; suspendcanonical7checkpointselectionwhileactive. NEWcompletehistoryfree04mandatoryafterfrozenrepair, nopublicationclearance/liveactions.
