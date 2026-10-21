@@ -1,0 +1,345 @@
+{
+  "started_at": "2026-10-21T03:55:48.265377+00:00",
+  "finished_at": "2026-10-21T03:55:48.416941+00:00",
+  "completion_estimate_percent": 90,
+  "source_sha256": {
+    "reviewed_remote_checkpoint.py": "aba5c0a0502966b63cd0443044cc26599913f3f9ef45db3222789ca4023d8bac",
+    "reviewed_checkpoint.py": "f9e0574a9bdc92bae041c282bb0e9448a6dfbab4809fc564425ac3e3033a6d02",
+    "reviewed_sweep_io.py": "23f840ba1c7318d7fe3bec8f06beb868e4fbfdbb4d9db861f5323f5a8f130697",
+    "independent_controls.py": "7b496aec339ee020924fc4f9a218912fe040f2053def8ad35a66521074b27fb5"
+  },
+  "all_passed": true,
+  "tests": 32,
+  "passed": 32,
+  "network_or_subprocess_executed": false,
+  "live_mutating_api_calls": 0,
+  "results": [
+    {
+      "name": "273 payload exactness and strict UTF8/base64 dispatch",
+      "passed": true,
+      "details": {
+        "payloads": 273,
+        "binary_uploads": 140,
+        "utf8_inline": 133,
+        "pdf_bytes": 418,
+        "zip_bytes": 524
+      }
+    },
+    {
+      "name": "full binary and NUL-UTF8 checkpoint preserves unrelated entries",
+      "passed": true,
+      "details": {
+        "status": "pushed_and_verified",
+        "binary_uploads": 3,
+        "tree_creations": 1,
+        "ref_updates": 1,
+        "preserved_unrelated_leaves": 5,
+        "destination_checks": 2
+      }
+    },
+    {
+      "name": "dry-run uploads no blob/tree/commit/ref",
+      "passed": true,
+      "details": {
+        "read_calls": 4,
+        "mutations": 0,
+        "receipt_files": 12
+      }
+    },
+    {
+      "name": "already recorded binary files cause no mutations",
+      "passed": true,
+      "details": {
+        "status": "already_recorded",
+        "mutations": 0
+      }
+    },
+    {
+      "name": "blob_sha_mismatch",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 1,
+          "git/trees": 0,
+          "git/commits": 0,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "blob_sha_missing",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 1,
+          "git/trees": 0,
+          "git/commits": 0,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "binary upload failure stops publication",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 1,
+          "git/trees": 0,
+          "git/commits": 0,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "UTF8 NUL corruption is caught by final tree hash",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 3,
+          "git/trees": 1,
+          "git/commits": 0,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "unrelated root mode corruption is rejected",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 3,
+          "git/trees": 1,
+          "git/commits": 0,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "nested_delete",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 3,
+          "git/trees": 1,
+          "git/commits": 0,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "nested_mode_corruption",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 3,
+          "git/trees": 1,
+          "git/commits": 0,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "commit_parent_corruption",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 3,
+          "git/trees": 1,
+          "git/commits": 1,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "commit_tree_corruption",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 3,
+          "git/trees": 1,
+          "git/commits": 1,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "truncated base tree is rejected",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 0,
+          "git/trees": 0,
+          "git/commits": 0,
+          "git/refs/heads/main": 0
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "retry after fresh-main check race",
+      "passed": true,
+      "details": {
+        "status": "pushed_and_verified",
+        "binary_uploads": 6,
+        "tree_creations": 2,
+        "ref_updates": 1,
+        "preserved_unrelated_leaves": 5,
+        "destination_checks": 3
+      }
+    },
+    {
+      "name": "retry after nonfastforward patch race",
+      "passed": true,
+      "details": {
+        "status": "pushed_and_verified",
+        "binary_uploads": 6,
+        "tree_creations": 2,
+        "ref_updates": 1,
+        "preserved_unrelated_leaves": 5,
+        "destination_checks": 3
+      }
+    },
+    {
+      "name": "concurrent descendant after patch verifies as ahead",
+      "passed": true,
+      "details": {
+        "status": "pushed_and_verified",
+        "binary_uploads": 3,
+        "tree_creations": 1,
+        "ref_updates": 1,
+        "preserved_unrelated_leaves": 5,
+        "destination_checks": 2
+      }
+    },
+    {
+      "name": "three races abort before any ref mutation",
+      "passed": true,
+      "details": {
+        "tree_attempts": 3,
+        "ref_update_attempts": 0,
+        "concurrent_main_work_preserved": true
+      }
+    },
+    {
+      "name": "unchanged-parent patch failure is not retried",
+      "passed": true,
+      "details": {
+        "mutations_by_endpoint": {
+          "git/blobs": 3,
+          "git/trees": 1,
+          "git/commits": 1,
+          "git/refs/heads/main": 1
+        },
+        "main_unchanged": true
+      }
+    },
+    {
+      "name": "state/journal journal_gap",
+      "passed": true,
+      "details": {
+        "api_calls": 0
+      }
+    },
+    {
+      "name": "state/journal last_cursor",
+      "passed": true,
+      "details": {
+        "api_calls": 0
+      }
+    },
+    {
+      "name": "selected path traversal",
+      "passed": true,
+      "details": {
+        "api_calls": 0
+      }
+    },
+    {
+      "name": "selected path absolute",
+      "passed": true,
+      "details": {
+        "api_calls": 0
+      }
+    },
+    {
+      "name": "selected path symlink",
+      "passed": true,
+      "details": {
+        "api_calls": 0
+      }
+    },
+    {
+      "name": "selected path nested_symlink",
+      "passed": true,
+      "details": {
+        "api_calls": 0
+      }
+    },
+    {
+      "name": "selected path missing",
+      "passed": true,
+      "details": {
+        "api_calls": 0
+      }
+    },
+    {
+      "name": "read-time file change is rejected",
+      "passed": true,
+      "details": {
+        "api_calls": 0
+      }
+    },
+    {
+      "name": "retry uses frozen bytes despite later local change",
+      "passed": true,
+      "details": {
+        "frozen_original_bytes_preserved": true,
+        "tree_attempts": 2
+      }
+    },
+    {
+      "name": "second destination guard stops ref mutation",
+      "passed": true,
+      "details": {
+        "ref_update_attempts": 0,
+        "destination_checks": 2
+      }
+    },
+    {
+      "name": "ancestry failure cannot emit a success receipt",
+      "passed": true,
+      "details": {
+        "checkpoint_ref_was_updated_before_final_verification": true,
+        "false_success_receipt": false
+      }
+    },
+    {
+      "name": "real API wrapper fixed host and structured binary body",
+      "passed": true,
+      "details": {
+        "fixed_api_host": "github.com",
+        "fixed_repository": "AlecKriebel/Math",
+        "structured_stdin": true,
+        "shell": false
+      }
+    },
+    {
+      "name": "post-save local receipt failure remains distinguishable",
+      "passed": true,
+      "details": {
+        "checkpoint_ref_saved": true,
+        "local_receipt_write_rejected": true,
+        "printed_success_receipt_retained": true
+      }
+    }
+  ]
+}

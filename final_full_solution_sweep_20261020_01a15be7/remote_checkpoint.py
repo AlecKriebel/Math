@@ -6,6 +6,7 @@ update is rejected and rebuilt on the new live main; force is always false.
 No token, raw ledger, private runtime or scientific download is uploaded.
 """
 import argparse
+import base64
 import datetime as dt
 import hashlib
 import json
@@ -38,6 +39,20 @@ def tree_map(sha,recursive=False):
 
 def blob_sha(data):
     return hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+
+
+def overlay_entry(folder,name,data):
+    """Represent frozen bytes exactly; verify binary blob identity before use."""
+    entry={'path':folder+'/'+name,'mode':'100644','type':'blob'}
+    try:
+        entry['content']=data.decode('utf-8')
+    except UnicodeDecodeError:
+        uploaded=api('git/blobs','POST',{'encoding':'base64',
+                     'content':base64.b64encode(data).decode('ascii')})
+        if uploaded.get('sha')!=blob_sha(data):
+            raise RuntimeError('Uploaded binary blob identity mismatch: '+name)
+        entry['sha']=uploaded['sha']
+    return entry
 
 
 def main():
@@ -97,9 +112,8 @@ def main():
         if not changed:
             receipt.update(status='already_recorded',commit=parent)
             break
-        created=api('git/trees','POST',{'base_tree':base_tree,'tree':[
-            {'path':folder+'/'+name,'mode':'100644','type':'blob','content':data.decode('utf-8')}
-            for name,data in changed.items()]})
+        entries=[overlay_entry(folder,name,data) for name,data in changed.items()]
+        created=api('git/trees','POST',{'base_tree':base_tree,'tree':entries})
         new_root=tree_map(created['sha'])
         signature=lambda v:(v['mode'],v['type'],v['sha'])
         if {k:signature(v) for k,v in new_root.items() if k!=folder}!={k:signature(v) for k,v in original_root.items() if k!=folder}:
