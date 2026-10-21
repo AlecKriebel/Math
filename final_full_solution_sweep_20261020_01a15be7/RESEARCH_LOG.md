@@ -225,3 +225,9 @@
 ## 2026-10-21T05:13:59.626733+00:00 — ordered exclusions294–301 — estimated completion21%
 
 - The reviewed exclusion mechanism checked each own QUEUE change and live/head-bound canonical evidence:294unsolved,295exhausted,296–300unsolved,301already_solved. All eight are skipped under the explicit negative-status rule without substantive mathematics. The journal is contiguous through301 (293 PRs), cursor302.
+
+## 2026-10-21T05:18:36.763591+00:00 — existing publications302/305/311 covered; ordered scan through328 — estimated completion23%
+
+- Existing DOI/row302(23157237,row26),305(23149775,row24) and311(23146753,row22) match exact problem identifiers, live merged heads, actual theorem/source scopes and ledger qualifications. Public payload checksums, complete root ZIP member sets and every19/23/12 declared payload hash verify respectively. Embedded PDF copies match their standalone public PDFs where present. No new mathematical/priority certification, upload or sheet edit was performed.
+- Scope distinctions remain explicit:302smooth reversible conormal fixed-lag data and stated convergence norms;305pointwise focal equalityE/common multiplierM versus false phase-constancy interpretationC;311all-support original-edge binary closure with older negative witnesses credited and the Gaussian question excluded.
+- The reviewed exclusion mechanism skips303--304,306--310 and312--328 from their own explicit negative QUEUE statuses. Journal coverage9--328 is contiguous (320 PRs), cursor329. Counts: {"published_verified_full_solution": 1, "reconcile_existing_external_publication_record": 1, "reconcile_existing_publication_record": 3, "skip_entirely_already_published": 48, "skip_explicit_non_claimed_solved": 264, "skip_priority_gate_not_met": 3}.
