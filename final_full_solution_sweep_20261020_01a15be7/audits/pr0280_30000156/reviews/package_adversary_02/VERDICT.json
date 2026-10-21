@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-10-21T08:22:34.075312+00:00",
+  "reviewer_role": "New independent complete-publication-package adversary02; internal AI review",
+  "pr": 280,
+  "problem_id": "30000156",
+  "source_alias": "OWR-768-006",
+  "assigned_review_completion_percent": 100,
+  "overall_verdict": "REPAIR_REQUIRED_FOR_OPERATIONAL_HELPERS",
+  "mathematical_verdict": "PASS_COMPLETE_STATED_THEOREM",
+  "original_source_scope": "PASS_LITERAL_BROAD_EXISTENCE_ASSERTION_WITH_STATED_BOUNDARIES",
+  "selection_quantifier": "PASS_EVERY_FURTHER_POSITIVE_UPPER_RELATIVE_DENSITY_SUBSET",
+  "weak_convergence": "PASS_BOUNDED_CONTINUOUS_MOMENT",
+  "scientific_five_file_package": "PASS_NO_ADDITIONAL_DEFECT_FOUND",
+  "current_archive_schema_repair": "PASS_EXACT_INTEGER_TYPE_AND_HOSTILE_CONTROLS",
+  "historical_priority": "BOUNDED_DESCRIPTION_ACCEPTABLE_FIRSTNESS_UNCERTIFIED",
+  "nrVV2011_body": "UNRECOVERED_VERSION_RELATIONSHIPS_UNCERTIFIED",
+  "mathematical_remaining_gap": null,
+  "release_binding": {
+    "README.md": {
+      "bytes": 1844,
+      "sha256": "65d7f45869d0ca7910deaa38790cee5cb8db4fe41943fd1d6c8b8352468e6754"
+    },
+    "RELEASE_FILES.json": {
+      "bytes": 1245,
+      "sha256": "548b7a4ae1f13a92029255fc9ef485002b7c33376b9dd9168ffcdb532fc4c20e"
+    },
+    "fixed-birational-cycle-nonlimit-verification.zip": {
+      "bytes": 124180,
+      "sha256": "2e252127727f4cefc95400ac690b47c72dcd1ca5915b47052217ba4d083b5426"
+    },
+    "fixed-birational-cycle-nonlimit.pdf": {
+      "bytes": 95372,
+      "sha256": "b50733aec7165fc6d1848070222b94da41350bc32ccc6fc977ff3b95187cb540"
+    },
+    "fixed-birational-cycle-nonlimit.tex": {
+      "bytes": 19866,
+      "sha256": "3ee2a99514d1724f68bc00dcff43bd5115499c0b9f3d7678c49961c44a4af983"
+    },
+    "zenodo-deposit.json": {
+      "bytes": 5371,
+      "sha256": "04b95ca27881af6238090f920e156d05c183defc66494496d458ce947023c75e"
+    }
+  },
+  "ops_preparation_manifest_sha256": "999852717308827d82c11825f1ccb727be39da786fa5a1f34a6dde229c26c6e5",
+  "operational_verdict": "REPAIR_REQUIRED_P280_OPS_01_AND_02",
+  "findings": [
+    {
+      "id": "P280-OPS-01",
+      "priority": 2,
+      "severity": "material_operational",
+      "requires_repair": true,
+      "files": [
+        {
+          "path": "publication_live_gates.py",
+          "lines": [
+            52,
+            59
+          ]
+        },
+        {
+          "path": "record_publication_ledger.py",
+          "lines": [
+            76,
+            103
+          ]
+        }
+      ],
+      "title": "Prevent current target ledger rows/DOI from being hidden by non-target exemptions",
+      "mechanism": "An exact existing desired row whose digest is marked distinct_non_target is skipped by actual reconcile and filtered from append lookup, causing a duplicate append before readback rejects.",
+      "precondition": "Contradictory or stale root-authored ledger exemption includes the exact current desired row; correct reconciliation is not claimed to trigger it.",
+      "actual_gate_acceptance": true,
+      "actual_synthetic_append_calls": 1,
+      "normal_and_optimized_reproduced": true,
+      "real_provider_access": false,
+      "proof_artifacts": [
+        "independent_operations_controls.py",
+        "INDEPENDENT_OPERATIONS_RESULTS.json",
+        "INDEPENDENT_OPERATIONS_RESULTS_OPTIMIZED.json"
+      ],
+      "required_repair": "At both layers reject contradictory target/DOI exemptions or give unfiltered exact-DOI idempotence precedence; preserve old binding, test repaired controls and obtain new independent full review."
+    },
+    {
+      "id": "P280-OPS-02",
+      "priority": 2,
+      "severity": "material_operational_false_block",
+      "requires_repair": true,
+      "file": "publication_live_gates.py",
+      "lines": [
+        62,
+        65
+      ],
+      "title": "Explicitly bind and permit unrelated state for correctly reconciled distinct account records",
+      "provenance": "Root reported live read-only obstruction; reviewer independently verified state hash and actual-helper predicate/normal/-O controls. Unrelated article classification is root-supplied.",
+      "mechanism": "Every broad-keyword local-state match is required to be the current target ID; before integration no match is allowed, even for a correctly metadata/full-files-bound known distinct account record.",
+      "actual_state_sha256": "0d9f0bc4ffc005cd0c36c15bde7a32f4bb451adb77671e8befbeed3b20337ef5",
+      "actual_gate_sha256": "fad7eb4879ae25844436c835e0ea336cf07fd0d6d27fd8d74cbcc6ae2dc0d694",
+      "normal_and_optimized_reproduced": true,
+      "actual_provider_access_by_reviewer": false,
+      "required_repair": "Root-only exact path+SHA256+integer ID exemption tied to a metadata/full-files-bound distinct account record; preserve unrelated state and reject changed/unknown/target exemptions; new full review."
+    }
+  ],
+  "evidence": {
+    "zip_payloads": 64,
+    "zip_safe_unique_regular_members": 65,
+    "all_original_files_verified": 17,
+    "review01_seal_files_verified": 98,
+    "repair_seal_files_verified": 83,
+    "old_preparation_entries_verified_against_preserved_snapshot": 36,
+    "current_archive_normal_optimized_runs": 6,
+    "current_archive_python_versions": [
+      "3.9.6",
+      "3.12.14",
+      "3.14.6"
+    ],
+    "current_archive_exact_controls_per_run": 147619,
+    "archive_distinct_hostile_cases": 40,
+    "archive_negative_rejections": 80,
+    "independent_exact_controls": 13835,
+    "independent_numerical_diagnostics": 1236,
+    "independent_admissible_primes_through2000": 155,
+    "independent_raw_graph_points": 9569,
+    "legacy_new_python39_sympy114_exact_output_matches": [
+      101073,
+      301761
+    ],
+    "new_historical_standard_library_replays": [
+      8347742,
+      230780,
+      2111
+    ],
+    "all_six_pdf_pages_visibly_inspected": true,
+    "all_seven_primary_downloads_match": true,
+    "operations_preparer_controls_per_mode": 158,
+    "operations_preparer_positive_per_mode": 22,
+    "operations_preparer_rejections_per_mode": 136,
+    "independent_operational_cases_per_mode": 3,
+    "actual_account_ledger_git_provider_calls_by_reviewer": 0,
+    "actual_lifecycle_mutations_by_reviewer": 0
+  },
+  "root_publication_authorized": false,
+  "publication_ready_declared": false,
+  "human_peer_review": false,
+  "worldwide_novelty_certified": false,
+  "canonical_or_provider_mutations": false,
+  "git_commands_or_state_mutations": false,
+  "communications": "Parent-agent collaboration only; no individual/unrelated-chat outreach",
+  "report": "REPORT.md",
+  "manifest": "AUTHORED_FILE_MANIFEST.json"
+}
