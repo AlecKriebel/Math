@@ -1,0 +1,169 @@
+--- verify_exact.py.original
++++ verify_exact.py
+@@ -1,3 +1,7 @@
++def require(condition, reason):
++    if not condition:
++        raise RuntimeError(reason)
++
+ import sympy as s
+ from itertools import combinations
+ B=s.Matrix([[1,s.Rational(1,2)],[1,-s.Rational(1,2)],[1,s.Rational(3,4)],[1,-s.Rational(3,4)]])
+@@ -10,9 +14,9 @@
+  minors=[Y.extract(S,S).det() for j in range(1,4) for S in combinations(range(4),j)]
+  if min(minors)>=0: break
+ print('Q=',Q,'\nt=',t,'\nY=',Y,'\nminors=',minors,'\ntraceYQ=',s.trace(Y*Q),'\ntraceY=',s.trace(Y))
+-assert min(minors)>0 and s.trace(Y*Q)==-s.Rational(1,4)
++require(min(minors)>0 and s.trace(Y*Q)==-s.Rational(1,4), 'Certificate validation failed at original line 13')
+ # Positive-definite rational perturbation stays outside FW3.
+ eps=s.Rational(1,1000)
+ Qpd=Q+eps*s.eye(4)
+-assert s.trace(Y*Qpd)<0
++require(s.trace(Y*Qpd)<0, 'Certificate validation failed at original line 17')
+ print('PD example epsilon=',eps,'negative pairing=',s.trace(Y*Qpd))
+--- verify_low_rank.py.original
++++ verify_low_rank.py
+@@ -1,3 +1,7 @@
++def require(condition, reason):
++    if not condition:
++        raise RuntimeError(reason)
++
+ """Exact standard-library audit of LOW_RANK.md rational examples."""
+ from fractions import Fraction as F
+ from itertools import combinations
+@@ -16,25 +20,25 @@
+ cs = [F(3, 4), F(1, 8), F(1, 8)]
+ us = [[sum(a*b for a, b in zip(row, v)) for row in X] for v in vs]
+ Q = gram(X)
+-assert full_spark_2(X)
+-assert Q == [[1, -1, 1, 1], [-1, 5, 3, 1], [1, 3, 5, 3], [1, 1, 3, 2]]
+-assert all(sum(c*v[i]*v[j] for c, v in zip(cs, vs)) == int(i == j)
+-           for i in range(2) for j in range(2))
+-assert all(Q[i][j] == sum(c*w[i]*w[j] for c, w in zip(cs, us))
+-           for i in range(4) for j in range(4))
+-assert all(sum(x != 0 for x in w) == 3 for w in us)
++require(full_spark_2(X), 'Certificate validation failed at original line 19')
++require(Q == [[1, -1, 1, 1], [-1, 5, 3, 1], [1, 3, 5, 3], [1, 1, 3, 2]], 'Certificate validation failed at original line 20')
++require(all(sum(c*v[i]*v[j] for c, v in zip(cs, vs)) == int(i == j)
++           for i in range(2) for j in range(2)), 'Certificate validation failed at original line 21')
++require(all(Q[i][j] == sum(c*w[i]*w[j] for c, w in zip(cs, us))
++           for i in range(4) for j in range(4)), 'Certificate validation failed at original line 23')
++require(all(sum(x != 0 for x in w) == 3 for w in us), 'Certificate validation failed at original line 25')
+ all_rays = [[-y, x] for x, y in X]
+-assert all(sum(x*y for x, y in zip(a, b)) != 0
+-           for a, b in combinations(all_rays, 2))
++require(all(sum(x*y for x, y in zip(a, b)) != 0
++           for a, b in combinations(all_rays, 2)), 'Certificate validation failed at original line 27')
+ print('PASS: positive matrix has width 3 and minimum width-3 rank 3.')
+ 
+ ts = [F(1, 2), F(-1, 2), F(3, 4), F(-3, 4)]
+ B = [[F(1), t] for t in ts]
+-assert full_spark_2(B)
+-assert all(q > 0 for row in gram(B) for q in row)
+-assert -1 + F(3, 4) < 0
+-assert all(F(3, 4) - t*t > 0 for t in ts)
+-assert sum(t/(1+t*t) for t in ts) == 0
+-assert sum(1/(1+t*t) for t in ts) == F(72, 25) < 3
+-assert sum(t*t/(1+t*t) for t in ts) == F(28, 25)
++require(full_spark_2(B), 'Certificate validation failed at original line 33')
++require(all(q > 0 for row in gram(B) for q in row), 'Certificate validation failed at original line 34')
++require(-1 + F(3, 4) < 0, 'Certificate validation failed at original line 35')
++require(all(F(3, 4) - t*t > 0 for t in ts), 'Certificate validation failed at original line 36')
++require(sum(t/(1+t*t) for t in ts) == 0, 'Certificate validation failed at original line 37')
++require(sum(1/(1+t*t) for t in ts) == F(72, 25) < 3, 'Certificate validation failed at original line 38')
++require(sum(t*t/(1+t*t) for t in ts) == F(28, 25), 'Certificate validation failed at original line 39')
+ print('PASS: negative matrix has width 4 despite normalized absolute spectral radius 72/25 < 3.')
+--- replay.py.original
++++ replay.py
+@@ -1,3 +1,7 @@
++def require(condition, reason):
++    if not condition:
++        raise RuntimeError(reason)
++
+ """Independent rational audit; does not import the author's verification code."""
+ import json
+ from itertools import combinations
+@@ -9,19 +13,19 @@
+ Y=M/2704
+ mins=[Y.extract(S,S).det() for j in range(1,4) for S in combinations(range(4),j)]
+ expected=[R(3247,2704)]*2+[R(2447,2704)]*2+[R(903,676),R(331,1352),R(1411,1352),R(1411,1352),R(331,1352),R(553,676),R(15,676),R(15,676),R(115,676),R(115,676)]
+-assert mins==expected and min(mins)>0
+-assert s.trace(Y*Q)==-R(1,4)
++require(mins==expected and min(mins)>0, 'Certificate validation failed at original line 12')
++require(s.trace(Y*Q)==-R(1,4), 'Certificate validation failed at original line 13')
+ Bp=(B.T*B).inv()*B.T
+-assert Y==2*(s.eye(4)-B*Bp)+Bp.T*s.diag(-1,R(3,4))*Bp
++require(Y==2*(s.eye(4)-B*Bp)+Bp.T*s.diag(-1,R(3,4))*Bp, 'Certificate validation failed at original line 15')
+ # Row-normalized Gram nonzero eigenvalues, using rational B^T D^{-1} B.
+ G=B.T*s.diag(*[1/Q[i,i] for i in range(4)])*B
+-assert G==s.diag(R(72,25),R(28,25))
++require(G==s.diag(R(72,25),R(28,25)), 'Certificate validation failed at original line 18')
+ Qpd=Q+s.eye(4)/1000
+-assert s.trace(Y*Qpd)==-R(12781,52000)
+-assert all(Qpd[:j,:j].det()>0 for j in range(1,5))
+-assert all(Q[i,j]>0 for i in range(4) for j in range(4))
++require(s.trace(Y*Qpd)==-R(12781,52000), 'Certificate validation failed at original line 20')
++require(all(Qpd[:j,:j].det()>0 for j in range(1,5)), 'Certificate validation failed at original line 21')
++require(all(Q[i,j]>0 for i in range(4) for j in range(4)), 'Certificate validation failed at original line 22')
+ # Every off-diagonal of positive entrywise normalization strictly decreases:
+-assert all(Qpd[i,i]*Qpd[j,j]>Q[i,i]*Q[j,j] for i in range(4) for j in range(i))
++require(all(Qpd[i,i]*Qpd[j,j]>Q[i,i]*Q[j,j] for i in range(4) for j in range(i)), 'Certificate validation failed at original line 24')
+ 
+ def rays(X,k):
+     X=s.Matrix([list(X.row(i)) for i in range(X.rows) if any(X.row(i))])
+@@ -45,43 +49,43 @@
+             sol=s.linsolve((A,target))
+             if sol and any(all(c>=0 for c in x) for x in sol): return True,m
+     return False,None
+-assert feasible_small(B,3)==(False,None)
++require(feasible_small(B,3)==(False,None), 'Certificate validation failed at original line 48')
+ X=s.Matrix([[0,1],[2,-1],[2,1],[1,1]])
+ vs=[s.Matrix(v) for v in [(1,0),(1,2),(1,-2)]]
+ cs=[R(3,4),R(1,8),R(1,8)]
+-assert sum((c*v*v.T for c,v in zip(cs,vs)),s.zeros(2))==s.eye(2)
+-assert sum((c*(X*v)*(X*v).T for c,v in zip(cs,vs)),s.zeros(4))==X*X.T
+-assert feasible_small(X,3)==(True,3)
+-assert feasible_small(X,2)==(False,None)
++require(sum((c*v*v.T for c,v in zip(cs,vs)),s.zeros(2))==s.eye(2), 'Certificate validation failed at original line 52')
++require(sum((c*(X*v)*(X*v).T for c,v in zip(cs,vs)),s.zeros(4))==X*X.T, 'Certificate validation failed at original line 53')
++require(feasible_small(X,3)==(True,3), 'Certificate validation failed at original line 54')
++require(feasible_small(X,2)==(False,None), 'Certificate validation failed at original line 55')
+ # Zero rows must not count, and multiplicity must count.
+ Xp=s.Matrix([[1,0]]*3+[[0,1]]*2+[[1,1]]+[[0,0]]*2)
+-assert feasible_small(Xp,4)==(True,2)
+-assert feasible_small(Xp,3)==(False,None)
++require(feasible_small(Xp,4)==(True,2), 'Certificate validation failed at original line 58')
++require(feasible_small(Xp,3)==(False,None), 'Certificate validation failed at original line 59')
+ # General symbolic Schur identity has coefficient 1/2; exact samples.
+ for k in range(3,12):
+     v=s.Matrix([1]+[1]*(k-1)+[0]*(k-1)); w=s.Matrix([1]+[0]*(k-1)+[1]*(k-1))
+     A=v*v.T+w*w.T
+     S=A[1:,1:]-A[1:,:1]*A[:1,1:]/A[0,0]
+     z=s.Matrix([1]*(k-1)+[-1]*(k-1))
+-    assert S==z*z.T/2 and S.rank()==1 and len(z)==2*k-2>k
++    require(S==z*z.T/2 and S.rank()==1 and len(z)==2*k-2>k, 'Certificate validation failed at original line 66')
+ # Explicit symmetric construction, positive and negative boundary values.
+ for n in range(3,9):
+     for k in range(2,n+1):
+         for c,d in [(R(1),R(n-1,k-1)),(-R(1),R(n-1))]:
+             block=s.ones(k)*c/s.binomial(n-2,k-2)
+             for i in range(k): block[i,i]=d/s.binomial(n-1,k-1)
+-            assert all(e>=0 for e in block.eigenvals())
++            require(all(e>=0 for e in block.eigenvals()), 'Certificate validation failed at original line 73')
+             total=s.zeros(n)
+             for S in combinations(range(n),k):
+                 for i in range(k):
+                     for j in range(k): total[S[i],S[j]]+=block[i,j]
+-            assert total==s.eye(n)*(d-c)+s.ones(n)*c
++            require(total==s.eye(n)*(d-c)+s.ones(n)*c, 'Certificate validation failed at original line 78')
+ print(json.dumps({'result':'PASS','dual_principal_minors':[str(x) for x in mins], 'pairing':str(s.trace(Y*Q)), 'PD_pairing':str(s.trace(Y*Qpd)), 'normalized_nonzero_eigenvalues':[str(G[i,i]) for i in range(2)], 'positive_example_min_terms':3, 'zero_parallel_edge_case':'PASS','Schur_exact_samples':'k=3..11','symmetric_boundary_samples':'n=3..8, k=2..n'},indent=2))
+ # All-k repeated-row family: independent exact samples; universal proof in AUDIT.md.
+ for k in range(3,31):
+     n=k+1; p=(n+1)//2; q=n//2
+-    assert q>=2 and p+R(7,25)*q==n-R(18,25)*q<k
++    require(q>=2 and p+R(7,25)*q==n-R(18,25)*q<k, 'Certificate validation failed at original line 83')
+     A=s.Matrix([[1,R(3,4)]]*p+[[1,-R(3,4)]]*q)
+-    assert A.rank()==2
+-    assert feasible_small(A,k)==(False,None)
++    require(A.rank()==2, 'Certificate validation failed at original line 85')
++    require(feasible_small(A,k)==(False,None), 'Certificate validation failed at original line 86')
+ print('PASS: all-k repeated-row family exact samples k=3..30.')
