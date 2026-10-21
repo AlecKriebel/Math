@@ -447,3 +447,13 @@ NAMES.extend(["PR0468_PINNED_SCOPE_VERIFICATION.json","PR0468_PUBLICATION_COVERA
 NAMES.extend(["PR0469_PINNED_SCOPE_VERIFICATION.json"])
 
 NAMES.extend(["PR0490_PINNED_SCOPE_VERIFICATION.json"])
+
+NAMES.extend(["PR0493_PINNED_SCOPE_VERIFICATION.json"])
+
+NAMES.extend(['ROOT_ACCOUNTING_REVIEW02_ACCEPTANCE.json', 'accounting_history/repair01_20261021T1708/coverage_snapshot.py', 'reviews/accounting_repair_adversary_02/REPORT.md', 'reviews/accounting_repair_adversary_02/OUTPUT_MANIFEST.json', 'reviews/accounting_repair_adversary_02/INPUT_MANIFEST.json', 'reviews/accounting_repair_adversary_02/CONTROL_SUMMARY.json', 'reviews/accounting_repair_adversary_02/CONTROL_RESULTS.json', 'reviews/accounting_repair_adversary_02/SUPPLEMENTARY_RESULTS.json', 'reviews/accounting_repair_adversary_02/INDEPENDENT_ACCOUNTING.json', 'reviews/accounting_repair_adversary_02/CUSTODY_AND_BASELINE_VALIDATION.json', 'reviews/accounting_repair_adversary_02/PRE_REPAIR_SEAL_VALIDATION.json', 'reviews/accounting_repair_adversary_02/RESEARCH_LOG.json', 'reviews/accounting_repair_adversary_02/SOURCE_DIFF.patch', 'reviews/accounting_repair_adversary_02/controls.py', 'reviews/accounting_repair_adversary_02/supplementary.py', 'reviews/accounting_repair_adversary_02/capture.py', 'reviews/accounting_repair_adversary_02/finalize.py'])
+
+NAMES.extend(["PR0499_PINNED_SCOPE_VERIFICATION.json"])
+
+NAMES.extend(["PR0508_PINNED_SCOPE_VERIFICATION.json"])
+
+NAMES.extend(["ACCOUNTING_REPAIR02_ROOT_REPLAY.json"])
