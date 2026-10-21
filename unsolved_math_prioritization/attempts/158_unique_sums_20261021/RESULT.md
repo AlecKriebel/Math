@@ -1,0 +1,13 @@
+# Frozen acceptance scope: row 1894 / ID 158
+
+OPEN asymptotic problem. Five bounded approaches; no full solution, novelty, or priority claim.
+
+Certified finite minima for primes 3,5,7,11,13,17,19,23,29,31 are respectively 3,4,5,7,7,8,9,10,11,11. The elementary balanced-set determinant proof plus exhaustive seven-point checks imply m(p)>=8 for all primes p>=17. The weak-quaternary counterexample and the ordered-count-one-or-two regression are explicitly checked. Collision-lattice computations are diagnostics on the ten exhibited witnesses, not a universal classification.
+
+REPORT.md and INDEPENDENT_REVIEW.md are preserved byte-for-byte. The review SHA-256 is 2c53f0b8a1b3d8d6f84c5b1dc86a3c63d37b5da52ae23f7e2f5beebb4c7050b7. Recent manuscript statements and the October compression claims remain unaudited external background, not proof dependencies.
+
+Run python -B replay.py and python -B -O replay.py. Requires Python 3, SymPy and g++. Both runs completely repeat the Python exact search, all three C++ searches, and the Smith/Hermite lattice checks in temporary directories. All output fields are compared exactly except the explicitly nonmathematical row-level wall-clock seconds field. All ten expected, actual and printed rows must have exactly the seven documented keys; seconds must be a finite nonnegative int or float, never bool. Nested fields are never exempted. C++ result files and lattice JSON files are compared byte-for-byte. Inputs remain unchanged. Replay uses explicit checks, not assertions, for acceptance, including under -O. Original author assertions are retained as historical source but are not the acceptance boundary.
+
+Before opening any payload or manifest, replay checks the entire flat inventory for missing/extra entries and rejects nonregular files (including symlinks, FIFOs and sockets). It then hashes every payload and verifies whole-module Python AST digests plus complete source provenance. Python replay and child scripts deny socket audit events. Compiled C++ sources are entirely hash-bound and contain only local exhaustive arithmetic; this is not a hostile-code OS network sandbox. The external receipt anchors the manifest and archive; an untrusted replacement of both manifest and verifier cannot be detected by a self-contained verifier alone.
+
+Only authored mathematical work, exact certificates, public metadata and audit/replay materials are included. No publication, QUEUE modification, primary-source text, external dataset contents, private corpus or coordination files are included. All consolidated execution and adversarial integrity logs are external to the frozen inventory, with hashes in the external receipt.
