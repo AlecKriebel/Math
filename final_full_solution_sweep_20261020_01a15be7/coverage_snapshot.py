@@ -33,15 +33,17 @@ def evidence_json(name):
     return value
 
 
-def public_files(value):
+def public_files(value, *, allow_legacy=False):
     files = value.get('files')
     if not isinstance(files, list) or len(files) < 2:
         raise RuntimeError('Published PDF and supporting archive evidence is required')
     result = {}
     for entry in files:
+        if not isinstance(entry, dict):
+            raise RuntimeError('Public file evidence must be an object')
         name = entry.get('name')
         if (not isinstance(name, str) or PurePosixPath(name).name != name
-                or name in {'.', '..'} or name in result):
+                or '\\' in name or '\x00' in name or name in {'.', '..'} or name in result):
             raise RuntimeError('Unsafe or duplicate public filename')
         digest = entry.get('sha256')
         size = entry.get('bytes', entry.get('size'))
@@ -49,13 +51,15 @@ def public_files(value):
             raise RuntimeError('Missing public file size or SHA256')
         legacy = 'download_verified' in entry
         if legacy:
-            if any(k in entry for k in ('downloaded_and_matches_reviewed', 'http_status', 'bytes', 'md5')):
+            if not allow_legacy or any(k in entry for k in ('downloaded_and_matches_reviewed', 'http_status', 'bytes', 'md5')):
                 raise RuntimeError('Mixed or contradictory public download schemas')
             md5 = entry.get('checksum', '')
             if entry.get('download_verified') is not True or not re.fullmatch('md5:[0-9a-f]{32}', md5):
                 raise RuntimeError('Legacy public download is not verified')
             md5 = md5[4:]
         else:
+            if any(k in entry for k in ('size', 'checksum', 'zip_crc_ok')):
+                raise RuntimeError('Legacy fields cannot qualify a modern public file')
             md5 = entry.get('md5', '')
             if (entry.get('downloaded_and_matches_reviewed') is not True
                     or type(entry.get('http_status')) is not int or entry['http_status'] != 200
@@ -81,6 +85,12 @@ def public_files(value):
     if not any(n.endswith('.pdf') for n in result) or not any(n.endswith('.zip') for n in result):
         raise RuntimeError('Published PDF or supporting archive absent')
     return result
+
+
+def ledger_urls(values):
+    """Extract complete URL tokens, allowing ordinary prose/Markdown endings."""
+    return {token.rstrip('.,;:!?)]}') for token in
+            re.findall(r'https?://[^\s<>\"\']+', ' '.join(values))}
 
 
 def verify_resolution(value, record, doi):
@@ -121,6 +131,9 @@ def verify_completed_publications(own, effective, reopened):
         if item.get('verification') != name or entry.get('publication_evidence') != name:
             raise RuntimeError('Completed entry and effective disposition name different canonical evidence')
         proof = evidence_json(name)
+        historical = name == LEGACY_RECEIPT[0] and number == 292
+        if historical and hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != LEGACY_RECEIPT[1]:
+            raise RuntimeError('Historical receipt no longer matches its immutable verified bytes')
         merge = item.get('merge_commit')
         if (type(entry.get('pr')) is not int or entry['pr'] != number
                 or type(proof.get('pr')) is not int or proof['pr'] != number
@@ -137,7 +150,14 @@ def verify_completed_publications(own, effective, reopened):
                 or proof.get('record_url') != 'https://zenodo.org/records/'+str(record)):
             raise RuntimeError('Completed publication cross-artifact identities disagree')
         verify_resolution(proof.get('doi_resolution'), record, doi)
-        files = public_files(proof)
+        files = public_files(proof, allow_legacy=historical)
+        if number in reopened:
+            old_name = f'PR{number:04d}_DISPOSITION.json'
+            declaration = proof.get('historical_ordered_disposition_preserved')
+            if declaration != {'path': old_name,
+                               'sha256': hashlib.sha256((ROOT/old_name).read_bytes()).hexdigest(),
+                               'old_disposition': evidence_json(old_name)['disposition']}:
+                raise RuntimeError('Reopened historical declaration contradicts preserved evidence')
         evidence = proof.get('evidence', {})
         prefix = f'audits/pr{number:04d}_{problem}/'
         if evidence.get('ledger') != prefix+'LEDGER_PUBLICATION_VERIFICATION.json':
@@ -152,7 +172,9 @@ def verify_completed_publications(own, effective, reopened):
                 or ledger['sheet_gid'] != SHEET_GID or not isinstance(values, list) or len(values) != 4
                 or any(not isinstance(v, str) for v in values) or values[2] not in {doi, 'https://doi.org/'+doi}
                 or not re.search(r'(?<![0-9])'+re.escape(problem)+r'(?![0-9])', values[0])
-                or not re.search(r'https://github\.com/AlecKriebel/Math/pull/'+str(number)+r'(?![0-9])', ' '.join(values))):
+                or 'https://github.com/AlecKriebel/Math/pull/'+str(number) not in ledger_urls(values)
+                or 'https://zenodo.org/records/'+str(record) not in ledger_urls(values)
+                or ('range' in ledger and ledger['range'] != f"'Math Puzzles'!A{row}:D{row}")):
             raise RuntimeError('Bound ledger receipt disagrees with publication')
         if 'public_files' in evidence:
             if evidence['public_files'] != prefix+'ZENODO_PUBLIC_FILE_VERIFICATION.json':
@@ -175,8 +197,7 @@ def verify_completed_publications(own, effective, reopened):
         else:
             # The first released receipt uses the documented legacy download
             # schema and separately records its reviewed PDF/archive SHA pins.
-            if (name != LEGACY_RECEIPT[0] or number != 292
-                    or hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != LEGACY_RECEIPT[1]):
+            if not historical:
                 raise RuntimeError('Only the exact pinned historical receipt may use legacy compatibility')
             pins = proof.get('reviewed_hashes', {})
             for extension, key in [('.pdf', 'pdf'), ('.zip', 'zip')]:
