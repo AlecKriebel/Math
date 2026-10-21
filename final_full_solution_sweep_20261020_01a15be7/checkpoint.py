@@ -900,3 +900,15 @@ NAMES.extend(['PR1113_PINNED_SCOPE_VERIFICATION.json', 'PR1113_MISSING_STATUS_CL
 NAMES.extend(['PR1108_COVERAGE_TRANSCRIPTION_CORRECTION.json'])
 
 NAMES.extend(['INVENTORY_REFRESH_20261021T2232.json'])
+
+NAMES.extend(['ROOT_RANGE1091_1100_ACCEPTANCE.json', 'reviews/range1091_1100_adversary/.gitignore', 'reviews/range1091_1100_adversary/CHECK_RESULTS.json', 'reviews/range1091_1100_adversary/OUTPUT_MANIFEST.json', 'reviews/range1091_1100_adversary/OUTPUT_MANIFEST.sha256', 'reviews/range1091_1100_adversary/RESEARCH_LOG.md', 'reviews/range1091_1100_adversary/REVIEW.md', 'reviews/range1091_1100_adversary/verify_artifact.py'])
+
+NAMES.extend(['PR1114_PINNED_SCOPE_VERIFICATION.json', 'PR1114_PUBLICATION_LEADS.json', 'PR1114_PRIORITY_FINDING.json', 'audits/pr1114_30003952/root/.gitignore', 'audits/pr1114_30003952/root/ROOT_DERIVATION.md', 'audits/pr1114_30003952/root/ROOT_SOURCE_RETRIEVAL.json'])
+
+NAMES.extend(['PR1115_PINNED_SCOPE_VERIFICATION.json', 'PR1115_MISSING_STATUS_CLASSIFICATION.json'])
+
+NAMES.extend(['ROOT_PR1114_AUDIT_ACCEPTANCE.json', 'audits/pr1114_30003952/math_adversary/.gitignore', 'audits/pr1114_30003952/math_adversary/CHECKS.json', 'audits/pr1114_30003952/math_adversary/MANIFEST.json', 'audits/pr1114_30003952/math_adversary/RESEARCH_LOG.md', 'audits/pr1114_30003952/math_adversary/REVIEW.md', 'audits/pr1114_30003952/math_adversary/SOURCE_BINDINGS.json', 'audits/pr1114_30003952/math_adversary/exact_checks.py', 'audits/pr1114_30003952/math_adversary/verify_artifact.py', 'audits/pr1114_30003952/priority_adversary/.gitignore', 'audits/pr1114_30003952/priority_adversary/CHECK.json', 'audits/pr1114_30003952/priority_adversary/OUTPUT_MANIFEST.json', 'audits/pr1114_30003952/priority_adversary/PRIVATE_EVIDENCE_MANIFEST.json', 'audits/pr1114_30003952/priority_adversary/REPLAY.json', 'audits/pr1114_30003952/priority_adversary/REPORT.md', 'audits/pr1114_30003952/priority_adversary/verify_artifact.py'])
+
+NAMES.extend(['PR1116_PINNED_SCOPE_VERIFICATION.json', 'PR1116_MISSING_STATUS_CLASSIFICATION.json'])
+
+NAMES.extend(['PR1117_PINNED_SCOPE_VERIFICATION.json', 'PR1117_MISSING_STATUS_CLASSIFICATION.json'])
