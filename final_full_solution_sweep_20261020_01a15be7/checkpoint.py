@@ -968,3 +968,11 @@ NAMES += ['PR1133_PUBLICATION_LEADS.json']
 NAMES.extend(['PR1134_PINNED_SCOPE_VERIFICATION.json', 'PR1134_MISSING_STATUS_CLASSIFICATION.json'])
 
 NAMES += ['PR1134_PUBLICATION_LEADS.json']
+
+NAMES += ['PR1135_PINNED_SCOPE_VERIFICATION.json', 'PR1135_PUBLICATION_LEADS.json', 'PR1135_PUBLICATION_COVERAGE_DETAILS.json']
+
+NAMES += ['ROOT_RANGE1121_1131_ACCEPTANCE.json', 'reviews/range1121_1131_adversary/VERIFICATION_RUNS.json', 'reviews/range1121_1131_adversary/sealed/INPUT_MANIFEST.json', 'reviews/range1121_1131_adversary/sealed/REPORT.md', 'reviews/range1121_1131_adversary/sealed/RESEARCH_LOG.md', 'reviews/range1121_1131_adversary/sealed/CHECKS.json', 'reviews/range1121_1131_adversary/sealed/.gitignore', 'reviews/range1121_1131_adversary/sealed/MANIFEST.json', 'reviews/range1121_1131_adversary/sealed/verify.py']
+
+NAMES += ['audits/pr1131_30005455/root/ROOT_MATHEMATICAL_FAMILY_ACCEPTANCE.json', 'audits/pr1131_30005455/forest_adversary/payload/public/verify_forest.py', 'audits/pr1131_30005455/forest_adversary/payload/public/FOREST_REPORT.md', 'audits/pr1131_30005455/forest_adversary/payload/public/MANIFEST.json', 'audits/pr1131_30005455/whisker_adversary/public/SOURCES.json', 'audits/pr1131_30005455/whisker_adversary/public/REPORT.md', 'audits/pr1131_30005455/whisker_adversary/public/MANIFEST.json', 'audits/pr1131_30005455/whisker_adversary/public/EXACT_CERTIFICATE.json', 'audits/pr1131_30005455/whisker_adversary/public/VERIFY.py', 'audits/pr1131_30005455/forest_adversary/FINAL_CHECKPOINT.md', 'audits/pr1131_30005455/forest_adversary/FOREST_EXTERNAL_SEAL.json', 'audits/pr1131_30005455/forest_adversary/checks/FINAL_REPRODUCTION_RECEIPTS.json', 'audits/pr1131_30005455/whisker_adversary/PRIVATE_MANIFEST.json', 'audits/pr1131_30005455/whisker_adversary/VERIFICATION_SUMMARY.json']
+
+NAMES += ['PR1136_PINNED_SCOPE_VERIFICATION.json', 'PR1136_PUBLICATION_LEADS.json', 'PR1136_PUBLICATION_COVERAGE_DETAILS.json', 'PRIVATE_DUPLICATE_REPLAY_CLEANUP_C.json']
