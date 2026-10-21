@@ -180,7 +180,7 @@ def identity_projection(record):
     return {'metadata': record['metadata'], 'files': record['files']}
 
 
-# PROPOSAL ONLY: shared conservative DOI identity recognizer.
+# Shared conservative DOI identity recognizer.
 _ASCII_LOWER=str.maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')
 _UNRESERVED=frozenset('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~')
 _TERMINATORS=frozenset(")]}>\"',;:!?&#")
@@ -297,12 +297,15 @@ def record_identity_ids(record,identifier):
     if not isinstance(record,dict) or integer(record.get('id'))!=identifier:
         raise RuntimeError('Expected record-family identity missing')
     result={identifier}
-    if record.get('conceptrecid') is not None:result.add(integer(record['conceptrecid']))
+    parents=set()
+    def add_parent(value):
+        parsed=integer(value);parents.add(parsed);result.add(parsed)
+    if record.get('conceptrecid') is not None:add_parent(record['conceptrecid'])
     if record.get('conceptdoi') is not None:
         value=record['conceptdoi']
         match=re.fullmatch(r'10\.5281/zenodo\.([1-9][0-9]*)',ascii_lower(value)) if isinstance(value,str) else None
         if not match:raise RuntimeError('Unparsed concept DOI requires root identity review')
-        result.add(int(match.group(1)))
+        add_parent(match.group(1))
     metadata=record.get('metadata',{})
     relations=metadata.get('relations',{})
     if not isinstance(relations,dict):raise RuntimeError('Unparsed record relations require root identity review')
@@ -312,9 +315,10 @@ def record_identity_ids(record,identifier):
         parent=version.get('parent') if isinstance(version,dict) else None
         if not isinstance(parent,dict) or parent.get('pid_type')!='recid':
             raise RuntimeError('Unparsed version parent requires root identity review')
-        result.add(integer(parent.get('pid_value')))
+        add_parent(parent.get('pid_value'))
     if record.get('parent') is not None:
         parent=record['parent']
         if not isinstance(parent,dict) or 'id' not in parent:raise RuntimeError('Unparsed parent record requires root review')
-        result.add(integer(parent['id']))
+        add_parent(parent['id'])
+    if len(parents)>1:raise RuntimeError('Contradictory concept/version-parent IDs require root review')
     return sorted(result)

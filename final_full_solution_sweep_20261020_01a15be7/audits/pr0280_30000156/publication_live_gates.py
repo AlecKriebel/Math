@@ -112,11 +112,11 @@ def reconcile(gate, phase, expected_head, expected_deposit_id=None, allow_target
         has_current_doi=(expected_deposit_id is not None and target_in_row(row,expected_deposit_id,identity_ids))
         if has_current_doi:
             if digest(row) in prior_rows:
-                raise RuntimeError('Current target DOI/row contradicts a root non-target ledger exemption')
+                raise RuntimeError('Current target DOI/identity lead contradicts a root non-target ledger exemption')
             if exact_target is not None and row==exact_target:
                 target_rows.append(match)
                 continue
-            raise RuntimeError('Current target DOI appears in a changed/unexpected ledger row')
+            raise RuntimeError('Current target DOI/identity lead appears in a changed/unexpected ledger row')
         if digest(row) in prior_rows:
             continue
         raise RuntimeError('New/changed ledger lead; root review required')

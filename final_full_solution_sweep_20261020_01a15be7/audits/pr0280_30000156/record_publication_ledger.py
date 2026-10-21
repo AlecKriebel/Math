@@ -77,14 +77,14 @@ def append_verified(expected_head,identifier):
     doi='10.5281/zenodo.'+str(identifier)
     doi_rows=[r for r in before[1:] if target_in_row(r,identifier,family_ids)]
     if len(doi_rows)>1 or (doi_rows and doi_rows[0]!=row):
-        raise RuntimeError('Existing DOI appears in a different or duplicate full-sheet row; no append')
+        raise RuntimeError('Existing DOI/identity lead appears in a different or duplicate full-sheet row; no append')
     found=matches(before,identifier,family_ids)
     # Broad prior distinct-model rows are allowed only through the exact root
     # reconciliation; target identity/DOI rows must still be unique and exact.
     recon=json.loads((AUDIT/'ROOT_PREPUBLICATION_LEAD_RECONCILIATION.json').read_text())
     known={v['values_sha256'] for v in recon['ledger_leads']}
     if any(digest(r) in known for r in doi_rows):
-        raise RuntimeError('Current target DOI/row contradicts a root non-target ledger exemption; no append')
+        raise RuntimeError('Current target DOI/identity lead contradicts a root non-target ledger exemption; no append')
     found=[(i,r) for i,r in found if digest(r) not in known]
     intent=AUDIT/'LEDGER_APPEND_INTENT.json'
     appended=False
@@ -118,7 +118,7 @@ def append_verified(expected_head,identifier):
         raise RuntimeError('Target row readback/uniqueness mismatch; no retry')
     doi='10.5281/zenodo.'+str(identifier)
     if sum(target_in_row(r,identifier,family_ids) for r in after)!=1:
-        raise RuntimeError('DOI is duplicated anywhere in full sheet')
+        raise RuntimeError('DOI/identity lead is duplicated anywhere in full sheet')
     if appended and (len(after)!=len(before)+1 or after[:-1]!=before or after[-1]!=row):
         raise RuntimeError('Append readback changed other sheet rows; reconcile without retry')
     receipt={'timestamp':stamp(),'pr':280,'status':'verified','row_number':found[0][0],
