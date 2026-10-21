@@ -3,11 +3,27 @@ import datetime as dt
 import hashlib
 import json
 import subprocess
+import time
 from pathlib import Path
 
 from record_decision import record
 
 ROOT = Path(__file__).resolve().parent
+
+
+def read_live_pr(pr):
+    """Retry transient read-only gateway failures before recording anything."""
+    for attempt in range(4):
+        try:
+            return json.loads(subprocess.check_output(
+                ['gh', 'api', f'repos/AlecKriebel/Math/pulls/{pr}'],
+                stderr=subprocess.PIPE))
+        except subprocess.CalledProcessError as exc:
+            message = (exc.stderr or b'').decode(errors='replace')
+            if attempt == 3 or not any(code in message for code in
+                                      ('HTTP 502', 'HTTP 503', 'HTTP 504')):
+                raise
+            time.sleep(2 ** attempt)
 
 
 def capture(pr, problem_ids, classification, reason, read_files, scope_file,
@@ -44,8 +60,7 @@ def capture(pr, problem_ids, classification, reason, read_files, scope_file,
     for key, expected in expected_scope.items():
         if key not in scope or type(scope[key]) is not type(expected) or scope[key] != expected:
             raise RuntimeError('Manually expected scope field differs: ' + key)
-    live = json.loads(subprocess.check_output(
-        ['gh', 'api', f'repos/AlecKriebel/Math/pulls/{pr}']))
+    live = read_live_pr(pr)
     if live['head']['sha'] != head:
         raise RuntimeError('Live head changed; rereview required')
     duplicate_check = duplicate_check or (
