@@ -559,3 +559,9 @@ NAMES += ['ELIGIBILITY_INVENTORY_COHERENCE_20261021T1921.json', 'audits/pr0833_3
 
 # Complete838existingpublication and custom867/869explicit-unsolved correspondence.
 NAMES += ['PR0838_PINNED_SCOPE_VERIFICATION.json', 'PR0838_PUBLICATION_COVERAGE_DETAILS.json', 'PR0867_PINNED_SCOPE_VERIFICATION.json', 'PR0869_PINNED_SCOPE_VERIFICATION.json']
+
+# Accepted790–832boundedreview: sanitized root outputs/checkers/seal only, no raw captured ledger/source directories.
+NAMES += ['ROOT_RANGE0790_0832_ACCEPTANCE.json', 'reviews/range0790_0832_adversary/RESULT.json', 'reviews/range0790_0832_adversary/CURRENT_ROOT_OBSERVER.json', 'reviews/range0790_0832_adversary/SEAL.json', 'reviews/range0790_0832_adversary/REPORT.md', 'reviews/range0790_0832_adversary/NESTED_ARCHIVE_CHECK.json', 'reviews/range0790_0832_adversary/SEMANTIC_SCOPE_REVIEW.json', 'reviews/range0790_0832_adversary/RESEARCH_LOG.md', 'reviews/range0790_0832_adversary/PUBLICATION_RESULTS.json', 'reviews/range0790_0832_adversary/SANITIZED_SUMMARY.md', 'reviews/range0790_0832_adversary/.gitignore', 'reviews/range0790_0832_adversary/check_publications.py', 'reviews/range0790_0832_adversary/SCOPE_CONTROLS.json', 'reviews/range0790_0832_adversary/INPUT_CAPTURE.json', 'reviews/range0790_0832_adversary/SCOPE_RESULTS.json', 'reviews/range0790_0832_adversary/WITHDRAWAL_LEDGER_CHECK.json', 'reviews/range0790_0832_adversary/check_scope.py', 'reviews/range0790_0832_adversary/SEAL.sha256']
+
+# Complete872/880/883existingpublication scopes and payload/original preservation.
+NAMES += ['PR0872_PINNED_SCOPE_VERIFICATION.json', 'PR0872_PUBLICATION_COVERAGE_DETAILS.json', 'PR0880_PINNED_SCOPE_VERIFICATION.json', 'PR0880_PUBLICATION_COVERAGE_DETAILS.json', 'PR0883_PINNED_SCOPE_VERIFICATION.json', 'PR0883_PUBLICATION_COVERAGE_DETAILS.json']
