@@ -37,9 +37,36 @@ def snapshot():
         evidence = ROOT/entry['verification']
         if not evidence.is_file():
             raise RuntimeError('Own completed publication lacks its verification artifact')
-    counts = dict(collections.Counter(entry['disposition'] for entry in journal))
+    # Reopened work supersedes an old disposition without rewriting the ordered
+    # journal. Bind each override to its exact historical artifact and its actual
+    # completed-publication evidence before using it for effective accounting.
+    effective = {entry['pr']: entry for entry in journal}
+    overrides = state.get('reopened_disposition_overrides', [])
+    seen_overrides = set()
+    for item in overrides:
+        number = item['pr']
+        if number in seen_overrides or number not in effective:
+            raise RuntimeError('Duplicate or out-of-prefix reopened override')
+        seen_overrides.add(number)
+        original_path = ROOT/f'PR{number:04d}_DISPOSITION.json'
+        if hashlib.sha256(original_path.read_bytes()).hexdigest() != item['historical_disposition_sha256']:
+            raise RuntimeError('Reopened override no longer binds its historical disposition')
+        replacement = json.loads((ROOT/item['replacement_disposition']).read_text())
+        publication = json.loads((ROOT/replacement['publication_evidence']).read_text())
+        completed = [v for v in own if v['pr'] == number]
+        if (replacement['pr'] != number or replacement['disposition'] != 'published_verified_full_solution'
+                or replacement.get('historical_disposition_sha256') != item['historical_disposition_sha256']
+                or len(completed) != 1 or completed[0]['doi'] != replacement['doi']
+                or publication.get('published') is not True or publication['doi'] != replacement['doi']
+                or publication['ledger_row'] != completed[0]['ledger_row']
+                or publication.get('ledger_read_back_exact') is not True
+                or publication.get('unique_target_and_DOI') is not True):
+            raise RuntimeError('Reopened publication override is not fully verified')
+        effective[number] = replacement
+    raw_counts = dict(collections.Counter(entry['disposition'] for entry in journal))
+    counts = dict(collections.Counter(entry['disposition'] for entry in effective.values()))
     doi_prs = collections.defaultdict(list)
-    for entry in journal:
+    for entry in effective.values():
         if entry.get('doi'):
             doi_prs[entry['doi'].removeprefix('https://doi.org/')].append(entry['pr'])
     pending = sorted(known-set(numbers))
@@ -55,6 +82,8 @@ def snapshot():
         'first_pending_pr': pending[0] if pending else None,
         'last_pending_pr': pending[-1] if pending else None,
         'disposition_counts': counts,
+        'historical_journal_disposition_counts': raw_counts,
+        'verified_reopened_disposition_overrides': overrides,
         'own_completed_publications': own,
         'own_completed_dois_unique': True,
         'same_record_referenced_by_multiple_processed_PRs': {doi:prs for doi,prs in sorted(doi_prs.items()) if len(prs)>1},
