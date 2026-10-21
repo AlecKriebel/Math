@@ -1892,7 +1892,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1881 | 30002208 / OWR-12173-004 | Additive Sets Preserving Piecewise Syndeticity | 0.0490 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1882 | 30002506 / OWR-12866-016 | Bohr-Radius Characterization of $\ell^1$ | 0.0488 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 1883 | 30002965 / OWR-13941-005 | Volume of the Boolean Quadric Polytope | 0.0486 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 1884 | 10400211 / AMR-103-0211 | Conjecture 12.5 — (Y. | 0.0480 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1884 | 10400211 / AMR-103-0211 | Conjecture 12.5 — (Y. | 0.0480 | 5.5 | 3 | unknown | already_solved | 1/5 |  |  Prior published disproof of universal (2,2)-move conjecture: Dabkowski-Przytycki rational-move theorem applied to closure of (sigma_1 sigma_2)^6, with signed 5/2 bridge. Source-dependent acceptance preserves Sanov proof-sketch dependency; no independent Burnside/group computation or new counterexample claimed. Frozen report and acceptance: attempts/10400211/.  |  |
 | 1885 | 10400212 / AMR-103-0212 | Problem 12.6 — Find a new proof of the existence of a universal Vassiliev in- variant of knots, presenting them by KTG’s and their o… | 0.0480 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1886 | 11000031 / AMR-109-0031 | Problem 3.10 — Find a finitely presented subgroup H < Modg for which there are infinitely many conjugacy classes of finite subgroups… | 0.0480 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1887 | 30004758 / OWR-8415338-005 | Monge–Ampère Singularities for Nonpolyhedral Obstacles | 0.0476 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
