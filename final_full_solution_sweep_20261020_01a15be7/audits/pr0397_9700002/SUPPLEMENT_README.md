@@ -27,7 +27,9 @@ Optional standard-library guard controls:
 
     python3 -B negative_controls.py --candidate candidate --output replay-output/guard-tests
 
-The retained171 controls include127 required rejections. To rerun either independent mathematical checker without changing evidence, copy probability_controls.py or reviews/flow_adversary_01/independent_flow_controls.py to a new working directory and execute that copy. Each writes its output beside its script. The flow checker uses exact rational primal/dual witnesses. The priority comparison checker can likewise be copied; it tests calculations, not absence of old literature.
+The retained171 controls include127 required rejections. To rerun either independent mathematical checker without changing evidence, copy probability_controls.py or reviews/flow_adversary_01/independent_flow_controls.py to a new working directory and execute that copy. Each writes its output beside its script. The flow checker uses exact rational primal/dual witnesses.
+
+The optional priority comparison checker has a separate runtime requirement: Python3.10 or later, because its preserved source uses int.bit_count(). Copy reviews/priority_scope_adversary_01/scope_priority_controls.py to another new working directory and execute that copy with a suitable interpreter. It was tested with Python3.14.6 and reproduced all32 controls and the retained JSON bytes exactly. It fails under the Python3.9.6 main-replay environment; do not use that environment for this optional checker. PKG01_RUNTIME_REPAIR.json records the distinct runtime, source and output hashes. These controls test calculations, not absence of old literature.
 
 Historical receipts contain their original dates, paths, versions and pending-review wording. They are preserved evidence, not claims that those paths exist in this extracted layout or that all old floating bytes reproduce everywhere. No private source body, account record, secret, or third-party PDF is included.
 

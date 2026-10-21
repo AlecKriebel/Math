@@ -109,6 +109,7 @@ def main():
         add(name, (support / safe(name)).read_bytes())
     for name in ["ROOT_MATHEMATICAL_AUDIT.md", "ROOT_PRIORITY_ASSESSMENT.md"]:
         add(name, (AUDIT / name).read_bytes())
+    add("PKG01_RUNTIME_REPAIR.json", (AUDIT / "PKG01_RUNTIME_REPAIR.json").read_bytes())
     add("paper/main.tex", source.read_bytes())
     add("PDF_VISUAL_QA.json", (preprint / "PDF_VISUAL_QA.json").read_bytes())
     add("README.md", (AUDIT / "SUPPLEMENT_README.md").read_bytes())
@@ -135,7 +136,8 @@ def main():
             "<p>The paper and source/verification ZIP preserve all 24 original research files, independent flow/probability controls and source comparisons. "
             "A new narrowly tested replay derivative preserves the original wrapper, requires exact active second-turn output and permits only explicitly "
             "bounded older floating diagnostics and documented metadata/projection differences. Python 3.9.6, NumPy 2.0.2 and SciPy 1.13.1 were tested; "
-            "unpinned historical bitwise replay is not claimed. The analytic proof does not depend on finite computations.</p>"
+            "unpinned historical bitwise replay is not claimed. The preserved optional priority checker separately requires Python 3.10 or later, "
+            "was tested with Python 3.14.6 and exactly reproduces its 32 retained controls. The analytic proof does not depend on finite computations.</p>"
             "<p>AI tools were extensively involved in mathematical research, model and proof development, computational verification, literature search, "
             "manuscript preparation and adversarial auditing. This is an unrefereed preprint and has not undergone formal independent human peer review. "
             "Internal AI reviews do not constitute human peer review.</p>"
