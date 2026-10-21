@@ -52,10 +52,10 @@ def read(label,operation):
     return schema_rows(value)
 
 
-def matches(rows,identifier):
+def matches(rows,identifier,family_ids=()):
     doi='10.5281/zenodo.'+str(identifier)
     return [(i,r) for i,r in enumerate(rows[1:],2) if PATTERN.search(' '.join(r))
-            or any(doi in set(re.findall(r'10\.5281/zenodo\.\d+',v)) for v in r)]
+            or target_in_row(r,identifier,family_ids)]
 
 
 def append_verified(expected_head,identifier):
@@ -68,16 +68,17 @@ def append_verified(expected_head,identifier):
             or public.get('release_manifest_sha256')!=RELEASE_SHA):
         raise RuntimeError('Fresh public DOI/files verification incomplete')
     gate,acceptance=collect('before_ledger',expected_head,identifier,allow_target_row=True)
+    family_ids=gate.get('expected_identity_record_ids',[identifier])
     operation=uuid.uuid4().hex
     row=desired_row(identifier)
     before=read('ledger_before_append',operation)
     if digest(before)!=gate['ledger_sha256']:
         raise RuntimeError('Full sheet changed since fresh gate; recollect/reconcile before append')
     doi='10.5281/zenodo.'+str(identifier)
-    doi_rows=[r for r in before[1:] if doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r)))]
+    doi_rows=[r for r in before[1:] if target_in_row(r,identifier,family_ids)]
     if len(doi_rows)>1 or (doi_rows and doi_rows[0]!=row):
         raise RuntimeError('Existing DOI appears in a different or duplicate full-sheet row; no append')
-    found=matches(before,identifier)
+    found=matches(before,identifier,family_ids)
     # Broad prior distinct-model rows are allowed only through the exact root
     # reconciliation; target identity/DOI rows must still be unique and exact.
     recon=json.loads((AUDIT/'ROOT_PREPUBLICATION_LEAD_RECONCILIATION.json').read_text())
@@ -111,12 +112,12 @@ def append_verified(expected_head,identifier):
     after=read('ledger_after_append',operation)
     # Target DOI rows are never filtered by any non-target digest, including
     # readback after a provider boundary. Exact target identity has precedence.
-    found=[(i,r) for i,r in matches(after,identifier) if digest(r) not in known
-           or doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r)))]
+    found=[(i,r) for i,r in matches(after,identifier,family_ids) if digest(r) not in known
+           or target_in_row(r,identifier,family_ids)]
     if len(found)!=1 or found[0][1]!=row or (row_number is not None and row_number!=found[0][0]):
         raise RuntimeError('Target row readback/uniqueness mismatch; no retry')
     doi='10.5281/zenodo.'+str(identifier)
-    if sum(doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r))) for r in after)!=1:
+    if sum(target_in_row(r,identifier,family_ids) for r in after)!=1:
         raise RuntimeError('DOI is duplicated anywhere in full sheet')
     if appended and (len(after)!=len(before)+1 or after[:-1]!=before or after[-1]!=row):
         raise RuntimeError('Append readback changed other sheet rows; reconcile without retry')

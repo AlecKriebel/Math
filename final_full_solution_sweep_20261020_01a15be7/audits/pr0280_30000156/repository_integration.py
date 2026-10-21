@@ -123,6 +123,21 @@ def assert_scoped_preservation(before,after,queue_changed):
     unchanged_parent(before,after,'unsolved_math_prioritization/attempts',{'30000156'})
 
 
+
+def verify_directory_overlay(base,integrated,added_names,original=None):
+    def inventory(commit):
+        result={n:(v['mode'],v['type']) for n,v in subtree(commit,PROBLEM).items() if v['type']=='tree'}
+        if any(v!=('040000','tree') for v in result.values()):
+            raise RuntimeError('Unexpected selected directory mode/type')
+        return result
+    expected=inventory(base)
+    if original is not None:expected.update(inventory(original))
+    for name in added_names:
+        parts=PurePosixPath(name).parts
+        for end in range(1,len(parts)):expected['/'.join(parts[:end])]=('040000','tree')
+    if inventory(integrated)!=expected:
+        raise RuntimeError('Selected subtree directory inventory changed outside exact overlay')
+
 def verify_integrated_tree(base,integrated,expected_head):
     selected=selection()
     expected=leaves(base,PROBLEM)
@@ -132,6 +147,7 @@ def verify_integrated_tree(base,integrated,expected_head):
         if n in expected and expected[n]!=identity:
             raise RuntimeError('Concurrent main changed selected candidate file: '+n)
     expected.update(added)
+    verify_directory_overlay(base,integrated,added,ORIGINAL)
     if leaves(integrated,PROBLEM)!=expected:
         raise RuntimeError('Integration differs outside exact original17+publication5 overlay')
     baseline,desired=original_queue_rows(expected_head)
@@ -197,6 +213,7 @@ def main():
             raise RuntimeError('New commit ancestry/tree differs')
         assert_scoped_preservation(ORIGINAL,new,False)
         expected=originals();expected.update({n:('100644','blob',blob_sha(v)) for n,v in selected.items()})
+        verify_directory_overlay(ORIGINAL,new,selected)
         if leaves(new,PROBLEM)!=expected:
             raise RuntimeError('New branch commit changed unselected problem files')
         gate,_=collect('before_integration',ORIGINAL)

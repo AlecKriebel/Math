@@ -76,7 +76,7 @@ def gather(phase, expected_head, expected_deposit_id=None):
                if (rows[i] if i<len(rows) else None) != (baseline[i] if i<len(baseline) else None)]
     ledger_matches = [{'row':i,'values':r} for i,r in enumerate(rows,1)
                       if PATTERN.search(' '.join(r)) or (expected_deposit_id is not None
-                      and re.search(r'zenodo[./]'+str(expected_deposit_id)+r'(?!\d)',' '.join(r)))]
+                      and target_in_row(r,expected_deposit_id))]
     client = zenodo.ZenodoClient('production', zenodo.token_for('production'))
     positive = account_search(client, 'Fibonacci')
     if 23174283 not in {int(r['id']) for r in positive['records']}:
@@ -98,6 +98,10 @@ def gather(phase, expected_head, expected_deposit_id=None):
         raise RuntimeError('Keyword records missing from whole account; retry read-only collection')
     if expected_deposit_id is not None and expected_deposit_id not in targets:
         raise RuntimeError('Exact expected draft/record absent from complete model/file comparison')
+    identity_ids=(record_identity_ids(next(r for r in full['records'] if int(r['id'])==expected_deposit_id),expected_deposit_id)
+                  if expected_deposit_id is not None else [])
+    ledger_matches=[{'row':i,'values':r} for i,r in enumerate(rows,1) if PATTERN.search(' '.join(r))
+                    or (expected_deposit_id is not None and target_in_row(r,expected_deposit_id,identity_ids))]
     pr = read_command(['gh','api','--hostname','github.com','repos/AlecKriebel/Math/pulls/280'])
     main = read_command(['gh','api','--hostname','github.com','repos/AlecKriebel/Math/git/ref/heads/main'])
     atomic_json(raw/'pr.json',pr)
@@ -109,7 +113,7 @@ def gather(phase, expected_head, expected_deposit_id=None):
             states.append({'path':p.relative_to(REPO).as_posix(),'sha256':sha(p.read_bytes()),
                            'deposit_id':value.get('id',value.get('deposit_id'))})
     receipt = {'started_utc':start,'completed_utc':stamp(),'operation':operation,'phase':phase,
-        'read_only':True,'expected_pr_head':expected_head,'expected_deposit_id':expected_deposit_id,
+        'read_only':True,'expected_identity_record_ids':identity_ids,'expected_pr_head':expected_head,'expected_deposit_id':expected_deposit_id,
         'release_manifest_sha256':RELEASE_SHA,'release_files':release()['files'],
         'ledger_rows':len(rows),'ledger_sha256':digest(rows),'ledger_matches':ledger_matches,
         'ledger_changed_rows_since_initial_candidate_check':changed,
