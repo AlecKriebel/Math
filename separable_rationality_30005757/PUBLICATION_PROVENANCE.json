@@ -1,0 +1,270 @@
+{
+  "scope": "Relocated authored audit sources, with explicit state, transition and pole-result checks added before assertion hardening. Original here means the publication pre-hardening baseline, not an unmodified recovery script.",
+  "assert_hardening": [
+    {
+      "file": "check.py",
+      "original_source": "import itertools,json,sys\nfrom pathlib import Path\nfrom functools import lru_cache\nimport sympy as s\nROOT=Path(__file__).resolve().parent\nsys.path.insert(0,str(ROOT))\nimport search\nD=Path(__file__).parent\n# Independent rank normalization and direct subsequence inspection.\ndef rank(t):\n return tuple(1+sum(y<x for y in t) for x in t)\ndef contained(p,k):\n return {rank(tuple(p[i] for i in inds)) for inds in itertools.combinations(range(len(p)),k)}\n# Independent unique decomposition by earliest sum/skew cut.\ndef tree(p):\n if len(p)==1:return ('leaf',)\n for k in range(1,len(p)):\n  if max(p[:k])<min(p[k:]):return (1,tree(rank(p[:k])),tree(rank(p[k:])))\n  if min(p[:k])>max(p[k:]):return (-1,tree(rank(p[:k])),tree(rank(p[k:])))\n raise ValueError(p)\ndef valid(t):\n return t[0]=='leaf' or (t[1][0]!=t[0] and valid(t[1]) and valid(t[2]))\nT=sorted(p for p in itertools.permutations(range(1,5)) if p not in [(2,4,1,3),(3,1,4,2)] and (2,3,1) in contained(p,3))\nassert T==search.T\nresults=json.loads((ROOT/'all_length4_results.json').read_text())\nassert len(results)==255\ncounts={tuple(r['basis']):[1] for r in results}; totals=[1]; canonical=0\nfor n in range(1,8):\n masks=[]; trees=set()\n for p in itertools.permutations(range(1,n+1)):\n  p4=contained(p,4)\n  if (2,4,1,3) in p4 or (3,1,4,2) in p4:continue\n  t=tree(p);assert valid(t);assert t not in trees;trees.add(t);canonical+=1\n  masks.append(set(''.join(map(str,q)) for q in p4))\n totals.append(len(masks))\n for r in results:\n  key=tuple(r['basis']);v=sum(not (set(key)&m) for m in masks); counts[key].append(v)\n  assert v==r['coefficients'][n],(key,n,v,r['coefficients'][n])\n# Algebra of the independently derived 3412 system.\nx,A,F=s.symbols('x A F')\nb=x/(1-x)\n# sum indecomposable = singleton or skew root. Skew canonical children are\n# leaves or sum roots; at most one nonsingleton such child avoids 3412.\n# A=x + x^2/(1-x) + (F-1-A)*((1-x)**-2-1), F=1/(1-A).\nexpr=s.factor((A-x-x*x/(1-x)-(1/(1-A)-1-A)*((1-x)**-2-1))*(1-A)*(1-x)**2)\npolyF=s.factor(expr.subs(A,1-1/F)*F**2)\ndisc=s.factor(s.discriminant(polyF,F))\nprint(\"POLY\",polyF,s.solve(polyF,F))\nsol=(-x-1+s.sqrt((1-x)*(1-5*x)))/(2*x*(x-2))\nassert s.simplify(polyF.subs(F,sol))==0\ncs=[int(s.expand(s.series(sol,x,0,8).removeO()).coeff(x,n)) for n in range(8)]\nassert cs==counts[('3412',)]\nreport={'permutation_bruteforce_through':7,'all_nonempty_length4_bases_checked':len(results),'candidate_patterns':[''.join(map(str,t)) for t in T],'ambient_counts':totals,'canonical_trees_checked':canonical,'all_count_matches':True,'3412_polynomial':str(polyF),'3412_discriminant':str(disc),'3412_branch':str(sol),'3412_counts':cs}\n(D/'exact_checks.json').write_text(json.dumps(report,indent=2)+'\\n');print(json.dumps(report,indent=2))\n# For every transition, independently check mask semantics on witness permutations.\ntransition_checks=0;state_checks=0\nfor r in results:\n B=[tuple(map(int,b)) for b in r['basis']]\n S,trans,leaf=search.automaton(B)\n assert len(S)==r['states']\n assert len(trans)==r['transitions']\n P=sorted(set.union(*(search.pats(p) for p in B)),key=lambda p:(len(p),p))\n reps={leaf:(1,)}\n while len(reps)<len(S):\n  old=len(reps)\n  for u,v,w in trans:\n   if u in reps and v in reps and w not in reps:reps[w]=search.op(reps[u],reps[v],S[w][1])\n  assert len(reps)>old\n for u,v,w in trans:\n  p=search.op(reps[u],reps[v],S[w][1]);bylen={k:contained(p,k) for k in range(1,5)}\n  mask=sum(1<<i for i,q in enumerate(P) if q in bylen[len(q)])\n  assert mask==S[w][0]\n  assert all(b not in bylen[len(b)] for b in B)\n  assert valid(tree(p))\n  transition_checks+=1\n state_checks+=len(S)\nreport.update({'witness_transition_checks':transition_checks,'reachable_state_checks':state_checks,'all_transition_matches':True})\n(D/'exact_checks.json').write_text(json.dumps(report,indent=2)+'\\n');print('Transitions',transition_checks,'states',state_checks)\n\n# Exact polynomial check for the actual-class dominant-pole obstruction.\nsep=s.series((1-x-s.sqrt(1-6*x+x*x))/2,x,0,12).removeO().expand()\nextras={n:s.Rational(sep.coeff(x,n),2)-s.catalan(n-1) for n in range(3,12)}\nval=sum(c/s.Integer(4)**n for n,c in extras.items())\nassert val-s.Rational(1,2)==s.Rational(779,4194304)\nprint('C_11: P(1/4) =',val)\n\nassert transition_checks==124258\nassert state_checks==9218\nassert canonical==2321\nassert {str(n):int(c) for n,c in extras.items()}==json.loads((D/'pole_checks.json').read_text())['P_coefficients']\nassert str(val)==json.loads((D/'pole_checks.json').read_text())['P_at_quarter']\n",
+      "original": {
+        "bytes": 4477,
+        "sha256": "e4a584a2c76c3ccc16bbc643378478b09a156da9a57d59d7fc790fcb7b87671b"
+      },
+      "assertions": [
+        {
+          "line": 24,
+          "column": 0,
+          "condition": "T==search.T",
+          "condition_ast": "Compare(left=Name(id='T', ctx=Load()), ops=[Eq()], comparators=[Attribute(value=Name(id='search', ctx=Load()), attr='T', ctx=Load())])",
+          "control_flow": []
+        },
+        {
+          "line": 26,
+          "column": 0,
+          "condition": "len(results)==255",
+          "condition_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='results', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=255)])",
+          "control_flow": []
+        },
+        {
+          "line": 33,
+          "column": 12,
+          "condition": "valid(t)",
+          "condition_ast": "Call(func=Name(id='valid', ctx=Load()), args=[Name(id='t', ctx=Load())], keywords=[])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 28,
+              "header": "n in range(1, 8)"
+            },
+            {
+              "kind": "For",
+              "line": 30,
+              "header": "p in itertools.permutations(range(1, n + 1))"
+            }
+          ]
+        },
+        {
+          "line": 33,
+          "column": 28,
+          "condition": "t not in trees",
+          "condition_ast": "Compare(left=Name(id='t', ctx=Load()), ops=[NotIn()], comparators=[Name(id='trees', ctx=Load())])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 28,
+              "header": "n in range(1, 8)"
+            },
+            {
+              "kind": "For",
+              "line": 30,
+              "header": "p in itertools.permutations(range(1, n + 1))"
+            }
+          ]
+        },
+        {
+          "line": 38,
+          "column": 2,
+          "condition": "v==r['coefficients'][n]",
+          "condition_ast": "Compare(left=Name(id='v', ctx=Load()), ops=[Eq()], comparators=[Subscript(value=Subscript(value=Name(id='r', ctx=Load()), slice=Constant(value='coefficients'), ctx=Load()), slice=Name(id='n', ctx=Load()), ctx=Load())])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 28,
+              "header": "n in range(1, 8)"
+            },
+            {
+              "kind": "For",
+              "line": 36,
+              "header": "r in results"
+            }
+          ]
+        },
+        {
+          "line": 50,
+          "column": 0,
+          "condition": "s.simplify(polyF.subs(F,sol))==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='simplify', ctx=Load()), args=[Call(func=Attribute(value=Name(id='polyF', ctx=Load()), attr='subs', ctx=Load()), args=[Name(id='F', ctx=Load()), Name(id='sol', ctx=Load())], keywords=[])], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 52,
+          "column": 0,
+          "condition": "cs==counts[('3412',)]",
+          "condition_ast": "Compare(left=Name(id='cs', ctx=Load()), ops=[Eq()], comparators=[Subscript(value=Name(id='counts', ctx=Load()), slice=Tuple(elts=[Constant(value='3412')], ctx=Load()), ctx=Load())])",
+          "control_flow": []
+        },
+        {
+          "line": 60,
+          "column": 1,
+          "condition": "len(S)==r['states']",
+          "condition_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Subscript(value=Name(id='r', ctx=Load()), slice=Constant(value='states'), ctx=Load())])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 57,
+              "header": "r in results"
+            }
+          ]
+        },
+        {
+          "line": 61,
+          "column": 1,
+          "condition": "len(trans)==r['transitions']",
+          "condition_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='trans', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Subscript(value=Name(id='r', ctx=Load()), slice=Constant(value='transitions'), ctx=Load())])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 57,
+              "header": "r in results"
+            }
+          ]
+        },
+        {
+          "line": 68,
+          "column": 2,
+          "condition": "len(reps)>old",
+          "condition_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='reps', ctx=Load())], keywords=[]), ops=[Gt()], comparators=[Name(id='old', ctx=Load())])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 57,
+              "header": "r in results"
+            }
+          ]
+        },
+        {
+          "line": 72,
+          "column": 2,
+          "condition": "mask==S[w][0]",
+          "condition_ast": "Compare(left=Name(id='mask', ctx=Load()), ops=[Eq()], comparators=[Subscript(value=Subscript(value=Name(id='S', ctx=Load()), slice=Name(id='w', ctx=Load()), ctx=Load()), slice=Constant(value=0), ctx=Load())])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 57,
+              "header": "r in results"
+            },
+            {
+              "kind": "For",
+              "line": 69,
+              "header": "(u, v, w) in trans"
+            }
+          ]
+        },
+        {
+          "line": 73,
+          "column": 2,
+          "condition": "all(b not in bylen[len(b)] for b in B)",
+          "condition_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Name(id='b', ctx=Load()), ops=[NotIn()], comparators=[Subscript(value=Name(id='bylen', ctx=Load()), slice=Call(func=Name(id='len', ctx=Load()), args=[Name(id='b', ctx=Load())], keywords=[]), ctx=Load())]), generators=[comprehension(target=Name(id='b', ctx=Store()), iter=Name(id='B', ctx=Load()), ifs=[], is_async=0)])], keywords=[])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 57,
+              "header": "r in results"
+            },
+            {
+              "kind": "For",
+              "line": 69,
+              "header": "(u, v, w) in trans"
+            }
+          ]
+        },
+        {
+          "line": 74,
+          "column": 2,
+          "condition": "valid(tree(p))",
+          "condition_ast": "Call(func=Name(id='valid', ctx=Load()), args=[Call(func=Name(id='tree', ctx=Load()), args=[Name(id='p', ctx=Load())], keywords=[])], keywords=[])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 57,
+              "header": "r in results"
+            },
+            {
+              "kind": "For",
+              "line": 69,
+              "header": "(u, v, w) in trans"
+            }
+          ]
+        },
+        {
+          "line": 84,
+          "column": 0,
+          "condition": "val-s.Rational(1,2)==s.Rational(779,4194304)",
+          "condition_ast": "Compare(left=BinOp(left=Name(id='val', ctx=Load()), op=Sub(), right=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Rational', ctx=Load()), args=[Constant(value=1), Constant(value=2)], keywords=[])), ops=[Eq()], comparators=[Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Rational', ctx=Load()), args=[Constant(value=779), Constant(value=4194304)], keywords=[])])",
+          "control_flow": []
+        },
+        {
+          "line": 87,
+          "column": 0,
+          "condition": "transition_checks==124258",
+          "condition_ast": "Compare(left=Name(id='transition_checks', ctx=Load()), ops=[Eq()], comparators=[Constant(value=124258)])",
+          "control_flow": []
+        },
+        {
+          "line": 88,
+          "column": 0,
+          "condition": "state_checks==9218",
+          "condition_ast": "Compare(left=Name(id='state_checks', ctx=Load()), ops=[Eq()], comparators=[Constant(value=9218)])",
+          "control_flow": []
+        },
+        {
+          "line": 89,
+          "column": 0,
+          "condition": "canonical==2321",
+          "condition_ast": "Compare(left=Name(id='canonical', ctx=Load()), ops=[Eq()], comparators=[Constant(value=2321)])",
+          "control_flow": []
+        },
+        {
+          "line": 90,
+          "column": 0,
+          "condition": "{str(n):int(c) for n,c in extras.items()}==json.loads((D/'pole_checks.json').read_text())['P_coefficients']",
+          "condition_ast": "Compare(left=DictComp(key=Call(func=Name(id='str', ctx=Load()), args=[Name(id='n', ctx=Load())], keywords=[]), value=Call(func=Name(id='int', ctx=Load()), args=[Name(id='c', ctx=Load())], keywords=[]), generators=[comprehension(target=Tuple(elts=[Name(id='n', ctx=Store()), Name(id='c', ctx=Store())], ctx=Store()), iter=Call(func=Attribute(value=Name(id='extras', ctx=Load()), attr='items', ctx=Load()), args=[], keywords=[]), ifs=[], is_async=0)]), ops=[Eq()], comparators=[Subscript(value=Call(func=Attribute(value=Name(id='json', ctx=Load()), attr='loads', ctx=Load()), args=[Call(func=Attribute(value=BinOp(left=Name(id='D', ctx=Load()), op=Div(), right=Constant(value='pole_checks.json')), attr='read_text', ctx=Load()), args=[], keywords=[])], keywords=[]), slice=Constant(value='P_coefficients'), ctx=Load())])",
+          "control_flow": []
+        },
+        {
+          "line": 91,
+          "column": 0,
+          "condition": "str(val)==json.loads((D/'pole_checks.json').read_text())['P_at_quarter']",
+          "condition_ast": "Compare(left=Call(func=Name(id='str', ctx=Load()), args=[Name(id='val', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Subscript(value=Call(func=Attribute(value=Name(id='json', ctx=Load()), attr='loads', ctx=Load()), args=[Call(func=Attribute(value=BinOp(left=Name(id='D', ctx=Load()), op=Div(), right=Constant(value='pole_checks.json')), attr='read_text', ctx=Load()), args=[], keywords=[])], keywords=[]), slice=Constant(value='P_at_quarter'), ctx=Load())])",
+          "control_flow": []
+        }
+      ]
+    },
+    {
+      "file": "check_4231.py",
+      "original_source": "import sympy as s,json\nfrom pathlib import Path\nx,T,G=s.symbols('x T G')\ncat=T-x*(1+T)**2\nrelation=(1-x)*(1-T*T)*G-1\npoly=(4*x**3-9*x*x+6*x-1)*G*G+(4*x*x-5*x+1)*G+x*x\nres=s.factor(s.resultant(cat,relation,T))\nassert s.expand(res-poly)==0\n# Exact identity in the quadratic Catalan field, not coefficient fitting.\nsubnumer=s.together(poly.subs(G,1/((1-x)*(1-T*T)))).as_numer_denom()[0]\nassert s.rem(subnumer,cat,T)==0\nD=s.factor(s.discriminant(poly,G));assert s.expand(D-(1-x)**2*(1-2*x)**2*(1-4*x))==0\nc=(1-2*x-s.sqrt(1-4*x))/(2*x)\nseries=s.series(1/((1-x)*(1-c*c)),x,0,13).removeO().expand()\ncoeffs=[int(series.coeff(x,n)) for n in range(13)]\nrows=json.loads((Path(__file__).parent/'all_length4_results.json').read_text())\nrow=next(r for r in rows if r['basis']==['4231'])\nassert coeffs==row['coefficients'][:13]\nout={'resultant':str(res),'identity_mod_Catalan_polynomial':True,'discriminant':str(D),'formal_branch':'T(0)=0, G(0)=1','coefficients':coeffs,'comparison_matches':True}\n(Path(__file__).parent/'exact_4231_checks.json').write_text(json.dumps(out,indent=2)+'\\n')\nprint(json.dumps(out,indent=2))\n",
+      "original": {
+        "bytes": 1105,
+        "sha256": "d7518cdf03477768c62a6d39a7419fdcd37cfadc127b86bde3705247c8341265"
+      },
+      "assertions": [
+        {
+          "line": 8,
+          "column": 0,
+          "condition": "s.expand(res-poly)==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='expand', ctx=Load()), args=[BinOp(left=Name(id='res', ctx=Load()), op=Sub(), right=Name(id='poly', ctx=Load()))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 11,
+          "column": 0,
+          "condition": "s.rem(subnumer,cat,T)==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='rem', ctx=Load()), args=[Name(id='subnumer', ctx=Load()), Name(id='cat', ctx=Load()), Name(id='T', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 12,
+          "column": 35,
+          "condition": "s.expand(D-(1-x)**2*(1-2*x)**2*(1-4*x))==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='expand', ctx=Load()), args=[BinOp(left=Name(id='D', ctx=Load()), op=Sub(), right=BinOp(left=BinOp(left=BinOp(left=BinOp(left=Constant(value=1), op=Sub(), right=Name(id='x', ctx=Load())), op=Pow(), right=Constant(value=2)), op=Mult(), right=BinOp(left=BinOp(left=Constant(value=1), op=Sub(), right=BinOp(left=Constant(value=2), op=Mult(), right=Name(id='x', ctx=Load()))), op=Pow(), right=Constant(value=2))), op=Mult(), right=BinOp(left=Constant(value=1), op=Sub(), right=BinOp(left=Constant(value=4), op=Mult(), right=Name(id='x', ctx=Load())))))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 18,
+          "column": 0,
+          "condition": "coeffs==row['coefficients'][:13]",
+          "condition_ast": "Compare(left=Name(id='coeffs', ctx=Load()), ops=[Eq()], comparators=[Subscript(value=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='coefficients'), ctx=Load()), slice=Slice(upper=Constant(value=13)), ctx=Load())])",
+          "control_flow": []
+        }
+      ]
+    }
+  ]
+}
