@@ -1,0 +1,21 @@
+{
+  "original_file": "check_n1_original.py",
+  "original_sha256": "c7b68db2e130d99e4aa52f0bc9d9c9b41210b3ad1ceca17e3b546dc618ad000a",
+  "hardened_file": "check_n1.py",
+  "hardened_sha256": "6d400173654c9b9fbc0ac94b0a048de375a83d0988a2f25257e934080da01798",
+  "origin": "Authored acceptance-audit sanity check; not the external manuscript source archive.",
+  "transformation": "AST-preserving replacement of each Assert(test,msg) by If(Not(test), Raise(AssertionError(msg or fixed failure text))). All other statement order, tests, loops, dictionary updates, distances, points, and output are preserved by ast.unparse.",
+  "assert_count": 4,
+  "exact_conditions": [
+    "2 * max(ds) <= sum(ds)",
+    "x > 0 and y > 0",
+    "x not in forward or forward[x] == y",
+    "y not in backward or backward[y] == x"
+  ],
+  "optimized_original": "Original assertions are removed under -O; its optimized PASS is not verification evidence.",
+  "scope": "Finite exact rational sanity check on Y_35, not a general proof.",
+  "tamper_controls": {
+    "triangle": "Replace the final nonadjacent distance formula by Q(100).",
+    "equality": "Replace f(35) with its original value plus one."
+  }
+}
