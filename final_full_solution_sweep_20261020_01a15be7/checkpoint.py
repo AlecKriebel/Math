@@ -306,3 +306,9 @@ NAMES.extend(['audits/pr0399_30001179/reviews/package_adversary_03/ANALYTIC_CONT
 
 # Hold frozen399canonical7whileNEWrecordURLrepairisactive.
 NAMES=[n for n in NAMES if n not in ['audits/pr0399_30001179/ops_binding.py', 'audits/pr0399_30001179/prepublication_check.py', 'audits/pr0399_30001179/publication_live_gates.py', 'audits/pr0399_30001179/repository_integration.py', 'audits/pr0399_30001179/publication_lifecycle.py', 'audits/pr0399_30001179/record_publication_ledger.py', 'audits/pr0399_30001179/verify_published_files.py']]
+
+# New root actual normal/O replay of freshreview03 finiteanalyticcontrols.
+NAMES.extend(["audits/pr0399_30001179/ROOT_REVIEW03_ANALYTIC_REPLAY.json"])
+
+# Newlydiscovered36PRsstructuralevidenceonly;allpendingorderedcandidateprocessing.
+NAMES.extend(['ELIGIBILITY_NEW_TAIL_1440.json', 'eligibility/pr1405.json', 'eligibility/pr1406.json', 'eligibility/pr1407.json', 'eligibility/pr1408.json', 'eligibility/pr1409.json', 'eligibility/pr1410.json', 'eligibility/pr1411.json', 'eligibility/pr1412.json', 'eligibility/pr1413.json', 'eligibility/pr1414.json', 'eligibility/pr1415.json', 'eligibility/pr1416.json', 'eligibility/pr1417.json', 'eligibility/pr1418.json', 'eligibility/pr1419.json', 'eligibility/pr1420.json', 'eligibility/pr1421.json', 'eligibility/pr1422.json', 'eligibility/pr1423.json', 'eligibility/pr1424.json', 'eligibility/pr1425.json', 'eligibility/pr1426.json', 'eligibility/pr1427.json', 'eligibility/pr1428.json', 'eligibility/pr1429.json', 'eligibility/pr1430.json', 'eligibility/pr1431.json', 'eligibility/pr1432.json', 'eligibility/pr1433.json', 'eligibility/pr1434.json', 'eligibility/pr1435.json', 'eligibility/pr1436.json', 'eligibility/pr1437.json', 'eligibility/pr1438.json', 'eligibility/pr1439.json', 'eligibility/pr1440.json'])
