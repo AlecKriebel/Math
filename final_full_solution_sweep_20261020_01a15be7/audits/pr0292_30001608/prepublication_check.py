@@ -101,11 +101,29 @@ def main():
     if 23174283 not in {int(item["id"]) for item in positive["records"]}:
         raise RuntimeError("Authenticated account query failed known-record positive control")
     search = account_search(client, 'chunk OR "Norros" OR "30001608" OR "4530" OR "file-sharing"')
+    complete_account = account_search(client, "")
     atomic_json(raw / "account_positive_control.json", positive)
     atomic_json(raw / "account_target.json", search)
-    unexpected = [item for item in search["records"] if int(item["id"]) != args.expected_deposit_id]
-    if args.expected_deposit_id is not None and args.expected_deposit_id not in {int(item["id"]) for item in search["records"]}:
-        raise RuntimeError("Expected existing deposit not returned by authenticated target search")
+    atomic_json(raw / "account_complete.json", complete_account)
+    target_pattern = re.compile(r"30001608|OWR.?4530.?006|chunk|Norros|file.sharing|dfc[_ -]stability", re.I)
+    _, local_uploads = zenodo.load_manifest(AUDIT / "preprint/publication/zenodo-deposit.json")
+    upload_md5 = {entry["md5"] for entry in local_uploads}
+    local_targets = []
+    for item in complete_account["records"]:
+        files = item.get("files", [])
+        if not isinstance(files, list):
+            raise RuntimeError("Unexpected account file schema; reconcile before publishing")
+        file_match = any(target_pattern.search(str(entry.get("key", entry.get("filename", ""))))
+                         or str(entry.get("checksum", "")).lower().removeprefix("md5:") in upload_md5
+                         for entry in files)
+        if target_pattern.search(json.dumps(item.get("metadata", {}))) or file_match:
+            local_targets.append(item)
+    # A prepared draft was observed in the complete listing while keyword
+    # search omitted it. Never use keyword search alone as draft coverage.
+    targets = {int(item["id"]): item for item in search["records"] + local_targets}
+    unexpected = [item for identifier, item in targets.items() if identifier != args.expected_deposit_id]
+    if args.expected_deposit_id is not None and args.expected_deposit_id not in {int(item["id"]) for item in local_targets}:
+        raise RuntimeError("Expected deposit missing from complete account/model/file comparison")
     pr = read_command(["gh", "api", "--hostname", "github.com", "repos/AlecKriebel/Math/pulls/292"])
     main_ref = read_command(["gh", "api", "--hostname", "github.com", "repos/AlecKriebel/Math/git/ref/heads/main"])
     atomic_json(raw / "pr.json", pr)
@@ -129,7 +147,9 @@ def main():
                "operation": operation, "phase": args.phase, "read_only": True,
                "ledger_rows": len(rows), "ledger_matches": matches,
                "ledger_changed_rows_since_initial_candidate_check": changed_rows,
-               "account_query": search["query"], "account_total": search["total"],
+               "account_query": search["query"], "account_keyword_query_total": search["total"],
+               "account_total": len(targets), "complete_account_records_scanned": complete_account["total"],
+               "account_keyword_search_omitted_expected_deposit": args.expected_deposit_id is not None and args.expected_deposit_id not in {int(item["id"]) for item in search["records"]},
                "account_positive_control": "PASS_23174283", "unexpected_account_matches": [
                    {"id": item["id"], "title": item.get("metadata", {}).get("title"), "status": item.get("status")} for item in unexpected],
                "expected_deposit_id": args.expected_deposit_id,
