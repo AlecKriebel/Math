@@ -627,3 +627,15 @@ Existing885/888/894publications verifiedwithuniquerows115/119/123,publicexactfil
 ### 2026-10-21T20:31:58.375983+00:00 — PR967 independent proof/priority checkpoint (67% overall)
 
 Checkpoint through966 was safely pushed as318e955171ce8a8886048806e2e29f9200327d06. Accepted bounded906–937 review after full report/seal/private-copy normal/O checks; no material disposition issue. PR967 fresh GWS178rows and own authenticated197records/8pages show no match. Original26file capture,24outermanifestpins,12tar originals and copied43533finitecontrols verified. Root fullproof reconstruction found no gap. Current and2October archival prior PDFs independently return identical598093bytes, including the complete same §3.44 counterexample; two fresh independent proof/priority reviews pending. No new DOI/row/PR mutation. Goal remains active; next967.
+
+### 2026-10-21T20:34:20.809825+00:00 — PR967 exact-prior disposition; continue968 (67%)
+
+Root independently verified the complete countable counterexample and earlier fullproof, including fresh byte-identical October2 archive and memento/WARCheaders beforePRcreation. Fresh finalGWS/account andliveclosedhead/closure unchanged. Record skip_priority_gate_not_met and advance968. No newpublication/row/PRaction. Assigned fresh proof/priority reviewers remain supplemental pending checks and will be reconciled; no pending concern is promoted to publication.
+
+### 2026-10-21T20:36:55.225373+00:00 — Through1001; missing-status1000/1001 reconciled (69%)
+
+968–999 all strictown-rowexplicitexclusions;1000 missingQUEUE classifiedfromcurrentauthoredSCOPE/README/ACCEPTANCE asprior-knownapplicationalready_solved0/5, broaderquestionsunresolved. BroadHopfledgerrow39different.1001 missingQUEUE mergedfullclaim alreadycorrectlypublished23331540,row72. Providerpayloads/closedcurrentportablearchive/all44historicalpins andsource/PDF/ledger literalpartition scopechecked. Currentportablepackage deliberatelyomits21obsoletehistoricaldeliveryfiles, expresslymapped/nohistoricalpermissionreplayclaim; all current supportingmaterials present. No newDOI/row/PRmutation. Continue1002withoutuppercap.
+
+### 2026-10-21T20:41:08.385559+00:00 — Through1007;967freshreviewscompleted (69%)
+
+967freshproofreviewvalidatescompletecounterexample; priorityreview independentlyconfirms actualearlierarchivedfullproofwithCDXdigest/memento/timemap. Rootfullyreadbothreports, verified68proof+47prioritysealedfiles, copiednormal/O wholecertificatesexact. Priorityclosure retained, no remainingmaterialconcern.1002–1006 missingQUEUEstatus cases each separatelyread currentSTATUS/ACCEPTANCE/scope andallactualheadblobs; partial/preciseoriginaltargethold, nofullsolution manufactured.1007currentauthoredalready-knownReineketheoremapplication0newturns; no novelty/fullnewclaim. No providerwrites ornewpaper. Continue1008.
