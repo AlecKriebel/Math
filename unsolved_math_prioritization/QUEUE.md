@@ -1904,7 +1904,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1893 | 1200024 / AMR-011-0024 | Some Questions — Question 24 | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1894 | 158 / GREEN-070 | Sets with No Unique Sum Representations | 0.0450 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1895 | 20000022 / AIM-ALGEBRAIC_GEOMETRY-0022 | Immaculate line bundles as unit-orthogonal toric branes | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1896 | 20000162 / AIM-ALGEBRAIC_GEOMETRY-0162 | A modern étale criterion and an all-characteristic constant-functor test | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1896 | 20000162 / AIM-ALGEBRAIC_GEOMETRY-0162 | A modern étale criterion and an all-characteristic constant-functor test | 0.0450 | 5.0 | 3 | unknown | unsolved | 5/5 |  | Five audit routes establish the existing discrete definition and independently check the prior ghost lifting-versus-flatness counterexample and constant-functor criterion. Established results only; no novelty or broad equivariant geometry programme closure claimed. [Audited packet](attempts/20000162_etale_functors_20261021/README.md). |  |
 | 1897 | 20000726 / AIM-ANALYTIC_NUMBER_THEORY-0090 | A rational j-equation for a mixed mock Kaneko-Zagier solution | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1898 | 20000750 / AIM-ANALYTIC_NUMBER_THEORY-0114 | Alternative GPY weights: exact perturbation geometry and a radial escape | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1899 | 20001232 / AIM-COMPUTATION-0070 | Arbitrary logistic cell gaps with positive margins and ordinary-margin obstructions | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
