@@ -11,6 +11,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import uuid
 from urllib.parse import urlparse
@@ -25,7 +26,19 @@ NAMES=['.gitignore','README.md','RESEARCH_LOG.md','STATE.json',
        'rest_inventory.json','REST_INVENTORY_RECEIPT.json',
        'PR0009_PENDING.json','PR0009_DISPOSITION.json',
        'PR0009_PUBLICATION_LEAD_VERIFICATION.json','dispositions.jsonl',
-       'CLASSIFICATION_POLICY.md','INCIDENT_RECOVERY.json','advance_clear_exclusions.py']
+       'CLASSIFICATION_POLICY.md','INCIDENT_RECOVERY.json','advance_clear_exclusions.py',
+       'reviews/early_classification_adversary/REVIEW.md',
+       'reviews/early_classification_adversary/check_results.json',
+       'reviews/early_classification_adversary/GWS_GENERATION_INCIDENT.json',
+       'audits/pr0097_10300055/SOURCE_SNAPSHOT.json',
+       'audits/pr0097_10300055/CORRECTED_SNAPSHOT.json',
+       'audits/pr0097_10300055/DUPLICATE_CHECK.json',
+       'audits/pr0097_10300055/ROOT_ORIGINAL_REPRODUCTION.json',
+       'audits/pr0097_10300055/ROOT_CORRECTED_REPRODUCTION.json',
+       'audits/pr0097_10300055/reviews/math_audit/REVIEW.md',
+       'audits/pr0097_10300055/reviews/math_audit/independent_falsification.py',
+       'audits/pr0097_10300055/reviews/priority_audit/REVIEW.md',
+       'audits/pr0097_10300055/reviews/priority_audit/VERDICT.json']
 DESTINATION='https://github.com/AlecKriebel/Math.git'
 TRANSPORT_REMOTE='origin'
 TRANSPORT=['git','-c','remote.'+TRANSPORT_REMOTE+'.url='+DESTINATION,
@@ -73,9 +86,17 @@ def main():
     args=parser.parse_args()
     destination=verify_destination()
     selected=[]
-    for name in NAMES:
+    # Named per-PR receipts are authored only in this dedicated effort folder.
+    # This is a filename whitelist, not a shared-worktree git add or broad glob.
+    receipt_names=sorted(p.name for p in ROOT.iterdir()
+                         if re.fullmatch(r'PR\d{4}_(?:DISPOSITION|PUBLICATION_VERIFICATION)\.json',p.name))
+    for name in dict.fromkeys(NAMES+receipt_names):
         path=ROOT/name
-        if path.is_symlink() or not path.is_file() or path.resolve().parent!=ROOT:
+        relative=Path(name)
+        parts=[ROOT.joinpath(*relative.parts[:n]) for n in range(1,len(relative.parts)+1)]
+        if (relative.is_absolute() or '..' in relative.parts
+                or any(part.is_symlink() for part in parts)
+                or not path.is_file() or not path.resolve().is_relative_to(ROOT.resolve())):
             raise RuntimeError(f'Unsafe or absent checkpoint path: {name}')
         selected.append((str(path.relative_to(REPO)),path.read_bytes()))
     parent=live_main()

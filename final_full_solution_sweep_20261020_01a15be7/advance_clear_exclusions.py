@@ -8,10 +8,13 @@ changes a PR, publishes, or writes the ledger.
 import datetime as dt
 import json
 from pathlib import Path
+import re
 from sweep_io import atomic_json
 
 ROOT=Path(__file__).resolve().parent
-EXCLUSIONS={'already_solved','unsolved','duplicate','partial'}
+# All usable explicit statuses other than a full-solution/publication claim are
+# excluded by user rule2. Publication-like states stop for a ledger comparison.
+PUBLICATION_OR_CLAIM={'claimed_solved','preprint_published','published','resolved','scoped_resolved'}
 QUEUE_PATHS={'QUEUE.md','unsolved_math_prioritization/QUEUE.md'}
 
 
@@ -28,12 +31,18 @@ def main():
         if not path.exists():
             print(json.dumps({'stopped_at':n,'reason':'no structural receipt yet'}));break
         evidence=json.loads(path.read_text())
-        ids=evidence['path_problem_ids']
+        canonical_rows=[r for r in evidence['added_queue_rows'] if r['queue_path'] in QUEUE_PATHS]
+        # Custom effort folders need not use attempts/<id>. Exact digit tokens
+        # bind a QUEUE row to changed research files without substring matches.
+        path_tokens={token for changed in evidence['changed_paths'] if changed not in QUEUE_PATHS
+                     for token in re.findall(r'\d+',changed)}
+        ids=sorted(set(evidence['path_problem_ids']) |
+                   {r['problem_id'] for r in canonical_rows if r['problem_id'] in path_tokens})
         if len(ids)!=1:
             print(json.dumps({'stopped_at':n,'reason':'ambiguous corresponding problem identifiers','ids':ids}));break
-        rows=[r for r in evidence['added_queue_rows'] if r['queue_path'] in QUEUE_PATHS and r['problem_id']==ids[0]]
+        rows=[r for r in canonical_rows if r['problem_id']==ids[0]]
         statuses=set(r['status'] for r in rows)
-        if not rows or len(statuses)!=1 or not statuses<=EXCLUSIONS:
+        if not rows or len(statuses)!=1 or not next(iter(statuses),'').strip() or statuses & PUBLICATION_OR_CLAIM:
             print(json.dumps({'stopped_at':n,'reason':'requires root candidate/publication/missing-status decision','statuses':sorted(statuses)}));break
         status=next(iter(statuses))
         record={'pr':n,'processed_at':dt.datetime.now(dt.timezone.utc).isoformat(),

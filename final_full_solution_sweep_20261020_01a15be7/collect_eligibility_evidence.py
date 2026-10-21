@@ -127,9 +127,10 @@ def main():
         atomic_json(path,value)
         summary.append(value)
         if n%25==0 or n==inventory['highest_pr']:
+            live_state=json.loads((ROOT/'STATE.json').read_text())
             progress={'captured_at':now(),'last_pr_collected':n,'prs_collected':len(summary),
-                      'inventory_highest':inventory['highest_pr'],'candidate_processing_cursor':9,
-                      'live_ledger_verified':False}
+                      'inventory_highest':inventory['highest_pr'],'candidate_processing_cursor':live_state['next_pr'],
+                      'live_ledger_verified':live_state['live_ledger_verified']}
             atomic_json(ROOT/'ELIGIBILITY_COLLECTION_PROGRESS.json',progress)
             print(json.dumps(progress),flush=True)
     receipt={'completed_at':now(),'count':len(summary),'first_pr':summary[0]['pr'] if summary else None,

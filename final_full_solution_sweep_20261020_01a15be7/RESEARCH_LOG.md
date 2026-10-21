@@ -60,3 +60,37 @@
   undetected intermediate concurrent edit. No remote mutation was involved.
 - Two independent tooling reviews and follow-up found and repaired inventory
   regression and Git push URL-rewrite hazards. Actual checkpoint still pending.
+
+## 2026-10-21T01:11:54.786705+00:00 — Ordered sweep through PR96 checkpoint — estimated completion5%
+
+- Sequentially recorded all88 PRs #9–#96 without gaps: {'skip_entirely_already_published': 9, 'skip_explicit_non_claimed_solved': 79}.
+- Nine existing published full-solution records matched by problem, scope, title
+  and publication/PR references; live Zenodo state, PDF/support presence and DOI
+  resolution confirmed. No new publication or tracker repair was needed.
+- Historical claimed_solved patches were preserved where later explicit canonical
+  already_solved/partial classifications and current descriptions withdrew their
+  novel full-solution claim. Generic queued main entries never exclude a missing-
+  status claim. All exclusions remain subject to final live head/status recheck.
+- First checkpoint pushed and verified on main as9d7f5632c44fc73a78eeba37bacb2cd34f955cd4,
+  using private index and ordinary guarded push; shared HEAD/index unchanged.
+- PR97 is a closed unmerged full-solution claim; main still says queued. Fresh
+  live ledger and saved Zenodo-state checks found no same-result record; two broad
+  keyword hits were identified as other problems. Its prior prepared package and
+  novelty-based closure were recovered from pinned Git objects, not recreated.
+- Copied original and corrected candidate bytes into this effort with blob/hash
+  manifests. Independently authenticated the2002 original problem, p29, and the
+  ET neighborhood and2008 deformation statements; two distinct new mathematical
+  and priority subagents are auditing the result. Initial verifier replay exposed
+  missing SymPy in the default interpreter; runtime dependency resolution pending.
+
+## 2026-10-21T01:19:29.421118+00:00 — PR97 completed — estimated completion5%
+
+- Corrected conditional tightness theorem passes independent mathematical falsification and replay (87+87 supplied controls,22 new diagnostics); C1 scope explicitly limited to the C2-disk formulation.
+- Fresh independent priority review gives no novel-publication clearance: affine mechanism is a literal2012 theorem specialization, and exact application/supplement firstness remains unestablished. Preserved prior closed unmerged work; no new publication or row.
+- Live boundary now1386,1,378 PRs in scope, no gaps. Numerical cursor advances98; no restart.
+
+## 2026-10-21T01:21:47.613771+00:00 — Fresh early-range adversarial review — estimated completion5%
+
+- Independent reviewer checked every PR9–96 and all9 matching publication packages (41 public files); no missed eligible unpublished full claim or missing scientific payload found. Status labels for15,25,34 corrected from historical unsolved to present already_solved, preserving both statuses; disposition unchanged.
+- Reviewer independently repeated the GWS generate-skills help side effect and regenerated96 untracked skills/docs files outside this effort. Exact hashes are preserved in its incident receipt. No preimage is available, so no destructive rollback; these paths are excluded from all checkpoints. Future reviews explicitly forbid this command.
+- PR104 root replay passed2,087 supplied controls plus752 prior independent diagnostics. Two fresh proof/priority families remain in progress.
