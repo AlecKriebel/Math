@@ -20,7 +20,8 @@ def main():
     manifest_path = ROOT / "MANIFEST.json"
     require(not manifest_path.is_symlink(), "Manifest may not be a symlink")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    require(set(manifest) == {"schema", "files"} and manifest["schema"] == 1,
+    require(set(manifest) == {"schema", "files"}
+            and type(manifest["schema"]) is int and manifest["schema"] == 1,
             "Unknown manifest schema")
     expected = {}
     for item in manifest["files"]:
