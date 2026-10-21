@@ -491,3 +491,8 @@ Completion estimate:32% (455/1436). All451–463 have correctly corresponding ex
 ### 2026-10-21T17:12:14.140067+00:00 — ordered9–467 complete;464 existing DOI and support covered
 
 Completion estimate:32% (459/1436). PR464 exact static-slice retained-boundary weak-Bianchi/ZAS result matches published23320818 andwholeGWSrow65; actualPDF85393 andZIP258059 checksumsverified,181safeunique members/180positivepayloads includingeditableTeX/code/frozen13 verified. Zero-area semantic row69 belongsdistinctellipticbilliardPR256, notduplicatedspacetimeresult. No newproof/priority/publish/sheetmutation. 465–467 correspondingexplicitnegative exclusions; next468 existing23310484publicationidentity check. Four-ownpublication accounting fresh02 active, no final clearance forsummaryyet.
+
+
+### 2026-10-21T17:16:14.007732+00:00 — ordered through490; existing468 verified; new classification adversary
+
+Completion estimate:34% (482/1436). PR468 existing23310484/row62 exactmissing-face sphere-skeleton target andTOPsource/TOPembedding scope matches PR/metadata/sourceREADME; PDF96399+ZIP152980 verified,68safeunique members/67positivepayloads. Nevo row169/PR1155 is a distinct double-CM decomposition target, notthisembeddingproblem, notprocessedearly. 469explicitunsolved5/5 quantitativefulltheorem with qualitative/historical limits is excludedexactlyunderusereligibilityrule2; no substantivemath/priorityaudit or manufacturedclaimed_solvedstatus. 470–489and490 ownnegativerows boundandexcluded. New independent range421–490 adversary nowactive. Accounting02 confirmsadditional summaryguard counterexamples (actualfourpublicationdataremaincorrect); rootwaitingsealedreportthenfixing. No newproviderdata/scientificchanges.
