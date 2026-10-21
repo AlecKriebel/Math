@@ -441,3 +441,13 @@ Completion estimate:27%. Root read complete fresh06, verified31 outputs and all3
 ### 2026-10-21T16:20:25.798485+00:00 — PR399 reviewed branch commit pushed and read-only reconciled
 
 Completion estimate:27%. Guarded single branch operation created5a81fac3910286fa9e930b15bf670cc66849b220/tree82a424f36caa6603699c213e682ef7febd71828a, sole original parent08fc8833..., adding exactly reviewed5 to original11. Initial immediate PR readback returned old head; command stopped without retry. Root then actually GET-verified both PR/ref at newhead and15 immutable objects: source11+pub5, complete QUEUE identity, selected directory overlay and all unselected siblings preserved. New exclusive reconciliation/commit receipts record successful nonforced push, no mutation retried and shared checkout/index untouched. Current-main test/actual merge and final publication steps remain; neither target DOI allocated yet. Both clean final reviewer decisions and exact root clearances checkpointed next.
+
+
+### 2026-10-21T16:32:19.293074+00:00 — PR399 current-main synchronization, exact merge and one staged target
+
+Completion estimate:27%. PR399 marked ready after fresh full gates. GitHub preview remained at67ee... while currentmain0a284...; guarded update-branch from5a81... merged currentmain into PR only, creating8758d9b730f295ccb6ef6020fd776ca1d1945666 with exact parents[5a81...,0a284...]. Full source11/pub5/QUEUE/siblings/directories relative to currentmain verified. Fresh testmerged49cb... then actual merge1a80b81ce940d9f67d9a45b48176b47ab266a652 both verified exact parents[0a284...,8758...] and preservation. Current-main selected package rechecked before stage. Guarded stage is in flight; saved local state now contains single allocated target23539283. No publication or spreadsheet write yet; preserve/reconcile this exact ID if interrupted, never allocate another. Shared checkout/index untouched.
+
+
+### 2026-10-21T16:33:42.729781+00:00 — PR399 exact package staged once
+
+Completion estimate:27%. Guarded per-mutation live gates completed stage on single saved production record23539283, state ready_to_publish. PDF109650bytes/f1fb805e... and ZIP174397bytes/0ef15978... match reviewed release; metadata normalizations empty. No publication or row yet. Record ID/state/intents preserved; next action is freshly gated publication of this existing record, never another allocation. Both papers full scientific reviews complete;280 exact v1.1 revision remains next after399 fully recorded.

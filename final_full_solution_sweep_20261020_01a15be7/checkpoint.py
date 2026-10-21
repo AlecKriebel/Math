@@ -372,3 +372,9 @@ NAMES.extend(['audits/pr0280_30000156/ROOT_FINAL_REPAIR_ACCEPTANCE.json', 'audit
 
 # Exact399 reviewed branch outcome; no blind retry after REST lag.
 NAMES.extend(['audits/pr0399_30001179/PUBLICATION_BRANCH_PUSH_INTENT.json', 'audits/pr0399_30001179/PUBLICATION_BRANCH_OBJECTS_VERIFIED.json', 'audits/pr0399_30001179/PUBLICATION_BRANCH_COMMIT.json', 'audits/pr0399_30001179/PUBLICATION_BRANCH_RECONCILIATION.json'])
+
+# Guarded readiness/sync, exact actual merge and durable single-record stage intent.
+NAMES.extend(['audits/pr0399_30001179/PR_READY_INTENT.json', 'audits/pr0399_30001179/PR_READY_RESPONSE.json', 'audits/pr0399_30001179/PR_READY_VERIFIED.json', 'audits/pr0399_30001179/STALE_TEST_MERGE_DIAGNOSTIC.json', 'audits/pr0399_30001179/BRANCH_MAIN_SYNC_INTENT.json', 'audits/pr0399_30001179/BRANCH_MAIN_SYNC_RESPONSE.json', 'audits/pr0399_30001179/BRANCH_MAIN_SYNC_VERIFIED.json', 'audits/pr0399_30001179/MERGE_INTEGRATION_ACCEPTANCE.json', 'audits/pr0399_30001179/PR_MERGE_INTENT.json', 'audits/pr0399_30001179/PR_MERGE_RESPONSE.json', 'audits/pr0399_30001179/PR_MERGE_VERIFIED.json', 'audits/pr0399_30001179/ROOT_BEFORE_STAGE_MAIN_PACKAGE_CHECK.json', 'audits/pr0399_30001179/ZENODO_STAGE_INTENT.json'])
+
+# Exact existing Zenodo draft stage receipt, no duplicate allocation.
+NAMES.extend(["audits/pr0399_30001179/ZENODO_STAGE.json"])
