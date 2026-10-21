@@ -117,4 +117,22 @@
 ## 2026-10-21T01:33:59.628836+00:00 — Pinned exclusion mechanism verified — estimated completion8%
 
 - Independent final tooling review passed all28 real-Git cases; all112 prior exclusion receipts through133 match complete pinned paths, QUEUE blobs and independently parsed added rows. Eighteen documented current-classification corrections are distinct from receipt inconsistencies; no prior false exclusion found.
-- Cursor177 after sequential processing through176; existing publications18/19? Exact count remains authoritative in dispositions.jsonl, no approximate success claim. Current claimed-solved states and noncanonical/missing statuses always stop for root.
+- Cursor177 after sequential processing through176; 19 existing publications accounted for beforePR177. Current claimed-solved states and noncanonical/missing statuses always stop for root.
+
+## 2026-10-21T01:39:31.512453+00:00 — Ordered sweep throughPR200 — estimated completion10%
+
+- 192 PRs considered contiguously; dispositions {"skip_entirely_already_published": 28, "skip_explicit_non_claimed_solved": 162, "skip_priority_gate_not_met": 2}. No new scientific publication, PR mutation or tracker write. Existing qualified or attributed papers are counted as publication coverage, not new full-solution/novelty certifications.
+- Third checkpoint9aa864438b5f1abe7128d13ca0c87f2cc258f05a pushed/verified on main; shared checkout/index preserved. Fresh independent coverage adversary is examining97–178 while root continues upward from201.
+
+## 2026-10-21T01:45:33.262046+00:00 — Ordered sweep throughPR239 — estimated completion14%
+
+- 231 PRs9–239 disposed contiguously: {"skip_entirely_already_published": 40, "skip_explicit_non_claimed_solved": 189, "skip_priority_gate_not_met": 2}. No new paper/DOI, PR mutation or tracker write. All existing records retain explicit scope and priority qualifications.
+- Independent97–178 false-negative/publication-identity audit passed82 PRs,11 own DOI rows and23 scientific payloads, with no missed eligible result or repair. Policy now explicitly accepts exact source-bound closing corrections alongside changed descriptions.
+- Missing local commit objects temporarily paused212 and234; read-only pinned fetches restored exact comparisons, and both corresponding already_solved patches then passed. No unbound receipt was excluded.
+- Fresh live boundary1389,1,381 in-scope PRs, no gaps. Cursor240, no restart or fixed upper cap.
+
+## 2026-10-21T02:02:19.846238+00:00 — PR248 publication reconciliation — estimated completion14%
+
+- Sequential cursor now249, all240 PRs9–248 considered: {"reconcile_existing_publication_record": 1, "skip_entirely_already_published": 40, "skip_explicit_non_claimed_solved": 197, "skip_priority_gate_not_met": 2}. Existing critical-wave publication23358014 and its PDF/source/verification ZIP are verified. Added only missing catalogue30004630 and PR248 reference to existing D87, preserving all prior notes; whole-sheet readback confirms exactly one changed cell and one primary DOI. No new publication or row.
+- Independent read-only reviewer confirmed exact source/result identity, live ledger uniqueness, conditional response and all public payload checks; ENOSPC prevented saving its report, so that artifact remains pending.
+- Disk allocation repeatedly failed. Removed only this efforts disposable virtualenv/bytecode and cache, preserving scientific sources, pins and receipts. A small allocation probe now passes, but only about150MB is available; requested additional free space and proceed cautiously. Shared checkout/index and unrelated work remain untouched.

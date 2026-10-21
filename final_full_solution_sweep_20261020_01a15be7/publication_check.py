@@ -34,6 +34,11 @@ def main():
     parser.add_argument('--download',action='store_true')
     args=parser.parse_args()
     if args.pr<9:raise RuntimeError('Outside sweep scope')
+    inventory=json.loads((ROOT/'rest_inventory.json').read_text())
+    pr_metadata=next(p for p in inventory['pull_requests'] if p['number']==args.pr)
+    # A DOI in a PR is a lead, not a scientific-identity verdict. Older tracker
+    # notes may identify the original source but omit both numeric catalog/PR IDs.
+    body_records={int(v) for v in re.findall(r'10\.5281/zenodo\.(\d+)',pr_metadata['body'] or '')}
     raw=ROOT/'raw'/f'pr{args.pr:04d}'
     if raw.is_symlink() or not raw.resolve().is_relative_to(ROOT):raise RuntimeError('Unsafe output')
     raw.mkdir(parents=True,exist_ok=True)
@@ -51,8 +56,12 @@ def main():
             if re.search(r'(?<!\d)'+re.escape(identifier)+r'(?!\d)',joined):reasons.append('problem_id:'+identifier)
         for term in args.term:
             if term.casefold() in joined.casefold():reasons.append('term:'+term)
+        if len(row)>=3:
+            primary=re.fullmatch(r'(?:https?://doi\.org/)?10\.5281/zenodo\.(\d+)',str(row[2]).strip())
+            if primary and int(primary.group(1)) in body_records:
+                reasons.append('PR_body_DOI_primary_column_lead')
         if reasons:matches.append({'row':n,'values':row,'reasons':reasons})
-    records=set(args.record)
+    records=set(args.record)|body_records
     for match in matches:
         for s in match['values']:
             records.update(int(v) for v in re.findall(r'10\.5281/zenodo\.(\d+)',str(s)))

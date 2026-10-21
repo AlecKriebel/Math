@@ -27,8 +27,12 @@ NAMES=['.gitignore','README.md','RESEARCH_LOG.md','STATE.json',
        'PR0009_PENDING.json','PR0009_DISPOSITION.json',
        'PR0009_PUBLICATION_LEAD_VERIFICATION.json','dispositions.jsonl',
        'CLASSIFICATION_POLICY.md','INCIDENT_RECOVERY.json','advance_clear_exclusions.py',
-       'record_decision.py','publication_check.py','EVIDENCE_COMPACTION.json',
+       'record_decision.py','publication_check.py','repair_ledger_identity.py','EVIDENCE_COMPACTION.json',
        'CURRENT_CANONICAL_QUEUE_SNAPSHOT.json',
+       'advance_with_objects.py','PR0248_LEDGER_REPAIR.json',
+       'PR0248_LEDGER_REPAIR_PROPOSAL.json',
+       'reviews/range0097_0178_adversary/REVIEW.md',
+       'reviews/range0097_0178_adversary/check_results.json',
        'reviews/early_classification_adversary/REVIEW.md',
        'reviews/early_classification_adversary/check_results.json',
        'reviews/early_classification_adversary/GWS_GENERATION_INCIDENT.json',
@@ -69,7 +73,7 @@ def run(args,*,env=None,input=None,check=True):
 
 
 def live_main():
-    p=run(['gh','api','repos/AlecKriebel/Math/git/ref/heads/main'])
+    p=run(['gh','api','--hostname','github.com','repos/AlecKriebel/Math/git/ref/heads/main'])
     return json.loads(p.stdout)['object']['sha']
 
 
@@ -105,7 +109,7 @@ def main():
     # Named per-PR receipts are authored only in this dedicated effort folder.
     # This is a filename whitelist, not a shared-worktree git add or broad glob.
     receipt_names=sorted(p.name for p in ROOT.iterdir()
-                         if re.fullmatch(r'PR\d{4}_(?:DISPOSITION|PUBLICATION_VERIFICATION)\.json',p.name))
+                         if re.fullmatch(r'PR\d{4}_(?:DISPOSITION|PUBLICATION_VERIFICATION|LEDGER_REPAIR|LEDGER_REPAIR_PROPOSAL)\.json',p.name))
     for name in dict.fromkeys(NAMES+receipt_names):
         path=ROOT/name
         relative=Path(name)

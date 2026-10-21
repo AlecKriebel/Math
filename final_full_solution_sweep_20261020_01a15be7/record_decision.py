@@ -20,17 +20,21 @@ def record(pr,decision):
     result={'pr':pr,'processed_at':dt.datetime.now(dt.timezone.utc).isoformat(),
             'pr_state':metadata['state'],'inventory_head_sha':metadata['headRefOid'],
             'inventory_base_sha':metadata['baseRefOid'],
+            'eligibility_receipt_source':{'file_list_source':evidence['file_list_source'],
+                'pinned_comparison':evidence.get('pinned_comparison'),'file_count':evidence['file_count']},
             'new_mathematical_audit':False,'new_publication':False,'spreadsheet_mutation':False,
             'requires_final_live_head_recheck':True,**decision}
     atomic_json(ROOT/f'PR{pr:04d}_DISPOSITION.json',result)
     with (ROOT/'dispositions.jsonl').open('a') as f:f.write(json.dumps(result,sort_keys=True)+'\n')
     state.update(next_pr=pr+1,last_completely_processed_pr=pr,completed_pr_count=pr-8,
                  active_candidate=None,status='ordered_sweep')
+    if decision.get('ledger_repair'):
+        state.setdefault('ledger_repairs',[]).append(decision['ledger_repair'])
     atomic_json(ROOT/'STATE.json',state)
     return result
 
 
-def published(pr,problem_ids,row,doi,reason):
+def published(pr,problem_ids,row,doi,reason,ledger_repair=None):
     leads=json.loads((ROOT/f'PR{pr:04d}_PUBLICATION_LEADS.json').read_text())
     normalized=doi.removeprefix('https://doi.org/')
     matches=[x for x in leads['matches'] if x['row']==row and len(x['values'])>=3
@@ -42,10 +46,17 @@ def published(pr,problem_ids,row,doi,reason):
         **rec,'checked_at':leads['checked_at'],'ledger_row':row,
         'root_identity_review':reason,'identity_comparison_fields':['original problem and source alias','mathematical objects/hypotheses/conclusion','PR reference','paper title','DOI'],
         'review_type':'existing-publication identity and payload coverage, not a new proof/novelty audit'})
-    return record(pr,{'problem_ids':problem_ids,'current_classification':'published',
+    decision={'problem_ids':problem_ids,'current_classification':'published',
         'disposition':'skip_entirely_already_published','duplicate_check':'already_published_correctly_recorded',
         'doi':normalized,'ledger_row':row,'ledger_checked_at':leads['checked_at'],
-        'reason':reason,'publication_evidence':f'PR{pr:04d}_PUBLICATION_VERIFICATION.json'})
+        'reason':reason,'publication_evidence':f'PR{pr:04d}_PUBLICATION_VERIFICATION.json'}
+    if ledger_repair:
+        repair=json.loads((ROOT/ledger_repair).read_text())
+        if repair['status']!='verified' or repair['doi']!=normalized or repair['row']!=row or repair['new_row'] or repair['new_publication']:
+            raise RuntimeError('Ledger repair not verified for this publication')
+        decision.update(disposition='reconcile_existing_publication_record',
+                        spreadsheet_mutation=repair['updated'],ledger_repair=ledger_repair)
+    return record(pr,decision)
 
 
 def withdrawn(pr,problem_ids,reason,correction_reference):
