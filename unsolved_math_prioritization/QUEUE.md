@@ -310,7 +310,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 299 | 30005584 / OWR-14297732-013 | Degrees of Asymptotically Conical Expanders Under Connected Sum | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 300 | 30002709 / OWR-13351-007 | Essential Finite Generation of Valuation Rings | 0.1733 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 301 | 30002960 / OWR-13940-008 | Three-Dimensional Coloring Number of the Sphere | 0.1729 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 302 | 6700069 / AMR-066-0069 | Scalar Curvature Question [?73]: [c] LetS be a Riemannian manifold homeomorphic to the connected sum of twenty copies ofS2× S2 | 0.1720 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 302 | 6700069 / AMR-066-0069 | Scalar Curvature Question [?73]: [c] LetS be a Riemannian manifold homeomorphic to the connected sum of twenty copies ofS2× S2 | 0.1720 | 6.0 | 3 | 2017 | already_solved | 0/5 |  | BGM2024 Theorem2.3 gives a negative answer: logarithmic loss for every ball map, plus O(R^3) for any fixed smooth fundamental-form representative; controlled geometric cocycle scope. |  |
 | 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 304 | 30001781 / OWR-5152-008 | Maximal Submatrix Bounds Without Unconditionality | 0.1717 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 305 | 30000849 / OWR-1729-002 | Scaling Profiles in Addition–Coagulation Models | 0.1712 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
