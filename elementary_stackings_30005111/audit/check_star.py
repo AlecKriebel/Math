@@ -1,0 +1,31 @@
+from itertools import permutations, product
+
+def primitive(w):
+    return all((len(w) % p or w != w[:p] * (len(w) // p) for p in range(1, len(w))))
+
+def works(w, order):
+    n = len(w)
+    h = [None] * n
+    for rank, v in enumerate(order):
+        h[v] = rank
+    for i in range(n):
+        a, b = sorted((h[i], h[(i + 1) % n]))
+        for j in range(i):
+            if w[i] != w[j]:
+                continue
+            c, d = sorted((h[j], h[(j + 1) % n]))
+            if max(a, c) < min(b, d):
+                return False
+    return True
+for n in range(2, 7):
+    failed = []
+    for w in product('ab', repeat=n):
+        if not primitive(w):
+            continue
+        ok = any((works(w, p) for p in permutations(range(n))))
+        if not ok:
+            failed.append(''.join(w))
+    print(n, 'primitive unstackable words', failed)
+w = 'ababa'
+valid = [p for p in permutations(range(len(w))) if works(w, p)]
+print('ababa valid vertex orders:', valid)
