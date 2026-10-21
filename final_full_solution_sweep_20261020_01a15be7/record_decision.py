@@ -1,8 +1,10 @@
 """Root-agent decisions only; this module does not infer scientific identity."""
 import datetime as dt
+import hashlib
 import json
 from pathlib import Path
 from sweep_io import atomic_json
+from publication_check import zenodo_dois
 
 ROOT=Path(__file__).resolve().parent
 
@@ -20,6 +22,8 @@ def record(pr,decision):
     result={'pr':pr,'processed_at':dt.datetime.now(dt.timezone.utc).isoformat(),
             'pr_state':metadata['state'],'inventory_head_sha':metadata['headRefOid'],
             'inventory_base_sha':metadata['baseRefOid'],
+            'inventory_updated_at':metadata.get('updatedAt'),
+            'inventory_body_sha256':hashlib.sha256((metadata.get('body') or '').encode()).hexdigest(),
             'eligibility_receipt_source':{'file_list_source':evidence['file_list_source'],
                 'pinned_comparison':evidence.get('pinned_comparison'),'file_count':evidence['file_count']},
             'new_mathematical_audit':False,'new_publication':False,'spreadsheet_mutation':False,
@@ -38,7 +42,7 @@ def published(pr,problem_ids,row,doi,reason,ledger_repair=None):
     leads=json.loads((ROOT/f'PR{pr:04d}_PUBLICATION_LEADS.json').read_text())
     normalized=doi.removeprefix('https://doi.org/')
     matches=[x for x in leads['matches'] if x['row']==row and len(x['values'])>=3
-             and str(x['values'][2]).removeprefix('https://doi.org/').strip()==normalized]
+             and zenodo_dois(x['values'][2])=={normalized}]
     records=[x for x in leads['records'] if x['doi']==normalized and x['published'] and x['doi_resolution']['status']==200]
     if len(matches)!=1 or len(records)!=1:raise RuntimeError('Publication/row lead not verified')
     rec=records[0]

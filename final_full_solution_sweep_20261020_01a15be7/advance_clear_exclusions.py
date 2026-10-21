@@ -6,6 +6,7 @@ or publication status stops for a root-agent decision. Never audits mathematics,
 changes a PR, publishes, or writes the ledger.
 """
 import datetime as dt
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -95,6 +96,8 @@ def main():
         record={'pr':n,'processed_at':dt.datetime.now(dt.timezone.utc).isoformat(),
                 'problem_ids':ids,'pr_state':prs[n]['state'],
                 'inventory_head_sha':prs[n]['headRefOid'],'inventory_base_sha':prs[n]['baseRefOid'],
+                'inventory_updated_at':prs[n].get('updatedAt'),
+                'inventory_body_sha256':hashlib.sha256((prs[n].get('body') or '').encode()).hexdigest(),
                 'explicit_pr_queue_statuses':[status],'current_classification':status,
                 'disposition':'skip_explicit_non_claimed_solved',
                 'reason':'Corresponding canonical QUEUE change explicitly has '+status+'; excluded by user eligibility rule2.',
