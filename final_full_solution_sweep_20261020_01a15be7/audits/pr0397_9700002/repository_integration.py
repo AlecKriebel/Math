@@ -48,7 +48,7 @@ def leaves(commit, path):
 
 def blob(commit, path):
     parent, name = path.rsplit("/", 1)
-    item = subtree(commit, parent).get(name)
+    item = subtree(commit, parent, False).get(name)
     if item is None or item["type"] != "blob" or item["mode"] != "100644":
         raise RuntimeError("Absent or unexpected regular file: " + path)
     value = api("git/blobs/" + item["sha"])

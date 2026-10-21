@@ -38,7 +38,7 @@ def desired_row(identifier):
         "claim. Classical transport/concentration, HOT, prior congestion/percolation models and Aldous's2005 tree-realism "
         "reservation credited. Bounded primary priority audit found no authenticated exact earlier construction/theorem; "
         "final1993 KMN journal body, unindexed/unpublished work and editions remain coverage limits. "
-        "Three independent mathematical/source families and two sequential new full-package AI adversaries completed. "
+        "Three independent mathematical/source families and sequential new full-package AI adversarial reviews completed after repairs. "
         "Original24 files preserved; PDF plus editable-source/verification ZIP and a narrowly tested replay derivative "
         "with exact active output and only enumerated old diagnostic allowances. Historical unpinned byte replay is not claimed. "
         "Extensive AI use in research, proof/model development, computation, writing and auditing; no formal independent human "
