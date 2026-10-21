@@ -1870,7 +1870,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1859 | 20000204 / AIM-ALGEBRAIC_GEOMETRY-0204 | Edge and tritangent surfaces are the only generic smooth visual-hull event types | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1860 | 20000566 / AIM-ANALYSIS-0098 | Fixed-diagonal geometry and an exact 4x4 two-paving profile | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1861 | 20000691 / AIM-ANALYTIC_NUMBER_THEORY-0055 | Quadratic moments, Poisson squares, and swap terms | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1862 | 20000707 / AIM-ANALYTIC_NUMBER_THEORY-0071 | Smoothed second moments and the sigma=1 boundary term | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1862 | 20000707 / AIM-ANALYTIC_NUMBER_THEORY-0071 | Smoothed second moments and the sigma=1 boundary term | 0.0495 | 5.0 | 3 | unknown | unsolved | 5/5 |  | Partial/expository: exact leading zeta(2sigma_T), fixed-sigma and classical endpoint consequences, conditional compact-weight endpoint implication, missing uniform increment, logical countermodel and fixed-X renormalization; no growing-window theorem or full AIM resolution. See [audited package](../zeta_boundary_moments_20000707/README.md). |  |
 | 1863 | 20000721 / AIM-ANALYTIC_NUMBER_THEORY-0085 | Orbifold expansions of the mirror-quintic free energies | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1864 | 20001237 / AIM-COMPUTATION-0075 | Saturation-aware exceptional likelihood fibers and the 2x2 independence locus | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1865 | 20001341 / AIM-CRYPTOGRAPHY-0028 | Explicit near-minimal units from the golden-ratio radical | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
