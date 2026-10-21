@@ -1861,7 +1861,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1850 | 30004632 / OWR-4990379-002 | Global Optimality of Domain-Decomposition Transport Algorithms | 0.0508 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 1851 | 30005646 / OWR-14297740-018 | Strict Higher Étale-Homotopy Obstructions over Global Fields | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1852 | 30005647 / OWR-14297740-019 | Next-Most-Probable Galois Groups of Random Polynomials | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 1853 | 6000013 / AMR-059-0013 | Affine Vertices and Inflection Points | 0.0499 | 5.0 | 3 | 1998 | queued | 0/5 |  |  |  |
+| 1853 | 6000013 / AMR-059-0013 | Affine Vertices and Inflection Points | 0.0499 | 5.0 | 3 | 1998 | unsolved | 5/5 |  | 2026-10-21: Three scoped partials under the noninflectional sextactic convention: complex-compatible incomplete non-equiaffine spiral torus V=I=0; periodic graphs have sharp V>=I; convex ovals I=0,V=2n (n>=3) exclude a fixed V-I from topology/homotopy/I alone. General historical relation remains unsolved; no novelty claim; Sasaki full text uninspected. Proofs, audits and reproducible checks: affine_vertices_6000013/. |  |
 | 1854 | 30005762 / OWR-14298158-007 | Rationality Below Growth Rate Four | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1855 | 30006081 / OWR-14298796-001 | Adjoint-Free Approximation of Nonsymmetric Low-Rank Matrices | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1856 | 1963 / EP-156 | Erdős Problem #156 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
