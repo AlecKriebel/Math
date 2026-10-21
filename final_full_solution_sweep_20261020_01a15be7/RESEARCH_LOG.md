@@ -567,3 +567,9 @@ Existing publications815,822,826 verified with unique rows84/91/96, public exact
 
 ### 2026-10-21T19:18:18.571828+00:00 — Independent742–789review accepted; overall57%
 Read fullreport; all2406sealedpayloads and126capturedinputs verify. Private-copy sealed checker passed15284checks/mode with identical outputs (additional seal inventory checks explain increase from10470unsealed). All48cases pass, eight accuratelyqualifiedexistingpublications/355originalblobs complete.1199manifestedentries include29validemptyhistoricaloutputs; count does not assert positive size.26changingopen-PRsynthetictestmergeSHAs disclosed separately from stableactualheads. Only expected global cursor/journal have advanced. No source or decision repair.
+
+### 2026-10-21T19:24:31.703020+00:00 — Checkpoint recovery and fresh inventory; overall57%
+Fresh immutable-tree/ref recapture verifies original832checkpoint0eb09e0f2ec5bf85f945aff3ae9e6c07e13abad7 with6448selectedfiles/158changes, everyunselectedleafpreserved. No repeat push. Initial post-push ancestry check failed; no unsupported cause asserted. Full inventory refreshed19:21UTC remains1446/1438inscope with0changedPRmetadata/no numeric gaps. Bounded790–832coverageadversaryassigned while833two-family recheck finishes.
+
+### 2026-10-21T19:29:14.325481+00:00 — PR833classified; through837; overall58%
+Twofreshindependentfamilies androotexplicitcochain/dualityreconstruction confirm failure of entire citeddegree7lowerdetector.83sealedreviewfilesverify; both copiedfiniteprograms reproduce normal/-O outputs. Fullordinarysectiongenusequalityunverified, strongerliteralOWRformulationunaddressed; actual2025finalproofnotretrieved andnotdeclaredfalse. Existingclosure6185756578retained, verifiedpartialupper<=8 andall28originals preserved. Explicitnegatives834–837advanced; cursor838. No new DOI, spreadsheet, merge, closureorcomment.
