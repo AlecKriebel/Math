@@ -90,7 +90,7 @@ def public_files(value, *, allow_legacy=False):
 def ledger_urls(values):
     """Extract complete URL tokens, allowing ordinary prose/Markdown endings."""
     return {token.rstrip('.,;:!?)]}') for token in
-            re.findall(r'https?://[^\s<>\"\']+', ' '.join(values))}
+            re.findall(r'(?<![\w+./%:@-])https?://[^\s<>\"\']+', ' '.join(values))}
 
 
 def verify_resolution(value, record, doi):
@@ -231,7 +231,7 @@ def snapshot():
     if any(number not in known for number in numbers):
         raise RuntimeError('Journal contains a number absent from the actual PR inventory')
     for entry in journal:
-        saved = json.loads((ROOT/('PR%04d_DISPOSITION.json' % entry['pr'])).read_text())
+        saved = evidence_json('PR%04d_DISPOSITION.json' % entry['pr'])
         if saved != entry:
             raise RuntimeError('Per-PR disposition differs from journal: '+str(entry['pr']))
     own = state.get('completed_publications', [])
