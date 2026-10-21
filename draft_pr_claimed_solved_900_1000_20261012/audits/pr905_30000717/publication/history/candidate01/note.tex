@@ -1,0 +1,234 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,needspace}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={A Robinson counterexample to ideal-only tangency certificates},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\SOS}{\sum S^2}
+\title{A Robinson counterexample to\\ideal-only tangency certificates}
+\author{Alec Kriebel\\\small Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{12 October 2026 \quad Version 1.0\\\small Unrefereed research note}
+\begin{document}
+\maketitle
+\begin{abstract}
+The classical Robinson sextic is nonnegative, but adding any nonnegative
+constant does not make it a sum of polynomial squares modulo the ideal of
+polynomials vanishing on its real tangency variety. This rules out both the
+exact radical certificate and the positive-constant certificate in the proposed
+unrestricted replacement of the gradient ideal. The same obstruction applies
+to the separate-cross-product ideal printed in the original report. Ten zero
+lines force the low-degree homogeneous parts of all square summands to vanish;
+an additional coordinate axis then makes the certificate impossible. The proof
+allows arbitrarily many summands of arbitrary degree and is entirely elementary.
+We credit the classical form and zero-set method, and make no claim of first
+bibliographic priority.
+\end{abstract}
+
+\section{The proposed certificates}
+For $S=\mathbb R[x,y,z]$, let $\SOS$ denote finite sums of squares of elements of
+$S$. For $f\in S$, write $f_x,f_y,f_z$ for its partial derivatives and set
+\[
+ J_f=(yf_x-xf_y,\;zf_x-xf_z,\;zf_y-yf_z),\qquad
+ K_f=(yf_x,xf_y,zf_x,xf_z,zf_y,yf_z).
+\]
+For an ideal $L\subseteq S$, define
+\[
+ V_{\mathbb R}(L)=\{u\in\mathbb R^3:h(u)=0\text{ for every }h\in L\},\qquad
+ I_{\mathbb R}(L)=\{h\in S:h|_{V_{\mathbb R}(L)}=0\}.
+\]
+The ordinary radical is $\sqrt L=\{h:h^N\in L\text{ for some }N\ge1\}$.
+In particular $L\subseteq\sqrt L\subseteq I_{\mathbb R}(L)$.
+
+Schweighofer's Conjecture~2 \cite[p.~811]{report} proposes removing the
+minimum-attainment assumption from the gradient-ideal equivalence in
+Theorem~1 \cite[p.~810]{report} by replacing that ideal. The four conditions
+are global nonnegativity, nonnegativity on the real variety, membership in
+$\SOS+\sqrt L$, and membership of $f+\varepsilon$ in $\SOS+L$ for every
+$\varepsilon>0$. The printed replacement displays separate products, giving
+$K_f$ in three variables. The later catalogue formulation (UnsolvedMath record 30000717)\footnote{\url{https://huggingface.co/datasets/ulamai/UnsolvedMath}.} uses the tangency
+minors, giving $J_f$. We treat both explicit readings; we do not assert an
+author-approved correction of the printed formula. Removing an attainment
+assumption includes polynomials whose minimum \emph{is} attained.
+
+\Needspace{10\baselineskip}
+\begin{theorem}\label{thm:main}
+Let
+\begin{align*}
+ R={}&x^6+y^6+z^6-x^4y^2-x^2y^4-x^4z^2-x^2z^4\\
+    &\hspace{32mm}-y^4z^2-y^2z^4+3x^2y^2z^2.
+\end{align*}
+Then $R\ge0$ on $\mathbb R^3$, but for $L=J_R$ or $L=K_R$ and every real
+$\varepsilon\ge0$,
+\[
+ R+\varepsilon\notin\SOS+I_{\mathbb R}(L).
+\]
+Consequently $R\notin\SOS+\sqrt L$, and
+$R+\varepsilon\notin\SOS+L$ for every $\varepsilon>0$.
+\end{theorem}
+Thus both proposed certificate implications from global nonnegativity fail.
+Robinson's form is classical; it already appears in the same report
+\cite[p.~798, equation~(2)]{report}. Our purpose is its explicit application
+to these ideal-only certificates. The classical non-SOS property alone would
+not suffice, since an ideal remainder could change a representation.
+
+\section{The elementary zero-set obstruction}
+Put $a=x^2$, $b=y^2$, $c=z^2$ and write $R=F(a,b,c)$. Direct expansion gives
+\[
+ F=(a-b)^2(a+b-c)+c(a-c)(b-c).
+\]
+The symmetric polynomial $F$ may be evaluated after ordering $a\ge b\ge c\ge0$;
+both displayed terms are then nonnegative. Hence $R\ge0$, and its infimum is
+zero, attained at the origin.
+
+Let $Z$ consist of the ten vectors
+\[
+ (1,s,t),\quad (1,s,0),\quad (1,0,t),\quad (0,1,t),
+ \qquad s,t\in\{-1,1\},
+\]
+where each applicable sign varies independently. Substitution gives $R(v)=0$
+for every $v\in Z$, and homogeneity gives $R(uv)=0$ for every real $u$.
+
+\begin{lemma}\label{lem:cubics}
+A homogeneous cubic vanishing on $Z$ is zero. The same holds in degrees zero,
+one and two.
+\end{lemma}
+\begin{proof}
+The six vectors with a zero coordinate force the cubic to have the form
+\[
+ p=A x(x^2-y^2-z^2)+B y(y^2-x^2-z^2)
+   +C z(z^2-x^2-y^2)+Dxyz.
+\]
+At $(1,s,t)$ its value is $-A-Bs-Ct+Dst$. Summing these four values against
+the sign characters $1,s,t,st$ gives $-4A,-4B,-4C,4D$, respectively. Thus all
+four coefficients vanish. If a homogeneous degree-$d$ polynomial $p_d$, with
+$0\le d<3$, vanishes on $Z$, then $x^{3-d}p_d$ is such a cubic. Since $S$ is an
+integral domain, $p_d=0$.
+\end{proof}
+The ten-zero cubic obstruction is classical; Reznick gives the same ten
+directions and cubic argument in \cite[Section~4(b), p.~259]{reznick}.
+We include the full argument, then use whole
+zero lines and an additional axis to address the ideal remainder and positive
+constant perturbations.
+
+Every point of the lines $\mathbb Rv$, $v\in Z$, is a global minimizer of $R$.
+Its gradient is therefore zero, and each line lies in both $V_{\mathbb R}(J_R)$
+and $V_{\mathbb R}(K_R)$. Both varieties also contain the axis $(u,0,0)$:
+there $\nabla R=(6u^5,0,0)$, all cross-products vanish, and $R=u^6$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Fix $\varepsilon\ge0$ and either ideal $L$. Suppose
+\[
+ R+\varepsilon=\sum_{j=1}^m q_j^2+h,
+ \qquad q_j\in S,\quad h\in I_{\mathbb R}(L).
+\]
+On every zero line, $h$ vanishes and
+$\varepsilon=\sum_j q_j(uv)^2$ for all real $u$. Hence each real univariate
+polynomial $q_j(uv)$ is bounded in absolute value by $\sqrt\varepsilon$ on
+$\mathbb R$, and must be constant. Write $q_j=\sum_d q_{j,d}$ in homogeneous
+parts. Comparing powers of $u$ gives $q_{j,d}(v)=0$ for every $d\ge1$ and
+$v\in Z$. Lemma~\ref{lem:cubics} yields
+$q_{j,1}=q_{j,2}=q_{j,3}=0$.
+
+On the coordinate axis the certificate gives
+\[
+ u^6+\varepsilon=\sum_j q_j(u,0,0)^2.
+\]
+Every nonzero restriction on the right has degree at most three. Indeed, if
+$D>3$ is the largest such degree, the coefficient of $u^{2D}$ is a nonempty
+sum of squares of nonzero real leading coefficients, which cannot cancel.
+But the degree-one, degree-two and degree-three homogeneous parts have all
+vanished identically. The restrictions must therefore be constant, contradicting
+the nonconstant left side. The inclusions preceding the theorem give its
+remaining conclusions.
+\end{proof}
+Constants were retained throughout: when $\varepsilon>0$ the $q_j$ need not
+vanish on the zero lines. The proof imposes no global degree bound on the
+summands, radicality hypothesis, or finiteness condition on the varieties.
+
+\section{Formulation boundaries}
+The following standard sphere-minimization argument also underlies the
+tangency-set infimum identity in \cite[Section~7.2.3, Lemma~7.21]{laurent}.
+For any polynomial $f$ in $n$ variables, nonnegativity on all of $\mathbb R^n$
+is equivalent to nonnegativity on the real variety of its tangency minors.
+If $f(w)<0$ and $w=0$, the origin already belongs to that variety. Otherwise
+minimize $f$ on the sphere of radius $\|w\|$. At a minimizer $v$, Lagrange
+multipliers give $\nabla f(v)=\lambda v$ and $f(v)\le f(w)<0$, so all tangency
+minors vanish. This proves the reverse implication without any assumption
+about the global infimum. For the Robinson example, the first two proposed
+conditions therefore hold and both certificates fail.
+
+The literal product reading has a further, separate defect. We use a constant
+shift of the standard nonattaining example in
+\cite[Section~1.6, equation~(6)]{tentacles} and \cite[p.~810]{report}:
+\[
+ Q(x,y)=(1-xy)^2+y^2-\tfrac12,\qquad K_Q=(yQ_x,xQ_y).
+\]
+Here $yQ_x=2y^2(xy-1)$ and $xQ_y=2x(x(xy-1)+y)$. The first equation forces
+$y=0$ or $xy=1$. The second then forces $x=0$ in the former case, and equals
+$2$, a contradiction, in the latter. Thus $V_{\mathbb R}(K_Q)=\{(0,0)\}$.
+Nevertheless $Q(0,0)=1/2$ and $Q(2,1/2)=-1/4$. Its infimum $-1/2$ is not
+attained: equality would require both $y=0$ and $xy=1$, whereas
+$Q(1/u,u)=u^2-1/2$ approaches the infimum. This diagnostic applies only to the
+product reading; it does not negate the tangency-minor equivalence just proved.
+
+For the actual gradient ideal $G_R=(R_x,R_y,R_z)$, Euler's identity gives
+$6R=xR_x+yR_y+zR_z$, hence $R\in G_R$. There is no contradiction with the
+gradient-ideal theorem. Likewise the gradient-tentacle inequalities
+\cite{tentacles} and truncated tangency certificates
+\cite{truncated,gcv} use additional inequalities and SOS-multiplier terms;
+they are different certificates, which this note does not refute.
+
+\section*{Verification, attribution and review status}
+The accompanying source archive preserves the original candidate and its
+historical audits, fresh independent reviews, and exact reproduction controls.
+The cubic evaluation determinant is $-128$ in the stated monomial order in
+the original proof. Symbolic checks supplement the universal proof; no numerical
+SDP failure or fixed SOS-degree cutoff is used as evidence of nonexistence.
+Robinson's form and the classical zero-set method retain their prior attribution.
+A bounded priority audit is provided separately; first priority and continued
+open status through 2026 are not established or asserted. Complete 2008 and
+2009 H\`a--Pham article texts were not obtained; comparisons with truncated
+certificates rely on later primary statements, and the access gaps remain in
+the audit.
+
+AI tools were used extensively in developing, checking and presenting this
+argument, including independent AI-assisted adversarial reviews. This note is
+unrefereed and has not received independent human or journal peer review.
+Alec Kriebel is the author of the submitted note. The authored note and
+verification materials are released under CC BY 4.0; cited source documents
+retain their own terms and are not redistributed.
+
+\begin{thebibliography}{9}
+\bibitem{report}
+M.~Schweighofer, \emph{Gradient tentacles and sums of squares}, pp.~810ff.;
+B.~Reznick, \emph{Hilbert's construction of psd polynomials that are not a sum
+of squares}, pp.~797--799; in \emph{Reelle Algebraische Geometrie},
+Oberwolfach Reports 14/2007, pp.~753--820.
+\href{https://doi.org/10.4171/owr/2007/14}{doi:10.4171/owr/2007/14}.
+\bibitem{reznick}
+B.~Reznick, \emph{Some concrete aspects of Hilbert's 17th problem},
+Contemporary Mathematics 253 (2000), 251--272.
+\href{https://doi.org/10.1090/conm/253/03936}{doi:10.1090/conm/253/03936}.
+\href{https://reznick.web.illinois.edu/Paper34.pdf}{Author-hosted published reprint}.
+\bibitem{tentacles}
+M.~Schweighofer, \emph{Global optimization of polynomials using gradient
+tentacles and sums of squares}, SIAM J. Optim. 17 (2006), 920--942.
+\href{https://arxiv.org/abs/math/0511617}{arXiv:math/0511617}.
+\bibitem{truncated}
+H\`a Huy Vui and Pham Tien Son, \emph{Global optimization of polynomials using
+the truncated tangency variety and sums of squares}, SIAM J. Optim. 19 (2008),
+941--951. \href{https://doi.org/10.1137/080719212}{doi:10.1137/080719212}.
+\bibitem{laurent}
+M.~Laurent, \emph{Sums of squares, moment matrices and optimization over
+polynomials}, in M.~Putinar and S.~Sullivant (eds.), \emph{Emerging Applications
+of Algebraic Geometry}, IMA Volumes in Mathematics and its Applications 149,
+Springer, 2009, pp.~157--270.
+\href{https://doi.org/10.1007/978-0-387-09686-5_7}{doi:10.1007/978-0-387-09686-5\_7}.
+\bibitem{gcv}
+F.~Guo, M.~Safey El Din and L.~Zhi, \emph{Global optimization of polynomials
+using generalized critical values and sums of squares}, ISSAC 2010.
+\href{https://perso.lip6.fr/Mohab.Safey/Articles/gcv_sos.pdf}{Author manuscript}.
+\end{thebibliography}
+\end{document}

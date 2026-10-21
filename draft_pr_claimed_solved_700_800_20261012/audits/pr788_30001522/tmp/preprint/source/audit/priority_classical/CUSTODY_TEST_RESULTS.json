@@ -1,0 +1,674 @@
+{
+  "checker_sha256": "81fb18e7d6c59aa95c1d2131d9a5778e9bceb745bba0814f79be3ecbd75c1b46",
+  "distinct_negative_controls": 32,
+  "mutation_scope": "Temporary owned paths only. External baseline files are read-only hardlinks; every mutation uses atomic replacement/unlink, never writes linked original inodes. All original input/source hashes rechecked after controls.",
+  "negative_cases": 64,
+  "nonregular_timeout_seconds": 5,
+  "original_packet_inputs_sources_unchanged": true,
+  "positive_cases": 2,
+  "recorded_utc": "2026-10-16T14:11:54.543143+00:00",
+  "results": [
+    {
+      "control": "positive",
+      "diagnostic": "",
+      "elapsed_seconds": 0.0578,
+      "exitcode": 0,
+      "expected": "PASS",
+      "optimized": false,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e8f6928ddb7b22d65998647ae482de27b48d2f9bbb276a3566c0119c430fce15"
+    },
+    {
+      "control": "wrong_manifest_pin",
+      "diagnostic": "CUSTODY_FAIL: External manifest pin",
+      "elapsed_seconds": 0.0458,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "7db62212a122fb101605104112757042254c29c5fe11c331103ee10c90169c8d",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "wrong_checker_pin",
+      "diagnostic": "CUSTODY_FAIL: External checker pin",
+      "elapsed_seconds": 0.0447,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "925fc7a83b9fc308f73a5f1220d5025dd6eda7191228b42998310bdf1f51e2b4",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "changed_checker_valid_comment",
+      "diagnostic": "CUSTODY_FAIL: External checker pin",
+      "elapsed_seconds": 0.0441,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "925fc7a83b9fc308f73a5f1220d5025dd6eda7191228b42998310bdf1f51e2b4",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "changed_report",
+      "diagnostic": "CUSTODY_FAIL: Byte/hash mismatch",
+      "elapsed_seconds": 0.0463,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "981ec2f893d93c243d0f66916ce9d890681c661bbffb950c030e7e29cc8f5275",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "missing_report",
+      "diagnostic": "CUSTODY_FAIL: Authored closed inventory",
+      "elapsed_seconds": 0.0451,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "c22b37866fb0df771ee3d5ab205dc17032c6e224589f6820980a1930feaa4062",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "extra_file",
+      "diagnostic": "CUSTODY_FAIL: Authored closed inventory",
+      "elapsed_seconds": 0.0449,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "c22b37866fb0df771ee3d5ab205dc17032c6e224589f6820980a1930feaa4062",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "extra_empty_directory",
+      "diagnostic": "CUSTODY_FAIL: Unlisted empty directory",
+      "elapsed_seconds": 0.0451,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "e91fcb3dbcd642ae210edceaa9b018fb42da85952b821de63efd9a8a177bbfd1",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "report_symlink",
+      "diagnostic": "CUSTODY_FAIL: Tree symlink",
+      "elapsed_seconds": 0.0476,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "c264733e541c1b32434e4cec85af3923f17fe74280d0fdbb375b7351c7e41a8e",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "report_fifo",
+      "diagnostic": "CUSTODY_FAIL: Nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr788_30001522/tmp/priority_classical_scratch/priority-classical-controls-yyp4gbsf/case/packet/REPORT.md",
+      "elapsed_seconds": 0.0455,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "2327fa0dc5f948ddd1578fcd86747031afe803e267fb58c3efc67226101025a5",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "manifest_fifo",
+      "diagnostic": "CUSTODY_FAIL: Nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr788_30001522/tmp/priority_classical_scratch/priority-classical-controls-yyp4gbsf/case/packet/MANIFEST.json",
+      "elapsed_seconds": 0.0445,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "a746c4dc2a9a45955fa4004053c8dbe52defa3f66e0fd678e374cdfa761d1e77",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "external_pdf_fifo",
+      "diagnostic": "CUSTODY_FAIL: Nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr788_30001522/tmp/priority_classical_scratch/priority-classical-controls-yyp4gbsf/case/sources/kuhn_lloyd_v1.pdf",
+      "elapsed_seconds": 0.0534,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "01ed47ebb05b9d1f06098b3ac1446f32946a0acf56f02effc416ae00eea93f03",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "external_pdf_changed",
+      "diagnostic": "CUSTODY_FAIL: Byte/hash mismatch",
+      "elapsed_seconds": 0.0536,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "981ec2f893d93c243d0f66916ce9d890681c661bbffb950c030e7e29cc8f5275",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "original_changed",
+      "diagnostic": "CUSTODY_FAIL: Byte/hash mismatch",
+      "elapsed_seconds": 0.0506,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "981ec2f893d93c243d0f66916ce9d890681c661bbffb950c030e7e29cc8f5275",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "original_ledger_rebound",
+      "diagnostic": "CUSTODY_FAIL: Byte/hash mismatch",
+      "elapsed_seconds": 0.0501,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "981ec2f893d93c243d0f66916ce9d890681c661bbffb950c030e7e29cc8f5275",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "selected_record_rebound",
+      "diagnostic": "CUSTODY_FAIL: Frozen selected/eligibility pins",
+      "elapsed_seconds": 0.0489,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "8734db8d4726a867d25b2d5d2d46cb10de975ca923b51493d5011edff575beab",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "input_fifo",
+      "diagnostic": "CUSTODY_FAIL: Nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr788_30001522/tmp/priority_classical_scratch/priority-classical-controls-yyp4gbsf/case/inputs/SELECTED_PUBLIC_RECORD.json",
+      "elapsed_seconds": 0.0456,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "f7763faa47804da29dc630dc1b2f178e58964ab04a6a143b9bf9425d1369b82f",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "input_extra",
+      "diagnostic": "CUSTODY_FAIL: 51-input closure",
+      "elapsed_seconds": 0.0486,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "ad230e02cd69132fb1ddc107b22d53e225e2ba7c332fef213175463b99ab1203",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "input_empty_directory",
+      "diagnostic": "CUSTODY_FAIL: Unlisted empty directory",
+      "elapsed_seconds": 0.0486,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "e91fcb3dbcd642ae210edceaa9b018fb42da85952b821de63efd9a8a177bbfd1",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "input_symlink",
+      "diagnostic": "CUSTODY_FAIL: Tree symlink",
+      "elapsed_seconds": 0.0454,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "c264733e541c1b32434e4cec85af3923f17fe74280d0fdbb375b7351c7e41a8e",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "initial_rebound",
+      "diagnostic": "CUSTODY_FAIL: Initial position changed",
+      "elapsed_seconds": 0.0452,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "20a4350e713c5e0aaf7dd7abec3f36aac8780e5c90851e2ed0f7156bf63a5edf",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "provisional_rebound",
+      "diagnostic": "CUSTODY_FAIL: Provisional finding changed",
+      "elapsed_seconds": 0.0479,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "efed36351e6c2aeb6eb0109a2329dd3fe42579fd90e256fac5e08b243269259d",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "widen_exception_rebound",
+      "diagnostic": "CUSTODY_FAIL: Widened exception set",
+      "elapsed_seconds": 0.0462,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "8e48aaaefee31d0b382ab1dee9bd193dd11bd039618229f4b8413003c7ba9b01",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "widen_input_exception_rebound",
+      "diagnostic": "CUSTODY_FAIL: Widened input exception",
+      "elapsed_seconds": 0.0456,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "5cfca5137aa9a31439db8cff883d061c2373e4b974e32a8058cdbb3c3af18f52",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "duplicate_json_rebound",
+      "diagnostic": "CUSTODY_FAIL: Duplicate JSON key",
+      "elapsed_seconds": 0.0504,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "815b89fb3313348a1ab531f6451546fdacdaed5d23bed1f357fd707e3a773526",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "nonfinite_json_rebound",
+      "diagnostic": "CUSTODY_FAIL: Nonfinite JSON constant",
+      "elapsed_seconds": 0.0499,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "96854f768796ee092631dbbc75910291ef9ac75028cc2ba3f60bb4579fec3950",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "boolean_size_rebound",
+      "diagnostic": "CUSTODY_FAIL: Invalid byte/hash row",
+      "elapsed_seconds": 0.045,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "71df6a87df37ee673d6f4d99620d0f95b140c6a962b81fc7d3382da240419375",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "unsafe_name_rebound",
+      "diagnostic": "CUSTODY_FAIL: Authored closed inventory",
+      "elapsed_seconds": 0.0451,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "c22b37866fb0df771ee3d5ab205dc17032c6e224589f6820980a1930feaa4062",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "novelty_flag_rebound",
+      "diagnostic": "CUSTODY_FAIL: Unsupported verdict flag: firstness_certified",
+      "elapsed_seconds": 0.0498,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "6c656f78a137654f380c9fc35c2950c9e3a54464ef221663432ab1af6b6ffd51",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "source_body_ledger_rebound",
+      "diagnostic": "CUSTODY_FAIL: Source body pin/ledger mismatch",
+      "elapsed_seconds": 0.0514,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "c7e427fbfc788e2fb775a4b3ab0608416cb1557deb8f74a9bc6bac4bf824ae27",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "critical_source_pin_rebound",
+      "diagnostic": "CUSTODY_FAIL: Critical primary body pin",
+      "elapsed_seconds": 0.0533,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "bae94b866354789269639a508a8a8d507543a60babd21df85438ef5d750b1f61",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "query_count_rebound",
+      "diagnostic": "CUSTODY_FAIL: Query ledger scope",
+      "elapsed_seconds": 0.0517,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "ca358a02361caff8c43221fe024f36af2df211451a6de3c50060e680b738d92a",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "required_file_removed_rebound",
+      "diagnostic": "CUSTODY_FAIL: Missing required authored file",
+      "elapsed_seconds": 0.0464,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": false,
+      "stderr_sha256": "d6174d28c04e26a1a39b5da86ba9d81fd705f5bfc6eaf54d96ff2862ad5ed8ac",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "positive",
+      "diagnostic": "",
+      "elapsed_seconds": 0.0825,
+      "exitcode": 0,
+      "expected": "PASS",
+      "optimized": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "5a0b6af8cf7bd230c5425b9db9e5c1628f2a6b2c2c9a2a2c3baac3349ef671c0"
+    },
+    {
+      "control": "wrong_manifest_pin",
+      "diagnostic": "CUSTODY_FAIL: External manifest pin",
+      "elapsed_seconds": 0.0589,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "7db62212a122fb101605104112757042254c29c5fe11c331103ee10c90169c8d",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "wrong_checker_pin",
+      "diagnostic": "CUSTODY_FAIL: External checker pin",
+      "elapsed_seconds": 0.0507,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "925fc7a83b9fc308f73a5f1220d5025dd6eda7191228b42998310bdf1f51e2b4",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "changed_checker_valid_comment",
+      "diagnostic": "CUSTODY_FAIL: External checker pin",
+      "elapsed_seconds": 0.0467,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "925fc7a83b9fc308f73a5f1220d5025dd6eda7191228b42998310bdf1f51e2b4",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "changed_report",
+      "diagnostic": "CUSTODY_FAIL: Byte/hash mismatch",
+      "elapsed_seconds": 0.0457,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "981ec2f893d93c243d0f66916ce9d890681c661bbffb950c030e7e29cc8f5275",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "missing_report",
+      "diagnostic": "CUSTODY_FAIL: Authored closed inventory",
+      "elapsed_seconds": 0.0453,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "c22b37866fb0df771ee3d5ab205dc17032c6e224589f6820980a1930feaa4062",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "extra_file",
+      "diagnostic": "CUSTODY_FAIL: Authored closed inventory",
+      "elapsed_seconds": 0.045,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "c22b37866fb0df771ee3d5ab205dc17032c6e224589f6820980a1930feaa4062",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "extra_empty_directory",
+      "diagnostic": "CUSTODY_FAIL: Unlisted empty directory",
+      "elapsed_seconds": 0.0453,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "e91fcb3dbcd642ae210edceaa9b018fb42da85952b821de63efd9a8a177bbfd1",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "report_symlink",
+      "diagnostic": "CUSTODY_FAIL: Tree symlink",
+      "elapsed_seconds": 0.0453,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "c264733e541c1b32434e4cec85af3923f17fe74280d0fdbb375b7351c7e41a8e",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "report_fifo",
+      "diagnostic": "CUSTODY_FAIL: Nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr788_30001522/tmp/priority_classical_scratch/priority-classical-controls-yyp4gbsf/case/packet/REPORT.md",
+      "elapsed_seconds": 0.0447,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "2327fa0dc5f948ddd1578fcd86747031afe803e267fb58c3efc67226101025a5",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "manifest_fifo",
+      "diagnostic": "CUSTODY_FAIL: Nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr788_30001522/tmp/priority_classical_scratch/priority-classical-controls-yyp4gbsf/case/packet/MANIFEST.json",
+      "elapsed_seconds": 0.0447,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "a746c4dc2a9a45955fa4004053c8dbe52defa3f66e0fd678e374cdfa761d1e77",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "external_pdf_fifo",
+      "diagnostic": "CUSTODY_FAIL: Nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr788_30001522/tmp/priority_classical_scratch/priority-classical-controls-yyp4gbsf/case/sources/kuhn_lloyd_v1.pdf",
+      "elapsed_seconds": 0.0534,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "01ed47ebb05b9d1f06098b3ac1446f32946a0acf56f02effc416ae00eea93f03",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "external_pdf_changed",
+      "diagnostic": "CUSTODY_FAIL: Byte/hash mismatch",
+      "elapsed_seconds": 0.0534,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "981ec2f893d93c243d0f66916ce9d890681c661bbffb950c030e7e29cc8f5275",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "original_changed",
+      "diagnostic": "CUSTODY_FAIL: Byte/hash mismatch",
+      "elapsed_seconds": 0.0493,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "981ec2f893d93c243d0f66916ce9d890681c661bbffb950c030e7e29cc8f5275",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "original_ledger_rebound",
+      "diagnostic": "CUSTODY_FAIL: Byte/hash mismatch",
+      "elapsed_seconds": 0.0501,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "981ec2f893d93c243d0f66916ce9d890681c661bbffb950c030e7e29cc8f5275",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "selected_record_rebound",
+      "diagnostic": "CUSTODY_FAIL: Frozen selected/eligibility pins",
+      "elapsed_seconds": 0.0494,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "8734db8d4726a867d25b2d5d2d46cb10de975ca923b51493d5011edff575beab",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "input_fifo",
+      "diagnostic": "CUSTODY_FAIL: Nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr788_30001522/tmp/priority_classical_scratch/priority-classical-controls-yyp4gbsf/case/inputs/SELECTED_PUBLIC_RECORD.json",
+      "elapsed_seconds": 0.0453,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "f7763faa47804da29dc630dc1b2f178e58964ab04a6a143b9bf9425d1369b82f",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "input_extra",
+      "diagnostic": "CUSTODY_FAIL: 51-input closure",
+      "elapsed_seconds": 0.0489,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "ad230e02cd69132fb1ddc107b22d53e225e2ba7c332fef213175463b99ab1203",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "input_empty_directory",
+      "diagnostic": "CUSTODY_FAIL: Unlisted empty directory",
+      "elapsed_seconds": 0.0489,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "e91fcb3dbcd642ae210edceaa9b018fb42da85952b821de63efd9a8a177bbfd1",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "input_symlink",
+      "diagnostic": "CUSTODY_FAIL: Tree symlink",
+      "elapsed_seconds": 0.0457,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "c264733e541c1b32434e4cec85af3923f17fe74280d0fdbb375b7351c7e41a8e",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "initial_rebound",
+      "diagnostic": "CUSTODY_FAIL: Initial position changed",
+      "elapsed_seconds": 0.0454,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "20a4350e713c5e0aaf7dd7abec3f36aac8780e5c90851e2ed0f7156bf63a5edf",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "provisional_rebound",
+      "diagnostic": "CUSTODY_FAIL: Provisional finding changed",
+      "elapsed_seconds": 0.0454,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "efed36351e6c2aeb6eb0109a2329dd3fe42579fd90e256fac5e08b243269259d",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "widen_exception_rebound",
+      "diagnostic": "CUSTODY_FAIL: Widened exception set",
+      "elapsed_seconds": 0.0458,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "8e48aaaefee31d0b382ab1dee9bd193dd11bd039618229f4b8413003c7ba9b01",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "widen_input_exception_rebound",
+      "diagnostic": "CUSTODY_FAIL: Widened input exception",
+      "elapsed_seconds": 0.0447,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "5cfca5137aa9a31439db8cff883d061c2373e4b974e32a8058cdbb3c3af18f52",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "duplicate_json_rebound",
+      "diagnostic": "CUSTODY_FAIL: Duplicate JSON key",
+      "elapsed_seconds": 0.0497,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "815b89fb3313348a1ab531f6451546fdacdaed5d23bed1f357fd707e3a773526",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "nonfinite_json_rebound",
+      "diagnostic": "CUSTODY_FAIL: Nonfinite JSON constant",
+      "elapsed_seconds": 0.0494,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "96854f768796ee092631dbbc75910291ef9ac75028cc2ba3f60bb4579fec3950",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "boolean_size_rebound",
+      "diagnostic": "CUSTODY_FAIL: Invalid byte/hash row",
+      "elapsed_seconds": 0.0474,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "71df6a87df37ee673d6f4d99620d0f95b140c6a962b81fc7d3382da240419375",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "unsafe_name_rebound",
+      "diagnostic": "CUSTODY_FAIL: Authored closed inventory",
+      "elapsed_seconds": 0.0466,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "c22b37866fb0df771ee3d5ab205dc17032c6e224589f6820980a1930feaa4062",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "novelty_flag_rebound",
+      "diagnostic": "CUSTODY_FAIL: Unsupported verdict flag: firstness_certified",
+      "elapsed_seconds": 0.05,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "6c656f78a137654f380c9fc35c2950c9e3a54464ef221663432ab1af6b6ffd51",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "source_body_ledger_rebound",
+      "diagnostic": "CUSTODY_FAIL: Source body pin/ledger mismatch",
+      "elapsed_seconds": 0.0496,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "c7e427fbfc788e2fb775a4b3ab0608416cb1557deb8f74a9bc6bac4bf824ae27",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "critical_source_pin_rebound",
+      "diagnostic": "CUSTODY_FAIL: Critical primary body pin",
+      "elapsed_seconds": 0.0497,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "bae94b866354789269639a508a8a8d507543a60babd21df85438ef5d750b1f61",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "query_count_rebound",
+      "diagnostic": "CUSTODY_FAIL: Query ledger scope",
+      "elapsed_seconds": 0.0496,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "ca358a02361caff8c43221fe024f36af2df211451a6de3c50060e680b738d92a",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "control": "required_file_removed_rebound",
+      "diagnostic": "CUSTODY_FAIL: Missing required authored file",
+      "elapsed_seconds": 0.0453,
+      "exitcode": 1,
+      "expected": "REJECT",
+      "optimized": true,
+      "stderr_sha256": "d6174d28c04e26a1a39b5da86ba9d81fd705f5bfc6eaf54d96ff2862ad5ed8ac",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "status": "PASS",
+  "testing_manifest_sha256": "fe8616bcfb54aa3c46d26dd0cc3dcc1e3eef529322d36775aca9b11d42c8277c"
+}

@@ -1,0 +1,9 @@
+# Authorship, original history and license
+
+Alec Kriebel, independent researcher, ORCID https://orcid.org/0009-0001-9320-500X. ©2026 Alec Kriebel. Authored note and supporting authored work licensed CC BY4.0, https://creativecommons.org/licenses/by/4.0/. Third-party mathematical inputs are cited and not redistributed as bodies.
+
+The literal negative result was already in the immutable submitted PR952 head989a532ae1d50894190d010a0a02ba8c3d71ee05, all33 original files preserved byte-for-byte with Git blob identities. New work reproduces, audits, explains and packages it. Original QUEUE declaration1/5 is retained as an imported declaration, not a reconstructed history. Selected native state/history key absence at a current baseline does not establish historical0; actual earlier native count and total remain UNKNOWN. This audit adds0 substantive author proof-search responses. Original version names, patch labels, internal/self-reported dates or generated metadata are not additional reconstructed author turns or public first-priority evidence.
+
+Extensive AI tools assisted the original solving, research, source discovery, computation, adversarial review, writing and packaging. Independent agents are AI reviews and do not imply independent human peer review. The note is unrefereed; no journal acceptance or formal proof-assistant certification is asserted. No claim of novelty, first priority, current openness or exhaustive absence of prior resolutions is made. All established coefficient/unification and classical theta/free-energy inputs are credited.
+
+Public family manifests hash only their exact original public allowlists. Root transformations are new files, not rewrites of those reports. Engineering controls and finite checkers are corroboration, not substitutes for source-based mathematical proof and final full-package adversarial review. No external individuals were contacted or outreach prepared.

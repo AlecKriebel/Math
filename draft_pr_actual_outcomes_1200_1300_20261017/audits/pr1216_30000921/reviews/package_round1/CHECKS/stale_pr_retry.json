@@ -1,0 +1,42 @@
+{
+  "status": "REPRODUCED_GUARD_GAP",
+  "cases": [
+    {
+      "case": "stale_intent",
+      "accepted_stale_review_gate_and_artifacts": true,
+      "old_intent_doi": "10.0000/obsolete-fixture",
+      "current_publication_doi": "10.0000/current-fixture",
+      "git_calls_fully_stubbed": [
+        [
+          "branch",
+          "--show-current"
+        ],
+        [
+          "ls-remote",
+          "origin",
+          "refs/heads/math/30000921-hypercyclic-full-negative"
+        ],
+        [
+          "ls-remote",
+          "origin",
+          "refs/heads/math/30000921-hypercyclic-full-negative"
+        ]
+      ],
+      "external_calls": 0
+    },
+    {
+      "case": "stale_receipt",
+      "accepted_stale_review_gate_and_artifacts": true,
+      "old_intent_doi": "10.0000/obsolete-fixture",
+      "current_publication_doi": "10.0000/current-fixture",
+      "git_calls_fully_stubbed": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    }
+  ],
+  "repair": "Before accepting either intent or receipt, compare its review_gate_sha256 and DOI plus expected committed path/byte bindings against the current review/build/publication/tracker package, and inspect recorded commit blobs using read-only Git. Fail closed on any drift."
+}

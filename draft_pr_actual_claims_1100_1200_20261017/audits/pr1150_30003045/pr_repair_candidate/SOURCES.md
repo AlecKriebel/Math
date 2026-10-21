@@ -1,0 +1,10 @@
+# Primary sources and inspection limits
+
+- Laghribi, joint with Aravire and O'Ryan, OWR5/2016, printed248–251, Question2: https://ems.press/content/serial-article-files/46609 . Complete relevant talk read; printed248/251 visually checked. DOI10.4171/OWR/2016/5.
+- Aravire–Laghribi–O'Ryan, Graded Witt kernels, J.Algebra449(2016),635–659: https://laghribi.perso.math.cnrs.fr/Witt-kernels%28new-version%29-2.pdf . Exact exponent-one statements/affine convention checked; one priority family read complete mathematical body. No final publisher-byte comparison.
+- Aravire–Laghribi–O'Ryan, Cohomological kernels of mixed extensions in characteristic2, dated15August2019 author manuscript, J.Algebra542(2020),249–276, DOI10.1016/j.jalgebra.2019.09.012: https://laghribi.perso.math.cnrs.fr/cohom-kernels.pdf . Complete mathematical body read by mixed priority family. Exact class antecedent Definition1.3/Lemma3.1/Theorem1.4 credited. Final publisher body unavailable.
+- Chapman–Queguiner-Mathieu, arXiv2111.15251v3,13December2022, pages2–3: https://arxiv.org/pdf/2111.15251v3 . Symbol conventions and natural H2²-to-Brauer identification checked; unrelated main theorem not audited.
+- Milne, Class Field Theory v4.03, ChapterIV3.11–3.14: https://www.jmilne.org/math/CourseNotes/CFT.pdf . Root web-text check and norm family's downloaded/visually checked general-field crossed-product proof. No full-book audit.
+- Voight, Quaternion Algebras, published2021 Chapter6, Theorem6.4.11: https://link.springer.com/chapter/10.1007/978-3-030-56694-4_6 . Full relevant characteristic-two norm statement and conventions checked. Standard norm machinery is not claimed new.
+
+Further primary priority sources, versions, exact read scopes and access gaps are recorded in SOURCE_AUDIT.md and the dedicated audit's three priority reports. This bibliography is not exhaustive; no absence-of-prior-work theorem is claimed. Source hashes establish identity, not mathematical truth. No third-party source body is distributed here.

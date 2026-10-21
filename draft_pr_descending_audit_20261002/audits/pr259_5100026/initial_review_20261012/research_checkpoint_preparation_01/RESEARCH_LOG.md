@@ -1,0 +1,7 @@
+# PR259 checkpoint preparation research log
+
+2026-10-12T12:06:26.347394+00:00: Began fresh bounded read-only preparation after explicit Root delegation. The original PR166 peer writer window has returned, but no Main publication-stage authority exists. One preliminary native Main GET observed the expected commit; it was diagnostic and not separately raw-captured. All subsequent native GETs are captured. Discovery estimates remain the dated Root snapshot: mathematics 35%, priority 0%, case workflow 10%. Preparation 10%.
+
+2026-10-12T12:06:26.420015+00:00: Manually enumerated and froze source bodies. Included the Root-approved completed four replay driver/wrapper/evidence group and component acceptance, which cover authentication/reproduction/source mapping only. Excluded private reading bodies and all live direct/elliptic/fresh mathematical-family artifacts. Root global scope/log files remain unmodified and are represented only as dated snapshots. Preparation 65%; research estimates unchanged.
+
+2026-10-12T12:06:26.420018+00:00: Fixed this checkpoint's selection and inert publisher requirements. Native baseline and full semantic graph checks are the remaining preparation work. Fresh independent source-plan review, a separately checked publisher, and Root exact stage authority remain required before publication. No provider writes, shared Git/index/ref/checkout mutations, or outside individual communications. Preparation 85%; mathematics 35%, priority 0%, case workflow 10%.

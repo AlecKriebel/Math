@@ -1,0 +1,22 @@
+{
+  "schema": "math-pr1268-review-resolution-v1",
+  "status": "RESOLVED",
+  "at_utc": "2026-10-18T00:26:03.330480+00:00",
+  "pr": 1268,
+  "problem_id": 10900050,
+  "original_head": "cecd7da6e8b5bb84b4294e169d940189b269a956",
+  "reviewer_id": "/root/pr1268_package_round2",
+  "review_verdict_sha256": "1c54058f281979e6e99f3edab09da85cf60559542b9e884796a394fc49d86480",
+  "review_input_freeze_sha256": "4f7bb5d9ddc3e66b162cb7df8d6ca3e4ff9a0a1496e468ca6716a6bceb1f19e1",
+  "review_context_sha256": "fd29221d487c414a564d06215b84ccf05bfa4a1e9d93e3e5e5ec7a0c9e913dc1",
+  "resolved_context_sha256": "2993928ac5ae5cff5dcb2770a29b0a5e235d0aa26504fc13fc071bf8db8d599c",
+  "items": [
+    {
+      "finding": "R2-F1",
+      "resolution": "One shared row_has_problem_identity predicate now serves actual live preflight, append and postmerge. Known numeric/AMR/PR identifiers match case-insensitively; known publication adds trimmed bareDOI/canonicalDOIurl. AMR-only rows stop preflight and append without append calls. Exact intended existing full rows still recover read-only. Unknown future DOI-only rows are not identified as a problem before creation.",
+      "evidence": "reviews/workflow_identity_revision2/MANIFEST.json SHA3b55df1df17d6c84b7ec0c14b26264023fe6f72fe0e3ec1990a923a7e44faef2 binds source copies/current tests. Actual append01de4338064d00eb77954e90dd45d41ce01e3ab29d0c73d6c99464a06a6210a6, coordinator507e3e94f9b4f3922c948d64a74bcdbf9f9bf3b49a86eff804bbd750a4398f01, postmergeab610dd2a63afe113ddb22534327e10d025c895f3c7c69ec3d9a41af3dff68f7. Identity48outcomes,postmerge49outcomes/fullworkflow3modes pass; rebuilt199memberarchive passes3modes per ROOT_CURRENT_PACKAGE_VERIFICATION_AFTER_R2.json."
+    }
+  ],
+  "initial_reviews_tooling_and_prior_resolution_preserved": true,
+  "different_new_full_review_required": true
+}

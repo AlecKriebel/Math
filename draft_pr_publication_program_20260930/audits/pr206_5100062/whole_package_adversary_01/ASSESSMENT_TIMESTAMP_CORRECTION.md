@@ -1,0 +1,1 @@
+The manually typed 18:40 UTC header in the frozen initial assessment is a mistaken estimate. The authoritative freeze time is 2026-10-16T18:38:27.618140+00:00 in PRIMARY_ASSESSMENT_FREEZE.json. The assessment bytes remain unchanged.

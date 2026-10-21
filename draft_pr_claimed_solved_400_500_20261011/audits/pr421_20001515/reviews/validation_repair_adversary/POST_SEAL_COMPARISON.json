@@ -1,0 +1,85 @@
+{
+  "recorded_at_utc": "2026-10-12T22:46:21.539453+00:00",
+  "own_precomparison_result_seal_sha256": "e08a113ed8508f98ac26d7f464410e884a1a9bae37bec33c9a832e78e69c4343",
+  "own_result_sealed_at_utc": "2026-10-12T22:45:01.927653+00:00",
+  "prior_sources_read_only_after_own_seal": [
+    {
+      "path": "reviews/reproduction_adversary/REPORT.md",
+      "sha256": "e84861d0a3073787e7e477019115b62aa67a7c044df059b80f0e9ed0db9d4f7f"
+    },
+    {
+      "path": "reviews/reproduction_adversary/VERDICT.json",
+      "sha256": "c650559e025946a15e10e1eee4f8fc81317f22f3fde46db13a596127aea120e1"
+    }
+  ],
+  "repair_generator_code_read": false,
+  "prior_replay_outputs_or_provenance_read": false,
+  "comparisons": [
+    {
+      "claim": "Candidate hash identity",
+      "independent_result": {
+        "verify.py": "e3357a9af58d68c2f450d2901ab71c58ed955112017fe0ec758d1adc3b36ca42",
+        "audit/independent_audit.py": "281ebf97900d047447a2a3865f233cfba1c41df6dd6c4e8aaae66150250b1903",
+        "audit/independent_algebra.py": "3fda0f889aa454390c6f30c54c842a0a49a5f5a3d1bdea0bce5819711e3dbc96"
+      },
+      "prior_result": {
+        "verify.py": "e3357a9af58d68c2f450d2901ab71c58ed955112017fe0ec758d1adc3b36ca42",
+        "audit/independent_audit.py": "281ebf97900d047447a2a3865f233cfba1c41df6dd6c4e8aaae66150250b1903",
+        "audit/independent_algebra.py": "3fda0f889aa454390c6f30c54c842a0a49a5f5a3d1bdea0bce5819711e3dbc96"
+      },
+      "agrees": true
+    },
+    {
+      "claim": "Exactly62 gates and entire other AST unchanged",
+      "independent_result": {
+        "gates": 62,
+        "whole_reconstructed_AST_identity": true
+      },
+      "prior_result": {
+        "gates": 62,
+        "whole_reconstructed_AST_identity": true
+      },
+      "agrees": true
+    },
+    {
+      "claim": "Frozen outputs reproduced and candidate outputs unchanged in both modes",
+      "independent_result": "36 seed-varied clean direct executions; correct full/summary artifact separation and exact bytes",
+      "prior_result": "Six baselines per replay set",
+      "agrees": true
+    },
+    {
+      "claim": "Meaningful negative controls fail repaired normal/-O while original -O falsely says PASS",
+      "independent_result": "Ten independently chosen controls, including genuine geometric and algebraic mutations;40 runs",
+      "prior_result": "Eight controls; candidate both modes reject",
+      "agrees": true
+    },
+    {
+      "claim": "Builtin exception type and args preservation",
+      "independent_result": "Every one of62 false gates plus all ten meaningful controls match typed args;1240 extracted-shape semantic comparisons",
+      "prior_result": "Original type/args match on original controls",
+      "agrees": true
+    },
+    {
+      "claim": "Name-lookup assumption",
+      "independent_result": "Foreign global AssertionError rebinding reproduces RuntimeError in candidate and builtin AssertionError in original; not present in exact source/standalone launch",
+      "prior_result": "Prior report explicitly states unshadowed AssertionError and unmodified builtins environment",
+      "agrees": true
+    },
+    {
+      "claim": "Validation-only scope and no new proof attempt",
+      "independent_result": "Historical three programs only; original budget1/5;0 new attempts",
+      "prior_result": "Same scope/budget",
+      "agrees": true
+    }
+  ],
+  "required_discrepancies": [],
+  "additional_independent_coverage": [
+    "All62 failure gates instead of only selected controls",
+    "Three PYTHONHASHSEED baselines",
+    "Independent ten-control geometry/algebra corruption family",
+    "Original/candidate tuple/dict args preserved as recursively typed values",
+    "Lazy message/boolean short-circuit boundary probes",
+    "Explicit foreign-namespace failure boundary witness"
+  ],
+  "historical_provenance_or_global_math_claims": "Not reopened or newly certified by this validation-only audit."
+}

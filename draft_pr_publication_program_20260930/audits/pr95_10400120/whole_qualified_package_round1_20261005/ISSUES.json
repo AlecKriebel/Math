@@ -1,0 +1,31 @@
+{
+  "utc": "2026-10-05T23:06:40.361814+00:00",
+  "verdict": "MATHEMATICS_PASS_PACKAGE_REPAIR_REQUIRED",
+  "issues": [
+    {
+      "id": "R1",
+      "severity": "low",
+      "required_before_clean_gate": true,
+      "category": "payload guard/documentation",
+      "file": "publicfiles/verification/run_all.py",
+      "line": 33,
+      "claim_file": "publicfiles/verification/VERIFY_README.md",
+      "claim": "Rejects linked paths",
+      "observed": "Symlinked ancestor directory accepted normally and under-O with declared member hashes intact.",
+      "repair": "Reject symlinked components for each declared relative path; update/rebuild all manifests ZIP digests and fresh receipts; new corrected-byte whole-package review.",
+      "evidence": [
+        "PAYLOAD_CONTROLS.json",
+        "processes/payload_ancestor_symlink_normal/process.json",
+        "processes/payload_ancestor_symlink_O/process.json"
+      ],
+      "mathematical_impact": "none found",
+      "candidate_edited": false
+    }
+  ],
+  "remaining_mathematical_gap": null,
+  "foundation_scope": "Imported established category/RT/HT foundations",
+  "priority": "UNRESOLVED",
+  "review_round": 1,
+  "new_central_proof_search_turns": 0,
+  "release_authority": false
+}

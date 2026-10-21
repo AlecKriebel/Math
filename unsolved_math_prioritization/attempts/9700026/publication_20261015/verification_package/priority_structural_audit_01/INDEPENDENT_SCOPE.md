@@ -1,0 +1,13 @@
+# Independent structural priority audit: initial scope
+
+Prepared before reading the author's SOURCE_AUDIT or inherited priority verdicts, 15 October 2026 UTC. This is a bounded prior-art audit; no new central proof search or publication is authorized in this family.
+
+The mathematical claim being tested is finite-site uniform persistence for the hard multiplicatively weighted Voronoi ODE on the unit square. For fixed, distinct interior sites, positive normalized state z, q=alpha/beta, and cells defined by maximizing z_i^q/|y-x_i|, the system is z_i'=area(cell_i(z))-z_i. For q<1/2, every positive initial state has each coordinate bounded away from zero for all future times. In particular this would refute the unrestricted alpha>1 disjunct of 2007 Conjecture 32(a) when beta>2alpha. Persistence alone does not give convergence, uniqueness, stochastic city-founding asymptotics, or the other parameter ranges.
+
+The mechanism to seek independently is a local protected capture region: a city with weight z_i owns a neighborhood whose radius is proportional to z_i^q, while competitors have weights at most one and remain separated from that site. Thus a lower area bound has order z_i^(2q). Sublinearity 2q<1 makes the inward area term dominate the linear loss close to zero. A more abstract permanence theorem might package this estimate, but would imply the target only after this geometric bound and its regularity assumptions have been verified.
+
+Search families set independently: (1) multiplicatively weighted Voronoi population/city/territory ODEs and changes of notation for q; (2) spatial competition, reinforcement, replicator, and permanence results that can transfer to these cells; (3) classical weighted-distance cell facts and differential inequalities carrying the same mechanism/exponent. Plausible near-hits require actual source-body reading, an explicit state/vector-field map, and a stated satisfied or missing hypothesis. Different terminology is not a reason to discard a hit.
+
+An exact prior theorem, stronger theorem with fully satisfied hypotheses, or a published resolution/counterexample is an adverse priority finding. Generic Voronoi geometry or scalar comparison is a required credit rather than by itself an exact prior result. Negative search results cannot certify worldwide absence, firstness, or current openness.
+
+The independent source-scope report was used only to fix the exact claim and target boundary. The author's proof and priority claims have not yet been read. All raw downloads, extracts, and search records are private. Public candidates are authored audit prose, small authored code if any, and authored bibliographic metadata only.

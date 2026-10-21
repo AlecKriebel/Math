@@ -1,0 +1,132 @@
+{
+  "scope": "Parent-authored V4 containment delta on frozen V2; these initial in-memory helper tests do not establish actual CLI/default replay/build/current package success. No final whole-package CLEAR.",
+  "v3": {
+    "old": "    require(root != out and root not in out.parents, \"output must be outside input tree\")\n",
+    "replacement": "    require(root != out and root not in out.parents, \"output must be outside input tree\")\n    # Canonical strings can still differ for case aliases and APFS firmlinks.\n    # Compare directory identities before authentication/replay or any writes.\n    root_info = root.stat()\n    root_identity = (root_info.st_dev, root_info.st_ino)\n    for ancestor in (parent, *parent.parents):\n        ancestor_info = ancestor.stat()\n        require((ancestor_info.st_dev, ancestor_info.st_ino) != root_identity,\n                \"output must be outside input tree (physical directory alias)\")\n",
+    "scope": "In-memory candidate only until filesystem write succeeds. Frozen V2 must remain unchanged."
+  },
+  "v4": {
+    "old": "    require(root != out and root not in out.parents, \"output must be outside input tree\")\n",
+    "replacement": "    require(root != out and root not in out.parents, \"output must be outside input tree\")\n    # Canonical strings can still differ for case aliases and APFS firmlinks.\n    # Compare directory identities before authentication/replay or any writes.\n    root_info = root.stat()\n    root_identity = (root_info.st_dev, root_info.st_ino)\n    for ancestor in (parent, *parent.parents):\n        ancestor_info = ancestor.stat()\n        require((ancestor_info.st_dev, ancestor_info.st_ino) != root_identity,\n                \"output must be outside input tree (physical directory alias)\")\n    # A firmlink can hide a physical ancestor from the output spelling.\n    # The already authenticated closed tree enumerates every input directory.\n    parent_info = parent.stat()\n    parent_identity = (parent_info.st_dev, parent_info.st_ino)\n    input_directories = {\"\"}\n    for name in blobs:\n        safe_name(name)\n        input_directories.update(str(p) for p in PurePosixPath(name).parents if str(p) != \".\")\n    for name in sorted(input_directories):\n        directory_info = (root / name).lstat()\n        require(stat.S_ISDIR(directory_info.st_mode), \"input directory changed before build\")\n        require((directory_info.st_dev, directory_info.st_ino) != parent_identity,\n                \"output must be outside input tree (indexed directory alias)\")\n",
+    "scope": "Memory-only candidate, complete authenticated closed input-tree containment; excludes concurrent hostile filesystem replacement. No actual package/root/build success."
+  },
+  "v4_bytes": 41629,
+  "v4_controls": [
+    {
+      "actual_CLI_build": false,
+      "archival_execution": false,
+      "controls": [
+        {
+          "archival_execution": false,
+          "case": "case_alias",
+          "output_exists": false,
+          "resolved_paths_equal": false,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "APFS_data_alias",
+          "output_exists": false,
+          "resolved_paths_equal": false,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "ordinary_child",
+          "output_exists": false,
+          "resolved_paths_equal": true,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "dotdot_root",
+          "output_exists": false,
+          "resolved_paths_equal": true,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "cross_firmlink_ancestor_hidden_from_logical_path",
+          "scope": "Helper-only derived-directory representation, not an authenticated Data-root package",
+          "status": "REJECTED_BEFORE_REPLAY_BY_INDEXED_DIRECTORY_IDENTITY"
+        }
+      ],
+      "filesystem_writes": false,
+      "frozen_v2_sha256": "09e4932f66c15916891245a1fb3d6a7052cb5619710d94e0e2305fb7a7612aa6",
+      "in_memory_v4_bytes": 41629,
+      "in_memory_v4_sha256": "8832a44a53f0df4867cb8196d725209dd7ac5944c82b4f296b7514155fe72e6c",
+      "isolation": {
+        "dont_write_bytecode": 1,
+        "isolated": 1,
+        "no_site": 1
+      },
+      "outside_parent_reached_raising_sentinel": true,
+      "python_optimize": 0,
+      "status": "PASS_MEMORY_ONLY_HELPER_CONTROLS",
+      "whole_package_clear": false
+    },
+    {
+      "actual_CLI_build": false,
+      "archival_execution": false,
+      "controls": [
+        {
+          "archival_execution": false,
+          "case": "case_alias",
+          "output_exists": false,
+          "resolved_paths_equal": false,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "APFS_data_alias",
+          "output_exists": false,
+          "resolved_paths_equal": false,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "ordinary_child",
+          "output_exists": false,
+          "resolved_paths_equal": true,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "dotdot_root",
+          "output_exists": false,
+          "resolved_paths_equal": true,
+          "same_directory_identity": true,
+          "status": "REJECTED_BEFORE_REPLAY"
+        },
+        {
+          "archival_execution": false,
+          "case": "cross_firmlink_ancestor_hidden_from_logical_path",
+          "scope": "Helper-only derived-directory representation, not an authenticated Data-root package",
+          "status": "REJECTED_BEFORE_REPLAY_BY_INDEXED_DIRECTORY_IDENTITY"
+        }
+      ],
+      "filesystem_writes": false,
+      "frozen_v2_sha256": "09e4932f66c15916891245a1fb3d6a7052cb5619710d94e0e2305fb7a7612aa6",
+      "in_memory_v4_bytes": 41629,
+      "in_memory_v4_sha256": "8832a44a53f0df4867cb8196d725209dd7ac5944c82b4f296b7514155fe72e6c",
+      "isolation": {
+        "dont_write_bytecode": 1,
+        "isolated": 1,
+        "no_site": 1
+      },
+      "outside_parent_reached_raising_sentinel": true,
+      "python_optimize": 1,
+      "status": "PASS_MEMORY_ONLY_HELPER_CONTROLS",
+      "whole_package_clear": false
+    }
+  ],
+  "v4_sha256": "8832a44a53f0df4867cb8196d725209dd7ac5944c82b4f296b7514155fe72e6c",
+  "written_utc": "2026-10-16T04:26:09.800400+00:00"
+}

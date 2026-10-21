@@ -1,0 +1,5 @@
+# PR49 credited known unrestricted reflection criterion
+
+The exact unrestricted boundary distortion limit1 for a holomorphic disk self-map is equivalent to local holomorphic circle reflection near1. Credit Kraus, Roth and Ruscheweyh(2007). The resulting boundary value is unimodular and the oriented derivative is finite and positive. The known full target is characterized; project_solved and novelty are false. Status proposal already_solved; original0/5,new0,audit0. Full2007journal proof imported, not independently certified. No paper/newDOI/tracker. NEW whole-current reviewPENDING.
+
+Read literal SOURCE_STATUS.md with CURRENT_SOURCE_STATUS_CONTEXT.md and SOURCE_PRECISION_QUALIFICATIONS.md. original_archive retains all16 original bodies. Source-only preparation and private controls do not approve a new SOURCE review, freeze, native transition or merge. Current runtime/verdict fields are null; original PASS and runtime are historical. Extensive AI use; unrefereed, no claimed human peer review or formal certification.

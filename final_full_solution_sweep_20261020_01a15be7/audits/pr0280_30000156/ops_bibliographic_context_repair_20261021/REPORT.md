@@ -1,0 +1,39 @@
+# PR280 bibliographic-context proposal checkpoint
+
+Completed 2026-10-21T15:07:13.909771+00:00. **Proposal only; publication readyfalse.** Canonical390, root inputs and review05 remain frozen. No installation or lifecycle action is authorized by this checkpoint. Root explicit authorization after COMPLETE sealed review05 is required before any canonical installation; a consistent final binding and fresh whole-package reviewer06 would then be required.
+
+## Verified false block and preservation
+
+Before any proposal work, verified every one of the390 files under manifest SHA256 `b12e7262026d780029a7eeee1fb8d0c8a514c4a2ab382faadebad40a84dba55d` and copied all390 plus manifest/checksum audit-relative under `pre_bibliographic_binding/`. `INPUT_PRESERVATION.json` records392 verified copies. Both actual canonical390 and the392 preserved files remain byte-identical; `PRESERVATION_FINAL.json` also confirms all seven canonical helpers, science5/RELEASE, original17, root inputs and all314 local-state files unchanged.
+
+The exact cached sheet has176 rows including header, SHA256 `d513b4cfef1ca47f654a6f677693ae7186f3f193f6d892c5e043ad318c0061b3`. Frozen actual390 parsing accepts175 rows and rejects only row96. Actual frozen gather and independently bypassed-gate append also reproduce the row96 false block in normal and optimized Python. `FROZEN_COMPATIBILITY*.json` retains these failures. The cached full row is read privately; public results contain its digest, not the unrelated ledger notes or full sheet bodies.
+
+Row96's source cell explicitly uses the bibliography “OWR 10/2016” with the full literal source DOI `10.4171/OWR/2016/10`. MFO's [primary catalog metadata](https://publications.mfo.de/handle/mfo/3513?show=full) identifies report2016,10 and that publisher DOI; [EMS Press](https://ems.press/journals/owr/articles/14218) confirms the DOI for the2016 report. Only bibliographic metadata was assessed; no PR826 mathematical audit or outreach occurred. Direct DOI web-tool open failed and is not claimed read. `PRIMARY_BIBLIOGRAPHIC_EVIDENCE.json` records actual successful primary metadata reads.
+
+## Exact proposed rule
+
+Only the proposed copy of `ops_binding.py` changes. The other six proposed helper copies equal frozen canonical files. `PROPOSED.diff` and `PROPOSED_HELPER_BINDING.json` give exact code and hashes.
+
+For each cell, without Unicode folding, find literal ASCII-case-insensitive `OWR` followed by spaces/tabs and the bounded token `10/YYYY` with exactly four ASCII year digits. Qualifying bibliographic context requires exactly one such context, exactly one literal bounded full DOI `10.4171/OWR/YYYY/R` with canonical positive ASCII report digits, exactly one literal OWR-source hint, and exactly one hint after the existing bounded recursive percent-decoding review. The year strings must match and the source report string must be exactly `10`. Duplicate, mismatched, encoded-only or malformed source contexts do not qualify. The report/year classification is a literal bibliographic relationship, not an assertion that all syntactically matching source DOIs resolve or that numeric shortDOIs are impossible.
+
+When qualified, mask **only that one literal report token** for the short-code ambiguity decision. The original cell still undergoes all DOI/Zenodo URL/family recognition. All other bounded `10/` prefixes are conservative unresolved-code leads, regardless of an imagined shortDOI alphabet; isolated numeric codes, dates/fractions, explicit `doi:10/2016`, extra or nested encoded codes remain review-required. No numeric code is globally whitelisted. No root row-digest exemption is consulted by this classification, and a potential target identity cannot be exempted by it.
+
+Known shortDOI resolver references remain unresolved aliases. The proposal conservatively recognizes protocol-relative/default-port/dot-segment resolver variants and malformed single-slash official resolver forms, plus bounded bare shortdoi.org references. Known shortdoi.org URLs always require review; doi.org/dx.doi.org paths without a complete lexical `10.<ASCII digits>/<suffix>` shape require review. This is a conservative blocker, not an alias-resolution or DOI-validity oracle. Existing resolver/encoding guards remain active. No claims of global URI equivalence, arbitrary Unicode normalization or universal redirect discovery are made.
+
+All four cells are still evaluated before allocation/model shortcuts and independently by append/readback. Root non-target digest entries do not bypass unresolved aliases or target identities. Exact desired literal row idempotence remains unchanged. DOI ASCII case/unreserved handling, leading-zero suffixes, record-URL conservatism, concept/version-family leads and directory inventory preservation are retained.
+
+## Actual-function offline evidence
+
+Normal and optimized Python each pass **2,971 controls**:1,267 new bibliography/cached-row controls plus all1,704 previous controls. The new suite includes176 actual cached rows,64 valid-context full pipelines across four cells with/without root digests,2 exact original row96 full pipelines,384 independent append rejection checks,384 collector/gate-before-allocation rejection checks,24 later-cell short-alias append checks,24 later-cell before-allocation checks,16 adjacent/later target-identity pipelines,192 readback ambiguity checks across all four cells and literal idempotence. Thus all176 cached rows parse in the proposal. Actual provider attempts arezero; test providers are synthetic, with socket/subprocess/provider traps. Public bibliography reads above were read-only and separate from the offline service simulations.
+
+The1,704 replay retains994 route controls,404 historical controls,303 root finite lexical obligations and3 already-pushed resume controls. The test adapter changes source selection and output custody only; prior directory fixtures and expected outcomes remain unchanged. Nested legacy120 output still carries old static `proposal_only:false`/`canonical_edits_authorized:true` labels from its untouched historical runner. Those labels describe that runner's original mode, not this execution: the outer replay receipt identifies isolated proposed sources and no authorization or canonical mutation. Root benchmark source SHA binds this exact proposed body. Finite overlapping controls do not prove universal parser correctness.
+
+Reproduce with `PYTHONDONTWRITEBYTECODE=1 python3 bibliographic_controls.py` and `replay1704_proposed.py`, then each with `-O`; their temporary full-sheet fixtures stay in the ignored private scratch folder. `seal_proposal.py --verify` verifies this proposal and the unchanged390/392 inputs locally.
+
+## Remaining limits and handoff
+
+The exception deliberately accepts a single explicit literal OWR bibliography context; duplicate references or encoded-only source citations conservatively block. It does not verify every future source DOI against a registry or establish mathematical truth. Arbitrary disguised text, unrecognized external redirect domains and universal shortDOI alias discovery remain outside a finite lexical recognizer. Potentially ambiguous recognized forms require review; no automatic metadata-only exemption is introduced.
+
+No canonical helper, root clearance/reconciliation, old seal/review, source payload, original file, GWS row, provider object or Git state was changed. Already-pushed head remains a parent-owned fact; no integration action was rerun. Await root's explicit next authorization before canonical installation. Proposal preparation is100% complete; publication remains pending.
+
+Proposed ops_binding SHA256: `417f78a309c262d63ec0946046c388938a7ae323e9eaf7c3d6681526357e050c`. Current canonical SHA256 remains `99998518adb4c6ec8bfcf948284d661fa75d1c0a9f6896d06ad9881a6df431a1`.

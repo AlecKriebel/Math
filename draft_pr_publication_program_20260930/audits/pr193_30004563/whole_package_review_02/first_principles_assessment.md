@@ -1,0 +1,13 @@
+UTC: 2026-10-15T10:08:55.662329+00:00
+
+# Independent first-principles assessment
+
+No prior review contents have been read. The source-first plan preceded all package inspection. The final manuscript, verifier and outer package metadata have now been read.
+
+The mathematical claim withstands the initial independent attack. An independently written Fraction interval implementation uses a materially different radical mechanism (three integer square-root floors, rather than the author binary integer eighth-power search), 45-place enclosures and 150 rather than 128 boundary bisections. Incoming coordinates are reconstructed directly in absolute coordinates, rather than by the author translated Y implementation. It recomputes all six G signs including the analytic endpoint, both H signs for the same fixed algebraic boundary, positive incoming levels, disjoint root brackets, boundary distinctness, all twenty noncollinear boundary triples, strict crossing, nonboundary selected centers, and exclusion of all boundary-pair lines. It also independently cancels all six displayed face identities as exact integer coefficient vectors.
+
+The source alpha16 distance power correctly becomes eighth power of squared Euclidean norm. The two scalar reductions are bidirectional because all radical values are chosen as nonnegative eighth roots and each 2-by-2 coordinate system is invertible. For T, strict positivity of the displayed second derivative with h nonzero gives strict decrease; the polynomial has a nonzero negative degree15 leading term. The fixed parameter roots are genuine isolated algebraic constants. Enclosing them does not change their quantifiers: every arithmetic box contains that same root, while interval dependence loss enlarges the result. G and H are continuous on all retained intervals. Five disjoint open sign brackets give five distinct actual zeros; no uniqueness premise is needed.
+
+The analytic endpoint at 10^16 has u=100, with positive coordinate boxes and G in (-4.766,-4.765). The original formulas yield asymptotic G to negative infinity. Incoming H endpoints are approximately +0.00037069374694 and -0.00080334439831, with a nonboundary entire Z box. Independent symbolic cancellation confirms incoming r1=r3+a-f and r5=r3+g-f-lambda and outgoing qB=qA+lambda, qC=qA+1 supply precisely the source quads, including the dependent third faces.
+
+No substantive mathematical defect identified at this checkpoint. This is not yet a complete whole-package verdict: primary older sources, actual PDF layout, all ZIP member contents/manifests, default/optimized read-only execution and metadata fidelity remain under review. Historical priority remains unconfirmed and the package currently says so explicitly.

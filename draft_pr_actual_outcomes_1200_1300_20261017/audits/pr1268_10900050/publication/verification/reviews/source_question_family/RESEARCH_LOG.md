@@ -1,0 +1,9 @@
+# Source-only research log
+
+All times are UTC. Completion percentages concern a checkable answer to the **printed** Question 7.2, not novelty clearance, independent adversarial verification, or publication.
+
+* 2026-10-17T23:26:41Z — **35%**. Read the repository research policy and independently retrieved both specified primary PDFs. Pinned exact local bytes; checked the versioned question's pages 5-6 and the author's definition and Theorem 3.1. The actual field scope is totally real without an imposed PID condition. Identified the distinction between prime elements and irreducibles and between the printed prime-ideal minimum and the cited principal-ideal parameter.
+* 2026-10-17T23:28:04Z — **85%**. Reconstructed the counterexample \(\mathbb Q(\sqrt {10})\). The ideal \((2,\sqrt {10})\) has norm two and is nonprincipal by the norm equation obstruction modulo 5. Proved that reduction modulo this ideal injects every unit/prime-element clique, giving exact clique numbers two. Found a direct divisibility/parity proof avoiding ideal maximality. The two proof formulations share a mechanism and are not claimed as independent adversarial verification.
+* Sealing checkpoint (timestamp recorded in `SEAL.json`) — **100% for the source-only mathematical reconstruction**. Authored the detailed proof, source ledger, verdict and explicit-exception finite arithmetic checks. Replayed checks under ordinary, `-O` and `-OO` Python. Sealed the authored-file manifest before seeing any candidate submission, other review, PR body or claimed answer. Mathematical novelty and present-day literature status remain unassessed; no release or publication is authorized by this checkpoint. Root is to commission a new independent adversary before promotion.
+
+No outside input was required. No external human communication occurred. No Git or service mutation occurred; publication policy was deliberately superseded for this audit by the task's explicit no-mutation boundary.

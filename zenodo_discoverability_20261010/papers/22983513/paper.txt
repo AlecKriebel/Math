@@ -1,0 +1,165 @@
+                           Nonattainment in the Harrell–Stubbe
+                                 Dirichlet gap inequality
+                                                      Alec Kriebel∗
+
+                                      September 23, 2026 (version 1.0.1)
+
+
+                                                        Abstract
+           The universal Harrell–Stubbe bound for a gap between consecutive Dirichlet eigenvalues is never
+       attained on a nonempty bounded open subset of Euclidean space at a ﬁnite index. This answers negatively
+       the corrected saturation question recorded in the 2009 Oberwolfach report on low eigenvalues. We prove
+       the stronger statement that Yang’s ﬁrst inequality is strict at every real threshold above the lowest
+       eigenvalue. The proof uses the classical spectral remainder and a short obstruction to ﬁnite spectral
+       support of a coordinate times an eigenfunction. No boundary regularity or connectedness assumption is
+       needed.
+
+
+1      Statement and relation to the problem
+Let n ≥ 1 and let Ω ⊂ Rn be nonempty, bounded and open. Write 0 < E1 ≤ E2 ≤ · · · for the eigenvalues of
+the form-deﬁned Dirichlet Laplacian, with multiplicity, and put
+
+                        1∑                    1∑ 2
+                           J                      J
+                                                                       n+2                n+4
+                 AJ =         Ej ,     BJ =        E ,          M1 =       AJ ,   M22 =       BJ .
+                        J j=1                 J j=1 j                   n                  n
+
+Harrell and Stubbe’s gap bound [1, Proposition 6] is M12 − M22 ≥ (EJ+1 − EJ )2 /4. The saturation question
+appears in [5, p. 415], in the ﬁnal part of the problems on commutator methods, and is listed as OWR-3389-
+016 in [6]. Earlier, Ashbaugh [4, p. 12] had explicitly left strictness of Yang’s ﬁrst inequality undecided while
+proving strict versions of the other classical bounds.
+Theorem 1. For every such Ω and every integer J ≥ 1,
+
+                                                                1(          )2
+                                       M1 (J)2 − M2 (J)2 >         EJ+1 − EJ .                                   (1)
+                                                                4
+
+Consequently, no domain and ﬁnite index attain the gap bound.
+                                                                                           ∑
+Normalization of the source. The report [5, p. 415] deﬁnes Mp = ((n + 2p)n−1 J −1 j≤J Ejp )1/p but
+prints M12 − M2 in its gap displays. We use M12 − M22 , the dimensionally consistent expression in [1,
+Proposition 6] and the current reviewed statement of [6]. This correction is explicit: the literal unsquared
+expression is not the scale-homogeneous universal gap bound. The result concerns the saturation question
+only, not the adjacent question about quantitative growth bounds. Finite nonattainment is compatible with
+sharp leading Weyl asymptotics and supplies no uniform positive deﬁcit.
+    ∗ Independent researcher. ORCID: 0009-0001-9320-500X.
+
+
+
+
+                                                            1
+2    The equality obstruction
+                                                                                    ∫
+Set H = −∆D
+          Ω . It is the self-adjoint operator of the form q(u) =                        Ω
+                                                                                            |∇u|2 with domain H01 (Ω), and
+                             Dom H = {u ∈ H01 (Ω) : −∆u ∈ L2 (Ω) in distributions}.                                          (2)
+Boundedness gives compact resolvent and E1 > 0 by comparison with an enclosing box. No assertion that
+Dom H = H 2 (Ω) ∩ H01 (Ω) is used. Choose a real orthonormal eigenbasis (uj ).
+   If u is real, Hu = Eu, and ∥u∥2 = 1, coordinate multiplication preserves H01 (Ω), and the product rule
+and (2) give, for w = xα u,
+                                   w ∈ Dom H,       (H − E)w = −2∂α u.                                (3)
+Integration by parts, justiﬁed by approximation in H01 , also gives
+                                                         ∫
+                                    ⟨w, (H − E)w⟩ = −2       xα u ∂α u = 1.                                                  (4)
+                                                                           Ω
+
+Indeed, this last identity holds for compactly supported smooth approximants by integrating ∂α (xα u2 ), and
+passes to the limit since Ω is bounded.
+Lemma 2. For every real normalized eigenfunction u and every coordinate α, xα u does not belong to a
+ﬁnite spectral subspace of H.
+Proof. Suppose w = xα u were a ﬁnite sum of eigenfunctions. Then w ∈ Dom H 2 and v = (H − E)w =
+−2∂α u ∈ Dom H. Diﬀerentiating (−∆ − E)u = 0 inside Ω gives (−∆ − E)v = 0 in distributions. By (2),
+(H − E)v = 0. Self-adjointness now implies
+                                     ∥v∥22 = ⟨(H − E)w, v⟩ = ⟨w, (H − E)v⟩ = 0.
+This contradicts ⟨w, v⟩ = 1 in (4).
+
+
+3    Strict Yang inequality and the gap
+We include the spectral remainder so the argument can be checked without an external inequality. This is the
+standard commutator sum-rule mechanism underlying [1, 2, 3]; the point needed here is that its nonnegative
+remainder cannot vanish.
+Proposition 3. For every real z > E1 ,
+                                  ∑                                4 ∑
+                                                    (z − Ej )2 <       (z − Ej )Ej .                                         (5)
+                                                                   n
+                                            Ej <z                       Ej <z
+
+             (α)
+Proof. Put ajk = ⟨uk , xα uj ⟩. The spectral theorem, (3), and (4) yield
+                     ∑                (α)
+                                                    ∑                 (α)
+                          (Ek − Ej )|ajk |2 = 1,        (Ek − Ej )2 |ajk |2 = 4∥∂α uj ∥22 .                                  (6)
+                         k                                         k
+
+Both series converge absolutely. The second is a squared L2 norm; absolute convergence of the ﬁrst follows
+from Cauchy–Schwarz and xα uj ∈ L2 .
+   For tj = z −Ej and L = {j : Ej < z}, multiplying these identities by t2j and tj , summing over coordinates,
+and subtracting gives                          ∑                         (α)
+                               nt2j − 4tj Ej =   tj (Ek − Ej )(z − Ek )|ajk |2 .
+                                                         α,k
+                                     (α)   (α)
+Sum over the ﬁnite set L.     Since ajk = akj , the terms with j, k ∈ L cancel in pairs.                       Those with Ek = z
+vanish. Thus                      ∑                            ∑
+                              4           (z − Ej )Ej − n              (z − Ej )2
+                                  Ej <z                        Ej <z
+                                       ∑
+                                       n ∑           ∑                                                                       (7)
+                                                                                                  (α)
+                                   =                     (z − Ej )(Ek − Ej )(Ek − z)|ajk |2 .
+                                       α=1 Ej <z Ek >z
+
+
+
+                                                                   2
+All rearrangements are legitimate: for ﬁxed j, each summand is a linear combination of the two absolutely
+summable weights in (6), and L is ﬁnite. The right side is nonnegative. If it were zero, then, since z > E1 ,
+ (α)
+a1k = 0 for every Ek > z and every α. The subspace spanned by Ek ≤ z is ﬁnite dimensional, so xα u1
+would lie in a ﬁnite spectral subspace, contrary to Lemma 2.
+Proof of Theorem 1. Fix J and write D = M12 − M22 . The monic quadratic
+                                      J [                        ]
+                                   1∑                4
+                          Q(t) =         (t − Ej )2 − (t − Ej )Ej = (t − M1 )2 − D                            (8)
+                                   J j=1             n
+
+satisﬁes Q(EJ ) ≤ 0: if EJ > E1 , apply Proposition 3; otherwise every summand is zero. Terms at a repeated
+threshold vanish, so no simplicity assumption is needed.
+    If z = EJ+1 > E1 , Proposition 3 gives Q(z) < 0. Consequently D > 0 and
+                                              √                        √
+                                   EJ ≥ M1 − D,          EJ+1 < M1 + D.
+
+Subtracting and squaring the nonnegative gap yields (1). If instead EJ+1 = E1 , all the ﬁrst J + 1 eigenvalues
+equal E1 , the gap is zero, and D = 4E12 /n2 > 0.
+
+Veriﬁcation and provenance. The accompanying source and veriﬁcation package records independent AI
+proof reviews, source checking, and a dated literature audit. Its dependency-free Python script checks algebra
+and exact box spectra, including multiplicities and scaling; it is not a formal veriﬁcation of the analytic proof.
+The candidate proof and this exposition were developed with AI assistance. The trace identities and non-
+strict inequalities are classical; the contribution presented here is the explicit nonattainment conclusion and
+its short equality argument. Priority is limited to the literature inspected in the accompanying audit.
+
+
+References
+[1] E. M. Harrell II and J. Stubbe, On trace identities and universal eigenvalue estimates for some partial
+    diﬀerential operators, Trans. Amer. Math. Soc. 349 (1997), 1797–1809. doi:10.1090/S0002-9947-97-01846-
+    1. Author preprint: mp_arc 95-431 (1995).
+[2] M. Levitin and L. Parnovski, Commutators, spectral trace identities, and universal estimates for eigen-
+    values, J. Funct. Anal. 192 (2002), 425–445. doi:10.1006/jfan.2001.3913.
+[3] E. M. Harrell II and J. Stubbe, Universal bounds and semiclassical estimates for eigenvalues of abstract
+    Schrödinger operators, SIAM J. Math. Anal. 42 (2010), 2261–2274. doi:10.1137/090763743. Preprint:
+    arXiv:0808.1133.
+[4] M. S. Ashbaugh, The universal eigenvalue bounds of Payne–Pólya–Weinberger, Hile–Protter, and H C
+    Yang, Proc. Indian Acad. Sci. (Math. Sci.) 112 (2002), 3–30. doi:10.1007/BF02829638.
+[5] M. S. Ashbaugh, R. D. Benguria, R. S. Laugesen and T. Weidl (organizers), Low Eigenvalues of Laplace
+    and Schrödinger Operators, Oberwolfach Reports 6 (2009), 355–428; Problems contributed by all partic-
+    ipants, saturation question of E. M. Harrell and J. Stubbe, p. 415. doi:10.4171/OWR/2009/06.
+[6] Unsolved Math, OWR-3389-016, reviewed problem statement, https://www.unsolvedmath.com/
+    problems/OWR-3389-016, accessed September 23, 2026.
+
+
+
+
+                                                        3
+

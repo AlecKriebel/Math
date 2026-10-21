@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/run_targeted_workflow.py", line 20, in <module>
+    f=m.fixture(Path(tmp)/'main');out['groups']['preimport']=m.preimport_controls(f);p,t,pub=m.publication_and_tracker_controls(f);out['groups']['tracker_and_public']=pub;out['groups']['updater']=m.update_controls(f,p,t);out['groups']['ready']=m.ready_controls(f);save()
+                                                                                                                                                                                                                                                    ~~~~~~~~~~~~~~~~^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 530, in ready_controls
+    mode['live_hook']=race;reject(invoke,'exclusive_ready_intent_race');need(not events,'Concurrent ready intent allowed mutation');results.append('exclusive_ready_intent_race')
+                           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 31, in reject
+    try:fn()
+        ~~^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 468, in invoke
+    def invoke():return r.guarded_main(u,service)
+                        ~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/_local/workflow_tooling/_local/serial-ready-rgsbekrn/main/program/audits/pr1283_30005434/_local/ready_and_merge.py", line 195, in guarded_main
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 455, in live
+    if mode.get('live_hook'):mode['live_hook']()
+                             ~~~~~~~~~~~~~~~~~^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 529, in race
+    mode['raced']=True;save(pub/'READY_REQUEST_INTENT.json',{'concurrent_fixture':True})
+                       ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 27, in save
+    def save(path,obj):path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(obj,indent=2)+'\n')
+                                                                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 809, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/_local/workflow_tooling/_local/serial-ready-rgsbekrn/main/program/audits/pr1283_30005434/publication/READY_REQUEST_INTENT.json'

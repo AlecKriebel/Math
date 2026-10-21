@@ -1,0 +1,186 @@
+{
+  "pr": 946,
+  "problem_id": "6000001",
+  "original_pr_head": "7d3adb0e500b0414a49a449e7981d34ade329427",
+  "reviewer_agent_id": "/root/pr946_full_package_01",
+  "clean_context": true,
+  "full_reproducer_completed": true,
+  "started_utc": "2026-10-15T12:57:29.914572+00:00",
+  "completed_utc": "2026-10-15T13:19:04.506804+00:00",
+  "candidate_revision": 1,
+  "candidate_pins": {
+    "freeze": "715717bdbb17b9c20ded279496e7b5b4ceb439e7d86e20eb238a067efd308920",
+    "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+    "pdf": "5672873695bd71ff852fc8631e5ba980adffc4025b42ecb38d2617a8673ebb63"
+  },
+  "inspected_helper_hashes": {
+    "accept_pr946.py": {
+      "bytes": 76242,
+      "sha256": "c9dc84ce258488ce9929fba2b2e7cc3a19077a3cf52d9fac1cea0c9798ab9ad8"
+    },
+    "merge_pr946.py": {
+      "bytes": 7123,
+      "sha256": "8cef58dad47aff16ec8863212051366e91e24c9ae1905412f6fec373a09585b9"
+    },
+    "run_pr946_zenodo.py": {
+      "bytes": 7124,
+      "sha256": "c66c13733bc03fe4fa66cc541a29d7b7cc84cfc72408bbfb42329927f268a322"
+    },
+    "append_pr946_tracker.py": {
+      "bytes": 7125,
+      "sha256": "f7bb2d9cffb672c2da95e691a4ed41e421ddb954d9fc3397dea35074abde2ca4"
+    },
+    "update_pr946_publication_ledger.py": {
+      "bytes": 7124,
+      "sha256": "5ccc7375eb8d7fad65e2ba421cc4041cda085ea364224d5122a9857256d18cac"
+    },
+    "finalize_pr946_and_gate_next.py": {
+      "bytes": 7126,
+      "sha256": "1e72f8760dec3456d701bf96bd27495ddafb4e15402a85858d4b5befd21e18c4"
+    }
+  },
+  "required_issues": [
+    {
+      "id": "FP01-OPS-001",
+      "severity": "required",
+      "category": "operational_review_history",
+      "location": "accept_pr946.py:370-495",
+      "finding": "A later sealed adverse canonical full_package_NN round can be omitted from the supplied consecutive clean prefix and the earlier prefix accepted.",
+      "evidence": [
+        "OPERATIONS_ADVERSARY.json",
+        "operations_adversary.py"
+      ],
+      "repair": "Inventory all canonical review directories safely and require the complete sealed consecutive sequence; reject omitted, malformed and unsealed canonical rounds."
+    },
+    {
+      "id": "FP01-OPS-002",
+      "severity": "required",
+      "category": "operational_schema",
+      "location": "accept_pr946.py:377-495",
+      "finding": "Current-freeze reviews accept missing candidate_revision, mismatched revision999, and absent COLD.normalized_fields_ignored despite mandatory schema.",
+      "evidence": [
+        "SCHEMA_ADVERSARY.json",
+        "operations_adversary.py"
+      ],
+      "repair": "Require mandatory keys/types explicitly for all review paths, compare revision to authenticated freeze, and require explicit exact empty normalization list."
+    }
+  ],
+  "optional_issues": [
+    {
+      "id": "FP01-OPS-003",
+      "category": "state_consistency",
+      "location": "accept_pr946.py:1205-1235",
+      "finding": "Full finalize selects next target but leaves publication summary omitting946 and carries its portable_release_tooling field to next target.",
+      "evidence": [
+        "FINALIZE_STATE_ADVERSARY.json",
+        "finalize_state_adversary.py"
+      ],
+      "repair": "Refresh publication summary from completed records and clear or scope target-specific tooling before selecting next target."
+    },
+    {
+      "id": "FP01-DOC-001",
+      "category": "document_metadata",
+      "location": "research_note.tex title/status area",
+      "finding": "Descriptor declares version1.0 and CC-BY4.0 but standalone PDF has no visible version/license notice.",
+      "evidence": [
+        "PDF_RENDER_REVIEW.json"
+      ],
+      "repair": "Add compact version1.0 and CC-BY4.0 notice consistent with descriptor."
+    }
+  ],
+  "clean_for_preprint": false,
+  "mathematical_remaining_gap_for_stated_theorem": null,
+  "strongest_verified_theorem": "Every smooth Hausdorff second-countable boundaryless positive statistical manifold of fixed dimension n>=1 with a prescribed ordered mutually dual torsion-free pair admits a proper embedding into an open U subset R^N, N=binomial(2n+4,3), carrying one smooth positive ordinary Hessian potential. The ambient standard connection and its metric dual are both torsion-free and flat and induce exactly the two prescribed connections by orthogonal projection. Both input torsions vanishing is necessary and sufficient for general positive Riemannian dual pairs; countable zero-dimensional inputs are treated separately. No mathematical gap identified within this stated scope.",
+  "prior_issue_resolution": {
+    "O1": {
+      "verified": true,
+      "resolution": "Manuscript eq7 explicitly displays non-affine scalar third-jet law; independently reconstructed and finite mutation checked."
+    },
+    "O2": {
+      "verified": true,
+      "resolution": "Manuscript explicitly distinguishes varying-point germ jets from one global scalar function and held-fixed germ coefficients from basepoint differentiation."
+    },
+    "O3": {
+      "verified": true,
+      "resolution": "Manuscript includes proper log(t) embedding and explicit unbounded cubic coefficient stress example."
+    },
+    "SM-OPTIONAL-1": {
+      "verified": true,
+      "resolution": "DirectAmari1997pp84-85/87 citations and torsion/curvature/local-chart definitions are present and actualpages inspected."
+    },
+    "global_hessian/optional_exposition/0": {
+      "verified": true,
+      "resolution": "Precise normal-addition variable-radius Definition3.53/Theorem3.54pp43-44 citation present; actualpagesread."
+    },
+    "global_hessian/optional_exposition/1": {
+      "verified": true,
+      "resolution": "dr=P_T,dnu=P_N and zero correctionfirstjet explicitly stated and independently derived."
+    },
+    "global_hessian/optional_exposition/2": {
+      "verified": true,
+      "resolution": "Completed-square Schur bound displayed in manuscript section3; universal pointwise proof checked."
+    },
+    "global_hessian/optional_exposition/3": {
+      "verified": true,
+      "resolution": "WhitneyLemma19p665footnote32 precisely cited for proper embedding; actualpageimageinspected."
+    },
+    "global_adversary/optional_findings/0": {
+      "verified": true,
+      "resolution": "Manuscript retains convexity/completeness/globaldual/boundary/indefinite exclusions."
+    },
+    "global_adversary/optional_findings/1": {
+      "verified": true,
+      "resolution": "Optional circle/noncompactparabola illustrations preserved and explained in companion global_adversary report and exactcontrols; freshlyreplayed. The concise note directs to companion materials rather than duplicating lengthy examples."
+    },
+    "global_adversary/optional_findings/2": {
+      "verified": true,
+      "resolution": "Source, priority, mathematical and operational conclusions remain separate, including current non-clean operational verdict."
+    },
+    "reproducibility/required_findings/0": {
+      "verified": true,
+      "resolution": "Historical strictfloatwrapperFAIL preserved and freshly reproduced, separatecurrenttyped12fieldpolicyexplicit;89freshnegativecontrols."
+    },
+    "reproducibility/required_findings/1": {
+      "verified": true,
+      "resolution": "Immutable targetstate/historyabsence independentlyconfirmed; declared4/5 retained withoutcertifiedhistoricalevents, auditadds0."
+    },
+    "reproducibility/optional_findings/0": {
+      "verified": true,
+      "resolution": "OldauditAoptimizedfalsePASSfreshlyconfirmed withcorruptedproof; unchangedhistoricalscript only runs under actualisolatednonoptimized protectedchildren in currentpackage."
+    },
+    "reproducibility/v1_FIFO_required_repair": {
+      "verified": true,
+      "resolution": "Separatecurrentv2fourtoolpins authenticated; oldFIFOtimeout andcurrentpromptregularrejectionfreshlyconfirmed, current10package+84operationcontrolsPASS; oldsealsunchanged."
+    },
+    "priority_falsifier/required_repair/0": {
+      "verified": true,
+      "resolution": "ActualAJLS4.10p222/4.11p238 finitecompact/countablenoncompact currentmanuscriptreading is correct; actualauthorizedimagesread."
+    },
+    "priority_falsifier/required_repair/1": {
+      "verified": true,
+      "resolution": "Broaderofficialabstract retained asadversewording, actualstatementscopecontrols; noerratum/falsityinferred."
+    },
+    "priority_falsifier/required_repair/2": {
+      "verified": true,
+      "resolution": "Lauritzen,Matumoto,Le/Nash/Gromov,Marugame,LoiMatta,Whitney/tubeandOsipovcreditsincluded; materialfouroldbody+239/VORgapsretained."
+    },
+    "priority_falsifier/required_repair/3": {
+      "verified": true,
+      "resolution": "Historicalfamilysealsauthenticatedunchanged; currentcorrectedAJLSscope appended rather than retroactivelyeditingoldreports."
+    }
+  },
+  "priority_status": "Bounded primary audit; no valid fullunrestricted predecessor established, but firstness/novelty/currentopenness unestablished and materialprimarybody gaps remain.",
+  "assigned_review_completion_percent": 100,
+  "proof_search_turns_added_by_audit": 0,
+  "original_declared_turns": "4/5",
+  "author_native_history_authenticated": false,
+  "original_total_attempt_count_known": false,
+  "external_actions_executed": 0,
+  "canonical_candidate_mutations": 0,
+  "procedure_limitation": {
+    "root_predelegation_readonly_gate_utc": "2026-10-15T12:55:58.330776+00:00",
+    "first_complete_local_scope_authentication_utc": "2026-10-15T12:58:31.410065+00:00",
+    "local_complete_gate_preceded_TeX_display": false,
+    "explanation": "Initial local script checked all33originalGit/disk/archivebytes, then failed queue-row-format filter; a combined shell read still displayed source/TeX. Display time is bounded between recordedstart and firstcompleteauth, not separatelytimestamped. Correctedexactqueueauth and independentreconstruction preceded reading earlierverdicts. This limitation is disclosed; NEWround must enforce successfulscopegate beforemathread."
+  }
+}

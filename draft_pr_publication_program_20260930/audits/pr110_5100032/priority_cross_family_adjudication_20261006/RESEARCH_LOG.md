@@ -1,0 +1,9 @@
+# PR110 cross-family priority adjudication research log
+
+2026-10-06T10:05:22.783819+00:00 — 25% of bounded adjudication complete. Read policies, full original proof/statement/nonempty imported report/math gate, and full reports/verdicts from all three sealed families. Began independent inspection of closest primary statements. No new proof search, no mutation outside this folder. Overall discovery/publication goal remains unresolved pending priority.
+
+2026-10-06T10:09:08.242879+00:00 — 75% of bounded adjudication complete. Authenticated all514 sealed public input payloads and actual closing envelopes; authenticated 256 private body pins and all145 author-book Git bodies. Independently inspected decisive statements/proofs and matched normal/O transfer outputs to actual processes (41/49 effective checks). Remaining work: classify access/version gap materiality, write and seal recommendation. No new central proof-search turns.
+
+2026-10-06T10:12:54.646038+00:00 — 75% of bounded adjudication complete. Authenticated all514 sealed public input payloads and actual closing envelopes; authenticated 256 private body pins and all145 author-book Git bodies. Independently inspected decisive statements/proofs and matched normal/O transfer outputs to actual processes (41/49 effective checks). Remaining work: classify access/version gap materiality, write and seal recommendation. No new central proof-search turns.
+
+2026-10-06T10:12:54.737498+00:00 — 100% of bounded combined adjudication complete; selected-candidate current-priority work estimate90%, not a probability of novelty. Recommended narrow hold M1; no earlier full cover located; positive bounded substantive novelty support retained. Independently assessed pending human question as irrelevant to materiality. Final IMPA/Lockwood/media/version limits preserved, no already_solved or publication approval. Report/verdict saved; seal remains.

@@ -1,0 +1,106 @@
+{
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "mechanism": "spine Cartesian enumeration and exact leaf-star elimination; candidate programs not imported",
+  "counts": {
+    "1": {
+      "solutions": 0,
+      "spines_with_extensions": 0
+    },
+    "2": {
+      "solutions": 0,
+      "spines_with_extensions": 0
+    },
+    "3": {
+      "solutions": 0,
+      "spines_with_extensions": 0
+    },
+    "4": {
+      "solutions": 0,
+      "spines_with_extensions": 0
+    },
+    "5": {
+      "solutions": 8,
+      "spines_with_extensions": 2
+    },
+    "6": {
+      "solutions": 6336,
+      "spines_with_extensions": 268
+    }
+  },
+  "bad_lists": {
+    "solutions": 0,
+    "spines_with_extensions": 0
+  },
+  "recurrence": {
+    "seeded_trees": 45,
+    "all_local_states_vs_cartesian": 4578,
+    "invalid_leaf_states_rejected": 2842
+  },
+  "rank_compression": {
+    "three_vertex_graph_list_assignments": 1728,
+    "forward_feasibility_counterexample": "edge lists {1},{3} become {1},{2}"
+  },
+  "six_path_extensions": {
+    "all_independent_lengths_0_to_2": 729,
+    "leaves": 6
+  },
+  "real_corruption_controls": [
+    {
+      "name": "edge_endpoint_changed",
+      "mode": [
+        "-O",
+        "verify.py"
+      ],
+      "exit_code": 1,
+      "detected_by": "paper edge binding"
+    },
+    {
+      "name": "five_list_changed",
+      "mode": [
+        "-O",
+        "verify.py"
+      ],
+      "exit_code": 1,
+      "detected_by": "paper list binding"
+    },
+    {
+      "name": "ordinary_witness_edge_corruption",
+      "mode": [
+        "-O",
+        "verify.py"
+      ],
+      "exit_code": 1,
+      "detected_by": "provided common-palette witness"
+    },
+    {
+      "name": "expected_count_changed",
+      "mode": [
+        "-O",
+        "verify.py"
+      ],
+      "exit_code": 1,
+      "detected_by": "claimed count metadata"
+    },
+    {
+      "name": "same_size_code_tamper",
+      "mode": [
+        "replay.py"
+      ],
+      "exit_code": 1,
+      "detected_by": "member digest verify.py"
+    },
+    {
+      "name": "authenticated_stale_expected_results",
+      "mode": [
+        "replay.py"
+      ],
+      "exit_code": 1,
+      "detected_by": "fresh result differs from expected"
+    },
+    {
+      "name": "restored_pristine_replay",
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"authenticated_members\": 60,\n  \"fresh_results_match\": true,\n  \"scope\": \"Primary global enumerator and archived byte bindings only. Optional independent-family replay is documented for ordinary Python mode; historical priority and formal certification are not established.\"\n}"
+    }
+  ]
+}

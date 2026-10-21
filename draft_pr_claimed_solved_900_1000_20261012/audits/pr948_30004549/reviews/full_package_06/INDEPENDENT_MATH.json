@@ -1,0 +1,139 @@
+{
+  "utc": "2026-10-16T15:13:55.579426+00:00",
+  "status": "PASS",
+  "checks": 18,
+  "events": [
+    {
+      "test": "full_cutoff_J_square",
+      "pass": true,
+      "detail": "Matrix([[Rt/(2*h), (Rx - 1)/h, 0, 0], [1/h, -Rt/(2*h), 0, 0], [0, -Ru/h, Rt/(2*h), -1/h], [-Ru/h, 0, (1 - Rx)/h, -Rt/(2*h)]])"
+    },
+    {
+      "test": "full_cutoff_antiinvariance_alpha",
+      "pass": true,
+      "detail": "includes arbitrary Ru Rx Rt"
+    },
+    {
+      "test": "full_cutoff_antiinvariance_beta_R",
+      "pass": true,
+      "detail": "includes arbitrary Ru Rx Rt"
+    },
+    {
+      "test": "full_cutoff_antiinvariance_gamma_R",
+      "pass": true,
+      "detail": "includes arbitrary Ru Rx Rt"
+    },
+    {
+      "test": "correct_product_sign",
+      "pass": true,
+      "detail": "J0 U=V, J0 X=T"
+    },
+    {
+      "test": "full_cutoff_primitive_product",
+      "pass": true,
+      "detail": "no restriction on R_v or other cutoff derivatives"
+    },
+    {
+      "test": "full_cutoff_third_relation",
+      "pass": true,
+      "detail": "{(0, 2): u, (1, 3): -u + v*Derivative(R(u, v, x, t), t), (0, 3): -v, (1, 2): v*(Derivative(R(u, v, x, t), x) - 1), (0, 1): -v*Derivative(R(u, v, x, t), u)}"
+    },
+    {
+      "test": "full_cutoff_closed_beta_gamma",
+      "pass": true,
+      "detail": "d^2 and exact gamma variable relation"
+    },
+    {
+      "test": "full_cutoff_gram",
+      "pass": true,
+      "detail": "[{(0, 1, 2, 3): 2}, {(0, 1, 2, 3): Derivative(R(u, v, x, t), t)}, {(0, 1, 2, 3): 2 - 2*Derivative(R(u, v, x, t), x)}]"
+    },
+    {
+      "test": "Nijenhuis_U_X",
+      "pass": true,
+      "detail": "[e/(2*(e*x - 1)), 0, 0, 0]"
+    },
+    {
+      "test": "nonintegrable_at_J0_value_origin",
+      "pass": true,
+      "detail": "N(U,X)|origin=-epsilon U/2 while J|origin=J0"
+    },
+    {
+      "test": "both_parameter_signs_-1/3",
+      "pass": true,
+      "detail": "exact nonzero rational"
+    },
+    {
+      "test": "both_parameter_signs_1/3",
+      "pass": true,
+      "detail": "exact nonzero rational"
+    },
+    {
+      "test": "zero_parameter_limit",
+      "pass": true,
+      "detail": "every coordinate N component vanishes"
+    },
+    {
+      "test": "topological_bound_consistency",
+      "pass": true,
+      "detail": "b1=6, b2=10, signature=0, b+=5; lowerbound3 allowed"
+    },
+    {
+      "test": "uniform_positivity_box",
+      "pass": true,
+      "detail": "D affine in Rx and concave in Rt; minimum on rectangle at a corner"
+    },
+    {
+      "test": "wrong_sign_mutation_rejected",
+      "pass": true,
+      "detail": "gamma+d(Rv dv) fails third relation"
+    },
+    {
+      "test": "omitted_cutoff_derivatives_rejected",
+      "pass": true,
+      "detail": "{(0, 1, 2): -e*x*Derivative(rho(u, v, x, t), u), (1, 2, 3): -e*x*Derivative(rho(u, v, x, t), t)}"
+    }
+  ],
+  "core_Nijenhuis": {
+    "(0, 1)": [
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "(0, 2)": [
+      "e/(2*(e*x - 1))",
+      "0",
+      "0",
+      "0"
+    ],
+    "(0, 3)": [
+      "0",
+      "e/(2*(e*x - 1)**2)",
+      "0",
+      "0"
+    ],
+    "(1, 2)": [
+      "0",
+      "e/(2*(-e*x + 1))",
+      "0",
+      "0"
+    ],
+    "(1, 3)": [
+      "e/(2*(-e*x + 1))",
+      "0",
+      "0",
+      "0"
+    ],
+    "(2, 3)": [
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  },
+  "runtime": {
+    "sympy": "1.14.0"
+  },
+  "scope": "Exact finite algebra plus explicit topology consistency, not formal verification of global smooth proof."
+}

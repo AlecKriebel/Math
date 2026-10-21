@@ -1,0 +1,317 @@
+\documentclass[10pt]{article}
+\usepackage[margin=26mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Sph}{\mathbb S}
+\hypersetup{pdftitle={A finite counterexample to the weighted Yamabe heat trace comparison},
+ pdfauthor={Alec Kriebel}}
+\title{A finite counterexample to the weighted\\ Yamabe heat trace comparison}
+\author{Alec Kriebel\thanks{OpenAI tools were used extensively in developing,
+ drafting, coding, and adversarially checking this work. This is an unrefereed
+ preprint; no completed external human peer review or formal proof-assistant
+ verification is claimed.}\\
+ \small Independent researcher\\
+ \small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 13, 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+Morpurgo's volume-normalized weighted Yamabe heat trace comparison,
+stated for every dimension at least three, is false in dimension three.
+We specify one smooth positive conformal weight on the round three-sphere
+whose scaled heat trace exceeds \(13/20\) at a specified positive time,
+whereas the round maximum is less than \(321/500\).
+The argument applies classical cylindrical conformal geometry and
+Dirichlet min--max estimates. A finite cylinder length, explicit smooth
+caps, and exact rational certificates give quantitative separation.
+\end{abstract}
+
+\section{The comparison and the finite result}
+Let \(g_0\) be the unit round metric on \(\Sph^n\), with positive Laplacian,
+and let
+\[
+ Y_0=\Delta_{g_0}+\frac{n(n-2)}4,\qquad
+ Y_W=W^{-1/2}Y_0W^{-1/2}\quad\text{on }L^2(dV_{g_0}).
+\]
+For smooth \(W>0\) normalized by
+\(\int_{\Sph^n}W^{n/2}\,dV_{g_0}=\operatorname{vol}(\Sph^n,g_0)\),
+Conjecture 1 of Morpurgo's contribution to \cite[printed pp.~421--422,
+item (16)]{OWR} asks whether the maximum of
+\(t^{n/2}\Tr(e^{-tY_W})\) over \(t>0\) is at most the round maximum.
+
+\begin{theorem}\label{thm:main}
+There is a smooth strictly positive \(W\) on \(\Sph^3\), with
+\(\int W^{3/2}\,dV_{g_0}=2\pi^2\), and an explicitly defined \(t_*>0\), such that
+\[
+ t_*^{3/2}\Tr(e^{-t_*Y_W})
+ >\frac{1106714561}{1700054750}>\frac{13}{20},
+ \qquad
+ \max_{t>0}t^{3/2}\Tr(e^{-tY_0})<\frac{321}{500}.
+\]
+Both comparison maxima are attained at positive finite times.
+\end{theorem}
+This refutes the universal assertion over \(n\geq3\).
+The comparison restricted to \(n\geq4\), and the separate monotonicity
+conjecture in the following source paragraph, remain unaddressed.
+The weaker original thresholds \(13/20\) and \(129/200\) also follow.
+
+Long cylindrical conformal blowups are classical; Ammann and Jammes
+used Pinocchio metrics for conformally covariant eigenvalue problems
+\cite{AJ}, with earlier constructions cited there.
+Their construction, a chosen fixed rescaled cap, ordinary Dirichlet
+trial modes, and a strict round maximum bound already give a qualitative
+counterexample. We record a specified finite quantitative application
+to Morpurgo's comparison. The geometry and spectral mechanism are credited
+as classical. Related transformed-trace inequalities occur in \cite{Mor};
+their allowed functional classes do not directly state this time-maximum
+comparison. The accompanying dated priority audit records inspected
+versions and retrieval limits. Historical priority of the exact application,
+worldwide firstness, and current openness are unestablished.
+
+\section{A smooth capped cylinder in the round conformal class}
+Identify the twice-punctured three-sphere with
+\(\mathbb R\times\Sph^2\), using stereographic radius \(r=e^s\). Then
+\[
+ g_0=\operatorname{sech}^2(s)(ds^2+g_{\Sph^2}).
+\]
+Fix \(L=10000\). Define
+\[
+ \eta(x)=
+ \begin{cases}0&x\leq0,\\ e^{-1/x}&x>0,\end{cases}
+ \quad
+ \chi(x)=\frac{\eta(x)}{\eta(x)+\eta(1-x)},\quad
+ q(s)=|s|-L/2,\quad u(s)=\exp[-\chi(q(s))\log\cosh(q(s))].
+\]
+The denominator is everywhere positive. The smooth step \(\chi\)
+is zero for \(x\leq0\), one for \(x\geq1\), and has flat endpoint jets.
+Thus
+\[
+ g_L=u(s)^2(ds^2+g_{\Sph^2}),\qquad W_L=u(s)^2\cosh^2(s)
+\]
+is the exact unit-radius product cylinder on \(|s|\leq L/2\).
+The apparent corner of \(|s|\) is harmless because \(u=1\) near zero.
+Flatness gives smooth matching at both ends of each transition.
+For \(|s|\geq L/2+1\), \(u(s)=\operatorname{sech}(|s|-L/2)\).
+
+At the positive pole use \(\rho=e^{-s}\), and at the negative pole
+use \(\rho=e^s\). In either smooth stereographic chart,
+\[
+ W_L=e^L\frac{(1+\rho^2)^2}{(1+e^L\rho^2)^2},
+ \qquad
+ g_L=\frac{4e^L}{(1+e^L\rho^2)^2}
+       (d\rho^2+\rho^2g_{\Sph^2}).
+\]
+These coefficients are smooth positive functions of the squared
+Cartesian radius, including \(\rho=0\). Hence \(g_L=W_Lg_0\) and \(W_L\)
+extend smoothly to the standard compact sphere. The finite constant
+\(e^{10000}\) requires no floating-point evaluation.
+
+Writing \(V_L=\operatorname{vol}(g_L)\), the spherical area is \(4\pi\), so
+\[
+ 4\pi L\leq V_L=4\pi\int_{\mathbb R}u(s)^3\,ds<4\pi(L+4).
+\tag{1}\label{eq:volume}
+\]
+Indeed each cap has radial integral at most
+\(1+\int_1^\infty8e^{-3q}\,dq=1+8/(3e^3)<2\).
+Set
+\[
+ a=(2\pi^2/V_L)^{2/3},\qquad h=ag_L,\qquad W=aW_L,\qquad t_*=4a.
+\tag{2}\label{eq:normalization}
+\]
+These are explicit finite expressions, with \(V_L\) the specified integral.
+They give \(\int W^{3/2}\,dV_{g_0}=a^{3/2}V_L=2\pi^2\).
+
+\section{The operator and the variational heat lower bound}
+In dimension three the geometric Yamabe operator is
+\(Y_g=\Delta_g+R_g/8\).
+Conformal covariance for \(h=Wg_0\) and its volume measure give
+\[
+ Y_h=W^{-5/4}Y_0W^{1/4},\qquad dV_h=W^{3/2}dV_{g_0}.
+\]
+The unitary map \(Uf=W^{3/4}f\) from \(L^2(dV_h)\) to \(L^2(dV_{g_0})\)
+therefore satisfies \(UY_hU^{-1}=Y_W\).
+These identities extend from smooth functions to closed elliptic forms:
+all multipliers and their inverses are smooth on the compact sphere.
+Moreover
+\[
+ \langle Y_Wf,f\rangle
+ =\int\left(|\nabla(W^{-1/2}f)|^2+\tfrac34|W^{-1/2}f|^2\right)dV_{g_0}
+ \geq\frac{3}{4\max W}\|f\|^2.
+\]
+Thus the spectrum is strictly positive and every positive-time heat trace
+is finite. No sign condition on the transition scalar curvature is needed.
+
+On the exact cylinder \(R=2\), hence
+\(Y_{g_L}=-\partial_s^2+\Delta_{\Sph^2}+1/4\).
+Take the \(\Sph^2\)-constant Dirichlet functions
+\(\phi_k(s)=\sin(\pi k(s+L/2)/L)\), extended by zero off the cylinder.
+They lie in the global \(H^1\) form domain because their boundary traces
+vanish. A jump in normal derivative contributes no delta to the weak
+first derivative. Their form and norm matrices are diagonal; on the
+first \(k\) modes the largest Rayleigh quotient is
+\(\mu_k=1/4+(\pi k/L)^2\).
+Min--max for the full closed-manifold spectrum, including multiplicities,
+gives \(\lambda_k(g_L)\leq\mu_k\). Consequently
+\[
+ \Tr(e^{-4Y_{g_L}})\geq e^{-1}\sum_{k\geq1}e^{-4\pi^2k^2/L^2}
+ \geq e^{-1}\left(\frac{L}{4\sqrt\pi}-1\right).
+\tag{3}\label{eq:trace}
+\]
+For the last inequality, a decreasing Gaussian has its integer sum at
+least its integral from one to infinity; the omitted integral on \([0,1]\)
+is at most one. Finite sums and monotone limits justify the trace comparison.
+
+Constant rescaling gives \(Y_h=a^{-1}Y_{g_L}\).
+Using \eqref{eq:normalization}, including its time and prefactor, yields
+\[
+ t_*^{3/2}\Tr(e^{-t_*Y_W})
+ =\frac{16\pi^2}{V_L}\Tr(e^{-4Y_{g_L}})
+ >\frac{\sqrt\pi}{e}\frac{L-4\sqrt\pi}{L+4}.
+\]
+The numerator is positive. The elementary enclosures
+\(1.772<\sqrt\pi<1.773\) and \(e<2.719\) give
+\[
+ t_*^{3/2}\Tr(e^{-t_*Y_W})
+ >\frac{1772}{2719}\frac{10000000-7092}{10004000}
+ =\frac{1106714561}{1700054750}>\frac{13}{20}.
+\tag{4}\label{eq:lower}
+\]
+The exact margin in the last comparison is
+\(3357947/3400109500>0\). This proves a finite-length estimate.
+
+\section{A rational all-time round bound}
+Round degree \(j-1\) harmonics have Laplace eigenvalue \(j^2-1\)
+and multiplicity \(j^2\). Thus the round scaled trace is
+\[
+ F_0(t)=t^{3/2}\sum_{j\geq1}j^2e^{-t(j^2-1/4)}.
+\]
+Differentiating Gaussian Poisson summation, justified by locally uniform
+Gaussian convergence for positive times, gives
+\[
+ F_0(t)=\frac{\sqrt\pi}{4}e^{t/4}
+ \left[1+2\sum_{m\geq1}
+       (1-2\pi^2m^2/t)e^{-\pi^2m^2/t}\right].
+\]
+For \(0<t\leq7/5\) all correction terms are negative, so
+\(F_0(t)<(1.773/4)e^{7/20}\).
+Write \(F_0=A+B\), where \(A(t)=t^{3/2}e^{-3t/4}\).
+The function \(A\) increases up to two; every summand of \(B\)
+decreases for \(t\geq2/5\).
+For \(a\geq7/5\), the tail beginning at \(j=3\) has consecutive ratio
+at most \((16/9)e^{-7a}<1/2\). Hence
+\[
+ B(a)\leq D(a):=a^{3/2}
+ \left(4e^{-15a/4}+18e^{-35a/4}\right).
+\]
+For \(7/5\leq a\leq t\leq b\leq2\),
+\(F_0(t)\leq A(b)+D(a)\).
+The following exact-rational upper enclosures cover that range and small time.
+\[
+\begin{array}{c|c}
+\text{time region}&\text{upper enclosure}\\ \hline
+(0,7/5]&629002/10^6\\
+{[7/5,3/2]}&631338/10^6\\
+{[3/2,8/5]}&636143/10^6\\
+{[8/5,17/10]}&639464/10^6\\
+{[17/10,9/5]}&641172/10^6\\
+{[9/5,19/10]}&641202/10^6\\
+{[19/10,2]}&639541/10^6
+\end{array}
+\tag{5}\label{eq:table}
+\]
+Here is a complete arithmetic specification for these enclosures.
+Let \(P_N(x)=\sum_{k=0}^Nx^k/k!\). For \(0\leq x<N+2\),
+\[
+ P_N(x)\leq e^x\leq
+ P_N(x)+\frac{x^{N+1}}{(N+1)!}\frac{1}{1-x/(N+2)}.
+\]
+Use its degree-14 upper bound for \(e^{7/20}\) and \(e\).
+Replace each negative exponential in \(A,D\) by \(1/P_{50}(x)\),
+and each square root of an endpoint by
+\((\lfloor10^8\sqrt{x}\rfloor+1)/10^8\), computed by integer bisection.
+The six bounds are then rational expressions; exact comparison gives
+\eqref{eq:table}. The supplied \texttt{check\_trace\_bounds.py}
+records the endpoint formulas and their reduced fractional values.
+For the constant enclosures it uses
+\(\pi=8\arctan(1/3)+4\arctan(1/7)\), with 24 alternating terms and
+the next-term remainder for each arctangent. Tangent addition and
+first-quadrant signs prove the identity. Rational squaring verifies
+the stated square-root brackets. No floating-point acceptance is used.
+
+For \(t\geq2\) every summand \(t^{3/2}e^{-\lambda t}\) is nonincreasing,
+since \(\lambda\geq3/4\). Summing pointwise inequalities gives
+\(F_0(t)\leq F_0(2)\), already controlled by the last row.
+Thus
+\[
+ \sup_{t>0}F_0(t)\leq641202/10^6<321/500<129/200.
+\]
+Together with \eqref{eq:lower}, this proves the comparison in
+Theorem~\ref{thm:main}.
+
+\section{Maxima, verification, and attribution}
+For either fixed normalized smooth metric, the leading heat coefficient
+gives the zero-time limit
+\[
+ (4\pi)^{-3/2}2\pi^2=\sqrt\pi/4.
+\]
+At infinity the strictly positive first eigenvalue gives
+\[
+ \Tr(e^{-tY})\leq e^{-(t-1)\lambda_1}\Tr(e^{-Y}),\qquad t\geq1.
+\]
+The scaled trace tends to zero.
+Continuity for positive time and \eqref{eq:lower} imply attainment
+of the weighted supremum inside a compact positive-time interval.
+The first round mode at two is
+\(2\sqrt2e^{-3/2}>\sqrt\pi/4\), so the same argument applies to the
+round supremum. Its inequality follows, for example, by squaring
+and using \(128>\pi e^3\) with the certified constant bounds.
+
+The supporting package preserves the original finite proof and three
+frozen evidence archives, and includes independent geometric,
+spectral, and bounded-priority audits. The new coarse rational certificate
+strengthens the original round bound; original certificates remain unchanged.
+The portable checks establish arithmetic and artifact integrity.
+Smooth extension, conformal covariance, form domains, min--max,
+Poisson summation, and heat asymptotics are mathematical proof obligations
+checked separately by manual adversarial AI review.
+Standard imported results are used with the hypotheses above;
+no formal proof-assistant certification is supplied.
+
+The qualitative negative answer is a straightforward application of
+classical cylindrical geometry and standard spectral estimates.
+Our finite formulas and certificates make that application checkable for
+the exact historical question. The source audit found no earlier explicitly
+assembled exact refutation in its stated corpus and records its limits,
+including unavailable final or older source versions. This bounded finding
+does not certify historical priority or current openness.
+
+\begin{thebibliography}{9}
+\bibitem{OWR}
+C.~Morpurgo, Cwikel--Lieb--Rozenblum bounds and heat kernel inequalities,
+item (16) in \emph{Problems from the Oberwolfach Workshop},
+\emph{Low Eigenvalues of Laplace and Schr\"odinger Operators},
+Oberwolfach Reports \textbf{6} (2009), 355--428, printed pp.~421--422.
+\href{https://doi.org/10.4171/OWR/2009/06}{doi:10.4171/OWR/2009/06}.
+\bibitem{AJ}
+B.~Ammann and P.~Jammes,
+The supremum of first eigenvalues of conformally covariant operators
+in a conformal class, in \emph{Variational Problems in Differential Geometry},
+London Mathematical Society Lecture Note Series \textbf{394}
+(2011), 1--23.
+\href{https://doi.org/10.1017/CBO9780511863219.002}
+{doi:10.1017/CBO9780511863219.002}.
+First preprint: arXiv:0708.0529 (2007); inspected author manuscript
+dated December 8, 2008.
+\bibitem{Mor}
+C.~Morpurgo, Sharp inequalities for functional integrals and traces
+of conformally invariant operators,
+\emph{Duke Math. J.} \textbf{114} (2002), 477--553.
+\href{https://doi.org/10.1215/S0012-7094-02-11433-1}
+{doi:10.1215/S0012-7094-02-11433-1}.
+The accompanying priority audit identifies the inspected author manuscript
+and final-version retrieval limits.
+\end{thebibliography}
+\end{document}

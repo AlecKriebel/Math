@@ -1,0 +1,418 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+pdftitle={A telescoping verification of a focal-inversion area invariant},
+pdfauthor={Alec Kriebel}}
+\setlength{\emergencystretch}{2em}
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\cn}{cn}
+\DeclareMathOperator{\dn}{dn}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{A telescoping verification of a\\focal-inversion area invariant}
+\author{Alec Kriebel\thanks{ORCID:
+\href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a confocal elliptical billiard of least period divisible by four,
+the signed area of an orbit times that of the polygon obtained by
+unit inversion of its vertices about either original focus is constant.
+We verify this theorem, already stated and proved by
+Ferudun, through an explicit local Jacobi identity: derivative terms
+telescope, and a classical cyclic sum reduces the product to a constant.
+The calculation gives an explicit value and covers coprime star
+windings. An exact triangular family shows why a repeated list whose
+length is divisible by four does not satisfy the same assertion.
+This is an attributed verification note; theorem novelty and discovery
+priority are not claimed. AI tools were used extensively, and the note
+has not undergone conventional human peer review.
+\end{abstract}
+
+\section{Statement, source and attribution}
+For an ordered closed polygon $W=(W_0,\ldots,W_{N-1})$, use its
+algebraic area in traversal order,
+\[
+ A(W)=\frac12\sum_{j=0}^{N-1}\det(W_j,W_{j+1}),\qquad W_N=W_0.
+\]
+This convention includes self-intersected polygons and counts
+repeated traversals with multiplicity. If $F$ is a focus, let
+\[
+ I_F(X)=F+\frac{X-F}{|X-F|^2}.
+\]
+The inverse polygon joins the inverted \emph{vertices} by straight
+segments. It is not the curved image of the edges.
+
+The observation being checked is $k_{804,a}$ in Table~9, printed
+page~11, of the specific version arXiv:2004.12497v11
+\cite{reznik}. Garcia and Reznik later list it as $k_{805,a}$
+and prove its simple four-periodic value $4$
+\cite[Table~1 and Proposition~4.9]{garcia}.
+The original table does not explicitly define the period as a least
+period. We state that hypothesis precisely and also treat the
+stronger interpretation admitting repeated shorter cycles.
+
+\noindent\begin{minipage}{\linewidth}
+\begin{theorem}[Known result; verified below]\label{thm}
+Let $E$ and $C$ be strictly nested, nondegenerate confocal ellipses,
+with $E$ the billiard boundary and $C$ its fixed caustic. Fix a
+billiard family of genuine least collision period $N\equiv0\pmod4$.
+Then
+\[
+                 A(P)\,A(I_F(P))
+\]
+is a positive constant as the initial phase varies. The constant is
+the same for the two original foci. Every admitted coprime winding,
+including stars, is covered. Reversal preserves the product; $r$
+traversals of an admitted primitive cycle multiply it by $r^2$.
+\end{theorem}
+\end{minipage}\par\medskip
+
+Ferudun's Theorem~1 \cite{ferudun} has this exact scope, including
+either focus, stars and repetitions; his Section~6.1 and accompanying
+archive already exclude the unrestricted repeated-list assertion.
+His proof cancels all possible poles of the area product on a Jacobi
+torus. We give a direct telescoping calculation and a compact
+boundary fixture. The local partial-fraction and cyclic-sum
+mechanisms are classical: see Khare, Lakshminarayan and Sukhatme
+\cite[Eq.~(42)]{local} and \cite[Eq.~(20)]{cyclic}, and the generalized
+Landen identity of Khare and Sukhatme \cite[Eq.~(13)]{landen}.
+We claim no novelty for these mechanisms or the theorem.
+Chavez-Caliz's Theorem~6 \cite{chavez} establishes the related
+even-period product of a Poncelet polygon's area and the area of
+its outer-tangent polygon. The calculation below supplies the
+focal-inverse area reduction explicitly.
+
+\section{Canonical variables and area formulas}
+Write the squared-axis difference as $c^2$:
+\[
+ E:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\quad
+ C:\frac{x^2}{\alpha^2}+\frac{y^2}{\beta^2}=1,\quad
+ a>b>0,\quad 0<\beta<b,\quad
+ a^2-\alpha^2=b^2-\beta^2>0.
+\]
+Thus $c^2=a^2-b^2=\alpha^2-\beta^2$. Put
+\[
+ k=c/\alpha,\quad k'=\beta/\alpha,\quad K=K(k).
+\]
+Here $k$ is the Jacobi \emph{modulus}; libraries using the parameter
+require $k^2$. In the standard confocal parameter
+\cite[Theorem~4.3 and Eq.~(4.9)]{stachel},
+\begin{equation}\label{canonical}
+ P(w)=(-a\sn w,b\cn w),\quad
+ v=\frac{2K\tau}{N},\quad \delta=2v,\quad
+ a=\frac{\alpha\dn v}{\cn v},\quad b=\frac{\beta}{\cn v}.
+\end{equation}
+All Jacobi functions below have modulus $k$.
+Choose the orientation with $0<\tau<N/2$ and $\gcd(N,\tau)=1$;
+then $0<v<K$. The vertices are $P(w+j\delta)$.
+The real parametrization has least period $4K$, so this coprimality
+condition expresses least collision period, not just closure after
+$N$ listed steps. Set
+\[
+ m=N/2,\qquad \ell=2K/m,\qquad
+ S(w)=\sum_{j=0}^{m-1}\dn(w+j\delta).
+\]
+Since $N$ is divisible by four, $m$ is even and $\tau$ is odd.
+Consequently $P(w+m\delta)=-P(w)$, and the sum defining $S$ is a
+permutation of the uniform grid of step $\ell$ modulo $2K$.
+
+For shorter formulas put
+\[
+ h=\sn v,\quad t=h^2,\quad q=1-t,\quad
+ U=1-2k^2t+k^2t^2,\quad V=1-2t+k^2t^2,\quad W=1-k^2t^2,
+\]
+\[
+ C_A=\frac{ab\sn v\cn v}{\dn v},\qquad
+ C_0=\frac{b\sn v\dn v\,\cn^4v}{\alpha^3}.
+\]
+The addition laws \cite[Section~22.8]{dlmf} give
+\begin{equation}\label{ordinary}
+                         A(P_w)=2C_A S(w).
+\end{equation}
+For clarity, the half-determinant of endpoints
+$P(u-v),P(u+v)$ is
+\[
+ \frac{ab\sn v\cn v\,\dn u}{1-k^2t\sn^2u}
+ =\frac{C_A}{2}\{\dn(u-v)+\dn(u+v)\}.
+\]
+Summing counts each vertex twice, and the $N$-term vertex sum is
+twice $S$.
+
+Take $F_+=(c,0)$ and use relative inverse vertices
+$Q(w)=(P(w)-F_+)/|P(w)-F_+|^2$; their area equals that of
+$I_{F_+}(P_w)$ because the omitted translation is common.
+The Euclidean identity
+\[
+ |P(w)-F_+|^2=(a+c\sn w)^2\ge(a-c)^2>0
+\]
+also proves that every real inverse vertex is finite. Direct
+addition-formula substitution into
+$E(u)=\tfrac12\det(Q(u-v),Q(u+v))$ gives
+\begin{equation}\label{edge}
+ E(u)=\frac{C_0\dn u(1-k^2t\sn^2u)}
+ {(1+k\sn u)(U+kV\sn u)^2}.
+\end{equation}
+For example, before division the determinant of the two focal-relative endpoint
+vectors and the product of the \emph{positive focal distances} are respectively
+\[
+ \frac{2\alpha b\sn v\dn v\,\dn u(1+k\sn u)}
+ {1-k^2t\sn^2u},\qquad
+ \frac{\alpha^2(1+k\sn u)(U+kV\sn u)}
+ {q(1-k^2t\sn^2u)}.
+\]
+The latter is squared in the inverse determinant denominator.
+
+Pairing antipodal edges, set $B(u)=E(u)+E(u+2K)$ and
+$R(u)=\sum_{j=0}^{m-1}B(u+j\delta)$. Then
+\begin{equation}\label{pair}
+ \frac{B(u)}{2C_0}=
+ \frac{(1-k^2t\sn^2u)\{U^2+k^2V(V+2U)\sn^2u\}}
+ {\dn u\,(U^2-k^2V^2\sn^2u)^2},
+ \qquad A(I_{F_+}(P_w))=R(w+v).
+\end{equation}
+
+\section{The local identity and its cyclic sum}
+Let $F(u)=1/\dn u$ and define
+\[
+ \Lambda=
+ \frac{U\{k^4t^3+k^4t^2-5k^2t+k^2+2\}}{2k'^4W^3},
+ \qquad
+ a_0=\frac{q}{(U-V)^2},\qquad a_1=\frac{\Lambda-a_0}{2},
+\]
+\[
+ a_2=\frac{V^2-U^2t}
+ {4\sn v\cn v\dn v\,(U^2-k^2V^2)(U-V)}.
+\]
+The needed identity is
+\begin{equation}\label{localidentity}
+ \frac{B(u)}{2C_0}
+ =a_0F(u)+a_1\{F(u+\delta)+F(u-\delta)\}
+       +a_2\{F'(u+\delta)-F'(u-\delta)\}.
+\end{equation}
+It is a specialization of the classical local partial-fraction
+structure \cite{local}; we verify its coefficients algebraically.
+
+Here is a direct check using only addition and differentiation.
+If $x=\sn^2u$ and $H=U^2-k^2V^2x$, then
+\[
+ F(u+\delta)+F(u-\delta)=\frac{2WU\dn u}{H},
+\]
+\[
+ F(u+\delta)-F(u-\delta)
+ =\frac{2k^2\sn\delta\cn\delta\,W^2\sn u\cn u}{H}.
+\]
+Differentiating the last fraction gives, apart from its constant
+factor, numerator
+\[
+ \dn u\{U^2+(k^2V^2-2U^2)x\}.
+\]
+Use $\sn\delta=2\sn v\cn v\dn v/W$ and $\cn\delta=V/W$.
+After multiplication by $\dn u\,H^2$, equation
+\eqref{localidentity} is the quadratic polynomial identity
+\begin{align*}
+ &(1-k^2tx)\{U^2+k^2V(V+2U)x\}\\
+ &\quad=a_0H^2+2WU a_1(1-k^2x)H\\
+ &\qquad\quad+
+ 4k^2\sn v\cn v\dn v\,V a_2
+ (1-k^2x)\{U^2+(k^2V^2-2U^2)x\}.
+\end{align*}
+The displayed coefficients match those of $1,x,x^2$, proving
+\eqref{localidentity}.
+
+All denominators used here are nonzero on the strict real domain:
+\[
+ U>0,\quad W>0,\quad U-V=2tk'^2>0,\quad
+ U^2-k^2V^2=k'^2W^2>0,\quad \dn u>0.
+\]
+In particular $U>|kV|$ and $H>0$. There is no division by $V$.
+When $V=0$, one has $\delta=K$ and primitivity forces $N=4$.
+The coefficient $a_2$ remains finite; its derivative difference
+vanishes since $F'$ has period $2K$. Thus this case is included
+without a limiting argument.
+
+Sum \eqref{localidentity} over the finite cycle. Since
+$m\delta=2K\tau$, the shifted $F$ sums agree and the derivative
+difference telescopes to zero. The quarter-shift formula
+$\dn(u+K)=k'/\dn u$ therefore gives
+\begin{equation}\label{reduction}
+                         R(u)=\frac{2C_0\Lambda}{k'}S(u+K).
+\end{equation}
+Also $\Lambda>0$. Indeed, with $r=k^2$, the bracket in its numerator
+is $p(t)=r^2(t^3+t^2)-5rt+r+2$;
+$p'(t)=r\{r(3t^2+2t)-5\}<0$ for $0<t<1$, whereas
+$p(1)=2(1-r)^2>0$.
+
+\section{A classical grid identity completes the proof}
+We include the Fourier verification of the generalized Landen
+identity \cite{landen}, so that its normalization is explicit.
+Let $\rho=\exp(-\pi K'/K)$, where $K'=K(k')$.
+For real $w$, the classical Fourier series
+\cite[Eq.~22.11.3]{dlmf} is absolutely and uniformly convergent:
+\[
+ \dn(w,k)=\frac{\pi}{2K}+
+ \frac{2\pi}{K}\sum_{r\ge1}\frac{\rho^r}{1+\rho^{2r}}
+                        \cos(r\pi w/K).
+\]
+A finite uniform-grid sum retains precisely the indices divisible
+by $m$. Let $\kappa\in(0,1)$ have nome $\rho^m$, put
+$K_m=K(\kappa)$, $\kappa'=\sqrt{1-\kappa^2}$, and
+$\lambda=mK_m/K$. The inverse nome formulas
+\cite[Section~22.2]{dlmf} or the monotonic real nome map give
+existence of $\kappa$. Comparing Fourier coefficients yields
+\[
+              S(w)=\lambda\dn(\lambda w,\kappa).
+\]
+Since $\lambda\ell/2=K_m$, the quarter-shift formula gives
+\begin{equation}\label{half}
+                         S(w)S(w+\ell/2)=\lambda^2\kappa'.
+\end{equation}
+Finally
+\[
+ \frac{K+v}{\ell}=\frac{m+\tau}{2}\in\mathbb Z+\tfrac12.
+\]
+Equations \eqref{ordinary}, \eqref{reduction} and \eqref{half}
+prove Theorem~\ref{thm}, with explicit value
+\begin{equation}\label{constant}
+       A(P_w)A(I_{F_+}(P_w))
+        =\frac{4C_A C_0\Lambda}{k'}\,\lambda^2\kappa'>0.
+\end{equation}
+Central negation is the ordered vertex shift by $m$ and exchanges
+the two foci. It simultaneously negates every relative inverse
+vertex, preserving its area; thus both focal inverse areas agree.
+Reversal negates both areas. A repeated traversal multiplies
+each shoelace sum by its repetition count.
+
+For $N=4$, the axial orbit has areas $2ab$ and $2/(ab)$, recovering
+the previously proved value $4$ \cite{garcia}. For a circular boundary
+of radius $a$ the focus is the center and inversion has vertex radius
+$1/a$. Direct regular-star areas give
+$N^2\sin^2(2\pi\tau/N)/4$, separately from the noncircular proof.
+Hyperbolic and degenerate caustics are outside the theorem.
+
+\section{An exact repeated-list boundary}
+The failure of the unrestricted repeated-list interpretation is
+already established in \cite{ferudun}. The following different
+fixture also supplies an elementary connected-family check.
+Take
+\[
+ E:\frac{x^2}{8}+\frac{y^2}{5}=1,\qquad
+ C:\frac{x^2}{32/9}+\frac{y^2}{5/9}=1,\qquad F=(\sqrt3,0),
+\]
+and the ordered triangles
+\[
+ P=\bigl((2\sqrt2,0),(-4\sqrt2/3,5/3),(-4\sqrt2/3,-5/3)\bigr),
+ \qquad \widehat P=-P.
+\]
+These are least-period-three billiards in one continuous forward
+family. Here is an explicit justification. Scaling
+$(x,y)=(2\sqrt2 X,\sqrt5 Y)$ makes the outer ellipse a unit circle
+and the inner ellipse have axes $2/3,1/3$.
+A chord joining $z=(X,Y)$ and $z'=(U_1,V_1)$ is tangent exactly when
+$3XU_1+6YV_1=-2$.
+Put $n=(3X,6Y)$, $D=|n|^2\ge9$, and let $J$ rotate by $\pi/2$.
+Its two tangent neighbors are
+\[
+                z_\pm=\frac{-2n\pm\sqrt{D-4}\,Jn}{D}.
+\]
+They are distinct circle points and neither equals $z$, since
+$3X^2+6Y^2>0$. Direct multiplication gives
+$3(z_+)_x(z_-)_x+6(z_+)_y(z_-)_y=-2$.
+Thus the three tangent chords close for every $z$.
+They remain distinct and noncollinear, and their counterclockwise
+orientation at $z=(1,0)$ persists continuously.
+As $z$ moves to $(-1,0)$ this joins $P$ to $\widehat P$.
+
+Confocality gives the Euclidean reflection law for this tangent
+family. In the unscaled ellipse let $N_E=(x/8,y/5)$ and let $v$
+be a unit chord direction and put $n_v=Jv$.
+Expansion using $x^2/8+y^2/5=1$ gives
+\[
+ 8(n_v)_x^2+5(n_v)_y^2-(n_v\cdot(x,y))^2
+                                      =40(N_E\cdot v)^2.
+\]
+Tangency to $C$ makes the left side $40/9$.
+The two inward tangent directions consequently have the same
+normal component $N_E\cdot v=-1/3$ and opposite tangential
+components, which is precisely specular reflection.
+All three contacts lie inside their segments, and three distinct
+collision vertices make the least period exactly three.
+
+Direct vertex inversion and shoelace evaluation give
+\[
+ A(P)=A(\widehat P)=\frac{50\sqrt2}{9},\quad
+ A(I_F(P))=\frac{8\sqrt2-\sqrt3}{80},\quad
+ A(I_F(\widehat P))=\frac{8\sqrt2+\sqrt3}{80}.
+\]
+The two products are $(80-5\sqrt6)/72$ and
+$(80+5\sqrt6)/72$. Four traversals create lists of length twelve
+and multiply each product by sixteen. The resulting difference is
+\[
+                              -\frac{20\sqrt6}{9}\ne0.
+\]
+Their least period remains three. This refutes the unrestricted
+listed-length assertion and is consistent with Theorem~\ref{thm}.
+
+\section{Dated records and verification limits}
+GitHub records PR207 as created on 1 October 2026
+\cite{pr207}; the preserved submitted proof is pinned by its commit
+identifier in the accompanying chronology. Zenodo's separate
+file metadata dates Ferudun's matching PDF and source archive to
+2 October 2026, with matching DOI registration that day
+\cite{ferudun}. The explicit telescoping reconstruction and the
+fixture used here were recorded during our 16 October audit.
+These dates describe the observed records. They do not establish
+historical firstness, causal independence, or simultaneous discovery,
+and later additions are not backdated to the PR.
+
+The accompanying exact checker certifies finite algebraic identities
+and the boundary fixture. The geometric checker uses reflected
+Euclidean rays and direct focal inversion; its finite numerical
+tests are diagnostics, not a proof or an interval certificate.
+Neither the proof nor these computations establishes theorem or
+method novelty. Numerical evaluation near $k=1$ or $v=0$ can require
+substantially increased precision because of cancellation.
+
+AI tools were used extensively in proof development, algebraic
+verification, source checking, adversarial review, programming and
+drafting. The author is responsible for the note. It is an
+unrefereed preprint and has not undergone conventional human
+peer review or proof-assistant formalization.
+
+\begin{thebibliography}{10}
+\bibitem{ferudun} A.~Ferudun, \emph{Focal Inversion Area Products in
+Elliptic Billiards}, 2 October 2026, unrefereed preprint.
+\href{https://doi.org/10.5281/zenodo.23093706}{doi:10.5281/zenodo.23093706}.
+\bibitem{reznik} D.~Reznik, R.~Garcia and J.~Koiller,
+\emph{Eighty New Invariants of $N$-Periodics in the Elliptic Billiard},
+\href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11} (2020).
+\bibitem{garcia} R.~Garcia and D.~Reznik, Exploring self-intersected
+$N$-periodics in the elliptic billiard, \emph{Ann. Math. Inform.}
+\textbf{55} (2022), 49--75.
+\href{https://doi.org/10.33039/ami.2022.02.001}{doi:10.33039/ami.2022.02.001}.
+\bibitem{stachel} H.~Stachel, On the motion of billiards in ellipses,
+\emph{Eur. J. Math.} \textbf{8} (2022), 1602--1622.
+\href{https://doi.org/10.1007/s40879-021-00524-2}{doi:10.1007/s40879-021-00524-2}.
+\bibitem{local} A.~Khare, A.~Lakshminarayan and U.~Sukhatme,
+\emph{Local Identities Involving Jacobi Elliptic Functions},
+\href{https://arxiv.org/abs/math-ph/0306028}{arXiv:math-ph/0306028} (2003).
+\bibitem{cyclic} A.~Khare, A.~Lakshminarayan and U.~Sukhatme,
+\emph{Cyclic Identities Involving Jacobi Elliptic Functions. II},
+\href{https://arxiv.org/abs/math-ph/0207019v2}{arXiv:math-ph/0207019v2} (2003).
+\bibitem{landen} A.~Khare and U.~Sukhatme,
+\emph{Generalized Landen Transformation Formulas for Jacobi Elliptic Functions},
+\href{https://arxiv.org/abs/math-ph/0312074}{arXiv:math-ph/0312074} (2003).
+\bibitem{chavez} A.~C.~Chavez-Caliz, More About Areas and Centers of
+Poncelet Polygons, \emph{Arnold Math. J.} \textbf{7} (2021), 91--106.
+\href{https://doi.org/10.1007/s40598-020-00154-8}{doi:10.1007/s40598-020-00154-8}.
+\bibitem{dlmf} NIST Digital Library of Mathematical Functions,
+Chapter~22, Sections~22.2, 22.8 and 22.11,
+\url{https://dlmf.nist.gov/22} (accessed 16 October 2026).
+\bibitem{pr207} A.~Kriebel, GitHub PR207, \emph{5100044: prove the
+arXiv k804,a focal-inversion area-product invariant},
+\url{https://github.com/AlecKriebel/Math/pull/207}.
+\end{thebibliography}
+\end{document}

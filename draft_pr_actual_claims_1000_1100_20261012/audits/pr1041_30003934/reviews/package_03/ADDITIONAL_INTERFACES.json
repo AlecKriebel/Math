@@ -1,0 +1,159 @@
+{
+  "utc": "2026-10-14T04:29:35.344717+00:00",
+  "status": "PASS",
+  "records": [
+    {
+      "tag": "OPT_CLEAN_VERIFY_BEFORE",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "verify_package.py"
+      ],
+      "returncode": 0,
+      "expected_pass": true,
+      "stdout_sha256": "2820b34a7b60b3d686aaa7f03234e0ac452bb3e85df106c5fa03e21974cd56aa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "OPT_CLEAN_REQUIRE_ABSENT_BEFORE",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c3b59c497e1742e2e1fe58230294deef59d0c14c755db6a96e858db7c8972d84"
+    },
+    {
+      "tag": "OPT_CLEAN_BUILD",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "build_archive.py"
+      ],
+      "returncode": 0,
+      "expected_pass": true,
+      "stdout_sha256": "31449d42ab6087507dcc7bbed36f0aab2d15311909bbacaa94da6238e9156ff3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "OPT_CLEAN_VERIFY_AFTER",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "verify_package.py"
+      ],
+      "returncode": 0,
+      "expected_pass": true,
+      "stdout_sha256": "bc94a7fdef450dc7bbd53996d48fdce78e1aa4b7bf407d7fa91d398e0d44b315",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "OPT_CLEAN_REQUIRE_ABSENT_AFTER",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c3b59c497e1742e2e1fe58230294deef59d0c14c755db6a96e858db7c8972d84"
+    },
+    {
+      "tag": "OPT_EXCLUSION_BUILD",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "build_archive.py"
+      ],
+      "returncode": 0,
+      "expected_pass": true,
+      "stdout_sha256": "31449d42ab6087507dcc7bbed36f0aab2d15311909bbacaa94da6238e9156ff3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "OPT_EXCLUSION_VERIFY",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "verify_package.py"
+      ],
+      "returncode": 0,
+      "expected_pass": true,
+      "stdout_sha256": "bc94a7fdef450dc7bbd53996d48fdce78e1aa4b7bf407d7fa91d398e0d44b315",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "OPT_CLEAN_REQUIRE_PRESENT",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "verify_package.py",
+        "--require-deposit"
+      ],
+      "returncode": 0,
+      "expected_pass": true,
+      "stdout_sha256": "618f1c9485deb22a94af9d561ff453a543e332ee196af6def199aa6f18a7bb03",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "GUARD_demand_normal",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import runpy; f=runpy.run_path('/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_03/private/replay_flow/flow_check.py'); f['demand'](False,'review03_false_guard')"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "bddab004c3a645edd3b0951fd56fe6add927bc0c9ecb58250e35e6a621e3653d"
+    },
+    {
+      "tag": "GUARD_need_normal",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import runpy; f=runpy.run_path('/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_03/math_checks.py'); f['need'](False,'review03_false_guard')"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e06a23903d3d7ee512b1b0ce86d0a56df94bc1545c14e33d2b60f9abb5faf26c"
+    },
+    {
+      "tag": "GUARD_demand_optimized",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-c",
+        "import runpy; f=runpy.run_path('/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_03/private/replay_flow/flow_check.py'); f['demand'](False,'review03_false_guard')"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "bddab004c3a645edd3b0951fd56fe6add927bc0c9ecb58250e35e6a621e3653d"
+    },
+    {
+      "tag": "GUARD_need_optimized",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-c",
+        "import runpy; f=runpy.run_path('/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_03/math_checks.py'); f['need'](False,'review03_false_guard')"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e06a23903d3d7ee512b1b0ce86d0a56df94bc1545c14e33d2b60f9abb5faf26c"
+    }
+  ],
+  "optimized_clean_sequence_byte_identical": true,
+  "excluded_probe_count": 11,
+  "excluded_material_changes_archive": false,
+  "explicit_guard_failures_in_both_modes": true
+}

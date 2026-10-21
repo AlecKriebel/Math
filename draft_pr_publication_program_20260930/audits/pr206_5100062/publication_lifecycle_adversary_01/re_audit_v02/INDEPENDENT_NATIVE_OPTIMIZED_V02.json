@@ -1,0 +1,187 @@
+{
+  "schema": "pr206-independent-native-boundaries-v1",
+  "optimized": true,
+  "source": {
+    "bytes": 77413,
+    "sha256": "b1de89de16876c02d8d18d76ef85eff2b3cb4654f699871c90df302d59302367"
+  },
+  "test_sha256": "f53d47e99643b0e65ab479936b6b449930a1853d1537bfbef1e1c8b3aed4f8f9",
+  "only_synthetic_native_objects": true,
+  "tests": 23,
+  "passed": 23,
+  "failed": 0,
+  "outcomes": [
+    {
+      "case": "native_tree_exact31",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "native_tree_symlink",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Native current tree entry identity"
+    },
+    {
+      "case": "native_tree_executable_mode",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Native current tree entry identity"
+    },
+    {
+      "case": "native_tree_unsafe_name",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Bounded native tree entry name"
+    },
+    {
+      "case": "native_tree_duplicate_entry",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Bounded native tree entry name"
+    },
+    {
+      "case": "native_tree_bad_object_hash",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Native nonrecursive tree SHA1 before descent"
+    },
+    {
+      "case": "native_tree_truncated",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Complete bounded nonrecursive native tree"
+    },
+    {
+      "case": "candidate_exact_ready",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "candidate_wrong_parents_ready",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Exact phase parents/tree/message"
+    },
+    {
+      "case": "candidate_foreign_changed_ready",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Full fresh-parent foreign changed-leaf scope"
+    },
+    {
+      "case": "candidate_truncated_map_ready",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Full prepared expected identities/body scope"
+    },
+    {
+      "case": "candidate_exact_merge",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "candidate_wrong_parents_merge",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Exact phase parents/tree/message"
+    },
+    {
+      "case": "candidate_foreign_changed_merge",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Full fresh-parent foreign changed-leaf scope"
+    },
+    {
+      "case": "candidate_truncated_map_merge",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Full prepared expected identities/body scope"
+    },
+    {
+      "case": "candidate_exact_factual",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "candidate_wrong_parents_factual",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Exact phase parents/tree/message"
+    },
+    {
+      "case": "candidate_foreign_changed_factual",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Full fresh-parent foreign changed-leaf scope"
+    },
+    {
+      "case": "candidate_truncated_map_factual",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Full prepared expected identities/body scope"
+    },
+    {
+      "case": "candidate_exact_completion",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "candidate_wrong_parents_completion",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Exact phase parents/tree/message"
+    },
+    {
+      "case": "candidate_foreign_changed_completion",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Full fresh-parent foreign changed-leaf scope"
+    },
+    {
+      "case": "candidate_truncated_map_completion",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Full prepared expected identities/body scope"
+    }
+  ],
+  "bounded_expansion_probe": {
+    "unique_tree_objects": 2,
+    "root_children": 61,
+    "subtree_leaves": 500,
+    "theoretical_leaves": 30500,
+    "largest_materialized_map_before_bound_check": 29500,
+    "declared_MAX_CHANGED": 30000,
+    "native_GET_calls": 2,
+    "exception": "RuntimeError: Incremental global native work budget",
+    "interpretation": "Repaired source must stop before allocation exceeds its aggregate budget."
+  }
+}

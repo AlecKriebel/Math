@@ -1,0 +1,5 @@
+# Lifecycle controls06 research log
+
+2026-10-15T07:25:15.553614+00:00 — Preparation100% complete for independent review; operational completion remains pending. Read/authenticated full terminal independent05 report; retained frozen01–05 unchanged. Replaced partial current-record checks with deterministic full programme/case/log derivations from true parent and two gate-pinned trusted baselines. Protected18, entire prior case/history and prior190 actual completion facts preserved; both prepared phases remain acceptance-pending/cursor191.
+
+2026-10-15T07:25:15.553614+00:00 — 546 offline assertions passed, including every prior440 entry and106 focused alias/log/baseline/pure-derivation controls. Positive50/original16/full factual/stale unchanged100 retry pass; coherent05 wrong acceptances reproduce under old validators and reject under06. Pure constructor AST and other8 runtime bytes unchanged. Read-only v5/606 provenance authenticated. No actual Root/service/Git/shared actions. Final exact source/contract/results/allowlist/seal frozen0444 for separate NEW lifecycle06 review; author PASS is not approval.

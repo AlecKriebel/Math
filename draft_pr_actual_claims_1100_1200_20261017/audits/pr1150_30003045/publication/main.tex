@@ -1,0 +1,299 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={An explicit counterexample to three-summand Kato-kernel splitting},
+pdfauthor={Alec Kriebel},pdfsubject={A negative answer to OWR 5/2016, Question 2},
+pdfkeywords={Kato cohomology, Brauer kernels, characteristic two, Pfister forms}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathbb F}
+\newcommand{\K}{\mathcal K}
+\newcommand{\dlog}{\operatorname{dlog}}
+\newcommand{\Br}{\operatorname{Br}}
+\newcommand{\N}{\operatorname{N}}
+\title{An explicit counterexample to three-summand Kato-kernel splitting}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID:
+\href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{17 October 2026\\[2pt]\small Unrefereed, extensively AI-assisted research note}
+\begin{document}
+\maketitle
+\begin{abstract}
+Question 2 in Laghribi's contribution to Oberwolfach Report 5/2016 asks
+whether a mixed Kato kernel is the sum of the kernels of a finite purely
+inseparable extension, a separable quadratic extension, and a bilinear
+Pfister function field. We give an explicit negative instance in
+\(H_2^2\), using an exponent-two extension and a binary bilinear Pfister
+form that remains anisotropic. The mixed class is exactly a specialization
+of the generators of Aravire--Laghribi--O'Ryan (2019/2020). We prove directly
+that it remains outside the sum after the additional Pfister kernel is
+included, by a universal norm and residue obstruction. The original
+degree-one cohomology case is separately positive. No firstness claim is made.
+\end{abstract}
+
+\section{The question and the counterexample}
+For a field \(E\) of characteristic two, put
+\[
+ H_2^{n+1}(E)=
+ \Omega_E^n/\bigl(\wp(\Omega_E^n)+d\Omega_E^{n-1}\bigr),\qquad
+ H_2^1(E)=E/\wp(E).
+\]
+Here \(\wp\) on logarithmic generators is induced by
+\(u\,d\log v_1\wedge\cdots\mapsto
+(u^2+u)\,d\log v_1\wedge\cdots\), modulo exact forms.
+Write \(\K_n(E/F)\) for the kernel of
+\(H_2^{n+1}(F)\to H_2^{n+1}(E)\), and abbreviate
+\(\K_1(E/F)=\K(E/F)\).
+
+The original question \cite[printed p.~251, Question~2]{OWR} asks whether
+\begin{equation}\label{question}
+ \K_n(LK(B)/F)=\K_n(L/F)+\K_n(K/F)+\K_n(F(B)/F)
+\end{equation}
+for every finite purely inseparable \(L/F\), separable quadratic \(K/F\),
+and anisotropic bilinear Pfister form \(B\) remaining anisotropic over \(L\).
+As in that source, \(F(B)\) is the function field of the
+\emph{projective quasilinear quadric} of \(v\mapsto B(v,v)\).
+This convention includes an anisotropic binary form, whose quadric is
+integral and zero-dimensional.
+
+The positive exponent-one regime is covered by \cite{ALO16}.
+Higher-exponent two-field nonsplitting and the mixed generators are
+antecedent work \cite{ALO20}. The class below is exactly their
+Definition~1.3 and Lemma~3.1 specialization: in their notation take
+\(n=m=1\), \(f_0=1\), \(f_1=z\), and \(a=s^{-4}\).
+The only nonzero generator term is
+\((\beta^2z/(1+\beta^2z))^2d\log z\).
+Moreover \(s^{-4}+s^{-1}=\wp(s^{-2}+s^{-1})\), so these parameters define
+the same separable quadratic field. This note supplies the direct
+three-summand nonmembership proof; it makes no priority claim for
+the class, example, or target deduction.
+
+\begin{theorem}\label{main}
+Let \(b,z,s,t\) be algebraically independent over \(\F_2\), and set
+\[
+ F=\F_2(b,z,s,t),\quad L=F(\beta),\quad\beta^4=b,\qquad
+ K=F(\theta),\quad\theta^2+\theta=s^{-1},\qquad
+ B=\langle1,t\rangle_b .
+\]
+Then \(L/F\) has degree four and exponent two, \(K/F\) is separable
+quadratic, and \(B_L\) is anisotropic. The class
+\[
+ \xi=\overline{s^{-4}\frac{bz^2}{1+bz^2}\,d\log z}\ \in H_2^2(F)
+\]
+satisfies
+\[
+ \xi\in\K(LK/F)\subseteq\K(LK(B)/F),\qquad
+ \xi\notin\K(L/F)+\K(K/F)+\K(F(B)/F).
+\]
+Consequently \eqref{question} is false at its allowed index \(n=1\).
+\end{theorem}
+
+We use the natural identification \(H_2^2(E)\simeq\Br(E)[2]\),
+sending \(u\,d\log v\) to the characteristic-two quaternion class
+\([u,v)_E\); see \cite[pp.~2--3]{CQM}.
+Its generators satisfy \(i^2+i=u,\ j^2=v,\ ji=(i+1)j\).
+For a genuine Artin--Schreier quadratic field \(E(\eta)/E\),
+\(\eta^2+\eta=u\), the cyclic relative Brauer theorem says
+\[
+ \K(E(\eta)/E)=\{[u,c)_E:c\in E^*\}.
+\]
+Indeed a normalized two-cocycle of the order-two Galois group is
+specified by an invariant scalar \(c\); coboundaries multiply it by a
+norm. Its crossed product is the displayed quaternion algebra
+\cite[IV, \S3, items~3.11--3.14]{Milne}.
+Also \([u,c)_E=0\) if and only if \(c\) is a norm from \(E(\eta)^*\)
+\cite[Theorem~6.4.11]{Voight}.
+These statements allow imperfect base fields.
+
+\section{Proof of Theorem \ref{main}}
+The \(b\)-valuation shows that \(b\) is nonsquare, so \(X^4-b\)
+is irreducible and \(L=\F_2(\beta,z,s,t)\) has the claimed degree and
+exponent. A negative valuation of \(x^2+x\) is even; hence the odd
+\(s\)-pole of \(s^{-1}\) proves the Artin--Schreier extension is genuine.
+The \(t\)-valuation in \(L\) proves \(t\notin L^2\), giving anisotropy.
+It remains nonsquare in separable algebraic extensions of \(L\).
+
+Let \(\gamma^2=t\). The quadric \(X^2+tY^2=0\) in \(\mathbb P^1\)
+is entirely in the \(Y\ne0\) chart, with field coordinate ring
+\(F[X/Y]/((X/Y)^2+t)\). Thus
+\[
+ F(B)=F(\gamma),\qquad
+ M:=LF(B)=\F_2(\beta,z,s,\gamma),\qquad LK(B)=M(\theta).
+\]
+The same descriptions over \(K\) are valid since a separable
+extension cannot contain a new purely inseparable square root.
+
+\paragraph{Vanishing in the composite.}
+In \(L\), put \(f=1+\beta^2z\) and \(h=\beta^2z/f\).
+Since \(d(\beta^2)=0\),
+\[
+ d\log f=h\,d\log z,\qquad h^2=\frac{bz^2}{1+bz^2}.
+\]
+Apply the Artin--Schreier relation first to
+\(s^{-2}h\,d\log z\), and then to \(s^{-1}d\log f\). In cohomology,
+\begin{equation}\label{vanish}
+ \xi_L=\overline{s^{-2}h\,d\log z}
+       =[s^{-2},f)_L=[s^{-1},f)_L .
+\end{equation}
+This is zero over \(LK\). The equalities occur in the quotient by
+exact forms and Artin--Schreier images, not by treating \(\wp\)
+as \(L\)-linear.
+
+\paragraph{Reduction of all three summands.}
+Suppose \(\xi=x+y+w\), with the three individual kernel memberships
+in Theorem~\ref{main}. The cyclic description gives
+\(y=[s^{-1},c)_F\) for some \(c\in F^*\).
+Restrict to \(M=LF(B)\): both \(x\) and \(w\) vanish.
+By \eqref{vanish} and multiplicativity of the second symbol slot,
+\begin{equation}\label{normcondition}
+ [s^{-1},f/c)_M=0.
+\end{equation}
+Thus the extra Pfister summand is fully included in the argument.
+
+\paragraph{A necessary residue condition for every \(c\).}
+Put \(k=\F_2(b,z,t)\), \(k'=\F_2(\beta,z,\gamma)\).
+Complete \(M=k'(s)\) to \(D=k'((s))\).
+The odd-pole argument also proves that \(T=D(\theta)\) is a quadratic
+field. With \(\pi=\theta^{-1}\),
+\[
+ \pi^2+s\pi+s=0,\qquad \N_{T/D}(\pi)=s,\qquad
+ \N_{T/D}(A+B\pi)=A^2+sAB+sB^2 .
+\]
+Here the conjugate of \(\pi\) is \(\pi+s\).
+For nonzero \(A,B\in D\), let \(a=v_s(A)\), \(b'=v_s(B)\).
+The even integer \(2a\) and the odd integer \(1+2b'\) differ.
+The middle-term valuation \(1+a+b'\) is strictly greater than their
+minimum: split into \(a\le b'\) and \(a\ge b'+1\).
+Hence the norm has valuation \(\min(2a,1+2b')\).
+The cases \(A=0\) or \(B=0\) follow from the same formula.
+It follows that a unit norm has \(v_s(A)=0,\ v_s(B)\ge0\),
+and its residue is a square in \(k'\).
+This proof uses no perfectness or defect assumption.
+
+For arbitrary \(c\in F^*=k(s)^*\), write
+\(c=s^r c_0(1+O(s))\) with \(r\in\mathbb Z,\ c_0\in k^*\).
+Equation \eqref{normcondition} makes \(f/c\) a norm over \(D\).
+Multiplication by the norm \(s^r=\N(\pi^r)\), valid also for negative
+\(r\), makes it a unit norm. Its residue therefore satisfies
+\begin{equation}\label{square}
+ \frac{1+\beta^2z}{c_0}\in k'^{*2}.
+\end{equation}
+
+\paragraph{The residue condition is impossible.}
+Set
+\[
+ S=k'^2=\F_2(\beta^2,z^2,\gamma^2),\qquad
+ R=\F_2(\beta^4,z^2,\gamma^2).
+\]
+We have \(k=R(z)\), of degree two over \(R\), so
+\(c_0=u+vz\) uniquely with \(u,v\in R\), including arbitrary rational
+denominators. Also \(z\notin S\), as seen by the odd valuation of
+\(z^2\) in the rational field \(S\). Comparing \(1,z\) coefficients in
+\[
+ 1+\beta^2z=q(u+vz),\qquad q\in S^*,
+\]
+gives \(qu=1,\ qv=\beta^2\). Thus \(u\ne0\) and
+\(\beta^2=v/u\in R\), a contradiction: as an independent variable,
+\(\beta^2\) has valuation one at zero, whereas nonzero elements of
+\(R=\F_2((\beta^2)^2,z^2,\gamma^2)\) have even valuation there.
+This disproves \eqref{square} for every \(c\), proving the theorem.
+\qed
+
+\section{The boundary degree and scope}
+\begin{proposition}
+At \(n=0\), equality \eqref{question} holds for every set of its stated
+data with \(B\) a positive-fold bilinear Pfister form.
+\end{proposition}
+\begin{proof}
+An Artin--Schreier root cannot first appear in a purely inseparable
+extension, since that root is separable over the base. Nor can it first
+appear in a rational function field, whose algebraic constants are its
+base field. An anisotropic quasilinear form of dimension \(d\ge2\) has
+projective-quadric function field purely inseparable
+quadratic over a rational field in \(d-2\) variables: use a projective
+chart and solve for one squared coordinate. For \(d=2\), there are no
+rational variables.
+
+Separable extension preserves quasilinear anisotropy, by linear
+disjointness with purely inseparable extensions. Thus the chart
+description applies over \(KL\). Any Artin--Schreier root over \(F\)
+in \(LK(B)\) descends first to \(KL\), then to \(K\), since \(KL/K\)
+is purely inseparable. Hence the composite kernel is the \(K/F\)
+kernel, and the other two kernels are zero.
+\end{proof}
+If one separately assigns \(F(B)=F\) to a zero-fold form, its
+\(n=0\) case follows from the same purely inseparable injection.
+No function field of an empty projective quadric is needed.
+
+Two boundaries of the construction are useful.
+If the Pfister slot is \(z\) rather than the independent \(t\),
+adjoining its field kills \(dz\) and absorbs \(\xi\).
+If \(b=u^2\) already in the base and \(\beta^2=u\), then the computation
+\emph{over \(L\)} gives \(\xi_L=[s^{-1},1+uz)_L\).
+Since \(1+uz\) is now in the base, this proves membership in
+\(\K(L/F)+\K(K/F)\). It does not justify a single-symbol equality in
+the base: there \(d(1+uz)=u\,dz+z\,du\).
+This corrects an auxiliary shortcut in the earlier draft and leaves
+the exponent-two example unchanged.
+
+\paragraph{Verification, credit and review status.}
+The supplement gives exact algebra diagnostics, including the
+fixed-logarithmic-basis exact-differential correction, and records
+the mathematical and bounded primary priority audits.
+Finite checks supplement the universal proof; they are not a
+cohomology decision procedure. The audits did not verify an earlier
+recorded full three-summand answer in the bodies inspected.
+Final journal-body comparison for \cite{ALO20} and the full bodies
+of the adjacent nonnormal-extension paper
+(DOI \href{https://doi.org/10.1080/00927872.2019.1686510}{10.1080/00927872.2019.1686510})
+and 2022 transfer paper
+(DOI \href{https://doi.org/10.1016/j.jpaa.2021.106930}{10.1016/j.jpaa.2021.106930})
+remain access limits. No global openness, firstness, or causal-independence
+certificate is asserted.
+AI tools were used extensively in developing, writing, reproducing and
+adversarially checking this work. Initial internal review families had
+parent context available; their checks were not perfectly isolated.
+This preprint is unrefereed, has not received external human peer review,
+and is not formally proof-assistant verified.
+
+\begin{thebibliography}{9}
+\bibitem{OWR}
+A.~Laghribi (joint with R.~Aravire and M.~O'Ryan),
+Differential and Quadratic Forms in Characteristic Two,
+in \emph{Oberwolfach Report 5/2016}, 248--251.
+\href{https://doi.org/10.4171/OWR/2016/5}{doi:10.4171/OWR/2016/5}.
+
+\bibitem{ALO16}
+R.~Aravire, A.~Laghribi and M.~O'Ryan,
+Graded Witt kernels of the compositum of multiquadratic extensions
+with the function fields of Pfister forms,
+\emph{J. Algebra} \textbf{449} (2016), 635--659.
+\href{https://doi.org/10.1016/j.jalgebra.2015.11.022}{doi:10.1016/j.jalgebra.2015.11.022}.
+
+\bibitem{ALO20}
+R.~Aravire, A.~Laghribi and M.~O'Ryan,
+Cohomological kernels of mixed extensions in characteristic 2,
+\emph{J. Algebra} \textbf{542} (2020), 249--276.
+\href{https://doi.org/10.1016/j.jalgebra.2019.09.012}{doi:10.1016/j.jalgebra.2019.09.012}.
+Definition/lemma numbering refers to the author manuscript dated
+15 August 2019,
+\href{https://laghribi.perso.math.cnrs.fr/cohom-kernels.pdf}{author PDF}.
+
+\bibitem{CQM}
+A.~Chapman and A.~Qu\'eguiner-Mathieu,
+Minimal quadratic forms for the function field of a conic in characteristic 2,
+\href{https://arxiv.org/abs/2111.15251v3}{arXiv:2111.15251v3} (2022).
+
+\bibitem{Milne}
+J.~S.~Milne, \emph{Class Field Theory}, version 4.03 (2020), Chapter IV.
+\href{https://www.jmilne.org/math/CourseNotes/CFT.pdf}{Author course notes}.
+
+\bibitem{Voight}
+J.~Voight, \emph{Quaternion Algebras}, Graduate Texts in Mathematics 288,
+Springer, 2021, Chapter 6.
+\href{https://doi.org/10.1007/978-3-030-56694-4_6}{doi:10.1007/978-3-030-56694-4\_6}.
+\end{thebibliography}
+\end{document}

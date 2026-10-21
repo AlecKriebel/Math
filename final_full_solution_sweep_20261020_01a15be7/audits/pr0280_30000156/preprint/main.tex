@@ -1,0 +1,538 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={A fixed birational map without a prime-field cycle-distribution limit},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Fp}{\mathbf F_p}
+\newcommand{\Q}{\mathbf Q}
+\newcommand{\C}{\mathbf C}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Li}{\operatorname{Li}}
+\title{A fixed birational map without a\\prime-field cycle-distribution limit}
+\author{Alec Kriebel\\[3pt]\small Independent researcher\\\small \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{Version 1.1 \quad 21 October 2026 (UTC)}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the fixed birational map $L(u,v)=(u,(u^2+1)v)$, reduction at every
+prime $p\equiv3\pmod4$ permutes all of $\Fp^2$. Its point-weighted
+distribution of periods divided by $p$ has no limit. At every fixed
+$1/2\le x<1$, the distribution function is
+$1-\varphi(p-1)/(p-1)+o(1)$, with limsup $1$ and liminf at most $23/24$.
+Moreover, neither these distribution-function values nor the period
+measures converge on any further prime subset of positive upper relative
+density. The latter statement uses the classical continuous empirical
+law for $\varphi(p-1)/(p-1)$. A supplementary proposition treats all odd
+primes on the invariant regular domain, and under uniform-point deletion
+or arbitrary exceptional-period completion. These conventions cannot
+restore convergence on any positive-upper-density prime selection.
+The contribution is a precisely delimited
+application to the broad existence assertion in the 2004 Oberwolfach
+problem on finite-field maps. The triangular family, primitive-value
+estimates, totient mean and scalar distribution law are established
+ingredients; no new arithmetic theorem or historical firstness is claimed.
+\end{abstract}
+
+\section{Statement and scope}
+Let
+\begin{equation}\label{eq:map}
+ L(u,v)=(u,(u^2+1)v),\qquad
+ L^{-1}(u,v)=\left(u,\frac{v}{u^2+1}\right).
+\end{equation}
+These formulas define inverse rational maps over $\Q$ on a dense open
+set. The forward map is polynomial, but its inverse is not polynomial
+over $\C$. The rational invariant $I(u,v)=u$ has genus-zero generic
+fibers, and $L^m(u,v)=(u,(u^2+1)^m v)$ shows that $L$ has infinite order.
+The map belongs, after exchanging the coordinates, to the older
+triangular polynomial family in Ostafe--Shparlinski
+\cite[\S2.1, (1)--(4)]{OS}: take $m=1$, $a=1$, $b=0$,
+$g_0(X_1)=X_1^2+1$, and $h_0=0$.
+
+Set $\mathcal S=\{p\text{ prime}:p\equiv3\pmod4\}$. For $p\in\mathcal S$,
+write $T_p(z)$ for the least positive period of an affine point and define
+\begin{equation}\label{eq:measure}
+ \mu_p=\frac1{p^2}\sum_{z\in\Fp^2}\delta_{T_p(z)/p},
+ \qquad D_p(x)=\mu_p([0,x])
+       =\frac1{p^2}\#\{z:T_p(z)\le px\}\quad(x\ge0).
+\end{equation}
+For a prime set $\mathcal A\subseteq\mathcal S$, positive upper relative
+density in $\mathcal S$ means
+\begin{equation}\label{eq:density}
+ \limsup_{X\to\infty}
+ \frac{\#\{p\le X:p\in\mathcal A\}}{\#\{p\le X:p\in\mathcal S\}}>0.
+\end{equation}
+Since $\mathcal S$ has density $1/2$ among primes, this is equivalent to
+positive upper density relative to all primes.
+
+\begin{theorem}\label{thm:main}
+The map \eqref{eq:map} permutes all of $\Fp^2$ for every $p\in\mathcal S$.
+Put $\theta_p=\varphi(p-1)/(p-1)$.
+\par
+\begin{enumerate}
+\item For each fixed $x\in[1/2,1)$, eventually along $\mathcal S$,
+\begin{equation}\label{eq:error}
+ \left|D_p(x)-(1-\theta_p)\right|
+       \le \frac1p+64p^{-1/4}.
+\end{equation}
+\item For every such fixed $x$,
+\begin{equation}\label{eq:gap}
+ \limsup_{\substack{p\to\infty\\p\in\mathcal S}}D_p(x)=1,
+ \qquad
+ \liminf_{\substack{p\to\infty\\p\in\mathcal S}}D_p(x)\le\frac{23}{24}.
+\end{equation}
+\item If $\mathcal A\subseteq\mathcal S$ satisfies \eqref{eq:density},
+then $D_p(x)$ does not converge as $p\to\infty$ in $\mathcal A$, for any
+fixed $x\in[1/2,1)$. The probability measures $\mu_p$ do not converge
+weakly along $\mathcal A$ either.
+\end{enumerate}
+\end{theorem}
+
+Vivaldi's 2004 contribution, joint work with Roberts
+\cite[pp.2944--2945, Conjecture 1]{V}, uses the point weighting and scale
+in \eqref{eq:measure}. It fixes the field-extension degree, permits
+suitable positive-density reduction primes, and then takes $q=p$.
+The stated existence assertion covers arbitrary birational maps;
+genus one enters a subsequent heuristic. Here the fixed degree is one,
+the forward polynomial acts on the full affine plane, and both directions
+are defined at every point for $p\in\mathcal S$. Part (iii) also rules
+out restoring the limit by a further positive-upper-density selection
+inside this admissible class. Proposition~\ref{prop:allodd} below separately
+treats positive-density selections outside this class under explicitly
+specified deletion/completion conventions; it does not relabel the
+full-affine-permutation assertion as an all-prime theorem. Failure at $x=3/4$ avoids the reciprocal
+integer thresholds in the proposed integrable step law. We draw no
+conclusion about narrower elliptic-fiber or polynomial-automorphism
+questions, or about the different prime-averaged statistic at scale $p^2$
+in the source's later Conjecture 2.
+
+\section{Exact fiber dynamics and primitive multipliers}
+For $p\in\mathcal S$, $-1$ is a nonsquare, so $a_u=u^2+1\ne0$ for
+every $u\in\Fp$. On each vertical fiber, $L$ multiplies the second
+coordinate by $a_u$. This proves the permutation assertion. Every
+$(u,0)$ has period one; every $(u,v)$ with $v\ne0$ has period
+$\ord_{\Fp^\times}(a_u)$. In particular all points lie on cycles and all
+periods divide $N=p-1$.
+
+Define the number of primitive multipliers by
+\[
+ P_p=\#\{u\in\Fp:\ord_{\Fp^\times}(u^2+1)=N\}.
+\]
+Every proper divisor of $N$ is at most $N/2<p/2$. For a fixed
+$x\in[1/2,1)$ and $p>1/(1-x)$, $N>px$. Thus exactly the primitive
+fibers contribute excluded points, $p-1$ points per fiber:
+\begin{equation}\label{eq:exact}
+ D_p(x)=1-\frac{(p-1)P_p}{p^2}.
+\end{equation}
+This counts points, rather than assigning equal weight to cycles.
+The threshold condition is essential: at $x=(p-1)/p$ all points are
+included. Also $D_p(0)=0$ and $D_p(1)=1$. No estimate uniform for moving
+$x\to1$ is asserted.
+
+\begin{lemma}\label{lem:primitive}
+For every $p\in\mathcal S$, with $\omega(N)$ the number of distinct
+prime divisors of $N$,
+\begin{equation}\label{eq:primitive}
+ \left|\frac{P_p}{p}-\theta_p\right|
+ \le\frac{\theta_p(2^{\omega(N)}-1)}{\sqrt p}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+We give the familiar character argument to specify the input completely.
+This mechanism is classical; a general quadratic primitive-value
+formulation appears in Booker--Cohen--Sutherland--Trudgian
+\cite[\S2, (5)--(6), Lemma 1]{BCST}.
+Extend all multiplicative characters by zero at zero, including the
+principal character. For $a\in\Fp^\times$, the primitive-element indicator is
+\begin{equation}\label{eq:indicator}
+ \boldsymbol1_{\ord(a)=N}
+ =\theta_p\sum_{d\mid N}\frac{\mu(d)}{\varphi(d)}
+             \sum_{\ord(\chi)=d}\chi(a).
+\end{equation}
+Indeed, write $a=g^k$ for a generator $g$. For a prime $\ell\mid N$,
+the sum over characters of order $\ell$ is $\ell-1$ if $\ell\mid k$
+and $-1$ otherwise. The squarefree-divisor sum factors into
+$\prod_{\ell\mid N}(1-c_\ell(k)/(\ell-1))$. Multiplication by
+$\theta_p$ gives zero if some $\ell\mid k$ and one otherwise, proving
+\eqref{eq:indicator}.
+
+Let $\eta$ be the quadratic character. For any nonprincipal $\chi$,
+counting the square roots of $t$ and then substituting $t=-s$ gives
+\begin{align}\label{eq:jacobi}
+ S_\chi:=\sum_{u\in\Fp}\chi(u^2+1)
+ &=\sum_{t\in\Fp}(1+\eta(t))\chi(t+1)\notag\\
+ &=\eta(-1)J(\eta,\chi),\qquad
+ J(\alpha,\beta)=\sum_{s\in\Fp}\alpha(s)\beta(1-s).
+\end{align}
+For completeness, for a nonprincipal character $\alpha$ its Gauss sum
+$G(\alpha)=\sum_t\alpha(t)e^{2\pi i t/p}$ satisfies
+\[
+ |G(\alpha)|^2
+ =\sum_{r\ne0}\alpha(r)\sum_{y\ne0}e^{2\pi i(r-1)y/p}
+ =(p-1)-\sum_{r\ne0,1}\alpha(r)=p.
+\]
+If $\alpha,\beta,\alpha\beta$ are nonprincipal, decomposing the
+product of Gauss sums by $t+s$ proves
+$G(\alpha)G(\beta)=J(\alpha,\beta)G(\alpha\beta)$.
+Hence $|J(\alpha,\beta)|=\sqrt p$. If $\beta=\alpha^{-1}$,
+the substitution $w=s/(1-s)$ instead gives
+$J(\alpha,\alpha^{-1})=-\alpha(-1)$, of modulus one.
+Thus $|S_\chi|\le\sqrt p$, including the exceptional case $\chi=\eta$.
+
+Sum \eqref{eq:indicator} over $a=u^2+1$. Its principal term is exactly
+$p\theta_p$, since these values are nonzero. For each nontrivial
+squarefree $d\mid N$, the $\varphi(d)$ characters cancel the denominator
+in the triangle inequality. There are $2^{\omega(N)}-1$ such divisors,
+which proves \eqref{eq:primitive}.
+\end{proof}
+
+There are six primes below $16$, and $2\le\ell^{1/4}$ for every prime
+$\ell\ge17$. Consequently
+\begin{equation}\label{eq:omega}
+ 2^{\omega(N)}\le64N^{1/4}.
+\end{equation}
+Combining \eqref{eq:exact}--\eqref{eq:omega}, and using
+$0\le\theta_p\le1$, proves \eqref{eq:error}. In particular,
+\begin{equation}\label{eq:bridge}
+ D_p(x)=1-\theta_p+o(1)
+ \quad\text{for every fixed }x\in[1/2,1),\quad p\to\infty\text{ in }\mathcal S.
+\end{equation}
+Alternatively the older estimate \cite[(5)--(6), Lemma 1]{BCST}
+specializes directly with $Q(t)=t^2+1$, $e_1=1$, $e_2=N$.
+Here $Q(0)=1$ is not primitive, so its $N(1,N)$ equals $P_p$;
+the principal term is $p-1$ because its sum omits $t=0$.
+That formulation gives the same $o(1)$ bridge. The stronger exact
+principal term in the displayed elementary proof is not a new
+character-sum theorem.
+
+\section{Two explicit incompatible subsequences}
+The arithmetic input for the second subsequence is the classical
+unconditional mean
+\begin{equation}\label{eq:mean}
+ \frac1{\pi(X)}\sum_{p\le X}\theta_p\longrightarrow
+ A:=\prod_{\ell\ \text{prime}}\left(1-\frac1{\ell(\ell-1)}\right).
+\end{equation}
+It is the $r=m=1$ specialization of the established shifted-prime
+calculation in Menici--Pehlivan \cite[(1), Lemma 2, pp.262--263]{MP};
+it also follows from Aivazidis--Sofos \cite[Theorem 1.1(i), $n=1$]{AS}.
+It is not the primitive-root conjecture for a fixed base.
+
+Here is a short proof of the needed mean, subject to the standard
+Siegel--Walfisz theorem. M\"obius inversion gives
+\[
+ \sum_{p\le X}\theta_p
+ =\sum_{d\le X-1}\frac{\mu(d)}d\,\pi(X;1,d).
+\]
+Set $K=(\log X)^6$. Since $\pi(X;1,d)\le X/d$, the tail $d>K$ is
+$O(X/K)$. Uniformly for $d\le K$, Siegel--Walfisz gives
+$\pi(X;1,d)=\Li(X)/\varphi(d)+O(X/(\log X)^4)$;
+the summed error is $O(X\log K/(\log X)^4)=o(X/\log X)$.
+The coefficient series $\sum_d1/(d\varphi(d))$ converges:
+$\varphi(d)\ge\sqrt{d/2}$ follows by checking prime powers in
+$\varphi(d)^2/d$ (only the factor $2^1$ can contribute below one).
+The resulting absolutely convergent Euler product is $A$.
+Finally $\pi(X)\sim\Li(X)$ proves \eqref{eq:mean}.
+This is a restatement of a classical mean argument.
+
+We need only a coarse positive bound. The factor at $2$ is $1/2$,
+and
+\[
+ \sum_{\ell\ \text{odd prime}}\frac1{\ell(\ell-1)}
+ \le\sum_{\substack{n\ge3\\n\ne4}}\frac1{n(n-1)}=\frac5{12}.
+\]
+The inequality $\prod(1-a_i)\ge1-\sum a_i$, first for finite products
+and then by passage to the limit, yields
+\begin{equation}\label{eq:Abound}
+ A\ge\frac7{24}>\frac{13}{48}.
+\end{equation}
+
+Let $Q_j$ be the product of the first $j$ odd primes. The congruences
+$p\equiv3\pmod4$ and $p\equiv1\pmod{Q_j}$ specify a reduced residue
+class modulo $4Q_j$. By the Chinese remainder theorem and Dirichlet's
+theorem, choose an increasing prime sequence $p_j$ in these classes.
+Then
+\[
+ 0\le\theta_{p_j}\le\frac12\prod_{\ell\mid Q_j}(1-1/\ell)
+ \longrightarrow0
+\]
+by Euler's vanishing prime product. Thus \eqref{eq:bridge} gives
+$D_{p_j}(x)\to1$ for every fixed $x\in[1/2,1)$.
+
+For every odd prime, $\theta_p\le1/2$. If only finitely many
+$p\in\mathcal S$ satisfied $\theta_p\ge1/24$, the prime number theorem
+in the two odd classes modulo $4$ would give
+\[
+ \limsup_{X\to\infty}\frac1{\pi(X)}\sum_{p\le X}\theta_p
+ \le\frac12\cdot\frac12+\frac12\cdot\frac1{24}
+ =\frac{13}{48},
+\]
+contradicting \eqref{eq:mean}--\eqref{eq:Abound}. An increasing
+sequence $q_j\in\mathcal S$ therefore satisfies
+$\theta_{q_j}\ge1/24$. Equation \eqref{eq:bridge} gives
+$\limsup_jD_{q_j}(x)\le23/24$, proving \eqref{eq:gap}.
+The two sequences are independent of $x$; the exact identity is
+eventual for each fixed $x$. The numerical bound is deliberately coarse
+and is not offered as a new arithmetic refinement.
+
+\section{Positive-density selections and weak convergence}
+The two subsequences alone do not exclude convergence on every further
+positive-density selection. For that quantifier we use the following
+older scalar distribution theorem.
+
+\medskip\noindent\textbf{Classical scalar input.}
+There is an atomless probability measure $\nu$ on $[0,1]$ such that
+\begin{equation}\label{eq:scalar}
+ \frac1{\pi(X)}\sum_{p\le X}\delta_{\theta_p}
+ \ \Longrightarrow\ \nu\qquad(X\to\infty).
+\end{equation}
+Equivalently, the empirical distribution function of $\theta_p$ is
+continuous in the limit. This is the shifted-prime law associated
+with K\'atai. It is recorded directly for this scalar in
+Deshouillers--Hassani \cite[\S\S1--2, Proposition 2.1 with $m=2$]{DH},
+and in Aivazidis--Sofos \cite[Theorem 1.3(i), $n=1$, and \S6]{AS}.
+In the latter formulation the theorem is stated over prime powers;
+proper powers number $O(\sqrt X\log X)=o(\pi(X))$, so the same
+empirical law holds over primes, as its proof explicitly explains.
+Continuity, rather than absolute continuity, is the property used here.
+No hypothesis such as GRH is imposed on this input.
+
+\begin{lemma}\label{lem:atom}
+If a bounded real sequence $b_p$, indexed by primes, has an atomless
+limiting empirical law, it cannot converge along a prime subset of
+positive upper density relative to the primes.
+\end{lemma}
+\begin{proof}
+Suppose $b_p\to c$ on a set $\mathcal A$ with upper density $\delta>0$.
+For each $\varepsilon>0$, all but finitely many members of
+$\mathcal A$ have $b_p\in[c-\varepsilon,c+\varepsilon]$.
+Choose endpoints $X_j\to\infty$ realizing the upper density.
+The limiting empirical measure assigns the closed interval at least
+$\delta$: its endpoints have measure zero, so its frequencies converge.
+Letting $\varepsilon\downarrow0$ and using continuity from above forces
+an atom of mass at least $\delta$ at $c$, a contradiction.
+\end{proof}
+
+If $D_p(x)$ converged along a set satisfying \eqref{eq:density}, then
+\eqref{eq:bridge} would force $\theta_p$ to converge there. The density
+of $\mathcal S$ and Lemma~\ref{lem:atom}, applied to \eqref{eq:scalar},
+exclude that possibility.
+
+To treat weak convergence without a choice of continuity points, use
+the bounded continuous function on $[0,\infty)$
+\[
+ h(t)=\max\{0,\min\{1,2t-1\}\}.
+\]
+For a proper-divisor period $d\mid p-1$, $d/p<1/2$ and $h(d/p)=0$.
+A maximal period contributes $h((p-1)/p)=1-2/p$. Consequently the
+exact identity
+\begin{equation}\label{eq:moment}
+ \int h\,d\mu_p
+ =\left(1-\frac2p\right)\frac{(p-1)P_p}{p^2}
+ =\theta_p+o(1)
+\end{equation}
+holds as $p\to\infty$ in $\mathcal S$, by
+Lemma~\ref{lem:primitive} and \eqref{eq:omega}.
+Weak convergence along a positive-upper-density subset would force
+the left side to converge. Lemma~\ref{lem:atom} again gives a
+contradiction. This proves part (iii) of Theorem~\ref{thm:main}.
+In particular, both conclusions survive deletion of any set of prime
+density zero. No assertion about arbitrary zero-density selections
+is required.
+
+\section{All-odd-prime robustness under exceptional-fiber conventions}
+The source permits suitable positive-density primes. The preceding
+full-affine theorem concerns precisely $\mathcal S$; for $p\equiv1\pmod4$
+the two multiplier-zero fibers contract to their zero sections and the
+full affine map is not a permutation. The following additional deduction
+addresses choosing primes outside $\mathcal S$ under natural, explicitly
+stated point-period conventions. It uses the same credited whole-prime
+scalar law \eqref{eq:scalar}, without a conditional residue-class law.
+
+\begin{proposition}\label{prop:allodd}
+For every odd prime $p$, put $N=p-1$, $\theta_p=\varphi(N)/N$,
+$r_p=\#\{u:u^2+1=0\}\in\{0,2\}$, and
+\[
+ \Omega_p=\{(u,v)\in\Fp^2:u^2+1\ne0\},\qquad
+ |\Omega_p|=p(p-r_p).
+\]
+Let $P_p$ now count the nonzero primitive multipliers $u^2+1$ for this
+prime. Then, uniformly as $p\to\infty$ through all odd primes,
+\begin{equation}\label{eq:allprimitive}
+ \left|\frac{P_p}{p}-\theta_p\right|
+ \le\frac{r_p\theta_p}{p}
+    +\frac{\theta_p(2^{\omega(N)}-1)}{\sqrt p}
+ \le\frac2p+64p^{-1/4}=o(1).
+\end{equation}
+On $\Omega_p$ the map is a permutation. Define its uniform point-period
+measure $\mu_p^{\rm reg}$, normalized by $p(p-r_p)$ and with periods
+divided by $p$. For fixed $1/2\le x<1$ and $p(1-x)>1$,
+\begin{align}
+ D_p^{\rm reg}(x)
+ &=1-\frac{(p-1)P_p}{p(p-r_p)}=1-\theta_p+o(1),\label{eq:allcdf}\\
+ \int h\,d\mu_p^{\rm reg}
+ &=\left(1-\frac2p\right)\frac{(p-1)P_p}{p(p-r_p)}
+   =\theta_p+o(1).\label{eq:allmoment}
+\end{align}
+The same asymptotics hold if any subset of the exceptional fibers is
+deleted, all regular points are retained, the remaining exceptional
+points receive arbitrary finite nonnegative assigned periods, and
+uniform point weights are renormalized. This includes deleting all
+exceptional fibers, deleting just their nonperiodic points, and completing
+all $p^2$ points. Under every such convention, the CDF at each fixed
+$x\in[1/2,1)$ and the period measures fail to converge along every prime
+set of positive upper density relative to all primes.
+\end{proposition}
+\begin{proof}
+The root count is $r_p=0$ in class $3$ and $r_p=2$ in class $1$ modulo $4$.
+The character indicator \eqref{eq:indicator}, extended by zero at zero,
+contributes zero at these roots. Its principal term is therefore exactly
+$(p-r_p)\theta_p$. The Jacobi-sum calculation \eqref{eq:jacobi} applies
+to every odd prime: $|S_\chi|\le\sqrt p$ for each nonprincipal $\chi$,
+and $S_\eta=-1$ in either residue class. The same squarefree-divisor
+triangle inequality gives
+\[
+ |P_p-(p-r_p)\theta_p|
+ \le\theta_p(2^{\omega(N)}-1)\sqrt p.
+\]
+Division by $p$, followed by \eqref{eq:omega}, proves
+\eqref{eq:allprimitive} uniformly over all odd primes.
+
+There are $p-r_p$ regular fibers. Their zero sections have period one;
+the other points have the nonzero multiplier's order. The proper-divisor
+and primitive-period count used in \eqref{eq:exact} proves the exact
+CDF formula \eqref{eq:allcdf}; the globally bounded continuous ramp $h$
+from the preceding section proves \eqref{eq:allmoment}. In both formulas
+$(p-1)/(p-r_p)=1+O(1/p)$, uniformly for $r_p\in\{0,2\}$, giving the stated
+asymptotics.
+
+Write $R=p(p-r_p)$. If $e$ exceptional points are retained, $0\le e\le r_p p$,
+the resulting probability measure on $[0,\infty)$ is
+\[
+ \widetilde\mu_p=\frac{R}{R+e}\mu_p^{\rm reg}+\xi_p,
+ \qquad \xi_p([0,\infty))=\frac{e}{R+e}\le\frac{r_p}{p}.
+\]
+For every statistic $f$ taking values in $[0,1]$, its integrals against
+these two measures differ by at most $r_p/p\le2/p$; for a bounded
+real $f$ the bound is $2\|f\|_\infty r_p/p$. This proves the claimed
+$O(1/p)$ stability of CDF indicators and of $h$. Assigned periods may
+exceed $p$, so no support restriction to $[0,1]$ is imposed on
+$\widetilde\mu_p$. The ramp is bounded and continuous on the entire
+nonnegative real axis. In particular its moment remains a legitimate
+weak-convergence test under arbitrary such assignments.
+
+If a completed/deleted CDF at a fixed $x\in[1/2,1)$ converged on a
+positive-upper-prime-density set, \eqref{eq:allcdf} and the stability
+bound would force $\theta_p$ to converge there. Weak convergence of the
+measures would similarly force convergence of the globally bounded ramp
+moment, hence of $\theta_p$ by \eqref{eq:allmoment}. The credited atomless
+whole-prime law \eqref{eq:scalar} and Lemma~\ref{lem:atom} exclude both.
+\end{proof}
+
+Only exceptional points and their weighting conventions vary in this
+proposition; actual cycles on the invariant regular domain are unchanged.
+It does not assert that the source specifies a unique convention for
+nonperiodic points, or that primes in class $1$ give full-affine
+permutations. The original class-$3$ theorem, including its explicit
+limsup/liminf bound, remains the full-affine statement.
+
+\section{Attribution, historical boundary, and reproducibility}
+The mechanism is a short application of established results. The
+specific assertion documented here combines the exact point-period
+identity \eqref{eq:exact} with classical arithmetic inputs for this
+fixed map and the statistic in \eqref{eq:measure}. A bounded search
+of the closest inspected finite-field dynamics sources did not
+authenticate an earlier statement of this exact application. This
+does not certify worldwide absence, historical firstness, or present
+open-problem status.
+
+A specific unresolved bibliographic lead must be retained.
+Roberts \cite[p.220, reference 9]{R} cites N.~Neum\"arker,
+J.~A.~G.~Roberts, C.-M.~Viallet and F.~Vivaldi,
+\emph{The dynamics of reversible birational maps over finite fields},
+UNSW Preprint (2011). The body and its version relationships were
+not recovered in the bounded audit. Citation contexts cannot
+determine whether that unseen manuscript contains the present
+application. If an exact prior statement is later authenticated,
+this note's historical description requires reconciliation; none
+of the mathematical deductions depend on assuming its absence.
+
+The accompanying source and verification archive contains the TeX
+source, a dependency-free exact finite checker, source pointers,
+and byte-preserved original research files with manifests. The
+new checker passes $147{,}619$ exact finite checks over the $87$
+admissible primes through $1000$, including eight complete affine orbit
+graphs with $6{,}088$ points and six bad-reduction controls. It verifies
+fiber orders, divisor fixed-point counts, the
+point-weighted CDF identity and the continuous moment, and tests
+the endpoint and bad-reduction controls. A separate all-odd-prime checker
+verifies the regular-domain formulas and completion/deletion bounds through
+$1000$, including assignments with normalized periods exceeding one.
+Its exact assertion count and prime range are recorded separately; it does
+not replace or inflate the original $147{,}619$-check receipt. Each run receipt specifies
+the actual range and assertion count. Historical AI audit receipts
+also record $8{,}347{,}742$ finite assertions and $230{,}780$ analytic
+controls; they are preserved as earlier runs, not attributed to the
+new checker. The original SymPy-dependent scripts are retained;
+this preparation does not claim a successful replay of those scripts
+in an environment without SymPy. Finite computations check finite
+identities and implementation consistency. The infinite-prime
+conclusions follow from the proofs and the explicitly cited
+classical inputs, not from numerical extrapolation.
+
+\medskip\noindent\textbf{AI disclosure and review status.}
+AI systems were extensively involved in the research, mathematical
+model and proof development, computation, literature investigation,
+manuscript writing, and adversarial verification. The author is
+responsible for the submitted claims. This is an unrefereed preprint;
+it has not undergone formal independent human peer review.
+Internal AI reviews are not human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{V} F.~Vivaldi (joint work with J.~A.~G.~Roberts),
+\emph{Maps over finite fields: integrability and reversibility},
+Oberwolfach Reports 54/2004, pp.2944--2945.
+\url{https://webspace.maths.qmul.ac.uk/f.vivaldi/research/Oberwolfach.pdf}.
+
+\bibitem{OS} A.~Ostafe and I.~E.~Shparlinski,
+\emph{On the degree growth in some polynomial dynamical systems and
+nonlinear pseudorandom number generators}, arXiv:0902.3884v3 (2009).
+\url{https://arxiv.org/abs/0902.3884v3}.
+
+\bibitem{BCST} A.~R.~Booker, S.~D.~Cohen, N.~Sutherland and T.~Trudgian,
+\emph{Primitive values of quadratic polynomials in a finite field},
+arXiv:1803.01435v2 (2018).
+\url{https://arxiv.org/abs/1803.01435v2}.
+
+\bibitem{MP} L.~Menici and C.~Pehlivan,
+\emph{Average $r$-rank Artin conjecture}, Acta Arithmetica
+\textbf{174}(3) (2016), 255--276.
+\href{https://doi.org/10.4064/aa8258-4-2016}{doi:10.4064/aa8258-4-2016}.
+
+\bibitem{AS} S.~Aivazidis and E.~Sofos,
+\emph{On the distribution of the density of maximal order elements in
+general linear groups}, arXiv:1308.5701v2 (2014).
+\url{https://arxiv.org/abs/1308.5701v2}.
+
+\bibitem{DH} J.-M.~Deshouillers and M.~Hassani,
+\emph{A note on the distribution function of $\varphi(p-1)/(p-1)$},
+Journal of the Australian Mathematical Society \textbf{93} (2012),
+77--83; published online 16 January 2013.
+\href{https://doi.org/10.1017/S1446788712000250}{doi:10.1017/S1446788712000250}.
+
+\bibitem{R} J.~A.~G.~Roberts,
+\emph{Order and symmetry in birational difference equations and their
+signatures over finite phase spaces}, Proceedings of the International
+Workshop Future Directions in Difference Equations, Vigo (2011),
+213--221, especially reference 9.
+\url{https://www.dma.uvigo.es/~eliz/pdf/Roberts.pdf}.
+\end{thebibliography}
+\end{document}

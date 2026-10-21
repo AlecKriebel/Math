@@ -1,0 +1,7 @@
+# PR764 deterministic family research log
+
+- 2026-10-14T05:00:59.278273+00:00: Read author_v2/PROOF.md before historical conclusions; recorded standalone derivation of finite-volume existence, approximate maximum uniqueness, complete limiting trajectories and backward-strip rigidity. Mathematical verification completion estimate: 60%. No deterministic gap located. Original-source scope and adversarial controls remain.
+
+- 2026-10-14T05:03:40.477263+00:00: Initial independent control harness rejected an invalid randomly generated positive-coordinate fixture before testing a theorem inequality. Restricted negative fixture perturbations to half the coordinate; this is a test-harness correction, no change to the frozen proof. Source PDF bytes independently retrieved and printed654-655 visually inspected; hashes match the frozen source receipt. Completion estimate:75%.
+
+- 2026-10-14T05:06:46.394544+00:00: Closed deterministic family verdict PASS with zero mathematical issues and no frozen-proof repair. Independent controls passed normal and -O (24 finite-volume problems;400 exact rational and800 floating strip tests;boundary and vanishing-rate controls). Read historical reviews only after independent derivation and controls; no new recent-paper proof read. Literal nonnegative uniqueness is false; corrected positive theorem remains distinct. Removed only own private source bodies/rendered scratch; publication/priority work remains outside family. Completion estimate:100%.

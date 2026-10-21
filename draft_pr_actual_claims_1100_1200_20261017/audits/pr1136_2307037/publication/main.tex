@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,lmodern,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{xurl}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\dd}{\,dA}
+\title{A fixed-area exceptional set for positive squared-pole sums}
+\author{Alec Kriebel\\ \small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{17 October 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+For every finite positive sum \(g(z)=\sum_j\lambda_j(z-z_j)^{-2}\)
+with \(\sum_j\lambda_j=1\), we construct a compact set \(S(g)\) of
+area exactly \(\pi\) such that
+\[
+ \int_{\{|z|<R\}\setminus S(g)}|g(z)|\dd
+ \le 2\pi\log R+\pi(\log2+e^{-1})\qquad(R>1).
+\]
+The same set serves every radius, with no restriction on the poles.
+This gives an affirmative deduction for Baernstein's question,
+Hayman--Lingham Problem~7.37, from the established
+Eremenko--Hamilton indicator estimate and Levine--Peres quadrature-set
+construction. The logarithmic coefficient is sharp; no optimality is
+claimed for the additive constant. Historical first priority is not
+certified. AI tools were used extensively; this note is unrefereed.
+\end{abstract}
+
+\section{The question and the result}
+Write \(D_r=\{z\in\C:|z|<r\}\) and use unnormalized planar Lebesgue
+area \(dA=dx\,dy\). Baernstein's question in \cite[Problem~7.37,
+printed pp.~171--172]{HL} asks for an absolute constant \(C\) and,
+for each positive normalized squared-pole sum, an area-\(\pi\) set
+independent of \(R\), with integral at most \(2\pi\log R+C\).
+Here is an explicit answer.
+\begin{theorem}\label{thm}
+Let \(n\ge1\), \(z_j\in\C\), \(\lambda_j>0\), and
+\(\sum_{j=1}^n\lambda_j=1\), and set
+\(g(z)=\sum_{j=1}^n\lambda_j/(z-z_j)^2\).
+There exists a compact \(S=S(g)\), of area exactly \(\pi\), such that,
+simultaneously for every real \(R>1\),
+\begin{equation}\label{main}
+ \int_{D_R\setminus S}|g|\dd
+ \le 2\pi\log R+\pi(\log2+e^{-1}).
+\end{equation}
+These are ordinary finite nonnegative Lebesgue integrals. Poles may
+coincide. No smaller logarithmic coefficient works with a finite
+absolute additive constant.
+\end{theorem}
+
+\section{The established inputs}
+Use the normalization
+\[
+ Tf(z)=-\frac1\pi\operatorname{pv}
+       \int_{\C}\frac{f(w)}{(w-z)^2}\,dA(w).
+\]
+For bounded-set indicators this has its usual \(L^2\) realization.
+Off the closed support the integral converges absolutely.
+Eremenko--Hamilton \cite[printed p.~2794, proof pp.~2796--2797]{EH}
+prove, for measurable \(E\subset D_1\),
+\begin{equation}\label{EH}
+ \int_{D_1\setminus E}|T1_E|\dd
+ \le |E|\log\frac{\pi}{|E|}.
+\end{equation}
+The zero-area value is defined by continuity. Their compact
+capacity-one ambient-set formulation includes the closed unit disk;
+disk boundaries are null. Measurable indicators follow also from
+compact approximation, \(L^2\) continuity and Fatou.
+Scaling \(z=L\zeta\) gives
+\begin{equation}\label{scale}
+ \int_{D_L\setminus E}|T1_E|\dd
+ \le a\log\frac{\pi L^2}{a},\qquad
+ E\subset D_L,\quad a=|E|.
+\end{equation}
+Indeed \(T1_E(L\zeta)=T1_{E/L}(\zeta)\).
+The indicator estimate uses the conformal-on-\(E\) case of
+\cite[Theorem~1(i)]{EH}. The later correction to its combined
+general-distortion statement does not change this case
+\cite[Theorem~5 and correction discussion]{EH2002}.
+
+The second input is the following consequence of the smash-sum
+construction in Levine--Peres \cite{LP}. Given finitely many
+points \(a_j\) and positive masses \(m_j\), there is a bounded open
+\(\Omega\), containing each disk \(B_j\) of area \(m_j\) centered at
+\(a_j\), such that
+\begin{equation}\label{quad}
+ |\partial\Omega|=0,\qquad |\Omega|=\sum_jm_j,\qquad
+ \int_\Omega h\dd=\sum_jm_jh(a_j)
+\end{equation}
+for every real integrable harmonic function on the whole of \(\Omega\).
+Connectedness is unnecessary. Precise locators in the inspected
+1 May 2009 author manuscript are definition~(4), Proposition~2.12,
+Corollary~2.13, Lemma~2.15, Lemma~6.1 and Proposition~6.6
+(pp.~6, 12--17, 54--55, 58--59).
+Proposition~6.6 gives the superharmonic inequality; apply it to
+\(h\) and \(-h\).
+
+Here the regularity hypotheses allow finite iteration:
+at each binary step the sum of two domain indicators is bounded,
+compactly supported, continuous almost everywhere off null boundaries,
+and takes values \(0,1,2\). The density-gap condition of
+Proposition~2.12 holds with any \(0<\lambda<1\). That proposition
+gives a null boundary, Corollary~2.13 gives area additivity, and
+Lemma~2.15 gives boundedness. Containment, associativity and
+Proposition~6.6 give \eqref{quad} for the finite smash sum.
+The disk mean-value identity supplies the point evaluations.
+These are established quadrature and partial-balayage results,
+with antecedents credited in \cite{LP}; their existence or regularity
+is not claimed as new here.
+
+\section{One set and its entire exterior field}
+Combine repeated poles by adding their weights. Apply \eqref{quad}
+with \(a_j=z_j\) and \(m_j=\pi\lambda_j\), and put
+\(S=\overline\Omega\). Then \(S\) is compact and
+\[
+ |S|=|\Omega|=\pi.
+\]
+It contains an open neighborhood of every pole. Fix \(z\notin S\).
+The real and imaginary parts of \(w\mapsto(w-z)^{-2}\) are bounded
+integrable harmonic functions on \(\Omega\), so \eqref{quad} gives
+\begin{equation}\label{field}
+ \int_\Omega\frac{dA(w)}{(w-z)^2}
+  =\pi\sum_j\frac{\lambda_j}{(z_j-z)^2}
+  =\pi g(z),\qquad T1_\Omega(z)=-g(z).
+\end{equation}
+The identity holds on every component of \(\C\setminus S\), including
+any bounded holes. Harmonic tests are on the whole domain, so no
+analytic continuation from the unbounded component is being assumed.
+All these integrals are absolutely convergent.
+Moreover, outside \(S\), \(|z-z_j|\ge\sqrt{\lambda_j}\), hence
+\(|g(z)|\le n\). This already proves local finiteness.
+The set \(S\) is fixed before any \(R\) is chosen.
+
+\section{Localization and the uniform constant}
+Fix \(R>1\). Set
+\[
+ L=\sqrt2R,\qquad E=\Omega\cap D_L,\qquad
+ F=\Omega\setminus D_L,\qquad a=|E|\in[0,\pi].
+\]
+By \eqref{field}, linearity and \eqref{scale},
+\begin{equation}\label{near}
+ \int_{D_R\setminus S}|g|\dd
+ \le a\log\frac{2\pi R^2}{a}
+       +\int_{D_R\setminus S}|T1_F|\dd,
+\end{equation}
+since \(D_R\setminus S\subset D_L\setminus E\).
+For \(|w|=\rho>R\), polar integration gives
+\begin{equation}\label{kernel}
+ \int_{D_R}\frac{dA(z)}{|z-w|^2}
+ =\int_0^R\frac{2\pi r}{\rho^2-r^2}\,dr
+ =\pi\log\frac{\rho^2}{\rho^2-R^2}.
+\end{equation}
+The angular identity follows by the geometric series for the Poisson
+kernel. For \(w\in F\), \(\rho\ge\sqrt2R\), so \eqref{kernel}
+is at most \(\pi\log2\). The positive separation \(L-R\) justifies
+the ordinary transform integral throughout \(D_R\). Tonelli yields
+\[
+ \int_{D_R\setminus S}|T1_F|\dd
+ \le\frac1\pi\int_F\int_{D_R}\frac{dA(z)\,dA(w)}{|z-w|^2}
+ \le(\pi-a)\log2.
+\]
+Consequently,
+\begin{align*}
+ \int_{D_R\setminus S}|g|\dd
+ &\le a\log\frac{2\pi R^2}{a}+(\pi-a)\log2\\
+ &=2a\log R+\pi\log2+a\log\frac\pi a\\
+ &\le2\pi\log R+\pi\log2+\frac\pi e .
+\end{align*}
+The last inequality uses \(\log R>0\), \(a\le\pi\) and
+\(\max_{0\le t\le1}t\log(1/t)=1/e\).
+Continuous endpoint values cover \(a=0\) and \(a=\pi\).
+Only the auxiliary split depends on \(R\). This proves
+\eqref{main} for the same \(S\) at every radius.
+
+For sharpness of the leading coefficient, take \(g(z)=z^{-2}\).
+For any measurable \(S\) of area \(\pi\), write
+\(A=D_R\setminus D_1\). The integrand is at least \(1\) on \(D_1\)
+and at most \(1\) on \(A\), while
+\[
+ |S\cap A|\le |S\setminus D_1|
+   =|D_1\setminus S|.
+\]
+Thus the integral gained on \(D_1\setminus S\) dominates the finite
+integral lost on \(S\cap A\), and
+\[
+ \int_{D_R\setminus S}|z|^{-2}\dd
+ \ge \int_A |z|^{-2}\dd=2\pi\log R.
+\]
+This also holds when the left side is infinite. Letting \(R\to\infty\)
+excludes a smaller coefficient with any finite additive constant.
+No optimality of the additive constant in \eqref{main} is asserted.
+
+\section{Attribution, priority limits and verification}
+This note supplies the displayed target-specific deduction from
+established results. It claims no new Beurling estimate, quadrature
+construction, or general balayage/operator mechanism.
+Related recent work includes Lin's partial-balayage principles
+\cite{Lin} and Guerra's real-input Beurling weak-type estimates
+\cite{Guerra}; those inspected operator conclusions do not themselves
+state the fixed-set, all-radius assertion proved here.
+The generic ingredients used above were available by 2009.
+A bounded priority audit identified no verified earlier full-target
+answer; worldwide first discovery/publication is not certified.
+In particular, Leung preliminary reports titled \emph{On a fixed
+area problem}, AMS \emph{Abstracts}~11 (1990), p.~181, and
+13 (1992), p.~440, were located through primary indexes, but their
+mathematical texts were inaccessible. Their relevance remains
+unresolved. Other unavailable full/final texts and exact inspection
+scopes are listed in the supporting audit. Neither historical open
+labels nor repository timestamps establish first priority.
+
+The source archive preserves the original proof, source identities,
+three distinct mathematical reviews, priority reviews, the correction
+check and Leung supplement. Supplementary standard-library programs
+test kernel normalization, quadrature fields (including holes),
+scaling, scalar bounds and deliberate wrong alternatives.
+Floating calculations are diagnostics, not validated quadrature or
+proof certificates; the theorem rests on the universal argument above
+and its explicitly stated established inputs.
+AI tools were used extensively in proof development, computation,
+adversarial checking, literature research and writing.
+This paper and its supplements are unrefereed and have not undergone
+external human peer review, journal acceptance or formal
+proof-assistant certification.
+
+\begin{thebibliography}{9}
+\bibitem{HL} W.~K.~Hayman and E.~F.~Lingham,
+\emph{Research Problems in Function Theory}, arXiv:1809.07200v2 (2018),
+Problem~7.37, PDF pp.~172--173.
+\url{https://arxiv.org/abs/1809.07200v2}.
+\bibitem{EH} A.~Eremenko and D.~H.~Hamilton,
+On the area distortion by quasiconformal mappings,
+\emph{Proc. Amer. Math. Soc.}~123 (1995), 2793--2797.
+\href{https://doi.org/10.1090/S0002-9939-1995-1283548-8}{doi:10.1090/S0002-9939-1995-1283548-8}.
+\bibitem{LP} L.~Levine and Y.~Peres,
+Scaling limits for internal aggregation models with multiple sources,
+\emph{J. Anal. Math.}~111 (2010), 151--219.
+\href{https://doi.org/10.1007/s11854-010-0015-2}{doi:10.1007/s11854-010-0015-2}.
+Inspected author manuscript, 1 May 2009:
+\url{https://lionellevine.github.io/scalinglimit.pdf};
+versioned preprint \url{https://arxiv.org/abs/0712.3378v2}.
+\bibitem{EH2002} A.~Eremenko and D.~H.~Hamilton,
+Area distortion of quasiconformal mappings,
+in \emph{Handbook of Complex Analysis: Geometric Function Theory},
+vol.~1 (2002), 147, 149--160.
+\href{https://doi.org/10.1016/S1874-5709(02)80007-5}{doi:10.1016/S1874-5709(02)80007-5}.
+Relevant publisher preview inspected; full chapter unavailable.
+\bibitem{Lin} Y.~Lin, \emph{Two partial balayage principles for
+weak-type estimates}, author-hosted manuscript, inspected 17 October 2026.
+\url{https://coolrmal.github.io/assets/papers/two-partial-balayage-principles.pdf}.
+Body also pinned to Git version dated 5 October 2026 in the supplement;
+historical public visibility is not certified.
+\bibitem{Guerra} A.~Guerra,
+\emph{Quasiconvexity of the Burkholder function on symmetric matrices},
+arXiv:2608.23388v1 (24 August 2026).
+\url{https://arxiv.org/abs/2608.23388v1}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,30 @@
+# Current publication proof
+
+For a>b>0 and a fixed proper nested nondegenerate confocal elliptical caustic with primitive least N=2mod4>=6, the signed area of consecutive boundary-tangent intersections times the signed area of their pedal polygon is phase independent for every fixed finite real M. All admitted coprime star windings and reversal; zero or negative pedal area allowed.
+
+Published note: https://doi.org/10.5281/zenodo.23411482. Exact source: draft_pr_publication_program_20260930/audits/pr201_5100014/publication_package_v2/outer_pedal_flag.tex. The full two-pole proof is in CANDIDATE.md and the manuscript. The following verification is of the credited Chavez-Caliz product under target parity; it is not a new theorem. The separate supplemental source-family audit and completed publication reviews accepted the verification.
+
+# Root verification of the credited original/outer area product in the target parity
+
+This is a direct check of the already credited Chavez-Caliz area-product theorem under the present confocal, primitive N=2mod4 hypotheses. It uses the candidate flag framework and the source-family zero/pole refinement after those were read. It is not an independent discovery, priority claim, or fourth mathematical family. The published statement and its definition of complex general position were checked directly at https://armj.math.stonybrook.edu/pdf-Springer-final/020-0154.pdf, pp93–94,98,104.
+
+Let E have axes a>b>0, C squared axes alpha²=a²−lambda,beta²=b²−lambda with0<lambda<b², and exact flag translation order N=2m, m odd>=3. Use the candidate conventions X, pi, sigma, tau, T=tau sigma, I=T^m. Let rho map a flag to its original chord line l, a tangent to C. Polarity with respect to E sends l to the outer tangent-intersection vertex W. Indeed the chord joining successive P_i is the polar of W_i, where W_i intersects the E-tangents at those two points. Thus A' is the signed shoelace area of W(T^i x). The maps satisfy pi tau=pi and rho sigma=rho. They are degree two. W ranges over the smooth ellipse x² alpha²/a⁴+y² beta²/b⁴=1. Cyclic signed areas A,A' descend to the unramified compact quotient Y=X/<T>.
+
+From the checked candidate, A has at most simple poles on S, the quotient images of flags above the two infinite points of E. No two adjacent original vertices are infinite. The following proves AA' has no poles without taking the published product conclusion as an additional unverified assertion.
+
+1. Every orbit in S contains a sigma-fixed flag. For x above an infinite point, pi is unramified and its two flags are exchanged by both tau and I; hence tau x=Ix=T^m x. Therefore sigma x=tau T x=T^(m−1)x. Since m is odd, choose k with2k=m−1 modulo2m. Then sigma(T^k x)=T^k x.
+
+2. A possible infinite W occurs exactly when l passes through the origin O. A tangent to a centered nondegenerate ellipse through O is one of its two complex asymptotes, tangent to C at infinity. Those two directions differ from E's infinite directions, since a²/b² differs from alpha²/beta². The line therefore intersects E at two distinct finite opposite points. At any flag x over this l, sigma x=Ix=T^m x, and hence tau x=T^(m+1)x. Choose k with2k=m+1 modulo2m; then tau(T^k x)=T^k x. Denote by R the quotient set of these possible infinite-W orbits. Thus every orbit in R contains a tau-fixed flag.
+
+3. No T-orbit can contain both a sigma-fixed and a tau-fixed flag for even N. If sigma z=z, then tau(T^j z)=T^(1−j)z; tau-fixedness would require2j=1 moduloN, impossible. Consequently R and S are disjoint. At all R-orbits every original vertex is finite. At all S-orbits every outer W is finite.
+
+4. Each individual W has at most a simple pole at its infinite flags. On the dual conic of C the equation that l passes through O cuts two distinct points; the double cover rho is unramified there because the two E-intersections are distinct. In a local coordinate the affine normalization of the polarity image therefore has a simple zero denominator. There cannot be consecutive infinite W_i,W_(i+1): two different asymptotes would meet at the intermediate original vertex P_(i+1)=O, which is not on E. If the two chord lines coincided, their two tangent choices at P_(i+1) would coincide, forcing that vertex to be the C-contact point at infinity, which is not on E. Hence every determinant in A' has at most one simple-pole factor. A' has at most simple poles, all supported on R.
+
+5. At a tau-fixed flag, pi(T^j z)=pi(T^(−j)z), so the original polygon is palindromic and its finite signed determinants cancel: A=0. Because A is regular on R, it has a zero of order at least one at every possible pole of A'. Thus AA' has no pole on R.
+
+6. At a sigma-fixed flag, rho(T^j z)=rho(T^(−j)z), so the outer polygon is palindromic and its finite signed determinants cancel: A'=0. Because A' is regular on S, it has a zero of order at least one at every possible pole of A. Thus AA' has no pole on S.
+
+All other points are regular. Therefore AA' is holomorphic on compact Y and constant. No exact nonzero pole residue, nonvanishing pedal area or division by an area was assumed. A and A' are nonzero on ordinary real target trajectories (left-caustic orientation gives positive original cross products, and affine unit-circle tangent polygon area is ab sum tan of positive half-chord-angle increments), but nonzero value is not required for the product argument.
+
+The genus-one flag/translation input remains explicitly credited and is not replaced by a finite computation. This verification is limited to odd m and the stated confocal hypotheses; no claim of a new proof for arbitrary concentric ellipses or excluded parity is made. It does not resolve historical priority of k303,a. The supplemental source-family audit accepted this verification; current whole-package review and lifecycle facts are recorded in CURRENT_STATUS.json.
+

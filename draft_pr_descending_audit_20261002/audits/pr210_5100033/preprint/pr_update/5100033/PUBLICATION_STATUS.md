@@ -1,0 +1,7 @@
+# Publication record and dated source snapshot
+
+This is the15October2026 reconciled prepublication source snapshot for the exact outer focal-pedal theorem k605,a/publishedk606. Full mathematical/source audit and bounded priority integration are accepted. Classical methods and current related work are credited; historical novelty/public proof priority remain undetermined. Extensive AI assistance and unrefereed status apply; no independent human peer review or formal proof-assistant verification is represented.
+
+The complete original20-file submission, including old pending/no-merge language and old binding hashes, is preserved as historical evidence under `history/original_submission_20261015/`. Current wrappers distinguish that history from the present mathematical/priority assessment. The top-level verification.json labels an original run, rather than falsely binding an edited proof. The author used one original substantive research turn.
+
+The standalone note, exact planned metadata and portable source archive accompany this case under the repository's descending audit programme. Preparation and packaging are not publication clearance. Required fresh sequential whole-manuscript reviews, resolutions and final byte seals are recorded in the case's FINAL_CLEARANCE.json. Actual DOI, tracker row and merge outcomes are recorded in the later native RELEASE_RECEIPT.json and current Queue pointer. This dated source snapshot does not forecast or self-certify those later events. The native release must add the actual receipts before merge.

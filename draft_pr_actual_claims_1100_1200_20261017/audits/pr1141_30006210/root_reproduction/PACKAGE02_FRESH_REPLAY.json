@@ -1,0 +1,166 @@
+{
+  "verified_at": "2026-10-17T23:09:43.106705+00:00",
+  "status": "PASS",
+  "reviewer_code_sha256": "196f163d1b2bf472e77fab1e8255362320d18d11eb861fb275e761a044618cb3",
+  "runs": [
+    {
+      "optimized": false,
+      "full_output_match": true,
+      "result": {
+        "code_sha256": "196f163d1b2bf472e77fab1e8255362320d18d11eb861fb275e761a044618cb3",
+        "counts": {
+          "all_answer_degree_reductions": 2112,
+          "block_moment_checks": 864,
+          "common_zero_trees": 144,
+          "constructed_separator_cases": 144,
+          "multistage_separator_cases": 24,
+          "prequery_cylinder_laws": 2016,
+          "rational_density_coordinate_checks": 1248,
+          "selected_blocks": 216,
+          "separator_stages": 216,
+          "terminal_cylinder_laws": 2160,
+          "variable_stopping_trees": 48
+        },
+        "optimized": false,
+        "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+        "scope": "96 actual greedy rational support-separator constructions n=4;24 multiplexer degree<=4 pairs with multiple reduction stages n=5;24 degree<=5 structured pairs n=5 and arbitrary common-zero labels; exact pair/terminal laws at every visited cylinder. Finite consistency controls only.",
+        "status": "PASS"
+      }
+    },
+    {
+      "optimized": true,
+      "full_output_match": true,
+      "result": {
+        "code_sha256": "196f163d1b2bf472e77fab1e8255362320d18d11eb861fb275e761a044618cb3",
+        "counts": {
+          "all_answer_degree_reductions": 2112,
+          "block_moment_checks": 864,
+          "common_zero_trees": 144,
+          "constructed_separator_cases": 144,
+          "multistage_separator_cases": 24,
+          "prequery_cylinder_laws": 2016,
+          "rational_density_coordinate_checks": 1248,
+          "selected_blocks": 216,
+          "separator_stages": 216,
+          "terminal_cylinder_laws": 2160,
+          "variable_stopping_trees": 48
+        },
+        "optimized": true,
+        "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+        "scope": "96 actual greedy rational support-separator constructions n=4;24 multiplexer degree<=4 pairs with multiple reduction stages n=5;24 degree<=5 structured pairs n=5 and arbitrary common-zero labels; exact pair/terminal laws at every visited cylinder. Finite consistency controls only.",
+        "status": "PASS"
+      }
+    }
+  ],
+  "computed_counterfactual_failures": [
+    {
+      "optimized": false,
+      "counterfactual": "zero-maximizer",
+      "exit_code": 1,
+      "required_diagnostic": "global maximizing magnitude",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 159, in main\n    require(max(map(abs,s))==0,'global maximizing magnitude cannot be zero')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: global maximizing magnitude cannot be zero\n"
+    },
+    {
+      "optimized": false,
+      "counterfactual": "post-query-law",
+      "exit_code": 1,
+      "required_diagnostic": "post-query pair law",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 164, in main\n    require(law(lambda x:x==1)==law(lambda x:True),'post-query pair law is not unconditional')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: post-query pair law is not unconditional\n"
+    },
+    {
+      "optimized": false,
+      "counterfactual": "square-density-variance",
+      "exit_code": 1,
+      "required_diagnostic": "full norm mean-square",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 169, in main\n    require(sum(wrong_density)/2==1,'full norm mean-square density must have mean one')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: full norm mean-square density must have mean one\n"
+    },
+    {
+      "optimized": false,
+      "counterfactual": "drop-square-half",
+      "exit_code": 1,
+      "required_diagnostic": "probability-half",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 174, in main\n    require(wrong_A**2<=4*rho*(1-rho),'probability-half resampling sharp square bound')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: probability-half resampling sharp square bound\n"
+    },
+    {
+      "optimized": false,
+      "counterfactual": "demand-cover",
+      "exit_code": 1,
+      "required_diagnostic": "common zeros",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 177, in main\n    require(all(a or b for a,b in zip(p,q)),'common zeros need not be covered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: common zeros need not be covered\n"
+    },
+    {
+      "optimized": false,
+      "counterfactual": "covariance-overstrength",
+      "exit_code": 1,
+      "required_diagnostic": "binary covariance",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 182, in main\n    require(cov<=Q(2,5)*A,'binary covariance cannot use coefficient two-fifths')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: binary covariance cannot use coefficient two-fifths\n"
+    },
+    {
+      "optimized": true,
+      "counterfactual": "zero-maximizer",
+      "exit_code": 1,
+      "required_diagnostic": "global maximizing magnitude",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 159, in main\n    require(max(map(abs,s))==0,'global maximizing magnitude cannot be zero')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: global maximizing magnitude cannot be zero\n"
+    },
+    {
+      "optimized": true,
+      "counterfactual": "post-query-law",
+      "exit_code": 1,
+      "required_diagnostic": "post-query pair law",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 164, in main\n    require(law(lambda x:x==1)==law(lambda x:True),'post-query pair law is not unconditional')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: post-query pair law is not unconditional\n"
+    },
+    {
+      "optimized": true,
+      "counterfactual": "square-density-variance",
+      "exit_code": 1,
+      "required_diagnostic": "full norm mean-square",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 169, in main\n    require(sum(wrong_density)/2==1,'full norm mean-square density must have mean one')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: full norm mean-square density must have mean one\n"
+    },
+    {
+      "optimized": true,
+      "counterfactual": "drop-square-half",
+      "exit_code": 1,
+      "required_diagnostic": "probability-half",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 174, in main\n    require(wrong_A**2<=4*rho*(1-rho),'probability-half resampling sharp square bound')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: probability-half resampling sharp square bound\n"
+    },
+    {
+      "optimized": true,
+      "counterfactual": "demand-cover",
+      "exit_code": 1,
+      "required_diagnostic": "common zeros",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 177, in main\n    require(all(a or b for a,b in zip(p,q)),'common zeros need not be covered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: common zeros need not be covered\n"
+    },
+    {
+      "optimized": true,
+      "counterfactual": "covariance-overstrength",
+      "exit_code": 1,
+      "required_diagnostic": "binary covariance",
+      "diagnostic_present": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 182, in main\n    require(cov<=Q(2,5)*A,'binary covariance cannot use coefficient two-fifths')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/tmp/root-package02-controls/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: binary covariance cannot use coefficient two-fifths\n"
+    }
+  ],
+  "limits": "The twelve fresh negatives are computed finite formula/law counterfactual sanity checks, not mutations of the implemented separator/covariance algorithms. The frozen packet forty actual incorrect-result subprocess failures are distinct."
+}

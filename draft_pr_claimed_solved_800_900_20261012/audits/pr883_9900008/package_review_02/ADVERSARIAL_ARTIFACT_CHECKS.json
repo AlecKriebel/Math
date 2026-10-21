@@ -1,0 +1,208 @@
+{
+  "utc": "2026-10-15T13:08:34.619270+00:00",
+  "status": "PASS",
+  "eight_entrypoint_negatives": [
+    {
+      "case": "wrong_external_anchor",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "PRIVATE_REVIEW/rootcopy/verify_current_publication.py",
+        "0000000000000000000000000000000000000000000000000000000000000000",
+        "--root",
+        "PRIVATE_REVIEW/rootcopy",
+        "--verify-only"
+      ],
+      "returncode": 1,
+      "stdout": "{\"reason\": \"external current manifest pin mismatch\", \"status\": \"REJECTED\"}\n",
+      "stderr": "",
+      "public_path_normalization": {
+        "raw_structured_receipt_bytes": 676,
+        "raw_structured_receipt_sha256": "b040c5e06c9acc1827cc4d69a3607a03e851aa2c1edb6c519c1efaed0d02414f",
+        "raw_original_preserved_privately": true,
+        "scope": "Private review-root values normalized to PRIVATE_REVIEW; exact original commands/stdout/stderr preserved privately, decisions unchanged."
+      }
+    },
+    {
+      "case": "changed_pdf",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "PRIVATE_REVIEW/rootcopy/verify_current_publication.py",
+        "4d3697ad4c38f37528b313626dc072c08c806d27c2a92316d63f4bcc522cfefa",
+        "--root",
+        "PRIVATE_REVIEW/rootcopy",
+        "--verify-only"
+      ],
+      "returncode": 1,
+      "stdout": "{\"reason\": \"input size mismatch/limit: note.pdf\", \"status\": \"REJECTED\"}\n",
+      "stderr": "",
+      "public_path_normalization": {
+        "raw_structured_receipt_bytes": 663,
+        "raw_structured_receipt_sha256": "a4afa823e22b20891876698f6339a002000c13af2c5e3bbfc9b8e587bfe28798",
+        "raw_original_preserved_privately": true,
+        "scope": "Private review-root values normalized to PRIVATE_REVIEW; exact original commands/stdout/stderr preserved privately, decisions unchanged."
+      }
+    },
+    {
+      "case": "extra_file",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "PRIVATE_REVIEW/rootcopy/verify_current_publication.py",
+        "4d3697ad4c38f37528b313626dc072c08c806d27c2a92316d63f4bcc522cfefa",
+        "--root",
+        "PRIVATE_REVIEW/rootcopy",
+        "--verify-only"
+      ],
+      "returncode": 1,
+      "stdout": "{\"reason\": \"unlisted file: unlisted.txt\", \"status\": \"REJECTED\"}\n",
+      "stderr": "",
+      "public_path_normalization": {
+        "raw_structured_receipt_bytes": 654,
+        "raw_structured_receipt_sha256": "fb96973a5e490fea900b989bcbba06c5d355a199a251786496de591e91f665f8",
+        "raw_original_preserved_privately": true,
+        "scope": "Private review-root values normalized to PRIVATE_REVIEW; exact original commands/stdout/stderr preserved privately, decisions unchanged."
+      }
+    },
+    {
+      "case": "unsupported_full_flag",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "PRIVATE_REVIEW/rootcopy/verify_current_publication.py",
+        "4d3697ad4c38f37528b313626dc072c08c806d27c2a92316d63f4bcc522cfefa",
+        "--root",
+        "PRIVATE_REVIEW/rootcopy",
+        "--verify-only",
+        "--full"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: verify_current_publication.py [-h] [--root ROOT] [--verify-only]\n                                     [--catalog CATALOG] [--problems PROBLEMS]\n                                     [--reports REPORTS] [--pdf-dir PDF_DIR]\n                                     manifest_sha256\nverify_current_publication.py: error: unrecognized arguments: --full\n",
+      "public_path_normalization": {
+        "raw_structured_receipt_bytes": 961,
+        "raw_structured_receipt_sha256": "c694aadf8fb7236ca2767464c893b28dd228c87c2669d7aff1f958fd194a53e3",
+        "raw_original_preserved_privately": true,
+        "scope": "Private review-root values normalized to PRIVATE_REVIEW; exact original commands/stdout/stderr preserved privately, decisions unchanged."
+      }
+    },
+    {
+      "case": "wrong_external_anchor",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "PRIVATE_REVIEW/rootcopy/verify_current_publication.py",
+        "0000000000000000000000000000000000000000000000000000000000000000",
+        "--root",
+        "PRIVATE_REVIEW/rootcopy",
+        "--verify-only"
+      ],
+      "returncode": 1,
+      "stdout": "{\"reason\": \"external current manifest pin mismatch\", \"status\": \"REJECTED\"}\n",
+      "stderr": "",
+      "public_path_normalization": {
+        "raw_structured_receipt_bytes": 685,
+        "raw_structured_receipt_sha256": "ad53fa953465363220884cfe70073639e6c915f0dc86e9d7642ff7ea204c19a1",
+        "raw_original_preserved_privately": true,
+        "scope": "Private review-root values normalized to PRIVATE_REVIEW; exact original commands/stdout/stderr preserved privately, decisions unchanged."
+      }
+    },
+    {
+      "case": "changed_pdf",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "PRIVATE_REVIEW/rootcopy/verify_current_publication.py",
+        "4d3697ad4c38f37528b313626dc072c08c806d27c2a92316d63f4bcc522cfefa",
+        "--root",
+        "PRIVATE_REVIEW/rootcopy",
+        "--verify-only"
+      ],
+      "returncode": 1,
+      "stdout": "{\"reason\": \"input size mismatch/limit: note.pdf\", \"status\": \"REJECTED\"}\n",
+      "stderr": "",
+      "public_path_normalization": {
+        "raw_structured_receipt_bytes": 672,
+        "raw_structured_receipt_sha256": "705f5e3bfe348d6b6756bfe8099453f240bcc87f5092b996c0a468e7296855c2",
+        "raw_original_preserved_privately": true,
+        "scope": "Private review-root values normalized to PRIVATE_REVIEW; exact original commands/stdout/stderr preserved privately, decisions unchanged."
+      }
+    },
+    {
+      "case": "extra_file",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "PRIVATE_REVIEW/rootcopy/verify_current_publication.py",
+        "4d3697ad4c38f37528b313626dc072c08c806d27c2a92316d63f4bcc522cfefa",
+        "--root",
+        "PRIVATE_REVIEW/rootcopy",
+        "--verify-only"
+      ],
+      "returncode": 1,
+      "stdout": "{\"reason\": \"unlisted file: unlisted.txt\", \"status\": \"REJECTED\"}\n",
+      "stderr": "",
+      "public_path_normalization": {
+        "raw_structured_receipt_bytes": 663,
+        "raw_structured_receipt_sha256": "0e3298f5b61e6432af54d69a9d21d3ff5375be573bf2e0a243af38dbf83d5c00",
+        "raw_original_preserved_privately": true,
+        "scope": "Private review-root values normalized to PRIVATE_REVIEW; exact original commands/stdout/stderr preserved privately, decisions unchanged."
+      }
+    },
+    {
+      "case": "unsupported_full_flag",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "PRIVATE_REVIEW/rootcopy/verify_current_publication.py",
+        "4d3697ad4c38f37528b313626dc072c08c806d27c2a92316d63f4bcc522cfefa",
+        "--root",
+        "PRIVATE_REVIEW/rootcopy",
+        "--verify-only",
+        "--full"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: verify_current_publication.py [-h] [--root ROOT] [--verify-only]\n                                     [--catalog CATALOG] [--problems PROBLEMS]\n                                     [--reports REPORTS] [--pdf-dir PDF_DIR]\n                                     manifest_sha256\nverify_current_publication.py: error: unrecognized arguments: --full\n",
+      "public_path_normalization": {
+        "raw_structured_receipt_bytes": 970,
+        "raw_structured_receipt_sha256": "8989dca1be0eb4346b43c7ac6d82dc03f741e4be7b0d4313d309b46676645aaf",
+        "raw_original_preserved_privately": true,
+        "scope": "Private review-root values normalized to PRIVATE_REVIEW; exact original commands/stdout/stderr preserved privately, decisions unchanged."
+      }
+    }
+  ],
+  "valid_generated_zip_accepted": true,
+  "standard_zip_library_returns_expected_payload_on_reconciled_second_stream": true,
+  "current_helper_rejects_reconciled_second_stream": "ZIP raw DEFLATE exact-consumption mismatch: fixture.txt",
+  "scope": "Ordinary bounded artifact consistency checks, not a software security audit."
+}

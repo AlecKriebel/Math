@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/private/tmp/pr1097-package02-extra-i40c5acp/kit/scripts/verify.py", line 20, in <module>
+    main()
+    ~~~~^^
+  File "/private/tmp/pr1097-package02-extra-i40c5acp/kit/scripts/verify.py", line 13, in main
+    result = inventory()
+  File "/private/tmp/pr1097-package02-extra-i40c5acp/kit/scripts/common.py", line 95, in inventory
+    manifest = read_json(KIT / "MANIFEST.json")
+  File "/private/tmp/pr1097-package02-extra-i40c5acp/kit/scripts/common.py", line 39, in read_json
+    p = no_links(path)
+  File "/private/tmp/pr1097-package02-extra-i40c5acp/kit/scripts/common.py", line 35, in no_links
+    require(stat.S_ISREG(s.st_mode), "input must be regular: " + str(q))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pr1097-package02-extra-i40c5acp/kit/scripts/common.py", line 15, in require
+    raise ValueError(message)
+ValueError: input must be regular: /private/tmp/pr1097-package02-extra-i40c5acp/kit/MANIFEST.json

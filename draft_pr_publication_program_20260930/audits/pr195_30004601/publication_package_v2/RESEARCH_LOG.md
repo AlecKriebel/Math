@@ -1,0 +1,5 @@
+# PR195 publication-package v2 log
+
+2026-10-15T12:27:12.199296+00:00 — Publication workflow estimate80%. First NEW whole-package adversary clean for frozenv1, Root authenticated all15safe outputs/all14inputpins/all55archiveentries and independently reran its new controls. No mathematical repair. Cosmetic README spacing cleaned. Two additional exact9factor predecessor exclusions and first datedwhole-review records added. Manuscript/PDF unchanged byte-for-byte; full gins and historical priority remain unestablished. New completev2 extraction replay/localkitcheck/freshwhole-package adversary still required; no publication,DOI,tracker,merge claim.
+
+2026-10-15T12:27:59.666604+00:00 — Estimate80% of PR195 publication workflow. Fresh v2 extraction verified77payload hashes/all5read-only exact programs. Zenodo kit localcheck passed exact3files. Six-page manuscript and PDF unchanged from cleanreview1. v2 contains78ZIPentries, including both extra9factor certificates/replayer/report and datedfirstwhole-review evidence. Frozen for NEW whole-package reviewer2; no readiness or actualpublication authority yet.

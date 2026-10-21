@@ -1,0 +1,939 @@
+{
+  "utc": "2026-10-16T21:19:40.475393+00:00",
+  "original_launcher_sha256": "7d98d304d1bc54eab695324984c60a9e2aed2bc48ab62edb7fee6b9c5dce2ead",
+  "scratch_adapter_sha256": "0f854bdd3cfb0bdbd8ce30c161e7d7780df9c010f9e6aceffc3f9497b9714668",
+  "only_adaptation": {
+    "from": "root=Path(\"/Users/alec/Documents/Math\")",
+    "to": "root=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")"
+  },
+  "actual_case_count": 45,
+  "helper_compile_optimization": 0,
+  "no_service_or_Git_operations": true,
+  "runs": [
+    {
+      "label": "normal_actual_captured_initial_close_help",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:38.690836+00:00",
+      "completed_utc": "2026-10-16T21:19:38.754367+00:00",
+      "returncode": 0,
+      "stdout": "usage: close_pr967.py [-h] --operations-sha256 OPERATIONS_SHA256\n                      --disposition-sha256 DISPOSITION_SHA256 [--execute]\n                      [--approval-sha256 APPROVAL_SHA256]\n\nPROPOSED PR967 priority closure; default is read-only, never acceptance. Use a\ntrusted interpreter with -I -S -B and independently authenticated operations\nand disposition SHA256 pins. No external operation occurs on import. The\nexternal pins, interpreter and standard library are trust roots, not an OS\nsandbox.\n\noptions:\n  -h, --help            show this help message and exit\n  --operations-sha256 OPERATIONS_SHA256\n  --disposition-sha256 DISPOSITION_SHA256\n  --execute\n  --approval-sha256 APPROVAL_SHA256\n",
+      "stderr": "",
+      "expected_success": true,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_actual_captured_initial_finalize_help",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "finalize",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:38.754390+00:00",
+      "completed_utc": "2026-10-16T21:19:38.803441+00:00",
+      "returncode": 0,
+      "stdout": "usage: finalize_pr967_and_gate_next.py [-h]\n                                       --operations-sha256 OPERATIONS_SHA256\n                                       --disposition-sha256 DISPOSITION_SHA256\n                                       [--execute]\n                                       [--approval-sha256 APPROVAL_SHA256]\n\nPROPOSED PR967 local closure finalization; read-only unless --execute.\nAuthenticate both helpers before loading any repository dependency. This\nhelper never comments, closes, merges, deposits, appends a sheet, or changes\nnative Git queue/state/history. External pins/interpreter are trust roots, not\na sandbox.\n\noptions:\n  -h, --help            show this help message and exit\n  --operations-sha256 OPERATIONS_SHA256\n  --disposition-sha256 DISPOSITION_SHA256\n  --execute\n  --approval-sha256 APPROVAL_SHA256\n",
+      "stderr": "",
+      "expected_success": true,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_close_pr967.py_same_size_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:38.803900+00:00",
+      "completed_utc": "2026-10-16T21:19:38.840173+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\nRuntimeError: Trusted launch input byte mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_close_pr967.py_append_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:38.840706+00:00",
+      "completed_utc": "2026-10-16T21:19:38.876371+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_close_pr967.py_symlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:38.877036+00:00",
+      "completed_utc": "2026-10-16T21:19:38.912531+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\nOSError: [Errno 62] Too many levels of symbolic links: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py'\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_close_pr967.py_hardlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:38.913547+00:00",
+      "completed_utc": "2026-10-16T21:19:38.949173+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_finalize_pr967_and_gate_next.py_same_size_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:38.949733+00:00",
+      "completed_utc": "2026-10-16T21:19:38.985640+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\nRuntimeError: Trusted launch input byte mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_finalize_pr967_and_gate_next.py_append_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:38.986130+00:00",
+      "completed_utc": "2026-10-16T21:19:39.021660+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_finalize_pr967_and_gate_next.py_symlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.022227+00:00",
+      "completed_utc": "2026-10-16T21:19:39.057828+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\nOSError: [Errno 62] Too many levels of symbolic links: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py'\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_finalize_pr967_and_gate_next.py_hardlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.058769+00:00",
+      "completed_utc": "2026-10-16T21:19:39.094498+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_CLOSURE_OPERATIONS_INVENTORY.json_same_size_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.095037+00:00",
+      "completed_utc": "2026-10-16T21:19:39.130899+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\nRuntimeError: Trusted launch input byte mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_CLOSURE_OPERATIONS_INVENTORY.json_append_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.131375+00:00",
+      "completed_utc": "2026-10-16T21:19:39.167100+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_CLOSURE_OPERATIONS_INVENTORY.json_symlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.167638+00:00",
+      "completed_utc": "2026-10-16T21:19:39.202994+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\nOSError: [Errno 62] Too many levels of symbolic links: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json'\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "normal_CLOSURE_OPERATIONS_INVENTORY.json_hardlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.203934+00:00",
+      "completed_utc": "2026-10-16T21:19:39.239923+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_actual_captured_initial_close_help",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.240226+00:00",
+      "completed_utc": "2026-10-16T21:19:39.306889+00:00",
+      "returncode": 0,
+      "stdout": "usage: close_pr967.py [-h] --operations-sha256 OPERATIONS_SHA256\n                      --disposition-sha256 DISPOSITION_SHA256 [--execute]\n                      [--approval-sha256 APPROVAL_SHA256]\n\nPROPOSED PR967 priority closure; default is read-only, never acceptance. Use a\ntrusted interpreter with -I -S -B and independently authenticated operations\nand disposition SHA256 pins. No external operation occurs on import. The\nexternal pins, interpreter and standard library are trust roots, not an OS\nsandbox.\n\noptions:\n  -h, --help            show this help message and exit\n  --operations-sha256 OPERATIONS_SHA256\n  --disposition-sha256 DISPOSITION_SHA256\n  --execute\n  --approval-sha256 APPROVAL_SHA256\n",
+      "stderr": "",
+      "expected_success": true,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_actual_captured_initial_finalize_help",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "finalize",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.306945+00:00",
+      "completed_utc": "2026-10-16T21:19:39.356342+00:00",
+      "returncode": 0,
+      "stdout": "usage: finalize_pr967_and_gate_next.py [-h]\n                                       --operations-sha256 OPERATIONS_SHA256\n                                       --disposition-sha256 DISPOSITION_SHA256\n                                       [--execute]\n                                       [--approval-sha256 APPROVAL_SHA256]\n\nPROPOSED PR967 local closure finalization; read-only unless --execute.\nAuthenticate both helpers before loading any repository dependency. This\nhelper never comments, closes, merges, deposits, appends a sheet, or changes\nnative Git queue/state/history. External pins/interpreter are trust roots, not\na sandbox.\n\noptions:\n  -h, --help            show this help message and exit\n  --operations-sha256 OPERATIONS_SHA256\n  --disposition-sha256 DISPOSITION_SHA256\n  --execute\n  --approval-sha256 APPROVAL_SHA256\n",
+      "stderr": "",
+      "expected_success": true,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_close_pr967.py_same_size_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.356795+00:00",
+      "completed_utc": "2026-10-16T21:19:39.392934+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\nRuntimeError: Trusted launch input byte mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_close_pr967.py_append_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.393544+00:00",
+      "completed_utc": "2026-10-16T21:19:39.432703+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_close_pr967.py_symlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.433382+00:00",
+      "completed_utc": "2026-10-16T21:19:39.470950+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\nOSError: [Errno 62] Too many levels of symbolic links: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py'\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_close_pr967.py_hardlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.471995+00:00",
+      "completed_utc": "2026-10-16T21:19:39.508872+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_finalize_pr967_and_gate_next.py_same_size_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.509414+00:00",
+      "completed_utc": "2026-10-16T21:19:39.545700+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\nRuntimeError: Trusted launch input byte mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_finalize_pr967_and_gate_next.py_append_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.546212+00:00",
+      "completed_utc": "2026-10-16T21:19:39.581804+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_finalize_pr967_and_gate_next.py_symlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.582382+00:00",
+      "completed_utc": "2026-10-16T21:19:39.618249+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\nOSError: [Errno 62] Too many levels of symbolic links: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py'\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_finalize_pr967_and_gate_next.py_hardlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.619283+00:00",
+      "completed_utc": "2026-10-16T21:19:39.655199+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_CLOSURE_OPERATIONS_INVENTORY.json_same_size_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.655685+00:00",
+      "completed_utc": "2026-10-16T21:19:39.691402+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\nRuntimeError: Trusted launch input byte mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_CLOSURE_OPERATIONS_INVENTORY.json_append_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.691902+00:00",
+      "completed_utc": "2026-10-16T21:19:39.727482+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_CLOSURE_OPERATIONS_INVENTORY.json_symlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.728047+00:00",
+      "completed_utc": "2026-10-16T21:19:39.763811+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\nOSError: [Errno 62] Too many levels of symbolic links: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json'\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "O_CLOSURE_OPERATIONS_INVENTORY.json_hardlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.764760+00:00",
+      "completed_utc": "2026-10-16T21:19:39.801703+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_actual_captured_initial_close_help",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.802037+00:00",
+      "completed_utc": "2026-10-16T21:19:39.882068+00:00",
+      "returncode": 0,
+      "stdout": "usage: close_pr967.py [-h] --operations-sha256 OPERATIONS_SHA256\n                      --disposition-sha256 DISPOSITION_SHA256 [--execute]\n                      [--approval-sha256 APPROVAL_SHA256]\n\nPROPOSED PR967 priority closure; default is read-only, never acceptance. Use a\ntrusted interpreter with -I -S -B and independently authenticated operations\nand disposition SHA256 pins. No external operation occurs on import. The\nexternal pins, interpreter and standard library are trust roots, not an OS\nsandbox.\n\noptions:\n  -h, --help            show this help message and exit\n  --operations-sha256 OPERATIONS_SHA256\n  --disposition-sha256 DISPOSITION_SHA256\n  --execute\n  --approval-sha256 APPROVAL_SHA256\n",
+      "stderr": "",
+      "expected_success": true,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_actual_captured_initial_finalize_help",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "finalize",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.882110+00:00",
+      "completed_utc": "2026-10-16T21:19:39.931787+00:00",
+      "returncode": 0,
+      "stdout": "usage: finalize_pr967_and_gate_next.py [-h]\n                                       --operations-sha256 OPERATIONS_SHA256\n                                       --disposition-sha256 DISPOSITION_SHA256\n                                       [--execute]\n                                       [--approval-sha256 APPROVAL_SHA256]\n\nPROPOSED PR967 local closure finalization; read-only unless --execute.\nAuthenticate both helpers before loading any repository dependency. This\nhelper never comments, closes, merges, deposits, appends a sheet, or changes\nnative Git queue/state/history. External pins/interpreter are trust roots, not\na sandbox.\n\noptions:\n  -h, --help            show this help message and exit\n  --operations-sha256 OPERATIONS_SHA256\n  --disposition-sha256 DISPOSITION_SHA256\n  --execute\n  --approval-sha256 APPROVAL_SHA256\n",
+      "stderr": "",
+      "expected_success": true,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_close_pr967.py_same_size_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.932238+00:00",
+      "completed_utc": "2026-10-16T21:19:39.968078+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\nRuntimeError: Trusted launch input byte mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_close_pr967.py_append_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:39.968706+00:00",
+      "completed_utc": "2026-10-16T21:19:40.004361+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_close_pr967.py_symlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.004963+00:00",
+      "completed_utc": "2026-10-16T21:19:40.040596+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\nOSError: [Errno 62] Too many levels of symbolic links: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py'\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_close_pr967.py_hardlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.041617+00:00",
+      "completed_utc": "2026-10-16T21:19:40.077238+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_finalize_pr967_and_gate_next.py_same_size_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.077749+00:00",
+      "completed_utc": "2026-10-16T21:19:40.113757+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\nRuntimeError: Trusted launch input byte mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_finalize_pr967_and_gate_next.py_append_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.114300+00:00",
+      "completed_utc": "2026-10-16T21:19:40.150438+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_finalize_pr967_and_gate_next.py_symlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.151024+00:00",
+      "completed_utc": "2026-10-16T21:19:40.186832+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\nOSError: [Errno 62] Too many levels of symbolic links: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py'\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_finalize_pr967_and_gate_next.py_hardlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.187761+00:00",
+      "completed_utc": "2026-10-16T21:19:40.223220+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/finalize_pr967_and_gate_next.py\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_CLOSURE_OPERATIONS_INVENTORY.json_same_size_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.223705+00:00",
+      "completed_utc": "2026-10-16T21:19:40.259205+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n    raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\nRuntimeError: Trusted launch input byte mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_CLOSURE_OPERATIONS_INVENTORY.json_append_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.259675+00:00",
+      "completed_utc": "2026-10-16T21:19:40.295011+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_CLOSURE_OPERATIONS_INVENTORY.json_symlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.295558+00:00",
+      "completed_utc": "2026-10-16T21:19:40.330846+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\nOSError: [Errno 62] Too many levels of symbolic links: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json'\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "OO_CLOSURE_OPERATIONS_INVENTORY.json_hardlink_reject_before_compile",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.331797+00:00",
+      "completed_utc": "2026-10-16T21:19:40.367034+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\nRuntimeError: Trusted launch input type/size mismatch: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/CLOSURE_OPERATIONS_INVENTORY.json\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "missing_isolated_flag",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.367334+00:00",
+      "completed_utc": "2026-10-16T21:19:40.403589+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    raise RuntimeError(\"Trusted launch requires -I -S -B\")\nRuntimeError: Trusted launch requires -I -S -B\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "missing_no_site_flag",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-B",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.403619+00:00",
+      "completed_utc": "2026-10-16T21:19:40.439779+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    raise RuntimeError(\"Trusted launch requires -I -S -B\")\nRuntimeError: Trusted launch requires -I -S -B\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    },
+    {
+      "label": "missing_no_bytecode_flag",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-I",
+        "-S",
+        "-c",
+        "import sys,os,stat,hashlib\nfrom pathlib import Path\nif not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):\n raise RuntimeError(\"Trusted launch requires -I -S -B\")\nroot=Path(\"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/reviews/closure_package_adversary_01/private_tmp/trusted_initial\")\nprogram=root/\"draft_pr_claimed_solved_900_1000_20261012\"\naudit=program/\"audits/pr967_2616\"\nexpected={\n program/\"close_pr967.py\":(71524,\"c6231a47758a6b037ed005883d39e374946e38bd9aec0c74eb33df3afe2d2a45\"),\n program/\"finalize_pr967_and_gate_next.py\":(7062,\"47520f8f86889db8c5b85fc7000486773d2ca4e8601ad00531bad2fdce5143cb\"),\n audit/\"CLOSURE_OPERATIONS_INVENTORY.json\":(538,\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\")}\ncaptured={}\nfor path,(size,digest) in expected.items():\n fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)\n try:\n  info=os.fstat(fd)\n  if not(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_size==size):\n   raise RuntimeError(\"Trusted launch input type/size mismatch: \"+str(path))\n  chunks=[];total=0\n  while total<=size:\n   chunk=os.read(fd,min(1048576,size+1-total))\n   if not chunk:break\n   chunks.append(chunk);total+=len(chunk)\n  raw=b\"\".join(chunks)\n  if len(raw)!=size or hashlib.sha256(raw).hexdigest()!=digest:\n   raise RuntimeError(\"Trusted launch input byte mismatch: \"+str(path))\n  captured[path]=raw\n finally:os.close(fd)\nif len(sys.argv)<2 or sys.argv[1] not in (\"close\",\"finalize\"):\n raise RuntimeError(\"Trusted launch requires explicit close or finalize action\")\naction=sys.argv[1]\ntarget=program/(\"close_pr967.py\" if action==\"close\" else \"finalize_pr967_and_gate_next.py\")\nsys.argv=[str(target),\"--operations-sha256\",\"ad94d62072583e62092215bf919c974f237d52efb1f048e60bbee5724a370d0d\",\"--disposition-sha256\",\"2d3e28bd446adc1707af8dc8b006c767ca2b09c9ca55658cf33b5717b58e8393\",*sys.argv[2:]]\nnamespace={\"__name__\":\"__main__\",\"__file__\":str(target)}\nexec(compile(captured[target],str(target),\"exec\",dont_inherit=True,optimize=0),namespace)\n",
+        "close",
+        "--help"
+      ],
+      "started_utc": "2026-10-16T21:19:40.439818+00:00",
+      "completed_utc": "2026-10-16T21:19:40.475353+00:00",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    raise RuntimeError(\"Trusted launch requires -I -S -B\")\nRuntimeError: Trusted launch requires -I -S -B\n",
+      "expected_success": false,
+      "untrusted_sentinel_absent": true
+    }
+  ]
+}

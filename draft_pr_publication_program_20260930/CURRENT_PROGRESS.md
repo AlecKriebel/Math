@@ -1,0 +1,5 @@
+# Conditional publication program progress
+
+Conditional PR239 merge95 proposal: actual cumulative55/39,last218 is retained; real new publication/tracker event receipts are separate. This capture performs no native checkpoint or numeric advance. Dated99 is not a current census; goal remains incomplete.
+
+<!-- PR239_NATIVE_PHASE_FACTS {"active_PR":239,"adopted_existing_publication":false,"advance_to_next_PR_authorized_now":false,"completed":false,"completed_eligible_workflow":false,"current_head":"7f17eef77c52b2d9b2ec3ad0803c016267fa6496","current_status":"claimed_solved","fully_completed_count":55,"goal_complete":false,"last_completed_PR":218,"new_publication_workflow":true,"next_numeric_intake_cursor":239,"no_new_provider_publication_or_tracker_append":false,"numeric_advance_conditional_on_actual_Root_terminal":true,"original_eligible_status":"claimed_solved","phase":"merge95","publication_ready":true,"publication_workflow_completed":false,"published_count":39,"workflow_percent":95} -->

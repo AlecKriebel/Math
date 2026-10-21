@@ -1,0 +1,76 @@
+{
+  "controls": [
+    {
+      "diagnostic": "Beurling exterior sign mismatch",
+      "expected": "root_reproduction/ROOT_CONTROL_REPLAY.json",
+      "guard": [
+        "--force-wrong-sign"
+      ],
+      "optional_target_source": false,
+      "program": "root_reproduction/root_control.py",
+      "selector": [
+        "runs",
+        0,
+        "result"
+      ]
+    },
+    {
+      "diagnostic": "absolute error",
+      "expected": "reviews/quadrature_01/results/normal.stdout.json",
+      "guard": [
+        "--perturb-oracle"
+      ],
+      "optional_target_source": false,
+      "program": "reviews/quadrature_01/check_quadrature.py",
+      "selector": []
+    },
+    {
+      "diagnostic": "",
+      "expected": "root_reproduction/BEURLING_01_REPLAY.json",
+      "guard": [],
+      "optional_target_source": false,
+      "program": "reviews/beurling_01/verify_controls.py",
+      "selector": [
+        "runs",
+        0,
+        "result"
+      ]
+    },
+    {
+      "diagnostic": "",
+      "expected": "reviews/target_01/controls.normal.json",
+      "guard": [],
+      "optional_target_source": true,
+      "program": "reviews/target_01/independent_controls.py",
+      "selector": []
+    }
+  ],
+  "floating_comparison": {
+    "absolute_tolerance": 1e-12,
+    "purpose": "full-output diagnostic reproduction, not validated error enclosure; each original program also enforces its own mathematical checks",
+    "relative_tolerance": 1e-12
+  },
+  "inputs": [
+    "ACCEPTANCE.json",
+    "AUDIT.md",
+    "AUTHOR_CHECKS.md",
+    "MANIFEST.json",
+    "PROOF.md",
+    "README.md",
+    "SOURCE_DEPENDENCIES.json",
+    "SOURCE_HYPOTHESES.md",
+    "SOURCE_METADATA.json",
+    "SOURCE_REVIEW.md",
+    "STATUS.json",
+    "VERIFICATION_SUMMARY.md"
+  ],
+  "schema": 1,
+  "source_prefix": "draft_pr_actual_claims_1100_1200_20261017/audits/pr1136_2307037",
+  "source_proof_sha256": "32e68249400aad782b77c74405890f9929fc8576ab8a13d59a3b8db75dea9bdc",
+  "target_source": {
+    "bytes": 1706228,
+    "path": "reviews/target_01/sources/private/1809.07200v2.pdf",
+    "sha256": "8e28fd4403a07e4e19a9816b7efaafddf9f475d59cf8c34a8255cb03833ed4f0",
+    "url": "https://arxiv.org/pdf/1809.07200v2"
+  }
+}

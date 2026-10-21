@@ -1,0 +1,7 @@
+# Reconstruction adversary research log
+
+- 2026-10-17T23:30:42.289552+00:00: authenticated three externally supplied anchors and all eight manifest-listed files using the manifest actual `files` / `relative_path` / `size_bytes` / `sha256` schema. Read reconstruction, checker, results, verdict, manifest, source provenance, seal, log, ignore file. No candidate inspected. Audit completion estimate: 15%.
+
+- 2026-10-17T23:32:17.115888+00:00: independent source bytes match both source-provenance hashes. Visually verified question pp.5-7 and author pp.1,9,10. Independently rederived integrality, ideal norm/nonprincipality, prime-element obstruction, global clique bound and arithmetic variant. Replayed sealed checker from copied scratch files with byte-identical output in normal/-O/-OO; all 18 targeted mutant checks rejected with expected explicit exceptions. Independent finite worker passed all three modes. No mathematical defect found. Audit completion estimate: 85%.
+
+- 2026-10-17T23:33:50.314066+00:00: final authentication confirms all eight input entries and all three external anchors unchanged; independent raw-source hashes unchanged. Final PASS report and verdict complete; no actionable findings, no changes required. Strongest verified result is the exact global counterexample (omega_u, omega_p, m)=(2,2,2) within printed scope; exact mathematical gap: none. PID-restricted equality and novelty remain outside scope. Audit completion estimate: 100%.

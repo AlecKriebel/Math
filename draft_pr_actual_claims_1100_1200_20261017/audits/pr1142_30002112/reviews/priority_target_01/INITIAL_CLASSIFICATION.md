@@ -1,0 +1,11 @@
+# Initial independent priority classification
+
+Sealed 2026-10-17T23:22:31Z (seal time no earlier than this observed clock reading).
+
+Scope: exact question in Colbois's survey contribution, Oberwolfach Report 33/2012, printed p. 2036: dimension-only additive control of the normalized intrinsic boundary Laplace spectrum by the isoperimetric ratio raised to 1+2/m and by k^(2/m), for bounded smooth Euclidean domains. The problem-session restatement on printed p. 2064 uses a different isoperimetric exponent, 1; it must not replace the survey contribution's question. A negative result for exponent 1+2/m also negates exponent 1 because the Euclidean isoperimetric ratio has a positive dimension-only lower bound.
+
+Evidence read before this seal: source brief supplied by parent; original report's complete Colbois contribution (printed pp. 2034–2036) and problem-session restatement; CEG arXiv:1007.0826v2 introduction, theorem statements and discussion, and complete Examples 3.1–3.2; CDE arXiv:0909.5346v1 introduction, theorem statements, complete §5 and associated bibliography. No older audit, root proof, or concurrent review read.
+
+Initial classification: no exact prior recorded resolution has yet been identified. CEG's Euclidean result remains multiplicative in the isoperimetric and eigenvalue-order terms. Its Examples 3.1–3.2 concern other ambient manifolds and do not supply the exact Euclidean additive counterexample. CDE Theorem 1.4 and §5 establish the older high normalized first-gap construction mechanism, including hypersurface embedding and smoothing. They do not state the additive question or the proposed cavity-plus-sphere spectral-count conclusion. Those ingredients alone therefore do not constitute an identified earlier recorded full resolution.
+
+The proposed construction in the brief is classified provisionally as a candidate new deduction from old geometric ingredients, not a priority-verified new theorem. The missing priority evidence is whether later primary literature already makes the localized high-gap cavity, controlled-volume domain, and growing-index additive obstruction, or supplies another full resolution. This audit will investigate that missing evidence. Negative searches cannot certify firstness or continuing global openness.

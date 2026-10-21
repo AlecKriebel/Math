@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_01/replay/candidate/verify_package.py", line 74, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_01/replay/candidate/verify_package.py", line 53, in main
+    sidecar=json.loads((ROOT/'ARCHIVE_SHA256.json').read_text());record_ok(archive,sidecar)
+                                                                 ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_01/replay/candidate/verify_package.py", line 14, in record_ok
+    require(len(data)==record['bytes'] and sha(data)==record['sha256'],'Hash/size mismatch: '+str(path))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_01/replay/candidate/verify_package.py", line 10, in require
+    if not test:raise RuntimeError(message)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Hash/size mismatch: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_01/replay/candidate/supportkit-v1.0.tar.gz

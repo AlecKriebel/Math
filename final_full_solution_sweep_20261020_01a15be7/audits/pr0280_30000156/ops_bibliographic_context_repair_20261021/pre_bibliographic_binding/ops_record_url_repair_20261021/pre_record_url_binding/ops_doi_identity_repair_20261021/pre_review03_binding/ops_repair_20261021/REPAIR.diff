@@ -1,0 +1,136 @@
+--- review02_preserved/publication_live_gates.py
++++ canonical_repaired/publication_live_gates.py
+@@ -4,6 +4,57 @@
+ from pathlib import Path
+ from ops_binding import *
+ from prepublication_check import gather
++
++
++def verify_local_state_exemptions(cleared, known, observed, expected_deposit_id):
++    exemptions=cleared.get('unrelated_local_state_exemptions',[])
++    if not isinstance(observed,list):
++        raise RuntimeError('Observed local deposit states must be a list')
++    if not isinstance(exemptions,list):
++        raise RuntimeError('Root unrelated-local-state exemptions must be a list')
++    allowed={}
++    seen_ids=set()
++    for entry in exemptions:
++        if (not isinstance(entry,dict) or set(entry)!={'path','sha256','deposit_id','disposition'}
++                or entry['disposition']!='distinct_non_target'
++                or type(entry['deposit_id']) is not int or entry['deposit_id']<=0
++                or entry['deposit_id']==expected_deposit_id or entry['deposit_id'] not in known
++                or not isinstance(entry['sha256'],str) or not re.fullmatch('[0-9a-f]{64}',entry['sha256'])
++                or not isinstance(entry['path'],str)):
++            raise RuntimeError('Invalid or contradictory root unrelated-local-state exemption')
++        relative=PurePosixPath(entry['path'])
++        if (len(relative.parts)!=2 or relative.parts[0]!='.zenodo-state'
++                or not relative.name.endswith('.json') or relative.as_posix()!=entry['path']):
++            raise RuntimeError('Unrelated state path must be an exact .zenodo-state JSON filename')
++        path=safe_file(REPO,entry['path'])
++        if not path.is_file() or entry['path'] in allowed or entry['deposit_id'] in seen_ids:
++            raise RuntimeError('Missing or duplicate unrelated-local-state exemption')
++        data=path.read_bytes()
++        value=json.loads(data)
++        actual_id=value.get('id',value.get('deposit_id')) if isinstance(value,dict) else None
++        if (sha(data)!=entry['sha256'] or type(actual_id) is not int or actual_id!=entry['deposit_id']):
++            raise RuntimeError('Root-exempt unrelated local state bytes or exact integer ID changed')
++        allowed[entry['path']]=entry
++        seen_ids.add(entry['deposit_id'])
++    seen_paths=set()
++    accepted=[]
++    for entry in observed:
++        if not isinstance(entry,dict) or type(entry.get('deposit_id')) is not int:
++            raise RuntimeError('Malformed observed local deposit state')
++        path=entry.get('path')
++        if path is not None:
++            if not isinstance(path,str) or path in seen_paths:
++                raise RuntimeError('Duplicate or malformed observed local state path')
++            seen_paths.add(path)
++        if expected_deposit_id is not None and entry['deposit_id']==expected_deposit_id:
++            # This is the current target state, never a non-target exemption.
++            continue
++        prior=allowed.get(path)
++        if (prior is None or set(entry)!={'path','sha256','deposit_id'}
++                or entry['deposit_id']!=prior['deposit_id'] or entry['sha256']!=prior['sha256']):
++            raise RuntimeError('Unreviewed or changed non-target local state; exact root exemption required')
++        accepted.append({'path':path,'sha256':entry['sha256'],'deposit_id':entry['deposit_id']})
++    return accepted
+ 
+ 
+ def reconcile(gate, phase, expected_head, expected_deposit_id=None, allow_target_row=False):
+@@ -27,7 +78,8 @@
+     if len(records)!=account['total'] or len(records)!=gate['account_complete_total']:
+         raise RuntimeError('Account gate inventory is incomplete or duplicated')
+     leads=cleared.get('account_leads')
+-    if not isinstance(leads,list) or len({v['record'] for v in leads})!=len(leads):
++    if (not isinstance(leads,list) or any(type(v.get('record')) is not int or v['record']<=0 for v in leads)
++            or len({v['record'] for v in leads})!=len(leads)):
+         raise RuntimeError('Root account lead schema invalid')
+     known={int(v['record']):v for v in leads}
+     if any(v.get('disposition')!='distinct_non_target' for v in leads) or expected_deposit_id in known:
+@@ -43,6 +95,9 @@
+             v.get('disposition')!='distinct_non_target' for v in cleared['ledger_leads']):
+         raise RuntimeError('Root ledger lead dispositions absent')
+     prior_rows={v['values_sha256'] for v in cleared['ledger_leads']}
++    if (len(prior_rows)!=len(cleared['ledger_leads']) or any(
++            not isinstance(v,str) or not re.fullmatch('[0-9a-f]{64}',v) for v in prior_rows)):
++        raise RuntimeError('Duplicate or malformed root ledger digest exemption')
+     target_rows=[]
+     if allow_target_row and expected_deposit_id is not None:
+         from record_publication_ledger import desired_row
+@@ -51,21 +106,25 @@
+         exact_target=None
+     for match in gate['ledger_matches']:
+         row=match['values']
++        has_current_doi=(expected_deposit_id is not None and
++            '10.5281/zenodo.'+str(expected_deposit_id) in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(row))))
++        if has_current_doi:
++            if digest(row) in prior_rows:
++                raise RuntimeError('Current target DOI/row contradicts a root non-target ledger exemption')
++            if exact_target is not None and row==exact_target:
++                target_rows.append(match)
++                continue
++            raise RuntimeError('Current target DOI appears in a changed/unexpected ledger row')
+         if digest(row) in prior_rows:
+-            continue
+-        if exact_target is not None and row==exact_target:
+-            target_rows.append(match)
+             continue
+         raise RuntimeError('New/changed ledger lead; root review required')
+     if len(target_rows)>1:
+         raise RuntimeError('Duplicate target ledger rows')
+-    if gate['local_deposit_state_matches'] and (expected_deposit_id is None or any(
+-            type(v.get('deposit_id')) is not int or v['deposit_id']!=expected_deposit_id
+-            for v in gate['local_deposit_state_matches'])):
+-        raise RuntimeError('Unexpected local target deposit state')
++    unrelated_states=verify_local_state_exemptions(cleared,known,gate['local_deposit_state_matches'],expected_deposit_id)
+     return {'timestamp':stamp(),'phase':phase,'gate_receipt':gate['receipt'],
+         'gate_sha256':sha(Path(gate['receipt']).read_bytes()),'target_rows':target_rows,
+         'non_target_records_metadata_and_complete_files_unchanged':sorted(known),
++        'unrelated_local_states_exactly_root_bound':unrelated_states,
+         'root_reconciliation_sha256':sha((AUDIT/'ROOT_PREPUBLICATION_LEAD_RECONCILIATION.json').read_bytes()),
+         'new_unreviewed_publication_or_ledger_leads':[],'read_only':True}
+ 
+--- review02_preserved/record_publication_ledger.py
++++ canonical_repaired/record_publication_ledger.py
+@@ -82,6 +82,8 @@
+     # reconciliation; target identity/DOI rows must still be unique and exact.
+     recon=json.loads((AUDIT/'ROOT_PREPUBLICATION_LEAD_RECONCILIATION.json').read_text())
+     known={v['values_sha256'] for v in recon['ledger_leads']}
++    if any(digest(r) in known for r in doi_rows):
++        raise RuntimeError('Current target DOI/row contradicts a root non-target ledger exemption; no append')
+     found=[(i,r) for i,r in found if digest(r) not in known]
+     intent=AUDIT/'LEDGER_APPEND_INTENT.json'
+     appended=False
+@@ -107,7 +109,10 @@
+             raise RuntimeError('Unexpected append outcome; inspect live sheet, no retry')
+         appended,row_number=True,None
+     after=read('ledger_after_append',operation)
+-    found=[(i,r) for i,r in matches(after,identifier) if digest(r) not in known]
++    # Target DOI rows are never filtered by any non-target digest, including
++    # readback after a provider boundary. Exact target identity has precedence.
++    found=[(i,r) for i,r in matches(after,identifier) if digest(r) not in known
++           or doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r)))]
+     if len(found)!=1 or found[0][1]!=row or (row_number is not None and row_number!=found[0][0]):
+         raise RuntimeError('Target row readback/uniqueness mismatch; no retry')
+     doi='10.5281/zenodo.'+str(identifier)

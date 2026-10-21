@@ -1,0 +1,66 @@
+# UnsolvedMath research queue
+
+A reproducible, provisional expected-value ranking of all 15,458 records in
+[ulamai/UnsolvedMath](https://huggingface.co/datasets/ulamai/UnsolvedMath), with
+persistent local assessments and research statuses.
+
+**All 15,458 records have individual short desk reviews.** The active queue uses
+the five-turn policy: 1,951 candidates, with 13,507 held out. Ninety later
+source or calibration corrections preserve the original judgments. See
+[review coverage](review_v2/PROGRESS.md) and [validation](VALIDATION.md).
+Every review used the full imported statement and available source context;
+selected leaders also received current primary-literature checks. This is not
+a comprehensive literature review of all 15,458 problems.
+
+Start with **[QUEUE.md](QUEUE.md)** (all eligible candidates), **[SHORTLIST.md](SHORTLIST.md)**
+(the leading 100 explained), or **[ranking.csv](ranking.csv)** (every record and short review).
+These are promising candidates, not certified AI-solvable problems. A desk review
+identifies a proof route and obstacle; it does not prove that the route will succeed.
+
+## Subfield impact scores
+
+`Impact (/10)` in the queue rates the importance of the exact result inside its
+actual subfield, assuming it is correct, novel, and published. It is separate
+from probability and expected value; it receives no boost for age, difficulty,
+or ease of proof. The ratings use the earlier individual impact judgments as
+anchors, translated conservatively to this rubric: legacy scores 1, 3, 5, 7,
+and 10 map to 4, 5, 6, 8, and 10, with linear interpolation and rounding to
+one decimal. The highest current score is 7.0; no current candidate is rated as a major
+subfield advance or field-changing result. Current scores and source hashes are preserved in [`impact_scorebook.json`](impact_scorebook.json).
+Three rows marked `already_solved` have no score; published or claimed results
+still awaiting verification retain a conditional importance score.
+
+If `QUEUE.md` is regenerated, reapply the source-checked scores with
+`python3 unsolved_math_prioritization/apply_impact_scores.py`.
+
+## Expected value and its limits
+
+For a **fixed budget of five substantive proof-attempt turns with ChatGPT6 Astra
+at ultra reasoning**, rank by:
+
+`EV = impact × P(valid, still open, novel target) × P(verified full resolution | valid target, budget)`
+
+This is expected value per five-turn attempt. Turn duration varies, so it is not
+a measured expected value per hour. Changing budgets requires new
+probability estimates. Full resolution means a proof or counterexample settling
+the exact target, including every part of a bundled question. A promising
+special case must become a separately identified subproblem; do not quietly
+substitute it for the original target.
+
+The `EV` formula continues to use the original impact input from the expected-value assessment; it is separate from the new `Impact (/10)` subfield score. The original input is a subjective **cardinal utility on a 1–10 scale**, not prize money:
+1 = narrow isolated fact; 3 = substantive specialized result; 5 = useful result
+across a research area; 7 = major bridge or barrier; 10 = foundational breakthrough.
+This bounded scale encodes our preference to pursue achievable research rather
+than allow huge speculative utility for a famous conjecture to dominate.
+
+The probabilities are **uncalibrated planning assumptions**, not measurements,
+confidence levels, or a claim about any particular AI model. Impact and probability
+can both be overridden after reading the actual mathematics. Every record receives
+an individual semantic review of its statement, difficulty, and available context.
+Only selected proof or modest-computation candidates enter the working queue.
+Large exhaustive searches, known resolutions, unverified solution claims, unclear
+statements, and routes that merely restate the hard part are held out.
+
+Age supplies a small impact bonus, capped at 15% and at total impact 10:
+`1 + 0.15 × min(1, log(1 + age) / log(101))`.
+Only an explicit `proposed_year` is used; missing years re

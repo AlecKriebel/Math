@@ -1,0 +1,35 @@
+{
+  "timestamp_utc": "2026-10-16T05:21:25.546552+00:00",
+  "initial_free_space": "201 MiB",
+  "install_command": "python -m pip install --no-cache-dir sympy==1.14.0 mpmath==1.3.0",
+  "install_exit_code": 1,
+  "install_failure": "OSError Errno 28: No space left on device creating private runtime/bin/isympy",
+  "own_pycache_removed_directories": 151,
+  "own_pycache_removed_bytes": 30190065,
+  "import_probe_after_cleanup": {
+    "python": "3.14.6",
+    "sympy": "1.14.0",
+    "mpmath": "1.3.0",
+    "success": true
+  },
+  "installation_status": "pip installation did not complete; imports succeed, dependency file completeness not yet validated",
+  "first_replay_harness_attempt": {
+    "exit_code": 1,
+    "cause": "Harness resolved the venv Python symlink, accidentally invoking base Python without venv package lookup. Dependent replay attempts failed; their preexisting frozen result files are not evidence of replay.",
+    "fixed": "Preserve absolute venv executable path without resolving symlink; require subprocess exit0 before byte-match result.",
+    "observed_all_requested_subprocess_exit_codes": 1,
+    "final_error_type": "subprocess.CalledProcessError"
+  },
+  "initial_interpreter_probes": [
+    {
+      "runtime": "default Python3.14.6",
+      "sympy_available": false
+    },
+    {
+      "runtime": "bundled workspace Python",
+      "error_type": "ModuleNotFoundError",
+      "error": "No module named 'sympy'"
+    }
+  ],
+  "subsequent_distribution_check": "See DEPENDENCY_RECORD_CHECK.json; all recorded nonbytecode distribution files matched local hashes. This does not validate external wheel provenance or change failed pip status."
+}

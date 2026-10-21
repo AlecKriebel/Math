@@ -1,0 +1,15 @@
+# Combined root mathematical acceptance: PR1031
+
+2026-10-13T05:41:49.375138+00:00; submitted headf6570e093267a7f910faf9cdd60dfbc1c12f5681.
+
+Root read the full submitted proof, independently reconstructed mechanisms in ROOT_MATH_NOTES.md, inspected original OWR2015 universal quantifiers and Fawzi published normalized Sep/general-lift interface, and read the complete independent geometry derivation and SOS/source-family report. Both conditional obligations are discharged by the other family: geometry proves exact affine section and ambient-linear inverse; Fawzi/source and moment family prove the no-lift and all-support affine-SOS consequence. No remaining mathematical gap in the existential negative theorem at(4,12).
+
+The result refutes the original universal degree-at-most-one clause and Harvey-Lawson pointwise/local completion via a constant closed comass-one four-form. Rational unnormalized coefficients exist by strict separation and density, but no explicit coefficient list, exact comass, rational normalization or minimal dimension is constructed. Low-dimensional cases are untouched. Fawzi2021 is a credited established external theorem, not independently reproved in full; its published precise interface and critical dependency conditions were adversarially inspected.
+
+Root3baselines+45certificatefaults exact; fresh geometric checker verifies495universal quartic coordinates/11760coefficients in24variables,225rank/mapcolumns,25425Gram entries,9mixedminor identities,16hostile/boundarycontrols and3actual corruptedchecker rejections. SOSfamily8exactcontrols test full-ideal/degree/projection/normalization/orientation/positiveexamples and the Choi constituent. Written universal derivations, not sample outcomes or PASS labels, establish the theorem. No human peer-review or formal-proof-assistant certificate.
+
+Mathematics PASS for the scoped full existential negative. Priority remains unestablished; now assign an independent in-depth source/priority adversary, then prepare a properly credited preprint and NEWwholepackage review/fix loops only if eligible. No1031publication/PR disposition yet.
+
+## 2026-10-13T21:47:40.335483+00:00 — Current credited paper and publication-kit stage
+
+Bounded independent priority audit completed84queries/25primaryPDFretrievals; exactpriorVrana–Levaytensor-to-wedgelemma, establishedfermionicprojectorhulls, theta/moment/liftlineage and Sanyal–Rostalski equivalence adoptedglobally. Fawzi2019/2021 suppliesdecisiveexternaltheorem, notindependentlyreproved. Nearby BSV/BKMquadraticcones haveSym2exteriorembedding distinctfromorientedmassball. Scope remainsfulluniversalnegativeat4,12,nonconstructive rationalunnormalizedexistence andconstantclosedcalibrationconsequence; noexplicitcoefficients/comass/minimaldimension. Six-pagepapercompiledwithoutwarningsandallpagesrendered/visuallyinspected. All29originalfiles preserved;48runportableoriginalcoordinate/certificatefaultreplay prepared withoutoldUIDharness. NEWwholepackagereviewstillrequired.

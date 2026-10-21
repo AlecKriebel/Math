@@ -1,0 +1,17 @@
+{
+  "UTC": "2026-10-15T07:43:36.131233+00:00",
+  "read_only_source_review": true,
+  "kit_never_imported_or_executed": true,
+  "saved_state_boundary": {
+    "state_path": "zenodo.py162-164: resolved manifest/environment choose private state key",
+    "local_state": "zenodo.py361-367: state binds manifest/environment/integer ID",
+    "stage": "zenodo.py416-458: state branch gets saved ID; create is only in else, state saved before uploads/update",
+    "inspect": "zenodo.py460-470: no saved state fails; extant saved ID fetched and exact metadata/files verified",
+    "conditional_conclusion": "A successful marker-path inspect establishes saved state. Subsequent stage resumes the same ID if that private saved state remains intact between commands. There can be two stage commands but one draft creation. Missing/unknown state blocks retry and requires reconciliation; deletion or concurrent mutation of private state is outside the conclusion."
+  },
+  "publication_boundary": {
+    "publish": "zenodo.py478-499: one publish POST, then read-back and verify; no automatic second POST",
+    "DOI": "zenodo.py370-401 and README35: assigned DOI and confirmed exact publication are separate from DOI resolver availability. Resolver failure does not invalidate confirmed publication; no resolver-success requirement imposed."
+  },
+  "fixture_consequence": "Independent Services.runner models exact-kit extant-draft resume as idempotent for draft creation, while counting both stage commands. Unknown uncommitted, committed, delayed reads, wrong IDs and repeat acceptance are tested."
+}

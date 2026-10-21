@@ -1,0 +1,1577 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..cddb39be8 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -78,7 +78,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 67 | 30000644 / OWR-1452-008 | Surjectivity of Reduction Maps for Special Polynomial Automorphisms | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+ | 68 | 30000671 / OWR-1453-004 | Reconstructing Complete Local Rings from Finite Quotients | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+ | 69 | 30000703 / OWR-1460-009 | Boundary Behavior under Asymptotic Schwarz–Pick Equality | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+-| 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
++| 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | claimed_solved | 1/5 |  | 2026-09-30: Complete combinatorial comparison of the explicit weight-polytopal models within GKZ in the source-cited smooth complete-embedding regime. Separate adversarial mathematics/proof-type audit passed;1227author and8093independent assertions. Does not invoke the desired equality or K-energy; arbitrary singular configurations, foundation-free proof and novelty are not claimed. Draft PR: https://github.com/AlecKriebel/Math/pull/55. |  |
+ | 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+ | 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+ | 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30006309/CANDIDATE.md b/unsolved_math_prioritization/attempts/30006309/CANDIDATE.md
+new file mode 100644
+index 000000000..9d1d5fe7c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/CANDIDATE.md
+@@ -0,0 +1,205 @@
++# A combinatorial comparison of the discriminant and Hurwitz-vector polytopes
++
++**Candidate for the smooth polarized toric regime of the cited theorem; independent review pending.** The equality of the geometric weight polytopes is already known. The proposed contribution here is a direct comparison of their two explicit polytopal models, using products of faces, normalized simplex volumes, a finite-difference identity, and the standard GKZ normal-fan theorem. No K-energy formula or Cayley identity is used to prove that comparison. Historical novelty is unestablished.
++
++## 1. Source scope and what is proved
++
++Sano's talk in [OWR19/2025, pp.919–921](https://ems.press/content/serial-article-files/51856) asks for a combinatorial reproof of the coincidence between the discriminant and Hurwitz weight polytopes. Its preceding theorem gives the Hurwitz-vector model. The cited full paper, [Sano, Theorem1.4](https://arxiv.org/abs/2302.09801), assumes a smooth polarized toric variety embedded by its complete very ample linear system, with degree at least two. We retain those assumptions. The short report abbreviates the boundary/massive-face convention and does not repeat all of those hypotheses; it is not a license to claim the unweighted formulas for arbitrary singular configurations.
++
++Let Q be the n-dimensional lattice polytope of that polarization, with n≥1, and let \(A=Q\cap\mathbb Z^n\). Thus Q is Delzant and the face lattices have the full induced lattice normalization. Let
++
++\[
++B=A\times\operatorname{Vert}(\Delta_{n-1}),\qquad
++P=Q\times\Delta_{n-1},\qquad d=2n-1,
++\]
++
++where \(\Delta_{n-1}=\operatorname{conv}(0,e_1,\ldots,e_{n-1})\) is the standard lattice simplex. Write
++
++\[
++\pi:\mathbb R^B\longrightarrow\mathbb R^A,
++\qquad \pi(z)_a=\sum_{v\in\operatorname{Vert}(\Delta_{n-1})}z_{(a,v)}.
++\tag{1}
++\]
++
++This is the weight projection for the torus acting on the first Segre factor and trivially on the second; it is not the full coefficient torus on B.
++
++For a triangulation T of (Q,A), let \(\eta_{T,j}\in\mathbb Z^A\) have coordinate at a equal to the sum of the normalized j-volumes of all j-simplices of T that contain a as a vertex and lie in a j-face of Q. Such simplices are called **massive**. Every top-dimensional simplex is massive. In dimension n−1, only boundary simplices count. The zero-dimensional volume is one.
++
++For a triangulation U of (P,B), use the same convention and put
++
++\[
++m_U=\sum_{k=0}^{d}(-1)^{d-k}\eta_{U,k}.
++\tag{2}
++\]
++
++Define the two combinatorial polytopes
++
++\[
++\mathcal D(P)=\operatorname{conv}\{m_U:U\text{ regular}\},
++\quad
++\mathcal H(Q)=\operatorname{conv}\{n\eta_{T,n}-\eta_{T,n-1}:T\text{ regular}\}.
++\tag{3}
++\]
++
++**Theorem.** Under the hypotheses above,
++
++\[
++\boxed{\quad \pi\mathcal D(P)=\mathcal H(Q).\quad}
++\tag{4}
++\]
++
++The proof below is a polyhedral/combinatorial comparison of these two defined polytopes. The standard GKZ identification gives \(\mathcal D(P)=\operatorname{Newt}(\Delta_{X\times\mathbb P^{n-1}})\); the right side is the Hurwitz-vector model in the source. Thus (4) supplies the requested comparison of the two known weight-polytope descriptions in the cited smooth regime. It is not a new assertion of the already-known geometric equality, nor a reproof of every foundational GKZ theorem.
++
++## 2. The precise established GKZ input
++
++We use the following standard property, including the alignment of vertices with height vectors, not only a list of vertices.
++
++**GKZ height compatibility.** For a smooth toric configuration C with polytope R, its discriminant Newton polytope has vertices
++\(m_V=\sum_j(-1)^{\dim R-j}\eta_{V,j}\), indexed by the D-equivalence classes of regular triangulations V. If a generic height h induces V by its lower convex hull, then m_V minimizes the functional \(z\mapsto\langle h,z\rangle\) on that polytope. If h lies on a wall, a regular triangulation induced by a sufficiently small generic perturbation of h labels a vertex in the minimizing face for h.
++
++This is the combination of [GKZ, Chapter11, Theorem3.2 and Theorem3.4(a), pp.361–363](https://webhomes.maths.ed.ac.uk/~v1ranick/papers/gelkapzel.pdf), with the secondary-polytope height convention in Chapter7 and the initial-monomial formula of Chapter10, Theorem1.4. Chapter11 states its theorem for the regular A-determinant; the same chapter explicitly identifies that determinant with the ordinary discriminant when the toric variety is smooth. The product X×P^(n−1) is smooth, so the distinction causes no extra factor here.
++
++For clarity about the minimizer label: the Newton polytope of the principal determinant is the secondary polytope. Its normal fan refines the discriminant normal fan, since the latter polytope is a Minkowski summand. The initial-monomial formulas identify the corresponding discriminant vertex with m_V. Lower-hull heights use minima; the opposite upper-hull convention uses negatives and maxima. Passing a perturbation to zero preserves the weak minimizing inequalities.
++
++The new comparison does not invoke the equality (4) to establish this input. It is the general discriminant/secondary-polytope theorem already available before the Hurwitz-vector conjecture. The proof below does not use the analytic theorem of Sano as an inequality, support-function identity, or cone-refinement input. That theorem is cited only to identify the name of the source's right-hand model.
++
++## 3. Product refinements and the projected massive vectors
++
++Fix any triangulation T of (Q,A). Suppose U triangulates P using B and refines the subdivision with cells
++
++\[
++\sigma\times\Delta_{n-1},\qquad \sigma\in T,
++\tag{5}
++\]
++
++using only products of vertices of T with simplex vertices. For example, this is true of the small generic regular refinements constructed in Section5. Regularity is not needed for the following vector computation.
++
++**Product-face identity.** For \(0\le k\le2n-1\),
++
++\[
++\boxed{\quad
++\pi\eta_{U,k}
++=\sum_{\substack{0\le j\le n,\;0\le l\le n-1\\j+l=k}}
++\binom n{l+1}\binom{k+1}{j+1}\eta_{T,j}.
++\quad}
++\tag{6}
++\]
++
++Here is a complete verification, including the lattice factors.
++
++Every k-face of P is uniquely F×E, where F is a j-face of Q and E is an l-face of the standard simplex, with j+l=k. There are \(\binom n{l+1}\) choices of E. The induced affine lattice is a product lattice. Its normalized volume satisfies
++
++\[
++\operatorname{Vol}_{\mathbb Z}(\sigma\times E)
++=\binom{j+l}{j}\operatorname{Vol}_{\mathbb Z}(\sigma)
++\tag{7}
++\]
++
++for a j-simplex σ, since E has normalized volume one.
++
++Let a be a vertex of σ, and let \(\lambda_a\) be its barycentric coordinate on σ, extended constantly in the E direction. On any k-simplex τ in a triangulation of σ×E, λ_a is affine and at each vertex equals one or zero according to whether that vertex projects to a. The centroid identity for a simplex therefore gives
++
++\[
++\sum_{\tau}\operatorname{Vol}_{\mathbb Z}(\tau)
++\#\{\text{vertices of }\tau\text{ projecting to }a\}
++=\frac{k+1}{j+1}\operatorname{Vol}_{\mathbb Z}(\sigma\times E)
++=\binom{k+1}{j+1}\operatorname{Vol}_{\mathbb Z}(\sigma).
++\tag{8}
++\]
++
++The middle equality uses that the average barycentric coordinate over a simplex is 1/(j+1), which remains so after taking a product. This identity can be read entirely as additivity of volume-weighted centroids of finite subdivisions; no analytic energy or limiting measure formula is involved. It is valid for every triangulation of the product with the specified vertices, not just a staircase triangulation.
++
++Now restrict U to F×E. It refines the products of the top-dimensional simplices in T restricted to F with E. Sum (8) over those simplices. Shared lower-dimensional boundaries contribute no top-dimensional volume. Then sum over all F and all E. Massive k-simplices lie in unique k-faces of P, so no simplex is counted twice. This is exactly (6), coordinate by coordinate. Points of A unused by T also have zero contribution on both sides, by the vertex restriction in (5).
++
++## 4. A finite-difference cancellation
++
++Substitute (6) into (2). The coefficient of \(\eta_{T,j}\) in \(\pi m_U\) is
++
++\[
++c_{n,j}=
++\sum_{l=0}^{n-1}(-1)^{2n-1-j-l}
++\binom n{l+1}\binom{j+l+1}{j+1}.
++\tag{9}
++\]
++
++Set r=l+1 and add the zero term r=0. If \(f_j(r)=\binom{j+r}{j+1}\), then
++
++\[
++c_{n,j}=(-1)^{n-j}
++\sum_{r=0}^n(-1)^{n-r}\binom nr f_j(r)
++=(-1)^{n-j}\Delta^n f_j(0).
++\tag{10}
++\]
++
++Pascal's identity gives \(\Delta\binom{j+r}{q}=\binom{j+r}{q-1}\). Consequently,
++
++\[
++c_{n,j}=
++\begin{cases}
++0,&0\le j\le n-2,\\
++-1,&j=n-1,\\
++n,&j=n.
++\end{cases}
++\tag{11}
++\]
++
++When the difference order exceeds the polynomial degree, the result is zero; this also covers n=1 with its empty first range. Thus every product-refining U satisfies the **vector identity**
++
++\[
++\boxed{\quad\pi m_U=n\eta_{T,n}-\eta_{T,n-1}.\quad}
++\tag{12}
++\]
++
++For n=2 this specializes to the vertical-prism identity already proved by Ogusu–Sano, Proposition3.5. The argument above proves it uniformly in dimension and is independent of the choice of refinement. That surface special case is prior work, not a discovery claimed here.
++
++## 5. Regular refinements at equal-column heights
++
++Let w be a generic height on A inducing the regular triangulation T. Put
++
++\[
++\widehat w(a,v)=w(a)\qquad((a,v)\in B).
++\tag{13}
++\]
++
++The regular subdivision induced on P by \(\widehat w\) is precisely the product subdivision (5). Indeed, its lower convex envelope is \(g_w(x)\), independent of the simplex coordinate y. For any convex representation of (x,y), the sum of its heights is at least g_w(x). Conversely, if \(x=\sum_a\alpha_a a\) realizes g_w(x) and \(y=\sum_v\beta_v v\), the coefficients \(\alpha_a\beta_v\) realize (x,y) with exactly that height. On each lower simplex of T this yields the whole product cell.
++
++A sufficiently small generic perturbation
++
++\[
++\widehat w+\varepsilon q,\qquad \varepsilon>0,
++\tag{14}
++\]
++
++gives a regular triangulation U refining those cells. This is the standard regular-refinement property and also follows from the finite strict inequalities for supporting faces: preserve all nonzero old inequalities and choose q outside the finitely many circuit hyperplanes that remain tied. Fix q and take ε sufficiently small; the signs are then constant, so U can be held fixed as ε tends to zero. Points strictly above the old lower hull remain above it, hence the vertices of U are products of vertices of T and simplex vertices, as required in Section3.
++
++By GKZ height compatibility, m_U minimizes \(\widehat w+\varepsilon q\) on \(\mathcal D(P)\). Letting ε decrease to zero shows it minimizes \(\widehat w\). Using (1) and (12),
++
++\[
++\min_{z\in\pi\mathcal D(P)}\langle w,z\rangle
++=\langle w,\pi m_U\rangle
++=\langle w,n\eta_{T,n}-\eta_{T,n-1}\rangle.
++\tag{15}
++\]
++
++This is the missing reverse-direction mechanism: an arbitrary triangulation of P need not project to a vertex, and no claim that it does has been used. For each testing functional on the smaller coordinate space, an exposed vertex can instead be selected through an equal-column height and its product refinement.
++
++## 6. Both polytope inclusions
++
++For every regular T, Section5 supplies a regular product-refining U. Its massive vector belongs to \(\mathcal D(P)\), and (12) gives its projection. Therefore
++
++\[
++\mathcal H(Q)\subseteq\pi\mathcal D(P).
++\tag{16}
++\]
++
++For every generic w, (15) attains the minimum over the larger polytope at a point of \(\mathcal H(Q)\). The two minima are therefore equal. Generic heights inducing regular triangulations are dense: their complement is contained in finitely many circuit hyperplanes. The minimum of a linear functional over a fixed compact polytope is continuous in that functional. Thus the two minima agree for every w. A closed convex polytope is determined by these minima, so (16) is an equality. This proves (4).
++
++No enumeration of all regular triangulations of the higher-dimensional product is needed. In particular, non-product triangulations and their possibly nonextreme projections are handled by support functions rather than incorrectly assumed absent.
++
++## 7. Scope, dependence and verification boundary
++
++The proof's combinatorial mechanism consists of the exact product-face identity (6), the finite binomial cancellation (11), regular refinements at equal-column heights, and convex separation. It uses the general GKZ combinatorial description and normal-fan map as established inputs. It neither invokes K-energy nor reasons that the desired polytopes are equal merely because the two defining polynomials coincide. It is a combinatorial comparison within the GKZ framework, not an attempt to replace the full algebraic foundations of that framework.
++
++Smoothness matters in identifying the regular determinant with the discriminant. The report's abbreviated wording must not be used to extend this unweighted formula to arbitrary singular X_A, sparse configurations with lattice-index defects, or incomplete embeddings. Those extensions are outside this candidate. Degree-one/dual-defective cases would require conventions for a constant discriminant; they are not asserted as part of the geometric source conclusion.
++
++The exact checker tests the finite-difference identity, volume factors and projected massive vectors on explicit low-dimensional product triangulations, including nonunimodular cells and unused lattice points. These tests do not establish the infinite family of configurations or the GKZ normal-fan input; those are covered by the written proof and cited source theorem. No historical novelty claim is made. A separate review must assess both the mathematical argument and its match to the requested combinatorial proof mechanism before any resolution claim.
+diff --git a/unsolved_math_prioritization/attempts/30006309/README.md b/unsolved_math_prioritization/attempts/30006309/README.md
+new file mode 100644
+index 000000000..2590487c0
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/README.md
+@@ -0,0 +1,19 @@
++# 30006309: combinatorial comparison of weight-polytope models
++
++**Separate adversarial review PASS for the full comparison in the cited smooth polarized toric regime.** The geometric equality is already known. This package gives a direct comparison of its two combinatorial descriptions.
++
++For Q of dimension n, projection of massive GKZ vectors on Q×Delta_(n−1) is evaluated by product-face volume sums. An alternating binomial identity cancels all terms below codimension one, leaving n·eta_n−eta_boundary. Equal-column heights, regular refinements and the standard GKZ normal-fan map supply the reverse polytope inclusion, without enumerating all product triangulations or invoking K-energy.
++
++- [Complete candidate and proof-type boundary](CANDIDATE.md)
++- [Original source, restored assumptions and prior work](SOURCES.md)
++- [Exact product-vector checker](verify_product_vectors.py), [receipt](product_verification.json)
++- [Pinned source record](source_record.json), [source hashes](source_manifest.json)
++- [Readiness](readiness.json), [status](status.json), [research log](RESEARCH_LOG.md), [turn ledger](turns.jsonl)
++
++Run `python3 verify_product_vectors.py`; only the standard library is needed. All 1,227 exact assertions pass, including eight complete low-dimensional product examples and the finite-difference coefficients through dimension 16. Nonunimodular cells, unused points and induced face-lattice normalization are included.
++
++The checker does not prove the GKZ fan theorem or certify the full infinite family. Smoothness, complete lattice-point embeddings and the source's degree hypothesis are retained. No claim is made for arbitrary singular configurations, a foundation-free proof of GKZ theory, or historical priority.
++
++## Independent review
++
++[The separate adversarial report](review/REVIEW.md) passes the complete comparison in the intended smooth complete-embedding source regime, including both the source-restoration and proof-type questions. [Its exact lower-hull checker](review/independent_checks.py) passes 8,093 assertions. Both saved check receipts reproduce byte-for-byte. This is AI review, not human peer review; priority remains unestablished.
+diff --git a/unsolved_math_prioritization/attempts/30006309/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/30006309/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..d20fa7280
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/RESEARCH_LOG.md
+@@ -0,0 +1,23 @@
++# 30006309 research log
++
++Date:2026-09-30UTC. Model:gpt-6-astra, xhigh. Deadline:08:21UTC. Maximum five substantive approaches.
++
++## 06:21–06:25: exact source and prior-work gate
++
++The live remote queue is queued0/5 at rank70. All-state ID/title PR checks, remote branch check, prior path history and attempt-folder search found no previous campaign attempt. No separate upstream research report is joined to this record.
++
++The complete OWR2025 report was retrieved and Sano's pp919–921 talk read. The known equality is not itself the demanded contribution: the source asks for a combinatorial reproof. The full Sano and Ogusu–Sano papers specify smooth polarized toric varieties, the full lattice-point configuration, degree at least two, and massive boundary-face conventions. These are retained rather than silently extending the characteristic-vector formula to arbitrary singular configurations.
++
++The possible route is a direct comparison of the massive-GKZ polytope of Q×Delta_(n-1) with the convex hull of Hurwitz characteristic vectors on Q. A face-product finite-difference identity appears to remove all face terms below codimension one. The discriminant/secondary normal-fan alignment remains a key source verification before any candidate is asserted. Source-gate completion estimate:85%; proof completion estimate:40%. No resolution claimed at this checkpoint.
++
++## 06:35: candidate comparison complete
++
++For every product-refining triangulation, the projected k-dimensional massive vector equals a finite sum of base massive vectors with coefficients binomial(n,l+1)·binomial(k+1,j+1). A finite-difference identity cancels every base dimension below n−1 and gives the exact Hurwitz vector. The general GKZ normal-fan theorem is explicitly present as Chapter11 Theorem3.4(a). Equal-column heights and small generic refinements therefore expose a product-refining discriminant vertex for each generic base functional, closing the reverse inclusion without classifying arbitrary nonvertical triangulations.
++
++The proof uses no K-energy slope formula and does not infer equality merely from the Cayley identity. It credits Ogusu–Sano's dimension-two product identity and uses GKZ as an established framework. Smooth complete-embedding hypotheses are restored from the cited theorem; arbitrary singular cases remain outside the claim. The exact checker passes1,227 assertions on eight product examples and finite-difference coefficients through dimension16.
++
++One substantive approach used. Proof completion estimate:100% pending separate review of both mathematical correctness and source/proof-type scope. Historical novelty is unestablished.
++
++## 06:55: independent review passed
++
++The separate reviewer passed the unchanged frozen proof, including the intended source regime and the combinatorial proof type within established GKZ theory. The independent lower-hull computations pass 8,093 exact assertions; all 1,227 author checks reproduce byte-for-byte. Five review files are preserved unchanged. The mathematical proof remains at its reviewed hash. Full intended comparison completion estimate:100%; arbitrary singular configurations and historical novelty are not claimed.
+diff --git a/unsolved_math_prioritization/attempts/30006309/SOURCES.md b/unsolved_math_prioritization/attempts/30006309/SOURCES.md
+new file mode 100644
+index 000000000..870145960
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/SOURCES.md
+@@ -0,0 +1,25 @@
++# Exact source, assumptions and prior work
++
++Checked 2026-09-30. The geometric equality is already established. The question is specifically about a combinatorial reproof, so a fresh invocation of the Cayley identity would not answer it.
++
++## Source statement and recovered hypotheses
++
++**Yuji Sano, A-resultants, Hurwitz forms, and energy functionals of toric varieties**, in *Toric Geometry*, Oberwolfach Reports19/2025, pp.919–921. [Complete report](https://ems.press/content/serial-article-files/51856), [DOI](https://doi.org/10.4171/owr/2025/19). The complete talk and cited theorem were read; pp.920–921 were visually checked. The report states the Hurwitz-vector model and asks for a combinatorial comparison with the discriminant model. Its abbreviated notation omits the massive-boundary qualification from the displayed codimension-one sum and does not repeat all hypotheses of its reference[6].
++
++**Sano, Weight Polytopes and Energy Functionals of Toric Varieties**, arXiv2302.09801v1, published DOI10.1007/s42543-023-00079-z. [Full primary preprint](https://arxiv.org/pdf/2302.09801v1). Introduction, Definition1.3 and Theorem1.4 specify smooth polarized toric X, the complete very ample embedding, degree at least two, A consisting of all lattice points of the Delzant polytope, and massive codimension-one simplices contained in boundary facets. The proof uses K-energy slope formulas. The present candidate retains that smooth regime and compares the resulting polytopal models without using those analytic formulas. Arbitrary singular or incomplete configurations are not covered.
++
++## Established combinatorial inputs and prior partial result
++
++**Ogusu and Sano, Characteristic vectors for the Hurwitz polytopes of toric varieties**, arXiv2302.09792v1. [Full primary preprint](https://arxiv.org/pdf/2302.09792v1). Sections2.3–2.8 specify the weight projection and massive GKZ vectors. Proposition3.5 proves the vertical-prism vector identity in dimension two, and Theorem1.2 obtains the corresponding inclusion. Section4 explains the difficulty with arbitrary product triangulations projecting to nonvertices. The proposed proof credits that surface case, extends the product-face calculation uniformly in dimension, and addresses the reverse direction through equal-column exposed faces. It does not assume every projected massive vector is a vertex.
++
++**Gelfand, Kapranov and Zelevinsky, Discriminants, Resultants and Multidimensional Determinants**(1994). [University-hosted full scan](https://webhomes.maths.ed.ac.uk/~v1ranick/papers/gelkapzel.pdf). Chapter11, Theorems3.2 and3.4(a), printed pp.361–363, give the massive-vector and normal-fan inputs. The hypotheses and those pages were inspected in text and scan. The source explicitly distinguishes the regular determinant from the discriminant, identifying them in the smooth case. Chapter7 and Chapter10 supply the coherent-height/initial-monomial conventions. These established GKZ foundations are not being reproved or claimed as new.
++
++## Current literature boundary
++
++**Borovik and Briand, Degenerating Discriminants**, arXiv2607.17966v1, July2026. [Full primary preprint](https://arxiv.org/pdf/2607.17966v1). The paper studies degenerations via conormal cycles, Whitney stratifications and multiplicities, and extends them to higher associated hypersurfaces. Its Sections5–6 retain geometric/Cayley methods; no direct proof of the specific characteristic-vector comparison was verified there. This is a scope check, not a complete independent certification of that preprint.
++
++Searches for the exact OWR question, characteristic-vector comparison and massive-GKZ normal-fan statements located the primary sources above but did not establish novelty. The earlier geometric equality, analytic characteristic-vector theorem and surface inclusion are all prior work. No proof of priority follows from this bounded search.
++
++## Proof-type boundary
++
++The candidate proves a polytope equality from finite face-volume identities, a binomial cancellation and the general GKZ fan correspondence. Its claim is a combinatorial comparison **within the established GKZ framework**, not a reconstruction of all GKZ theory without algebraic inputs. The known Sano theorem identifies the name of the right-hand model; it is not used for the inclusions or support-function comparison. A separate review must check both the mathematics and whether this answers the requested mechanism under the restored smooth hypotheses.
+diff --git a/unsolved_math_prioritization/attempts/30006309/product_verification.json b/unsolved_math_prioritization/attempts/30006309/product_verification.json
+new file mode 100644
+index 000000000..8c1aca6b3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/product_verification.json
+@@ -0,0 +1,165 @@
++{
++  "status": "PASS",
++  "exact_assertions": 1227,
++  "case_count": 8,
++  "cases": [
++    {
++      "case": "interval_coarse",
++      "dimension": 1,
++      "base_points": 4,
++      "product_points": 4,
++      "base_simplices": 1,
++      "product_simplices": 1,
++      "base_normalized_volume": 3,
++      "product_normalized_volume": 3,
++      "projected_vector": [
++        2,
++        0,
++        0,
++        2
++      ],
++      "unused_base_points": 2
++    },
++    {
++      "case": "interval_fine",
++      "dimension": 1,
++      "base_points": 4,
++      "product_points": 4,
++      "base_simplices": 3,
++      "product_simplices": 3,
++      "base_normalized_volume": 3,
++      "product_normalized_volume": 3,
++      "projected_vector": [
++        0,
++        2,
++        2,
++        0
++      ],
++      "unused_base_points": 0
++    },
++    {
++      "case": "unit_square",
++      "dimension": 2,
++      "base_points": 4,
++      "product_points": 8,
++      "base_simplices": 2,
++      "product_simplices": 6,
++      "base_normalized_volume": 2,
++      "product_normalized_volume": 6,
++      "projected_vector": [
++        2,
++        0,
++        0,
++        2
++      ],
++      "unused_base_points": 0
++    },
++    {
++      "case": "rectangle_nonunimodular_coarse",
++      "dimension": 2,
++      "base_points": 6,
++      "product_points": 12,
++      "base_simplices": 2,
++      "product_simplices": 6,
++      "base_normalized_volume": 4,
++      "product_normalized_volume": 12,
++      "projected_vector": [
++        5,
++        1,
++        0,
++        0,
++        1,
++        5
++      ],
++      "unused_base_points": 2
++    },
++    {
++      "case": "double_triangle_coarse",
++      "dimension": 2,
++      "base_points": 6,
++      "product_points": 12,
++      "base_simplices": 1,
++      "product_simplices": 3,
++      "base_normalized_volume": 4,
++      "product_normalized_volume": 12,
++      "projected_vector": [
++        4,
++        0,
++        4,
++        0,
++        0,
++        4
++      ],
++      "unused_base_points": 3
++    },
++    {
++      "case": "double_triangle_fine",
++      "dimension": 2,
++      "base_points": 6,
++      "product_points": 12,
++      "base_simplices": 4,
++      "product_simplices": 12,
++      "base_normalized_volume": 4,
++      "product_normalized_volume": 12,
++      "projected_vector": [
++        0,
++        4,
++        0,
++        4,
++        4,
++        0
++      ],
++      "unused_base_points": 0
++    },
++    {
++      "case": "unit_cube",
++      "dimension": 3,
++      "base_points": 8,
++      "product_points": 24,
++      "base_simplices": 6,
++      "product_simplices": 60,
++      "base_normalized_volume": 6,
++      "product_normalized_volume": 60,
++      "projected_vector": [
++        12,
++        2,
++        2,
++        2,
++        2,
++        2,
++        2,
++        12
++      ],
++      "unused_base_points": 0
++    },
++    {
++      "case": "double_tetrahedron_coarse",
++      "dimension": 3,
++      "base_points": 10,
++      "product_points": 30,
++      "base_simplices": 1,
++      "product_simplices": 10,
++      "base_normalized_volume": 8,
++      "product_normalized_volume": 80,
++      "projected_vector": [
++        12,
++        0,
++        12,
++        0,
++        0,
++        12,
++        0,
++        0,
++        0,
++        12
++      ],
++      "unused_base_points": 6
++    }
++  ],
++  "limits": [
++    "No enumeration of all triangulations",
++    "No test replaces GKZ normal-fan input",
++    "No certification of an analytic-free foundation for GKZ",
++    "No singular-toric extension claimed"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30006309/readiness.json b/unsolved_math_prioritization/attempts/30006309/readiness.json
+new file mode 100644
+index 000000000..ef60c3c9e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/readiness.json
+@@ -0,0 +1,26 @@
++{
++  "id": 30006309,
++  "code": "OWR-14299288-015",
++  "started_utc": "2026-09-30T06:21:00Z",
++  "deadline_utc": "2026-09-30T08:21:00Z",
++  "model": "gpt-6-astra",
++  "reasoning": "xhigh",
++  "turn_limit": 5,
++  "turns_used": 1,
++  "branch": "dot/math-30006309",
++  "prior_attempt_gate": {
++    "all_state_id_and_title_prs": [],
++    "matching_remote_branch": false,
++    "existing_attempt_folder": false,
++    "path_history": [],
++    "live_remote_queue": "rank70 queued0/5",
++    "repository_exact_matches": [
++      "QUEUE.md",
++      "SHORTLIST.md",
++      "assessment/catalog metadata"
++    ]
++  },
++  "source_gate": "Complete OWR2025 report retrieved; exact talk pp919\u2013921 read. Task requests specifically a combinatorial reproof, not the known Cayley identity.",
++  "hypotheses": "Recover smooth polarized toric X, full lattice-point configuration, and degree>=2 from the cited Sano theorem. Massive (n-1)-simplices lie in boundary facets; the report abbreviates this convention.",
++  "current_literature": "Complete cited primary papers and GKZ scan checked; normal-fan compatibility verified in Chapter11 Theorem3.4; July2026 geometric degeneration result does not supply the comparison used here."
++}
+diff --git a/unsolved_math_prioritization/attempts/30006309/review/REVIEW.md b/unsolved_math_prioritization/attempts/30006309/review/REVIEW.md
+new file mode 100644
+index 000000000..a4d1853a6
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/review/REVIEW.md
+@@ -0,0 +1,271 @@
++# Independent adversarial review: the Hurwitz/discriminant polytope comparison
++
++**Verdict: PASS for the complete combinatorial comparison in the intended smooth, complete-embedding source regime.** The proof establishes both inclusions in
++\(\pi\mathcal D(Q\times\Delta_{n-1})=\mathcal H(Q)\) for every dimension
++and polarization covered by the cited Sano theorem. It contains a genuine
++argument for the reverse inclusion, not merely the already-known geometric
++equality. No mandatory mathematical correction is required.
++
++The source regime and the use of established GKZ foundations must remain
++visible in publication. This verdict does not certify a statement for arbitrary
++singular or sparse configurations, a proof that reconstructs GKZ without
++algebraic inputs, or historical novelty.
++
++**Frozen artifact:** CANDIDATE.md, SHA-256
++**4931eccbb464b53af07b90e24b72060e681b9a7f1769c0030a9d7090e59b129c**.
++Review date: 2026-09-30. Independent reviewer: gpt-6-astra, xhigh reasoning.
++This is separate adversarial AI review, not human peer review.
++
++## 1. Source scope and the requested kind of proof
++
++The complete Sano contribution in
++[Oberwolfach Report 19/2025, pp. 919–921](https://ems.press/content/serial-article-files/51856)
++was read, including the displayed theorems and the question. Its subject is
++the comparison of the discriminant and Hurwitz weight polytopes within the
++GKZ framework. It expressly contrasts its analytic derivation of the
++Hurwitz-vector description with the discriminant description available
++through GKZ. Merely repeating the Cayley identification would not address
++the requested comparison.
++
++The report initially writes a general lattice configuration and abbreviates
++the later characteristic-vector theorem. Its reference [6],
++[Sano, *Weight polytopes and energy functionals of toric varieties*](https://arxiv.org/abs/2302.09801v1),
++makes the hypotheses explicit:
++
++- \(X\) is a smooth irreducible polarized toric variety
++- the embedding is given by the complete very ample linear system and is
++  linearly normal
++- the degree is at least two
++- \(A\) consists of every lattice point of the Delzant momentum polytope
++- only massive boundary simplices contribute to \(\eta_{T,n-1}\)
++
++These statements occur in the introduction, Definition 1.3, and Theorem 1.4.
++They match the candidate exactly. The complete-lattice and smoothness
++conditions have not been silently replaced by unimodularity of every
++triangulation.
++
++**Scope judgment.** Restoring these hypotheses is justified when interpreting
++the OWR question as the comparison of its cited characteristic-vector
++theorem with the GKZ discriminant model. The candidate fully handles that
++intended comparison; it is not merely a surface or special-polytope case.
++The report's unqualified introductory configuration language should not be
++used to advertise a stronger arbitrary-configuration theorem. That stronger
++literal reading is outside this verdict. The candidate already states
++this boundary prominently.
++
++**Proof-type judgment.** Comparing the two explicit combinatorial models
++using established GKZ vertex and fan theorems is a legitimate combinatorial
++answer in the framework explicitly invoked by the source. The candidate's
++comparison itself does not use Sano's K-energy argument, the desired equality,
++or a Cayley identity. Sano's theorem supplies the established interpretation
++of the right-hand model. This is not a claim that the entire algebraic
++identification of the Hurwitz form has been rebuilt from elementary
++combinatorics.
++
++[Ogusu–Sano](https://arxiv.org/abs/2302.09792v1), Proposition 3.5, already
++proves the corresponding vertical-prism vector identity in dimension two
++and uses it for one inclusion. The candidate properly credits this. It
++does not claim the stronger triangulation/vertex bijection appearing in
++that paper's Conjecture 4.5, nor does it assume that all projections of
++discriminant vertices are vertices.
++
++## 2. Weight space, lattice normalization, and GKZ input
++
++The projection \(\pi\) is essential. The discriminant's full coefficient
++torus has one coordinate per point of
++\(B=A\times\operatorname{Vert}(\Delta_{n-1})\), whereas the source Hurwitz
++weight space uses the ambient diagonal torus with one coordinate per point
++of \(A\). Its action on the second Segre factor is trivial. Restriction of
++characters therefore sums the \(n\) coordinates above each \(a\), exactly
++as in (1). This agrees with Ogusu–Sano Section 2.3. It is neither the smaller
++intrinsic toric action nor an unmentioned quotient by scalar weights.
++
++This projection is restriction of torus characters on the polynomial
++representation. It is not evaluation that identifies coefficient variables;
++there is consequently no possible cancellation of distinct monomials from
++such an evaluation.
++
++All lattice normalizations are consistent. At a vertex of a Delzant face
++\(F\), its primitive edge directions form a basis of its induced face
++lattice. Because \(A=Q\cap\mathbb Z^n\), the adjacent primitive lattice
++points are included. Thus \(A\cap F\) generates the full affine face lattice.
++The standard simplex has unimodular faces, and a product face has the product
++lattice. No lattice-index correction is omitted.
++
++I checked the full statements and proofs on printed pp. 361–363 of
++[GKZ, *Discriminants, Resultants and Multidimensional Determinants*](https://webhomes.maths.ed.ac.uk/~v1ranick/papers/gelkapzel.pdf),
++Chapter 11, against the scan. Theorems 3.2 and 3.4 apply under the stated
++simplicity and face-index conditions, which hold here. The text explicitly
++identifies the regular determinant with the ordinary discriminant in the
++smooth case. The Segre product is smooth, and its configuration is exactly
++\(B\); the standard simplex has no other lattice points.
++
++The normal-fan assertion is not inferred from a mere list of vertices.
++Chapter 11, Theorem 3.4(a) proves that the regular determinant's Newton
++polytope is a Minkowski summand of the principal determinant's Newton
++polytope, and hence that its normal fan is coarser than the secondary fan.
++Chapter 10, Theorem 1.4 supplies the principal-determinant monomial label;
++the alternating face-determinant formula in the proof of Chapter 11,
++Theorem 3.2 gives the label \(m_U\) for that same height cone.
++
++GKZ Chapter 7 uses an upper, concave envelope with maxima. Replacing the
++height by its negative gives the lower convex envelope and minima used in
++the candidate. The sign is correct. An independent explicit control is the
++quadratic discriminant \(b^2-4ac\): lower heights \((0,1,0)\) select its
++\(ac\) exponent \((1,0,1)\); lower heights \((0,-1,0)\) select
++\((0,2,0)\). Both are minimizers for the stated heights.
++
++These are general pre-existing discriminant results. None requires the
++Hurwitz formula or the equality being proved.
++
++## 3. The product-face calculation
++
++Every \(k\)-face of \(P=Q\times\Delta_{n-1}\) is a unique product \(F\times E\)
++with dimensions \(j,l\) and \(j+l=k\). A massive \(k\)-simplex belongs to
++a unique such \(k\)-face. It cannot be counted in two different faces of
++that same dimension.
++
++For a \(j\)-simplex \(\sigma\subset F\), normalized volume gives
++
++\[
++\operatorname{Vol}_{\mathbb Z}(\sigma\times E)
++=\frac{(j+l)!}{j!\,l!}\operatorname{Vol}_{\mathbb Z}(\sigma).
++\]
++
++For a vertex \(a\) of \(\sigma\), its barycentric coordinate has average
++\(1/(j+1)\) on the product. On a \(k\)-simplex \(\tau\) in any vertex
++triangulation of \(\sigma\times E\), the average equals the number of
++vertices projecting to \(a\), divided by \(k+1\).
++Additivity of volume-weighted centroids therefore gives
++
++\[
++\sum_\tau \operatorname{Vol}_{\mathbb Z}(\tau)
++        \#\{\text{vertices of }\tau\text{ above }a\}
++=\binom{k+1}{j+1}\operatorname{Vol}_{\mathbb Z}(\sigma).
++\]
++
++The coefficient is integral and correct; no extra factorial survives.
++This argument permits nonunimodular simplices and arbitrary refinements,
++including those not supplied as staircase triangulations.
++
++The vertex restriction is necessary and is present in the proof:
++a vertex of a refined product cell must project to a vertex of the relevant
++simplex of \(T\). An unused lattice point interior to that simplex cannot
++be introduced while applying this identity. Section 5 guarantees that
++restriction for the refinements it actually uses.
++
++Restricting to \(F\times E\) and summing over the top simplices of \(T|_F\)
++does not double-count lower-dimensional common boundaries: those have
++zero \(k\)-volume. There are \(\binom n{l+1}\) simplex faces \(E\).
++This proves (6), including \(j=0\), \(l=0\), unused coordinates, and the
++top-dimensional case.
++
++## 4. Cancellation and the vector identity
++
++With \(r=l+1\), the sign in (9) becomes
++\((-1)^{n-j}(-1)^{n-r}\). The added \(r=0\) term is zero because
++\(\binom j{j+1}=0\). The remaining sum is the \(n\)-th finite difference
++of the degree-\(j+1\) polynomial
++\(r\mapsto\binom{j+r}{j+1}\), at zero.
++
++It vanishes for \(j\le n-2\). For \(j=n-1\) the finite difference is 1,
++with negative sign. For \(j=n\) it equals
++\(\binom n1=n\), with positive sign. Thus
++
++\[
++\pi m_U=n\eta_{T,n}-\eta_{T,n-1}
++\]
++
++is proved for every permitted product refinement. In dimension one,
++\(P=Q\), and the formula becomes the expected
++\(\eta_{T,1}-\eta_{T,0}\); there is no missing lower range in the sum.
++
++## 5. Regular refinements and the reverse inclusion
++
++The equal-column lower envelope is indeed independent of the second
++coordinate. Any representation of \((x,y)\) projects to a representation
++of \(x\), giving the lower bound \(g_w(x)\). A minimizing representation
++of \(x\), multiplied by simplex barycentric coordinates for \(y\), realizes
++that bound. The maximal old cells are therefore
++\(\sigma\times\Delta_{n-1}\) with \(\sigma\in T\).
++
++A fixed sufficiently generic perturbation gives a regular triangulation
++refining those cells for all sufficiently small positive perturbation
++parameters. There are only finitely many circuit inequalities; the ones
++nonzero at the original height retain their signs, and generic perturbation
++breaks the remaining ties. Points strictly above the old lower hull retain
++a positive gap. Since the base height is generic, those are precisely the
++points unused by \(T\), so the necessary vertex restriction holds.
++
++The same triangulation \(U\) can be fixed as the perturbation tends to zero.
++GKZ height compatibility then implies that \(m_U\) minimizes at the
++unperturbed equal-column height as well. Projecting and using the vector
++identity proves equation (15) with the correct minimum direction.
++
++This establishes the required support value for every generic test
++functional on \(\mathbb R^A\). It does not assume an arbitrary triangulation
++of \(P\) has a vertex projection. For every regular \(T\), a regular
++refinement yields its Hurwitz vector in \(\pi\mathcal D(P)\), proving one
++inclusion. For a generic functional, the minimum on that larger polytope is
++attained at one of these vectors in \(\mathcal H(Q)\), proving equality of
++the minima. Density of generic heights, continuity of finite-polytope
++support functions, and convex separation give equality for all functionals
++and hence the other inclusion.
++
++Neither an analytic inequality nor the known Cayley equality enters this
++step. The support argument closes the specific gap left by the earlier
++surface inclusion.
++
++## 6. Independent exact verification
++
++The author's checker reproduced **1,227 assertions** and its saved JSON
++output **byte-for-byte**. The hashes and byte counts of all five cited
++source PDFs match the provenance manifest.
++
++Run the independent checker from this review directory:
++
++    python3 independent_checks.py
++
++It passes **8,093 exact assertions**, using Python's standard library.
++Its triangulations are computed from rational lower supporting hyperplanes,
++rather than supplied by the author's staircase construction:
++
++- 80 generic-height product triangulations across the square, double
++  triangle, and \(2\times1\) rectangle
++- 32 equal-column refinements, checking every massive-vector level,
++  unused vertices, the projected vector, and the exposed support value
++- 112 tests of the GKZ minimizer label against every other sampled massive
++  vector in the same configuration
++- ten distinct regular refinements of the five-dimensional product
++  \(2\Delta_3\times\Delta_2\), embedded in its complete 30-point configuration;
++  its six unused base lattice points remain unused, and each of the four
++  nonzero projected coordinates equals 12
++- the finite-difference identity through dimension 30 and explicit
++  discriminant checks for the minimum/maximum convention
++- negative controls detecting the wrong sign convention and incorrectly
++  including interior edges in the massive boundary sum
++
++Four sampled triangulations of the cube project to nonvertices of the
++projected segment. This independently confirms that the proof must not
++rely on an all-projections-are-vertices assertion. Exact saturated face
++volumes are computed from integer minors, including nonunimodular cells.
++
++These are bounded diagnostics. They do not enumerate every regular
++triangulation and do not replace the general argument or the GKZ theorem.
++
++## 7. Attribution and final disposition
++
++The geometric equality, Sano's analytic characteristic-vector theorem,
++the general GKZ descriptions, and the Ogusu–Sano surface inclusion are
++prior results. The bounded literature check, including
++[Borovik–Briand's 2026 paper](https://arxiv.org/abs/2607.17966v1) on
++degenerating discriminants, does not establish priority for this specific
++comparison. That paper's higher-associated-hypersurface treatment uses
++geometric degeneration and Cayley methods; no full independent proof audit
++of it is asserted here.
++
++**The frozen candidate is mathematically complete for its explicitly stated
++smooth complete-embedding hypotheses and gives the requested comparison by
++a combinatorial argument within GKZ.** Its existing scope and novelty
++qualifications should be retained in the draft PR and any status description.
++No mandatory proof revision remains.
+diff --git a/unsolved_math_prioritization/attempts/30006309/review/independent_checks.py b/unsolved_math_prioritization/attempts/30006309/review/independent_checks.py
+new file mode 100644
+index 000000000..8c7bbb68d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/review/independent_checks.py
+@@ -0,0 +1,293 @@
++#!/usr/bin/env python3
++"""Independent exact regular-lower-hull diagnostics for the product comparison.
++Unlike the author checker, triangulations are generated from exact lower
++supporting hyperplanes; they are not supplied as staircase triangulations.
++Standard library only. Finite diagnostics do not replace GKZ or the proof.
++"""
++from collections import Counter
++from fractions import Fraction as F
++from functools import lru_cache
++from itertools import combinations, product
++from math import comb, gcd
++import json
++import random
++
++counts = Counter()
++rng = random.Random(30006309)
++def test(condition, category):
++    assert condition, category
++    counts[category] += 1
++
++def inverse(matrix):
++    n=len(matrix)
++    a=[[F(x) for x in row]+[F(int(i==j)) for j in range(n)]
++       for i,row in enumerate(matrix)]
++    for j in range(n):
++        pivot=next((i for i in range(j,n) if a[i][j]),None)
++        if pivot is None: return None
++        a[j],a[pivot]=a[pivot],a[j]
++        c=a[j][j]
++        a[j]=[x/c for x in a[j]]
++        for i in range(n):
++            if i!=j and a[i][j]:
++                c=a[i][j]
++                a[i]=[u-c*v for u,v in zip(a[i],a[j])]
++    return [row[n:] for row in a]
++
++def determinant(a):
++    a=[list(row) for row in a]
++    n=len(a)
++    if not n:return 1
++    sign,prev=1,1
++    for k in range(n-1):
++        pivot=next((i for i in range(k,n) if a[i][k]),None)
++        if pivot is None:return 0
++        if pivot!=k:
++            a[k],a[pivot]=a[pivot],a[k]
++            sign=-sign
++        pv=a[k][k]
++        for i in range(k+1,n):
++            for j in range(k+1,n):
++                numerator=a[i][j]*pv-a[i][k]*a[k][j]
++                assert numerator%prev==0
++                a[i][j]=numerator//prev
++        for i in range(k+1,n):a[i][k]=0
++        prev=pv
++    return sign*a[-1][-1]
++
++@lru_cache(None)
++def lattice_volume(vertices):
++    k=len(vertices)-1
++    if k==0:return 1
++    edges=[[v[j]-vertices[0][j] for j in range(len(v))]
++           for v in vertices[1:]]
++    answer=0
++    for cols in combinations(range(len(vertices[0])),k):
++        answer=gcd(answer,abs(determinant([[row[j] for j in cols] for row in edges])))
++    return answer
++
++class Hull:
++    def __init__(self,A):
++        self.A=tuple(A)
++        self.dim=len(A[0])
++        self.bases=[]
++        for S in combinations(range(len(A)),self.dim+1):
++            inv=inverse([[1,*A[i]] for i in S])
++            if inv is None:continue
++            # Rows express evaluation at each point as a linear combination
++            # of values at the candidate affine simplex.
++            evals=[]
++            for point in A:
++                row=[1,*point]
++                evals.append(tuple(sum(F(row[k])*inv[k][j] for k in range(self.dim+1))
++                                   for j in range(self.dim+1)))
++            self.bases.append((S,tuple(evals)))
++    def triangulate(self,w):
++        tops=[]
++        for S,ev in self.bases:
++            ws=[w[i] for i in S]
++            extra_equal=False
++            valid=True
++            for i,row in enumerate(ev):
++                if i in S:continue
++                gap=w[i]-sum(x*y for x,y in zip(row,ws))
++                if gap<0:
++                    valid=False
++                    break
++                if gap==0:extra_equal=True
++            if valid:
++                if extra_equal:return None
++                tops.append(S)
++        assert tops
++        return tuple(tops)
++    def generic(self,bias=None,scale=1):
++        for _ in range(200):
++            noise=[rng.randrange(-100000,100001) for _ in self.A]
++            w=noise if bias is None else [scale*x+y for x,y in zip(bias,noise)]
++            T=self.triangulate(w)
++            if T is not None:return w,T
++        raise AssertionError('generic height construction failed')
++
++def square_face(vertices,lengths):
++    return len(lengths)-sum(all(v[i]==0 for v in vertices)
++                            or all(v[i]==L for v in vertices)
++                            for i,L in enumerate(lengths))
++def simplex_face(vertices,n,L):
++    active=sum(all(v[i]==0 for v in vertices) for i in range(n))
++    active+=all(sum(v)==L for v in vertices)
++    return n-active
++def simplex_vertices(n,L=1):
++    return [(0,)*n]+[tuple(L*int(i==j) for i in range(n)) for j in range(n)]
++def skeleton(tops):
++    return {face for top in tops for k in range(1,len(top)+1)
++            for face in combinations(top,k)}
++def eta(A,T,face_dim):
++    dim=len(A[0])
++    out=[[0]*len(A) for _ in range(dim+1)]
++    for face in skeleton(T):
++        pts=tuple(A[i] for i in face)
++        k=len(face)-1
++        if face_dim(pts)!=k:continue
++        volume=lattice_volume(pts)
++        test(volume>0,'nonzero_massive_volume')
++        for i in face:out[k][i]+=volume
++    return out
++def massive(E):
++    d=len(E)-1
++    return tuple(sum((-1)**(d-k)*E[k][i] for k in range(d+1))
++                 for i in range(len(E[0])))
++def project(v,n):
++    return tuple(sum(v[i:i+n]) for i in range(0,len(v),n))
++def dot(a,b):return sum(x*y for x,y in zip(a,b))
++
++# Direct binomial finite-difference controls over larger n.
++for n in range(1,31):
++    for j in range(n+1):
++        got=sum((-1)**(2*n-1-j-l)*comb(n,l+1)*comb(j+l+1,j+1) for l in range(n))
++        test(got==(n if j==n else -1 if j==n-1 else 0),'finite_difference')
++
++# Test the lower/minimum convention against an explicit quadratic discriminant.
++A=[(0,),(1,),(2,)]
++H=Hull(A)
++for w,expected in [([0,1,0],(1,0,1)),([0,-1,0],(0,2,0))]:
++    T=H.triangulate(w)
++    m=massive(eta(A,T,lambda vs:square_face(vs,(2,))))
++    test(m==expected,'explicit_discriminant_label')
++    monomials=[(0,2,0),(1,0,1)] # b^2-4ac
++    test(dot(w,m)==min(dot(w,v) for v in monomials),'minimum_sign')
++    test(dot(w,m)!=max(dot(w,v) for v in monomials),'negative_sign_control')
++
++summaries=[]
++def run_family(name,A,n,base_face,random_samples,equal_samples):
++    delta=simplex_vertices(n-1)
++    B=[a+b for a in A for b in delta]
++    HB,HA=Hull(B),Hull(A)
++    def prod_face(vs):
++        return base_face([v[:n] for v in vs])+simplex_face([v[n:] for v in vs],n-1,1)
++    samples=[]
++    for _ in range(random_samples):
++        w,U=HB.generic()
++        E=eta(B,U,prod_face)
++        m=massive(E)
++        test(all(x>=0 for x in m),'smooth_discriminant_nonnegative_exponents')
++        samples.append((w,U,m,project(m,n)))
++    equal=[]
++    for _ in range(equal_samples):
++        w,T=HA.generic()
++        ET=eta(A,T,base_face)
++        desired=tuple(n*ET[n][i]-ET[n-1][i] for i in range(len(A)))
++        bias=[x for x in w for _ in delta]
++        # Fix one generic perturbation direction; increase K until the
++        # combinatorial refinement criterion holds. The support test below
++        # is not used to select K.
++        noise=[rng.randrange(-100000,100001) for _ in B]
++        scale=10
++        for _try in range(15):
++            height=[scale*x+y for x,y in zip(bias,noise)]
++            U=HB.triangulate(height)
++            if U is not None and all(any(set(i//n for i in u)<=set(t) for t in T) for u in U):
++                break
++            scale*=10
++        else:raise AssertionError('no regular refinement')
++        test(all(any(set(i//n for i in u)<=set(t) for t in T) for u in U),'regular_product_refinement')
++        used={i for t in T for i in t}
++        test(all(i//n in used for u in U for i in u),'unused_points_stay_unused')
++        EU=eta(B,U,prod_face)
++        proj=[project(row,n) for row in EU]
++        for k in range(2*n):
++            expected=tuple(sum(comb(n,k-j+1)*comb(k+1,j+1)*ET[j][i]
++                               for j in range(n+1) if 0<=k-j<n)
++                           for i in range(len(A)))
++            test(proj[k]==expected,'all_massive_levels')
++        mu=massive(EU)
++        test(project(mu,n)==desired,'projected_vector_identity')
++        test(all(dot(bias,mu)<=dot(bias,m) for _,_,m,_ in samples),'equal_column_support_minimum')
++        # Finite-fiber support identity against the sampled projected hull.
++        test(dot(w,desired)==dot(bias,mu),'projection_pairing')
++        equal.append((w,T,desired))
++        samples.append((height,U,mu,project(mu,n)))
++    # Independent normal-fan labels: a height's massive vector must minimize
++    # the same functional over every other sampled regular massive vector.
++    for w,U,m,pm in samples:
++        test(all(dot(w,m)<=dot(w,other) for _,_,other,_ in samples),'generic_GKZ_minimizer')
++    nonvertex=0
++    if name=='unit_square':
++        endpoints={(2,0,0,2),(0,2,2,0)}
++        for _,_,_,pm in samples:
++            test(pm[0]==pm[3] and pm[1]==pm[2] and pm[0]+pm[1]==2 and 0<=pm[0]<=2,
++                 'square_projected_polytope')
++            nonvertex+=pm not in endpoints
++        test(nonvertex>0,'nonvertex_projections_exist')
++        # An interior diagonal cannot be included in eta_{T,1}.
++        T=equal[0][1]
++        proper=equal[0][2]
++        all_edges=eta(A,T,lambda vs:len(vs)-1)
++        wrong=tuple(2*all_edges[2][i]-all_edges[1][i] for i in range(len(A)))
++        test(wrong!=proper,'negative_nonmassive_edge_control')
++    summaries.append({'name':name,'n':n,'A_points':len(A),'B_points':len(B),
++                      'random_generic_samples':random_samples,
++                      'equal_column_refinements':equal_samples,
++                      'different_product_triangulations':len(set(t for _,t,_,_ in samples)),
++                      'nonvertex_projections_observed':nonvertex,
++                      'unused_base_points_observed':any(len(set(i for t in T for i in t))<len(A) for _,T,_ in equal)})
++
++run_family('unit_square',list(product(range(2),repeat=2)),2,
++           lambda vs:square_face(vs,(1,1)),48,12)
++run_family('double_triangle',[v for v in product(range(3),repeat=2) if sum(v)<=2],2,
++           lambda vs:simplex_face(vs,2,2),16,10)
++run_family('rectangle_2_by_1',list(product(range(3),range(2))),2,
++           lambda vs:square_face(vs,(2,1)),16,10)
++
++# Five-dimensional product of a nonunimodular tetrahedron and Delta_2.
++# Full A contains unused edge lattice points; all top simplices use the
++# tetrahedron's four corners. Generic lower hulls of the 12 corner products
++# produce different exact refinements without a staircase construction.
++n=3
++A=[v for v in product(range(3),repeat=3) if sum(v)<=2]
++delta=simplex_vertices(2)
++B=[a+b for a in A for b in delta]
++corners=simplex_vertices(3,2)
++C=[a+b for a in corners for b in delta]
++C_to_B=[B.index(v) for v in C]
++HC=Hull(C)
++baseT=[tuple(A.index(v) for v in corners)]
++ET=eta(A,baseT,lambda vs:simplex_face(vs,3,2))
++wanted=tuple(n*ET[n][i]-ET[n-1][i] for i in range(len(A)))
++test(sorted(wanted)==[0]*6+[12]*4,'explicit_nonunimodular_vector')
++different=set()
++for _ in range(10):
++    heights,UT=HC.generic()
++    U=tuple(tuple(sorted(C_to_B[i] for i in t)) for t in UT)
++    different.add(U)
++    # Extend the corner heights to all of B above every selected lower plane.
++    # The resulting full configuration has exactly the same lower hull.
++    full_height=[10**20]*len(B)
++    for i,b in enumerate(C_to_B):full_height[b]=heights[i]
++    for t in U:
++        inv=inverse([[1,*B[i]] for i in t])
++        coeff=[sum(inv[k][j]*full_height[t[j]] for j in range(6)) for k in range(6)]
++        test(all(full_height[i]>=sum(x*y for x,y in zip([1,*v],coeff)) for i,v in enumerate(B)),
++             'full_configuration_lower_support')
++    EU=eta(B,U,lambda vs:simplex_face([v[:3] for v in vs],3,2)
++                        +simplex_face([v[3:] for v in vs],2,1))
++    projected=[project(row,3) for row in EU]
++    for k in range(6):
++        expected=tuple(sum(comb(3,k-j+1)*comb(k+1,j+1)*ET[j][i]
++                           for j in range(4) if 0<=k-j<3) for i in range(len(A)))
++        test(projected[k]==expected,'dimension_three_massive_levels')
++    test(project(massive(EU),3)==wanted,'dimension_three_vector_identity')
++test(len(different)>1,'different_nonunimodular_refinements')
++summaries.append({'name':'double_tetrahedron_times_triangle','n':3,'A_points':len(A),
++                  'B_points':len(B),'generic_refinements':10,
++                  'different_product_triangulations':len(different),
++                  'base_normalized_volume':8,'nonzero_projected_coordinate_value':12,
++                  'unused_base_points':len(A)-4})
++
++result={'status':'PASS','exact_assertions':sum(counts.values()),
++        'checks_by_category':dict(sorted(counts.items())),'families':summaries,
++        'algorithm':'Exact rational lower supporting hyperplanes, fraction-free integer determinants, saturated face volumes, independent massive-vector and support checks.',
++        'limits':['Finite regular triangulations sampled by fixed-seed integer heights, not all triangulations.',
++                  'No computation replaces the general centroid or GKZ proof.',
++                  'Only the specified smooth complete-lattice source regime is certified.',
++                  'No historical novelty claim.']}
++print(json.dumps(result,indent=2,sort_keys=True))
+diff --git a/unsolved_math_prioritization/attempts/30006309/review/independent_results.json b/unsolved_math_prioritization/attempts/30006309/review/independent_results.json
+new file mode 100644
+index 000000000..adc2561b1
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/review/independent_results.json
+@@ -0,0 +1,80 @@
++{
++  "algorithm": "Exact rational lower supporting hyperplanes, fraction-free integer determinants, saturated face volumes, independent massive-vector and support checks.",
++  "checks_by_category": {
++    "all_massive_levels": 128,
++    "different_nonunimodular_refinements": 1,
++    "dimension_three_massive_levels": 60,
++    "dimension_three_vector_identity": 10,
++    "equal_column_support_minimum": 32,
++    "explicit_discriminant_label": 2,
++    "explicit_nonunimodular_vector": 1,
++    "finite_difference": 495,
++    "full_configuration_lower_support": 100,
++    "generic_GKZ_minimizer": 112,
++    "minimum_sign": 2,
++    "negative_nonmassive_edge_control": 1,
++    "negative_sign_control": 2,
++    "nonvertex_projections_exist": 1,
++    "nonzero_massive_volume": 6878,
++    "projected_vector_identity": 32,
++    "projection_pairing": 32,
++    "regular_product_refinement": 32,
++    "smooth_discriminant_nonnegative_exponents": 80,
++    "square_projected_polytope": 60,
++    "unused_points_stay_unused": 32
++  },
++  "exact_assertions": 8093,
++  "families": [
++    {
++      "A_points": 4,
++      "B_points": 8,
++      "different_product_triangulations": 39,
++      "equal_column_refinements": 12,
++      "n": 2,
++      "name": "unit_square",
++      "nonvertex_projections_observed": 4,
++      "random_generic_samples": 48,
++      "unused_base_points_observed": false
++    },
++    {
++      "A_points": 6,
++      "B_points": 12,
++      "different_product_triangulations": 26,
++      "equal_column_refinements": 10,
++      "n": 2,
++      "name": "double_triangle",
++      "nonvertex_projections_observed": 0,
++      "random_generic_samples": 16,
++      "unused_base_points_observed": true
++    },
++    {
++      "A_points": 6,
++      "B_points": 12,
++      "different_product_triangulations": 26,
++      "equal_column_refinements": 10,
++      "n": 2,
++      "name": "rectangle_2_by_1",
++      "nonvertex_projections_observed": 0,
++      "random_generic_samples": 16,
++      "unused_base_points_observed": true
++    },
++    {
++      "A_points": 10,
++      "B_points": 30,
++      "base_normalized_volume": 8,
++      "different_product_triangulations": 10,
++      "generic_refinements": 10,
++      "n": 3,
++      "name": "double_tetrahedron_times_triangle",
++      "nonzero_projected_coordinate_value": 12,
++      "unused_base_points": 6
++    }
++  ],
++  "limits": [
++    "Finite regular triangulations sampled by fixed-seed integer heights, not all triangulations.",
++    "No computation replaces the general centroid or GKZ proof.",
++    "Only the specified smooth complete-lattice source regime is certified.",
++    "No historical novelty claim."
++  ],
++  "status": "PASS"
++}
+diff --git a/unsolved_math_prioritization/attempts/30006309/review/review_summary.json b/unsolved_math_prioritization/attempts/30006309/review/review_summary.json
+new file mode 100644
+index 000000000..eda3fa0d9
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/review/review_summary.json
+@@ -0,0 +1,35 @@
++{
++  "author_assertions": 1227,
++  "author_replay_byte_identical": true,
++  "candidate_sha256": "4931eccbb464b53af07b90e24b72060e681b9a7f1769c0030a9d7090e59b129c",
++  "deliverables": [
++    "REVIEW.md",
++    "review_summary.json",
++    "independent_checks.py",
++    "independent_results.json",
++    "source_verification.json"
++  ],
++  "independent_assertions": 8093,
++  "independent_checker_sha256": "a28a30f343ca4ed73baf28927c4be895c1a682d26f5400a8eb3d1205507075bc",
++  "independent_results_sha256": "5319fa90363b91242482941aff7694d892eca00b4200ab562a5224b036ff4af4",
++  "limitations": [
++    "Independent AI review, not human peer review.",
++    "No arbitrary singular, incomplete, or lattice-index-defective configuration claim.",
++    "No reconstruction of all GKZ foundations without algebraic inputs.",
++    "Finite diagnostics do not establish the all-parameter theorem.",
++    "No assertion that all projected discriminant vertices are vertices, or that regular triangulations biject with Hurwitz vertices."
++  ],
++  "mandatory_corrections": [],
++  "mathematical_correctness": "PASS",
++  "novelty": "Unestablished; earlier geometric equality, GKZ inputs, analytic theorem, and surface inclusion are credited.",
++  "optional_replay_receipt": "author_replay/replayed_product_verification.json",
++  "problem_id": 30006309,
++  "proof_type": "Combinatorial comparison of the two explicit polytopal models, using established general GKZ vertex and normal-fan theorems.",
++  "reasoning_effort": "xhigh",
++  "review_date": "2026-09-30",
++  "review_sha256": "dbb71616f4e2f9359513d42558d30f46c479f757acbd46f65b060da825d6f562",
++  "reviewer_model": "gpt-6-astra",
++  "scope_judgment": "Restoring the hypotheses of the expressly cited source theorem is justified. A stronger literal arbitrary-configuration interpretation of the abbreviated OWR text is not certified.",
++  "source_scope": "Full intended comparison in the smooth, complete very ample, degree-at-least-two regime of Sano Theorem 1.4; not arbitrary singular or sparse configurations.",
++  "verdict": "PASS_COMPLETE_COMBINATORIAL_COMPARISON_IN_SMOOTH_SOURCE_REGIME"
++}
+diff --git a/unsolved_math_prioritization/attempts/30006309/review/source_verification.json b/unsolved_math_prioritization/attempts/30006309/review/source_verification.json
+new file mode 100644
+index 000000000..be833da45
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/review/source_verification.json
+@@ -0,0 +1,48 @@
++{
++  "author_assertions": 1227,
++  "author_replay_byte_identical": true,
++  "author_replay_equal": true,
++  "candidate_sha256": "4931eccbb464b53af07b90e24b72060e681b9a7f1769c0030a9d7090e59b129c",
++  "source_files": [
++    {
++      "bytes": 1150170,
++      "name": "owr2025.pdf",
++      "sha256": "0511e00aa5e3c1b778f66f0e5b8fb00ab02b1103550bbd7941e2bd0c1bb62442",
++      "url": "https://ems.press/content/serial-article-files/51856",
++      "verified": true,
++      "version": "OWR19/2025"
++    },
++    {
++      "bytes": 393101,
++      "name": "sano.pdf",
++      "sha256": "8f579f65fbb653c8543533910a62567de5a3d469acb9cbcf270e7ca32b652e8b",
++      "url": "https://arxiv.org/pdf/2302.09801v1",
++      "verified": true,
++      "version": "2023 v1"
++    },
++    {
++      "bytes": 439896,
++      "name": "ogusu-sano.pdf",
++      "sha256": "0f31280f04c57892501811f45643a97098d6a9e04ce214e2ead70b40f51307e9",
++      "url": "https://arxiv.org/pdf/2302.09792v1",
++      "verified": true,
++      "version": "2023 v1"
++    },
++    {
++      "bytes": 557053,
++      "name": "degenerating2026.pdf",
++      "sha256": "d18b967083a12fbebe3b47f8665a1ce6e1e796248bcd0e02c37ac4dba8fa3309",
++      "url": "https://arxiv.org/pdf/2607.17966v1",
++      "verified": true,
++      "version": "2026-07 v1"
++    },
++    {
++      "bytes": 21689298,
++      "name": "gkz.pdf",
++      "sha256": "82ab9c39254384e439933004d52e04b9959b0f9699b778bd9f6a1b2306b2ca9a",
++      "url": "https://webhomes.maths.ed.ac.uk/~v1ranick/papers/gelkapzel.pdf",
++      "verified": true,
++      "version": "1994 book scan"
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30006309/source_manifest.json b/unsolved_math_prioritization/attempts/30006309/source_manifest.json
+new file mode 100644
+index 000000000..15bffe671
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/source_manifest.json
+@@ -0,0 +1,41 @@
++{
++  "checked_utc": "2026-09-30",
++  "pdfs": [
++    {
++      "name": "owr2025.pdf",
++      "url": "https://ems.press/content/serial-article-files/51856",
++      "version": "OWR19/2025",
++      "sha256": "0511e00aa5e3c1b778f66f0e5b8fb00ab02b1103550bbd7941e2bd0c1bb62442",
++      "bytes": 1150170
++    },
++    {
++      "name": "sano.pdf",
++      "url": "https://arxiv.org/pdf/2302.09801v1",
++      "version": "2023 v1",
++      "sha256": "8f579f65fbb653c8543533910a62567de5a3d469acb9cbcf270e7ca32b652e8b",
++      "bytes": 393101
++    },
++    {
++      "name": "ogusu-sano.pdf",
++      "url": "https://arxiv.org/pdf/2302.09792v1",
++      "version": "2023 v1",
++      "sha256": "0f31280f04c57892501811f45643a97098d6a9e04ce214e2ead70b40f51307e9",
++      "bytes": 439896
++    },
++    {
++      "name": "degenerating2026.pdf",
++      "url": "https://arxiv.org/pdf/2607.17966v1",
++      "version": "2026-07 v1",
++      "sha256": "d18b967083a12fbebe3b47f8665a1ce6e1e796248bcd0e02c37ac4dba8fa3309",
++      "bytes": 557053
++    },
++    {
++      "name": "gkz.pdf",
++      "url": "https://webhomes.maths.ed.ac.uk/~v1ranick/papers/gelkapzel.pdf",
++      "version": "1994 book scan",
++      "sha256": "82ab9c39254384e439933004d52e04b9959b0f9699b778bd9f6a1b2306b2ca9a",
++      "bytes": 21689298
++    }
++  ],
++  "redistributed": false
++}
+diff --git a/unsolved_math_prioritization/attempts/30006309/source_record.json b/unsolved_math_prioritization/attempts/30006309/source_record.json
+new file mode 100644
+index 000000000..9cf6d8918
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/source_record.json
+@@ -0,0 +1,72 @@
++{
++  "dataset_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "problem": {
++    "id": 30006309,
++    "problem_number": "OWR-14299288-015",
++    "title": "Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality",
++    "statement": "Give a purely combinatorial proof that the weight polytope $W(\\Delta_{X\\times\\mathbb{P}^{n-1}})$ of the discriminant coincides with the weight polytope $W(\\operatorname{Hu}_A)$ of the Hurwitz form.",
++    "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [Toric Geometry (2025), Oberwolfach Reports, DOI 10.4171/owr/2025/19, pp. 883--940](https://doi.org/10.4171/owr/2025/19)\n\n## Literature review (checked 2026-08-22)\n\n**Status:** open\n\n**Assessment.** The equality of the Hurwitz-form and discriminant weight polytopes is established, including by analytic and secondary-polytope methods, but the requested purely combinatorial reproof is explicitly left as a problem.\n\n**Sources checked.**\n\n- [Oberwolfach report](https://doi.org/10.4171/owr/2025/19)\n- [Sano, Weight Polytopes and Energy Functionals of Toric Varieties](https://doi.org/10.1007/s42543-023-00079-z)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++    "difficulty_level_id": 3,
++    "status": "open",
++    "proposed_by": null,
++    "proposed_year": 2025,
++    "category_id": 5,
++    "set_id": 15,
++    "source_url": "https://doi.org/10.4171/owr/2025/19",
++    "source_citation": "Toric Geometry (2025), Oberwolfach Reports, DOI 10.4171/owr/2025/19, pp. 883--940",
++    "literature_assessment": "The equality of the Hurwitz-form and discriminant weight polytopes is established, including by analytic and secondary-polytope methods, but the requested purely combinatorial reproof is explicitly left as a problem.",
++    "literature_sources": [
++      {
++        "url": "https://doi.org/10.4171/owr/2025/19",
++        "label": "Oberwolfach report"
++      },
++      {
++        "url": "https://doi.org/10.1007/s42543-023-00079-z",
++        "label": "Sano, Weight Polytopes and Energy Functionals of Toric Varieties"
++      }
++    ],
++    "literature_checked_at": "2026-08-22",
++    "tags": [
++      "owr",
++      "oberwolfach-reports",
++      "OWR-14299288-015",
++      "literature-status:open",
++      "owr-year:2025"
++    ],
++    "view_count": 0,
++    "favorite_count": 0,
++    "created_at": "2026-08-25T00:00:00Z",
++    "updated_at": "2026-09-16T12:06:53Z",
++    "published": true,
++    "category": {
++      "id": 5,
++      "name": "algebraic_geometry",
++      "display_name": "Algebraic Geometry",
++      "description": "Geometric objects defined by polynomial equations.",
++      "slug": "algebraic-geometry",
++      "order_index": 5,
++      "created_at": "2026-07-31T15:26:25.671Z"
++    },
++    "difficulty": {
++      "id": 3,
++      "level": 3,
++      "name": "L3: Advanced",
++      "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++      "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++    },
++    "set": {
++      "id": 15,
++      "name": "oberwolfach_reports_open_problems",
++      "display_name": "Oberwolfach Reports Open Problems",
++      "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++      "slug": "oberwolfach-reports-open-problems",
++      "order_index": 15,
++      "created_at": "2026-08-25T00:00:00Z"
++    },
++    "original_statement": "Can we (re)-prove the coincidence between W(\u2206X\\timesPn\u22121 ) and W(HuA ) in a combinatorial way? P(N +1)n\u22121 . Hence, one can compute W(\u2206X\\timesPn\u22121 ) instead of W(HuA ), follow- ing [3]. Acknowledgment. This work was supported by JSPS KAKENHI Grant Num- ber 22K03325.",
++    "clean_statement": "Give a purely combinatorial proof that the weight polytope $W(\\Delta_{X\\times\\mathbb{P}^{n-1}})$ of the discriminant coincides with the weight polytope $W(\\operatorname{Hu}_A)$ of the Hurwitz form.",
++    "statement_status": "corrected_verified",
++    "statement_verification": "Only clear formula delimiters, notation, grammar, and typography were repaired; the mathematical content and scope are preserved."
++  },
++  "upstream_report": null
++}
+diff --git a/unsolved_math_prioritization/attempts/30006309/status.json b/unsolved_math_prioritization/attempts/30006309/status.json
+new file mode 100644
+index 000000000..995e90846
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/status.json
+@@ -0,0 +1,31 @@
++{
++  "id": 30006309,
++  "code": "OWR-14299288-015",
++  "status": "claimed_solved_after_independent_review",
++  "turns_used": 1,
++  "turn_limit": 5,
++  "full_source_solved": true,
++  "proof": "CANDIDATE.md",
++  "proof_sha256": "4931eccbb464b53af07b90e24b72060e681b9a7f1769c0030a9d7090e59b129c",
++  "verifier_sha256": "ef5ad449a6e0dce45a20dc95de55054251ab5fc02a3741493535e346faea506e",
++  "model": "gpt-6-astra",
++  "reasoning": "xhigh",
++  "independent_review": "PASS_COMPLETE_COMBINATORIAL_COMPARISON_IN_SMOOTH_SOURCE_REGIME",
++  "exact_assertions": 1227,
++  "exact_examples": 8,
++  "candidate_scope": "Combinatorial comparison of projected massive-GKZ and Hurwitz-vector models in the source-cited smooth complete polarized toric regime",
++  "proof_type": "Finite lattice-volume/centroid identities, binomial cancellation, regular refinements and established GKZ normal-fan compatibility",
++  "new_discovery_claim": false,
++  "novelty": "unestablished",
++  "proof_completion_estimate_percent": 100,
++  "limits": [
++    "No arbitrary singular configurations",
++    "No incomplete or lattice-index-defective embeddings",
++    "Not a foundation-free reproof of GKZ theory",
++    "Geometric equality and surface inclusion already known"
++  ],
++  "independent_exact_assertions": 8093,
++  "review_sha256": "dbb71616f4e2f9359513d42558d30f46c479f757acbd46f65b060da825d6f562",
++  "source_scope": "Full intended source comparison after restoring the expressly cited Sano smooth complete very ample degree-at-least-two hypotheses; arbitrary singular introductory configurations are excluded.",
++  "independent_review_kind": "Separate adversarial AI review; not human peer review"
++}
+diff --git a/unsolved_math_prioritization/attempts/30006309/turns.jsonl b/unsolved_math_prioritization/attempts/30006309/turns.jsonl
+new file mode 100644
+index 000000000..0f50bdde7
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/turns.jsonl
+@@ -0,0 +1 @@
++{"turn": 1, "at_utc": "2026-09-30T06:35:00Z", "family": "Product-face massive-GKZ projection and equal-column exposed faces", "outcome": "candidate", "artifact": "CANDIDATE.md", "scope": "Smooth source-cited regime; combinatorial comparison within GKZ framework", "independent_review": "pending", "novelty": "unestablished"}
+diff --git a/unsolved_math_prioritization/attempts/30006309/verify_product_vectors.py b/unsolved_math_prioritization/attempts/30006309/verify_product_vectors.py
+new file mode 100644
+index 000000000..ee163b53f
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30006309/verify_product_vectors.py
+@@ -0,0 +1,133 @@
++#!/usr/bin/env python3
++"""Exact diagnostics for the product-face proof. Python standard library only.
++No discriminant polynomial, regularity oracle or large triangulation enumeration.
++Volumes are gcds of maximal minors, so lower-dimensional lattice normalization
++is checked rather than replaced by ambient Euclidean volume.
++"""
++from itertools import combinations, permutations, product
++from math import comb, gcd, factorial
++from functools import reduce
++from fractions import Fraction
++import json
++
++checks=0
++def check(ok,label):
++    global checks
++    assert ok,label
++    checks+=1
++
++def det(M):
++    M=[list(map(Fraction,row)) for row in M];out=Fraction(1)
++    for i in range(len(M)):
++        p=next((j for j in range(i,len(M)) if M[j][i]),None)
++        if p is None:return 0
++        if p!=i:M[i],M[p]=M[p],M[i];out=-out
++        q=M[i][i];out*=q
++        for j in range(i+1,len(M)):
++            r=M[j][i]/q
++            for k in range(i,len(M)):M[j][k]-=r*M[i][k]
++    assert out.denominator==1
++    return int(out)
++
++def vol(vertices):
++    k=len(vertices)-1
++    if k==0:return 1
++    a=vertices[0];D=[[v[i]-a[i] for v in vertices[1:]] for i in range(len(a))]
++    return reduce(gcd,(abs(det([D[i] for i in rows])) for rows in combinations(range(len(a)),k)),0)
++
++def faces(tops):
++    return {tuple(sorted(s)) for top in tops for r in range(1,len(top)+1) for s in combinations(top,r)}
++
++def eta(A,tops,face_dim,dim):
++    out=[[0]*len(A) for _ in range(dim+1)]
++    for f in faces(tops):
++        verts=[A[i] for i in f];k=len(f)-1
++        if face_dim(verts)==k:
++            v=vol(verts);check(v>0,'positive exact face volume')
++            for i in f:out[k][i]+=v
++    return out
++
++def simplex_vertices(n):return [tuple([0]*n)]+[tuple(int(i==j) for i in range(n)) for j in range(n)]
++def minimal_simplex_face(verts,n,L=1):
++    active=sum(all(v[i]==0 for v in verts) for i in range(n))
++    active+=all(sum(v)==L for v in verts)
++    return n-active
++
++def box_face(verts,L):
++    return len(L)-sum(all(v[i]==0 for v in verts) or all(v[i]==L[i] for v in verts) for i in range(len(L)))
++def paths(j,l):
++    # Each word in horizontal/vertical steps gives one staircase simplex.
++    for right in combinations(range(j+l),j):
++        right=set(right);x=y=0;out=[(0,0)]
++        for k in range(j+l):
++            if k in right:x+=1
++            else:y+=1
++            out.append((x,y))
++        yield out
++
++def product_tops(T,D_count):
++    U=[]
++    for top in T:
++        top=tuple(sorted(top));j=len(top)-1;l=D_count-1
++        for path in paths(j,l):U.append(tuple(top[i]*D_count+v for i,v in path))
++    return U
++
++# Finite-difference coefficients, including dimension one and empty lower ranges.
++for n in range(1,17):
++    for j in range(n+1):
++        c=sum((-1)**(2*n-1-j-l)*comb(n,l+1)*comb(j+l+1,j+1) for l in range(n))
++        target=n if j==n else (-1 if j==n-1 else 0)
++        check(c==target,'binomial cancellation')
++
++cases=[]
++def run(name,n,A,T,base_face):
++    Delta=simplex_vertices(n-1);B=[a+v for a in A for v in Delta]
++    U=product_tops(T,len(Delta));d=2*n-1
++    E=eta(A,T,base_face,n)
++    def prod_face(verts):
++        return base_face([v[:n] for v in verts])+minimal_simplex_face([v[n:] for v in verts],n-1)
++    F=eta(B,U,prod_face,d)
++    projected=[[sum(row[i*n:(i+1)*n]) for i in range(len(A))] for row in F]
++    for k in range(d+1):
++        expected=[0]*len(A)
++        for j in range(n+1):
++            l=k-j
++            if 0<=l<=n-1:
++                c=comb(n,l+1)*comb(k+1,j+1)
++                expected=[x+c*y for x,y in zip(expected,E[j])]
++        check(projected[k]==expected,'whole projected massive level')
++    actual=[sum((-1)**(d-k)*projected[k][i] for k in range(d+1)) for i in range(len(A))]
++    wanted=[n*E[n][i]-E[n-1][i] for i in range(len(A))]
++    check(actual==wanted,'projected discriminant vector equals Hurwitz vector')
++    basevol=sum(vol([A[i] for i in top]) for top in T)
++    pvol=sum(vol([B[i] for i in top]) for top in U)
++    check(pvol==comb(d,n)*basevol,'product normalized volume')
++    cases.append({'case':name,'dimension':n,'base_points':len(A),'product_points':len(B),
++        'base_simplices':len(T),'product_simplices':len(U),'base_normalized_volume':basevol,
++        'product_normalized_volume':pvol,'projected_vector':actual,
++        'unused_base_points':len(A)-len(set(i for t in T for i in t))})
++
++A=[(i,) for i in range(4)]
++run('interval_coarse',1,A,[(0,3)],lambda v:box_face(v,(3,)))
++run('interval_fine',1,A,[(0,1),(1,2),(2,3)],lambda v:box_face(v,(3,)))
++A=list(product(range(2),repeat=2));idx={x:i for i,x in enumerate(A)}
++T=[tuple(idx[x] for x in tri) for tri in [[(0,0),(1,0),(1,1)],[(0,0),(0,1),(1,1)]]]
++run('unit_square',2,A,T,lambda v:box_face(v,(1,1)))
++A=list(product(range(3),range(2)));idx={x:i for i,x in enumerate(A)}
++T=[tuple(idx[x] for x in tri) for tri in [[(0,0),(2,0),(2,1)],[(0,0),(0,1),(2,1)]]]
++run('rectangle_nonunimodular_coarse',2,A,T,lambda v:box_face(v,(2,1)))
++A=[x for x in product(range(3),repeat=2) if sum(x)<=2];idx={x:i for i,x in enumerate(A)}
++run('double_triangle_coarse',2,A,[tuple(idx[x] for x in [(0,0),(2,0),(0,2)])],lambda v:minimal_simplex_face(v,2,2))
++T=[[(0,0),(1,0),(0,1)],[(1,0),(2,0),(1,1)],[(0,1),(1,1),(0,2)],[(1,0),(0,1),(1,1)]]
++run('double_triangle_fine',2,A,[tuple(idx[x] for x in t) for t in T],lambda v:minimal_simplex_face(v,2,2))
++A=list(product(range(2),repeat=3));idx={x:i for i,x in enumerate(A)};T=[]
++for perm in permutations(range(3)):
++    x=[0,0,0];top=[idx[tuple(x)]]
++    for i in perm:x[i]=1;top.append(idx[tuple(x)])
++    T.append(tuple(top))
++run('unit_cube',3,A,T,lambda v:box_face(v,(1,1,1)))
++A=[x for x in product(range(3),repeat=3) if sum(x)<=2];idx={x:i for i,x in enumerate(A)}
++run('double_tetrahedron_coarse',3,A,[tuple(idx[tuple(2*y for y in x)] for x in simplex_vertices(3))],lambda v:minimal_simplex_face(v,3,2))
++print(json.dumps({'status':'PASS','exact_assertions':checks,'case_count':len(cases),'cases':cases,
++    'limits':['No enumeration of all triangulations','No test replaces GKZ normal-fan input',
++    'No certification of an analytic-free foundation for GKZ','No singular-toric extension claimed']},indent=2))

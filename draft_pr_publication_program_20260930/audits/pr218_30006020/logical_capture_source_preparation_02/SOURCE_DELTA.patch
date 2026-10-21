@@ -1,0 +1,22 @@
+--- frozen_L01/capture_logical_packet.py
++++ L02/capture_logical_packet.py
+@@ -280,8 +280,8 @@
+    need(trees.lookup(root,row['path'])==h.tuple_pin({k:row[k] for k in ('mode','type','sha')}),'Native protected path association')
+    body(row['sha'],{k:row[k] for k in ('bytes','sha256')})
+   queue=trees.lookup(root,h.QUEUE);need(queue is not None and queue[:2]==('100644','blob'),'Whole ordinary native Main QUEUE')
+-  qb=body(queue[2]);own,cells=h.own_queue_row(qb)
+-  need(pin(own)==identity['own_Main_QUEUE_row_pin'] and cells[8].strip()==b'claimed_solved' and cells[9].strip()==b'1/5','Exact unique Main own303byte row/status; foreign rows preserved')
++  qb=body(queue[2]);own_row,cells=h.own_queue_row(qb)
++  need(pin(own_row)==identity['own_Main_QUEUE_row_pin'] and cells[8].strip()==b'claimed_solved' and cells[9].strip()==b'1/5','Exact unique Main own303byte row/status; foreign rows preserved')
+   write(out,'private/QUEUE.md',qb);identity={**identity,'_capture_queue':dict(zip(('mode','type','sha'),queue))}
+   views=postimages(h,ready,native,local,args.UTC);payload={**selected,**views}
+   manifest,sources=materialize_manifest(h,payload,pre,local,args.stage_name,identity,evidence,identity_ref,carry_ref,carry,retired,trees,root)
+@@ -303,7 +303,7 @@
+    'capture_source_pin':source_pin,'capture_source_manifest':own_manifest_ref,'engine_source_manifest':engine_ref,
+    'native_identity_receipt':identity_ref,'case_ready_receipt':ready_ref,'carry_acceptance':carry_ref,'Main_before':before,'Main_tree':root,'Main_after':after,
+    'coherent_before_after_Main':True,'native_view_preimages':native_records,'separate_local_view_preimages':local_records,
+-   'native_preimages':manifest['files'],'whole_Main_QUEUE':{**identity['_capture_queue'],**pin(qb)},'own_Main_QUEUE_row_pin':pin(own),
++   'native_preimages':manifest['files'],'whole_Main_QUEUE':{**identity['_capture_queue'],**pin(qb)},'own_Main_QUEUE_row_pin':pin(own_row),
+    'protected_nodes_verified':2,'protected_bodies_verified':35,'unique_decoded_bytes':decoded_bytes,'GET_invocations':api.calls,'actual_stdout_bytes':api.wire,
+    'private_raw_GET_journal':str(journal),'private_stage':str(stage),'logical_manifest':{'path':str(out/'LOGICAL_MANIFEST_01.json'),**pin(enc(manifest))},
+    'conditional_postimage_files':manifest['total_files'],'conditional_postimage_bytes':manifest['total_bytes'],'actual_counts':{'completed':54,'published':38,'last_completed_PR':214},

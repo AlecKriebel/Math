@@ -1,0 +1,95 @@
+{
+  "UTC": "2026-10-17T22:47:24.914017+00:00",
+  "actual119_control_outcomes_changed": false,
+  "correct_qualification": "Both retry attempts caused zero further POSTs. Only the between-POST retry directly reached FileExistsError at the permanent canonicalOID ledger; after-both retry also fails earlier with the retained read fault. Source/call-prefix evidence for the unchanged permanent ledger remains separate.",
+  "corrected_coverage": {
+    "bytes": 27000,
+    "path": "FINAL_16_FAMILY_COVERAGE_01.json",
+    "sha256": "6e62177e966c491ea3135ba2897c34244593763ecd8a0a9d38f8c04dd8bc163e"
+  },
+  "corrected_report": {
+    "bytes": 8858,
+    "path": "REPORT.md",
+    "sha256": "e6b74ea610a9cbc23180775f9232e10512721c51d6e21073943bdcc38d688bf7"
+  },
+  "direct_ledger_check": {
+    "exception": "FileExistsError",
+    "outcome": "EXPECTED_REFUSAL",
+    "reason": "[Errno 17] File exists: '8af88db5778feb91144f1a943396e5866254df15.json'",
+    "test": "new_wrapper_same_OID_new_admission_and_journal_refused_between_POSTs"
+  },
+  "earlier_fault_check": {
+    "exception": "RuntimeError",
+    "outcome": "EXPECTED_REFUSAL",
+    "reason": "Attempt stopped; inspect existing object read-only; no automatic mutation retry",
+    "test": "new_wrapper_same_OID_new_admission_and_journal_refused_after_both_POSTs"
+  },
+  "exact_actual_result": {
+    "bytes": 21425,
+    "path": "CONTROL_RUN_02.stdout.json",
+    "sha256": "90e942bb4873807573a8fe9625ad1c32e7981b2f1838b25fc1a9d34aa2c24dce"
+  },
+  "exact_executed_checker": {
+    "bytes": 27358,
+    "path": "independent_concurrent_controls.py",
+    "sha256": "f7ac30736b489be1b47a01895187c337f23272cb89979045605486055d46eb6d"
+  },
+  "new_execution": false,
+  "new_test_families": false,
+  "old_seal_and_manifest_are_superseded_historical_bytes_not_current_closure": true,
+  "operational_authority": false,
+  "preserved_superseded_raw_artifacts": {
+    "EXTERNAL_SEAL.json": {
+      "original_pin": {
+        "bytes": 516,
+        "path": "EXTERNAL_SEAL.json",
+        "sha256": "171f39e76ee4db68614cf35be6836f30663b8320fa0875fadbf5a8344c4a204e"
+      },
+      "preserved": {
+        "bytes": 516,
+        "path": "EXTERNAL_SEAL_BEFORE_RETRY_DISCLOSURE_01.json",
+        "sha256": "171f39e76ee4db68614cf35be6836f30663b8320fa0875fadbf5a8344c4a204e"
+      }
+    },
+    "FINAL_16_FAMILY_COVERAGE_01.json": {
+      "original_pin": {
+        "bytes": 25664,
+        "path": "FINAL_16_FAMILY_COVERAGE_01.json",
+        "sha256": "e4dba4e456d0c7bda1639d9a486bdd624cc2a96f22e943ca72f20f88e9a81224"
+      },
+      "preserved": {
+        "bytes": 25664,
+        "path": "FINAL_16_FAMILY_COVERAGE_01_BEFORE_RETRY_DISCLOSURE_01.json",
+        "sha256": "e4dba4e456d0c7bda1639d9a486bdd624cc2a96f22e943ca72f20f88e9a81224"
+      }
+    },
+    "PUBLIC_MANIFEST.json": {
+      "original_pin": {
+        "bytes": 6484,
+        "path": "PUBLIC_MANIFEST.json",
+        "sha256": "ddebdc3de3792ee4952ae28288b844def31e62acd1a8153692554006546ffc23"
+      },
+      "preserved": {
+        "bytes": 6484,
+        "path": "PUBLIC_MANIFEST_BEFORE_RETRY_DISCLOSURE_01.json",
+        "sha256": "ddebdc3de3792ee4952ae28288b844def31e62acd1a8153692554006546ffc23"
+      }
+    },
+    "REPORT.md": {
+      "original_pin": {
+        "bytes": 8576,
+        "path": "REPORT.md",
+        "sha256": "c8d865d976790e669290c0a49af7c6e149fd302f1c277d42d3a697b0d8471d3e"
+      },
+      "preserved": {
+        "bytes": 8576,
+        "path": "REPORT_BEFORE_RETRY_DISCLOSURE_01.md",
+        "sha256": "c8d865d976790e669290c0a49af7c6e149fd302f1c277d42d3a697b0d8471d3e"
+      }
+    }
+  },
+  "production_source_changed": false,
+  "root_observation": "after_both_POSTs retry leaves the injected blob fault active, so generic attempt-stopped can occur in the first lease before reserve_candidate_oid. It cannot be counted as a second direct ledger-refusal control.",
+  "schema": "pr212-concurrent-source-retry-evidence-disclosure-correction-v1",
+  "status": "DOCUMENTARY_QUALIFICATION_NO_NEW_EXECUTION"
+}

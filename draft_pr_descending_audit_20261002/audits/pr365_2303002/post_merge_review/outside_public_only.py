@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+"""Writing scratch fixture outside this namespace; never a read-only command.
+
+Call only after inventory creation. Full test output is written outside here.
+The fixture contains every declared public dependency, no private groups.
+"""
+import gzip,hashlib,json,os,pathlib,shutil,subprocess,sys
+R=pathlib.Path(__file__).resolve().parent;A=R.parent
+D=A/'root_replay_private/post_merge_public_only_v2';D.mkdir(parents=True,exist_ok=False)
+def sha(b):return hashlib.sha256(b).hexdigest()
+def load(p):return json.loads(p.read_bytes())
+def copy(d,mf,pub,out):
+    out.mkdir(parents=True,exist_ok=True)
+    for name in list(pub)+[mf]+(['FINAL_SEAL.json'] if (d/'FINAL_SEAL.json').exists() else []):
+        q=out/name;q.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(d/name,q)
+N=D/'audits/pr365_2303002';M=load(R/'PUBLIC_MANIFEST.json');copy(R,'PUBLIC_MANIFEST.json',M['files'],N/R.name)
+for directory,mf in [('path_geometry_review','PUBLIC_MANIFEST.json'),('poisson_components_review','PUBLIC_MANIFEST.json'),('poisson_components_corrections','SUPPLEMENT_MANIFEST.json'),('clean_final_adversary','PUBLIC_MANIFEST.json')]:
+    d=A/directory;m=load(d/mf);pub=m.get('public_files',m.get('files'));pub={r['path']:r for r in pub} if isinstance(pub,list) else pub
+    copy(d,mf,pub,N/directory)
+for b in load(A/'clean_final_adversary/03_reproduction_bindings.json')['original_bindings']:
+    p=b['path']
+    q=N/'snapshot'/p;q.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(A/'snapshot'/p,q)
+argv=[sys.executable,str(N/R.name/'verify_public.py'),'--preseal','--replay'];env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1')
+p=subprocess.run(argv,cwd=D,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+rec=dict(argv=argv,cwd=str(D),exit_code=p.returncode,streams={})
+for name,b in [('stdout',p.stdout),('stderr',p.stderr)]:
+    z=gzip.compress(b,mtime=0);q=D/('verification.'+name+'.gz');q.write_bytes(z)
+    rec['streams'][name]=dict(path=str(q),bytes=len(b),sha256=sha(b),stored_bytes=len(z),stored_sha256=sha(z))
+(D/'verification_receipt.json').write_text(json.dumps(rec,indent=2)+'\n')
+sys.stdout.buffer.write(p.stdout);sys.stderr.buffer.write(p.stderr);raise SystemExit(p.returncode)

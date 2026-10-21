@@ -1,0 +1,108 @@
+--- V4/native_data_builder_v4_r1.py
++++ V5/native_data_builder_v5.py
+@@ -169,7 +169,7 @@
+     for row in rows:
+         name=row['relative']
+         for role,body in [('R1',before[name]),('final_R2',after[name])]:
+-            pin=row[role];need(pin['bytes']==len(body) and pin['sha256']==sha(body),'Complete raw revision member-body pin')
++            pin=row[role];need(type(pin['bytes']) is int and pin['bytes']==len(body) and pin['sha256']==sha(body),'Complete raw revision member-body pin')
+         need(row['full_body_equal'] is (before[name]==after[name]),'Truthful raw full-body equality')
+     changed={name for name in before if before[name]!=after[name]}
+     need(set(revision['changed_working_files'])==changed and
+@@ -189,14 +189,16 @@
+         need(changed=={'PACKAGE_MANIFEST.json','antipedal_centroids.log','antipedal_centroids.pdf',
+              'antipedal_centroids.tex','antipedal_centroids_support.zip','priority_and_provenance.md'},'Exact approved six-file correction, no hidden proof/metadata/code change')
+ 
+-def metadata_fields(actual,intended,doi,record_id):
++def metadata_fields(actual,intended,doi,record_id,fixture=False):
+     need(isinstance(actual,dict) and isinstance(intended,dict) and intended,'Complete metadata dictionaries')
+     need(all(k in actual and equal(actual[k],v) for k,v in intended.items()),'Every supplied metadata field remains exact')
++    if not fixture:need(type(record_id) is int and record_id>0,'Actual publication record id is a positive integer')
+     extras={k:v for k,v in actual.items() if k not in intended}
+     need(set(extras)<={'doi','imprint_publisher','prereserve_doi'},'Only authenticated Zenodo provider additions allowed')
+     if 'doi' in extras:need(extras['doi']==doi,'Provider DOI addition')
+     if 'imprint_publisher' in extras:need(extras['imprint_publisher']=='Zenodo','Provider imprint addition')
+     if 'prereserve_doi' in extras:
++        if not fixture:need(type(extras['prereserve_doi'].get('recid')) is int and extras['prereserve_doi']['recid']>0,'Reserved record id is a positive integer')
+         need(equal(extras['prereserve_doi'],{'doi':doi,'recid':record_id}),'Provider reserved DOI/record id')
+     return extras
+ 
+@@ -241,7 +243,7 @@
+     need(digest(original['original_queue_row_sha256']) and digest(original['original_author_log_sha256']),'Original row/log complete pins')
+     if not fixture:validate_legacy_pins(original)
+     merge=obj(request['merge']);_receipt(merge,'merge',fixture);provider=obj(merge['provider_response'])
+-    need(provider['number']==140 and provider['head']['sha']==HEAD and provider['base']['ref']=='main' and provider['merged'] is True,'Actual original-head merge required')
++    need(type(provider['number']) is int and provider['number']==140 and provider['head']['sha']==HEAD and provider['base']['ref']=='main' and provider['merged'] is True,'Actual original-head merge required')
+     need(provider['merge_commit_sha']==merge['merge_commit'] and provider['merged_at']==merge['merged_at'],'Merge raw-provider identity/time')
+     if not fixture:need(oid(merge['merge_commit']) and https(provider['html_url']) and provider['html_url']=='https://github.com/AlecKriebel/Math/pull/140','Actual merge OID/URL')
+     merged_at=stamp(merge['merged_at']);need(merged_at<=now,'Merge must precede preparation')
+@@ -308,12 +310,12 @@
+     else:need(re.fullmatch(r'10\.5281/zenodo\.[1-9][0-9]*',doi) is not None,'Actual version DOI required')
+     need(pub['package_manifest_sha256']==package_hash and pub['original_head']==HEAD and pub['published'] is True and
+          metadata['doi']==doi and (metadata.get('submitted') is True or metadata.get('is_published') is True),'Actual final package/DOI/full metadata binding')
+-    if not fixture:need(str(metadata['id'])==doi.rsplit('.',1)[1] and pub['record_URL']=='https://zenodo.org/records/'+str(metadata['id']),'Actual record/version URL')
++    if not fixture:need(type(metadata['id']) is int and metadata['id']>0 and str(metadata['id'])==doi.rsplit('.',1)[1] and pub['record_URL']=='https://zenodo.org/records/'+str(metadata['id']),'Actual record/version URL')
+     need(isinstance(metadata.get('metadata'),dict) and metadata['metadata'],'Full publication descriptive metadata required')
+     need(set(pub['downloaded_files'])==set(uploads),'All actual publication files downloaded')
+     intended_metadata=loads(logical['metadata.json'])
+     need(equal(intended_metadata,loads(logical['zenodo-deposit.json'])['metadata']),'Exact supplied package/deposit metadata')
+-    provider_additions=metadata_fields(metadata['metadata'],intended_metadata,doi,metadata['id'])
++    provider_additions=metadata_fields(metadata['metadata'],intended_metadata,doi,metadata['id'],fixture)
+     need(all(stamp(review['UTC'])<=stamp(pub['UTC']) for review in review_objects),'Whole-package reviews precede actual publication')
+     shape=pub['metadata_file_schema'];need(shape in ('record','deposition'),'Explicit raw Zenodo metadata schema')
+     key,size=('key','size') if shape=='record' else ('filename','filesize')
+@@ -322,15 +324,15 @@
+     for name,body in upload_bodies.items():
+         downloaded=read(pub['downloaded_files'][name]);need(downloaded==body,'Full uploaded/downloaded body mismatch')
+         checksum=('md5:' if shape=='record' else '')+hashlib.md5(body).hexdigest()
+-        need(bykey[name][size]==len(body) and bykey[name]['checksum']==checksum,'Record complete file size/checksum')
++        need(type(bykey[name][size]) is int and bykey[name][size]>0 and bykey[name][size]==len(body) and bykey[name]['checksum']==checksum,'Record complete file size/checksum')
+     tracker=obj(request['tracker']);_receipt(tracker,'tracker',fixture)
+-    need(tracker['spreadsheet_id']==SHEET and tracker['gid']==GID and tracker['version_DOI']==doi and tracker['original_head']==HEAD,'Actual target spreadsheet/DOI identity')
++    need(tracker['spreadsheet_id']==SHEET and type(tracker['gid']) is int and tracker['gid']==GID and tracker['version_DOI']==doi and tracker['original_head']==HEAD,'Actual target spreadsheet/DOI identity')
+     cells=tracker['cells'];row=tracker['row'];need(type(row) is int and row>=2 and isinstance(cells,list) and len(cells)==4 and all(isinstance(c,str) for c in cells),'Exact four tracker cells')
+     selected="'Math Puzzles'!A"+str(row)+':D'+str(row)
+     need(tracker['range']==selected and cells[0]=='https://arxiv.org/abs/2004.12497' and cells[2]=='https://doi.org/'+doi and K+' / '+CODE in cells[3],'Exact source/range/DOI/notes')
+     need(cells[1]=='' or (tracker.get('existing_chat_authorized') is True and https(cells[1])),'Blank or separately authorized existing chat URL')
+     append=obj(tracker['append_response']);readback=obj(tracker['row_readback_response'])
+-    update=append['updates'];need(update['updatedRange']==selected and update['updatedRows']==1 and update['updatedColumns']==4 and update['updatedCells']==4 and update['updatedData']['values']==[cells],'Actual append four-cell response')
++    update=append['updates'];need(update['updatedRange']==selected and type(update['updatedRows']) is int and update['updatedRows']==1 and type(update['updatedColumns']) is int and update['updatedColumns']==4 and type(update['updatedCells']) is int and update['updatedCells']==4 and update['updatedData']['values']==[cells],'Actual append four-cell response')
+     need(readback['range']==selected and readback['values']==[cells],'Actual exact four-cell row readback')
+     need(stamp(pub['UTC'])<=stamp(tracker['UTC'])<=merged_at,'Actual publication, tracker then merge chronology')
+     paths=request['accepted_paths'];need(set(paths)=={'proof','author_checker','independent_checker','publication_package','original_archive'},'Explicit accepted support path choices')
+@@ -350,7 +352,7 @@
+     else:
+         need(authentication.get('schema')=='pr140-actual-native-publication-inputs/v1' and authentication.get('owner')=='ROOT' and authentication.get('fixture_only') is False and type(authentication.get('actual_ROOT_PID')) is int and authentication['actual_ROOT_PID']>0,'Actual ROOT input authentication')
+         need(sha(original_manifest_body)=='687a08ae8eba9789f65a8a4c64650b9de7ea2ac6a4b970710cc9a33b83ebb672','Frozen whole original17 manifest')
+-    need(authentication['original_head']==HEAD and authentication['review_hash']==pairhash and authentication['statement_hash']==sourcehash and authentication['original_effort']=='2/5' and authentication['new_central_proof_search_turns']==0,'ROOT source/effort identity')
++    need(authentication['original_head']==HEAD and authentication['review_hash']==pairhash and authentication['statement_hash']==sourcehash and authentication['original_effort']=='2/5' and type(authentication['new_central_proof_search_turns']) is int and authentication['new_central_proof_search_turns']==0,'ROOT source/effort identity')
+     need(authentication['package_finally_reviewed_and_published'] is True and authentication['actual_tracker_row_verified'] is True and authentication['actual_original_head_merge_verified'] is True and authentication['DOI']==doi and authentication['package_manifest_pin']['sha256']==package_hash,'ROOT actual publication/tracker/merge binding')
+     need(authentication['PR140_merge']['original_head']==HEAD and authentication['PR140_merge']['commit']==merge['merge_commit'] and authentication['PR140_merge']['merged_at']==merge['merged_at'],'ROOT exact original-head merge')
+     need(authentication['sheet']['spreadsheet_id']==SHEET and authentication['sheet']['gid']==GID and authentication['sheet']['title']=='Math Puzzles' and authentication['sheet']['range']==selected and authentication['sheet']['values']==cells,'ROOT exact tracker cells')
+@@ -358,7 +360,7 @@
+     need(set(authentication['roles'])==roles and set(request['role_inputs'])==roles,'Six actual authority role bodies')
+     for role,label in request['role_inputs'].items():
+         body=read(label);spec=authentication['roles'][role]
+-        need(spec['bytes']==len(body) and spec['sha256']==sha(body),'Complete actual authority role body')
++        need(type(spec['bytes']) is int and spec['bytes']==len(body) and spec['sha256']==sha(body),'Complete actual authority role body')
+     if not fixture:
+         actual_pub=loads(read(request['role_inputs']['publication']))
+         need(actual_pub.get('schema')=='pr140-actual-published-fullbody-verification/v1' and actual_pub['published'] is True and
+@@ -366,7 +368,7 @@
+              actual_pub['authenticated_deposition_sha256']==sha(metadata_body) and
+              equal(actual_pub['metadata'],intended_metadata),'Raw complete deposition and every supplied field bound to actual ROOT publication receipt')
+         dep_pin=authentication['raw_deposition_pin']
+-        need(dep_pin['bytes']==len(metadata_body) and dep_pin['sha256']==sha(metadata_body) and
++        need(type(dep_pin['bytes']) is int and dep_pin['bytes']==len(metadata_body) and dep_pin['sha256']==sha(metadata_body) and
+              authentication['intended_metadata_exactly_matches_all_supplied_provider_fields'] is True and
+              set(authentication['provider_added_metadata_fields'])==set(provider_additions),'ROOT complete raw deposition and provider additions')
+         if repair is not None:
+@@ -407,7 +409,7 @@
+     need(isinstance(ass0,dict) and K in ass0 and isinstance(states,dict) and K not in states,'Target existing-state reconciliation required')
+     need(isinstance(rows,list) and len({r['id'] for r in rows})==len(rows) and sum(r['id']==K for r in rows)==1,'Catalog identity set')
+     dependency=loads(readonly[PREFIX+'manifest.json'])
+-    need(dependency['records']==len(rows),'Complete catalog count matches immutable manifest')
++    need(type(dependency['records']) is int and dependency['records']==len(rows),'Complete catalog count matches immutable manifest')
+     if not fixture:
+         need(dependency['revision']=='37e53eabe540fb458758e198be61634bd02ee008' and sha(readonly[PREFIX+'queue.py'])=='f72aee023f837bad092da58531c2cc069ce2cf094e835d090221107d20f07ab2','Accepted readonly dataset/runtime source identity')
+     target=next(r for r in rows if r['id']==K);historical=ass0[K]

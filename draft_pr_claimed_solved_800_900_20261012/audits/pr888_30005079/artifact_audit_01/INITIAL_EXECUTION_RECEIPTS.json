@@ -1,0 +1,44 @@
+{
+  "timestamp_utc": "2026-10-16T05:19:57.158029+00:00",
+  "runs": [
+    {
+      "name": "integrity_normal",
+      "python_version": "3.14.6",
+      "returncode": 0,
+      "stdout": "{\n  \"packet_files_verified\": 21,\n  \"edition_hashes_verified\": 4,\n  \"forward_and_reverse_patches_verified\": 3,\n  \"scope\": \"Integrity and auxiliary exact checks only; mathematical acceptance is in the two AI audit reports. No formal-proof or novelty certification.\"\n}\n",
+      "stderr": "",
+      "seconds": 0.058376
+    },
+    {
+      "name": "integrity_optimized",
+      "python_version": "3.14.6",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/baseline/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/baseline/verify_publication.py\", line 137, in main\n    require(not sys.flags.optimize, 'Run with assertions enabled, without -O or PYTHONOPTIMIZE')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/baseline/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Run with assertions enabled, without -O or PYTHONOPTIMIZE\n",
+      "seconds": 0.060407
+    }
+  ],
+  "code_inventory": [
+    {
+      "path": "audits/reviewer_b/independent_checks.py",
+      "fully_read_before_execution": true,
+      "assert_nodes": 13,
+      "bytes": 3418,
+      "sha256": "afeb7d7cbb80a4a3e466e2f9370a8ccd49c59bb0cda5ffb5353fe52a0720b626"
+    },
+    {
+      "path": "checks/verify_construction.py",
+      "fully_read_before_execution": true,
+      "assert_nodes": 13,
+      "bytes": 2860,
+      "sha256": "ea788eb3ff9d78c8d2b8d9dfaea7ea4806f1bfea72ba68835fa02230e971e8c9"
+    },
+    {
+      "path": "verify_publication.py",
+      "fully_read_before_execution": true,
+      "assert_nodes": 0,
+      "bytes": 7645,
+      "sha256": "0b90c28e34e309823c10a1704b57b935f2058820be867243dcdfa3cb7803719f"
+    }
+  ]
+}

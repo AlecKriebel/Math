@@ -1,0 +1,30 @@
+{
+  "UTC": "2026-10-17T22:46:37.911672+00:00",
+  "schema": "pr212-independent-root-terminal-V1-findings-v1",
+  "source_sha256": "d8e04b7bab9fa821cfd21564030f02cd1dc23a7d2a8a055c0513dfff3437a65f",
+  "mandatory_issues": [
+    {
+      "id": "M1",
+      "status": "confirmed_pending_producer_repair",
+      "location": "inspect: generated final record",
+      "problem": "Actual generated V1 record lacks three required after212 parser fields; completion_proof refuses it.",
+      "required_fields": {
+        "numeric_advance_conditional_on_actual_Root_terminal": false,
+        "no_PR_or_publication_actions": true,
+        "protected_body_paths_verified": "integer derived from actual protected scope"
+      },
+      "reproduction": "V1_GENERATED_RECORD_PARSER_COUNTEREXAMPLE.json",
+      "smallest_repair": "Emit required exact typed terminal fields and execute unchanged downstream completion_proof on an actual generated synthetic record, with negative controls."
+    },
+    {
+      "id": "M2",
+      "status": "confirmed_pending_producer_repair",
+      "location": "exclusive_root_receipt: trailing full guard after fixed final publication",
+      "problem": "An independently reproduced mutable guard failure occurs after acceptedTrue/advanceTrue final file exists.",
+      "reproduction": "V1_PUBLICATION_COUNTEREXAMPLE.json",
+      "smallest_repair": "Stage/fsync pending body, run final full mutable guard before exclusive atomic publication, then only immutable readback/lock/source checks; document uncertainty after publication and never retry/overwrite."
+    }
+  ],
+  "source_fixed_or_final_accepted": false,
+  "production_actions": 0
+}

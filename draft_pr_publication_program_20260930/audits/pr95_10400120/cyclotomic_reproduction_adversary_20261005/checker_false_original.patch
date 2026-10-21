@@ -1,0 +1,11 @@
+--- incoming/independent_checks.py
++++ false_control/independent_checks.py
+@@ -93,7 +93,7 @@
+ ck(F(625,50**2)==F(1,4),'Gauss_prefactor')
+ ck(F(50000,80)==625,'S3_normalization_ratio')
+ for q,ab in [(1,(3475,1550)),(2,(4025,1800)),(3,(4025,1800)),(4,(3475,1550))]:
+- target=add(scale(ab[0],one),scale(ab[1],sqrt5))
++ target=add(scale(ab[0]+1,one),scale(ab[1],sqrt5))
+  ck(mul(target,DD)==scale(625,tuple(out[q]['norm'])),'claimed_normalized_squared_value')
+ ck(F(5)<F(9,4)**2 and F(5)>1,'positive_denominator_root_bound')
+ # Inverse surgery and reversed chain controls at the SL(2,Z) level.

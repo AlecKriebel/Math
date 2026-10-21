@@ -1,0 +1,436 @@
+--- before/ops_binding.py
++++ ops_binding.py
+@@ -21,7 +21,7 @@
+ QUEUE = 'unsolved_math_prioritization/QUEUE.md'
+ TITLE = 'A fixed birational map without a prime-field cycle-distribution limit'
+ PREFIX = 'birational-cycle-verification/'
+-RELEASE_SHA = '548b7a4ae1f13a92029255fc9ef485002b7c33376b9dd9168ffcdb532fc4c20e'
++RELEASE_SHA = 'da0388503e1c6f03c809ec256989d10039b1f1a1b2eba87528d77651a7863e60'
+ NAMES = {'fixed-birational-cycle-nonlimit.pdf', 'fixed-birational-cycle-nonlimit.tex',
+          'fixed-birational-cycle-nonlimit-verification.zip', 'zenodo-deposit.json', 'README.md'}
+ UPLOADS = {'fixed-birational-cycle-nonlimit.pdf', 'fixed-birational-cycle-nonlimit-verification.zip'}
+@@ -82,7 +82,7 @@
+         raise RuntimeError('Unexpected exact five-file publication inventory')
+     if (value.get('intended_uploads') != ['fixed-birational-cycle-nonlimit.pdf',
+             'fixed-birational-cycle-nonlimit-verification.zip']
+-            or value.get('archive_members') != 65 or value.get('archive_payloads') != 64):
++            or value.get('archive_members') != 69 or value.get('archive_payloads') != 68):
+         raise RuntimeError('Unexpected upload/archive inventory')
+     return value
+ 
+@@ -90,24 +90,24 @@
+ def check_zip(data):
+     with zipfile.ZipFile(io.BytesIO(data)) as archive:
+         names = archive.namelist()
+-        if len(names) != 65 or len(set(names)) != 65 or archive.testzip() is not None:
++        if len(names) != 69 or len(set(names)) != 69 or archive.testzip() is not None:
+             raise RuntimeError('ZIP inventory, duplicates or CRC invalid')
+         for info in archive.infolist():
+             safe_file(Path('/synthetic'), info.filename)
+             if info.is_dir() or (info.external_attr >> 16 & 0o170000) == 0o120000:
+                 raise RuntimeError('Directory or symlink ZIP member')
+         declared = json.loads(archive.read(PREFIX + 'MANIFEST.json'))['files']
+-        if not isinstance(declared, list) or len(declared) != 64:
+-            raise RuntimeError('PR280 manifest must be a list of 64 payloads')
++        if not isinstance(declared, list) or len(declared) != 68:
++            raise RuntimeError('PR280 manifest must be a list of 68 payloads')
+         keys = [v['path'] for v in declared]
+-        if len(set(keys)) != 64 or set(names) != {PREFIX+'MANIFEST.json'} | {PREFIX+p for p in keys}:
++        if len(set(keys)) != 68 or set(names) != {PREFIX+'MANIFEST.json'} | {PREFIX+p for p in keys}:
+             raise RuntimeError('ZIP manifest member set differs')
+         for item in declared:
+             safe_file(Path('/synthetic'), item['path'])
+             body = archive.read(PREFIX + item['path'])
+             if len(body) != item['bytes'] or sha(body) != item['sha256']:
+                 raise RuntimeError('ZIP manifest payload changed: ' + item['path'])
+-        return {'members': 65, 'all_manifest_payloads_verified': 64, 'zip_crc_safe_unique_pass': True}
++        return {'members': 69, 'all_manifest_payloads_verified': 68, 'zip_crc_safe_unique_pass': True}
+ 
+ 
+ def manifest():
+@@ -118,7 +118,7 @@
+             'fixed-birational-cycle-nonlimit.pdf', 'fixed-birational-cycle-nonlimit-verification.zip']]:
+         raise RuntimeError('Manifest local paths/names must be the exact two adjacent uploads')
+     metadata, files = zenodo.load_manifest(path)
+-    if (metadata['title'] != TITLE or metadata.get('version') != '1.0'
++    if (metadata['title'] != TITLE or metadata.get('version') != '1.1'
+             or not any(v.get('identifier') == 'https://github.com/AlecKriebel/Math/pull/280'
+                        for v in metadata.get('related_identifiers', []))):
+         raise RuntimeError('Publication metadata identity changed')
+@@ -296,6 +296,78 @@
+     return _PERCENT.sub(replace,text)
+ 
+ 
++_SHORT_CODE=re.compile(r'(?<![a-z0-9.])10/')
++_OWR_CONTEXT=re.compile(r'(?<![a-z0-9_])owr[ \t]+(?P<token>10/(?P<year>[0-9]{4}))')
++_OWR_SOURCE_HINT=re.compile(r'(?<![a-z0-9.])10\.4171/owr(?:/|$)')
++_OWR_SOURCE=re.compile(r'10\.4171/owr/(?P<year>[0-9]{4})/(?P<report>[1-9][0-9]*)')
++_BARE_SHORT_RESOLVER=re.compile(r'(?<![a-z0-9._@/-])(?:www\.)?shortdoi\.org\.*(?=[:/]|$)[^\s<>"\']*',re.I|re.ASCII)
++
++
++def _unresolved_short_resolver(value):
++    """Known resolver hosts with unknown aliases stay review-only.
++
++    This deliberately makes no claim about route reachability or a valid code
++    alphabet. Full numeric DOI-prefix paths remain with the DOI recognizer.
++    """
++    if re.search(r'(?<![a-z0-9+.-])[a-z][a-z0-9+.-]*:/(?!/)(?:www\.)?(?:shortdoi|doi)\.org(?=[:./\\%\]]|$)',ascii_lower(value)):
++        return True
++    candidates=[m.group(0) for m in _URL_CANDIDATE.finditer(value)]
++    candidates+=['https://'+m.group(0) for m in _BARE_SHORT_RESOLVER.finditer(value)]
++    for token in candidates:
++        try:parsed=urlsplit(token.rstrip(_URL_TRAILING));host=ascii_lower(parsed.hostname or '').rstrip('.')
++        except ValueError:
++            if re.search(r'[/@\[](?:www\.)?(?:shortdoi|doi)\.org',ascii_lower(token)):
++                return True
++            continue
++        if ('\\' in parsed.netloc or '%' in parsed.netloc) and re.search(r'(?:^|[@\[])(?:www\.)?(?:shortdoi|doi)\.org(?=[:./\\%\]]|$)',ascii_lower(parsed.netloc)):
++            return True
++        if host in {'shortdoi.org','www.shortdoi.org'}:return True
++        if host in {'doi.org','dx.doi.org'}:
++            path=_decode(parsed.path,True)
++            parts=[]
++            for part in path.split('/'):
++                if part in {'','.'}:continue
++                if part=='..':
++                    if not parts:return True
++                    parts.pop()
++                else:parts.append(part)
++            if len(parts)<2 or not re.fullmatch(r'10\.[0-9]+',parts[0]):return True
++    return False
++
++
++def _unresolved_short_code(value):
++    """Mask one qualified *literal* report token, then detect all other codes.
++
++    This does not infer a shortDOI alphabet, resolve an alias, or exempt any
++    target DOI/record identity. Duplicate contexts/source hints fail closed.
++    """
++    literal=ascii_lower(value)
++    contexts=[m for m in _OWR_CONTEXT.finditer(literal)
++              if _bounded_token(literal,m.start('token'),m.end('token'))]
++    sources=[m for m in _OWR_SOURCE.finditer(literal)
++             if _bounded_token(literal,m.start(),m.end())]
++    hints=list(_OWR_SOURCE_HINT.finditer(literal))
++    decoded_sources=literal
++    for unused in range(8):
++        decoded=_decode(decoded_sources,False)
++        if decoded==decoded_sources:break
++        decoded_sources=decoded
++    decoded_hints=list(_OWR_SOURCE_HINT.finditer(ascii_lower(decoded_sources)))
++    candidate=value
++    if (len(contexts)==len(sources)==len(hints)==len(decoded_hints)==1
++            and contexts[0].group('year')==sources[0].group('year')
++            and sources[0].group('report')=='10'):
++        first,last=contexts[0].span('token')
++        candidate=value[:first]+(' '*(last-first))+value[last:]
++    # Do not let literal contextual recognition exempt an encoded, nested or
++    # additional short code anywhere else in this same cell.
++    for unused in range(8):
++        decoded=_decode(candidate,False)
++        if decoded==candidate:break
++        candidate=decoded
++    return bool(_SHORT_CODE.search(ascii_lower(candidate)))
++
++
+ def inspect_identity(value):
+     if not isinstance(value,str):
+         raise RuntimeError('DOI identity input must be text')
+@@ -322,7 +394,8 @@
+                 malformed=True
+     return {'canonical_names':frozenset(canonical),'review_names':frozenset(review-canonical),
+             'ambiguous_encoding':depth_limited or malformed or bool(
+-                re.search(r'(?<![a-z0-9.])10/[a-z0-9]+(?:$|[\s?#.,;)])',ascii_lower(current))
++                _unresolved_short_code(value)
++                or _unresolved_short_resolver(current)
+                 or re.search(r'https?://(?:www\.)?shortdoi\.org(?:/|$)',ascii_lower(current))
+                 or re.search(r'https?://(?:dx\.)?doi\.org/[a-z][a-z0-9]*(?:$|[\s?#.,;)])',ascii_lower(current))),
+             'scope':'Lexical identity/dedup leads only; reserved/nested encodings are not certified URI equivalence.'}
+--- before/repository_integration.py
++++ repository_integration.py
+@@ -3,6 +3,7 @@
+ import argparse
+ import base64
+ import json
++import os
+ import subprocess
+ from urllib.parse import quote
+ from ops_binding import *
+@@ -10,6 +11,9 @@
+ 
+ BASELINE_ROW = '| 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |\n'.encode()
+ DESIRED_ROW = '| 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | claimed_solved | 1/5 |  | Reviewed counterexample L(u,v)=(u,(u²+1)v): full affine permutations for p≡3 mod4, no point-weighted limit at any fixed 1/2≤x<1. Unconditional arithmetic inputs; rational inverse scope explicit. |  |\n'.encode()
++REVISION_BASE = '8aebb819bfac9c12340d2f1469408943549ab530'
++OLD_RELEASE_SHA = '548b7a4ae1f13a92029255fc9ef485002b7c33376b9dd9168ffcdb532fc4c20e'
++OLD_RELEASE_HISTORY = 'preprint/release_history/release02_pre_all_odd_prime_robustness_20261021'
+ 
+ 
+ def api(endpoint, method='GET', body=None):
+@@ -182,12 +186,168 @@
+     return entry
+ 
+ 
++def revision_write(name,value):
++    """NEW durable receipt, never replace a previous attempt or old push seal."""
++    path=AUDIT/name
++    try:descriptor=os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
++    except FileExistsError as error:
++        raise RuntimeError('Revision receipt already exists; read-only reconciliation required: '+name) from error
++    # Exclusive creation also protects against a concurrent attempt between
++    # the earlier existence check and this durable write. Never unlink errors.
++    with os.fdopen(descriptor,'w',encoding='utf-8') as stream:
++        stream.write(json.dumps(value,ensure_ascii=False,indent=2)+'\n');stream.flush();os.fsync(stream.fileno())
++    directory=os.open(AUDIT,os.O_RDONLY)
++    try:os.fsync(directory)
++    finally:os.close(directory)
++
++
++def revision_binding():
++    history=safe_file(AUDIT,OLD_RELEASE_HISTORY)
++    old_path=safe_file(history,'RELEASE_FILES.json')
++    if sha(old_path.read_bytes())!=OLD_RELEASE_SHA:
++        raise RuntimeError('Pinned prior five-file release manifest changed')
++    old=json.loads(old_path.read_text())
++    if verify_entries(history,old['files'])!=NAMES:
++        raise RuntimeError('Pinned old five-file inventory differs')
++    prior={'preprint/'+e['path']:(history/e['path']).read_bytes() for e in old['files']}
++    selected=selection()
++    def projection(files):
++        return [{'path':n,'bytes':len(b),'sha256':sha(b),'git_blob':blob_sha(b)} for n,b in sorted(files.items())]
++    return prior,selected,{'base_head':REVISION_BASE,'sole_parent':ORIGINAL,
++        'prior_release_sha256':OLD_RELEASE_SHA,'new_release_sha256':RELEASE_SHA,
++        'old_five':projection(prior),'new_five':projection(selected)}
++
++
++def verify_revision_base(prior):
++    base=api('git/commits/'+REVISION_BASE)
++    if [p['sha'] for p in base['parents']]!=[ORIGINAL]:
++        raise RuntimeError('Revision base must have the sole reviewed original parent')
++    if leaves(ORIGINAL,PROBLEM)!=originals():
++        raise RuntimeError('Original17 Git tree differs')
++    expected=originals();expected.update({n:('100644','blob',blob_sha(b)) for n,b in prior.items()})
++    if leaves(REVISION_BASE,PROBLEM)!=expected:
++        raise RuntimeError('Already-pushed base is not exact original17 plus pinned old five')
++    verify_directory_overlay(ORIGINAL,REVISION_BASE,prior)
++    original_queue_rows(REVISION_BASE)
++    if blob(REVISION_BASE,QUEUE)!=blob(ORIGINAL,QUEUE):
++        raise RuntimeError('Already-pushed base changed QUEUE bytes')
++    assert_scoped_preservation(ORIGINAL,REVISION_BASE,False)
++    return base
++
++
++def verify_revision_child(commit,selected):
++    value=api('git/commits/'+commit)
++    if value.get('sha',commit)!=commit or [p['sha'] for p in value['parents']]!=[REVISION_BASE]:
++        raise RuntimeError('Revision child has unexpected parent/head')
++    expected=originals();expected.update({n:('100644','blob',blob_sha(b)) for n,b in selected.items()})
++    if leaves(commit,PROBLEM)!=expected:
++        raise RuntimeError('Revision child is not exact original17 plus current five')
++    verify_directory_overlay(REVISION_BASE,commit,selected)
++    if blob(commit,QUEUE)!=blob(REVISION_BASE,QUEUE):
++        raise RuntimeError('Revision changed QUEUE bytes')
++    assert_scoped_preservation(REVISION_BASE,commit,False)
++    return value
++
++
++def revision_ref(pr):
++    ref=pr.get('head',{}).get('ref')
++    if (not isinstance(ref,str) or not ref or any(c.isspace() for c in ref)
++            or ref==pr.get('base',{}).get('ref') or ref.startswith(('/','refs/'))):
++        raise RuntimeError('Missing exact revision branch reference')
++    return 'git/refs/heads/'+quote(ref,safe='/')
++
++
++def read_revision_ref(endpoint):
++    return api(endpoint.replace('git/refs/','git/ref/',1))['object']['sha']
++
++
++def revise(expected_head):
++    """Exactly one reviewed old-five -> current-five revision, no blind retry."""
++    if expected_head!=REVISION_BASE:
++        raise RuntimeError('Revision accepts only the exact already-pushed reviewed head')
++    require_release_clearance()
++    prior,selected,binding=revision_binding()
++    base=verify_revision_base(prior)
++    intent_path=AUDIT/'PUBLICATION_REVISION_INTENT.json'
++    if intent_path.exists():
++        # Once any attempt exists, this action performs only reads/reconciliation.
++        intent=json.loads(intent_path.read_text())
++        if intent.get('binding')!=binding or intent.get('pr')!=280:
++            raise RuntimeError('Existing revision attempt binds different files')
++        committed=AUDIT/'PUBLICATION_REVISION_COMMIT.json'
++        pushed=AUDIT/'PUBLICATION_REVISION_PUSH_INTENT.json'
++        if not committed.exists() or not pushed.exists():
++            raise RuntimeError('Partial revision attempt; root must reconcile before any retry')
++        receipt=json.loads(committed.read_text());push=json.loads(pushed.read_text());new=receipt['commit']
++        if receipt.get('binding')!=binding or push.get('commit')!=new or push.get('binding')!=binding:
++            raise RuntimeError('Conflicting revision attempt receipts')
++        verify_revision_child(new,selected)
++        pr=live_pr(new);endpoint=revision_ref(pr)
++        if endpoint!=intent['branch_endpoint'] or read_revision_ref(endpoint)!=new:
++            raise RuntimeError('Uncertain revision push; no mutation retry is permitted')
++        gate,_=collect('before_integration',new)
++        if revision_ref(live_pr(new))!=endpoint or read_revision_ref(endpoint)!=new or revision_binding()[2]!=binding:
++            raise RuntimeError('Branch or local release changed during revision reconciliation')
++        outcome=AUDIT/'PUBLICATION_REVISION_OUTCOME.json'
++        if outcome.exists():
++            value=json.loads(outcome.read_text())
++            if value.get('commit')!=new or value.get('binding')!=binding or value.get('status')!='pushed_and_verified':
++                raise RuntimeError('Conflicting immutable revision outcome')
++        else:
++            value={'timestamp':stamp(),'pr':280,'commit':new,'binding':binding,'status':'pushed_and_verified',
++                   'read_only_reconciliation':True,'gate_receipt':gate['receipt']}
++            revision_write('PUBLICATION_REVISION_OUTCOME.json',value)
++        return value
++    # No prior receipt means no previous revision mutation is being retried.
++    if any((AUDIT/n).exists() for n in ['PUBLICATION_REVISION_COMMIT.json','PUBLICATION_REVISION_PUSH_INTENT.json',
++                                      'PUBLICATION_REVISION_OUTCOME.json','PUBLICATION_REVISION_UNCERTAIN.json']):
++        raise RuntimeError('Orphan revision receipt requires root reconciliation')
++    pr=live_pr(REVISION_BASE);endpoint=revision_ref(pr)
++    if read_revision_ref(endpoint)!=REVISION_BASE:
++        raise RuntimeError('Revision branch reference advanced')
++    gate,_=collect('before_integration',REVISION_BASE)
++    if revision_ref(live_pr(REVISION_BASE))!=endpoint or read_revision_ref(endpoint)!=REVISION_BASE or revision_binding()[2]!=binding:
++        raise RuntimeError('Revision branch or local files changed before mutation')
++    intent={'timestamp':stamp(),'pr':280,'binding':binding,'branch_endpoint':endpoint,'non_forced':True,
++            'gate_receipt':gate['receipt'],'scope':'Only replace pinned old five by current reviewed five; original17/QUEUE/all siblings/directories preserved'}
++    revision_write('PUBLICATION_REVISION_INTENT.json',intent)
++    entries=[overlay_entry(n,b) for n,b in selected.items()]
++    tree=api('git/trees','POST',{'base_tree':base['tree']['sha'],'tree':entries})
++    commit=api('git/commits','POST',{'message':'Clarify all-odd-prime exceptional-fiber robustness and verification package',
++                                  'tree':tree['sha'],'parents':[REVISION_BASE]})
++    new=commit['sha']
++    if not isinstance(new,str) or not re.fullmatch('[0-9a-f]{40}',new) or [p['sha'] for p in commit['parents']]!=[REVISION_BASE] or commit['tree']['sha']!=tree['sha']:
++        raise RuntimeError('New revision ancestry/tree response differs; reconcile intent')
++    verify_revision_child(new,selected)
++    revision_write('PUBLICATION_REVISION_COMMIT.json',{'timestamp':stamp(),'pr':280,'commit':new,'tree':tree['sha'],'binding':binding})
++    gate,_=collect('before_integration',REVISION_BASE)
++    if revision_ref(live_pr(REVISION_BASE))!=endpoint or read_revision_ref(endpoint)!=REVISION_BASE or revision_binding()[2]!=binding:
++        raise RuntimeError('Revision branch or local files changed before non-force update')
++    revision_write('PUBLICATION_REVISION_PUSH_INTENT.json',{'timestamp':stamp(),'pr':280,'commit':new,'binding':binding,
++                   'branch_endpoint':endpoint,'non_forced':True,'gate_receipt':gate['receipt']})
++    try:
++        api(endpoint,'PATCH',{'sha':new,'force':False})
++        if revision_ref(live_pr(new))!=endpoint or read_revision_ref(endpoint)!=new or revision_binding()[2]!=binding:
++            raise RuntimeError('New revision ref or local release readback differs')
++        verify_revision_child(new,selected)
++    except Exception:
++        revision_write('PUBLICATION_REVISION_UNCERTAIN.json',{'timestamp':stamp(),'pr':280,'commit':new,'binding':binding,
++                       'status':'uncertain_push','retry_policy':'Read-only reconciliation only; no blind POST/PATCH retry'})
++        raise RuntimeError('Uncertain revision push; rerun only for read-only reconciliation')
++    value={'timestamp':stamp(),'pr':280,'commit':new,'binding':binding,'status':'pushed_and_verified',
++           'read_only_reconciliation':False,'gate_receipt':gate['receipt']}
++    revision_write('PUBLICATION_REVISION_OUTCOME.json',value)
++    return value
++
++
+ def main():
+     parser=argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('action',choices=['plan','commit','verify-test-merge','merge'])
++    parser.add_argument('action',choices=['plan','commit','revise','verify-test-merge','merge'])
+     parser.add_argument('--expected-pr-head',required=True)
+     args=parser.parse_args()
+     verify_destination()
++    if args.action=='revise':
++        print(json.dumps(revise(args.expected_pr_head),indent=2));return
+     pr=live_pr(args.expected_pr_head)
+     selected=selection()
+     if args.action in {'plan','commit'}:
+--- before/record_publication_ledger.py
++++ record_publication_ledger.py
+@@ -7,18 +7,22 @@
+ import uuid
+ from ops_binding import *
+ from publication_live_gates import collect
+-from verify_published_files import verify_live
++from verify_published_files import verify_live, verify_doi_destination
+ 
+ 
+ def desired_row(identifier):
+     return [
+         '30000156 / OWR-768-006: Limiting Cycle Distributions of Birational Maps',
+         '', 'https://doi.org/10.5281/zenodo.'+str(identifier),
+-        TITLE+' — Alec Kriebel (ORCID 0009-0001-9320-500X), v1.0 (2026-10-21). '
++        TITLE+' — Alec Kriebel (ORCID 0009-0001-9320-500X), v1.1 (2026-10-21). '
+         'Unrefereed preprint. Fixed L(u,v)=(u,(u²+1)v) permutes the full affine plane for p≡3 mod4; '
+         'point-weighted periods normalized by p have, at each fixed 1/2≤x<1, CDF '
+         '1−φ(p−1)/(p−1)+o(1), limsup 1 and liminf at most 23/24. Neither those CDF values '
+         'nor the period measures converge on any admissible prime subset of positive upper relative density. '
++        'A separate all-odd-prime proposition treats the regular domain p(p-r), r=0 or2, and uniform-point '
++        'exceptional-fiber deletion or arbitrary finite nonnegative assigned periods only there. Bounded '
++        'statistics change by O(1/p); no positive-upper-prime-density selection restores convergence '
++        'under these conventions. Completed measures lie on nonnegative reals; assigned periods may exceed p. '
+         'The triangular family, primitive quadratic values, shifted-prime totient mean and continuous scalar '
+         'law are established and credited; this is a scoped application to Vivaldi’s 2004 broad existence assertion '
+         '(joint work with Roberts). No new map family, character-sum theorem, arithmetic mean/scalar law, '
+@@ -66,6 +70,11 @@
+     # Never trust old saved booleans: make a new read-only actual public download
+     # and DOI200 inspection before the last full-account/full-sheet gate.
+     public=verify_live(identifier)
++    if not isinstance(public,dict) or not isinstance(public.get('doi_resolution'),dict):
++        raise RuntimeError('Fresh exact DOI destination evidence is missing')
++    resolution=public['doi_resolution']
++    verify_doi_destination(identifier,{'http_status':resolution.get('status'),
++                                      'resolved_url':resolution.get('resolved_url')})
+     if (public.get('record')!=identifier or public.get('all_public_file_bytes_match_reviewed') is not True
+             or public.get('doi_resolution',{}).get('status')!=200
+             or public.get('release_manifest_sha256')!=RELEASE_SHA):
+--- before/verify_published_files.py
++++ verify_published_files.py
+@@ -2,7 +2,7 @@
+ """PR280 read-only exact authenticated/public metadata, bytes, ZIP and DOI verification."""
+ import argparse
+ import json
+-from urllib.parse import quote
++from urllib.parse import quote, urlsplit
+ from urllib.request import Request, urlopen
+ import uuid
+ from ops_binding import *
+@@ -29,6 +29,29 @@
+     return {**public,'metadata':metadata}
+ 
+ 
++def verify_doi_destination(identifier,resolution):
++    """Require the final canonical intended record, not status200 alone.
++
++    This destination policy is stricter than conservative dedup URL leads:
++    canonical plural record path only, no query/fragment, exact decimal ID.
++    """
++    if type(identifier) is not int or identifier<=0 or not isinstance(resolution,dict):
++        raise RuntimeError('Malformed expected DOI destination identity')
++    status=resolution.get('http_status');url=resolution.get('resolved_url')
++    if (type(status) is not int or status!=200 or not isinstance(url,str) or not url
++            or any(ord(c)<=32 or ord(c)==127 for c in url)):
++        raise RuntimeError('Successful exact final DOI destination is missing')
++    try:parsed=urlsplit(url)
++    except ValueError as error:
++        raise RuntimeError('Malformed final DOI destination') from error
++    if (parsed.scheme!='https' or ascii_lower(parsed.netloc) not in {'zenodo.org','zenodo.org:443'}
++            or parsed.username is not None or parsed.password is not None
++            or parsed.path!='/records/'+str(identifier) or '?' in url or '#' in url):
++        raise RuntimeError('DOI final URL is not the exact canonical intended HTTPS Zenodo record')
++    return {'status':status,'resolved_url':url,'exact_expected_record_destination_verified':True,
++            'expected_record':identifier,'policy':'HTTPS zenodo.org, optional exact443, canonical plural path, no query/fragment'}
++
++
+ def verify_public_record(identifier, metadata, selected, inspection, public, downloads, status):
+     doi='10.5281/zenodo.'+str(identifier)
+     if (inspection.get('id')!=identifier or inspection.get('state')!='published'
+@@ -36,6 +59,7 @@
+             or inspection.get('doi_resolution',{}).get('http_status')!=200
+             or status!=200 or int(public['id'])!=identifier or public['doi']!=doi):
+         raise RuntimeError('Exact published record/DOI200 identity not verified')
++    doi_destination=verify_doi_destination(identifier,inspection.get('doi_resolution'))
+     # Compare every intended field on the public record as well as authenticated
+     # inspection; only the existing tool's explicit normalizations are allowed.
+     normalizations=zenodo.verify(public_metadata_projection(public,metadata),metadata,selected)
+@@ -57,8 +81,7 @@
+         'files':results,'all_public_file_bytes_match_reviewed':True,
+         'all_intended_authenticated_and_public_metadata_verified':True,
+         'metadata_normalizations':normalizations,'record_http_status':status,
+-        'doi_resolution':{'status':inspection['doi_resolution']['http_status'],
+-                          'resolved_url':inspection['doi_resolution']['resolved_url']},
++        'doi_resolution':doi_destination,
+         'read_only_remote_operations':True}
+ 
+ 

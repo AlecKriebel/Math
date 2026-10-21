@@ -1,0 +1,47 @@
+{
+  "schema": "pr218-logical-capture-preliminary-source-findings-v1",
+  "UTC": "2026-10-18T01:33:21.606814+00:00",
+  "unfrozen_only": true,
+  "source_pin": {
+    "bytes": 25528,
+    "sha256": "d6c19ee51eae43b85b6fea9df069238e9f16d77e8f8776c6925ff5ed8fcfdd4f"
+  },
+  "findings": [
+    {
+      "id": "C1",
+      "severity": "mandatory",
+      "problem": "protected_nodes calls h.tuple_pin(node) on040000/tree but helper permits100644/blob only, so actual current2nodes must fail.",
+      "expected_repair": "h.preserved_tuple(node,tree_only=True)"
+    },
+    {
+      "id": "C2",
+      "severity": "mandatory contract mismatch",
+      "problem": "selection requires observed_source_mode string0444 while clarified final Root contract is exact int292.",
+      "expected_repair": "type(mode)isint and mode==0o444; final exact six header keys, no preliminary schema/pending."
+    },
+    {
+      "id": "C3",
+      "severity": "WITHDRAWN_AFTER_EXACT_DEPENDENCY_READ",
+      "problem": "GET successful-return wrapper silently skips receipt/wire accounting if expected API_RECEIPT path absent.",
+      "expected_repair": "Require/re-read mandatory successful expected receipt and count stdout bytes; missing receipt refuses.",
+      "status": "not_a_mandatory_finding",
+      "correction": "Reviewed e.API intentionally returns immutable cache hits with IMMUTABLE_GET_CACHE_HIT and no new API_RECEIPT; no new wire should be counted. Prior always-receipt assertion was incorrect. Preserve valid in-invocation caching."
+    }
+  ],
+  "communicated_to_producer_and_Root_before_freeze": true,
+  "clarified_selection_contract": {
+    "header_keys": [
+      "schema",
+      "PR",
+      "operational_authority",
+      "files",
+      "total_files",
+      "total_bytes"
+    ],
+    "observed_source_mode": 292,
+    "preliminary_schema_or_pending_not_valid_capture_argument": true
+  },
+  "actual_capture_or_API_Seed_Runtime_lock_effect": false,
+  "completion_percent": 25,
+  "correction_UTC": "2026-10-18T01:33:48.947481+00:00"
+}

@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-16T03:54:50.213576+00:00",
+  "pr": 946,
+  "status": "ROOT_REPAIRED_PENDING_NEW_ENTIRE_FULL_REVIEW04",
+  "required_and_residual_issues": [
+    "FP03-OPS-001",
+    "FP02-OPS-001"
+  ],
+  "repair": "Complete accepted-chain reauthentication after all completion/state/next-status reads immediately before completion writes, and before already-finalized return after reading state.",
+  "all_other_dispatch_guards_preserved": true,
+  "independent_old_defects_reproduced": "ROOT_REVIEW03_OLD_DEFECT_REPRODUCTION.json",
+  "actual_shared_guard_11_case_controls": "REVIEW03_FINAL_COMPLETION_CONTROLS.json",
+  "controls": [
+    "valid complete accepted chain",
+    "valid completion",
+    "valid already-finalized recovery",
+    "pending/adverse new canonical rounds in both late read windows",
+    "payload/manifest drift in both late read windows"
+  ],
+  "prior_actual_chain_regressions": {
+    "receipt": "ROOT_CANDIDATE04_POST_ACCEPTANCE_CONTROLS.json",
+    "cases": 17
+  },
+  "component_regressions": {
+    "folder": "repair_controls_v4",
+    "cases": [
+      84,
+      68
+    ],
+    "shared_guard_fixture_stubs_disclosed": true
+  },
+  "paper_tex_pdf_inner_package_zip_and_outer_manifest_byte_identical": true,
+  "all_old_candidate03_files_and7sources_preserved": true,
+  "root_test_harness_correction": "Initial added payload-drift fixture grew beyond sealed size; changed to same-length corruption to exercise fingerprint rejection. Both old/new full11-case suites then completed successfully.",
+  "trusted_receipt_store_process_filesystem_assumed_no_atomic_OS_race_claim": true,
+  "new_proof_responses": 0,
+  "actual_external_mutations": 0
+}

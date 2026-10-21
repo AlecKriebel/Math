@@ -1,0 +1,13 @@
+# Additional verification audit — PR166
+
+UTC checkpoint: 2026-10-12T11:12:24.634679+00:00. Mathematical theorem unchanged: the original proof and repaired_candidate_v1/COUNTEREXAMPLE.md retain SHA256 c72a38099e93b4d593be231e8f0c4ad726a399c3d61283da9f7b1f7e55801a5c.
+
+ROOT independently reproduced the original reviewer’s 44,602 exact finite diagnostics, including 6,732 adaptive singleton-stopping selection cases. Both ordinary and optimized original execution reproduced the historical diagnostic receipt byte for byte. ROOT also reproduced three false variants: altered persistence probability, an altered first square position, and charging the terminal singleton. Ordinary execution rejected all three; optimized execution silently passed all three because Python removes assertions.
+
+Replacing only that review checker's assertion helper with an explicit RuntimeError preserves all baseline arithmetic and rejects the three mutations in both execution modes. The six repaired negative executions created no PASS receipt. The exact original inputs, executed sources, outputs, diagnostic receipts and failures are retained in root_reproduction/AUTHOR_INDEPENDENT_REPRODUCTION_AND_NEGATIVES.json (39,985 bytes; SHA256 9ed8338e371e44bbfca3c289ed7edb3d5f36b9dd97983b7796f4f4e753524d61). root_reproduction/independent_checks_raised.py is the exact repaired checker used in those executions.
+
+Its original receipt path expects an author_replay/COUNTEREXAMPLE.md next to the checker. The reproduction driver explicitly creates that exact-byte mirror in each private scratch execution directory. This checker alone is an audit artifact; it has not yet been assembled or certified as a standalone publication package. The first checker’s separate 16,642-check repair remains as recorded in ROOT_MATH_GATE.json and repaired_candidate_v1/REPAIR_NOTE.md.
+
+These diagnostics verify finite identities and stopping conventions. They do not replace the universal proof of non-tightness. The original theorem has mathematical clearance; priority and publication clearance remain false pending ROOT’s full comparison of the completed independent scientific families. The newly assembled Baire strengthening is a separate proposition under fresh adversarial review and is not covered by the original theorem’s mathematical gate.
+
+Completion estimate: original theorem mathematics 100%; current PR166 audit/disposition approximately 40%; programme 32 completed original-claimed cases out of the dated 99-case cohort, 18 publications. No PR166 paper, DOI, tracker row, closure, merge, branch or MAIN mutation occurred at this checkpoint. Another authorized chat holds the bounded MAIN writer window; ROOT remains read-only for remote publication and shared Git state.

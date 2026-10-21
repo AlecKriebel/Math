@@ -1,0 +1,55 @@
+--- unchanged1651//Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0399_30001179/ops_doi_destination_repair_20261021/pre_destination_binding/ops_record_url_repair_20261021/current_controls.py
++++ destination_fixture_only//Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0399_30001179/ops_doi_destination_repair_20261021/pre_destination_binding/ops_record_url_repair_20261021/current_controls.py
+@@ -53,7 +53,7 @@
+         check(body['values']==[desired],'exact intended row');calls.append(copy.deepcopy(body));current.append(copy.deepcopy(desired))
+         return {'updates':{'updatedRows':1,'updatedColumns':4,'updatedData':{'values':[desired]}}}
+     result={'status':None,'append_calls':0,'reason':None,'matching_rows':None,'bypassed_upstream':bypass}
+-    public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200},'release_manifest_sha256':B.RELEASE_SHA}
++    public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200,'resolved_url':'https://zenodo.org/records/999','destination_verified':{'policy':'pr399-exact-https-record-v1','record':999,'status':200,'resolved_url':'https://zenodo.org/records/999'}},'release_manifest_sha256':B.RELEASE_SHA}
+     with ExitStack() as guards:
+         for module,key,value in [(P,'ROOT',root),(P,'PRIVATE',root/'private'),(P,'REPO',repo),(P,'verify_destination',lambda:None),(P,'read_command',command),(P.zenodo,'ZenodoClient',lambda *a:Client()),(P.zenodo,'token_for',lambda *a:'unused'),(G,'AUDIT',root),(D,'AUDIT',root),(D,'PRIVATE',root/'private'),(D,'require_release_clearance',lambda:None),(D,'verify_live',lambda *a:public),(D,'gws',gws)]:guards.enter_context(patch.object(module,key,value))
+         if bypass:
+--- unchanged1651//Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0399_30001179/ops_identity_repair_20261021/integrated_controls.py
++++ destination_fixture_only//Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0399_30001179/ops_identity_repair_20261021/integrated_controls.py
+@@ -139,7 +139,7 @@
+         # and intentionally demonstrated frozen bugs append a desired row.
+         exact_existing=rows==[row]
+         reads=iter([before,before if exact_existing and after_override is None else after])
+-        public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200},'release_manifest_sha256':B.RELEASE_SHA}
++        public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200,'resolved_url':'https://zenodo.org/records/999','destination_verified':{'policy':'pr399-exact-https-record-v1','record':999,'status':200,'resolved_url':'https://zenodo.org/records/999'}},'release_manifest_sha256':B.RELEASE_SHA}
+         def append(action,params,body):
+             check(action=='append','only synthetic append boundary')
+             result['append_calls']+=1
+--- unchanged1651//Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0399_30001179/ops_identity_repair_20261021/repair_controls.py
++++ destination_fixture_only//Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0399_30001179/ops_identity_repair_20261021/repair_controls.py
+@@ -57,7 +57,7 @@
+ 
+ def append_independent(work):
+     root=work/'append';root.mkdir();desired=D.desired_row(999);base=[B.HEADERS]
+-    public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200},'release_manifest_sha256':B.RELEASE_SHA}
++    public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200,'resolved_url':'https://zenodo.org/records/999','destination_verified':{'policy':'pr399-exact-https-record-v1','record':999,'status':200,'resolved_url':'https://zenodo.org/records/999'}},'release_manifest_sha256':B.RELEASE_SHA}
+     aliases=['10.5281/ZENODO.999','https://doi.org/10.5281/zenodo%2E999','10.5281%2Fzenodo.999','10.5281%252Fzenodo.999','https://zenodo.org/records/999','10/abc','https://shortdoi.org/abc','10.5281/zenodo.888']
+     def run(label,before,after,exempt=False,expected=0,ok=False):
+         for p in root.glob('*.json'):p.unlink()
+--- unchanged1651/preserved_regression_fixture/offline_controls.py
++++ destination_fixture_only/preserved_regression_fixture/offline_controls.py
+@@ -455,7 +455,7 @@
+     row=D.desired_row(999);base=[B.HEADERS]
+     write(root/'ROOT_PREPUBLICATION_LEAD_RECONCILIATION.json',{'ledger_leads':[]})
+     write(root/'ZENODO_PUBLIC_FILE_VERIFICATION.json',{'synthetic':True})
+-    public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200},'release_manifest_sha256':B.RELEASE_SHA}
++    public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200,'resolved_url':'https://zenodo.org/records/999','destination_verified':{'policy':'pr399-exact-https-record-v1','record':999,'status':200,'resolved_url':'https://zenodo.org/records/999'}},'release_manifest_sha256':B.RELEASE_SHA}
+     append_calls=[];read_calls=[]
+     def run(label,before,after,ok=False,intent=False,pubchange=None,responsechange=None,gatechange=None,expected_appends=0):
+         for name in ['LEDGER_APPEND_INTENT.json','LEDGER_APPEND_RESPONSE.json','LEDGER_PUBLICATION_VERIFICATION.json']:
+--- unchanged1651/preserved_regression_fixture/repair_controls.py
++++ destination_fixture_only/preserved_regression_fixture/repair_controls.py
+@@ -117,7 +117,7 @@
+         write(root/'ZENODO_PUBLIC_FILE_VERIFICATION.json',{'synthetic':True})
+         gate=gate_fixture(root);gate['ledger_sha256']=B.digest(before)
+         write(root/'gate.json',gate)
+-        public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200},'release_manifest_sha256':B.RELEASE_SHA}
++        public={'record':999,'all_public_file_bytes_match_reviewed':True,'doi_resolution':{'status':200,'resolved_url':'https://zenodo.org/records/999','destination_verified':{'policy':'pr399-exact-https-record-v1','record':999,'status':200,'resolved_url':'https://zenodo.org/records/999'}},'release_manifest_sha256':B.RELEASE_SHA}
+         reads=iter([before,after]);appends=[]
+         def append(action,params,body):
+             check(action=='append','synthetic append action')

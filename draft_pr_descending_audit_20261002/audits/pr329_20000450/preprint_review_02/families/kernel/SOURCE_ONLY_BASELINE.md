@@ -1,0 +1,20 @@
+# Source-only independent mechanism baseline
+
+This file was written before reading any candidate package, audit conclusion, or parent's assessment.
+
+The independently retrieved AIM document is *Rational and integral points on higher dimensional varieties*, version Mon Nov 22 11:41:01 2004, an outcome of the December 11-20, 2002 AIM workshop. Frontmatter credits lecture notes/problem list primarily to John Voight and William McCallum and arrangement/glossary to William Stein. Physical page 51 contains Problem/Question 17, attributed to McCallum: a regular pentagon, its circumcircle, and the quintic pencil P + lambda C^2, with five double points and geometric genus one; compute its 5-torsion. All four remarks were read visually and as extracted text: infinity points lie in 5-torsion; torsor/Sha motivation and universal X_1(5) twist; relation of the elliptic pencil to workshop talks; possible nonregular/star variants. These remarks motivate questions; they do not prove a torsion computation or a nonzero Sha class.
+
+## Independent approach
+
+1. Select an origin on the smooth normalization, since torsion is a group-theoretic statement and a genus-one torsor has no intrinsic pointwise group law. Prove that any named infinity subgroup is cyclic of order five using lines/tangents and distinctness, without taking division-polynomial membership as evidence of order.
+2. For a nonsingular generalized Weierstrass equation y^2+a1*x*y+a3*y=x^3+a2*x^2+a4*x+a6, independently derive doubling and addition from intersection with lines. Negation is (x,-y-a1*x-a3). Doubling slope is (3*x^2+2*a2*x+a4-a1*y)/(2*y+a1*x+a3). For unequal abscissas use slope (v-y)/(u-x), compute the third root of the cubic intersection, then negate it.
+3. A nonidentity point has [5]P=O iff [3]P=-[2]P. Derive the resulting polynomial relation by clearing only proved nonzero denominators. Coincident abscissas can mean equality or negation; the ordinate test must distinguish them. Prove separately that points with zero tangent denominator are 2-torsion and cannot be nonzero 5-torsion.
+4. A complete answer over an algebraic closure should give 25 distinct points (including O) on every allowed smooth characteristic-zero fiber, with both ordinate branches for each of 12 abscissas. Polynomial degree, squarefreeness, and no intersection with discriminant/ordinate-denominator loci are universal conditions; finite tests alone cannot establish them.
+5. Recover plane-quintic representatives and prove rational formulas have no poles at any claimed allowed torsion point. Treat exceptional coordinates, infinity points, and plane singularities by separate charts. A birational inverse is insufficient to assert an affine formula valid on all torsion points. A plane singular image may identify two distinct normalization points; such duplicates must be acknowledged rather than counted as distinct plane images.
+6. An independently implemented finite-field group law is useful for falsification: enumerate points, select points killed by five, compare the candidate kernel equation and both ordinate choices, and test exceptional loci. It provides finite implementation evidence, not a characteristic-zero universal proof.
+
+## Falsification targets and boundaries
+
+The exact success criterion is a checkable full 5-torsion computation on the smooth geometric normalization with a declared origin, valid on every claimed allowed fiber. A marked cyclic subgroup alone leaves 20 geometric points unresolved. A kernel polynomial without a converse leaves completeness unresolved. Generic identities without special-fiber denominator exclusions leave the stated domain unresolved. Required boundaries include parameter zero, singular fibers, accidental kernel factor collisions, vertical tangents, special ordinate coincidences, named infinity points, and singular plane-image duplicates. Characteristic-five behavior must not be inferred from the characteristic-zero kernel count.
+
+No candidate conclusion or PASS label has entered this baseline. Baseline progress estimate toward this independent torsion audit: 10% (source and mechanism fixed; no candidate claim tested yet).

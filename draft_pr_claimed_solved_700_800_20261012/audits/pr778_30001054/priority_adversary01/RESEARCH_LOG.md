@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-16T07:59Z: Initial directory/file writes failed; explicit ENOSPC despite116MiB reported free. Independent initial retained in tool state before oldaudit/peer reading. Audit5%.
+- 2026-10-16T08:00–08:04Z: RAM-only primary reading and28webqueries plus4directZenodoqueries. No exact prior literalnegative found; old proper definitions expressly exclude zero-mixed events. Required SCOPE_CORRECTION read after tool-state initial; no freshpeer priority read. Audit70%.
+- 2026-10-16T08:04:44Z: Assigned directory creation succeeded. Persisted tool-state initial/findings with failure/timing disclosed; no backdated filesystem claim. No temporarysourcebodies written or sharedcleanup performed.
+- 2026-10-16T08:09Z: A RAM-fetch shell here-document failed because its implicit temporary file could not be created (ENOSPC). Retried with Python command text, avoiding filesystem temporaries; final HP/OWR/thesis reads succeeded in memory.
+- 2026-10-16T08:13:53Z: Independent search checkpoint:36 actual web queries plus4 direct official Zenodo metadata searches. Source comparison and search log persisted. Independent convention/event mapping passed normal and optimized Python. No fresh peer priority read yet. Audit85%; remaining work is closed-peer challenge, final report and guarded custody closure.
+
+- 2026-10-16T08:22:41.600594+00:00: Closed fresh-peer packet read in full; independent recursive peer custody and normal/-O --inputs pass; actual additional primary input boundaries checked. No material challenge to PRIORITY_UNRESOLVED. Own current-input and custody-control checks pass normally and optimized; owned fixtures removed. Bounded audit100%; scholarly priority remains unresolved. Final manifest and read-only seal checks follow; results will be reported externally, not assumed here.

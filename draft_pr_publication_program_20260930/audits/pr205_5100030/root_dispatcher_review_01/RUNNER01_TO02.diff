@@ -1,0 +1,12 @@
+--- runner01
++++ runner02
+@@ -1,6 +1,8 @@
+ """Root authenticated-buffer dispatcher for PR205 publication and tracking."""
++import sys
++if not (sys.flags.ignore_environment==1 and sys.flags.no_site==1 and sys.dont_write_bytecode and sys.flags.safe_path and not sys.flags.optimize):raise RuntimeError('Python -E -S -B -P without -O required before dependency imports')
+ from pathlib import Path
+-import argparse,hashlib,json,os,stat,sys,types
++import argparse,hashlib,json,os,stat,types
+ D=Path(__file__).resolve().parent;A=D.parent
+ OWN='publication_operations_preparation_01'
+ PINS={

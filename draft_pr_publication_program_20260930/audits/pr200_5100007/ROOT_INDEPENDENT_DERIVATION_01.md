@@ -1,0 +1,28 @@
+# Root independent derivation and adversarial proof check
+
+UTC: 2026-10-16T04:18:17.813621+00:00. Provisional mathematics35% in workflow; no final mathematical gate until all three independent families and reproductions are inspected. Priority and publication not cleared.
+
+## Source contract now checked
+Root visually inspected arxivv11 pp1,5 and publisher-authentic journal Table2 printedp345 obtained from journal host by source family. Literal k115 unchanged, nested confocal ellipse scope. The published journal title is Fifty New Invariants..., not the arxiv Eighty... title. Row dated4/20 and proof? are historical evidence, not current openness. Stachel published Theorem4.3 andeq4.9 explicitly give arbitrary starting phase, modulus c/alpha, step2v, coprime turning numbers and a=alpha dn(v)/cn(v),b=beta/cn(v). Root read these exact primary text spans independently of the source-family verdict. Source definition of primitiveN requires explicit explanation, as merely repeating odd or2mod4 least-period orbit must not manufacture eligibility.
+
+## Independent geometric connection
+For boundary points with eccentric angles s±d, chord has equation x coss/a+y sins/b=cosd. Supporting an inner confocal ellipse with axes alpha²=a²-lambda,beta²=b²-lambda gives cos²d=(alpha²/a²)cos²s+(beta²/b²)sin²s. For0<lambda<b² this is positive, so adjacent tangents are nonparallel. Their intersection Q=(a coss/cosd,b sins/cosd) therefore obeys alpha²Qx²/a⁴+beta²Qy²/b⁴=1. Thus its locus axes are exactly a²/alpha,b²/beta. From canonical data lambda=beta² sn²v/cn²v, obtained by subtracting alpha² froma² and beta² fromb²; both differences coincide because alpha²k²=c². Candidate Ao=a dn(v)/cn(v)=a²/alpha and Bo=b/cn(v)=b²/beta match the independent locus. Locus alone does not prove phase invariance.
+
+## Candidate exact algebra checked by hand
+Put kappa=k²,t=sn²v,q=1-t. Then U=(1-kappa)+kappa q²>0,W=1-kappa t²>0,V=1-2t+kappa t². With alpha scaled to1, Ao²=(1-kappa t)²/q²,Bo²=(1-kappa)/q²,c²=kappa. Direct product of the two squared focal distances is [(Ao²-Bo²)S+Bo²+c²]²-4c²Ao²S. Substitution gives candidate expression [(U+kappa V S)²-4kappa(1-kappa t)²q²S]/q⁴. Constants, S² coefficients and S coefficients agree with (1-kappa S)(U²-kappa V²S)/q⁴. The only nontrivial coefficient identity is (U+V)²=4q²(1-kappa t)², following U+V=2q(1-kappa t). Hence the claimed factorization is universal, not sampling.
+
+Jacobi double-angle formulas give cn(2v)=V/W,dn(2v)=U/W with Wnonzero. The real second factor dn²delta-k²cn²delta sn²u is at least dn²delta-k²cn²delta=1-k²>0. This proves positivity independently of any numerical data; no complex square-root branch is used in the real Euclidean product.
+
+## Analytic divisor and group arithmetic
+DLMF22.4 Tables1-3 directly verify sn has simple poles at iKprime modulo2K,2iKprime with real antiperiod2K; dn has simple poles at iKprime and simple zeros atK+iKprime, realperiod2K and imaginaryantiperiod2iKprime. Therefore squared functions live on T=C/(2KZ+2iKprimeZ), and sn² has one doublepole. The quartershift is sn(z+K+iKprime)=dnz/(k cnz). These identities verify J zeros at p+K±delta, allsimple exceptdeltaK; they are distinct, notp orp+K, since0<delta<2K anddelta!=K. One doublepole for J exhausts its zero degree2. ProductH has zero orders2,1,1 and poleorder4. When deltaK, J=kprime²constant and H has zeroorder2/poleorder2 instead. No generic divisor is used for the exceptional case.
+
+If N=4n,leastperiod makes gcd(tau,N)=1,so tauodd;m=2n. Translationdelta/(2K)=tau/m has exactorderm; n delta=K tau=K mod2K. Thus all three zero-translates permute the single poleorbit and the complete cyclic divisor cancels. Order-zero divisor on compactconnectedT means the meromorphic norm is holomorphic everywhere and constant. Realpositivity excludeszero/infinity. Meanwhile mdelta=2Ktau sends Q to-Q; pairing oppositeoutervertices changes the onefocusproduct into positive pairedfocalproduct whose square is this norm. This proves the onefocusclaim and equalitybetweenfoci. Reversal just reorders the same finitevertexset. No finite-N computation supplies this general arithmetic step.
+
+## Four-period case independently normalized
+Forv=K/2 write r=kprime. Standard quarterperiod identities give cn²v=r/(1+r),dn²v=r. Hence a²=alpha²(1+r),b²=alpha²r(1+r),outerlocusradius²=a²+b². W=2q and Cv=4alpha⁴(1+r)²/r². H(u)=Cv r²dn²u and dn(u+K)=r/dn(u), so twofactor normH(u)H(u+K)=Cv²r⁶ and the ordinaryfourvertexproduct=Cv r³=4a²b², agreeing with the independent axisdiamond computation. This case hasfinitepositive value for arbitraryphase, not just axissymmetry.
+
+## Boundary and dependency discipline
+The theorem assumes0<k<1,0<v<K. Circle k0 handled separately byregularstargeometry. Degeneratecaustic,hyperbola/focalsegment,vertexrepeat and coincidenttangency not silently included. No currentworldopenness, firstness or independentdiscovery follows from valid mathematics. Stachel publishedp1613 prints dn(u+2rK)=(-1)^r dn(u), contradicted already bydn0=dn2K=1; DLMF givesdn(u+2rK)=dn(u). Candidate does not use the wrong identity. This is an observed printed source error, not an author-confirmed erratum and should be framed as such. All geometry and period inputs are classically attributed.
+
+## Remaining before final mathematical gate
+Read all new family's full derivations/certificates/code, reproduceexactandnumericalclaims in cleanownfolder without alteringoriginal archive, inspectassert behaviornormal/-O, and settle explicitprimitiveperiod source convention/counterexample forbadcovers. Previous favorable authorreview not yet used byRoot. Deep priority starts only after exact final mathematical gate.

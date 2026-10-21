@@ -1,0 +1,24 @@
+# Independent priority-gate criteria
+
+Frozen during 2026-10-15 08:17:42–08:19:09 UTC, before reading the three completed priority-family verdicts. This is a falsification-oriented review of frozen submitted head `36d5ef15098163e74bf14c2e696f560ce592affd`, not first-priority certification or fresh proof search. The four mathematical audits and root acceptance are inputs, not novelty certificates. The initial manually entered 08:20 timestamp was corrected to the observed tool-clock bracket; no criteria changed.
+
+## Exact potentially publishable increments
+
+1. A self-contained proof for the actual three-dimensional, zero-diagonal, point-sampled cubic DDA: with fixed frequency and the explicit voxel-volume consistency hypothesis (G), spectral correctness off the exact static lattice interval, with no pollution there, algebraic multiplicities and norm convergence of embedded Riesz projections. All standard compact/Fredholm/Riesz arguments and the CDN static lattice theorem must receive credit. The possible increment is proving the DDA-specific strong static and Hilbert–Schmidt dynamic consistency inputs on a common Hilbert space, then assembling their consequences for changing particle grids.
+2. A separate compact, positive-volume support with no interior and exactly one sampled null anchor on every grid 1/n: its continuum operator has a nonreal pole while each sampled matrix is 3 by 3 zero. The possible increment is the exact electromagnetic spectral obstruction through persistence under volume-mask approximation. Countable point deletion and standard perturbation machinery are not new.
+
+## What counts as material anticipation
+
+- An accessible earlier proof of the same DDA-specific convergence statement, or a theorem whose explicit verified hypotheses directly cover this precise point-sampled scheme and particle class, would defeat an assertion that the positive theorem is new. A proof available only for compact operators, a continuum spectrum analysis, or error estimates requiring regular solutions does not alone do so.
+- An earlier explicit theorem announcing the same spectral phenomenon has priority as an announcement and must be prominently credited, even when its full proof is unavailable. Its existence is material evidence against first-priority language. It does not automatically show that an independently supplied rigorous proof or carefully delimited application note is unpublishable.
+- An identifiable unavailable source is a reason to hold all manuscript preparation only if accessible evidence establishes substantial overlap with the exact proposed theorem or construction and the note cannot honestly state its contribution without resolving that evidence. Topic similarity or inability to disprove unpublished anticipation is not enough.
+- A general classical theorem plus the existing CDN lattice result counts as sufficient known combination only if all DDA consistency hypotheses required for the theorem were already proved or genuinely automatic from already stated results. The right comparison is mechanism and hypotheses, not identical notation or titles. If the new text merely expands routine omitted details, describe it as an independent explanatory proof/application, not a major new abstract theorem.
+- An earlier exact compact-support obstruction, or a general theorem explicitly producing its nonreal electromagnetic pole after point deletion, would defeat a novelty claim for the construction. A generic rational-grid aliasing example alone anticipates only the sampling mechanism.
+
+## Decision thresholds
+
+- **Hold for substantive overlap:** an exact anticipation or a sufficiently specific unresolved overlap prevents any defensible bounded contribution statement. Name the source and exact matching claim. Do not substitute generic uncertainty.
+- **Qualified preparation may proceed:** no located exact complete anticipation after bounded primary-source checks, and a truthful contribution statement can distinguish the source's earlier question/announcement, established machinery, and this proof/construction. This clears writing a credited research note for fresh whole-package review; it does not certify novelty universally, authorize immediate publication, or reclassify the queue.
+- **First/universal priority cleared:** would require substantially stronger evidence than this audit can deliver. This outcome is not a default substitute for qualified preparation.
+
+The source's exact question and geometry must be read directly before applying these thresholds. Missing necessity-and-sufficiency geometry classification is fatal only if the primary target actually demands that classification. The report must distinguish source scope, mathematical correctness, novelty of ingredients, priority of an announced phenomenon, and suitability of a qualified note.

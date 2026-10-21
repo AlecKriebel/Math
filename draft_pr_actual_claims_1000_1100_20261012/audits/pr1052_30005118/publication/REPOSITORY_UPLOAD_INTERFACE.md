@@ -1,0 +1,3 @@
+# Repository upload interface
+
+This `zenodo-deposit.json` is the actual repository-tool upload manifest, with `{metadata, files}` and path/name file entries. The identically named file in `../preprint_v1_0` remains the reviewed delivery hash-binding descriptor; its filename/bytes/SHA256 entries are a distinct schema and are not passed to the repository uploader. No historical descriptor, paper, metadata object or support archive is changed. The new native manifest uses exactly the already reviewed bibliographic metadata and selects the same two artifacts. `REPOSITORY_TOOL_LOCAL_CHECK.json` records the entirely local successful check. Publication remains held at preceding PR1032.

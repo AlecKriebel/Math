@@ -1,0 +1,5 @@
+# Credited signed-type research note
+
+The PDF, standalone LaTeX source and verification ZIP are the intended three deposit files, under the exact metadata in zenodo-deposit.json. The theorem and convention repair have exact contemporary overlap with Ferudun DOI10.5281/zenodo.23267641 and substantial classical antecedents, explicitly credited. No novelty, historical firstness, current openness, authenticated author erratum or independent-discovery certification is claimed. Extensive AI; unrefereed; no conventional human peer review.
+
+The ZIP includes a stdlib-only verifier, original snapshots, exact physical tracers, current explicit-guard supplementary controls, independent audits and source/version/chronology ledgers. The native integration folder is a dated planned postimage, not evidence of actual publication or merging. The remaining publication/acceptance steps must be recorded by factual repository receipts. Downloaded external paper bodies, extracts, images and external source archives are excluded.

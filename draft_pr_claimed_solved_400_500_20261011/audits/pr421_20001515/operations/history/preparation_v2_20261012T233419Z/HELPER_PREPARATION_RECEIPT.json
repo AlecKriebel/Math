@@ -1,0 +1,34 @@
+{
+  "at_utc": "2026-10-12T23:34:51.114488+00:00",
+  "result": "prepared_only_v2_drift_repair",
+  "delegated_preparation_completion_percent": 100,
+  "actual_live_api_calls": 0,
+  "actual_remote_writes": 0,
+  "default_mode": "plan",
+  "expected_branch": "research/20001515-explicit-cubulation",
+  "pr": 421,
+  "helper_sha256": "025a6583d6e6e8cc92f49fc74b04c69c02bb8e4a49829946f055bcb333b6cd51",
+  "author": {
+    "name": "Alec Kriebel",
+    "email": "me@aleckriebel.com"
+  },
+  "committer": "same configured identity; fresh UTC date bound in per-run durable plan",
+  "normal_scenarios_passed": 26,
+  "optimized_scenarios_passed": 26,
+  "bare_assert_count": 0,
+  "private_fixture_driver_sha256": "73300cd0b78ce5470306bdc2e68f53a0bb352c07d54d1969b342fbbf7996a8db",
+  "current_packet_verification_requires": [
+    "Exact candidate byte/hash/mode bindings at the observed actual head",
+    "OPEN and draft at initial/final readback",
+    "Exact header-derived claimed_solved QUEUE Status",
+    "Final PR/ref agree with the candidate-read head"
+  ],
+  "drift_disposition": "Retain historical publication evidence; receipt current_packet_verified=false; raise PacketDrift/exit nonzero; never retry mutation automatically",
+  "historical_preparation": {
+    "path": "operations/history/preparation_v1_20261012T232846Z",
+    "helper_sha256": "3526d36e6f9e99629c56126e1d34c2a05ed682a68db6d357ae733e1c44d8bea3",
+    "public_artifacts_preserved": 7
+  },
+  "next_step": "Root inspect repaired helper before live read-only plan; candidate audit before any --apply; actual head whole-package audit after update",
+  "limitation": "Pre-read ref plus force:false is not an atomic expected-head compare-and-swap; concurrent forced rollback remains outside protection."
+}

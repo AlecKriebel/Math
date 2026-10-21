@@ -1,0 +1,23 @@
+--- operations_engineering_03/test_source_gate_installed.py
++++ operations_engineering_04/test_source_gate_proposal.py
+@@ -7,11 +7,11 @@
+ if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):raise SystemExit('Use -I -S -B')
+ import argparse,copy,hashlib,json,sqlite3,tempfile
+ from pathlib import Path
+-OWN=Path(__file__).resolve().parent;P=OWN.parents[2];A=P/'audits/pr952_10400145';CORE=P/'accept_pr952.py'
++OWN=Path(__file__).resolve().parent;P=OWN.parents[2];A=P/'audits/pr952_10400145';CORE=OWN/'PROPOSED_accept_pr952.py'
+ def sha(b):return hashlib.sha256(b).hexdigest()
+-p=argparse.ArgumentParser();p.add_argument('--core-sha256',required=True);a=p.parse_args();raw=CORE.read_bytes()
++p=argparse.ArgumentParser();p.add_argument('--core-sha256',required=True);p.add_argument('--installed',action='store_true');a=p.parse_args();CORE=P/'accept_pr952.py' if a.installed else CORE;raw=CORE.read_bytes()
+ if sha(raw)!=a.core_sha256:raise SystemExit('external core pin mismatch')
+-n={'__name__':'_inert_real_source_gate_','__file__':str(CORE)};exec(compile(raw,str(CORE),'exec',dont_inherit=True,optimize=0),n)
++n={'__name__':'_inert_real_source_gate_','__file__':str(CORE)};exec(compile(raw,str(CORE),'exec',dont_inherit=True,optimize=sys.flags.optimize),n)
+ private=(A/'source_record_private.txt').read_bytes()
+ if sha(private)!=n['PRIVATE']:raise SystemExit('private source pinned identity mismatch')
+ original=json.loads(private);problem=original['problem'];prior=original['prior_research']
+@@ -68,4 +68,4 @@
+  with sqlite3.connect(db) as c:c.execute('DELETE FROM records')
+  observe('missing_SQLite_target_rejected')
+  reset();observe('actual_nonempty_report_rechecked_after_all_adverse_controls',True)
+-print(json.dumps({'schema':'pr952-source-gate-repair-inert-controls-v1','status':'PASS_REAL_FUNCTION_INERT_SQLITE_CONTROLS','outer_optimization':sys.flags.optimize,'core_sha256':a.core_sha256,'events':events,'event_count':len(events),'SQLite_bytes_unchanged_by_gate':True,'private_fixture_bodies_retained':False,'test_only_repins_do_not_change_production_source':True,'real_Git_calls':0,'real_service_calls':0,'acceptance_authority':False,'full_review_credit':False},sort_keys=True))
++print(json.dumps({'schema':'pr952-source-gate-repair-inert-controls-v1','status':'PASS_REAL_FUNCTION_INERT_SQLITE_CONTROLS','outer_optimization':sys.flags.optimize,'installed_actual_source_executed':a.installed,'core_sha256':a.core_sha256,'events':events,'event_count':len(events),'SQLite_bytes_unchanged_by_gate':True,'private_fixture_bodies_retained':False,'test_only_repins_do_not_change_production_source':True,'real_Git_calls':0,'real_service_calls':0,'acceptance_authority':False,'full_review_credit':False},sort_keys=True))

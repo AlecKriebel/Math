@@ -1,0 +1,7 @@
+# Independent execution-family review log
+
+- 2026-10-06 15:01:43 UTC — Review checkpoint 60%: full source reading established kernel-path and surviving-descendant gaps; normal and optimized synthetic observations reproduced both. No actual assess, services, export, Git mutation, or new proof turn.
+- 2026-10-06 15:08 UTC — Review checkpoint 90%: path/group/package gaps repaired; preflight/raw-source bindings strengthened. Safe-path and Darwin EPERM receipt repairs remained.
+- 2026-10-06 15:11:31 UTC — Review checkpoint 100% for offline program-family review: final four-file bytes full-read; 24 expected observations per mode passed; unchanged source pins throughout both probes; genuine present Git/GH configuration policy checks retained only hashes. Zero unresolved material preparatory blockers. Future actual packet, genuine execution custody, offered bytes, complete DIFF, and export review remain outside this completed subtask.
+- 2026-10-06 15:12–15:18 UTC — Author supplied additional signal/launch-journal/call-attempt deltas. Review reopened to 90% until post-spawn setup and inherited signal-mask gaps were resolved. No actual native/services/export/Git mutation or proof turn.
+- 2026-10-06 15:18:37 UTC — Final review checkpoint 100% for the frozen program family dbe9475f/ec3be397/092187d6/5111652d: 27 expected observations per mode passed, source bytes unchanged through both runs; setup failure reaped and receipted; child mask clear; launch journal binds real PID/argv/environment. Final source clearance remains preparatory only.

@@ -1,0 +1,33 @@
+{
+  "timestamp_utc": "2026-10-13T03:32:51.708849+00:00",
+  "stage": "R1 inputs frozen; repair after fresh reviewer report, before R2 seal",
+  "findings": [
+    {
+      "severity": "minor",
+      "issue": "Added bibliography spills onto a fifth page containing only references; compress related-work/status prose to retain a concise four-page note. Current README still calls the note four pages.",
+      "affected": [
+        "preprint/note.tex",
+        "preprint/README.md",
+        "preprint/output/pdf/note.pdf"
+      ]
+    },
+    {
+      "severity": "reproducibility",
+      "issue": "build_package.py reads supplement_selection.json but its PUBLIC list does not include this input in the public supplement. Include it, and make clean extraction/TeX output-folder setup explicit.",
+      "affected": [
+        "preprint/build_package.py",
+        "preprint/supplement_selection.json",
+        "preprint/README.md"
+      ]
+    },
+    {
+      "severity": "framing",
+      "issue": "Preparatory CLAIM_AND_SUCCESS_CRITERIA.json current_gap and README preparation stage should be labeled as dated historical preparation or omitted from intended final support selection; avoid stale present-tense readiness statements.",
+      "affected": [
+        "CLAIM_AND_SUCCESS_CRITERIA.json",
+        "preprint/README.md",
+        "preprint/supplement_selection.json"
+      ]
+    }
+  ]
+}

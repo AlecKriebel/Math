@@ -1,0 +1,32 @@
+# Candidate-free derivation and sealed mathematical verdict
+
+Checkpoint: 2026-10-03T06:56:37Z. Completion estimate: 45% of this audit. This file was written before opening candidate content or historical review. Provisional independent mathematical verdict: the requested nonsharp upper bound follows from a direct uniform flag argument. The derivation below in fact gives the normalized limsup equal to zero, subject to an additional independent adversarial check of the full argument. This stronger observation is an audit derivation, not a novelty claim or a claim to have determined sharp prefix growth.
+
+Fix epsilon=1/20, lambda=log(1+epsilon), b=(1+epsilon)log 3-1>0, and delta=1/100. For an integer T sufficiently large put r=floor((log T)^2), Q_j=2^(j+1)-1,
+u=(b+delta)T/((1+epsilon)log Q_r), y=exp(u), D=exp(T), and t=10 log(T+2)/lambda. Restrict first to the finite integer ground set G=[ceil(y),floor(D)]. Let N(I)=|A intersect I|.
+
+The occupancy event H_T is the simultaneous collection of bounds N(I)<= (1+epsilon) length_log(I)+t for every half-open logarithmic interval with endpoints among u, 1+floor(u), 2+floor(u), ..., T+1, restricted to G. Include also N([1,y))<=(1+epsilon)u+t. There are O(T^2) such intervals. The harmonic sum over an interval in G is at most its logarithmic length plus a universal constant. Independence gives E exp(lambda N)<=exp(epsilon E N). Chernoff consequently bounds each failure by C exp(-lambda t); the prefix has the same estimate since its harmonic sum is <=u+C. Thus P(H_T^c)=O(T^-8), summable. Endpoint conventions and ceiling/floor changes are absorbed in C.
+
+For a family F of distinct equal-sum subsets of A intersect G, associate the binary incidence columns omega_a in {0,1}^|F| and define R=dim(span(1,{omega_a})/span(1)). If R<r, then |F|<=2^R: choose R incidence columns completing 1 to a basis; their 0/1 row signatures are all different, since any coincident signatures agree on every incidence column. If R>=r, choose 1 and r independent incidence columns, then restrict to r+1 rows giving an invertible (r+1) by (r+1) matrix. The restricted subsets remain distinct, equal-sum, and have quotient rank exactly r. This row restriction is the mechanism avoiding any enumeration over an enormous original family.
+
+It is therefore enough to bound the existence of r+1 equal-sum subsets with quotient rank r. Work in Q^(r+1)/span(1). Greedily scan the integer columns in descending order, and retain the first column that raises the quotient span until obtaining r pivots x_1>...>x_r. Their binary representatives v_1,...,v_r form an ordered independent basis modulo the diagonal. For a> x_{j+1} every nonpivot column is in V_j=span(1,v_1,...,v_j); before x_1 it is diagonal. No hypothesis that consecutive pivots have different logarithmic bands is needed.
+
+The cube intersection V_j intersect {0,1}^(r+1) has at most 2^(j+1) elements: a projection to j+1 suitable coordinates is injective on V_j. In the quotient by span(1), exactly the two cube vertices 0 and 1 become identical; any other identification would require two binary vectors to differ by a nonzero constant in every coordinate, and forces the same 0/1 pair. Hence there are at most Q_j distinct quotient patterns. Common inclusion or exclusion can be discarded for equal-sum equations and does not add a pattern choice.
+
+Set z_j=floor(log x_j). Fix the ordered binary basis and its nonincreasing band tuple z_1>=...>=z_r. For a residual set B of nonpivot selected integers, permit at most Q_j pattern classes for B in [exp(z_{j+1}+1),exp(z_j+1)) (1<=j<r), and Q_r classes in [y,exp(z_r+1)); above exp(z_1+1) there is only the diagonal class. These enlarged ranges allow all true greedy configurations, including two pivots in the same band. Their lengths are z_j-z_{j+1} and z_r+1-u. A valid assignment gives an equation sum_i x_i [v_i]= -sum_{a in B} a [omega_a]. Since the pivot classes are independent, the r pivot numbers are uniquely determined over Q; if any root is not a distinct integer in its required band, the assignment creates no witness.
+
+Exact deletion identity: if S=B union {x_1,...,x_r}, with B excluding the roots, then the Bernoulli law on G satisfies
+P(A intersect G=S)=P(A intersect G=B) product_i 1/(x_i-1).
+The roots are at least 2 for large T, so this is <=P(A intersect G=B) 2^r exp(-sum_i z_i). We sum over residual sets B and assignments. Eliminating the roots here is essential: there is no sum over their individual values. Every witness maps to at least one such basis, bands, and assignment. Deletion only decreases interval counts, so if S obeys H_T then B obeys every needed count bound. Dropping other restrictions can only increase the bound.
+
+For fixed basis and bands the witness probability on H_T is thus at most exp(E), where
+E = (1+epsilon)[sum_{j<r}(z_j-z_{j+1})log Q_j +(z_r+1-u)log Q_r] - sum_j z_j + t sum_j log Q_j + r log 2.
+Telescoping gives coefficient b on z_1 and coefficient (1+epsilon)log(Q_j/Q_{j-1})-1 on z_j for j>=2. Each latter coefficient is negative: Q_j/Q_{j-1}<=7/3, and (21/20)log(7/3)<1. Since 0<=z_j<=T, E<= bT-(1+epsilon)u log Q_r +(1+epsilon)log Q_r+t sum_j log Q_j+r log2 = -delta T+O(t r^2+r).
+
+There are <=2^(r(r+1)) ordered binary bases and <=(T+1)^r band tuples (using all tuples rather than only nonincreasing tuples is an overcount). Therefore P(rank-r witness and H_T)<=exp[-delta T+O(r^2+t r^2+r log(T+1))]. Our r=floor((log T)^2) and t=O(log T) make the error O((log T)^5)=o(T). This probability is summable in integer T. No finite enumerator is being substituted for these universal inequalities.
+
+Borel–Cantelli now gives, on one probability-one event, H_T and absence of a rank-r witness for all sufficiently large integer T. Consequently the high-prefix maximum is <=2^(r-1). Adding the selected integers below y can increase a maximal subset-sum coefficient by at most 2^N([1,y)), by convolution or direct splitting of each representing subset. Thus
+log M(exp(T)) <= log2 [(1+epsilon)u+t+r] = O(T/(log T)^2 +(log T)^2).
+The right side times log T/T tends to zero. Monotonicity of M and exp(T-1)<=D<=exp(T) extend this to all real D. Since M(D)>=1, its normalized limsup is exactly zero, and in particular is <=(log3-1)(log2)^2.
+
+Remaining gap in this independent derivation: no sharp order for M(D) is established; no matching upper polynomial exponent is claimed. The derivation and computational controls are to be audited by the parent before promoting the stronger zero-normalized observation.

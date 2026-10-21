@@ -1,0 +1,9 @@
+# PR218 publication package/history adversarial audit
+
+Scope: independent readonly audit of authenticated package, historical reviews and repairs, and current metadata/tracker observations. No mathematical theorem acceptance; no external contacts or mutations. Authored outputs stay in this directory.
+
+- 2026-10-18T01:14:10Z — Checkpoint 1: opened root custody acceptance and inventoried authenticated material. Target is a checkable reconstruction of final package consistency and historical evidence, treating pass labels as claims. Estimated audit completion: 5%.
+
+- 2026-10-18T01:15:33.230882+00:00 — Checkpoint 2: independently recomputed all 391 materialization SHA-256/native-blob pins, both safe review seals, both frozen packages, all four current/original manifests, archive-vs-reviewed-source equality, production metadata MD5/size correspondence, and actual unique row99. All 1,411 checks pass. The exact extracted package and both sealed historical review control programs reproduce. All seven final PDF pages rendered and actually viewed; no layout defect. Estimated audit completion: 85%. Nonblocking source-editing observation: M1 insertion makes “its law” in current CANDIDATE line27 less explicit about the normalized-area multiset.
+
+- 2026-10-18T01:16:44.008031+00:00 — Checkpoint 3: audit sealed after direct report/source review. No mandatory package/history defect. One nonblocking candidate antecedent observation E1 recorded; deposited manuscript explicitly defines the area law. Historical independence remains a record-based inference with disclosed prior M1 knowledge/source-reread limits. Exact production metadata and unique tracker row are corroborated from supplied actual observations. Assigned-audit completion estimate: 100%; overall PR/case completion not evaluated. No frozen input or external state changed.

@@ -1,0 +1,570 @@
+{
+  "utc": "2026-10-16T08:15:34.333548+00:00",
+  "result": "pass_development_tests_not_independent_review",
+  "event_count": 85,
+  "events": [
+    {
+      "utc": "2026-10-16T08:15:25.481541+00:00",
+      "test": "strict_baseline_inventory",
+      "outcome": "pass",
+      "files": 26,
+      "manifest_sha256": "37214e38eaef588b37ffde72c19a53ccb030cf8ea9b9f6e08eceecbcfca0ad7d"
+    },
+    {
+      "utc": "2026-10-16T08:15:25.482015+00:00",
+      "test": "tree_directory_case_alias",
+      "outcome": "rejected",
+      "message": "case-alias file/directory namespace",
+      "scope": "filesystem-neutral namespace regression"
+    },
+    {
+      "utc": "2026-10-16T08:15:25.482107+00:00",
+      "test": "tree_file_directory_case_alias",
+      "outcome": "rejected",
+      "message": "case-alias file/directory namespace",
+      "scope": "filesystem-neutral namespace regression"
+    },
+    {
+      "utc": "2026-10-16T08:15:25.482182+00:00",
+      "test": "tree_file_used_as_ancestor",
+      "outcome": "rejected",
+      "message": "file used as ancestor/directory",
+      "scope": "filesystem-neutral namespace regression"
+    },
+    {
+      "utc": "2026-10-16T08:15:25.482265+00:00",
+      "test": "tree_shared_ancestor_positive_control",
+      "outcome": "pass"
+    },
+    {
+      "utc": "2026-10-16T08:15:25.483529+00:00",
+      "test": "actual_tree_scanner_checks_files_and_directories",
+      "outcome": "pass",
+      "files": 26,
+      "directories": 8
+    },
+    {
+      "utc": "2026-10-16T08:15:28.197309+00:00",
+      "test": "genuine_checker_replay_isolated_no_site",
+      "outcome": "pass",
+      "stdout_sha256": "5a07272ec94eb6438be6d1ce3e2f9452f547d6781bb784f3359f2c3f79a3ec3b",
+      "checkers": 3,
+      "outer_runtime": {
+        "dont_write_bytecode": true,
+        "isolated": 1,
+        "no_site": 1,
+        "optimize": 0
+      }
+    },
+    {
+      "utc": "2026-10-16T08:15:30.783081+00:00",
+      "test": "genuine_checker_replay_outer_optimized",
+      "outcome": "pass",
+      "stdout_sha256": "3ed5b8c40ab6a6cff3d4a7f1cad81e00872741c3953528f5405b85cc65b3752e",
+      "checkers": 3,
+      "outer_runtime": {
+        "dont_write_bytecode": true,
+        "isolated": 1,
+        "no_site": 1,
+        "optimize": 1
+      }
+    },
+    {
+      "utc": "2026-10-16T08:15:30.791324+00:00",
+      "test": "unlisted_FIFO",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "nonregular object: unlisted-fifo"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.801841+00:00",
+      "test": "listed_FIFO",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "nonregular object: original/unsolved_math_prioritization/attempts/30004549/README.md"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.809836+00:00",
+      "test": "file_symlink",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "nonregular object: link"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.817542+00:00",
+      "test": "directory_symlink",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "nonregular object: linked-dir"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.825635+00:00",
+      "test": "hard_link",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "hard-linked payload: verify_package.py"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.835940+00:00",
+      "test": "empty_directory",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "extra/empty directory inventory mismatch"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.847572+00:00",
+      "test": "missing_file",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "closed regular-file inventory mismatch"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.857977+00:00",
+      "test": "extra_regular_file",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "closed regular-file inventory mismatch"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.866226+00:00",
+      "test": "disk_executable_mode",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "disk mode must be 0644: verify_package.py"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.878485+00:00",
+      "test": "changed_original_coherent_outer_manifest",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "immutable original binding: README.md"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.891249+00:00",
+      "test": "missing_original_coherent_outer_manifest",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "exact original24 inventory"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.904625+00:00",
+      "test": "extra_original_coherent_outer_manifest",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "exact original24 inventory"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.912994+00:00",
+      "test": "socket_object",
+      "outcome": "rejected",
+      "message": "nonregular object: socket"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.923478+00:00",
+      "test": "bool_version",
+      "outcome": "rejected",
+      "message": "manifest version"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.932710+00:00",
+      "test": "float_version",
+      "outcome": "rejected",
+      "message": "manifest version"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.942793+00:00",
+      "test": "float_problem",
+      "outcome": "rejected",
+      "message": "problem ID"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.952090+00:00",
+      "test": "wrong_head",
+      "outcome": "rejected",
+      "message": "immutable original head"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.962485+00:00",
+      "test": "extra_top_key",
+      "outcome": "rejected",
+      "message": "schema keys: package manifest"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.971517+00:00",
+      "test": "bool_bytes",
+      "outcome": "rejected",
+      "message": "integer byte size: original/unsolved_math_prioritization/attempts/30004549/ANTI_INVARIANT_30004549_R3_AUTHOR_EXTERNAL_MANIFEST.json"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.983045+00:00",
+      "test": "float_bytes",
+      "outcome": "rejected",
+      "message": "integer byte size: original/unsolved_math_prioritization/attempts/30004549/ANTI_INVARIANT_30004549_R3_AUTHOR_EXTERNAL_MANIFEST.json"
+    },
+    {
+      "utc": "2026-10-16T08:15:30.993228+00:00",
+      "test": "bad_git_mode",
+      "outcome": "rejected",
+      "message": "Git mode scalar: original/unsolved_math_prioritization/attempts/30004549/ANTI_INVARIANT_30004549_R3_AUTHOR_EXTERNAL_MANIFEST.json"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.002241+00:00",
+      "test": "disk_mode_in_git_field",
+      "outcome": "rejected",
+      "message": "Git mode scalar: original/unsolved_math_prioritization/attempts/30004549/ANTI_INVARIANT_30004549_R3_AUTHOR_EXTERNAL_MANIFEST.json"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.011821+00:00",
+      "test": "uppercase_hash",
+      "outcome": "rejected",
+      "message": "SHA256 scalar: original/unsolved_math_prioritization/attempts/30004549/ANTI_INVARIANT_30004549_R3_AUTHOR_EXTERNAL_MANIFEST.json"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.022305+00:00",
+      "test": "wrong_payload_hash",
+      "outcome": "rejected",
+      "message": "payload SHA256 mismatch: original/unsolved_math_prioritization/attempts/30004549/ANTI_INVARIANT_30004549_R3_AUTHOR_EXTERNAL_MANIFEST.json"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.032099+00:00",
+      "test": "bad_path_'../escape'",
+      "outcome": "rejected",
+      "message": "path component"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.042716+00:00",
+      "test": "bad_path_'/absolute'",
+      "outcome": "rejected",
+      "message": "path canonical/depth"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.052701+00:00",
+      "test": "bad_path_'a//b'",
+      "outcome": "rejected",
+      "message": "path canonical/depth"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.062090+00:00",
+      "test": "bad_path_'a/./b'",
+      "outcome": "rejected",
+      "message": "path canonical/depth"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.071837+00:00",
+      "test": "bad_path_'a\\\\b'",
+      "outcome": "rejected",
+      "message": "path characters"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.083278+00:00",
+      "test": "bad_path_'.'",
+      "outcome": "rejected",
+      "message": "path scalar/length"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.092823+00:00",
+      "test": "bad_path_'NUL.txt'",
+      "outcome": "rejected",
+      "message": "reserved portable path"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.102848+00:00",
+      "test": "malformed_JSON",
+      "outcome": "rejected",
+      "message": "invalid JSON: PACKAGE_MANIFEST.json"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.104574+00:00",
+      "test": "duplicate_JSON_key",
+      "outcome": "rejected",
+      "message": "duplicate JSON key: PACKAGE_MANIFEST.json"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.105973+00:00",
+      "test": "nonfinite_JSON",
+      "outcome": "rejected",
+      "message": "nonfinite JSON number"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.114984+00:00",
+      "test": "coherent_rebound_without_external_anchor",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "external manifest anchor mismatch"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.116979+00:00",
+      "test": "historical_bool_bytes",
+      "outcome": "rejected",
+      "message": "historical integer metadata: bytes"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.117134+00:00",
+      "test": "historical_float_count",
+      "outcome": "rejected",
+      "message": "historical integer metadata: author_turn_count"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.117193+00:00",
+      "test": "historical_float_source_bytes",
+      "outcome": "rejected",
+      "message": "historical integer metadata: bytes"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.117258+00:00",
+      "test": "historical_nonstring_hash",
+      "outcome": "rejected",
+      "message": "historical SHA256"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.117483+00:00",
+      "test": "root_symlink",
+      "outcome": "rejected",
+      "message": "root/ancestor is not a real directory"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.117597+00:00",
+      "test": "ancestor_symlink",
+      "outcome": "rejected",
+      "message": "root/ancestor is not a real directory"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.117654+00:00",
+      "test": "root_parent_traversal",
+      "outcome": "rejected",
+      "message": "root parent traversal"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.146695+00:00",
+      "test": "missing_all_startup_flags",
+      "outcome": "rejected_before_root_reads",
+      "exit_code": 1,
+      "stderr": "PROFILE_STARTUP: invoke Python with -I -S -B before loading this module\n"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.174548+00:00",
+      "test": "missing_no_site",
+      "outcome": "rejected_before_root_reads",
+      "exit_code": 1,
+      "stderr": "PROFILE_STARTUP: invoke Python with -I -S -B before loading this module\n"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.197214+00:00",
+      "test": "missing_no_bytecode",
+      "outcome": "rejected_before_root_reads",
+      "exit_code": 1,
+      "stderr": "PROFILE_STARTUP: invoke Python with -I -S -B before loading this module\n"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.226321+00:00",
+      "test": "imported_module_startup_guard",
+      "outcome": "rejected_before_profile_imports",
+      "stderr": "PROFILE_STARTUP: invoke Python with -I -S -B before loading this module\n"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.233626+00:00",
+      "test": "per_file_cap",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "per-file size cap: large.bin"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.243396+00:00",
+      "test": "manifest_cap",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "read size cap: PACKAGE_MANIFEST.json"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.252836+00:00",
+      "test": "total_size_cap",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "total size cap"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.297475+00:00",
+      "test": "file_count_cap",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "file count cap"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.330928+00:00",
+      "test": "directory_count_cap",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "directory count cap"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.347782+00:00",
+      "test": "depth_cap",
+      "outcome": "rejected",
+      "exception": "ProfileError",
+      "message": "path canonical/depth"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.351127+00:00",
+      "test": "generic_regular_archive",
+      "outcome": "pass"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.351432+00:00",
+      "test": "ZIP_shared_ancestor_positive_control",
+      "outcome": "pass"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352005+00:00",
+      "test": "ZIP_symlink",
+      "outcome": "rejected_before_decompression",
+      "message": "archive member mode/type"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352110+00:00",
+      "test": "ZIP_bad_permission",
+      "outcome": "rejected_before_decompression",
+      "message": "archive member mode/type"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352192+00:00",
+      "test": "ZIP_parent",
+      "outcome": "rejected_before_decompression",
+      "message": "path component"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352268+00:00",
+      "test": "ZIP_absolute",
+      "outcome": "rejected_before_decompression",
+      "message": "path canonical/depth"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352395+00:00",
+      "test": "ZIP_duplicate",
+      "outcome": "rejected_before_decompression",
+      "message": "duplicate/case-alias archive member"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352463+00:00",
+      "test": "ZIP_ratio_cap",
+      "outcome": "rejected_before_decompression",
+      "message": "archive compression ratio cap"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352531+00:00",
+      "test": "ZIP_oversize_metadata",
+      "outcome": "rejected_before_decompression",
+      "message": "archive member size cap"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352595+00:00",
+      "test": "ZIP_unsupported_compression",
+      "outcome": "rejected_before_decompression",
+      "message": "archive encryption/compression"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352659+00:00",
+      "test": "ZIP_encrypted_metadata",
+      "outcome": "rejected_before_decompression",
+      "message": "archive encryption/compression"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352716+00:00",
+      "test": "ZIP_embedded_NUL_raw_name",
+      "outcome": "rejected_before_decompression",
+      "message": "archive raw-name truncation"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352819+00:00",
+      "test": "ZIP_directory_case_alias",
+      "outcome": "rejected_before_decompression",
+      "message": "case-alias file/directory namespace"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.352917+00:00",
+      "test": "ZIP_file_directory_case_alias",
+      "outcome": "rejected_before_decompression",
+      "message": "case-alias file/directory namespace"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.353014+00:00",
+      "test": "ZIP_file_used_as_ancestor",
+      "outcome": "rejected_before_decompression",
+      "message": "file used as ancestor/directory"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.353118+00:00",
+      "test": "ZIP_cumulative_cap_metadata",
+      "outcome": "rejected_before_decompression",
+      "message": "archive cumulative size cap"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.353230+00:00",
+      "test": "ZIP_wrong_expanded_hash",
+      "outcome": "rejected",
+      "message": "archive member SHA256"
+    },
+    {
+      "utc": "2026-10-16T08:15:31.393599+00:00",
+      "test": "ambient_import_poison_positive_control",
+      "outcome": "controlled_poison_executed_without_isolation",
+      "exit_code": 1,
+      "stderr": "Error in sitecustomize; set PYTHONVERBOSE for traceback:\nRuntimeError: PROFILE_OWNED_IMPORT_POISON\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sympy\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr948_30004549/publication/profile/private_fixtures/run-g9ukqmwf/poison/sympy.py\", line 3, in <module>\n    raise RuntimeError('PROFILE_OWNED_IMPORT_POISON')\nRuntimeError: PROFILE_OWNED_IMPORT_POISON\n"
+    },
+    {
+      "utc": "2026-10-16T08:15:33.939942+00:00",
+      "test": "PYTHONPATH_user_site_sitecustomize_optimization_poison",
+      "outcome": "ignored",
+      "marker_created": false,
+      "checker_replays": 3
+    },
+    {
+      "utc": "2026-10-16T08:15:34.174644+00:00",
+      "test": "explicit_compile_optimize0",
+      "outcome": "pass",
+      "runtime": {
+        "dont_write_bytecode": true,
+        "implementation": "CPython",
+        "isolated": 1,
+        "no_site": 0,
+        "no_user_site": 1,
+        "optimize": 0,
+        "python": "3.14.6",
+        "sympy": "1.14.0"
+      }
+    },
+    {
+      "utc": "2026-10-16T08:15:34.196329+00:00",
+      "test": "child_stdout_cap",
+      "outcome": "bounded_rejection",
+      "message": "child output cap"
+    },
+    {
+      "utc": "2026-10-16T08:15:34.217526+00:00",
+      "test": "child_stderr_cap",
+      "outcome": "bounded_rejection",
+      "message": "child output cap"
+    },
+    {
+      "utc": "2026-10-16T08:15:34.328107+00:00",
+      "test": "child_wall_time_cap",
+      "outcome": "bounded_rejection",
+      "message": "child wall-time cap"
+    },
+    {
+      "utc": "2026-10-16T08:15:34.330140+00:00",
+      "test": "private_fixture_no_pyc",
+      "outcome": "pass"
+    },
+    {
+      "utc": "2026-10-16T08:15:34.333447+00:00",
+      "test": "owned_fixture_cleanup",
+      "outcome": "pass",
+      "remaining_files": 0
+    }
+  ],
+  "runtime": {
+    "python": "3.14.6",
+    "executable": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr906_30006419/reviews/computation_family/tmp/venv/bin/python"
+  },
+  "limits": "Development tests on supplied CPython3.14.6/SymPy1.14.0 only; no publication/priority acceptance or hostile-OS sandbox."
+}
