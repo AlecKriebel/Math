@@ -1,0 +1,12 @@
+--- packet/rooted_verify.py
++++ review/rooted_verify_strict.py
+@@ -32,7 +32,8 @@
+         for j in range(i):
+             if edges[i][j] != edges[j][i]:
+                 raise ValueError('Core-edge matrix must be symmetric.')
+-            if type(edges[i][j]) is not int or not 0 <= edges[i][j] < c:
++            if any(type(label) is not int or not 0 <= label < c
++                   for label in (edges[i][j], edges[j][i])):
+                 raise ValueError('Edge label out of range.')
+             used.add(edges[i][j])
+     if used != set(range(c)):
