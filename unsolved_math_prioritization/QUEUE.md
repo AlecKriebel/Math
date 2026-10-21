@@ -1843,7 +1843,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1832 | 30003773 / OWR-16158-016 | Geometric Chern Classes in Arakelov Cobordism | 0.0530 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1833 | 30003983 / OWR-16629-009 | Decomposition of Equiangular Tight Frames | 0.0530 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1834 | 30004154 / OWR-16938-002 | Exact Higher-Order Matrix Decomposability | 0.0528 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 1835 | 30000859 / OWR-1731-004 | RSW Theory for Anisotropic Square-Lattice Percolation | 0.0527 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 1835 | 30000859 / OWR-1731-004 | RSW Theory for Anisotropic Square-Lattice Percolation | 0.0527 | 5.5 | 3 | 2007 | already_solved | 1/5 |  | 2026-10-21: ALREADY SOLVED for fixed interior critical parameters ph,pv in (0,1), ph+pv=1, by Grimmett-Manolescu (2013), Theorem 1.3(a), Definition 1.2 and Eq. (1.1). Positive all-scale bounds for aligned integer rectangles at each fixed aspect ratio; f(n)=n. Constants depend on parameters and aspect ratio; no endpoint or uniform-anisotropy claim. Authored literature-resolution [acceptance audit](../anisotropic_rsw_30000859/README.md); no new theorem or new proof claim. |  |
 | 1836 | 30002028 / OWR-11781-001 | Supersaturation Blow-Ups in Uniform Hypergraphs | 0.0522 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1837 | 30002123 / OWR-12006-004 | Shellability of Barycentric Subdivisions of Convex Complexes | 0.0522 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1838 | 30002169 / OWR-12013-001 | Intrinsic Viscosity Solutions for Rough Hamilton–Jacobi Equations | 0.0522 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
