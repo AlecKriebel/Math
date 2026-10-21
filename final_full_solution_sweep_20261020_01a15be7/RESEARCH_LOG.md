@@ -558,3 +558,6 @@ Live all-state inventory still ends at1446, with0 changed prior metadata records
 
 ### 2026-10-21T18:59:29.624114+00:00 — Through PR789; overall54%
 Accepted independent672–741review after reading fullreport and verifying578sealedoutputs/226captures; no missedcase or correction. Current metadata/progress changes remain explicitly separated from immutable reviewed receipts. Existing publications778,781,786,788,789 checked against exact publicPDF/source archives, semantic scope, unique ledgerrows and32/48/41/48/58original files. Cursor790. No new DOI, ledgerrow, merge or closure in this interval.
+
+### 2026-10-21T19:09:34.925320+00:00 — Through PR814; overall56%
+Completed790–814 with one current explicit already_solved withdrawal799, existing published810 verified with unique ledgerrow74 and complete65-entry supplement preserving all40historical originals, and23 ordinary exclusions (790–798,800–809,811–814). No new publication or provider mutation. Original810packet differs from current updated outer manifest/README/log only; exact manuscript and publicPDF match current head. Cursor815; fresh inventory still1446, independent742–789 review finishing.
