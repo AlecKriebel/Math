@@ -94,3 +94,27 @@
 - Independent reviewer checked every PR9–96 and all9 matching publication packages (41 public files); no missed eligible unpublished full claim or missing scientific payload found. Status labels for15,25,34 corrected from historical unsolved to present already_solved, preserving both statuses; disposition unchanged.
 - Reviewer independently repeated the GWS generate-skills help side effect and regenerated96 untracked skills/docs files outside this effort. Exact hashes are preserved in its incident receipt. No preimage is available, so no destructive rollback; these paths are excluded from all checkpoints. Future reviews explicitly forbid this command.
 - PR104 root replay passed2,087 supplied controls plus752 prior independent diagnostics. Two fresh proof/priority families remain in progress.
+
+## 2026-10-21T01:25:19.405372+00:00 — Repository checkpoint and evidence compaction — estimated completion5%
+
+- Second checkpoint520f618c7f3cbf414382a8bcef58f6918a5e16db pushed and verified on main, preserving shared checkout/index. Initial attempts failed for disk space;342,464,698 duplicate uncompressed bytes were removed only after exact gzip roundtrip/hash verification (EVIDENCE_COMPACTION.json).
+- Invalidated one old pre-repair cumulative PR256 file receipt, preserved its exact gzip, and recaptured actual merge-first-parent changes. Structural inventory complete through1386. No final disposition had relied on that receipt.
+- Fresh exclusion-tool adversary found arbitrary-path numeric binding and unbound secondary claim risks. Broadened rule never advanced production; reverted to established research paths, conservative status handling, exact receipt/blob binding and manual extra-scope review. Recheck pending. PR1384 noncanonical claimed_solved5 will receive full-claim inference.
+
+## 2026-10-21T01:26:05.803161+00:00 — PR104 completed — estimated completion6%
+
+- Complete literal analytic null-chain criterion passes fresh independent geometry audit; prior2,087+752 controls replay and new Cartesian/ODE, symbolic and integral diagnostics pass.
+- Fresh priority family reconstructed the same criterion from DR2019 separated equations plus classical third-kind identity, without a fixed-reflection-count grazing limit. No new mathematical increment established; existing closed PR unchanged.
+- Current overlapping Ferudun2026 external publication23371160 verified submitted/done and DOI HTTP200; later than PR development and not an Alec record to add to his ledger. Extra arithmetic claims not audited. No new paper/DOI/row.
+- Numerical cursor105;96 PRs disposed in order.
+
+## 2026-10-21T01:31:37.738775+00:00 — Ordered sweep throughPR152 — estimated completion8%
+
+- All144 PRs9–152 disposed contiguously: {'skip_entirely_already_published': 17, 'skip_explicit_non_claimed_solved': 125, 'skip_priority_gate_not_met': 2}. Existing publication identities compare exact original problem, scope, result, PR and DOI; fresh full payload downloads/checksums, ZIP integrity and source/code presence checked for recent records. No new publication, merge, closure or ledger mutation in this sweep.
+- Full independent PR97/104 corrected mathematics passes, but both novelty gates fail for classical/antecedent mechanisms. Explicit corrected already_solved claims excluded without reopening mathematical work; meaningful distinct refinements and their unresolved novelty remain recorded.
+- Live inventory extended1387 with no gaps; cursor153. No arbitrary cap. Fresh exclusion-tool tests found remaining cache-only binding risks; actual pinned diff parsing and full changed-scope equality now replace cached semantics. Independent follow-up pending.
+
+## 2026-10-21T01:33:59.628836+00:00 — Pinned exclusion mechanism verified — estimated completion8%
+
+- Independent final tooling review passed all28 real-Git cases; all112 prior exclusion receipts through133 match complete pinned paths, QUEUE blobs and independently parsed added rows. Eighteen documented current-classification corrections are distinct from receipt inconsistencies; no prior false exclusion found.
+- Cursor177 after sequential processing through176; existing publications18/19? Exact count remains authoritative in dispositions.jsonl, no approximate success claim. Current claimed-solved states and noncanonical/missing statuses always stop for root.

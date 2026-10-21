@@ -57,7 +57,9 @@ def main():
             old=json.loads(path.read_text())
             if (old.get('inventory_head_sha')==pr['headRefOid']
                     and old.get('inventory_base_sha')==pr['baseRefOid']
-                    and old.get('collection_schema')==2):
+                    and old.get('collection_schema')==2
+                    and not (str(old.get('file_list_source','')).startswith('complete pinned')
+                             and not old.get('pinned_comparison'))):
                 summary.append(old)
                 continue
         started=now()
