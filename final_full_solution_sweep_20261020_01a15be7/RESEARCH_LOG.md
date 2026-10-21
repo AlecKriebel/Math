@@ -623,3 +623,7 @@ Existing885/888/894publications verifiedwithuniquerows115/119/123,publicexactfil
 2026-10-21T20:24:25.086734+00:00 —952existingpublication23425412/row132 verified:33originals/173members/172payloads,identicalPDF. Literalordinarycompletion/nonzeroCassonscopeandpriorquantuminputs/reproductionlimits consistent.949–951explicitnegative skips. Overall66%; next953.
 
 2026-10-21T20:25:18.997483+00:00 checkpoint — orderedprefix9–966 complete(958PRs),67%bestguessoverall. Existing-publicationcoverage938/946/948/952 fullyverified with originalsourcepreservation/PDFs/closedarchives andcorrectledger; allothernewprefixexplicitnegative skips.906–937independentboundedreviewstillrunning;967claimedclosedcandidate freshduplicate/closureinspection underwaybeforemath. No newpublication/providerwrites thisinterval.
+
+### 2026-10-21T20:31:58.375983+00:00 — PR967 independent proof/priority checkpoint (67% overall)
+
+Checkpoint through966 was safely pushed as318e955171ce8a8886048806e2e29f9200327d06. Accepted bounded906–937 review after full report/seal/private-copy normal/O checks; no material disposition issue. PR967 fresh GWS178rows and own authenticated197records/8pages show no match. Original26file capture,24outermanifestpins,12tar originals and copied43533finitecontrols verified. Root fullproof reconstruction found no gap. Current and2October archival prior PDFs independently return identical598093bytes, including the complete same §3.44 counterexample; two fresh independent proof/priority reviews pending. No new DOI/row/PR mutation. Goal remains active; next967.
