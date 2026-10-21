@@ -294,3 +294,6 @@ NAMES.extend(['audits/pr0280_30000156/ROOT_RECORD_URL_FINDING.json', 'audits/pr0
 
 # Hold PR280 canonical7 during NEW record-URL repair; restore only after final frozen seal.
 NAMES=[n for n in NAMES if n not in ['audits/pr0280_30000156/ops_binding.py', 'audits/pr0280_30000156/prepublication_check.py', 'audits/pr0280_30000156/publication_live_gates.py', 'audits/pr0280_30000156/repository_integration.py', 'audits/pr0280_30000156/publication_lifecycle.py', 'audits/pr0280_30000156/record_publication_ledger.py', 'audits/pr0280_30000156/verify_published_files.py']]
+
+# Read-only structural coverage snapshot; explicitly not final reconciliation.
+NAMES.extend(["coverage_snapshot.py", "COVERAGE_SNAPSHOT.json", "audits/pr0399_30001179/ROOT_RECORD_URL_FINDING.json"])
