@@ -52,6 +52,13 @@ of the residual gerbe, or descent to some twisted line, would be insufficient.
 It does not choose a compatible actual marked-cover model and makes no claim
 that a central cover-stack obstruction has disappeared.
 
+A falsifying boundary check for the weaker argument is E=1: take the PGL2
+torsor F=Isom(P1,Q) for the real conic Q:x^2+y^2+z^2=0. Its quotient gerbe is
+Spec R and hence neutral, but F(R) is empty. Its compression is Q; the missing
+real point is supplied over C by [1:i:0]. Thus neutrality alone really fails
+to prove a fixed-split-line lift. The marked-point/conic-splitting step above
+is necessary and closes this concrete gap instead of assuming it away.
+
 Every nonempty open of a genus-zero curve over the infinite field k has a point
 of degree at most2. For a split curve, rational points are dense. For a
 nonsplit plane conic choose a k-line avoiding the finitely many excluded points
