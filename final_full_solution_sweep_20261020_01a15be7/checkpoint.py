@@ -652,3 +652,20 @@ NAMES.extend(['PR1006_PINNED_SCOPE_VERIFICATION.json', 'PR1006_MISSING_STATUS_CL
 NAMES.extend(['audits/pr0967_2616/ROOT_PROOF_REVIEW_ACCEPTANCE.json', 'audits/pr0967_2616/reviews/proof_recheck01/.gitignore', 'audits/pr0967_2616/reviews/proof_recheck01/AUTHOR_HARNESS_RERUN.json', 'audits/pr0967_2616/reviews/proof_recheck01/CUSTODY.json', 'audits/pr0967_2616/reviews/proof_recheck01/EVIDENCE_MANIFEST.json', 'audits/pr0967_2616/reviews/proof_recheck01/INDEPENDENT_EXECUTION.json', 'audits/pr0967_2616/reviews/proof_recheck01/INDEPENDENT_RESULTS.json', 'audits/pr0967_2616/reviews/proof_recheck01/INITIAL_INDEPENDENT_ANALYSIS.md', 'audits/pr0967_2616/reviews/proof_recheck01/PRIMARY_SOURCE_LOCATORS.json', 'audits/pr0967_2616/reviews/proof_recheck01/REPRODUCTION_SUMMARY.json', 'audits/pr0967_2616/reviews/proof_recheck01/RESEARCH_LOG.md', 'audits/pr0967_2616/reviews/proof_recheck01/REVIEW.md', 'audits/pr0967_2616/reviews/proof_recheck01/SEAL.sha256', 'audits/pr0967_2616/reviews/proof_recheck01/independent_checks.py', 'audits/pr0967_2616/reviews/proof_recheck01/run_reproduction.py', 'audits/pr0967_2616/reviews/proof_recheck01/verify_seal.py'])
 
 NAMES.extend(['PR1007_PINNED_SCOPE_VERIFICATION.json', 'PR1007_MISSING_STATUS_CLASSIFICATION.json'])
+
+NAMES.extend(['PR1008_PINNED_SCOPE_VERIFICATION.json', 'PR1008_MISSING_STATUS_CLASSIFICATION.json'])
+
+NAMES.extend(['PR1009_PINNED_SCOPE_VERIFICATION.json', 'PR1009_MISSING_STATUS_CLASSIFICATION.json'])
+
+NAMES.extend(['PR1010_PINNED_SCOPE_VERIFICATION.json', 'PR1010_MISSING_STATUS_CLASSIFICATION.json'])
+
+NAMES.extend(['PR1011_PINNED_SCOPE_VERIFICATION.json', 'PR1011_MISSING_STATUS_CLASSIFICATION.json'])
+
+NAMES.extend(['record_missing_classification.py'])
+
+NAMES.extend(['PR1012_PINNED_SCOPE_VERIFICATION.json', 'PR1012_MISSING_STATUS_CLASSIFICATION.json'])
+
+# Acceptedbounded938-966independentreview, privateinputsexcluded.
+NAMES.extend(['ROOT_RANGE0938_0966_ACCEPTANCE.json', 'reviews/range0938_0966_adversary/.gitignore', 'reviews/range0938_0966_adversary/CHECK_RESULTS.json', 'reviews/range0938_0966_adversary/OUTPUT_MANIFEST.json', 'reviews/range0938_0966_adversary/OUTPUT_MANIFEST.sha256', 'reviews/range0938_0966_adversary/RESEARCH_LOG.md', 'reviews/range0938_0966_adversary/REVIEW.md', 'reviews/range0938_0966_adversary/verify_artifact.py'])
+
+NAMES.extend(['PR1013_PINNED_SCOPE_VERIFICATION.json', 'PR1013_MISSING_STATUS_CLASSIFICATION.json'])
