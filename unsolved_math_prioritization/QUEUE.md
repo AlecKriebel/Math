@@ -1916,7 +1916,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1905 | 3000085 / AMR-029-0085 | Strongly minimal edge cover | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1906 | 30006520 / OWR-14299904-002 | Upward Closure of Grothendieck Schubert Supports | 0.0450 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1907 | 8800088 / AMR-087-0088 | Converting between divisor-class and infrastructure discrete logarithms | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1908 | 30005119 / OWR-10252930-032 | Uncommon Pairs of Linear Equations | 0.0442 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 1908 | 30005119 / OWR-10252930-032 | Uncommon Pairs of Linear Equations | 0.0442 | 5.5 | 3 | 2022 | already_solved | 1/5 |  | Prior-work source-scope correction: literal OWR rank-only wording is false by the known equal-differences Sidorenko example; not new mathematics. Maximum-girth large-prime results are prior work; no unrestricted prime-power-cardinality resolution claimed. Audited proof and scope: attempts/30005119_uncommon_pairs. |  |
 | 1909 | 30001941 / OWR-11453-002 | Sharp Free-Energy Decay for Fast Diffusion | 0.0441 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 1910 | 30002271 / OWR-12330-013 | Counterexamples to Averaged Local Fractional-Coloring Bounds | 0.0440 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 1911 | 30003699 / OWR-15987-008 | Coefficient Complexity of Braid-Matroid Kazhdan–Lusztig Polynomials | 0.0434 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
