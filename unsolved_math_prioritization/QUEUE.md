@@ -1886,7 +1886,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1875 | 3154 / OPG-36933 | Asymptotic Distribution of Form of Polyhedra | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1876 | 3321 / OPG-322 | Drawing disconnected graphs on surfaces | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1877 | 30001258 / OWR-3476-007 | Sublinear Lane–Emden Ground-State Asymptotics | 0.0492 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 1878 | 30001414 / OWR-4209-004 | Boundary Conditions Preserving Optimal Hardy–Sobolev Constants | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 1878 | 30001414 / OWR-4209-004 | Boundary Conditions Preserving Optimal Hardy–Sobolev Constants | 0.0491 | 5.0 | 3 | 2010 | unsolved | 5/5 |  | Scoped partial results: transparent-boundary sufficient class, mixed-boundary and Robin obstructions, and centered-ball third-order Hardy-only equality. Full classification and simultaneous critical Sobolev equality remain unresolved; no novelty claim. [Audited package](attempts/30001414/README.md). |  |
 | 1879 | 30001553 / OWR-4425-008 | Sharp Bounds for Alternating Involution Periods | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 1880 | 30001558 / OWR-4425-014 | Fragile and Robust Squarefree Infinite Words | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 1881 | 30002208 / OWR-12173-004 | Additive Sets Preserving Piecewise Syndeticity | 0.0490 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
