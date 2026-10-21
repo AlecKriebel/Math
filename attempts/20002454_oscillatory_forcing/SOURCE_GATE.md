@@ -1,0 +1,23 @@
+# Source gate: row 1901, ID 20002454 / AIM-PDES-0066
+
+Checked 2026-10-21. Decision: proceed only as a scoped mathematical audit / partial-progress task. Original objective verified; no full-resolution or novelty claim is supported.
+
+## Identity and original scope
+
+Primary source: AIM, *Stiff Sources and Numerical Methods for Conservation Laws*, version April 1, 2005, participant contribution A.1, printed page 3: https://aimath.org/WWN/balancelaws/balancelaws.pdf . Downloaded successfully; text extraction and rendered page visually inspected. The source asks for numerical approximation of u_t + partial_x f(u) = epsilon^{-1} h(x/epsilon), with continuous, mean-zero, one-periodic h; C1 coercive f with u f'(u)>0; and one-periodic initial data. It mentions oscillatory behavior and resonance but specifies no particular algorithm, norm, convergence rate, or uniform-in-epsilon target.
+
+The printed inequality is impossible at zero. Interpret it explicitly for u != 0, rather than claiming the literal source is consistent. The original does not specify a torus. On the real line, all positive epsilon are allowed and a solution need not stay one-periodic. Unit-torus work is a specialization: for nonconstant h of minimal period one, epsilon^{-1} must be an integer. If the minimal period differs, state the actual compatibility condition. Constant-zero forcing is an exceptional case.
+
+## Primary literature and novelty gate
+
+1. Amadori, *On the homogenization of conservation laws with resonant oscillatory source*, Asymptotic Analysis 46 (2006), 53–79, https://doi.org/10.3233/ASY-2006-727 . Publisher abstract inspected: establishes a corrector-type asymptotic representation with possibly resonant oscillatory data. This is affirmative prior progress, not evidence that resonance remains wholly untreated.
+2. Amadori, *Homogenization of conservation laws with oscillatory source and non-oscillatory data*, author-hosted full text https://people.disim.univaq.it/~amadori/PDF/proc_amadori.pdf . Downloaded and inspected introduction, Theorems 1–3, and stationary-family discussion. The recalled 2006 theorem uses a unique minimum of the potential, local convexity near zero, and prepared data whose fast-cell profiles are stationary. The extension to nonoscillatory data assumes C2 strictly convex flux, C2 potential with a unique minimum, and locally BV bounded data. Do not silently transfer these conclusions to all workshop hypotheses.
+3. Amadori–Gosse–Guerra, *Godunov-type approximation for a general resonant balance law with large data*, JDE 198 (2004), 233–274, https://doi.org/10.1016/j.jde.2003.10.004 ; primary preprint abstract https://www.math.ntnu.no/conservation/2003/015.html . The abstract reports convergence of Godunov approximations with large discontinuous resonant data and a generalized Riemann solver. It does not by itself establish epsilon-uniform underresolved accuracy for this periodic problem.
+4. Amadori–Gosse, *Transient L1 error estimates for well-balanced schemes on non-resonant scalar balance laws*, JDE 255 (2013), 469–502, https://doi.org/10.1016/j.jde.2013.04.016 ; primary preprint abstract https://www.math.ntnu.no/conservation/2013/001.html . Strict hyperbolicity permits linear-in-time error amplification, unlike a standard exponential Gronwall bound. This is nonresonant theory, not a blanket resonance result.
+5. Gómez-Bueno–Castro Díaz–Parés–Russo, *Collocation Methods for High-Order Well-Balanced Methods for Systems of Balance Laws*, Mathematics 9 (2021), 1799, https://doi.org/10.3390/math9151799 ; https://arxiv.org/abs/2505.02055 and https://arxiv.org/html/2505.02055v1 . The arXiv copy was uploaded May 4, 2025, but its linked journal publication is from 2021. Abstract and full-text reconstruction setup inspected. Prior methods already reconstruct stationary solutions with prescribed cell averages; this article treats quadrature and a problem-dependent resonance strategy. The recovered elementary reconstruction is a specialization of an established idea, not a defensible novelty claim. Publisher direct opening returned 429; author arXiv full text was accessible.
+
+Targeted current searches did not identify a primary theorem covering the full broad workshop objective under only its printed hypotheses. This is a bounded-search result, not certification of worldwide open status. The workshop objective is too underspecified for a clean solved/unsolved binary. Recommended status: partial progress, with exact preservation distinguished from transient convergence.
+
+
+## Distribution
+Only authored analysis and public scholarly verification metadata are included. Source documents, extracted text, dataset contents, and private coordination are excluded.
