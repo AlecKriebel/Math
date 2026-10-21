@@ -20,7 +20,7 @@
 \newcommand{\Li}{\operatorname{Li}}
 \title{A fixed birational map without a\\prime-field cycle-distribution limit}
 \author{Alec Kriebel\\[3pt]\small Independent researcher\\\small \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
-\date{Version 1.0 \quad 21 October 2026 (UTC)}
+\date{Version 1.1 \quad 21 October 2026 (UTC)}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -32,7 +32,11 @@ $1-\varphi(p-1)/(p-1)+o(1)$, with limsup $1$ and liminf at most $23/24$.
 Moreover, neither these distribution-function values nor the period
 measures converge on any further prime subset of positive upper relative
 density. The latter statement uses the classical continuous empirical
-law for $\varphi(p-1)/(p-1)$. The contribution is a precisely delimited
+law for $\varphi(p-1)/(p-1)$. A supplementary proposition treats all odd
+primes on the invariant regular domain, and under uniform-point deletion
+or arbitrary exceptional-period completion. These conventions cannot
+restore convergence on any positive-upper-density prime selection.
+The contribution is a precisely delimited
 application to the broad existence assertion in the 2004 Oberwolfach
 problem on finite-field maps. The triangular family, primitive-value
 estimates, totient mean and scalar distribution law are established
@@ -102,7 +106,10 @@ genus one enters a subsequent heuristic. Here the fixed degree is one,
 the forward polynomial acts on the full affine plane, and both directions
 are defined at every point for $p\in\mathcal S$. Part (iii) also rules
 out restoring the limit by a further positive-upper-density selection
-inside this admissible class. Failure at $x=3/4$ avoids the reciprocal
+inside this admissible class. Proposition~\ref{prop:allodd} below separately
+treats positive-density selections outside this class under explicitly
+specified deletion/completion conventions; it does not relabel the
+full-affine-permutation assertion as an all-prime theorem. Failure at $x=3/4$ avoids the reciprocal
 integer thresholds in the proposed integrable step law. We draw no
 conclusion about narrower elliptic-fiber or polynomial-automorphism
 questions, or about the different prime-averaged statistic at scale $p^2$
@@ -341,6 +348,102 @@ In particular, both conclusions survive deletion of any set of prime
 density zero. No assertion about arbitrary zero-density selections
 is required.
 
+\section{All-odd-prime robustness under exceptional-fiber conventions}
+The source permits suitable positive-density primes. The preceding
+full-affine theorem concerns precisely $\mathcal S$; for $p\equiv1\pmod4$
+the two multiplier-zero fibers contract to their zero sections and the
+full affine map is not a permutation. The following additional deduction
+addresses choosing primes outside $\mathcal S$ under natural, explicitly
+stated point-period conventions. It uses the same credited whole-prime
+scalar law \eqref{eq:scalar}, without a conditional residue-class law.
+
+\begin{proposition}\label{prop:allodd}
+For every odd prime $p$, put $N=p-1$, $\theta_p=\varphi(N)/N$,
+$r_p=\#\{u:u^2+1=0\}\in\{0,2\}$, and
+\[
+ \Omega_p=\{(u,v)\in\Fp^2:u^2+1\ne0\},\qquad
+ |\Omega_p|=p(p-r_p).
+\]
+Let $P_p$ now count the nonzero primitive multipliers $u^2+1$ for this
+prime. Then, uniformly as $p\to\infty$ through all odd primes,
+\begin{equation}\label{eq:allprimitive}
+ \left|\frac{P_p}{p}-\theta_p\right|
+ \le\frac{r_p\theta_p}{p}
+    +\frac{\theta_p(2^{\omega(N)}-1)}{\sqrt p}
+ \le\frac2p+64p^{-1/4}=o(1).
+\end{equation}
+On $\Omega_p$ the map is a permutation. Define its uniform point-period
+measure $\mu_p^{\rm reg}$, normalized by $p(p-r_p)$ and with periods
+divided by $p$. For fixed $1/2\le x<1$ and $p(1-x)>1$,
+\begin{align}
+ D_p^{\rm reg}(x)
+ &=1-\frac{(p-1)P_p}{p(p-r_p)}=1-\theta_p+o(1),\label{eq:allcdf}\\
+ \int h\,d\mu_p^{\rm reg}
+ &=\left(1-\frac2p\right)\frac{(p-1)P_p}{p(p-r_p)}
+   =\theta_p+o(1).\label{eq:allmoment}
+\end{align}
+The same asymptotics hold if any subset of the exceptional fibers is
+deleted, all regular points are retained, the remaining exceptional
+points receive arbitrary finite nonnegative assigned periods, and
+uniform point weights are renormalized. This includes deleting all
+exceptional fibers, deleting just their nonperiodic points, and completing
+all $p^2$ points. Under every such convention, the CDF at each fixed
+$x\in[1/2,1)$ and the period measures fail to converge along every prime
+set of positive upper density relative to all primes.
+\end{proposition}
+\begin{proof}
+The root count is $r_p=0$ in class $3$ and $r_p=2$ in class $1$ modulo $4$.
+The character indicator \eqref{eq:indicator}, extended by zero at zero,
+contributes zero at these roots. Its principal term is therefore exactly
+$(p-r_p)\theta_p$. The Jacobi-sum calculation \eqref{eq:jacobi} applies
+to every odd prime: $|S_\chi|\le\sqrt p$ for each nonprincipal $\chi$,
+and $S_\eta=-1$ in either residue class. The same squarefree-divisor
+triangle inequality gives
+\[
+ |P_p-(p-r_p)\theta_p|
+ \le\theta_p(2^{\omega(N)}-1)\sqrt p.
+\]
+Division by $p$, followed by \eqref{eq:omega}, proves
+\eqref{eq:allprimitive} uniformly over all odd primes.
+
+There are $p-r_p$ regular fibers. Their zero sections have period one;
+the other points have the nonzero multiplier's order. The proper-divisor
+and primitive-period count used in \eqref{eq:exact} proves the exact
+CDF formula \eqref{eq:allcdf}; the globally bounded continuous ramp $h$
+from the preceding section proves \eqref{eq:allmoment}. In both formulas
+$(p-1)/(p-r_p)=1+O(1/p)$, uniformly for $r_p\in\{0,2\}$, giving the stated
+asymptotics.
+
+Write $R=p(p-r_p)$. If $e$ exceptional points are retained, $0\le e\le r_p p$,
+the resulting probability measure on $[0,\infty)$ is
+\[
+ \widetilde\mu_p=\frac{R}{R+e}\mu_p^{\rm reg}+\xi_p,
+ \qquad \xi_p([0,\infty))=\frac{e}{R+e}\le\frac{r_p}{p}.
+\]
+For every statistic $f$ taking values in $[0,1]$, its integrals against
+these two measures differ by at most $r_p/p\le2/p$; for a bounded
+real $f$ the bound is $2\|f\|_\infty r_p/p$. This proves the claimed
+$O(1/p)$ stability of CDF indicators and of $h$. Assigned periods may
+exceed $p$, so no support restriction to $[0,1]$ is imposed on
+$\widetilde\mu_p$. The ramp is bounded and continuous on the entire
+nonnegative real axis. In particular its moment remains a legitimate
+weak-convergence test under arbitrary such assignments.
+
+If a completed/deleted CDF at a fixed $x\in[1/2,1)$ converged on a
+positive-upper-prime-density set, \eqref{eq:allcdf} and the stability
+bound would force $\theta_p$ to converge there. Weak convergence of the
+measures would similarly force convergence of the globally bounded ramp
+moment, hence of $\theta_p$ by \eqref{eq:allmoment}. The credited atomless
+whole-prime law \eqref{eq:scalar} and Lemma~\ref{lem:atom} exclude both.
+\end{proof}
+
+Only exceptional points and their weighting conventions vary in this
+proposition; actual cycles on the invariant regular domain are unchanged.
+It does not assert that the source specifies a unique convention for
+nonperiodic points, or that primes in class $1$ give full-affine
+permutations. The original class-$3$ theorem, including its explicit
+limsup/liminf bound, remains the full-affine statement.
+
 \section{Attribution, historical boundary, and reproducibility}
 The mechanism is a short application of established results. The
 specific assertion documented here combines the exact point-period
@@ -370,7 +473,11 @@ admissible primes through $1000$, including eight complete affine orbit
 graphs with $6{,}088$ points and six bad-reduction controls. It verifies
 fiber orders, divisor fixed-point counts, the
 point-weighted CDF identity and the continuous moment, and tests
-the endpoint and bad-reduction controls. Its run receipt specifies
+the endpoint and bad-reduction controls. A separate all-odd-prime checker
+verifies the regular-domain formulas and completion/deletion bounds through
+$1000$, including assignments with normalized periods exceeding one.
+Its exact assertion count and prime range are recorded separately; it does
+not replace or inflate the original $147{,}619$-check receipt. Each run receipt specifies
 the actual range and assertion count. Historical AI audit receipts
 also record $8{,}347{,}742$ finite assertions and $230{,}780$ analytic
 controls; they are preserved as earlier runs, not attributed to the
