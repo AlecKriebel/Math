@@ -1866,7 +1866,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1855 | 30006081 / OWR-14298796-001 | Adjoint-Free Approximation of Nonsymmetric Low-Rank Matrices | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1856 | 1963 / EP-156 | Erdős Problem #156 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1857 | 20000012 / AIM-ALGEBRAIC_GEOMETRY-0012 | Cox-chart Morse theory for cellular virtual resolutions | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1858 | 20000143 / AIM-ALGEBRAIC_GEOMETRY-0143 | Exact boundary mobility counts and explicit mixed-face estimates | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1858 | 20000143 / AIM-ALGEBRAIC_GEOMETRY-0143 | Exact boundary mobility counts and explicit mixed-face estimates | 0.0495 | 5.0 | 3 | unknown | unsolved | 5/5 |  | 2026-10-21: UNSOLVED. Six substantive mathematical approaches yield accepted scoped boundary counts and mixed-face refinements; see boundary_mobility_20000143/README.md. Lehmann's known results and mechanisms are credited; no novelty or broad-question resolution claimed. Original AIM wording remains corpus-only. Turns 5/5 is workflow metadata, not certification of a historical conversation-turn count. |  |
 | 1859 | 20000204 / AIM-ALGEBRAIC_GEOMETRY-0204 | Edge and tritangent surfaces are the only generic smooth visual-hull event types | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1860 | 20000566 / AIM-ANALYSIS-0098 | Fixed-diagonal geometry and an exact 4x4 two-paving profile | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1861 | 20000691 / AIM-ANALYTIC_NUMBER_THEORY-0055 | Quadratic moments, Poisson squares, and swap terms | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
