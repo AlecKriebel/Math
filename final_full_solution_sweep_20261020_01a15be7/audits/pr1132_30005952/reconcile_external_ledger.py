@@ -4,6 +4,7 @@ import datetime as dt
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -126,11 +127,19 @@ def main():
                 'Concurrent/preexisting row needs manual scope review; no append.')
     else:
         require(not intent.exists(), 'Prior append intent has unknown outcome; never retry blindly.')
-        atomic_json(intent, {'at': dt.datetime.now(dt.timezone.utc).isoformat(),
-                             'row': row, 'before_rows': len(before),
-                             'raw_directory': str(raw.relative_to(ROOT)),
-                             'no_new_publication': True,
-                             'recovery': 'Read by DOI/result before any retry; no blind append.'})
+        intent_value = {'at': dt.datetime.now(dt.timezone.utc).isoformat(),
+                        'row': row, 'before_rows': len(before),
+                        'raw_directory': str(raw.relative_to(ROOT)),
+                        'no_new_publication': True,
+                        'recovery': 'Read by DOI/result before any retry; no blind append.'}
+        # Exclusive durable claim: concurrent invocations cannot replace one
+        # another's known/unknown append intent. A partial write blocks retry.
+        descriptor = os.open(intent, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        with os.fdopen(descriptor, 'w', encoding='utf-8') as stream:
+            json.dump(intent_value, stream, indent=2)
+            stream.write('\n')
+            stream.flush()
+            os.fsync(stream.fileno())
         append_params = {'spreadsheetId': SHEET, 'range': plan['range'],
                          'valueInputOption': 'RAW', 'insertDataOption': 'INSERT_ROWS',
                          'includeValuesInResponse': True}
