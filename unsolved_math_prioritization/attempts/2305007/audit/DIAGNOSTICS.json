@@ -1,0 +1,420 @@
+{
+  "schema": "static-packet-independent-diagnostics-v1",
+  "subject_id": 2305007,
+  "positive_modes_passed": 6,
+  "negative_control_cases": 13,
+  "negative_control_runs_rejected": 26,
+  "checks": [
+    {
+      "label": "original isolated normal",
+      "mode": "normal",
+      "expected_acceptance": true,
+      "exit_code": 0,
+      "observed": {
+        "archive_sha256": "3edd807359152086a98c263a867d081d13e3c2c719f8edcfc9fa9af303d194e5",
+        "data_only_utf8": true,
+        "executable_members": 0,
+        "manifest_sha256": "1043036c026a64fce8308f1a372870cc05e11aa3b3f5111e428d83f741f26146",
+        "member_count": 7,
+        "pass": true,
+        "total_member_bytes": 20920
+      },
+      "result": "pass"
+    },
+    {
+      "label": "original isolated optimized",
+      "mode": "optimized",
+      "expected_acceptance": true,
+      "exit_code": 0,
+      "observed": {
+        "archive_sha256": "3edd807359152086a98c263a867d081d13e3c2c719f8edcfc9fa9af303d194e5",
+        "data_only_utf8": true,
+        "executable_members": 0,
+        "manifest_sha256": "1043036c026a64fce8308f1a372870cc05e11aa3b3f5111e428d83f741f26146",
+        "member_count": 7,
+        "pass": true,
+        "total_member_bytes": 20920
+      },
+      "result": "pass"
+    },
+    {
+      "label": "relocated isolated normal",
+      "mode": "normal",
+      "expected_acceptance": true,
+      "exit_code": 0,
+      "observed": {
+        "archive_sha256": "3edd807359152086a98c263a867d081d13e3c2c719f8edcfc9fa9af303d194e5",
+        "data_only_utf8": true,
+        "executable_members": 0,
+        "manifest_sha256": "1043036c026a64fce8308f1a372870cc05e11aa3b3f5111e428d83f741f26146",
+        "member_count": 7,
+        "pass": true,
+        "total_member_bytes": 20920
+      },
+      "result": "pass"
+    },
+    {
+      "label": "relocated isolated optimized",
+      "mode": "optimized",
+      "expected_acceptance": true,
+      "exit_code": 0,
+      "observed": {
+        "archive_sha256": "3edd807359152086a98c263a867d081d13e3c2c719f8edcfc9fa9af303d194e5",
+        "data_only_utf8": true,
+        "executable_members": 0,
+        "manifest_sha256": "1043036c026a64fce8308f1a372870cc05e11aa3b3f5111e428d83f741f26146",
+        "member_count": 7,
+        "pass": true,
+        "total_member_bytes": 20920
+      },
+      "result": "pass"
+    },
+    {
+      "label": "hostile directory and PYTHONPATH isolated normal",
+      "mode": "normal",
+      "expected_acceptance": true,
+      "exit_code": 0,
+      "observed": {
+        "archive_sha256": "3edd807359152086a98c263a867d081d13e3c2c719f8edcfc9fa9af303d194e5",
+        "data_only_utf8": true,
+        "executable_members": 0,
+        "manifest_sha256": "1043036c026a64fce8308f1a372870cc05e11aa3b3f5111e428d83f741f26146",
+        "member_count": 7,
+        "pass": true,
+        "total_member_bytes": 20920
+      },
+      "result": "pass"
+    },
+    {
+      "label": "hostile directory and PYTHONPATH isolated optimized",
+      "mode": "optimized",
+      "expected_acceptance": true,
+      "exit_code": 0,
+      "observed": {
+        "archive_sha256": "3edd807359152086a98c263a867d081d13e3c2c719f8edcfc9fa9af303d194e5",
+        "data_only_utf8": true,
+        "executable_members": 0,
+        "manifest_sha256": "1043036c026a64fce8308f1a372870cc05e11aa3b3f5111e428d83f741f26146",
+        "member_count": 7,
+        "pass": true,
+        "total_member_bytes": 20920
+      },
+      "result": "pass"
+    },
+    {
+      "label": "missing member",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "unexpected or missing member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "missing member",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "unexpected or missing member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "duplicate member",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "duplicate ZIP member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "duplicate member",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "duplicate ZIP member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "additional executable source",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "unexpected or missing member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "additional executable source",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "unexpected or missing member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "parent traversal name",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "unexpected or missing member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "parent traversal name",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "unexpected or missing member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "absolute member name",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "unexpected or missing member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "absolute member name",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "unexpected or missing member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "symlink member",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "nonregular ZIP member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "symlink member",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "nonregular ZIP member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "executable permission",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "executable ZIP member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "executable permission",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "executable ZIP member"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "same length payload corruption",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "member digest mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "same length payload corruption",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "member digest mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "manifest corruption",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "member digest mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "manifest corruption",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "member digest mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "wrong archive anchor",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "archive anchor mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "wrong archive anchor",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "archive anchor mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "wrong manifest anchor",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "manifest anchor mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "wrong manifest anchor",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "manifest anchor mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "wrong aggregate size",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "aggregate size mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "wrong aggregate size",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "aggregate size mismatch"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "duplicate receipt JSON key",
+      "mode": "normal",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "duplicate JSON key"
+      },
+      "result": "pass"
+    },
+    {
+      "label": "duplicate receipt JSON key",
+      "mode": "optimized",
+      "expected_acceptance": false,
+      "exit_code": 1,
+      "observed": {
+        "error_type": "ValueError",
+        "pass": false,
+        "reason": "duplicate JSON key"
+      },
+      "result": "pass"
+    }
+  ],
+  "archive_members_executed": false,
+  "original_archive_and_disk_unchanged": true,
+  "limits": "These checks test the reviewer-owned static-data verifier. There is no executable mathematical certificate in the author packet."
+}
