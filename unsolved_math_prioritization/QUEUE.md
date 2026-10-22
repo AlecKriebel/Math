@@ -730,7 +730,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 719 | 30004279 / OWR-17292-002 | Equivalent Bicommutant Categories from Nonisomorphic Conformal Nets | 0.1041 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 720 | 30002692 / OWR-13347-011 | Hyperbolic Conformal Boundaries of Poincaré–Einstein Manifolds | 0.1040 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 721 | 30002468 / OWR-12861-019 | Biclique Partition Numbers of Random Graphs | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
-| 722 | 30002507 / OWR-12866-017 | A Dirichlet Series with Exactly One Zero | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 722 | 30002507 / OWR-12866-017 | A Dirichlet Series with Exactly One Zero | 0.1040 | 5.5 | 3 | 2014 | unsolved | 5/5 |  |  |  |
 | 723 | 30002533 / OWR-12870-003 | New Rational Lyapunov Exponents on Hilbert Modular Surfaces | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 724 | 30002653 / OWR-13109-004 | Indeterminacy Locus of the Perfect Cone Prym Map | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 725 | 30002711 / OWR-13351-010 | Minimal Coefficient Rings for Cyclic Local Lifts | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
