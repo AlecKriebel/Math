@@ -668,7 +668,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 657 | 30000510 / OWR-1275-010 | Topology of Baby Teichmüller Spaces | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 658 | 30000576 / OWR-1323-013 | Chaos of Individual Operators in Chaotic Semigroups | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 659 | 30000700 / OWR-1460-004 | IM-Sharing Variants of Theorem H for Entire Functions | 0.1053 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 660 | 30000704 / OWR-1460-010 | Boundary Regularity for Complete Conformal Metrics | 0.1053 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 660 | 30000704 / OWR-1460-010 | Boundary Regularity for Complete Conformal Metrics | 0.1053 | 5.5 | 3 | 2007 | unsolved | 5/5 |  |  |  |
 | 661 | 30000930 / OWR-1790-007 | Ext-Algebra Models for Crossingless Matchings | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 662 | 30001017 / OWR-2049-004 | Intersection Numbers on First Voronoi Compactifications | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 663 | 4000018 / AMR-039-0018 | L2 Bonnet–Myers and dimension | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
