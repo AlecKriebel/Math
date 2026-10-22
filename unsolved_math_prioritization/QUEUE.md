@@ -1830,7 +1830,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1819 | 3264 / OPG-46432 | Ádám's Conjecture | 0.0540 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1820 | 3700006 / AMR-036-0006 | Completely invariant Fatou components | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1821 | 8700065 / AMR-086-0065 | Question 5.2 — Bugeaud | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1822 | 8800068 / AMR-087-0068 | Worst cases for LLL on ideal lattices | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1822 | 8800068 / AMR-087-0068 | Worst cases for LLL on ideal lattices | 0.0540 | 5.0 | 3 | unknown | unsolved | 5/5 |  | Five audited attempts under explicit classical coefficient-ideal conventions. Proved triangular/reversed-family obstructions, orbit-rank LLL bounds (negacyclic power-of-two exponent 1/4), exact growing evaluation/derivative-kernel shortest vectors, bounded-tail obstruction, and growing cyclic constant-loss examples. Eight reproducible checks/searches; no sharp exponential-rate reduced basis or global impossibility. See ideal_lll_8800068/README.md; no novelty or exhaustive current-status claim. |  |
 | 1823 | 98 / GREEN-006 | Sum-Free Subsets of [N]^d | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1824 | 9900006 / AMR-098-0006 | Coupling characterization of setwise asymptotic stationarity | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1825 | 30002421 / OWR-12723-007 | Discrepancy Lower Bounds for Line Unions in Three Dimensions | 0.0537 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
