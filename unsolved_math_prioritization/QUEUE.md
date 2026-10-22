@@ -385,7 +385,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 374 | 30006025 / OWR-14298589-010 | Geometric Chapuy Bijections for Random Surfaces | 0.1491 | 5.0 | 3 | 2024 | unsolved | 5/5 |  |  |  |
 | 375 | 30006078 / OWR-14298795-018 | Characteristic Classes of Hodge–Tate Local Systems | 0.1491 | 7.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 376 | 30003128 / OWR-14604-003 | Discrepancy versus Spectral Expansion in Sparse Regular Graphs | 0.1455 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 377 | 30003210 / OWR-14749-002 | Sublinear Generator Growth of Higher-Rank Lattices | 0.1455 | 7.0 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 377 | 30003210 / OWR-14749-002 | Sublinear Generator Growth of Higher-Rank Lattices | 0.1455 | 7.0 | 3 | 2016 | unsolved | 5/5 |  |  |  |
 | 378 | 30003221 / OWR-14751-005 | Ball-Shaped Minimizers of Competing Nonlocal Energies | 0.1455 | 7.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 379 | 30000417 / OWR-1189-007 | List-Labeling Numbers of Paths | 0.1451 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 380 | 30000660 / OWR-1452-024 | Étale-Local Equivalence of Fiberwise Isomorphic Families | 0.1449 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
