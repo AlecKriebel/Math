@@ -1850,7 +1850,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1839 | 30005048 / OWR-9790364-002 | Elementary Proofs of Laguerre–Pólya Total Positivity | 0.0521 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1840 | 30005111 / OWR-10252930-021 | Elementary Proof of the Closed Walk Stacking Criterion | 0.0521 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1841 | 30003131 / OWR-14604-008 | Quadratic-Length Universal Random Permutations | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 1842 | 30003172 / OWR-14741-004 | Simultaneously Adaptive Universal Source Coding | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 1842 | 30003172 / OWR-14741-004 | Simultaneously Adaptive Universal Source Coding | 0.0517 | 5.5 | 3 | 2016 | unsolved | 5/5 |  | 2026-10-21: UNSOLVED5. Independent audit accepts three scoped partial results: countable aggregation, an arbitrary two-point Bernoulli-class obstruction, and lack of a countable coordinatewise-cofinal summable-envelope catalogue. None resolves exact or fixed-factor adaptation for the intended uncountable regularly varying envelope family; the known PC bound remains O_f(log log n). No novelty certification. Authored proofs, audit, source metadata and integrity checks: [adaptive_coding_30003172](../adaptive_coding_30003172/RESEARCH.md). |  |
 | 1843 | 30005478 / OWR-12697711-014 | Algorithms for Amoeba Dimensions from Tropical Fans | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1844 | 30005529 / OWR-13750333-010 | Compatible Geodesic and Horocycle Symbolic Codings | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1845 | 30005732 / OWR-14298011-003 | Well-Defined Trajectories in Controlled Set Motions | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
