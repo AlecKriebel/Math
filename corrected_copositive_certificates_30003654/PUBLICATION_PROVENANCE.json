@@ -1,0 +1,179 @@
+{
+  "assert_hardening": [
+    {
+      "file": "check_examples.py",
+      "original_source": "\"\"\"Exact authored algebra checks; does not reproduce external source text.\"\"\"\nimport sympy as s\nx,y,e=s.symbols('x y e')\nh=(x*y+1)*(x-y)**2\np=1+x-y\nassert s.expand(p+h-((y-x-s.Rational(1,2))**2+s.Rational(3,4)+x*y*(y-x)**2))==0\nassert s.Poly(p,x,y).total_degree()==1\nassert s.Poly(h,x,y).total_degree()==4\nassert s.Poly(h,x,y).coeff_monomial(y**4)==0\nr=(1+x+y)**3*(1+x-y)\nassert s.Poly(r,x,y).coeff_monomial(y**4)==-1\nassert s.expand(r.subs(y,x)-(1+2*x)**3)==0\nassert s.factor(4*e*(e+1/(4*e))-(2*e-1)**2)==4*e\ncubic=1+x**3-(y-x)**3\nassert s.expand(cubic.subs(y,x))==1+x**3\nassert s.Poly(cubic,x,y).coeff_monomial(y**3)==-1\nu=s.symbols('u')\nF=(1+x)**2+(u-x)**2\nassert s.expand(F.subs(u,x)-(1+x)*(1+x))==0\nassert s.Poly(F,x,u).total_degree()==2\nprint('PASS: all exact identities, degree checks, and horizon assertions; explicit boundary perturbation determinant is 4\u03b5>0.')\n",
+      "original": {
+        "bytes": 872,
+        "sha256": "dc0b1bb17ffa94c9288134e7e4f3fb42fff78891ebfaff9503acfbe94278cde4"
+      },
+      "assertions": [
+        {
+          "line": 6,
+          "column": 0,
+          "condition": "s.expand(p+h-((y-x-s.Rational(1,2))**2+s.Rational(3,4)+x*y*(y-x)**2))==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='expand', ctx=Load()), args=[BinOp(left=BinOp(left=Name(id='p', ctx=Load()), op=Add(), right=Name(id='h', ctx=Load())), op=Sub(), right=BinOp(left=BinOp(left=BinOp(left=BinOp(left=BinOp(left=Name(id='y', ctx=Load()), op=Sub(), right=Name(id='x', ctx=Load())), op=Sub(), right=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Rational', ctx=Load()), args=[Constant(value=1), Constant(value=2)], keywords=[])), op=Pow(), right=Constant(value=2)), op=Add(), right=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Rational', ctx=Load()), args=[Constant(value=3), Constant(value=4)], keywords=[])), op=Add(), right=BinOp(left=BinOp(left=Name(id='x', ctx=Load()), op=Mult(), right=Name(id='y', ctx=Load())), op=Mult(), right=BinOp(left=BinOp(left=Name(id='y', ctx=Load()), op=Sub(), right=Name(id='x', ctx=Load())), op=Pow(), right=Constant(value=2)))))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 7,
+          "column": 0,
+          "condition": "s.Poly(p,x,y).total_degree()==1",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[Name(id='p', ctx=Load()), Name(id='x', ctx=Load()), Name(id='y', ctx=Load())], keywords=[]), attr='total_degree', ctx=Load()), args=[], keywords=[]), ops=[Eq()], comparators=[Constant(value=1)])",
+          "control_flow": []
+        },
+        {
+          "line": 8,
+          "column": 0,
+          "condition": "s.Poly(h,x,y).total_degree()==4",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[Name(id='h', ctx=Load()), Name(id='x', ctx=Load()), Name(id='y', ctx=Load())], keywords=[]), attr='total_degree', ctx=Load()), args=[], keywords=[]), ops=[Eq()], comparators=[Constant(value=4)])",
+          "control_flow": []
+        },
+        {
+          "line": 9,
+          "column": 0,
+          "condition": "s.Poly(h,x,y).coeff_monomial(y**4)==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[Name(id='h', ctx=Load()), Name(id='x', ctx=Load()), Name(id='y', ctx=Load())], keywords=[]), attr='coeff_monomial', ctx=Load()), args=[BinOp(left=Name(id='y', ctx=Load()), op=Pow(), right=Constant(value=4))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 11,
+          "column": 0,
+          "condition": "s.Poly(r,x,y).coeff_monomial(y**4)==-1",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[Name(id='r', ctx=Load()), Name(id='x', ctx=Load()), Name(id='y', ctx=Load())], keywords=[]), attr='coeff_monomial', ctx=Load()), args=[BinOp(left=Name(id='y', ctx=Load()), op=Pow(), right=Constant(value=4))], keywords=[]), ops=[Eq()], comparators=[UnaryOp(op=USub(), operand=Constant(value=1))])",
+          "control_flow": []
+        },
+        {
+          "line": 12,
+          "column": 0,
+          "condition": "s.expand(r.subs(y,x)-(1+2*x)**3)==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='expand', ctx=Load()), args=[BinOp(left=Call(func=Attribute(value=Name(id='r', ctx=Load()), attr='subs', ctx=Load()), args=[Name(id='y', ctx=Load()), Name(id='x', ctx=Load())], keywords=[]), op=Sub(), right=BinOp(left=BinOp(left=Constant(value=1), op=Add(), right=BinOp(left=Constant(value=2), op=Mult(), right=Name(id='x', ctx=Load()))), op=Pow(), right=Constant(value=3)))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 13,
+          "column": 0,
+          "condition": "s.factor(4*e*(e+1/(4*e))-(2*e-1)**2)==4*e",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='factor', ctx=Load()), args=[BinOp(left=BinOp(left=BinOp(left=Constant(value=4), op=Mult(), right=Name(id='e', ctx=Load())), op=Mult(), right=BinOp(left=Name(id='e', ctx=Load()), op=Add(), right=BinOp(left=Constant(value=1), op=Div(), right=BinOp(left=Constant(value=4), op=Mult(), right=Name(id='e', ctx=Load()))))), op=Sub(), right=BinOp(left=BinOp(left=BinOp(left=Constant(value=2), op=Mult(), right=Name(id='e', ctx=Load())), op=Sub(), right=Constant(value=1)), op=Pow(), right=Constant(value=2)))], keywords=[]), ops=[Eq()], comparators=[BinOp(left=Constant(value=4), op=Mult(), right=Name(id='e', ctx=Load()))])",
+          "control_flow": []
+        },
+        {
+          "line": 15,
+          "column": 0,
+          "condition": "s.expand(cubic.subs(y,x))==1+x**3",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='expand', ctx=Load()), args=[Call(func=Attribute(value=Name(id='cubic', ctx=Load()), attr='subs', ctx=Load()), args=[Name(id='y', ctx=Load()), Name(id='x', ctx=Load())], keywords=[])], keywords=[]), ops=[Eq()], comparators=[BinOp(left=Constant(value=1), op=Add(), right=BinOp(left=Name(id='x', ctx=Load()), op=Pow(), right=Constant(value=3)))])",
+          "control_flow": []
+        },
+        {
+          "line": 16,
+          "column": 0,
+          "condition": "s.Poly(cubic,x,y).coeff_monomial(y**3)==-1",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[Name(id='cubic', ctx=Load()), Name(id='x', ctx=Load()), Name(id='y', ctx=Load())], keywords=[]), attr='coeff_monomial', ctx=Load()), args=[BinOp(left=Name(id='y', ctx=Load()), op=Pow(), right=Constant(value=3))], keywords=[]), ops=[Eq()], comparators=[UnaryOp(op=USub(), operand=Constant(value=1))])",
+          "control_flow": []
+        },
+        {
+          "line": 19,
+          "column": 0,
+          "condition": "s.expand(F.subs(u,x)-(1+x)*(1+x))==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='expand', ctx=Load()), args=[BinOp(left=Call(func=Attribute(value=Name(id='F', ctx=Load()), attr='subs', ctx=Load()), args=[Name(id='u', ctx=Load()), Name(id='x', ctx=Load())], keywords=[]), op=Sub(), right=BinOp(left=BinOp(left=Constant(value=1), op=Add(), right=Name(id='x', ctx=Load())), op=Mult(), right=BinOp(left=Constant(value=1), op=Add(), right=Name(id='x', ctx=Load()))))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 20,
+          "column": 0,
+          "condition": "s.Poly(F,x,u).total_degree()==2",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[Name(id='F', ctx=Load()), Name(id='x', ctx=Load()), Name(id='u', ctx=Load())], keywords=[]), attr='total_degree', ctx=Load()), args=[], keywords=[]), ops=[Eq()], comparators=[Constant(value=2)])",
+          "control_flow": []
+        }
+      ]
+    },
+    {
+      "file": "check_exact.py",
+      "original_source": "import sympy as s\nimport json\nx,y,e=s.symbols('x y e', real=True)\nh=(x*y+1)*(x-y)**2\np=1+x-y\nr=(1+x+y)**3*p\ndef component(f, degree):\n    return s.Add(*(coef*x**a*y**b for (a,b),coef in s.Poly(f,x,y).terms() if a+b==degree))\ndef at_axis(f):\n    return f.subs({x:0,y:1})\nchecks={\n 'source_counterexample_identity': s.expand(p+h-((y-x-s.Rational(1,2))**2+s.Rational(3,4)+x*y*(y-x)**2))==0,\n 'h_degree': s.Poly(h,x,y).total_degree(),\n 'p_degree': s.Poly(p,x,y).total_degree(),\n 'p_actual_leading_at_axis': at_axis(component(p,s.Poly(p,x,y).total_degree())),\n 'p_ambient_degree4_at_axis': at_axis(component(p,4)),\n 'h_leading_at_axis': at_axis(component(h,4)),\n 'separator_r_degree': s.Poly(r,x,y).total_degree(),\n 'separator_r_degree4_at_axis': s.Poly(r,x,y).coeff_monomial(y**4),\n 'separator_r_on_diagonal': str(s.factor(r.subs(y,x))),\n 'nonexact_epsilon_quadratic_determinant_M_1_over_4e': str(s.simplify(e*(e+1/(4*e))-(2*e-1)**2/4)),\n 'empty_Z_example_completion_identity': s.simplify((s.Symbol('A')+s.Symbol('M'))*x**2+s.Symbol('B')*x+s.Symbol('C')+s.Symbol('M')-((s.Symbol('A')+s.Symbol('M'))*(x+s.Symbol('B')/(2*(s.Symbol('A')+s.Symbol('M'))))**2+s.Symbol('C')+s.Symbol('M')-s.Symbol('B')**2/(4*(s.Symbol('A')+s.Symbol('M')))))==0\n}\nassert checks['h_degree']==4\nassert checks['p_degree']==1\nassert checks['p_actual_leading_at_axis']==-1\nassert checks['p_ambient_degree4_at_axis']==0\nassert checks['h_leading_at_axis']==0\nassert checks['separator_r_degree']==4\nassert s.expand(r.subs(y,x)-(1+2*x)**3)==0\nassert checks['source_counterexample_identity']\nassert checks['separator_r_degree4_at_axis']==-1\nassert checks['nonexact_epsilon_quadratic_determinant_M_1_over_4e']=='e'\nassert checks['empty_Z_example_completion_identity']\nprint(json.dumps(checks,indent=2,default=str))\n",
+      "original": {
+        "bytes": 1776,
+        "sha256": "27f0da9fbc8145cfb6bd6020983e4e68d3763e78860a0dc08f0ad490bfb51a4d"
+      },
+      "assertions": [
+        {
+          "line": 24,
+          "column": 0,
+          "condition": "checks['h_degree']==4",
+          "condition_ast": "Compare(left=Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='h_degree'), ctx=Load()), ops=[Eq()], comparators=[Constant(value=4)])",
+          "control_flow": []
+        },
+        {
+          "line": 25,
+          "column": 0,
+          "condition": "checks['p_degree']==1",
+          "condition_ast": "Compare(left=Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='p_degree'), ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)])",
+          "control_flow": []
+        },
+        {
+          "line": 26,
+          "column": 0,
+          "condition": "checks['p_actual_leading_at_axis']==-1",
+          "condition_ast": "Compare(left=Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='p_actual_leading_at_axis'), ctx=Load()), ops=[Eq()], comparators=[UnaryOp(op=USub(), operand=Constant(value=1))])",
+          "control_flow": []
+        },
+        {
+          "line": 27,
+          "column": 0,
+          "condition": "checks['p_ambient_degree4_at_axis']==0",
+          "condition_ast": "Compare(left=Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='p_ambient_degree4_at_axis'), ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 28,
+          "column": 0,
+          "condition": "checks['h_leading_at_axis']==0",
+          "condition_ast": "Compare(left=Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='h_leading_at_axis'), ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 29,
+          "column": 0,
+          "condition": "checks['separator_r_degree']==4",
+          "condition_ast": "Compare(left=Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='separator_r_degree'), ctx=Load()), ops=[Eq()], comparators=[Constant(value=4)])",
+          "control_flow": []
+        },
+        {
+          "line": 30,
+          "column": 0,
+          "condition": "s.expand(r.subs(y,x)-(1+2*x)**3)==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='expand', ctx=Load()), args=[BinOp(left=Call(func=Attribute(value=Name(id='r', ctx=Load()), attr='subs', ctx=Load()), args=[Name(id='y', ctx=Load()), Name(id='x', ctx=Load())], keywords=[]), op=Sub(), right=BinOp(left=BinOp(left=Constant(value=1), op=Add(), right=BinOp(left=Constant(value=2), op=Mult(), right=Name(id='x', ctx=Load()))), op=Pow(), right=Constant(value=3)))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": []
+        },
+        {
+          "line": 31,
+          "column": 0,
+          "condition": "checks['source_counterexample_identity']",
+          "condition_ast": "Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='source_counterexample_identity'), ctx=Load())",
+          "control_flow": []
+        },
+        {
+          "line": 32,
+          "column": 0,
+          "condition": "checks['separator_r_degree4_at_axis']==-1",
+          "condition_ast": "Compare(left=Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='separator_r_degree4_at_axis'), ctx=Load()), ops=[Eq()], comparators=[UnaryOp(op=USub(), operand=Constant(value=1))])",
+          "control_flow": []
+        },
+        {
+          "line": 33,
+          "column": 0,
+          "condition": "checks['nonexact_epsilon_quadratic_determinant_M_1_over_4e']=='e'",
+          "condition_ast": "Compare(left=Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='nonexact_epsilon_quadratic_determinant_M_1_over_4e'), ctx=Load()), ops=[Eq()], comparators=[Constant(value='e')])",
+          "control_flow": []
+        },
+        {
+          "line": 34,
+          "column": 0,
+          "condition": "checks['empty_Z_example_completion_identity']",
+          "condition_ast": "Subscript(value=Name(id='checks', ctx=Load()), slice=Constant(value='empty_Z_example_completion_identity'), ctx=Load())",
+          "control_flow": []
+        }
+      ]
+    }
+  ],
+  "sanitization": "Authored Python source is included for exact AST provenance. No external source text, extracted record metadata, private coordination, or private paths are included."
+}
