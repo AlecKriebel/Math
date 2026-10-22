@@ -1,0 +1,13 @@
+# Independent source-resolution review: PASS
+
+Problem30003538 / OWR-15577-010. The unrestricted proposed equality is already false by the original report itself. Recommended disposition: already_solved0/5, credited negative source resolution. No new analytic proof is claimed.
+
+The original Meda contribution and its global definitions were checked. Printed2135–2136 were visually inspected, including the absolute values inside both all-time maximal operators and the distinction between the full L1-defined Riesz space and its modified h1-defined subspace. Theorem1(a) on rank-one noncompact symmetric spaces directly negates the universal equality. The separate paragraph about doubling geometry is not a hypothesis of that universal statement. The hyperbolic disc is explicitly identified as a prototype counterexample manifold.
+
+The later2207.02532v1 definitions, class M, Theorem2.10, Corollary2.11 and their proof passages were read; pages2 and11 were visually checked. Theorem2.10 identifies the full Riesz space with X^(1/2), with equivalent norms. The earlier1908.10057v1 Theorem4.15 for k=1 supplies the compact-support/non-density statement, so the later corollary genuinely concerns the full Riesz space. This is stronger than the original report's modified-space atomic statement; that distinction is correctly preserved.
+
+Corollary4.9 and its proof give proper Riesz-in-Poisson and heat-in-Poisson inclusions, and Riesz not contained in heat. These suffice for pairwise distinction without claiming the unproved reverse relation. Non-density of compactly supported members excludes Hardy-norm-convergent expansions into compactly supported atoms in that space, since finite sums remain compactly supported. It does not exclude every abstract basis, noncompact molecule or frame. Neither the restricted doubling equality question nor local maximal variants are resolved by this packet.
+
+The detailed theorem references are correctly attributed to the accessible author preprint, not an uninspected version-of-record PDF. Published metadata is reported as corroboration. This review checks source statements, hypotheses and implications; it does not recertify all external harmonic-analysis estimates, spectral calculus or Paley–Wiener arguments.
+
+All eight manifest-bound source-result files and three primary PDF hashes verify. The925 logical sanity assertions replay byte-identically; they are not a finite proof of any analytic theorem. No mandatory correction was found. Preserve frozen bytes and append this scoped review. Publish only as a credited literature resolution of the unrestricted question, with atomic and geometry limits explicit.
