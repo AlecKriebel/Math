@@ -1832,7 +1832,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1821 | 8700065 / AMR-086-0065 | Question 5.2 — Bugeaud | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1822 | 8800068 / AMR-087-0068 | Worst cases for LLL on ideal lattices | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1823 | 98 / GREEN-006 | Sum-Free Subsets of [N]^d | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1824 | 9900006 / AMR-098-0006 | Coupling characterization of setwise asymptotic stationarity | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1824 | 9900006 / AMR-098-0006 | Coupling characterization of setwise asymptotic stationarity | 0.0540 | 5.0 | 3 | unknown | unsolved | 5/5 |  | Five audited attempts. Proved arbitrary-space auxiliary-copy random-time characterization of full-path setwise convergence, with exact subsequence and independence quantifiers; Bernoulli non-TV example; rank-one obstruction to a fixed aligned-pair criterion; support-size and quantifier obstructions. Broad characterization valid, but intended named-problem format and priority unverified; no unqualified solution claim. See setwise_stationarity_9900006/README.md. |  |
 | 1825 | 30002421 / OWR-12723-007 | Discrepancy Lower Bounds for Line Unions in Three Dimensions | 0.0537 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 1826 | 30002547 / OWR-12872-018 | Growth Rate of Quadrant Loops | 0.0536 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 1827 | 30002723 / OWR-13353-006 | Complexity of Extremality Testing in Infinite Group Problems | 0.0536 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
