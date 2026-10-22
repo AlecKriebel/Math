@@ -1,0 +1,10 @@
+# Research log — 2772 / KP-2.24
+
+- 2026-09-30 07:10 UTC: Recovered exact pinned statement and K3 page105. Checked repository root/queue instructions, README, target row queued0/5, campaign publication ledger and related targets. No prior Alec/campaign attempt found. Related30003293 shares the existence component but adds an irregularity question. Source URL in dataset is only an AIM workshop report. Completion estimate toward full target:5%.
+- Approach1, 07:11–07:13UTC: Literature and direct product/finite-étale-product route. Verified Llosa Isenrich–Py Theorem2 and Proposition26 as exact scope restrictions. Proved factorization of maps from a product to a hyperbolic curve using the negative degree of the pulled-back tangent line bundle, extending to finite étale quotients. Route blocked for producing a third fibration. Full-target completion estimate:10%.
+- Approach2, 07:13–07:15UTC: Product-image hypersurface construction. Derived top Chern obstruction D(D+Kj)(D+Kk)>0 for a smooth ample divisor, hence no submersive coordinate projections. With cited normalization theorem, normal-and-ample product images are excluded. Cannot extend through arbitrary nonnormal divisors or prove ampleness. Full-target completion estimate:15%.
+- Approach3, 07:15UTC: Group/cohomology and Euler constraints. Derived b1(X)>=2sum(base genera), fiber genus lower bounds and Euler equalities. No contradiction or geometric realization follows. Full-target completion estimate remains15%; frozen UNSOLVED with exact surviving nonnormal/nonample image gap rather than spend further budget on the same blocked routes.
+
+The package contains three substantive approach families, not a full solution. Parent manages turn accounting and queue, including the user instruction to use unsolved for incomplete original targets. No generator run, public branch/push/PR, external communication, or release performed.
+
+Model disclosure: worker inherited runtime configuration; exact model identifier was not exposed by an introspection tool. No model/reasoning switch made or claimed. Do not substitute other campaign workers' metadata.
