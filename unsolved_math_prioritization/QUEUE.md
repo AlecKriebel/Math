@@ -795,7 +795,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 784 | 30004831 / OWR-8415347-009 | Monoidal Invariance of Hopf-Algebra Cohomological Dimension | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 785 | 30004953 / OWR-8415364-011 | Optimal Great-Subsphere Concentration for the Negative-$p$ Aleksandrov Problem | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 786 | 30005012 / OWR-9790358-010 | Nonsingularity of Bernstein-Basis Collocation Matrices | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 787 | 30005024 / OWR-9790359-005 | Finite-Mean Coding Radius for Finitely Dependent Processes | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 787 | 30005024 / OWR-9790359-005 | Finite-Mean Coding Radius for Finitely Dependent Processes | 0.1010 | 5.5 | 3 | 2022 | unsolved | 5/5 |  |  |  |
 | 788 | 30005026 / OWR-9790359-007 | Simultaneous Spatial and Informational Coding Efficiency | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 789 | 30005078 / OWR-10252925-002 | Algorithms for Multigraded Castelnuovo–Mumford Regularity | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 790 | 30005114 / OWR-10252930-024 | Spread Bounds for the Random Triangle-Removal Process | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
