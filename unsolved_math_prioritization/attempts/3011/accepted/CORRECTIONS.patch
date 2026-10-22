@@ -1,0 +1,48 @@
+Authored mathematical correction patch. Minus hunks are rejected or superseded statements, not accepted claims. The corrected REPORT.md and PARAMETRIC_EXTENSION.md control. The full reconstructed baseline is omitted from this public-only slice and was never authenticated as a historical snapshot. This explanatory preamble is the only publication change to the original diff bytes.
+
+--- REPORT.before-corrections.md
++++ REPORT.md
+@@ -28,7 +28,7 @@
+ 
+ \[
+  d_\infty(f,g)=\sup_{x\in M}d(f(x),g(x)),\qquad
+- D(f,g)=d_\infty(f,g)+d_\infty(f^{-1},g^{-1}).
++ D(f,g)=\max\{d_\infty(f,g),d_\infty(f^{-1},g^{-1})\}.
+ \]
+ 
+ These give the same topology on Homeo(M). Indeed, if f_i converges uniformly to the homeomorphism f and y=f_i(x), then
+@@ -90,7 +90,7 @@
+ 
+ ## 3. Route B: Alexander shrinking and parametrized extensions
+ 
+-For the Euclidean unit disk define, for t>0,
++For the Euclidean unit disk define, for 0<t≤1,
+ 
+ \[
+  A_t(h)(x)=\begin{cases}t h(x/t),&\|x\|\le t,\\x,&\|x\|\ge t,\end{cases}
+@@ -108,15 +108,15 @@
+ 
+ These conclusions are stronger than merely vanishing homotopy groups, but they still do not prove ANR. In particular, `G_n is ANR` is equivalent to `G_n is AR` because G_n is already contractible.
+ 
+-A fully detailed independent extension analysis is in `PARAMETRIC_EXTENSION.md`. Its finite-simplex construction has face compatibility, an explicit cardinality-dependent control estimate, and an extension theorem for bounded-multiplicity parameter covers. It isolates the additional dimension-independent control needed to pass to arbitrary metrizable parameter spaces. Finite-dimensional disks or a fixed finite simplicial parameter complex do not test that missing quantifier.
+-
+-**Exact remaining gap:** a uniformly small, face-compatible interpolation or another extension construction with control independent of the number of active partition-of-unity coordinates. The existing estimates are not claimed to disprove the existence of such control; they simply do not establish it.
++A fully detailed independent extension analysis is in `PARAMETRIC_EXTENSION.md`. Its finite-simplex construction has face compatibility, an explicit cardinality-dependent control estimate, an extension theorem for bounded-multiplicity parameter covers, and an explicit radial-twist counterexample to dimension-independent control of that particular interpolation. It states a sufficient replacement property for a different family of operations. Finite-dimensional disks or a fixed finite simplicial parameter complex do not test that missing quantifier.
++
++**Exact remaining gap:** a uniformly small, face-compatible interpolation or another extension construction with control independent of the number of active partition-of-unity coordinates. For the specific canonical Alexander interpolation, the accompanying note proves that dimension-independent control is false: vertices whose forward-and-inverse distances to the identity are at most π/(2N) have an interpolated point at distance at least 1/2. Worst-case amplification lies between m/π and 2m+1 for an m-simplex. A different interpolation or extension scheme remains possible; this is not a non-ANR theorem.
+ 
+ ## 4. Route C: fragmentation and a local section of multiplication
+ 
+ This route tries to use finitely many local homeomorphism groups as ANR building blocks.
+ 
+-**Conditional lemma.** Let G be a metrizable topological group, let H_1,…,H_r be metrizable ANE spaces that are subgroups of G, and let U be an open identity neighborhood. Suppose continuous maps σ_i:U→H_i satisfy
++**Conditional lemma.** Let G be a separable metrizable topological group, let H_1,…,H_r be metrizable ANE spaces that are subgroups of G with their subspace topologies, and let U be an open identity neighborhood. Suppose continuous maps σ_i:U→H_i satisfy
+ 
+ \[
+  g=\sigma_1(g)\cdots\sigma_r(g)\quad(g\in U).
+@@ -239,4 +239,4 @@
+ 
+ [C05] R. Cauty, *Rétractes absolus de voisinage algébriques*, Serdica Math. J. 31 (2005), 309–354. https://www.math.bas.bg/serdica/2005/2005-309-354.pdf . Abstract and introductory comparison between topological ANRs, algebraic ANRs, and locally equiconnected spaces inspected. Algebraic ANR is not substituted for ANR.
+ 
+-[H] W. E. Haver, *Locally contractible spaces that are absolute neighborhood retracts*, Proc. Amer. Math. Soc. 40 (1973), 280–284. https://doi.org/10.1090/S0002-9939-1973-0331311-X . Used only to motivate the explicitly disproved exhaustion hypothesis, not to prove an ANR conclusion. Original full text was not obtained; the theorem is also discussed in Cauty's primary work [C94, C05]. The Baire obstruction in §6 is proved directly and does not depend on Haver's theorem.
++[H] W. E. Haver, *Locally contractible spaces that are absolute neighborhood retracts*, Proc. Amer. Math. Soc. 40 (1973), 280–284. https://doi.org/10.1090/S0002-9939-1973-0331311-X . Used only to motivate the explicitly disproved exhaustion hypothesis, not to prove an ANR conclusion. Original full text was not obtained in this pass; [C94] cites the paper. No positive conclusion depends on invoking its theorem. The Baire obstruction in §6 is proved directly and does not depend on Haver's theorem.
