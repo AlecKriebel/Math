@@ -1,0 +1,80 @@
+{
+  "utc": "2026-10-14T05:19:31.134832+00:00",
+  "pr": 1064,
+  "status": "ADOPT_FULL_WHOLE02_ONE_P3_REPAIR_REQUIRED",
+  "root_entire_report_and_verdict_read": true,
+  "report_sha256": "86f7220e1902327f603b0de7766fe9ea48660c750837c43de0934bdf15d4ad45",
+  "verdict_sha256": "8f2752ab508888f2d9b3a7759b195592e51a1ae2c2f716d6140a4fa2055ddc91",
+  "output_pins_sha256": "e151cd649fc64552b905ddff7acdc5c09ad89dedd7364e90d7a33f8d250e2e46",
+  "seal_sha256": "0c6888c4098f935643e318606e0d39aab469dbfdd065a136015e61c568068bad",
+  "outputs_rehashed": 28,
+  "frozen_candidate_files_rehashed": 380,
+  "original_files_unchanged": 9,
+  "severity_counts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 1
+  },
+  "mathematics_sources_PDF_documented_clean_reproduction_accepted": true,
+  "both_prior_P3_repairs_verified": true,
+  "required_repair": [
+    {
+      "id": "P3-01",
+      "severity": "P3",
+      "file": "preprint_v1_0/build_archive.py",
+      "line": 9,
+      "title": "Existing output hardlink can overwrite protected input or external descriptor",
+      "trigger": "Run build_archive.py with --output tmp/hardlinked.zip when that path is an existing hardlink to paper.tex, paper.pdf, or publication/DEPOSIT_BINDING.json.",
+      "observed": "Source/PDF is overwritten before post-write failure; excluded descriptor is overwritten and command exits zero, in both normal and optimized modes.",
+      "repair": "Reject resolved aliases and existing samefile identities to all protected current inputs and external descriptor before writes, while permitting a separate ordinary archive output. Preserve old history and repeat a fresh whole review.",
+      "evidence": [
+        "ARCHIVE_HARDLINK_FAILURE.json",
+        "ARCHIVE_DESCRIPTOR_HARDLINK_FAILURE.json",
+        "ALL_EXECUTION_RECEIPTS.json"
+      ]
+    }
+  ],
+  "root_actual_descriptor_hardlink_failure_normal_and_optimized": [
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "tmp/hardlinked.zip"
+      ],
+      "returncode": 0,
+      "stdout": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/root_reproduction/tmp/whole02alias/tmp/hardlinked.zip SHA256 245221160023953cbeac0fa0a253762b0a46ac9b56b6bf9e721669144cc93e13\n",
+      "stderr": "",
+      "descriptor_before_sha256": "aa13aa6663920e069c03a460ea716e9e9c70e40e640939f8371ffae7d1aeac4a",
+      "descriptor_after_sha256": "245221160023953cbeac0fa0a253762b0a46ac9b56b6bf9e721669144cc93e13",
+      "overwritten_with_canonical_archive": true
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_archive.py",
+        "--output",
+        "tmp/hardlinked.zip"
+      ],
+      "returncode": 0,
+      "stdout": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/root_reproduction/tmp/whole02alias/tmp/hardlinked.zip SHA256 245221160023953cbeac0fa0a253762b0a46ac9b56b6bf9e721669144cc93e13\n",
+      "stderr": "",
+      "descriptor_before_sha256": "aa13aa6663920e069c03a460ea716e9e9c70e40e640939f8371ffae7d1aeac4a",
+      "descriptor_after_sha256": "245221160023953cbeac0fa0a253762b0a46ac9b56b6bf9e721669144cc93e13",
+      "overwritten_with_canonical_archive": true
+    }
+  ],
+  "candidate_unchanged": true,
+  "fresh_whole_package_reviews": 2,
+  "required_next_gate": "Bounded archive output alias repair, then NEW complete whole03 adversarial review. Preserve all history, mathematical/source/PDF/metadata and prior seals.",
+  "publication_ready": false,
+  "issues_updated": false,
+  "published": false,
+  "services_hold": "preceding PR1032 priority cursor"
+}

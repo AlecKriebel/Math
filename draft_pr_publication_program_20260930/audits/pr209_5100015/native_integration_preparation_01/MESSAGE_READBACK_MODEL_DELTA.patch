@@ -1,0 +1,44 @@
+--- source_history_05/native209_model.py
++++ native209_model.py
+@@ -550,6 +550,19 @@
+             'publication_or_tracker_actions_performed':False,'actual_acceptance_inferred':False}
+ 
+ 
++def commit_message_readback(canonical,metadata):
++    need(type(canonical) is str and canonical.endswith('\n') and type(metadata) is str,
++         'Canonical newline-terminated message and exact metadata text required')
++    if metadata == canonical:
++        omitted = 0
++    else:
++        need(metadata == canonical[:-1], 'Commit metadata differs beyond exactly one omitted terminalLF')
++        omitted = 1
++    return {'representation':'exact' if omitted == 0 else 'omits_exactly_one_terminal_LF',
++            'terminal_LFs_omitted':omitted,'canonical_message_pin':pin(canonical.encode()),
++            'metadata_message_pin':pin(metadata.encode())}
++
++
+ def verify(c,m,overlay,pre,reused,observer,candidate,after_ref=False):
+     need(hexid(candidate), 'Explicit candidate native commit identity required')
+     s = state(c,m,overlay,pre,reused,observer,after_ref)
+@@ -558,8 +571,10 @@
+     need(candidate == expected_commit, 'Candidate deterministic native commit identity differs')
+     commit = api('GET','git/commits/'+candidate)
+     need(commit.get('sha') == candidate and commit['tree']['sha'] == s['wanted']
+-         and [r['sha'] for r in commit['parents']] == s['parents']
+-         and commit.get('message') == m['commit_message'], 'Exact candidate parents/tree/message differ')
++         and [r['sha'] for r in commit['parents']] == s['parents'], 'Exact candidate SHA/parents/tree differ')
++    matches(commit.get('author'),m['commit_author'],'Fixed canonical author metadata differs')
++    matches(commit.get('committer'),m['commit_committer'],'Fixed canonical committer metadata differs')
++    message_readback = commit_message_readback(m['commit_message'],commit.get('message'))
+     trees = c.NativeTrees(api)  # Independent from construction/state cache.
+     leaves,dirs,deleted = trees.changes(s['parent_tree'],s['wanted'])
+     need(leaves == s['changed'] and dirs == s['dirs'] and not deleted, 'Full foreign/native changed scope differs')
+@@ -580,6 +595,8 @@
+     return {'schema':'pr209-native-conditional-verification-v1','evidence_scope':'GET_OBSERVATIONS_REQUIRE_ROOT_ACCEPTANCE',
+             'phase':m['phase'],'facts':m['facts'],'parent':s['parent'],'parent_tree':s['parent_tree'],
+             'candidate':candidate,'tree':s['wanted'],'parents':s['parents'],'selected_files':selected,
++            'deterministic_canonical_commit_oid_verified':True,
++            'fixed_author_and_committer_metadata_verified':True,'commit_message_readback':message_readback,
+             'selected_file_count':len(selected),'selected_bytes':sum(row['bytes'] for row in selected.values()),
+             'changed_leaves':sorted(leaves),'new_directories':sorted(dirs),'deleted_directories':[],
+             'full_scope_verified':True,'all_selected_native_bodies_verified':True,

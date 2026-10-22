@@ -1,0 +1,11 @@
+# Root check of the additional GANITA2017 bridge
+
+Timestamp: 2026-10-15T12:17:13.962576+00:00. Priority comparison for PR946/6000001 only; zero new target proof responses.
+
+The actual publisher PDF of Sitaramayya–Moosath–Hasan, Differential Analytic aspects of statistical models, GANITA67(1)(2017)1–31, has330428bytes/SHA256dd41a695128163c0f714e0b80302565bd9dbeb8f79f4ff7923f8343ed5d50b2c. Root read actual printedp10 Remark4.2(b), entire§9pp24–25 and material§10classification assumptions. Fresh priorityfalsifier independently identified and checked the p10 inference before this root record.
+
+Remark4.2(b) proceeds from Nash's metric embedding into Euclidean space and describes general divergence-induced manifolds as curved submanifolds of dually flat manifolds. Nash's theorem alone supplies metric preservation; it does not supply the prescribed dual connection data. In a Euclidean ambient with its standard metric, D=D-star is self-dual, so the two orthogonal induced connections coincide with the intrinsic Levi-Civita connection. Their intrinsic cubic is therefore zero. For the smooth statistical line g=dx², C=dx³, the specified pair instead has lowered coefficients −1/2 and+1/2. A Euclidean Nash embedding cannot induce that ordered pair. This is a countercontrol to that implication alone, not a counterexample to realization in a non-Euclidean Hessian ambient.
+
+Printedp25 Theorem9.5 explicitly attributes the finite-simplex immersion to Lê, and Corollary9.6 follows it. No independent proof of unrestricted finite-dimensional statistical realization occurs in that passage. The appendix's global classification begins with an already dually flat manifold and completeness assumptions; it is not a generic statistical embedding construction.
+
+Accordingly, retain the published broad claim and attribution as part of the literature record, while marking the Nash-only connection-preservation route unsupported. Reopen that route only on an actual additional argument proving both specified connection identities. Do not declare the realization conclusion false: the candidate under review itself proves the corresponding positive realization in the stated smooth statistical category. No firstness or current-openness conclusion follows from this comparison.

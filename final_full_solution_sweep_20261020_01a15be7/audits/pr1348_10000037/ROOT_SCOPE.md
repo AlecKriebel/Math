@@ -1,0 +1,5 @@
+# Root provisional scope: PR1348 /10000037
+
+DeterministicgraphfromZ2 strongoppositeNE/SWquadrantsunchanged; allotheredges replacedby100edges, maxdegree4 anduniformqiC100. iidactualp coarseweakp^100independent, exactinfinitecomponentbijection. Elementaryquadrantdualcutparity+pathcount givescornerinfiniteprob>=143/245at.9. GlobalallweakA→Bpathsumdistancefrom(1,n)/(n,1)≥n+3 impliesPbridge<27/107648at.95. Disjointstrongquadrant/weakedgefamiliesindependent givesPmultiple>2200741829/6461571200>1/3; pc<=.9. d1pc1endpointprovedboundedcuts. Rootfindsnofatalwrittenproofgap.
+
+ExactoriginalBenjaminiCoarseGeometryRandomness2013Problem9.6p64 parameterimplicit, p>pccontext p63, no transitivityclaimaccordingtoadjudication. Freshindependentrecoveractualprimaryneeded; don'tinventcritical-only/highdensity/arbitrarysymmetryrequirements. No pu<1 theorem substitutedforfullsupercriticaluniqueness. RelevantTeixeira/CandelleroTeixeira/HutchcroftTointonhighdensity andquasitransitiveLyonsPeres resultnotfulltarget. Fullprioritynoveltyunestablished; noexistingfullDOI/currentEulerSolvebodyauthenticated. Publication/rowhold.

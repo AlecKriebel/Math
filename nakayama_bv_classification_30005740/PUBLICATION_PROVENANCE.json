@@ -1,0 +1,203 @@
+{
+  "original_manuscript": {
+    "sha256": "59efe9c1e6f6ef400c6953287eab3f8a1df0e01f424b5e2aa5e7d2e7ef1c1506",
+    "bytes": 5561
+  },
+  "publication_edits": [
+    "Removed superseded pending-audit and private workflow paragraph.",
+    "Replaced internal auditor label with independent mathematical audit.",
+    "Added explicit certification boundary.",
+    "Removed workflow-only sentence from audit.",
+    "Paraphrased source question and replaced private evidence-path discussion with metadata-only description.",
+    "Sanitized acceptance receipt paths and workflow notes; original accepted hash preserved.",
+    "Removed individual dataset-record hash, byte count, and record-specific publication flag. Dataset verification retains public full-corpus hashes and sizes, match counts and scope limitations; omitted values are not reproduced in this provenance."
+  ],
+  "assert_hardening": [
+    {
+      "file": "check_obstruction.py",
+      "original": {
+        "sha256": "c4bac89e7586e40518c086a556e3b47a3eaefeaffb8f6aab7c94d0fbc5089488",
+        "bytes": 890
+      },
+      "original_source": "import sympy as s\nx=s.symbols('x')\ncases=[x**2,x**3,x**6,(x-1)**2*(x+2),(x*x+1)**3*(x-2)**2,7*(x*x+1)**2]\nrows=[]\nfor h in cases:\n    d=s.gcd(h,s.diff(h,x)).monic() if isinstance(s.gcd(h,s.diff(h,x)),s.Poly) else s.Poly(s.gcd(h,s.diff(h,x)),x).monic().as_expr()\n    pi=s.cancel(h/d)\n    for u,m in s.factor_list(d)[1]:\n        g=s.cancel(d/u)\n        L=s.cancel(pi*s.diff(h,x)/h-s.diff(pi,x))\n        q=s.cancel(L*g-pi*s.diff(g,x))\n        relation=s.expand(L*h+h*s.diff(pi,x)-s.diff(h,x)*pi)\n        assert relation==0\n        assert s.rem(s.Poly(pi*g,x),s.Poly(d,x)).is_zero\n        assert s.cancel(q-h*s.diff(u,x)/u**2)==0\n        assert not s.rem(s.Poly(q,x),s.Poly(h,x)).is_zero\n        rows.append({'h':str(h),'u':str(u),'d':str(d),'b_Y_coefficient':str(L),'bracket_q':str(q),'relation_check':True,'cup_zero':True,'bracket_nonzero':True})\nimport json\nprint(json.dumps(rows,indent=2))\n",
+      "assertions": [
+        {
+          "line": 13,
+          "column": 8,
+          "condition": "relation==0",
+          "condition_ast": "Compare(left=Name(id='relation', ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 5,
+              "header": "h in cases"
+            },
+            {
+              "kind": "For",
+              "line": 8,
+              "header": "(u, m) in s.factor_list(d)[1]"
+            }
+          ]
+        },
+        {
+          "line": 14,
+          "column": 8,
+          "condition": "s.rem(s.Poly(pi*g,x),s.Poly(d,x)).is_zero",
+          "condition_ast": "Attribute(value=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='rem', ctx=Load()), args=[Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[BinOp(left=Name(id='pi', ctx=Load()), op=Mult(), right=Name(id='g', ctx=Load())), Name(id='x', ctx=Load())], keywords=[]), Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[Name(id='d', ctx=Load()), Name(id='x', ctx=Load())], keywords=[])], keywords=[]), attr='is_zero', ctx=Load())",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 5,
+              "header": "h in cases"
+            },
+            {
+              "kind": "For",
+              "line": 8,
+              "header": "(u, m) in s.factor_list(d)[1]"
+            }
+          ]
+        },
+        {
+          "line": 15,
+          "column": 8,
+          "condition": "s.cancel(q-h*s.diff(u,x)/u**2)==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='cancel', ctx=Load()), args=[BinOp(left=Name(id='q', ctx=Load()), op=Sub(), right=BinOp(left=BinOp(left=Name(id='h', ctx=Load()), op=Mult(), right=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='diff', ctx=Load()), args=[Name(id='u', ctx=Load()), Name(id='x', ctx=Load())], keywords=[])), op=Div(), right=BinOp(left=Name(id='u', ctx=Load()), op=Pow(), right=Constant(value=2))))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 5,
+              "header": "h in cases"
+            },
+            {
+              "kind": "For",
+              "line": 8,
+              "header": "(u, m) in s.factor_list(d)[1]"
+            }
+          ]
+        },
+        {
+          "line": 16,
+          "column": 8,
+          "condition": "not s.rem(s.Poly(q,x),s.Poly(h,x)).is_zero",
+          "condition_ast": "UnaryOp(op=Not(), operand=Attribute(value=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='rem', ctx=Load()), args=[Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[Name(id='q', ctx=Load()), Name(id='x', ctx=Load())], keywords=[]), Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Poly', ctx=Load()), args=[Name(id='h', ctx=Load()), Name(id='x', ctx=Load())], keywords=[])], keywords=[]), attr='is_zero', ctx=Load()))",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 5,
+              "header": "h in cases"
+            },
+            {
+              "kind": "For",
+              "line": 8,
+              "header": "(u, m) in s.factor_list(d)[1]"
+            }
+          ]
+        }
+      ],
+      "transformation": "Replace each Assert(test) in place with If(Not(test)): raise RuntimeError(original file:line:condition); all other AST nodes preserved modulo locations."
+    },
+    {
+      "file": "checks.py",
+      "original": {
+        "sha256": "9cf194ac78956a7491aafaf889bd1e6ba3820b8133a975af9f751ce9260f6c13",
+        "bytes": 1380
+      },
+      "original_source": "import sympy as s\nfrom collections import defaultdict\nimport json\nx=s.symbols('x')\n# Each triple denotes x^left [x^middle] x^right in the normalized bar degree 1.\ndef add(d,k,v):\n    if k[1]: d[k]+=v\nfor n in range(2,21):\n    actual=defaultdict(int)\n    for i in range(1,n):\n        add(actual,(i,1,n-1-i),1)\n        add(actual,(0,i+1,n-1-i),-1)\n        add(actual,(0,i,n-i),1)\n    expected=defaultdict(int)\n    for i in range(n): add(expected,(i,1,n-1-i),1)\n    add(expected,(0,n,0),-1)\n    assert {k:v for k,v in actual.items() if v}=={k:v for k,v in expected.items() if v}\nexamples=[(x**2,x),(x**3,x),(x**7,x),((x*x+1)**2,x*x+1),((x*x+1)**4*(x-2)**3*(x+1),x*x+1),((x*x+1)**4*(x-2)**3*(x+1),x-2),(7*(x*x+1)**2*(x-3),x*x+1)]\nresults=[]\nfor h,u in examples:\n    h=s.expand(h); d=s.Poly(s.gcd(h,s.diff(h,x)),x).monic().as_expr(); pi=s.cancel(h/d); g=s.cancel(d/u)\n    L=s.cancel(pi*s.diff(d,x)/d); q=s.cancel(L*g-pi*s.diff(g,x))\n    assert s.denom(L)==1 and s.denom(q)==1\n    assert s.expand(L*h+h*s.diff(pi,x)-s.diff(h,x)*pi)==0\n    assert s.cancel(q-h*s.diff(u,x)/u**2)==0\n    assert s.rem(s.expand(g*pi),d,x)==0\n    assert s.rem(q,h,x)!=0\n    results.append(dict(h=str(h),u=str(u),d=str(d),pi=str(pi),g=str(g),L=str(L),q=str(q),cup_mod_d='0',bracket_mod_h=str(s.rem(q,h,x))))\nprint(json.dumps({'normalized_bar_telescope_degrees':list(range(2,21)),'examples':results},indent=2))\n",
+      "assertions": [
+        {
+          "line": 17,
+          "column": 4,
+          "condition": "{k:v for k,v in actual.items() if v}=={k:v for k,v in expected.items() if v}",
+          "condition_ast": "Compare(left=DictComp(key=Name(id='k', ctx=Load()), value=Name(id='v', ctx=Load()), generators=[comprehension(target=Tuple(elts=[Name(id='k', ctx=Store()), Name(id='v', ctx=Store())], ctx=Store()), iter=Call(func=Attribute(value=Name(id='actual', ctx=Load()), attr='items', ctx=Load()), args=[], keywords=[]), ifs=[Name(id='v', ctx=Load())], is_async=0)]), ops=[Eq()], comparators=[DictComp(key=Name(id='k', ctx=Load()), value=Name(id='v', ctx=Load()), generators=[comprehension(target=Tuple(elts=[Name(id='k', ctx=Store()), Name(id='v', ctx=Store())], ctx=Store()), iter=Call(func=Attribute(value=Name(id='expected', ctx=Load()), attr='items', ctx=Load()), args=[], keywords=[]), ifs=[Name(id='v', ctx=Load())], is_async=0)])])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 8,
+              "header": "n in range(2, 21)"
+            }
+          ]
+        },
+        {
+          "line": 23,
+          "column": 4,
+          "condition": "s.denom(L)==1 and s.denom(q)==1",
+          "condition_ast": "BoolOp(op=And(), values=[Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='denom', ctx=Load()), args=[Name(id='L', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=1)]), Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='denom', ctx=Load()), args=[Name(id='q', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=1)])])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 20,
+              "header": "(h, u) in examples"
+            }
+          ]
+        },
+        {
+          "line": 24,
+          "column": 4,
+          "condition": "s.expand(L*h+h*s.diff(pi,x)-s.diff(h,x)*pi)==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='expand', ctx=Load()), args=[BinOp(left=BinOp(left=BinOp(left=Name(id='L', ctx=Load()), op=Mult(), right=Name(id='h', ctx=Load())), op=Add(), right=BinOp(left=Name(id='h', ctx=Load()), op=Mult(), right=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='diff', ctx=Load()), args=[Name(id='pi', ctx=Load()), Name(id='x', ctx=Load())], keywords=[]))), op=Sub(), right=BinOp(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='diff', ctx=Load()), args=[Name(id='h', ctx=Load()), Name(id='x', ctx=Load())], keywords=[]), op=Mult(), right=Name(id='pi', ctx=Load())))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 20,
+              "header": "(h, u) in examples"
+            }
+          ]
+        },
+        {
+          "line": 25,
+          "column": 4,
+          "condition": "s.cancel(q-h*s.diff(u,x)/u**2)==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='cancel', ctx=Load()), args=[BinOp(left=Name(id='q', ctx=Load()), op=Sub(), right=BinOp(left=BinOp(left=Name(id='h', ctx=Load()), op=Mult(), right=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='diff', ctx=Load()), args=[Name(id='u', ctx=Load()), Name(id='x', ctx=Load())], keywords=[])), op=Div(), right=BinOp(left=Name(id='u', ctx=Load()), op=Pow(), right=Constant(value=2))))], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 20,
+              "header": "(h, u) in examples"
+            }
+          ]
+        },
+        {
+          "line": 26,
+          "column": 4,
+          "condition": "s.rem(s.expand(g*pi),d,x)==0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='rem', ctx=Load()), args=[Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='expand', ctx=Load()), args=[BinOp(left=Name(id='g', ctx=Load()), op=Mult(), right=Name(id='pi', ctx=Load()))], keywords=[]), Name(id='d', ctx=Load()), Name(id='x', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 20,
+              "header": "(h, u) in examples"
+            }
+          ]
+        },
+        {
+          "line": 27,
+          "column": 4,
+          "condition": "s.rem(q,h,x)!=0",
+          "condition_ast": "Compare(left=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='rem', ctx=Load()), args=[Name(id='q', ctx=Load()), Name(id='h', ctx=Load()), Name(id='x', ctx=Load())], keywords=[]), ops=[NotEq()], comparators=[Constant(value=0)])",
+          "control_flow": [
+            {
+              "kind": "For",
+              "line": 20,
+              "header": "(h, u) in examples"
+            }
+          ]
+        }
+      ],
+      "transformation": "Replace each Assert(test) in place with If(Not(test)): raise RuntimeError(original file:line:condition); all other AST nodes preserved modulo locations."
+    }
+  ],
+  "original_publication_inputs": {
+    "AUDIT.md": {
+      "bytes": 6875,
+      "sha256": "3c1645a340d595566933894dff15a5dad9fcb891e7a7b376553e20910f7482d6"
+    },
+    "ACCEPTANCE_RECEIPT.json": {
+      "bytes": 3134,
+      "sha256": "5c600b6e177d387d48a93c8d4ce3634fdf50ad3e8d28d91ee5879aceb067d64e"
+    },
+    "SOURCE_GATE.md": {
+      "bytes": 7020,
+      "sha256": "e5dbffbcfa354b0e91009f4ef495addca5bc75819ab4aa27f80ff3aa7e761561"
+    }
+  }
+}

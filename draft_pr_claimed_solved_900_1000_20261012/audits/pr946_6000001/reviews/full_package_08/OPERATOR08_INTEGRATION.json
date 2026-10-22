@@ -1,0 +1,273 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-16T06:14:40.440747+00:00",
+  "candidate_revision": 6,
+  "actual_prior_rounds": 7,
+  "terminal08_explicitly_synthetic": true,
+  "operator": {
+    "bytes": 9912,
+    "sha256": "d085ec080ee6c2f1239f49f724e7a71ef6d86b3d994fbe9b4039371181a61aef"
+  },
+  "core_sha256": "8e1a0d7b3ca6e5d72e76415541b393fbfbe52e307368bc86b9e7982d5be27cd7",
+  "kit_sha256": "a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca",
+  "guards_unmodified": [
+    "capture_inventory",
+    "freeze_check",
+    "archive_check",
+    "original_check",
+    "review_check",
+    "accepted_package",
+    "accepted_review_check",
+    "merged_gate",
+    "source_gate",
+    "publication_links",
+    "descriptor_check",
+    "runtime_upload_copy",
+    "kit.verify",
+    "kit.run"
+  ],
+  "fake_only": [
+    "private fixture paths",
+    "Git/PR transport",
+    "Zenodo API/token/DOI factories"
+  ],
+  "cases": [
+    {
+      "case": "positive_reconciled_existing_stage",
+      "action": "inspect-stage",
+      "error": null,
+      "API_calls": [
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "positive_publication",
+      "action": "publish",
+      "error": null,
+      "API_calls": [
+        "GET",
+        "GET",
+        "POST",
+        "GET"
+      ],
+      "POST_count": 1
+    },
+    {
+      "case": "positive_public_DOI_inspect",
+      "action": "inspect",
+      "error": null,
+      "API_calls": [
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "actual_core_publication_links_accept_reconciled_stage_publish_inspect",
+      "pass": true
+    },
+    {
+      "case": "positive_lost_POST_response_recovers_without_second_POST",
+      "action": "publish",
+      "error": null,
+      "API_calls": [
+        "GET",
+        "GET",
+        "POST",
+        "GET"
+      ],
+      "POST_count": 1
+    },
+    {
+      "case": "prior_publish_intent_blocks_blind_repeat",
+      "action": "publish",
+      "error": "RuntimeError: PR946 exact-ID reconciliation: prior publish intent: inspect first",
+      "API_calls": [],
+      "POST_count": 0
+    },
+    {
+      "case": "REPAIRED_final_GET_acceptance_before_POST",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: canonical acceptance changed during operation",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0,
+      "resolved_finding": "FP07-OPS-001",
+      "approval_or_source_invalid_before_POST": true,
+      "publication_blocked_before_POST": true
+    },
+    {
+      "case": "REPAIRED_final_GET_source_hold_before_POST",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: current source identity/readiness holds",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0,
+      "resolved_finding": "FP07-OPS-001",
+      "approval_or_source_invalid_before_POST": true,
+      "publication_blocked_before_POST": true
+    },
+    {
+      "case": "REPAIRED_operator_drift_during_first_GET_is_blocked",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: nonregular or oversized file: draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+      "API_calls": [
+        "GET"
+      ],
+      "POST_count": 0,
+      "resolved_finding": "FP07-OPS-002",
+      "canonical_operator_drifted": true
+    },
+    {
+      "case": "control_approval_revoked_in_first_GET_is_blocked_by_actual_core_guard",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: canonical acceptance changed during operation",
+      "API_calls": [
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "REPAIRED_actual_operator_import_rejects_no_site_zero",
+      "resolved_finding": "FP07-OPS-003",
+      "returncode": 1,
+      "actual_no_site": 0,
+      "actual_isolated": 1,
+      "actual_dont_write_bytecode": 1
+    },
+    {
+      "case": "final_GET_blocks_pending",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: supplied reviews must account for every numbered review, including unfinished or adverse rounds",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_adverse",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: supplied reviews must account for every numbered review, including unfinished or adverse rounds",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_theorem",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: canonical acceptance changed during operation",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_tex",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: nonregular or oversized file: draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/preprint/research_note.tex",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_freeze",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: external freeze pin changed",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_payload",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: nonregular or oversized file: draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/reviews/full_package_08/FULL_AUDIT.md",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_seal",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: external review seal changed",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_core",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: nonregular or oversized file: draft_pr_claimed_solved_900_1000_20261012/accept_pr946.py",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_inventory",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: externally pinned operations inventory changed",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_evidence",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: nonregular or oversized file: draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/ORIGINAL_SNAPSHOT.json",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "final_GET_blocks_operator_same_size",
+      "action": "publish",
+      "error": "RuntimeError: PR946 guard: file fingerprint changed: draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+      "API_calls": [
+        "GET",
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "receipt_closure_blocks_operator_drift_inspect-stage",
+      "action": "inspect-stage",
+      "error": "RuntimeError: PR946 guard: nonregular or oversized file: draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+      "API_calls": [
+        "GET"
+      ],
+      "POST_count": 0
+    },
+    {
+      "case": "receipt_closure_blocks_operator_drift_inspect",
+      "action": "inspect",
+      "error": "RuntimeError: PR946 guard: nonregular or oversized file: draft_pr_claimed_solved_900_1000_20261012/audits/pr946_6000001/publication_operator.py",
+      "API_calls": [
+        "GET"
+      ],
+      "POST_count": 0
+    }
+  ],
+  "case_count": 24,
+  "actual_external_mutations": 0
+}

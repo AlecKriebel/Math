@@ -1,0 +1,78 @@
+{
+  "utc": "2026-10-17T03:56:49.169028+00:00",
+  "review_completion_percent": 100,
+  "review_type": "Administrative service-driver code review only; NOT a mathematical or preprint whole-package review",
+  "source_identities": {
+    "run_service.py": {
+      "bytes": 14882,
+      "sha256": "07aaed869e722e495cd758895874d6d38f734e61516ac055a698e4e738e26867"
+    },
+    "prepare_service_configs.py": {
+      "bytes": 6534,
+      "sha256": "b438a87ef2799c8cab05597c4fd198c1948e84a0a4455d90e068afdead15bac7"
+    }
+  },
+  "external_service_calls_made": false,
+  "canonical_scripts_or_packages_edited": false,
+  "subagents_spawned": false,
+  "findings": [
+    {
+      "id": "D01",
+      "priority": "P1",
+      "file": "run_service.py",
+      "lines": [
+        98,
+        104
+      ],
+      "title": "Advancing STATE before other checkpoint writes makes interruption unrecoverable",
+      "counterexample": "Inject OSError on CLAIM_REGISTRY.json save after STATE save. First complete raises, but STATE already includes1033 and next_pr1034. Retrying complete returns WORKFLOW_COMPLETED while registry stays PENDING and log/README never get the checkpoint.",
+      "minimum_correction": "Use a durable completion event, idempotently reconcile registry/log/README even for already-completed PRs, then atomically advance STATE last. Use one shared state lock for completion and other state writers, and atomic replace for JSON."
+    },
+    {
+      "id": "D02",
+      "priority": "P2",
+      "file": "run_service.py",
+      "lines": [
+        82,
+        86
+      ],
+      "title": "Merge retry repeats a PR update and nests accepted text before noticing prior merge intent",
+      "counterexample": "PATCH succeeds; merge command fails with PR still open. First invocation leaves MERGE_INTENT. Second merge PATCHes again, embedding the first full accepted body as preserved original, then fails at existing MERGE_INTENT. Counterexample produces two accepted headers and two PATCHes for one merge request.",
+      "minimum_correction": "Save one stable original-body snapshot and intended acceptance payload before first write; record PATCH/ready intents and reconcile exact live readback on retry. Check unresolved MERGE_INTENT before any further PR mutation."
+    },
+    {
+      "id": "D03",
+      "priority": "P2",
+      "file": "run_service.py",
+      "lines": [
+        79,
+        91
+      ],
+      "title": "Historic tracker receipt permits merge after the required DOI row changes",
+      "counterexample": "After track, another authorized editor deletes or changes the row. merge consumes only local TRACKER_VERIFIED and attempts external merge without any Google read; complete likewise accepts the historical receipt. Offline probe confirms zero GWS calls before merge attempt.",
+      "minimum_correction": "Re-resolve the intended gid and verify current header, one DOI match and exact full row immediately before merge and final completion; update observed row number if concurrent inserts moved the row."
+    },
+    {
+      "id": "D04",
+      "priority": "P2",
+      "file": "run_service.py",
+      "lines": [
+        36,
+        37,
+        87,
+        88
+      ],
+      "title": "Exact reviewed head is accepted on an unintended base branch",
+      "counterexample": "Return an open same-head PR whose base.ref is other-branch. Driver performs acceptance PATCH and attempts gh pr merge; no assertion requires main. A successful merge would pass head-parent proof and completion despite reaching the wrong base.",
+      "minimum_correction": "Pin expected base repository and main in config; assert them on each live read and immediately before merge. Where base-retarget races matter, ensure final merged base is also checked and record it."
+    }
+  ],
+  "probe_result": "Four counterexamples and three positive controls pass; all subprocess calls mocked",
+  "positive_controls": [
+    "Exact-head drift blocks stage before intent/mutation",
+    "Uncertain stage with no saved ID never repeats native stage on rerun",
+    "Uncertain successful append is reconciled from exact raw row and rerun does not append"
+  ],
+  "prepare_service_configs_assessment": "No additional actionable finding found in narrow current-input review. Current asset digests are explicitly pinned, current final-authority paths are selected from STATE, readiness/count/zero issues are gated, and explicit scope/limitations/AI/unrefereed/UNKNOWN-priority wording is preserved. This does not recertify the seals or underlying mathematical reviews.",
+  "remaining_gap": "Root fixes and independent rerun of repaired driver are required before external service execution. No external behavior was tested."
+}

@@ -1,0 +1,185 @@
+[
+  {
+    "label": "baseline",
+    "status": "PASS",
+    "detail": {
+      "stages": 1,
+      "publishes": 1,
+      "appends": 1,
+      "immutable_receipts_unchanged_by_live_checks": true,
+      "publication_ancestors": [
+        "STAGE_ATTEMPT.json",
+        "ZENODO_STAGED_VERIFIED.json",
+        "ZENODO_PREPUBLICATION_INSPECT.json",
+        "PUBLISH_ATTEMPT.json",
+        "ZENODO_TOOL_PUBLICATION_RECEIPT.json",
+        "ZENODO_PROVIDER_CONFIRMED_PUBLICATION.json"
+      ]
+    }
+  },
+  {
+    "label": "counter_only",
+    "status": "PASS",
+    "detail": {
+      "type": "RuntimeError",
+      "error": "Two sequential sealed whole-package reviews required"
+    }
+  },
+  {
+    "label": "finding_and_chronology",
+    "status": "PASS",
+    "detail": {
+      "unresolved_finding": {
+        "type": "RuntimeError",
+        "error": "Resolution does not close exactly all actual findings"
+      },
+      "late_resolution": {
+        "type": "RuntimeError",
+        "error": "Next review must freeze after prior completion/resolution"
+      }
+    }
+  },
+  {
+    "label": "stale_source",
+    "status": "PASS",
+    "detail": {
+      "type": "RuntimeError",
+      "error": "Retained evidence bytes changed: data.txt"
+    }
+  },
+  {
+    "label": "missing_lineage",
+    "status": "PASS",
+    "detail": {
+      "pure": {
+        "type": "RuntimeError",
+        "error": "Missing retained evidence: STAGE_ATTEMPT.json"
+      },
+      "readonly": {
+        "type": "RuntimeError",
+        "error": "Missing retained evidence: STAGE_ATTEMPT.json"
+      },
+      "provider_reads_after_missing_ancestry": 0
+    }
+  },
+  {
+    "label": "tracker_corruption",
+    "status": "PASS",
+    "detail": {
+      "append_count": {
+        "type": "RuntimeError",
+        "error": "Append invocation count must be exactly zero or one"
+      },
+      "range": {
+        "type": "RuntimeError",
+        "error": "Tracker range must be canonical one-row Math Puzzles A:D"
+      },
+      "notes": {
+        "type": "RuntimeError",
+        "error": "Tracker payload differs from exact cleared metadata and publication"
+      },
+      "reconcile": {
+        "type": "RuntimeError",
+        "error": "Tracker reconciliation mode/count differs"
+      }
+    }
+  },
+  {
+    "label": "duplicate_race",
+    "status": "PASS",
+    "detail": {
+      "first": {
+        "type": "RuntimeError",
+        "error": "Tracker uniqueness conflict; retain pending evidence and reconcile read-only"
+      },
+      "second": {
+        "type": "RuntimeError",
+        "error": "Conflicting/existing tracker row requires read-only reconciliation"
+      },
+      "actual_stub_appends": 1,
+      "final_problem_rows": 2,
+      "no_verified_receipt": true
+    }
+  },
+  {
+    "label": "unknown_append",
+    "status": "PASS",
+    "detail": {
+      "first": {
+        "type": "TimeoutError",
+        "error": "Synthetic lost append outcome after one actual stub append"
+      },
+      "actual_stub_appends": 1,
+      "recovered_invocation_append_count": 0
+    }
+  },
+  {
+    "label": "unknown_publish",
+    "status": "PASS",
+    "detail": {
+      "first": {
+        "type": "TimeoutError",
+        "error": "Synthetic lost publish outcome after stub publication"
+      },
+      "blocked_retry": {
+        "type": "RuntimeError",
+        "error": "Prior stage attempt: no second stage permitted"
+      },
+      "actual_stub_stage": 1,
+      "actual_stub_publish": 1,
+      "read_only_recovery": true
+    }
+  },
+  {
+    "label": "public_failure",
+    "status": "PASS",
+    "detail": {
+      "first": {
+        "type": "RuntimeError",
+        "error": "Deposit outcome retained; public verification pending. Read-only recovery only."
+      },
+      "failed_public_payload_retained_losslessly": true,
+      "recovery": true,
+      "publish_calls": 1
+    }
+  },
+  {
+    "label": "version_date",
+    "status": "PASS",
+    "detail": {
+      "derived_version": "1.1",
+      "derived_date": "2026-10-17",
+      "exact_payload_validated": true
+    }
+  },
+  {
+    "label": "exports",
+    "status": "PASS",
+    "detail": {
+      "unreviewed": {
+        "type": "RuntimeError",
+        "error": "Unexpected top-level release file: /Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/publication/binding_repair_01/probe_runs_01/export_unreviewed/case/preprint/UNREVIEWED.txt"
+      },
+      "env": {
+        "type": "RuntimeError",
+        "error": "Unexpected top-level release file: /Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/publication/binding_repair_01/probe_runs_01/export_env/case/publication/.env"
+      },
+      "traversal": {
+        "type": "RuntimeError",
+        "error": "Private, mutable or self-referential public export rejected: ../elsewhere"
+      }
+    }
+  },
+  {
+    "label": "optimized",
+    "status": "PASS",
+    "detail": {
+      "append_verified_tracker.py": "Release helpers refuse optimized Python before any action",
+      "integrate_reviewed_pr.py": "Optimized Python prohibited",
+      "publish_preprint.py": "Release helpers refuse optimized Python before any action",
+      "release_binding.py": "Release stages refuse optimized Python: all guards must remain enabled",
+      "verify_and_merge.py": "Release helpers refuse optimized Python before any action",
+      "verify_published_readonly.py": "Release verification refuses optimized Python"
+    }
+  }
+]

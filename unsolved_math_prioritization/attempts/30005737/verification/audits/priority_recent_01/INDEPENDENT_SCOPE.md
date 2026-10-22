@@ -1,0 +1,9 @@
+# Independent priority-audit scope (recorded before reading old priority/acceptance material)
+
+Exact native claim: for finite-dimensional complex Lie algebras on the same vector space, perfect nonsemisimple source g and semisimple target n admit no post-Lie structure. The mathematical object is infinitesimal; no completeness/integrability of an associated skew brace may be assumed. Target/source orientation matters.
+
+Claim to audit against literature: unimodular source g, semisimple target n, and two Lie homomorphisms g→n with invertible difference imply that g is semisimple. This implies the native claim because every perfect Lie algebra is unimodular and a post-Lie product with centerless target gives homomorphisms φ and φ+id. Full-claim overlap includes any already published theorem whose corollary is the entire finite-dimensional complex native claim, even under another vocabulary.
+
+Independent search hypotheses: (H1) a later version or citation of Burde–Dekimpe–Monadjem (2023/2024) resolves the general case; (H2) global/infinitesimal Lie skew-brace rigidity plus an integration theorem supplies the full claim; (H3) Rota–Baxter operators, complementary subalgebras, factorizations, or disemisimple decompositions imply the same result; (H4) work on simply transitive left-right actions of semisimple groups proves the stronger unimodular assertion; (H5) a recent counterexample invalidates the hypotheses or identifies a nonunimodular/real boundary.
+
+Success criterion: primary-body theorem and assumptions identified, precise comparison/derivation made, earliest public version/date distinguished from later journal or repository update. Failure to find a result is bounded search evidence only; it does not certify firstness, exhaustive coverage, or current openness. Scope excludes a fresh proof audit, Git changes, publication, and communication with individuals.

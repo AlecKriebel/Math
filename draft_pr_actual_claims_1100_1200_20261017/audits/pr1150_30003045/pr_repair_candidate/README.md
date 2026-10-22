@@ -1,0 +1,11 @@
+# Mixed Kato kernels: repaired full counterexample
+
+The proposed equality in Laghribi's Question2, OWR5/2016 printed251 (problem30003045), is false at its allowed index1. COUNTEREXAMPLE.md gives a degree-four exponent-two purely inseparable extension, a separable quadratic extension, and a positive-fold binary bilinear Pfister form that remains anisotropic. Its universal norm/residue argument excludes all three individual kernels, including the Pfister summand. The original index0 equality is separately positive for the stated geometric convention.
+
+This October17 reviewed edition corrects an auxiliary exponent-one shortcut: its conclusion is membership in the sum of inseparable and separable kernels, not an unjustified single base-field symbol identity. It also strengthens exact antecedent credit: the class is literally a specialization of ALO2019 Definition1.3/Lemma3.1/Theorem1.4. Neither change alters the central exponent-two counterexample.
+
+Read COUNTEREXAMPLE.md, AUDIT_REPORT.md, SOURCE_AUDIT.md and VERIFICATION.md. Run `python3 -B verify_all.py` for portable exact algebra diagnostics and18 actual failing wrong-result controls. The finite checks do not prove the universal theorem or decide Kato cohomology.
+
+Earlier immutable input and audit editions are preserved at the original PR head99f43020e142374629848e97113d354b43fd9f8e and in the program audit folder. Their old no-correction verdict is historical and is superseded by this explicit repair. Historical reports of13/25 checks are not represented as rerun. Current evidence is the newly distributed code and its exact baselines.
+
+AI tools were used extensively in proof development, writing, literature research and verification. All reviews are internal AI reviews; this edition is unrefereed and has not received external human peer review or formal proof-assistant certification. Initial families had access to parent conversation context; final package reviews are a separate gate. The bounded priority audit gives no firstness, novelty, causal-independence or global-openness certificate. Relevant inaccessible journal bodies remain unresolved in SOURCE_AUDIT.md. No publication is implied by mathematical acceptance.

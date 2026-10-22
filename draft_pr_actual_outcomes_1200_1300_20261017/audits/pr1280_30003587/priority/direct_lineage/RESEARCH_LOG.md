@@ -1,0 +1,12 @@
+# Direct lineage priority audit research log
+
+Effort: PR1280 / problem 30003587. All timestamps are UTC. This independent initial audit reads original submitted inputs and primary sources; it does not read other family or root mathematical/priority reports before its initial seal. No external individuals are contacted and no git or publication operation is performed.
+
+- 2026-10-18 02:42:07: Started. Scope fixed to the full essential finite 0-1 CK statement, every finite abelian action, exact whole-action fixed implementers, no approximate representation requirement. Prior audit assertions are leads, not adopted evidence. Estimated completion of this direct-lineage audit: 0%.
+- 2026-10-18 02:42:51: Retrieved all three Barlak-Szabo preprint bodies, the EMS question report, and the official final journal PDF through the migrated MSP endpoint. The old three-component PDF URL returned 404. Estimated completion: 25%.
+- 2026-10-18 02:43:26: Retrieved Cartan/UCT II (v1 and final), Izumi's Kyoto-hosted 2002 preprint in PostScript, and two 2025 action/flow papers. Citation APIs returned zero incoming records for the Barlak-Szabo work; this is treated as an incomplete index observation. Estimated completion: 35%.
+- 2026-10-18 02:43:57: Text-inspected and visually inspected the original question p2621/PDF21, final Barlak-Szabo p212/PDF3, and converted Izumi preprint p28. Confirmed full question vs restricted theorem and version-specific final labels. Estimated completion: 45%. No novelty conclusion follows from searches to date.
+
+- 2026-10-18 02:47:25: Expanded to older innerness and newer graph-MASA literature. Found Katayama-Takehana1997 primitive coefficient-implementation criterion; its1998 final body unavailable. Located actual Barlak2014 thesis body and Zacharias2000 two-page preview. Estimated completion:75%.
+- 2026-10-18 02:50:09: Completed20 primary-body/preview register and67-query literal search record. Authored independent derivation of the outer arbitrary-period case from Gabe-Szabo2022 uniqueness. This is a theorem-consequence finding, not an explicit full non-outer statement. Estimated completion:90%.
+- 2026-10-18T02:51:02.129802+00:00: Finished relevant-page rereads and artifact consistency checks before independent initial seal. Strongest positive finding: outer arbitrary-period theorem consequence; exact full non-outer priority still uncertified. Estimated completion of assigned initial direct-lineage audit:100%; global priority clearance is not claimed.

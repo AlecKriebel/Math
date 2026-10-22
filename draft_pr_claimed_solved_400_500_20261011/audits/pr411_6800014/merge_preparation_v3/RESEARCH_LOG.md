@@ -1,0 +1,9 @@
+# V3 administration research log
+
+2026-10-13T05:37:29.325420+00:00 —Initial fresh native exactff7a/ref/immediateMerklestated claimed_solved2/5 gate passed; originals1a/64c verified unchanged before clone. Completion estimate5%. No scientific files/blobs or live writes.
+
+2026-10-13T05:37:29.325420+00:00 —Root genuine mapping ff8e97 and typeaddendumd4f56 corrected initial reservation-string and public-private-version assumptions. Initiald29 source/tests and actual failure probes preserved privately. Pinned exact original ADMIN replay reaches only pre-asset checkpoint on corrected source. Completion estimate70%.
+
+2026-10-13T05:37:29.325420+00:00 —New independent repair reviewer found5 raw/parsed Boolean/integer equality flaws on8072;183 of188 original independent cases passed and5 failed in both modes. Original source/results preserved. Currented85 uses typed JSON equality throughout changed projection custody joins. Repair reviewer195 model+6 actualADMIN cases and156 inherited controls pass normal/-O;83 other ASTnodes and original custody verifier unchanged. Completion estimate95%, pending NEW final independent reviewer and custody. No native writes, no proof-search turns, no scientific package changes.
+
+2026-10-13T05:44:40.754878+00:00 —NEW final independent review passes315 controls in normal/-O with an explicit conditional oracle (zero removableassertnodes),156 supporting controls and5 actualmetadata-only candidate outcomes in both modes; additional12 explicit-O CLI cases pass with intercepted transports. Final native exactff7a/ref/MerkleQueue scope PASS05:42:57.581509Z, claimed_solved2/5. Finalsource ed85/c83/130/af47 unchanged. Completion estimate99%, finalpositive custody pending. No live writes, scientific files/blobs or proofsearch turns. Initial scope actualtimestamp was 2026-10-13T05:02:46Z; earlierlogentry records its later summary checkpoint.

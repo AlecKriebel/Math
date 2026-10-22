@@ -1,0 +1,1 @@
+2026-10-16 UTC — 100% assigned remit. Mathematical conclusions unchanged from initial completed report. Current public files use explicit allowlist; raw Springer redirect queries and all private source PDFs/HTML/extractions/renders excluded. Earlier report/manifest/seal preserved as superseded custody history.

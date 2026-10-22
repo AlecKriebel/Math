@@ -1,0 +1,262 @@
+                         The outer center-pedal area product
+                                 in elliptic billiards
+                                               Alec Kriebel
+                                          Independent researcher
+                                        ORCID: 0009-0001-9320-500X
+
+                                             16 October 2026
+
+
+                                                     Abstract
+          For a periodic billiard family between strictly nested confocal ellipses, form the outer tangent
+      polygon and project the ellipse center onto its side lines. We prove constancy of the product
+      of their signed areas when the period is not divisible by four, including coprime stars and
+      repeated traversals. This proves the assertion labelled k303,b in the 2020 invariant list and its
+      2021 published edition. The actual center-foot map is a fixed linear image of the edge-vector
+      polygon of a phase-shifted billiard. Explicit area formulas reduce the assertion to a classical
+      odd cyclic Jacobi identity, also giving the invariant’s value. The same full theorem is stated and
+      proved in Ferudun’s contemporary version 1.1; no novelty, historical independence or priority
+      claim is made here. A source and verification package accompanies this unrefereed, extensively
+      AI-assisted proof and verification note.
+
+
+1    The precise invariant
+For an ordered closed polygon W = (W0 , . . . , WN −1 ) define
+                                          N −1
+                                     1∑
+                             A(W ) =    det(Wj , Wj+1 ),              W N = W0 .                             (1)
+                                     2
+                                          j=0
+
+Thus stars retain trajectory order and signed shoelace area. Let
+
+           x2 y 2                                    x2   y2
+      E:      + 2 = 1,       a > b > 0,         C:      +    = 1,    a2 − α2 = b2 − β 2 = λ ∈ (0, b2 ).
+           a2  b                                     α2 β 2
+For a billiard orbit Pj on E tangent to C, let ℓj be the tangent to E at Pj , let Rj = ℓj ∩ ℓj+1 , and
+let Qj be the perpendicular foot of O = (0, 0) on ℓj . The line ℓj is the side line Rj−1 Rj of the outer
+polygon. Write A′ = A(R) and A′O = A(Q).
+Theorem 1. Suppose the fixed pair (E, C) supports a periodic billiard family of least period N ≥ 3,
+with N ̸≡ 0 (mod 4). Then A′ A′O is independent of the initial vertex. The assertion includes every
+admissible coprime star winding. It also holds for a listed traversal length not divisible by four that
+repeats a shorter orbit, with the product multiplied by the square of the repetition count.
+   This is k303,b of Reznik–Garcia–Koiller [1, Table 4, p. 6] and [2, Table 4, p. 346]; the construction
+and signed-area convention are in their Sections 2 and 3.4. The conjecture first appeared in their
+2020 arXiv source; the companion journal edition appeared in 2021. The source concerns a confocal
+
+                                                        1
+pair of ellipses. Our theorem excludes hyperbolic, focal and collapsed caustics. Feet are on the full
+boundary tangent lines, not on the original billiard chords. Areas of spatially sorted vertices or
+filled star lobes are different quantities.
+     The exact full theorem, with these parity classes, is also proved in Ferudun [9, Theorem 2 and
+Section 6], version 1.1. That version, DOI 10.5281/zenodo.23088516, is distinguished from version
+1.0, which gives the primitive even arbitrary-point result and hence its centered even subset. Section
+4 records the scope of the priority evidence. Here we give the explicit edge-vector and classical-
+identity reduction, rather than assert a first resolution.
+
+
+2   Area formulas in canonical coordinates
+All Jacobi functions below have modulus k, not parameter k 2 . Set
+                          √
+                            α2 − β 2         β
+                      k=             , k ′ = , K = K(k), K ′ = K(k ′ ).
+                              α              α
+Stachel’s canonical parametrization [3, Theorem 4.3, equation (4.9), p. 1614] gives, after choosing
+orientation,
+                            Pj = P (u + 2jv), P (z) = (−a sn z, b cn z),                          (2)
+            2τ K                                                       α dn v             β
+        v=       ∈ (0, K), gcd(τ, N ) = 1, 0 < τ < N/2,           a=          ,     b=        .
+              N                                                          cn v            cn v
+Only windings supported by the fixed pair are asserted. Put
+                                                              ∑
+                                                              N −1
+                                      sn t cn t
+                           f (t) =              ,   T (z) =          dn(z + 2jv).
+                                        dn t
+                                                              j=0
+
+Cyclic reindexing gives T (z + 2v) = T (z). Jacobi addition [10, Section 22.8] gives, for H(z) =
+(−A sn z, B cn z),
+                                    2AB sn t cn t dn z          (                     )
+          det(H(z − t), H(z + t)) =                    = ABf (t) dn(z − t) + dn(z + t) .      (3)
+                                    1 − k sn z sn t
+                                           2  2    2
+
+Summing consecutive determinants proves A(P ) = abf (v)T (u). For any indexed polygon, determi-
+nant expansion also gives
+                                                       1∑
+                         A((Pj+1 − Pj )j ) = 2A(P ) −     det(Pj , Pj+2 ).
+                                                       2
+                                                                j
+
+Applying (3) with t = 2v and reindexing the sums yields
+                                                 (               )
+                           A((Pj+1 − Pj )j ) = ab 2f (v) − f (2v) T (u).                          (4)
+This identity does not require stepping by two to form a single cycle.
+    The side Pj Pj+1 is tangent to C at B(u + (2j + 1)v), where B(z) = (−α sn z, β cn z). Indeed
+both P (z ± v) satisfy − sn(z)X/α + cn(z)Y /β = 1 by addition formulas. Its pole with respect to E
+is Rj , so elementary conic polarity gives
+           Rj = diag(a2 /α2 , b2 /β 2 )B(u + (2j + 1)v) = diag(a/α, b/β)P (u + (2j + 1)v).
+Taking the fixed linear area scale,
+                                              a 2 b2
+                                        A′ (u) =     f (v)T (u + v).                           (5)
+                                               αβ
+The intersections Rj are finite: parallel endpoint tangents would force antipodal endpoints, whose
+center-crossing chord cannot touch the strictly interior ellipse C.
+
+                                                     2
+The actual perpendicular foot
+The tangent at P (z) has equation n(z) · X = 1, where n(z) = (− sn z/a, cn z/b). Thus
+                                            n(z)      (−ab2 sn z, a2 b cn z)
+                                Q(z) =               = 2                     .                       (6)
+                                         n(z) · n(z)  a − (a2 − b2 ) sn2 z
+Set w = K − v ∈ (0, K). Quarter-period formulas give
+                              cn v             k ′ sn v                             b
+                         sn w =    ,    cn w =          > 0,               dn w =     .
+                             dn v               dn v                                a
+The sum formulas for P (z + w) + P (z − w) have denominator
+                                                      a2 − (a2 − b2 ) sn2 z
+                              D(z) = 1 − k 2 sn2 z sn2 w =
+                                                               a2
+and numerator (−2a sn z cn w dn w, 2b cn z cn w). Using P (z − 2K) = −P (z) now proves the point-
+wise identity
+                (                             )                diag(b/a, 1)               b
+        Q(z) = L P (z + K − v) − P (z + K + v) ,             L=             , det L =          .     (7)
+                                                                  2 cn w              4a cn2 w
+The global minus sign relative to the edge vector preserves area in two dimensions. Therefore (4)
+proves
+                                         b2     (                 )
+                       A′O (u) =                  2f (v) − f (2v)   T (u + K − v).                   (8)
+                                  4 cn2 (K − v)
+All real denominators used above are positive or nonzero. No polygon area has been divided      √ out.
+    The underlying geometry is classical. With ej the forward unit chord velocity and J = λ/(ab)
+the Joachimsthal integral, reflection gives Qj = (ej−1 −ej )/(2J), as follows directly from [6, proof of
+Theorem 4] and in the center-foot telescope of [7, Theorem 4.1]. The skew hodograph diag(a, b)ej
+is described in [6, Lemma 3.1 and Remark 3.2]. In the present coordinates its exact phase is
+P (u + (2j + 1)v + K). Equation (7) verifies this mechanism directly for the same caustic and fixes
+its normalization.
+
+
+3    The classical trace identity and proof of the theorem
+Lemma 2. Let q be positive and odd, and 0 < k < 1. Define
+                        ∑
+                        q−1                                  ∏
+                                                           (q−1)/2
+             Uq (z) =         dn(z + 2Kj/q),        Cq =             cs2 (2Kj/q),   cs = cn / sn .
+                        j=0                                  j=1
+
+The empty product is one. Then, as a meromorphic identity,
+                                                               (k ′ )q
+                                         Uq (z)Uq (z + K) =            .                             (9)
+                                                                Cq2
+Proof. Khare–Lakshminarayan–Sukhatme [4, Appendix A, equation (86) in arXiv v1; (85) in v2]
+give the odd cyclic product-to-sum identity
+                                      ∏
+                                      q−1
+                                            dn(z + 2Kj/q) = Cq Uq (z).
+                                      j=0
+
+Multiply it by its K-translate and use dn(t + K) = k ′ / dn t. Meromorphic continuation handles
+isolated zeros and poles. For q = 1 this is just the quarter-period formula.
+
+                                                      3
+    This trace relation is prior mathematics, also connected to the generalized Landen formulas
+in [5]. For completeness its product-to-sum precursor can be checked directly. The product V (z)
+and sum Uq (z) are 2K-periodic and 2iK ′ -antiperiodic. Their poles are simple at the shifts of iK ′
+by the real subgroup H = {2Kj/q} modulo 2K. At iK ′ , the standard formulas Res dn = −i and
+dn(iK ′ + t) = −i cs t give
+
+                              ResiK ′ V            ∏q−1
+                                         = (−i)q−1   cs(2Kj/q) = Cq ,
+                              ResiK ′ Uq
+                                                    j=1
+
+since cs(2K −t) = − cs t. The same ratio holds at every pole by subgroup periodicity and imaginary
+antiperiodicity. Thus V − Cq Uq is entire elliptic, hence constant, and its antiperiodicity forces zero.
+This is a reproof of the classical identity, not a new special-function assertion. The meromorphic
+pole-cancellation method itself is established, for example in [4, 6, 8].
+
+Proof of Theorem 1. First consider a primitive orbit and put q = N/ gcd(N, 2), r = N/q. Co-
+primality in (2) means that the shifts 2jv modulo 2K exhaust H exactly r times. Consequently
+T (z) = rUq (z). The hypothesis N ̸≡ 0 (mod 4) says precisely that q is odd. Because T has period
+2v, T (u + K − v) = T (u + K + v). Multiplying (5) and (8), then using Lemma 2, gives the explicit
+value                                           (               )
+                              ′ ′    a2 b4 f (v) 2f (v) − f (2v) r2 (k ′ )q
+                            A AO =                                          ,                (10)
+                                           4αβ cn2 (K − v)         Cq2
+independent of u. These determinant and subgroup computations apply to stars without reordering.
+Reversing traversal changes both area signs and preserves their product. A d-fold traversal repeats
+each shoelace sum d times. If its listed length is not divisible by four, neither is its least period, so
+the primitive theorem applies and its product is multiplied by d2 .
+
+    The coeﬀicient in (10) has units length to the fourth power, as required. Nondegenerate one-
+or two-bounce orbits are impossible here: the two-bounce segment passes through O and cannot
+touch C. The circular limit is separately elementary: all fixed-step regular-star families differ by
+rigid rotation, so both signed areas are constant. There is no assertion for a general period divisible
+                                          √ diamond with vertices (2, 0), (0, 1), (−2, 0), (0, −1) and
+by four. For example, on x2 /4 +√y 2 = 1 the
+the rectangle with vertices (±4/ 5, ±1/ 5) in boundary order are billiards with the same caustic
+λ = 4/5. Their outer/pedal products are respectively 8 · 4 = 32 and 10 · 5 = 50. Thus the omitted
+parity cannot simply be dropped.
+
+
+4    Attribution, evidence and limitations
+The note proves the originally conjectured invariant in the stated domain. It does not establish
+that this is a new theorem or the first proof. Ferudun’s version 1.1 [9] contains the exact full result.
+Its Zenodo record was created on 1 October 2026 at 18:12:36 UTC; version 1.0 was created at
+16:56:14 UTC. GitHub server check-suite timestamps place receipt of this note’s unchanged candi-
+date proof tree at 05:35:19 UTC that day; PR 209 was created at 05:48:56 UTC. These observations
+do not certify past public repository visibility, exclude an earlier website posting, or establish his-
+torical independent non-derivation. The bounded priority audit and its byte-bound chronology are
+included in the supplement. They leave historical ordering and novelty undetermined. The old
+trace identities, foot/velocity and hodograph mechanisms, canonical coordinates and meromorphic
+method are expressly credited above. Chavez-Caliz’s even original/outer area product [8, Theorem
+
+
+                                                   4
+6] concerns a different pair of areas; its auxiliary 2q-family also yields trace constancy, as detailed
+in the supplement.
+    The verification package preserves the original candidate and inherited review unchanged, three
+fresh mathematical/source audits and two priority audits, derivations, original and new exact con-
+trols, replay receipts and failure corrections. Exact symbolic calculations and arbitrary-precision
+samples support the analytic proof; finite samples are not universal proofs or interval-certified com-
+putations. In particular the period-four examples check the actual reflection and common-caustic
+hypotheses. The package states software versions and how to rerun the mathematical checks
+without network access; source retrieval and release operations are separate from those checks.
+Third-party primary papers and local software environments are not redistributed.
+
+AI use and review status. AI tools were used extensively for discovery, derivation, program-
+ming, literature searches, writing and adversarial checking, including separately prompted auto-
+mated reviewers. This is an unrefereed preprint. No independent human peer review or formal
+proof verification is claimed. Automated reviews and exact controls do not constitute either. Alec
+Kriebel is the named author; the preserved audit records state the actual scope of the checks.
+
+
+References
+ [1] D. Reznik, R. Garcia and J. Koiller, Eighty New Invariants of N-Periodics in the Elliptic
+     Billiard, arXiv:2004.12497v11 (2020), https://arxiv.org/abs/2004.12497v11.
+ [2] D. Reznik, R. Garcia and J. Koiller, Fifty New Invariants of N-Periodics in the Elliptic Billiard,
+     Arnold Math. J. 7 (2021), 341–355, doi:10.1007/s40598-021-00174-y.
+ [3] H. Stachel, On the motion of billiards in ellipses, European J. Math. 8 (2022), 1602–1622,
+     doi:10.1007/s40879-021-00524-2.
+ [4] A. Khare, A. Lakshminarayan and U. Sukhatme, Cyclic Identities Involving Jacobi Ellip-
+     tic Functions. II, J. Math. Phys. 44 (2003), 1822–1841; arXiv:math-ph/0207019 (2002),
+     doi:10.1063/1.1560856.
+ [5] A. Khare and U. Sukhatme, Connecting Jacobi elliptic functions with different modulus pa-
+     rameters, Pramana 63 (2004), 921–936.
+     Author version: Generalized Landen Transformation Formulas for Jacobi Elliptic Functions,
+     arXiv:math-ph/0312074v1 (2003), doi:10.1007/BF02704331.
+ [6] A. Akopyan, R. Schwartz and S. Tabachnikov, Billiards in ellipses revisited,
+     arXiv:2001.02934v2 (2020), doi:10.1007/s40879-020-00426-9.
+ [7] M. Bialy and S. Tabachnikov, Dan Reznik’s identities and more, arXiv:2001.08469v2 (2020),
+     doi:10.1007/s40879-020-00428-7.
+ [8] A. Chávez-Caliz, More About Areas and Centers of Poncelet Polygons, Arnold Math. J. 7
+     (2021), 91–106, doi:10.1007/s40598-020-00154-8.
+ [9] A. Ferudun, Outer-Pedal Area Products in Elliptic Billiards, version 1.1 (2026), Theorem 2
+     and Section 6, doi:10.5281/zenodo.23088516 (concept DOI 10.5281/zenodo.23087220).
+[10] NIST Digital Library of Mathematical Functions, Sections 22.4, 22.6 and 22.8, https://dlmf.
+     nist.gov/22.
+
+
+                                                  5
+

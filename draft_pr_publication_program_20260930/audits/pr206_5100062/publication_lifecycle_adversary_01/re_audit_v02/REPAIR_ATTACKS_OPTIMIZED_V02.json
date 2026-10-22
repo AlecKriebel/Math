@@ -1,0 +1,358 @@
+{
+  "schema": "pr206-independent-repair-attacks-v02",
+  "optimized": true,
+  "source_pins": {
+    "support206.py": {
+      "bytes": 77413,
+      "sha256": "b1de89de16876c02d8d18d76ef85eff2b3cb4654f699871c90df302d59302367"
+    },
+    "ready206.py": {
+      "bytes": 2779,
+      "sha256": "6a84852fd6e3bbe85f6af00c973c7e8b533fee5f17ba9b160bac81514832b5d0"
+    }
+  },
+  "test_sha256": "9a39889597e63b6ecb7394b99b58fcf7b2a679205a8795f0f68f86d6ca3cfc2d",
+  "only_owned_synthetic_fixtures": true,
+  "tests": 43,
+  "passed": 43,
+  "failed": 0,
+  "outcomes": [
+    {
+      "case": "view_write_without_ownership",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Current-process program-level writer ownership required"
+    },
+    {
+      "case": "sync_without_ownership",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Current-process program-level writer ownership required"
+    },
+    {
+      "case": "ownership_positive",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "view_write_without_full_five_session",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: All-five protected session required for every view write"
+    },
+    {
+      "case": "ownership_nonreentrant",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Program writer lease is nonreentrant"
+    },
+    {
+      "case": "wrong_process_ownership",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Current-process program-level writer ownership required"
+    },
+    {
+      "case": "real_child_lock_excluded",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "all_five_under_ownership",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "real_child_lock_available_after_release",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "lease_cleared_after_release",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "create_at_final_link_boundary",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "FileExistsError: [Errno 17] File exists: '/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr206_5100062/publication_lifecycle_adversary_01/re_audit_v02/repairs_owned_wyun990f/owned/g2/.pr206_installation_postimage_jmivilew' -> '/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr206_5100062/publication_lifecycle_adversary_01/re_audit_v02/repairs_owned_wyun990f/owned/g2/COLLISION.json'"
+    },
+    {
+      "case": "competing_receipt_preserved",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "no_replace_conflict_latched",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "incoming_and_competing_evidence_retained",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "latched_generation_barred",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Detected local writer conflict: generation is permanently barred from sync/pointer; Root recovery review required"
+    },
+    {
+      "case": "two_real_source_writers_one_winner",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "two_real_source_writers_preserve_winner",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "lock_identity_replacement_rejected",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Stable opened program-lock inode/path identity"
+    },
+    {
+      "case": "lock_identity_conflict_latched",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "lease_closed_after_identity_error",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "full_five_conflict_before_any_write",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Unexpected local five preimage"
+    },
+    {
+      "case": "full_five_conflict_no_earlier_write",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "full_five_conflict_latched",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "full_five_conflict_not_retried",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Detected local writer conflict: generation is permanently barred from sync/pointer; Root recovery review required"
+    },
+    {
+      "case": "canonical_pointer_under_owned_full_checks",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "canonical_pointer_incomplete_sync_rejected",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Own actual full acceptance and successful complete five-sync"
+    },
+    {
+      "case": "canonical_pointer_changed_view_rejected",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: All five readonly actual postimages before pointer"
+    },
+    {
+      "case": "canonical_pointer_atomic_collision",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "FileExistsError: [Errno 17] File exists: '/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr206_5100062/publication_lifecycle_adversary_01/re_audit_v02/repairs_owned_wyun990f/owned/g10/.pr206_installation_postimage_rpq_xfz1' -> '/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr206_5100062/publication_lifecycle_adversary_01/re_audit_v02/repairs_owned_wyun990f/program/COLLIDING_POINTER.json'"
+    },
+    {
+      "case": "canonical_pointer_competitor_preserved",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "exact_original_metadata_constant",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "metadata_substitution_matching_live_rejected",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Exact file pin draft_pr_publication_program_20260930/audits/pr206_5100062/ORIGINAL_PR_METADATA.json"
+    },
+    {
+      "case": "metadata_rejected_before_live_PR_read",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "synthetic_pinned_metadata_positive",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "synthetic_local_and_live_rebase_rejected",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Exact file pin draft_pr_publication_program_20260930/audits/pr206_5100062/ORIGINAL_PR_METADATA.json"
+    },
+    {
+      "case": "parent_SHA_verified_before_descent",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Native nonrecursive tree SHA1 before descent"
+    },
+    {
+      "case": "bad_parent_never_fetches_child",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "native_name_256",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Bounded native tree entry name"
+    },
+    {
+      "case": "native_path_oversize",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Safe relative path"
+    },
+    {
+      "case": "native_depth_65_rejected",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Bounded acyclic native-tree depth"
+    },
+    {
+      "case": "native_depth_GET_bound",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "small_shared_DAG_work_before_insertion",
+      "expected": "reject",
+      "observed": "rejected",
+      "pass": true,
+      "error": "RuntimeError: Incremental global native work budget"
+    },
+    {
+      "case": "shared_subtree_fetched_once",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    },
+    {
+      "case": "writer_protocol_honest_same_UID_limit",
+      "expected": "accept",
+      "observed": "accepted",
+      "pass": true,
+      "error": null
+    }
+  ],
+  "raw_process_outcomes": [
+    {
+      "case": "two_process_source_link_race",
+      "ready": [
+        "READY",
+        "READY"
+      ],
+      "children": [
+        {
+          "returncode": 0,
+          "result": {
+            "won": true
+          },
+          "stderr": ""
+        },
+        {
+          "returncode": 0,
+          "result": {
+            "won": false,
+            "error": "FileExistsError"
+          },
+          "stderr": ""
+        }
+      ],
+      "final": "WRITER0"
+    },
+    {
+      "case": "excluded_noncooperating_same_UID_final_window",
+      "classification": "KNOWN_LIMITATION_NON_PASS",
+      "considered_safety_PASS": false,
+      "lock_deliberately_ignored": true,
+      "competing_content_lost": true,
+      "sync_images_returned_success": true,
+      "exception": null
+    }
+  ]
+}

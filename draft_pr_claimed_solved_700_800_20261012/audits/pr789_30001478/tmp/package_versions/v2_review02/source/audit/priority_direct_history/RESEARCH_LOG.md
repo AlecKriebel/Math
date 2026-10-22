@@ -1,0 +1,8 @@
+# Direct source-history priority audit
+
+2026-10-16T16:23:59.314333+00:00 — 5%: Saved target, exact success criteria, independence boundary and direct-history search plan before reading original or peer priority reports.
+2026-10-16T16:29:20.316113+00:00 — 65%: Froze independent direct-history findings before opening any original author, audit, root or peer priority summary. Verified no full matching predecessor in inspected statements; priority remains bounded and unresolved.
+2026-10-16T16:31:45.816703+00:00 — 85%: Compared original6October boundedsourceaudit afterindependentfreeze;allthreeprimaryPDFhashesmatchfreshretrievals. Added52querylog,22PDFretrievalrecords(21article/slidebodies plusone mislabelednonarticlefile),sourceversions,read/unreadboundariesandcitationmetadata. Correctedtwoauthorshipshorthandsfromtitlepageswithoutchanginghistoricalfrozenprovisional. Preparingsealedcustodycheckerandtampercontrols.
+2026-10-16T16:33:01.567809+00:00 — 95%: Authored finalboundedreportandverdict,includingNSfollowupcontext,allclassicalcredits,characteristicboundary,read/unreadgapsandexplicitnoprioritycertification. Custody/negativecontrolverificationremains.
+2026-10-16T16:35:14.416039+00:00 — 100%: Final direct-history bounded verdict and source ledger complete. Sealed checker/control implementation rejects wrong targets, unsupported certifications, malformed manifests and unsafe evidence paths. Executing reproducible control suite before terminal handoff.
+2026-10-16T16:35:52.992056+00:00 — 100%: Four positive normal/optimized core/full-source controls and24negative controls passed. Original source and checker bytes stayed unchanged. Final manifest now seals the authored receipt; fresh finalpacket replays follow outside the closed packet.

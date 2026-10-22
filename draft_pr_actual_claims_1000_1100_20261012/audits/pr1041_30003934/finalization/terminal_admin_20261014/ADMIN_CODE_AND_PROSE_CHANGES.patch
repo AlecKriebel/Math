@@ -1,0 +1,816 @@
+--- frozen_before/EVIDENCE_INDEX.md
++++ terminal_current/EVIDENCE_INDEX.md
+@@ -1,6 +1,6 @@
+ # Evidence index
+ 
+-This index distinguishes theorem evidence, finite checks, and dated review history with exact frozen input scopes. Read `STATUS.json` for the current preparation state. Historical acceptance text is preserved in frozen copies; it is not the status of the new manuscript.
++This index distinguishes theorem evidence, finite checks, and dated review history with exact frozen input scopes. Read `STATUS.json` for the current preparation state. Historical acceptance text is preserved in frozen copies with exact input scopes. `REVIEW_HISTORY.json` records the dated sequence through the root-accepted zero-issue third review.
+ 
+ | Location | Role and strongest supported statement |
+ | --- | --- |
+@@ -25,6 +25,8 @@
+ | `evidence/reviews/package_02/` | Exact second whole-review terminal outputs and seal; one P2 verifier finding on its frozen inputs, not a current clean verdict. |
+ | `evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_02.json` | Unchanged root adoption of the second review and bounded repair requirement. |
+ | `history/before_package02_verifier_repair/`, `HASH_STAGE_INDEX.json` | Old authored code, documentation, status and receipts preserved byte-for-byte with original stage meanings; current input pins are separate. |
++| `evidence/reviews/package_03/`, `evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json` | All 304 exact authored terminal third-review outputs, pins, seal and root adoption; zero P0–P3 on the unchanged manuscript/PDF and frozen candidate. |
++| `history/before_terminal03_finalization/`, `REVIEW_HISTORY.json`, `HISTORIC_EXCLUSIONS.json` | Exact pre-terminal administrative before bytes, dated review chronology and individual immutable-pin exclusion reasons. Archive/wrapper before bytes retained at explicit external freeze locators. |
+ | `RESEARCH_LOG.md`, `PREPARATION_REPORT.md`, `PDF_QA.json` | UTC preparation/repair checkpoints, current repair report and current PDF layout check. Read `STATUS.json` for current kit state. |
+ 
+ All eleven original files are retained. Complete fresh family input/output pins and independence checkpoints are included where authored. `EVIDENCE_COPY_MANIFEST.json` maps their relocated paths. Private original sources and cached third-party content are intentionally absent, including every `raw`/`rawprivate` directory and extracted source text.
+--- frozen_before/HASH_STAGE_INDEX.json
++++ terminal_current/HASH_STAGE_INDEX.json
+@@ -20,15 +20,24 @@
+     {
+       "path": "evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_02.json",
+       "scope": "Exact root adoption of whole02 P2"
++    },
++    {
++      "path": "history/before_terminal03_finalization/STAGE_PINS.json",
++      "scope": "Exact 19 pre-terminal mutable/sidecar before-byte records; 17 distributed plus two external before-byte locators. Unchanged 224-file candidate pins retain original meaning."
++    },
++    {
++      "path": "evidence/reviews/package_03/OUTPUT_PINS.json",
++      "scope": "304 exact terminal authored full third-review outputs, with separate unchanged seal and root adoption; zero P0\u2013P3 on frozen whole03 candidate"
+     }
+   ],
+   "current_stage": {
+     "integrity": "CURRENT_INTEGRITY.json",
+     "copy_map": "EVIDENCE_COPY_MANIFEST.json",
+-    "external_input_freeze": "../repairs/package02/FINAL_CURRENT_INPUT_PINS.json",
+-    "external_changes": "../repairs/package02/CHANGE_INVENTORY.json",
+-    "status": "PENDING_NEW_WHOLE_03",
+-    "publication_ready": false,
+-    "all_issues_resolved": false
++    "external_input_freeze": "../finalization/terminal_admin_20261014/INPUT_PINS.json",
++    "external_changes": "../finalization/terminal_admin_20261014/CHANGE_INVENTORY.json",
++    "status": "FINAL_ZERO_ACTIONABLE_NEW_WHOLE_03_ROOT_ACCEPTED",
++    "publication_ready": true,
++    "all_issues_resolved": true,
++    "published": false
+   }
+ }
+--- frozen_before/INTEGRITY_QA.json
++++ terminal_current/INTEGRITY_QA.json
+@@ -1,45 +1,49 @@
+ {
+-  "utc": "2026-10-14T04:07:26.163069+00:00",
+-  "scope": "Bounded package02 interface verification; current complete content/archive pins are external repairs/package02/FINAL_CURRENT_INPUT_PINS.json. Earlier integrity QA and receipts retain exact historical meanings.",
+-  "baseline_integrity_pass": true,
+-  "default_clean_extraction_verifier_passes": true,
+-  "clean_before_build_archive_checked": false,
+-  "clean_after_build_archive_checked": true,
+-  "clean_absent_wrapper_present": false,
+-  "clean_absent_wrapper_metadata_and_files_verified": false,
+-  "required_absent_wrapper_rejected": true,
+-  "present_wrapper_strict_both_modes": true,
+-  "negative_controls": 108,
+-  "interpreters": [
+-    "normal",
+-    "-O"
+-  ],
+-  "fault_families": [
+-    "malformed/duplicate/type/metadata/publication-type/upload-type/filepath/filename/nonexternal/duplicate-attachment wrappers",
+-    "wrapper symlink/broken-symlink/directory",
+-    "missing local archive",
+-    "altered content/unmanifested content/archive/historical record",
+-    "pending readiness after manifest rebuild",
+-    "tar payload/missing/duplicate member/mode after valid outer rehash",
+-    "historic output pin after copy-map/current-manifest rebuild"
+-  ],
+-  "all_faults_rejected_with_expected_explicit_exception": true,
+-  "independent_actual_tar_gzip_payload_rebuild_byte_identical": true,
+-  "closed_archive_members": 210,
+-  "current_content_files": 208,
+-  "old_archive_member_set_retained": 125,
+-  "added_content_members": 85,
+-  "copied_authored_records": 161,
+-  "previous_95_copies_and_records_unchanged": true,
+-  "whole02_64_outputs_seal_and_root_adoption_byte_identical": true,
+-  "all_eleven_originals_unchanged": true,
+-  "old_stage_records_preserved_exactly": 16,
+-  "bare_metadata_and_external_descriptor_unchanged": true,
+-  "metadata_and_local_attachments_checked_locally": true,
+-  "no_network_or_service_check_performed": true,
+-  "prepare_support_copy_map_idempotent": true,
+-  "mathematical_proof_check": false,
+-  "new_whole_package_review": "PENDING_NEW_WHOLE_03",
+-  "publication_ready": false,
+-  "all_issues_resolved": false
++  "utc": "2026-10-14T04:48:23.058558+00:00",
++  "scope": "Terminal administrative packaging only after root acceptance of NEW_WHOLE_03; exact historical integrity QA is retained in history/before_terminal03_finalization. Final current byte pins and independent closed reconstruction are external in finalization/terminal_admin_20261014. No mathematical checker/compiler/render/service operation.",
++  "terminal_whole_review": "NEW_WHOLE_03",
++  "terminal_severity_counts": {
++    "P0": 0,
++    "P1": 0,
++    "P2": 0,
++    "P3": 0
++  },
++  "fresh_whole_package_reviews": 3,
++  "minimum_required_whole_reviews": 2,
++  "all_161_previous_copy_records_and_bytes_unchanged": true,
++  "whole03_304_authored_outputs_pins_seal_root_adoption_unchanged": true,
++  "copied_authored_records": 468,
++  "whole03_omitted_authored_outputs": 0,
++  "explicit_historic_exclusions": 13,
++  "default_clean_normal_optimized_verify_build_verify": true,
++  "clean_absent_archive_and_wrapper_honestly_unverified": true,
++  "required_absent_wrapper_rejected_before_and_after_build_both_modes": true,
++  "full_required_normal_optimized_verify_build_verify": true,
++  "present_wrapper_remains_strict_both_modes": true,
++  "actual_interface_commands": 22,
++  "terminal_guard_fault_families": 23,
++  "terminal_guard_explicit_failures": 138,
++  "wrapper_regression_explicit_failures": 16,
++  "fault_outer_manifests_receipts_and_archive_hashes_refreshed": true,
++  "builder_gate_rejects_before_writing": true,
++  "independent_entire_closed_tar_gzip_byte_identity": true,
++  "current_content_files": 536,
++  "archive_members": 538,
++  "fixed_epoch": 1791849600,
++  "fixed_mode": "0644",
++  "owner_group": "0/0, empty names",
++  "gzip_mtime": 0,
++  "safe_sorted_casefold_unique_paths": true,
++  "all_nonpaper_members_utf8": true,
++  "old_archive_and_descriptor_before_bytes_retained_externally": true,
++  "old_224_candidate_pins_not_retargeted": true,
++  "new_tex_pdf_or_bibliographic_metadata_changes": false,
++  "new_compile_export_render_or_marker": false,
++  "global_priority": "UNKNOWN_BOUNDED_NO_MATCH_ONLY",
++  "publication_ready": true,
++  "all_issues_resolved": true,
++  "published": false,
++  "ascending_services_held_at": 1032,
++  "root_final_admin_seal": "PENDING_ROOT_FINAL_ADMIN_ADOPTION",
++  "mathematical_proof_formally_verified": false
+ }
+--- frozen_before/PDF_QA.json
++++ terminal_current/PDF_QA.json
+@@ -1,6 +1,6 @@
+ {
+-  "utc": "2026-10-14T03:21:32.049510+00:00",
+-  "scope": "Unchanged supplied TeX/PDF; prior actual nine-page compile/render/visual evidence retained in history/before_package02_verifier_repair/PDF_QA.json. This code-only repair did not compile, render or inspect new pages.",
++  "utc": "2026-10-14T04:43:31.033652+00:00",
++  "scope": "Identical supplied TeX/PDF, independently fully reviewed at NEW_WHOLE_03; exact earlier layout receipt retained in history/before_terminal03_finalization/PDF_QA.json. Terminal administration performs no compile, export or rendering.",
+   "tex_sha256": "0ccac52f998823d98c020608c34ec2ad2cbd1d1f54db1815f0a00f898c5258c0",
+   "pdf": "output/pdf/paper.pdf",
+   "pdf_sha256": "3ba83c50a4a2369a70897ee165a43f56324aa31574cf9c199e664174cbce0449",
+@@ -77,9 +77,11 @@
+   ],
+   "visual_defects_found": 0,
+   "compile_warning": "Existing line 41 theorem overfull hbox 17.14622pt; mathematical source unchanged, visually legible and unclipped. Pages 1\u20138 have byte-identical rendered images to frozen initial PDF.",
+-  "readiness": "PENDING_NEW_WHOLE_03",
+-  "publication_ready": false,
+-  "all_issues_resolved": false,
++  "readiness": "FINAL_ZERO_ACTIONABLE_NEW_WHOLE_03_ROOT_ACCEPTED",
++  "publication_ready": true,
++  "all_issues_resolved": true,
+   "formal_verification": false,
+-  "package02_new_compile_or_render": false
++  "package02_new_compile_or_render": false,
++  "terminal_admin_new_compile_or_render": false,
++  "whole03_review_evidence": "evidence/reviews/package_03/PDF_REVIEW.json"
+ }
+--- frozen_before/PREPARATION_REPORT.md
++++ terminal_current/PREPARATION_REPORT.md
+@@ -1,11 +1,11 @@
+-# Current package02 verifier repair preparation report
++# Terminal administrative preparation report
+ 
+-The sole finding PR1041-P2-CLEAN-EXTRACTION-VERIFIER-02 is addressed by separating distributable content verification from required local deposit coverage. `python3 verify_package.py` now works without the intentionally external wrapper and records its absence and unperformed check honestly. `--require-deposit` requires the wrapper. A wrapper present in either mode must be a regular file with valid unambiguous JSON, exactly the unchanged bare metadata and exactly the existing PDF/archive file descriptors; both local attachments must pass their content/archive checks. This is integrity/provenance verification, not formal proof verification or a new whole mathematical review.
++On 14 October 2026, root accepted the complete NEW_WHOLE_03 review with P0=P1=P2=P3=0. This stage appends its 304 exact sealed authored outputs, unchanged OUTPUT_PINS.json and SEAL.json, and unchanged root adoption. All 161 previous copy-map records and bytes remain identical; 307 records are appended (468 total). The first clean whole-review verdict, root P3 release-wording observation, and second whole-review sole-P2 verdict preserve their dated scopes and exact bytes. REVIEW_HISTORY.json records this chronology; STATUS.json records current local readiness, issues resolved, and published=false.
+ 
+-All 95 old source-to-package mappings and bytes remain unchanged, including eleven originals and the first clean whole review. All 64 sealed terminal outputs of NEW_WHOLE_02, its OUTPUT_PINS.json and root adoption are appended unchanged (161 authored copies total). Its full report and sole P2 verdict retain their original meaning. Old modified top-level code/docs/pins/status/receipts are preserved verbatim under `history/before_package02_verifier_repair/`; initial history also remains unchanged. `HASH_STAGE_INDEX.json` navigates historical and current pin roles without retargeting old locators. Authored test outputs from both whole reviews are explicitly permitted by the copy map; raw/private source bodies, extracts, page images, replay trees, caches, discovery dumps and other third-party binaries remain excluded.
++All 19 pre-terminal administrative/sidecar before-byte records are preserved exactly. Seventeen live under history/before_terminal03_finalization/; the prior archive and external descriptor are retained in the explicit external baseline locators of STAGE_PINS.json. The unchanged historical 224-file candidate pins retain their original meaning and can be resolved using these before bytes. All earlier history and pins remain unchanged.
+ 
+-The supplied TeX and PDF are byte-identical to the NEW_WHOLE_02 inputs: TeX SHA-256 0ccac52f998823d98c020608c34ec2ad2cbd1d1f54db1815f0a00f898c5258c0; PDF SHA-256 3ba83c50a4a2369a70897ee165a43f56324aa31574cf9c199e664174cbce0449. No TeX compilation, new page marker, PDF export or render occurred in this code-only repair. Existing layout receipts remain historical evidence for these same bytes. Bare publication/zenodo.json and external zenodo-deposit.json are unchanged.
++TeX SHA-256 0ccac52f998823d98c020608c34ec2ad2cbd1d1f54db1815f0a00f898c5258c0 and PDF SHA-256 3ba83c50a4a2369a70897ee165a43f56324aa31574cf9c199e664174cbce0449 remain protected. No paper edit, new marker, compilation, PDF export or rendering occurred. Bare publication metadata and external descriptor remain byte-identical; author, ORCID, version, date, license, unknown global priority and component credits are unchanged.
+ 
+-Current BUILD_RECEIPT.json and ARCHIVE_SHA256.json bind the closed distributed member set, safe sorted/casefold-unique paths, regular 0644 files, uid/gid zero, empty names, epoch 1791849600, gzip mtime zero and CRC/isize. The archive and its hash sidecar are absent from a clean extraction before a rebuild; default content verification reports that boundary. After building, it additionally validates that actual archive. A full local candidate includes the strictly checked external wrapper. New actual clean verify/build/verify, full required-deposit checks, fault controls in normal and optimized Python, independent closed tar/gzip reconstruction, copy/hash/type checks and unchanged protected-input custody are recorded externally under repairs/package02. Old game/flow scripts and their receipts remain unchanged.
++The only code changes concern packaging administration: exact pinned terminal03 text streams, an explicit historical omission ledger, and a readiness guard binding strict zero counts to root-accepted report/verdict/pins/seal identities and protected paper/PDF/bare-metadata hashes. Clean default verification remains valid without an external wrapper; required mode and present-wrapper strict checks remain intact in normal and optimized Python. Actual command/fault receipts, independent full closed tar/gzip reconstruction, source/copy/history/protected custody and final output pins are outside the archive in finalization/terminal_admin_20261014.
+ 
+-STATUS.json is PENDING_NEW_WHOLE_03; publication_ready=false and all_issues_resolved=false. Root will assign the next complete independent review. No readiness promotion, global-priority conclusion, whole mathematical review, service/publication/DOI action, Git mutation or outside communication occurred. Alec Kriebel, independent researcher, ORCID 0009-0001-9320-500X, version 1.0, 13 October 2026 and CC BY 4.0 remain unchanged; extensive AI assistance/unrefereed-review boundaries remain disclosed.
++No new mathematical review or curve-program computation was performed here. This local preparation is unpublished, services remain held at 1032, and root final administrative adoption is separate. No Git/index/branch mutation, upload, release, DOI, external-service operation or individual communication occurred.
+--- frozen_before/README.md
++++ terminal_current/README.md
+@@ -5,7 +5,7 @@
+ 
+ This local package contains the complete theorem paper, its editable LaTeX source, and a provenance-preserving evidence supplement. The theorem is UNIQUENESS coNP-complete / NONUNIQUENESS NP-complete for explicitly listed rational variable-dimension bimatrix games with exact rank(A+B)=1, arbitrary degeneracy, and uniqueness of the entire mixed-strategy pair. The reduction starts from nonempty positive-integer PARTITION and supplies a known strict pure default equilibrium. Worldwide priority remains unknown; no firstness or current-worldwide-open assertion is made.
+ 
+-The underlying complete proof was accepted in the root mathematical audit after two fresh mathematical review families. The support package preserves dated independent and adversarial AI review history, with each verdict limited to its frozen input. `evidence/reviews/package_01/` records the first complete manuscript/package review, which found zero P0–P3 issues on its unchanged inputs. The root subsequently recorded an editorial release-wording issue. `evidence/reviews/package_02/` preserves the second complete review, including its sole P2 finding about the clean-extraction verifier. This code-only repair addresses that interface; the complete next review is pending in `STATUS.json`. These records are unrefereed AI review evidence.
++The underlying complete proof was accepted in the root mathematical audit after two fresh mathematical review families. The support package preserves dated independent and adversarial AI review history, with each verdict limited to its frozen input. `evidence/reviews/package_01/` records the first complete manuscript/package review, which found zero P0–P3 issues on its unchanged inputs. The root subsequently recorded an editorial release-wording issue. `evidence/reviews/package_02/` preserves the second complete review, including its sole P2 finding about the clean-extraction verifier. The interface repair was followed by the third complete review at `evidence/reviews/package_03/`, which found zero P0–P3 issues on its frozen candidate. Root adopted that result on 14 October 2026. `REVIEW_HISTORY.json` preserves the dated sequence; `STATUS.json` records current local preparation readiness and publication state. These records are unrefereed AI review evidence.
+ 
+ Start with `output/pdf/paper.pdf` and `paper.tex`. `SUPPLEMENT.md` describes actual reproducibility interfaces and limits; `EVIDENCE_INDEX.md` locates the original and fresh evidence. `EVIDENCE_COPY_MANIFEST.json` gives exact source-to-package path and hash mappings. `STATUS.json` is the current preparation state; historical statuses inside frozen evidence remain historical. `publication/zenodo.json` supplies publication metadata. The external `zenodo-deposit.json` wrapper exactly embeds that metadata and names the supplied PDF and support archive for the repository tool; it is locally prepared only. It is intentionally absent from the support archive. Its preparation does not create an uploaded record or reserve a DOI.
+ 
+--- frozen_before/RESEARCH_LOG.md
++++ terminal_current/RESEARCH_LOG.md
+@@ -7,3 +7,5 @@
+ - 2026-10-14T03:21:32.049510+00:00: Root release-wording observation repaired by replacing one Section 7 disclosure sentence and related durable package wording with dated frozen-scope review history/current-state pointers. First NEW_WHOLE_01 clean verdict and 41 authored terminal records preserved unchanged. New nine-page PDF compiled and all pages individually viewed; pages 1–8 rendered identically. Initial preparation receipts preserved under history/initial_preparation. Repair completion estimate: 70%; PENDING_NEW_WHOLE_02, publication_ready=false, all_issues_resolved=false.
+ - 2026-10-14T03:24:05.080352+00:00: Repaired local kit integrity and source-copy custody checks pass; 95 authored copies, current archive payloads, independent/consecutive deterministic builds, path/mode/CRC checks and exact external metadata/file wrapper verified. Five negative controls rejected; fullsource.txt outside raw excluded. Repair completion estimate: 95%; final output freeze follows externally, with PENDING_NEW_WHOLE_02 and both readiness flags false.
+ - 2026-10-14T04:07:26.163069+00:00: Bounded sole-P2 clean-extraction interface repair implemented: default packaged content verification plus optional strict external wrapper, explicit required-local-deposit mode, honest absent-wrapper/archive flags. All 95 prior copies and historical stages retained; 64 whole02 outputs, seal and root adoption appended unchanged (161 copies). Normal/optimized clean verify/build/verify and 108 fault runs pass their expected results, including tar/historic checks beyond refreshed outer hashes. TeX/PDF/bare metadata/descriptor unchanged; no recompile/new marker, new mathematics review, Git/service/publication action or communication. Repair estimate: 95%; final input/output freeze and root NEW_WHOLE_03 follow; readiness flags false.
++- 2026-10-14T04:43:31.033652+00:00: Root-accepted full NEW_WHOLE_03 zero-P0–P3 result appended unchanged with pins/seal/adoption; earlier sole-P2 verdict and all history retained. Protected paper/PDF/metadata/descriptor unchanged. Terminal administrative packaging estimate: 55%; actual final closed archive and guards remain to be checked, published=false, services held at 1032.
++- 2026-10-14T04:48:23.058558+00:00: Actual normal/optimized clean and full required verify/build/verify pass, absent-wrapper required failures remain explicit, and 138 new terminal-guard plus 16 strict-wrapper regression probes reject at their intended exceptions after valid outer hash refresh. Independent closed tar/gzip reconstruction is byte-identical, 536 content files / 538 members; all 161 old mappings and 307 additions retain exact source bytes. Final terminal administrative completion estimate: 95%; final content/whole-audit custody/output freeze follows, parent final admin seal remains separate. Local readiness=true, issues resolved=true, published=false; services held at 1032.
+--- frozen_before/STATUS.json
++++ terminal_current/STATUS.json
+@@ -6,8 +6,8 @@
+   "orcid": "0009-0001-9320-500X",
+   "mathematical_basis": "ROOT_ACCEPTED_COMPLETE_THEOREM",
+   "current_manuscript_content": "COMPLETE_PREPARATION",
+-  "new_whole_package_review": "PENDING_NEW_WHOLE_03",
+-  "publication_ready": false,
++  "new_whole_package_review": "FINAL_ZERO_ACTIONABLE_NEW_WHOLE_03_ROOT_ACCEPTED",
++  "publication_ready": true,
+   "global_priority": "UNKNOWN_BOUNDED_NO_MATCH_ONLY",
+   "human_journal_peer_review": false,
+   "proof_assistant_verified": false,
+@@ -17,7 +17,7 @@
+   "services_or_publication_mutated": false,
+   "individuals_contacted": false,
+   "license": "CC-BY-4.0",
+-  "all_issues_resolved": false,
++  "all_issues_resolved": true,
+   "first_whole_package_review": {
+     "review": "NEW_WHOLE_01",
+     "verdict": "PASS_COMPLETE_CURRENT_MANUSCRIPT_AND_PACKAGE",
+@@ -41,8 +41,38 @@
+   },
+   "package_verifier_repair": {
+     "finding": "PR1041-P2-CLEAN-EXTRACTION-VERIFIER-02",
+-    "status": "IMPLEMENTED_PENDING_NEW_WHOLE_03",
++    "status": "RESOLVED_BY_ROOT_ACCEPTED_NEW_WHOLE_03",
+     "scope": "Distributable content and optional strict external wrapper; --require-deposit enforces local deposit coverage",
+     "manuscript_and_pdf_changed": false
++  },
++  "published": false,
++  "ascending_services_held_at": 1032,
++  "fresh_whole_package_reviews": 3,
++  "minimum_fresh_whole_package_reviews": 2,
++  "terminal_severity_counts": {
++    "P0": 0,
++    "P1": 0,
++    "P2": 0,
++    "P3": 0
++  },
++  "third_whole_package_review": {
++    "review": "NEW_WHOLE_03",
++    "verdict": "PASS_COMPLETE_CURRENT_MANUSCRIPT_AND_PACKAGE",
++    "severity_counts": {
++      "P0": 0,
++      "P1": 0,
++      "P2": 0,
++      "P3": 0
++    },
++    "verdict_path": "evidence/reviews/package_03/VERDICT.json",
++    "root_adoption_path": "evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json",
++    "frozen_input_scope": "evidence/reviews/package_03/FINAL_INPUT_PINS.json",
++    "terminal_outputs": 304
++  },
++  "terminal_administrative_finalization": {
++    "utc": "2026-10-14T04:43:31.033652+00:00",
++    "scope": "Unchanged supplied manuscript/PDF; exact whole03 terminal evidence append, historical before-byte custody and deterministic packaging guards",
++    "external_root_final_admin_seal": "../finalization/terminal_admin_20261014/ROOT_FINAL_SEAL.json",
++    "root_final_admin_seal_state": "PENDING_ROOT_FINAL_ADMIN_ADOPTION"
+   }
+ }
+--- frozen_before/SUPPLEMENT.md
++++ terminal_current/SUPPLEMENT.md
+@@ -27,15 +27,15 @@
+ 
+ The original head is `ad138ddd5bd1a51c0f225f03342c0c058873f790`; the original full tree has eleven authored theoretical files. `evidence/root/SUBMITTED_PINS.json` stores their repository paths, original snapshot paths, sizes, and hashes. They are copied to `evidence/original/<snapshot_path>` without any edits. Their historical acceptance and readiness text is preserved, not promoted to a statement about this new package.
+ 
+-The fresh flow, game, priority and first/second complete manuscript/package reviews retain their authored derivations/reports, code/receipts where applicable, independence checkpoints, input/final/output pins, logs, and source receipt/catalogue metadata. The first complete review is frozen at `evidence/reviews/package_01/`: its clean zero-issue verdict applies to its pinned original input, before the root release-wording repair. The second complete review is frozen at `evidence/reviews/package_02/`, including its sole P2 finding and all 64 sealed authored outputs plus its seal. Both reviews’ legitimate authored test output streams are retained; raw source bodies, extracts, renderings and disposable replay directories remain excluded. Their paths in old pins were relative to their original review directory. `EVIDENCE_COPY_MANIFEST.json` explicitly maps each old audit-relative source path to its new package path and gives the current copied hash; thus relocation does not silently invalidate or rewrite historical evidence. Original pins that mention private raw sources are retained as historical identity records, while the private bodies remain absent.
++The fresh flow, game, priority and first/second/third complete manuscript/package reviews retain their authored derivations/reports, code/receipts where applicable, independence checkpoints, input/final/output pins, logs, and source receipt/catalogue metadata. The first complete review is frozen at `evidence/reviews/package_01/`: its clean zero-issue verdict applies to its pinned original input, before the root release-wording repair. The second complete review is frozen at `evidence/reviews/package_02/`, including its sole P2 finding and all 64 sealed authored outputs plus its seal. All three reviews’ exact pinned authored output streams are retained; raw source bodies, extracts, renderings and disposable replay directories remain excluded. Their paths in old pins were relative to their original review directory. `EVIDENCE_COPY_MANIFEST.json` explicitly maps each old audit-relative source path to its new package path and gives the current copied hash; thus relocation does not silently invalidate or rewrite historical evidence. Original pins that mention private raw sources are retained as historical identity records, while the private bodies remain absent.
+ 
+-`CURRENT_INTEGRITY.json` hashes every distributed content file except itself. The candidate archive, external `zenodo-deposit.json` wrapper and root build/verification/archive-hash receipts are kept outside its self-reference domain. The wrapper names the archive, so excluding it prevents archive self-reference; a present wrapper is strictly checked against the unchanged bare metadata and the two verified local attachments. The default mode does not require an absent wrapper; `--require-deposit` does. Coverage flags distinguish these cases. Unchanged initial preparation reports, PDF checks, receipts and input pins live under `history/initial_preparation/` with explicitly historical scope. The next frozen stage at `history/before_package02_verifier_repair/` preserves all modified pre-repair records byte-for-byte. `HASH_STAGE_INDEX.json` distinguishes stage pins from current integrity. Root `PREPARATION_REPORT.md`, `PDF_QA.json`, and build receipts describe the code-only repaired package with unchanged supplied paper bytes. The deterministic archive uses a fixed 2026-10-13 UTC timestamp, sorted paths, fixed owner/group/modes and gzip mtime zero. `BUILD_RECEIPT.json` records content count, current-integrity hash and build policy; the separate `ARCHIVE_SHA256.json` records the archive hash. Archive reproducibility means identical included bytes yield identical archive bytes; the PDF itself carries a build creation time and is pinned as a supplied artifact, so a newly compiled PDF may have a different binary hash.
++`CURRENT_INTEGRITY.json` hashes every distributed content file except itself. The candidate archive, external `zenodo-deposit.json` wrapper and root build/verification/archive-hash receipts are kept outside its self-reference domain. The wrapper names the archive, so excluding it prevents archive self-reference; a present wrapper is strictly checked against the unchanged bare metadata and the two verified local attachments. The default mode does not require an absent wrapper; `--require-deposit` does. Coverage flags distinguish these cases. Unchanged initial preparation reports, PDF checks, receipts and input pins live under `history/initial_preparation/` with explicitly historical scope. The next frozen stage at `history/before_package02_verifier_repair/` preserves all modified pre-repair records byte-for-byte. `HASH_STAGE_INDEX.json` distinguishes stage pins from current integrity. The final frozen stage at `history/before_terminal03_finalization/` retains the exact pre-terminal administrative records and explicit external archive/wrapper before-byte locators. `HISTORIC_EXCLUSIONS.json` explains every absent historical output pin individually, preserving original identities; no terminal03 output is omitted. Root `PREPARATION_REPORT.md`, `PDF_QA.json`, and build receipts describe terminal administration with unchanged supplied paper bytes. The deterministic archive uses a fixed 2026-10-13 UTC timestamp, sorted paths, fixed owner/group/modes and gzip mtime zero. `BUILD_RECEIPT.json` records content count, current-integrity hash and build policy; the separate `ARCHIVE_SHA256.json` records the archive hash. Archive reproducibility means identical included bytes yield identical archive bytes; the PDF itself carries a build creation time and is pinned as a supplied artifact, so a newly compiled PDF may have a different binary hash.
+ 
+ Use `python3 verify_package.py` in a clean extraction to check current content hashes, the copy map, original eleven-file pins, historic fresh output pins for all distributed members, archive membership and archive SHA-256. It also enforces exclusions and validates a present external wrapper strictly. An absent wrapper yields `external_wrapper_present=false` and `external_wrapper_metadata_and_files_verified=false`; the local archive is also honestly marked unchecked until rebuilt. `python3 verify_package.py --require-deposit` requires the external wrapper and both verified local attachments. Missing required, malformed present, wrong metadata/type or misbound wrappers fail. Neither mode claims formal proof verification. `build_archive.py` refreshes integrity before creating the archive; after any editorial repair, new review, or status update, run it and verify again. Keeping the old pin manifests permits historical integrity comparison without confusing them with the current content manifest.
+ 
+ ## Private-source exclusion and intellectual lineage
+ 
+-No third-party source bodies are redistributed: all raw/rawprivate material, PDFs other than the authored paper, extracted source text (including `fullsource.txt` outside raw folders), page images, caches, rendering intermediates, disposable replay trees, and citation-discovery response dumps are excluded. Only explicitly copied, pinned authored test stdout/stderr `.txt` streams from both complete reviews are distributed; these contain no source bodies. This specifically includes `reviews/game_certificate_01/sources/rawprivate`. Source receipts and authored summaries/catalogues provide public URLs, versions, identity hashes, and actual reading scopes instead. A report's link to an excluded raw source is a historical locator, not a broken promise that the attachment is distributed.
++No third-party source bodies are redistributed: all raw/rawprivate material, PDFs other than the authored paper, extracted source text (including `fullsource.txt` outside raw folders), page images, caches, rendering intermediates, disposable replay trees, and citation-discovery response dumps are excluded. Only explicitly copied, pinned authored test stdout/stderr `.txt` streams from all three complete reviews are distributed; these contain no source bodies. This specifically includes `reviews/game_certificate_01/sources/rawprivate`. Source receipts and authored summaries/catalogues provide public URLs, versions, identity hashes, and actual reading scopes instead. A report's link to an excluded raw source is a historical locator, not a broken promise that the attachment is distributed.
+ 
+ Credit belongs to DS for its source counter/bridge and activity/coNP hardness, Adsul and coauthors for the auxiliary zero-sum/scalar hyperplane method, Gilboa–Zemel for unrestricted uniqueness hardness and rational membership, Gilboa–Zemel/Conitzer–Sandholm for the default-plus-witness pattern, Erickson–Fox–Lkhamsuren (2018) for prior generic real-demand isolation context, and established LP duality/determinant/exact-penalty techniques. The specialized connecting proof is fully written, with no broad lemma-firstness claims. arXiv Adsul v4 Theorems 7/19/20/21 map to journal Theorems 1/4/5/6; journal Theorem 7 is a different result.
+ 
+@@ -43,4 +43,4 @@
+ 
+ ## Review, authorship and publication boundary
+ 
+-Alec Kriebel, independent researcher, ORCID 0009-0001-9320-500X; version 1.0, 13 October 2026. Authored text/code/evidence is CC BY 4.0. Extensive AI assistance covered solving, verification, source investigation and writing; independent and adversarial AI reviews are unrefereed AI review, not human journal peer review or proof-assistant checking. The root accepted the underlying full theorem. The dated complete AI review history records a clean NEW_WHOLE_01 verdict on its frozen inputs and a later root editorial release-wording observation, then NEW_WHOLE_02 with one P2 clean-extraction-verifier finding. The bounded code/documentation repair is awaiting NEW_WHOLE_03; both readiness flags remain false. Every verdict remains limited to its exact input hashes; the current kit state and subsequent review disposition are in `STATUS.json`. No individual was contacted; no external service, submission, publication, release, DOI, PR, branch or Git index was changed by this preparation.
++Alec Kriebel, independent researcher, ORCID 0009-0001-9320-500X; version 1.0, 13 October 2026. Authored text/code/evidence is CC BY 4.0. Extensive AI assistance covered solving, verification, source investigation and writing; independent and adversarial AI reviews are unrefereed AI review, not human journal peer review or proof-assistant checking. The root accepted the underlying full theorem. The dated complete AI review history records a clean NEW_WHOLE_01 verdict on its frozen inputs and a later root editorial release-wording observation, then NEW_WHOLE_02 with one P2 clean-extraction-verifier finding. The bounded interface repair was followed by the complete NEW_WHOLE_03 zero-P0–P3 review, adopted by root on 14 October 2026. The exact earlier P2 verdict remains unchanged. `REVIEW_HISTORY.json` gives the dated sequence. Every verdict remains limited to its exact input hashes; the current kit state and subsequent review disposition are in `STATUS.json`. No individual was contacted; no external service, submission, publication, release, DOI, PR, branch or Git index was changed by this preparation.
+--- frozen_before/build_archive.py
++++ terminal_current/build_archive.py
+@@ -2,7 +2,7 @@
+ """Deterministic local supportkit build; no publication or service operations."""
+ import sys
+ sys.dont_write_bytecode=True
+-import gzip, hashlib, io, json, tarfile
++import gzip, hashlib, io, json, re, tarfile
+ from pathlib import Path
+ ROOT=Path(__file__).resolve().parent
+ ARCHIVE='supportkit-v1.0.tar.gz'
+@@ -13,10 +13,83 @@
+ EPOCH=1791849600 # 2026-10-13 00:00:00 UTC
+ 
+ def digest(data):return hashlib.sha256(data).hexdigest()
++def require(test,message):
++    if not test:raise RuntimeError(message)
++def unique_object(pairs):
++    result={}
++    for key,value in pairs:
++        require(key not in result,'Duplicate JSON key: '+key)
++        result[key]=value
++    return result
++def read_json(path):return json.loads(path.read_text(),object_pairs_hook=unique_object)
++OUTPUT_PIN_HASHES={
++    'package_01':'9dd709031e353bd253171a50c988fbce1c67a935e8438a4f52b8ff87f53a9449',
++    'package_02':'e775864222e9787782f5e743d216a1a29d4da6778e482859918a63f85d254dd3',
++    'package_03':'2f0672d67a1d5fb69cb590ae905ec24d9ab92ffbffe520347ea857c06cf4e7bd',
++}
++def authored_stream_paths(copies):
++    """Allow only exact copied OUTPUT_PINS text members of the three reviews."""
++    streams=set()
++    for family,expected in OUTPUT_PIN_HASHES.items():
++        base=ROOT/'evidence/reviews'/family;pinpath=base/'OUTPUT_PINS.json'
++        require(digest(pinpath.read_bytes())==expected,'Historic output-pin identity: '+family)
++        pins={r['path']:r for r in read_json(pinpath)['files']}
++        for record in copies['files']:
++            if record['group']!='frozen_'+family or Path(record['package_path']).suffix.lower()!='.txt':continue
++            name=Path(record['package_path']).name
++            require(record['package_path']=='evidence/reviews/'+family+'/'+name and record['source_path']=='reviews/'+family+'/'+name,'Authored stream locator: '+name)
++            require(name in pins and all(record[k]==pins[name][k] for k in ['bytes','sha256']),'Unpinned authored stream: '+name)
++            streams.add(record['package_path'])
++    return streams
++def terminal_gate():
++    """Readiness is bound to the exact accepted whole03 candidate and verdict."""
++    status=read_json(ROOT/'STATUS.json')
++    require(type(status['publication_ready']) is bool and type(status['all_issues_resolved']) is bool,'Invalid current status flags')
++    if status['new_whole_package_review'].startswith('PENDING_'):
++        require(status['publication_ready'] is False and status['all_issues_resolved'] is False,'Pending review improperly promoted')
++        return status
++    require(status['new_whole_package_review']=='FINAL_ZERO_ACTIONABLE_NEW_WHOLE_03_ROOT_ACCEPTED','Unrecognized terminal review status')
++    require(status['publication_ready'] is True and status['all_issues_resolved'] is True,'Terminal readiness flags')
++    require(status.get('published') is False and type(status.get('ascending_services_held_at')) is int and status['ascending_services_held_at']==1032,'Unpublished held-service state')
++    require(type(status.get('fresh_whole_package_reviews')) is int and status['fresh_whole_package_reviews']==3 and type(status.get('minimum_fresh_whole_package_reviews')) is int and status['minimum_fresh_whole_package_reviews']==2,'Fresh whole-review count')
++    def zero(counts,label):
++        require(type(counts) is dict and set(counts)=={'P0','P1','P2','P3'} and all(type(v) is int and v==0 for v in counts.values()),'Terminal zero severity counts: '+label)
++    zero(status.get('terminal_severity_counts'),'status')
++    protected={
++        'paper.tex':'0ccac52f998823d98c020608c34ec2ad2cbd1d1f54db1815f0a00f898c5258c0',
++        'output/pdf/paper.pdf':'3ba83c50a4a2369a70897ee165a43f56324aa31574cf9c199e664174cbce0449',
++        'publication/zenodo.json':'fae257794f77515a4e24eacc98cd62b6a767c6f532de5a06b4f2435c74537874',
++        'HISTORIC_EXCLUSIONS.json':'0211f0bca2713ff176baa16d28802da5c5fdee9b17e030bd1fa5b7bc6962f889',
++        'REVIEW_HISTORY.json':'f8dce9a54186c94ad275a734697ab4b46796cd7f425be115268f9ee0afb2f8d8',
++        'evidence/reviews/package_03/REPORT.md':'e6cfc2a4781244afd169c2ed6306bfb2b15f4195a0cdf670d7affaeab63ce57f',
++        'evidence/reviews/package_03/VERDICT.json':'5ec3865a3806197f5e05c6c34969dacaf403ea9d86d7fdedb19048298518890e',
++        'evidence/reviews/package_03/OUTPUT_PINS.json':OUTPUT_PIN_HASHES['package_03'],
++        'evidence/reviews/package_03/SEAL.json':'68474a531debd23f9aca0c3da91acbad188866f88d4ec2995720a3d6aadd3554',
++        'evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json':'59151cb84aa8a9a15b2d4dfede66b689cff7697f4165562da657efd0f866e803',
++    }
++    for name,expected in protected.items():
++        path=ROOT/name
++        require(path.is_file() and not path.is_symlink() and digest(path.read_bytes())==expected,'Terminal accepted/protected identity: '+name)
++    verdict=read_json(ROOT/'evidence/reviews/package_03/VERDICT.json')
++    root=read_json(ROOT/'evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json')
++    seal=read_json(ROOT/'evidence/reviews/package_03/SEAL.json')
++    zero(verdict['severity_counts'],'verdict');zero(root['severity_counts'],'root adoption')
++    require(verdict['review']=='NEW_WHOLE_03' and verdict['status']=='PASS_COMPLETE_CURRENT_MANUSCRIPT_AND_PACKAGE' and verdict['findings']==[] and verdict['required_repairs']==[] and verdict['remaining_mathematical_gap'] is None,'Terminal full-review verdict')
++    require(root['status']=='ADOPT_ZERO_ACTIONABLE_WHOLE03_PENDING_TERMINAL_ADMIN_SEAL' and root['root_entire_report_and_verdict_read'] is True and root['outputs_rehashed']==304 and root['fresh_whole_package_reviews']==3,'Terminal root adoption')
++    for field,path in [('report_sha256','evidence/reviews/package_03/REPORT.md'),('verdict_sha256','evidence/reviews/package_03/VERDICT.json'),('output_pins_sha256','evidence/reviews/package_03/OUTPUT_PINS.json')]:
++        require(root[field]==protected[path] and seal[field]==protected[path],'Terminal root/seal binding: '+field)
++    require(seal['terminal'] is True and seal['authored_output_records']==304 and len(read_json(ROOT/'evidence/reviews/package_03/OUTPUT_PINS.json')['files'])==304,'Terminal sealed output count')
++    third=status['third_whole_package_review'];zero(third['severity_counts'],'third review status')
++    require(third['review']=='NEW_WHOLE_03' and third['verdict']==verdict['status'] and third['verdict_path']=='evidence/reviews/package_03/VERDICT.json' and third['root_adoption_path']=='evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json' and third['terminal_outputs']==304,'Terminal status/adoption binding')
++    history=read_json(ROOT/'REVIEW_HISTORY.json');last=history['events'][-1]
++    zero(last['severity_counts'],'dated third-review history')
++    require(last['stage']=='NEW_WHOLE_03' and last['status']==verdict['status'] and last['root_adoption_sha256']==protected['evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json'],'Terminal dated review binding')
++    require(history['events'][2]['stage']=='NEW_WHOLE_02' and history['events'][2]['severity_counts']=={'P0':0,'P1':0,'P2':1,'P3':0},'Historical sole-P2 disposition')
++    return status
+ def content_paths():
+     result=[]
+     copies=json.loads((ROOT/'EVIDENCE_COPY_MANIFEST.json').read_text())
+-    authored_streams={r['package_path'] for r in copies['files'] if r['group'] in {'frozen_package_01','frozen_package_02'} and Path(r['package_path']).suffix.lower()=='.txt'}
++    authored_streams=authored_stream_paths(copies)
+     for path in ROOT.rglob('*'):
+         if not path.is_file():continue
+         rel=path.relative_to(ROOT)
+@@ -26,17 +99,20 @@
+         if path.suffix.lower() in EXCLUDE_SUFFIX and rel.as_posix() not in authored_streams:continue
+         if path.suffix.lower()=='.pdf' and rel.as_posix()!='output/pdf/paper.pdf':continue
+         if path.is_symlink():raise RuntimeError('No symlinks in package content: '+str(rel))
++        require(re.fullmatch(r'[A-Za-z0-9_.\-/]+',rel.as_posix()) is not None and all(p not in {'','..','.'} for p in rel.parts),'Unsafe content path: '+str(rel))
++        if rel.as_posix()!='output/pdf/paper.pdf':path.read_bytes().decode('utf-8')
+         result.append(rel.as_posix())
++    require(len({p.casefold() for p in result})==len(result),'Casefold content-path collision')
+     return sorted(result)
+ 
+ def main():
++    status=terminal_gate()
+     paths=content_paths()
+     entries=[]
+     for name in paths:
+         data=(ROOT/name).read_bytes();entries.append(dict(path=name,bytes=len(data),sha256=digest(data)))
+     integrity=dict(hash_algorithm='SHA-256',self_reference_policy='Current distributed content only. This manifest and deterministic build/verification/archive-hash receipts have separate roles.',archive_exclusions=dict(directories=sorted(EXCLUDE_DIRS),suffixes=sorted(EXCLUDE_SUFFIX),other_pdfs=True,external_sidecar='ARCHIVE_SHA256.json'),files=entries)
+     blob=(json.dumps(integrity,indent=2)+'\n').encode();(ROOT/'CURRENT_INTEGRITY.json').write_bytes(blob)
+-    status=json.loads((ROOT/'STATUS.json').read_text())
+     receipt=dict(status='PREPARED_CANDIDATE_'+status['new_whole_package_review'],publication_ready=status['publication_ready'],all_issues_resolved=status.get('all_issues_resolved',False),archive_name=ARCHIVE,archive_prefix=PREFIX,content_files=len(entries),current_integrity_sha256=digest(blob),timestamp_policy='2026-10-13 00:00:00 UTC for every tar member; gzip mtime=0',epoch=EPOCH,ordering='sorted relative POSIX paths',owner_group='0/0, empty names',mode='0644',private_source_bodies_included=False,receipt_policy='BUILD_RECEIPT.json is included outside current-integrity self-reference domain; archive binary hash is in external ARCHIVE_SHA256.json. External zenodo-deposit.json names the archive and is excluded to avoid self-reference; the default verifier checks packaged content and validates this wrapper strictly when present; --require-deposit additionally requires it and both verified local attachments.')
+     (ROOT/'BUILD_RECEIPT.json').write_text(json.dumps(receipt,indent=2)+'\n')
+     archived=paths+['CURRENT_INTEGRITY.json','BUILD_RECEIPT.json']
+--- frozen_before/prepare_support.py
++++ terminal_current/prepare_support.py
+@@ -62,6 +62,16 @@
+     if '/' in name or name.lower()=='fullsource.txt':raise RuntimeError('unexpected terminal whole02 member')
+     copy('reviews/package_02/'+name,'evidence/reviews/package_02/'+name,'frozen_package_02')
+ copy('ROOT_WHOLE_PACKAGE_REVIEW_02.json','evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_02.json','root_whole_package_02_adoption')
++base=AUDIT/'reviews/package_03'
++pins=json.loads((base/'OUTPUT_PINS.json').read_text())
++if len(pins['files'])!=304:raise RuntimeError('whole03 sealed output count')
++for rec in pins['files']:
++    data=(base/rec['path']).read_bytes()
++    if len(data)!=rec['bytes'] or hashlib.sha256(data).hexdigest()!=rec['sha256']:raise RuntimeError('frozen whole03 mismatch: '+rec['path'])
++for name in sorted([rec['path'] for rec in pins['files']]+['OUTPUT_PINS.json','SEAL.json']):
++    if '/' in name or name.lower()=='fullsource.txt' or Path(name).suffix.lower() not in {'.txt','.md','.json','.py',''}:raise RuntimeError('unexpected terminal whole03 member')
++    copy('reviews/package_03/'+name,'evidence/reviews/package_03/'+name,'frozen_package_03')
++copy('ROOT_WHOLE_PACKAGE_REVIEW_03.json','evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json','root_whole_package_03_adoption')
+ manifest=dict(previous)
+ manifest['files']=records
+ (ROOT/'EVIDENCE_COPY_MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')
+--- frozen_before/verify_package.py
++++ terminal_current/verify_package.py
+@@ -24,15 +24,16 @@
+     parser=argparse.ArgumentParser(description='Verify distributable package content; strictly verify an external deposit wrapper when present.')
+     parser.add_argument('--require-deposit',action='store_true',help='Require the external zenodo-deposit.json wrapper and both verified local upload attachments.')
+     args=parser.parse_args()
++    from build_archive import content_paths,EXCLUDE_DIRS,authored_stream_paths,terminal_gate
++    status=terminal_gate()
+     manifest=json.loads((ROOT/'CURRENT_INTEGRITY.json').read_text())
+     current={r['path']:r for r in manifest['files']}
+-    from build_archive import content_paths,EXCLUDE_DIRS
+     require(set(current)==set(content_paths()),'Current manifest/content membership mismatch')
+     for name,record in current.items():record_ok(ROOT/name,record)
+     # No privately retained sources, extracts, renders, or raw response bodies in
+     # the declared distributed content, including files outside raw directories.
+     copies=json.loads((ROOT/'EVIDENCE_COPY_MANIFEST.json').read_text())
+-    authored_streams={r['package_path'] for r in copies['files'] if r['group'] in {'frozen_package_01','frozen_package_02'} and Path(r['package_path']).suffix.lower()=='.txt'}
++    authored_streams=authored_stream_paths(copies)
+     for name in current:
+         path=Path(name)
+         require(not any(p in EXCLUDE_DIRS for p in path.parts),'Private/intermediate component: '+name)
+@@ -47,17 +48,21 @@
+     for r in pins['files']:record_ok(ROOT/'evidence/original'/r['snapshot_path'],r)
+     require(len(pins['files'])==11,'Original submitted pin count')
+     checked_historic=0;excluded_historic=[]
+-    for family in ['game_certificate_01','flow_source_01','priority_01','package_01','package_02']:
++    ledger=json.loads((ROOT/'HISTORIC_EXCLUSIONS.json').read_text())
++    omissions={(r['review_family'],r['path']):r for r in ledger['files']}
++    require(len(omissions)==len(ledger['files']),'Duplicate historical exclusion')
++    seen_omissions=set()
++    for family in ['game_certificate_01','flow_source_01','priority_01','package_01','package_02','package_03']:
+         base=ROOT/'evidence/reviews'/family
+         pins=json.loads((base/'OUTPUT_PINS.json').read_text())
+         for r in pins.get('files',pins.get('entries',[])):
+             name=r.get('path',r.get('file'));path=base/name
+             if path.is_file():record_ok(path,r);checked_historic+=1
+-            else:excluded_historic.append(family+'/'+name)
+-    for name in excluded_historic:
+-        parts=Path(name).parts
+-        allowed=any(p in {'raw','rawprivate','__pycache__','render','cache','caches'} for p in parts) or name=='priority_01/sources/CITATION_DISCOVERY.json'
+-        require(allowed,'Unexpected historic output pin absent: '+name)
++            else:
++                key=(family,name);entry=omissions.get(key)
++                require(family!='package_03' and entry is not None and all(entry[k]==r[k] for k in ['bytes','sha256']) and bool(entry['reason']) and bool(entry['pin_meaning']),'Unexpected historic output pin absent: '+family+'/'+name)
++                seen_omissions.add(key);excluded_historic.append(family+'/'+name)
++    require(seen_omissions==set(omissions),'Unused historical exclusion ledger entry')
+     receipt=json.loads((ROOT/'BUILD_RECEIPT.json').read_text())
+     require(receipt['current_integrity_sha256']==sha((ROOT/'CURRENT_INTEGRITY.json').read_bytes()),'Integrity receipt mismatch')
+     require(receipt['content_files']==len(current),'Content count mismatch')
+@@ -86,7 +91,6 @@
+             require(names==sorted(names) and len({n.casefold() for n in names})==len(names),'Archive order/casefold uniqueness')
+             members=len(names)
+         archive_checked=True
+-    status=json.loads((ROOT/'STATUS.json').read_text())
+     require(isinstance(status['publication_ready'],bool) and isinstance(status['all_issues_resolved'],bool),'Invalid current status flags')
+     if status['new_whole_package_review'].startswith('PENDING_'):
+         require(status['publication_ready'] is False and status['all_issues_resolved'] is False,'Pending review improperly promoted')
+--- /dev/null
++++ terminal_current/REVIEW_HISTORY.json
+@@ -0,0 +1,57 @@
++{
++  "utc": "2026-10-14T04:43:31.033652+00:00",
++  "policy": "Static dated chronology. Each exact authored verdict applies only to its frozen input; earlier P2 and P3 records are never relabeled clean. Current machine state is STATUS.json.",
++  "events": [
++    {
++      "stage": "NEW_WHOLE_01",
++      "status": "PASS_COMPLETE_CURRENT_MANUSCRIPT_AND_PACKAGE",
++      "severity_counts": {
++        "P0": 0,
++        "P1": 0,
++        "P2": 0,
++        "P3": 0
++      },
++      "verdict_path": "evidence/reviews/package_01/VERDICT.json"
++    },
++    {
++      "stage": "ROOT_RELEASE_WORDING_OBSERVATION",
++      "finding": "ROOT-P3-RELEASE-WORDING-01",
++      "severity": "P3",
++      "record_path": "evidence/root/ROOT_PREPRINT_REVIEW_01.json",
++      "disposition": "Editorial repair before NEW_WHOLE_02; original record unchanged"
++    },
++    {
++      "stage": "NEW_WHOLE_02",
++      "status": "REQUIRES_P2_PACKAGE_REPAIR_COMPLETE_REVIEW",
++      "severity_counts": {
++        "P0": 0,
++        "P1": 0,
++        "P2": 1,
++        "P3": 0
++      },
++      "verdict_path": "evidence/reviews/package_02/VERDICT.json",
++      "disposition": "Clean-extraction default interface repaired before NEW_WHOLE_03; original P2 verdict unchanged"
++    },
++    {
++      "stage": "NEW_WHOLE_03",
++      "status": "PASS_COMPLETE_CURRENT_MANUSCRIPT_AND_PACKAGE",
++      "severity_counts": {
++        "P0": 0,
++        "P1": 0,
++        "P2": 0,
++        "P3": 0
++      },
++      "verdict_path": "evidence/reviews/package_03/VERDICT.json",
++      "root_adoption_path": "evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json",
++      "report_sha256": "e6cfc2a4781244afd169c2ed6306bfb2b15f4195a0cdf670d7affaeab63ce57f",
++      "verdict_sha256": "5ec3865a3806197f5e05c6c34969dacaf403ea9d86d7fdedb19048298518890e",
++      "output_pins_sha256": "2f0672d67a1d5fb69cb590ae905ec24d9ab92ffbffe520347ea857c06cf4e7bd",
++      "root_adoption_sha256": "59151cb84aa8a9a15b2d4dfede66b689cff7697f4165562da657efd0f866e803",
++      "disposition": "Root accepted zero actionable findings on 2026-10-14; terminal administrative packaging follows with identical paper/PDF bytes"
++    }
++  ],
++  "human_peer_review": false,
++  "proof_assistant_verified": false,
++  "worldwide_priority": "UNKNOWN_BOUNDED_NO_MATCH_ONLY",
++  "published": false
++}
+--- /dev/null
++++ terminal_current/HISTORIC_EXCLUSIONS.json
+@@ -0,0 +1,109 @@
++{
++  "policy": "Only these exact absent pinned members are allowed; every terminal03 authored output is distributed. No omitted pin is rehashed or retargeted.",
++  "files": [
++    {
++      "review_family": "flow_source_01",
++      "path": "__pycache__/flow_check.cpython-314.opt-1.pyc",
++      "bytes": 29673,
++      "sha256": "359ef7814e72eb16a3cc4ac5c50a7f1be233f56e9211a3eb9d41871018d59b1c",
++      "reason": "Private interpreter bytecode cache; nonauthored binary intermediate.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "__pycache__/flow_check.cpython-314.pyc",
++      "bytes": 29678,
++      "sha256": "cf022d77f6d8a946e3a201b048b3e047cbd3585e3dcb7452e8a498f980f7715b",
++      "reason": "Private interpreter bytecode cache; nonauthored binary intermediate.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/DS_page10.png",
++      "bytes": 531037,
++      "sha256": "b10c4606a14fef7f0d1273ddc71c873f6f3d29ac11381ee433b8b1350e265590",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/DS_page17.png",
++      "bytes": 537139,
++      "sha256": "2c559bb982d8a91389623052e1e3e2f3235727e7723fd213dfdb25588fd46c67",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/DS_page7.png",
++      "bytes": 214518,
++      "sha256": "2e247d34ef687e883375c383a656372e38f2500b37349dee41e1304514c1322d",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/DS_page8.png",
++      "bytes": 545602,
++      "sha256": "c4255b6a76962907a0240fb51834cc3d55312cd06f1c566e4b01563e23363a4b",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/DS_page9.png",
++      "bytes": 412408,
++      "sha256": "eb131e6d166f562320d68ca15c915a7e6062616e5ff855da9c0e8898e4c82f91",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/DisserSkutella18.pdf",
++      "bytes": 553046,
++      "sha256": "88cc527ec698aaa502a93c33183ae58b714a4879ca387b1101208c7dc329ff5a",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/DisserSkutella18.txt",
++      "bytes": 85220,
++      "sha256": "1748194a4e958b6eff3e5372b08fec777ffa680f2ec139b8ae45590685e49708",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/OWR_page30.png",
++      "bytes": 263378,
++      "sha256": "c87772fb12457fee2ffac64d47a0b34a1ac3ec1b76baf1e0a151e07835873dd7",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/Oberwolfach2018_38.pdf",
++      "bytes": 1014372,
++      "sha256": "850879c0962050da5fb7f99dd0e2218dcc1cb2c9729266fdfd239c7ca1545003",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "flow_source_01",
++      "path": "sources/raw/Oberwolfach2018_38.txt",
++      "bytes": 242464,
++      "sha256": "441fba935bc600a3fe336f9a5aee5ac64c523085ae2ab05582f9d03ed6c6848e",
++      "reason": "Private third-party source body, extracted source text, or source-page rendering; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    },
++    {
++      "review_family": "priority_01",
++      "path": "sources/CITATION_DISCOVERY.json",
++      "bytes": 99698,
++      "sha256": "06d349cf6b5dccdf317dd9c700901c598caf92f368048afba385e8491902058b",
++      "reason": "Raw third-party API discovery response; historical identity only.",
++      "pin_meaning": "Original OUTPUT_PINS byte identity and original relative source locator retained unchanged; exclusion is deliberate and does not promise redistribution."
++    }
++  ]
++}
+--- /dev/null
++++ terminal_current/history/before_terminal03_finalization/STAGE_PINS.json
+@@ -0,0 +1,140 @@
++{
++  "utc": "2026-10-14T04:43:31.033652+00:00",
++  "stage": "exact NEW_WHOLE_03 candidate before terminal administration",
++  "policy": "Old records retain original byte identities and historical meanings; archive and external wrapper before bytes are retained outside the distributed archive at explicit locators. No old pin is retargeted.",
++  "files": [
++    {
++      "original_path": "ARCHIVE_SHA256.json",
++      "frozen_path": "ARCHIVE_SHA256.json",
++      "bytes": 421,
++      "sha256": "39ad3ec9d722bd131bce9f2b0df45b8aeb18ef37a4ffaa5e6303c220eff55028",
++      "distributed": true
++    },
++    {
++      "original_path": "BUILD_RECEIPT.json",
++      "frozen_path": "BUILD_RECEIPT.json",
++      "bytes": 1007,
++      "sha256": "d1ced6029bc141f0ee097e7fddbf2bf82802161833a3f03bffff2b2a51fcb9d5",
++      "distributed": true
++    },
++    {
++      "original_path": "CURRENT_INTEGRITY.json",
++      "frozen_path": "CURRENT_INTEGRITY.json",
++      "bytes": 38797,
++      "sha256": "a52c59963eb5812ddc69d7c997ae2958447c2892766fbc9148e89ad92a54ae37",
++      "distributed": true
++    },
++    {
++      "original_path": "EVIDENCE_COPY_MANIFEST.json",
++      "frozen_path": "EVIDENCE_COPY_MANIFEST.json",
++      "bytes": 70044,
++      "sha256": "ab3e9484d730739f67f99cf95ff2d76db447b451d3a6d9e83cc7991f3d0e86d2",
++      "distributed": true
++    },
++    {
++      "original_path": "EVIDENCE_INDEX.md",
++      "frozen_path": "EVIDENCE_INDEX.md",
++      "bytes": 5076,
++      "sha256": "8b41c206bf0ec1a0d88b06602ec4641a8c220e733c04a67c86e13f9377da2586",
++      "distributed": true
++    },
++    {
++      "original_path": "HASH_STAGE_INDEX.json",
++      "frozen_path": "HASH_STAGE_INDEX.json",
++      "bytes": 1323,
++      "sha256": "f69b1b53fa52a0f90e90c2cf797a52f2564c7267555239bb12a5b8dcfbeef8ba",
++      "distributed": true
++    },
++    {
++      "original_path": "INTEGRITY_QA.json",
++      "frozen_path": "INTEGRITY_QA.json",
++      "bytes": 2089,
++      "sha256": "0a22125d90183b7d6f15051b419c4ff9a873268cd65e8abad2626fffae8d3cd2",
++      "distributed": true
++    },
++    {
++      "original_path": "PDF_QA.json",
++      "frozen_path": "PDF_QA.json",
++      "bytes": 2897,
++      "sha256": "efdc68ee6a92a340205bb296170704f001a19fefbe26f418f9741dd1b9d914b3",
++      "distributed": true
++    },
++    {
++      "original_path": "PREPARATION_REPORT.md",
++      "frozen_path": "PREPARATION_REPORT.md",
++      "bytes": 3365,
++      "sha256": "ec85d8dd24a6b397f7748e8356b9a80b1d03136b4d2dbd2093185559e800522e",
++      "distributed": true
++    },
++    {
++      "original_path": "README.md",
++      "frozen_path": "README.md",
++      "bytes": 4878,
++      "sha256": "cecf808b83a8cb1cd9aca30ac0109e3e8cd6d693289db904d6dae910bd088747",
++      "distributed": true
++    },
++    {
++      "original_path": "RESEARCH_LOG.md",
++      "frozen_path": "RESEARCH_LOG.md",
++      "bytes": 3445,
++      "sha256": "6996d44b845d757fa6424be1f6a0312602bd915cb52f1c72cf592f03bead0941",
++      "distributed": true
++    },
++    {
++      "original_path": "STATUS.json",
++      "frozen_path": "STATUS.json",
++      "bytes": 2048,
++      "sha256": "778812ee8416a5d1a0f7ecaf8efda259c5264cdd8df0fe5904cab05cf6efaac7",
++      "distributed": true
++    },
++    {
++      "original_path": "SUPPLEMENT.md",
++      "frozen_path": "SUPPLEMENT.md",
++      "bytes": 10836,
++      "sha256": "102f735ea2f41860143c379e1d29f4eae910c8eb1ef1f778410f9078ae48c989",
++      "distributed": true
++    },
++    {
++      "original_path": "VERIFICATION_RECEIPT.json",
++      "frozen_path": "VERIFICATION_RECEIPT.json",
++      "bytes": 1417,
++      "sha256": "fa98ae4924b93711106cdf2b06a56934dab3af197cda2e07848788af039c14cc",
++      "distributed": true
++    },
++    {
++      "original_path": "build_archive.py",
++      "frozen_path": "build_archive.py",
++      "bytes": 4510,
++      "sha256": "f5c5dd7a75fcbc6e485b403f15488c3660894e9edeea2a1f07150366e1f8f746",
++      "distributed": true
++    },
++    {
++      "original_path": "prepare_support.py",
++      "frozen_path": "prepare_support.py",
++      "bytes": 4459,
++      "sha256": "e8c347ab3301b5f3f562de2ebbcfdd8b5ac9358567a827151c1280a9b7cd2d0f",
++      "distributed": true
++    },
++    {
++      "original_path": "supportkit-v1.0.tar.gz",
++      "frozen_path": "../../../finalization/terminal_admin_20261014/baseline/preprint_v1_0/supportkit-v1.0.tar.gz",
++      "bytes": 457829,
++      "sha256": "80b3885b77a2aba013a761d4deec2d497a1d95028a76e6a502f46072eff77499",
++      "distributed": false
++    },
++    {
++      "original_path": "verify_package.py",
++      "frozen_path": "verify_package.py",
++      "bytes": 9429,
++      "sha256": "0859018392b6ce0f679394950887bc87589c8710d9ced58b9a0148a9a9d2bd47",
++      "distributed": true
++    },
++    {
++      "original_path": "zenodo-deposit.json",
++      "frozen_path": "../../../finalization/terminal_admin_20261014/baseline/preprint_v1_0/zenodo-deposit.json",
++      "bytes": 2384,
++      "sha256": "c89a7b9487ce9d85a6470fd587830fc028972a61cf89fc952a86daa6dce9db75",
++      "distributed": false
++    }
++  ]
++}
+--- /dev/null
++++ terminal_current/history/before_terminal03_finalization/README_STAGE.md
+@@ -0,0 +1,3 @@
++# Frozen pre-terminal stage
++
++These exact old administrative records describe the candidate reviewed in NEW_WHOLE_03, including its pending flags. They remain historical. STAGE_PINS.json separately locates the exact old archive and external wrapper outside the distribution; these bytes are retained in the terminal input freeze. The prior complete 224-file current tree is still pinned at the unchanged repairs/package02/FINAL_CURRENT_INPUT_PINS.json. Modified paths can be resolved to these exact before bytes; its hashes have not been retargeted.

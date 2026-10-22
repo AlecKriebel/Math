@@ -1,0 +1,23 @@
+# PR280 priority reconciliation research log
+
+Scope: PR280 / 30000156 / OWR-768-006, frozen head 091bdecef6f84154f5d5c205a4b07eeb6391b8f8. This is a new bounded priority reconciliation of an already processed scientific hold, not a sweep advance. All original dispositions remain unchanged. No Git refs/index/checkout, PR, Sheets, Zenodo, or shared documents are modified. No individual is contacted. Third-party bodies are retained only in the effort's ignored private/pr0280_priority_reconciliation directory.
+
+## 2026-10-21T06:16:04Z — Scope and baseline checkpoint (5%)
+
+Read CURRENT_AUDIT_STATUS.json, the root analytic/priority comparisons, and the fresh 175-row identifier dedup receipt. The complete literal-target mathematics is accepted as previously independently verified. The exact remaining task is publication/application priority: broaden full-ledger dedup by title/model, inspect the newly available EulerSolve corpus and candidates, pursue the specific four-author 2011 manuscript, and reach a bounded, evidence-based recommendation. Known ingredients and low technical depth are not evidence of prior exact application. Missing worldwide-firstness certification is not itself a publication obstruction.
+
+Approach families will remain distinct: corpus/record reconciliation; manuscript/version recovery; and adversarial priority classification. Each will record actual access scope, timestamps, mechanisms and exact gaps. Best-guess completion toward this bounded reconciliation: 5%; no change to the wider sweep estimate.
+
+## 2026-10-21T06:22:00Z — Model dedup and exact-application checkpoint (55%)
+
+Broadened the full 175-row ledger and 194-record authenticated account snapshot by source wording, finite-field dynamics, point-period distribution, exact model and arithmetic aliases. Six ledger candidates and eleven account candidates were generic-word false positives; none matched the target. Seven local state candidates also had no target model. The exact-ID baseline is no longer the only dedup evidence. Metadata/file-name screening is not a file-body audit of every unrelated account record.
+
+Fresh exact-application web queries returned no authenticated matching application; this is bounded search evidence, not universal absence. Freshly retrieved Siu's August 2019 thesis at DOI 10.26190/unsworks/21440 (current dynamic repository cover, SHA256 76f618817695b992d9c932346c585f050a7fadcae0e4eef5a7845ab2534e5e14). Read complete PDF pages 74–84, corresponding to printed 59–69, including its actual linear-family definition and Theorem 6.3.9; visually checked printed 68. Also read PDF 121–124, 145–148, and 183–185 for cross-references, model limitations and conclusion. The close totient result fixes p and varies a linear-map parameter. It does not state the fixed triangular planar map's ordinary prime nonlimit. No whole-thesis exclusion is claimed from the keyword screen or these scoped readings.
+
+The two independent families continue their own baselines. No theorem/correctness calculation was repeated, and no existing disposition changed. Best-guess completion of this bounded priority reconciliation: 55%.
+
+## 2026-10-21T06:30:51.880318+00:00 — Final bounded reconciliation checkpoint (100%)
+
+Both independent families completed and passed their final scope challenges. The corpus baseline inspected370cards/61model-selected cards/five closest actual theorem-body candidates, with no target publication. The historical family recovered new primary metadata and a2015talk/proceedings lineage, documented actual2011/2012citation variants and the distinct2009in-preparation citation, and left the specific2011body unrecovered without inferring its contents. Each recommends accepting the modest exact application under the bounded standard. Parent read their reports/actual scopes and checked all13corpus and15historical final-seal members.
+
+Recommendation: ACCEPT_MODEST_PRECISE_FULL_NEGATIVE_APPLICATION_FOR_PREPRINT_PREPARATION. Preserve the complete independently verified theorem, credit all old mechanisms, disclose the particular2011uncertainty, and omit first-resolution/worldwide-firstness/canonical-resolution claims. No concrete source/quantifier obstruction sufficient for a continued hold was authenticated. Preparation/package review remains outside this read-only assignment; no publication/DOI/disposition/sweep/Git/provider action occurred. All14pinned inputs are unchanged. The integrity receipt discloses the early unrelated-metadata diagnostic and parallel-collection sequencing errors, without repeating the excluded metadata. Best-guess work-completion toward this bounded reconciliation100%; no change to the wider sweep estimate.

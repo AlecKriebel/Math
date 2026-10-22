@@ -1,0 +1,286 @@
+{
+  "UTC": "2026-10-16T18:49:05.096425+00:00",
+  "actual_ready": {
+    "acceptance_required_top_level_subset": [
+      "evidence_scope=ACTUAL_ROOT_RECEIPT",
+      "original_head",
+      "case_percent=90",
+      "package",
+      "package_seal",
+      "Root_publication_gate_pin",
+      "actual_current_map_file",
+      "actual_current_selected_map_sha256",
+      "selected_files",
+      "every_selected_identity_checked_at_actual_observed_MAIN=true",
+      "all_overlay_body_identities_verified=true",
+      "full_foreign_tree_scope_preserved=true",
+      "actual_original_PR_head=488e8f575a6c9bcc0bd097d2852c9a7fa19bf8a7",
+      "actual_original_PR_is_draft=true",
+      "actual_original_PR_state=open"
+    ],
+    "acceptance_schema": "pr206-lifecycle-actual-acceptance-v1",
+    "fresh_PR_evidence": "The three actual_original_PR fields come from fresh authenticated pulls/206 inside actual accept, never preparation assertions.",
+    "map_file": "ACCEPTANCE_CURRENT_SELECTED_MAP.json with full selected_files, selected_map_sha256 and independently reconstructed foreign QUEUE acknowledgement",
+    "original_metadata_authority": {
+      "bytes": 18017,
+      "file": "ORIGINAL_PR_METADATA.json",
+      "must_authenticate_before_interpretation": true,
+      "sha256": "198a22a7e5b536d6b96f65597446e3b7d2d5e7648d2ad23390106dc49d48800a"
+    },
+    "pointer_fields": [
+      "PR=206",
+      "phase=ready",
+      "directory",
+      "acceptance_pin",
+      "checkpoint_commit",
+      "main_observed",
+      "Root_recorded_only_after_actual_full_scope_acceptance=true"
+    ],
+    "pointer_path": "ROOT_ACTUAL_READY_CHECKPOINT.json",
+    "pointer_schema": "pr206-lifecycle-actual-pointer-v1"
+  },
+  "local_concurrency": {
+    "absent_receipt_pointer_installation": "Atomic os.link no-replace; competing destination retained even if uncooperative.",
+    "contract": "CONCURRENCY_CONTRACT.md",
+    "existing_views": "Stable program-level flock owned by current process plus all-five session; held through sync success and pointer installation. Every cooperating writer across cases/families must use it.",
+    "future_program_lock_separately_installed_by_Root": true,
+    "no_actual_program_lock_or_views_modified_in_preparation": true,
+    "program_view_writer_protocol": {
+      "Root_alone_operates_existing_views": true,
+      "every_existing_view_writer_must_hold_same_stable_inode": true,
+      "lock_path": "draft_pr_publication_program_20260930/ROOT_GLOBAL_FIVE_WRITER.lock",
+      "lock_payload": {
+        "bytes": 153,
+        "sha256": "61404e167a3dedccc0fd17a1a1823fd772bc12a9144a4f012ab26d5e2a26fc0a"
+      },
+      "never_unlink_or_replace_lock_inode": true,
+      "schema": "pr206-program-view-writer-protocol-v1",
+      "uncooperative_same_UID_content_CAS_guaranteed": false
+    },
+    "same_UID_limit": "No filesystem content-CAS claim against arbitrary writers ignoring the lock. Detected conflicts latch generation and preserve independent staged/preimage/observed evidence."
+  },
+  "metadata_acknowledgement": {
+    "canonical_path": "ROOT_PR_METADATA_ACKNOWLEDGEMENT_01.json",
+    "required_fields": [
+      "publication_receipt_pin",
+      "tracker_receipt_pin",
+      "publication_gate_pin",
+      "expected_title equals final gate metadata.title",
+      "expected_body_pin exact byte pin"
+    ],
+    "required_values": {
+      "PR": 206,
+      "Root_authorized_final_metadata_update": true,
+      "accepted": true,
+      "acknowledged_actual_PR_open_nondraft": true,
+      "actual_PR_readback_verified": true,
+      "evidence_scope": "ACTUAL_ROOT_RECEIPT",
+      "expected_base_ref": "main",
+      "original_head": "488e8f575a6c9bcc0bd097d2852c9a7fa19bf8a7",
+      "original_native_range_delta_unchanged": true
+    },
+    "schema": "pr206-root-pr-metadata-acknowledgement-v1",
+    "timing": "Only after actual publication/tracker and separately Root-authorized final metadata readback; no PR write here."
+  },
+  "module_configuration": [
+    "support.configure_backend(c,h) with Root authenticated direct8+adapter ownership",
+    "support.configure_authority(exact actual Root source-adoption byte pin)",
+    "native.configure(support)",
+    "ready.configure(support)",
+    "lifecycle.configure(support,ready,native)"
+  ],
+  "native_bounds": {
+    "depth": 64,
+    "entry_UTF8_bytes": 255,
+    "global_expanded_row_work": 30000,
+    "global_leaf_insertion_limit": 30000,
+    "global_tree_visits": 30000,
+    "parent_tree_SHA1_authenticated_before_descent": true,
+    "relative_path_characters": 1024
+  },
+  "no_helper_CLI": true,
+  "operations": {
+    "context_exact_keys": [
+      "gate_pin",
+      "ready_pointer_pin",
+      "ready_acceptance_pin",
+      "checkpoint_commit",
+      "package",
+      "package_seal",
+      "manifest_pin"
+    ],
+    "external_operations_adoption": "Ops author separately requires approved_actual_ready_pointer_pin before loading pointer; lifecycle does not invent this future pin.",
+    "publication_copied_facts_required_exact": [
+      "metadata == final_gate.metadata",
+      "package_safe_files == final_gate.package_safe_files",
+      "intended_upload_files == final_gate.intended_upload_files",
+      "original_head == authenticated original HEAD",
+      "problem_id == integer5100062"
+    ],
+    "publication_receipt": "ROOT_PUBLICATION_RECEIPT.json / pr206-root-publication-receipt-v1 / ACTUAL_ROOT_RECEIPT",
+    "source_of_DOI_record_tracker": "Actual Root operations receipts only; support206.operations validates exact uploads/public-download sizes/SHA256/DOI resolver/metadata normalization absence and exact tracker row/context/preappend preservation.",
+    "tracker_publication_facts_exact_keys": [
+      "id",
+      "doi",
+      "doi_url",
+      "record_url",
+      "metadata",
+      "package",
+      "package_safe_files",
+      "intended_upload_files",
+      "original_head",
+      "problem_id"
+    ],
+    "tracker_publication_facts_values": "Exact type-preserving canonical JSON equality to the corresponding subset of actual ROOT_PUBLICATION_RECEIPT.json; missing, extra and corrupted copied facts fail closed.",
+    "tracker_receipt": "ROOT_TRACKER_RECEIPT.json / pr206-root-tracker-receipt-v1 / ACTUAL_ROOT_RECEIPT",
+    "tracker_required_full_readback_flag": "two_fresh_full_readbacks is True, in addition to existing two_fresh_full_prechecks and own/foreign/original-baseline preservation flags",
+    "tracker_row": "Exact support206.tracker_row(g,doi), aligned by operations author via static literal read."
+  },
+  "phase_contract": "90/95/98 remain48/32,last205,cursor206,advancefalse/completedfalse.95 exact parents[freshMAIN,originalHEAD].98 actual receipt is incomplete.100 conditional postimage becomes49/33,last206,cursor207 only through actual own acceptance+all5sync+pointer; no207intake action.",
+  "publication_gate": {
+    "canonical_path": "ROOT_PUBLICATION_GATE_01.json",
+    "false_fields": [
+      "historical_priority_established",
+      "theorem_novelty_cleared",
+      "formula_novelty_cleared",
+      "proof_method_novelty_cleared",
+      "first_disclosure_certified",
+      "independent_discovery_certified",
+      "literal_simultaneity_established",
+      "current_openness_established",
+      "actual_publication_verified",
+      "actual_tracker_row_verified",
+      "actual_original_PR_merged"
+    ],
+    "required_fields": {
+      "claim": "Exact support206.CLAIM literal",
+      "fresh_final_review_after_documented_editorial_repairs": "must be true if any earlier event was non-CLEANPASS",
+      "intended_upload_files": "EXACT3 basename\u2192byte-pin entries: .tex,.pdf,.zip",
+      "manuscript_pdf_file": "final upload .pdf filename",
+      "manuscript_source_file": "final upload .tex filename; copied to CURRENT_PROOF_SOURCE.tex",
+      "metadata": "Root-approved final metadata/title; no guessed final title",
+      "metadata_file": "safe path to {metadata:...,files:[{path:...}]} exact3 upload manifest",
+      "other_safe_files": "bounded public case-relative byte-pin map containing all4 fixed actual Root math/priority/bibliography/verifier gates; no raw primary/deps/private/fullmaps",
+      "package": "final publication_package_* directory; v1 is not assumed final",
+      "package_safe_files": "complete exact filename\u2192byte-pin map, no extra real files",
+      "package_seal": "actual final byte pin after all Root-accepted reviews",
+      "package_seal_file": "safe relative filename",
+      "portable_source_file": "safe package-relative path to exact21804 accepted source",
+      "source_facts": {
+        "Chavez_DOI": "10.1007/s40598-020-00154-8",
+        "Ferudun_DOI": "10.5281/zenodo.23096994",
+        "Ferudun_same_target_and_substantially_same_mechanism": true,
+        "RGH_general_corrected_formula_claimed": false,
+        "RGH_journal_full_text_and_typography_inspected": false,
+        "RGH_preprint_delta_defect_disclosed": true,
+        "RGK_row_date": "10/20",
+        "RGK_row_date_meaning": "October2020",
+        "RGK_row_identifier": "k903,a",
+        "RGK_table_page": 12,
+        "RGK_target_table": 10,
+        "absolute_firstness_established": false,
+        "certified_discovery_independence": false,
+        "current_openness_established": false,
+        "literal_simultaneity_established": false,
+        "novelty_established": false,
+        "repetition_multiplicity": "every integer r>=1 for an odd primitive cycle"
+      },
+      "whole_package_review_events": "2..32 distinct ordered NEW whole-package events, each Root-accepted; final CLEANPASS0 findings at exact final seal"
+    },
+    "required_values": {
+      "PR": 206,
+      "evidence_scope": "ACTUAL_ROOT_RECEIPT",
+      "original_head": "488e8f575a6c9bcc0bd097d2852c9a7fa19bf8a7",
+      "problem_id": 5100062
+    },
+    "schema": "pr206-root-publication-ready-v1",
+    "true_fields": [
+      "publication_ready_gate_accepted",
+      "whole_package_review_loop_complete",
+      "mathematical_clearance",
+      "source_contract_clearance",
+      "bounded_priority_audit_complete",
+      "qualified_attributed_note_editorially_cleared",
+      "current_verifier_source_accepted"
+    ]
+  },
+  "receipt_contract_repair_UTC": "2026-10-16T19:03:00.065764+00:00",
+  "schema": "pr206-future-lifecycle-interface-v1",
+  "scientific_presentation_correction": "10/20 denotes October2020 date of row k903,a; no row10-of20 assertion. Repetition law covers every integer r>=1, including even r, for an odd primitive cycle. Earlier unsealed source/interface pins retained in source-format references; frozen plan and original inputs unchanged.",
+  "scope": "Required future interface only; no future receipt, package seal/title/DOI/tracker fact or Root adoption is invented.",
+  "separate_actions": [
+    "ready.bind(name,gate_pin)",
+    "ready.prepare(name)",
+    "ready.verify(name)",
+    "Root alone external expected_sha/nonforce MAIN CAS",
+    "ready.accept(name)",
+    "ready.sync(name)",
+    "ready.pointer(name)",
+    "lifecycle.bind(phase,name,metadata_ack_pp)",
+    "lifecycle.prepare(phase,name)",
+    "lifecycle.verify(phase,name)",
+    "Root alone external expected_sha/nonforce MAIN CAS",
+    "lifecycle.accept(phase,name)",
+    "lifecycle.sync(phase,name)",
+    "lifecycle.pointer(phase,name)"
+  ],
+  "source_authority": {
+    "canonical_path": "ROOT_LIFECYCLE_SOURCE_ADOPTION_01.json",
+    "required_fields": {
+      "expected_publication_gate": "EXACT {path:ROOT_PUBLICATION_GATE_01.json,bytes,sha256}; future actual final gate, no default",
+      "program_view_writer_protocol": {
+        "Root_alone_operates_existing_views": true,
+        "every_existing_view_writer_must_hold_same_stable_inode": true,
+        "lock_path": "draft_pr_publication_program_20260930/ROOT_GLOBAL_FIVE_WRITER.lock",
+        "lock_payload": {
+          "bytes": 153,
+          "sha256": "61404e167a3dedccc0fd17a1a1823fd772bc12a9144a4f012ab26d5e2a26fc0a"
+        },
+        "never_unlink_or_replace_lock_inode": true,
+        "schema": "pr206-program-view-writer-protocol-v1",
+        "uncooperative_same_UID_content_CAS_guaranteed": false
+      },
+      "source_manifest": "exact02 SAFE_AUTHORED_MANIFEST.json byte pin; exact19 authored safe payloads",
+      "source_seal": "exact02 SOURCE_SEAL.json byte pin",
+      "sources": "EXACT4 map of publication_lifecycle_preparation_02/{support206.py,ready206.py,lifecycle206.py,make_native206.py} to byte pins"
+    },
+    "required_values": {
+      "PR": 206,
+      "accepted_preparation_only": true,
+      "evidence_scope": "ACTUAL_ROOT_RECEIPT",
+      "external_dispatcher_owns_authenticated_direct8_adapter_and_all_alias_cache_cleanup": true,
+      "original_head": "488e8f575a6c9bcc0bd097d2852c9a7fa19bf8a7"
+    },
+    "schema": "pr206-root-lifecycle-source-adoption-v1"
+  },
+  "v02_repair_scope": "All three independent v01 mandatory findings accepted and repaired; v01 remains unchanged. No actual future Root adoption is inferred.",
+  "whole_package_event": {
+    "Root_acceptance_schema": "pr206-root-whole-package-review-acceptance-v1",
+    "Root_other_fields": [
+      "NEW_whole_package_reviews_completed equals ordered review_number",
+      "review_event equals event excluding its Root_acceptance_file/pin envelope",
+      "review_cycle_repairs_required_now false for final clean event"
+    ],
+    "Root_required": {
+      "PR": 206,
+      "accepted": true,
+      "evidence_scope": "ACTUAL_ROOT_RECEIPT",
+      "original_head": "488e8f575a6c9bcc0bd097d2852c9a7fa19bf8a7",
+      "review_accepted": true
+    },
+    "fields": [
+      "directory",
+      "report_file",
+      "report_pin",
+      "safe_files",
+      "review_number",
+      "whole_package_scope",
+      "open_findings",
+      "verdict",
+      "reviewed_package",
+      "reviewed_package_seal",
+      "Root_acceptance_file",
+      "Root_acceptance_pin"
+    ]
+  }
+}

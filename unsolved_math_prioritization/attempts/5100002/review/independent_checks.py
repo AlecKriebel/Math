@@ -12,7 +12,8 @@ from hashlib import sha256
 import json
 checks={}
 def ck(name,ok):
-    assert ok,name
+    if not ok:
+        raise RuntimeError("check failed: "+name)
     checks[name]=checks.get(name,0)+1
 def sub(a,b):return (a[0]-b[0],a[1]-b[1])
 def add(a,b):return (a[0]+b[0],a[1]+b[1])
@@ -21,7 +22,8 @@ def cross(a,b):return a[0]*b[1]-a[1]*b[0]
 def dot(a,b,G):return sum(g*x*y for g,x,y in zip(G,a,b))
 def exact_sqrt(x):
     a=isqrt(x.numerator);b=isqrt(x.denominator)
-    assert a*a==x.numerator and b*b==x.denominator
+    if a*a!=x.numerator or b*b!=x.denominator:
+        raise RuntimeError("rational square root is not exact")
     return F(a,b)
 def area(P):return sum(cross(P[i],P[(i+1)%6]) for i in range(6))/2
 def tangents(P,B):
@@ -98,5 +100,19 @@ ck('strict_nonzero_difference',K1-K2==F(553311,3200000)>0)
 ck('different_geometric_orbits',data[0][2][0] not in data[1][2]) # axial starts differ; physical axes scaling retained separately.
 root=Path(__file__).resolve().parent
 result={'status':'PASS','exact_assertions':sum(checks.values()),'checks':checks,'orbits':records,'difference':str(K1-K2),'artifact_sha256':sha256((root/'author_replay/COUNTEREXAMPLE.md').read_bytes()).hexdigest(),'method':'Independent standard-library rational arithmetic in two scaled Euclidean coordinate systems; exact line-discriminant tangency and vector reflection.'}
+# Candidate repair: reject false or stale receipt/proof conditions under -O too.
+expected_receipt_path=root/'expected_independent_results.json'
+expected_receipt_bytes=expected_receipt_path.read_bytes()
+if sha256(expected_receipt_bytes).hexdigest()!='a64abe47712fee04c8647643d40246d3858f4244bb4ef1fbceb29ea6227790b9':
+    raise RuntimeError('frozen expected receipt hash mismatch')
+if sha256((root/'author_replay/COUNTEREXAMPLE.md').read_bytes()).hexdigest()!='5553f899b1098a321fe2164c3ba0d6eed87bc2424dc8021dee50e01fc14dc4ab':
+    raise RuntimeError('frozen mathematical artifact hash mismatch')
+expected_receipt=json.loads(expected_receipt_bytes)
+receipt_for_comparison=dict(result)
+if 'verifier_sha256' in receipt_for_comparison:
+    # Only the nominated explicit-guard candidate source differs from the frozen author source.
+    receipt_for_comparison['verifier_sha256']=expected_receipt['verifier_sha256']
+if receipt_for_comparison!=expected_receipt:
+    raise RuntimeError('computed receipt differs from frozen expected receipt')
 text=json.dumps(result,indent=2,sort_keys=True)+'\n';(root/'independent_results.json').write_text(text);print(text,end='')
 

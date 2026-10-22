@@ -1,0 +1,147 @@
+{
+  "all_controls_as_expected": true,
+  "blocking_findings": [],
+  "controls": [
+    {
+      "actual": "accept",
+      "exception": null,
+      "expected": "accept",
+      "label": "untouched payload"
+    },
+    {
+      "actual": "accept",
+      "exception": null,
+      "expected": "accept",
+      "label": "untouched archive"
+    },
+    {
+      "actual": "accept",
+      "exception": null,
+      "expected": "accept",
+      "label": "untouched optional descriptor"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "README byte corruption"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "duplicate allowlist"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "unsafe allowlist"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "missing manifest entry"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "symlink payload"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "symlink parent escaping root"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "archive order"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "archive duplicate"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "archive mode"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "archive type"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "archive timestamp"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "archive compression"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "archive bytes"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "archive bad sidecar"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "wrapper boolean byte length"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "wrapper metadata mismatch"
+    },
+    {
+      "actual": "reject",
+      "exception": "ValueError",
+      "expected": "reject",
+      "label": "wrapper array instead of object"
+    },
+    {
+      "actual": "reject",
+      "exception": "TypeError",
+      "expected": "reject",
+      "label": "wrapper null file list"
+    },
+    {
+      "actual": "accept",
+      "exception": null,
+      "expected": "accept",
+      "label": "wrapper symlink follows valid bytes (observed scope)"
+    },
+    {
+      "actual": "accept",
+      "exception": null,
+      "expected": "accept",
+      "label": "dangling wrapper symlink treated absent (observed scope)"
+    }
+  ],
+  "nonblocking_scope_observations": [
+    "Optional external descriptor is not itself subjected to the regular-file policy: a live symlink is parsed and a dangling symlink is treated absent. Actual supplied descriptor is regular; distribution excludes it; no hostile-local-files security guarantee is claimed."
+  ]
+}

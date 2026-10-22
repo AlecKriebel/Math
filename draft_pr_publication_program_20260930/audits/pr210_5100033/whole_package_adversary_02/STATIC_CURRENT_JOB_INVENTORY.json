@@ -1,0 +1,192 @@
+{
+  "method": "stdlib AST parse and read-only effect-site inventory; existing code not executed",
+  "jobs": [
+    {
+      "path": "verification/original_submission/verify.py",
+      "bytes": 7420,
+      "imports": [
+        "pathlib",
+        "fractions",
+        "math",
+        "hashlib",
+        "json",
+        "sympy",
+        "mpmath"
+      ],
+      "effect_sites": [
+        {
+          "line": 178,
+          "call": "hashlib.sha256((HERE / 'PROOF.md').read_bytes()).hexdigest()"
+        },
+        {
+          "line": 178,
+          "call": "(HERE / 'PROOF.md').read_bytes()"
+        }
+      ]
+    },
+    {
+      "path": "verification/original_submission/independent_review/independent_check.py",
+      "bytes": 4983,
+      "imports": [
+        "fractions",
+        "math",
+        "json",
+        "mpmath"
+      ],
+      "effect_sites": []
+    },
+    {
+      "path": "verification/audits/source_domain_adversary_01/fresh_control.py",
+      "bytes": 13400,
+      "imports": [
+        "json",
+        "math",
+        "sys",
+        "mpmath",
+        "sympy"
+      ],
+      "effect_sites": []
+    },
+    {
+      "path": "verification/audits/physical_geometry_adversary_01/physical_geometry_check.py",
+      "bytes": 20097,
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "math",
+        "pathlib",
+        "mpmath",
+        "sympy"
+      ],
+      "effect_sites": [
+        {
+          "line": 430,
+          "call": "hashlib.sha256(Path(__file__).read_bytes()).hexdigest()"
+        },
+        {
+          "line": 439,
+          "call": "args.output.write_text(rendered)"
+        },
+        {
+          "line": 430,
+          "call": "Path(__file__).read_bytes()"
+        }
+      ]
+    },
+    {
+      "path": "verification/audits/meromorphic_divisor_adversary_01/check_meromorphic.py",
+      "bytes": 13212,
+      "imports": [
+        "pathlib",
+        "fractions",
+        "datetime",
+        "argparse",
+        "hashlib",
+        "json",
+        "math",
+        "sys",
+        "sympy",
+        "mpmath"
+      ],
+      "effect_sites": [
+        {
+          "line": 25,
+          "call": "hashlib.sha256(path.read_bytes()).hexdigest()"
+        },
+        {
+          "line": 277,
+          "call": "args.output.write_text(json.dumps(result, indent=2) + '\\n')"
+        },
+        {
+          "line": 258,
+          "call": "(SOURCE / 'source_manifest.json').read_text()"
+        },
+        {
+          "line": 264,
+          "call": "(HERE.parent / 'INTAKE.json').read_text()"
+        },
+        {
+          "line": 25,
+          "call": "path.read_bytes()"
+        }
+      ]
+    },
+    {
+      "path": "verification/audits/priority_author_updates_01/exact_pedal_inverse_control.py",
+      "bytes": 4645,
+      "imports": [
+        "datetime",
+        "json",
+        "pathlib",
+        "sympy"
+      ],
+      "effect_sites": [
+        {
+          "line": 72,
+          "call": "Path(__file__).with_name('EXACT_CONTROL_RESULTS.json').write_text(json.dumps(result, indent=2) + '\\n')"
+        }
+      ]
+    },
+    {
+      "path": "verification/audits/priority_classical_general_01/check_controls.py",
+      "bytes": 13155,
+      "imports": [
+        "pathlib",
+        "json",
+        "hashlib",
+        "sys",
+        "sympy",
+        "mpmath"
+      ],
+      "effect_sites": [
+        {
+          "line": 182,
+          "call": "(BASE / 'CONTROL_RESULTS.json').write_text(json.dumps(out, indent=2) + '\\n')"
+        },
+        {
+          "line": 179,
+          "call": "hashlib.sha256(Path(__file__).read_bytes()).hexdigest()"
+        },
+        {
+          "line": 179,
+          "call": "Path(__file__).read_bytes()"
+        }
+      ]
+    },
+    {
+      "path": "verification/scope_controls/root_exact_geometry_controls.py",
+      "bytes": 4533,
+      "imports": [
+        "pathlib",
+        "json",
+        "sympy"
+      ],
+      "effect_sites": []
+    },
+    {
+      "path": "verification/scope_controls/root_exact_even_control.py",
+      "bytes": 5623,
+      "imports": [
+        "pathlib",
+        "json",
+        "sympy"
+      ],
+      "effect_sites": [
+        {
+          "line": 114,
+          "call": "(Path(__file__).resolve().parent / 'ROOT_EXACT_EVEN_CONTROL.json').write_text(raw)"
+        }
+      ]
+    },
+    {
+      "path": "verification/scope_controls/root_priority_projective_control.py",
+      "bytes": 3800,
+      "imports": [
+        "json",
+        "sympy"
+      ],
+      "effect_sites": []
+    }
+  ]
+}

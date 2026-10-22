@@ -1,0 +1,5 @@
+# Research log
+
+- 2026-10-15T07:55:08.348170+00:00 — Start authenticated: 29 original files, all actual Git/disk comparisons True. Independent reconstruction recorded before prior verdicts. Audit completion estimate: 10%. Original author turns 1/5; audit positive proof turns 0.
+- 2026-10-15T08:06:11.144762+00:00 — Meaningful checkpoint: primary note exact strengthening, historical raw-commit byte identity, and actual publisher body authenticated; material Theorem3.2/equality proof independently reconstructed. Positive radial homotopy and nonsimple face support survived falsification; complete independent implication recorded. Audit completion estimate: 85%. Original author1/5; audit positive proof turns0.
+- 2026-10-15T08:06:11.452406+00:00 — Finite scoped verification complete. Exact fraction controls and degree diagnostics pass. Final root closure priority wording reviewed; no remaining required wording correction. Original29 actual Git/disk originals still match; main preserved. Audit completion estimate:100%. No publication/service/Git mutation performed.

@@ -1,0 +1,32 @@
+# Independent search coverage and limits
+
+Primary search/read interval:2026-10-16 04:53–05:06 UTC (tool/system clock observations; see the research log for preserved clerical timestamp errors). Initial questions were frozen before reading any campaign priority report. No such report was subsequently read. Parent's later message about the contemporary family is explicitly separated below.
+
+Actual web search query families (wording retained, irrelevant hits not adopted):
+
+- Khare Sukhatme Pramana63 2004 DOI10.1007/BF02704331 cyclic identities; site:ias.ac.in Connecting Jacobi elliptic functions; title plus IAS/PDF; 0921-0936 Khare. Followed primary KLS II v1/v2, KS Landen v1, publisher preview and retained published extraction. Found exact all-q odd trace identity, not a full geometry theorem.
+- Bialy Tabachnikov Akopyan Schwartz elliptic billiard pedal area product outer polygon; site:arxiv.org Bialy Tabachnikov invariants billiard; New invariants Poncelet Akopyan Schwartz Tabachnikov; Dan Reznik's identities and more arxiv. Followed AST and BT author PDFs plus BT published PDF.
+- Elliptic billiards invariant outer pedal polygon area product proof; Poncelet area product pedal polygon Jacobi Landen; Jacobi pedal area elliptic billiard; center pedal area Poncelet proof; ellipse pedal polygon area product excluding eulersolve.org. Exact contemporary claim surfaced independently at first broad search; immediately reported to root. Classical/general search continued independently.
+- Chavez-Caliz area Poncelet; Poncelet area product excluding eulersolve.org. Read published complete even original/outer area-product proof; derived explicit auxiliary2q bridge, recorded separately.
+- Center pedal billiard; pedal Landen ellipse area; Billiards in ellipses pedal area; elliptic billiard hodograph area. Located the old velocity/foot and skew-hodograph mechanism and normalized it in canonical coordinates.
+- Stachel billiards area; primary author publication list. Read retained motion theorem and relevant grid source. Found canonical/grid/length-angle invariants; no inspected theorem states the target area product.
+- Poncelet pedal polygons proof; billiard area product pedal; Poncelet area Landen; Poncelet pedal Tabachnikov area product. Read published bicentric limiting-pedal theorem and continuous pedal-curve primary source to distinguish different transformations and quantifiers.
+- Pentagram integrals Poncelet families arxiv. Read primary author preprint's main theorem, precise invariant class and pole-cancellation proof outline, plus publisher theorem statement. Did not identify target as a monodromy invariant.
+- Cayley elementary treatise elliptic functions transformation dn sum1895; Jacobi dn sum Landen Lawden; Poncelet pedal area theorem Steiner1825; center-pedal area ellipse proof. This returned historical bibliographic leads but did not establish an exact pre2002 formula in the original books. No date earlier than the authenticated2002 primary formula is asserted.
+- Exact k303,b search excluding eulersolve.org returned irrelevant token matches as well as original source material. Search absence is not a novelty certificate.
+
+Two guessed arXiv identifiers were unrelated papers (2003.13130,1912.11765); their titles were inspected and they were discarded. No theorem or chronology uses them. A text-search typo for ks_landen.txt produced one harmless missing-file error and was corrected. No source executable was imported or run.
+
+## Quantifier discipline
+
+All-phase theorem evidence requires an actual analytical/algebraic argument, not high precision residuals at finitely many phases. KLS II explicitly supplies rigorous arbitrary-p/r identities after its earlier paper had only numerically checked some higher identities. The distinction matters: the present audit relies on II's exact displayed all-factor odd formula and independently verifies it by residues. KS's generalized Landen formula is an additional old route, with its scale and period normalization spelled out. The supplementary90-digit checks are labelled finite diagnostics.
+
+AST odd original/outer AREA RATIO and Chavez-Caliz even original/outer AREA PRODUCT concern different pairs of polygons from the target outer/center-pedal product. BT's center-foot centroid and squared-distance invariants do not themselves imply its pedal area. Steiner varies the pedal POINT for a fixed polygon or whole curve; here the polygon varies while the point stays O. Bicentric limiting pedals concern perimeter and polar/focal images, not this centered signed-area product. Schwartz's monodromy invariants need a precise identification before applying them to a Euclidean pedal construction.
+
+## Remaining historical gaps
+
+No directly read pre2026 source explicitly states the complete target with its exact polygons, parity, signed stars/repeats and ellipse-only domain. This does not establish that no such source exists. Original Veselov1988/1991, Gutkin–Tabachnikov2002, Lawden1989, Cayley1895 and Steiner1825 are credited antecedents through the directly read sources; their original full texts were not independently read here. No exact-target inference is made from their titles or indirect attribution. The published KS PDF remained inaccessible through tested routes; this is disclosed in SOURCE_RECEIPTS.json. Primary2002/2003 PDFs do establish the needed formula independently of that access gap.
+
+The root later reported that it had fully read contemporary Ferudun v1.0/v1.1 and authenticated v1.1 Theorem2 exact target coverage. This is parent-supplied contemporary evidence, not an independent classical-source finding. Root also cautioned that server/Zenodo times alone do not establish complete earlier website/public visibility order. This family does not adjudicate that chronology, assert absolute priority, or infer historical anticipation from its own new synthesis of old inputs.
+
+Routes explicitly not promoted: (a) merely saying all invariants depend on L,J restates the required family constancy and supplies no checkable formula; blocked without an actual reduction. (b) applying the pentagram monodromy theorem to an arbitrary Euclidean pedal area without identifying its monodromy expression transfers the central task; blocked absent that expression. (c) equating the target directly with the even original/outer area theorem confuses the polygons; only the explicit auxiliary-family trace bridge is accepted here. None is reopened on bibliographic proximity alone.

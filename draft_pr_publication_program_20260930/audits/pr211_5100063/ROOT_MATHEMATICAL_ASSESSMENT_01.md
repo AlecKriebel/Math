@@ -1,0 +1,45 @@
+# Root mathematical assessment of PR211 / 5100063
+
+This assessment accepts the stated mathematical implication within its exact domain, after direct reading and fresh reproduction. It does not establish historical novelty or authorize completion/publication gates. The original preserved QUEUE row is claimed_solved; eligibility was separately authenticated.
+
+## Claim and falsification standard
+
+Fix a>b>0 and a strict proper nested, nondegenerate confocal elliptical caustic alpha>beta>0, with a^2-b^2=alpha^2-beta^2=c^2. For every odd least N>=3 and admissible coprime turning number 0<tau<N/2, intersect consecutive tangents at original billiard vertices, unit-invert those OUTER vertices at the ORIGINAL foci, connect inverse vertices by straight edges, and take ordered signed shoelace areas B+ and B-. The assertion is phase constancy and positivity of their product. Original vertices, the outer locus's own foci, pedal vertices, inverse arcs and unsigned filled-star areas are different objects. Collapsed, grazing and hyperbolic caustics are outside the stated theorem.
+
+A failure of raw tangent incidence, real focus avoidance, inversion normalization, complete pole list, critical triangular fiber, double-principal-part cancellation, or opposite-focus/half-period identification would defeat the proof. Numerical constancy alone cannot establish it.
+
+## Root assessment of the universal deduction
+
+1. Stachel's published Theorem4.3/(4.9), independently viewed by Root on printed p1614, supplies all primitive turns in the stated domain. Its caustic eccentricity is the Jacobi modulus k=c/alpha; mpmath takes k^2. Direct raw tangent solving at P(u-v),P(u+v) gives Q(u)=(-alpha*d^2*sn(u)/q, alpha*k'*cn(u)/q), with v=2K*tau/N, q=cn(v)^2 and d=dn(v). The determinant is strictly positive on the real line. Both outer axes expand; Q lies outside the billiard ellipse and cannot equal an interior original focus. No ordering of the outer axes is assumed.
+
+2. Translating each entire inverse polygon by minus its inversion center preserves the signed area by telescoping. Its Euclidean squared distance is alpha^2*(1+k*sn(u))*(U+k*V*sn(u))/q^2, where U=1-2k^2*t+k^2*t^2, V=1-2t+k^2*t^2 and t=1-q. Applying the addition identities to the actual determinant and both squared distances gives the displayed kernel E(u) with C0=B_o*sn(v)*dn(v)*q^4/(alpha^3*cn(v)). The q^4 factor, half determinant and physical dimensions are correct. Complex continuation is bilinear, without conjugation.
+
+3. Triple addition gives L0=Z*dn(3v), L1=Z*cn(3v), Z>0 and L0^2-k^2*L1^2=k'^2*Z^2. Along with d^2-k^2*cn(v)^2=k'^2>0, these show every real edge E(u)>0. Oddness of N excludes L1=0. These are strict real deductions, not observations of sampled denominators.
+
+4. The kernel has periods 4K,4iK' and anti-period 2iK'. The smaller sn torus is used only to count fibers. Its first denominator fiber gives two distinct simple roots, squared in E; the second gives two simple roots except at 3v=2K. Primitivity makes that exception exactly N=3,tau=1. At its critical sn value, the second factor has a double zero and dn a simple zero, leaving at most a simple pole. The first fiber is disjoint. Common Jacobi poles are removable by equal order-three numerator/denominator leading terms with nonzero coefficients. Thus no additional pole can escape this list. Root checked the correct periods, shifts and derivative facts directly against NIST DLMF22.4/22.8/22.13; the adjacent published Stachel dn-sign typo is unused.
+
+5. Reflection about r0=3K+iK' negates E and pairs the two double coefficients with opposite signs. They differ by delta=2v. Coprimality gives each cyclic translate order N, so exactly one coefficient of each sign meets every candidate double-pole class. The second fiber contributes only simple terms, including the triangular coincidence already accounted for. Bezout then gives real period L=4K/N. The sum F has at most two simple poles on the L-by-4iK' torus. If both disappeared, compact holomorphic constancy and the imaginary anti-period would force F=0, contradicting its positive real sum. Therefore both poles occur. This argument resolves the all-poles-cancel possibility without assuming a sampled nonzero residue.
+
+6. Cyclic reindexing preserves odd reflection about R=r0+v. It forces zeros at R+L/2 and its 2iK' translate; neither is a pole. Total zero and pole multiplicities of a nonzero meromorphic torus function agree, so these are exactly two simple zeros. Half real-period translation exchanges both divisors. F(u)*F(u+L/2) is therefore holomorphic and constant. The geometric identity Q(u+2K)=-Q(u) identifies opposite-focus areas via central reflection, which preserves signed area. For odd N, 2K=NL/2 is L/2 modulo L. This completes the target product proof, including all coprime stars. No generic original-to-outer inverse-area transfer is used.
+
+Reversal negates both areas. Repeating an orbit r times multiplies the product by r^2. Spatial dilation with unit inversion gives factor lambda^-4. The circle is separately verified by rigid rotation; excluded collapsed/grazing endpoints are not obtained merely by passing a nonuniform limit.
+
+## Independent evidence actually assessed
+
+Root read the complete original/revised mathematical proof, the deposited six-page manuscript and both new independent derivations and finding ledgers. The physical family freezes a raw caustic-tangent/reflection/Cartesian-inversion approach before reading candidate or prior verdicts. The meromorphic family separately freezes exact fiber/Laurent/divisor falsification. Their deductions meet at the independently derived real kernel; their agreement is assessed substantively, not by PASS labels.
+
+Root rehashed all17 physical and16 meromorphic authored payloads, read their checker sources and effects before execution, and ran unmodified copies in fresh Root folders. All20 physical polynomial identities and all exact geometric data reproduce after excluding generated_utc only. The two triangle families at two phases have products 1/3600 and81/25600. A same-caustic primitive N4 witness has products1/2 and9/16, falsifying an unrestricted even extension.
+
+Root also reproduced the complete meromorphic control program: all21 symbolic identities, all1053 finite rational classes, all120 noninterval parameter/turn cases, six principal-part cases and four period-boundary approaches. All three scientific JSON outputs are byte-identical. This includes the explicit opposite double coefficients. Root checked the actual aggregate errors as well as the full result equality. Symbolic reductions alone do not establish analytic pole completeness; that is supplied above and in the derivation.
+
+The published source ZIP was checked for CRC, regular file types, exact wrapper/path closure and all150 manifest payload pins plus self. Root inspected the documented harness and all10 executed job sources before a fresh --run all. All10 complete scientific JSONs agree. Eight raw results are byte-identical; two differ only in their declared python fields under Python3.11.8 versus the published exercised3.14.6, with exact Sympy1.14/mpmath1.3. No scientific field was relaxed. The original payload remained unchanged. Historical nonportable ledger builders, package builders and publication helpers were not executed.
+
+The fresh physical numerical family generated763 closed orbits in109 families/10374 vertices with60 reversed-axis families. Root crosschecked full case inventories and the aggregate counts against records. Its four130-digit probes preserve all stored24-digit phase areas/products. These diagnostics are finite and noninterval; neither they nor the archived exact finite lattice enumeration replace the universal deduction.
+
+Root freshly rendered and visually read all6 pages of the exact deposited76736-byte PDF. No clipped formula, unreadable symbol or layout defect was found. Root also visually checked the source's complete v11 Table10p12, inverse-object definitions on pp9-10 and the published canonical theorem.
+
+## Decision and remaining work
+
+No mathematical blocker remains in this precise claim, conditional on credited standard Jacobi/complex-analysis facts and the published canonical parametrization. This is an extensive adversarial mathematical acceptance, not formal proof-assistant verification or independent human refereeing.
+
+The priority audit starts only after this acceptance. No assertion of firstness, causal independence, simultaneous discovery, exact original publication time, present worldwide open status or unqualified historical novelty follows. Existing DOI/tracker/merge custody is separately authenticated. Fresh current priority evidence, qualified adoption materials, two NEW SEQUENTIAL whole-package adversaries with repairs, and a safe final native Main/all-five checkpoint remain. Initial scientific-family audits do not count as those whole-package reviews. Global counters remain52 completed/36 published-or-adopted, last210/cursor211; persistent goal active.

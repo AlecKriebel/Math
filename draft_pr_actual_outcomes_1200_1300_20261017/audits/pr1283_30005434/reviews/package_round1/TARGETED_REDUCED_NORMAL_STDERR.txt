@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/run_targeted_workflow.py", line 29, in <module>
+    f=m.fixture(Path(tmp)/'main');out['groups']['coordinator'].append(m.coordinator_case(f,case));save()
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 84, in fixture
+    run=subprocess.run([sys.executable,'-B',str(pub/'compile_note.py')],env=env,capture_output=True,text=True);need(run.returncode==0,run.stderr)
+                                                                                                               ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 24, in need
+    if not value:raise RuntimeError(message)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/_local/workflow_tooling/_local/serial-coordinator-hpph9956/main/program/audits/pr1283_30005434/publication/compile_note.py", line 40, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/_local/workflow_tooling/_local/serial-coordinator-hpph9956/main/program/audits/pr1283_30005434/publication/compile_note.py", line 36, in main
+    if result.returncode:raise RuntimeError(result.stderr)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/_local/workflow_tooling/_local/serial-coordinator-hpph9956/main/bin/tectonic", line 4, in <module>
+    o=pathlib.Path(sys.argv[sys.argv.index('--outdir')+1]);o.mkdir(parents=True,exist_ok=True);(o/'main.pdf').write_bytes(b'SYNTHETIC PDF BYTES ONLY')
+                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 796, in write_bytes
+    with self.open(mode='wb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/_local/workflow_tooling/_local/serial-coordinator-hpph9956/main/program/audits/pr1283_30005434/publication/output/pdf/main.pdf'
+
+

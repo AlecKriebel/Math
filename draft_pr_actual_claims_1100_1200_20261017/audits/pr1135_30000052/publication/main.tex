@@ -1,0 +1,269 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={A three-point counterexample to a random lattice discrepancy comparison},
+pdfauthor={Alec Kriebel},pdfsubject={A negative answer to Novak's expected discrepancy moment comparison},
+pdfkeywords={Lp discrepancy, random lattice, random rotation, fourth moment, counterexample}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\disc}{\operatorname{disc}}
+\newcommand{\iid}{\mathrm{iid}}
+\title{A three-point counterexample to a random lattice discrepancy comparison}
+\author{Alec Kriebel\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{17 October 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+For three points $\{\Delta\},\{Z+\Delta\},\{2Z+\Delta\}$ with independent
+continuous uniform generator $Z$ and shift $\Delta$, the expected normalized
+anchored fourth discrepancy moment is $19/1620$. The corresponding
+independent-point moment is $4/405=16/1620$. This gives a negative answer
+to the universal expected-moment comparison posed by Novak, reporting
+joint work with Hinrichs, in 2004. We give an elementary inclusion-area
+proof and a separate empty-tail argument giving reversal for every
+point count $n\ge4$ in dimension one. Three is the smallest possible
+counterexample point count. Ferudun's preprint of 14 October 2026 also
+gives the same exact counterexample and broader results; this note
+records the proof in the source repository PR dated 10 October.
+First priority is not claimed.
+\end{abstract}
+
+\section{The comparison and its recorded scope}
+For indexed points $t_0,\ldots,t_{n-1}\in[0,1)^d$, define
+\[
+ \disc_p(t)^p
+ =\int_{[0,1]^d}\left|
+       \frac1n\sum_{j=0}^{n-1}\mathbf1_{[0,x)}(t_j)
+                    -\prod_{r=1}^d x_r\right|^p\,dx .
+\]
+Novak, reporting joint work with Hinrichs, asks whether, for even $p$,
+the expectation of this quantity for
+\[
+ M_n^{Z,\Delta}=(\{jZ+\Delta\})_{j=0}^{n-1},
+ \qquad Z,\Delta\ \hbox{independent uniform on }[0,1)^d,
+\]
+is at most the expectation for $n$ independent uniform points
+\cite[p.~698]{Novak}. Fractional parts are coordinatewise. This is the
+full continuous generator-and-shift average, with no selection of good
+generators. A single reversed triple $(n,d,p)$ disproves the universal
+comparison.
+
+\begin{theorem}\label{thm:main}
+In dimension one,
+\[
+ \E\disc_4(M_3^{Z,\Delta})^4
+ =\frac{19}{1620}
+ >\frac{4}{405}
+ =\E\disc_4(M_3^\iid)^4 .
+\]
+The excess is $1/540$ and the ratio is $19/16$.
+For $n\le2$ the complete lattice and independent-point ensemble laws agree
+in every dimension. Thus three is the smallest possible point count
+for a counterexample.
+\end{theorem}
+
+\paragraph{Related result and chronology.}
+Ferudun's unrefereed preprint \cite[Theorems~1.2--1.3]{Ferudun},
+released on 14 October 2026, contains the same three-point values,
+the same empty-progression mechanism, and broader results in dimension
+and exponent. It is an explicit overlapping answer and is credited here.
+The source proof of the present note is in repository
+PR~1135, whose GitHub creation record is dated 10 October 2026
+\cite{Repository}; the present note is a new release on 17 October.
+These records do not certify historical public visibility of the repository,
+first discovery, or first publication. No inference about either author's
+awareness or dependence is made. The bounded literature audit is supplied
+with the verification package; it identified no earlier full answer but
+does not certify exhaustive priority. The elementary proof below is
+self-contained.
+
+\section{The three-point calculation}
+Set $U=t_0=\Delta$ and $V=t_1=\{Z+\Delta\}$. These are independent uniform
+variables, since translation preserves uniform circle measure, and
+$t_2=\{2V-U\}$. More generally, every two distinct indexed points are
+independent uniforms: conditional on $Z$, $t_j$ is uniform, so $t_j$
+is independent of $Z$; multiplication by the nonzero integer $k-j$
+preserves circle measure, and
+$t_k=\{t_j+(k-j)Z\}$. This argument also applies coordinatewise.
+
+For $0\le x\le1/2$, put
+\[
+ q(x)=\Prob(t_0<x,\ t_1<x,\ t_2<x).
+\]
+On $U,V\in[0,x)$, one has $-x<2V-U<2x$. A negative value wraps to
+at least $1-x\ge x$; a nonnegative value does not wrap through one,
+outside null boundaries. Therefore the third inclusion is equivalent to
+$0\le2V-U<x$. For each $U\in[0,x]$, the allowed interval
+\[
+ U/2\le V<(U+x)/2
+\]
+lies in $[0,x]$ and has length $x/2$. Its area is
+\[
+ q(x)=x^2/2,\qquad 0\le x\le1/2.
+\]
+
+Let $N_x$ count the three indexed points in $[0,x)$, and let
+$P_k(x)=\Prob(N_x=k)$. Pairwise independence gives
+$\E N_x=3x$ and $\E\binom{N_x}{2}=3x^2$. Together with $P_3=q$ and
+total probability one, this determines
+\[
+ (P_0,P_1,P_2,P_3)
+ =(1-3x+3x^2-q,\ 3x-6x^2+3q,\ 3x^2-3q,\ q).
+\]
+Consequently, before substituting $q$,
+\begin{equation}\label{eq:general}
+ F(x):=\E(N_x/3-x)^4
+ =x^4-\frac23x^3+\frac2{27}x^2+\frac{x}{27}
+                         +\frac49(1-2x)q(x).
+\end{equation}
+On the lower half interval this becomes
+\[
+ F(x)=x^4-\frac{10}{9}x^3+\frac8{27}x^2+\frac{x}{27}.
+\]
+The parameter transformation $(Z,\Delta)\mapsto(-Z,-\Delta)$ modulo one
+preserves their product uniform law and reflects every point. Outside
+null endpoint events, it exchanges $N_x$ with $3-N_{1-x}$.
+Thus $F(1-x)=F(x)$. Bounded measurability permits Tonelli's theorem, and
+\[
+ \E\disc_4(M_3^{Z,\Delta})^4
+ =2\int_0^{1/2}F(x)\,dx
+ =2\left(\frac1{160}-\frac5{288}+\frac1{81}+\frac1{216}\right)
+ =\frac{19}{1620}.
+\]
+
+For an independent triple, the same identity \eqref{eq:general} holds
+with $q_\iid(x)=x^3$. On $[0,1/2]$ its difference from the lattice
+integrand is therefore
+\[
+ F(x)-F_\iid(x)
+ =\frac49(1-2x)(x^2/2-x^3)
+ =\frac29x^2(1-2x)^2 .
+\]
+Reflection applies to both ensembles, so the strict integrated excess is
+\[
+ 2\int_0^{1/2}\frac29x^2(1-2x)^2\,dx=\frac1{540}.
+\]
+This also verifies the sign without subtracting approximate values.
+
+For completeness, the iid fourth moment at every point count has a short
+formula. For independent Bernoulli$(x)$ variables $B_i$, set $Y_i=B_i-x$
+and $a=x(1-x)$. Then $\E Y_i^2=a$ and $\E Y_i^4=a-3a^2$.
+Only the single-index and paired-index terms survive in the fourth
+power of their centered sum. Hence
+\[
+ \E\left(\frac1n\sum_iY_i\right)^4
+ =\frac{n(a-3a^2)+3n(n-1)a^2}{n^4}.
+\]
+Integrating $a$ and $a^2$ gives $1/6$ and $1/30$, respectively, yielding
+\begin{equation}\label{eq:iid}
+ \E\disc_4(M_n^\iid)^4=\frac{3n-1}{30n^3}.
+\end{equation}
+At $n=3$ this is $4/405$. The whole-law claim for $n\le2$ follows
+from the uniform marginal and the independent pair already proved,
+coordinate by coordinate. This completes Theorem~\ref{thm:main}.
+
+\section{A second counterexample from empty tails}
+\begin{proposition}\label{prop:tails}
+For $n\ge3$ in dimension one,
+\[
+ \E\disc_4(M_n^{Z,\Delta})^4\ge\frac2{105(n-1)}.
+\]
+For every integer $n\ge4$ this lower bound exceeds the iid fourth moment.
+\end{proposition}
+\begin{proof}
+On the open triangle
+\[
+ 0<Z<1/(n-1),\qquad 0<\Delta<1-(n-1)Z,
+\]
+all points lie without wraparound between $\Delta$ and
+$\Delta+(n-1)Z$. Below the first point the empirical count is zero;
+above the last it is $n$. The two outer intervals alone contribute
+\[
+ \frac{\Delta^5+(1-\Delta-(n-1)Z)^5}{5}
+\]
+to the fourth discrepancy moment. Integrating this contribution against
+the original product density one, first in $\Delta$ and then in $Z$, gives
+\[
+ \int_0^{1/(n-1)}\frac{(1-(n-1)Z)^6}{15}\,dZ
+ =\frac1{105(n-1)} .
+\]
+The transformation $(Z,\Delta)\mapsto(1-Z,1-\Delta)$ gives a descending
+no-wrap triangle with the same contribution. Their interiors are disjoint
+for $n\ge3$, since their generator intervals are disjoint; boundaries
+have area zero. Everything omitted is nonnegative, giving the bound.
+
+At $n=4$ it gives $2/315>11/1920$ with margin $5/8064$.
+In general, by \eqref{eq:iid}, the comparison reduces to
+$4n^3-21n^2+28n-7>0$. Writing $n=4+t$ makes its left side
+$25+52t+27t^2+4t^3>0$ for $t\ge0$.
+\end{proof}
+
+The lower bound alone is insufficient at $n=3$, where
+$1/105<4/405$. The exact three-point calculation is separate.
+The rare short progressions explain how a fourth-moment reversal can
+coexist with pairwise independence.
+
+\section{Consistency and verification}
+For any $n,d$, an anchored box of volume $v=\prod_r x_r$ has pairwise
+independent indicator variables in the lattice ensemble. Its normalized
+count variance is $v(1-v)/n$, as for iid points. Thus
+\[
+ \E\disc_2(M_n^{Z,\Delta})^2
+ =\frac{2^{-d}-3^{-d}}{n}
+ =\E\disc_2(M_n^\iid)^2.
+\]
+Indexing and the weight $1/n$ are retained even at collisions. Parameters
+causing collisions or tested endpoint equalities are null sets; they
+are not conditioned away. Closed parameter cubes and half-open cubes
+give the same expectations.
+
+The result concerns $\E\disc_p^p$. It does not order $\E\disc_p$,
+settle the separate existence question for good lattice generators,
+or refute discrepancy estimates restricted to selected generators.
+
+The source archive includes the unchanged source-PR documents, three new
+independent mathematical audits, current priority and chronology reviews,
+and exact rational standard-library verification programs. Besides the
+inclusion calculation, a separate complete affine-cell integration gives
+$19/1620$ for three points and the supplementary value $139/17280$
+for four points. The latter value is not needed by either analytic
+counterexample. Ordinary and optimized Python runs agree. The archive
+documents source versions and inaccessible literature; successful checks
+do not establish exhaustive priority or formal proof certification.
+
+\paragraph{AI assistance and review status.}
+AI tools were used extensively in proof development, exact computation,
+adversarial verification, literature research and manuscript preparation.
+This note and its supporting materials are unrefereed. Independent AI
+adversarial reviews are not external human peer review, journal acceptance
+or proof-assistant certification.
+
+\begin{thebibliography}{9}
+\bibitem{Novak}
+E.~Novak (joint work with A.~Hinrichs),
+\emph{New bounds for the star discrepancy},
+in Discrepancy Theory and Its Applications, Oberwolfach Report~13/2004,
+pp.~696--699.
+\href{https://doi.org/10.4171/OWR/2004/13}{doi:10.4171/OWR/2004/13}.
+
+\bibitem{Ferudun}
+A.~Ferudun,
+\emph{A Negative Answer to a Question of Novak on Randomly Shifted Lattices
+and the Expected p-th Power of the $L_p$ Discrepancy},
+EulerSolve Research Papers, OWR-723-005, version~1.0,
+14~October 2026, unrefereed preprint.
+\href{https://doi.org/10.5281/zenodo.23372668}{doi:10.5281/zenodo.23372668}.
+
+\bibitem{Repository}
+A.~Kriebel, source proof and audit for problem~30000052,
+\href{https://github.com/AlecKriebel/Math/pull/1135}{Math repository PR~1135},
+GitHub creation record 10~October 2026, reviewed head
+\texttt{e809a9c40f4ccdaced6f45f10b1dc8b7725a2119}.
+Exact source identities and dated API receipts accompany this note.
+\end{thebibliography}
+\end{document}

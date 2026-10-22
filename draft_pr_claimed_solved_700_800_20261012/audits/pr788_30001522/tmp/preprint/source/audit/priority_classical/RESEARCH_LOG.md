@@ -1,0 +1,9 @@
+# PR788 classical-priority research log
+
+- 2026-10-16T14:03:59.354604+00:00:10% complete. Source-only position frozen before candidate literature/audit or current root/peer priority conclusions. Reused earlier PR781/PR786 session disclosed; no fresh/blind claim. Priority remains undetermined.
+
+- 2026-10-16T14:09:11.190148+00:00:85% complete. Independent provisional frozen;40queries and10fullPDF artifacts pinned. Old cyclic-circle and explicit2020no-involution components established; arbitrary-continuous scope kept distinct from chromatic admissibility/isometric classifications. No full matching source identified in inspected passages; no absence/novelty inference. All48original Gitblobs/fullrecord and51inputs bound. Checker/controls/seal pending.
+
+- 2026-10-16T14:11:49.405024+00:00:90% complete. Root pointed out that historical audit sectionB already cites Kuhn–Lloyd Ex2.25. Actual historical file read after frozen provisional; report/ledger now distinguish omission from AUTHOR numbered literature list from presence in complete48-file packet. Initial/provisional unchanged;2020v1 primary version trace remains independently established. No root/peer priority verdict supplied/read. Pre-seal copied-input custody controls follow.
+
+- 2026-10-16T14:12:33.727571+00:00:100% authored priority audit complete. Own normal/optimized custody controls:2positives and64negative cases across32distinct controls PASS; every negative emits CUSTODY_FAIL, valid-comment checker tamper specifically rejects external checker pin, FIFO cases finish below5seconds. Original packet inputs/source bodies unchanged. Exact bounded finding is PRIORITY_UNRESOLVED_CLASSICAL_ASSEMBLY; initial/provisional freezes unchanged. Final strict flat manifest/pin and immutable normal/O replay follow; final replay results live only outside packet to avoid circular hashes. StagedRAM only; no source/Git/publication/contact changes.

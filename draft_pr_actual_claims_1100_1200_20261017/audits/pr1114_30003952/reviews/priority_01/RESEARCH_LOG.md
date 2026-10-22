@@ -1,0 +1,11 @@
+# Research log: independent priority audit
+
+Target: PR1114 / 30003952 / OWR-16415-015, head e1a11feef98ed0fde22375c983e30b72b268d265.
+Completion estimates measure completion of this priority audit, not novelty of the theorem.
+
+- 2026-10-17 17:54:59 UTC — Started with the exact full target and a neutral hypothesis: the existing B3 result might or might not imply the full prescribed-surface smooth claim. Set success criterion to a complete prior-consequence chain, including smooth branch charts, collar normalization, actual relation, prescribed mapping classes and ambient-scope limits. Audit completion estimate: 5%.
+- 2026-10-17 17:56:13 UTC — Fresh in-memory retrieval and byte hashing completed for original OWR, original arXiv v1, two author versions, and Farb–Margalit. The older construction has the needed local translations and external collar; the textbook explicitly covers odd 2g+1 and the three-point example. Derived normalized-lift homomorphism and local +/-w branch formula independently. Audit completion estimate: 65%.
+- 2026-10-17 17:57:13 UTC — Verified exact half-twist classes via annulus quotient and relative-boundary isotopy, rather than homology. Checked full twist versus boundary-twist square distinction. Verified arbitrary prescribed pair by oriented regular-neighborhood transfer. Main implication complete. Searched earlier Thurston/2010 OWR and later citation trails. Audit completion estimate: 85%.
+- 2026-10-17 17:59:05 UTC — Direct publisher access attempts all rejected; recorded precise limitation. Original arXiv v1 establishes the public priority date independently. A small source-ledger rewrite hit ENOSPC; confirmed original ledger remains valid JSON. Concluded no strictly stronger pinned theorem remains. Audit completion estimate: 95%.
+
+- 2026-10-17 18:03:41 UTC — Completed the full prior-consequence certificate, exact stronger-scope comparison, version/date checks, and 43-query primary-source/citation-trail audit. Five small artifacts recovered locally after temporary ENOSPC, and both ledgers validate. Final disposition recommendation: SKIP_ALREADY_SOLVED / PRIOR_FULL_CONSEQUENCE; no strictly stronger pinned claim remains; PR untouched. Audit completion estimate: 100%.

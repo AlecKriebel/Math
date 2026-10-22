@@ -1,0 +1,5 @@
+2026-10-17T21:07:23.699672+00:00 — 15% assigned custody. Source/pins checked. Actual GET-only capture starts; mathematics remains unreviewed.
+2026-10-17T21:07:34.443032+00:00 — 45% assigned custody. original exact native attempt/old-owned roles captured.
+2026-10-17T21:07:39.721006+00:00 — 65% assigned custody. current exact native attempt/old-owned roles captured.
+2026-10-17T21:07:41.689531+00:00 — 90% assigned custody. Actual capture complete; local raw-envelope/native/body re-verification remains.
+2026-10-17T21:09:48.702242+00:00 — 100% assigned native artifact custody.49 actual GETs complete; local raw/native replay PASS. Original20/current35 ownfiles,20/20 exact current history copies,40 changed leaves/foreign0; current already_solved row kept distinct from original claimed_solved eligibility. Source-question record captured as original bytes; no content interpretation or submitted script execution. Finite public metadata manifest/private256-file evidence sealed. Root acceptance/mathematics/priority remain separate; global counts53/37,last211/cursor212 and goal active remain unchanged by this task.

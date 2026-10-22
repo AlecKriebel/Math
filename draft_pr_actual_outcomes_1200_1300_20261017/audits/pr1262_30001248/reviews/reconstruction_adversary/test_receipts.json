@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "independent_checker": {
+    "script": "independent_checks.py",
+    "script_sha256": "26a496a25a3ef9c7fd4e61d543aab6ad2a86394fe47e1f4114a900e3d55dd87b",
+    "results": "independent_checks.json",
+    "results_sha256": "00cab6dd613137ae05d91105ecd9f17f56a9b339aaa974508b5d9ae6a4e84db5",
+    "command": "python3 independent_checks.py",
+    "mode": "normal; all checks use explicit exceptions",
+    "status": "PASS",
+    "started_utc": "2026-10-17T22:19:17.090068+00:00",
+    "completed_utc": "2026-10-17T22:19:17.945746+00:00",
+    "graphs": 33864,
+    "rational_parameter_cases": 12,
+    "max_fourier_inversion_error": 2.8811064616664137e-15,
+    "max_Gaussian_direct_dual_error": 1.0487610779819079e-11,
+    "negative_controls_rejected": {
+      "missing_covariance_factor": {
+        "rejected": true,
+        "true_variance": "65/32",
+        "wrong_variance": "25/16"
+      },
+      "labeled_embedding_modulus_2": {
+        "rejected": true,
+        "D_for_6T": 1,
+        "fixed_modulus_subcritical": true
+      },
+      "halved_wedge_pair_coefficient": {
+        "rejected": true,
+        "true_variance": "50/63",
+        "wrong_variance": "-1025/126"
+      }
+    },
+    "asymptotic_or_interval_proof": false
+  },
+  "sealed_checker_copy": {
+    "script": "_local/sealed_checker_copy.py",
+    "source_sha256": "aa70978cddf5d4229d5934ef3f1b595c6836af7aad66e5712067aa340e31968e",
+    "copy_sha256": "aa70978cddf5d4229d5934ef3f1b595c6836af7aad66e5712067aa340e31968e",
+    "byte_identical": true,
+    "command": "python3 _local/sealed_checker_copy.py",
+    "mode": "normal; assertions enabled; optimized mode not used",
+    "status": "all assertions passed",
+    "run_started_utc": "2026-10-17T22:18:49.695947+00:00",
+    "run_completed_utc": "2026-10-17T22:18:49.897763+00:00",
+    "results_identical_after_excluding_run_timestamps": true,
+    "source_folder_execution_or_mutation": false
+  },
+  "reviewer_test_correction": {
+    "incorrect_finite_assertion": "A finite grid absolute maximum always equals the residue nearest the positive peak.",
+    "counterexample": {
+      "h": 2,
+      "q": 101,
+      "drift": 0.4999,
+      "F_minus_gridmax": 1.0701430186443872e-08,
+      "gridmax_minus_nearest_positive_peak": 6.944209011594538e-06
+    },
+    "corrected_assertion": "0 <= F(h)-gridmax <= F(h)-nearest_positive_peak, up to floating tolerance.",
+    "sealed_report_error": false
+  },
+  "receipt_created_utc": "2026-10-17T22:21:27.481588+00:00"
+}

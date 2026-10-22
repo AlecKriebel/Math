@@ -1,0 +1,159 @@
+{
+  "result": "PASS",
+  "negative_control_count": 19,
+  "controls": [
+    {
+      "name": "verify_extra",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Closed source inventory differs\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_empty",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Unexpected empty source directory\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_missing",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Closed source inventory differs\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_edit",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Source bytes differ: LICENSE.txt\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_symlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Source symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/verify_symlink/source/LICENSE.txt\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_fifo",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Nonregular input: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/verify_fifo/source/LICENSE.txt\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_wrongpin",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"External source manifest pin differs\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_badpdf",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"PDF binding\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_rootlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Source must be a directory\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_duplicatekey",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Duplicate JSON key: schema\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_traversal",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Unsafe relative path: ../escape\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "verify_boolsize",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"Invalid source byte count\"}\n",
+      "stderr": "",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "build_inside_source",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_inside_source/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_inside_source/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_inside_source/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_inside_source/source/build_package.py\", line 99, in validate_outputs\n    need(canonical != closed and closed not in canonical.parents, \"Output lies inside closed source\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_inside_source/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Output lies inside closed source\n",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "build_output_ancestor_symlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_ancestor_symlink/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_ancestor_symlink/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_ancestor_symlink/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_ancestor_symlink/source/build_package.py\", line 96, in validate_outputs\n    need(not directory.is_symlink(), \"Output ancestor symlink\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_ancestor_symlink/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Output ancestor symlink\n",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "build_output_file_symlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_symlink/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_symlink/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_symlink/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_symlink/source/build_package.py\", line 106, in validate_outputs\n    need(not target.is_symlink(), \"Output destination symlink\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_symlink/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Output destination symlink\n",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "build_output_file_hardlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_hardlink/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_hardlink/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_hardlink/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_hardlink/source/build_package.py\", line 112, in validate_outputs\n    need(stat.S_ISREG(value.st_mode) and value.st_nlink == 1, \"Nonregular/multiply linked output\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_file_hardlink/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Nonregular/multiply linked output\n",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "build_output_pdf_is_input",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_pdf_is_input/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_pdf_is_input/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_pdf_is_input/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_pdf_is_input/source/build_package.py\", line 113, in validate_outputs\n    need((value.st_dev, value.st_ino) not in protected, \"Output aliases a protected input\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_pdf_is_input/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Output aliases a protected input\n",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "build_output_aliases_source",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_aliases_source/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_aliases_source/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_aliases_source/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_aliases_source/source/build_package.py\", line 112, in validate_outputs\n    need(stat.S_ISREG(value.st_mode) and value.st_nlink == 1, \"Nonregular/multiply linked output\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_aliases_source/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Nonregular/multiply linked output\n",
+      "input_pdf_unchanged": true
+    },
+    {
+      "name": "build_output_fifo",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_fifo/source/build_package.py\", line 179, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_fifo/source/build_package.py\", line 174, in main\n    result = build(args.source.absolute(), args.expected_manifest_sha256,\n                   args.pdf.absolute(), args.output_dir.absolute())\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_fifo/source/build_package.py\", line 154, in build\n    out = validate_outputs(output, names, source, pdf_path)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_fifo/source/build_package.py\", line 112, in validate_outputs\n    need(stat.S_ISREG(value.st_mode) and value.st_nlink == 1, \"Nonregular/multiply linked output\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr789_30001478/tmp/whole_preprint_round03_scratch/package-controls/build_output_fifo/source/build_package.py\", line 8, in need\n    raise ValueError(message)\nValueError: Nonregular/multiply linked output\n",
+      "input_pdf_unchanged": true
+    }
+  ],
+  "limits": "Static malformed-path and alias tests, not a race-free filesystem sandbox."
+}

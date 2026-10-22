@@ -1,0 +1,65 @@
+{
+  "utc": "2026-10-16T06:58:27.526726+00:00",
+  "result": "pass_with_explicit_limits",
+  "events": [
+    {
+      "test": "wrapper_all_modes_exact_historical_receipt",
+      "outcome": "pass",
+      "bytes": 3091,
+      "sha256": "ddf1aeb2d60ddc798cd16c2637e6f38057f1ca287e3a5d3ef1c15f297a413e57"
+    },
+    {
+      "test": "invalid_JSON_with_matching_sidecar",
+      "outcome": "rejected",
+      "exception": "JSONDecodeError",
+      "message": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+    },
+    {
+      "test": "top_level_array_with_matching_sidecar",
+      "outcome": "rejected",
+      "exception": "TypeError",
+      "message": "list indices must be integers or slices, not str"
+    },
+    {
+      "test": "missing_schema_with_matching_sidecar",
+      "outcome": "rejected",
+      "exception": "KeyError",
+      "message": "'schema'"
+    },
+    {
+      "test": "null_manifest_entry",
+      "outcome": "rejected",
+      "exception": "TypeError",
+      "message": "'NoneType' object is not subscriptable"
+    },
+    {
+      "test": "boolean_payload_size",
+      "outcome": "rejected",
+      "exception": "ValueError",
+      "message": "size mismatch: ANTI_INVARIANT_30004549_R3_AUTHOR_EXTERNAL_MANIFEST.json"
+    },
+    {
+      "test": "floating_problem_id_equal_integer",
+      "outcome": "accepted",
+      "result": {
+        "result": "pass",
+        "files": 24,
+        "frozen_proof_sha256": "50a267656e6a5412a2e14208ada5aec203df4c5385be63b831029188cb1cf39e",
+        "archive_members": 7
+      },
+      "public_manifest_sha256": "99ed601168b0e058488856f894004bcaa496e5a297af4c113f1b7656964a6eaf"
+    },
+    {
+      "test": "coherent_unpinned_README_rebind",
+      "outcome": "accepted",
+      "result": {
+        "result": "pass",
+        "files": 24,
+        "frozen_proof_sha256": "50a267656e6a5412a2e14208ada5aec203df4c5385be63b831029188cb1cf39e",
+        "archive_members": 7
+      },
+      "public_manifest_sha256": "71f536c67f3a00447565cdc3009c41e7ccb3a4cd73cdad55a930383bf8a1bc9f"
+    }
+  ],
+  "notes": "The malformed JSON first-pass harness probe was stopped by sidecar mismatch; supplemental probe exercises JSON parser after matching sidecar. No new computation or mathematical construction."
+}

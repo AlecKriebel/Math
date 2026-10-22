@@ -1,0 +1,9 @@
+# PR1155 / problem30000214: prepublication audit snapshot
+
+This is the immutable prepublication snapshot dated2026-10-18T01:38Z (local17October), at75% of the PR review/publication process. It is deliberately frozen with the source package. Later whole-package reviews, live ACCEPTANCE_GATE.json and production receipts are outside that package.
+
+The actual draft outcome explicitly claims a full negative solution. Original13-file inputs remain an unchanged historical edition; the new complete paper and verification package are operative. Root independently checked the complete proof and original-source dependencies, then authenticated three source-first full mathematical reviews across finite-quotient, spectral/deletion, and sphere-obstruction mechanisms. No mathematical gap or required repair remains. Root's prior body/outline exposure and all selective reading scopes are explicit.
+
+Root and three fresh priority approaches recorded176 query inputs (167 exact distinct strings), inspected near matches and material gaps, and found no earlier recorded full answer in the accessible inspected material. The result is an application of substantial earlier construction, congruence, spectral and curvature machinery, not a claim that those tools are new. This is not a firstness or global-openness certificate. Chari1997 and Baclawski1982 full bodies remain material access gaps.
+
+No PR mutation, publication or tracker write has occurred at this snapshot. Two successive fresh clean whole-package reviews of identical six release files are required before production publication. The note is extensively AI-assisted and unrefereed; internal AI review is not external human peer review. Third-party bodies/text/images and raw service outputs remain private; only authored notes and bibliographic/custody metadata may be distributed.

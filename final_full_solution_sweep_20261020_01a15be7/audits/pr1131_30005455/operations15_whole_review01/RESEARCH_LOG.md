@@ -1,0 +1,2 @@
+2026-10-22T19:06:38.670210+00:00 —0% opening whole15 review; complete276payload12directory source seal independently verified before actor inspection. Only new own directory writes permitted; no realservice invocation authorized.
+2026-10-22T19:24:09.359171+00:00 —100% whole15 review. HOLD: two new actual-parser post-fact pin-check custody counterexamples, no false success/retry/real effect. Cold42full replay and14typed method/bodyHOLD bindings accepted. Root report prepared; source/science/old inputs unchanged. No action authority.

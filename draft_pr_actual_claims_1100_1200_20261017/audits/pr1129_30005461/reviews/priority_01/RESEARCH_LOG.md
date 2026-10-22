@@ -1,0 +1,7 @@
+# Independent priority audit research log
+
+- 2026-10-17 20:50 UTC — Created isolated audit folder and ignore rules before downloading. Completion estimate: 5%. Objective: check the actual two-clause problem against primary sources and explicit/direct prior consequences, including the February 2026 stubborn-polynomial classification. No external outreach, original-file edits, or publication/tracker mutations authorized.
+
+- 2026-10-17 20:51 UTC — Independently fetched fixed PDFs and current source records. Exact theorem statements and original-family distinction inspected. Uniform delta bridge reduced to six elementary chart identities. Completion estimate: 60%.
+- 2026-10-17 20:53 UTC — Twenty exact symbolic and input-pin checks pass. Complete parameter-wise bridge yields odd SOS for all c<3 and limit 3. Primary-source status checks identify Stubborn Polynomials as earlier public preprint, not journal-published result. Completion estimate: 90%.
+- 2026-10-17 20:54 UTC — Completed 23-query ledger and detailed source-inspection record. Fixed PDF dated Feb3 versus current HTML internal Aug24 date distinguished; both use arXiv v1 and agree on relevant theorem. Full report verdict VERIFIED_PRIOR_FULL_CONSEQUENCE; application has no gap relative to imported theorem. Strict SKIP recommended to root, with every PR/publication/tracker mutation excluded. Completion estimate: 100% of this priority-audit assignment.

@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1032_30001739/reviews/package_02/fixtures/kit_copy/scripts/build_archive.py", line 36, in real_directory_chain
+    info = current.lstat()
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 661, in lstat
+    return os.lstat(self)
+           ~~~~~~~~^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1032_30001739/reviews/package_02/fixtures/missing'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1032_30001739/reviews/package_02/fixtures/kit_copy/scripts/build_archive.py", line 114, in <module>
+    build(Path(__file__).absolute().parents[1], args.target)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1032_30001739/reviews/package_02/fixtures/kit_copy/scripts/build_archive.py", line 98, in build
+    root, target = output_preflight(root, target)
+                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1032_30001739/reviews/package_02/fixtures/kit_copy/scripts/build_archive.py", line 57, in output_preflight
+    parent_ids = real_directory_chain(target.parent)
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1032_30001739/reviews/package_02/fixtures/kit_copy/scripts/build_archive.py", line 38, in real_directory_chain
+    raise RuntimeError('existing real directory parent required: ' + str(current)) from exc
+RuntimeError: existing real directory parent required: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1032_30001739/reviews/package_02/fixtures/missing

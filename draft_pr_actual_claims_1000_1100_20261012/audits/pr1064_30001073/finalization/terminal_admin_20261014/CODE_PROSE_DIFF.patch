@@ -1,0 +1,75 @@
+--- before/preprint_v1_0/verify_package.py
++++ preprint_v1_0/verify_package.py
+@@ -65,6 +65,17 @@
+  require(latest['publication_ready'] is False and latest['issues_updated'] is False,'latest pending gate altered')
+  require(latest['whole_package_reviews_completed']==2 and latest['whole_package_reviews_required']>=2,'latest new review gate altered')
+  require(latest['ascending_publication_hold_after_pr']==1032,'latest ascending hold altered')
++ terminal=load('TERMINAL_STATUS.json')
++ require(terminal['stage']=='READY_FOR_SUBMISSION_UNPUBLISHED_HELD_AFTER_1032' and terminal['snapshot_date']=='2026-10-14','terminal stage altered')
++ require(terminal['whole_package_reviews_completed']==3 and terminal['whole_package_reviews_required']>=2,'terminal complete-review count altered')
++ require(terminal['actionable_P0_P1_P2_P3']==0 and terminal['ready_for_submission_after_root_adoption'] is True,'terminal clean-review readiness altered')
++ require(terminal['root_terminal_adoption_required'] is True and terminal['publication_ready'] is False and terminal['published'] is False and terminal['issues_updated'] is False,'terminal adoption/publication gate altered')
++ require(terminal['ascending_publication_hold_after_pr']==1032,'terminal ascending hold altered')
++ require(terminal['novelty']=='UNKNOWN' and terminal['historical_priority']=='UNKNOWN','terminal novelty boundary altered')
++ review=load('support/history/reviews/package_03/VERDICT.json')
++ require(review['verdict']=='ZERO_ACTIONABLE_FINDINGS' and all(review['severity_counts'][s]==0 for s in ['P0','P1','P2','P3']),'terminal complete-review verdict altered')
++ adoption=load('support/history/ROOT_WHOLE_PACKAGE_REVIEW_03.json')
++ require(adoption['whole_reviews_completed']==3 and adoption['minimum_whole_reviews']>=2 and adoption['actionable_P0_P1_P2_P3']==0,'terminal ROOT review adoption altered')
+  require(load('support/CHECKS.json')['pass'] is True,'authored diagnostic record not passed')
+  return allow
+ 
+--- before/preprint_v1_0/README.md
++++ preprint_v1_0/README.md
+@@ -6,7 +6,7 @@
+ 
+ The mechanism is explicitly a corollary of Anari-Rezaei 1811.02933v2 section 4 equation (6), also implied by Anari 2608.28031v2 Lemma 7 and Dong-Jain 2609.02017v1 Theorem 3.1 (g=4). Sequential permutation KL differs from matrix entry-mass KL. The scalar estimate is explicit here; historical novelty and priority remain UNKNOWN. Full Soules 2000/2003/2005 bodies were inaccessible and broader Orlicz, Roos and optimized lp consequences were not exhaustively classified. No first-solution, new-method, worldwide-open or independent-discovery certificate.
+ 
+-The dated preparation snapshot is `STATUS.json` (14 October 2026). It records zero new whole-package reviews and is preserved unchanged. `CURRENT_STATUS.json` preserves the dated `PENDING_NEW_WHOLE_02` stage with one review. The latest `CURRENT_STATUS_WHOLE03.json` records `PENDING_NEW_WHOLE_03`: two new full reviews completed, at least two required, publication_ready=false and issues_updated=false. Review01 accepted the mathematics, sources, five PDF pages and documented reproduction, and recorded two P3 package findings. The bounded repair adds PDF-output alias rejection and preflights every allowlisted local file, including the self-excluded manifest. Whole02 accepted those repairs and the full theorem/source/paper/distribution, then found an archive-output hardlink overwrite affecting protected members and excluded delivery records. The bounded second repair protects every current package input except the designated generated archive and temporary outputs against resolved, symlink and existing-hardlink aliases before writes. The changed package awaits a new complete whole03 review; no zero-issue clearance or third review is claimed. The ascending publication gate is held after PR1032. These are preparation gates, not premises of the proof.
++The current `TERMINAL_STATUS.json` records `READY_FOR_SUBMISSION_UNPUBLISHED_HELD_AFTER_1032`: three complete whole-package reviews, at least two required, latest whole03 ZERO actionable P0–P3, and ROOT adoption of that complete review. Terminal administrative adoption by ROOT remains required. No publication, service or issue action occurred; publication_ready=false and issues_updated=false remain preparation flags here. The ascending service gate is held after PR1032. `TERMINAL_ACCEPTANCE.md` describes this distinction. The unchanged dated `STATUS.json`, `CURRENT_STATUS.json` and `CURRENT_STATUS_WHOLE03.json` preserve the earlier counts zero, one and two and their pending-stage meanings. Whole01's two P3 package findings and whole02's archive-output P3 were repaired and accepted in full whole03. These workflow gates are not premises of the proof.
+ 
+ Run the following from this directory, either in the preparation folder or a clean archive extraction. Python 3 with its standard library suffices for verification and checks. Temporary outputs stay below ignored `tmp/`.
+ 
+@@ -32,4 +32,6 @@
+ 
+ The original reviewer `finite_checks.py` is distributed unchanged and is rerun only in normal mode, with assertions active; results match the root baseline after declared runtime-only projection. The new `fresh_guard_checker.py` is a disclosed explicit-guard adaptation with added source-identity tests. Its normal and optimized runs agree, and seven deliberately faulty variants fail in both modes. Selected finite Fraction/Decimal diagnostics corroborate support, chain entropy, conditional Jensen, Gibbs identities, KL mass cancellation, source expansions, endpoints and the norm estimate. They are not interval-certified computations or universal proofs. `support/CHECKS.json` records their execution scope.
+ 
+-All member paths are explicitly allowlisted. Third-party full PDFs, copied text, source images, raw search extracts, full repository tree/commit captures and unrelated filenames are excluded. `EXCLUSION_LEDGER.json` describes these boundaries. Full input custody, the dated final preparation report/verification and immutable original output pins remain separate local records. `CURRENT_OUTPUT_PINS.json` remains the immutable repair01 stage seal. `CURRENT_OUTPUT_PINS_WHOLE03.json` seals the latest stage separately. The local bounded-repair folders preserve exact old mutable bytes; repair01 `resolve_preparation_stage.py` retains the original103-stage resolver, and repair02 `resolve_prior_stages.py` validates the original103 stage, repair01 current124/all125 pins and all37 repair01 outputs against their preserved stages. The current archive and external binding are separate delivery records.
++All member paths are explicitly allowlisted. Third-party full PDFs, copied text, source images, raw search extracts, full repository tree/commit captures and unrelated filenames are excluded. `EXCLUSION_LEDGER.json` describes these boundaries. Full input custody, the dated final preparation report/verification and immutable original output pins remain separate local records. `CURRENT_OUTPUT_PINS.json` remains the immutable repair01 stage seal. `CURRENT_OUTPUT_PINS_WHOLE03.json` seals the immutable repair02 stage. `TERMINAL_OUTPUT_PINS.json` seals this terminal stage separately. The local bounded-repair folders preserve exact old mutable bytes; repair01 `resolve_preparation_stage.py` retains the original103-stage resolver, and repair02 `resolve_prior_stages.py` validates the original103 stage, repair01 current124/all125 pins and all37 repair01 outputs against their preserved stages. The current archive and external binding are separate delivery records.
++
++`TERMINAL_SELECTION_LEDGER.json` accounts for each whole03/repair02 sealed-output inclusion or omission; safe selected history is byte-exact. Historical scripts and captures retain their dated original stage scopes, and are not represented as current-edition replay. The external `publication/zenodo-deposit.json` is the repository uploader's native `{metadata, files}` manifest; its bibliographic object is exactly the unchanged metadata, and it selects this canonical PDF plus exact support ZIP. Its repository `check` is local only.
+--- /dev/null
++++ preprint_v1_0/TERMINAL_STATUS.json
+@@ -0,0 +1,21 @@
++{
++  "schema_version": 1,
++  "stage": "READY_FOR_SUBMISSION_UNPUBLISHED_HELD_AFTER_1032",
++  "snapshot_date": "2026-10-14",
++  "pr": 1064,
++  "problem_id": 30001073,
++  "whole_package_reviews_completed": 3,
++  "whole_package_reviews_required": 2,
++  "latest_complete_review": "support/history/reviews/package_03/VERDICT.json",
++  "root_complete_review_adoption": "support/history/ROOT_WHOLE_PACKAGE_REVIEW_03.json",
++  "actionable_P0_P1_P2_P3": 0,
++  "ready_for_submission_after_root_adoption": true,
++  "root_terminal_adoption_required": true,
++  "publication_ready": false,
++  "published": false,
++  "issues_updated": false,
++  "ascending_publication_hold_after_pr": 1032,
++  "novelty": "UNKNOWN",
++  "historical_priority": "UNKNOWN",
++  "scope": "Terminal administrative reconciliation of ROOT-adopted complete whole03. Root terminal seal remains required; dated earlier pending statuses are immutable history. No services or disposition occurred."
++}
+--- /dev/null
++++ preprint_v1_0/TERMINAL_ACCEPTANCE.md
+@@ -0,0 +1,9 @@
++# Terminal package status
++
++The mathematical/source/PDF/bibliographic edition has completed three new full adversarial reviews; the latest whole03 has zero actionable P0–P3 findings and has been adopted by ROOT. Its unchanged five-page paper is a credited corollary, with historical priority and novelty UNKNOWN.
++
++`TERMINAL_STATUS.json` records READY_FOR_SUBMISSION_UNPUBLISHED_HELD_AFTER_1032. Terminal administrative adoption by ROOT remains required. This administrative step is not a fourth whole review or a new mathematical validation. The original `STATUS.json`, repair01 `CURRENT_STATUS.json` and repair02 `CURRENT_STATUS_WHOLE03.json` remain verbatim dated historical pending stages with counts zero, one and two. They are superseded for current workflow status, without changing their original verdicts.
++
++No upload, DOI creation, spreadsheet operation, PR/issue action or publication occurred. The ascending service gate remains held after PR1032. Extensive AI assistance, unrefereed status, absence of external human peer review/formal certification and all source credits are unchanged.
++
++The selection ledger individually identifies every included and omitted whole03/repair02 sealed output. Copied programs and receipts refer to their own original editions; the older `check_package.py` and local stage resolver are not advertised as working against this later edition without their original preserved-stage context. Only the four standard-library README commands and the current verifier were replayed for this administrative step. No recompilation or visual rerender was performed because the canonical paper bytes are unchanged; actual real compilation and all five page views are recorded in whole03.

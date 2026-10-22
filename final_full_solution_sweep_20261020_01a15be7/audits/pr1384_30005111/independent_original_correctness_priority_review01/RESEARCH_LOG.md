@@ -1,0 +1,9 @@
+# Independent PR1384 research log
+
+2026-10-22T14:44:31.967999+00:00 — Assigned5%, overall80%. Fresh read-only numeric-gid/rawmetadata/formatted+formula full43-column GWS duplicate gate before mathematics. EightMiB cap/free150MiB reserve. Prior closed audits immutable; no publication/service/Git/STATE mutations or external contact.
+
+2026-10-22T14:49:32.608402+00:00 — 35% assigned / 80% overall. Exact45path head bound; freshdualviewGWS191rows43cols no native hits and49 local publicationmetadatafiles no target. Wholecoreproof andall7scripts read inertly. ActualOWRp1225 andpublishedLW607–612 read: originalcontributor is AlexeyPokrovskiy, literalnoimmersioncondition; elementarymethodrequest exact. Cochainprogress andheightdescent independently reconstructed without fatalgap; own control and deepermethodpriority follow.
+
+2026-10-22T14:54:43.473140+00:00 — 80% assigned / 80% overall. Own3336exactcochainconstructionruns pass1022primitive90properpowers; full1440backtrackingfiberordersreject andcurvedoneexcursionpositivepasses; normal/O/OO identical. All44PRpackagefiles inventory/hasheschecked,7scriptsread/ASTparsed,noauthorcodeexecuted. 2026TaShma actualprimaryintro importsLWexistence andGTWinpreparation,not aclaimed elementaryreplacement; BCGWgeneral equivalence reporteddisputed bynewpaper, unused here. Complete proofsourcequalification andpriorityfindings beingsealed.
+
+2026-10-22T15:01:14.938992+00:00 — 100% assigned / 80% overall. Closedauditoutcome: nofatalmathematicalgap andnorepairneeded forfullimmersedelementaryconstruction orqualifiedliteralbacktrackingnegative. ExactoriginalPokrovskiytextvisuallyrecovered;unstatedconventionretained. OldHowie/Millardvertexinductioncredited,2026TaShmaactualbodyinspected; nofullprior elementaryanswerDOIauthenticated,noexistingrowproposal,no noveltyclaim. Tenpredecessormanifestsandallavailableclosedbyte/mode/nsmtimefields verifiedreadonly; noauthorprogramrun. Finalclosedsealnext;aftersealnofolderwrites.

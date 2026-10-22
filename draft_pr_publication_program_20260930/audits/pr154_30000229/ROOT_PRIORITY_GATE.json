@@ -1,0 +1,231 @@
+{
+  "UTC": "2026-10-12T05:25:06.393190+00:00",
+  "status": "ROOT_PRIORITY_GATE_FAIL_ALREADY_SOLVED",
+  "original_PR_head": "58bee8514677549ee5a7cd699028a5f3a616c5bc",
+  "original_QUEUE_status": "claimed_solved",
+  "original_effort": "2/5 retained",
+  "mathematics_valid": true,
+  "priority_decision_percent": 100,
+  "case_workflow_percent": 75,
+  "families": {
+    "priority_bubble_approximation": {
+      "result": {
+        "schema_version": 1,
+        "audit_family": "priority_bubble_approximation",
+        "original_head": "58bee8514677549ee5a7cd699028a5f3a616c5bc",
+        "historical_claimed_solved": "2/5",
+        "mathematical_validity": "passes_prior_completed_audit",
+        "priority_verdict": "prior_endpoint_disproof_and_exact_bubble_found",
+        "novelty_established": false,
+        "exact_bubble_prior": {
+          "authors": [
+            "Christian Kreuzer",
+            "Andreas Veeser"
+          ],
+          "first_verified_public_date": "2019-03-14",
+          "source": "arXiv:1903.05915v1",
+          "published_doi": "10.1007/s00211-021-01194-8",
+          "locator": "(3.19b), Lemma 7, Theorem 15",
+          "identity": "psi_PR=(2*edge_length/3)*psi_KV (d=2)"
+        },
+        "endpoint_prior": {
+          "source": "KV2021 Lemma21 (3.32a,b) + Lemma4(ii)",
+          "global_deduction": "E_N >= L_N/(sqrt(3)*sqrt(N)), L_N -> infinity",
+          "inference_valid": true,
+          "arbitrary_real_p0": true,
+          "budget_uniform": true,
+          "same_nvb_family": true
+        },
+        "printed_proof_issue": {
+          "issue": "The last Lemma21 proof step cites a minimum energy error bound for an arbitrary competitor mesh.",
+          "resolution": "Overlay with CDN good mesh, cardinality O(N), inherited P0, energy monotonicity, then apply global domination to localized norms on overlay.",
+          "central_new_mechanism": false
+        },
+        "quantitative_log_status": {
+          "literal_KV_statement": "L_N -> infinity with L_N <= C log N, not a lower log bound",
+          "literal_CDN_author_preprint": "Final p31 squared-norm lower line n*4^(-n-2)",
+          "derived_from_prior_mechanism": "Same fixed coefficients plus second Cauchy or preceding two-half count give n^2*4^-n; KV bubbles yield c*log(N)/sqrt(N).",
+          "novelty_established": false,
+          "classification": "elementary_sharpening_and_verified_reexposition"
+        },
+        "maximal_verified_contribution": "Source-grounded reproducible explanatory proof, with explicit log lower rate and clarified counting/support; no new endpoint resolution.",
+        "missing_access": [
+          "CDN2012 subscription version of record full \u00a76.4 not inspected; accessible complete author preprint used."
+        ],
+        "not_claimed": [
+          "Exhaustive historical bibliography",
+          "oldest exact bubble predecessor",
+          "matching upper bound",
+          "novel theorem",
+          "new solution of original endpoint conjecture"
+        ],
+        "independence": {
+          "first_assessment_before_sibling_reports": true,
+          "sibling_priority_reports_read": [],
+          "root_message_received_after_independent_exact_hit": true
+        },
+        "completion_percent": 100,
+        "mutations": {
+          "external_communication": false,
+          "git_index_refs": false,
+          "shared_main": false,
+          "pr_service_publication": false
+        },
+        "private_cache_ignored": true,
+        "sealed_utc": "2026-10-12T05:16:19.870306+00:00"
+      },
+      "review_sha256": "d5be220c1efe470093efd633376e9c12169aaaf5b7c3eeb680708229ae4dc456",
+      "result_sha256": "3625e39abf5598e98e4678e5f7ba6569765b4ffbe70a569e6a7ee07911a6b50f",
+      "authenticated_manifests": {
+        "INPUT_MANIFEST.json": {
+          "verified_records": 2,
+          "sha256": "1b966040c0d87765ad2bedf9c43ee277efdd3d110be76ead564a60a14aecaf95"
+        },
+        "OUTPUT_MANIFEST.json": {
+          "verified_records": 9,
+          "sha256": "e337159b9536f1792927668afbe120b269afca4c093be2894daffaf2ab12da60"
+        },
+        "PRIVATE_CACHE_MANIFEST.json": {
+          "verified_records": 12,
+          "sha256": "01e60b358d397db33df76fd0bbb5bf4cff3b1ac011f3eabb11c82c9281fb08f3"
+        },
+        "SOURCE_MANIFEST.json": {
+          "verified_records": 4,
+          "sha256": "dc2463598e0ae41eda38b5f20ec6f16c3f6f6bcc809f1e3cab4ce22ea554c9c2"
+        }
+      }
+    },
+    "priority_modern_afem": {
+      "result": {
+        "case": "PR154 / 30000229 / OWR-829-001",
+        "original_head": "58bee8514677549ee5a7cd699028a5f3a616c5bc",
+        "historical_original_claim": "claimed_solved2/5",
+        "review_family": "modern AFEM literature",
+        "status": "PRIORITY_GATE_FAIL_EXACT_PRIOR_ENDPOINT_AND_BRIDGE",
+        "completion_percent": 100,
+        "earliest_verified_exact_consequence_utc": "2019-03-14T10:53:30Z",
+        "primary_prior_source": "Kreuzer and Veeser, arXiv:1903.05915v1; Numerische Mathematik 148 (2021), 43-78, DOI 10.1007/s00211-021-01194-8",
+        "findings": {
+          "endpoint": "Lemma 21 minimizes over all NVB meshes and all P0 coefficients; Lemma 4(ii) immediately implies the global H^-1 endpoint failure.",
+          "bridge": "The candidate bubble equals (2|e|/3) times KV formula (3.19b) in 2D; it uses the same element-mean annihilation.",
+          "logarithmic_lower_rate": "A logarithmic lower bound is not literally printed in KV Lemma 21; the explicit CDN2011 final sentence only gives n*4^(-n-2). Direct Cauchy on CDN allocation, bounded overlay edges, and KV bubbles gives n^2*4^(-n), hence the global logN/sqrtN lower bound. This is an elementary implicit corollary of prior ingredients; no new mechanism was verified.",
+          "published_proof_caveat": "KV last step appears to omit an overlay: a best-mesh energy upper bound cannot be subtracted uniformly on all competitors. A routine overlay repair is provided in REVIEW.md; this caveat does not create novelty.",
+          "modern_positive_classes": "The Acta2024 endpoint relation is for the enriched bulk-plus-face functional space F_T, not volume P0; Gantumur elliptic results restrict the load to L2."
+        },
+        "novelty_residual": "Explicit constants, directtailannihilation, and selectededgeCauchy bookkeeping are useful expository/reproducibility improvements. No substantive novel contribution established.",
+        "recommendation": "Do not promote as a first solution or new bridge. Attribute the CDN construction and the KV bridge and theorem. Preserve the audit as reproducibility or expository work; no publication action was taken.",
+        "source_gap_material_to_verdict": false,
+        "bounded_gaps": [
+          "Final typeset CDN2012 Section 6.4 was not acquired; the public author preprint is complete.",
+          "Complete 2016 Tantardini/Veeser/Verf\u00fcrth reports were not acquired; the decisive 2019/2021 primary source is fully available."
+        ],
+        "cross_family_report_consumption": false,
+        "parent_coordination_after_first_assessment": true,
+        "mutations": {
+          "assigned_folder_only": true,
+          "git_index_ref_main": false,
+          "pr_publication_service": false,
+          "individual_outreach": false
+        },
+        "artifacts": [
+          "FIRST_ASSESSMENT.md",
+          "REVIEW.md",
+          "RESULT.json",
+          "RESEARCH_LOG.md",
+          "SOURCE_DOWNLOADS.json",
+          "SEARCH_PROVENANCE.json",
+          "BYTEHASH_MANIFEST.json",
+          "BYTEHASH_MANIFEST.sha256"
+        ],
+        "private_cache_gitignored": true
+      },
+      "review_sha256": "ce4f043d33e6e7b4c64635cff71d28f50404a3069dbd585e9da8337e39cff3aa",
+      "result_sha256": "bc5571767e4144b633d63680d2f73e17a08cdacd7b78335b5a7e00ba2c308dd3",
+      "authenticated_manifests": {
+        "BYTEHASH_MANIFEST.json": {
+          "verified_records": 34,
+          "sha256": "561afc7b93292e3a3ccdb8d28202c14aefa13d067e79e1c15e70abce5283fdd1"
+        }
+      }
+    },
+    "priority_cdn_history": {
+      "result": {
+        "case": "PR154 / 30000229 / OWR-829-001",
+        "original_head": "58bee8514677549ee5a7cd699028a5f3a616c5bc",
+        "original_claimed_solved": "2/5 (historical; unchanged)",
+        "sealed_utc": "2026-10-12T05:21:34.672672+00:00",
+        "mathematical_gate": "accepted from ROOT; no novelty inferred",
+        "independence": "Initial assessment recorded before other priority results; decisive KV source independently discovered before parent report sharing",
+        "priority_decision": "prior_art_subsumes_endpoint_disproof_and_bubble_bridge",
+        "priority_cutoff_utc": "2019-03-14T10:53:30Z",
+        "exact_global_P0_endpoint_disproof": {
+          "status": "already_immediate_consequence",
+          "source": "Kreuzer-Veeser arXiv1903.05915v1 Lemma21(3.32a,b) plus Lemma4(ii)",
+          "quantifiers": "all budget-N meshes in one labeled NVB family; every real P0 coefficient; global H^-1 dual of gradient norm"
+        },
+        "cubic_zero_mean_bubble": {
+          "status": "identical_prior_formula",
+          "source": "KV2019v1 and KV2021 (3.19b), Lemma7",
+          "identity": "psi_PR=(2|e|/3)psi_KV in d=2"
+        },
+        "sharp_global_log_lower_bound": {
+          "status": "precise_direct_consequence_of_old_ingredients",
+          "sources": [
+            "CDN2011 Section6.4 construction, tail, overlay and allocation",
+            "KV2019v1 (3.19b), Lemma7, Theorem15"
+          ],
+          "explicit_matching_lower_statement_found": false,
+          "proof_artifact": "PRIOR_ART_DERIVATION.md",
+          "qualifier": "CDN2011 prints a weaker divergent lower bound; KV states L_N tends to infinity, not L_N >= c log N. Weighted Cauchy on old allocation yields the stronger rate."
+        },
+        "adversarial_check": {
+          "localization_direction": "passed; upper local-to-global inequality yields global lower bound",
+          "coefficient_caps": "none",
+          "mesh_family": "same compatible labeled NVB forest and its overlays",
+          "KV_compressed_quantifier_step": "repaired by overlay with good solution mesh; independent old jump/bubble deduction bypasses it",
+          "outside_L2": "nonzero interior edge Dirac on a support-isolated neighborhood"
+        },
+        "remaining_gaps": [
+          "CDN July20,2011 revised manuscript and final2012 complete text not retrieved through bounded public routes",
+          "Earliest explicit published display of matching global log(N)/sqrt(N) lower bound not located"
+        ],
+        "gaps_block_priority_decision": false,
+        "audit_completion_percent": 95,
+        "priority_conclusion_completion_percent": 100,
+        "strongest_verified_priority_result": "Endpoint best-global-P0 obstruction and identical bubble prior by March2019; accepted log lower bound follows directly from the same pre-existing components.",
+        "recommended_claim_scope": "Do not promote PR154 as a novel endpoint counterexample or novel mean-zero bubble bridge. Any later public note must be framed as attributed exposition/reconstruction, subject to ROOT decision.",
+        "publication_actions": "none",
+        "external_person_communication": "none",
+        "private_cache": "cache/ ignored by local .gitignore",
+        "next_action_needed": "none for this family; ROOT integrates independent audits"
+      },
+      "review_sha256": "4a98e09e41df0db90179e00d8c8afbebabc9a989d170ecc0f11ca4b086fb4ac5",
+      "result_sha256": "287107faf1b8291feb29ccbba90423dd2d81f730fff81f2bc175af9b71074d2a",
+      "authenticated_manifests": {
+        "INPUT_OUTPUT_BYTEHASH_MANIFEST.json": {
+          "verified_records": 56,
+          "sha256": "cbabad1d06a7be378e464fbaec9113e01e492df13774c183fb2d211d0230ba35"
+        }
+      }
+    }
+  },
+  "earliest_exact_prior_source_verified": "Kreuzer-Veeser arXiv1903.05915v1, 2019-03-14T10:53:30Z; published2021 DOI10.1007/s00211-021-01194-8",
+  "source_earliest_historical_exclusivity_claimed": false,
+  "global_scope_inference": "Lemma21 allbudget/allrealP0 plus Lemma4(ii) everyfunctional D\u00b2<=3||ell||global\u00b2",
+  "bubble_identity": "psi_PR=(2|e|/3)psi_KV, d=2, formula3.19b",
+  "quantitative_log_status": "Not literally printed in acquired older statements; an elementary allocation corollary of CDN fixedcoefficients and existing KV bubble, no independently established novel mechanism",
+  "old_proof_presentation_gap": "Bestmesh versus arbitrarycompetitor energy bound repaired by standard sameforest goodmesh overlay; full independent selectedjump derivation bypasses the omission",
+  "access_gaps_block_decision": false,
+  "source_gaps": [
+    "Complete revised/final CDN text not acquired",
+    "Earliest explicit printed matching global logarithmic lower bound not located"
+  ],
+  "disposition": "Close originalclaimed_solved submission as already_solved without merge or paper; preserve checkable audit and verification improvements",
+  "priority_novelty_cleared": false,
+  "new_preprint_prepared": false,
+  "published": false,
+  "tracker_appended": false,
+  "closure_actual_at_this_preparation": false,
+  "shared_MAIN_or_Git_mutation": false,
+  "remaining_work": "Actual own PR comment/closure acceptance; later scoped findings checkpoint under returned writer window"
+}

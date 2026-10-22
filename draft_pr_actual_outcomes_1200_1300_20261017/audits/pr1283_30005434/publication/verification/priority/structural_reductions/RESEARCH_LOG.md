@@ -1,0 +1,9 @@
+# Research log: structural priority family
+
+All times UTC. Completion estimates refer to the assigned bounded independent structural-priority audit, not a certification that all world literature has been searched.
+
+- **2026-10-18 03:59:24** — Start tool clock. Defined target as a hypothesis: exact arbitrary top-semilattice operation plus all required identities; distinguish workshop four equations at arbitrary point. Initial audit estimate **10%**.
+- **By 2026-10-18 04:01:08** — Searched broad Rump/cycloid/semilattice and algebraic-logic families; verified author-slide meet framework and distinct old BCK/Hilbert order implication. Weak implication suggested an exact-formula lead. Early query batches lack individual captured clocks; QUERY_LEDGER records their bounded interval. Estimate **45%**.
+- **2026-10-18 04:01:38** — Direct arXiv download receipt for 2016 v1. Actual p.7 formula (4) and p.2 greatest-element convention verified; p.7 rendered and visually read. Exact-operation precedence is decisive; notified root promptly. Estimate **75%**.
+- **By 2026-10-18 04:04:53** — Entire 2016 v1 inspected; old formula/H4/order/congruences separated from unlocated cycloid/semibrace theorem. Verified Rump–Vendramin 2024 exact Boolean-four L-algebra particular case. Authored checks passed, including a four-chain counterexample to overbroad hIS4 reduction and Boolean-four failure of old order implication. Recent 2025 primary preprint inspected in relevant sections. Estimate **92%**.
+- **2026-10-18 04:06:13** — Initial independent report, source/provenance register, query ledger, and checkable artifacts prepared for seal. Evidence supports mandatory old-operation credit; full historical application/statement priority remains unresolved, particularly unavailable original Rump bodies. Assigned bounded audit estimate **100%**. No outside communication or publication mutations. Independence maintained through initial seal.

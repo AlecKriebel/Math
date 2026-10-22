@@ -1,0 +1,141 @@
+{
+  "utc": "2026-10-15T11:38:38.235496+00:00",
+  "status": "PASS_MATHEMATICAL_FINITE_EVIDENCE",
+  "pr": 946,
+  "sealed_family_checks": [
+    {
+      "family": "global_adversary",
+      "external_manifest_sha256": "b41faeb2022834ee487ac5476bdd47c09ebb329cd3964a7239460beae44fc5b0",
+      "payloads_authenticated": 6,
+      "full_report_read": true
+    },
+    {
+      "family": "reproducibility",
+      "external_manifest_sha256": "e535bb4b46e2ebac2d80713b9500eb6748a294fd8ff4d91f748c40f11946b091",
+      "payloads_authenticated": 61,
+      "full_report_read": true
+    }
+  ],
+  "fresh_independent_exact_replays": [
+    {
+      "family": "global_adversary",
+      "script_sha256": "963d9d54ede7e64284bed01f1d4a1d56554d52ff4f7fbec88a4182f525fe2570",
+      "actual_flags": {
+        "optimization": 0,
+        "isolated": 1
+      },
+      "exact_match_excluding_only_utc_python": true
+    },
+    {
+      "family": "reproducibility",
+      "script_sha256": "33edf8b67480777b937341ed54fb6eed14c9625463a90fd261470043814de1e0",
+      "actual_flags": {
+        "optimization": 0,
+        "isolated": 1
+      },
+      "exact_match_excluding_only_utc_python": true
+    }
+  ],
+  "fresh_portable_v1_normal": {
+    "status": "PASS",
+    "gate_outer_optimize": 0,
+    "worker_bootstrap_flags": {
+      "optimize": 0,
+      "debug": true,
+      "isolated": 1,
+      "bytecode_disabled": true
+    },
+    "original_manifest_sha256": "29cb50b07af6a65b633516b5d86eed1dae93d57cf2abfb264b18eb9555a29903",
+    "proof_sha256": "a26c1755bc6f61085db4c01b6579701ff380822f2cc58a3ffbfb4acfa49370a2",
+    "original_files": 33,
+    "worker": {
+      "status": "PASS",
+      "actual_worker_flags": {
+        "optimize": 0,
+        "debug": true,
+        "isolated": 1,
+        "bytecode_disabled": true
+      },
+      "original_files": 33,
+      "replays": [
+        {
+          "script": "public/verify_packet.py",
+          "status": "PASS",
+          "actual_child_flags": {
+            "optimize": 0,
+            "debug": true,
+            "isolated": 1,
+            "bytecode_disabled": true
+          },
+          "stdout_sha256": "88a43f509e8678c173a4b3889f29e01a3f0dd3d0e26492333389111fd7132c30",
+          "comparison": "original authenticated inventory checker"
+        },
+        {
+          "script": "independent_global_audit/public/verify_audit_packet.py",
+          "status": "PASS",
+          "actual_child_flags": {
+            "optimize": 0,
+            "debug": true,
+            "isolated": 1,
+            "bytecode_disabled": true
+          },
+          "stdout_sha256": "111e66a11b7c286dd3ba926070811733cc398001c48b81069abdc401090c1d44",
+          "comparison": "original authenticated inventory checker"
+        },
+        {
+          "script": "independent_audit_b/public/verify_audit.py",
+          "status": "PASS",
+          "actual_child_flags": {
+            "optimize": 0,
+            "debug": true,
+            "isolated": 1,
+            "bytecode_disabled": true
+          },
+          "stdout_sha256": "70cd9289a76c7f09211f6b04d68eb65c93c8dab5c3095ed80924895dfe8db6d6",
+          "comparison": "original authenticated inventory checker"
+        },
+        {
+          "script": "public/verify_math.py",
+          "status": "PASS",
+          "actual_child_flags": {
+            "optimize": 0,
+            "debug": true,
+            "isolated": 1,
+            "bytecode_disabled": true
+          },
+          "stdout_sha256": "08eb43d7255ee552578f48fd168c8d90dbce1508eac7eab3e0ebde25fc30d898",
+          "comparison": "12-explicit-float bounded comparator; other fields exact and typed"
+        },
+        {
+          "script": "independent_global_audit/public/independent_controls.py",
+          "status": "PASS",
+          "actual_child_flags": {
+            "optimize": 0,
+            "debug": true,
+            "isolated": 1,
+            "bytecode_disabled": true
+          },
+          "stdout_sha256": "0840bcf082043f84427cd92be2bbcd60f4cb7aab8d6252db7ff9a1b318ce2d53",
+          "comparison": "version-only fields removed; all other fields exact and typed"
+        },
+        {
+          "script": "independent_audit_b/public/independent_checks.py",
+          "status": "PASS",
+          "actual_child_flags": {
+            "optimize": 0,
+            "debug": true,
+            "isolated": 1,
+            "bytecode_disabled": true
+          },
+          "stdout_sha256": "b9051241cefa400c7a565e5d2813c529b13380f245b3f84f9b0f1f079a4ef647",
+          "comparison": "version-only fields removed; all other fields exact and typed"
+        }
+      ],
+      "limitation": "Finite identities and bounded numerical consistency only; no global proof, priority, OS sandbox, or byte-identical numeric replay claim."
+    },
+    "limitation": "Finite consistency only. Trusted local Python/runtime/site packages and process/filesystem are assumed; no OS sandbox. External pins must come from a trusted separate record; an attacker controlling that record can replace the checker."
+  },
+  "tooling_required_repair": "v1 nonregular executable FIFO can block; sealedv1 preserved, separatev2 addendum pending. No mathematical gap.",
+  "original_strict_wrapper_failure_and_missing_native_turn_provenance_remain_disclosed": true,
+  "proof_responses_added": 0
+}

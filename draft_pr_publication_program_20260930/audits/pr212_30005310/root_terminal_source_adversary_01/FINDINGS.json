@@ -1,0 +1,41 @@
+{
+  "schema": "pr212-independent-root-terminal-final-findings-v1",
+  "UTC": "2026-10-17T22:57:00.087030+00:00",
+  "target": {
+    "path": "root_terminal_source_preparation_02/ROOT_TERMINAL_INSPECTION.py",
+    "bytes": 31054,
+    "sha256": "2678047b38c9362fa9cef09c7e67bad886eeec21a298b9b77d327997e9157e3f"
+  },
+  "open_mandatory_issues": [],
+  "resolved_mandatory_issues": [
+    {
+      "id": "M1",
+      "reported_by": "Root; independently reproduced before final recommendation",
+      "old_source_sha256": "d8e04b7bab9fa821cfd21564030f02cd1dc23a7d2a8a055c0513dfff3437a65f",
+      "problem": "Actual generated V1 receipt lacked three fields required by unchanged downstream completion_proof.",
+      "counterexample": "V1_GENERATED_RECORD_PARSER_COUNTEREXAMPLE.json",
+      "smallest_repair": "Emit typed conditional-false/no-actions-true/protected-body-count fields and test actual generated record against unchanged consumer.",
+      "resolution": "V2 inspect lines369-370 emits all three; actual generated/published synthetic record passes unchanged consumer. Forty independent negative controls refuse malformed facts/pins.",
+      "status": "resolved_on_exact_final_V2",
+      "evidence": "GENERATED_RECORD_INTEGRATION_RESULTS.json"
+    },
+    {
+      "id": "M2",
+      "reported_by": "Root; independently reproduced before final recommendation",
+      "old_source_sha256": "d8e04b7bab9fa821cfd21564030f02cd1dc23a7d2a8a055c0513dfff3437a65f",
+      "problem": "Mutable full guard ran after fixed accepted/advance receipt publication and could fail with that final file present.",
+      "counterexample": "V1_PUBLICATION_COUNTEREXAMPLE.json",
+      "smallest_repair": "Fsync pending body; final full mutable guard; exclusive atomic final-name publication; only file/source/held-lock identity checks afterwards, with explicit publication uncertainty.",
+      "resolution": "V2 publisher lines260-322 implements staged order. Sixteen independent actual owned-filesystem scenarios exercise success, faults, existing final, pending replacement and unknown publication outcomes. No fresh mutable guard follows link.",
+      "status": "resolved_on_exact_final_V2",
+      "evidence": "PUBLISHER_RESULTS.json"
+    }
+  ],
+  "optional_suggestions": [],
+  "mandatory_issue_history": "FINDINGS_V1.json remains a dated historical record; it does not describe the repaired V2 status.",
+  "recommendation": "No open mandatory source issue in the bounded inactive V2 source review. Root alone decides any separate source/extension/admission or actual terminal acceptance.",
+  "actual_source_gate_issued": false,
+  "actual_terminal_accepted": false,
+  "advance_authorized_by_this_review": false,
+  "production_actions": 0
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "pr411-independent-software-adversary-v1",
+  "timestamp_utc": "2026-10-13T01:35:47.532940+00:00",
+  "component": "software guard and integrity boundary",
+  "result": "PASS",
+  "active_blockers": 0,
+  "source_head": "ac8b960bdda61c154cc30d7e3aba70389a9b139e",
+  "branch": "research/ricci-pinching-6800014",
+  "pr_state": "open draft unmerged",
+  "status": "claimed_solved",
+  "author_turns": "2/5",
+  "new_author_proof_search_turns": 0,
+  "independent_scope_time_utc": "2026-10-13T01:33:37.297781+00:00",
+  "provisional_seal_sha256_reviewed": "b64188256753aa1bbfdba12f2cc426762124f72ca8b0cc46fe351d55b1028e87",
+  "provisional_whitelist_sha256_reviewed": "b66a6555a2b83c08d7f22aab541fff3d457dea6ebbe33a8c006b0d81d8ab069f",
+  "provisional_positive_file_count": 50,
+  "reviewed_code_sha256": {
+    "run_all.py": "87143b59acf069f8cf3be97611568d8c62432421f3e244cf9b27d2922799691d",
+    "run_checked.py": "61441d4a2d7b3aecfa9c125bcfdabc94073eef21e9bd12ddf52e77cfcc2f8e01",
+    "guard_relation.py": "4e129553100338b724f50da00fb1dd516f9b74cab60b0292822911fd3f15a9b9",
+    "reproduce_controls.py": "5994bc5d510a6efa3a86246535231537444e8dce8a3c13850a43dc1a2da3a6ab",
+    "author_packet/verify.py": "db0f14efcaf1fb89a9c4663c41a35f0c53e407ac5fa9f440d063a5c8024cc454",
+    "author_packet/check_hessian.py": "75585737d2015e9dbbf2f915c119da20acdfa04179bbe5f67bf27c9192e4d40d",
+    "author_packet/audit/independent_checks.py": "708dadb369fd3d6efe43718637ea0582feb8fffe1b839823610065a623e2e315"
+  },
+  "independent_controls": {
+    "reproduced_controls": 38,
+    "all_matched_expected_diagnostics": true,
+    "additional_post_fix_execution_checks": 10,
+    "unsafe_path_cases_rejected": 9,
+    "original_normal_runtime_counts": [
+      24,
+      2,
+      28
+    ],
+    "original_optimized_runtime_counts": [
+      0,
+      0,
+      0
+    ],
+    "current_normal_runtime_counts": [
+      24,
+      2,
+      28
+    ],
+    "current_optimized_runtime_counts": [
+      24,
+      2,
+      28
+    ],
+    "exact_reverse_ast_relation": true,
+    "stateful_truth_conversion_once": true,
+    "same_predicate_object_returned": true
+  },
+  "resolved_findings": [
+    {
+      "id": "SW-1",
+      "prior_severity": "blocker to exact packet inventory certification",
+      "finding": "Unlisted FIFO ignored by inventory and returned PASS in normal and optimized mode.",
+      "repair": "After rejecting symlinks require every traversed entry to be a directory or regular file; add native FIFO rejection controls.",
+      "independent_retest": "FIFO and Unix-domain socket rejected in both modes;38 replay controls pass."
+    }
+  ],
+  "remaining_limits": [
+    "Final53-file package incorporating these reports and updated public metadata requires separate normal/optimized integrity replay retaining these reviewed code hashes.",
+    "Authenticate the real seal digest independently before executing the package; complete simultaneous code/data/whitelist/seal replacement is outside this unkeyed integrity threat model.",
+    "Original assertion-based optimized execution is NOT CERTIFIED.",
+    "Historical digest-only source manifest f5446c816081c5322e4279bcd9a61dca5bfb63cfacf69d105d1587ed9d93b7fb and pre-layout checker eccde3c2a903b1fca0f232e7e392d537479ddd3936281a37e87c4f7e7047be97 remain UNATTESTED.",
+    "This component audit does not certify mathematical proof, novelty, historical runtime, inaccessible wording, or later whole-package manuscript adversaries."
+  ],
+  "self_custody": "This report records the already reviewed provisional seal only. The final parent seal binds reports via the positive whitelist; no report includes a future self-dependent final seal hash.",
+  "completion_estimate_percent": 100
+}

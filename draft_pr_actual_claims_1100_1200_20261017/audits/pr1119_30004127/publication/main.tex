@@ -1,0 +1,345 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\TF}{\mathcal T}
+\newcommand{\Cthree}{\mathcal C_3}
+\newcommand{\Athree}{\mathcal A_3}
+\newcommand{\PP}{\mathcal P}
+\newcommand{\eps}{\varepsilon}
+\title{A polynomial versus superpolynomial gap\\in vertex-distribution-free graph testing}
+\author{Alec Kriebel\\{\small Independent researcher}\\
+{\small\url{https://orcid.org/0009-0001-9320-500X}}}
+\date{17 October 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a negative answer to the comparison question of Gishboliner and
+Shapira in Oberwolfach Report 19/2019, Problem~5, and their later
+Problem~5.6. The fixed property consisting of $K_4$-free graphs that
+become $3$-colorable after deleting at most one vertex has a polynomial
+classical canonical tester, for every input size. In the
+vertex-distribution-free model, every adaptive two-sided tester has
+superpolynomial total sample-plus-adjacency cost as the proximity
+parameter tends to zero. The lower bound follows by an elementary
+tripartite-cover and heavy-apex reduction from the established two-sided
+triangle-testing lower bound. All distances allow arbitrary edge
+additions and deletions. The reduction remains valid when the tester is
+given the vertex set, its size, the full positive rational distribution,
+and the heavy vertex. A self-contained classical sampling argument and
+exact finite verification materials accompany the note.
+\end{abstract}
+
+\section{The question and the fixed property}
+All graphs are finite, simple and undirected. Sampling inputs have a
+nonempty vertex set. For a probability distribution $D$ on that set, use
+the unordered-pair normalization
+\[
+ d_D(G,F)=\sum_{\{u,v\}\in E(G)\triangle E(F)}D(u)D(v),
+ \qquad
+ \dist_D(G,\mathcal R)=\min_{F\in\mathcal R,\ V(F)=V(G)}d_D(G,F).
+\]
+Thus uniform distance is the number of changed edges divided by $n^2$.
+We call distance at least $\eps$ $\eps$-far. Strict-threshold conventions
+give the same conclusions after a fixed proximity rescaling.
+
+A tester accepts members and rejects $\eps$-far inputs with probability
+at least $2/3$. The VDF oracle supplies independent samples from the
+unknown vertex distribution and adjacency answers. We count their
+\emph{total} number, as in the original workshop model
+\cite[p.~1138]{OWR}. The comparison question asks whether an extendable
+hereditary property has the same, or nearly the same, testing complexity
+in the VDF and uniform dense models \cite[Problem~5]{OWR},
+\cite[Problem~5.6]{GS}. Hereditary means closed under induced subgraphs;
+extendable means that every member has a one-vertex extension which is
+also a member.
+
+Let $\Cthree$ be $3$-colorability, let $\Athree$ mean that deletion of
+at most one vertex leaves a $3$-colorable graph, and fix
+\[
+                    \PP=\{K_4\text{-free graphs}\}\cap\Athree .
+\]
+This property is hereditary, closed under deleting edges, and
+extendable by adding an isolated vertex. Moreover, $\Cthree\subseteq\PP$.
+
+\begin{theorem}\label{thm:main}
+For this single fixed property $\PP$:
+\begin{enumerate}
+\item There is a one-sided classical canonical tester, without knowing
+$n$, using $O(\eps^{-6}\log(1/\eps))$ independent uniform samples and
+$O(\eps^{-12}\log^2(1/\eps))$ adjacency queries as $\eps\to0$.
+\item Along a sequence of positive rational parameters $\eps\to0$,
+every two-sided adaptive VDF tester has worst-case total oracle cost
+$\exp(\Omega(\log^2(1/\eps)))$. This holds even with the vertex set,
+its size, the complete positive rational weight vector and the
+distinguished heavy vertex supplied.
+\end{enumerate}
+Consequently VDF complexity admits no fixed polynomial bound in the
+classical canonical complexity and $1/\eps$, even after any fixed
+positive constant rescaling of classical proximity.
+\end{theorem}
+
+The lower-bound ingredients are established results: polynomial
+colorability sampling \cite{GGR,AK}, the hard-triangle constructions and
+their two-sided extensions \cite{Alon,AS,AKKR}, and the VDF framework
+\cite{Goldreich,GS}. The reduction below transfers triangle hardness to
+a property with an easy classical canonical tester. It supplies the
+full negative comparison, rather than a new triangle lower bound.
+Fei's recent edge-distribution work \cite{Fei} also uses classical
+parity constructions; its default sample oracle and arbitrary pair
+weights differ from the present adjacency oracle and vertex-product
+distance. The current priority audit, including primary theorem bodies
+and version histories, identified no earlier full comparison answer.
+This is a bounded literature finding: the 2021 journal version-of-record
+body of \cite{GS} was unavailable, although its arXiv v5, ECCC revision~2
+and author manuscripts were inspected; forward-citation retrieval was
+incomplete. Detailed coverage and limitations accompany the package.
+
+\section{A classical tester at every input size}
+We include a conservative form of the standard branching-list
+colorability argument \cite{GGR,AK}, so no large-input qualification is
+needed.
+
+\begin{lemma}\label{lem:colour}
+For $0<\eps\le1/8$, put
+\[
+ h=\lfloor6/\eps\rfloor+1,\qquad
+ \ell=\left\lceil(2/\eps)\log(12\cdot3^h)\right\rceil,\qquad r=h\ell .
+\]
+If a nonempty graph is $\eps$-far from $\Cthree$, then $r$ independent
+uniform samples induce a graph outside $\Cthree$ with probability at
+least $11/12$. Repeated labels are identified.
+\end{lemma}
+\begin{proof}
+Fix a proper partial coloring on $S$. For $v\notin S$, let $L(v)$ be
+the colors absent from its neighbors in $S$; let $U$ comprise the
+empty-list vertices. For $v\notin S\cup U$, define
+\[
+ \delta(v)=\min_{i\in L(v)}
+ |\{u\notin S\cup U: uv\in E(G),\ i\in L(u)\}|.
+\]
+Color every such $v$ by a minimizing color and color $U$ arbitrarily.
+Deleting monochromatic edges gives a $3$-colorable graph with at most
+$n|U|+\sum_v\delta(v)$ changes. If
+$W=\{v\notin S\cup U:\delta(v)\ge\eps n/2\}$, farness implies
+\[
+ \eps n^2\le n|U|+\sum_v\delta(v)
+       \le n(|U|+|W|)+\eps n^2/2 .
+\]
+Hence $|U\cup W|\ge\eps n/2$. The list potential
+$\Phi=\sum_{v\notin S}|L(v)|$ starts at $3n$. Coloring a vertex of
+$W$ with any feasible color reduces it by at least $\eps n/2$;
+a vertex in $U$ has no feasible color.
+
+Partition the samples into $h$ independent blocks of $\ell$ samples.
+At each node of a ternary tree of proper partial colorings, choose the
+first sample in that level's block lying in its $U\cup W$, and branch
+on its feasible colors. A node fails if its block misses $U\cup W$.
+Conditional on all previous blocks, this probability is at most
+$\exp(-\eps\ell/2)\le(12\cdot3^h)^{-1}$. There are fewer than $3^h$
+possible node addresses at depths $0,\ldots,h-1$. Summing these
+conditional bounds shows that no node fails with probability at least
+$11/12$; nodes sharing a block need not be independent.
+
+On this event no feasible branch survives $h>6/\eps$ levels, since
+$\Phi$ stays nonnegative. A proper coloring of the sampled induced
+graph would follow a surviving branch, a contradiction. Each chosen
+vertex lies outside its path's previously colored set, so repeated
+samples cause no difficulty.
+\end{proof}
+
+Set $N=12r^2$ and $M=\lceil N\log(3N)\rceil$. Sample $M$ vertices
+uniformly with replacement, query every pair of distinct sampled
+labels, and accept exactly when the induced graph belongs to $\PP$.
+Membership can be decided by finite exhaustive search; the assertion
+concerns oracle complexity, with no polynomial running-time claim.
+Completeness is one-sided by heredity.
+
+If $G$ is $\eps$-far from $\PP$, it is also $\eps$-far from
+$\Cthree$. If $n\ge N$, the first two $r$-blocks both induce
+non-$3$-colorable graphs and have disjoint label sets with probability
+at least
+\[
+              1-\frac1{12}-\frac1{12}-\frac{r^2}{n}\ge\frac34 .
+\]
+Deleting one vertex cannot destroy both disjoint witnesses, so the
+whole sample lies outside $\Athree$, hence outside $\PP$.
+If $1<n<N$, the probability of missing any vertex is at most
+\[
+ n(1-1/n)^M\le n e^{-M/n}\le N e^{-M/N}\le1/3 .
+\]
+The case $n=1$ is immediate. Seeing all vertices rejects every far
+input. The algorithm need not know which case holds; $M\ge2r$.
+Since $h=O(\eps^{-1})$, $\ell=O(\eps^{-2})$ and $r=O(\eps^{-3})$,
+this proves part~1 of Theorem~\ref{thm:main}. For $\eps>1/8$, use
+parameter $1/8$. The empty graph belongs to $\PP$ and can be accepted
+if supplied as an explicit empty input; it carries no sampling
+distribution.
+
+\section{Transferring triangle hardness}
+Write $\TF$ for triangle-freeness.
+
+\begin{lemma}[Heavy apex]\label{lem:apex}
+If $H$ is $3$-colorable on $n\ge1$ vertices, add a universal vertex $a$
+to form $J(H)$ and set $D(a)=1/2$, $D(v)=1/(2n)$ on the tail. Then
+\[
+             \dist_D(J(H),\PP)=\tfrac14\dist_{\rm unif}(H,\TF).
+\]
+\end{lemma}
+\begin{proof}
+Delete a minimum triangle-hitting set of tail edges. The resulting
+tail remains $3$-colorable and triangle-free, so its join with $a$ is
+$K_4$-free and belongs to $\PP$. Each tail edge costs $1/(4n^2)$,
+giving the upper bound.
+
+For any repair $F\in\PP$, let $S$ be the tail vertices whose edge to
+$a$ was deleted. Its apex-edge cost is $\delta_a=|S|/(4n)$; denote
+its tail-edit cost by $\delta_t$, including additions. The restriction
+$F[V(H)\setminus S]$ is triangle-free, since a triangle together with
+$a$ would give a $K_4$. Use that restriction and isolate $S$ to repair
+$H$. This changes at most $4n^2\delta_t+n|S|$ edges. Therefore
+\[
+ \dist_{\rm unif}(H,\TF)\le4\delta_t+|S|/n
+                      =4(\delta_t+\delta_a).
+\]
+Minimizing over all repairs proves the reverse inequality.
+\end{proof}
+
+\begin{lemma}[Tripartite cover]\label{lem:cover}
+For any graph $H$ on $n\ge1$ vertices, let $L(H)$ have vertex set
+$\{1,2,3\}\times V(H)$, with $(i,u)(j,v)$ an edge exactly when
+$i\ne j$ and $uv\in E(H)$. Then $L(H)$ is $3$-colorable,
+$H\in\TF$ implies $L(H)\in\TF$, and
+\[
+              \dist_{\rm unif}(L(H),\TF)
+                      \ge\tfrac19\dist_{\rm unif}(H,\TF).
+\]
+\end{lemma}
+\begin{proof}
+The three parts color $L(H)$. A triangle projects to three distinct
+pairwise adjacent vertices of $H$. Triangle-free repairs can be
+restricted to deletions: intersecting a repair's edge set with the
+original graph preserves triangle-freeness and never increases cost.
+Take a minimum deletion repair of $L(H)$, with $t$ deleted edges.
+Delete $uv$ from $H$ if any of its six cross-copy edges was deleted.
+This deletes at most $t$ original edges. Every surviving triangle
+would lift, one vertex in each part, to a surviving triangle in the
+cover, a contradiction. Dividing the two deletion counts by $n^2$
+and $(3n)^2$ gives the claim.
+\end{proof}
+
+Combining the lemmas gives, for every $H$,
+\[
+ \dist_D(J(L(H)),\PP)\ge
+                   \frac1{36}\dist_{\rm unif}(H,\TF),                 \tag{1}
+\]
+where $D(a)=1/2$ and every other vertex has weight $1/(6n)$.
+Triangle-free $H$ gives a member of $\PP$.
+
+To use a VDF tester at proximity $\eps$, simulate it on
+$(J(L(H)),D)$. A sample is generated locally from this explicit
+distribution. Self-queries return zero, distinct apex--tail pairs are adjacent, and
+same-part pairs or copies of the same original vertex are nonadjacent.
+Every remaining adjacency uses at most one query to $H$.
+All promised extra information is supplied explicitly. Consequently
+a VDF tester with total budget $Q$ gives a two-sided adaptive tester
+for triangle-freeness at proximity $36\eps$, using at most $Q$
+adjacency queries. Samples require no graph queries. If the VDF execution uses $s$ samples
+and $e$ adjacency calls, the sampled original indices and query endpoints
+involve at most $s+2e\le2Q$ source vertices. This simulation
+also works for randomized, history-dependent choices of queries and
+for early stopping.
+
+The established two-sided triangle-testing lower bound is
+$\exp(\Omega(\log^2(1/\delta)))$ in the uniform dense graph model:
+see \cite[Theorem~4(ii) and \S7]{AS}, including its explicit
+undirected consequence. That work gives the vertex count and permits
+adaptive adjacency queries; its inspected-vertex convention, with all
+induced pairs available, changes the present query count by at most a
+constant factor. Fixed changes in the unordered/ordered distance
+normalization also leave this bound unchanged. Applying it at
+$\delta=36\eps$ to the simulation proves part~2. It suffices to retain
+a rational sequence of parameters; the weights above are already
+strictly positive and rational. Combining this lower bound with the
+polynomial classical bound proves the final assertion of
+Theorem~\ref{thm:main}.
+
+\section{Scope and verification}
+The separation concerns total VDF oracle cost. A sample-only lower
+bound with unlimited free arbitrary-name adjacency queries is not
+asserted. The original proof preserved in the supporting package also
+gives an explicit rational hard family and a direct parity/exposure
+proof, with all its combinatorial and probabilistic estimates.
+The shorter proof here imports the established triangle lower bound
+and gives the complete reduction instead.
+
+Independent programs test arbitrary weighted repairs on small graphs,
+the cover reduction, coloring lists and finite adaptive queries.
+These finite checks test the arguments; the universal claims rest on
+the proofs and the cited triangle theorem. The original programs and their hashes accompany the reports.
+The public checkers raise errors explicitly, and run their checks
+with Python optimization enabled as well as in ordinary mode.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in developing and checking the
+arguments, computations, literature review and writing. The note and
+supplements are unrefereed. Independent adversarial reviews were
+AI-assisted; no external human peer review, journal acceptance or
+formal proof-assistant certification is claimed.
+
+\begin{thebibliography}{10}\small
+\bibitem{OWR}
+L.~Gishboliner, joint work with A.~Shapira,
+contribution to \emph{Combinatorics, Probability and Computing},
+Oberwolfach Report 19/2019, Problem~5, p.~1139. 
+\href{https://ems.press/content/serial-article-files/46798}{Publisher report}.
+
+\bibitem{GS}
+L.~Gishboliner and A.~Shapira,
+\emph{Testing graphs against an unknown distribution},
+Israel J. Math. \textbf{245} (2021), 787--837,
+\href{https://doi.org/10.1007/s11856-021-2228-8}{doi:10.1007/s11856-021-2228-8}.
+Inspected manuscript:
+\href{https://arxiv.org/abs/1905.09903v5}{arXiv:1905.09903v5}, \S5.3.
+
+\bibitem{Goldreich}
+O.~Goldreich, \emph{Testing graphs in vertex-distribution-free models},
+STOC 2019, 527--534. Inspected extended author manuscript,
+4 October 2021.
+\url{https://www.wisdom.weizmann.ac.il/~oded/R3/vdf.pdf}.
+
+\bibitem{GGR}
+O.~Goldreich, S.~Goldwasser and D.~Ron,
+\emph{Property testing and its connection to learning and approximation},
+J. ACM \textbf{45} (1998), 653--750.
+
+\bibitem{AK}
+N.~Alon and M.~Krivelevich, \emph{Testing $k$-colorability},
+SIAM J. Discrete Math. \textbf{15} (2002), 211--227.
+
+\bibitem{Alon}
+N.~Alon, \emph{Testing subgraphs in large graphs},
+Random Structures Algorithms \textbf{21} (2002), 359--370.
+
+\bibitem{AS}
+N.~Alon and A.~Shapira, \emph{Testing subgraphs in directed graphs},
+J. Comput. System Sci. \textbf{69} (2004), 354--382,
+\href{https://doi.org/10.1016/j.jcss.2004.04.008}{doi:10.1016/j.jcss.2004.04.008}.
+Inspected author manuscript:
+\url{https://www.math.tau.ac.il/~asafico/subdir.pdf}.
+
+\bibitem{AKKR}
+N.~Alon, T.~Kaufman, M.~Krivelevich and D.~Ron,
+\emph{Testing triangle-freeness in general graphs},
+SIAM J. Discrete Math. \textbf{22} (2008), 786--819.
+
+\bibitem{Fei}
+Y.~Fei, \emph{Testing properties of edge distributions},
+\href{https://arxiv.org/abs/2603.22702v2}{arXiv:2603.22702v2},
+12 August 2026, especially \S7.1.
+\end{thebibliography}
+\end{document}

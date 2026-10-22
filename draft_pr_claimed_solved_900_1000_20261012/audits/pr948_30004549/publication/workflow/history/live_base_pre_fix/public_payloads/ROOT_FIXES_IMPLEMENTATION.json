@@ -1,0 +1,57 @@
+{
+  "schema": "pr948-workflow-root-corrections-v1",
+  "utc": "2026-10-16T10:07:22.409930+00:00",
+  "status": "IMPLEMENTED_AND_FINITE_REGRESSIONS_PASSED_REQUIRES_NEW_ENTIRE_PACKAGE_REVIEW",
+  "source_core": {
+    "bytes": 90465,
+    "sha256": "851c3ce35cf741b5418b17db418f52f246e2c121cf70baeb48fee4fe1ee8575d"
+  },
+  "preserved_pre_fix_snapshot_sha256": "4d85a2231f99e768b1e2ef3b15d1be4914cba95f297e4708a9a1cc180ec314a2",
+  "findings": [
+    {
+      "id": "R948-WORKFLOW-ROOT-01",
+      "mechanism": "Historical evidence_files keys now authenticate only base/evidence/<repo-relative-key>, with no mutable live fallback. All exact old snapshots must authenticate before profile execution; missing/tampered evidence rejects. Current live evidence drift still rejects.",
+      "evidence": [
+        "accept_pr948.py:authenticate_evidence/freeze_check",
+        "test_root_fixes.py:old47/new50 snapshot and full retained-adverse-review loop",
+        "ROOT_FIXES_RESULT.json"
+      ],
+      "private_snapshot_contract": "Private raw bodies stay local, with restrictive access and explicit exclusion from all public package/archive/release/commit allowlists."
+    },
+    {
+      "id": "R948-WORKFLOW-ROOT-02",
+      "mechanism": "Cached identity reuse requires BOTH current head and independently recorded well-formed original baseRefOid equality. Missing/malformed/different original base context derives complete current filenames even at the same head. Current valid baseRefOid is bound in PR metadata, every GraphQL filename page and the final metadata bracket over filenames/immutable QUEUE status. Exact count/unique canonical paths/one target remain required.",
+      "evidence": [
+        "accept_pr948.py:next_identity/gate_next",
+        "ROOT_FIXES_RESULT.json:retarget oldclaimed/newunsolved skip, unchanged positive, pagination/count/race/ambiguity",
+        "test_base_context.py",
+        "BASE_CONTEXT_ATTEMPT_03.json:26PASS, both exact authenticated root finite-DAG witnesses, stable advanced base and in-bracket advance, no mathematics reads"
+      ],
+      "math_source_read": false,
+      "required_amendment": "BASE_REF_OID_BINDING_AFTER_FULL01",
+      "initial_inventory_not_rewritten": true,
+      "real_initial_inventory_base_context": "MISSING; complete current filenames required"
+    },
+    {
+      "id": "R948-WORKFLOW-ROOT-03",
+      "mechanism": "Unpublished native baseline requires KEY not in state; explicit null and all present entries reject. Absence reports membership, while exact publication recovery remains supported.",
+      "evidence": [
+        "accept_pr948.py:native_safety",
+        "ROOT_FIXES_RESULT.json:null rejection, trueabsence positive, exact recovery membership"
+      ]
+    }
+  ],
+  "configured_inherited_finding_count": 50,
+  "all_original47_ids_retained": true,
+  "new_required_ids": [
+    "R948-WORKFLOW-ROOT-01",
+    "R948-WORKFLOW-ROOT-02",
+    "R948-WORKFLOW-ROOT-03"
+  ],
+  "classification_counts": {
+    "required": 39,
+    "optional": 11
+  },
+  "scientific_or_publication_acceptance": false,
+  "external_mutations": 0
+}

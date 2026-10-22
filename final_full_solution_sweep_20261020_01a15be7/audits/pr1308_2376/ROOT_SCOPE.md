@@ -1,0 +1,7 @@
+# Root explicit candidate: PR1308 /2376EP906
+
+Actual pinned addedQUEUErow1742 isclaimed_solved. Root fullyread ACCEPTANCE andcompletePROOF pluscachedoriginalbackground. The literalentirenonzeroquestion admitspolynomials; proofaddressesstrongerintended transcendentalcase. Deterministicsubsequenceequivalence avoidsuncountableprobabilityintersection.
+
+EntireGaussian samples/differentiatedmarginals yieldexactK_n=n!exp(r²)L_n(−r²). ElementaryannularlogLaguerrevaluebounds2r√n+O(logn), distributionalzeroexpectation andintegrationbyparts yieldmean~A√n/(2π), withoutdifferentiatingerror. Jensen/Tonelli onepointGaussianlogmoment givesuniform exponentialtail, summableholeprobability; firstBCandcountableπbaseavoidingspatialzeroextendallopensets. No spatial/derivativeindependence assumed.
+
+Fullmathematical/primaryoriginal/priorauditpending. AprilAlmeida/Chojecki routeiscredited; source1982historicalaffirmativeclaim andfourBarthSchneiderreferences notyetadjudicated. Houboundedcoefficients/Lean/separateversions notacceptedjustfrommetadata. No novelty/newpub/rowreadiness.

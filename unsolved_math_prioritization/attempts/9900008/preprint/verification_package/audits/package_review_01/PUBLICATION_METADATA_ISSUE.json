@@ -1,0 +1,37 @@
+{
+  "issue_id": "PKG01-1",
+  "severity": "publication metadata hygiene",
+  "verdict": "ISSUES",
+  "exact_affected_fields": [
+    {
+      "file": "audits/allocation_audit_01/RECEIPT_NORMAL.json",
+      "json_pointer": "/command/2",
+      "class": "absolute local provenance path",
+      "original_bytes": 2240,
+      "original_sha256": "bad49290a26081a49634206c0b5848785f274ac9f6b21b387d2d1365449c667b"
+    },
+    {
+      "file": "audits/allocation_audit_01/RECEIPT_OPTIMIZED.json",
+      "json_pointer": "/command/3",
+      "class": "absolute local provenance path",
+      "original_bytes": 2250,
+      "original_sha256": "e45adfc41de4e13cf8e3e984b271b0c483ae6c24349882dfc0929bb2869693d5"
+    },
+    {
+      "file": "audits/artifact_audit_01/ADVERSARIAL_NORMAL.json",
+      "json_pointer": "/probes/11/detail",
+      "class": "absolute ephemeral private replay path",
+      "original_bytes": 10053,
+      "original_sha256": "aa92989c339f7c3bc3161f2d26d793e98f4d8e8484b01b1e09ab6c9940494aa3"
+    },
+    {
+      "file": "audits/artifact_audit_01/ADVERSARIAL_OPTIMIZED.json",
+      "json_pointer": "/probes/11/detail",
+      "class": "absolute ephemeral private replay path",
+      "original_bytes": 10052,
+      "original_sha256": "9187496903d4d7c5dd143707405f749d6ded0cc2ecb21f1cd471a5d7192287b9"
+    }
+  ],
+  "raw_values_not_redistributed_here": true,
+  "required_repair": "Preserve raw originals privately and record their byte/hash pins. Normalize only these four fields to stable repository-relative/PRIVATE_TMP descriptions. Record exact JSON pointers and unchanged test outcomes/output-hash semantics, update corresponding public evidence pins and every enclosing copy/index/archive/outer seal, and request new whole-package reviews on the resulting exact seal. Immutable original26files need no change."
+}

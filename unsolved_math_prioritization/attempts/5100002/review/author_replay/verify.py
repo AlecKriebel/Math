@@ -10,7 +10,8 @@ import sympy as s
 R=s.Rational;rt=s.sqrt
 counts={}
 def ck(name,statement):
-    assert bool(statement),name
+    if not bool(statement):
+        raise RuntimeError("check failed: "+name)
     counts[name]=counts.get(name,0)+1
 
 def dot(x,y):return s.simplify(sum(a*b for a,b in zip(x,y)))
@@ -84,5 +85,19 @@ out={'problem_id':5100002,'status':'PASS_EXACT_SIX_PERIOD_COUNTEREXAMPLE','asser
      'proof_sha256':sha256((root/'COUNTEREXAMPLE.md').read_bytes()).hexdigest(),'verifier_sha256':sha256(Path(__file__).read_bytes()).hexdigest(),
      'period':6,'caustic_lambda':'4/9','k108_difference':'553311/3200000','orbits':records,
      'scope':'Two convex primitive six-period trajectories in the same strictly nested confocal ellipse pair. Exact source k108 quotient fails; no repaired all-period invariant or novelty is certified.'}
+# Candidate repair: reject false or stale receipt/proof conditions under -O too.
+expected_receipt_path=root/'expected_verification.json'
+expected_receipt_bytes=expected_receipt_path.read_bytes()
+if sha256(expected_receipt_bytes).hexdigest()!='fa59d8484cb4ca6d8a411e39d4ed320755932b5f5f69b70eff127dd1a5d80a42':
+    raise RuntimeError('frozen expected receipt hash mismatch')
+if sha256((root/'COUNTEREXAMPLE.md').read_bytes()).hexdigest()!='5553f899b1098a321fe2164c3ba0d6eed87bc2424dc8021dee50e01fc14dc4ab':
+    raise RuntimeError('frozen mathematical artifact hash mismatch')
+expected_receipt=json.loads(expected_receipt_bytes)
+receipt_for_comparison=dict(out)
+if 'verifier_sha256' in receipt_for_comparison:
+    # Only the nominated explicit-guard candidate source differs from the frozen author source.
+    receipt_for_comparison['verifier_sha256']=expected_receipt['verifier_sha256']
+if receipt_for_comparison!=expected_receipt:
+    raise RuntimeError('computed receipt differs from frozen expected receipt')
 (root/'verification.json').write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')
 print(json.dumps(out,indent=2,sort_keys=True))

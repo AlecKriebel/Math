@@ -1,0 +1,45 @@
+{
+  "adoption_sha256": "8edb48b705627c97e6390e05e63879924920fb2d1d590e83a61d18542f44155b",
+  "case": "pr411_6800014",
+  "completion_estimate_percent": 100,
+  "final_helper_sha256": "536844c63eedf31934e686d44a32c3e8564ba9aaa9c078f204ffe5488bfdea53",
+  "findings": [
+    {
+      "finding": "An explicitly inherited V1 dispatch denied at BoundTransport after public_json retained that previous response as native decoration for the denied call. No backend mutation occurred. Final transport clears per-call custody before grant validation and preserves only this call\u2019s successful or error diagnostics.",
+      "original_source_sha256": "e701c68b6a0b6bf9d78bb8c167d5f43c35532b0e4f1d0204281b434505adf2fe",
+      "reproduction": "CUSTODY_FINDING_CORRECTION.json",
+      "status": "REPAIRED_AND_REGRESSION_VERIFIED"
+    },
+    {
+      "finding": "Initial successful-download stale receipt scenario used a model that omitted the pinned Production.public_hash last_native reset. It is not an actual production defect; original parsed hash responses were genuine.",
+      "reproduction": "STALE_NATIVE_PROBE.json",
+      "status": "WITHDRAWN_MODEL_LIMITATION"
+    }
+  ],
+  "limits": [
+    "No actual Zenodo or Sheet request made by this reviewer; only native GitHub GET gate and offline administration replays.",
+    "Google Sheets offers no atomic DOI dedup lease. An external concurrent append after the final absence GET can create a duplicate; the final scan detects it and stops, and this helper does not delete or retry.",
+    "Acceptance concerns the final sealed helper and the fixed approved administration scope. Mathematical correctness, novelty and priority are outside this review."
+  ],
+  "native_gate": "PASS: eight GETs total: initial PR/ref pair plus sealed updater six-GET gate; exact required open draft unmerged head and queue status/turns",
+  "offline_tests": {
+    "methods": 30,
+    "passed": 30,
+    "results": "OFFLINE_TEST_RESULTS.json",
+    "source": "independent_tests.py"
+  },
+  "review": "fresh independent software adversary 1",
+  "schema": 1,
+  "status": "ACCEPT_FINAL_REPAIRED_ADMINISTRATION_HELPER",
+  "utc": "2026-10-13T05:40:28.600318+00:00",
+  "verified": [
+    "Actual original fixture shape traverses adoption/recover/published to published_verified using GET operations only.",
+    "No Zenodo creation, upload, metadata update or publication dispatch can reach the backend, including explicit V1/V2 inherited calls.",
+    "One-call transport grant and exact Sheet service, target, RAW INSERT_ROWS options, four cells, accepted native pins and explicit tracker phase bind the only append.",
+    "Authenticated exact15 metadata keys retain requested12, editable publisher Zenodo and integer prereserve23331232; public exact13 projection, license/resource relation and concept23331231 match.",
+    "Native metadata/access/custom_fields types, parent empty-ACL omission, auth3/public2 version flags, publication PIDs, visible completed3 listing, MD5/SHA256/size/status200 downloads checked.",
+    "Sheet gid/title/header, DOI-only dedup, exact returned row readback, duplicate and drift rejection, and no automatic retry after unknown before/after append checked.",
+    "Genuine modeled GWS error diagnostics retained without fabricated append response or stale public JSON decoration.",
+    "Original V1 and V2 source state digests remain 0c0359d83619cdecd0104051d516202b164a6e0e1183763650797f029d2a9d77 and 46e1b481e5291520fd1d2fb2ca9403b9e8184e097b8d240a9b1d4cc0ea4db66c."
+  ]
+}

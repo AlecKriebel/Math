@@ -1,0 +1,133 @@
+# Complete independent publication-package review, second iteration
+
+PR280 / problem30000156 / OWR-768-006. Internal AI adversarial review; no human-peer-review or publication authorization is implied.
+
+**Overall verdict: REPAIR_REQUIRED_FOR_OPERATIONAL_HELPERS. Scientific and five-file package verdict: scoped PASS, no additional repair found.** The exact manuscript proves its complete stated theorem, including nonconvergence on every further admissible prime subset of positive upper relative density and the weak-convergence obstruction. The schema repair closes the previous finding on the currently bound archive. Historical firstness remains uncertified and the specific unseen 2011 manuscript remains a disclosed bibliographic limit. The completed lifecycle-helper review found two mandatory defects: P280-OPS-01 permits duplicate append under a contradictory target-row exemption, and P280-OPS-02 blocks correctly classified unrelated local state. Precise reproductions and required repairs follow below.
+
+## Exact input and independence
+
+All six publication-directory files were copied and hashed before previous review opinions were read. INPUT_BINDING.json binds the following five payloads and the separate release manifest:
+
+| Payload | Bytes | SHA256 |
+|---|---:|---|
+| fixed-birational-cycle-nonlimit.pdf |95372|b50733aec7165fc6d1848070222b94da41350bc32ccc6fc977ff3b95187cb540|
+| fixed-birational-cycle-nonlimit.tex |19866|3ee2a99514d1724f68bc00dcff43bd5115499c0b9f3d7678c49961c44a4af983|
+| fixed-birational-cycle-nonlimit-verification.zip |124180|2e252127727f4cefc95400ac690b47c72dcd1ca5915b47052217ba4d083b5426|
+| zenodo-deposit.json |5371|04b95ca27881af6238090f920e156d05c183defc66494496d458ce947023c75e|
+| README.md |1844|65d7f45869d0ca7910deaa38790cee5cb8db4fe41943fd1d6c8b8352468e6754|
+
+RELEASE_FILES.json is 1245 bytes, SHA256 548b7a4ae1f13a92029255fc9ef485002b7c33376b9dd9168ffcdb532fc4c20e. Its five entries agree with these actual files. The manuscript inside the ZIP is byte-identical to the outer TeX.
+
+I first read the current full TeX and actual complete [Vivaldi author contribution](https://webspace.maths.qmul.ac.uk/f.vivaldi/research/Oberwolfach.pdf), reconstructing and attempting to falsify the proof without historical review opinions. INDEPENDENT_CHECKPOINT.md was written before opening those opinions. The clock-correction entry in RESEARCH_LOG.md records an initial provisional future timestamp explicitly; it does not change the ordering. The two original pages were later visibly inspected as well. All six current paper pages were individually visibly inspected from fresh renders. Agreement with earlier opinions is not a premise of the verdict.
+
+## Mathematical challenge and strongest verified result
+
+The exact claim uses the one fixed birational map over Q, L(u,v)=(u,(u²+1)v), its full affine plane over each p=3 mod4, point weighting p^-2, and period scale p. It asserts the quantitative bridge for every fixed 1/2<=x<1, the stated limsup/liminf gap, and both CDF and weak-measure nonconvergence on every positive-upper-density thinning within that fixed admissible class.
+
+I attempted the following distinct falsifications:
+
+| Mechanism | Attempted failure | Checked outcome |
+|---|---|---|
+| Algebra/reduction | Rational inverse not legitimate; exceptional points omitted; genus/order wrong | Inverse identities hold on a dense open set; denominator has no zeros at admissible primes, and both finite maps are total inverses. Invariant u has genus-zero generic fibers; powers multiply v by (u²+1)^m. The complex inverse is correctly stated to be nonpolynomial. |
+| Point/cycle counting | Missing zero section or primitive-fiber multiplicity; wrong scale | Nonzero v has exactly multiplier order, zero v is fixed. The excluded count is (p-1)P_p. There are 2p-1 fixed points. Every affine point is counted. |
+| Endpoint/quantifiers | Using a moving threshold as fixed; p=3 exception; uniformity near1 | Proper divisors of p-1 are below p/2. The maximum is excluded iff p>1/(1-x). At x=(p-1)/p everything is included, as explicitly stated. The theorem fixes x before lettingp grow. |
+| Character arithmetic | Wrong primitive indicator, multiplicities, principal term, Jacobi exception | Squarefree factorization gives the exact indicator. Principal contribution is pθ, since all values are nonzero. χ=η has norm1; all other nonprincipal contributions have norm√p. The triangle inequality and six-small-prime bound give the printed error. |
+| Analytic arithmetic | Hidden GRH/fixed-base Artin; invalid modulus range or residue extraction | The stated logarithmic Siegel-Walfisz truncation and absolutely convergent coefficient series justify the classical mean. The mod4 split forces infinitely many admissible θ>=1/24. CRT/Dirichlet with fixed modulus at each stage forces θ->0 on the other sequence. |
+| Thinning and weak limits | Two sparse sequences incorrectly promoted to every positive-density selection; CDF discontinuity issue | The old atomless whole-prime scalar law closes the thinning quantifier. A bounded continuous ramp gives a moment θ+o1, directly excluding weak convergence. |
+| Historical priority | Old ingredients mistaken for new theorems, or a parameter ensemble mistaken for the exact application | The old inputs and family are credited; no exact earlier application was authenticated in the bounded actual-body comparisons. This does not establish absence. |
+| Package parser | Repeat malformed schema acceptance and other silent bypasses | All40 distinct hostile cases reject in normal and optimized modes, including JSONtrue/1.0, unsafe paths, symlinks, extraFIFO, tampering, and false expected output rehashed in the manifest. |
+
+For clarity, the positive-density proof does not require a scalar distribution conditioned on p=3 mod4. Since that class has density1/2, positive upper relative density within it implies positive upper density among all primes. If θ converged on such a set with upper densityδ>0, the limiting frequency of every closed interval about its limit would be at leastδ; shrinking forces an atom. The old scalar measure is atomless. The continuous ramp h(t)=max(0,min(1,2t-1)) vanishes on every proper-divisor period and equals1-2/p on the maximal one, so its exact integral is (1-2/p)(p-1)P_p/p²=θ_p+o1. Weak convergence would force this single integral to converge, giving the same contradiction.
+
+The numerical separation7/24>13/48 is valid: the factor at2 is1/2 and the remaining reciprocal-prime-factor sum is bounded by5/12. The original mean proof uses only fixed logarithmic modulus exponent6, arbitrary Siegel-Walfisz error exponent4, and an O(X/(logX)^6) tail. Absolute convergence follows from φ(d)>=√(d/2). Dirichlet is used one fixed modulus at a time, with no claimed uniform least-prime bound. No unsupported equivalent central claim is introduced.
+
+No mathematical gap was found in the full stated theorem, taking the explicitly credited classical theorems as established inputs. Finite computations cannot prove the infinite-prime mean, Dirichlet sequence or atomlessness.
+
+## Original source and old inputs
+
+The fresh [institutional report](https://publications.mfo.de/bitstream/handle/mfo/2873/OWR_2004_54.pdf?isAllowed=y&sequence=1) matches the recorded 500576-byte PDF hash bcfca28ba87a2341ecdd7ad938ce0c6865e93923ef2209264182ad4cde059422. Its complete printed2944-2945 confirms the point measure, px threshold, fixed extension degree, suitable positive-density reduction primes and broad birational existence assertion. Genus one appears in a subsequent heuristic. The forward polynomial places the current example in the affine setup. No projective singularity assignment is needed. Failure on the stated interval, including3/4, also avoids confusing a proposed reciprocal-integer jump with CDF nonconvergence.
+
+The proof does not assert a result about all extension degrees, polynomial automorphisms over C, elliptic-fiber subclasses, arbitrary zero-density selections, or the later prime-averaged statistic at scalep². Those are substantive boundaries, clearly preserved in the manuscript and metadata.
+
+All seven cited primary PDFs were freshly downloaded in this review; each byte count and SHA256 matches SOURCE_REFERENCES.json. PRIMARY_RETRIEVALS.json and PRIMARY_READING_SCOPES.json record actual custody/read scopes. [Ostafe-Shparlinski](https://arxiv.org/pdf/0902.3884v3) §2.1 contains the triangular family and the chosen coefficients satisfy its displayed conditions. [Booker-Cohen-Sutherland-Trudgian](https://arxiv.org/pdf/1803.01435v2) permits e1=1,e2=p-1 and the quadratic hypotheses at these odd primes; its omitted zero yields principalp-1, whereas the self-contained proof sums allu and obtains principalp. Both give the required asymptotic bridge.
+
+[Menici-Pehlivan](https://www.impan.pl/shop/en/publication/transaction/download/product/91625), definition8 and full Lemma2 proof at r=m=1, provides the unconditional mean. [Aivazidis-Sofos](https://arxiv.org/pdf/1308.5701v2), Theorem1.3i withn1 and its §6 proof, supplies the continuous empirical law, explicitly first over primes and then prime powers. The optional GRH error refinement is separate. [Deshouillers-Hassani](https://doi.org/10.1017/S1446788712000250), Proposition2.1 and its totient application withm2, supplies the same continuity over all odd primes. The use here is atomlessness, with no absolute-continuity assertion.
+
+The closest additional primary passages actually compared are specified in PRIMARY_READING_SCOPES.json: the 2006 elliptic finite-field discussion, the 2009 random-involution expectation theorem, the Casati-Prosen paper's introduction/conclusion, Neumärker's thesis summary and reference63, and Siu's Theorem6.3.9. The latter fixesp while varying a cat-map parameter. These passages do not authenticate the exact present application. Neither full thesis nor all nearby bodies were exhaustively read.
+
+[Roberts2011](https://www.dma.uvigo.es/~eliz/pdf/Roberts.pdf), reference9 on printed220, authenticates the four-author 2011 citation. The body and version relationships remain unrecovered. Differently worded in-preparation citations are leads, not substitutes for that body. Exact-title/author searches and author-page checks remain bounded. The manuscript describes a modest source-specific application of old ingredients, and appropriately claims no historical firstness, worldwide absence or present-open status. I find no further mandatory historical-description correction under that limitation.
+
+## Reproduction and preservation
+
+The ZIP has65 safe, unique regular-file members:64 payloads and the top manifest. All members were read, UTF8-decoded, inventoried and checked by role; every JSON was parsed and every Python file parsed. INTEGRITY_RESULTS.json records the full inventory, complete payload seal, nested9/6/25/9-entry seals, and17 original files' exact length/SHA256/Git-blob identities from the pinned snapshot. No Git command or state mutation was performed. The source/finite/historical output tables were structurally inspected; original/current proofs and the critical mathematical/code narratives were read directly. Historical status/priority limitations remain dated and are not retroactively replaced by this verdict.
+
+The first package review's98-file seal verifies at SHA256 bed0a289136617c7bcae9a91f94694326c5fbb615cbc1630cbf88a62c109d96c. The current repair's83-file seal verifies at b116eb70f6c4412958899c7773783f72fa0ad7987a4d52c29ce1b773fd3d3970. The old36-entry preparation seal verifies against the preserved prior_review_01_full snapshot, not the changed active paths. Only verify.py and the archive's top manifest differ between the old and current ZIP;63 other payloads and the four other outer files are byte-identical. These are independent byte comparisons, not inferences from repair receipts.
+
+Six runs of the actual extracted current verifier pass: Python3.9.6,3.12.14,3.14.6, each normal and optimized. Each verifies64 payloads and147619 exact finite controls over87 admissible primes through1000, eight raw graphs with6088 points and six bad-prime controls. HOSTILE_REPLAY_RESULTS.json records40 distinct negative cases, each rejected in both modes, for80 rejections. Guards remain active under-O. The manifest supplies integrity relative to the separately bound ZIP; it is expressly not a digital signature or protection against replacing every external binding coherently.
+
+My fresh independent_falsification.py imports no packaged checker. It uses repeated multiplication for orders, full affine graph traversal, gcd-count totients and independent integer polynomial remainders for character identities. It passes13835 exact controls and1236 separately labeled numerical diagnostics throughp2000, across155 admissible primes, including nine full graphs containing9569 points. It checks rational cutoff endpoints with denominators through17, p2 and seven1-mod4 collision controls, the primitive bound and indicator, the Jacobi identity and its quadratic exception, and the continuous ramp. INDEPENDENT_FINITE_RESULTS.json separates the exact and numerical evidence. This is finite falsification only.
+
+A new literal replay supplies stronger evidence than the historical preparation: both original SymPy scripts pass on the pre-existing .venv Python3.9.6 with SymPy1.14.0, yielding101073 and301761 controls; their complete JSON outputs equal the archived baselines exactly. Default3.14.6 and bundled3.12.14 still fail at the absent SymPy import. LEGACY_39_SUCCESS.json and LEGACY_AND_CODE_INSPECTION.json preserve the actual versions, outputs and failures. No package was installed. The manuscript and READMEs describe the earlier preparation-specific failure/absence, not impossibility in every available environment; those historically qualified statements need no correction. Old receipts are unchanged.
+
+I also freshly replayed byte-for-byte copies of the three standard-library historical scripts in this review's private custody, recording new outputs without overwriting preserved receipts. They pass8347742 full finite controls,230780 analytic controls and2111 distinct controls. HISTORICAL_NEW_REPLAY.json binds the actual scripts/commands/results. These are now real new runs as well as preserved historical runs; they remain finite evidence. The current archive and metadata correctly identify their own older receipts and do not need retrospective relabeling.
+
+## PDF, metadata, disclosure and privacy
+
+Fresh individual six-page renders show no clipping, overlap, broken symbols, missing text or undefined references. Page1 supplies the title/author/ORCID/version/date, abstract and definitions; page2 the theorem and exact dynamics; page3 the primitive/Jacobi proof and old-input credit; page4 the mean/subsequences and scalar-law declaration; page5 the thinning proof, continuous moment and historical boundary; page6 the finite-evidence limits, extensive AI/unrefereed disclosure and complete bibliography. PDF_STRUCTURE.json confirms six pages, matching title/author, UTC creation metadata, intended citation/ORCID links, no encryption, no form and no embedded files. A compiler rebuild was unnecessary for unchanged PDF/TeX bytes; source and full rendered content were compared directly.
+
+The outer and inner READMEs, paper, CITATION.cff, license and local deposit metadata agree on author/ORCID, title, version1.0, date2026-10-21, CC-BY4.0 and unrefereed-preprint status. Intended uploads are the PDF and ZIP, with TeX inside the latter. Existing bibliographic DOIs are not an allocated DOI for this note. None of these files certifies publication or live deposit creation. AI involvement is disclosed across research, model/proof development, computation, literature, writing and adversarial checks; internal AI review is expressly distinguished from human peer review.
+
+Complete text exposure screens found no credential/email/private-key patterns. Manual role inspection found no raw private account/ledger bodies or complete third-party source bodies in the archive. A few historical local research-custody paths and redacted record counts remain; they expose no unrelated private account records. Full third-party PDFs, extracts and original-page images are only in ignored private custody. PRIVATE_CUSTODY_MANIFEST.json records filenames/lengths/hashes and the effort's explicit private/ ignore rule, read as text. No outside person was contacted and no outreach was prepared.
+
+## Remaining scope
+
+The strongest verified mathematical result is the theorem exactly printed, including the arbitrary further positive-upper-density selection and weak-convergence conclusions. No mathematical or five-file-package repair remains identified. Historical firstness and the unseen2011 body remain uncertain exactly as disclosed. The parent retains integration/publication authority. The additional lifecycle-helper review is complete, and its two mandatory defects are detailed below; no live operation has been executed.
+
+
+# Independent operational adapter review
+
+**Verdict: mandatory repair required, P280-OPS-01 and P280-OPS-02.** The seven-helper implementation at the completed preparation binding is not cleared for live use. The scientific/five-release-file package remains clean under its stated scope. No live operation was executed by this reviewer.
+
+The completed operations manifest is SHA256999852717308827d82c11825f1ccb727be39da786fa5a1f34a6dde229c26c6e5. All16 entries were independently length/hash verified and copied, together with the manifest, into bound_ops/. OPS_INPUT_BINDING.json gives the exact seven-helper and evidence identities. LIFECYCLE_REVIEW_PLAN.md was written before those files were read. I then read all seven helper bodies and the complete offline control code. Relevant calls into the existing Zenodo verifier/lifecycle and atomic-write infrastructure were also inspected; no provider action was invoked.
+
+## P280-OPS-01: a contradictory ledger exemption can hide the exact existing target row and cause a duplicate append
+
+PriorityP2, material operational defect. This requires an inconsistent or stale root-authored reconciliation that labels the already exact desired target row as distinct_non_target. It is not a claim that a correctly classified root file triggers the defect. The helpers nevertheless expressly protect target identity/DOI uniqueness and already forbid the analogous contradictory account-ID exemption; the target-row pre-append check must also take precedence over exemptions.
+
+The frozen publication_live_gates.py, lines52-59, checks whether a row digest is in prior_rows before checking whether it is the expected exact target. Consequently an exact current target row included in root ledger_leads is skipped; reconcile returns target_rows=[] and accepts the gate. This is a real actual-helper result, not a replacement stub for reconcile.
+
+The frozen record_publication_ledger.py, lines76-85, correctly detects the one existing DOI row and permits it when it equals desired_row(identifier). It then removes that row from found because the digest is in the root non-target exemptions. The empty found list enters lines92-103 and performs an append of the same row. Lines109-115 reject only after the duplicate has already been appended. The resulting error does not undo the external mutation.
+
+The reproduction in independent_operations_controls.py uses synthetic record999 and contains no actual account/ledger data. It calls actual gate.reconcile, which accepts the contradictory exemption, and then actual ledger.append_verified with only public/provider/read boundaries mocked. Both normal Python and -O produce:
+
+- one pre-existing exact DOI/desired row;
+- actual reconciliation accepted, with target_rows=[];
+- exactly one synthetic append of that same row again;
+- only afterward, RuntimeError: Target row readback/uniqueness mismatch; no retry.
+
+INDEPENDENT_OPERATIONS_RESULTS.json and its optimized counterpart preserve those outcomes. Generic subprocess, URL and Zenodo-client mutation/read boundaries are trapped; there was no actual provider access.
+
+Required repair: at both the reconciliation and append layers, an exact desired target row or a row containing the exact current DOI must never disappear under non-target filtering. A contradictory root exemption should reject before mutation, or exact-row idempotence should take precedence while counting every current DOI occurrence independently. Preserve the present binding and reproduce the failing case against it. Test the repaired exact-existing-row path, contradictory exemption path, changed-notes same-DOI path, duplicate exact rows, ordinary non-target model rows and absence-of-target path, normal and optimized. A new independent full-package review must inspect the revised implementation after repair. This reviewer made no canonical edits.
+
+## P280-OPS-02: a properly classified distinct record's unrelated local state blocks every phase
+
+PriorityP2, material operational false block. This second finding was first reported by the parent after its read-only initial live collector; I independently checked the implementation predicate, actual local-state byte binding and synthetic behavior. I did not execute a live collector or repeat a full review of the unrelated article.
+
+The actual root gate has phase before_integration, expected_deposit_id=null, one account lead23137834 and one local-state match at .zenodo-state/metadata-23137834-production.json. The current state file independently matches the reported SHA2560d9f0bc4ffc005cd0c36c15bde7a32f4bb451adb77671e8befbeed3b20337ef5. The gate hash is fad7eb4879ae25844436c835e0ea336cf07fd0d6d27fd8d74cbcc6ae2dc0d694. ROOT_REPORTED_LOCAL_STATE_OBSTRUCTION.json records only the necessary identifiers/hashes and predicate; no raw account/ledger body was copied. The parent identified the published regular-pentagon/torsion work as problem20000450/PR329, distinct from this target; that article classification is parent-supplied context.
+
+Frozen publication_live_gates.py, lines62-65, rejects any nonempty local state match when the expected target ID is absent, and later requires every matching state to use the target ID. It provides no exception for the correctly metadata/full-files-bound distinct account records already accepted in lines27-35. Since the broad model keyword can match a legitimate unrelated record's metadata-state file, an honest root reconciliation cannot clear the initial gate, and cannot clear later gates while preserving that state.
+
+Independent actual-helper controls supply an explicitly distinct synthetic record101 with exact full metadata/files projection binding. Actual reconcile accepts without local state, then rejects solely after that same known record's synthetic local state is added, both with expected target IDNone and999. The normal/-O results are in INDEPENDENT_OPERATIONS_RESULTS*.json. These tests involve no actual service access or local-state modification.
+
+Required repair: provide a narrowly root-authored unrelated-local-state exemption bound to exact relative path, SHA256 and integer deposit ID, and require that ID to be among the correctly metadata/full-files-bound distinct account records. Never exempt the current expected target ID, unknown records, changed paths/bytes/IDs, unsafe paths or duplicate contradictory entries. Preserve all unrelated state files. A default reject when no valid explicit exemption exists remains appropriate. Tests must include the valid unrelated state, changed hash/path/ID, unknown or current target record, no exemption, before-integration and later phases, normal and optimized. Preserve this current binding and obtain a new independent full review after both repairs.
+
+## Completed control and code review scope
+
+The frozen preparer's actual158 offline controls were replayed twice, normally and with-O, with only scratch/output location redirected into this review. Both runs pass22 positive cases and136 negative cases and record zero actual provider access attempts. Their actual detailed per-case receipts are in operations_replay_normal/ and operations_replay_optimized/; this did not overwrite preparer evidence. The controls cover the candidate-specific17 source files, nested preservation, exact parent/head queue accounting and Notes, metadata/full-file non-target projection, merged-head phases, expiring gates, public metadata/download/DOI identity, durable intents and ledger uniqueness. Their pass does not cover the new contradictory-ledger-exemption case, which is why the independent test was necessary.
+
+Direct code inspection confirms the intended PR280 constants, exact release binding, original-parent/head queue rows,17-file snapshot mapping and64-entry list archive handling. The Git overlay uses exact candidate paths, a base tree and non-forced ref update, with checks of nested siblings and queue bytes. Lifecycle stage/publish intents stop blind repeats, and authenticated/public metadata plus downloaded file bytes are verified before ledger work. These are observations about the frozen code and mocked controls, not certification of future account state, network schemas, a cross-service lock or scientific correctness. The root clearance and lead reconciliation remain root-authored trusted assertions; reports/seals/helpers are checked as byte identities, not interpreted as mathematical proof by metadata.
+
+No additional material issue was identified in the completed planned scope. Both P280-OPS-01 and P280-OPS-02 prevent operational clearance of this binding. The parent has acknowledged mandatory repair and will preserve/repair the helpers and arrange a new independent full review. Publication, DOI allocation, staging, merge and ledger actions remain unperformed by this reviewer.
+
+
+Assigned complete expanded review completion: **100%**. No scientific/five-file-package defect remains identified. The frozen operational helpers require both repairs and a new independent complete review. No lifecycle or publication authorization is granted.

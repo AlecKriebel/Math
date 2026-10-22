@@ -1,0 +1,281 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={An elementary counterexample to Long's clique equality},
+  pdfauthor={Alec Kriebel}}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\F}{\mathbb F}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\Gu}{\Gamma_{\mathrm{unit}}}
+\newcommand{\Gp}{\Gamma_{\mathrm{prime}}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\title{An elementary counterexample to Long's clique equality}
+\author{Alec Kriebel\\[2pt]
+  \small Independent Researcher\\
+  \small\href{https://orcid.org/0009-0001-9320-500X}
+  {ORCID: 0009-0001-9320-500X}}
+\date{17 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For the full ring of integers of $\Q(\sqrt{10})$, both the unit-difference
+graph and the graph allowing unit or prime-element differences have clique
+number $2$, while the least norm of a nonzero prime ideal is $2$. Thus the
+two sides of the equality asked about in Long's Question~7.2 in
+arXiv:1512.04620v1 are $2$ and $4$. The proof uses the classical
+nonprincipal ideal $(2,\sqrt{10})$ and its two-element residue field.
+We include the elementary arithmetic and specify the prime-element
+convention, which is essential to the conclusion. No novelty or historical
+priority claim is made.
+\end{abstract}
+
+\section{The precise question}
+
+Question~7.1 of \cite[p.~5]{problems} starts with an irreducible
+$f\in\Z[X]$ all of whose roots are real, puts $k=\Q(\alpha)$ for a root
+$\alpha$, and takes $\OO_k$ to be the full ring of integers. It asks how
+often $\OO_k$ is a principal ideal domain; it does not impose that property
+as a hypothesis. Question~7.2 \cite[p.~6]{problems} defines $\Gu$ on
+$\OO_k$ by unit differences and enlarges it to $\Gp$ by allowing prime
+differences. Its displayed formula is
+\begin{equation}\label{eq:printed}
+ |\operatorname{clique}(\Gp)|
+ \leq |\operatorname{clique}(\Gu)|\,
+       \min\{\,|\OO_k/I|\mid I\text{ prime}\,\},
+\end{equation}
+followed by the question ``Is this an equality?'' We write $\omega(G)$ for
+the clique number denoted by $|\operatorname{clique}(G)|$ there.
+
+Here a \emph{prime element} is a nonzero nonunit $p$ such that $(p)$ is a
+prime ideal. This convention is fixed by the manuscript cited as
+reference~[19] in the problem list: condition~(i) of its Definition~1
+requires a difference to be a unit or to generate a prime ideal, and
+Section~3 defines prime cliques using condition~(i) alone
+\cite[pp.~1, 9]{long-ms}. The published Long--Thistlethwaite framework
+retains these definitions \cite[Definition~1, p.~565; Section~3,
+p.~572]{long}. The additional condition about surjectivity from the unit
+group belongs to Lenstra--Hurwitz cliques and is not imposed on $\Gp$.
+
+The minimum in \eqref{eq:printed} is over prime ideals. In contrast,
+Theorem~3.1 of \cite[p.~573]{long} is printed with a minimum
+\emph{principal}-ideal norm. We do not identify these minima or import
+that theorem: the proof below evaluates each quantity in the question's
+display directly.
+
+\begin{theorem}\label{thm:main}
+Let $k=\Q(\sqrt{10})$ and let $O=\OO_k$. With the definitions above,
+\[
+ \omega(\Gu)=\omega(\Gp)=2,
+ \qquad
+ \min_{\substack{\mathfrak q\text{ nonzero}\\
+                  \text{prime ideal of }O}}|O/\mathfrak q|=2.
+\]
+Consequently the proposed equality in Long's Question~7.2 is false:
+\[
+ \omega(\Gp)=2<4
+   =\omega(\Gu)
+     \min_{\mathfrak q\text{ nonzero prime}}|O/\mathfrak q|.
+\]
+\end{theorem}
+
+The ingredients are classical. Lenstra's residue argument already bounds
+a unit clique by the cardinality of any proper ideal quotient
+\cite[Proposition~2.2, p.~242]{lenstra}. Dummit's 2021 notes explicitly
+give the ideal $(2,\sqrt{10})$, its nonprincipality, and the obstruction
+to norm $\pm2$ modulo $5$ \cite[p.~13]{dummit}. These are credited
+ingredients of the following self-contained calculation, rather than
+claims of a new unit bound or new ideal arithmetic.
+
+\section{The arithmetic and the two colors}
+
+The polynomial $X^2-10$ is irreducible over $\Q$: a rational root of this
+monic polynomial would be an integer with square $10$. Its two roots are
+real, so this field satisfies the setup of Question~7.1.
+
+\begin{lemma}\label{lem:ring}
+The full ring of integers is $O=\Z[\sqrt{10}]$. For every nonzero
+$\delta=a+b\sqrt{10}\in O$,
+\begin{equation}\label{eq:index}
+ [O:\delta O]=|a^2-10b^2|.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Every $a+b\sqrt{10}$ with $a,b\in\Z$ is a root of the monic polynomial
+$X^2-2aX+(a^2-10b^2)$ and is integral. Conversely, suppose
+$r+s\sqrt{10}$ is integral, with $r,s\in\Q$. Its trace $2r$ and norm
+$r^2-10s^2$ are integers. For $s\ne0$ this follows from the coefficients
+of its monic minimal polynomial (by Gauss's lemma); for $s=0$ a rational
+algebraic integer is an integer.
+
+Put $m=2r\in\Z$. Since $40s^2=m^2-4(r^2-10s^2)\in\Z$, the reduced
+denominator $v$ of $s$ satisfies $v^2\mid40$. Thus $v=1$ or $2$, and
+$n=2s\in\Z$. Integrality of the norm now gives
+\[
+ m^2-10n^2\equiv0\pmod4.
+\]
+An odd $n$ would require a square to be $2$ modulo $4$. Hence $n$ is
+even, and then $m$ is even too. Therefore $r,s\in\Z$.
+
+In the integral basis $(1,\sqrt{10})$, multiplication by $\delta$ has
+matrix
+\[
+ M_\delta=\begin{pmatrix}a&10b\\ b&a\end{pmatrix}.
+\]
+Its determinant is $a^2-10b^2\ne0$, since $\delta\ne0$ and
+$\sqrt{10}\notin\Q$. Its image is $\delta O$. The index of the image
+of a nonsingular integer matrix is the absolute value of its determinant:
+unimodular row and column operations reduce to Smith normal form, where
+this assertion is immediate. This proves \eqref{eq:index}.
+\end{proof}
+
+Define the surjective ring homomorphism
+\[
+ \varphi:O\longrightarrow\F_2,
+ \qquad a+b\sqrt{10}\longmapsto a\pmod2.
+\]
+Multiplicativity follows because the constant coefficient of a product is
+$ac+10bd$. The kernel is
+\[
+ P=(2,\sqrt{10}),
+ \qquad O/P\cong\F_2.
+\]
+Indeed, a zero residue means that the constant coefficient is even.
+Thus $P$ is a nonzero proper maximal prime ideal of norm $2$.
+
+This ideal is nonprincipal. If $P=(a+b\sqrt{10})$, its index and
+\eqref{eq:index} would give $a^2-10b^2=\pm2$. Modulo $5$ this requires
+$a^2\equiv2$ or $3$, whereas the squares are $0,1,4$. This is impossible.
+
+We next verify the maximality fact needed to exclude prime elements from
+$P$. Let $Q$ be any nonzero prime ideal of $O$, and choose
+$0\ne\delta\in Q$. By \eqref{eq:index}, $O/(\delta)$ is finite, so its
+quotient $O/Q$ is a finite integral domain. Such a domain is a field:
+multiplication by a nonzero element is injective, hence surjective, and
+therefore has $1$ in its image. It follows that every nonzero prime ideal
+of $O$ is maximal.
+
+No unit lies in the proper ideal $P$, since otherwise $1\in P$.
+If a prime element $p$ lay in $P$, the nonzero prime ideal $(p)$ would be
+maximal and satisfy $(p)\subseteq P\subsetneq O$. Hence $(p)=P$, contrary
+to nonprincipality. Thus $P$ contains neither units nor prime elements.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If two vertices have the same image under $\varphi$, their difference
+lies in $P$ and cannot be an allowed edge difference in either graph.
+The two residue classes therefore give a proper coloring of both graphs
+with two colors. A clique has at most one vertex of each color, so both
+clique numbers are at most $2$. The vertices $0$ and $1$ are adjacent in
+both graphs, giving equality.
+
+Every proper ideal quotient has at least two elements, since $0\ne1$ in
+that quotient. The prime ideal $P$ attains this lower bound. Therefore
+the minimum nonzero prime-ideal norm is $2$, and the two sides of the
+proposed equality are $2$ and $2\cdot2=4$. If the unqualified word
+``prime'' in \eqref{eq:printed} includes the zero ideal, its quotient is
+the infinite ring $O$ and cannot lower this minimum.
+\end{proof}
+
+\section{Conventions, attribution, and verification}
+
+The prime-element convention matters. The element $2$ is not prime:
+$\sqrt{10}\notin(2)$ but $(\sqrt{10})^2=10\in(2)$. It is nevertheless
+irreducible. Indeed, its absolute norm is $4$, absolute norm $1$ is
+equivalent to being a unit (use conjugation for the inverse), and a
+factorization into nonunits would require factors of absolute norm $2$,
+which the congruence above excludes. Consequently the graph that allows
+irreducible differences contains the triangle $\{0,1,2\}$ and is a
+different problem.
+
+Lopez's first prime-power graph $\mathcal P_k^{(1)}$ is exactly the
+prime-element graph used here \cite[Definition~52, p.~26]{lopez}.
+For $n\ge2$, the graph $\mathcal P_k^{(n)}$ also permits differences
+whose principal ideals are higher powers of prime ideals. In this
+example
+\[
+ P^2=(4,2\sqrt{10},10)=(2):
+\]
+all displayed generators are multiples of $2$, and $2=10-2\cdot4$.
+Thus $\{0,1,2\}$ is a triangle in every $\mathcal P_k^{(n)}$ with
+$n\ge2$, although $2$ is not a prime element. Lopez's bound $4$ in the
+ramified case \cite[Theorem~55, p.~27]{lopez} concerns
+$\mathcal P_k^{(1)}$ and is consistent with its exact value $2$ here.
+The ramification clause just cited is the thesis's wording; the journal
+Corollary~3.1.1 \cite[p.~573]{long} literally states its $4$-element
+bound for the case where $2$ splits.
+
+The conclusion concerns the equality exactly printed in
+\cite[Question~7.2]{problems}, with the full ring of integers and no
+principal-ideal-domain premise. It makes no assertion about a separately
+restricted PID version. The preceding citations record the definitions
+and classical ingredients used here. We make no claim of novelty,
+firstness, historical priority, or current worldwide openness of the
+printed question.
+
+An accompanying verification package records source receipts and exact
+finite diagnostic checks of the elementary arithmetic and boundary
+conventions. Those computations are supplementary; the proof above is
+complete and does not infer universal claims from a finite search.
+Third-party primary-source PDFs are cited rather than redistributed.
+
+\paragraph{Disclosure.}
+AI tools were used extensively in solving, verifying, and writing this
+note. The note is unrefereed, has received no external human peer review,
+and has no formal proof-assistant certification.
+
+\begin{thebibliography}{9}
+
+\bibitem{problems}
+K.~Delp, D.~Hoffoss, and J.~F.~Manning (eds.),
+\emph{Problems In Groups, Geometry, and Three-Manifolds},
+arXiv:1512.04620v1 (2015), Questions~7.1--7.2, pp.~5--6;
+reference~[19], p.~7.
+\url{https://arxiv.org/abs/1512.04620v1}.
+
+\bibitem{long-ms}
+D.~D.~Long and M.~B.~Thistlethwaite,
+\emph{Lenstra-Hurwitz cliques and the class number one problem},
+16-page author manuscript cited in \cite{problems},
+Definition~1, p.~1; Section~3, pp.~9--10.
+\url{https://web.math.ucsb.edu/~long/pubpdf/LenstraHurwitz.pdf}.
+
+\bibitem{long}
+D.~D.~Long and M.~B.~Thistlethwaite,
+Lenstra--Hurwitz cliques and the class number one problem,
+\emph{Journal of Number Theory} \textbf{162} (2016), 564--577.
+\href{https://doi.org/10.1016/j.jnt.2015.11.002}
+{doi:10.1016/j.jnt.2015.11.002}.
+
+\bibitem{lenstra}
+H.~W.~Lenstra, Jr.,
+Euclidean number fields of large degree,
+\emph{Inventiones Mathematicae} \textbf{38} (1977), 237--254,
+especially Proposition~2.2, p.~242.
+\url{https://pub.math.leidenuniv.nl/~lenstrahw/PUBLICATIONS/1977b/art.pdf}.
+
+\bibitem{dummit}
+E.~Dummit,
+\emph{Number Theory (part 9): The Geometry of Numbers},
+2021, version~1.90, p.~13 (the $\Z[\sqrt{10}]$ example).
+\url{https://dummit.cos.northeastern.edu/teaching_sp21_4527/numthy_9_geometry_of_numbers_v1.90.pdf}.
+
+\bibitem{lopez}
+D.~S.~Lopez,
+\emph{Lenstra-Hurwitz Cliques In Real Quadratic Fields},
+M.S. thesis, San Jos\'e State University, 2018,
+Definition~52, p.~26; Theorem~55, p.~27.
+\href{https://doi.org/10.31979/etd.3bc5-77v2}
+{doi:10.31979/etd.3bc5-77v2}.
+
+\end{thebibliography}
+\end{document}

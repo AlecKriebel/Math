@@ -1,0 +1,17 @@
+# Independent reconstruction before prior verdicts
+
+Frozen 2026-10-15 UTC. First read: AGENTS.md and the current manuscript.tex only; no preceding mathematical, priority, or preparation audit verdict was read. Completion estimate: 15% of whole-manuscript audit.
+
+Target: for an odd LEAST N >= 3 orbit between a fixed strict nested nondegenerate confocal ellipse pair, orthogonally project ORIGINAL foci (±c,0) to tangents to the OUTER ellipse at ordered original billiard vertices. Those tangents are actual sides of their consecutive-intersection outer polygon. Use signed trajectory-order shoelace area, including every admitted coprime star winding. Claim constancy of the product; individual areas need not be constant. Repetition is an s^2 scaling extension; circular boundary is a direct separate rotational extension. Hyperbolic, collapsed and grazing caustics are excluded.
+
+Independent reconstruction of the proof:
+* Use modulus k=c/alpha in (0,1), cn(v)=beta/b, so a=alpha dn(v)/cn(v), b=beta/cn(v), delta=2v=4K tau/N. The tangent-normal projection algebra gives Q=(a(c-a sn)/(a-c sn), ab cn/(a-c sn)). On real phase a-c sn >= a-c >0.
+* The vector's complex periods are 4K,4iK'; 2iK' fixes x and reverses y. sn alone has periods 4K,2iK'. On each of the two imaginary rows, denominator zeros are r±v with r=K+iK'. Their sn and cn values coincide and the denominator derivatives differ by sign, so Q has opposite collinear residue vectors. The common sn/cn poles are removable because the denominator has a nonzero principal term there.
+* At every singular phase of the N-term trace exactly two adjacent vertices are singular: gcd(tau,N)=1 and delta neither 0 nor 2K. Double terms cancel as det(R,-R)=0. No other edge has two singular endpoints. For N=3 both remaining edges share the one regular vertex, still simple. Cyclic wrap uses N delta=4K tau. Thus T has at most simple poles at b0+iK',b0+3iK' after reduction by L=4K/N; the two imaginary rows stay distinct.
+* Reflection Q(2K-w)=diag(1,-1)Q(w) reverses area sign and order, giving T(2K-w)=T(w); imaginary shift gives T(w+2iK')=-T(w). Since 2v is a real period, F(z)=T(K-v+z) is even.
+* At z=iK'+L/2, evenness and L-periodicity give F(-iK'+L/2)=F(iK'+L/2), while the imaginary antiperiod gives the opposite. This point is regular and hence a zero; its 2iK' translate is another. These cancel all simple possible poles of F(z)F(z+L/2), which is then constant on the compact torus. Pole-free case gives F=0, and no area division is needed.
+* Q_-(w)=-Q_+(w+2K). For odd N, 2K is congruent to L/2; therefore product equals the holomorphic product above. Even primitive N instead gives equal focal areas, with constancy of the square not implied.
+
+Success criteria: every algebraic identity and domain assertion above must survive independent checks, all rendered pages and bibliographic/reduction claims must agree with primary copies, all archive bytes/manifests/history must be accounted for, and the portable harness must not silently alter scientific logic or expected output. Numerical controls are falsification diagnostics, never a universal proof.
+
+Main candidate obstructions to test: quarter-period signs; common versus sn period lattice; translated-row residues; simultaneous adjacent poles for stars and N=3; focus-shift sign; area transport in the bicentric and inversion bridges; original-source label/chronology; exact output equality and adapter integrity; portable archive versus future publication receipts; global metadata/presentation consistency.

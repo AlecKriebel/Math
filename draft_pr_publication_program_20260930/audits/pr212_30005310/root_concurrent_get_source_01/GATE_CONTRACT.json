@@ -1,0 +1,82 @@
+{
+  "acceptance_schema": "pr212-root-concurrent-GET-extension-acceptance-v1",
+  "additional_required_gate_fields": {
+    "allowed_operations": "sortedunique nonempty subset namedoperations including explicit calleroperation",
+    "auxiliary_blob_pins": "canonicalreadonlyfileRefpath/bytes/SHA256",
+    "candidate_two_POST_orchestration_delta_reviewed": "requiredtrue if operation candidate",
+    "workers": "strictinteger1..8"
+  },
+  "aggregate_budget": "Sharedlocked canonical+origin48MB reservation beforeeach retainedresult; independentfinalsums retained; individualcanonical<=6MB,origin<=65536. Oldworkertransport/cachecaps remainseparate.",
+  "authority": "New gate permits only reviewed GET transport and named orchestration parameterization. Old individualRootadmission, canonicalOIDledger, per-effectlease/lock/source gates, trueRootexternalCAS and oldsync remain mandatory. No refwriter, PRwriter, newGlobalFiveauthority or originalCLI claim.",
+  "auxiliary_descriptor": {
+    "PR": 212,
+    "files": "finite<=32exactrows {oid,bytes,sha256};4MBperbody, typednonnegativebytes,64hexSHA256,40hexnativeOID",
+    "schema": "pr212-concurrent-GET-auxiliary-blob-pins-v1"
+  },
+  "auxiliary_required_OIDs": "m.protected_queue.sha, h.CURRENT_QUEUE, rt.pre[h.VIEWS[2]].sha, plus nonabsent native case/global logpreimageOID; selected-overlayduplicate OIDs neednoextrarow. UnexpectedextraauxOIDrefused.",
+  "descriptor_only": true,
+  "expected_pins_only": "Source/Rootexpectedpin isnever returned as a nativebody. Every response must be actual fresholdAPI GET with retained raw origin, independently size/base64/nativeSHA1/SHA256 checked before collection.",
+  "exports": {
+    "bind_runtime": "bind_runtime(driver, runtime, extension_acceptance_ref, operation) -> GuardedRuntime",
+    "candidate": "candidate(driver, guarded_runtime): only operation candidate; old sequential construction plus FastAPI reader",
+    "make_readonly_api": "make_readonly_api(driver, guarded_runtime, journal) -> fresh FastAPI; joins all workers before returning"
+  },
+  "external_terminal_integration": "operation exactly terminal. Afterbind_runtime usewrappedRuntime everywhere, createFastAPI throughfactory, then retainoldactualCAS/immutable/pointer/local/lock/mainclosure validations. TerminalRootauthoritiesremainseparate.",
+  "independence": "Independent proofprocess creates newSeed/Runtime/GuardedRuntime/FastAPI/workers/journals; no origin/cache/sharedpool transfer.",
+  "journals": {
+    "candidate": "exactadmittedROOT_ADMIN212_CANDIDATE_*",
+    "externalterminal": "ROOT_ADMIN212_READ_ROOT_TERMINAL_*",
+    "mainread": "ROOT_ADMIN212_FAST_READ_*",
+    "sync": "ROOT_ADMIN212_SYNC_FAST_*",
+    "worker": "ROOT_ADMIN212_FAST_WORK_<20hexjournaloperationdigest>_<0..7>"
+  },
+  "module": "concurrent_get_extension.py",
+  "module_pin": {
+    "bytes": 24985,
+    "sha256": "ef746eb08622c919dffe08b037fc2ce18dfcc6629d44182aacb9d8b2e156f5f0"
+  },
+  "no_actual_gate_or_authority_created": true,
+  "old_protocol_pin": {
+    "bytes": 43897,
+    "sha256": "16e5e3a15cc4cf34554aabf0b094b34996064c1abb05c008e26b47b00bf18ce8"
+  },
+  "old_source_manifest_pin": {
+    "bytes": 2195,
+    "sha256": "7a0e69c0d7b7a31d642a054f96124729c42b808c03e47aab6b371091796e66e7"
+  },
+  "operations": [
+    "candidate",
+    "hold-CAS",
+    "sync",
+    "terminal",
+    "verify"
+  ],
+  "prefetch_deadline": "Fixed120s overall; checked before dispatch/acceptance; failurestopsnewjobs andjoinsbounded oldtransports. Cleanupmayaddremainingindividual120s pluslocaloverhead; noinstantcancelclaim.",
+  "required_dynamic_pin_fields": [
+    "extension_pin",
+    "extension_source_manifest_pin",
+    "protocol_pin",
+    "protocol_source_manifest_pin",
+    "logical_manifest_pin",
+    "logical_gate_pin",
+    "admission_pin",
+    "admission_gate_pin"
+  ],
+  "required_static_match_fields": {
+    "PR": 212,
+    "Root_full_source_read": true,
+    "accepted": true,
+    "actual_native_GET_transport_extension_explicitly_accepted": true,
+    "evidence_scope": "ACTUAL_ROOT_RECEIPT",
+    "fresh_actual_parameter_bindings_accepted": true,
+    "independent_source_adversarial_review_accepted": true,
+    "no_ref_PR_or_global_five_authority_added": true,
+    "old_logical_packet_and_source_identity_unchanged": true,
+    "old_sync_and_hold_CAS_invoked_unchanged": true,
+    "only_existing_inherited_per_admission_effect_authority": true,
+    "original_driver_CLI_execution_claimed": false
+  },
+  "schema": "pr212-concurrent-GET-gate-contract-descriptor-v1",
+  "source_manifest": "Finitebasename positiveclosure, SourceOnly/selfExcluded. Rootgate bindsactual finalsourceManifestpin. No oldlogical/sourcebody changes.",
+  "unknown_dynamic_R_QUEUE": "Afterjoinedprefetch, an unknownfixedSHA nativeblob is read sequentially through worker0, fully validated/capped, originmirrored and later revalidated by oldNativeBodyProofs/ownedrowguard. No mutableGETcache."
+}

@@ -1,0 +1,7 @@
+# Circle-action wording in the related-work discussion
+
+The current manuscript, metadata and archive README explicitly say that the Cappell–Weinberger–Yan/Mundet predecessor examples have no nontrivial continuous circle action. Every space admits the trivial action. Excluding effective circle actions implies the stated exclusion of nontrivial actions: the kernel of a nontrivial continuous circle action is a proper closed subgroup and therefore finite; the quotient is again a circle acting effectively. In particular no free circle action exists.
+
+Earlier sealed review packets and immutable original files are preserved byte for byte. Their standard shorthand about absence of a circle action is interpreted in this precise nontrivial/effective sense. This editorial clarification changes no Wu-manifold theorem, proof, priority disposition or exclusion by the nonabelian fundamental group. All historical gates and reproduction records in the archive retain their own dates and input versions; current release identities are bound by MANIFEST.json and PREPRINT_BINDINGS.json.
+
+The Debray–Yu reference now distinguishes the exact author-hosted arXiv v2 header date, 22 July 2025, from its internal Date line, 23 July 2025. The same 742833-byte PDF has SHA256 2f847505f1ae95a1b7806fe5ef860993571d4b69d67365ec629635c230594442. The cited lemmas, pages and attribution are unchanged; no journal/preprint byte identity is assumed.

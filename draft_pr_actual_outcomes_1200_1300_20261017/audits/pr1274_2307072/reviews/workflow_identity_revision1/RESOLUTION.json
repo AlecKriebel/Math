@@ -1,0 +1,73 @@
+{
+  "schema": "math-pr1274-workflow-identity-resolution-v1",
+  "at_utc": "2026-10-18T02:00:18.288962+00:00",
+  "pr": 1274,
+  "problem_id": 2307072,
+  "status": "RESOLVED_OFFLINE",
+  "finding": "Canonical alias-only tracker rows such as AMR-022-7072 were missed by the compact-only substring predicate; compact aliases with an extra trailing digit were also falsely matched.",
+  "motivating_before_after": {
+    "row": [
+      "",
+      "",
+      "",
+      "AMR-022-7072"
+    ],
+    "old_recognized": false,
+    "new_recognized": true
+  },
+  "near_collision_before_after": {
+    "row": [
+      "AMR02270729",
+      "",
+      "",
+      ""
+    ],
+    "old_recognized": true,
+    "new_recognized": false
+  },
+  "historical_workflow_manifest": {
+    "path": "reviews/workflow_tooling/MANIFEST.json",
+    "sha256": "f516d2ca9a3a5830c99d201694edeab9fdfac6b2f5e6787607805b593b5b26b4",
+    "members_preserved": 22
+  },
+  "historical_deployment_receipt": {
+    "path": "reviews/workflow_tooling/ACTUAL_DEPLOYMENT_RECEIPT.json",
+    "sha256": "08a9a657baf195ceb891809dd7bf51eab27dd02aba2d411457251e9aedde40f6",
+    "interpretation": "Immutable record of then-current deployment only. It no longer authenticates the two revised current operative sources and is not current identity-guard clearance."
+  },
+  "changed_current_operative_sources": [
+    {
+      "operative_path": "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1274_2307072/publication/append_tracker.py",
+      "historical_copy": "reviews/workflow_tooling/deployed/publication/append_tracker.py",
+      "old_sha256": "aafde00767f5c549f2ecc704433bb33069b3098bb81a2ec32b713b211366a9e5",
+      "new_sha256": "aa9ef77842da8bae1ffcbff3967b898c6d96d59a3ce03daabd99c7e2e769497c"
+    },
+    {
+      "operative_path": "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1274_2307072/publication/workflow_regression.py",
+      "historical_copy": "reviews/workflow_tooling/deployed/publication/workflow_regression.py",
+      "old_sha256": "488a7828188aa2f5f957af62a5a9d1cea0e1961966f69078c6cc24dccef8d161",
+      "new_sha256": "91500546f5844342e35ee15c2c9120e6ad081095a6057862f543b1ac139c28ab"
+    }
+  ],
+  "unchanged_current_operative_sources": 8,
+  "mechanism": "One shared regex-aware predicate, used by actual prepublication/append/postmerge paths, recognizes the canonical AMR groups with separator/case/group-zero-padding variants and alphanumeric boundaries. Numeric problem ID, PR URL and known trimmed bare DOI/URL behavior is preserved.",
+  "tests": {
+    "direct_predicate_cases_per_mode": 80,
+    "identity_stage_cell_cases_per_mode": 240,
+    "postmerge_complete_main_scenarios_per_mode": 125,
+    "canonical_alias_spellings_each_cell_at_all_stages": 8,
+    "near_collision_spellings_each_cell_at_all_stages": 7,
+    "each_final_blob_corruption_per_mode": 11,
+    "actual_shared_kit_cases_per_mode": 14,
+    "each_supplied_metadata_field_guards_per_mode": 11,
+    "modes": [
+      "normal",
+      "-O",
+      "-OO"
+    ],
+    "all_modes_identical": true,
+    "workflow_receipt_sha256": "fe44518c7c93f07d4d27a3b7e8d6a46d44b51e0e1db6b0e06295f8525430994f",
+    "direct_receipt_sha256": "3a28266ea6d6ac9953a10744ea1b3e3280dbc126573d36b145cb9c635f58971f"
+  },
+  "clearance_limits": "Focused offline repair only. No real service or Git mutation, credential read, mathematical/priority gate, manuscript/PDF/package approval or actual fresh whole-package adversarial review. Root current package and two new full reviewers remain required."
+}

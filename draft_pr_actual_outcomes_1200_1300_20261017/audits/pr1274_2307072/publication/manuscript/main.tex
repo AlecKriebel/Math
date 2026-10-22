@@ -1,0 +1,284 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\C}{\mathbb C}
+\newcommand{\D}{\mathbb D}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\dd}{\,dA}
+\newcommand{\pv}{\operatorname{pv}}
+\newcommand{\dbar}{\bar\partial}
+\title{Explicit Beurling-transform counterexamples in an analytic annihilator}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{17 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a self-contained expository verification of classical Beurling-transform
+formulas in the analytic annihilator of Hayman--Lingham Problem~7.72.
+Iwaniec's bounded angular example has an essentially unbounded logarithmic
+transform. A polynomial specialization of Gill's angular-mode formula has
+input norm one and transform norm $H_m=\sum_{k=1}^m k^{-1}$.
+The verification includes the full analytic $L^1$ test class, principal values,
+boundary traces, and essential suprema. No historical priority is claimed.
+\end{abstract}
+
+\section{Conventions, attribution, and statement}
+Let $\D=\{z\in\C:|z|<1\}$ and let $dA=dx\,dy$ be unnormalized area measure.
+Write $A^1(\D)$ for the holomorphic functions in $L^1(\D)$ and set
+\begin{equation}\label{eq:N}
+ N=\left\{v\in L^\infty(\D):
+       \int_{\D}v(z)\phi(z)\dd(z)=0\quad\text{for every }\phi\in A^1(\D)\right\}.
+\end{equation}
+The pairing is bilinear. Extend inputs by zero outside $\D$ and use
+\begin{equation}\label{eq:B}
+ Bv(z)=-\frac1\pi\lim_{\varepsilon\downarrow0}
+       \int_{\D\setminus B(z,\varepsilon)}
+          \frac{v(\zeta)}{(z-\zeta)^2}\dd(\zeta).
+\end{equation}
+These are the conventions of Problem~7.72, attributed there to A.~Hinkkanen,
+in the 2018 manuscript of Hayman and Lingham \cite[p.~183]{HL18}.
+It asks whether $Bv$ is essentially bounded for every $v\in N$, whether
+$\|Bv\|_\infty\le C\|v\|_\infty$ holds with a common constant, and whether
+the latter estimate holds at least on $N\cap\C[z,\bar z]$.
+
+The ingredients below are classical. Iwaniec \cite[p.~388, (6)--(7)]{I86}
+prints the exact example $\rho=(z/\bar z)\ind_{\D}$, its transform
+$(1+\log|z|^2)\ind_{\D}$, and the primitive
+$(z\log|z|^2)\ind_{\D}$, with the negative kernel in \eqref{eq:B}.
+Gill \cite[p.~354, Theorem~1]{G10} gives, in particular, for real
+bounded $a$ supported in $(0,1)$,
+\begin{equation}\label{eq:Gill}
+ B\left[\frac z{\bar z}a(|z|^2)\right](z)
+     =a(t)-\int_t^\infty\frac{a(s)}s\,ds,\qquad t=|z|^2,
+\end{equation}
+and credits Iwaniec for the logarithmic example
+\cite[pp.~355--356]{G10}. The polynomial calculation here is an explicit
+specialization of this formula, rather than a new transform mechanism.
+The 2019 book's Update~7.72 credits Volberg with resolving the problem and
+refers to Ba\~nuelos--Janakiraman \cite{BJ08} for an account
+\cite[p.~211]{HL19}. We report that published credit; our reading of
+the cited finite-$p$ paper did not locate an explicit account of both
+endpoint assertions, and we do not identify a separate Volberg proof.
+The purpose here is to verify the explicit
+consequences under \eqref{eq:N}--\eqref{eq:B}, independently of that history.
+
+\begin{theorem}\label{thm:main}
+Define $\rho(z)=z/\bar z$ for $0<|z|<1$, with $\rho(0)=0$.
+Then $\rho\in N$, $\|\rho\|_{L^\infty(\D)}=1$, and
+\begin{equation}\label{eq:rho}
+ B\rho(z)=1+\log|z|^2\qquad(0<|z|<1).
+\end{equation}
+In particular, $B\rho\notin L^\infty(\D)$.
+For every positive integer $m$, let
+\begin{equation}\label{eq:vm}
+ P_m(t)=\sum_{j=0}^{m-1}(1-t)^j,\qquad
+ v_m(z)=z^2P_m(|z|^2),\qquad H_m=\sum_{k=1}^m\frac1k.
+\end{equation}
+Then $v_m\in N\cap\C[z,\bar z]$ and
+\begin{equation}\label{eq:norms}
+ \|v_m\|_{L^\infty(\D)}=1,\qquad
+ \|Bv_m\|_{L^\infty(\D)}=H_m.
+\end{equation}
+Both transforms vanish almost everywhere outside $\D$.
+\end{theorem}
+
+\section{Angular cancellation and the Cauchy potential}
+For bounded measurable $a:(0,1)\to\C$, put
+$f_a(re^{i\theta})=e^{2i\theta}a(r^2)$ in $\D$ and zero outside.
+If $\phi\in A^1(\D)$, then $f_a\phi$ is absolutely integrable.
+On each circle $r<1$, the Taylor series $\phi(z)=\sum_{n\ge0}c_nz^n$
+converges uniformly, and therefore
+\[
+ \int_0^{2\pi}e^{2i\theta}\phi(re^{i\theta})\,d\theta
+  =\sum_{n\ge0}c_nr^n\int_0^{2\pi}e^{i(n+2)\theta}\,d\theta=0.
+\]
+Polar-coordinate Fubini proves $f_a|_{\D}\in N$. This verifies every
+analytic $L^1$ test, without a density assertion about endpoint dual spaces.
+
+For bounded compactly supported $f$, define the actual Cauchy potential
+\begin{equation}\label{eq:C}
+ Cf(z)=\frac1\pi\int_{\C}\frac{f(\zeta)}{z-\zeta}\dd(\zeta).
+\end{equation}
+This integral is absolutely convergent for every $z$, since
+$|z-\zeta|^{-1}$ is locally integrable. Fix $z\ne0$ and $r\ne|z|$.
+For $r<|z|$, the geometric expansion of $(z-re^{i\theta})^{-1}$ has
+terms $r^ne^{in\theta}/z^{n+1}$, so multiplication by $e^{2i\theta}$
+leaves no constant angular term. For $r>|z|$, use
+\[
+ \frac1{z-re^{i\theta}}
+   =-\sum_{n\ge0}\frac{z^n}{r^{n+1}}e^{-i(n+1)\theta}.
+\]
+Only $n=1$ survives; its angular integral is $-2\pi z/r^2$.
+Each series converges uniformly on its fixed circle. Absolute
+integrability of \eqref{eq:C} permits polar Fubini and omission of the
+single radius $r=|z|$. Substitution $s=r^2$ gives
+\begin{equation}\label{eq:Ca}
+ Cf_a(z)=
+ \begin{cases}
+ -z\displaystyle\int_{|z|^2}^1\frac{a(s)}s\,ds,&0<|z|<1,\\[1ex]
+ 0,&|z|>1.
+ \end{cases}
+\end{equation}
+At $z=0$ the angular integral is zero. The same calculation gives zero
+on $|z|=1$. Thus no unspecified holomorphic correction occurs in this
+potential.
+
+We record why differentiating it yields the principal value in
+\eqref{eq:B}. With
+$\partial=\tfrac12(\partial_x-i\partial_y)$ and
+$\dbar=\tfrac12(\partial_x+i\partial_y)$, the locally integrable
+kernel $E(z)=1/(\pi z)$ satisfies, in distributions,
+\begin{equation}\label{eq:kernel}
+ \dbar E=\delta_0,\qquad
+ \partial E=-\frac1\pi\pv\frac1{z^2}.
+\end{equation}
+Indeed, integrate by parts off $|z|\le\varepsilon$ against a smooth
+compactly supported test function $\psi$. For $\partial E$, the inner
+boundary term has angular factor $e^{-2i\theta}$ and tends to zero.
+For $\dbar E$ the factor is one and the normalized term tends to
+$\psi(0)$. The principal-value distribution exists because its constant
+angular term cancels and $\psi(z)-\psi(0)=O(|z|)$ is integrable against
+$|z|^{-2}dA$ near zero. This establishes both the sign and normalization.
+
+Convolution with compactly supported $f$ now gives
+$\partial Cf=Bf$ in distributions. Where $f$ is locally $C^1$, the
+pointwise principal value exists: on a small centered disc subtract
+$f(z)$, whose kernel integral is zero, and use
+\[
+ \frac{|f(\zeta)-f(z)|}{|z-\zeta|^2}\le\frac{C}{|z-\zeta|}.
+\]
+On smaller compact neighborhoods these local integrals converge uniformly;
+the remaining integral is continuous. Thus the principal-value function
+is continuous there and agrees with the distributional derivative.
+This applies everywhere inside $\D$ to $v_m$ and everywhere in
+$\D\setminus\{0\}$ to $\rho$.
+
+\section{The logarithmic and polynomial calculations}
+Taking $a=1$ in \eqref{eq:Ca} gives
+\[
+ C\rho(z)=u(z)=z\log|z|^2\quad(0<|z|<1),
+ \qquad u(0)=0,\qquad u(z)=0\quad(|z|\ge1).
+\]
+This is continuous at the origin and has zero boundary trace on
+$|z|=1$. Direct differentiation in the punctured disc gives
+\begin{equation}\label{eq:uderivatives}
+ \dbar u=\frac z{\bar z},\qquad \partial u=1+\log|z|^2.
+\end{equation}
+These are also the global weak derivatives, extended by zero outside
+$\D$. To check this, integrate by parts on
+$\varepsilon<|z|<1$. The outer boundary term is zero. The inner term
+is bounded by a constant times
+$\varepsilon\sup_{|z|=\varepsilon}|u(z)|
+ =2\varepsilon^2|\log\varepsilon|\to0$.
+The displayed derivatives belong to every finite $L^p$ because
+$\int_0^1 r|\log r|^p\,dr<\infty$; hence passage to the limit is
+legitimate and creates neither a point mass nor a boundary measure.
+Equations \eqref{eq:kernel} and \eqref{eq:uderivatives}, with the local
+principal-value argument, prove \eqref{eq:rho}.
+
+For $M\ge1$, its level set has positive area:
+\begin{equation}\label{eq:level}
+ \bigl|\{z\in\D:|B\rho(z)|>M\}\bigr|=\pi e^{-M-1}>0.
+\end{equation}
+Consequently the unboundedness is essential. At the exceptional point
+$0$, the truncated integral is
+\[
+ -\frac1\pi\int_{\varepsilon<|\zeta|<1}|\zeta|^{-2}\dd(\zeta)
+ =2\log\varepsilon\longrightarrow-\infty.
+\]
+No finite principal value there is needed for the almost-everywhere
+conclusion. Angular cancellation above
+places $\rho$ in $N$, and $|\rho|=1$ almost everywhere in $\D$.
+
+For the polynomials in \eqref{eq:vm}, the radial amplitude is
+\[
+ a_m(t)=tP_m(t)=1-(1-t)^m\qquad(0<t<1).
+\]
+It lies between zero and one and tends to one as $t\uparrow1$.
+Every level below one is exceeded on a positive-area outer annulus,
+so $\|v_m\|_\infty=1$. The finite expression $z^2P_m(z\bar z)$
+is a polynomial at the origin as well, and angular cancellation gives
+$v_m\in N$.
+Formula \eqref{eq:Ca} becomes $Cv_m(z)=zF_m(|z|^2)$ in $\D$, where
+\begin{equation}\label{eq:F}
+ F_m(t)=-\int_t^1P_m(s)\,ds
+       =-\sum_{k=1}^m\frac{(1-t)^k}{k}.
+\end{equation}
+Its zero extension is continuous across $|z|=1$ and smooth at the
+origin. Integration by parts, using the zero boundary value, gives its
+global weak derivatives without boundary measures. Inside $\D$ they are
+\[
+ \dbar Cv_m=z^2P_m(|z|^2)=v_m,\qquad
+ Bv_m(z)=\partial Cv_m(z)=G_m(|z|^2),
+\]
+where
+\begin{equation}\label{eq:G}
+ G_m(t)=1-(1-t)^m-\sum_{k=1}^m\frac{(1-t)^k}{k}.
+\end{equation}
+The output is continuous in $\D$. Its endpoint values and derivative are
+\[
+ G_m(0)=-H_m,\qquad G_m(1)=1,\qquad
+ G_m'(t)=P_m(t)+m(1-t)^{m-1}>0\quad(0<t<1).
+\]
+Thus $|G_m(t)|\le H_m$, since $H_m\ge1$. Conversely, continuity at
+zero makes $|G_m(|z|^2)|>H_m-\eta$ on a disc of positive area for
+every $\eta>0$ with $H_m-\eta>0$. This proves the essential norm
+identity in \eqref{eq:norms}, rather than relying on an isolated point
+value. For $m=1$ one obtains $v_1=z^2$ and $G_1(t)=2t-1$, so the
+boundary case has norm one as asserted. Since
+$H_m\ge\log(m+1)\to\infty$, no common polynomial bound exists.
+Finally, the potentials vanish on the exterior, so their derivatives,
+and hence both transforms, vanish there. This completes the proof of
+Theorem~\ref{thm:main}.
+
+Each fixed polynomial in this family has a bounded transform; the
+polynomial conclusion concerns the failure of one constant for all
+inputs. The separate classical input $\rho$ disproves boundedness of
+the transform for every member of $N$. The same conclusions hold if
+the output norm is taken on $\C$.
+
+\paragraph{Verification and disclosure.}
+The all-parameter analytic proof above supplies the conclusions.
+Finite exact-coefficient checks in the accompanying verification
+material are diagnostic supplements, not a proof for all $m$ or a
+formal proof-assistant certification. AI tools were used extensively
+in research, solving, verification, literature investigation, drafting,
+and internal adversarial review. This note is unrefereed and has had
+no external human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{BJ08}
+R.~Ba\~nuelos and P.~Janakiraman,
+\emph{$L^p$-bounds for the Beurling--Ahlfors transform},
+Trans. Amer. Math. Soc. \textbf{360} (2008), no.~7, 3603--3612.
+\href{https://doi.org/10.1090/S0002-9947-08-04537-6}{doi:10.1090/S0002-9947-08-04537-6}.
+
+\bibitem{G10}
+J.~T.~Gill,
+\emph{On the Beurling--Ahlfors transform's weak-type constant},
+Michigan Math. J. \textbf{59} (2010), no.~2, 353--363.
+\href{https://doi.org/10.1307/mmj/1281531461}{doi:10.1307/mmj/1281531461}.
+
+\bibitem{HL18}
+W.~K.~Hayman and E.~F.~Lingham,
+\emph{Research Problems in Function Theory (New Edition)},
+2018, arXiv:1809.07200v2, Problem~7.72, printed p.~183.
+\href{https://arxiv.org/abs/1809.07200v2}{arxiv.org/abs/1809.07200v2}.
+
+\bibitem{HL19}
+W.~K.~Hayman and E.~F.~Lingham,
+\emph{Research Problems in Function Theory: Fiftieth Anniversary Edition},
+Springer, Cham, 2019, Update~7.72, p.~211.
+\href{https://doi.org/10.1007/978-3-030-25165-9}{doi:10.1007/978-3-030-25165-9}.
+
+\bibitem{I86}
+T.~Iwaniec,
+\emph{The best constant in a BMO-inequality for the Beurling--Ahlfors transform},
+Michigan Math. J. \textbf{33} (1986), no.~3, 387--394.
+\href{https://doi.org/10.1307/mmj/1029003418}{doi:10.1307/mmj/1029003418}.
+\end{thebibliography}
+\end{document}

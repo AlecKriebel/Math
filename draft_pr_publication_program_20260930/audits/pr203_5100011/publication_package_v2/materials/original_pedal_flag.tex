@@ -1,0 +1,529 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=0.95in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\area}{\mathcal A}
+\title{A flag-curve proof of an original-side pedal-area invariant}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a proper confocal elliptical billiard caustic with least period divisible
+by four, the signed trajectory area times its signed pedal area is constant
+along the family for every fixed pedal point. We present an incidence-curve
+proof that includes primitive stars and zero or negative pedal areas.
+The two factors have disjoint possible simple poles; reversal makes each
+vanish at the other's poles. Compactness finishes the proof.
+The exact theorem also appears in Ferudun's contemporary note, which we
+credit. This is an alternative presentation using established Poncelet
+methods, with no claim of theorem or method novelty, first disclosure,
+or certified independent discovery. The least-period qualification is
+essential, as an exact repeated-orbit control illustrates.
+\end{abstract}
+
+\section{Statement, conventions and prior work}
+Fix the conics
+\[
+ E:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad
+ C:\frac{x^2}{\alpha^2}+\frac{y^2}{\beta^2}=1,\qquad
+ \alpha^2=a^2-\lambda,\quad\beta^2=b^2-\lambda,
+ \quad a>b>0,\quad 0<\lambda<b^2 .
+\]
+Suppose the physical billiard trajectories with caustic \(C\) have
+\emph{least} period \(N=2m\), with \(m\ge2\) even.
+Write \(P_j\) for successive boundary vertices and \(L_j=P_jP_{j+1}\)
+for their supporting lines, with indices modulo \(N\).
+For each fixed finite \(M\in\RR^2\), let \(Q_j(M)\) be its perpendicular
+foot on \(L_j\), and set
+\[
+ \area(Z)=\frac12\sum_{j=0}^{N-1}\det(Z_j,Z_{j+1}),
+ \qquad A=\area(P),\quad B_M=\area(Q(M)).
+\]
+The order is the actual traversal order, including for a star.
+These are signed shoelace areas. Feet are taken on complete lines,
+with no clipping to side segments. The point \(M\) remains fixed as
+the orbit phase varies.
+
+\begin{theorem}\label{main}
+For the fixed conic pair and each fixed \(M\), \(A B_M\) is independent
+of phase. Every admitted coprime winding and both traversal orientations
+are included. The conclusion allows zero or negative \(B_M\).
+\end{theorem}
+
+This is the least-period interpretation of \(k_{203,a}\) in
+Reznik--Garcia--Koiller \cite[Section~3.3, Table~3, p.~346]{rgk};
+the same row is in their arXiv edition \cite[Table~3, p.~6]{rgkarxiv}.
+Their area convention is signed \cite[Eq.(1)]{rgk}. The table prints
+\(N\equiv0\pmod4\) and all \(M\), but does not literally print
+\emph{least period}. We state that qualification explicitly.
+An unrestricted repeated-list interpretation is false
+(Section~\ref{controls}). Historical question marks in the proof column
+do not establish present-day openness.
+
+Ferudun \cite[Theorem A, p.~2]{ferudun} states the same theorem, with
+the stronger allowance of complex \(M\), the four-period formula and
+signed star examples. His Section~4 proves the product by complementary
+poles and reversal zeros in Jacobi coordinates. The proof below expresses
+that strategy on the flag curve with explicit branch charts.
+The original submitted proof preserved in our supplement uses a
+pedal/contact-area trace comparison and the credited even area-product
+theorem of Ch\'avez-Caliz \cite{chavez}. Different organizations do not
+establish theorem or method novelty.
+
+The radial pedal-area principle is classical; see Steiner's treatment
+\cite[Sections XIV--XVI, reprint pp.~18--22]{steiner}.
+The flag curve, involutions and meromorphic-invariant methods are
+established Poncelet tools \cite[Section~3]{schwartz},
+\cite[Sections~4--5]{ast}, \cite[Section~2 and p.~104]{chavez}.
+The four-period case also follows from Bialy--Tabachnikov's distance-product
+invariant \cite[Theorem~4.3(2)]{bt}, as explained below.
+We use the flag construction in \cite{schwartz}, without relying on its
+centroid conclusion whose proof gap is discussed in \cite[p.~92]{chavez}.
+
+\paragraph{Dated records.}
+The currently public original GitHub PR203 record gives server creation
+time \(2026\text{-}10\text{-}01\), 05:24:27 UTC; its original head
+\texttt{8edca9d773c085adb4ed0611357a7a2957e3395d}
+contains the preserved proof \cite{pr203}.
+The original Zenodo record for \cite{ferudun} was created on
+\(2026\text{-}10\text{-}15\), 16:11:42.588744 UTC.
+These are verified object-record dates, documented in the supplement.
+Historical repository visibility at every earlier instant, discovery
+times, earliest disclosure and independence are not certified.
+We describe separate contemporary records and claim no firstness.
+
+\section{Flags, translations and the central half-period}
+The complex projective incidence curve is
+\[
+ X=\{(P,L):P\in E,\ L\text{ tangent to }C,\ P\in L\}.
+\]
+Let \(\pi\) forget \(L\), and \(\rho\) forget \(P\).
+Let \(\sigma\) exchange the two endpoints of \(L\) on \(E\), and
+\(\tau\) exchange the two caustic tangents through \(P\).
+Composition is right to left; put \(T=\tau\sigma\).
+
+On a physical orbit this is exactly the flag step. The reflected chord can
+have the incoming chord's supporting line only at normal incidence:
+a tangent to \(E\) cannot touch the strictly interior \(C\).
+At \(P=(a\cos\theta,b\sin\theta)\), the normal line has coefficients
+\[
+ [u:v:w]=[-\sin\theta/b:\cos\theta/a:
+                 c\sin\theta\cos\theta/(ab)],\qquad c=a^2-b^2 .
+\]
+Substitution in the dual-caustic equation gives
+\(\lambda=a^2\sin^2\theta+b^2\cos^2\theta\ge b^2\), excluded.
+Thus reflection selects the other caustic tangent.
+The real-component description below also shows that vertex and flag
+least periods agree.
+
+We record the geometry and local charts needed for the proof.
+Put \(c=a^2-b^2>0\). In line coordinates \(L=[u:v:w]\), the dual caustic is
+\[
+ C^*:\alpha^2u^2+\beta^2v^2-w^2=0,\qquad
+ D=u^2+v^2,\quad H=a^2u^2+b^2v^2.
+\]
+Its endpoint double cover has the local homogeneous formula
+\begin{equation}\label{cover}
+ \eta^2=a^2b^2\lambda D,\qquad
+ P=[-a^2uw-v\eta:-b^2vw+u\eta:H].
+\end{equation}
+Indeed \(H-w^2=\lambda D\); substitution verifies incidence and
+\(x^2/a^2+y^2/b^2=z^2\). The formula extends by incidence at charts
+where the displayed triple cancels.
+
+The zeros of \(D\) on \(C^*\) are exactly
+\begin{equation}\label{branch}
+ L_{\epsilon,\delta}=[1:\epsilon i:\delta\sqrt c],
+ \qquad \epsilon,\delta\in\{1,-1\}.
+\end{equation}
+They are the common tangents of \(E,C\). They are simple zeros:
+on \(u=1\), \(w\ne0\), \(v\) is a coordinate and \(D'=2v\ne0\).
+Thus \(\rho\) branches simply at these four values, and has no other
+branch values. The smooth double cover of the conic is connected:
+a disconnected degree-two cover would consist of degree-one covers
+and could not branch. Riemann--Hurwitz gives genus one.
+This also verifies smoothness of the incidence curve through the
+charts omitted by the displayed endpoint formula.
+
+The other projection \(\pi:X\to E\) branches precisely at the four
+finite transverse intersections
+\[
+ x^2=\frac{a^2\alpha^2}{c},\qquad
+ y^2=-\frac{b^2\beta^2}{c},\qquad z=1.
+\]
+All coordinates are nonzero and the gradients are not proportional,
+since \(a^2/\alpha^2\ne b^2/\beta^2\).
+In particular \(\pi\) is unramified over both infinities of \(E\).
+
+Each branched deck involution acts by \(-1\) on a holomorphic
+differential of \(X\). Hence \(T\) preserves that differential and is
+a translation under genus-one uniformization. A real orbit of least
+period \(N\) makes its order exactly \(N\) on \(X\).
+Nonidentity powers of \(T\) have no fixed point. We have
+\begin{equation}\label{reverse}
+ \sigma T^j=T^{-j}\sigma,\qquad \tau T^j=T^{-j}\tau .
+\end{equation}
+
+For completeness, central inversion \(I\) is the half-period
+\begin{equation}\label{central}
+ I=T^m,\qquad N=2m .
+\end{equation}
+Here is a real-component proof that includes stars.
+Normalize a real tangent as \(n(\phi)\cdot P=1\), where
+\[
+ n(\phi)=(\cos\phi/\alpha,\sin\phi/\beta),\quad
+ q(\phi)=(\alpha\cos\phi,\beta\sin\phi),\quad
+ d(\phi)=(-\sin\phi/\beta,\cos\phi/\alpha).
+\]
+Its endpoints are \(P=q+s d\).
+Since \(q\) lies strictly inside \(E\), the quadratic equation for \(s\)
+has distinct roots of opposite signs. These two continuous branches
+give the two circles of \(X(\RR)\); \(\sigma\) exchanges them.
+For fixed \(P\), the two tangent solutions of \(n(\phi)\cdot P=1\)
+have derivative \(s/(\alpha\beta)\) of opposite signs, so \(\tau\)
+also exchanges the circles. Each circle maps homeomorphically to
+\(E(\RR)\), and \(T\) preserves it.
+
+The map \(I\) sends \(\phi\) to \(\phi+\pi\) with \(s\) unchanged.
+It commutes with \(T\), preserves either circle and its orientation,
+and has order two. The map \(T\) preserves orientation, since it
+preserves a nonvanishing real holomorphic differential there.
+The finite group generated by \(T,I\) acts faithfully on that circle;
+an automorphism identical on a real circle is identical on connected
+\(X\). Averaging a metric over this finite group makes its
+orientation-preserving elements rotations. There is just one
+nonidentity rotation of order two. Thus \(I=T^m\) on the real circle,
+and then on \(X\) by analytic continuation. No convex traversal
+order has been assumed.
+
+For \(x\in X\), define meromorphically
+\(P_j(x)=\pi(T^jx)\), \(L_j(x)=\rho(T^jx)\), and their cyclic
+areas. Cyclic reindexing makes both areas \(T\)-invariant.
+All real phases have finite vertices and feet.
+
+\section{Pole supports and their orders}
+Let \(S_0\) be the four flags over the two infinities
+\([a:\epsilon ib:0]\) of \(E\), and let
+\(R_0=\operatorname{Fix}(\sigma)\), the four branch points in
+\eqref{branch}. Write
+\[
+ S=\bigcup_{j=0}^{N-1}T^jS_0,\qquad
+ R=\bigcup_{j=0}^{N-1}T^jR_0 .
+\]
+Only containment in these finite sets is asserted; a special \(M\)
+may remove a prospective pole.
+
+\begin{lemma}\label{polesA}
+The only possible poles of \(A\) lie in \(S\), and each has order at
+most one. If \(x\in S_0\), then
+\(\sigma x=T^{m-1}x\).
+\end{lemma}
+\begin{proof}
+Affine coordinates on \(E\) have simple poles at its two infinities.
+Their pullbacks still have simple poles, since \(\pi\) is unramified
+there. Two consecutive vertices cannot both be infinite. If they
+are the distinct infinities, their line is \(z=0\), not tangent to \(C\).
+If the two intersections coincide at an infinity, the line must be
+the tangent to \(E\) there. Its coordinates
+\([1/a:\epsilon i/b:0]\) do not satisfy the dual-caustic equation:
+\[
+ \frac{\alpha^2}{a^2}-\frac{\beta^2}{b^2}
+ =\lambda(1/b^2-1/a^2)\ne0.
+\]
+Thus every determinant in \(2A=\sum_j\det(P_j,P_{j+1})\)
+has at most one simple-pole factor. Multiple nonadjacent infinite
+vertices do not increase the pole order of this sum.
+
+For a flag over \([a:\epsilon ib:0]\), take \(v=1\).
+Incidence and tangency give
+\[
+ u=-\epsilon ib/a,\qquad w^2=-\lambda c/a^2\ne0 .
+\]
+The involution \(\tau\) exchanges the two choices of \(w\).
+Central inversion fixes the projective infinite point and exchanges
+the same flags. Thus \(\tau x=Ix=T^mx\);
+since \(\tau=T\sigma\), the claimed identity follows.
+\end{proof}
+
+The perpendicular-foot map, extended bilinearly to the complex curve,
+is the homogeneous rational expression
+\begin{equation}\label{foot}
+ Q(M;[u:v:w])
+ =M-\frac{uM_x+vM_y+w}{u^2+v^2}(u,v).
+\end{equation}
+It is regular where \(D\ne0\), including at \(w=0\).
+The only possible poles on \(C^*\) are its four simple \(D\)-zeros.
+There is no point of \(C^*\) with \(u=v=0\).
+At each \(D\)-zero the pullback \eqref{cover} doubles its order.
+
+\begin{lemma}\label{polesB}
+The only possible poles of \(B_M\) lie in \(R\), and each has order
+at most one, for every fixed finite real \(M\).
+\end{lemma}
+\begin{proof}
+At \(x\in R_0\), choose the local coordinate \(t=\eta\), with \(u=1\).
+Equations \eqref{cover} and the dual conic give convergent local branches
+\[
+ D=\frac{t^2}{a^2b^2\lambda},\quad
+ v=\epsilon i\sqrt{1-\frac{t^2}{a^2b^2\lambda}},\quad
+ w=\delta\sqrt{c+\frac{\beta^2t^2}{a^2b^2\lambda}}.
+\]
+Here \(\sigma(t)=-t\), while \(v,w\), and hence \(Q_0(t)\),
+are even Laurent functions of order at most two.
+
+Because \(\rho\sigma=\rho\) and \eqref{reverse} holds,
+\begin{equation}\label{Qreverse}
+ Q_j(\sigma y)=Q_{-j}(y).
+\end{equation}
+The indices with \(T^jx\in R_0\) are exactly \(j=0,m\):
+indeed \(\sigma T^jx=T^{-j}x=T^jx\) precisely when \(N\mid2j\).
+These two indices are nonadjacent, since \(m\ge2\).
+Their foot germs are even; all other feet are regular.
+By \eqref{Qreverse}, each difference
+\(Q_{i+1}(t)-Q_{i-1}(t)\), for \(i=0,m\), is odd, regular
+and vanishes at \(t=0\). The two incident edges combine as
+\[
+ \det(Q_{i-1},Q_i)+\det(Q_i,Q_{i+1})
+ =\det\bigl(Q_i,Q_{i+1}-Q_{i-1}\bigr).
+\]
+An order-at-most-two even pole multiplied by an odd function vanishing
+to order at least one has order at most one.
+The two singular-vertex groups have disjoint edges.
+When \(N=4\) they account for all four edges exactly once.
+Vanishing leading coefficients for special \(M\) only lower the
+pole order. Translating by powers of \(T\) treats all of \(R\).
+\end{proof}
+
+\section{Complementary zeros and the product}
+\begin{lemma}\label{zeros}
+The sets \(S,R\) are disjoint. The function \(A\) is regular and
+vanishes on \(R\), and \(B_M\) is regular and vanishes on \(S\).
+\end{lemma}
+\begin{proof}
+If an \(x\in S_0\) had \(T^jx\in R_0\), Lemma~\ref{polesA}
+and \eqref{reverse} would give
+\[
+ T^jx=\sigma T^jx=T^{-j}\sigma x=T^{m-1-j}x,
+ \qquad 2j\equiv m-1\pmod{2m}.
+\]
+The congruence is impossible: \(m\) is even. Translation invariance
+of the two supports proves their disjointness.
+
+For \(x\in R_0\), use \(\sigma x=x\), \(\pi\tau=\pi\) and
+\(\pi\sigma=\pi T\). They give
+\[
+ P_j(x)=P_j(\sigma x)=P_{1-j}(x).
+\]
+All vertices are regular there, since \(R\cap S=\varnothing\).
+The involution \(j\mapsto1-j\) reverses the cyclic polygon, so its
+signed area is its own negative: \(A(x)=0\).
+
+For \(x\in S_0\), \(\sigma x=T^{m-1}x\) and
+\eqref{Qreverse} give
+\[
+ Q_j(x)=Q_{-j}(\sigma x)=Q_{m-1-j}(x).
+\]
+All feet are regular there. The index involution reverses the side
+order while \(M\) is fixed, so \(B_M(x)=0\).
+Cyclic invariance extends both zero statements to \(R,S\).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+The two areas are meromorphic on connected compact \(X\).
+At \(S\), \(A\) has at most a simple pole, removed by the regular
+zero of \(B_M\). At \(R\) the roles are reversed.
+Lemmas~\ref{polesA}--\ref{zeros} exhaust all possible poles.
+Thus \(A B_M\) is holomorphic on \(X\), hence constant.
+No division by an area or by a coefficient depending on \(M\) is used.
+
+The argument applies on both real components. Reversing traversal
+negates both signed areas and preserves the product.
+The real-component proof of \eqref{central} included every primitive
+star, so no winding restriction has been introduced.
+\end{proof}
+
+\section{Classical radial dependence and exact controls}\label{controls}
+For any cyclic list of real side lines \(n_j\cdot X=h_j\), with
+unit normals and independently arbitrary choices of their signs, set
+\[
+ d_j=\det(n_j,n_{j+1}),\qquad s_j=n_j\cdot n_{j+1}.
+\]
+Translation invariance of shoelace area and direct projection give
+\[
+ B_M=\frac12\sum_jd_j(h_j-n_j\cdot M)(h_{j+1}-n_{j+1}\cdot M)
+     =B_0+\ell\cdot M+C_2|M|^2,
+\]
+where
+\[
+ \ell=-\frac12\sum_jd_j(h_jn_{j+1}+h_{j+1}n_j),\qquad
+ C_2=\frac14\sum_j d_js_j
+     =\frac18\sum_j\sin(2\Delta_j).
+\]
+For example, taking \(M=(r,0)\), the anisotropic quadratic terms
+telescope by
+\[
+ \sin(\beta-\alpha)\cos\alpha\cos\beta
+ =\tfrac14\{\sin2\beta-\sin2\alpha+\sin(2\beta-2\alpha)\}.
+\]
+This is the signed shoelace form of the classical pedal-area principle.
+If \(C_2=0\), the linear term must still be retained for an arbitrary
+crossing polygon; no finite curvature center is assumed.
+Opposite side pairing in our even-period setting makes \(\ell=0\).
+Theorem~\ref{main}, evaluated at \(M=0\) and a unit point, then gives
+\[
+ A B_M=K_0+K_2|M|^2
+\]
+with phase-independent real coefficients. This consequence is also
+part of \cite[Theorem A]{ferudun}.
+
+\paragraph{Four periods.}
+For a parallelogram the alternating turns give \(C_2=0\).
+The four-period family contains the orbit
+\((a,0),(0,b),(-a,0),(0,-b)\):
+through an axis endpoint reflection and central pairing force the
+next vertex to the other axis. Tangency gives
+\(\lambda=a^2b^2/(a^2+b^2)\). Its original area is \(2ab\);
+its centered pedal rectangle has area
+\(4a^3b^3/(a^2+b^2)^2\). Therefore, for the whole family,
+\[
+ A B_M=\frac{8a^4b^4}{(a^2+b^2)^2}=8\alpha^2\beta^2.
+\]
+This value is already in \cite[Theorem A]{ferudun}.
+It is also an explicit earlier corollary of
+\cite[Theorem~4.3(2)]{bt}: for a parallelogram
+\(P=(U,V,-U,-V)\), writing \(D=\det(U,V)\),
+\(s=|V-U|\), \(t=|V+U|\), gives
+\[
+ A B_M=\frac{8D^4}{s^2t^2}
+       =8\prod_{j=0}^3\operatorname{dist}(0,L_j).
+\]
+The cited distance-product invariant completes that deduction.
+
+\paragraph{Why listed length is insufficient.}
+Take \(a=2,b=1,\lambda=4/9,M=0\).
+Two physical primitive six-period phases are
+\[
+ \begin{split}
+ H={}&((2,0),(4/3,\sqrt5/3),(-4/3,\sqrt5/3),\\
+     &\hspace{12mm}(-2,0),(-4/3,-\sqrt5/3),(4/3,-\sqrt5/3)),\\
+ J={}&((0,1),(-4\sqrt2/3,1/3),(-4\sqrt2/3,-1/3),\\
+     &\hspace{12mm}(0,-1),(4\sqrt2/3,-1/3),(4\sqrt2/3,1/3)).
+ \end{split}
+\]
+Direct projection gives \(A B_0=14000/729\) and \(14336/729\).
+Repeating each list twice makes a 12-entry walk and multiplies
+each area by two. The products become \(56000/729\) and \(57344/729\),
+with nonzero difference \(448/243\).
+Exact incidence, tangency, reflection signs and products are checked
+in the supplement. Thus merely having a listed length divisible
+by four is insufficient. Ferudun \cite[Section~1.4 and Section~6]{ferudun}
+also discusses the repeated-orbit obstruction.
+
+\paragraph{Signed zero and negative pedals.}
+For \(a^2=32,b^2=27,\lambda=864/35\), put \(a=4\sqrt2,b=3\sqrt3\),
+\(x=4a/5,y=3b/5\), and
+\[
+ W=((a,0),(x,y),(0,b),(-x,y),(-a,0),(-x,-y),(0,-b),(x,-y)).
+\]
+The orbit \(P_j=W_{3j\bmod8}\) is a physical primitive \(3/8\) star.
+Exact projection gives
+\[
+ A=\frac{168\sqrt6}{5},\qquad
+ B_M=\frac{96\sqrt6}{245}(13-|M|^2),\qquad
+ A B_M=\frac{13824}{175}(13-|M|^2).
+\]
+This is a rescaling of the same star family in
+\cite[Table~2, p.~14]{ferudun}, not a new example claim.
+At \(|M|^2=13\) the signed pedal area is zero; beyond it the area
+is negative. The zero does not require the feet to be collinear,
+and unsigned filled-face area is a different quantity.
+
+\section{Verification, scope and research disclosure}
+The supplement preserves the original 18-file submitted proof and
+its authorship/source records, source-first plans, independent
+derivations, adversarial reports and exact file manifests.
+One analytic audit verifies the submitted Jacobi/contact-trace proof;
+another reconstructs the complete incidence-curve argument here.
+A direct Euclidean family proves the general pedal quadratic and
+the full four-period result, but explicitly leaves two general-period
+scalar invariants unresolved. That partial route is not counted as
+another universal proof.
+
+Fresh exact controls include physical reflection signs, primitive
+stars, zero/negative pedals, reversal, nonconfocal countercontrols and
+the repeated-list obstruction. Separately, direct physical
+high-precision calculations cover 39 caustics, including nearly
+circular and elongated ellipses and every admitted coprime winding
+in the selected periods. Those finite noninterval diagnostics do
+not prove the theorem; the proof above does.
+
+The original checkers use removable Python assertions.
+Their fresh ordinary replays match the archived result bytes.
+With Python optimization \texttt{-O}, all assertion enforcement
+disappears while advertised counts survive; deliberately false
+identities then pass. Fresh exception-based checks reject the
+wrong coefficient both ordinarily and with optimization.
+The supplement distinguishes advertised and enforced checks and
+does not certify unknown historical runtime settings.
+
+The result is restricted to the stated proper confocal elliptical
+caustics and least-period convention. No hyperbolic or degenerate
+caustic, filled-face-area or unrestricted repeated-list extension
+is claimed. The bounded priority audit records positive overlaps,
+access limits and the chronology qualification; it is not an
+exhaustive novelty certificate.
+
+AI tools were used extensively in proof development, mathematical
+auditing, literature checks, computation and drafting.
+This is an unrefereed preprint. The recorded AI adversarial reviews
+do not constitute conventional human peer review.
+
+\begin{thebibliography}{10}
+\bibitem{rgk} D.~Reznik, R.~Garcia and J.~Koiller,
+\emph{Fifty New Invariants of \(N\)-Periodics in the Elliptic Billiard},
+Arnold Math.~J.~7 (2021), 341--355.
+\href{https://doi.org/10.1007/s40598-021-00174-y}{doi:10.1007/s40598-021-00174-y}.
+\bibitem{rgkarxiv} D.~Reznik, R.~Garcia and J.~Koiller,
+\emph{Eighty New Invariants of \(N\)-Periodics in the Elliptic Billiard},
+\href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11} (2020).
+\bibitem{ferudun} A.~Ferudun,
+\emph{Pedal Areas of Periodic Elliptic Billiard Trajectories with
+Respect to an Arbitrary Point}, version~1.0, 15 October 2026,
+unrefereed preprint.
+\href{https://doi.org/10.5281/zenodo.23400541}{doi:10.5281/zenodo.23400541}.
+\bibitem{steiner} J.~Steiner,
+\emph{Ueber den Kr\"ummungs-Schwerpunkt ebener Curven} (1838),
+Sections XIV--XVI, reprint pp.~18--22, ETH e-rara.
+\href{https://doi.org/10.3931/e-rara-3816}{doi:10.3931/e-rara-3816}.
+\bibitem{schwartz} R.~Schwartz and S.~Tabachnikov,
+\emph{Centers of mass of Poncelet polygons, 200 years after},
+Math.~Intelligencer 38 (2016), 29--34.
+\href{https://arxiv.org/abs/1607.04766}{arXiv:1607.04766}.
+\bibitem{ast} A.~Akopyan, R.~Schwartz and S.~Tabachnikov,
+\emph{Billiards in ellipses revisited}, European J.~Math.~8 (2022),
+1313--1327.
+\href{https://arxiv.org/abs/2001.02934v2}{arXiv:2001.02934v2}.
+\bibitem{chavez} A.~Ch\'avez-Caliz,
+\emph{More About Areas and Centers of Poncelet Polygons},
+Arnold Math.~J.~7 (2021), 91--106.
+\href{https://doi.org/10.1007/s40598-020-00154-8}{doi:10.1007/s40598-020-00154-8}.
+\bibitem{bt} M.~Bialy and S.~Tabachnikov,
+\emph{Dan Reznik's identities and more}, European J.~Math.~8 (2022),
+1341--1354.
+\href{https://doi.org/10.1007/s40879-020-00428-7}{doi:10.1007/s40879-020-00428-7};
+\href{https://arxiv.org/abs/2001.08469v2}{arXiv:2001.08469v2}.
+\bibitem{pr203} A.~Kriebel, original submitted proof record,
+\href{https://github.com/AlecKriebel/Math/pull/203}{GitHub PR203},
+created 1 October 2026, original head identified in the text;
+archived unchanged in the accompanying verification package.
+\end{thebibliography}
+\end{document}
+

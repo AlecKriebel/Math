@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-15T08:05:10.976979+00:00 Initial reconstruction saved before literature search. Read both applicable AGENTS.md instructions and frozen claim/scope-continuation artifacts. Completion estimate: 10% of this author-history priority audit.
+
+- 2026-10-15T08:09:09.722525+00:00 Read static paper relevant full proofs (Sections 1.1-1.6, 2.1-2.4, 3.5; remaining scalar examples scanned only), dynamic discussion and exact open question in OWR pp2580-2582, and relevant 2021 slides. Located a named dynamic manuscript announced in 2022 visit report, 2023 Padova abstract, and 2023 Hilbert-paper reference [3], always without a located proof manuscript. Current author bibliographies, arXiv author result sets, and HAL API examined into 2026. Completion estimate: 55%. Priority remains unresolved rather than cleared.
+
+- 2026-10-15T08:13:28.713013+00:00 Confirmed three independent primary announcement locations for the dynamic manuscript; read relevant actual static and Hilbert proofs, visually checked dynamic conjecture/code/plots, and recorded current repository version histories. Forward-citation indices disagree; thesis PDF is inaccessible and marked unread. Authored priority report drafted. Completion estimate: 90% of bounded author-history audit; exact historical clearance remains unestablished.
+
+- 2026-10-15T08:16:06.470222+00:00 Final bounded author-history report and source/read map completed and checked. No located same-team proof anticipates the qualified target; three primary announcements of named dynamic work are verified, with its actual proof manuscript still unlocated. Current bibliographies extend into August 2026. Scoped audit completion: 100%; unconditional priority clearance is not established. Only this owned folder was written; no Git or provider mutation or outreach occurred.

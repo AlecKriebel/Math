@@ -1,0 +1,9 @@
+# Independent Euler-factor review log
+
+- 2026-10-12T17:44:51.375116+00:00: Started independent analytic/arithmetic reconstruction at the frozen eligible PR458 head. Read AGENTS.md and frozen author HEURISTIC/README/SOURCE_GATE; no prior peer audit or priority conclusion read. Verification uses zero new original proof-search attempts. Completion estimate: 15%.
+
+- 2026-10-12T17:51:04.746239+00:00: Independent exact Euler checks and 40 numerical fractional/zero-weight local Parseval checks passed in normal and optimized Python; 7657 runtime guards in each mode, 11 actual wrong-predicate subprocess rejections per mode. Outputs match after dropping the mode field. Direct primary request and printed benchmark pages independently inspected. Completion estimate: 80%.
+
+- 2026-10-12T17:57:53.593810+00:00: Identified H1: §5 conflates the actual finite-cutoff sharp exponential P_X mean with its full Euler local limit. The concrete cutoff2/prime2 definition already differs; cutoff3/prime2 also lies inside the cited theorem's X>2 range. Root requested a precise correction. Independently read Sahay's actual primary P_X display; it is sharp, with u_X in the zero kernel and no v_X in the displayed prime sum. Independently proved the sharp local ratio product tends to1, requiring no joint T/X interchange. Raw required clarification remains1; central arithmetic/formula gaps remain0. Completion estimate: 90%.
+
+- 2026-10-12T18:02:36.378119+00:00: Sealed final Euler/arithmetic family report after full root-proposal readback. Final own explicit-guard runs passed18078 guards per mode, including640 sharp-hybrid truncation cases and12 actual wrong-predicate subprocess rejections per mode. Raw H1 blocking1/required repair1 retained; mathematical constant/model application gaps0. Proposed exact sharp correction verified conceptually; frozen/actual source unchanged, no publication/operations/priority approval. Completion estimate toward this independent review: 100%.

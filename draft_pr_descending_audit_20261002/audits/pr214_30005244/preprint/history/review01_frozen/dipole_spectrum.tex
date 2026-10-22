@@ -1,0 +1,384 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\hypersetup{pdftitle={Off-interval spectral convergence for geometrically consistent discrete dipoles},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}\newcommand{\Q}{\mathbb Q}\newcommand{\Id}{I}
+\newcommand{\pv}{\operatorname{p.v.}}\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\ran}{\operatorname{ran}}\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\HS}{\mathrm{HS}}\newcommand{\lat}{\mathrm{lat}}
+\title{Off-interval spectral convergence for\\geometrically consistent discrete dipoles}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{15 October 2026\\\small Unrefereed preprint, version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+Costabel's 2022 Oberwolfach report asks for a precise description and proof of the observed approximation of nonreal eigenvalues by the discrete dipole approximation away from a real lattice interval. We give an independent proof for bounded particles whose center-selected cubic voxels converge in volume. This includes every bounded Lipschitz particle, with arbitrary grid translations. At each fixed complex frequency, the actual zero-diagonal matrices have no spectral pollution outside the exact static lattice interval; isolated eigenvalues are approximated with algebraic multiplicity and norm-convergent embedded Riesz projections. The proof combines the established static lattice bound of Costabel--Dauge--Nedaiasl with strong static consistency, Hilbert--Schmidt convergence of the sampled dynamic correction and classical spectral approximation. A separate compact, positive-volume, empty-interior support has a nonreal continuum eigenvalue at frequency $10^{-4}$ while every matrix on the grids $n^{-1}\Z^3$ is $3\times3$ zero. This example clarifies the geometric hypothesis. The classical ingredients and previously announced dynamic work are explicitly credited; first priority is not certified. AI tools were used extensively, and no external human peer review is asserted.
+\end{abstract}
+
+\section{The question and a precise spectral statement}
+
+For a bounded measurable set $\Omega\subset\R^3$, put $H_\Omega=L^2(\Omega;\C^3)$. Fix $\kappa\in\C$ throughout the mesh limit. Let
+\[
+ g_\kappa(x)=\frac{e^{i\kappa|x|}}{4\pi|x|},\qquad
+ A_\kappa u=-\nabla\operatorname{div}\int_\Omega g_\kappa(x-y)u(y)\,dy
+                -\kappa^2\int_\Omega g_\kappa(x-y)u(y)\,dy .
+\]
+Derivatives in this definition are distributional and the result is restricted to $\Omega$. The bounded comparison operator for the diagonal-omitting discretization is
+\begin{equation}\label{eq:shift}
+ S_\kappa=A_\kappa-\tfrac13\Id
+   =\pv\int_\Omega K_0(x-y)(\cdot)(y)\,dy
+          +\int_\Omega R_\kappa(x-y)(\cdot)(y)\,dy,
+\end{equation}
+where, away from zero,
+\begin{equation}\label{eq:kernels}
+ K_\kappa=-(D^2+\kappa^2\Id)g_\kappa,
+ \quad K_0(x)=\frac{\Id-3ee^\top}{4\pi r^3},
+ \quad R_\kappa=K_\kappa-K_0,\quad r=|x|,\quad e=x/r.
+\end{equation}
+We use this operator convention directly, without a material-contrast conversion.
+
+For each $h>0$ choose any $a_h\in\R^3$, and set
+\[
+ x_m=a_h+hm,\quad Q_m^h=x_m+h[-\tfrac12,\tfrac12)^3,\quad
+ I_h=\{m\in\Z^3:x_m\in\Omega\},\quad
+ \Omega_h=\bigcup_{m\in I_h}Q_m^h.
+\]
+The finite matrix under consideration is exactly
+\begin{equation}\label{eq:matrix}
+ (T_\kappa^h u)_m=\sum_{\substack{n\in I_h\\n\ne m}}h^3K_\kappa(x_m-x_n)u_n.
+\end{equation}
+In particular, every diagonal $3\times3$ block is zero. Our geometric assumption is
+\begin{equation}\tag{G}\label{eq:G}
+ |\Omega_h\mathbin\triangle\Omega|\longrightarrow0.
+\end{equation}
+The representative used for center membership is part of these definitions. Condition~\eqref{eq:G} is sufficient; we do not claim it is necessary.
+
+We use the static lattice theorem of Costabel--Dauge--Nedaiasl \cite{CDN}. The infinite matrix
+\[
+ (Tv)_m=\sum_{n\ne m}K_0(m-n)v_n
+\]
+defines a bounded selfadjoint operator on $\ell^2(\Z^3;\C^3)$. Its exact closed numerical range is a bounded real interval
+\begin{equation}\label{eq:interval}
+ J_\lat=\overline{W(T)}=[\Lambda_-,\Lambda_+],
+ \qquad [-\tfrac13,\tfrac23]\subset J_\lat.
+\end{equation}
+Here the operator is defined by the bounded lattice multiplier, equivalently by its action on finitely supported sequences and bounded extension. No rearrangement of an absolutely divergent series is intended. We use the exact interval, not the numerically suggested endpoint extrema. The controlling proof and numbering are those of \cite[\S\S1.6,2.1--2.4,3.5; Proposition 3.15]{CDN}, arXiv version~3.
+
+Identify a vector on $I_h$ with the function equal to $u_m$ on $Q_m^h$ and zero elsewhere. This is an isometry for the norm $h^3\sum_m|u_m|^2$, and changing the Euclidean squared norm by this scalar does not change a matrix operator norm. Both continuum and discrete spectral projections below are extended by zero to
+\[
+ H=L^2(\R^3;\C^3).
+\]
+The zero-dimensional matrix convention applies when $I_h$ is empty.
+
+\begin{theorem}\label{thm:main}
+Assume~\eqref{eq:G}, with $\Omega$ bounded measurable and $\kappa\in\C$ fixed. Then:
+\begin{enumerate}
+\item For every compact $L\subset(\C\setminus J_\lat)\cap\rho(S_\kappa)$, the matrices $z\Id-T_\kappa^h$ are invertible for all $z\in L$ and sufficiently small $h$, with inverse norms uniformly bounded in $z$ and $h$. In particular, no sequence of matrix eigenvalues can converge to an off-interval point in $\rho(S_\kappa)$.
+\item Every spectral point $\lambda$ of $S_\kappa$ outside $J_\lat$ is an isolated eigenvalue of finite algebraic multiplicity. If a closed disk about $\lambda$ misses $J_\lat$ and contains no other continuum spectral point, the embedded discrete Riesz projections for its boundary converge in operator norm to the continuum projection. Their ranks eventually agree. The enclosed matrix eigenvalues converge to $\lambda$, counted with total algebraic multiplicity.
+\item The corresponding total generalized spectral subspaces converge in both gap directions. The matrices have uniformly bounded norms as $h\to0$.
+\end{enumerate}
+\end{theorem}
+
+Every bounded set with $|\partial\Omega|=0$ satisfies~\eqref{eq:G}, for arbitrary translations $a_h$. Indeed, points classified differently from their cell center are within $\sqrt3h$ of $\partial\Omega$. The volume of these shrinking bounded boundary neighborhoods tends to zero. Thus Theorem~\ref{thm:main} applies to every bounded Lipschitz particle, whether its boundary is included in the membership set or not.
+
+Theorem~\ref{thm:main} gives the off-interval description requested in \cite[\S4, p.~2582]{OWR}, with an explicit geometric condition. The source poses an observed-particle convergence question; it does not print~\eqref{eq:G} or ask for a necessary-and-sufficient classification of geometries. We assert neither convergence for every irregular compact particle nor spectral correctness inside $J_\lat$. There is no rate, mesh-dependent-frequency limit or preservation of individual Jordan block sizes. Nonreal spectral points automatically lie outside the real interval. Eigenvalues in the unshifted $A_\kappa$ convention are obtained by adding $1/3$.
+
+\paragraph{Earlier work and the contribution boundary.}
+The static lattice operator, its Ewald representation and interval bound are established results of \cite{CDN}; the question and earlier nonzero-frequency stability results belong to \cite{OWR}. Cubic cancellation and smooth-field DDA consistency/error estimates already occur in \cite{YMH,YMHerr}. The latter analysis explicitly assumes the discrete inverse control in its equation~(65). Compact multiplication, stable/regular approximation, spectral projections and multiplicity arguments are classical \cite{AP,AT,DNR}. Static-plus-compact continuum decompositions and nonreal-pole theory are also prior work \cite{BS,Zhou,ALZ}, as are sphere perturbation and radiation calculations \cite{Rahola,AM,Mie}. Pointwise DDA's dependence only on center values and the associated continuity issue are discussed in \cite[\S IX, footnote~22]{YM}.
+
+The purpose of this note is to verify the actual sampled matrix on a common Hilbert space and to give an independent proof of the resulting qualified spectral statement. The specific inputs are strong static consistency and norm convergence of the sampled dynamic correction, including changing masks. We claim no new general spectral approximation principle, first DDA consistency analysis or new existence mechanism for nonreal continuum poles. Section~\ref{sec:counterexample} combines classical ingredients into a compact-support scope obstruction.
+
+Costabel--Dauge--Nedaiasl also announced \emph{On the Stability of the Discrete Dipole Approximation in Time-Harmonic Dielectric Scattering}, in preparation in 2022/2023; see \cite{IMU} and \cite[reference~3]{Hilbert}. Their report already gives dynamic stability results while separately leaving the off-interval eigenvalue question open. A bounded public-source audit through 15 October 2026 did not locate that manuscript's full proof or a covering later theorem. Its contents remain a priority uncertainty. Rahola's full paper was not available in this audit; its publisher abstract supplies historical sphere-spectrum credit. One forward-citing ultrasound thesis was screened only at metadata/abstract level because its full file was unavailable. The accompanying research record gives the exact source coverage and limits. These limitations preclude an absolute novelty claim; this note offers a credited, independently checked proof of its stated theorem.
+
+\section{Consistency of the actual zero-diagonal matrices}\label{sec:consistency}
+
+Radial differentiation gives the useful explicit formula
+\begin{equation}\label{eq:radial}
+ K_\kappa(x)=\frac{e^{i\kappa r}}{4\pi r^3}
+ \big[(1-i\kappa r-\kappa^2r^2)\Id
+       +(\kappa^2r^2+3i\kappa r-3)ee^\top\big].
+\end{equation}
+Consequently, on every bounded difference set and for fixed $\kappa$,
+\begin{equation}\label{eq:remainder}
+ R_\kappa(x)=-\frac{\kappa^2}{8\pi r}(\Id+ee^\top)
+             -\frac{i\kappa^3}{6\pi}\Id+O(r),
+ \qquad \|R_\kappa(x)\|_F\le C/r.
+\end{equation}
+Here $\|\cdot\|_F$ is the matrix Frobenius norm. Only bounded physical differences are used, so the estimate is valid for any fixed complex frequency. The distributional identity
+\[
+ -D^2(4\pi r)^{-1}=\pv K_0+\tfrac13\Id\delta_0
+\]
+follows by rotational symmetry and taking traces. The Hessian of $g_\kappa-g_0$ is locally integrable and has no extra delta term. This proves~\eqref{eq:shift}; its normalization is also explicit in \cite[(1.7), (3.39)]{CDN}.
+
+Let $D$ be convolution by $\pv K_0$ on $H$. Its Fourier multiplier is
+\begin{equation}\label{eq:multiplier}
+ \widehat D(\xi)=\frac{\xi\xi^\top}{|\xi|^2}-\tfrac13\Id,
+ \qquad \sigma(D)\subset[-\tfrac13,\tfrac23].
+\end{equation}
+Let $J_h$ map full-lattice sequences to cellwise constant functions; $J_h^*$ is cell averaging. Put
+\[
+ P_h=J_hJ_h^*,\qquad D_h=J_hTJ_h^*,\qquad
+ M_h=\mathbf1_{\Omega_h},\quad M=\mathbf1_\Omega,
+ \quad B_h=M_hD_hM_h,\quad B=MDM.
+\]
+All these act on $H$. The projection $P_h$ commutes with $M_h$. Static homogeneity gives $h^3K_0(hj)=K_0(j)$, so $B_h$ is exactly the static matrix~\eqref{eq:matrix} on the occupied-cell space and zero on its orthogonal complement. The operators $B_h,B$ are selfadjoint and have spectra in $J_\lat$: compression preserves the form bound because $0\in J_\lat$, and~\eqref{eq:multiplier} applies to $B$.
+
+\begin{lemma}\label{lem:static}
+As $h\to0$, $D_h\to D$ strongly on $H$, uniformly with respect to the chosen grid translations in the dense-core argument. Under~\eqref{eq:G}, $B_h\to B$ strongly.
+\end{lemma}
+\begin{proof}
+Choose $\phi\in C_c^\infty(\R^3;\C^3)$, and let $\phi_h$ equal $\phi(x_m)$ on $Q_m^h$. Then $\phi_h\to\phi$ in $H$. On the $m$th cell,
+\[
+ D_h\phi_h=\sum_{j\ne0}h^3K_0(hj)\phi(x_m-hj).
+\]
+For any compactly supported radial cutoff $\chi$, exact cubic reflections, coordinate permutations and termwise trace zero give
+\begin{equation}\label{eq:cancel}
+ \sum_{j\ne0}h^3K_0(hj)\chi(hj)=0,
+ \qquad \pv\int K_0(y)\chi(y)\,dy=0.
+\end{equation}
+These are finite sums or radial principal values, not rearranged infinite sums. Take $\chi_\delta=1$ for $r\le\delta$ and zero for $r\ge2\delta$. Subtract $\phi(x_m)$ in the near term, using~\eqref{eq:cancel}. Its size is at most
+\[
+ C\|\nabla\phi\|_\infty h^3
+       \sum_{0<|hj|\le2\delta}|hj|^{-2}\le C'\|\nabla\phi\|_\infty\delta.
+\]
+For the last inequality, each integer annulus of unit width has $O((q+1)^2)$ lattice points. Summation gives $h^3\sum_{0<|hj|\le R}|hj|^{-2}\le CR$, including the empty-sum case $R<h$. The continuum near term obeys the same $O(\delta)$ bound.
+
+With $\delta$ fixed, the remaining kernel is smooth away from zero. The compact support of $\phi$ gives uniform Riemann-sum convergence for centers in every bounded set, independent of translation. The continuum convolution $D\phi$ is smooth, so changing its argument from a center to a point of its cell gives an error tending to zero. First let $h\to0$, then $\delta\to0$, to obtain local $L^2$ convergence.
+
+This also gives whole-space convergence. Outside a ball larger than twice the support of $\phi$, the discrete and continuous outputs are bounded by $C(1+|x|)^{-3}$, uniformly for small $h$. For the discrete bound use the uniformly bounded sum $h^3\sum_m|\phi(x_m)|$. Their squared tails therefore have integral $O(R^{-3})$. Thus $D_h\phi_h\to D\phi$ in $H$. The uniform bound $\|D_h\|\le\|T\|$ first replaces $\phi_h$ by $\phi$ and then extends the result by density to all of $H$.
+
+Finally, for every $u\in H$,
+\[
+ \|(M_h-M)u\|^2=\int_{\Omega_h\triangle\Omega}|u|^2\longrightarrow0
+\]
+by absolute continuity of the integral. Products of uniformly bounded strongly convergent operators give $B_h\to B$.
+\end{proof}
+
+Let $C$ be the integral operator on $H$ with kernel
+\[
+ c(x,y)=\mathbf1_\Omega(x)R_\kappa(x-y)\mathbf1_\Omega(y).
+\]
+Define $c_h$ to be $R_\kappa(x_m-x_n)$ on $Q_m^h\times Q_n^h$ when $m,n\in I_h$ and $m\ne n$, and zero otherwise. Write $C_h$ for its integral operator. On occupied-cell constants its action is exactly
+\[
+ (C_hu)_m=\sum_{\substack{n\in I_h\\n\ne m}}h^3R_\kappa(x_m-x_n)u_n.
+\]
+It vanishes on the orthogonal complement. Hence $B_h+C_h$ represents precisely~\eqref{eq:matrix}, with no integrated-cell replacement or inserted self interaction.
+
+\begin{lemma}\label{lem:dynamic}
+Under~\eqref{eq:G}, $C$ is Hilbert--Schmidt and
+\[
+ \|C_h-C\|_\HS\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+All occupied cubes lie in a common bounded box for small $h$. The bound~\eqref{eq:remainder} gives square-integrability of $c$, since $r^{-2}$ is locally integrable in three dimensions. On $|x-y|<\delta$, cell centers satisfy $|x_m-x_n|<\delta+\sqrt3h$. Thus
+\begin{align*}
+ \iint_{|x-y|<\delta}\|c_h(x,y)\|_F^2\,dx\,dy
+ &\le C h^6\#I_h\sum_{0<|hj|<\delta+\sqrt3h}|hj|^{-2}\\
+ &\le C'(h^3\#I_h)(\delta+h)\le C''(\delta+h).
+\end{align*}
+The continuum counterpart is $O(\delta)$. This also controls the omitted same-cell block; it cannot leave a nonzero Hilbert--Schmidt self term.
+
+Away from a fixed diagonal neighborhood, center differences stay away from zero for small $h$, and $R_\kappa$ is uniformly continuous and bounded on the relevant compact set. The error in the two product masks is supported in
+\[
+ ((\Omega_h\triangle\Omega)\times B_*)\ \cup\
+ (B_*\times(\Omega_h\triangle\Omega)),
+\]
+where $B_*$ is the common box. Its volume tends to zero. The far kernels therefore converge in $L^2$. Let $h\to0$ and then $\delta\to0$.
+\end{proof}
+
+\section{The classical compact spectral argument}\label{sec:spectral}
+
+We give the argument to specify the topology of projection convergence. It is an application of classical compact approximation and spectral theory, not a new abstract principle; compare \cite{AP,AT,DNR}.
+
+\begin{lemma}\label{lem:abstract}
+Let $B_n,B$ be bounded selfadjoint operators on a complex Hilbert space, with spectra in a fixed bounded real interval $J$. Suppose $B_n\to B$ strongly and $C_n\to C$ in norm, where $C_n,C$ are compact. Put $S_n=B_n+C_n$, $S=B+C$. Then the three conclusions of Theorem~\ref{thm:main}, in the common space, hold outside $J$.
+\end{lemma}
+\begin{proof}
+For $z\notin J$, put $R_n(z)=(z-B_n)^{-1}$ and $R(z)=(z-B)^{-1}$. The common bound is $\dist(z,J)^{-1}$. The resolvent identity proves strong convergence $R_n(z)\to R(z)$, uniformly on compact $z$-sets on each fixed vector, by finite nets and the resolvent bounds. Selfadjointness gives the corresponding strong convergence of adjoints through $R_n(z)^*=R_n(\overline z)$.
+
+If $X_n\to X$ strongly and is uniformly bounded, then $\|(X_n-X)K\|\to0$ for compact $K$, by finite-rank approximation. If also $X_n^*\to X^*$ strongly, taking adjoints gives $\|K(X_n-X)\|\to0$. Finite nets give uniform versions for norm-continuous compact families of $K$. In particular,
+\[
+ F_n(z)=R_n(z)C_n\longrightarrow F(z)=R(z)C
+\]
+in norm, uniformly on compact subsets of $\C\setminus J$. The family $F$ is compact and analytic, and
+\begin{equation}\label{eq:factor}
+ z-S=(z-B)(\Id-F(z)).
+\end{equation}
+For large $|z|$ it is invertible. The analytic Fredholm argument on the connected set $\C\setminus J$ gives isolated poles with finite-rank principal parts. One may obtain this directly by choosing a finite-rank orthogonal projection so that the remaining block of $F(z_0)$ has norm less than $1/2$. Local analytic block elimination reduces invertibility to a finite-dimensional Schur determinant. Its singularities are discrete unless the determinant vanishes identically; connectedness and invertibility at large $z$ exclude that alternative by continuation. The resulting resolvent poles have finite-rank Riesz projections, whose ranges are exactly the generalized eigenspaces. This last assertion also follows by comparing Laurent coefficients in $(z-S)(z-S)^{-1}=\Id$.
+
+On a compact set $L\subset(\C\setminus J)\cap\rho(S)$, norm convergence of $F_n$ and a Neumann inverse estimate give invertibility of $\Id-F_n$, with a uniform bound. Factorization~\eqref{eq:factor} proves the claimed resolvent bound and excludes pollution there.
+
+Let $\Gamma$ bound an isolating disk whose closure misses $J$. On $\Gamma$ define
+\[
+ G_n=(\Id-F_n)^{-1}F_n,\qquad G=(\Id-F)^{-1}F.
+\]
+These are compact, and $G_n\to G$ uniformly in norm. The full resolvent is
+\begin{equation}\label{eq:resolvent}
+ (z-S_n)^{-1}=R_n+G_nR_n.
+\end{equation}
+The integrals of $R_n$ and $R$ over $\Gamma$ vanish, because they are analytic throughout the disk. Moreover
+\[
+ \|G_nR_n-GR\|\le\|G_n-G\|\|R_n\|+\|G(R_n-R)\|\longrightarrow0
+\]
+uniformly on $\Gamma$. The last term uses strong convergence of the \emph{adjoint} resolvents; ordinary strong convergence alone would not suffice. Integrating proves norm convergence $\Pi_n\to\Pi$ of Riesz projections.
+
+Once $\|\Pi_n-\Pi\|<1$, the restrictions $\Pi_n:\ran\Pi\to\ran\Pi_n$ and $\Pi:\ran\Pi_n\to\ran\Pi$ are injective. Hence their finite ranks agree. This argument does not require orthogonal projections or semisimple eigenvalues. Repeating it for smaller circles and using stability on the intervening compact annuli proves convergence of the whole eigenvalue cluster with algebraic multiplicity. For unit vectors in either range, projecting to the other range bounds each subspace gap by $\|\Pi_n-\Pi\|$. Finally, $\|S_n\|$ is uniformly bounded because the static spectra lie in $J$ and $C_n$ converges in norm.
+\end{proof}
+
+Apply Lemma~\ref{lem:abstract} to Lemmas~\ref{lem:static}--\ref{lem:dynamic}, with $J=J_\lat$, along every sequence $h\to0$. The embedded operators are $S_\kappa$ on functions supported in $\Omega$, and $T_\kappa^h$ on occupied-cell constants, each extended by zero. Their extra infinite-dimensional zero eigenspaces are harmless because $0\in J_\lat$ and every contour under consideration misses this interval. This proves Theorem~\ref{thm:main}. Notice that full norm convergence of the static operators or their resolvents has not been asserted.
+
+\section{A compact-support obstruction}\label{sec:counterexample}
+
+The following supplementary result prevents extending the affirmative statement to arbitrary compact point-membership masks. Nonreal sphere poles, their radiation sign and static/dynamic perturbation methods are classical \cite{Rahola,AM,ALZ,Mie,Zhou}. We include an elementary quantitative certificate to keep the frequency and all error bounds checkable.
+
+\begin{theorem}\label{thm:negative}
+There is a compact set $\Omega\subset\R^3$ of positive volume and empty interior such that, at the fixed real frequency $\kappa=1/10000$, $S_\kappa$ on $H_\Omega$ has an isolated nonreal eigenvalue, whereas every matrix~\eqref{eq:matrix} on $h=1/n$, $a_h=0$, is the $3\times3$ zero matrix. The sole sampled point is an isolated, volume-zero anchor. The support is specified existentially within the explicit sequence below; no effective index or numerical eigenvalue location is claimed.
+\end{theorem}
+
+\subsection{An intrinsic ball mode and an explicit nonreal perturbation}
+
+Let $B=\{x:|x|<1\}$. Coordinates are scaled so that this ball has radius one. First work on the \emph{intrinsic} space $H_B$, rather than its whole-space zero extension. The static operator $A_0$ is the compression of the longitudinal Fourier projection. The orthogonal decomposition is
+\begin{equation}\label{eq:hodge}
+ H_B=\nabla H_0^1(B)\ \oplus\ \nabla H_{\mathrm{harm}}^1(B)
+                  \ \oplus\ (\nabla H^1(B))^\perp.
+\end{equation}
+The gradient space is closed by Poincare's inequality; the Dirichlet variational projection splits off the harmonic gradients. The last summand has divergence-free zero extension, including zero weak normal flux, and $A_0=0$ there. On the first summand, zero extension commutes with taking the gradient and the longitudinal projection gives $A_0=\Id$.
+
+For a degree-$\ell$ solid harmonic $r^\ell Y_\ell$, $\ell\ge1$, the distributional divergence of its zero-extended gradient is $-\ell Y_\ell\delta_{\partial B}$. The Newton single layer with density $Y_\ell$ equals $r^\ell Y_\ell/(2\ell+1)$ inside the ball: matching the interior and exterior radial solutions gives the derivative jump $-1$. Thus
+\[
+ A_0\nabla(r^\ell Y_\ell)=\frac{\ell}{2\ell+1}\nabla(r^\ell Y_\ell).
+\]
+Spherical harmonics of distinct degrees are orthogonal in the Dirichlet inner product. Their expansions are complete in the harmonic $H^1$ space modulo constants, with energy weights $\ell\|Y_\ell\|_{L^2(\partial B)}^2$. Therefore
+\begin{equation}\label{eq:ballspectrum}
+ \sigma(A_0)=\{0,1,\tfrac12\}\cup
+             \left\{\frac{\ell}{2\ell+1}:\ell\ge1\right\}.
+\end{equation}
+The value $1/2$ is the accumulation spectral point. The shifted $S_0=A_0-\Id/3$ has an isolated zero eigenspace $V$ consisting exactly of the three constant vector fields. For $\ell\ge2$ its harmonic eigenvalues are
+\[
+ \frac{\ell-1}{3(2\ell+1)}\ge\frac1{15}.
+\]
+The other spectral values, $-1/3,2/3$ and the accumulation value $1/6$, are farther from zero. Let $P$ be the orthogonal projection onto $V$.
+
+On $H_B$, write $S_\kappa=S_0+C_\kappa$. Formula~\eqref{eq:radial} gives
+\begin{equation}\label{eq:ball-expansion}
+ C_\kappa=\kappa^2C_2-\frac{i\kappa^3}{6\pi}\mathcal J+E_\kappa,
+ \quad C_2(x,y)=-\frac{\Id+ee^\top}{8\pi r},
+ \quad \mathcal Ju=\int_Bu(y)\,dy.
+\end{equation}
+For $|\kappa|\le1/2$ the following bounds hold:
+\begin{equation}\label{eq:ball-bounds}
+ \|C_2\|_\HS\le1,\qquad
+ \|\mathcal J/(6\pi)\|=\tfrac29,\qquad
+ \|E_\kappa\|\le2|\kappa|^4,\qquad
+ \|C_\kappa\|\le2|\kappa|^2.
+\end{equation}
+Here are explicit estimates. The squared Frobenius numerator of $\Id+ee^\top$ is $6$, and
+\[
+ \iint_{B\times B}|x-y|^{-2}\,dx\,dy
+ \le |B|\int_{|z|\le2}|z|^{-2}\,dz=\frac{32\pi^2}{3}.
+\]
+This proves the first bound. For $z=\kappa r$, the coefficients of order $n\ge2$ in
+\[
+ e^{iz}(1-iz-z^2)-1,\qquad e^{iz}(z^2+3iz-3)+3
+\]
+are $i^n(n-1)^2/n!$ and $-i^n(n-1)(n-3)/n!$. Since $r\le2$, $|z|\le1$. The terms of order at least four in either numerator have absolute sum at most
+\[
+ |z|^4\sum_{n\ge4}\frac{n^2}{n!}
+     =|z|^4(2e-\tfrac92)<|z|^4.
+\]
+For example $e<11/4$ is enough. The matrix Frobenius factor is at most $\sqrt3+1<3$, so the remainder kernel is bounded by $3|\kappa|^4r/(4\pi)$. Its Hilbert--Schmidt norm is at most $2|\kappa|^4$. Also $\|\mathcal J\|=|B|=4\pi/3$. Finally
+\[
+ \|C_\kappa\|\le|\kappa|^2(1+\tfrac29|\kappa|+2|\kappa|^2)
+                    \le\tfrac{29}{18}|\kappa|^2<2|\kappa|^2.
+\]
+
+On the circle $|z|=1/30$, the static resolvent norm is at most $30$. If $\varepsilon=\|C_\kappa\|\le1/60$, the perturbed resolvent norm is at most $60$, and the resolvent identity gives the Riesz projection estimate
+\begin{equation}\label{eq:projection-ball}
+ \|P_\kappa-P\|\le60\varepsilon\le120|\kappa|^2=:\eta.
+\end{equation}
+For $\eta<1$, the rank is three. The range of $P_\kappa$ is a graph $\{v+\Gamma_\kappa v:v\in V\}$ over $V$, because for $w\in\ran P_\kappa$,
+\[
+ \|(\Id-P)w\|\le\eta\|w\|,\qquad \|Pw\|\ge(1-\eta)\|w\|.
+\]
+If $\eta\le1/2$, then $\|\Gamma_\kappa\|\le\eta/(1-\eta)\le240|\kappa|^2$. This argument allows nonorthogonal $P_\kappa$.
+
+The coordinate operator
+\[
+ H_\kappa=P S_\kappa(\Id+\Gamma_\kappa)|_V
+\]
+is similar to the restriction of $S_\kappa$ to its three-dimensional invariant range. Since $PS_0=0$, equations~\eqref{eq:ball-expansion}--\eqref{eq:projection-ball} yield
+\[
+ \left\|H_\kappa-\kappa^2PC_2|_V
+                 +\frac{i\kappa^3}{6\pi}P\mathcal J|_V\right\|
+ \le (2+2\cdot240)|\kappa|^4=482|\kappa|^4.
+\]
+For real $\kappa$, $PC_2|_V$ is selfadjoint and has real trace, while $\mathcal J|_V=(4\pi/3)\Id_V$. Hence
+\begin{equation}\label{eq:trace}
+ \operatorname{Im}\tr H_\kappa\le-\tfrac23\kappa^3+1446\kappa^4.
+\end{equation}
+At $\kappa=1/10000$, all smallness hypotheses above hold, and the right-hand side equals
+\[
+ -\frac{7831}{15000}\kappa^3<0.
+\]
+The trace is the sum of the three eigenvalues counted algebraically; at least one is nonreal. These are genuine isolated finite-algebraic-multiplicity eigenvalues of $S_\kappa$ in the contour cluster. No eigenvalue simplicity, diagonalizability or numerical eigenvalue calculation has been used. The rank-three zero calculation was intrinsic to $H_B$; its whole-space zero extension would instead have an infinite zero eigenspace.
+
+\subsection{A fixed compact particle invisible to every rational mesh}
+
+Enumerate $\Q^3\cap\overline B$ as $(q_k)_{k\ge1}$, where $\Q$ denotes the rationals. For $j\ge1$ set
+\[
+ U_j=\bigcup_{k\ge1}B(q_k,2^{-j-k-4}),\quad
+ F_j=\overline B\setminus U_j,\qquad \Omega_j=F_j\cup\{0\}.
+\]
+Each $F_j$ is compact, has no rational point and has empty interior. Moreover
+\begin{equation}\label{eq:removed}
+ |B\setminus F_j|\le\frac{4\pi}{3}\frac{2^{-3j-12}}7<|B|,
+ \qquad F_j\subset F_{j+1},\qquad |B\setminus F_j|\to0.
+\end{equation}
+Thus each has positive volume, and its indicators tend almost everywhere to $\mathbf1_B$. The point $0$ has its own deleted neighborhood, so restoring it gives an isolated, volume-zero anchor. In particular $\Omega_j$ is compact, has positive volume and empty interior, and
+\begin{equation}\label{eq:zero-matrix}
+ \Omega_j\cap n^{-1}\Z^3=\{0\}\quad(n\ge1).
+\end{equation}
+Every associated matrix is exactly $3\times3$ zero.
+
+It remains to retain a continuum nonreal pole on one \emph{fixed} $F_j$. Fix the frequency and a nonreal ball eigenvalue just proved, and take a small isolating disk around it with nonreal closed disk. On $H$, let $M_j=\mathbf1_{F_j}$ and $M_B=\mathbf1_B$. Equation~\eqref{eq:removed} implies strong mask convergence. Therefore
+\[
+ M_jDM_j\longrightarrow M_BDM_B
+\]
+strongly, with common selfadjoint spectral bound $[-1/3,2/3]$. The dynamic corrections converge in Hilbert--Schmidt norm by dominated convergence of their square-integrable kernels on $B\times B$. Lemma~\ref{lem:abstract}, now applied to this continuum mask sequence, gives norm convergence of the Riesz projections on the chosen contour. Their finite positive ranks eventually agree, so $S_\kappa$ on $F_j$ has a nonreal eigenvalue in the disk for all sufficiently large finite $j$. Adding the null anchor leaves the volume operator unchanged. Choose any one such $j$ and put $\Omega=\Omega_j$. Equation~\eqref{eq:zero-matrix} proves Theorem~\ref{thm:negative}.
+
+This passage uses strong convergence of the singular static compressions, not the false assertion that small removed volume makes them close in operator norm. Whole-space zero complements cause no problem on the nonreal contour. The selected index is existential; the frequency is explicit. For this $\Omega$, the selected voxel volume is $n^{-3}$ and $|\Omega_{1/n}\triangle\Omega|\to|\Omega|>0$, so~\eqref{eq:G} fails. The example neither contradicts Theorem~\ref{thm:main} nor shows that its geometric condition is necessary for every individual spectral question.
+
+\section{Verification and research status}
+
+The accompanying archive contains this source, the original proof artifacts, the source/priority audit record and executable exact symbolic/rational controls. Floating-point matrix and refinement diagnostics are separately labeled as illustrations. The analytical arguments above establish the operator limits, harmonic completeness and spectral conclusions; finite controls are not substitutes for those proofs or certificates of historical priority.
+
+AI tools were used extensively in developing the arguments, writing, computation, source research and adversarial checking. The archived independent reviews are AI-assisted adversarial reviews. This is an unrefereed preprint; no external human peer review or formal proof-assistant certification is asserted. The source-access and priority limitations stated in Section~1 remain part of the research status.
+
+\begin{thebibliography}{99}
+\bibitem{OWR} M. Costabel, Stability analysis of the DDA for Dielectric Scattering (joint work with M. Dauge and K. Nedaiasl), in \emph{At the Interface between Semiclassical Analysis and Numerical Analysis of Wave Scattering Problems}, Oberwolfach Report 43/2022, pp.~2580--2582. \href{https://doi.org/10.4171/owr/2022/43}{doi:10.4171/owr/2022/43}.
+\bibitem{CDN} M. Costabel, M. Dauge and K. Nedaiasl, Stability analysis of a simple discretization method for a class of strongly singular integral equations, \emph{Integral Equations Operator Theory} \textbf{95} (2023), article~29. Controlling author version: \href{https://arxiv.org/abs/2302.13159v3}{arXiv:2302.13159v3}. \href{https://doi.org/10.1007/s00020-023-02750-7}{doi:10.1007/s00020-023-02750-7}.
+\bibitem{YMH} M. A. Yurkin, V. P. Maltsev and A. G. Hoekstra, Convergence of the discrete dipole approximation. I. Theoretical analysis, \emph{J. Opt. Soc. Am. A} \textbf{23} (2006), 2578--2591. \href{https://doi.org/10.1364/JOSAA.23.002578}{doi:10.1364/JOSAA.23.002578}.
+\bibitem{YMHerr} M. A. Yurkin, V. P. Maltsev and A. G. Hoekstra, Convergence of the discrete dipole approximation. I. Theoretical analysis: erratum, \emph{J. Opt. Soc. Am. A} \textbf{32} (2015), 2407--2408. \href{https://doi.org/10.1364/JOSAA.32.002407}{doi:10.1364/JOSAA.32.002407}.
+\bibitem{AP} P. M. Anselone and T. W. Palmer, Spectral analysis of collectively compact, strongly convergent operator sequences, \emph{Pacific J. Math.} \textbf{25} (1968), 423--431. \href{https://msp.org/pjm/1968/25-3/pjm-v25-n3-p02-p.pdf}{Primary full text}.
+\bibitem{AT} P. M. Anselone and M. L. Treuden, Regular operator approximation theory, \emph{Pacific J. Math.} \textbf{120} (1985). \href{https://msp.org/pjm/1985/120-2/pjm-v120-n2-p01-p.pdf}{Primary full text}.
+\bibitem{DNR} J. Descloux, N. Nassif and J. Rappaz, On spectral approximation. Part 1. The problem of convergence, \emph{RAIRO Anal. Numer.} \textbf{12} (1978), 97--112. \href{https://www.numdam.org/article/M2AN_1978__12_2_97_0.pdf}{Primary full text}.
+\bibitem{BS} N. V. Budko and A. B. Samokhin, Spectrum of the volume integral operator of electromagnetic scattering, \emph{SIAM J. Sci. Comput.} \textbf{28} (2006), 682--700. Author manuscript: \href{https://arxiv.org/abs/math-ph/0505013}{arXiv:math-ph/0505013}.
+\bibitem{Zhou} Y. Zhou, Spectral structure of electromagnetic scattering on arbitrarily shaped dielectrics, \emph{Commun. Math. Sci.} \textbf{20} (2022), 1363--1395. Author version: \href{https://arxiv.org/abs/0911.4540v5}{arXiv:0911.4540v5} (2021). \href{https://doi.org/10.4310/CMS.2022.v20.n5.a7}{doi:10.4310/CMS.2022.v20.n5.a7}.
+\bibitem{ALZ} H. Ammari, B. Li and J. Zou, Super-resolution in recovering embedded electromagnetic sources in high contrast media, ETH SAM Research Report 2020-08 (2020). \href{https://arxiv.org/abs/2001.07116}{arXiv:2001.07116}.
+\bibitem{Rahola} J. Rahola, On the eigenvalues of the volume integral operator of electromagnetic scattering, \emph{SIAM J. Sci. Comput.} \textbf{21} (2000), 1740--1754. \href{https://doi.org/10.1137/S1064827598338962}{doi:10.1137/S1064827598338962}.
+\bibitem{AM} H. Ammari and P. Millien, Shape and size dependence of dipolar plasmonic resonance of nanoparticles, \emph{J. Math. Pures Appl.} \textbf{129} (2019), 242--265. \href{https://doi.org/10.1016/j.matpur.2018.12.001}{doi:10.1016/j.matpur.2018.12.001}.
+\bibitem{Mie} D. Tzarouchis, P. Yl\"a-Oijala and A. Sihvola, Resonant scattering characteristics of homogeneous dielectric sphere (2017), \href{https://arxiv.org/abs/1702.05883v1}{arXiv:1702.05883v1}. \href{https://doi.org/10.1109/TAP.2017.2690312}{doi:10.1109/TAP.2017.2690312}.
+\bibitem{YM} M. A. Yurkin and M. I. Mishchenko, Volume integral equation for electromagnetic scattering: Rigorous derivation and analysis for a set of multilayered particles with piecewise-smooth boundaries in a passive host medium, \emph{Phys. Rev. A} \textbf{97} (2018), 043824. \href{https://doi.org/10.1103/PhysRevA.97.043824}{doi:10.1103/PhysRevA.97.043824}.
+\bibitem{IMU} K. Nedaiasl, Abel Visiting Scholarship Program report on the September--October 2022 visit to Rennes. \href{https://www.mathunion.org/fileadmin/CDC/Grants/Abel\%20Visiting\%20Scholar\%20Program/2019/khadijeh_nedaiasl_report.pdf}{IMU primary report}.
+\bibitem{Hilbert} M. Costabel, Convergence of a simple discretization of the finite Hilbert transformation, \emph{Comput. Math. Appl.} \textbf{150} (2023), 15--21. Author version: \href{https://arxiv.org/abs/2303.13693v2}{arXiv:2303.13693v2}. \href{https://doi.org/10.1016/j.camwa.2023.09.004}{doi:10.1016/j.camwa.2023.09.004}.
+\end{thebibliography}
+\end{document}

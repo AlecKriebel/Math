@@ -1,0 +1,5 @@
+# PR1407 read-only integration preparation log
+
+2026-10-22T18:14:32.384930+00:00 — Fresh read-only PR18path/tree/queue observations bind original draft/open head and main6a8c636bad94d39caf468a645aff342febb945f8 at both boundaries.17original bytes/modes preserved;6release+16expandedsource+PUBLICATION+onequeue row produce exact41path overlay. Pure Git serialization matches6observed trees and computes rootd60c573bc1b33ab2a6a16a5102acfef00d85ff4e with no Git object write. Preparation90%, overall81%.
+
+2026-10-22T18:23:04.482962+00:00 — Root-reviewable frozen plan, hash-addressed payloads, read-only caller-pinned candidate verifier and narrow post-construction checklist complete. Offline41payload/queue checks pass. All3closed scientific/review inputs and root pins rechecked exact; initial second-seal schema-read error retained honestly. No candidate/branch/merge/publication/ledger action. Own allocation<8MiB/free>150MiB at final measured checkpoint. Preparation100%, overall81%; no action authority.

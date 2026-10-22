@@ -1,0 +1,7 @@
+# PR 1391 publication preparation
+
+2026-10-22T15:16:11.258952+00:00 — Created isolated preparation folder. Fresh numeric-sheet metadata and all 43 columns read with typed value and formula views; metadata stable. Preparation 5%; overall sweep 80%. No publication or service mutation.
+
+2026-10-22T15:38:38.749281+00:00 — Full accepted proof reconstructed in concise six-page note. Primary priority challenge includes BLO derivation proofs, older FK3 no-generator proof, GWA/Jordan-plane and current truncated-cycle v2 distinctions. No earlier full target classification authenticated; firstness remains unestablished. Exact diagnostics pass normal/-O/-OO. Built-in compile succeeded; existing pinned Tectonic exported cache-only with network and all outside writes denied. All six final pages visually checked, source12/kit5 members read back, six release files reproduced exactly from fresh physical source reconstruction (frozen PDF copied, not recompiled). Final GWS all43 typed views still208rows, local244states, broad leads unchanged. Preparation90%; overall80%. Final seal and handoff pending.
+
+2026-10-22T15:41:18.325064+00:00 — Final preparation package and report completed. All package/reproduction/local tool/page checks passed. Assigned preparation100%; overall80%. publication_readyFALSE pending two new whole-package adversarial reviews/root. Closed scientific package remains local only; no DOI/services/Git/shared-ledger changes. Exact seal closure follows.

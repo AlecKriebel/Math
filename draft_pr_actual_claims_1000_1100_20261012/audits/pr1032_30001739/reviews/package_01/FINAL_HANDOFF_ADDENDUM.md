@@ -1,0 +1,13 @@
+# Final handoff addendum — review count and source-image custody
+
+UTC: 2026-10-17T04:11:27.196959+00:00
+
+This is an append-only clarification of REPORT.md and its first output seal. That first seal had already been written and checked when ROOT's clarification arrived; the report, old inventory and old seal are preserved byte-exact. This addendum governs the handoff on the following two points. It changes no mathematical derivation or finding.
+
+The human's established workflow requires **at least TWO fresh complete whole-paper/package reviews TOTAL**. This completed package_01 review counts as review1 despite its3P3 findings. After all three concrete repairs in a new candidate revision, the next NEW COMPLETE whole02 review counts as review2. Further complete review/repair iterations are needed if concerns remain. The final report's wording about two reviews “of the corrected candidate” must not be interpreted as demanding two additional reviews after every correction. Publication readiness remainsfalse now because repairs and that next complete review/final-root workflow are pending.
+
+ROOT reported that its running checkpoint with prefixdcbe0504 captured five third-party source-page PNGs from this review before an effective ignore rule existed. These are source_renders/JPSS-31.png, JPSS-79.png, JPSS-80.png, OWR-01.png and OWR-09.png. The review had intended these as local primary-inspection evidence, but **repository exclusion must not be claimed**: the reported checkpoint did include them. The release ZIP still excludes every one of these images, as independently verified; ZIP exclusion and repository publication are different claims.
+
+ROOT reported that it is adding a narrow program-root ignore and will forward-remove those five paths from the current remote tree, preserving local source images and historical commit state without rewriting history. This review has not independently verified that external follow-up and does not claim it completed. A local .gitignore now also excludes /source_renders/ before any future such image is created. Existing local image bytes and all prior seals remain unchanged. Own-paper QA images are authored output and are a different class. No reviewer Git/index/branch/queue/PR/service action occurred. Future third-party bodies/images need an actual applicable ignore rule before a checkpoint, rather than a label saying “private.”
+
+The complete mathematical verdict remainsverified in exact scope conditional on published dependencies; P0=0,P1=0,P2=0,P3=3. Luo–Zha overlap remainsUNKNOWN with no retrieval or novelty inference. This remains a complete whole review, not a repair-only response. The final append-only handoff inventory/seal includes the original review seals and this clarification.

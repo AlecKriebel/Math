@@ -1,0 +1,10 @@
+# Research log
+
+- 2026-10-16T08:38:47.458503+00:00: Initial independent position checkpoint after full candidate and source record; completion estimate 8%. Exact proof appears conditionally sound; source/codomain and package remain to verify.
+
+- 2026-10-16T08:43:29.885126+00:00: Primary-body source, proof, all-four-page visual, complete123-member inventories, nested14/7 ZIP, exact6 and four runtime checks passed; independent1296 enumeration confirms counts. Minor OWR bibliography page-range correction identified. Completion estimate70%. Builder/physical controls and sealed report pending.
+- 2026-10-16T08:43:29.885126+00:00: Resource/control note: first exploratory verifier runs inherited the standard-library default temporary directory for frozen child control fixtures. Those context-managed copies self-cleaned; no persistent outside output was authored. All further runs explicitly set TMPDIR to this review’s own tmp directory and repeat the complete4-runtime audit. This corrects the temporary-placement oversight; it is not hidden as a package defect.
+
+- 2026-10-16T08:47:33.454976+00:00: Final review checkpoint: coverage100%; exact package has1 P3 OWR bibliography page-range correction, estimated publication readiness99%. Full4-runtime scoped scratch replay, original36controls, identical6 rebuilds and physical/output guards pass. No mathematical/source-domain/credit/software defect identified. One metadata-save command used an unresolved dot-parent and failed before writing; retried with resolved assigned folder. Seal follows owned-scratch cleanup; no promotion.
+
+- 2026-10-16T08:48:02.518020+00:00: Own recursive custody verifier physical guards PASS normally and under -O:4 relocated/changed-mtime positives and14 missing/extra/modified/symlink/FIFO/empty-dir/wrong-pin negatives. All owned fixture directories removed. Final manifest covers24 authored artifacts plus retained four-page visual evidence within that total; self excluded. Audit completion100%; remaining P3 unchanged.

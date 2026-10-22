@@ -1,0 +1,241 @@
+{
+  "utc": "2026-10-16T04:30:43.960918+00:00",
+  "status": "ADOPT_BOUNDED_CASE_ALIAS_REPAIR_PENDING_NEW_COMPLETE_WHOLE_REVIEW",
+  "full_report_operative_code_and_prose_diff_read_large_pin_arrays_rehashed": true,
+  "counts_rehashed": {
+    "outputs": 32,
+    "baseline": 1045,
+    "changes": 10,
+    "unchanged": 1035,
+    "current": 210,
+    "historical_rows": 14818,
+    "copies": 165,
+    "closed_zip_members": 198
+  },
+  "historical_states": {
+    "RESOLVED_EXACT_RETAINED_BYTES": 14813,
+    "INDIVIDUALLY_UNRESOLVED_NOT_REPLAYED_OR_AUTHENTICATED": 5
+  },
+  "historical_exceptions": "1064:two copies of unsupported stale inventory digest andthree intentional invalidbindingfixture pointers, individuallydisclosed; no fabricated missingbytes ororiginalstage replay",
+  "independent_actual_commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "verify_package.py"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "ec82e4a717f16ca42ad9c31516e8b692efe26162085be60f94490663162fd8e0",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "run_checks.py",
+        "--out-dir",
+        "tmp/root-check-normal"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "212a524322ded06161ec3acaf2c8564ad7d64be594003d63e6ace9fc3dcac1ba",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1064-case-repair-l38b17ix/external-normal.zip"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "b630fff82a6b94a083a4184acd28e2406c2914381aa321645d8ab5ea6bae4136",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1064-case-repair-l38b17ix/KIT/forbidden-normal.zip"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1064-case-repair-l38b17ix/kit/build_archive.py\", line 28, in <module>\n    v.require(inside==Path('support.zip') or (inside.parts and inside.parts[0]=='tmp') or physical_relative(out,root/'tmp') is not None,'inside package output must be support.zip or under tmp/')\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1064-case-repair-l38b17ix/kit/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: inside package output must be support.zip or under tmp/\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1064-case-repair-l38b17ix/KIT/missing/nested/forbidden-normal.zip"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1064-case-repair-l38b17ix/kit/build_archive.py\", line 28, in <module>\n    v.require(inside==Path('support.zip') or (inside.parts and inside.parts[0]=='tmp') or physical_relative(out,root/'tmp') is not None,'inside package output must be support.zip or under tmp/')\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1064-case-repair-l38b17ix/kit/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: inside package output must be support.zip or under tmp/\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1064-case-repair-l38b17ix/KIT/tmp/allowed-normal.zip"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "1015f77ee333b79bfafb632545eb16567c5faa23a0bc328f0ac512ce2acc7d53",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0/verify_package.py",
+        "--require-deposit-binding"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "e7c235bd42cb6f91637901aa34df092350679bcc29e5d8ff580b16452bb216c4",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-O",
+        "verify_package.py"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "ec82e4a717f16ca42ad9c31516e8b692efe26162085be60f94490663162fd8e0",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-O",
+        "run_checks.py",
+        "--out-dir",
+        "tmp/root-check-optimized"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "212a524322ded06161ec3acaf2c8564ad7d64be594003d63e6ace9fc3dcac1ba",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-O",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1064-case-repair-l38b17ix/external-optimized.zip"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "1ab2945cefbedbe3dec0bbb4a9f2ad640effdec7f822db46b0870004a6ae36bc",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-O",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1064-case-repair-l38b17ix/KIT/forbidden-optimized.zip"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1064-case-repair-l38b17ix/kit/build_archive.py\", line 28, in <module>\n    v.require(inside==Path('support.zip') or (inside.parts and inside.parts[0]=='tmp') or physical_relative(out,root/'tmp') is not None,'inside package output must be support.zip or under tmp/')\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1064-case-repair-l38b17ix/kit/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: inside package output must be support.zip or under tmp/\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-O",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1064-case-repair-l38b17ix/KIT/missing/nested/forbidden-optimized.zip"
+      ],
+      "exit_code": 1,
+      "expected_success": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1064-case-repair-l38b17ix/kit/build_archive.py\", line 28, in <module>\n    v.require(inside==Path('support.zip') or (inside.parts and inside.parts[0]=='tmp') or physical_relative(out,root/'tmp') is not None,'inside package output must be support.zip or under tmp/')\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1064-case-repair-l38b17ix/kit/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: inside package output must be support.zip or under tmp/\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-O",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1064-case-repair-l38b17ix/KIT/tmp/allowed-optimized.zip"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "d244c4a3994341d98ccb9a0210f92ee6da7fc809a269910f0fd235a730424459",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0/verify_package.py",
+        "--require-deposit-binding"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "e7c235bd42cb6f91637901aa34df092350679bcc29e5d8ff580b16452bb216c4",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/alec/Documents/Math/zenodo_deposit_tool/zenodo.py",
+        "check",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0/publication/zenodo-deposit.json"
+      ],
+      "exit_code": 0,
+      "expected_success": true,
+      "stdout_sha256": "dcaef1a86aa60c65a0b1f0eb97a82b6b39f4ed656f139a6f0a895acdca9ffff6",
+      "stderr": ""
+    }
+  ],
+  "independent_closed_zip_byte_equal": true,
+  "paper_TeX_PDF_math_checker_bibliographic_bytes_unchanged": true,
+  "no_new_compile_render": true,
+  "prior_complete_whole_reviews": 3,
+  "new_required_complete_whole_review": 4,
+  "minimum_whole_reviews": 2,
+  "publication_ready": false,
+  "published": false,
+  "services_held_after_pr": 1032
+}

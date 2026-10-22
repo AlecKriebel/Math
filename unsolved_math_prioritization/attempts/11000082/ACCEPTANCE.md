@@ -1,0 +1,7 @@
+# Current acceptance
+
+ACCEPT the complete original theorem: each fixed closed genus g>=2 and finite depth k>=3 has unbounded pseudo-Anosov dilatation multiplicity in I_g(k) when counted up to ambient orientation-preserving Mod_g conjugacy. Original arithmetic and distinct compact-core proofs pass root and NEW separate adversarial checks. No original mathematical repair is required; the production note clarifies that its word-marker bound concerns y-syllables, including the smallest case.
+
+Publish as an attributed alternative convex-core proof of the same-scope theorem recorded by Ferudun2026 Theorem1.1, DOI10.5281/zenodo.23301731. Both initially separate priority searches and post-seal reverse challenges are complete within their explicit limits. No firstness, new-existence, new-mechanism, current-openness or disclosure-lineage claim. The optional <=2008 FLM seed is not promoted; no historical solution date is inferred from a2026 assembly of older ingredients.
+
+Powers are included and the common value can vary; no ambient-primitivity, simple-loop, fixed-value infinite-multiplicity, all-depth-intersection or stronger extended/inversion theorem is asserted. Extensive AI use; unrefereed, no external human peer review or formal proof certification. Exact PDF/archive whole-package reviews and confirmed publication/tracker/merge receipts are independent later gates, not supplied by this acceptance record.

@@ -1,24 +1,11 @@
-# An incidence-dependent upper bound for differential posets
+# A singleton-supported cycle correction to Byrnes's differential-poset bound
 
-Structural partial progress for record 30003819 / OWR-16164-013. For an ordinary r-differential poset and n>=2, the full proof subtracts a nonnegative cycle-rank correction q_n from Byrnes's cumulative upper bound. The correction uses the two preceding ranks and can be positive and attained.
+Alec Kriebel (ORCID0009-0001-9320-500X), version1.0.0,22October2026. Unrefereed preprint; extensive AI involvement in research, proof, code, sources, writing and adversarial verification. No professional independent human peer review, journal acceptance or formal proof certification is claimed.
 
-This AI-assisted manuscript is unrefereed. Acceptance records an independent internal AI audit, not external human peer review, journal acceptance, or formal proof-assistant certification.
+The operative seven-page [paper](preprint/supported-cycle-bound.pdf) and complete [editable-source/verification archive](preprint/supported-cycle-source-and-verification.zip) give an incidence-dependent improvement of Byrnes's cumulative bound for every ordinary unweighted r-differential poset. The singleton-supported cycle correction is nonnegative, can be positive and attained on standard reflected Young-prefix examples, and has sharp coefficient one. A singleton-successor sufficient condition, conditional two-witness equality characterization and all-r rank-three consequence are proved.
 
-The general local recurrence remains unresolved by this work. No novelty, priority, exhaustive literature-survey, or current-openness claim is made.
+This addresses Majumder's literal first improvement request (30003819 / OWR-16164-013, OWR23/2018 p.1452). Stanley's general local recurrence, the separate combinatorial strict-growth question and improvement to the global Fibonacci envelope remain outside this result. Classical incidence identities, graph facts, singleton methods and Wagner reflection are credited; Gaetz–Venkataramana Proposition3.4 already gives the rank-one two-singleton lemma used here. A dated bounded source comparison found no equivalent earlier supported-cycle theorem in inspected material, without certifying historical firstness, a new general method or current worldwide openness.
 
-The complete tree-replacement proof, isolated-vertex and rank-boundary treatment, singleton-successor sufficient condition, reflected preceding-rank indexing, two-witness equality characterization, all-r rank-three consequence, and both explicit infinite sharp constructions are retained. The (1,3,3,7) relaxed-middle-commutator obstruction fails the minimum relation and is not a differential-poset counterexample. Its projected triangle and bipartite six-cycle are distinguished.
+The source archive preserves all eight original submitted files unchanged in supported_cycle_verification/original/, including the original README and manifest. The six other root proof/acceptance/source files describe that historical eight-file edition, whose omitted-code limits do not describe the new runnable archive. Their historical structural-partial label is relative to the stronger recurrence endpoint. Current framing clarifies the separately completed improvement request without editing those historical mathematical documents.
 
-The up/down relation is an ordinary integer-count identity, equivalently over Q, rather than merely a modular identity. Cycle-space dimensions can be computed over any field without changing that operator convention.
-
-The complete written proofs and analytical constructions are retained. This is not a computational reproduction package: executable code, raw enumeration datasets, copied source documents and images, and private coordination material are omitted. Historical finite checks are supporting evidence; the uniform theorem and infinite sharpness follow from the written arguments. The historical computations cannot be reproduced from this edition alone.
-
-## Reading order
-
-- PROOF.md: full accepted structural theorem, proof, equality criterion, constructions and residual gap.
-- AUDIT.md: complete eleven-part independent logical audit, finite computational scope and source-inspection limits.
-- ACCEPTANCE.md and ACCEPTANCE.json: accepted claims, limitations and exact document bindings.
-- SOURCES.json: public citations, bounded historical retrieval and inspection, PDF sizes and hashes.
-- VERIFICATION.json: historical verification metadata and reproduction limits.
-- MANIFEST.json: exact eight-member inventory; hashes the other seven members.
-
-The historical labeled enumerations stop at rank seven for r=1 and rank three for r=2,3. They are not isomorphism-class counts. Separate reflection checks stop at rank five for r<=5 and Young-lattice checks at rank twelve. No new mathematical execution or scholarly-source retrieval or inspection occurred during editorial preparation. Only these eight authored files are selected for distribution.
+The current root manifest pins all13 selected leaves (eight root members and five flat preprint-kit members), excluding only its exact root self path. The preprint native metadata and two-file manifest match the independently reviewed package. No DOI, publication, operational readiness, or routine GitHub release is implied by repository integration. The portable Python3 standard-library runner in the archive compares complete normal/-O/-OO outputs. Reflection-only runs always use first/last witnesses; enumerated/Young/separate sharp-example runs exhaust products<=2000 and use first/last above. Finite controls supplement the written universal proof.

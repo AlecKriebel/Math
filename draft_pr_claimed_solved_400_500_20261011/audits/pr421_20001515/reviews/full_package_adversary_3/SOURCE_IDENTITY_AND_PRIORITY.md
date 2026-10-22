@@ -1,0 +1,11 @@
+# Exact source and bounded priority
+
+An independent ordinary HTTP fetch of the www AIM page and default-TLS fetches of the 2024-08-28 and 2026-03-10 captures all returned 200 and identical 25,734-byte bodies, SHA-256 9dfa1624c5743d114c671ea69201a9ea46fe577e707239e245cc7f22b30b8121. The displayed Question 5.2 and selected embedded record both specify a->a,b->ab,c->bcb, attribute it to Rylee Lyman, and ask for the geometric cubical action. The selected record is 0df1011a6fa8a3c46e2c977b7e12c66f, revision 6-d5a22eda9ed96ccdc8327e2e9395bb3e. The attached CAT(0)-space remark does not supply cubulation; blank status is not current-openness evidence.
+
+Sources: [AIM HTTP entry](http://www.aimpl.org/freebycyclic/5/), [2024 capture](https://web.archive.org/web/20240828224508id_/http://aimpl.org/freebycyclic/5/), [2026 capture](https://web.archive.org/web/20260310215532id_/http://www.aimpl.org/freebycyclic/5/). HTTP has no TLS authentication. The HTTPS page failed hostname verification; no warning was bypassed.
+
+The [official AIM workshop summary](https://aimath.org/pastworkshops/freebycyclicrep.pdf), page 2, describes the different aba,bcb formula and an earlier three-dimensional candidate whose cocompactness was then uncertain. This was read through the current web PDF tool; direct urllib independently received 403, which is recorded rather than misreported as success. The workshop formula is not substituted for the exact AIM record.
+
+The bounded inspection includes the canonical sources and current primary papers detailed in PRIMARY_APPLICABILITY.md. Focused searches for free-by-cyclic with bcb, cocompact, Lyman, and AIM 5.2 found the workshop report, but no documented prior exact geometric answer in the inspected set. Some exact-token searches returned poorly indexed or irrelevant results, so their absence evidence is weak. Prior tools nevertheless yield a present qualitative existence deduction with group-specific hypotheses checked. No claim of historical firstness, absolute novelty, minimal dimension/cell count, or virtual specialness is warranted or made. The explicit finite model is the concrete contribution under review.
+
+No outside individual was contacted and no outreach was prepared. Primary PDFs/HTML, selected raw source record and native source reads remain private.

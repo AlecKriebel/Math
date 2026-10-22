@@ -1,0 +1,15 @@
+# PR672 fresh disposition falsification findings
+
+**Verdict: PASS for the proposed bounded priority closure; mandatory findings0, optional findings0.** This is a review of a proposed action. This reviewer has not closed, commented on, merged, edited or published the PR.
+
+The exact submitted smooth-category theorem is sound as a credited application of Bi2608.06320v1 Theorem1.1. The source explicitly states the needed angle/normal-Gram equality on closed facet intersections, in all dimensions n>=3, under precisely the metric hypotheses supplied by an ambient-smooth Euclidean pullback. The lack of simple/acute restrictions and absence of an upper dimension were checked directly. No hidden reference face-metric, volume or length comparison is needed. The all-point equality prevents a strict decrease even at a higher corner.
+
+The planar case is classical turning; it also follows by the explicit metric product with an interval and the same prior theorem in dimension3. Dimension1 is vacuous. The original extremality hypothesis is unused. The publicly identified August6 theorem predates this October5 application/verification record. The precise prior containment is positive evidence, rather than an inference from search failure.
+
+The current comment correctly distinguishes valid credited mathematics from the absent new original-problem result. It neither asserts journal acceptance or community consensus nor resolves disputed WXY versions. It does not assert a literal earlier printing of Gromov's exact sentence or determine the first historical solver. It preserves the ambient-smooth category and does not declare corner-singular versions resolved. I found no authored new mechanism in the application and proof-verification packet that supplies an independently new target theorem. Its detailed verification and exposition can remain useful research records; they are not rejected as mathematical errors.
+
+Reasonable repairs were independently challenged: improved credit/status is already present; removing the source without a new proof leaves the central theorem unsupported; broadening the category lacks a positive pullback/reduction and fails on elementary degenerate-corner examples; reframing as an expository application note changes the present new-resolution publication goal. None repairs originality while retaining the current claim.
+
+The full checkable assumption map, derivation and attempted falsifications are in DERIVATION.md. Forty-seven exact finite diagnostics pass identically under normal and optimized Python. All24 original native files and every controlling input pin remain unchanged. Primary PDF hashes and exact inspection boundaries are in SOURCE_BINDINGS.json. This reviewer has not replaced the full independent PDE/source-proof gate and does not claim formal verification or human peer review.
+
+No required or optional change to the current CLOSURE_COMMENT.md is requested. Preserve its present limitations when executing any later disposition. No queue reclassification, preprint deposit, DOI or spreadsheet write is supported by this finding.

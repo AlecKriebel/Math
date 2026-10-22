@@ -1,0 +1,136 @@
+{
+  "review_id": "full_package_02",
+  "pr_number": 904,
+  "problem_id": 30000347,
+  "started_independent_deduction_utc": "2026-10-13T03:46:45.711781+00:00",
+  "completed_utc": "2026-10-13T03:56:27.903927+00:00",
+  "status": "REPAIR_REQUIRED",
+  "mathematical_verdict": "PASS",
+  "publication_package_verdict": "ONE_MINOR_REQUIRED_REPAIR",
+  "completion_estimate_percent": 100,
+  "scope": "Fresh independent complete review of the frozen manuscript, PDF, ZIP, verifiers, primary sources, supporting reports and publication metadata. Not a novelty certification or authorization to merge/publish.",
+  "independence": {
+    "proof_read_before_supporting_family_reports": true,
+    "other_full_package_reports_read": false,
+    "external_communications": false,
+    "other_agents_contacted": false,
+    "shared_payload_modified": false
+  },
+  "reviewed_freeze_sha256": "c8587791749d5f599d034666e932936d378d51c916a58733858bd7241d039ff7",
+  "frozen_reviewed_hashes": {
+    "note.tex": {
+      "sha256": "908e36fec4c1b73088b2ed960877efd703f87d9ef57e5addb00233131953de3e",
+      "bytes": 12462
+    },
+    "output/pdf/note.pdf": {
+      "sha256": "0f6fc15b270e178cec67ff98f09f1f7f7f09d34f4926ea568266bb8dab35b3a2",
+      "bytes": 54431
+    },
+    "three-terminal-bsp-source-verification-v1.0.zip": {
+      "sha256": "3d7abfbf721702550dfdfacaefb57ef3c0eb4ce4e4ec8fcd3e5b8082143632e8",
+      "bytes": 117514
+    },
+    "zenodo-deposit.json": {
+      "sha256": "a5dc16d3e64a78352670d1e52b8ff4b67891da0358e688a9d826a69395c64ce3",
+      "bytes": 3720
+    },
+    "README.md": {
+      "sha256": "142a2d9db0c6c84359d6dac3447ec98906f5746181bcde904b82b2792684a02a",
+      "bytes": 3746
+    },
+    "verify_package.py": {
+      "sha256": "5d015a7d7e75fabc58661c5cb33a77fd4847d2e33a4975c55f847d4e84d506a7",
+      "bytes": 4223
+    },
+    "tmp/bundle/PACKAGE_MANIFEST.json": {
+      "sha256": "01815bd240506cf2eb04ca4dfcddb27482fc166a4aead8131045554cca21ad57",
+      "bytes": 8616
+    }
+  },
+  "freeze_unchanged_at_completion": true,
+  "required_repairs": [
+    {
+      "id": "R1",
+      "priority": "P3",
+      "category": "supporting_archive_reproducibility",
+      "location": "publication/build_package.py:20; ZIP reviews/priority_family/PRIORITY_AUDIT.md:61 and QUERY_LOG.md:85",
+      "finding": "The packaged priority report and query log promise public CITING_KRAUSE.json and CITING_BIENSTOCK.json records, but the allowlist omits both from the ZIP and PACKAGE_MANIFEST.json.",
+      "repair": "Prefer adding the two existing sanitized citation-title/DOI/query metadata records to the priority-family allowlist, rebuilding ZIP/manifests/freeze, then reviewing the new frozen bytes. Alternatively correct both packaged statements to explicitly identify these records as omitted local-only evidence. Do not modify the unchanged original_packet.",
+      "mathematical_impact": "None; this repairs a specific package provenance promise."
+    }
+  ],
+  "verification": {
+    "clean_extracted_outer_normal": "PASS with --pdf released artifact",
+    "clean_extracted_outer_optimized": "PASS with --pdf released artifact",
+    "replayed_suites": 5,
+    "outer_payload_files": 47,
+    "zip_total_members": 48,
+    "fresh_outer_rejected_attacks": 18,
+    "expected_note_plus_manifest_trust_boundary_acceptances": 2,
+    "pdf_pages_visually_inspected": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "pdf_render_dpi": 140,
+    "pdf_visual_defects_found": 0,
+    "standalone_tex_compilation": "PASS via Tectonic in clean temporary directory",
+    "rebuilt_pdf_extracted_text_identical": true,
+    "source_pdf_or_image_or_html_in_distributed_zip": false,
+    "secret_signature_matches": 0,
+    "standard_library_python_version": "3.14.6"
+  },
+  "primary_sources": {
+    "krause_owr.pdf": {
+      "url": "https://ems.press/content/serial-article-files/46024?nt=1",
+      "bytes": 1398051,
+      "sha256": "a168481579c519a090ffd814e9019daf8eefb05fc57f743cabbf6aad2071622f",
+      "pdf_magic": "%PDF-"
+    },
+    "krause_thesis.pdf": {
+      "url": "https://webdoc.sub.gwdg.de/ebook/dissts/Braunschweig/Krause2006.pdf",
+      "bytes": 812989,
+      "sha256": "38fad5b42f29f92090cc4974bd4ed310a63adc5d1e79ca33b7b5b1ca2536b66d",
+      "pdf_magic": "%PDF-"
+    },
+    "poljak.pdf": {
+      "url": "https://dml.cz/bitstream/handle/10338.dmlcz/105554/CommentatMathUnivCarol_015-1974-2_9.pdf",
+      "bytes": 226945,
+      "sha256": "2ec2aab0a526fbd71a4513d675eaee0f274ce3205aece9aef95d3bbc1b1c0bd6",
+      "pdf_magic": "%PDF-"
+    },
+    "khachiyan.pdf": {
+      "url": "https://d-nb.info/1239024797/34",
+      "bytes": 728310,
+      "sha256": "cb13e2b47e6e7609136da43d0fc96e33d6ae2ab165cbec89abc2518c6ef306be",
+      "pdf_magic": "%PDF-"
+    },
+    "karp.pdf": {
+      "url": "https://cgi.di.uoa.gr/~sgk/teaching/grad/handouts/karp.pdf",
+      "bytes": 10879201,
+      "sha256": "778c8b3507620a68154bc74b29810e0de6d2c4dd7ee5d24b84c7e7ba61404b81",
+      "pdf_magic": "%PDF-"
+    }
+  },
+  "metadata": {
+    "title": "NP-completeness of three-terminal shortest-path blocking",
+    "version": "1.0",
+    "date": "2026-10-12",
+    "creator": "Kriebel, Alec",
+    "orcid": "0009-0001-9320-500X",
+    "license": "cc-by-4.0",
+    "metadata_and_payload_alignment": "PASS",
+    "extensive_ai_and_unrefereed_disclosure": "PASS",
+    "historical_first_priority_or_continued_open_claim": "Not asserted"
+  },
+  "strongest_verified_result": "The two written identities establish a polynomial many-one Vertex Cover reduction, proving NP-completeness of undirected triangle BSP with all initial distances3 and all traversal/deletion costs1; rational deletion-cost decision hardness and finite/exact3-to4 variants follow. No mathematical gap found.",
+  "residual_gaps_and_limitations": [
+    "Required missing citation-record package repair R1.",
+    "Bibliographic first priority and continued open status through2026 remain unverified; the bounded priority report discloses inaccessible full texts and indexing limitations.",
+    "Finite suites are supplementary consistency evidence; no formal proof-assistant certificate or independent human peer review exists.",
+    "PACKAGE_MANIFEST.json is a trust anchor: note+manifest coordinated replacement passes integrity without changing the verifier. This is within the documented trusted-manifest boundary.",
+    "Direct optimized historical raw-checker execution erases assertions; supported outer verifiers compensate by explicit require guards and child -I without -O.",
+    "No planar, bounded-degree, general weighted-traversal, or globally connected residual-graph classification established."
+  ]
+}

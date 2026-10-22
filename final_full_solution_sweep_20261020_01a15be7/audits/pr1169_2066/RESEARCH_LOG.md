@@ -1,0 +1,3 @@
+# PR1169 eligibility
+
+2026-10-22T03:58:37.865987+00:00 — This is explicitly an audit and unchanged reconstruction of Jesse Geneson's already public arXiv:2609.25107v1 Theorem1, not a new proof or result. Fresh primary PDF p1 states the exact m<=1 classification under eventual completeness and indexed-occurrence deletions, matching the PR. No original contribution or mathematical correction is claimed. No new correctness or exhaustive historical-priority certification of Geneson's theorem is inferred from this eligibility check. Fresh GWS CLI2026-10-22T03:57:47.908612+00:00,182 rows,no matches/DOI records. Existing attributed arXiv publication; not a missing Zenodo DOI or a new project paper. Eligibility100%; sweep79%.

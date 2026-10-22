@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "mechanism": "Direct real Cartesian edge projections, antipodal pairing, support square/bilinear relations, unit-normal polynomial reduction, and explicitly telescoping residuals",
+  "unit_constraints": [
+    "c^2+s^2=1",
+    "u^2+w^2=1"
+  ],
+  "support_constraints": [
+    "h^2=H+e(c^2-s^2)",
+    "k^2=H+e(u^2-w^2)",
+    "hk=(D+e)cu+(D-e)sw"
+  ],
+  "circle_sum_constraints": [
+    "sum KC=Sz",
+    "sum KC(Zi+Zj)=beta Sz",
+    "sum KC(Yi+Yj)=0"
+  ],
+  "coefficients": {
+    "x_linear_(1, 0)": {
+      "cyclic_part": "-(c*u + s*w)*(-c*w + s*u)*(-2*D*c**2 + 2*D*s**2 - 2*D*u**2 + 2*D*w**2 + 2*D - 2*H - c**2*e + e*s**2 - e*u**2 + e*w**2 - 3*e)/2",
+      "telescoping_potential": "-c*e*s*(2*s**2 + 1)/2"
+    },
+    "y_linear_(0, 1)": {
+      "cyclic_part": "-(c*u + s*w)*(-c*w + s*u)*(2*D*c**2 - 2*D*s**2 + 2*D*u**2 - 2*D*w**2 + 2*D - 2*H - c**2*e + e*s**2 - e*u**2 + e*w**2 + 3*e)/2",
+      "telescoping_potential": "c*e*s*(2*s**2 - 3)/2"
+    },
+    "x_crosslinear_(0, 1)": {
+      "cyclic_part": "-(-2*D + e)*(c*s + u*w)*(c*u + s*w)*(-c*w + s*u)",
+      "telescoping_potential": "-e*s**2*(s - 1)*(s + 1)"
+    },
+    "y_crosslinear_(1, 0)": {
+      "cyclic_part": "(2*D + e)*(c*s + u*w)*(c*u + s*w)*(-c*w + s*u)",
+      "telescoping_potential": "-e*s**2*(s - 1)*(s + 1)"
+    },
+    "x_cubic_(3, 0)": {
+      "cyclic_part": "-(c*u + s*w)*(-c*w + s*u)*(-c**2 + s**2 - u**2 + w**2 + 3)/4",
+      "telescoping_potential": "c*s*(2*s**2 + 1)/4",
+      "summed_coefficient_over_Sz": "3/4 - beta/4"
+    },
+    "x_cubic_(2, 1)": {
+      "cyclic_part": "(c*s + u*w)*(c*u + s*w)*(-c*w + s*u)/2",
+      "telescoping_potential": "s**2*(3*s**2 - 1)/2",
+      "summed_coefficient_over_Sz": "0"
+    },
+    "x_cubic_(1, 2)": {
+      "cyclic_part": "-(c*u + s*w)*(-c*w + s*u)*(-c**2 + s**2 - u**2 + w**2 + 3)/4",
+      "telescoping_potential": "-c*s*(6*s**2 - 1)/4",
+      "summed_coefficient_over_Sz": "3/4 - beta/4"
+    },
+    "x_cubic_(0, 3)": {
+      "cyclic_part": "(c*s + u*w)*(c*u + s*w)*(-c*w + s*u)/2",
+      "telescoping_potential": "-s**2*(s - 1)*(s + 1)/2",
+      "summed_coefficient_over_Sz": "0"
+    },
+    "y_cubic_(3, 0)": {
+      "cyclic_part": "(c*s + u*w)*(c*u + s*w)*(-c*w + s*u)/2",
+      "telescoping_potential": "s**2*(s - 1)*(s + 1)/2",
+      "summed_coefficient_over_Sz": "0"
+    },
+    "y_cubic_(2, 1)": {
+      "cyclic_part": "(c*u + s*w)*(-c*w + s*u)*(-c**2 + s**2 - u**2 + w**2 - 3)/4",
+      "telescoping_potential": "-c*s*(6*s**2 - 5)/4",
+      "summed_coefficient_over_Sz": "beta/4 + 3/4"
+    },
+    "y_cubic_(1, 2)": {
+      "cyclic_part": "(c*s + u*w)*(c*u + s*w)*(-c*w + s*u)/2",
+      "telescoping_potential": "-s**2*(3*s**2 - 5)/2",
+      "summed_coefficient_over_Sz": "0"
+    },
+    "y_cubic_(0, 3)": {
+      "cyclic_part": "(c*u + s*w)*(-c*w + s*u)*(-c**2 + s**2 - u**2 + w**2 - 3)/4",
+      "telescoping_potential": "c*s*(2*s**2 - 3)/4",
+      "summed_coefficient_over_Sz": "beta/4 + 3/4"
+    }
+  },
+  "limitations": "An exact all-real polynomial certificate for moment reduction, conditional only on the geometric constraints proved in the report; not a numerical argument."
+}

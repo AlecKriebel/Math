@@ -1,0 +1,22 @@
+# Independent preprint and publication-kit review 02
+
+Scope: exact mathematical and reproducibility review of the pinned five-page preprint and publication kit. The theorem is a hypothesis under test: smooth integral projective X over an algebraically closed field, dim X >= 1, relative Fulger–Murayama epsilon(T_X;x)>0 at one arbitrary closed point implies X is projective space. No global tangent nefness, Fano, general-point, separability, or characteristic-zero assumption is permitted. Success requires a noncircular proof using inspected established imports, exact inventories and frozen originals, clean normal/optimized reproduction, metadata agreement, compile and five-page visual QA, and no unresolved actionable issue. Finite controls do not certify the geometry.
+
+All authored work is confined here. No git mutations, publication actions, external communications, or other-agent contact are authorized. Prior verdicts are deliberately unread until a timestamped independent initial assessment has been recorded. Temporary source bodies and rendered/extracted artifacts will be removed before the final authored manifest.
+
+## 2026-10-13T04:05:19.519031+00:00 — checkpoint 1
+
+Read governing manuscript, packaging scripts, metadata and inventory. Candidate vulnerabilities selected: actual stable-map fiber in wild characteristic; geometric versus infinitesimal inertia; bundle construction over nonreduced bases; descent at the pointed normalization; closed-surjective evaluation; finite inseparable lift in numerical descent; exact published Fano and same-point imports. Initial completion estimate: 10%. No prior reviews read.
+
+## 2026-10-13T04:07:35.616196+00:00 — checkpoint 2: independent mathematical assessment
+
+Before reading previous reports, all core proof mechanisms were checked and no counterexample or central unsupported implication was found. Exact FM21 same-point rational-curve production and Fano clause were inspected, as were arbitrary-characteristic stable-map and Stacks imports. Critical safeguards are the full generic degree, single marking, actual stack evaluation fiber, split finite inertia augmentation, and integer projection formula. Source and bibliographic reconciliation and kit QA remain. Best-guess completion toward this independent review goal: 45%.
+
+## 2026-10-13T04:14:07.587552+00:00 — checkpoint 3: reconciliation and publication kit
+
+Only after the independent initial assessment, read review01 report/verdict and current root priority checks. Confirmed R1 K. Miyamoto and R2 publisher page range 523–544 in current governing source, PDF, support source, and current/copied root notes. Direct author/publisher PDF plus Crossref metadata agree. Closed support archive has 78 files and preserves 49 originals. Eight nested/reconstructed manifests checked independently, 116 non-ZIP leaves screened, and all five metadata objects agree. Both full clean replays return identical PASS JSON and do not mutate extraction; 14 independent outer integrity mutations rejected normally and with -O. All five distributed pages visually pass. A receipt-capture attempt had a local relative-path error after successful compilation, corrected for the final capture; no governing file was changed. Bounded fresh primary-source priority follow-ups do not identify a full earlier resolution. Best-guess review completion: 85%. Remaining: final compile/raster receipt, consolidated source/priority evidence and report, cleanup and authored manifest.
+
+## 2026-10-13T04:19:59.271525+00:00 — final checkpoint
+
+Completed independent source and mathematical assessment, post-independence prior-review reconciliation, exact kit and nested-manifest audit, full normal/outer-optimized clean replays, metadata/ORCID checks, Python execution-path assessment, fresh bounded primary-only priority extension, Tectonic compile, and all five pages visual inspection. Recompiled page texts and all rendered pixels match the distributed PDF. Final six governing pins remain unchanged and six prior snapshot pins still match. No credible counterexample, central unsupported implication, circularity, or actionable submission defect identified. Verdict PASS for exact pinned kit, within named standard-theorem dependencies. First priority and formal/external-human verification are not certified. Source bodies and all temporary extraction/render/compiled-copy trees removed. No publication, merge, Git mutation, external communication, or governing edits occurred. Best-guess completion of this independent review goal: 100%.
+

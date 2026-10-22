@@ -1,0 +1,5 @@
+# PR1071 preprint preparation log
+
+2026-10-14T04:44:06.798201+00:00 - Frozen 204 pre-existing files and AGENTS.md before authoring. Complete root acceptance, current source qualification, journal-copy addendum, priority adoption, both mathematical family derivations/reports and source convergence reconstruction read. Scope: attributed all-H uniform-grid Gaussian-witness proof; novelty and priority UNKNOWN. Preparation completion estimate: 15%; research/priority clearance unchanged. PDF skill marker succeeded once. No Git/service/outreach.
+
+2026-10-14T04:49:59.508008+00:00 - Complete 7-page standalone proof compiled successfully with built-in compiler, exported with Tectonic, repeated byte-identically under fixed SOURCE_DATE_EPOCH, and all seven latest pages rendered and actually viewed. No overfull boxes. Original finite checker replay and explicit negative controls passed under normal and optimized wrapper modes. Preparation completion estimate: 90%; full priority remains UNKNOWN and readiness false pending fresh whole-package reviews.

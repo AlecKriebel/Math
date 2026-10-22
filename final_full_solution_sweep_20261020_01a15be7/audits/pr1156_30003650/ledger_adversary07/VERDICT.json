@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "at": "2026-10-22T01:30:56.549110+00:00",
+  "ready_for_existing_publication_record": false,
+  "verdict": "NOT_READY_FOR_LIVE_EXECUTION",
+  "review_completion_estimate_percent": 100,
+  "helper": {
+    "path": "../reconcile_external_ledger_v7.py",
+    "bytes": 19938,
+    "sha256": "f0ea77020bddab4ad518a819004434a654eda9c247a7c9e507226825e274c27f"
+  },
+  "plan": {
+    "path": "../LEDGER_RECONCILIATION_PLAN.json",
+    "bytes": 4337,
+    "sha256": "83df78463704c63ea3969a87325f18ab21c21893d6e1b8b49c5b16a6b4e3b2e1"
+  },
+  "target": {
+    "pr": 1156,
+    "problem_id": "30003650",
+    "external_author": "Alper Ferudun",
+    "version_record": 23350364,
+    "concept_record": 23350363,
+    "scope": "One exact existing-publication ledger row; no republishing, PR closure/merge, authorship transfer, or chronological priority claim"
+  },
+  "material_findings": [
+    {
+      "id": "F07-1",
+      "location": "reconcile_external_ledger_v7.py:59-70",
+      "mechanism": "Whole-URL projection removes arbitrary query/file/IIIF suffix identity leads",
+      "required": "Preserve original content for bounded semantic/identity checks alongside conservative owned-ID lead, or justify narrow exact schema policy"
+    },
+    {
+      "id": "F07-2",
+      "location": "reconcile_external_ledger_v7.py:92",
+      "mechanism": "Report DOI substring match lacks complete lexical token boundaries",
+      "required": "Bind exact report DOI name on both sides before typed-reference exception"
+    },
+    {
+      "id": "F07-3",
+      "location": "reconcile_external_ledger_v7.py:85; ops_binding.py _SHORT_NAME",
+      "mechanism": "Serialized JSON quote prevents recognition of separate terminal bare/encoded shortDOI names",
+      "required": "Preserve original string boundaries or handle serialization delimiters without weakening bounded decoding and narrow bibliography exception"
+    }
+  ],
+  "primary_executions": 2013,
+  "expected_outcomes": 1767,
+  "unsafe_verified_simulated_appends": 246,
+  "prior_regression_passes": 1113,
+  "native_actual197_positive_passed_all_modes": true,
+  "source_data_pins_unchanged": true,
+  "no_actual_service_attempts": true,
+  "no_real_acceptance_or_operation_artifacts_created": true,
+  "root_replay": [
+    "offline_whole_helper.py --output <filename>.json under normal,-O,-OO",
+    "query_and_boundary_controls.py under normal,-O,-OO",
+    "serialization_controls.py under normal,-O,-OO",
+    "minimal_countercontrols.py under normal,-O,-OO",
+    "verify_review.py verifies complete artifact bindings; does not contact services"
+  ],
+  "limitations": [
+    "Synthetic controlled services, not current live preflight",
+    "Trusted interpreter, stdlib, initial import environment and external root adoption/launcher boundary",
+    "No distributed transaction or global alias/priority proof"
+  ],
+  "next_required": "New exact helper source and independent complete review before any live append"
+}

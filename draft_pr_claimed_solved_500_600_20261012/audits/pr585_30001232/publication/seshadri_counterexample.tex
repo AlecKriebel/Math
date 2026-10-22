@@ -1,0 +1,291 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\eps}{\varepsilon}
+\title{A Minimal-Surface Counterexample to a Seshadri Lower Bound}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 14, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an explicit family of counterexamples to the proposed lower bound
+$\eps(S,L;x)\ge (2+|K_S^2|^{1/4})^{-1}$ for minimal complex projective
+surfaces. For every integer $d\ge7$, a classical plane-pencil construction
+followed by a double base change gives a smooth surface with ample canonical
+bundle, $K_S^2=6(d-1)(d-3)$, and an ample integral line bundle $L$ with
+$L^2=6$ and $\eps(S,L;x)\le1/(d-1)$. Already $d=7$ contradicts the bound.
+The pencil and covering ingredients are classical; historical priority has
+not been fully cleared. This unrefereed note used AI tools extensively and
+has not received human peer review.
+\end{abstract}
+
+\section{The formulation and the result}
+For a smooth complex projective surface $S$, an ample integral line bundle
+$L$, and a closed point $x$, put
+\[
+ \eps(S,L;x)=\inf_{\substack{C\subset S\text{ integral curve}\\x\in C}}
+                 \frac{L\cdot C}{\operatorname{mult}_x C}.
+\]
+Szemberg's final question in the 2007 preprint of \cite{Szemberg} asks for a
+minimal polarized surface violating
+\begin{equation}\label{target}
+ \eps(S,L;x)\ \ge\ \frac{1}{2+|K_S^2|^{1/4}}.
+\end{equation}
+It is restated as Conjecture~2 in his Oberwolfach contribution
+\cite[p.~1124]{OWR} and as Question~6.1.6 in \cite[p.~17]{Primer}, using the
+cited preprint version for that locator. The point is arbitrary, and there
+is no Picard-rank restriction. The additive $2$ lies outside the fourth
+root; the problem catalogue's different transcription is not the primary
+formula.
+
+\begin{theorem}\label{main}
+For every integer $d\ge7$ there are a smooth integral complex projective
+surface $S$, an ample integral line bundle $L$ on $S$, and a point $x\in S$
+such that $K_S$ is ample and
+\[
+ K_S^2=6(d-1)(d-3),\qquad L^2=6,\qquad
+ \eps(S,L;x)\le\frac1{d-1}
+       <\frac1{2+(K_S^2)^{1/4}}.
+\]
+In particular $S$ is minimal of general type and \eqref{target} is false.
+\end{theorem}
+
+The starting pencil and its polarization are Miranda's construction,
+recorded by Ein--Lazarsfeld \cite[Example~3.1, p.~182]{EL}, Bauer
+\cite[Proposition~3.3 and its proof]{Bauer}, and Bauer--Szemberg
+\cite[Proposition~2.1, p.~2]{Adjoint}. We use a double base change branched
+at four smooth fibres. We claim neither newness of these operations nor
+historical firstness of this counterexample. Section~\ref{limits} gives the
+priority and verification limits.
+
+\section{An integral pencil and an ample line bundle}
+We supply the existence argument at finite degree, rather than relying on
+the asymptotic $d=m+1$ assertion in \cite[Proposition~3.3(b)]{Bauer}.
+In $\PP^2$ use coordinates $[X:Y:Z]$ and set
+\[
+ f_d=Z(X^{d-1}-Y^{d-1})+X^d,\qquad C_0=V(f_d),\qquad p=[0:0:1].
+\]
+The coefficients of this linear polynomial in $Z$ are coprime in
+$\CC[X,Y]$. Gauss's lemma, applied over $\CC(X,Y)$, proves irreducibility.
+In the chart $Z=1$, the tangent cone at $p$ is $x^{d-1}-y^{d-1}$, a product
+of distinct linear factors. Thus $p$ is an ordinary $(d-1)$-fold point.
+It is the only singular point: the equations $f_Z=f_Y=0$ force either
+$X=Y=0$, or $X,Y\ne0$ and $Z=0$; in the latter case $f_X=dX^{d-1}\ne0$.
+
+Write $N_e=e(e+3)/2$. The reducible or nonreduced degree-$d$ locus $R$ in
+$\PP^{N_d}$ is the finite union of the closed images of multiplication maps
+\[
+ \PP^{N_a}\times\PP^{N_{d-a}}\longrightarrow\PP^{N_d},
+       \qquad 1\le a\le d-1.
+\]
+Since $N_d-N_a-N_{d-a}=a(d-a)\ge d-1$, its dimension is at most
+$N_d-d+1$. The closure of the union of lines joining $[f_d]$ to $R$ has
+dimension at most $N_d-d+2<N_d$ for $d\ge3$. Choose a form $g$ outside that
+closure. Then the entire pencil $\langle f_d,g\rangle$ avoids $R$.
+We can simultaneously choose $g$ smooth, nonzero at $p$, and transverse to
+the smooth locus of $C_0$: these are nonempty open conditions in the same
+irreducible parameter space, by Bertini and transversality for the complete
+degree-$d$ system. B\'ezout gives exactly $d^2$ distinct simple base points
+$p_i$, all away from $p$. Thus every pencil member is integral and reduced.
+
+Blow up these base points once each, obtaining $b:Y\to\PP^2$. Let
+$H=b^*\mathcal O_{\PP^2}(1)$, and let $E_i$ be the exceptional curves.
+Transversality resolves the pencil and gives $f:Y\to\PP^1$, with fibre class
+\[
+ F=dH-\sum_{i=1}^{d^2}E_i.
+\]
+All fibres are strict transforms of integral reduced pencil members; the
+$E_i$ are sections, not vertical components. General fibres are smooth.
+The special fibre $C$, the strict transform of $C_0$, still has multiplicity
+$d-1$ at the point $y$ above $p$.
+
+Put $A=2F+E_1$. The blowup intersection rules give
+\[
+ F^2=0,\quad F\cdot E_i=1,\quad E_i^2=-1,\qquad
+ A^2=3,\quad A\cdot E_1=1,\quad A\cdot F=1.
+\]
+Here $F=f^*\mathcal O_{\PP^1}(1)$ is nef. For every integral curve
+$D\ne E_1$, $E_1\cdot D\ge0$. If $F\cdot D>0$, then $A\cdot D>0$.
+If $F\cdot D=0$, $D$ is vertical, hence is an entire fibre because each
+fibre is integral and reduced; in this case $A\cdot D=1$. Together with
+$A\cdot E_1=1$ and $A^2>0$, the Nakai--Moishezon criterion proves that
+$A$ is ample. The assertion about every fibre is essential here.
+
+\section{The cover and minimality}
+Choose four distinct smooth fibre values of $f$, avoiding the value of $C$.
+Let $h:B\to\PP^1$ be the connected double cover simply branched at these
+values. For example its equation in a coordinate avoiding the four values
+at infinity is $v^2=\prod_{j=1}^4(t-t_j)$. Its smooth projective completion
+is connected of genus one by Hurwitz. Form the fibre product
+\[
+ S=Y\times_{\PP^1}B,\qquad \pi:S\to Y,
+\]
+so $\pi$ is finite flat of degree two. It is \'etale off the four branch
+fibres, including above the singularities of all other fibres. Along a
+branch fibre, $f$ is smooth and the local cover has equation $t=v^2$ in
+smooth coordinates $(u,t)$ on $Y$, so $S$ is smooth there as well.
+The map $S\to B$ is proper with connected fibres, because they are the
+fibres of $f$. Since $B$ is connected, $S$ is connected: a decomposition
+into two open and closed subsets would give a decomposition of $B$, using
+properness and connected fibres. A connected smooth scheme has a single
+irreducible component here, since distinct components of a smooth scheme
+cannot meet. Hence $S$ is integral. It is projective as a fibre product of
+projective varieties.
+
+The branch divisor on $Y$ is linearly equivalent to $4F$. The double cover
+is associated with $\mathcal O_Y(2F)$. Hurwitz therefore gives the equality
+of line bundles
+\begin{equation}\label{canonical}
+ K_S=\pi^*(K_Y+2F).
+\end{equation}
+This is the classical cyclic-cover formula; compare
+\cite[Section~2, p.~3]{Fuentes}. In the present local model the ramification
+divisor has line bundle $\pi^*\mathcal O_Y(2F)$ and is reduced, also giving
+\eqref{canonical} directly. Since $K_Y=-3H+\sum E_i$, put
+\[
+ N=K_Y+2F=(d-3)H+F.
+\]
+We have $N\cdot E_i=1$, and for every other integral curve $D$, its image
+in $\PP^2$ is a curve of degree $e>0$, so
+\[
+ N\cdot D=(d-3)e+F\cdot D>0\qquad(d\ge4).
+\]
+Moreover $H^2=1$ and $H\cdot F=d$, whence
+\[
+ N^2=(d-3)^2+2d(d-3)=3(d-1)(d-3)>0.
+\]
+Nakai--Moishezon proves $N$ ample. A finite surjective pullback of an ample
+line bundle is ample (alternatively apply the projection formula and Nakai
+on $S$). Thus \eqref{canonical} proves $K_S$ ample. In particular $S$ is of
+general type and has no rational $(-1)$-curve, since adjunction would give
+canonical degree $-1$ on such a curve. Consequently $S$ is minimal.
+
+\section{The pointed curve and the comparison}
+Set $L=\pi^*A$, an ample integral line bundle. The degree-two intersection
+formula gives
+\[
+ L^2=2A^2=6,\qquad K_S^2=2N^2=6(d-1)(d-3).
+\]
+The fibre value of $C$ is unbranched. Its two inverse images under $h$ are
+distinct complex points, so
+\[
+ \pi^{-1}(C)=C'\sqcup C'',\qquad C'\simeq C\simeq C''.
+\]
+In particular this is not a connected degree-two curve over $C$. Choose
+$x\in C'$ mapping to $y$. The local isomorphism, or \'etaleness and the
+split fibre identification, gives $\operatorname{mult}_x C'=d-1$.
+Projection gives $L\cdot C'=A\cdot C=1$. Therefore
+\[
+ \eps(S,L;x)\le\frac{L\cdot C'}{\operatorname{mult}_x C'}=\frac1{d-1}.
+\]
+For $d\ge7$ the desired strict inequality is equivalent, after subtracting
+$2$ and taking fourth powers of positive numbers, to
+\[
+ (d-3)^3>6(d-1).
+\]
+At $d=7$ this is $64>36$. The forward difference of the left side minus
+the right side is $3(d-3)^2+3(d-3)-5>0$ for $d\ge7$, proving the claim
+for every such integer. In the smallest example $K_S^2=144$, $L^2=6$,
+and $144<4^4$ yields $1/6<(2+144^{1/4})^{-1}$. This proves
+Theorem~\ref{main}.
+
+Only the displayed upper bound is asserted; an exact Seshadri value is
+unnecessary. The surfaces vary with $d$, and $x$ is a special point.
+The construction does not resolve positivity of the infimum over all ample
+integral line bundles and points on one fixed complex surface. It does not
+contradict very-general-point or Picard-rank-one lower bounds, or canonical
+and adjoint polarization bounds. For $d=4,5,6$ this particular curve does
+not give the strict comparison; this says nothing about other curves or
+lower bounds on those surfaces.
+
+\section{Attribution, priority and verification limits}\label{limits}
+Miranda's pencil polarization is classical, with the direct record in
+\cite{EL}, its extension in \cite{Bauer}, and the close arbitrary-rational
+construction in \cite{Adjoint}. Those examples use nonminimal blowups.
+Earlier double-cover examples in \cite[Example~1.3]{Canonical} concern the
+canonical polarization and produce a quotient $1/2$; that quotient cannot
+violate \eqref{target}. Koll\'ar's example in \cite[Example~3.7]{EL}
+concerns unbounded indices of very ampleness, which is a different assertion.
+Fuentes Garc\'ia \cite{Fuentes} treats cyclic-cover constants in other
+settings, including very general points over Picard-rank-one bases and
+points on ramification divisors. The present curve is over an unbranched
+singular fibre of a plane blowup.
+
+Two independent internal primary-source priority audits, supplemented by
+the author's source comparisons, found no explicit earlier resolution of
+this precise bound in the text inspected. Historical priority nevertheless
+cannot be fully cleared. In particular the full Bansal--Majumder 2025
+survey \cite{Survey2025}, the full Roy 2019 thesis, and some other theses
+were not inspected; longer sources and later citation bodies were partly
+or selectively read, and final journal versions were not globally compared.
+The verification package records exact reading scopes, access limits,
+fingerprints and search ledgers. We make no claim of first discovery,
+novelty of the covering method, exhaustive priority clearance, or independently
+verified openness immediately before this note.
+
+The accompanying authored-only verification package preserves the original
+18 inputs from PR~585, new independent derivations and adversarial reviews,
+source receipts, exact symbolic controls, and pinned nested inventories.
+Its replay requires preinstalled SymPy~1.14.0 and mpmath~1.3.0; raw third-party
+documents and account material are excluded. The finite controls supplement
+the geometric proof, including its Bertini and Nakai--Moishezon inputs;
+they do not replace existence arguments or establish priority. Integrity
+checks do not certify authenticity or semantic authorship.
+
+\paragraph{AI and review disclosure.}
+AI tools were used extensively in solving, research, writing, source
+comparison, reproduction and adversarial verification. Reviews described
+here are internal AI reviews. This is an unrefereed preprint: it has not
+received human peer review and is not certified by a proof assistant.
+
+\begin{thebibliography}{10}
+\raggedright
+\bibitem{Szemberg} T.~Szemberg, \emph{An effective and sharp lower bound on
+Seshadri constants on surfaces with Picard number~1}, J.~Algebra
+319 (2008), 3112--3119.
+\href{https://doi.org/10.1016/j.jalgebra.2007.10.036}{doi:10.1016/j.jalgebra.2007.10.036}.
+Inspected version: \href{https://arxiv.org/abs/0711.0584v1}{arXiv:0711.0584v1}
+(5 November 2007), final question, p.~7.
+\bibitem{OWR} T.~Szemberg, \emph{Seshadri constants and geometry of surfaces},
+in \emph{Multiplier Ideal Sheaves in Algebraic and Complex Geometry},
+Oberwolfach Reports 21/2009, contribution pp.~1124--1126, Conjecture~2, p.~1124.
+\href{https://doi.org/10.4171/OWR/2009/21}{doi:10.4171/OWR/2009/21}.
+\bibitem{Primer} T.~Bauer, S.~Di Rocco, B.~Harbourne, M.~Kapustka,
+A.~Knutsen, W.~Syzdek and T.~Szemberg, \emph{A primer on Seshadri constants},
+Contemp.~Math. 496 (2009), 33--70.
+\href{https://doi.org/10.1090/conm/496/09718}{doi:10.1090/conm/496/09718}.
+Inspected version: \href{https://arxiv.org/abs/0810.0728v2}{arXiv:0810.0728v2}
+(1 July 2010), Question~6.1.6, p.~17.
+\bibitem{EL} L.~Ein and R.~Lazarsfeld, \emph{Seshadri constants on smooth
+surfaces}, Ast\'erisque 218 (1993), 177--186.
+\href{https://numdam.org/item/AST_1993__218__177_0/}{Numdam primary record}.
+\bibitem{Bauer} T.~Bauer, \emph{Seshadri constants on algebraic surfaces},
+Math.~Ann. 313 (1999), 547--583.
+\href{https://doi.org/10.1007/s002080050272}{doi:10.1007/s002080050272}.
+Inspected version: \href{https://arxiv.org/abs/math/9903072v1}{arXiv:math/9903072v1}.
+\bibitem{Adjoint} T.~Bauer and T.~Szemberg, \emph{On the Seshadri constants
+of adjoint line bundles}, \href{https://arxiv.org/abs/1011.0979v1}{arXiv:1011.0979v1}
+(3 November 2010), Proposition~2.1, p.~2.
+\bibitem{Fuentes} L.~Fuentes Garc\'ia, \emph{Cyclic coverings and Seshadri
+constants on smooth surfaces},
+\href{https://arxiv.org/abs/math/0511547v2}{arXiv:math/0511547v2}
+(27 April 2006), Section~2, p.~3.
+\bibitem{Canonical} T.~Bauer and T.~Szemberg, \emph{Seshadri constants on
+surfaces of general type}, Manuscripta Math. 126 (2008), 167--175.
+\href{https://doi.org/10.1007/s00229-008-0170-2}{doi:10.1007/s00229-008-0170-2}.
+Inspected version: \href{https://arxiv.org/abs/0801.3245v1}{arXiv:0801.3245v1}.
+\bibitem{Survey2025} A.~Bansal and S.~Majumder, \emph{Seshadri constants
+and related conjectures over characteristic zero fields}, Bull.~Sci.~Math.
+202 (2025), 103617.
+\href{https://doi.org/10.1016/j.bulsci.2025.103617}{doi:10.1016/j.bulsci.2025.103617}.
+Metadata inspected; full body unread and not used as proof or priority clearance.
+\end{thebibliography}
+\end{document}

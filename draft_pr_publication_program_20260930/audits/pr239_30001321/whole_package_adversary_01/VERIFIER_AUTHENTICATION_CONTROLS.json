@@ -1,0 +1,72 @@
+{
+  "schema": "pr239-first-whole-package-verifier-authentication-controls-v1",
+  "UTC": "2026-10-18T02:49:10.229047+00:00",
+  "status": "PASS",
+  "controls": [
+    {
+      "case": "valid",
+      "expected_accept": true,
+      "actual_accept": true,
+      "rejection": null,
+      "control_passed": true
+    },
+    {
+      "case": "changed_body",
+      "expected_accept": false,
+      "actual_accept": false,
+      "rejection": "Length/SHA256 mismatch: submission/check_turn2.py",
+      "control_passed": true
+    },
+    {
+      "case": "unlisted",
+      "expected_accept": false,
+      "actual_accept": false,
+      "rejection": "Unlisted or missing archive member",
+      "control_passed": true
+    },
+    {
+      "case": "missing",
+      "expected_accept": false,
+      "actual_accept": false,
+      "rejection": "Missing regular file: submission/check_turn2.py",
+      "control_passed": true
+    },
+    {
+      "case": "duplicate_manifest_entry",
+      "expected_accept": false,
+      "actual_accept": false,
+      "rejection": "Duplicate/self manifest entry",
+      "control_passed": true
+    },
+    {
+      "case": "noncanonical_manifest_path",
+      "expected_accept": false,
+      "actual_accept": false,
+      "rejection": "Noncanonical archive path: ../outside",
+      "control_passed": true
+    },
+    {
+      "case": "symlink_file",
+      "expected_accept": false,
+      "actual_accept": false,
+      "rejection": "Symlink in archive path: submission/check_turn2.py",
+      "control_passed": true
+    },
+    {
+      "case": "symlink_directory",
+      "expected_accept": false,
+      "actual_accept": false,
+      "rejection": "Symlink in archive path: submission/BUDGET_TURN2.json",
+      "control_passed": true
+    }
+  ],
+  "checker_executions": 0,
+  "reviewer_harness_initial_failure": {
+    "valid_case_failed": true,
+    "cause": "My first direct module-import harness omitted -B and generated __pycache__ in my owned extracted copy. Authentication correctly rejected that unlisted file. I removed only that owned cache and reran this harness with -B. No frozen source file changed.",
+    "removed_owned_cache_files": [
+      "clean_extracted_replay/verification/__pycache__/verify.cpython-311.pyc"
+    ]
+  },
+  "boundary": "Imported the inspected portable verifier without main; called only authenticate on owned temporary copies. No checker execution, source mutation, network, or external effects."
+}

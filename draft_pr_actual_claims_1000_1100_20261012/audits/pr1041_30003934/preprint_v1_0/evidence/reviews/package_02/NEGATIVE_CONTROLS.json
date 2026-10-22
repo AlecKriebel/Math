@@ -1,0 +1,89 @@
+{
+  "utc": "2026-10-14T03:48:54.901005+00:00",
+  "controls": [
+    {
+      "control": "altered_content",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "verify_package.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_content/verify_package.py\", line 94, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_content/verify_package.py\", line 21, in main\n    for name,record in current.items():record_ok(ROOT/name,record)\n                                       ~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_content/verify_package.py\", line 14, in record_ok\n    require(len(data)==record['bytes'] and sha(data)==record['sha256'],'Hash/size mismatch: '+str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_content/verify_package.py\", line 10, in require\n    if not test:raise RuntimeError(message)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Hash/size mismatch: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_content/paper.tex\n"
+    },
+    {
+      "control": "unmanifested_content",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "verify_package.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/unmanifested_content/verify_package.py\", line 94, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/unmanifested_content/verify_package.py\", line 20, in main\n    require(set(current)==set(content_paths()),'Current manifest/content membership mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/unmanifested_content/verify_package.py\", line 10, in require\n    if not test:raise RuntimeError(message)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Current manifest/content membership mismatch\n"
+    },
+    {
+      "control": "altered_archive",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "verify_package.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_archive/verify_package.py\", line 94, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_archive/verify_package.py\", line 56, in main\n    sidecar=json.loads((ROOT/'ARCHIVE_SHA256.json').read_text());record_ok(archive,sidecar)\n                                                                 ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_archive/verify_package.py\", line 14, in record_ok\n    require(len(data)==record['bytes'] and sha(data)==record['sha256'],'Hash/size mismatch: '+str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_archive/verify_package.py\", line 10, in require\n    if not test:raise RuntimeError(message)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Hash/size mismatch: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_archive/supportkit-v1.0.tar.gz\n"
+    },
+    {
+      "control": "altered_wrapper_metadata",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "verify_package.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_wrapper_metadata/verify_package.py\", line 94, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_wrapper_metadata/verify_package.py\", line 86, in main\n    require(wrapper['metadata']==metadata,'External wrapper metadata mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/altered_wrapper_metadata/verify_package.py\", line 10, in require\n    if not test:raise RuntimeError(message)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: External wrapper metadata mismatch\n"
+    },
+    {
+      "control": "missing_wrapper",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "verify_package.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/missing_wrapper/verify_package.py\", line 94, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/missing_wrapper/verify_package.py\", line 84, in main\n    wrapper=json.loads((ROOT/'zenodo-deposit.json').read_text())\n                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py\", line 787, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/controls/missing_wrapper/zenodo-deposit.json'\n"
+    }
+  ],
+  "flow_explicit_guards": [
+    {
+      "mode": "normal",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import flow_check; B=flow_check.build([1]); flow_check.feasible(B,[flow_check.Q(-1)]*len(B['E']),flow_check.Q(0))"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import flow_check; B=flow_check.build([1]); flow_check.feasible(B,[flow_check.Q(-1)]*len(B['E']),flow_check.Q(0))\n                                                ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/flow_source_01/flow_check.py\", line 95, in feasible\n    demand(0<=z<=cap,'capacity');bal[u]+=z;bal[v]-=z\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/flow_source_01/flow_check.py\", line 11, in demand\n    if not ok: raise RuntimeError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: capacity\n"
+    },
+    {
+      "mode": "optimized",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-c",
+        "import flow_check; B=flow_check.build([1]); flow_check.feasible(B,[flow_check.Q(-1)]*len(B['E']),flow_check.Q(0))"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import flow_check; B=flow_check.build([1]); flow_check.feasible(B,[flow_check.Q(-1)]*len(B['E']),flow_check.Q(0))\n                                                ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/flow_source_01/flow_check.py\", line 95, in feasible\n    demand(0<=z<=cap,'capacity');bal[u]+=z;bal[v]-=z\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1041_30003934/reviews/package_02/replay/flow_source_01/flow_check.py\", line 11, in demand\n    if not ok: raise RuntimeError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: capacity\n"
+    }
+  ],
+  "clean_extraction": {
+    "verify_before_build": 1,
+    "build": 0,
+    "verify_after_build": 1,
+    "deterministic_rebuild_byte_identical": true,
+    "specific_failure": "Missing intentionally excluded zenodo-deposit.json at unconditional verifier line84",
+    "new_P2_finding": true
+  },
+  "limits": "Deliberate corruption controls support implemented integrity gates, not adversarial authenticity or mathematical theorem verification."
+}

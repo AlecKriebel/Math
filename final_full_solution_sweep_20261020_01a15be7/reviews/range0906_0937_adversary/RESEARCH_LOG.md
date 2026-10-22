@@ -1,0 +1,11 @@
+# Bounded independent review: PR906–937
+
+2026-10-21T20:19:43.888982+00:00 — Checkpoint 0. Scope pinned; parent inventory/STATE/journal captured once and 32 case inputs captured once. Hypothesis: all completed dispositions match actual own QUEUE rows and publication/priority coverage. Goal completion estimate: 5%. No provider or Git mutations authorized; no external outreach.
+
+2026-10-21T20:22:05.725736+00:00 — Checkpoint 1. All32 pinned path/QUEUE/head-object comparisons pass; custom917 and920 bind correct own rows. Four DOI/metadata/eight payload fresh reads pass. Independently closed manifests and all111 original packet blobs match immutable heads. Initial package-root script was corrected to use the full common changed-packet root for908 bounded_region_v2; no source discrepancy resulted. Review goal completion estimate: 50%.
+
+2026-10-21T20:27:19.170961+00:00 — Checkpoint 2. Existing-publication identity, scopes and exact payload coverage pass. Fresh source reports and critical question pages checked, including908 topology and909 sum/unibranched distinction. PR932 exact prior theorem, polar-origin degree and equality-to-orthogonality bridge survive challenge; fresh September4 platform chain verified. Two reviewer seals and all public/private priority payloads validate; copied normal proof certificate and normal/O priority certificates agree after explicit path-only relocation. Fresh closed PR/closure stable; captured197record account re-parsed;243 current local deposit JSON scanned with no target. Goal completion estimate: 90%.
+
+2026-10-21T20:29:27.841139+00:00 — Final checkpoint. Bounded PASS:32 dispositions supported, no material defect found. Root advanced through966 during review; scoped journal/inventory rows stable. Scope limits and the copied-runner path-only relocation are documented. Public/private sealing next. Goal completion estimate:100% of PR906–937 review only.
+
+2026-10-21T20:30:32.543151+00:00 — Final consistency guard caught this reviewer report draft counting the sheet header twice. Corrected wording to178 physical rows,177 data rows; target row indices and all identity checks were already correct. This is a reviewer reporting correction, not a root disposition defect. Bounded review completion estimate remains100%.

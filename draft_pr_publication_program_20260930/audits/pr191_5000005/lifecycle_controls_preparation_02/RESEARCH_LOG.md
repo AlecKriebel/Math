@@ -1,0 +1,3 @@
+# PR191 lifecycle controls generation02 research log
+
+2026-10-15T05:46:25.513864+00:00 — Preparation100% for independent code review; overall scientific/publication programme remains active. Started a new bounded generation after fresh adversary01 required R1–R3 repairs; immutable01 preserved. Implemented exact immutable scope/map/parent/delta checks, original merge revalidation in both factual stages, postappend full-sheet uniqueness/foreign preservation, and unique current native prose replacement. Reproduced five unsafe01 control paths and contradictory prose in disposable fixtures;201 offline assertions now pass in02. No production calls or Root/shared writes. Terminal freeze awaits NEW independent lifecycle adversary02.

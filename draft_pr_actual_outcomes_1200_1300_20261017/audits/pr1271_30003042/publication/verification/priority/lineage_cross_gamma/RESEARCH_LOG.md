@@ -1,0 +1,6 @@
+# Reverse cross-review research log
+
+- 2026-10-18 01:00:13 UTC — First observed clock for the assigned reverse review, after both independent initial seals. Completion estimate: 5%. Parent supplied the AIF dimension-slip and DP bibliographic leads in this post-initial assignment.
+- 2026-10-18 01:04:16 UTC — 95%: read the full peer report, verdict, source ledger and all query/URL rows; authenticated all eight manifest members and all 20 selected source receipts. Confirmed 72 distinct peer queries and 268 URL rows. Read the disclosed root supplement and freshly checked standard duality, Pieri, equivariant and Gysin formula sources. Four new cross-review queries, two fresh direct retrievals and seven fresh visual pages are separately recorded. No blocking error in the scoped no-firstness verdict; bounds and bibliography need the stated synthesis guardrails. Neither initial seal edited.
+
+- 2026-10-18 01:04:32 UTC — 100% of this assigned reverse cross-review: sealed the report, verdict, authentication, query and reading records. The scoped verdict survives; exact identity/integer and direct full-gamma printing priority remain unestablished. No package or publication clearance, no outreach, and no Git mutation. Both initial seals were reauthenticated unchanged.

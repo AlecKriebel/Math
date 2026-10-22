@@ -1,0 +1,203 @@
+{
+  "scope": "12 computed explicit counterexamples to false formulas/laws in both modes. Limited sanity checks; not mutations of the implemented separator/covariance algorithms and not an implementation error-coverage claim.",
+  "runs": [
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "zero-maximizer"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 159, in main\n    require(max(map(abs,s))==0,'global maximizing magnitude cannot be zero')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: global maximizing magnitude cannot be zero\n",
+      "required_diagnostic": "global maximizing magnitude",
+      "kind": "computed counterfactual sanity check",
+      "optimized": false,
+      "name": "zero-maximizer"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "post-query-law"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 164, in main\n    require(law(lambda x:x==1)==law(lambda x:True),'post-query pair law is not unconditional')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: post-query pair law is not unconditional\n",
+      "required_diagnostic": "post-query pair law",
+      "kind": "computed counterfactual sanity check",
+      "optimized": false,
+      "name": "post-query-law"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "square-density-variance"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 169, in main\n    require(sum(wrong_density)/2==1,'full norm mean-square density must have mean one')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: full norm mean-square density must have mean one\n",
+      "required_diagnostic": "full norm mean-square",
+      "kind": "computed counterfactual sanity check",
+      "optimized": false,
+      "name": "square-density-variance"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "drop-square-half"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 174, in main\n    require(wrong_A**2<=4*rho*(1-rho),'probability-half resampling sharp square bound')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: probability-half resampling sharp square bound\n",
+      "required_diagnostic": "probability-half",
+      "kind": "computed counterfactual sanity check",
+      "optimized": false,
+      "name": "drop-square-half"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "demand-cover"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 177, in main\n    require(all(a or b for a,b in zip(p,q)),'common zeros need not be covered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: common zeros need not be covered\n",
+      "required_diagnostic": "common zeros",
+      "kind": "computed counterfactual sanity check",
+      "optimized": false,
+      "name": "demand-cover"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "covariance-overstrength"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 182, in main\n    require(cov<=Q(2,5)*A,'binary covariance cannot use coefficient two-fifths')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: binary covariance cannot use coefficient two-fifths\n",
+      "required_diagnostic": "binary covariance",
+      "kind": "computed counterfactual sanity check",
+      "optimized": false,
+      "name": "covariance-overstrength"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "zero-maximizer"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 159, in main\n    require(max(map(abs,s))==0,'global maximizing magnitude cannot be zero')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: global maximizing magnitude cannot be zero\n",
+      "required_diagnostic": "global maximizing magnitude",
+      "kind": "computed counterfactual sanity check",
+      "optimized": true,
+      "name": "zero-maximizer"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "post-query-law"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 164, in main\n    require(law(lambda x:x==1)==law(lambda x:True),'post-query pair law is not unconditional')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: post-query pair law is not unconditional\n",
+      "required_diagnostic": "post-query pair law",
+      "kind": "computed counterfactual sanity check",
+      "optimized": true,
+      "name": "post-query-law"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "square-density-variance"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 169, in main\n    require(sum(wrong_density)/2==1,'full norm mean-square density must have mean one')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: full norm mean-square density must have mean one\n",
+      "required_diagnostic": "full norm mean-square",
+      "kind": "computed counterfactual sanity check",
+      "optimized": true,
+      "name": "square-density-variance"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "drop-square-half"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 174, in main\n    require(wrong_A**2<=4*rho*(1-rho),'probability-half resampling sharp square bound')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: probability-half resampling sharp square bound\n",
+      "required_diagnostic": "probability-half",
+      "kind": "computed counterfactual sanity check",
+      "optimized": true,
+      "name": "drop-square-half"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "demand-cover"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 177, in main\n    require(all(a or b for a,b in zip(p,q)),'common zeros need not be covered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: common zeros need not be covered\n",
+      "required_diagnostic": "common zeros",
+      "kind": "computed counterfactual sanity check",
+      "optimized": true,
+      "name": "demand-cover"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py",
+        "--counterfactual",
+        "covariance-overstrength"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 223, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 182, in main\n    require(cov<=Q(2,5)*A,'binary covariance cannot use coefficient two-fifths')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210/reviews/package_02/fresh_controls.py\", line 15, in require\n    if not ok: raise RuntimeError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: binary covariance cannot use coefficient two-fifths\n",
+      "required_diagnostic": "binary covariance",
+      "kind": "computed counterfactual sanity check",
+      "optimized": true,
+      "name": "covariance-overstrength"
+    }
+  ]
+}

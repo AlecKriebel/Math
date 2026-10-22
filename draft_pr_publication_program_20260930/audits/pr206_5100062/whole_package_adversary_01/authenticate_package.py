@@ -1,0 +1,61 @@
+"""Read-only package authenticator with explicit audit-owned output."""
+from pathlib import Path
+import hashlib
+import json
+import stat
+import zipfile
+from datetime import datetime, timezone
+
+OWN = Path(__file__).resolve().parent
+PACKAGE = OWN.parent / "publication_package_v1"
+EXPECTED = {
+    "PACKAGE_SEAL.json": (3915, "85d422ae10dbcf6b3f5b2ec21798df48ecaaef98d9fc3e3f6991071597e54531"),
+    "focal_inverse_area_product.pdf": (82207, "d18478e4499319f9e03b13d5ee0133f5cb88da41d7967abb064ca4d852a5db95"),
+    "focal_inverse_area_product.tex": (19325, "963ff712d79aeb471fa22b56d36ac49d62cd3af3cf0090b339e4d5f19f871bca"),
+    "verification-package.zip": (37008, "0b1c618669fe77217479da3f1bbf162fe2affd08d21fcfdf43ad9a1d6b2199bb"),
+    "portable_verify.py": (21804, "dfa1ff339e1f3a6004563aec9c01f6f14d6bb65a94e2437f3ba3a41e5b393d85"),
+}
+MANIFEST = (2635, "7dc8de3a050d087f2dc15a151d7841c8d2e97b425f80afad76d34da2095b8cae")
+
+
+def main():
+    result = {"utc": datetime.now(timezone.utc).isoformat(), "package": str(PACKAGE), "files": {}}
+    for f in sorted(PACKAGE.rglob("*")):
+        if stat.S_ISDIR(f.lstat().st_mode):
+            continue
+        if not stat.S_ISREG(f.lstat().st_mode):
+            raise RuntimeError("Unexpected nonregular member: " + f.name)
+        b = f.read_bytes()
+        result["files"][str(f.relative_to(PACKAGE))] = {"size": len(b), "sha256": hashlib.sha256(b).hexdigest()}
+    if len(result["files"]) != 17:
+        raise RuntimeError("Expected exactly 17 public files")
+    for name, (size, digest) in EXPECTED.items():
+        # A pinned verifier may have a differently specified public filename.
+        if name == "portable_verify.py" and name not in result["files"]:
+            names = [n for n, x in result["files"].items() if (x["size"], x["sha256"]) == (size, digest)]
+            if len(names) != 1:
+                raise RuntimeError("Pinned verifier not unique")
+            name = names[0]
+        if result["files"].get(name) != {"size": size, "sha256": digest}:
+            raise RuntimeError("Root pin mismatch: " + name)
+    names = [n for n, x in result["files"].items() if (x["size"], x["sha256"]) == MANIFEST]
+    if len(names) != 1:
+        raise RuntimeError("Pinned manifest not unique")
+    result["manifest_name"] = names[0]
+    with zipfile.ZipFile(PACKAGE / "verification-package.zip") as z:
+        result["zip_members"] = []
+        for info in z.infolist():
+            name = info.filename
+            if name.startswith("/") or ".." in Path(name).parts or info.is_dir():
+                raise RuntimeError("Unsafe ZIP member: " + name)
+            b = z.read(info)
+            result["zip_members"].append({"name": name, "size": len(b), "sha256": hashlib.sha256(b).hexdigest(), "external_attr": info.external_attr})
+        if len(result["zip_members"]) != 14:
+            raise RuntimeError("Expected exactly 14 ZIP members")
+    out = OWN / ("PACKAGE_AUTH_" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + ".json")
+    out.write_text(json.dumps(result, indent=2) + "\n")
+    print(json.dumps({"status": "root_pins_match", "output": str(out), **result}, indent=2))
+
+
+if __name__ == "__main__":
+    main()

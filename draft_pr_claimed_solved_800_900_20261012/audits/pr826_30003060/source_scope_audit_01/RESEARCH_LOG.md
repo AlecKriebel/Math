@@ -1,0 +1,7 @@
+# Source and scope audit research log
+
+- 2026-10-15T04:14:58.873527+00:00 — Checkpoint 1, estimated completion 15%. Scope: independently compare frozen candidate with original OWR contribution, BLS v1 and final definitions. No historical verdicts consulted. Downloaded three original PDFs to ignored private_sources; SHA-256 and byte sizes recorded. No Git/queue changes, outreach, or other project-chat contact.
+
+- 2026-10-15T04:16:08.288837+00:00 — Checkpoint 2, estimated completion 65%. Read full OWR talk plus report introduction, complete frozen target/background (inherited report empty), BLS v1 and final §§2,5.2,6.1–6.3; checked fundamental cocycle and cap formulas. Literal iff has no characteristic restriction. BLS theorem explicitly assumes characteristic zero; converse framing supplies contextual evidence but not a standalone/global restriction. Free algebra explicitly appears as Koszul in BLS §7, confirming R=0 admissibility. Need visual page verification and final ledger/report.
+
+- 2026-10-15T04:18:12.706238+00:00 — Checkpoint 3, estimated completion100% of source-scope audit. Visually checked ten rendered pages. Final disposition: pass literal unrestricted negative answer with essential scope caveat; no fatal invariant/admissibility mismatch. Primary texts give substantial characteristic-zero context but do not uniquely determine historical intended field scope. REPORT.md,DECISION.json,SOURCE_LEDGER.json,QUERY_LOG.json complete. No novelty/global-status/human/formal clearance and no Git/queue mutations or outreach.

@@ -1,0 +1,17 @@
+# Independent mathematical risk freeze
+
+Frozen UTC: 2026-10-16T08:23:15.619389+00:00. Review completion estimate: 5%. Original mathematical effort remains 1/5; this is validation.
+
+This freeze precedes reading the candidate proof, note, or prior verdicts. Authenticated native pair: 3524 bytes, SHA256 b27d5dbb0f92c0ab330bf44891ec4467f7d8c593cef610196cbd82d4cc6d5298. Statement: 183 bytes, SHA256 a8224e60e73ef6f78e8af57e836e4cc5246a0b1cd12d1af10393d8fd0104149e. Original 18-file source manifest: 4654 bytes, SHA256 1d677ef16697e1e294f9f86800c10fe3189270cf2d9771a75d7c4e64954c0d1c.
+
+## Precise claim and success criteria
+Let V be finite dimensional over C, with a perfect nonsemisimple Lie bracket [ , ]_g and semisimple bracket { , }_n. A bilinear product is post-Lie when its skew part is [x,y]_g-{x,y}_n, its left multiplications represent g, and those left multiplications derive n. Claim: no such product exists. Source means g, target means n; reversing them is a different claim. Semisimplicity includes the zero algebra, but nonsemisimple perfect source excludes V=0. A proof must cover reducible n and arbitrary solvable radicals of g, without assuming a faithful Levi embedding or a complete group action. Success requires a valid deduction or explicit counterexample and properly bounded priority framing. Finite examples cannot certify it.
+
+## Independent possible mechanisms and attacks
+1. Because Der(n)=ad(n), L gives a homomorphism phi:g->n. The skew identity suggests both phi and phi+id are Lie homomorphisms and their difference is invertible. Challenge their signs and bracket orientation. This may reduce to complementary subalgebras in n direct-sum n, but classifying all such pairs could conceal the original difficulty.
+2. Integrate those homomorphisms on a simply connected complex group G and obtain a locally free left-right action on simply connected N with semisimple Lie algebra. An invertible evaluation at identity gives only an open orbit. The major anticipated gap is unjustified global transitivity/completeness. Perfectness implies unimodularity of G, so an invariant volume/determinant argument might force a constant determinant on all N; verify the exact covariance, holomorphic continuation, and connectedness before using this.
+3. If global transitivity is rigorously obtained, isotropy is discrete. A simply connected N would force trivial isotropy only if the orbit map is a covering (verify this). G homotopy equivalent to a maximal compact Levi subgroup whereas N has compact-real-form topology; compare top nonzero cohomology dimensions to force radical dimension zero. Need correct real/complex dimension conversion, simply connected solvable radical contractibility, and treatment of compact Levi coverings.
+4. Counterexample search risks: semidirect products s acting on abelian modules; factorizations n=a+b where one factor has radical; nonfaithful projections; nontrivial stabilizers; reducible n; trivial post-Lie structures with semisimple g (boundary counterexamples to stronger claims); nonperfect solvable sources known to evade volume step.
+
+## Initial risk assessment
+Mathematical risk: moderate to high until the global action step and cohomology bound are checked. Priority risk: high because determinant relative-invariant arguments and affine/post-Lie obstructions have classical precedents; no novelty follows from source triage's search absence. Package risk: moderate until exact file/ZIP representations and actual executions are independently bound. No correctness or novelty verdict is made.

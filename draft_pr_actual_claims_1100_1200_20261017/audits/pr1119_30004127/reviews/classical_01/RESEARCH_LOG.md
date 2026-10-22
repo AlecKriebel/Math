@@ -1,0 +1,10 @@
+# Independent classical audit research log
+
+Audit scope: PROOF.md Sections 1–3 and exact source model comparison, revision `786fff9ba06951209e8c1e3bc6114efbfa2c9d16`. Only files under this review directory may be written. No repository/publication mutations or external communication are authorized.
+
+- 2026-10-17T19:07:44Z — Read workspace AGENTS.md and full PROOF.md before consulting any audit conclusions. Verified 25,005-byte proof SHA256 `1483bcaa29473616799fa9c04937e55fc249bd27e293c45d580af236d38709f3`. Reconstructed list potential, tree-address union bound, and two-witness/coupon-collector argument independently. No mathematical defect found in first pass. Completion estimate: 30%.
+
+- 2026-10-17T19:10:45Z — Directly retrieved EMS physical p.27/printed p.1139, arXiv current v5 and historical v1. The source defines complexity as total samples plus edge queries; the manuscript's separate counts give polynomial total complexity with exponent 12. No required model repair found. Completion estimate: 65%.
+- 2026-10-17T19:10:45Z — Exact Python controls passed on all 33,867 labeled simple graphs through order six, 14,899 proper partial colorings of positive-distance graphs through order five, and 29,271 feasible potential steps. Ten high-precision parameter cases and 40 exact coupon cases passed. An initial reviewer-only mutation with a duplicated wheel center was disproved and replaced by doubling every wheel label. C++ tooling could not compile because of the host's unaccepted Xcode license; no license action was taken, and all reported results use Python. Completion estimate: 80%.
+
+- 2026-10-17T19:14:11+00:00 — Extended partial-coloring checks to every six-vertex P-member with positive C3 distance, ensuring that K4-free one-exception instances receive direct local potential checks. Final totals: 60,547 partial states and 129,927 feasible W-color steps, all PASS. Completed independent reconstruction, all-size/epsilon boundary analysis, source ledger, and report. Verdict: PASS, no required repair; optional empty-input convention only. Completion estimate: 100% of assigned classical audit (not the full manuscript or priority audit).
