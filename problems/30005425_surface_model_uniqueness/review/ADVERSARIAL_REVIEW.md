@@ -1,0 +1,29 @@
+# Independent adversarial review: 30005425
+
+2026-10-02. **Scoped PASS; original remains unsolved5/5.** No mandatory mathematical correction. AI-assisted review only; no historical novelty, human peer-review or formal-verification claim.
+
+The frozen final author manifest is66a6fb1fa891f8f05b315d02f9c607efde925370d5641bdf83d3a8b0768f8d70. All five full proofs, final result, review request and scope note were read. All five checker receipts and the separate ribbon certificate replayed byte-identically. All35 final-manifest entries were verified against raw bytes.
+
+## Source and scope
+
+The official OWR source was independently opened, and printed443 was visually inspected. It fixes the string algebra A and varies associated finite locally gentle covers B. It does not simply fix B. Its tile-collection rotation phrase does not give a formal generating move in the retrieved contribution. The expanded Baur–Coelho Simões text was checked for its rotation discussion; the located occurrence concerns module arcs and does not establish the missing equivalence. Xin–Zhang2026 Definition1.14 explicitly uses an orientation-preserving homeomorphism with colour/dissection/label preservation, so substituting it for the OWR relation would be unjustified. The packet correctly leaves the original unresolved and treats its two possible transfers as conditional, not exhaustive interpretations.
+
+Primary sources independently opened: official EMS47001; arXiv1807.04730v2 (PPP); arXiv2403.07810; arXiv2608.14360. The stated PPP construction, genus formula, duality and OPS comparison support the uses here. These cited results are external dependencies, not claimed inventions or independently reproved classification theorems.
+
+## Mathematical audit
+
+Turn1: the four-vertex quiver is acyclic, its radical-square-zero algebra has dimension9, and both relation choices satisfy permitted and forbidden continuation bounds. Each cover has two permitted length-two paths and no longer ones, giving dimension11. Adding either omitted quadratic relation violates a gentle uniqueness bound, proving saturation. The explicit thread lists contain each quiver vertex twice; their boundary permutations give three versus one boundary cycles with Euler characteristic−1. Thus the genus pair0 versus1 is correct, with no punctures. This is a genuine underlying-homeomorphism obstruction, not automatically an OWR-rotation counterexample.
+
+Turn2: the local classification follows the credited matching/complement-matching rule. Relation choices at distinct vertices concern disjoint composable arrow pairs even for loops. In the four-seam splice the same eight distinct sides are repaired by the alternative two-by-two table. The two-vertex cyclic example has exactly two finite opposite states; each other state has a permitted cycle, so single-vertex paths cannot stay finite. The finite states are themselves isomorphic, correctly preventing an overclaim about the source.
+
+Turn3: acyclicity excludes both permitted and forbidden cyclic threads. The credited formula then gives2g+b=beta+1, with positive boundary supplied by source blossoms/finite threads. Low-cycle-rank cases and the isolated vertex are consistent. On at most three topologically ordered vertices, degree inequalities leave only the double-arrow chain when beta≥2; its two relation tables are isomorphic by a parallel-arrow exchange. Hence the stated four-vertex/five-arrow threshold is valid within the explicitly acyclic class, including parallel arrows.
+
+Turn4: the central permitted thread has3k−1 arrows; the remaining2k threads have lengths1 and2. They cover every arrow exactly once and every quiver vertex twice. Summing subpaths yields the claimed cover dimension. Concatenating cyclic orders at the central ribbon vertex is realized by joining disjoint ribbon thickenings with an untwisted bridge and contracting it. This is boundary connected sum, so genera add and boundary counts decrease by one per join. The all-k conclusion follows structurally, not by extrapolating the finite checker. It concerns selected covers, not a classification of every cover of A_k.
+
+Turn5: the local relation and complement partial matchings extend to opposite2x2 permutation tables. A fixed common blossoming quiver suffices for both endpoints. Source-adjacent and target-adjacent sides are distinct, including for loop lozenges, so changes at different vertices never use the same side. Equality of the final side and endpoint identifications proves equality of the resulting cell-complex quotient. This proves the explicitly defined broad simultaneous surgery, not the unstated source move or any prescribed label transport. Finite endpoints do not require finite intermediate single-switch states. The linear certificate bound is valid after the declared incidence/lookup preprocessing.
+
+## Controls
+
+All author receipts replay:68,028 declared assertions, plus the exact ribbon output comparison. An independently written checker reconstructs permitted transitions, maximal threads, path dimensions and ribbon boundary cycles for all2,046 binary-selected covers through k=10. It separately exhausts31 local relation tables and checks equivalence of the local gentle condition with completion by a2x2 permutation. Total149,549 independent exact assertions. No author gluing code is imported by this checker. These are bounded controls supplementing the proofs. The separate full PPP lozenge implementation is an author control and is not misrepresented as a new reviewer implementation.
+
+The only decisive original gap remains identification of allowed tile moves and their label transport. The topology counterexamples and broad-surgery theorem are compatible with each other; neither forces an original solved disposition. Preserve the source qualifications prominently in any draft PR. Do not republish primary PDFs, screenshots or raw imported records.
