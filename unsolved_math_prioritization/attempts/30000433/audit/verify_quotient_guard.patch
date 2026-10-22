@@ -1,0 +1,43 @@
+--- a/verify.py
++++ b/verify.py
+@@ -149,6 +149,28 @@
+     out=list(puncture)+[tuple(sorted(v if v in seam else v+offset for v in t)) for t in puncture]
+     return out, boundary
+ 
++def check_boundary_quotient(tetrahedra, left, right, image):
++    """Permit only the prescribed paired boundary simplex identifications."""
++    for size in range(1, 5):
++        old_faces={f for t in tetrahedra for f in it.combinations(t,size)}
++        fibers=collections.defaultdict(list)
++        for face in old_faces:
++            target=tuple(sorted(image[v] if v in right else v for v in face))
++            need(len(set(target))==size, 'collapsed quotient simplex')
++            fibers[target].append(face)
++        for preimages in fibers.values():
++            if len(preimages)==1:
++                continue
++            need(len(preimages)==2, 'quotient simplex has too many preimages')
++            first,second=preimages
++            need((set(first)<=left and set(second)<=right) or
++                 (set(first)<=right and set(second)<=left),
++                 'unintended quotient identification outside boundary')
++            if set(first)<=right:
++                first,second=second,first
++            need(tuple(sorted(image[v] for v in second))==first,
++                 'quotient boundary pair differs from prescribed map')
++
+ def self_handle(points,tetrahedra):
+     # Orthogonal symmetry diag(-1,1,-1,-1): orientation reversing on S^3,
+     # and it exchanges the two antipodal coordinate-axis vertices.
+@@ -161,8 +183,10 @@
+     need(image[north]==south,'handle symmetry does not swap poles')
+     need(sorted(tuple(sorted(image[v] for v in t)) for t in link0)==link1,'handle boundary map is not simplicial')
+     rem=[t for t in tetrahedra if north not in t and south not in t]
+-    # No simplex meets both boundary vertex sets, excluding quotient collapse.
++    # This excludes collapse within a simplex; the fiber check below separately
++    # excludes unintended identifications between different simplices.
+     need(all(not (set(t)&v0 and set(t)&v1) for t in rem),'simplex meets both handle boundaries')
++    check_boundary_quotient(rem, v0, v1, image)
+     out=[tuple(sorted(image[v] if v in v1 else v for v in t)) for t in rem]
+     need(all(len(set(t))==4 for t in out),'collapsed handle tetrahedron')
+     return out
