@@ -1,0 +1,55 @@
+--- original/PROOF.md
++++ clarified/PROOF.md
+@@ -4,7 +4,7 @@
+ 
+ ## 1. Category and data
+ 
+-Work in the smooth category. A stage consists of a smooth pair `(X, F)`, a torus `T` disjoint from `F`, a product neighborhood `N = T^2 × D^2` disjoint from `F`, and a boundary gluing `φ: ∂N → ∂(X \ int N)`. The new surface is the unchanged copy of `F` in the exterior. Every individual stage in the target must again have ambient manifold diffeomorphic to the standard `S^4`; the last pair must be standard. A topological locally flat version is a separate question. None of the deductions below solves it.
++Work in the smooth category. A stage consists of a smooth pair `(X, F)`, a torus `T` disjoint from `F`, a product neighborhood `N = T^2 × D^2` disjoint from `F`, and a smooth boundary gluing `φ: ∂N → ∂(X \ int N)`. Gluings use compatible smooth collars, with corners rounded. In the oriented convention the gluing reverses the boundary orientations; coordinate matrices below use the fixed original boundary identification, so their signs do not add a homology hypothesis. The new surface is the unchanged copy of `F` in the exterior. Every individual stage in the target must again have ambient manifold diffeomorphic to the standard `S^4`; the last pair must be standard. A topological locally flat version is a separate question. None of the deductions below solves it.
+ 
+ There is no genus or orientability restriction in the target being audited. Spun 2-knots below are only a subclass. For a nonorientable surface a standard target must also have the appropriate normal Euler number, because complement surgery leaves its tubular neighborhood unchanged.
+ 
+@@ -46,6 +46,8 @@
+ 
+ `spin(M) = (M \ int B^3) × S^1 ∪_{S^2 × S^1} S^2 × D^2`.
+ 
++The cap gluing in this definition is the product identification, with corners rounded. In particular, `spin(S^3)` is the boundary of the rounded product `B^3 × D^2`, which is diffeomorphic to the standard `D^5`; this identifies its boundary with standard smooth `S^4`, rather than merely a homotopy or topological sphere. A smooth identification of a Dehn-filled 3-manifold with `S^3` also identifies its punctured manifold with `B^3`, and therefore gives this same smooth conclusion after spinning.
++
+ Start with `spin(S^3)=S^4`. Each product torus `L_i × S^1` has a product tubular neighborhood, and using the 3-dimensional filling map times the identity of `S^1` produces the spin of the corresponding Dehn-filled manifold. Hence the two surgeries together give `spin(S^3)=S^4`.
+ 
+ Van Kampen gives `π_1(spin(M)) = π_1(M)`: the first piece has group `π_1(M) × Z`, the cap is simply connected, and the attaching `S^2 × S^1` kills exactly the second factor. Thus the intermediate manifold has fundamental group, and first homology, `Z`, so it is not `S^4`. Either component is initially an unknot, so either ordering has this defect.
+@@ -62,9 +64,11 @@
+ 
+ ## 5. Pair tracking and stabilization do not disappear
+ 
+-**Proposition 3 (pair-neutral gluing).** Identify the original pair as `(E ∪_id N, F)`. Suppose the surgery gluing `φ` extends to a diffeomorphism `h:E→E` that sends `F` to itself. Then `(E ∪_φ N, F)` is diffeomorphic as a pair to the original pair.
++**Proposition 3 (pair-neutral gluing).** Let `N = T^2 × D^2`, let `E` be the smooth torus exterior with `∂E` identified with `∂N` by the original gluing `ι:∂N→∂E`, and let the closed tracked surface `F` lie in `int E`. Thus the original pair is `(E ∪_ι N, F)`. Let `φ:∂N→∂E` be the surgery gluing. Suppose there is a diffeomorphism `h:E→E` with `h(F)=F` and `h|∂E = φ ∘ ι^{-1}`. Then `(E ∪_φ N, F)` is diffeomorphic as a pair to `(E ∪_ι N, F)`.
+ 
+-**Proof.** On the new exterior use `h^{-1}`, and on `N` use the identity. For `z ∈ ∂N`, the new identification joins `z` to `φ(z)=h(z)`; the two proposed maps send these points to the same point `z` in the old gluing. They therefore fit to a diffeomorphism of pairs. ∎
++**Proof.** Use collars of `∂E` and `∂N` disjoint from `F`. By collar straightening, arrange `h` to have product form near `∂E`, without changing its boundary restriction or its action on `F`. On the new exterior use `h^{-1}` and on `N` use the identity. For `z ∈ ∂N`, the new identification joins `z` to `φ(z)`, and `h^{-1}(φ(z))=ι(z)`. The maps therefore agree under the old gluing and, by their collar product form, join smoothly. Their inverses join in the same way. Since `h^{-1}(F)=F`, the resulting diffeomorphism is a diffeomorphism of pairs. ∎
++
++The original shorthand `ι=id` is this statement in fixed boundary coordinates. If the stated boundary restriction is known only up to smooth isotopy, extend that isotopy through a boundary collar, disjoint from `F`, before applying the proposition. Equality of homology matrices alone is not the extension hypothesis. Here `E` has just the torus boundary and contains `F`; if instead one deletes `νF`, the induced map on the extra surface boundary must extend over `νF` preserving its core surface before a pair diffeomorphism follows. Any additional marked boundary data must also be respected. An arbitrary complement homeomorphism or an ambient recognition argument without these extension conditions does not establish this smooth pair conclusion.
+ 
+ In particular, an ambient-standardness argument whose exterior extension also fixes the surface does not unknot a previously nonstandard pair. An extension used to recognize the ambient manifold must still be checked for its effect on the surface.
+ 
+--- original/sources.json
++++ clarified/sources.json
+@@ -37,7 +37,7 @@
+     {
+       "key": "BS",
+       "title": "Round handles, logarithmic transforms, and smooth 4-manifolds",
+-      "url": "https://arxiv.org/pdf/1009.0514",
++      "url": "https://arxiv.org/pdf/1009.0514v3",
+       "bytes": 250737,
+       "sha256": "6de2ef88203a17bb1a175569e26583163ce7233349dfffa70caccd49c7cc14a5",
+       "retrieved_utc": "2026-10-06T18:35:41.833902+00:00",
+--- original/status.json
++++ clarified/status.json
+@@ -9,6 +9,6 @@
+   "turns_used": 3,
+   "turn_limit": 5,
+   "stop_reason": "The three approaches leave the universal geometric existence, stagewise smooth ambient standardness, and marked-surface endpoint gaps unresolved.",
+-  "audit_status": "author_packet_awaiting_independent_audit",
++  "audit_status": "independently_audited_scoped_partial_with_explicit_gluing_clarifications",
+   "suggested_queue_findings": "Canonical multiplicity must be ±1. Spun Hopf-link diagnostic separates final from intermediate S4; known spun-knot theorem credited. General surface construction and relative stabilization conversion remain missing. No full solution or novelty claim."
+ }
