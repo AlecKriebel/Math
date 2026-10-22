@@ -1876,7 +1876,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1865 | 20001341 / AIM-CRYPTOGRAPHY-0028 | Explicit near-minimal units from the golden-ratio radical | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1866 | 2218 / EP-624 | Erdős Problem #624 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1867 | 2225 / EP-635 | Erdős Problem #635 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1868 | 2285 / EP-734 | Erdős Problem #734 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1868 | 2285 / EP-734 | Erdős Problem #734 | 0.0495 | 5.0 | 1 | unknown | UNSOLVED | 5/5 |  | Accepted partial reconstruction of the known O(n^(3/4)) bound for n>=10 and construction-specific barriers; O(sqrt(n)) target unresolved. [Audit package](attempts/2285/README.md). |  |
 | 1869 | 2299 / EP-776 | Erdős Problem #776 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1870 | 2401 / EP-949 | Erdős Problem #949 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1871 | 3000040 / AMR-029-0040 | Gonality and edge subdivisions | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
