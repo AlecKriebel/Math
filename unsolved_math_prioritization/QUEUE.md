@@ -1061,7 +1061,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1050 | 2970 / KP-4.94 | Kirby Problem 4.94 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1051 | 2974 / KP-4.98 | Kirby Problem 4.98 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1052 | 2980 / KP-4.104 | Kirby Problem 4.104 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1053 | 2991 / KP-4.115 | Kirby Problem 4.115 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1053 | 2991 / KP-4.115 | Kirby Problem 4.115 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Part (a) affirmatively resolved by accepted authored proof: diffeomorphic, non-isotopic minimal balanced (3,1) trisections on the untwisted spin of L(8,3), even allowing sector permutations. Fundamental group C8; part (b) remains unresolved. Two independent part-(a) audits and full five-approach bundle acceptance passed without mathematical correction. Original nine-file freeze preserved with historical candidate wording; later accepted status reconciled in attempts/2991/ACCEPTANCE.md. No simply connected example, non-diffeomorphism result, stabilization persistence, or novelty claim. |  |
 | 1054 | 30006624 / OWR-14299911-026 | Cartan-Hadamard Theorem without Uniform Local Medianity | 0.0900 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1055 | 30006636 / OWR-14299913-005 | Extending Trisection Invariants to Four-Dimensional TQFTs | 0.0900 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1056 | 3011 / KP-5.4 | Kirby Problem 5.4 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
