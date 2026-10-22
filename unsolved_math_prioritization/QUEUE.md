@@ -533,7 +533,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 522 | 2304025 / AMR-022-4025 | Research Problems in Function Theory — Problem 4.25 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 523 | 2305028 / AMR-022-5028 | Research Problems in Function Theory — Problem 5.28 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 524 | 2305039 / AMR-022-5039 | Research Problems in Function Theory — Problem 5.39 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 525 | 2305050 / AMR-022-5050 | Research Problems in Function Theory — Problem 5.50 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 525 | 2305050 / AMR-022-5050 | Research Problems in Function Theory — Problem 5.50 | 0.1200 | 6.0 | 3 | unknown | already_solved | 1/5 |  | 2026-10-03: Carroll (1979), Theorem 2, already gives a strongly annular function with countably infinitely many exceptional boundary-accumulation values; exact S(f) definition checked. Independent source-first audit PASS; [proof and audit](../problems/2305050_annular_exceptional_values/REVIEW_COMPLETE.md). Credited published result, no novelty claim. |  |
 | 526 | 2306017 / AMR-022-6017 | Research Problems in Function Theory — Problem 6.17 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 527 | 2306038 / AMR-022-6038 | Research Problems in Function Theory — Problem 6.38 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 528 | 2306052 / AMR-022-6052 | Research Problems in Function Theory — Problem 6.52 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
