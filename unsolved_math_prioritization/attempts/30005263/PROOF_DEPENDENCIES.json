@@ -1,0 +1,149 @@
+{
+  "nodes": [
+    {
+      "id": "existence",
+      "result": "Brenier–McCann existence and uniqueness",
+      "source": "published foundational theorem",
+      "needed_hypotheses": "Absolute continuity; finite second moments; convex gradient pushforward",
+      "check": "Verified hypotheses; theorem retained as standard published foundation."
+    },
+    {
+      "id": "regularity",
+      "result": "Cordero-Erausquin–Figalli Theorem 1 and Corollary 5 in author PDF",
+      "source": "2019 published result",
+      "needed_hypotheses": "X=Y=R^d; smooth positive densities; reciprocal bounds on bounded balls",
+      "check": "Statement, full-space proof route and hypothesis matching checked."
+    },
+    {
+      "id": "coercivity",
+      "result": "Gwóźdź Lemmas 3.9 and 3.10",
+      "source": "2609.04052v1 pp.8–9",
+      "needed_hypotheses": "Large-scale modulus and onto gradient",
+      "check": "Proof checked; no assumed differential Lipschitz estimate."
+    },
+    {
+      "id": "modulus",
+      "result": "Gozlan–Sylvestre Theorems 5.15 and 5.16, equation31",
+      "source": "2501.11382v5 pp.28–30",
+      "needed_hypotheses": "Gaussian reference marginals and global Lipschitz perturbations",
+      "check": "Proof through Corollary4.3 and Theorem4.2 checked."
+    },
+    {
+      "id": "entropic_modulus",
+      "result": "Gozlan–Sylvestre Propositions 2.6,2.7,3.1,3.2 and Theorem4.2",
+      "source": "2501.11382v5 pp.5–7,10–14,16–18",
+      "needed_hypotheses": "Full-space finite potentials; appropriate finite moduli and finite quadratic cost",
+      "check": "Relevant algebra, Prekopa–Leindler/Hölder applications and infimal-convolution route checked."
+    },
+    {
+      "id": "entropic_convergence",
+      "result": "Nutz–Wiesel Theorem 1.1",
+      "source": "Published PTRF184; author PDF dated2021-10-30 pp.1–3",
+      "needed_hypotheses": "Polish spaces; continuous nonnegative product-integrable cost; normalized potentials",
+      "check": "Full theorem and assumptions checked; proof retained as published theorem."
+    },
+    {
+      "id": "translated_identity",
+      "result": "Gwóźdź Lemma4.1",
+      "source": "2609.04052v1 p.12",
+      "needed_hypotheses": "Smooth positive Hessian; Gaussian curvature",
+      "check": "Differentiations and signs checked."
+    },
+    {
+      "id": "schur",
+      "result": "Gwóźdź Lemmas4.2–4.5 and AppendixA.1",
+      "source": "2609.04052v1 pp.13–15,34–35",
+      "needed_hypotheses": "Positive matrices plus kernel compatibility",
+      "check": "Square completion, congruence, exact trace envelope, singular limit, maximum calculus checked."
+    },
+    {
+      "id": "penalty",
+      "result": "Gwóźdź Lemmas4.6–4.8",
+      "source": "2609.04052v1 pp.15–17",
+      "needed_hypotheses": "S=I;0<beta<1;finite global gradient widths",
+      "check": "Construction, C2 regularity, tail joining, strict certificate checked."
+    },
+    {
+      "id": "maximum",
+      "result": "Gwóźdź Proposition4.9",
+      "source": "2609.04052v1 pp.18–19",
+      "needed_hypotheses": "Large-scale corrector bound; supercoercive Phi",
+      "check": "Attainment, compact annulus, epsilonT to zero, contradiction and parameter limits checked."
+    },
+    {
+      "id": "approximation",
+      "result": "Gwóźdź Section4.4 and Lemmas3.11,3.13",
+      "source": "2609.04052v1 pp.9–11,20–22",
+      "needed_hypotheses": "Lipschitz mollification; Gaussian moment domination",
+      "check": "Width preservation, weightedL1/W2 convergence, base point bound, local uniform limits, convex-gradient pushforward and second differences checked."
+    },
+    {
+      "id": "conclusion",
+      "result": "Gwóźdź Corollaries3.4,3.6,5.5 and Theorem1.1",
+      "source": "2609.04052v1 pp.22–25",
+      "needed_hypotheses": "Q=P=G=R=I;a=0;b=B=-f",
+      "check": "All target quantifiers and scalar dimension-free constant checked."
+    },
+    {
+      "id": "reverse",
+      "result": "Gwóźdź Lemma5.1 and Proposition5.6",
+      "source": "2609.04052v1 pp.22–25",
+      "needed_hypotheses": "Forward and reverse positive full-support marginals",
+      "check": "Inverse/Legendre argument and optimization checked; not needed for original one-sided target."
+    }
+  ],
+  "edges": [
+    [
+      "existence",
+      "regularity"
+    ],
+    [
+      "regularity",
+      "coercivity"
+    ],
+    [
+      "entropic_convergence",
+      "modulus"
+    ],
+    [
+      "entropic_modulus",
+      "modulus"
+    ],
+    [
+      "modulus",
+      "coercivity"
+    ],
+    [
+      "regularity",
+      "translated_identity"
+    ],
+    [
+      "schur",
+      "maximum"
+    ],
+    [
+      "translated_identity",
+      "maximum"
+    ],
+    [
+      "coercivity",
+      "maximum"
+    ],
+    [
+      "penalty",
+      "maximum"
+    ],
+    [
+      "maximum",
+      "approximation"
+    ],
+    [
+      "approximation",
+      "conclusion"
+    ],
+    [
+      "conclusion",
+      "reverse"
+    ]
+  ]
+}
