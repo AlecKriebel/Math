@@ -1,0 +1,3 @@
+# Fifth and final author turn
+
+2026-10-02 08:11 UTC. Optimized the proof cutoff K proportional to log(eM)^2, yielding bounded-Lipschitz path-law error O(log(eM)^-2) in one spatial dimension. The actual scheme is unchanged. This is compatible with infinite coupled mean-square error and nonvanishing weak-linear mass error. No optimality or positive algebraic weak order is claimed. The broad source weak question in arbitrary dimension is not fully settled; five turns exhausted. Completion estimate75%, low confidence for the broad source bundle. Independent full review required; no novelty certification or sixth search.
