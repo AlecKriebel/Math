@@ -1,0 +1,5 @@
+# Publication checkpoint
+
+2026-10-05, 15:13 UTC. Problem 30003978 / OWR-16628-010, rank 743. One source-first substantive approach found the September/October 2026 preprints. Independent scrutiny supports a credited prior-preprint resolution for every r>=9 in the very-general-center, very-general-evaluation-point scope. Best-guess completion of this narrowly scoped literature-resolution task: 100%, subject to the mathematical correctness of the stated imported theorems; this is not a probability of correctness or a claim of human peer review. No new solution search, novelty claim or proof of Nagata.
+
+The author and audit freezes remain unchanged. Publication validation binds their safe authored contents and public metadata, replays exact controls, tests relocation and tamper rejection, and verifies remote bytes. The source versions remain LU v2 and MMSZ v1. The specialized reflection scope and broader abstract base-change limitation are prominent in the audit and wrapper. Only three queue cells are changed. No merge, release, DOI creation or external outreach is part of this checkpoint.
