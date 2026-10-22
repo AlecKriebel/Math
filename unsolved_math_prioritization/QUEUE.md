@@ -522,7 +522,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 511 | 20001306 / AIM-CONVEX_GEOMETRY-0038 | Closedness, dimensional correction, and a dual certificate for polar-zonoid intersection bodies | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 512 | 20001353 / AIM-DYNAMICAL_SYSTEMS-0011 | A maximal dyadic-pair stabilizer in Thompson's group T | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 513 | 20001752 / AIM-GEOMETRY-0090 | Midpoint projection and modular-period reductions for the E8 and Leech magic functions | 0.1200 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
-| 514 | 20001754 / AIM-GEOMETRY-0092 | Symmetry obstruction and invariant-subprogram collapse for the AIM lattice three-point bound | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 514 | 20001754 / AIM-GEOMETRY-0092 | Symmetry obstruction and invariant-subprogram collapse for the AIM lattice three-point bound | 0.1200 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 515 | 20002370 / AIM-LOGIC-0146 | Exact alternation depth and variable bounds for two real rational-function fields | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 516 | 20002696 / AIM-PROBABILITY-0138 | Uniform heat convergence, spectral tails, and affiliated innerness | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 517 | 20003004 / AIM-TOPOLOGY-0092 | Digital pi_2, clique realization, and the octahedral sphere | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
