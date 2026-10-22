@@ -311,7 +311,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 300 | 30002709 / OWR-13351-007 | Essential Finite Generation of Valuation Rings | 0.1733 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 301 | 30002960 / OWR-13940-008 | Three-Dimensional Coloring Number of the Sphere | 0.1729 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 302 | 6700069 / AMR-066-0069 | Scalar Curvature Question [?73]: [c] LetS be a Riemannian manifold homeomorphic to the connected sum of twenty copies ofS2× S2 | 0.1720 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |
+| 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | claimed_solved | 1/5 |  | Reviewed counterexample L(u,v)=(u,(u²+1)v): full affine permutations for p≡3 mod4, no point-weighted limit at any fixed 1/2≤x<1. Unconditional arithmetic inputs; rational inverse scope explicit. |  |
 | 304 | 30001781 / OWR-5152-008 | Maximal Submatrix Bounds Without Unconditionality | 0.1717 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 305 | 30000849 / OWR-1729-002 | Scaling Profiles in Addition–Coagulation Models | 0.1712 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 306 | 30001080 / OWR-2093-003 | Transport Characterizations of Mass-Stationarity | 0.1709 | 5.0 | 3 | 2008 | claimed_solved | 3/5 |  | Formal Annals2009 Problem7.3 and literal imported all-Markov target resolved in stated sigma-finite arbitrary-flow setting; B intensity-background canonical theorem; C strict count-only Markov probability theorem; D strict count-only allocation discrete sigma-finite theorem; non-discrete deterministic Cox allocation converse unresolved; bounded priority accepted with disclosed gaps; candidate03 two whole-preprint reviews completed; A-only preprint actually published 10.5281/zenodo.23180194; tracker Math Puzzles sheet 1254632077 row 30 accepted as of 2026-10-06T06:45:26.412290+00:00; native merge pending; original2 plus one joint repair turn3, no turn4 | [10.5281/zenodo.23180194](https://doi.org/10.5281/zenodo.23180194) |
@@ -439,7 +439,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 428 | 30000997 / OWR-2042-006 | Degenerate Versus Full Ma–Trudinger–Wang Conditions | 0.1315 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 429 | 30001070 / OWR-2090-023 | Circumscribed $2n$-Facet Polytopes around the Unit Ball | 0.1315 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 430 | 30001084 / OWR-2093-008 | Randomized-Transport Characterizations of Palm Measures | 0.1315 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 431 | 30001179 / OWR-3392-005 | Generation of Free Product Systems by Tensor Subsystems | 0.1313 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 431 | 30001179 / OWR-3392-005 | Generation of Free Product Systems by Tensor Subsystems | 0.1313 | 6.0 | 3 | 2009 | claimed_solved | 3/5 |  |  |  |
 | 432 | 30001568 / OWR-4426-005 | Symmetry-Preserving Evaluation of Orbitwise Generating Functions | 0.1311 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 433 | 30001895 / OWR-11136-027 | Exact Transversals for Families with the (p,q)-Property | 0.1308 | 6.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 434 | 30001957 / OWR-11570-002 | Entropy Production on Folded Hyperbolic Fractals | 0.1306 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
@@ -1772,7 +1772,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1761 | 30002861 / OWR-13678-002 | Cubic Spline Interpolation on General Triangulations | 0.0584 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 1762 | 3700039 / AMR-036-0039 | Median inequality for three subharmonic functions | 0.0584 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 1763 | 30003185 / OWR-14745-003 | Complexity of Bray’s Involution-Centralizer Algorithm | 0.0582 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 1764 | 30003208 / OWR-14748-016 | Von Neumann Generation of the Algebra T-Psi | 0.0582 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 1764 | 30003208 / OWR-14748-016 | Von Neumann Generation of the Algebra T-Psi | 0.0582 | 5.0 | 3 | 2016 | claimed_solved | 1 newly documented; lifetime prior count unknown |  | General tail generation: D''=T, with norm-bounded WOT density of ordinary canonical F-moments for every unital C*-algebra and finite-permutation-symmetric state; no faithfulness, normal extension or separability assumption. One new shared substantive pass for duplicate targets 30003208/30002897; lifetime prior count unknown. Independent analytic and final-reader acceptance. Quantum-symmetric cases and DKW/Liu methods credited; novelty unverified. Separate D-inclusion question unresolved. [Proof and reader](attempts/30003208/README.md); [final acceptance](attempts/30003208/FINAL_READER_ACCEPTANCE.md). |  |
 | 1765 | 30003225 / OWR-14754-011 | Contact Loci and Nash Sets of Prime Divisors | 0.0582 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 1766 | 30003375 / OWR-15208-029 | Harmonic Fibrations of Exotic Complex Projective Space Bundles | 0.0580 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 1767 | 30003527 / OWR-15575-006 | Movable Invariant Neighborhoods of Compact Flow Sets | 0.0580 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
@@ -1782,7 +1782,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1771 | 30003992 / OWR-16633-009 | Fast Low-Rank Maximum-Weight Assignment | 0.0579 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1772 | 30004307 / OWR-17294-007 | Second-Cohomology Torsion of Finite Abelian Quandles | 0.0576 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1773 | 30004316 / OWR-17294-017 | Bijectivity of the Quantum Symmetrizer | 0.0576 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 1774 | 30004534 / OWR-2654827-016 | Eventual Lefschetz Dichotomies for Symmetric Ideal Chains | 0.0574 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 1774 | 30004534 / OWR-2654827-016 | Eventual Lefschetz Dichotomies for Symmetric Ideal Chains | 0.0574 | 5.0 | 3 | 2020 | claimed_solved | 1 new substantive pass; lifetime unknown |  | [Periodic counterexample and independent audit](attempts/30004534/public/README.md): both unrestricted-characteristic eventual WLP and SLP dichotomies are false. Fix K = F_p(t), c = 2; for n >= 2 both hold iff p does not divide n-1, and at n = 1 both hold. Characteristic-zero and c = 1 variants untouched; no novelty claim. |  |
 | 1775 | 30004611 / OWR-4990374-017 | Exact Sequences for Logarithmic Derivation Sheaves | 0.0571 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 1776 | 30005160 / OWR-11101912-009 | Strict Majorant Properties at Fixed Noneven Exponents | 0.0568 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1777 | 30005572 / OWR-13750341-006 | Eisenstein Maps from Bianchi Homology to K2 | 0.0564 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
@@ -1793,7 +1793,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1782 | 30000215 / OWR-822-007 | Theoretical Certification of Crossing-Number Optimality | 0.0545 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 1783 | 30000386 / OWR-1183-006 | The Two-Dimensional Time-Bomb Conjecture | 0.0544 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 1784 | 30001101 / OWR-2489-006 | Alcuin Numbers and Recognition of Small Boat Graphs | 0.0542 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 1785 | 10000037 / AMR-099-0037 | Uniqueness of percolation on graphs roughly isometric to lattices | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1785 | 10000037 / AMR-099-0037 | Uniqueness of percolation on graphs roughly isometric to lattices | 0.0540 | 5.5 | 3 | unknown | claimed_solved | 1/5 |  | 2026-10-14: independently audited degree-four deterministic graph quasi-isometric to Z²; iid bond p=0.95 gives P(at least two infinite clusters)>1/3 with p_c<=0.9. Negative resolution of the context-supported full-supercritical uniqueness formulation; the source question leaves its parameter range implicit. One mathematical pass; public reader and independent packaging acceptance retained in attempts/10000037/. Source is a question, not a published theorem; novelty and priority uncertified. |  |
 | 1786 | 10400007 / AMR-103-0007 | Problem 1.7 — (J. | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1787 | 10400168 / AMR-103-0168 | Problem 9.4 — (Y. | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1788 | 11000165 / AMR-109-0165 | Problem 2.8 — Recall that we noted, earlier, that every genus g Heegaard splitting of every homology 3-sphere is obtained by allowi… | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
@@ -1854,7 +1854,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1843 | 30005478 / OWR-12697711-014 | Algorithms for Amoeba Dimensions from Tropical Fans | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1844 | 30005529 / OWR-13750333-010 | Compatible Geodesic and Horocycle Symbolic Codings | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1845 | 30005732 / OWR-14298011-003 | Well-Defined Trajectories in Controlled Set Motions | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 1846 | 30005740 / OWR-14298013-004 | BV Structures with Nonsemisimple Nakayama Automorphisms | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 1846 | 30005740 / OWR-14298013-004 | BV Structures with Nonsemisimple Nakayama Automorphisms | 0.0517 | 5.0 | 3 | 2023 | claimed_solved | 5/5 |  | 2026-10-21: Independently audited classification for nonzero h over any characteristic-zero field: the canonical Hochschild cup/bracket admits a BV generator iff h is squarefree. Repeated factors forbid even a bracket generator without square-zero; squarefree h admits Delta=0. The actual embedded h=0 algebra is k[x] and lies outside the theorem. Authored proof, audits, exact checks and public verification metadata: nakayama_bv_classification_30005740/. No novelty or peer-review claim. |  |
 | 1847 | 30003654 / OWR-15957-007 | Certificates of Polynomial Nonnegativity in Copositive Optimization | 0.0516 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 1848 | 30005757 / OWR-14298158-002 | Rationality of Separable Permutation Subclasses | 0.0513 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1849 | 30004262 / OWR-17288-004 | Finite-Dimensional Uniform Embeddings of Compact Metric Spaces | 0.0512 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |

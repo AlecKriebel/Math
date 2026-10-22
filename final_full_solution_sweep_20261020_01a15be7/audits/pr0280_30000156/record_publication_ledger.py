@@ -7,18 +7,22 @@ import subprocess
 import uuid
 from ops_binding import *
 from publication_live_gates import collect
-from verify_published_files import verify_live
+from verify_published_files import verify_live, verify_doi_destination
 
 
 def desired_row(identifier):
     return [
         '30000156 / OWR-768-006: Limiting Cycle Distributions of Birational Maps',
         '', 'https://doi.org/10.5281/zenodo.'+str(identifier),
-        TITLE+' — Alec Kriebel (ORCID 0009-0001-9320-500X), v1.0 (2026-10-21). '
+        TITLE+' — Alec Kriebel (ORCID 0009-0001-9320-500X), v1.1 (2026-10-21). '
         'Unrefereed preprint. Fixed L(u,v)=(u,(u²+1)v) permutes the full affine plane for p≡3 mod4; '
         'point-weighted periods normalized by p have, at each fixed 1/2≤x<1, CDF '
         '1−φ(p−1)/(p−1)+o(1), limsup 1 and liminf at most 23/24. Neither those CDF values '
         'nor the period measures converge on any admissible prime subset of positive upper relative density. '
+        'A separate all-odd-prime proposition treats the regular domain p(p-r), r=0 or2, and uniform-point '
+        'exceptional-fiber deletion or arbitrary finite nonnegative assigned periods only there. Bounded '
+        'statistics change by O(1/p); no positive-upper-prime-density selection restores convergence '
+        'under these conventions. Completed measures lie on nonnegative reals; assigned periods may exceed p. '
         'The triangular family, primitive quadratic values, shifted-prime totient mean and continuous scalar '
         'law are established and credited; this is a scoped application to Vivaldi’s 2004 broad existence assertion '
         '(joint work with Roberts). No new map family, character-sum theorem, arithmetic mean/scalar law, '
@@ -52,10 +56,13 @@ def read(label,operation):
     return schema_rows(value)
 
 
-def matches(rows,identifier):
+def matches(rows,identifier,family_ids=()):
     doi='10.5281/zenodo.'+str(identifier)
-    return [(i,r) for i,r in enumerate(rows[1:],2) if PATTERN.search(' '.join(r))
-            or any(doi in set(re.findall(r'10\.5281/zenodo\.\d+',v)) for v in r)]
+    found=[]
+    for i,r in enumerate(rows[1:],2):
+        is_target=target_in_row(r,identifier,family_ids)  # Evaluate every cell before any pattern shortcut.
+        if PATTERN.search(' '.join(r)) or is_target:found.append((i,r))
+    return found
 
 
 def append_verified(expected_head,identifier):
@@ -63,27 +70,33 @@ def append_verified(expected_head,identifier):
     # Never trust old saved booleans: make a new read-only actual public download
     # and DOI200 inspection before the last full-account/full-sheet gate.
     public=verify_live(identifier)
+    if not isinstance(public,dict) or not isinstance(public.get('doi_resolution'),dict):
+        raise RuntimeError('Fresh exact DOI destination evidence is missing')
+    resolution=public['doi_resolution']
+    verify_doi_destination(identifier,{'http_status':resolution.get('status'),
+                                      'resolved_url':resolution.get('resolved_url')})
     if (public.get('record')!=identifier or public.get('all_public_file_bytes_match_reviewed') is not True
             or public.get('doi_resolution',{}).get('status')!=200
             or public.get('release_manifest_sha256')!=RELEASE_SHA):
         raise RuntimeError('Fresh public DOI/files verification incomplete')
     gate,acceptance=collect('before_ledger',expected_head,identifier,allow_target_row=True)
+    family_ids=gate.get('expected_identity_record_ids',[identifier])
     operation=uuid.uuid4().hex
     row=desired_row(identifier)
     before=read('ledger_before_append',operation)
     if digest(before)!=gate['ledger_sha256']:
         raise RuntimeError('Full sheet changed since fresh gate; recollect/reconcile before append')
     doi='10.5281/zenodo.'+str(identifier)
-    doi_rows=[r for r in before[1:] if doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r)))]
+    doi_rows=[r for r in before[1:] if target_in_row(r,identifier,family_ids)]
     if len(doi_rows)>1 or (doi_rows and doi_rows[0]!=row):
-        raise RuntimeError('Existing DOI appears in a different or duplicate full-sheet row; no append')
-    found=matches(before,identifier)
+        raise RuntimeError('Existing DOI/identity lead appears in a different or duplicate full-sheet row; no append')
+    found=matches(before,identifier,family_ids)
     # Broad prior distinct-model rows are allowed only through the exact root
     # reconciliation; target identity/DOI rows must still be unique and exact.
     recon=json.loads((AUDIT/'ROOT_PREPUBLICATION_LEAD_RECONCILIATION.json').read_text())
     known={v['values_sha256'] for v in recon['ledger_leads']}
     if any(digest(r) in known for r in doi_rows):
-        raise RuntimeError('Current target DOI/row contradicts a root non-target ledger exemption; no append')
+        raise RuntimeError('Current target DOI/identity lead contradicts a root non-target ledger exemption; no append')
     found=[(i,r) for i,r in found if digest(r) not in known]
     intent=AUDIT/'LEDGER_APPEND_INTENT.json'
     appended=False
@@ -111,13 +124,13 @@ def append_verified(expected_head,identifier):
     after=read('ledger_after_append',operation)
     # Target DOI rows are never filtered by any non-target digest, including
     # readback after a provider boundary. Exact target identity has precedence.
-    found=[(i,r) for i,r in matches(after,identifier) if digest(r) not in known
-           or doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r)))]
+    found=[(i,r) for i,r in matches(after,identifier,family_ids) if digest(r) not in known
+           or target_in_row(r,identifier,family_ids)]
     if len(found)!=1 or found[0][1]!=row or (row_number is not None and row_number!=found[0][0]):
         raise RuntimeError('Target row readback/uniqueness mismatch; no retry')
     doi='10.5281/zenodo.'+str(identifier)
-    if sum(doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r))) for r in after)!=1:
-        raise RuntimeError('DOI is duplicated anywhere in full sheet')
+    if sum(target_in_row(r,identifier,family_ids) for r in after)!=1:
+        raise RuntimeError('DOI/identity lead is duplicated anywhere in full sheet')
     if appended and (len(after)!=len(before)+1 or after[:-1]!=before or after[-1]!=row):
         raise RuntimeError('Append readback changed other sheet rows; reconcile without retry')
     receipt={'timestamp':stamp(),'pr':280,'status':'verified','row_number':found[0][0],

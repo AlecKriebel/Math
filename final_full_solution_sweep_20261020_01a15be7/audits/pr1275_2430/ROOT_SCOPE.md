@@ -1,0 +1,5 @@
+# PR1275: full modern lacunary partial-sum negative prior claim
+
+Root read entire PR body, ACCEPTANCE.json and full23862-byte AUDIT.md. For each finite real p≥2, deterministic sparse dyadic samples with ratios≥2 and real meanzero f∈Lp give one fullmeasure set and limsup sum/(N(logN)^(1/p−epsilon))=+infinity simultaneously everyepsilon>0. p2 defeats modern EP995 universal o(N sqrt(loglogN)) proposal. Actual 1964 printed57–58 displays lower examples and different upper scale, not literal modern littleo wording; modern original provenance must be independently checked, not silently assigned printedformula.
+
+Credits Ho2604.18535v2 Theorem1.6, source dependency chainpp7–16,21–23; real-p binomial/Minkowski, deterministic floors, binarydigit independence/trial amplification/shielding and recursion supplied. No endpoint/optimal secondary logs/consecutive dyadic/EP996 claim. Fresh original/prior essentialproof and DOI/accounting review required; root does not yet adopt scientific correctness or novelty. GWS09:38:54UTC191rows no target. All5actualheadblobs/freshlivehead match, missingQUEUE. No service write. Overall80%.

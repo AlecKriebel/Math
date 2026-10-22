@@ -71,7 +71,8 @@ def main():
             copy_verified(source / f["path"], dest / f["path"], f)
         copy_verified(source / manifest_name, dest / manifest_name)
     for name in ["check_math.py", "verify.py", "expected_checks.json", "REPLAY_RECEIPT.json",
-                 "SOURCE_REFERENCES.json", "PRIORITY_SCOPE.md"]:
+                 "SOURCE_REFERENCES.json", "PRIORITY_SCOPE.md", "check_all_odd_primes.py",
+                 "expected_all_odd_checks.json", "ALL_ODD_REPLAY_RECEIPT.json", "ROBUSTNESS_SCOPE.md"]:
         copy_verified(SUPPORT / name, PACKAGE / name)
     copy_verified(SUPPORT / "PACKAGE_README.md", PACKAGE / "README.md")
     copy_verified(PREPRINT / "main.tex", PACKAGE / "paper/main.tex")
@@ -82,7 +83,7 @@ def main():
         "Third-party cited works retain their own rights; full source bodies are not redistributed.\n")
     (PACKAGE / "CITATION.cff").write_text(
         'cff-version: 1.2.0\nmessage: "Please cite the associated preprint and its established source references."\n'
-        'type: article\ntitle: "' + TITLE + '"\nversion: "1.0"\ndate-released: 2026-10-21\n'
+        'type: article\ntitle: "' + TITLE + '"\nversion: "1.1"\ndate-released: 2026-10-21\n'
         'authors:\n  - family-names: Kriebel\n    given-names: Alec\n'
         '    affiliation: Independent researcher\n    orcid: "https://orcid.org/0009-0001-9320-500X"\n'
         'license: CC-BY-4.0\n')
@@ -119,6 +120,13 @@ def main():
         "the distribution function at every fixed 1/2≤x&lt;1 equals 1−φ(p−1)/(p−1)+o(1), has limsup 1 and "
         "liminf at most 23/24. Neither these CDF values nor the period probability measures converge "
         "on any further admissible prime subset of positive upper relative density.</p>"
+        "<p>A separate proposition covers every odd prime on the invariant regular domain of size p(p-r), "
+        "where r is zero or two. The primitive principal term is (p-r)φ(p−1)/(p−1). Under uniform-point "
+        "deletion or arbitrary finite nonnegative assigned periods only on exceptional fibers, bounded "
+        "statistics change by O(1/p). The regular CDF and a globally bounded continuous ramp thus "
+        "exclude convergence on every positive-upper-prime-density selection under these conventions. "
+        "Completed measures are on nonnegative reals; assigned periods may exceed p. Primes congruent "
+        "to 1 modulo 4 still do not give full-affine permutations.</p>"
         "<p>This is a precisely scoped application to the broad existence assertion in Vivaldi's 2004 "
         "Oberwolfach contribution, joint work with Roberts. The triangular family, quadratic primitive-value "
         "machinery, shifted-prime totient mean and continuous scalar empirical law are established and "
@@ -134,6 +142,8 @@ def main():
         "audit artifacts, supplies exact manifests and a new dependency-free standard-library checker. "
         "The latter passed 147,619 finite exact checks over 87 admissible primes through 1000, eight full "
         "affine orbit graphs with 6,088 points, six bad-reduction controls and a totient bound through 10,000. "
+        "An additional separate checker passes 46,298 exact controls over all 167 odd primes through 1000 "
+        "(80 class1,87 class3), including 10,178 raw regular graph points and exceptional assignments beyond p. "
         "Historical 8,347,742 finite assertions and 230,780 analytic controls are separate retained runs. "
         "Original SymPy scripts were not successfully replayed in this preparation; the analytic proof "
         "and explicitly cited classical inputs establish the infinite-prime statements.</p>"
@@ -147,7 +157,7 @@ def main():
         "creators": [{"name": "Kriebel, Alec", "affiliation": "Independent researcher",
                       "orcid": "0009-0001-9320-500X"}],
         "access_right": "open", "license": "cc-by-4.0", "publication_date": "2026-10-21",
-        "version": "1.0", "language": "eng",
+        "version": "1.1", "language": "eng",
         "keywords": ["birational dynamics", "finite fields", "cycle distribution", "point periods",
                      "Euler totient", "primitive quadratic values", "positive-density primes",
                      "30000156", "OWR-768-006"],
@@ -169,7 +179,7 @@ def main():
                "files": [{"path": pdf_name, "name": pdf_name}, {"path": zip_name, "name": zip_name}]})
     (PUBLICATION / "README.md").write_text(
         "# Prepared PR280 preprint package\n\n" + TITLE + "\n\n"
-        "Alec Kriebel; ORCID 0009-0001-9320-500X; version 1.0; 21 October 2026 UTC.\n\n"
+        "Alec Kriebel; ORCID 0009-0001-9320-500X; version 1.1; 21 October 2026 UTC.\n\n"
         "This directory contains the paper, TeX source, verification archive and local metadata. "
         "Review, integration, publication and ledger outcomes are recorded separately in the repository "
         "audit receipts. This README does not itself certify those actions.\n\n"
@@ -179,7 +189,9 @@ def main():
         "binds exactly the PDF, TeX, ZIP, metadata manifest and this README by length and SHA256.\n\n"
         "Extract the ZIP and run python3 -B verify.py inside birational-cycle-verification. It requires "
         "Python 3.9+ and the standard library, verifies the exact file set/hashes, rejects symlinks and "
-        "replays 147,619 finite checks. Finite controls do not prove the analytic limiting assertions.\n\n"
+        "replays the original 147,619 finite checks and a separate 46,298 all-odd-prime robustness check set. "
+        "The latter covers all 167 odd primes through 1000 and exceptional assignments beyond p. "
+        "Finite controls do not prove the analytic limiting assertions.\n\n"
         "The original 17 files are retained byte for byte. Historical mathematical/source audits retain "
         "their dates and former scope/priority qualifications. The current paper supplies the stronger "
         "positive-upper-density selection proof with classical credit. Original SymPy script replay is "
@@ -195,7 +207,7 @@ def main():
     _, uploads = zenodo.load_manifest(PUBLICATION / "zenodo-deposit.json")
     require([u["name"] for u in uploads] == [pdf_name, zip_name], "Unexpected upload set")
     names = [pdf_name, tex_name, zip_name, "zenodo-deposit.json", "README.md"]
-    release = {"timestamp_utc": dt.datetime.now(dt.timezone.utc).isoformat(), "version": "1.0",
+    release = {"timestamp_utc": dt.datetime.now(dt.timezone.utc).isoformat(), "version": "1.1",
                "status": "Prepared complete package; fresh sequential independent package reviews pending",
                "publication_ready": False, "published": False,
                "archive_payloads": len(files), "archive_members": len(files) + 1,

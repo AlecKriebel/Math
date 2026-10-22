@@ -1,0 +1,13 @@
+# Early independent reconstruction
+
+Recorded 2026-10-21T14:45:42.085104+00:00, before reading prior review opinions or root acceptance reports. Topic briefing was supplied, so this is independent reconstruction, not theorem-blind review or human peer review.
+
+The complete two-page source author PDF was read, including definitions, Conjectures 1 and 2, genus-one heuristic and references. Cached body SHA256 6d7eb30603b1cf7aa87c6820ce4888f467688b69b01db2ac51abb1017e83c1a7 agrees with source ledger; web retrieval separately confirms the whole two-page contribution. The universal existence statement is broad birational, with fixed extension degree and suitable positive-density primes; the statistic is uniformly weighted affine points and period/p. The genus-one translation heuristic is subsequent, and Conjecture 2 averages primes at period/p².
+
+Read original PROOF.md and full current TeX. For p=3 mod4, a=u²+1 is nonzero; v=0 has period1, v≠0 has order(a). There are 2p−1 fixed points: all v=0 and all points on u=0, with their intersection counted once. Every proper divisor of p−1 is at most (p−1)/2. For fixed half≤x<1 and p(1−x)>1 the only excluded points are the (p−1)P primitive-fiber nonzero points. Thus D=1−(p−1)P/p². This is not valid at the moving endpoint (p−1)/p.
+
+The primitive indicator factors over primes dividing N=p−1. Principal term equals pθ because all a are nonzero. For nonprincipal χ, Sχ=η(−1)J(η,χ); χ=η has Sη=−1, other χ have modulus √p. The divisor triangle bound yields |P/p−θ|≤θ(2^ω(N)−1)/√p. Splitting six primes below16 gives 2^ω≤64N^(1/4), hence D=1−θ+o(1).
+
+CRT/Dirichlet classes p=3 mod4 and p=1 modulo the first j odd primes yield θ→0. The unconditional all-prime totient mean A, with A≥7/24, forces infinitely many class3 primes with θ≥1/24: otherwise the class split bounds the mean by13/48. Therefore limsup D=1 and liminf≤23/24. Two subsequences alone leave the positive-density-selection quantifier open. The stated atomless empirical law for θ over all primes, if authenticated, prevents convergence of θ on ANY subset of positive upper density. The density comparison with class3 is enough; no conditional class3 distribution is required.
+
+For weak convergence use h(t)=max(0,min(1,2t−1)). All proper-divisor periods contribute0, maximal periods contribute1−2/p. Thus ∫h dμ=(1−2/p)(p−1)P/p²=θ+o(1). This avoids assuming an unknown limiting CDF is continuous at a chosen x. No fixed-base Artin conjecture, GRH, or numerical extrapolation is needed. Remaining primary-source check is continuity/atomlessness of the cited scalar law and attribution/priority boundaries. No mathematical counterexample found at this early stage.

@@ -1,0 +1,7 @@
+# PR1332 publication preparation
+
+2026-10-22T17:47:59.882423+00:00 — 8%: exact input pins and complete baseline captured; fresh requested CLI gate210 rows/246states, all43 typed raw views and stable fullmetadata; full semantic leads read/distinct, five complete publicqueries0. No owned-account absence or actionauthority claim. Preparing independently reconstructed proof and priority checks.
+
+2026-10-22T18:09:42.300929+00:00 — 75%: fullfive-page proof/manuscript freshlytypeset, allfinalpages individuallyrendered/read; normal/-O/-OO exactdiagnostics2205bytes identical andthreeactualsourcemutations1028bytes identical. Fullsource21members+sixreleasefiles built; primary/source/priority anddisclosures consistent. Originalsevenmathematicalreaderfiles nowfullyread afterindependent proof development; old18/44programs notpresent/noreplayclaimed. Packaging/HTML/adversarialcontrols, finalgate andcompleteclosure remain.
+
+2026-10-22T18:18:40.900113+00:00 — 100% assignedpreparation:5-pagePDF/21-member editable-scienceZIP/5-memberkit and6releaseproducts complete; fullphysicalreplay+separatefresh extractedtypesetting byteexact; all16archive/HTMLcontrols and3sourcemutants rejected; final211-row/247-stateGWS/publicgate semanticallyadjudicated, solepercolation additiondistinct. All29original/rootinputrecords unchanged. Reportandclosureprepared; twofreshwholeadversaries/rootadoption/currentowned+actiongatesremainmandatory. No service/Git/PR/ledger mutations, no readinessauthority; overall parent80%.

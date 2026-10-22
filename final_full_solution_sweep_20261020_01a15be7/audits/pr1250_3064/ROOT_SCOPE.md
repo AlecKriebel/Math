@@ -1,0 +1,5 @@
+# PR #1250 partial matroid base weights
+
+Root read body/entireACCEPTANCE2246 andPROOFfirst6500+last4000 (middleomitted) for eligibility. Exactstabilizerquotient/finitegroupmodel, torsionfree/twolabelclassandrank/corankcases plusconditionaldirectsumclosure do notprove unrestrictedmatroidbaseweight inequality. C6witness onlyrefutesintermediateaperiodicitystep andsatisfiestarget. Generalfiniteabeliangrouptorsioncasewith3+labelclasses explicitlyunresolved.
+
+FreshGWS08:15:47UTC191rows no3064/matroidweight/weightclasslead;8pinnednoQUEUEpaths andlivehead verified. No substantiveadditive/matroidproof/priorityaudit. Overall79%.

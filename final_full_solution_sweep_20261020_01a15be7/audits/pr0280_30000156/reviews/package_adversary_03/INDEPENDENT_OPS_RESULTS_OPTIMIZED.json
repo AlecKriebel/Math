@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-10-21T09:00:36.710169+00:00",
+  "optimization": 1,
+  "scope": "Actual collector account pagination + actual reconcile + actual append predicates; synthetic boundaries. Gate bypass at append only establishes independent layer behavior.",
+  "actual_provider_attempts": 0,
+  "finding": "P280-OPS-03",
+  "cases": [
+    {
+      "case": "upper_suffix_DOI_column",
+      "collector_ledger_matches": 0,
+      "gate_accepted": true,
+      "gate_error": null,
+      "actual_append_function_accepted": true,
+      "append_error": null,
+      "synthetic_append_calls": 1,
+      "semantic_casefold_DOI_rows_after_synthetic_append": 2,
+      "existing_row": [
+        "Unrelated wording",
+        "",
+        "https://doi.org/10.5281/ZENODO.999",
+        ""
+      ]
+    },
+    {
+      "case": "mixed_case_DOI_only_Notes",
+      "collector_ledger_matches": 0,
+      "gate_accepted": true,
+      "gate_error": null,
+      "actual_append_function_accepted": true,
+      "append_error": null,
+      "synthetic_append_calls": 1,
+      "semantic_casefold_DOI_rows_after_synthetic_append": 2,
+      "existing_row": [
+        "Unrelated wording",
+        "",
+        "",
+        "See DOI:10.5281/ZeNoDo.999"
+      ]
+    },
+    {
+      "case": "canonical_lowercase_negative",
+      "collector_ledger_matches": 1,
+      "gate_accepted": false,
+      "gate_error": "Current target DOI appears in a changed/unexpected ledger row",
+      "actual_append_function_accepted": false,
+      "append_error": "Existing DOI appears in a different or duplicate full-sheet row; no append",
+      "synthetic_append_calls": 0,
+      "semantic_casefold_DOI_rows_after_synthetic_append": 2,
+      "existing_row": [
+        "Unrelated wording",
+        "",
+        "https://doi.org/10.5281/zenodo.999",
+        ""
+      ]
+    }
+  ]
+}

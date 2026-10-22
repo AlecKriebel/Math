@@ -98,6 +98,9 @@ def reconcile(gate, phase, expected_head, expected_deposit_id=None, allow_target
     if (len(prior_rows)!=len(cleared['ledger_leads']) or any(
             not isinstance(v,str) or not re.fullmatch('[0-9a-f]{64}',v) for v in prior_rows)):
         raise RuntimeError('Duplicate or malformed root ledger digest exemption')
+    identity_ids=(record_identity_ids(records[expected_deposit_id],expected_deposit_id) if expected_deposit_id is not None else [])
+    if gate.get('expected_identity_record_ids',identity_ids)!=identity_ids:
+        raise RuntimeError('Target concept/version-parent identity evidence changed')
     target_rows=[]
     if allow_target_row and expected_deposit_id is not None:
         from record_publication_ledger import desired_row
@@ -106,15 +109,15 @@ def reconcile(gate, phase, expected_head, expected_deposit_id=None, allow_target
         exact_target=None
     for match in gate['ledger_matches']:
         row=match['values']
-        has_current_doi=(expected_deposit_id is not None and
-            '10.5281/zenodo.'+str(expected_deposit_id) in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(row))))
+        row_identity_leads(row)  # Validate all cells even before allocation/exemptions.
+        has_current_doi=(expected_deposit_id is not None and target_in_row(row,expected_deposit_id,identity_ids))
         if has_current_doi:
             if digest(row) in prior_rows:
-                raise RuntimeError('Current target DOI/row contradicts a root non-target ledger exemption')
+                raise RuntimeError('Current target DOI/identity lead contradicts a root non-target ledger exemption')
             if exact_target is not None and row==exact_target:
                 target_rows.append(match)
                 continue
-            raise RuntimeError('Current target DOI appears in a changed/unexpected ledger row')
+            raise RuntimeError('Current target DOI/identity lead appears in a changed/unexpected ledger row')
         if digest(row) in prior_rows:
             continue
         raise RuntimeError('New/changed ledger lead; root review required')

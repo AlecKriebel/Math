@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-22T00:54:40.860666+00:00",
+  "reviewer": "ledger_adversary05",
+  "review_complete": true,
+  "adopt_for_live_append": false,
+  "blocking_material_findings": [
+    {
+      "id": "L05-1",
+      "priority": "P1",
+      "location": "reconcile_external_ledger_v5.py:97",
+      "title": "Trailing-dot DOI resolver references bypass conservative unresolved-alias gate",
+      "minimal_cell": "//shortdoi.org./abc",
+      "effect": "A conservative unresolved alias in any ledger column or owned-account metadata is missed; exact full-helper main entry performs one simulated append and emits a verified receipt.",
+      "mechanism": "Host regex lookahead excludes a terminal hostname dot. The imported recognizer also ignores this short alias.",
+      "reproduced_modes": [
+        0,
+        1,
+        2
+      ],
+      "counterexample_variants": 26,
+      "required_action": "Recognize resolver trailing-dot authority references and fail closed pending root identity review; rerun whole-helper normal/-O/-OO controls before adoption.",
+      "claim_limit": "No asserted actual duplicate, alias resolution, URI equivalence, or live-service outcome."
+    }
+  ],
+  "strongest_verified_result": "All 156 inherited guard regressions and 56 of 82 new independent controls have expected results in each mode. The original bare/protocol-relative v4 gap is repaired. The remaining gap is one trailing-dot resolver-reference family.",
+  "input_custody_unchanged": true,
+  "live_helper_executed": false,
+  "actual_external_mutations": 0,
+  "scope": "Existing external Ferudun record23350364/concept23350363 only; no new DOI, authorship transfer, chronology, human/global priority, or scientific theorem certification."
+}

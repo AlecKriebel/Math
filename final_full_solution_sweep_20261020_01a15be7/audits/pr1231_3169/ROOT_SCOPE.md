@@ -1,0 +1,7 @@
+# PR #1231 full original negative claim retained
+
+Root read the entire PROOF.md, AUDIT.md and ACCEPTANCE.json plus PR description at exact head c92576d4d252d13adb67f0c65623bf36f10095f7. All eight actual blobs and no-QUEUE comparison are bound; fresh live head/body match. Fresh GWS06:50:19UTC191rows has no target, OPG500 or geodesic-cycle publication lead.
+
+The K4 core plus four independent apices (each omitting its corresponding core neighbor) is claimed to refute the full finite3connected positive-real edge-length geodesic/peripheral question, with all ties included. Four metric lemmas, a tight-subgraph cycle-rank contradiction, constructive extraction and a separate perturbation argument are written. The source C09/C10 construction and arguments are credited to vibemathing at a41fe59b4535851ea55f6e868e938b9aaf81e924; candidate-only source labels are preserved. No new discovery or novelty is claimed. Historical finite checks are described but programs/arrays are absent; no historical or source code was executed by root. This is a genuine full claim despite missing QUEUE status, not accepted merely from its label.
+
+Independent fresh original/source/proof falsification, exact finite reproduction, comprehensive priority and existing-publication accounting review is assigned. Existing public prose may already establish prior coverage without a DOI; absence of a DOI does not authorize novel republication. No action to upload, merge, append or contact anyone. Overall estimate79%.

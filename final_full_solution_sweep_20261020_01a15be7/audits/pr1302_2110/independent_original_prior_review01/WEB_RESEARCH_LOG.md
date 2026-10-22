@@ -1,0 +1,9 @@
+# Read-only primary-source discovery,22 October2026 UTC
+
+Queries covered the exact EP421 original and Chojecki title/DOI, Jia1996 and CCDN2020. Decisive evidence is preserved as primary PDFs/HTML/registry JSON, not inferred from search snippets.
+
+- Initial title/author searches found Chojecki's arXiv2609.17543 lead. Actual arXiv landing, DataCite DOI record, resolver GET and versioned5-page PDF were then retrieved and compared with the exact Ulam source. DOI10.48550/arXiv.2609.17543 is a verified existing publication, not a guessed identifier.
+- A secondary erdosproblems.ai search hit describes other claims, including Kielhorn21287065, and contemporary expositions. That secondary hit is discovery only; it is not adopted as mathematical evidence or a same-paper alias. The current primary EP421 page actually credits the broader provenance and Pratt's exposition. No outreach or contact was prepared or initiated.
+- Jia's exact first-page theorem and CCDN's actual Theorem3 were freshly read from the published PDFs and verified against registry metadata. Their full lengthy proofs are imported standard published results. Their DOIs have dependency roles and are not substituted as full-answer identifiers.
+- The web-reading tool failed on the modern EP421 page(403) and DOI opening; later directGETs succeeded200 with raw exact response captures. The first arXivPDF directGET exceeded its250KB read cap and was not saved as a successful payload. The later1MB-bounded direct read retrieved264847bytes; both attempt outcomes are preserved. These are bounded read-only retrievals, not write retries.
+- No exhaustive current-literature census, exclusive earliest-priority determination, human peer review, formal Lean execution, source-author code execution or sharper9/10 exponent certification is claimed. The independently verified weaker reconstruction suffices for the full original theorem and the existing-record identity.
