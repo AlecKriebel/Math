@@ -818,7 +818,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 807 | 6200010 / AMR-061-0010 | Boundaries of Groups and Kleinian Groups — Problem 10 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 808 | 6200014 / AMR-061-0014 | Boundaries of Groups and Kleinian Groups — Problem 14 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 809 | 6200022 / AMR-061-0022 | Boundaries of Groups and Kleinian Groups — Problem 22 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 810 | 6200061 / AMR-061-0061 | Boundaries of Groups and Kleinian Groups — Problem 61 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 810 | 6200061 / AMR-061-0061 | Boundaries of Groups and Kleinian Groups — Problem 61 | 0.0990 | 6.0 | 3 | 2005 | unsolved | 5/5 |  |  |  |
 | 811 | 30000432 / OWR-1194-001 | Equal-Area Drawings of Plane Triangulations | 0.0989 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 812 | 30000433 / OWR-1194-002 | Five-or-Six Edge-Degree Triangulations of Three-Manifolds | 0.0989 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 813 | 30000573 / OWR-1323-010 | Chaotic Operators on Nuclear Fréchet Spaces | 0.0989 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
