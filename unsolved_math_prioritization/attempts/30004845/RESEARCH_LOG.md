@@ -1,0 +1,7 @@
+# Bounded research log
+
+- 2026-09-30 07:46:33UTC: Started rank93, with a two-hour ceiling09:46:33UTC and five-approach maximum. Runtime model gpt-6-astra, xhigh. Exact website, pinned record, prior-attempt and duplicate gates checked. Full-resolution estimate0%.
+- 07:49UTC: Recovered the complete OWR contribution and thesis conventions. Confirmed that the canonical comparison is nerve-to-polygraphic and bubble-freeness concerns all composite2-cells. September2026 groupoidal preprint has a different input scope. Full-resolution estimate0%.
+- Approach1,07:49–07:54UTC: Constructed the total positive-counting functor to B²N and the bubble inclusion from B²N. Their composite is multiplication by a positive integer, which acts nontrivially on every positive even homology group through Ara's natural K(Z,2) comparison. This proves the necessary direction. The converse has no established attachment or low-degree comparison mechanism here; no full solution claimed.
+- 07:56UTC: Froze the scoped proof after prose-spacing cleanup.297 exact controls pass. Recorded the degree2 and higher-homology gaps and stopped this approach rather than assuming the missing equivalence. Full-resolution estimate0%; necessary-direction artifact100%, pending separate review.1/5 substantive approach.
+- 08:08UTC: Separate adversarial review passed the necessary-direction theorem without mandatory correction.297 author and17,721 independent controls pass. Exact frozen proof unchanged; full conjecture remains unresolved. Scoped artifact preparation100%, full-resolution estimate0%.
