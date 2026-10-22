@@ -1,0 +1,530 @@
+{
+  "author_checks_per_mode": 139,
+  "bootstrap_negative_controls": [
+    {
+      "result": "REJECTED_AS_EXPECTED",
+      "test": "mutated archive"
+    },
+    {
+      "result": "REJECTED_AS_EXPECTED",
+      "test": "mutated manifest"
+    },
+    {
+      "result": "REJECTED_AS_EXPECTED",
+      "test": "mutated receipt"
+    }
+  ],
+  "checks": [
+    {
+      "exit_code": 0,
+      "mode": "default",
+      "result": "PASS",
+      "stderr": "",
+      "stdout_sha256": "f8e4c0c1df325a2f1dafc9c4b50c74eb37c04eafc5785754e92e59be5d628eb0",
+      "test": "author calculations"
+    },
+    {
+      "exit_code": 0,
+      "mode": "default",
+      "result": "PASS",
+      "stderr": "",
+      "stdout_sha256": "8ffc139818669053fc43767b8e8042ee5496ccdf5a8f4fe2ea8e4840e2fc3f6b",
+      "test": "author integrity"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: FAILED: intentional negative control: 1 != 0",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "author calculation negative control"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Byte count mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "proof-byte"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected or missing package entries",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "missing-file"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected or missing package entries",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "extra-file"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Package entries must be regular files",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "symlink"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "bad-json"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Duplicate JSON key",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "duplicate-key"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected manifest version",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "boolean-version"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: SHA-256 mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "same-size-proof-byte"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected or missing package entries",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "extra-directory"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Byte count mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "float-byte-count"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Byte count mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "boolean-byte-count"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Manifest allowlist mismatch",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "missing-manifest-entry"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected manifest schema",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "extra-manifest-key"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Duplicate JSON key",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "duplicate-nested-key"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: SHA-256 mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "wrong-hash"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected arguments",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "unexpected-argument"
+    },
+    {
+      "exit_code": 0,
+      "mode": "default",
+      "result": "PASS",
+      "stderr": "",
+      "stdout_sha256": "521c27bd3500a5337d3be17db403354145d798f52092d5dba6d0658a8a1121d3",
+      "test": "independent calculations"
+    },
+    {
+      "exit_code": 1,
+      "mode": "default",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: intentional independent negative control",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "independent negative control"
+    },
+    {
+      "exit_code": 0,
+      "mode": "-O",
+      "result": "PASS",
+      "stderr": "",
+      "stdout_sha256": "f8e4c0c1df325a2f1dafc9c4b50c74eb37c04eafc5785754e92e59be5d628eb0",
+      "test": "author calculations"
+    },
+    {
+      "exit_code": 0,
+      "mode": "-O",
+      "result": "PASS",
+      "stderr": "",
+      "stdout_sha256": "8ffc139818669053fc43767b8e8042ee5496ccdf5a8f4fe2ea8e4840e2fc3f6b",
+      "test": "author integrity"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: FAILED: intentional negative control: 1 != 0",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "author calculation negative control"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Byte count mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "proof-byte"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected or missing package entries",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "missing-file"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected or missing package entries",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "extra-file"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Package entries must be regular files",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "symlink"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "bad-json"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Duplicate JSON key",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "duplicate-key"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected manifest version",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "boolean-version"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: SHA-256 mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "same-size-proof-byte"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected or missing package entries",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "extra-directory"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Byte count mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "float-byte-count"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Byte count mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "boolean-byte-count"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Manifest allowlist mismatch",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "missing-manifest-entry"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected manifest schema",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "extra-manifest-key"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Duplicate JSON key",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "duplicate-nested-key"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: SHA-256 mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "wrong-hash"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected arguments",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "unexpected-argument"
+    },
+    {
+      "exit_code": 0,
+      "mode": "-O",
+      "result": "PASS",
+      "stderr": "",
+      "stdout_sha256": "521c27bd3500a5337d3be17db403354145d798f52092d5dba6d0658a8a1121d3",
+      "test": "independent calculations"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-O",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: intentional independent negative control",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "independent negative control"
+    },
+    {
+      "exit_code": 0,
+      "mode": "-OO",
+      "result": "PASS",
+      "stderr": "",
+      "stdout_sha256": "f8e4c0c1df325a2f1dafc9c4b50c74eb37c04eafc5785754e92e59be5d628eb0",
+      "test": "author calculations"
+    },
+    {
+      "exit_code": 0,
+      "mode": "-OO",
+      "result": "PASS",
+      "stderr": "",
+      "stdout_sha256": "8ffc139818669053fc43767b8e8042ee5496ccdf5a8f4fe2ea8e4840e2fc3f6b",
+      "test": "author integrity"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: FAILED: intentional negative control: 1 != 0",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "author calculation negative control"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Byte count mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "proof-byte"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected or missing package entries",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "missing-file"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected or missing package entries",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "extra-file"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Package entries must be regular files",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "symlink"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "bad-json"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Duplicate JSON key",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "duplicate-key"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected manifest version",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "boolean-version"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: SHA-256 mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "same-size-proof-byte"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected or missing package entries",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "extra-directory"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Byte count mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "float-byte-count"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Byte count mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "boolean-byte-count"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Manifest allowlist mismatch",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "missing-manifest-entry"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected manifest schema",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "extra-manifest-key"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Duplicate JSON key",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "duplicate-nested-key"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: SHA-256 mismatch: PROOF.md",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "wrong-hash"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: Unexpected arguments",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "unexpected-argument"
+    },
+    {
+      "exit_code": 0,
+      "mode": "-OO",
+      "result": "PASS",
+      "stderr": "",
+      "stdout_sha256": "521c27bd3500a5337d3be17db403354145d798f52092d5dba6d0658a8a1121d3",
+      "test": "independent calculations"
+    },
+    {
+      "exit_code": 1,
+      "mode": "-OO",
+      "result": "REJECTED_AS_EXPECTED",
+      "stderr": "FAIL: intentional independent negative control",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test": "independent negative control"
+    }
+  ],
+  "finite_computation_only": true,
+  "mathematical_proof_certified_by_computation": false,
+  "original_inputs_unchanged": true,
+  "relocated": true,
+  "replay_cases": 63,
+  "result": "PASS_INDEPENDENT_REPLAY",
+  "working_directory_independent": true
+}
