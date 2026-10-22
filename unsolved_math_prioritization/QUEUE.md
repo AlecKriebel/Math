@@ -1076,7 +1076,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1065 | 9500005 / AMR-094-0005 | Convergence of synchronous reflected-Brownian couplings | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1066 | 9500007 / AMR-094-0007 | Are shy couplings necessarily rigid? | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1067 | 30003846 / OWR-16167-016 | Finiteness and Rigidity of Fast Bump Groups | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 1068 | 30003937 / OWR-16414-001 | Convergence of Dynamic Monge–Kantorovich Systems | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 1068 | 30003937 / OWR-16414-001 | Convergence of Dynamic Monge–Kantorovich Systems | 0.0900 | 5.5 | 3 | 2018 | exhausted | 5/5 |  | 2026-10-08: Five approaches exhausted; general continuum beta=1 DMK convergence remains unresolved. Corrected audited partial results: conditional entropy, restart-conditional continuation, existing-trajectory L2 uniqueness, one frozen variational step, explicit interval/radial convergence, and a degenerate-class potential example excluded by strict initial positivity. Generic Holder modulus-Lipschitz step fails in the inspected 2016 preprint; no specialized PDE theorem or journal-version disproof and no novelty claim. See attempts/30003937/README.md. |  |
 | 1069 | 30003946 / OWR-16415-008 | Equality of Variationally Minimizing Maps | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1070 | 30004018 / OWR-16635-003 | Socle Filtrations from Duflo–Serganova Kernels | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1071 | 30004167 / OWR-16941-008 | Prismatic Cohomology from Topological Cyclic Homology | 0.0897 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
