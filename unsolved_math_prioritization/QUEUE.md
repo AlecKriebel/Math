@@ -911,7 +911,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 900 | 2228 / EP-642 | Erdős Problem #642 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 901 | 2303033 / AMR-022-3033 | Research Problems in Function Theory — Problem 3.33 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 902 | 2308014 / AMR-022-8014 | Research Problems in Function Theory — Problem 8.14 | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 903 | 2315 / EP-810 | Erdős Problem #810 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 903 | 2315 / EP-810 | Erdős Problem #810 | 0.0960 | 5.5 | 1 | unknown | unsolved | 5/5 |  |  |  |
 | 904 | 2487 / EP-1097 | Erdős Problem #1097 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 905 | 2724 / KP-1.65 | Kirby Problem 1.65 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 906 | 2731 / KP-1.72 | Kirby Problem 1.72 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
