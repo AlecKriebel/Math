@@ -1,0 +1,155 @@
+--- original_author/README.md
++++ README.md
+@@ -16,6 +16,21 @@
+ OPENBLAS_NUM_THREADS=1 python compute_controls.py --output replay.json
+ ```
+ 
+-The exact rational controls check 1,536 finite-gap configurations, six middle-third Cantor construction levels, and 120 transfer-matrix identities. Thirty-six finite spectral-approximation cases are exploratory floating-point calculations. They are not interval-certified bounds on infinite-spectrum thickness. Small roundoff differences between numerical-library versions are expected.
++The exact rational controls check 1,536 finite-gap configurations, six middle-third Cantor construction levels, and 120 transfer-matrix identities. Nine free-operator calibrations and thirty-six finite spectral-approximation cases use floating-point arithmetic. They are not interval-certified bounds on infinite-spectrum thickness. Small roundoff differences between numerical-library versions are expected.
+ 
+-The author packet is frozen by `SHA256SUMS`. Fresh independent adversarial review is required before publication; the author phase performed no remote writes.
++## Audit reconciliation
++
++This corrected release preserves the initial author freeze in `original_author/` and the complete original independent audit in `audit/original/`, byte for byte. `CHANGE_LEDGER.md` and `CORRECTIONS.diff` identify every changed author file. The finite-gap lemma now explicitly requires a nonempty collection and C1 regularity of all hull and gap endpoints. The blocker formula handles equal-size ties explicitly, and the sufficient presentation comparison requires a bijection covering every presentation. A separately written true-gap exhaustion proof clarifies the generic limiting step without identifying the numerical covers with true-gap fillers or asserting a uniform coupling comparison.
++
++`AUTHOR_SHA256SUMS` binds the seven current author files; `SHA256SUMS` binds the entire corrected release, including preserved originals and audit files. The original audit accepts the unsolved disposition subject to the recorded corrections. Binding review of this corrected release remains pending. No remote writes have been performed.
++
++
++To rerun the preserved audit in this release layout (requires SymPy), use:
++
++```sh
++(cd original_author && sha256sum -c SHA256SUMS)
++(cd audit/original && sha256sum -c SHA256SUMS)
++OPENBLAS_NUM_THREADS=1 python audit/original/independent_controls.py --author original_author --output audit_replay.json
++```
++
++The archived audit's README retains its original sibling-directory instructions as historical evidence; the commands above adapt the paths without modifying that archive. Write generated replay outputs outside the release when rechecking its full manifest.
+--- original_author/PROOF.md
++++ PROOF.md
+@@ -87,7 +87,17 @@
+ 
+ For finitely many gaps, a nonincreasing-length presentation maximizes the minimum bridge/gap ratio. To prove it, exchange two adjacent removals whose lengths g<h are in the wrong order. If they lie in separate surviving components, nothing changes. Otherwise suppose the smaller gap lies left of the larger, and write the component as lengths A,g,M,h,C in spatial order. The old minimum is at most A/g, M/h, C/h. After exchanging the removals the four affected ratios are `(A+g+M)/h`, `C/h`, `A/g`, `M/g`; each is at least the old minimum because h>g. The reversed spatial order is identical. Repeated exchanges prove the assertion; equal-length ties do not change the optimal minimum.
+ 
+-The implementation uses the equivalent bridge-to-nearest-gap-of-at-least-equal-size formula. It was compared exactly with all gap permutations for 1,536 rational examples, including equal-size ties. Free-operator matrices recover [-2,2] for nine periods. Separate exact substitution-word matrix products verify 120 trace-recursion identities and their invariants. These validate finite routines, not the spectral conjecture.
++### Blocker formula, including ties
++
++The following formula applies both to a compact Cantor set with a nondegenerate bounded hull and to a finite union of nondegenerate intervals. For each bounded gap G of length g and each side, take the distance M from that endpoint to the nearest gap on that side whose length is at least g; if there is no such gap, use the hull boundary instead. Let S be the infimum of all M/g. Then the relevant thickness quantity equals S.
++
++For the upper bound, fix any presentation and any candidate. A hull-boundary candidate bounds the corresponding bridge from above. Otherwise let H be the candidate's blocking gap, with length h>=g. If G is removed after H, G's bridge toward H has length at most M and denominator g. If H is removed after G, H's bridge toward G has length at most M and denominator h>=g. Thus some ratio in the presentation is at most M/g in either case. Its infimum is at most every candidate, hence at most S. Taking the supremum over presentations preserves this upper bound.
++
++For the lower bound, enumerate gaps by nonincreasing length. Such an enumeration exists in a bounded hull because only finitely many disjoint gaps can have length at least any fixed positive number. Every gap already removed has length at least that of the current one. Consequently its bridges extend at least to the nearest qualifying blockers, so every presentation ratio is at least S. This proves equality.
++
++At equal lengths, a tied blocker removed later can make an individual bridge longer than the formula's distance. The upper-bound argument uses the gap removed later to witness the candidate. Thus the formula describes the global infimum, not necessarily each individual bridge in a fixed tie order. In the adjacent-exchange proof above, when g=h both affected minima equal min(A,M,C)/g; ties preserve the optimum.
++
++The implementation uses this blocker formula. It was compared exactly with all gap permutations for 1,536 rational examples, including equal-size ties. Free-operator matrices recover [-2,2] for nine periods in floating-point arithmetic; those nine checks are not exact or interval-certified. Separate exact substitution-word matrix products verify 120 trace-recursion identities and their invariants. These validate finite routines, not the spectral conjecture.
+ 
+ ### Why geometric convergence alone is inadequate
+ 
+@@ -105,25 +115,57 @@
+ 
+ ### Conditional finite-gap lemma
+ 
+-Let I_t=[a(t),b(t)] and let a fixed finite set of gaps G_i(t)=(u_i(t),v_i(t)) have endpoints extending C1 to t=0. Suppose:
++Let m>=1 be finite. Require all functions a,b,u_i,v_i, for 1<=i<=m, to be C1 on a one-sided neighborhood [0,epsilon) of zero. Write
+ 
+-1. a(0)<b(0), and each gap collapses to a distinct interior point c_i;
+-2. each gap length g_i(t) satisfies g_i(0)=0 and g_i'(0)>0;
+-3. the gaps remain disjoint for sufficiently small positive t.
++`I_t=[a(t),b(t)]`, `G_i(t)=(u_i(t),v_i(t))`, and `g_i(t)=v_i(t)-u_i(t)`.
++
++Assume:
++
++1. a(0)<b(0), and u_i(0)=v_i(0)=c_i, where the c_i are pairwise distinct and strictly inside (a(0),b(0));
++2. g_i'(0)>0 for every i;
++3. for sufficiently small positive t the gaps lie inside I_t and are pairwise disjoint.
+ 
+ Then the finite-gap quantity
+ 
+-`Phi(I_t minus union_i G_i(t))`
++`Phi(I_t minus union_(i=1)^m G_i(t))`
+ 
+-is strictly decreasing on some interval (0,delta), where delta may depend on this finite gap collection.
++is strictly decreasing on some interval (0,delta), where delta may depend on the full finite collection. Both hull endpoints are explicitly included in the C1 requirement. Nonemptiness is necessary: with no gaps, Phi(I_t)=infinity is constant.
+ 
+-**Proof.** Fix one of the finitely many gap orders and one endpoint. Its bridge length B(t) is C1 and B(0)>0 because the collapsed gap centers are distinct and interior. With g(t) the current gap length, the derivative of B/g has numerator `B'(t)g(t)-B(t)g'(t)`, which tends to `-B(0)g'(0)<0`. Every ratio is therefore decreasing on a sufficiently small interval. There are finitely many ratios and orders, so a common delta works. Finite minima and finite maxima of strictly decreasing functions are strictly decreasing. The definition of Phi completes the proof.
++**Proof.** The distinct collapsed centers fix the spatial order for sufficiently small t. For a fixed gap presentation and endpoint, the bridge length B(t) is a difference of two of the specified C1 endpoint functions, and B(0)>0. The positive initial derivative of its gap length g(t) ensures g(t)>0 for small positive t. The derivative of B/g has numerator B'g-Bg', which converges to -B(0)g'(0)<0. All 2m*m! endpoint/order ratios therefore strictly decrease on one common sufficiently small interval. A finite minimum of strictly decreasing functions strictly decreases: use a minimizer at the earlier argument. A finite maximum strictly decreases by using a maximizer at the later argument. Apply the minimum over endpoints and then the maximum over presentations to obtain the result.
+ 
+ Filling all but finitely many bounded gaps of a Cantor set, while preserving its hull, cannot decrease thickness: restrict any original presentation to the retained gaps. Removing fewer earlier gaps only enlarges bridges, and taking the minimum over fewer endpoints only raises its lower bound. Taking the supremum over presentations yields the claim.
+ 
+-This suggests finite-gap upper comparisons, but does not prove the target. The lemma is conditional; no claim is made here that all its C1-at-zero hypotheses have been verified for the chosen Fibonacci endpoint families. More importantly, a delta valid for each fixed finite collection need not have a positive lower bound as the number or generation of gaps increases. Finite upper bounds alone also do not establish equality with infinite-spectrum thickness. Positive-coupling global monotonicity requires substantially more.
++### Exact exhaustion by true gaps
+ 
+-A sufficient, presently unproved, comparison would transport every gap presentation between two couplings and show every transported bridge/gap ratio is nonincreasing. Taking infima and suprema would then preserve the inequality. Existing bounded-distortion estimates provide magnitude comparisons, not this parameter-order property.
++Let K be a compact Cantor set with its exact hull I. Let F_N be an increasing sequence of finite subsets of its actual bounded gaps, exhausting every such gap. Define
++
++`K_N=I minus union_(G in F_N) G`.
++
++Then `Phi(K_N)` is nonincreasing in N and converges to `tau(K)`.
++
++**Proof.** The filling-gap comparison above gives Phi(K_N)>=tau(K) and monotonicity in N. Consider any candidate M/g in the blocker formula for K. Once its gap G and its blocking gap H, if there is one, have both entered F_N, this same candidate occurs for K_N. No gap of K_N can be a closer qualifying blocker, since all its gaps are gaps of K and H was chosen nearest there. A hull-boundary candidate likewise persists after G enters because the hull is unchanged. Therefore the limit of Phi(K_N) is at most each candidate M/g. Taking their infimum gives the upper bound tau(K), proving equality.
++
++This is an elementary fixed-set identity, not an identification of the numerical periodic covers A_(k,lambda) with true-gap fillers. Their exact endpoints, hulls and removed gaps have not been shown to satisfy these hypotheses. It supplies no certified numerical error bound or coupling comparison.
++
++### Uniformity remains missing
++
++The finite-gap perturbation lemma is conditional; this investigation has not verified its complete C1-at-zero assumptions for the intended spectral endpoints and hull. Even if every finite collection satisfied them, its interval of decrease could shrink with the gap collection. For an explicit general control, the symmetric one-gap set in [-1,1] with gap length
++
++`g_n(t)=t/(1+n^2*t^2)`, n>=3,
++
++satisfies the corrected endpoint hypotheses, but its quantity is `1/t+n^2*t-1/2`. The derivative is negative for t<1/n and positive for t>1/n. Thus these qualitative hypotheses provide no common interval for the family. These are different one-gap sets, not truncations of one spectral Cantor family.
++
++If exact true-gap truncations were all nonincreasing on one common coupling interval and exhausted the true gaps at each coupling, the identity above would pass nonincrease to their pointwise limit. No such common-interval comparison is established here. Strict decrease also need not survive an infinite limit. Global positive-coupling monotonicity needs still more than a local comparison at zero.
++
++### Sufficient comparison with full presentation coverage
++
++Fix 0<lambda_1<lambda_2. Suppose a bijection between their bounded spectral gaps, with a consistent correspondence of endpoints, induces a bijection between all gap presentations by transporting the ordered labels. Assume that for every presentation P at lambda_1 and every gap endpoint, its corresponding bridge/gap ratio in the transported presentation at lambda_2 is no larger.
++
++Taking infima over corresponding endpoints yields a comparison for each presentation. Taking suprema, using surjectivity of the induced map onto all presentations at lambda_2, yields
++
++`tau(Sigma_lambda_2)<=tau(Sigma_lambda_1)`.
++
++This is a sufficient conditional criterion only; the required model-specific inequalities remain unproved. A transport that misses presentations at the second coupling would not suffice. Existing bounded-distortion magnitude estimates do not establish the assumed parameter-order property.
+ 
+ ## 7. Disposition
+ 
+--- original_author/RESULT.json
++++ RESULT.json
+@@ -9,22 +9,33 @@
+   "full_resolution": false,
+   "known_component": "Published positive-constant upper and lower bounds of order 1/lambda as lambda tends to zero.",
+   "strongest_verified_result": "Known weak-coupling order law, plus elementary non-spectral obstruction lemmas and a conditional finite-gap monotonicity lemma.",
+-  "remaining_mathematical_gap": "A coupling comparison uniform over every gap generation, or a certified spectral pair contradicting monotonicity. The conditional finite-gap lemma does not supply the required spectral endpoint hypotheses or the uniform limiting comparison.",
++  "remaining_mathematical_gap": "A valid coupling comparison uniform over every true spectral gap generation, or a certified spectral pair contradicting monotonicity. The conditional finite-gap lemma does not verify its spectral endpoint/hull hypotheses or a common coupling interval. Exact true-gap exhaustion has a generic limit identity, but the numerical periodic covers have not been identified with such fillers.",
+   "controls": {
+     "exact_finite_gap_configurations": 1536,
+     "middle_third_levels": 6,
+     "exact_transfer_matrix_comparisons": 120,
+-    "free_operator_periods": 9,
+     "floating_point_spectral_cases": 36,
+     "sampled_increases": 0,
+-    "infinite_spectrum_certified": false
++    "infinite_spectrum_certified": false,
++    "floating_point_free_operator_periods": 9
+   },
+-  "independent_review": "pending fresh adversarial audit",
++  "independent_review": "Original audit accepts unsolved 5/5 subject to corrections; corrected-release binding review pending.",
+   "remote_writes_performed": false,
+   "checked_at": "2026-10-04T13:06:00Z",
+   "sources": [
+     "https://doi.org/10.4171/owr/2011/03",
+     "https://arxiv.org/abs/1001.2552",
+     "https://arxiv.org/abs/1210.5753"
+-  ]
++  ],
++  "original_author_manifest_sha256": "2d657668c7f2b47f4429714e3e597baee441f32f58f262dc7bfb9d62dc5b4d8d",
++  "original_audit_manifest_sha256": "c7ef85a28c07d72abc9e2fa2cbbba309d385b31077c58325a0fdcaa2e5350d08",
++  "corrections_applied": [
++    "Require a nonempty finite gap collection.",
++    "Require every hull and gap endpoint function to extend C1 through zero.",
++    "Clarify nearest blockers and ties.",
++    "Require a gap bijection inducing a bijection of all presentations.",
++    "Prove the generic exact true-gap exhaustion identity without a spectral-cover identification or coupling-uniformity claim.",
++    "Distinguish exact rational controls from floating-point calibrations and diagnostics."
++  ],
++  "corrected_at": "2026-10-04T13:21:00Z"
+ }
