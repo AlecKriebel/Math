@@ -1,0 +1,167 @@
+--- accepted/check_ungraded.py
++++ reader/ungraded_audit.py
+@@ -1,79 +1,89 @@
++#!/usr/bin/env python3
++# Reader edition: explicit runtime checks; results go only to stdout.
+ """Independent exact controls for the pass-5 ungraded audit."""
+ import json
+ from pathlib import Path
+ import sympy as s
+-x,y,z,w=s.symbols("x y z w")
+-checks={}
+-rD=[x*(x-z),3*x-y-z,y-x]
+-rF=[-3*x*y+x*z+3*y*y+z*z,y*(x-y-z),-x-y+z]
+-gD=s.groebner(rD,z,y,x)
+-gF=s.groebner(rF,z,y,x)
+-checks["D_Ext1_groebner"]=[str(p.as_expr()) for p in gD.polys]
+-checks["F_Ext1_groebner"]=[str(p.as_expr()) for p in gF.polys]
+-assert [p.as_expr() for p in gD.polys]==[-2*x+z,-x+y,x*x]
+-assert [p.as_expr() for p in gF.polys]==[-x-y+z,y*y,x*x]
+-# The substitutions are integral identities; the F reduction only inverts 2.
+-checks["D_reduced_relation"]=[str(s.expand(p.subs({y:x,z:2*x}, simultaneous=True))) for p in rD]
+-checks["F_reduced_relation"]=[str(s.expand(p.subs(z,x+y))) for p in rF]
+-assert s.expand(rD[0].subs(z,2*x))==-x*x
+-assert s.expand(rF[0].subs(z,x+y))==2*x*x+4*y*y
+-assert s.expand(rF[1].subs(z,x+y))==-2*y*y
+-checks["Ext1_lengths_over_K_w"]={"D":2,"F":4}
+-# Reduction of seven-plane relation modulo z. Use its two linear entries
+-# as coordinates a,b; x=(a+b)/2, y=(a+3*b)/2 and x^2 is redundant.
+-a,b=s.symbols("a b")
+-assert s.expand((3*x-y).subs({x:(a+b)/2,y:(a+3*b)/2}, simultaneous=True))==a
+-assert s.expand((y-x).subs({x:(a+b)/2,y:(a+3*b)/2}, simultaneous=True))==b
+-checks["seven_reduction_extra_entry"]=str(s.expand(x*x).subs(x,(a+b)/2))
+-# Four-plane relation at z=0 has a constant-coefficient dependence.
+-r4=s.Matrix([x+y,-y,x])
+-U4=s.Matrix([[1,1,-1],[0,0,1],[0,-1,0]])
+-assert U4.det()==1 and U4*r4==s.Matrix([0,x,y])
+-checks["four_reduction_unimodular"]={"matrix":str(U4),"det":str(U4.det()),"image":str(U4*r4)}
+-# A valid ordinary top epimorphism can have nonunit determinant A.
+-A=s.diag(1-x,1)
+-v=s.Matrix([x,0]); aug=A.row_join(v)
+-right_inverse=s.Matrix([[1,0],[0,1],[1,0]])
+-assert aug*right_inverse==s.eye(2)
+-checks["ordinary_nonunit_A_epimorphism"]={"A":str(A),"v":str(v),"det_A":str(A.det()),"right_inverse":str(right_inverse)}
+-# The adjugate inverse check is polynomial and applies in every characteristic.
+-Q=x*x*y*y*(x+y)**2
+-Az=s.Matrix([[1,Q],[0,1]])
+-inv=s.Matrix([[1,-Q],[0,1]])
+-assert Az*inv==s.eye(2)
+-for beta,cov in [(x,s.Matrix([[1,0]])),(y,s.Matrix([[0,1]])),(x+y,s.Matrix([[1,1]]))]:
+-    tangent=s.Matrix([cov[0,1],-cov[0,0]])
+-    for B in [Az,inv]:
+-        assert s.rem(s.expand((cov*B*tangent)[0]), beta**2, x if beta!=y else y)==0
+-checks["multiplicity_two_inverse_preservation"]=True
+-# Independently reconstruct all original/deletion tangent generators.
+-p=x*(x-z); q=y*(y-z); r=(x-y)**2-z*z
+-h=[s.Matrix([p*(-x+3*y-z),q*(3*x-y-z)]),s.Matrix([-p*q,-p*q]),s.Matrix([-p*r,0])]
+-f=[s.Matrix([-y*(x-z)*(x-y-z),-y*(x-z)*(x-y-z)]),s.Matrix([y*(-2*x*x+3*x*y+3*x*z-y*y-3*z*z),(x-z)*rF[0]]),s.Matrix([y*(y-z)*r,0])]
+-zero=s.zeros(2,1)
+-assert all(s.expand(v)==0 for v in sum((rD[i]*h[i] for i in range(3)),zero))
+-assert all(s.expand(v)==0 for v in sum((rF[i]*f[i] for i in range(3)),zero))
+-# Use exact quotients, rather than evaluating on sample points.
+-for i,H in enumerate(h):
+-    for numerator,denom in [(H[0],p),(H[1],q),(H[0]-H[1],r)]:
+-        quotient=s.cancel(numerator/denom)
+-        assert s.denom(quotient)==1
+-for i,F in enumerate(f):
+-    for numerator,denom in [(F[0],y),(F[1],x-z),(F[0]-F[1],(y-z)*(x-y+z)),(F[0]+F[1],x-y-z)]:
+-        quotient=s.cancel(numerator/denom)
+-        assert s.denom(quotient)==1
+-checks["all_generator_tangencies_and_relations"]=True
+-checks["h2_h3_minor"]=str(s.factor(s.Matrix.hstack(h[1],h[2]).det()))
+-checks["f1_f3_minor"]=str(s.factor(s.Matrix.hstack(f[0],f[2]).det()))
+-assert s.Matrix.hstack(h[1],h[2]).det()!=0
+-assert s.Matrix.hstack(f[0],f[2]).det()!=0
+-# Explicit ordinary epimorphism respects the unique source relation mod z.
+-assert s.expand((rD[0]-x*rD[1]/2-x*rD[2]/2).subs(z,0))==0
+-checks["explicit_ungraded_stalk_epimorphism_relation"]=True
+-# Rational Groebner outputs corroborate, but do not replace, the displayed
+-# integral reductions proving validity over all fields with 2 invertible.
+-checks["sympy_version"]=s.__version__
+-checks["status"]="passed"
+-out=Path(__file__).with_name("ungraded_checks.json")
+-out.write_text(json.dumps(checks,indent=2)+"\n")
+-print(out.read_text())
++x, y, z, w = s.symbols('x y z w')
++checks = {}
++rD = [x * (x - z), 3 * x - y - z, y - x]
++rF = [-3 * x * y + x * z + 3 * y * y + z * z, y * (x - y - z), -x - y + z]
++gD = s.groebner(rD, z, y, x)
++gF = s.groebner(rF, z, y, x)
++checks['D_Ext1_groebner'] = [str(p.as_expr()) for p in gD.polys]
++checks['F_Ext1_groebner'] = [str(p.as_expr()) for p in gF.polys]
++if not [p.as_expr() for p in gD.polys] == [-2 * x + z, -x + y, x * x]:
++    raise RuntimeError('Check failed at accepted-source line 13')
++if not [p.as_expr() for p in gF.polys] == [-x - y + z, y * y, x * x]:
++    raise RuntimeError('Check failed at accepted-source line 14')
++checks['D_reduced_relation'] = [str(s.expand(p.subs({y: x, z: 2 * x}, simultaneous=True))) for p in rD]
++checks['F_reduced_relation'] = [str(s.expand(p.subs(z, x + y))) for p in rF]
++if not s.expand(rD[0].subs(z, 2 * x)) == -x * x:
++    raise RuntimeError('Check failed at accepted-source line 18')
++if not s.expand(rF[0].subs(z, x + y)) == 2 * x * x + 4 * y * y:
++    raise RuntimeError('Check failed at accepted-source line 19')
++if not s.expand(rF[1].subs(z, x + y)) == -2 * y * y:
++    raise RuntimeError('Check failed at accepted-source line 20')
++checks['Ext1_lengths_over_K_w'] = {'D': 2, 'F': 4}
++a, b = s.symbols('a b')
++if not s.expand((3 * x - y).subs({x: (a + b) / 2, y: (a + 3 * b) / 2}, simultaneous=True)) == a:
++    raise RuntimeError('Check failed at accepted-source line 25')
++if not s.expand((y - x).subs({x: (a + b) / 2, y: (a + 3 * b) / 2}, simultaneous=True)) == b:
++    raise RuntimeError('Check failed at accepted-source line 26')
++checks['seven_reduction_extra_entry'] = str(s.expand(x * x).subs(x, (a + b) / 2))
++r4 = s.Matrix([x + y, -y, x])
++U4 = s.Matrix([[1, 1, -1], [0, 0, 1], [0, -1, 0]])
++if not (U4.det() == 1 and U4 * r4 == s.Matrix([0, x, y])):
++    raise RuntimeError('Check failed at accepted-source line 31')
++checks['four_reduction_unimodular'] = {'matrix': str(U4), 'det': str(U4.det()), 'image': str(U4 * r4)}
++A = s.diag(1 - x, 1)
++v = s.Matrix([x, 0])
++aug = A.row_join(v)
++right_inverse = s.Matrix([[1, 0], [0, 1], [1, 0]])
++if not aug * right_inverse == s.eye(2):
++    raise RuntimeError('Check failed at accepted-source line 37')
++checks['ordinary_nonunit_A_epimorphism'] = {'A': str(A), 'v': str(v), 'det_A': str(A.det()), 'right_inverse': str(right_inverse)}
++Q = x * x * y * y * (x + y) ** 2
++Az = s.Matrix([[1, Q], [0, 1]])
++inv = s.Matrix([[1, -Q], [0, 1]])
++if not Az * inv == s.eye(2):
++    raise RuntimeError('Check failed at accepted-source line 43')
++for beta, cov in [(x, s.Matrix([[1, 0]])), (y, s.Matrix([[0, 1]])), (x + y, s.Matrix([[1, 1]]))]:
++    tangent = s.Matrix([cov[0, 1], -cov[0, 0]])
++    for B in [Az, inv]:
++        if not s.rem(s.expand((cov * B * tangent)[0]), beta ** 2, x if beta != y else y) == 0:
++            raise RuntimeError('Check failed at accepted-source line 47')
++checks['multiplicity_two_inverse_preservation'] = True
++p = x * (x - z)
++q = y * (y - z)
++r = (x - y) ** 2 - z * z
++h = [s.Matrix([p * (-x + 3 * y - z), q * (3 * x - y - z)]), s.Matrix([-p * q, -p * q]), s.Matrix([-p * r, 0])]
++f = [s.Matrix([-y * (x - z) * (x - y - z), -y * (x - z) * (x - y - z)]), s.Matrix([y * (-2 * x * x + 3 * x * y + 3 * x * z - y * y - 3 * z * z), (x - z) * rF[0]]), s.Matrix([y * (y - z) * r, 0])]
++zero = s.zeros(2, 1)
++if not all((s.expand(v) == 0 for v in sum((rD[i] * h[i] for i in range(3)), zero))):
++    raise RuntimeError('Check failed at accepted-source line 54')
++if not all((s.expand(v) == 0 for v in sum((rF[i] * f[i] for i in range(3)), zero))):
++    raise RuntimeError('Check failed at accepted-source line 55')
++for i, H in enumerate(h):
++    for numerator, denom in [(H[0], p), (H[1], q), (H[0] - H[1], r)]:
++        quotient = s.cancel(numerator / denom)
++        if not s.denom(quotient) == 1:
++            raise RuntimeError('Check failed at accepted-source line 60')
++for i, F in enumerate(f):
++    for numerator, denom in [(F[0], y), (F[1], x - z), (F[0] - F[1], (y - z) * (x - y + z)), (F[0] + F[1], x - y - z)]:
++        quotient = s.cancel(numerator / denom)
++        if not s.denom(quotient) == 1:
++            raise RuntimeError('Check failed at accepted-source line 64')
++checks['all_generator_tangencies_and_relations'] = True
++checks['h2_h3_minor'] = str(s.factor(s.Matrix.hstack(h[1], h[2]).det()))
++checks['f1_f3_minor'] = str(s.factor(s.Matrix.hstack(f[0], f[2]).det()))
++if not s.Matrix.hstack(h[1], h[2]).det() != 0:
++    raise RuntimeError('Check failed at accepted-source line 68')
++if not s.Matrix.hstack(f[0], f[2]).det() != 0:
++    raise RuntimeError('Check failed at accepted-source line 69')
++if not s.expand((rD[0] - x * rD[1] / 2 - x * rD[2] / 2).subs(z, 0)) == 0:
++    raise RuntimeError('Check failed at accepted-source line 71')
++checks['explicit_ungraded_stalk_epimorphism_relation'] = True
++checks['sympy_version'] = s.__version__
++checks['status'] = 'passed'
++print(json.dumps(checks, indent=2))

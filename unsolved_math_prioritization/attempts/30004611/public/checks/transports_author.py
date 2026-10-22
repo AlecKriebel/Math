@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+# Reader edition: explicit runtime checks; results go only to stdout.
+"""Exact rational controls for the authored pass-4 transport examples."""
+from itertools import combinations
+import json
+import sympy as sp
+
+def canonical(rows, n):
+    if not rows:
+        return ()
+    R, _ = sp.Matrix(rows).rref()
+    return tuple((tuple((R[i, j] for j in range(n))) for i in range(R.rows) if any((R[i, j] for j in range(n)))))
+
+def lattice(normals):
+    n = len(normals[0])
+    out = set()
+    for mask in range(1 << len(normals)):
+        out.add(canonical([normals[j] for j in range(len(normals)) if mask >> j & 1], n))
+    return sorted(out, key=lambda f: (n - len(f), str(f)))
+
+def subspace_basis(f, n):
+    if not f:
+        return sp.eye(n)
+    vs = sp.Matrix(f).nullspace()
+    return sp.Matrix.hstack(*vs) if vs else sp.zeros(n, 0)
+
+def subset(x, y, n):
+    return canonical(list(x) + list(y), n) == x
+
+def natural_cohomology(flats, n):
+    """Covariant natural vector coefficient X at X, exact normalized cochains."""
+    bases = [subspace_basis(f, n) for f in flats]
+    chains = [[(i,) for i in range(len(flats))]]
+    while True:
+        nxt = [c + (j,) for c in chains[-1] for j in range(len(flats)) if j != c[-1] and subset(flats[c[-1]], flats[j], n)]
+        if not nxt:
+            break
+        chains.append(nxt)
+    offsets = []
+    dims = []
+    for cc in chains:
+        off = {}
+        q = 0
+        for c in cc:
+            off[c] = q
+            q += bases[c[-1]].cols
+        offsets.append(off)
+        dims.append(q)
+    maps = []
+    for p in range(len(chains) - 1):
+        M = sp.zeros(dims[p + 1], dims[p])
+        for c in chains[p + 1]:
+            r = offsets[p + 1][c]
+            k = bases[c[-1]].cols
+            for i in range(p + 1):
+                face = c[:i] + c[i + 1:]
+                q = offsets[p][face]
+                for t in range(k):
+                    M[r + t, q + t] += (-1) ** i
+            face = c[:-1]
+            q = offsets[p][face]
+            transport = bases[c[-1]].gauss_jordan_solve(bases[c[-2]])[0]
+            for a in range(k):
+                for b in range(transport.cols):
+                    M[r + a, q + b] += (-1) ** (p + 1) * transport[a, b]
+        maps.append(M)
+    if not all((maps[i + 1] * maps[i] == sp.zeros(maps[i + 1].rows, maps[i].cols) for i in range(len(maps) - 1))):
+        raise RuntimeError('Check failed at accepted-source line 59')
+    ranks = [M.rank() for M in maps]
+    betti = [dims[p] - (ranks[p - 1] if p else 0) - (ranks[p] if p < len(ranks) else 0) for p in range(len(dims))]
+    return {'points': len(flats), 'cochain_dimensions': dims, 'differential_ranks': ranks, 'cohomology_dimensions': betti}
+C = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1)]
+LC = lattice(C)
+PC = [f for f in LC if len(f) < 3]
+control_C = natural_cohomology(PC, 3)
+if not control_C['cohomology_dimensions'] == [0, 1, 0]:
+    raise RuntimeError('Check failed at accepted-source line 69')
+D5 = [tuple(a) + (0, 0) for a in C] + [(0, 0, 0, 1, 0), (0, 0, 0, 0, 1)]
+a5 = (1, 2, 3, 1, 1)
+LD5 = lattice(D5)
+LA5 = lattice(D5 + [a5])
+contained_nonzero = [f for f in LD5 if len(f) < 5 and canonical(list(f) + [a5], 5) == f]
+if not contained_nonzero == []:
+    raise RuntimeError('Check failed at accepted-source line 75')
+Q5 = [f for f in LA5 if len(f) < 5 and canonical(list(f) + [a5], 5) == f]
+local_rank_data = []
+for f in Q5:
+    deletion_normals = [l for l in D5 if canonical(list(f) + [l], 5) == f]
+    rank_before = len(canonical(deletion_normals, 5))
+    rank_after = len(canonical(deletion_normals + [a5], 5))
+    if not rank_after == rank_before + 1:
+        raise RuntimeError('Check failed at accepted-source line 82')
+    local_rank_data.append((rank_before, rank_after))
+x5 = canonical([(1, 0, 0, 0, 0), (0, 1, 0, 0, 0), (0, 0, 1, 0, 0), (0, 0, 0, 1, 1)], 5)
+if not x5 in Q5:
+    raise RuntimeError('Check failed at accepted-source line 85')
+x5_deletion = [l for l in D5 if canonical(list(x5) + [l], 5) == x5]
+if not x5_deletion == D5[:4]:
+    raise RuntimeError('Check failed at accepted-source line 87')
+D4 = [tuple(a) + (0,) for a in C] + [(0, 0, 0, 1)]
+a4 = (1, 2, 3, 0)
+LA4 = lattice(D4 + [a4])
+x4 = canonical([(1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0)], 4)
+Uabove = [f for f in LA4 if subset(x4, f, 4) and canonical(list(f) + [a4], 4) != f]
+if not set(Uabove) == {tuple((tuple(r) + (0,) for r in f)) for f in PC}:
+    raise RuntimeError('Check failed at accepted-source line 94')
+control_open = natural_cohomology(Uabove, 4)
+if not control_open['cohomology_dimensions'] == [1, 1, 0]:
+    raise RuntimeError('Check failed at accepted-source line 96')
+x, y, z = sp.symbols('x y z')
+vars9 = sp.symbols('a0:9')
+f = sum((vars9[i] * v for i, v in enumerate((x, y, z))))
+g = sum((vars9[i + 3] * v for i, v in enumerate((x, y, z))))
+h = sum((vars9[i + 6] * v for i, v in enumerate((x, y, z))))
+poly = sp.Poly((x * f + y * g + z * h).subs(z, -x - y), x, y)
+coef = [poly.coeff_monomial(m) for m in (x * x, x * y, y * y)]
+M, _ = sp.linear_eq_to_matrix(coef, vars9)
+if not M.rank() == 3:
+    raise RuntimeError('Check failed at accepted-source line 107')
+result = {'field': 'Q; all ranks exact rational linear algebra', 'C_degree_zero_natural_sheaf': control_C, 'five_dimensional_flat_transverse_example': {'deletion_flat_count_including_zero': len(LD5), 'original_flat_count_including_zero': len(LA5), 'nonzero_deletion_flats_inside_H': len(contained_nonzero), 'target_bearing_nonzero_flats': len(Q5), 'localized_deletion_original_rank_pairs': sorted(set(local_rank_data)), 'chosen_line_deletion_hyperplane_count': len(x5_deletion), 'rank_three_C_degree_two_constraint_rank': M.rank(), 'rank_three_C_degree_two_dimension': 9 - M.rank(), 'rank_three_C_minimal_generator_lower_bound': 4}, 'four_dimensional_open_transport_stalk_degree_zero': control_open, 'scope': 'Finite controls corroborate the symbolic proofs; no computation certifies the unrestricted problem.'}
+print(json.dumps(result, indent=2))

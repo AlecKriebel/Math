@@ -1,0 +1,87 @@
+--- accepted/check_prism_signs.py
++++ reader/prism_signs.py
+@@ -1,4 +1,6 @@
+-"""Check the lead's normalized prism signs on every strict product-lattice chain.
++#!/usr/bin/env python3
++# Reader edition: explicit runtime checks; results go only to stdout.
++"""Check the author's normalized prism signs on every strict product-lattice chain.
+ 
+ Integer formal chains verify signs and degeneracies independently of field.
+ Naturality and the stipulated identity terminal transitions provide the
+@@ -7,52 +9,51 @@
+ from itertools import combinations
+ from collections import Counter
+ import json
+-
+-factor = [frozenset()] + [frozenset(s) for k in (1,2) for s in combinations(range(4),k)] + [frozenset(range(4))]
+-P = [s|t for s in factor for t in (frozenset(),frozenset({4})) if len(s|t)<5]
++factor = [frozenset()] + [frozenset(s) for k in (1, 2) for s in combinations(range(4), k)] + [frozenset(range(4))]
++P = [s | t for s in factor for t in (frozenset(), frozenset({4})) if len(s | t) < 5]
+ chains = [[(s,) for s in P]]
+ while True:
+-    nxt = [chain+(t,) for chain in chains[-1] for t in P if t < chain[-1]]
++    nxt = [chain + (t,) for chain in chains[-1] for t in P if t < chain[-1]]
+     if not nxt:
+         break
+     chains.append(nxt)
+ 
+ def add(out, chain, coefficient):
+-    if any(a==b for a,b in zip(chain,chain[1:])):
++    if any((a == b for a, b in zip(chain, chain[1:]))):
+         return
+     out[chain] += coefficient
+ 
+ def boundary(chain):
+     out = Counter()
+-    if len(chain)>1:
++    if len(chain) > 1:
+         for i in range(len(chain)):
+-            add(out,chain[:i]+chain[i+1:],(-1)**i)
++            add(out, chain[:i] + chain[i + 1:], (-1) ** i)
+     return out
+ 
+-def prism(chain,c):
++def prism(chain, c):
+     out = Counter()
+     for i in range(len(chain)):
+-        add(out,chain[:i+1]+tuple(c(t) for t in chain[i:]),(-1)**i)
++        add(out, chain[:i + 1] + tuple((c(t) for t in chain[i:])), (-1) ** i)
+     return out
+ 
+-def linear(fn,chain_sum):
++def linear(fn, chain_sum):
+     out = Counter()
+-    for chain,scale in chain_sum.items():
+-        for target,coefficient in fn(chain).items():
+-            out[target] += scale*coefficient
++    for chain, scale in chain_sum.items():
++        for target, coefficient in fn(chain).items():
++            out[target] += scale * coefficient
+     return out
+-
+-result=[]
+-for name,c in [('E',lambda s:s-{4}),('I',lambda s:frozenset({4}) if 4 in s else frozenset())]:
+-    count=0
++result = []
++for name, c in [('E', lambda s: s - {4}), ('I', lambda s: frozenset({4}) if 4 in s else frozenset())]:
++    count = 0
+     for level in chains:
+         for chain in level:
+-            out = linear(boundary,prism(chain,c))
+-            for target,coefficient in linear(lambda q:prism(q,c),boundary(chain)).items():
++            out = linear(boundary, prism(chain, c))
++            for target, coefficient in linear(lambda q: prism(q, c), boundary(chain)).items():
+                 out[target] += coefficient
+-            add(out,tuple(c(t) for t in chain),-1)
+-            add(out,chain,1)
+-            assert not any(out.values()),(name,chain,out)
+-            count+=1
+-    result.append(dict(closure=name,checked_chains=count,identity='boundary prism + prism boundary = c_* - id'))
+-print(json.dumps(dict(strict_chain_counts=list(map(len,chains)),checks=result),indent=2))
++            add(out, tuple((c(t) for t in chain)), -1)
++            add(out, chain, 1)
++            if not not any(out.values()):
++                raise RuntimeError((name, chain, out))
++            count += 1
++    result.append(dict(closure=name, checked_chains=count, identity='boundary prism + prism boundary = c_* - id'))
++print(json.dumps(dict(strict_chain_counts=list(map(len, chains)), checks=result), indent=2))

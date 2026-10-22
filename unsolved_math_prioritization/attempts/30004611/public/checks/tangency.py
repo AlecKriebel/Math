@@ -1,0 +1,211 @@
+#!/usr/bin/env python3
+# Reader edition: explicit runtime checks; results go only to stdout.
+"""Independent finite homogeneous matrix controls; not an all-field proof."""
+import itertools, json, math
+
+def mons(n, d):
+    if d < 0:
+        return []
+    if n == 1:
+        return [(d,)]
+    return [(k,) + t for k in range(d + 1) for t in mons(n - 1, d - k)]
+
+def zeros(r, c):
+    return [[0] * c for _ in range(r)]
+
+def rref(A, p, width=None):
+    A = [[v % p for v in row] for row in A]
+    n = len(A[0]) if A else width or 0
+    piv, r = ([], 0)
+    for c in range(n):
+        k = next((k for k in range(r, len(A)) if A[k][c]), None)
+        if k is None:
+            continue
+        A[r], A[k] = (A[k], A[r])
+        t = pow(A[r][c], -1, p)
+        A[r] = [t * v % p for v in A[r]]
+        for k in range(len(A)):
+            if k != r and A[k][c]:
+                t = A[k][c]
+                A[k] = [(a - t * b) % p for a, b in zip(A[k], A[r])]
+        piv.append(c)
+        r += 1
+        if r == len(A):
+            break
+    return (A, piv)
+
+def rank(A, p):
+    return len(rref(A, p)[1])
+
+def null(A, width, p):
+    B, piv = rref(A, p, width)
+    free = [c for c in range(width) if c not in piv]
+    N = zeros(width, len(free))
+    for j, c in enumerate(free):
+        N[c][j] = 1
+        for r, a in enumerate(piv):
+            N[a][j] = -B[r][c] % p
+    return (N, len(free))
+
+def matmul(A, B, p):
+    if not A:
+        return []
+    if not B:
+        return zeros(len(A), 0)
+    return [[sum((x * y for x, y in zip(a, col))) % p for col in zip(*B)] for a in A]
+
+def hcat(A, B):
+    return [a + b for a, b in zip(A, B)]
+
+def linear(c):
+    n = len(c)
+    return {tuple((int(i == j) for i in range(n))): c[j] for j in range(n) if c[j]}
+
+def product(fs, n, p):
+    out = {(0,) * n: 1}
+    for f in fs:
+        q = {}
+        for a, v in out.items():
+            for b, w in f.items():
+                t = tuple((x + y for x, y in zip(a, b)))
+                q[t] = (q.get(t, 0) + v * w) % p
+        out = {a: v for a, v in q.items() if v}
+    return out
+
+class Quotient:
+
+    def __init__(self, n, d, q, p):
+        self.n, self.d, self.p = (n, d, p)
+        self.ms = mons(n, d)
+        self.idx = {m: i for i, m in enumerate(self.ms)}
+        if d < 0:
+            self.free, self.proj = ([], [])
+            return
+        deg = sum(next(iter(q)))
+        relations = []
+        for m in mons(n, d - deg):
+            row = [0] * len(self.ms)
+            for t, a in q.items():
+                row[self.idx[tuple((x + y for x, y in zip(t, m)))]] = a % p
+            relations.append(row)
+        B, piv = rref(relations, p, len(self.ms))
+        self.free = [i for i in range(len(self.ms)) if i not in piv]
+        self.proj = zeros(len(self.free), len(self.ms))
+        for j, f in enumerate(self.free):
+            self.proj[j][f] = 1
+            for r, a in enumerate(piv):
+                self.proj[j][a] = -B[r][f] % p
+
+    @property
+    def dim(self):
+        return len(self.free)
+
+class Conditions:
+
+    def __init__(self, n, d, rows, p, coordinates=None):
+        self.n, self.d, self.rows, self.p = (n, d, rows, p)
+        self.ms = mons(n, d)
+        coords = list(range(n)) if coordinates is None else coordinates
+        self.coords = coords
+        self.width = len(coords) * len(self.ms)
+        self.qs = [Quotient(n, d, q, p) for _, q in rows]
+        self.M = []
+        for (normal, _), quotient in zip(rows, self.qs):
+            for a in quotient.proj:
+                self.M.append([normal[c] * v % p for c in coords for v in a])
+        self.kernel, self.h0 = null(self.M, self.width, p)
+        self.targetdim = sum((q.dim for q in self.qs))
+        self.r = rank(self.M, p)
+        self.h1 = self.targetdim - self.r
+
+def multiply_last(source, target, target_indices):
+    p = source.p
+    M = zeros(target.targetdim, source.targetdim)
+    so = 0
+    target_offsets = [0]
+    for q in target.qs:
+        target_offsets.append(target_offsets[-1] + q.dim)
+    for k, sq in enumerate(source.qs):
+        tq = target.qs[target_indices[k]]
+        to = target_offsets[target_indices[k]]
+        for j, fm in enumerate(sq.free):
+            m = list(sq.ms[fm])
+            m[-1] += 1
+            col = tq.idx[tuple(m)]
+            for i in range(tq.dim):
+                M[to + i][so + j] = tq.proj[i][col]
+        so += sq.dim
+    return M
+
+def restrict_image(source, p):
+    """Restriction to last coordinate zero, discarding its normal component."""
+    n, d = (source.n, source.d)
+    ms = mons(n - 1, d)
+    idx = {m: i for i, m in enumerate(ms)}
+    M = zeros((n - 1) * len(ms), source.width)
+    for block, c in enumerate(source.coords):
+        if c == n - 1:
+            continue
+        for j, m in enumerate(source.ms):
+            if m[-1] == 0:
+                M[c * len(ms) + idx[m[:-1]]][block * len(source.ms) + j] = 1
+    return matmul(M, source.kernel, p)
+
+def test(name, deletion, p, d):
+    n = 3
+    H = (0, 0, 1)
+    original_rows = [(v, linear(v)) for v in deletion + [H]]
+    deletion_rows = original_rows[:-1]
+    fibers = {}
+    for v in deletion:
+        b = v[:-1]
+        j = next((i for i, a in enumerate(b) if a % p))
+        inv = pow(b[j] % p, -1, p)
+        b = tuple((a * inv % p for a in b))
+        v = tuple((a * inv % p for a in v))
+        fibers.setdefault(b, []).append(v)
+    ordinary_rows = [(b, linear(b)) for b in fibers]
+    grouped_rows = [(b + (0,), product([linear(v) for v in vs], 3, p)) for b, vs in fibers.items()]
+    ziegler_rows = [(b, product([linear(b)] * len(vs), 2, p)) for b, vs in fibers.items()]
+    DA = Conditions(3, d, original_rows, p)
+    DB = Conditions(2, d, ordinary_rows, p)
+    E = Conditions(3, d, grouped_rows, p, [0, 1])
+    Z = Conditions(2, d, ziegler_rows, p)
+    Tp = Conditions(3, d - 1, deletion_rows, p)
+    Up = Conditions(3, d - 1, grouped_rows, p, [0, 1])
+    ordinary_image, ziegler_image = (restrict_image(DA, p), restrict_image(E, p))
+    if not all((not v for row in matmul(DB.M, ordinary_image, p) for v in row)):
+        raise RuntimeError('Check failed at accepted-source line 187')
+    if not all((not v for row in matmul(Z.M, ziegler_image, p) for v in row)):
+        raise RuntimeError('Check failed at accepted-source line 188')
+    ordinary_defect = DB.h0 - rank(ordinary_image, p)
+    ziegler_defect = Z.h0 - rank(ziegler_image, p)
+    alphaT = multiply_last(Tp, DA, list(range(len(deletion))))
+    alphaU = multiply_last(Up, E, list(range(len(grouped_rows))))
+    if not rank(alphaT, p) == Tp.targetdim:
+        raise RuntimeError('Check failed at accepted-source line 193')
+    if not rank(alphaU, p) == Up.targetdim:
+        raise RuntimeError('Check failed at accepted-source line 194')
+    if not E.targetdim - Up.targetdim == Z.targetdim:
+        raise RuntimeError('Check failed at accepted-source line 195')
+    if not rank(hcat(DA.M, matmul(alphaT, Tp.M, p)), p) == DA.r:
+        raise RuntimeError('Check failed at accepted-source line 196')
+    if not rank(hcat(E.M, matmul(alphaU, Up.M, p)), p) == E.r:
+        raise RuntimeError('Check failed at accepted-source line 197')
+    ordinary_kernel = Tp.h1 - (rank(hcat(DA.M, alphaT), p) - DA.r)
+    ziegler_tor = Up.h1 - (rank(hcat(E.M, alphaU), p) - E.r)
+    if not ordinary_defect == ordinary_kernel:
+        raise RuntimeError((name, p, d, 'ordinary'))
+    if not ziegler_defect == ziegler_tor:
+        raise RuntimeError((name, p, d, 'Ziegler'))
+    rep = Conditions(2, d, [(v[:-1], linear(v[:-1])) for v in deletion], p)
+    repeatdim = sum(((len(vs) - 1) * Quotient(2, d, linear(b), p).dim for b, vs in fibers.items()))
+    if not rep.h0 == DB.h0:
+        raise RuntimeError('Check failed at accepted-source line 205')
+    if not rep.h1 == DB.h1 + repeatdim:
+        raise RuntimeError('Check failed at accepted-source line 206')
+    return {'example': name, 'field': p, 'degree': d, 'ordinary_defect': ordinary_defect, 'ordinary_T_kernel': ordinary_kernel, 'ziegler_defect': ziegler_defect, 'ziegler_Tor_1': ziegler_tor, 'U_dimension': E.h1, 'ordinary_repeat_extra_dimension': repeatdim}
+if __name__ == '__main__':
+    examples = {'four_plane': [(1, 0, 0), (0, 1, 0), (1, 1, 1)], 'repeated_x_fiber': [(1, 0, 0), (1, 0, 1), (0, 1, 0), (1, 1, 2)], 'credited_seven_plane': [(1, 0, 0), (0, 1, 0), (1, 0, -1), (0, 1, -1), (1, -1, 1), (1, -1, -1)]}
+    results = [test(name, forms, p, d) for name, forms in examples.items() for p in ((3, 5, 7) if name == 'credited_seven_plane' else (2, 3, 5, 7)) for d in range(5)]
+    print(json.dumps({'controls': len(results), 'status': 'passed', 'results': results}, indent=2))
