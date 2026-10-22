@@ -1,0 +1,93 @@
+{
+  "status": "PASS: bounded partial investigation only",
+  "problem_id": 30005757,
+  "row": 1848,
+  "queue_status": "UNSOLVED",
+  "turns": 5,
+  "date_utc": "2026-10-21",
+  "universal_question_resolved": false,
+  "novelty_certified": false,
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "sympy": "1.14.0"
+  },
+  "independent_verification": {
+    "replay": [
+      {
+        "script": "check.py",
+        "optimized": false,
+        "full_output_match": true
+      },
+      {
+        "script": "check.py",
+        "optimized": true,
+        "full_output_match": true
+      },
+      {
+        "script": "check_4231.py",
+        "optimized": false,
+        "full_output_match": true
+      },
+      {
+        "script": "check_4231.py",
+        "optimized": true,
+        "full_output_match": true
+      },
+      {
+        "script": "check_obstructions.py",
+        "optimized": false,
+        "full_output_match": true
+      },
+      {
+        "script": "check_obstructions.py",
+        "optimized": true,
+        "full_output_match": true
+      }
+    ],
+    "corruption_controls": [
+      {
+        "mutation": "count",
+        "optimized": false,
+        "rejected": true,
+        "failure": "RuntimeError: check.py:38: v==r['coefficients'][n]"
+      },
+      {
+        "mutation": "count",
+        "optimized": true,
+        "rejected": true,
+        "failure": "RuntimeError: check.py:38: v==r['coefficients'][n]"
+      },
+      {
+        "mutation": "state",
+        "optimized": false,
+        "rejected": true,
+        "failure": "RuntimeError: check.py:60: len(S)==r['states']"
+      },
+      {
+        "mutation": "state",
+        "optimized": true,
+        "rejected": true,
+        "failure": "RuntimeError: check.py:60: len(S)==r['states']"
+      },
+      {
+        "mutation": "quadratic coefficient",
+        "optimized": false,
+        "rejected": true,
+        "failure": "RuntimeError: check_4231.py:8: s.expand(res-poly)==0"
+      },
+      {
+        "mutation": "quadratic coefficient",
+        "optimized": true,
+        "rejected": true,
+        "failure": "RuntimeError: check_4231.py:8: s.expand(res-poly)==0"
+      }
+    ],
+    "nested_manifest_rejected": true,
+    "unexpected_file_rejected": true,
+    "manifest_self_entry_rejected": true,
+    "missing_provenance_rejected": true,
+    "ast_provenance": "PASS",
+    "inventory": "PASS"
+  },
+  "scope": "All 255 distinct length-four basis records; independent direct n<=7 enumeration, all 124258 transitions, exact 3412/4231 and C11 arithmetic, positive-grammar identities. Stored n=80 data not independently regenerated in acceptance. No acceptance of 1342 elimination."
+}

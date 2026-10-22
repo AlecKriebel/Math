@@ -1856,7 +1856,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1845 | 30005732 / OWR-14298011-003 | Well-Defined Trajectories in Controlled Set Motions | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1846 | 30005740 / OWR-14298013-004 | BV Structures with Nonsemisimple Nakayama Automorphisms | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1847 | 30003654 / OWR-15957-007 | Certificates of Polynomial Nonnegativity in Copositive Optimization | 0.0516 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 1848 | 30005757 / OWR-14298158-002 | Rationality of Separable Permutation Subclasses | 0.0513 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 1848 | 30005757 / OWR-14298158-002 | Rationality of Separable Permutation Subclasses | 0.0513 | 5.0 | 3 | 2024 | unsolved | 5/5 |  | 2026-10-21: UNSOLVED5; universal rationality question unresolved. Accepted partial 3412/4231 quadratic derivations and C_11 nonrationality despite a dominant simple pole; no novelty certification. All 255 compatible nonempty length-four bases have stored coefficients through n=80; independent checks cover n<=7 and 124258 transitions, not full n=80 regeneration. Inconclusive 1342 elimination excluded. Audited package: separable_rationality_30005757/. |  |
 | 1849 | 30004262 / OWR-17288-004 | Finite-Dimensional Uniform Embeddings of Compact Metric Spaces | 0.0512 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1850 | 30004632 / OWR-4990379-002 | Global Optimality of Domain-Decomposition Transport Algorithms | 0.0508 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 1851 | 30005646 / OWR-14297740-018 | Strict Higher Étale-Homotopy Obstructions over Global Fields | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
