@@ -1848,7 +1848,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1837 | 30002123 / OWR-12006-004 | Shellability of Barycentric Subdivisions of Convex Complexes | 0.0522 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1838 | 30002169 / OWR-12013-001 | Intrinsic Viscosity Solutions for Rough Hamilton–Jacobi Equations | 0.0522 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1839 | 30005048 / OWR-9790364-002 | Elementary Proofs of Laguerre–Pólya Total Positivity | 0.0521 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 1840 | 30005111 / OWR-10252930-021 | Elementary Proof of the Closed Walk Stacking Criterion | 0.0521 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 1840 | 30005111 / OWR-10252930-021 | Elementary Proof of the Closed Walk Stacking Criterion | 0.0521 | 5.0 | 3 | 2022 | claimed_solved5 | 5/5 |  | Elementary finite integer-cochain proof for primitive immersions; literal unrestricted-walk nonpower criterion false via ababa. Word/map nonpower is distinct from its null-homotopic group element. See [report](../elementary_stackings_30005111/REPORT.md) and [acceptance](../elementary_stackings_30005111/ACCEPTANCE.md); no novelty or external peer-review claim. |  |
 | 1841 | 30003131 / OWR-14604-008 | Quadratic-Length Universal Random Permutations | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 1842 | 30003172 / OWR-14741-004 | Simultaneously Adaptive Universal Source Coding | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 1843 | 30005478 / OWR-12697711-014 | Algorithms for Amoeba Dimensions from Tropical Fans | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
