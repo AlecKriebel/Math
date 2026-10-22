@@ -1750,7 +1750,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1739 | 2307078 / AMR-022-7078 | Research Problems in Function Theory — Problem 7.78 | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1740 | 2309008 / AMR-022-9008 | Research Problems in Function Theory — Problem 9.8 | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1741 | 2350 / EP-864 | Erdős Problem #864 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1742 | 2376 / EP-906 | Erdős Problem #906 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1742 | 2376 / EP-906 | Erdős Problem #906 | 0.0585 | 5.0 | 1 | unknown | claimed_solved | ≥1; total unknown |  | 2026-10-11: Accepted credited reconstruction of the stronger transcendental statement: a Gaussian entire function almost surely has a derivative zero in every nonempty open set for all sufficiently large derivative orders, equivalent to density along every infinite subsequence. Almeida/Chojecki method credited; no novelty, bounded-coefficient or selected deterministic-sample claim. [Proof and audit, draft PR #1308](https://github.com/AlecKriebel/Math/pull/1308). |  |
 | 1743 | 2449 / EP-1038 | Erdős Problem #1038 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1744 | 2450 / EP-1039 | Erdős Problem #1039 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1745 | 2485 / EP-1095 | Erdős Problem #1095 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
