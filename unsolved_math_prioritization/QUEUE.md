@@ -688,7 +688,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 677 | 2303023 / AMR-022-3023 | Research Problems in Function Theory — Problem 3.23 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 678 | 2304029 / AMR-022-4029 | Research Problems in Function Theory — Problem 4.29 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 679 | 2305020 / AMR-022-5020 | Research Problems in Function Theory — Problem 5.20 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 680 | 2305033 / AMR-022-5033 | Research Problems in Function Theory — Problem 5.33 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 680 | 2305033 / AMR-022-5033 | Research Problems in Function Theory — Problem 5.33 | 0.1050 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Prior-resolution attribution: Hayman, Patterson and Pommerenke (1977), triangular-lattice universal-cover coefficient decay; source update verified, original full proof uninspected. |  |
 | 681 | 2305044 / AMR-022-5044 | Research Problems in Function Theory — Problem 5.44 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 682 | 2305073 / AMR-022-5073 | Research Problems in Function Theory — Problem 5.73 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 683 | 2306043 / AMR-022-6043 | Research Problems in Function Theory — Problem 6.43 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
