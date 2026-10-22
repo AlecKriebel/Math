@@ -345,7 +345,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 334 | 30004008 / OWR-16633-026 | Rainbow Arborescences Across Arc Partitions | 0.1639 | 7.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 335 | 30004033 / OWR-16763-006 | Fractional Coloring of Subcubic Triangle-Free Planar Graphs | 0.1633 | 7.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 336 | 30005425 / OWR-12697690-007 | Uniqueness of Surface Models for Locally Gentle Algebras | 0.1630 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 337 | 30005718 / OWR-14298007-013 | Ultra-Log-Concavity from a Matrix Recursion | 0.1630 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 337 | 30005718 / OWR-14298007-013 | Ultra-Log-Concavity from a Matrix Recursion | 0.1630 | 5.0 | 3 | 2023 | unsolved | 5/5 |  |  |  |
 | 338 | 30005935 / OWR-14298374-004 | Positivity and Convergence of a Splitting Scheme | 0.1616 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 339 | 30006017 / OWR-14298589-002 | Limiting Area Distribution of Random Self-Overlapping Polygons | 0.1616 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 340 | 10400078 / AMR-103-0078 | Problem 3.28 — (T. | 0.1600 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
