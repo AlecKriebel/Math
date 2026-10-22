@@ -348,7 +348,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 337 | 30005718 / OWR-14298007-013 | Ultra-Log-Concavity from a Matrix Recursion | 0.1630 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 338 | 30005935 / OWR-14298374-004 | Positivity and Convergence of a Splitting Scheme | 0.1616 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 339 | 30006017 / OWR-14298589-002 | Limiting Area Distribution of Random Self-Overlapping Polygons | 0.1616 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 340 | 10400078 / AMR-103-0078 | Problem 3.28 — (T. | 0.1600 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 340 | 10400078 / AMR-103-0078 | Problem 3.28 — (T. | 0.1600 | 5.5 | 3 | unknown | unsolved | 5/5 |  | 2026-10-02: five-turn scoped packet and independent AI audit complete; completed two-strand torus injections and proper graded image, uncompleted positive-genus obstruction, normalized higher-genus obstruction. Unrestricted completed higher genus, higher strand counts and source target conventions remain unresolved. [Reviewed packet](../problems/10400078_surface_braid_embeddings/PUBLICATION_SUMMARY.md). |  |
 | 341 | 9900002 / AMR-098-0002 | Scaling total life in a null-recurrent renewal process | 0.1600 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 342 | 30005751 / OWR-14298016-007 | Finite Axiomatizability of TEIP over Open Induction | 0.1599 | 7.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 343 | 4600032 / AMR-045-0032 | Embedding under a preimage bound | 0.1578 | 5.5 | 4 | 2008 | queued | 0/5 |  |  |  |
