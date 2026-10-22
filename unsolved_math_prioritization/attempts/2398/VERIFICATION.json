@@ -1,0 +1,410 @@
+{
+  "schema": "ep944-historical-verification-v1",
+  "problem_id": 2398,
+  "historical_modes": [
+    "normal",
+    "-O",
+    "-OO"
+  ],
+  "historical_mode_results_agree": true,
+  "finite_graph": {
+    "source_commit": "697307af42505b11490fdc74c04eda5c7ec76c51",
+    "vertices": 60,
+    "edges": 180,
+    "regular_degree": 6,
+    "verified_left_translations": 60,
+    "verified_vertex_deletion_colorings": 60,
+    "four_coloring_verified": true,
+    "first_search_orbit_sizes": [
+      60,
+      60,
+      30,
+      30
+    ],
+    "first_search_nodes": [
+      1230,
+      1464,
+      1207,
+      1219
+    ],
+    "second_search_direct_instances": 181,
+    "second_search_nodes": 1651066,
+    "all_direct_instances_non_three_colorable": true,
+    "three_color_defect": 2,
+    "independent_search_formulations": 2,
+    "exhaustive_small_graph_cases_per_solver": 2198,
+    "K4_control_instances_per_solver": 7,
+    "rejecting_input_mutations": 3
+  },
+  "conventional_arithmetic_controls": {
+    "coloring_parameter_cases": 294,
+    "local_template_parameter_cases": 98,
+    "negative_printed_formula_controls": 5,
+    "order_parameter_cases": 650,
+    "scope": "finite arithmetic controls only; universal proof is conventional",
+    "status": "PASS"
+  },
+  "dependency_map": {
+    "schema": "ep944-proof-dependencies-v1",
+    "nodes": {
+      "D0": {
+        "claim": "Finite simple circulant definition and valid distance ranges",
+        "depends": [],
+        "boundary": "elementary integer arithmetic"
+      },
+      "A": {
+        "claim": "Every vertex deletion is (k-1)-colorable",
+        "depends": [
+          "D0"
+        ],
+        "boundary": "explicit pattern and corrected cyclic residue calculation"
+      },
+      "4.4": {
+        "claim": "Balance and p-periodicity on 3p unaffected consecutive vertices",
+        "depends": [
+          "D0"
+        ],
+        "boundary": "corrected odd clique partition; even C5[K2] independence argument"
+      },
+      "lift": {
+        "claim": "Expected colors differ at any forbidden distance up to sign modulo p",
+        "depends": [
+          "4.4",
+          "D0"
+        ],
+        "boundary": "unaffected representatives in three periods"
+      },
+      "4.7": {
+        "claim": "One or two color blocks for odd k>=7 and even k>=10",
+        "depends": [
+          "4.4",
+          "lift"
+        ],
+        "boundary": "translated intervals and distance bounds"
+      },
+      "4.6_ordinary": {
+        "claim": "Exactly one change-point residue per parity for odd k>=7 and even k>=10",
+        "depends": [
+          "4.7",
+          "lift"
+        ],
+        "boundary": "block lengths and forbidden 2m distance"
+      },
+      "B1": {
+        "claim": "Forbidden residue difference implies distinct expected colors",
+        "depends": [
+          "lift"
+        ],
+        "boundary": "same lifting statement"
+      },
+      "B2": {
+        "claim": "Every adjacent pair of rings has exactly two of every color",
+        "depends": [
+          "B1"
+        ],
+        "boundary": "candidate positions induce clique"
+      },
+      "B3": {
+        "claim": "Every class has one of two predecessor colors",
+        "depends": [
+          "B2",
+          "B1"
+        ],
+        "boundary": "negative-distance correction -2m+1=-(2m-1)"
+      },
+      "B4": {
+        "claim": "Change-point status is constant on a ring",
+        "depends": [
+          "B3",
+          "B1"
+        ],
+        "boundary": "adjacent ring-transition contradiction"
+      },
+      "B5": {
+        "claim": "Each ring has each color exactly once",
+        "depends": [
+          "B4",
+          "B3",
+          "B2",
+          "B1"
+        ],
+        "boundary": "induction and forbidden 2m distance"
+      },
+      "4.6_exceptional": {
+        "claim": "Exactly one change-point residue per parity for k=6,8",
+        "depends": [
+          "B5",
+          "B4",
+          "B3",
+          "B1"
+        ],
+        "boundary": "corrected non-change interval ending at t_i-2"
+      },
+      "two_block_bridge": {
+        "claim": "Two full expected-color blocks for every even k>=6",
+        "depends": [
+          "4.6_exceptional",
+          "4.6_ordinary",
+          "4.4"
+        ],
+        "boundary": "m entries per run and 2m per color per period; parity-specific applicable branch"
+      },
+      "4.8": {
+        "claim": "Every vertex up to half-order has two expected color options",
+        "depends": [
+          "lift",
+          "4.4",
+          "4.6_ordinary",
+          "4.6_exceptional",
+          "two_block_bridge"
+        ],
+        "boundary": "odd clique; even missing-neighbor-color blocks"
+      },
+      "4.9": {
+        "claim": "More than 2r same-color vertices in a 2m-interval have one parity",
+        "depends": [
+          "D0"
+        ],
+        "boundary": "at most r deleted edges"
+      },
+      "4.3": {
+        "claim": "p-periodicity extends to a quarter-order consecutive interval",
+        "depends": [
+          "4.8",
+          "4.9",
+          "4.6_ordinary",
+          "4.6_exceptional",
+          "4.4"
+        ],
+        "boundary": "first-deviation contradictions, separate k=5 case"
+      },
+      "4.1": {
+        "claim": "G_k,m,q is a (k,r)-graph for all stated parameters k>=5",
+        "depends": [
+          "A",
+          "4.3"
+        ],
+        "boundary": "unaffected run counting and final cyclic contradiction"
+      },
+      "1.3": {
+        "claim": "Existence for all progression orders with quadratic r threshold",
+        "depends": [
+          "4.1"
+        ],
+        "boundary": "m=18r+3, q=8x or 4x"
+      },
+      "2.1": {
+        "claim": "Edge-substitution gluing preserves (k,r)",
+        "depends": [],
+        "boundary": "direct criticality and removed-edge transfer proof"
+      },
+      "2.2": {
+        "claim": "Sparse k-critical scaffold at every order h>=k+3",
+        "depends": [],
+        "boundary": "odd wheels, Hajós joins, universal vertices, all proved in audit"
+      },
+      "2.3": {
+        "claim": "Existence at every sufficiently large order with cubic r threshold",
+        "depends": [
+          "1.3",
+          "2.1",
+          "2.2"
+        ],
+        "boundary": "division with A<=h<2A and positive allocation"
+      },
+      "1.2": {
+        "claim": "f_k(n)=Omega_k(n^(1/3)) for fixed k>=5",
+        "depends": [
+          "2.3"
+        ],
+        "boundary": "invert polynomial threshold"
+      },
+      "sqrt_subsequence": {
+        "claim": "f_k(n_r)=Omega_k(sqrt(n_r)) for fixed k>=5",
+        "depends": [
+          "1.3"
+        ],
+        "boundary": "minimum progression order"
+      },
+      "CF8.1": {
+        "claim": "Quantitative all-pairs weak regularity partition",
+        "depends": [],
+        "boundary": "external published theorem; exact source statement checked; source omits its proof; not independently closed"
+      },
+      "1.4": {
+        "claim": "Sublinear logarithmic upper bound for fixed k>=4",
+        "depends": [
+          "CF8.1"
+        ],
+        "boundary": "conditional on external regularity lemma, downstream argument checked"
+      },
+      "Chan_4_1": {
+        "claim": "Frozen order-60 graph is a (4,1)-graph with q3=2",
+        "depends": [],
+        "boundary": "two independently implemented exact finite searches, explicit coloring witnesses, normal/O/OO controls; no Lean replay"
+      }
+    },
+    "acyclic": true,
+    "lower_bound_external_mathematical_inputs": [],
+    "upper_bound_external_mathematical_inputs": [
+      "CF8.1"
+    ],
+    "finite_computation_separate": true,
+    "residual_scope": "No result here establishes k=4 for arbitrary r>=2; no global literature-status claim"
+  },
+  "historical_receipt_identities": [
+    {
+      "name": "chan_normal.json",
+      "bytes": 785,
+      "sha256": "09a84d7052700eae53ae5c35120da8c9639c5ae0ecfb687b0d0f7420a44a58a2"
+    },
+    {
+      "name": "chan_O.json",
+      "bytes": 784,
+      "sha256": "027dc556d653ec68e2090f4400fd488cd2ab144aae18b5d139c1b7da28775e00"
+    },
+    {
+      "name": "chan_OO.json",
+      "bytes": 785,
+      "sha256": "ec7ac67a13ad530cfa3f2a75ce765dd6ae3641bdfff6ebee88837d8544d223f6"
+    },
+    {
+      "name": "chan_direct_all_normal.json",
+      "bytes": 13034,
+      "sha256": "0a96b3543b64f9b85513fed4333ce3e60e84d4b4082c6890ff917cb2477df6cb"
+    },
+    {
+      "name": "chan_direct_all_O.json",
+      "bytes": 13034,
+      "sha256": "0a96b3543b64f9b85513fed4333ce3e60e84d4b4082c6890ff917cb2477df6cb"
+    },
+    {
+      "name": "chan_direct_all_OO.json",
+      "bytes": 13034,
+      "sha256": "0a96b3543b64f9b85513fed4333ce3e60e84d4b4082c6890ff917cb2477df6cb"
+    },
+    {
+      "name": "chan_controls_normal.json",
+      "bytes": 64,
+      "sha256": "223295c26a1ae4e1c700f28383a70cc5dba3a8f6add0ca1d1c87725d03b2c13a"
+    },
+    {
+      "name": "chan_controls_O.json",
+      "bytes": 64,
+      "sha256": "223295c26a1ae4e1c700f28383a70cc5dba3a8f6add0ca1d1c87725d03b2c13a"
+    },
+    {
+      "name": "chan_controls_OO.json",
+      "bytes": 64,
+      "sha256": "223295c26a1ae4e1c700f28383a70cc5dba3a8f6add0ca1d1c87725d03b2c13a"
+    },
+    {
+      "name": "ss_arithmetic_normal.json",
+      "bytes": 237,
+      "sha256": "f88ae6ced2f1d515e34d470d5c99780b32db0443b23c6235d90b8fc87af1d89d"
+    },
+    {
+      "name": "ss_arithmetic_O.json",
+      "bytes": 237,
+      "sha256": "f88ae6ced2f1d515e34d470d5c99780b32db0443b23c6235d90b8fc87af1d89d"
+    },
+    {
+      "name": "ss_arithmetic_OO.json",
+      "bytes": 237,
+      "sha256": "f88ae6ced2f1d515e34d470d5c99780b32db0443b23c6235d90b8fc87af1d89d"
+    },
+    {
+      "name": "negative_controls_normal.json",
+      "bytes": 334,
+      "sha256": "52c30e58bc7c2a1e3298db2569fbd55722929a2ee29aeaf45cfdbe83ad421218"
+    },
+    {
+      "name": "negative_controls_O.json",
+      "bytes": 334,
+      "sha256": "52c30e58bc7c2a1e3298db2569fbd55722929a2ee29aeaf45cfdbe83ad421218"
+    },
+    {
+      "name": "negative_controls_OO.json",
+      "bytes": 334,
+      "sha256": "52c30e58bc7c2a1e3298db2569fbd55722929a2ee29aeaf45cfdbe83ad421218"
+    },
+    {
+      "name": "packet_results_normal.json",
+      "bytes": 220,
+      "sha256": "613693121f89b049409871a184170aaf07bab03fa94b5e2b7d044cb98dd8742b"
+    },
+    {
+      "name": "packet_results_O.json",
+      "bytes": 220,
+      "sha256": "613693121f89b049409871a184170aaf07bab03fa94b5e2b7d044cb98dd8742b"
+    },
+    {
+      "name": "packet_results_OO.json",
+      "bytes": 220,
+      "sha256": "613693121f89b049409871a184170aaf07bab03fa94b5e2b7d044cb98dd8742b"
+    }
+  ],
+  "focused_review": {
+    "disposition": "ACCEPT",
+    "additional_required_mathematical_correction": false,
+    "full_written_repaired_proof_audited": true,
+    "pre_edition_report_bytes": 29018,
+    "pre_edition_report_sha256": "c355121021084b2dff8c91680b1b2237375718f122cd01650bde80d66fdbdadc",
+    "historical_modes": [
+      "normal",
+      "-OO"
+    ],
+    "historical_mode_results_agree": true,
+    "finite_endpoint_controls": {
+      "puncture_distances": 254724,
+      "two_option_edges": 38160,
+      "odd_clique_partitions": 72,
+      "parameter_cases": 48,
+      "C5K2_edges": 480,
+      "B0_repairs": 24,
+      "appendix_B_residue_cases": 8,
+      "abstract_C5K2_subsets": 1024,
+      "all_order_boundary_cases": 6000
+    },
+    "historical_receipt_identities": [
+      {
+        "name": "endpoint_checks.json",
+        "bytes": 496,
+        "sha256": "758c3761e86f54f64bd812197380f83600a0a8960f6e2695e9b1c1d6b8c95a68"
+      },
+      {
+        "name": "endpoint_checks_OO.json",
+        "bytes": 496,
+        "sha256": "8abcbe3e28e1522bcd1830354f8bf403866cd6175006b809f82a874dde6681dc"
+      }
+    ],
+    "finite_checks_support_only": true,
+    "chan_computation_repeated": false,
+    "source_retrieval": false,
+    "retained_source_visual_inspection": {
+      "skottova_steiner_pages": [
+        10,
+        12,
+        14,
+        19,
+        20,
+        22,
+        24
+      ],
+      "conlon_fox_pages": [
+        56,
+        57
+      ]
+    },
+    "conlon_fox_external_theorem_reproved": false
+  },
+  "new_mathematical_runs_during_edition": false,
+  "third_party_execution": false,
+  "lean_replay": false,
+  "raw_receipt_contents_distributed": false,
+  "executable_code_distributed": false,
+  "finite_data_or_certificates_distributed": false,
+  "conventional_lower_proof_computation_dependency": false,
+  "finite_reproduction_boundary": "Finite acceptance rests on the authenticated historical exact searches; their programs, graph data, and witnesses are omitted. The prose edition alone does not replay that computation.",
+  "upper_bound_boundary": "Conlon–Fox Lemma 8.1 is an external theorem, not re-proved here; it is not needed for the lower bound."
+}
