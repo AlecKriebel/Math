@@ -689,7 +689,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 678 | 2304029 / AMR-022-4029 | Research Problems in Function Theory — Problem 4.29 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 679 | 2305020 / AMR-022-5020 | Research Problems in Function Theory — Problem 5.20 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 680 | 2305033 / AMR-022-5033 | Research Problems in Function Theory — Problem 5.33 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 681 | 2305044 / AMR-022-5044 | Research Problems in Function Theory — Problem 5.44 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 681 | 2305044 / AMR-022-5044 | Research Problems in Function Theory — Problem 5.44 | 0.1050 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Attributed prior resolution: Barnard-Richards (2021) for beta=1; unrestricted positive extension has exact degree-five counterexample, with prior DannyExperiments credit. Full 2021 proof/addendum uninspected; Dunster unit-square claim not globally certified here. [Scoped audit](attempts/2305044/independent_audit/INDEPENDENT_AUDIT.md). |  |
 | 682 | 2305073 / AMR-022-5073 | Research Problems in Function Theory — Problem 5.73 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 683 | 2306043 / AMR-022-6043 | Research Problems in Function Theory — Problem 6.43 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 684 | 2306046 / AMR-022-6046 | Research Problems in Function Theory — Problem 6.46 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
