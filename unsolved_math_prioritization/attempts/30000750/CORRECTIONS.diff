@@ -1,0 +1,106 @@
+--- initial-freeze/PROOF.md
++++ corrected-release/PROOF.md
+@@ -11,19 +11,19 @@
+ For a polynomial $F(x)=\sum_{j=0}^d a_jx^j$, put
+ 
+ \[
+-L$F$=\sum_{j=0}^d|a_j|.
++L(F)=\sum_{j=0}^d|a_j|.
+ \]
+ 
+ For nonzero $F=a_d\prod_{j=1}^d(x-\alpha_j)$, define the multiplicative Mahler measure
+ 
+ \[
+-M$F$=|a_d|\prod_{j=1}^d\max\{1,|\alpha_j|\}.
++M(F)=|a_d|\prod_{j=1}^d\max\{1,|\alpha_j|\}.
+ \]
+ 
+ Empty products have value 1. Thus $M(c)=|c|$ for constants $c\ne0$. Extend the convention by $M(0)=0$. The real reduced length is
+ 
+ \[
+-\ell_{\mathbb R}$F$=\inf\{L(FQ):Q\in\mathbb R[x]\text{ is monic}\}.
++\ell_{\mathbb R}(F)=\inf\{L(FQ):Q\in\mathbb R[x]\text{ is monic}\}.
+ \]
+ 
+ The degree-zero monic polynomial $Q=1$ is allowed. We prove that, for every real $t\in[-2,2]$ and every $P\in\mathbb R[x]$,
+@@ -40,7 +40,7 @@
+ Dobrowolski's Theorem 2.1 states that a nonzero complex polynomial $F$ with a zero of modulus 1 satisfies
+ 
+ \[
+-L$F$\ge 2M$F$.\tag{D}
++L(F)\ge 2M(F).\tag{D}
+ \]
+ 
+ Reference: E. Dobrowolski, “On a question of Schinzel about the length and Mahler's measure of polynomials that have a zero on the unit circle,” *Acta Arithmetica* **155** (2012), no. 4, 453–463, Theorem 2.1 on p. 454. [DOI](https://doi.org/10.4064/aa155-4-8); [publisher PDF](https://www.impan.pl/shop/en/publication/transaction/download/product/82795).
+@@ -59,13 +59,13 @@
+ At $t=-2$, $A_t=(x-1)^2$; at $t=2$, $A_t=(x+1)^2$. Thus in every case $A_t$ is monic and both zeros have modulus 1, counting multiplicity. In particular,
+ 
+ \[
+-M$A_t$=1.\tag{1}
++M(A_t)=1.\tag{1}
+ \]
+ 
+ Mahler measure is multiplicative: $M(UV)=M(U)M(V)$ for nonzero polynomials $U,V$. Indeed, their leading coefficients multiply and the multiset of zeros of their product is the union of their zero multisets. Also, if $Q$ is monic, the defining root product gives
+ 
+ \[
+-M$Q$=\prod_\beta\max\{1,|\beta|\}\ge1,\tag{2}
++M(Q)=\prod_\beta\max\{1,|\beta|\}\ge1,\tag{2}
+ \]
+ 
+ including $Q=1$.
+@@ -74,8 +74,8 @@
+ 
+ \[
+ L(A_tPQ)\ge2M(A_tPQ)
+-=2M$A_t$M(P)M$Q$
+-=2M(P)M$Q$\ge2M(P).
++=2M(A_t)M(P)M(Q)
++=2M(P)M(Q)\ge2M(P).
+ \]
+ 
+ The right-hand side does not depend on $Q$. Every member of the nonempty set over which the reduced length is defined has this lower bound, so its infimum has the same lower bound. This proves (T). No minimizing multiplier or bound on its degree is assumed. If $P=0$, then $L(A_tPQ)=0$ for all $Q$, so both sides of (T) are zero. ∎
+--- initial-freeze/README.md
++++ corrected-release/README.md
+@@ -15,4 +15,15 @@
+ 
+ The controls use exact rational arithmetic: 21,420 product inequalities, 27 equality cases, one zero-polynomial case, and two hypothesis-deletion negative controls. They are finite sanity checks, not a universal proof, and they do not calculate an infimum over multipliers. The universal proof uses the stated published theorem.
+ 
+-The release manifest is verified from the release root using `sha256sum -c SHA256SUMS`. It intentionally excludes the manifest itself. Scholarly PDFs and full dataset corpora are not part of this package.
++From this attempt directory, verify the final-layout public manifest with `sha256sum -c SHA256SUMS`; from `independent-audit/`, verify the original audit delivery with `sha256sum -c AUDIT_SHA256SUMS`. The public manifest excludes itself. Scholarly PDFs and full dataset corpora are not part of this package.
++
++## External-proof boundary
++
++Acceptance is at the published-theorem dependency level. The full independent audit documents printed linear-algebra defects in the 2012 source and checks a local algebra/regularity repair without certifying the entire deformation argument. No complete independent re-proof or novelty claim is made. See `independent-audit/AUDIT.md` for the full caveat. The corrected proof uses exactly the audit's editorial notation patch. `CORRECTIONS.diff` records all changes from the initial seven-file freeze; that original freeze is preserved separately.
++
++To rerun the independent finite controls from this directory:
++
++```sh
++python3 independent-audit/independent_controls.py > /tmp/30000750-independent-results.json
++cmp independent-audit/independent_controls.json /tmp/30000750-independent-results.json
++```
+--- initial-freeze/PROVENANCE.json
++++ corrected-release/PROVENANCE.json
+@@ -57,12 +57,13 @@
+   "repository_observation": {
+     "url": "https://github.com/AlecKriebel/Math",
+     "main_sha": "03c3cc4ee2502f6937185fb55d17e1143fe5b6ea",
+-    "queue_blob_sha": "c87c275c638939b8008fd58db80657491d14971e",
++    "queue_blob_sha": "c1009ab2e12b93cffb15cb17c0ac893979ce5a44",
+     "state_blob_sha": "5d61841df2ecf0363dfba1858e568fc79734819f",
+     "status": "queued",
+     "turns": "0/5",
+     "attempt_directory_found": false,
+-    "matching_PRs_found": false
++    "matching_PRs_found": false,
++    "queue_blob_correction": "The previous c87c275c638939b8008fd58db80657491d14971e value is embedded text at the start of the existing queue file, not its actual Git blob identity. Corrected from GitHub metadata and independently checked by hashing the full blob."
+   },
+   "limitations": [
+     "Catalogue page returned HTTP 403; exact wording was checked against the pinned record and original report.",
+@@ -70,5 +71,6 @@
+     "Literature and repository searches were targeted rather than exhaustive historical audits.",
+     "Finite controls do not prove the universal theorem or compute reduced lengths."
+   ],
+-  "distribution": "No source PDFs, page images, full dataset corpora, or private coordination notes are included."
++  "distribution": "No source PDFs, page images, full dataset corpora, or private coordination notes are included.",
++  "acceptance_scope": "Theorem-to-target deduction using Dobrowolski Theorem 2.1 as a published external dependency. Source linear-algebra printing defects and the limit of the local repair are documented in independent-audit/AUDIT.md. No complete independent certification of the 2012 proof; no novelty claim."
+ }
