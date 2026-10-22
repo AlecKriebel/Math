@@ -1,0 +1,146 @@
+--- packet/verify.py
++++ patched/verify.py
+@@ -6,6 +6,11 @@
+ import json, math
+ from pathlib import Path
+ MAX_DEGREE = 80
++
++def check(condition, label):
++    """Unlike assert, correctness checks must remain active under python -O."""
++    if not condition:
++        raise RuntimeError('Verification failed: ' + label)
+ 
+ def basis(d):
+     return [(a,b,c) for a in range(d+1) for b in range(d//2+1)
+@@ -59,16 +64,16 @@
+     B,Bn=basis(d),basis(d+1)
+     cols=[bits(differential({x}),Bn) for x in B]
+     previous=[] if d==0 else [bits(differential({x}),B) for x in basis(d-1)]
+-    assert all(not differential(differential({x})) for x in B)
++    check(all(not differential(differential({x})) for x in B), 'Original verification condition at line 62')
+     sky=skyline(d)
+-    assert len(sky)==len(B) and rank([bits(p,B) for _,p in sky])==len(B)
++    check(len(sky)==len(B) and rank([bits(p,B) for _,p in sky])==len(B), 'Original verification condition at line 64')
+     survivors=[]
+     if d%4==0:survivors.append({(0,d//2,0)})
+     if d>=3 and d%4==3:survivors.append({(0,(d-3)//2,1)})
+-    assert all(not differential(p) for p in survivors)
++    check(all(not differential(p) for p in survivors), 'Original verification condition at line 68')
+     e2=len(B)-rank(cols)-rank(previous)
+-    assert e2==len(survivors)
+-    assert rank(previous+[bits(p,B) for p in survivors])==rank(previous)+e2
++    check(e2==len(survivors), 'Original verification condition at line 70')
++    check(rank(previous+[bits(p,B) for p in survivors])==rank(previous)+e2, 'Original verification condition at line 71')
+     # Greedy independent d1 images in degree d select primary integral
+     # Bocksteins of actual skyline classes of degree d-1.
+     selected=[]; selected_cols=[]
+@@ -76,31 +81,31 @@
+         col=bits(differential(p),B)
+         if rank(selected_cols+[col])>len(selected_cols):
+             selected.append(name);selected_cols.append(col)
+-    assert len(selected)==rank(previous)
++    check(len(selected)==rank(previous), 'Original verification condition at line 79')
+     four=int(d>0 and d%4==0)
+     # E2 has exactly one source-target pair z*v^k -> v^(k+1).
+     d2out=int(d>=3 and d%4==3)
+     d2in=int(d>=4 and d%4==0)
+-    assert e2-d2out-d2in==int(d==0)
++    check(e2-d2out-d2in==int(d==0), 'Original verification condition at line 84')
+     rows.append({'degree':d,'mod2_dimension':len(B),'first_bockstein_rank':rank(cols),
+                  'E2_dimension':e2,'order2_factors':len(selected),'order4_factors':four,
+                  'primary_skyline_sources':selected,
+                  'secondary_skyline_source':f'M({d//2-2},1)' if four else None})
+ # Generic preferred-basis counterexample: exact chain and quotient checks.
+ D0=[[2,2],[4,0],[-4,0]];D1=[[0,2,2]]
+-assert all(sum(D1[0][k]*D0[k][j] for k in range(3))==0 for j in range(2))
++check(all(sum(D1[0][k]*D0[k][j] for k in range(3))==0 for j in range(2)), 'Original verification condition at line 91')
+ # In cycle coordinates (a,k=x-y), relation lattice has columns (2,4),(2,0).
+ # Its quotient is Z/2 + Z/4; allowed elements generate a and 2k, not k.
+ H={(a,k) for a in range(2) for k in range(4)}
+ allowed={(a,(2*b)%4) for a in range(2) for b in range(2)}
+-assert len(H)==8 and len(allowed)==4 and (0,1) not in allowed
+-assert (4*1)%4==0 and (2*1)%4!=0
++check(len(H)==8 and len(allowed)==4 and (0,1) not in allowed, 'Original verification condition at line 96')
++check((4*1)%4==0 and (2*1)%4!=0, 'Original verification condition at line 97')
+ # Cyclic resolution coefficients and normalized Bocksteins, through degree 80.
+ for exponent in (1,2,3,4):
+     order=2**exponent
+     ds=[0 if d%2==0 else order for d in range(MAX_DEGREE+2)]
+-    assert all(ds[d]*ds[d+1]==0 for d in range(MAX_DEGREE+1))
+-    assert all(ds[d]//order==1 for d in range(1,MAX_DEGREE+1,2))
++    check(all(ds[d]*ds[d+1]==0 for d in range(MAX_DEGREE+1)), 'Original verification condition at line 102')
++    check(all(ds[d]//order==1 for d in range(1,MAX_DEGREE+1,2)), 'Original verification condition at line 103')
+ # Exact Mackey orbit enumeration: C8 acts on the 70 four-element subsets.
+ # Stabilizer C4 occurs only for the even and odd subsets; C2 stabilizers
+ # act as two transpositions on the selected four letters.
+@@ -114,17 +119,17 @@
+     stabilizer=[k for k in range(8) if shift(seed,k)==seed]
+     orbits.append({'representative':seed,'orbit_size':len(orbit),
+                    'stabilizer_order':len(stabilizer)})
+-assert len(subsets)==70
+-assert sum(x['orbit_size'] for x in orbits)==70
+-assert sorted(x['stabilizer_order'] for x in orbits)==[1]*8+[2,4]
+-assert [x['representative'] for x in orbits if x['stabilizer_order']==4]==[(0,2,4,6)]
++check(len(subsets)==70, 'Original verification condition at line 117')
++check(sum(x['orbit_size'] for x in orbits)==70, 'Original verification condition at line 118')
++check(sorted(x['stabilizer_order'] for x in orbits)==[1]*8+[2,4], 'Original verification condition at line 119')
++check([x['representative'] for x in orbits if x['stabilizer_order']==4]==[(0,2,4,6)], 'Original verification condition at line 120')
+ # Transfer-square coefficient for the equal width-four gathered columns.
+-assert math.comb(4,2)%2==0
++check(math.comb(4,2)%2==0, 'Original verification condition at line 122')
+ # C8 regular-representation p2 restriction coefficient (an optional cross-check).
+-assert (1**2*2**2+1**2*3**2+2**2*3**2)%8==1
++check((1**2*2**2+1**2*3**2+2**2*3**2)%8==1, 'Original verification condition at line 124')
+ # The S4 block has odd-index inclusion for 4 <= n <= 7.
+-assert [math.comb(n,4) for n in range(4,8)]==[1,5,15,35]
+-assert all(math.comb(8,a)%2==0 for a in range(1,8))
++check([math.comb(n,4) for n in range(4,8)]==[1,5,15,35], 'Original verification condition at line 126')
++check(all(math.comb(8,a)%2==0 for a in range(1,8)), 'Original verification condition at line 127')
+ result={'status':'PASS','scope':'Exact algebra checks; not a general skyline-conjecture test',
+         'max_degree':MAX_DEGREE,'S4_rows':rows,
+         'abstract_counterexample':{'cohomology_order':8,'allowed_subgroup_order':4,'index':2},
+--- packet/PROOF.md
++++ patched/PROOF.md
+@@ -98,6 +98,33 @@
+ 
+ This proves the source conjecture for S4 in every degree using only primary and secondary Bocksteins of individual skyline classes, plus the degree-zero unit. No positive-degree integral skyline cycle is required for this special case. This is an elementary consequence of known low-rank cohomology and is not presented as a novel computation of H*(BS4;R).
+ 
++### Compatible lifts preserve the individual skyline source
++
++Here “higher Bockstein on a skyline class” uses the surviving mod-2
++cohomology class as source, as in the coefficient Bockstein spectral sequence.
++It does not require division of the differential of the unmodified canonical
++Fox–Neuwirth cochain. This distinction is essential, and the result does not
++assert that stronger chain-level property.
++
++For a free R-cochain complex, the corrections needed through page three can be
++written explicitly. Start with a fixed integral lift c of the chosen mod-2
++cocycle and write dc=2b. If d1[c]=0, choose h with b-dh even. Then
++c4=c-2h has dc4=4b2. If d2[c]=0 on E2, there is a mod-2 cocycle u and a
++cochain q such that b2-du_tilde/2-dq is even, where u_tilde is an integral
++lift of u. Thus c8=c4-2u_tilde-4q has dc8 divisible by 8. These corrections
++are even, so c4 and c8 reduce to the original individual mod-2 cocycle.
++Dividing their differentials produces integral cycles killed by 4 or 8.
++Changing a lift with the same mod-2 reduction changes the resulting normalized
++class by a class killed by 2 or 4, respectively. No sum of distinct skyline
++source classes is introduced by these lift corrections.
++
++In the cyclic-basis argument, coefficient reduction embeds H^d(R)/2H^d(R)
++into H^d(F2), by the coefficient long exact sequence. The selected primary
++reductions are independent in im(d1), while each selected secondary reduction
++is nonzero in ker(d1)/im(d1). Together with the cyclic-factor counts this
++justifies generation and independence of the actual integral classes, rather
++than only independence of associated-graded classes.
++
+ ### 3.4 An explicit deterministic selection rule
+ 
+ For use in the verification script, write M(b,c)=y^b z^c and Q(i,j)=gamma_(1,1)^i transfer gamma_(1,1)^j, 0<=i<j. These are precisely the skyline basis elements of A (with M(0,0) the unit). Put P_0=0, P_1=x, and P_m=x P_(m-1)+y P_(m-2). Then Q(i,j)=y^i P_(j-i). For each degree, order the Q terms by increasing i, followed by the M terms by increasing c. Greedily retain the sources whose d1 images increase rank over F2. Primary Bocksteins of those sources, together with the secondary source M(2k,1) in degree 4k+3, give the cyclic basis just proved. `TEST_RESULTS.json` lists these source choices through target degree 80.
+@@ -136,7 +163,7 @@
+ 
+ The two factors are on S4; their gathered profiles differ because exactly one contains z, so this transfer product is indeed one skyline basis element, rather than a sum.
+ 
+-**Proof of survival.** In the E2 page for S4 x S4, the source is z v^a tensor v^(a+1). Its d2 image is v^(a+1) tensor v^(a+1). Transfer commutes with Bocksteins. The transfer product of the two equal gathered classes v^(a+1) is zero already in mod-2 cohomology: merging the equal width-four profiles has coefficient binomial(4,2)=6, which is even [GSS, Theorem 6.8]. Thus d1(U_a)=0 and d2(U_a)=0. To prove that U_a has not become a boundary on the second page, and to detect its next differential, use C8.
++**Proof of survival.** In the E2 page for S4 x S4, the source is z v^a tensor v^(a+1). Its d2 image is v^(a+1) tensor v^(a+1). Transfer commutes with Bocksteins. The transfer product of the two equal gathered classes v^(a+1) is zero already in mod-2 cohomology: the two equal profiles supported on four letters have combinatorial widths 2 and 2 in [GSS, Definition 6.3], and therefore their merged coefficient is binomial(4,2)=6, which is even [GSS, Theorem 6.8]. Thus d1(U_a)=0 and d2(U_a)=0. To prove that U_a has not become a boundary on the second page, and to detect its next differential, use C8.
+ 
+ **Mackey restriction to C8.** Identify the eight letters with residues modulo 8 and let C8 act by translation. Cosets of S4 x S4 are four-element subsets. There is exactly one orbit with stabilizer C4, namely the orbit of the even and odd subsets. There is one orbit with stabilizer C2 and eight free orbits. In the C4 orbit, the generator of the stabilizer cyclically permutes each of the two four-element blocks. As in Section 3.2 the restriction of the source to that stabilizer is
+ 
