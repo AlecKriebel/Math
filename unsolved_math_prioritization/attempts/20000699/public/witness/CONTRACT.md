@@ -1,0 +1,13 @@
+# Row 1795 / ID 20000699 / AIM-ANALYTIC_NUMBER_THEORY-0063
+
+The declared V1 interpretation is specified in FORMULATION_GATE_SNAPSHOT.md and explicitly amended below. Research accounting: one shared proof-attempt turn of five; source preparation used no mathematical turns.
+
+Goal is the precise conditional two-arrow rank-one witness: an explicit uniform cumulative Mobius-divisor correlation hypothesis with CK2016 Ramanujan density yields the centered-at-r four-shift polydisc quantitative sharp finite-polynomial ratios formula; it in turn yields the stated smoothed aggregate prime-power pair formula with evaluated Hardy-Littlewood singular series, differentiated error o(T). Preserve all parameters, sharp endpoints, Fourier support, holomorphy/collision and GRH qualifications in the adopted gate. Full zeta ratios and individual fixed-shift prime-pair claims are excluded. The source asks for some version: a properly qualified complete witness may resolve this declared interpretation, but neither novelty nor unrestricted source resolution follows.
+
+The hypothesis must specify actual sums, ranges, and the main profile; it cannot assume the desired ratios or prime statistic. Any correction of the prescribed density or target must be explicit and independently audited. Only authored mathematical content and public verification metadata are included here; copied third-party sources are excluded.
+
+## Explicit pass-1 correction adopted after independent audit
+
+The original source-preparation gate allowed psi>phi. For its unchanged cumulative density this makes the uniform complex-shift correlation hypothesis inconsistent: two numerator derivatives and exact common-shift reweighting on [N/2,N] produce an h/logN bias exceeding the claimed O(N^phi log²N) error when phi<log_N h<min(psi,1). This obstruction was independently checked in the source, exact and acceptance audits. The nonvacuous witness is therefore restricted explicitly to 0<psi<=phi<1, retaining all the original strict length conditions. Example: phi=3/4, psi=1/4, lambda=6/5. No assertion that this necessary restriction proves the remaining arithmetic conjecture is made. The original gate remains unchanged as provenance.
+
+The arithmetic Q and explicit prime-pair benchmark are unchanged. Correspondence to CK must use the correctly shifted Mellin expression and the whole-line low-time contact term if required; any correction to a printed source formula must identify exact version and be independently proved. This is a declared corrected low-rank witness, not literal validation of every originally printed formula.

@@ -1,0 +1,24 @@
+{
+  "schema": "ratios_replay_scope_v1",
+  "mathematical_scripts": [
+    "witness/exact/verify_exact.py",
+    "witness/reverse/check_reverse_identities.py",
+    "witness/euler/verify_local_algebra.py",
+    "witness/audit/independent_controls.py"
+  ],
+  "mathematical_scripts_omitted": [],
+  "assertion_policy": "Every frozen checker and its imports run in a fresh -I -B Python subprocess, with PYTHONOPTIMIZE removed, sys.flags.optimize==0, __debug__ true, a false-assertion probe, and compile(..., optimize=0). Frozen scripts contain no nested launcher or dynamic loader; all assertions stay enabled even when the wrapper runs under -O, -OO, or inherited PYTHONOPTIMIZE.",
+  "clean_replay": "Package bytes copied into a fresh temporary directory; every stored checker output removed before execution. No excluded-original or source-tree fallback.",
+  "negative_controls": {
+    "assertion_tripwires": 4,
+    "mathematical_mutants": 4,
+    "integrity_corruptions": 10,
+    "total": 18
+  },
+  "comparison_policy": {
+    "exact_euler_independent": "stdout and generated result bytes identical to accepted fixtures",
+    "reverse": "Every nonfloating result field exact; sole floating error finite in [0,1e-12]. Current-platform byte equality reported separately."
+  },
+  "finite_regression_scope": "Exact script reports 16300 labelled cases; reverse reports 8300 labelled cases with one floating diagnostic; Euler reports five symbolic identities; independent script checks divisor/log identities through n=2000, rational HL factors, displaced Euler algebra, and an admissible parameter example. Counts overlap; do not sum as independent theorem evidence.",
+  "historical_external_byte_checks": "Excluded PDF, source text, and datasets are not fetched or replayed."
+}
