@@ -1,0 +1,140 @@
+{
+  "all_tests_pass": true,
+  "archive": {
+    "bytes": 19002,
+    "filename": "LEAF_SPACE_10300026_AUTHOR_V2_SAFE_FREEZE.zip",
+    "sha256": "7f36eececb5ddcbdfd17e34a7dd015d081641b2d5aa555f093576ae9713df454"
+  },
+  "bootstrap": {
+    "bytes": 2994,
+    "filename": "LEAF_SPACE_10300026_AUTHOR_V2_BOOTSTRAP.py",
+    "sha256": "a1dfd605ea34bdc4df5e350cbf0704ab2025363f8e3e5fb59790c54ab322770a"
+  },
+  "date_utc": "2026-10-06",
+  "harness_note": "An initial v2 run stopped during negative-test setup because the temporary entrypoint retained read-only source permissions. Only temporary-copy permissions were adjusted; all 17 cases were then rerun from scratch.",
+  "independent_review": "PENDING",
+  "mathematical_proof_checked": false,
+  "pre_execution_inventory_verified": true,
+  "problem_id": 10300026,
+  "tests": [
+    {
+      "case": "normal",
+      "expected": "ACCEPT",
+      "observed_returncode": 0,
+      "output": "{\"full_solution\": false, \"mathematical_proof_checked\": false, \"metadata_validation\": \"PASS\", \"problem_id\": 10300026}",
+      "test_pass": true
+    },
+    {
+      "case": "optimized",
+      "expected": "ACCEPT",
+      "observed_returncode": 0,
+      "output": "{\"full_solution\": false, \"mathematical_proof_checked\": false, \"metadata_validation\": \"PASS\", \"problem_id\": 10300026}",
+      "test_pass": true
+    },
+    {
+      "case": "relocated",
+      "expected": "ACCEPT",
+      "observed_returncode": 0,
+      "output": "{\"full_solution\": false, \"mathematical_proof_checked\": false, \"metadata_validation\": \"PASS\", \"problem_id\": 10300026}",
+      "test_pass": true
+    },
+    {
+      "case": "relocated_optimized",
+      "expected": "ACCEPT",
+      "observed_returncode": 0,
+      "output": "{\"full_solution\": false, \"mathematical_proof_checked\": false, \"metadata_validation\": \"PASS\", \"problem_id\": 10300026}",
+      "test_pass": true
+    },
+    {
+      "case": "hostile_cwd_and_PYTHONPATH",
+      "expected": "ACCEPT",
+      "observed_returncode": 0,
+      "output": "{\"full_solution\": false, \"mathematical_proof_checked\": false, \"metadata_validation\": \"PASS\", \"problem_id\": 10300026}",
+      "test_pass": true
+    },
+    {
+      "case": "package_import_shadow",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: unexpected or missing root entry, including caches",
+      "test_pass": true
+    },
+    {
+      "case": "package_cache_directory",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: unexpected or missing root entry, including caches",
+      "test_pass": true
+    },
+    {
+      "case": "extra_inventory_member",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: unexpected or missing root entry, including caches",
+      "test_pass": true
+    },
+    {
+      "case": "missing_inventory_member",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: unexpected or missing root entry, including caches",
+      "test_pass": true
+    },
+    {
+      "case": "entrypoint_tamper",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: member integrity: validate.py",
+      "test_pass": true
+    },
+    {
+      "case": "inventory_symlink",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: nonregular inventory member",
+      "test_pass": true
+    },
+    {
+      "case": "root_symlink",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: root must be canonical absolute path",
+      "test_pass": true
+    },
+    {
+      "case": "manifest_entrypoint_confusion",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: manifest inventory or entrypoint",
+      "test_pass": true
+    },
+    {
+      "case": "wrong_root_inventory",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: unexpected or missing root entry, including caches",
+      "test_pass": true
+    },
+    {
+      "case": "nonisolated_invocation",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: -I -S -B required",
+      "test_pass": true
+    },
+    {
+      "case": "site_enabled_invocation",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: -I -S -B required",
+      "test_pass": true
+    },
+    {
+      "case": "bytecode_enabled_invocation",
+      "expected": "REJECT",
+      "observed_returncode": 1,
+      "output": "REJECT: -I -S -B required",
+      "test_pass": true
+    }
+  ]
+}

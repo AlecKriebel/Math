@@ -1,0 +1,17 @@
+# Calegari Question 8.3: audited scope and elementary reductions
+
+Problem 10300026 / AMR-102-0026, catalog rank 844. Canonical campaign status: **unsolved, 4/5 approaches**. This means the present work did not solve the question; it is not certification that the exact unqualified original question is globally open. The original question's current status is **not established by this audit**. No general solution, counterexample, or novelty claim is accepted.
+
+Read [the v2 report](author/REPORT.md), [the independent audit](audit/AUDIT_REPORT.md), and [the acceptance boundary](audit/ACCEPTANCE.json). The four accepted elementary lemmas concern covering invariance, regular-cover descent, surface bundles, and a line action without a common fixed point for the whole group. The action is not asserted to be free or faithful, nor is every nonidentity element asserted to have no fixed points. Co-orientability and tautness assumptions remain explicit.
+
+Four substantive routes were examined. Virtual fibering supplies an upstairs foliation; descent requires deck invariance. The June 2026 Zhao manuscript still poses its co-orientable version and proves a restricted positive family. Historical announcements remain unverified leads. No-Reebless examples do not meet the taut-foliation premise. None of these statements establishes the general implication or a general counterexample.
+
+Only author v2 is eligible. The v2 and independent audit archives, their members, external manifests, bootstraps, and receipts are preserved exactly. No mathematical correction was required. The author snapshot's PENDING independent-review field and original receipts' pre-publication fields are historical; the independent ACCEPTANCE.json supplies the later disposition. The superseded author archive, exact private redaction diff, source PDFs, source text, raw datasets, and private coordination materials are excluded.
+
+## Authenticated execution
+
+Before executing package code, independently compare the SHA-256 of publication_bootstrap.py and PUBLICATION_MANIFEST.json with the external pins in the draft PR. Then run Python with -I -S -B, the bootstrap's canonical absolute filename, the canonical absolute package directory, and the pinned manifest SHA-256. Add --replay for author/audit checks, or --corpus followed by the three authorized local catalog, problems, and research-results paths for the full corpus binding. Add -O to exercise optimized outer execution. Do not put corpus files inside this strict package.
+
+The publication gate authenticates its complete recursive inventory, immutable inputs, and all archive members before any inner code runs. Replay includes normal and optimized child checks, 45 author controls, and 43 audit controls. publication_controls.py supplies 30 additional positive/negative boundary cases; authenticate the full package first. The portable audit controls preserve the independently reviewed cases and remove the original environment-specific location. All other original files remain unchanged.
+
+These programs check bounded byte integrity and metadata, not mathematical validity. Trust assumptions include independently supplied pins, trusted interpreter/standard library/OS, and a quiescent filesystem. An actively racing filesystem writer is outside the certificate. Corpus and source-check results are bounded evidence, not novelty or comprehensive literature certification.
