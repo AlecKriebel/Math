@@ -1,0 +1,10 @@
+# PR1208 same-CASE recovery preparation01
+
+- 2026-10-22T18:25:57.512709+00:00: Preparation0%, overall81%. New private same-CASE recovery program opened. Actual86file/3dir prefix, old34a authority, rootfailure/nativeDATA and immutable source/launch/review inputs pinned; no production writes.
+- 2026-10-22T18:38:53.508023+00:00: Preparation30%, overall81%. Fixture reads-before-header setup failed under original Journal guard; source/diagnostic/incomplete fixture preserved, no physical effect scenario pass claimed.
+- 2026-10-22T18:42:54.820562+00:00: Preparation50%, overall81%. Two physical worlds passed; known-create fake HTTP metadata-wrapper mismatch stopped development. Complete partial evidence/source retained; test transport only repaired.
+- 2026-10-22T18:49:51.107426+00:00: Preparation45%, overall81%. Material initial adapter cold compatibility HOLD: exact core untrusted forensic record was rejected; known777 response retained. Narrow full-envelope/opaque-value preservation added; no blanket namespace waiver.
+- 2026-10-22T18:53:23.273045+00:00: Preparation80%, overall81%. Runtime02 full197owned/191row fixture41DATA/sixphysical PASS; preserved separately. Final runtime adds explicit additive authorization/source reference in trusted resume intent.
+- 2026-10-22T18:58:12.728577+00:00: Preparation95%, overall81%. Thirty actual new authorization parser controls over virtual bytes and five actualCLI controls PASS; no passing recovery file.
+- 2026-10-22T18:58:35.847181+00:00: Preparation95%, overall81%. Exact final runtime03 7915fa61...41DATA/six compact physical worlds PASS; fixture explicitly2owned/56full43-columnrows for10MiBcap. No production baseline inferred.
+- 2026-10-22T19:18:50.538409+00:00: Preparation100%, overall81%. Complete28TAR/11771member and sevenZIP/28member custody checked; original actualCASE/source07/whole07/launch01/oldAUTH remain exact. Root new independent helper review and separate additive adoption required; readyfalse; final outer seal pending.
