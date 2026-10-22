@@ -1,0 +1,33 @@
+{
+  "schema": "whole-preprint-round02-findings/v1",
+  "utc": "2026-10-16T17:27:10.233253+00:00",
+  "result": "MATH_PASS_TWO_LOW_EDITORIAL_REPAIRS",
+  "mathematical_issues": [],
+  "source_semantics_or_priority_promotion_issues": [],
+  "issues": [
+    {
+      "id": "R02-L1",
+      "severity": "low",
+      "location": "source/main.tex:235 and suppliedPDF p4 reference[1]",
+      "mechanism": "Bibliography gives contribution1360–1362 but official EMS PDF45/printed1363 continues Sierra references before next contribution. Complete contribution is1360–1363. Body locators1361–1362 are correct.",
+      "action": "Change bibliography endpoint to1363, rebuild/rebind PDF and affected exact six; preserve all historical files.",
+      "primary_evidence": "https://ems.press/content/serial-article-files/46279, SHA256 c860a92325ab314dc5a784cfac5ad7812a7715735247465b7bf4c27d9bd4cd60, PDF45/printed1363 text and visual inspection."
+    },
+    {
+      "id": "R02-L2",
+      "severity": "low",
+      "location": "source/audit/math_quotient_algebra/README.md:9 (example line7)",
+      "mechanism": "The instruction says test_packet.py uses the same arguments as verify_packet.py, whose example includes--replay. test_packet.py argparse has no--replay. Literal execution on owned clone exits2 with unrecognized arguments; omitting it passes2positive/16negative controls. The harness also places temporary copies under packet.parent and temporarily hardlinks REPORT.md. Invoke it on a full owned packet copy outside the closed source; do not give the frozen source tree as its mutable test root.",
+      "action": "Preserve sealed family bytes and add an explicit superseding top-level source README command: full owned copy of algebra packet outside closed source, omit--replay, absolute intake/primary-root paths and external pins. Do not relax ancestry guards or mutate any of the58 originals.",
+      "observed_exit": 2,
+      "stderr_sha256": "d395ed0a259462a7ebc7d36a89e05f1b5cd6e9c7e9707dee4b116125c1ec2a64"
+    }
+  ],
+  "priority": "UNRESOLVED",
+  "firstness_certified": false,
+  "exhaustive_absence_certified": false,
+  "current_worldwide_open_status_certified": false,
+  "ready_for_zero_issue_gate": false,
+  "next": "Repair both concrete editorial/docs findings, then a different freshly initialized whole-preprint review of the rebuilt candidate.",
+  "completion_percent_for_this_review": 100
+}

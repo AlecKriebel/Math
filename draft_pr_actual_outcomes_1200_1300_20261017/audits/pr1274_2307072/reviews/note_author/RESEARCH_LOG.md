@@ -1,0 +1,5 @@
+# Research log: manuscript author
+
+- 2026-10-18T02:07:05.488063+00:00 — Read actual submitted proof, accepted mathematical gate, root reconstruction, and two sealed priority-family findings; checked primary problem, Iwaniec, Gill, and book-credit material. Decision: prepare an expository classical-formula verification with no novelty claim. Best-guess completion toward assigned manuscript-authoring goal: **60%**.
+- 2026-10-18T02:08:05.781029+00:00 — Initial concise source written with full analytic-L1, Cauchy/PV, weak-trace, essential-norm, and polynomial calculations. Corrected the title spacing and restricted the stated Gill specialization to bounded coefficients supported in (0,1), which suffices here. Best-guess authoring completion: **90%**.
+- 2026-10-18T02:09:17.670287+00:00 — Source static braces/environments/labels/citations check passed; sealed exact source copy and report/manifest; original six checked unchanged. Best-guess authoring completion: **100%**. Manuscript remains provisional for root reverse-cross priority findings and later independent compilation/layout review. No page-count or publication-clearance claim.

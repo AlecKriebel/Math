@@ -1,0 +1,42 @@
+--- TURN_C4_BK_POISSON_CANDIDATE.md
++++ TURN_C4_BK_POISSON_REVISED.md
+@@ -3,6 +3,8 @@
+ Date: 2026-10-07. Problem 9700042 / AMR-096-0042.
+ 
+ ## Status
++
++Revised clarification edition; the original frozen C4 candidate is preserved.
+ 
+ This is the fifth supported substantive author attempt: the historical approach plus C1–C4. It is a complete proof candidate submitted for fresh independent review. **It is not yet an accepted solution.** No claim of novelty, human peer review, or formal verification is made. C1's accepted partial-result audit does not validate the new argument below. The earlier C1–C3 files are preserved unchanged.
+ 
+@@ -169,6 +171,8 @@
+ \leq\left(\frac{es}{k}\right)^{2k}. \tag{31}
+ \]
+ 
++The same factorial bound also gives uniform integrability of Lambda_s/s for s>=1: above any sufficiently large constant multiple of s, its tail decreases geometrically in the chain length. Thus the known convergence in probability Lambda_s/s -> 2 implies convergence of its mean, as used in Section 9.
++
+ To deduce (30), choose a much smaller positive a than epsilon and a fixed M>10e. Below (2+a)s, bound the exponential by e^{theta(2+a)s}. Between (2+a)s and Ms, the first tail estimate contributes at most a polynomial factor in s times e^{theta Ms-c_a s}. Choose theta>0 small enough that this is exponentially smaller than e^{theta(2+2a)s}. Above Ms, (31) gives a convergent geometric bound, uniformly for this theta. Absorb the finitely many constant/polynomial factors by the remaining gap between 2+2a and 2+epsilon, taking s sufficiently large. This proves (30).
+ 
+ Since 2sqrt(2wh)<=sqrt(2)(w+h), (30) implies, with epsilon changed harmlessly, that for any fixed finite collection of rectangle aspect ratios and all sufficiently large common scale R,
+@@ -225,7 +229,7 @@
+ J=\lceil2N/L\rceil
+ \]
+ 
+-segments. Let the endpoints be (x_j,y_j), j=0,...,J, with t_j=x_j+y_j. For j<J the level increments are L, and the last increment tau_j=t_{j+1}-t_j is in (0,L].
++segments. Let the endpoints be (x_j,y_j), j=0,...,J, with t_j=x_j+y_j. For j<J-1 the level increments are L, and the last increment tau_j=t_{j+1}-t_j is in (0,L] (possibly equal to L).
+ 
+ Let b_j be the number of backward steps in segment j. Record the integers
+ 
+@@ -263,9 +267,9 @@
+ W_j+H_j=\tau_j+2h+4a_j. \tag{40}
+ \]
+ 
+-Also -s_j-2<=i_{j+1}-i_j<=m+s_j+2. These bounds imply positive side lengths, at least h.
+-
+-Call a segment good if s_j=0 and it is not the last segment. Its rectangle is one of (35). The remaining segments are bad. There are at most K+1 bad segments. Since each nonlast bad segment has s_j>=1 and a_j< b_j+h<=2b_j,
++Also -s_j-2<=i_{j+1}-i_j<=m+s_j+2. Positive side lengths for every segment, including the short last one, follow from the actual endpoint displacements. Write x_j=i_j h+delta_j with 0<=delta_j<h. Then W_j=(x_{j+1}-x_j)+2a_j+h+delta_j-delta_{j+1} and H_j=(y_{j+1}-y_j)+2a_j+h-delta_j+delta_{j+1}. Each quantization remainder after 2a_j is positive, and each endpoint displacement is at least -b_j. Hence each side is greater than 2a_j-b_j>=h.
++
++Call a segment good if s_j=0 and it is not the last segment. Its rectangle is one of (35). The remaining segments are bad. There are at most K+1 bad segments. Since each nonlast bad segment has s_j>=1 and a_j<=b_j+h<=2b_j,
+ 
+ \[
+ \sum_{\mathrm{bad}}(W_j+H_j)

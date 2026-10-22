@@ -1,0 +1,9 @@
+# PR210 whole-package adoption review candidate
+
+This is the complete scientific/source/publication review scope for the ascending audit of the already-merged PR210. The current addendum and Root receipts accompany the immutable existing version1.0 paper and 181-entry source archive; they are not a new preprint or Zenodo version. The new operator source and final native adoption checkpoint are separate operational review gates.
+
+Begin with the exact theorem in the published manuscript and independently reconstruct its geometry and proof. Dated readiness reports or Root/peer acceptance labels are evidence to challenge, not premises. The source ZIP includes old forensic and operational files: do not execute publishers, builders, network helpers or presentation mutators. Any replay must follow a complete effect/source inspection and use an owned isolated directory. The original package's verification README identifies the ten current jobs and historical exclusions.
+
+The current addendum credits a later exact-target Theorem C and retains bounded-priority limits. Its frozen pending-review sentence is a dated description, not permission to skip the two fresh sequential whole-package reviews. External third-party PDFs and raw spreadsheet/provider responses are private reading evidence, not redistribution payload. Reviewers may inspect them locally when necessary.
+
+PUBLIC_REVIEW_MANIFEST.json lists a finite positive public selection. Seven frozen published artifacts and the current native science presentation are already contained in the finite native-custody subpacket. No recursive source discovery is authorized. Current mutable case/global progress views are excluded and only their named dated snapshots are selected here. Root alone authorizes service/ref effects; this scientific packet grants none.

@@ -1,0 +1,11 @@
+# Computational adversary log
+
+2026-10-16T16:14:15.755330+00:00 — START: all 33 original byte hashes, byte counts, modes, Git blobs and immutable-head content agree. Exact question read privately; initial attack saved and reread. Route completion estimate 10%; full claim acceptance not in scope.
+
+2026-10-16T16:17:39.871371+00:00 — Independent exact polynomial controls pass: 1,400 polynomial-in-rank identities across jet orders 1–6; actual first coefficients 0,-6,-24 and residual -12; all-tail factorization established in review notes. Original isolated-copy cold matrix in progress. Route completion estimate 55%.
+
+2026-10-16T16:18:54.958372+00:00 — 118 isolated runtime launches completed in 23.326670 seconds summed subprocess wall time; cold copy bytes/modes unchanged. Six full replay/bridge launches fail honestly at missing bwrap. Mode-only and writable-mode changes pass original integrity, as expected for byte-only manifests. Independent math enhanced after initial successful matrix to check Gaussian-binomial Habiro divisibility, with initial result preserved separately; final math rerun follows. Route completion estimate 70%.
+
+2026-10-16T16:21:17.756224+00:00 — Count correction: initial runtime had 118 recorded cases, not 118 subprocess launches: 115 launched plus 3 externally rejected altered-bootstrap copies before execution. Final math/profile matrix adds 52 launches (13.831193 seconds). All intended supported positives and negatives match; six original full/bridge failures remain explicit missing-bwrap limitations. Route completion estimate 90%; route only, no full-paper acceptance.
+
+2026-10-16T16:24:03.995974+00:00 — END: all 33 original bytes, sizes, modes and immutable Git identities exactly match START. Final receipt consistency and own-code explicit-check/zero-assertion review pass. Required boundaries REQ-COMP-01 (actual Linux/bwrap full replay not reproduced) and REQ-COMP-02 (primary-source/topological identification outside route); optional hardening OPT-COMP-01/02 and platform documentation OPT-COMP-03. No computational algebra error or stated-original-invariant violation found. Assigned route review completion estimate 100%; overall assigned computational review 100%. This percentage is not a full-paper acceptance or an estimate for the parent audit. Public explicit payload seal follows.

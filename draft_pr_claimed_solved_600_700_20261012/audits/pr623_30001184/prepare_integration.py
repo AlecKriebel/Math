@@ -229,7 +229,7 @@ def archive_binding(data, original, paper_files, source):
         members = {name: archive.read(name) for name in names}
     manifest = parse_json(members['PACKAGE_MANIFEST.json'])
     require(type(manifest) is dict and set(manifest) == {'schema', 'file_count', 'files', 'raw_third_party_fulltexts_included'}
-            and manifest['schema'] == 1 and type(manifest['file_count']) is int
+            and type(manifest['schema']) is int and manifest['schema'] == 1 and type(manifest['file_count']) is int
             and manifest['raw_third_party_fulltexts_included'] is False, 'package manifest schema')
     entries = manifest['files']
     require(type(entries) is list and len(entries) == manifest['file_count'] == len(members) - 1,
@@ -255,10 +255,17 @@ def archive_binding(data, original, paper_files, source):
 
 
 def publication_inputs(publication, doi, receipt_path, inspection_path, source_audit=None, original=None):
+    """Return (file bytes, archive-bound notice bytes, validation) from one capture.
+
+    Each payload, notice and receipt path is read once. All parsing, validation,
+    hashes and downstream construction use those captured immutable bytes;
+    later filesystem changes cannot substitute different attested contents.
+    """
     valid_doi(doi)
     files = {name: regular_bytes(publication / name) for name in PUB_NAMES}
     require(files[PUB_NAMES[0]].startswith(b'%PDF-'), 'paper is not a PDF')
-    receipts = [parse_json(regular_bytes(p)) for p in (receipt_path, inspection_path)]
+    receipt_bytes = tuple(regular_bytes(path) for path in (receipt_path, inspection_path))
+    receipts = [parse_json(data) for data in receipt_bytes]
     expected_files = {name: {'name': name, 'size': len(files[name]), 'sha256': sha(files[name])}
                       for name in ('gns_generation_counterexample.pdf', 'gns_verification.zip')}
     for r in receipts:
@@ -281,8 +288,8 @@ def publication_inputs(publication, doi, receipt_path, inspection_path, source_a
     if original is None:
         original, _ = load_snapshot(A / 'native' / PREFIX)
     archive = archive_binding(files['gns_verification.zip'], original, files, source)
-    return files, {'publication_receipt_sha256': sha(regular_bytes(receipt_path)),
-                   'inspection_receipt_sha256': sha(regular_bytes(inspection_path)),
+    return files, source, {'publication_receipt_sha256': sha(receipt_bytes[0]),
+                   'inspection_receipt_sha256': sha(receipt_bytes[1]),
                    'archive_binding': archive, 'current_source_notice_sha256': sha(source),
                    'files': [{'path': n, 'bytes': len(d), 'sha256': sha(d)} for n, d in sorted(files.items())]}
 
@@ -414,10 +421,9 @@ def main():
     original, frozen = load_snapshot(native)
     for name in original:
         require(git('show', ORIGINAL + ':' + PREFIX + name) == original[name], 'native differs from original immutable PR: ' + name)
-    publication, publication_validation = publication_inputs(
+    publication, source, publication_validation = publication_inputs(
         A / 'publication', args.doi, A / 'ZENODO_PUBLICATION_RECEIPT.json', A / 'ZENODO_POST_PUBLICATION_INSPECTION.json',
         args.source_audit, original)
-    source = regular_bytes(args.source_audit)
     git('fetch', '--no-write-fetch-head', 'origin', 'refs/heads/main:refs/remotes/origin/main')
     base = git('rev-parse', 'refs/remotes/origin/main').decode().strip()
     existing = git('ls-tree', '-r', '--name-only', base, '--', PREFIX).decode().splitlines()

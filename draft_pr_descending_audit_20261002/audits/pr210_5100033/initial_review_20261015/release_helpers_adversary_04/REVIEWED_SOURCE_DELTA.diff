@@ -1,0 +1,27 @@
+--- review03_frozen/integrate_reviewed_pr.py
++++ current/integrate_reviewed_pr.py
+@@ -85,7 +85,14 @@
+ assert len(rows) == 1
+ fields = rows[0].split('|')
+ assert len(fields) == 14
+-assert fields[8].strip() == 'claimed_solved', 'Fresh MAIN status changed: reconcile before integration'
++# Eligibility is determined at the exact frozen PR head above. MAIN can still
++# contain this problem's untouched queued placeholder until this PR is merged.
++# Permit only that exact placeholder or the previously supported claimed state.
++placeholder=original_row[0].split('|')
++placeholder[8]=' queued ';placeholder[9]=' 0/5 '
++for index in [10,11,12]:placeholder[index]=' '
++require(fields[8].strip()=='claimed_solved' or rows[0]=='|'.join(placeholder),
++        'Fresh MAIN row is neither claimed_solved nor the exact untouched queued placeholder; reconcile before integration')
+ assert original_row[0].split('|')[9].strip() == '1/5'
+ fields[7] = ' 2020 '
+ fields[8] = ' claimed_solved '
+@@ -161,7 +168,7 @@
+ paths += [p for p in D.iterdir() if p.is_file()]
+ for folder in ['submitted','root_reproduction']:
+     paths += [p for p in (D/folder).rglob('*') if p.is_file() and not any(x.startswith('private') or x=='__pycache__' for x in p.parts)]
+-for family in ['source_domain_adversary_01','physical_geometry_adversary_01','meromorphic_divisor_adversary_01','priority_author_updates_01','priority_classical_general_01','whole_manuscript_adversary_01','whole_manuscript_adversary_02','whole_manuscript_adversary_03','release_helpers_adversary_01','release_helpers_adversary_02','release_helpers_adversary_03']:
++for family in ['source_domain_adversary_01','physical_geometry_adversary_01','meromorphic_divisor_adversary_01','priority_author_updates_01','priority_classical_general_01','whole_manuscript_adversary_01','whole_manuscript_adversary_02','whole_manuscript_adversary_03','release_helpers_adversary_01','release_helpers_adversary_02','release_helpers_adversary_03','release_helpers_adversary_04']:
+     folder=D/family
+     candidates=[p for p in [folder/'AUTHORED_MANIFEST.json',folder/'MANIFEST.json',folder/'SAFE_AUTHORED_MANIFEST.json'] if p.exists()]
+     assert len(candidates)==1;seal=candidates[0];paths.append(seal);m=json.loads(seal.read_text())

@@ -1,0 +1,15 @@
+# Root source-first proposed route, before reading original PR204 proof
+
+Frozen at 2026-10-16T09:46:15.277207+00:00. This is a proposed mechanism/hypothesis, not mathematical clearance. Root already knows the established flag-curve framework from the completed PR203 audit and knows that PR203 credited a shared author checkpoint from this target. No independent-discovery or new-method claim is made. The original PR204 PROOF.md and favorable reviewer conclusions have not been read by Root at this freeze.
+
+Target source: RGK arxiv2004.12497v11 Table3p6, k203,b; signed original orbit area times the signed original-side-line pedal area from O, N not congruent2 modulo4, proper noncircular confocal ellipse pair. The table does not literally print least period. State least physical period explicitly, retain primitive stars and reversal, and test doubled primitive-six lists as the nominal-length countercontrol.
+
+Proposed complex route: on the incidence genus-one curve use endpoint exchange sigma, tangent exchange tau, and T=tau*sigma. Independently justify smooth/connected cover, physical-step correspondence, exact translation order and all charts, rather than borrow a favorable gate. Central inversion I should be a fixed-point-free holomorphic involution and hence a translation of order2: any fixed affine vertex would be O, not on E; at either outer infinity its two nonzero tangent w-values are exchanged. This needs complete checking.
+
+A possible general proof is complementary pole/zero cancellation. A has at-most-simple poles over translated outer infinities. For the origin-foot map Q=-w(u,v)/(u^2+v^2), branch-even double individual foot poles may reduce to simple area poles by grouping their incident edges with an odd regular neighbor difference. For odd exact N there should be one singular index; for even N two indices0,N/2. Check N3 and N4 separately for edge grouping. Special points must only lower pole orders.
+
+At an outer-infinite flag, sigma*x=T^(-1)*I*x. Intersection of translated infinity and branch supports would force I to equal a power of T, if both are translations. For odd N this is impossible by orders. For N divisible4, the real-circle argument from standard geometry should give I=T^(N/2), and support coincidence would force2j=N/2-1 moduloN, impossible. Every step must be reconstructed and attacked; no unpublished equivalent claim is accepted.
+
+At a branch flag, vertex reversal P_j=P_(1-j) should force A=0. At infinity, origin feet change sign under I. The relation should therefore give Q_j=-Q_(-j-1), forcing B_O=0 because reversal negates signed area while simultaneous negation preserves it. Check indices and regularity explicitly. These complementary zeros, if the disjointness and pole-order claims hold, make A*B_O holomorphic on compact connected X. No division by area or an origin-dependent coefficient is permitted.
+
+This is only a route to falsify. Exact proof, source contract, original analytic argument, independent physical/algebraic controls, bounded priority, publication reviews and actual release/integration gates remain. No original native/PR/QUEUE mutation is authorized by this note.

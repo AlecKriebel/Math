@@ -1,0 +1,7 @@
+# PR209 phase-transition marker audit
+
+2026-10-17T01:55:40.137540+00:00 — Checkpoint1; phase-transition audit estimate10%. Root identified an append-only95→100 marker conflict. Preserving prior88-check source-only report, manifest and seal unchanged as dated history. New work is confined to this subfolder; no actual provider, manifest, candidate, CAS, sync or global write authorized.
+
+2026-10-17T01:58:27.464630+00:00 — Checkpoint2; phase-transition audit estimate65%. Actual full historical load_inputs independently confirms the exactly-one-marker versus append-only-prefix contradiction. First repair f3c9ce69... supports valid95→100 and passes existing88 regressions but full-load tests expose9 accepted malformed namespace tags (missing separator, tab separator, unknown stem suffix across three Markdown views). CHANGES_REQUIRED for this pin; preparer is applying conservative stem detection. Prior88-check original report/seal unchanged.
+
+2026-10-17T02:02:00.510209+00:00 — Checkpoint3; phase-transition source-audit estimate100%. Final c2289796... model/21a8faf2... executor passes65 targeted full-load controls+88 full regressions+2 actual-local-prefix full-load checks. Conservative stem repair closes all9 malformed repros. Final46-file source closure612177B at source-manifest0dad47bb... independently verified. Mandatory/optional findings remaining: none at these source pins, conditional only. Prior88-check original seal remains unchanged; no manifest01 clearance; manifest02 exact audit next in separate directory.

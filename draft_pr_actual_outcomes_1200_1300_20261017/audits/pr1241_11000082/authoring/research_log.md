@@ -1,0 +1,7 @@
+# Research log — note authoring for PR #1241
+
+This log is confined to the source-drafting assignment, not the whole research/publication program.
+
+- 2026-10-17T20:33:53Z — Checked current primary bibliographic metadata for Farb, Horowitz, Leininger, the arXiv sources and Ferudun’s authenticated exact-scope theorem. Recorded the author-hosted/final-publication pagination difference. Read the frozen reconstruction and fresh convex-core adversary’s full PASS and derivations. Best guess toward authoring completion: **65%**. This checkpoint is recorded retrospectively from the actual metadata retrieval receipts.
+- 2026-10-17T20:37:10Z — Completed the full concise TeX note and matching proof record. Made compactness, fixed reference-point quantifiers, derivative injection only on H, outer Johnson representatives, and Horowitz’s linear exponents explicit. Static source preflight passes; no compilation or PDF was performed. Best guess toward authoring completion: **90%**.
+- 2026-10-17T20:38:07.028596+00:00 — Completed scoped bibliography QA and handoff notes. Specific known theorem is credited in abstract and introduction; no priority, firstness, mechanism novelty, genealogy or current-openness assertion is made. No mathematical repair was required beyond expository expansions of the checked route. All package/publication gates remain with the root coordinator. Best guess toward authoring completion: **100%**, ready for source freeze and downstream review.

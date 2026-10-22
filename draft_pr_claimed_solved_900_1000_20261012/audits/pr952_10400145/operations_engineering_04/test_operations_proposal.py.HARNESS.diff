@@ -1,0 +1,25 @@
+--- operations_engineering_03/test_operations_installed.py
++++ operations_engineering_04/test_operations_proposal.py
+@@ -4,13 +4,13 @@
+ if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):raise SystemExit('Use -I -S -B')
+ import argparse,copy,hashlib,json,os,tempfile
+ from pathlib import Path
+-OWN=Path(__file__).resolve().parent;P=OWN.parents[2];CORE=P/'accept_pr952.py'
++OWN=Path(__file__).resolve().parent;P=OWN.parents[2];CORE=OWN/'PROPOSED_accept_pr952.py'
+ def sha(b):return hashlib.sha256(b).hexdigest()
+ def enc(x):return (json.dumps(x,indent=2,sort_keys=True)+'\n').encode()
+-p=argparse.ArgumentParser();p.add_argument('--core-sha256',required=True);a=p.parse_args()
++p=argparse.ArgumentParser();p.add_argument('--core-sha256',required=True);p.add_argument('--installed',action='store_true');a=p.parse_args();CORE=P/'accept_pr952.py' if a.installed else CORE
+ raw=CORE.read_bytes()
+ if sha(raw)!=a.core_sha256:raise SystemExit('External core SHA mismatch')
+-n={'__name__':'_synthetic_inert_tests_','__file__':str(CORE)};exec(compile(raw,str(CORE),'exec',dont_inherit=True,optimize=0),n)
++n={'__name__':'_synthetic_inert_tests_','__file__':str(CORE)};exec(compile(raw,str(CORE),'exec',dont_inherit=True,optimize=sys.flags.optimize),n)
+ REAL_REMOTE_MAIN=n['remote_main'];EVENTS=[]
+ def yes(name,fn):
+  v=fn();EVENTS.append({'test':name,'status':'PASS'});return v
+@@ -152,4 +152,4 @@
+  gp=n['GuardedZenodoClient'](c,kit,{'title':'fixture'},[],lambda:None,'publish',123);no('zenodo_lost_publish_response',lambda:gp.publish(123));gp2=n['GuardedZenodoClient'](c,kit,{'title':'fixture'},[],lambda:None,'publish',123);no('zenodo_no_second_publish_after_uncertainty',lambda:gp2.publish(123));n['need'](c.posts==1,'second publish reached client')
+  no('zenodo_other_ID_GET',lambda:gp.get(124));no('zenodo_notes_no_normalization',lambda:n['exact_remote_metadata']({'metadata':{'notes':'a&gt;b'}},{'notes':'a>b'}))
+  n['need'](all(e['status'] in ('PASS','REJECTED_EXPECTED') for e in EVENTS),'test status')
+-print(json.dumps({'schema':'pr952-inert-operations-controls-v1','status':'PASS_INERT_CONTROLS','outer_optimization':sys.flags.optimize,'core_sha256':a.core_sha256,'events':EVENTS,'event_count':len(EVENTS),'real_service_calls':0,'real_Git_calls':0,'acceptance_authority':False,'scientific_review_credit':False},sort_keys=True))
++print(json.dumps({'schema':'pr952-inert-operations-controls-v1','status':'PASS_INERT_CONTROLS','outer_optimization':sys.flags.optimize,'installed_actual_source_executed':a.installed,'core_sha256':a.core_sha256,'events':EVENTS,'event_count':len(EVENTS),'real_service_calls':0,'real_Git_calls':0,'acceptance_authority':False,'scientific_review_credit':False},sort_keys=True))

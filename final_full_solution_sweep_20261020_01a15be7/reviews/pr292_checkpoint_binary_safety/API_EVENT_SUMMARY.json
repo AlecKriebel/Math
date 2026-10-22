@@ -1,0 +1,1368 @@
+[
+  {
+    "case": "success_ordinary",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/refs/heads/main",
+        "method": "PATCH"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "compare/4e82ad12b1ec2855fdcf79263e8b7810183138bd...4e82ad12b1ec2855fdcf79263e8b7810183138bd",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 2,
+    "error": null
+  },
+  {
+    "case": "dry_run",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 1,
+    "error": null
+  },
+  {
+    "case": "already_recorded",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/35352062905c28a95b60156723070941d01a2886",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 1,
+    "error": null
+  },
+  {
+    "case": "failure_blob_sha_mismatch",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "Uploaded binary blob identity mismatch: artifact.pdf"
+  },
+  {
+    "case": "failure_blob_sha_missing",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "Uploaded binary blob identity mismatch: artifact.pdf"
+  },
+  {
+    "case": "failure_blob_error",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "simulated binary blob upload failed"
+  },
+  {
+    "case": "failure_utf8_corruption",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/265a9df8455edfc624dff0f1c7f853179a3270cc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/2b481aedb5bce8a6e09bae59f1d58b3885b40f78?recursive=1",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "Created tree differs outside exact checkpoint overlay"
+  },
+  {
+    "case": "failure_root_mode_corruption",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/505b5331200003930ef59e0823534ce8237cd568",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "Unrelated root entry changed"
+  },
+  {
+    "case": "failure_nested_delete",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/a3c58cd64707fc2e661127593715a6c5053b8dbb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/a9fb79fd7511161228912eb8360db986fa14aaf5?recursive=1",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "Created tree differs outside exact checkpoint overlay"
+  },
+  {
+    "case": "failure_nested_mode_corruption",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/e7f04898f7d398ed22243ce7f7007f372314fd38",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/14c54ab0d1d8ccfd9e9a8b27455224ea408670cc?recursive=1",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "Created tree differs outside exact checkpoint overlay"
+  },
+  {
+    "case": "failure_commit_parent_corruption",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "Commit binding mismatch"
+  },
+  {
+    "case": "failure_commit_tree_corruption",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "Commit binding mismatch"
+  },
+  {
+    "case": "failure_truncated",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 1,
+    "error": "Tree listing truncated"
+  },
+  {
+    "case": "success_prepatch_race",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/58d14f02ff3faf174bf72a92516df767173f9a27",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/a0778a0e2e673c1698eb9f982b36e50e931d978d",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/53bc91fd22353993faca3c2e7b66882be620fbc2",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/refs/heads/main",
+        "method": "PATCH"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "compare/6f0a124f373564c25d7a32b1156c89e7aa945e6c...6f0a124f373564c25d7a32b1156c89e7aa945e6c",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 3,
+    "error": null
+  },
+  {
+    "case": "success_nonff_race",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/refs/heads/main",
+        "method": "PATCH"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/58d14f02ff3faf174bf72a92516df767173f9a27",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/a0778a0e2e673c1698eb9f982b36e50e931d978d",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/53bc91fd22353993faca3c2e7b66882be620fbc2",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/refs/heads/main",
+        "method": "PATCH"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "compare/6f0a124f373564c25d7a32b1156c89e7aa945e6c...6f0a124f373564c25d7a32b1156c89e7aa945e6c",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 3,
+    "error": null
+  },
+  {
+    "case": "success_postpatch_race",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/refs/heads/main",
+        "method": "PATCH"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "compare/4e82ad12b1ec2855fdcf79263e8b7810183138bd...81fdb84d34b67873305874b545c081dc0cfd485b",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 2,
+    "error": null
+  },
+  {
+    "case": "three_prepatch_races",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/58d14f02ff3faf174bf72a92516df767173f9a27",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/a0778a0e2e673c1698eb9f982b36e50e931d978d",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/53bc91fd22353993faca3c2e7b66882be620fbc2",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/8a7e10e19d8be296dc5e6de0e4b3283514f3c957",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/745494c614f44650af327dd4075d1bf0bafb03d3",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/2cff6a1a5dd181d04d302851154b03080373aeac",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 4,
+    "error": "Main advanced three times; no unsafe ref update attempted"
+  },
+  {
+    "case": "failure_static_patch_failure",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/refs/heads/main",
+        "method": "PATCH"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 2,
+    "error": "simulated unchanged-parent patch failure"
+  },
+  {
+    "case": "cursor_journal_gap",
+    "calls": [],
+    "destination_checks": 1,
+    "error": "Checkpoint cursor/journal are not a contiguous snapshot"
+  },
+  {
+    "case": "cursor_last_cursor",
+    "calls": [],
+    "destination_checks": 1,
+    "error": "Checkpoint cursor mismatch"
+  },
+  {
+    "case": "path_traversal",
+    "calls": [],
+    "destination_checks": 1,
+    "error": "Unsafe or absent checkpoint path: ../escape.txt"
+  },
+  {
+    "case": "path_absolute",
+    "calls": [],
+    "destination_checks": 1,
+    "error": "Unsafe or absent checkpoint path: /Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/reviews/pr292_checkpoint_binary_safety/fixtures/path_absolute/owned/empty.txt"
+  },
+  {
+    "case": "path_symlink",
+    "calls": [],
+    "destination_checks": 1,
+    "error": "Unsafe or absent checkpoint path: artifact.pdf"
+  },
+  {
+    "case": "path_nested_symlink",
+    "calls": [],
+    "destination_checks": 1,
+    "error": "Unsafe or absent checkpoint path: alias/file.txt"
+  },
+  {
+    "case": "path_missing",
+    "calls": [],
+    "destination_checks": 1,
+    "error": "Unsafe or absent checkpoint path: absent.bin"
+  },
+  {
+    "case": "read_changed",
+    "calls": [],
+    "destination_checks": 1,
+    "error": "Checkpoint input changed during read: artifact.pdf"
+  },
+  {
+    "case": "freeze_then_retry",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/58d14f02ff3faf174bf72a92516df767173f9a27",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/a0778a0e2e673c1698eb9f982b36e50e931d978d",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/53bc91fd22353993faca3c2e7b66882be620fbc2",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/refs/heads/main",
+        "method": "PATCH"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "compare/6f0a124f373564c25d7a32b1156c89e7aa945e6c...6f0a124f373564c25d7a32b1156c89e7aa945e6c",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 3,
+    "error": null
+  },
+  {
+    "case": "destination_change",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      }
+    ],
+    "destination_checks": 2,
+    "error": "fixture destination mismatch"
+  },
+  {
+    "case": "postpush_ancestry_reject",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/refs/heads/main",
+        "method": "PATCH"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "compare/4e82ad12b1ec2855fdcf79263e8b7810183138bd...4e82ad12b1ec2855fdcf79263e8b7810183138bd",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 2,
+    "error": "Checkpoint ancestry not verified on live main"
+  },
+  {
+    "case": "receipt_enospc",
+    "calls": [
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits/c32e10375aca71f21a1dcb384586d0b113b51ceb",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/4bbe13588b8e2e8631c5024e4e9bfe3d66b850fc",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/d1600a58d26d1c68f5ba8c0568b7a8442b310f54?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/blobs",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/trees/510971576f58db7dd83bf4c001ef9de47e27131a",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/trees/7e7ac5e167336ee7225a5724bd1ab1fbd33e515b?recursive=1",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/commits",
+        "method": "POST"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "git/refs/heads/main",
+        "method": "PATCH"
+      },
+      {
+        "endpoint": "git/ref/heads/main",
+        "method": "GET"
+      },
+      {
+        "endpoint": "compare/4e82ad12b1ec2855fdcf79263e8b7810183138bd...4e82ad12b1ec2855fdcf79263e8b7810183138bd",
+        "method": "GET"
+      }
+    ],
+    "destination_checks": 2,
+    "error": "simulated ENOSPC after save"
+  }
+]

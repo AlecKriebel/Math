@@ -1,0 +1,13 @@
+# Whole-package review 02 research log
+
+2026-10-17T23:02:35.918631+00:00 — 2%: Started fresh whole-package review. Verified six frozen release identities. Parent supplied route/constants; independent primary reconstruction precedes prior mathematical/priority reports. No reading of package_01 is permitted.
+
+2026-10-17T23:03:10.652577+00:00 — 15%: Recorded independent universal reconstruction before paper/prior report exposure; checked exact OWR target, top-monomial separator, pre-query covariance, normalization and constants. No mathematical obstruction found.
+
+2026-10-17T23:07:34.287785+00:00 — 75%: All mathematical checks, eight offline baselines/40 failures, and exact source/kit byte rebuild passed. A broad live root_reproduction/*.json loop then inadvertently exposed new, non-allowlisted PACKAGE01_REVIEW_AUTH.json containing the preceding verdict/counts, plus PACKAGE_ROOT_* records. No file in reviews/package_01 was opened. Parent promptly informed; no prior verdict will be a premise. Remaining reads restricted to frozen allowlist; full exposure disclosed in final report.
+
+2026-10-17T23:09:50.432645+00:00 — 92%: Exact source/kit rebuild, complete metadata/manifest/source-commit/custody authentication, all-page pixel-correspondence, full original replay semantic comparison, and final fresh controls passed. Twelve new counterfactual exits are explicitly limited computed sanity checks rather than implementation mutations. Twenty-four comparator/runtime rejections and ten actual disposable corrupt-file/symlink rejections passed. Report and final end/seal receipts remain.
+
+2026-10-17T23:11:12.275261+00:00 — 100%: Complete bounded whole-publication-package review, CLEAN_PASS with no required operative fixes. All six frozen release files and every recorded input remain unchanged. Independent source core, complete authored packet review, eight offline baselines/40 failures, byte-identical disposable rebuild, all-page image correspondence, final fresh controls/counterfactual limitations and late prior-verdict exposure are fully disclosed. Final external receipt seal follows; historical novelty remains uncertified.
+
+2026-10-17T23:11:21.460400+00:00 — 100%: Complete bounded whole-publication-package review, CLEAN_PASS with no required operative fixes. All six frozen release files and every recorded input remain unchanged. Independent source core, complete authored packet review, eight offline baselines/40 failures, byte-identical disposable rebuild, all-page image correspondence, final fresh controls/counterfactual limitations and late prior-verdict exposure are fully disclosed. Final external receipt seal follows; historical novelty remains uncertified.

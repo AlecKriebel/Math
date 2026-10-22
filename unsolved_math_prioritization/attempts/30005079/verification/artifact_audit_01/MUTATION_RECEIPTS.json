@@ -1,0 +1,200 @@
+{
+  "timestamp_utc": "2026-10-16T05:22:12.194759+00:00",
+  "interpreter": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "controls": [
+    {
+      "control": "malformed_json",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/malformed_json/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/malformed_json/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/malformed_json/verify_publication.py\", line 35, in integrity\n    manifest = json.loads((ROOT / 'PUBLICATION_MANIFEST.json').read_text())\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\n"
+    },
+    {
+      "control": "duplicate_root_files_key_last_wins",
+      "exit_code": 0,
+      "accepted": true,
+      "stdout": "{\n  \"packet_files_verified\": 21,\n  \"edition_hashes_verified\": 4,\n  \"forward_and_reverse_patches_verified\": 3,\n  \"scope\": \"Integrity and auxiliary exact checks only; mathematical acceptance is in the two AI audit reports. No formal-proof or novelty certification.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "control": "unrecognized_nan_field",
+      "exit_code": 0,
+      "accepted": true,
+      "stdout": "{\n  \"packet_files_verified\": 21,\n  \"edition_hashes_verified\": 4,\n  \"forward_and_reverse_patches_verified\": 3,\n  \"scope\": \"Integrity and auxiliary exact checks only; mathematical acceptance is in the two AI audit reports. No formal-proof or novelty certification.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "control": "empty_inventory",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/empty_inventory/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/empty_inventory/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/empty_inventory/verify_publication.py\", line 51, in integrity\n    require(actual == expected, 'Missing or extra packet file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/empty_inventory/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Missing or extra packet file\n"
+    },
+    {
+      "control": "duplicate_file_entry",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/duplicate_file_entry/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/duplicate_file_entry/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/duplicate_file_entry/verify_publication.py\", line 38, in integrity\n    require(len(names) == len(set(names)), 'Duplicate manifest entry')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/duplicate_file_entry/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Duplicate manifest entry\n"
+    },
+    {
+      "control": "malformed_sha256",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/malformed_sha256/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/malformed_sha256/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/malformed_sha256/verify_publication.py\", line 57, in integrity\n    require(len(data) == e['bytes'] and sha(data) == e['sha256'], 'Integrity failure: '+e['file'])\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/malformed_sha256/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Integrity failure: EDITION_HISTORY.json\n"
+    },
+    {
+      "control": "negative_byte_count",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/negative_byte_count/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/negative_byte_count/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/negative_byte_count/verify_publication.py\", line 57, in integrity\n    require(len(data) == e['bytes'] and sha(data) == e['sha256'], 'Integrity failure: '+e['file'])\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/negative_byte_count/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Integrity failure: EDITION_HISTORY.json\n"
+    },
+    {
+      "control": "path_traversal",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/path_traversal/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/path_traversal/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/path_traversal/verify_publication.py\", line 51, in integrity\n    require(actual == expected, 'Missing or extra packet file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/path_traversal/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Missing or extra packet file\n"
+    },
+    {
+      "control": "absolute_path",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/absolute_path/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/absolute_path/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/absolute_path/verify_publication.py\", line 51, in integrity\n    require(actual == expected, 'Missing or extra packet file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/absolute_path/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Missing or extra packet file\n"
+    },
+    {
+      "control": "proof_changed",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/proof_changed/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/proof_changed/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/proof_changed/verify_publication.py\", line 57, in integrity\n    require(len(data) == e['bytes'] and sha(data) == e['sha256'], 'Integrity failure: '+e['file'])\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/proof_changed/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Integrity failure: PROOF.md\n"
+    },
+    {
+      "control": "proof_changed_outer_rebound",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/proof_changed_outer_rebound/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/proof_changed_outer_rebound/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/proof_changed_outer_rebound/verify_publication.py\", line 59, in integrity\n    require(sha((ROOT / name).read_bytes()) == digest, 'Frozen pin failure: '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/proof_changed_outer_rebound/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Frozen pin failure: PROOF.md\n"
+    },
+    {
+      "control": "author_checker_changed_outer_rebound",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/author_checker_changed_outer_rebound/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/author_checker_changed_outer_rebound/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/author_checker_changed_outer_rebound/verify_publication.py\", line 63, in integrity\n    require(len(data) == e['bytes'] and sha(data) == e['sha256'], 'Original author pin failure')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/author_checker_changed_outer_rebound/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Original author pin failure\n"
+    },
+    {
+      "control": "independent_checker_changed_outer_rebound",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/independent_checker_changed_outer_rebound/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/independent_checker_changed_outer_rebound/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/independent_checker_changed_outer_rebound/verify_publication.py\", line 59, in integrity\n    require(sha((ROOT / name).read_bytes()) == digest, 'Frozen pin failure: '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/independent_checker_changed_outer_rebound/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Frozen pin failure: audits/reviewer_b/independent_checks.py\n"
+    },
+    {
+      "control": "patch_damaged",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/patch_damaged/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/patch_damaged/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/patch_damaged/verify_publication.py\", line 57, in integrity\n    require(len(data) == e['bytes'] and sha(data) == e['sha256'], 'Integrity failure: '+e['file'])\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/patch_damaged/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Integrity failure: corrections/CITATION_CORRECTION.patch\n"
+    },
+    {
+      "control": "patch_damaged_outer_rebound",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/patch_damaged_outer_rebound/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/patch_damaged_outer_rebound/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/patch_damaged_outer_rebound/verify_publication.py\", line 63, in integrity\n    require(len(data) == e['bytes'] and sha(data) == e['sha256'], 'Original author pin failure')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/patch_damaged_outer_rebound/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Original author pin failure\n"
+    },
+    {
+      "control": "source_metadata_changed_outer_rebound",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/source_metadata_changed_outer_rebound/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/source_metadata_changed_outer_rebound/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/source_metadata_changed_outer_rebound/verify_publication.py\", line 63, in integrity\n    require(len(data) == e['bytes'] and sha(data) == e['sha256'], 'Original author pin failure')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/source_metadata_changed_outer_rebound/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Original author pin failure\n"
+    },
+    {
+      "control": "missing_source_metadata",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/missing_source_metadata/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/missing_source_metadata/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/missing_source_metadata/verify_publication.py\", line 51, in integrity\n    require(actual == expected, 'Missing or extra packet file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/missing_source_metadata/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Missing or extra packet file\n"
+    },
+    {
+      "control": "missing_acceptance_report",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/missing_acceptance_report/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/missing_acceptance_report/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/missing_acceptance_report/verify_publication.py\", line 51, in integrity\n    require(actual == expected, 'Missing or extra packet file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/missing_acceptance_report/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Missing or extra packet file\n"
+    },
+    {
+      "control": "extra_file",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/extra_file/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/extra_file/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/extra_file/verify_publication.py\", line 51, in integrity\n    require(actual == expected, 'Missing or extra packet file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/extra_file/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Missing or extra packet file\n"
+    },
+    {
+      "control": "extra_empty_directory",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/extra_empty_directory/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/extra_empty_directory/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/extra_empty_directory/verify_publication.py\", line 52, in integrity\n    require(actual_dirs == expected_dirs, 'Missing or extra packet directory')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/extra_empty_directory/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Missing or extra packet directory\n"
+    },
+    {
+      "control": "symlink",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/symlink/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/symlink/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/symlink/verify_publication.py\", line 43, in integrity\n    require(not p.is_symlink(), 'Symlink in packet')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<PRIVATE_TMP>/symlink/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Symlink in packet\n"
+    },
+    {
+      "control": "driver_changed_outer_rebound_trust_root",
+      "exit_code": 0,
+      "accepted": true,
+      "stdout": "{\n  \"packet_files_verified\": 21,\n  \"edition_hashes_verified\": 4,\n  \"forward_and_reverse_patches_verified\": 3,\n  \"scope\": \"Integrity and auxiliary exact checks only; mathematical acceptance is in the two AI audit reports. No formal-proof or novelty certification.\"\n}\nAUDIT_DRIVER_MUTATION_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "control": "filesystem_mode_changed",
+      "exit_code": 0,
+      "accepted": true,
+      "stdout": "{\n  \"packet_files_verified\": 21,\n  \"edition_hashes_verified\": 4,\n  \"forward_and_reverse_patches_verified\": 3,\n  \"scope\": \"Integrity and auxiliary exact checks only; mathematical acceptance is in the two AI audit reports. No formal-proof or novelty certification.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "control": "omitted_file_and_outer_entry",
+      "exit_code": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<PRIVATE_TMP>/omitted_file_and_outer_entry/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<PRIVATE_TMP>/omitted_file_and_outer_entry/verify_publication.py\", line 141, in main\n    result = {'packet_files_verified': integrity(), **editions()}\n                                       ~~~~~~~~~^^\n  File \"<PRIVATE_TMP>/omitted_file_and_outer_entry/verify_publication.py\", line 62, in integrity\n    data = (ROOT / e['file']).read_bytes()\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<PRIVATE_TMP>/omitted_file_and_outer_entry/LITERATURE_AND_SCOPE.md'\n"
+    }
+  ],
+  "direct_patch_parser_probes": [
+    {
+      "control": "header_only_no_hunks",
+      "accepted": false,
+      "error_type": "RuntimeError",
+      "error": "Invalid patch header"
+    },
+    {
+      "control": "inconsistent_new_line_coordinate",
+      "accepted": true,
+      "output_utf8": "b\n"
+    },
+    {
+      "control": "incorrect_count",
+      "accepted": false,
+      "error_type": "RuntimeError",
+      "error": "Patch hunk counts mismatch"
+    },
+    {
+      "control": "wrong_context",
+      "accepted": false,
+      "error_type": "RuntimeError",
+      "error": "Patch context mismatch"
+    }
+  ],
+  "scope": "Finite, named controls only. An accepted duplicate JSON key, permissive field or changed trust root is not evidence of altered immutable source passing external authentication."
+}

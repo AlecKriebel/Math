@@ -1,0 +1,7 @@
+# Independent whole-package review log
+
+- 2026-10-17T18:39:09.959285+00:00 — 40%: bound supplied PDF/ZIP/TeX; fresh ZIP extraction matched all staged members; independently checked nested manifests; full verify.py passed under normal, -O, and -OO Python with outputs equal to build receipt. Main annular and original fixed-p proofs reviewed analytically; primary-source and safeguard review continue. No publication input was altered and no external mutation was made.
+
+- 2026-10-17T18:44:15.667673+00:00 — 90%: analytic/source review complete; 96 independent exact recursion cases and 80 radial boundary cases passed, three actual altered recurrences rejected; eight archive corruptions rejected; 17 offline workflow guard cases passed. Two publication-workflow issues reproduced offline: stale PR intent/receipt accepts a different package, and public verification accepts altered non-title metadata. Inputs remain unchanged. Report/freeze preparation remains.
+
+- 2026-10-17T18:45:58.065438+00:00 — 100%: whole-package review complete. Mathematics, archived evidence/replay, sources/priority framing, metadata input and all four rendered pages passed. Final verdict CHANGES_REQUIRED for two reproduced P2 publication-workflow defects, F1 stale PR recovery and F2 exact-public-metadata assurance. No input drift, no external mutation or Git/index/checkout change. Report, verdict, authored controls and receipts frozen separately.

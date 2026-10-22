@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 25, in yes
+    try:fn()
+        ~~^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 207, in invoke
+    with contextlib.redirect_stdout(io.StringIO()):n['close_operation'](argparse.Namespace(disposition_sha256=dp,approval_sha256=ap,execute=execute),context)
+                                                   ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 607, in close_operation
+    result=closure_receipt(bound,body,context,write=True);print(json.dumps(result,sort_keys=True))
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 542, in closure_receipt
+    comment=reconcile_comment(bound,body)
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 520, in reconcile_comment
+    same_target(intent['gate'],live)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 508, in same_target
+    need(current['queue_row']==saved['queue_row'] and exact(current['queue_blob'],saved['queue_blob']) and exact(current['changed_paths'],saved['changed_paths']),'observed immutable queue/path race; no further action')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 47, in need
+    if not ok:raise RuntimeError('PR967 closure guard: '+message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: PR967 closure guard: observed immutable queue/path race; no further action
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 210, in <module>
+    reset_runtime();CFG['lost_post_response']=True;no('lost_comment_response_stops',invoke);need(exists:= (runtime/'COMMENT_POST_INTENT.json').exists(),'POST intent missing before lost response');CFG.pop('lost_post_response');yes('GET_only_unique_comment_recovery_then_close',invoke)
+                                                                                                                                                                                                                                  ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 26, in yes
+    except Exception as e:raise RuntimeError('POSITIVE '+name+' rejected: '+repr(e)) from e
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: POSITIVE GET_only_unique_comment_recovery_then_close rejected: RuntimeError('PR967 closure guard: observed immutable queue/path race; no further action')

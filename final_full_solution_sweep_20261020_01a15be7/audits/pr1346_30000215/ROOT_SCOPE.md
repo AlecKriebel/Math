@@ -1,0 +1,5 @@
+# Root provisional scope: PR1346 /30000215
+
+For m3/4 n>=3 balancedintegerfourraydrawingnice: atmost2Xverticesperrayexcludestriplecrossings; crossingcount q(n),2q(n). Every simultaneousA_e assignment induces p(e,f) andb=c xor p; eachK33 sum p=0 because eachallowedincidencevariableoccurs twice, baselineodd. PositiveYpairweightcomplementtrianglefree⇒Mantel⇒wt(b)>=q(n). FourXtriples eachindependentpaircountedtwice⇒2q(n). Directallassignmentproof doesnot inferstrongcriterionfromordinarycrossingformula. Alln unbounded analyticargument, finitediagnosticsnotpremise. Rootfindsnofatal combinatorialgap.
+
+ClaimedoriginalOWR2005p983 wordingexistentialtheoreticalverification, notallgraphsclassification. PriorK5/K33independentoddresultsalreadygivefullbareexistencepositive. FamilycertificatebroaderbutclassicalZarankiewicz/Kleitman/Mantelmechanismscredited. FreshoriginalandprimarySzékelycriterion/PelsmajerSchaeferStefankoviccoverage/DOIverificationrequired; sourcepapersDOIcannotmisrepresentfullnewK3n/K4ncoverage. Do notuse2026generalordinarycrossingmanuscriptasindependentoddproof. Sourcehistoricalnoveltyunestablished; no newpublication orrow yet.

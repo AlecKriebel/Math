@@ -1,0 +1,41 @@
+{
+  "schema": "pr214-independent-reproduction-issues-v1",
+  "utc": "2026-10-17T23:12:47.886732+00:00",
+  "audit_complete_for_assigned_finite_scope": true,
+  "mandatory_findings": [],
+  "nonblocking_observations": [
+    {
+      "id": "N1",
+      "severity": "informational",
+      "affected_files": [
+        "verification/kernel_controls.py:remainder",
+        "pr_update/30005244/history/original_submission_20261015/verify.py:dynamic"
+      ],
+      "finding": "Raw double-precision subtraction of nearly equal dynamic and static kernel numerators is unsuitable as a general-purpose small-argument evaluator.",
+      "evidence": "At real k=1e-4 and r=1e-6 or 1e-8 the direct-double radial/transverse remainder is zero, while 100-digit Cartesian derivative evaluation gives nonzero leading O(k^2/r) terms; observed relative error 1.0.",
+      "mandatory_repair": false,
+      "reason_nonblocking": "The supplied raw-double routines are explicitly finite illustrative controls at much larger resolved separations and are not used to certify the continuum limit, analytic ball pole or an effective support index. Their stated replay passes unchanged.",
+      "recommendation": "If these routines are later reused for small k*r, implement and verify a stable Taylor or expm1-based evaluator before relying on their numerical values."
+    }
+  ],
+  "harness_history": [
+    {
+      "run": 1,
+      "own_error": "Incorrect factor in an independently authored accumulation-gap identity; corrected from 1/[6(2ell+1)] to 1/[2(2ell+1)].",
+      "target_source_issue": false,
+      "evidence": "HARNESS_CORRECTION.json; independent_checks_initial_harness_error.py",
+      "captured_stdio": "Initial failed run was observed through tool output; exact stdout/stderr were not separately preserved."
+    },
+    {
+      "run": 2,
+      "own_error": "Structural SymPy comparison of unsimplified trace to integer 2; fixed by exact symbolic simplification.",
+      "target_source_issue": false,
+      "evidence": "harness_run_02_failed/ preserves exact source, stdout, stderr and execution receipt."
+    }
+  ],
+  "limits": [
+    "A finite computational replay is not a proof of operator convergence, harmonic completeness, analytic Fredholm continuation or priority.",
+    "No prior narrative audit verdicts were read before or during this independent assignment.",
+    "Primary-source coverage, exact OWR problem wording and priority are assigned separately to Root."
+  ]
+}

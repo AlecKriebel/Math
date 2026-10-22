@@ -1,0 +1,16 @@
+# Research and preparation provenance
+
+The original repository attempt is problem30003185, PR1330, https://github.com/AlecKriebel/Math/pull/1330, pinned head cd07418b0517f90e2928918b91c120ec08ff5b0c. The mathematical preparation was based on34 actual pinned path/blob inputs, including corrected_reader proofs and source scope. It did not treat a historical acceptance label as a proof.
+
+Before this manuscript preparation, two materially distinct independent AI audit families completed their reviews. One checked all unconditional marginal counts, source scope and priority, with MARGINAL_DERIVATION.md; the other checked192-class generation, spinor refinement and the actual product/graph bridge. Their closed packet manifests have SHA256:
+
+* Marginal/source/priority:5c910d4a8cd9fbbe8e96a4310c56f184cb511f102d85d9155878f2ced559e572 (111payload files).
+* Generation:9ee6688c3ca53b859e8793cc272209d7e677b4b8de0dcc8ddfc4c1da714cbd1f (22payload files).
+
+Their finite calculations are attributed to those reviewers, not described as execution by this preparation. This preparation wrote exact_checks.py independently and executed that program anew. It checks selected interfaces and boundary cases; it does not replay or duplicate their larger finite enumerations or supply a proof of the universal theorem. The present manuscript rewrites the universal argument as a single self-contained chain, with the explicitly stated established structural imports. Independence of the two earlier audits is not represented as two fresh independent whole-package reviews of this new manuscript.
+
+Root qualified mathematical adoption dated22October2026 has SHA25659259b28d78f983d3b16a74e6e89471003ca499ebfe2008eeebe45d2875bd8db. It permits publication preparation at sufficiently-large natural-group scope, not publication or a worldwide originality certificate. The existing-publication qualification for the GL/GU named subquestions has SHA256e866197494df4d1ba1ce39ad4828ee0a0649d6430373bb7676a116e4c61f2038. This package expressly credits that prior DOI and does not use it as Sp/O coverage.
+
+The publication-preparation author is an AI task operating only in its own dedicated folder. No external individual or parallel research agent was contacted. No Git/index/ref/main change, commit, push, PR action, spreadsheet write, Zenodo draft, DOI reservation or service mutation occurred during preparation. Duplicate checks are time-specific observations, never permission to bypass a fresh pre-publication check. Raw account captures and closed third-party article/book bodies remain private and are absent from the scientific package.
+
+AI tools were extensively involved in research, proof development, computation, writing and adversarial auditing. This is an unrefereed preprint without formal independent human peer review. Publication readiness remains false: two new fresh independent whole-package adversarial reviews and final adoption are still required. Those reviewers must challenge correctness, exact original scope, all field/type/endpoint cases, underlying citations, possible equivalents and priority, finite code interpretation, source/PDF/metadata consistency and reconstruction. No final-priority promotion follows from this preparation.

@@ -1,0 +1,48 @@
+{
+  "utc": "2026-10-14T05:16:51.242191+00:00",
+  "pr": 1064,
+  "head": "bdefe31b9d226c8f27008d13f57775d5de8df3d7",
+  "review_kind": "NEW_COMPLETE_INDEPENDENT_WHOLE_PACKAGE_02",
+  "completion_percent": 100,
+  "verdict": "PASS_MATHEMATICS_SOURCES_PAPER_DISTRIBUTION_WITH_ONE_P3_REQUIRING_REPAIR",
+  "counts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 1
+  },
+  "findings": [
+    {
+      "id": "P3-01",
+      "severity": "P3",
+      "file": "preprint_v1_0/build_archive.py",
+      "line": 9,
+      "title": "Existing output hardlink can overwrite protected input or external descriptor",
+      "trigger": "Run build_archive.py with --output tmp/hardlinked.zip when that path is an existing hardlink to paper.tex, paper.pdf, or publication/DEPOSIT_BINDING.json.",
+      "observed": "Source/PDF is overwritten before post-write failure; excluded descriptor is overwritten and command exits zero, in both normal and optimized modes.",
+      "repair": "Reject resolved aliases and existing samefile identities to all protected current inputs and external descriptor before writes, while permitting a separate ordinary archive output. Preserve old history and repeat a fresh whole review.",
+      "evidence": [
+        "ARCHIVE_HARDLINK_FAILURE.json",
+        "ARCHIVE_DESCRIPTOR_HARDLINK_FAILURE.json",
+        "ALL_EXECUTION_RECEIPTS.json"
+      ]
+    }
+  ],
+  "mathematics_pass": true,
+  "source_implications_pass": true,
+  "all_five_pdf_pages_actually_viewed": true,
+  "clean_documented_commands_pass": true,
+  "both_prior_repairs_pass": true,
+  "all_frozen_inputs_unchanged": true,
+  "zero_actionable_findings": false,
+  "publication_ready": false,
+  "issues_updated": false,
+  "published": false,
+  "ascending_hold_after_pr": 1032,
+  "historical_priority": "UNKNOWN",
+  "novelty": "UNKNOWN",
+  "needs_bounded_repair": true,
+  "needs_new_fresh_complete_whole_review_after_repair": true,
+  "canonical_pdf_sha256": "67f07f64a5b06c9a4372c285ed438e735fb780d8477b25652bea4f7f6c72e072",
+  "current_archive_sha256": "245221160023953cbeac0fa0a253762b0a46ac9b56b6bf9e721669144cc93e13"
+}

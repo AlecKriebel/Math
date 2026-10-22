@@ -1,0 +1,338 @@
+{
+  "completion_estimate_percent": 45,
+  "receipts": [
+    {
+      "case": "json_duplicate",
+      "exception": "ValueError",
+      "reason": "duplicate JSON key: a",
+      "rejected": true
+    },
+    {
+      "case": "json_nested_duplicate",
+      "exception": "ValueError",
+      "reason": "duplicate JSON key: x",
+      "rejected": true
+    },
+    {
+      "case": "json_nan",
+      "exception": "ValueError",
+      "reason": "nonfinite JSON constant: NaN",
+      "rejected": true
+    },
+    {
+      "case": "json_infinity",
+      "exception": "ValueError",
+      "reason": "nonfinite JSON constant: Infinity",
+      "rejected": true
+    },
+    {
+      "case": "json_negative_infinity",
+      "exception": "ValueError",
+      "reason": "nonfinite JSON constant: -Infinity",
+      "rejected": true
+    },
+    {
+      "case": "json_float_overflow",
+      "exception": "ValueError",
+      "reason": "overflow/nonfinite JSON number",
+      "rejected": true
+    },
+    {
+      "accepted": true,
+      "case": "json_finite"
+    },
+    {
+      "case": "path_''",
+      "exception": "ValueError",
+      "reason": "relative path alphabet/length",
+      "rejected": true
+    },
+    {
+      "case": "path_'/x'",
+      "exception": "ValueError",
+      "reason": "unsafe relative path: /x",
+      "rejected": true
+    },
+    {
+      "case": "path_'../x'",
+      "exception": "ValueError",
+      "reason": "unsafe relative path: ../x",
+      "rejected": true
+    },
+    {
+      "case": "path_'a/../x'",
+      "exception": "ValueError",
+      "reason": "unsafe relative path: a/../x",
+      "rejected": true
+    },
+    {
+      "case": "path_'a//x'",
+      "exception": "ValueError",
+      "reason": "unsafe relative path: a//x",
+      "rejected": true
+    },
+    {
+      "case": "path_'a/'",
+      "exception": "ValueError",
+      "reason": "unsafe relative path: a/",
+      "rejected": true
+    },
+    {
+      "case": "path_'./x'",
+      "exception": "ValueError",
+      "reason": "unsafe relative path: ./x",
+      "rejected": true
+    },
+    {
+      "case": "path_'a\\\\x'",
+      "exception": "ValueError",
+      "reason": "relative path alphabet/length",
+      "rejected": true
+    },
+    {
+      "case": "path_'a:x'",
+      "exception": "ValueError",
+      "reason": "relative path alphabet/length",
+      "rejected": true
+    },
+    {
+      "case": "path_'x\\n'",
+      "exception": "ValueError",
+      "reason": "relative path alphabet/length",
+      "rejected": true
+    },
+    {
+      "case": "path_'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'",
+      "exception": "ValueError",
+      "reason": "relative path alphabet/length",
+      "rejected": true
+    },
+    {
+      "accepted": true,
+      "case": "path_safe_nested"
+    },
+    {
+      "accepted": true,
+      "case": "row_valid"
+    },
+    {
+      "case": "bool_bytes",
+      "exception": "ValueError",
+      "reason": "typed byte count",
+      "rejected": true
+    },
+    {
+      "case": "float_bytes",
+      "exception": "ValueError",
+      "reason": "typed byte count",
+      "rejected": true
+    },
+    {
+      "case": "negative_bytes",
+      "exception": "ValueError",
+      "reason": "typed byte count",
+      "rejected": true
+    },
+    {
+      "case": "oversize_bytes",
+      "exception": "ValueError",
+      "reason": "typed byte count",
+      "rejected": true
+    },
+    {
+      "case": "digest_upper",
+      "exception": "ValueError",
+      "reason": "SHA256 syntax",
+      "rejected": true
+    },
+    {
+      "case": "digest_nonstring",
+      "exception": "ValueError",
+      "reason": "SHA256 syntax",
+      "rejected": true
+    },
+    {
+      "case": "path_nonstring",
+      "exception": "ValueError",
+      "reason": "relative path alphabet/length",
+      "rejected": true
+    },
+    {
+      "case": "row_extra_key",
+      "exception": "ValueError",
+      "reason": "inventory row schema",
+      "rejected": true
+    },
+    {
+      "case": "rows_duplicate",
+      "exception": "ValueError",
+      "reason": "duplicate/aliased inventory path",
+      "rejected": true
+    },
+    {
+      "case": "rows_case_alias",
+      "exception": "ValueError",
+      "reason": "duplicate/aliased inventory path",
+      "rejected": true
+    },
+    {
+      "case": "directory_alias",
+      "exception": "ValueError",
+      "reason": "directory name alias",
+      "rejected": true
+    },
+    {
+      "case": "file_directory_collision",
+      "exception": "ValueError",
+      "reason": "file/directory collision",
+      "rejected": true
+    },
+    {
+      "case": "rows_total_bound",
+      "exception": "ValueError",
+      "reason": "inventory total limit",
+      "rejected": true
+    },
+    {
+      "case": "index_bool_identity",
+      "exception": "ValueError",
+      "reason": "typed index identity/schema",
+      "rejected": true
+    },
+    {
+      "case": "index_extra_key",
+      "exception": "ValueError",
+      "reason": "typed index identity/schema",
+      "rejected": true
+    },
+    {
+      "accepted": true,
+      "case": "tree_valid"
+    },
+    {
+      "case": "tree_empty_directory",
+      "exception": "ValueError",
+      "reason": "unlisted directory: empty",
+      "rejected": true
+    },
+    {
+      "case": "tree_symlink",
+      "exception": "ValueError",
+      "reason": "nonregular tree entry: link",
+      "rejected": true
+    },
+    {
+      "case": "read_regular_symlink",
+      "exception": "ValueError",
+      "reason": "nonregular input: link",
+      "rejected": true
+    },
+    {
+      "case": "tree_fifo",
+      "exception": "ValueError",
+      "reason": "nonregular tree entry: fifo",
+      "rejected": true
+    },
+    {
+      "case": "read_regular_fifo",
+      "exception": "ValueError",
+      "reason": "nonregular input: fifo",
+      "rejected": true
+    },
+    {
+      "case": "read_regular_wrong_size",
+      "exception": "ValueError",
+      "reason": "input size mismatch/limit: x",
+      "rejected": true
+    },
+    {
+      "accepted": true,
+      "case": "zip_generated_valid"
+    },
+    {
+      "accepted": true,
+      "case": "zip_raw_valid"
+    },
+    {
+      "bytes": 149,
+      "case": "zip_same_runtime_bytes",
+      "equal": true,
+      "sha256": "d319b4f7ac941e5dd71e604cf7ac699b3a7056d3ea8e754fc01c084f5bfc1bca"
+    },
+    {
+      "case": "zip_prefix",
+      "exception": "ValueError",
+      "reason": "ZIP end metadata/extent",
+      "rejected": true
+    },
+    {
+      "case": "zip_suffix",
+      "exception": "ValueError",
+      "reason": "ZIP end metadata/extent",
+      "rejected": true
+    },
+    {
+      "case": "zip_truncated",
+      "exception": "ValueError",
+      "reason": "ZIP end metadata/extent",
+      "rejected": true
+    },
+    {
+      "case": "zip_deflate_trailing",
+      "exception": "ValueError",
+      "reason": "ZIP raw DEFLATE exact-consumption mismatch: bounded.txt",
+      "rejected": true
+    },
+    {
+      "case": "zip_deflate_concatenated",
+      "exception": "ValueError",
+      "reason": "ZIP raw DEFLATE exact-consumption mismatch: bounded.txt",
+      "rejected": true
+    },
+    {
+      "case": "zip_deflate_empty_second",
+      "exception": "ValueError",
+      "reason": "ZIP raw DEFLATE exact-consumption mismatch: bounded.txt",
+      "rejected": true
+    },
+    {
+      "case": "zip_local_crc",
+      "exception": "ValueError",
+      "reason": "ZIP local/central metadata disagreement",
+      "rejected": true
+    },
+    {
+      "case": "zip_local_size",
+      "exception": "ValueError",
+      "reason": "ZIP local/central metadata disagreement",
+      "rejected": true
+    },
+    {
+      "case": "zip_local_flags",
+      "exception": "ValueError",
+      "reason": "ZIP local/central metadata disagreement",
+      "rejected": true
+    },
+    {
+      "archival_execution": false,
+      "archive_created_inside_input": false,
+      "case": "build_inside_input_via_dotdot_root",
+      "exception": "ValueError",
+      "helper_sentinel_not_reached": true,
+      "reason": "output must be outside input tree",
+      "rejected": true
+    },
+    {
+      "archival_execution": false,
+      "archive_created_inside_input": false,
+      "case": "build_inside_input_via_symlink_output_parent",
+      "exception": "ValueError",
+      "helper_sentinel_not_reached": true,
+      "reason": "output must be outside input tree",
+      "rejected": true
+    }
+  ],
+  "scope": "Independent bounded helper tests; no archival execution or current-wrapper validation.",
+  "timestamp_utc": "2026-10-16T04:06:11.113424+00:00",
+  "tool_sha256": "09e4932f66c15916891245a1fb3d6a7052cb5619710d94e0e2305fb7a7612aa6"
+}

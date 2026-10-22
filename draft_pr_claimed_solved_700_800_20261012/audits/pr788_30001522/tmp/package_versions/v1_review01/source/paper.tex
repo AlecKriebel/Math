@@ -1,0 +1,304 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\Fp}{\mathbb F_p}
+\title{A classical Wu-manifold answer\\ to a free-rank question}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID:
+\href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{16 October 2026\quad (version 1.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+The fixed Wu manifold \(W=SU(3)/SO(3)\) is a finite simply connected complex
+with the rational homotopy type of \(S^5\). Its free toral rank and free
+\(2\)-rank are zero, whereas its free \(p\)-rank is one for every odd prime.
+Thus it answers the existence question printed in Hanke's 2010 Oberwolfach
+contribution, using the actual-space free-action definitions there.
+The proof assembles classical facts: an almost-free circle action supplies
+every odd cyclic action, and a nonzero Stiefel--Whitney number excludes
+every continuous free involution. We give the arguments explicitly,
+including the arbitrary-action odd-primary upper bound. This is an
+explanatory research note; historical priority remains unresolved and no
+firstness claim is made.
+\end{abstract}
+
+\section{The printed question and the fixed witness}
+For a finite connected complex \(X\), let
+\[
+ \rk_T(X)=\max\{r:(S^1)^r\text{ acts freely on }X\},\qquad
+ \rk_p(X)=\max\{r:(\mathbb Z/p)^r\text{ acts freely on }X\}.
+\]
+Actions here are continuous and act on the actual fixed space.
+In \cite[p.~1912]{H}, Hanke asks whether there is such an \(X\) with
+abelian fundamental group acting trivially on its higher homotopy,
+finite-dimensional total rational homotopy, and
+\(\rk_p(X)>\rk_T(X)\) for infinitely many primes \(p\).
+These ranks do not optimize over rationally or homotopy equivalent
+replacements, and the torus action must be free rather than almost free.
+
+\begin{theorem}\label{main}
+Let \(W=SU(3)/SO(3)\), with the real-matrix embedding of \(SO(3)\).
+It is a finite simply connected complex of rational homotopy type \(S^5\),
+and
+\[
+ \rk_T(W)=\rk_2(W)=0,\qquad
+ \rk_p(W)=1\quad\text{for every odd prime }p.
+\]
+Moreover, every cyclic group of odd order acts freely and smoothly on \(W\).
+\end{theorem}
+
+The same \(W\) works before the prime is chosen. This supplies an affirmative
+answer to the literal existence question in \cite{H}.
+Its rational homotopy Euler characteristic is \(-1\), so the asymptotic
+bound \(\rk_p(X)\le-\chi^\pi(X)\) reported there is respected.
+The circle used below is almost free. Consequently this example does
+not give a strict gap against an almost-free or rational toral rank.
+
+\section{Topology and a classical characteristic number}
+The principal bundle
+\[
+ SO(3)\longrightarrow SU(3)\longrightarrow W
+\]
+makes \(W\) a closed smooth manifold of dimension \(8-3=5\).
+Its finite smooth triangulation realizes its actual underlying space as
+a finite complex. The homotopy sequence, using
+\(\pi_1(SU(3))=\pi_2(SU(3))=0\), gives
+\(\pi_1(W)=0\) and \(\pi_2(W)=\mathbb Z/2\).
+Hurewicz, integral Poincare duality and universal coefficients give
+\[
+ H_i(W;\mathbb Z)=
+ \begin{cases}
+ \mathbb Z,&i=0,5,\\
+ \mathbb Z/2,&i=2,\\
+ 0,&\text{otherwise}.
+ \end{cases}
+\]
+In particular the degree-three torsion is in integral \emph{cohomology},
+not homology. Rational Hurewicz provides a sphere map \(S^5\to W\)
+nonzero on rational top homology; it is a rational homology equivalence.
+Rational Whitehead applies to these simply connected spaces, proving
+the asserted rational homotopy type and its finite total dimension.
+The fundamental-group hypotheses of the question are automatic.
+
+Write \(x\) and \(y\) for the nonzero classes in
+\(H^2(W;\mathbb F_2)\) and \(H^3(W;\mathbb F_2)\), respectively.
+The classical tangent characteristic-number calculation is
+\begin{equation}\label{number}
+ w_2(W)=x,\qquad w_3(W)=y,\qquad
+ \langle xy,[W]\rangle=1.
+\end{equation}
+A modern explicit account is \cite[Lemma~4.41, Corollary~4.44,
+Proposition~4.45]{DY}, which credits older work of Barden,
+Landweber--Stong and Calabi. Here is a direct reconstruction of the part
+needed.
+
+The tangent isotropy representation of \(SO(3)\) is its conjugation action
+on \(i\,\mathrm{Sym}_0(\mathbb R^3)\), by
+\(\mathfrak{su}(3)=\mathfrak{so}(3)\oplus i\,\mathrm{Sym}_0(\mathbb R^3)\).
+A coordinate rotation splits this representation into a fixed line and
+two real rotation planes of weights \(1\) and \(2\). Its map
+\(\pi_1(SO(3))\to\pi_1(SO(5))\) is therefore nonzero, since
+\(1+2\equiv1\pmod2\).
+The boundary \(\pi_2(W)\to\pi_1(SO(3))\) is an isomorphism.
+Pulling the tangent bundle to a representative generator sphere gives
+the nontrivial clutching bundle on \(S^2\), so its \(w_2\) is nonzero.
+The sphere's integral Hurewicz class generates \(\mathbb Z/2\) and remains
+nonzero after reduction mod \(2\). Thus it detects \(w_2(W)=x\).
+
+For \(0\to\mathbb Z/2\to\mathbb Z/4\to\mathbb Z/2\to0\),
+universal coefficients identify the degree-two coefficient reduction with
+\[
+ \operatorname{Hom}(\mathbb Z/2,\mathbb Z/4)
+ \longrightarrow\operatorname{Hom}(\mathbb Z/2,\mathbb Z/2).
+\]
+Both possible values \(0,2\) reduce to zero. The connecting map \(Sq^1\)
+is consequently nonzero on \(x\), giving \(Sq^1x=y\).
+Orientation and \(Sq^1w_2=w_1w_2+w_3\) give \(w_3=y\).
+The complementary one-dimensional mod-\(2\) cohomology groups pair
+nondegenerately, so \(\langle xy,[W]\rangle=1\).
+These are tangent classes, not merely the characteristic classes of the
+principal \(SO(3)\)-bundle.
+
+\section{Odd cyclic actions and the obstruction at two}
+For \(z\in S^1\), set
+\[
+ D(z)=\operatorname{diag}(z,z,z^{-2})\in SU(3),\qquad
+ z\cdot[g]=[D(z)g].
+\]
+If \(z\) fixes a coset, then \(g^{-1}D(z)g\in SO(3)\).
+Every determinant-one real orthogonal matrix of odd size has eigenvalue
+\(1\). Thus \(z=1\) or \(z^{-2}=1\), so every stabilizer is contained in
+\(\{1,-1\}\).
+Every finite subgroup of odd order therefore acts freely. This includes
+order \(3\): its nonidentity scalar matrices have no eigenvalue \(1\).
+The full circle is not free, since
+\(D(-1)=\operatorname{diag}(-1,-1,1)\in SO(3)\) fixes the identity coset.
+This is the \((1,1,-2)\) instance of the classical circle-isotropy
+calculation in \cite[Proposition~4.2]{Y}.
+
+\begin{lemma}\label{cover}
+A closed topological manifold with a nonzero tangent Stiefel--Whitney
+number admits no free continuous involution.
+\end{lemma}
+\begin{proof}
+A free involution has disjoint translated coordinate neighborhoods.
+Its quotient \(N\) is a closed topological manifold and
+\(q:M\to N\) an ordinary two-sheeted covering.
+Local diagonal neighborhoods identify the topological tangent
+microbundle of \(M\) with \(q^*\tau_N\).
+Naturality of the mod-\(2\) Thom-class and Steenrod-square definition of
+Stiefel--Whitney classes gives \(w_i(M)=q^*w_i(N)\).
+With mod-\(2\) fundamental classes, \(q_*[M]=2[N]=0\).
+Hence, for every partition \(i_1+\cdots+i_k=\dim M\),
+\[
+ \langle w_{i_1}(M)\cdots w_{i_k}(M),[M]\rangle
+ =\langle w_{i_1}(N)\cdots w_{i_k}(N),q_*[M]\rangle=0,
+\]
+a contradiction. Smoothness, local linearity and orientability of \(N\)
+are unnecessary.
+\end{proof}
+
+Apply Lemma~\ref{cover} to \eqref{number}. There is no free continuous
+involution on \(W\), so \(\rk_2(W)=0\).
+Every positive-dimensional torus contains an involution, and restriction
+preserves freeness, proving \(\rk_T(W)=0\).
+The nonbounding obstruction to a Wu involution is already explicitly
+discussed in \cite[Theorem~9.1, v1; Example~2.25, v2]{KL}.
+The covering argument here supplies the full continuous-action scope
+without importing the admissibility condition of the surrounding
+chromatic fixed-point theorem.
+It uses only a finite-group quotient and makes no assertion about orbit
+manifolds of arbitrary continuous circle actions.
+
+\section{The exact rank at every odd prime}
+For odd \(p\), the integral homology calculation makes \(W\) an
+\(\Fp\)-homology five-sphere.
+Suppose \(E=(\mathbb Z/p)^2\) acted freely and continuously.
+Its action on the two nonzero fiber-cohomology lines is trivial, because
+a \(p\)-group maps trivially to \(\Fp^\times\).
+The Borel fibration has two-row Serre spectral sequence
+\[
+ E_2^{i,j}=H^i(BE;\Fp)\otimes H^j(W;\Fp),\qquad
+ R=H^*(BE;\Fp)=\Fp[t_1,t_2]\otimes\Lambda(s_1,s_2),
+\]
+where \(|t_i|=2\) and \(|s_i|=1\).
+Only \(d_6\) can be nonzero. Its bottom-row image is the principal ideal
+\((f)\), where \(f=d_6(u)\) for the degree-five fiber generator.
+Thus \(E_\infty^{*,0}=R/(f)\).
+
+Killing the exterior generators gives a surjection
+\[
+ R/(f)\longrightarrow\Fp[t_1,t_2]/(\bar f).
+\]
+If \(\bar f=0\), the target is infinite-dimensional.
+Otherwise \(\bar f\) is a nonzero homogeneous binary cubic.
+In ordinary polynomial degree \(m\ge3\), multiplication by it is
+injective from a space of dimension \(m-2\) into one of dimension \(m+1\);
+the quotient has dimension \(3\).
+Thus bottom-row classes survive in arbitrarily high total degrees.
+This argument permits exterior terms in \(f\), and does not assume that
+\(f\) is nonzero or a non-zero-divisor in \(R\).
+The first-quadrant sequence has a finite filtration in each total degree;
+extensions cannot erase its nonzero associated-graded pieces.
+
+Freeness makes \(W/E\) a closed topological five-manifold and identifies
+the Borel construction with it up to homotopy.
+Its cohomology vanishes above degree five, a contradiction.
+Higher-rank elementary abelian actions restrict to rank two and are
+excluded as well. Together with the cyclic construction this proves
+\(\rk_p(W)=1\) for every odd \(p\), completing Theorem~\ref{main}.
+The universal conclusions follow from the proofs, not from sampling primes.
+
+\section{Attribution, verification and status}
+Earlier actual free finite-versus-circle gaps must be distinguished from
+the extra hypotheses in Hanke's question.
+Mundet i Riera \cite[Theorem~1.11, Section~13]{M}, already in the first
+2021 preprint as Theorem~1.14 and Section~15, constructs regular self-covers
+of every odd degree of the fixed Cappell--Weinberger--Yan manifolds.
+These are circle-cover pullbacks, so every odd prime gives a genuinely
+free cyclic deck action; the manifolds admit no continuous circle action.
+They fail the abelian fundamental-group hypothesis: the mapping-torus
+group contains the nontrivial centerless group \(\pi_1(V)\), hence a
+nonabelian subgroup \cite[Section~2, Step~4, manuscript p.~8]{CWY}.
+Taking the product in their construction retains that subgroup.
+They are not excluded merely by an effective-versus-free distinction.
+
+The Wu manifold, its characteristic number and the circle action used here
+are classical. This note assembles them to document the answer to the
+printed 2010 question. An extensive but bounded priority audit on
+16 October 2026 verified no complete predecessor meeting all its
+hypotheses in the inspected statements. Some older books, theses,
+journal versions and citation trails remain unread.
+Historical priority remains unresolved; no firstness, new-ingredient,
+certified-novelty or current worldwide-open claim is made.
+Exact versions, read scopes and gaps are recorded in the companion archive.
+
+The archive preserves the original candidate, independently positioned
+mathematical and priority reviews, source identities, exact finite
+weight/characteristic-algebra checks and reproduction instructions.
+Those computations support the written arguments and do not formally
+verify topology or establish an infinite quantifier by extrapolation.
+Full third-party source bodies are not redistributed.
+
+AI tools were used extensively in developing and checking the argument,
+literature investigation, drafting, computation, reproduction and
+adversarial review. This is an unrefereed preprint without external human
+peer review or proof-assistant certification. The note and authored
+companion material are licensed under CC BY 4.0.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{H}
+B.~Hanke, Homotopy Euler characteristic and the stable free rank of symmetry,
+in \emph{Cohomology of Finite Groups: Interactions and Applications},
+Oberwolfach Reports \textbf{7} (2010), report~32, pp.~1912--1915.
+\href{https://doi.org/10.4171/OWR/2010/32}{doi:10.4171/OWR/2010/32}.
+The report's publisher publication date is 2 March 2011.
+
+\bibitem{DY}
+A.~Debray and M.~Yu,
+What bordism-theoretic anomaly cancellation can do for U,
+\emph{Commun. Math. Phys.} \textbf{405} (2024), article~154.
+\href{https://doi.org/10.1007/s00220-024-04937-4}{doi:10.1007/s00220-024-04937-4}.
+Specific locators refer to the author-hosted version dated 22 July 2025,
+pp.~20--22: \url{https://adebray.github.io/papers/U_duality_Bordism.pdf}.
+
+\bibitem{Y}
+D.~Yeroshkin, Orbifold biquotients of \(SU(3)\),
+\emph{Differential Geom. Appl.} \textbf{42} (2015), 54--76.
+\href{https://doi.org/10.1016/j.difgeo.2015.07.003}{doi:10.1016/j.difgeo.2015.07.003}.
+Proposition~4.2 is on pp.~6--7 of
+\href{https://arxiv.org/abs/1401.7565v2}{arXiv:1401.7565v2} (9 April 2014).
+
+\bibitem{KL}
+N.~J.~Kuhn and C.~J.~R.~Lloyd,
+Chromatic fixed point theory and the Balmer spectrum for extraspecial \(2\)-groups,
+\href{https://arxiv.org/abs/2008.00330v1}{arXiv:2008.00330v1}
+(1 August 2020), Theorem~9.1, p.~27;
+\href{https://arxiv.org/abs/2008.00330v2}{v2}
+(27 September 2022), Example~2.25, p.~12.
+
+\bibitem{M}
+I.~Mundet i Riera, Discrete degree of symmetry of manifolds,
+\emph{Transformation Groups} \textbf{31} (2026), 801--838;
+published online 19 April 2024.
+\href{https://doi.org/10.1007/s00031-024-09858-z}{doi:10.1007/s00031-024-09858-z}.
+The first preprint is
+\href{https://arxiv.org/abs/2112.05599v1}{arXiv:2112.05599v1}
+(10 December 2021).
+
+\bibitem{CWY}
+S.~Cappell, S.~Weinberger and M.~Yan,
+Closed aspherical manifolds with center,
+\emph{J. Topol.} \textbf{6} (2013), 1009--1018.
+\href{https://doi.org/10.1112/jtopol/jtt023}{doi:10.1112/jtopol/jtt023}.
+The manuscript locator refers to
+\href{https://arxiv.org/abs/1108.2321v3}{arXiv:1108.2321v3}
+(14 April 2013).
+\end{thebibliography}
+\end{document}

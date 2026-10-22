@@ -1,0 +1,5 @@
+# PR #1227 eligibility
+
+The original primitive-set saturation game asks for its asymptotic length, including whether it is linear or sublinear. The audited prior lower bound is (1/2+o(1)) n loglog(n)/log(n), not n/2; the exact certified upper integral yields less than0.19n eventually. These bounds leave the linear-versus-sublinear question unresolved. The stronger n(loglog n)^2/log n scale is conditional on two unproved reached-state hypotheses, and the unrestricted safe-edge rule is false. A rigorous rational certificate for one upper constant does not determine the game order, an effective finite threshold, equality of starting-player values or a full original solution.
+
+Read body, full ACCEPTANCE.json/PROOF.md, first9,000 and last7,000 characters of AUDIT.md. The body lower-constant shorthand is disambiguated by the actual normalized theorem in the audit. Middle strategy derivations need not be independently certified to exclude an expressly unresolved order claim. Fresh GWS06:41:57UTC191rows no relevant leads; all8 actual paths/noQUEUE edit bound. No new certificate computation, source-author program or whole mathematical audit. Completion79%.

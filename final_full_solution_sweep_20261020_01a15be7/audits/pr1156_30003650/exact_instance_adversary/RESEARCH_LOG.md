@@ -1,0 +1,7 @@
+# Finite-instance capsule independent review
+
+2026-10-22T01:55:15.123063+00:00 — checkpoint: 20% complete. Full capsule/plan and meaningful dependency source behavior inspected; all sources newly copied and SHA-pinned. Target and plan unchanged. Prior v6 guards differ only in fixed account/ledger profile, acceptance filename and receipt scope. Offline adversarial harness construction underway; no service or Git operations.
+
+2026-10-22T02:02:28.905710+00:00 — checkpoint: 95% complete. Full651-case matrix completed in all3 Python modes,1953 main executions.631 expected guard behaviors per mode;20 unexpected idempotent after-read acceptances per mode reproduce one material finite-profile escape. Separate4-case reproducer per mode retains full false verified receipts. Original197/181, fresh152-counter-delta and exact182 idempotence positives all pass; all371 adapted inherited controls pass. Independent context audit replay produced byte-identical5928-byte summary and7174468-byte contexts. Sources unchanged; real service/process attempts0. Final report/manifest closure underway.
+
+2026-10-22T02:05:11.903224+00:00 — checkpoint:100% complete. Reviewv1 changes_required with one material final-idempotent finite-profile escape. All relevant results and minimal full false receipts retained; report and read-only verifier finished.1,970 full main executions,0 actual service/process attempts, all28 original pins unchanged. No adoption, generic alias approval, publication or source repair.

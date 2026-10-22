@@ -1,0 +1,9 @@
+# Root explicit candidate: PR1310 /2449 EP1038
+
+Actual pinned current head4ce3fbd19d499c7a16aa46ca416ad3305ef3d286 has21 changedpaths: QUEUE, sevenhistoricalupperboundfiles, thirteennewglobalappendixfiles. AddedQUEUErow1743 claimed_solved explicitlysupersedesearlierpendingcertificates. Rootreadentirecurrentbody, newglobal ACCEPTANCE/README andcachedoriginal, but hasnotyetreviewedfullend-to-endproof/certificatenotes orreplayedcertificates.
+
+Original asks bothinfimumandsupremum strictreal-sublevelmeasure fornonconstantmonicrealpolynomials withallroots[-1,1]. Currentclaim exactL=Lambda(qstar),1.834430475762661<L<1.834430475762662; eachfinitepolynomialstrictlyaboveL, positiveplatformempiricalrecovery, uniquenessqstaronlyspecifiedonecutfamily. Supremum2sqrt2/equalityusesTaoexternalThm2.1. Noarbitrarymeasurelower/classificationclaimedorrequiredautomatically beyondoriginalfinitepolynomialtarget.
+
+Laterclaimednumericalobligations6.1/7.1 andanalyticinterfaceacceptedhistoricallybutNOTrootadopted. Freshindependentanalyticfamilies/numericalreconstruction mustfalsifyalllowerbound, strictness, endpoint, chartcover, conversion, remainder, fixedpadding, comparison andimporthypotheses. Oldstrongermarginsnotclaimed; independentlysufficientpositiveboundsneedactualcheckableevidence. Missingpublicexecutables/certificates cannotbe replacedbyhashesoraggregatePASS. Preserveold7filesandallpriorfailed/pendinghistory.
+
+CreditWang/Tao; source Proposed/unrefereed; correctionofmisleadinghumanreviewwordingexplicit. No novelty, DOI, externalwrite, merge orreadinessadopted. This iseligibilityonly.

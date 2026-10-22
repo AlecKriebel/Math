@@ -1,0 +1,27 @@
+REJECT: replay failed audit_source_bridge/run_audit.py: Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/reviews/full_package_02/private_legacy/original/audit_source_bridge/run_audit.py", line 158, in <module>
+    main()
+    ~~~~^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/reviews/full_package_02/private_legacy/original/audit_source_bridge/run_audit.py", line 62, in main
+    code, out, err = run(['bwrap', '--ro-bind', '/', '/', '--die-with-parent', '--', *command], release)
+                     ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/reviews/full_package_02/private_legacy/original/audit_source_bridge/run_audit.py", line 27, in run
+    p = subprocess.run(command, cwd=cwd, env=env, stdout=subprocess.PIPE,
+                       stderr=subprocess.PIPE, timeout=45)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 555, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1990, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'bwrap'
+

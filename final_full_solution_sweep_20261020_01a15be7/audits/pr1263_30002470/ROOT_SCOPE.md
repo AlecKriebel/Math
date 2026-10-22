@@ -1,0 +1,5 @@
+# PR1263: full credited near-square negative retained
+
+Root read entire body, ACCEPTANCE_REPORT and MATHEMATICAL_AUDIT. Literal original oddn>=7 Diracgraph spanningtarget question is universal and refuted by n9 hostK4,4,1/minimumdegree5: targetdegreepatternforces3edge matchingdeletedfromC9²; deletionofanysingletoncandidate cannotbipartition because sixtrianglesforceuniquedeletionmatching then surviving5cycle. Thus covers anyperipheryreadingwithspecifieddegreepattern, no author-intenttest needed. Separatealloddn>=7proofs covertwoexplicitR1/R2readings, n7unrestrictedmatchingpositivecontrolpreservesdistinction. Cycle-spaceQuestion1 notnegated. FullnegativeclaimcreditsFerudunpriorRemark3.5/Theorem1.1 andownn9proofonlyverification.
+
+FreshGWS08:53:08UTC191rows no targetlead. ExistingpublishedFerudun23004012 DOI200/title/originalOWR12861-021 fitclaimbutcompleteactualpayload/proofsourceauditstillpending. Eight-filepatternnotassumed: actualPR3files only, allheadblobs andliveheadbound. Independentoriginal/proof/priorpublication/accountingreviewrequired; no novelty/newpaper/trackeraction. Overall80%.

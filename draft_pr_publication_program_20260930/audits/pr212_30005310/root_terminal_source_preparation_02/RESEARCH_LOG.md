@@ -1,0 +1,7 @@
+# PR212 terminal integration repair V2
+
+2026-10-17T22:43:39.828852+00:00 — Root identified V1 intake-field omissions and postpublication mutable-guard race. V1 preserved readonly; new V2 folder created. Peer/parser coordination underway. Source-repair subtask estimate:10%; no actual effects.
+
+2026-10-17T22:52:05.719630+00:00 — V2 implements all three exact intake fields and pending/fsync/final-guard/exclusive-link publication. Final current129 owned controls pass, including generated-record consumption by unchanged24760-byte0292388c after212 parser, no postpublication mutable core checks, foreignMain movement tolerance, prepublication guard/fsync failure and explicit postlink fsync/identity/unknownlink uncertainty. V1 retained unchanged. Subtask repair estimate:85%; documentation/source/evidence seal and peer handoff pending. Actual production/native/intake effects remain0.
+
+2026-10-17T22:54:04.782118+00:00 — Final V2 source six-file seal rehashed exact; final129 controls bind unchanged31054-byte source and unchanged after21224760-byte parser. Generated synthetic receipt13782bytes/SHAb24fe059c79198ba39cba959045894d319cdc86371e534b0201096e0676b549d accepted; all three missing/mistyped fields refused. All11 historicalV1 selected bodies remain exact. Finite authored evidence selection sealed for Root full read and fresh independent review. Repair-preparation subtask estimate100%; Root acceptance and actual production effects remain separate and unissued.

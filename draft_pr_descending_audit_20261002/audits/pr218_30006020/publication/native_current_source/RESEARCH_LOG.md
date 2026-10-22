@@ -1,0 +1,3 @@
+2026-10-15T07:10:08.615827+00:00 — case70%: mathematical/source PASS; extensive priority audit permits a credited consequence note. All22 original artifacts are archived; exact DGZZ/ABT/AT and announcement credit is explicit. First manuscript review M1 is repaired by finite-vector conditioning; proof core unchanged. A new second manuscript review, publication, tracker and merge remain.
+
+2026-10-15T07:31:31.741969+00:00 — case95%: required sequential manuscript reviews completed after global M1 repair; final frozen preprint published at https://doi.org/10.5281/zenodo.23387774, exact tracker readback 'Math Puzzles'!A99:D99. Native source integration/readback/merge remains. No proof change.

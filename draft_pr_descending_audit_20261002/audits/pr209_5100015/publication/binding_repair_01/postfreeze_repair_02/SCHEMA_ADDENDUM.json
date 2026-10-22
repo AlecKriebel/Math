@@ -1,0 +1,28 @@
+{
+  "schema": "pr209-binding-repair-schema-addendum-v1",
+  "role": "Internal implementation schema correction; no authority",
+  "case_completion_percent": 65,
+  "prior_schema_case_relative": "publication/binding_repair_01/SCHEMA_SPECIFICATION.json",
+  "frozen_core_normalization": {
+    "accepted_existing_form_1": {
+      "source": "whole_package_adversary_01/FROZEN_BYTES.json",
+      "core": "array of objects containing path, bytes, sha256; other frozen metadata may be present"
+    },
+    "accepted_existing_form_2": {
+      "source": "whole_package_adversary_02/FROZEN_INPUTS.json",
+      "core": "object mapping each exact core basename to an object with exactly bytes and sha256"
+    },
+    "invariant": "Exactly seven unique required names. Normalized basename->{bytes,sha256} equals actual assessment.frozen_bindings and final current core. No core member is omitted or inferred."
+  },
+  "compiler_log_rule": {
+    "path": "preprint/manuscript.log",
+    "extra_top_level_name": "manuscript.log",
+    "allowed_only_if": "Exact case-relative path is present in the return set after the cleared public export manifest and its file pin are successfully read, path-checked, sized and hashed.",
+    "arbitrary_extra_files": "Still rejected, including when added to synthetic manifest.",
+    "missing_changed_or_symlinked_log_pin": "Rejected",
+    "actual_frozen_bytes": 14573,
+    "actual_frozen_sha256": "868ac21e46287f930b3b42b1c4015752fb1b4dc736b291cd11a4ec28f2ef6936"
+  },
+  "interfaces_changed": false,
+  "actual_clearance_created": false
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "value": "https://a.invalid/?r=//doi.org/abc",
+    "accepted": false,
+    "error": "DOI resolver short alias requires root review"
+  },
+  {
+    "value": "https://a.invalid/?r=https://a.invalid/?deep=//doi.org/abc",
+    "accepted": false,
+    "error": "DOI resolver short alias requires root review"
+  },
+  {
+    "value": "https://a.invalid/#first=one&second=//shortdoi.org/abc",
+    "accepted": false,
+    "error": "Short DOI resolver alias requires root review"
+  },
+  {
+    "value": "https://a.invalid/?r=&#47;&#47;doi.org/abc",
+    "accepted": false,
+    "error": "DOI resolver short alias requires root review"
+  },
+  {
+    "value": "https://a.invalid/?r=%252F%252Fdoi.org%252Fabc",
+    "accepted": false,
+    "error": "DOI resolver short alias requires root review"
+  },
+  {
+    "value": "10/abc",
+    "accepted": false,
+    "error": "Bare short DOI requires root review"
+  },
+  {
+    "value": "10/abc?",
+    "accepted": false,
+    "error": "Bare short DOI requires root review"
+  },
+  {
+    "value": "<span>10/abc</span>",
+    "accepted": false,
+    "error": "Bare short DOI requires root review"
+  },
+  {
+    "value": "doi.org:443/abc",
+    "accepted": true,
+    "ids": []
+  },
+  {
+    "value": "https://doi.org:444/10.5281/zenodo.777",
+    "accepted": false,
+    "error": "Terminal-dot/ported DOI resolver reference requires root review"
+  },
+  {
+    "value": "https://doi.org@a.invalid/abc",
+    "accepted": false,
+    "error": "Official-looking DOI resolver userinfo requires root review"
+  }
+]

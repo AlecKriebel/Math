@@ -1,0 +1,5 @@
+# Public edition of the independently sealed graph-literature audit
+
+The initial B family remains sealed and unchanged locally. This separately bound public edition copies every other initial authored member exactly and replaces QUERY_LEDGER.json with an explicit query/URL-only projection. All 59 literal queries, UTC stamps, result scopes, followed leads and 893 returned URL rows remain; all returned title fields are omitted because the provider sometimes supplied unrelated paragraph excerpts in that field.
+
+INITIAL_SEAL_RECEIPT.json preserves the exact original manifest as a historical hash receipt. The original raw query ledger is omitted and is not portably verified. The current MANIFEST.json authenticates the actual public files; PROJECTION_RECEIPT.json records both identities and the precise change. Original REPORT/VERDICT reading and independence claims refer to the initial audit, before this public projection. No theorem, attribution, query-count, source-reading or priority conclusion changes. A bounded search still certifies neither novelty nor current openness.

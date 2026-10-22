@@ -1,0 +1,11 @@
+# Independent checkpoint before proof/prior-review access
+
+2026-10-15T07:13:00Z. Estimated audit completion: 5%.
+
+Read primary PDFs directly with pdftotext: OWR 21/2009 printed 1124–1126 (PDF 24–26), arXiv 0711.0584v1 p.7, arXiv 0810.0728v2 p.17. The common question concerns ALL ample line bundles and arbitrary points on smooth minimal complex projective surfaces, with lower bound 1/(2+|K²|^(1/4)). It does not assert a very-general-point or Picard-rank-one claim. The 2007 challenge asks for strict counterexamples; the later two sources formulate the lower bound.
+
+Independent possible construction derived before reading any paper/proof/review: resolve a degree-d plane pencil with d² distinct simple base points, all fibres integral, and one integral fibre with a (d−1)-fold point outside the base locus. Put F=dH−ΣE and A=E1+2F. Then A²=3; A.E1=1, A.C=1 for an integral fibre, and every other horizontal curve has F.C≥1 and E1.C≥0, so A is ample by Nakai. A=E1+F would FAIL ampleness (zero on E1), an important negative control. Take a double cover branched along two smooth fibres, using the line bundle O(F). Then Kcover=π*(K+F)=π*((d−3)H), nef and big for d>3; thus the smooth cover would be minimal of general type. Kcover²=2(d−3)². The cover is unbranched and trivial over the distinguished fibre, since its defining section is pulled back from the pencil base and takes a nonzero constant at that base point. A lifted fibre has pullback-A intersection 1 and retains multiplicity d−1. Hence epsilon≤1/(d−1). At d=7, 6>2+32^(1/4), and the inequality appears to improve thereafter.
+
+Critical unproved points at this checkpoint: existence of an all-integral reduced pencil through an integral high-multiplicity degree-d curve, including d=7; smoothness and connectedness/integrality of the double cover; exact line-bundle canonical formula; full every-curve ampleness, including exceptional curves; rigorous splitting over the singular fibre; proof of strict inequality for all d≥7. The construction is plausible but no correctness verdict has been assumed. The finite symbolic checks will not establish geometric existence or literature priority.
+
+No root receipt, root status/verdict, publication proof, original proof, or earlier review has been read before this file.

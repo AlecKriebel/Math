@@ -1,0 +1,152 @@
+--- first_repair
++++ second_repair
+@@ -8,6 +8,12 @@
+ import re
+ 
+ ROOT = Path(__file__).resolve().parent
++SHEET = '1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20'
++SHEET_GID = 1254632077
++# Only this exact, already independently verified historical receipt predates
++# separate public-file receipts. Modern publications cannot opt into its schema.
++LEGACY_RECEIPT = ('PR0292_PUBLICATION_VERIFICATION.json',
++                  'ad5cad544399809004b1007a2758444fbc43891ad28a4745fffa805f46987cf2')
+ 
+ 
+ def evidence_json(name):
+@@ -43,6 +49,8 @@
+             raise RuntimeError('Missing public file size or SHA256')
+         legacy = 'download_verified' in entry
+         if legacy:
++            if any(k in entry for k in ('downloaded_and_matches_reviewed', 'http_status', 'bytes', 'md5')):
++                raise RuntimeError('Mixed or contradictory public download schemas')
+             md5 = entry.get('checksum', '')
+             if entry.get('download_verified') is not True or not re.fullmatch('md5:[0-9a-f]{32}', md5):
+                 raise RuntimeError('Legacy public download is not verified')
+@@ -66,10 +74,32 @@
+                   or type(entry.get('all_manifest_payloads_verified')) is not int
+                   or entry['all_manifest_payloads_verified'] != members-1):
+                 raise RuntimeError('Supporting archive manifest evidence is incomplete')
+-        result[name] = (size, digest, md5)
++        archive_evidence = ((tuple(sorted(members)) if legacy else
++                             (members, entry['all_manifest_payloads_verified']))
++                            if name.endswith('.zip') else None)
++        result[name] = (size, digest, md5, archive_evidence)
+     if not any(n.endswith('.pdf') for n in result) or not any(n.endswith('.zip') for n in result):
+         raise RuntimeError('Published PDF or supporting archive absent')
+     return result
++
++
++def verify_resolution(value, record, doi):
++    if not isinstance(value, dict):
++        raise RuntimeError('DOI resolution must be an object')
++    status = value.get('http_status') if value.get('status') == 'resolved' else value.get('status')
++    target = 'https://zenodo.org/records/'+str(record)
++    if (type(status) is not int or status != 200 or value.get('resolved_url') != target
++            or ('http_status' in value and (type(value['http_status']) is not int or value['http_status'] != 200))
++            or ('url' in value and value['url'] != 'https://doi.org/'+doi)
++            or ('expected_record' in value and (type(value['expected_record']) is not int or value['expected_record'] != record))
++            or ('exact_expected_record_destination_verified' in value
++                and value['exact_expected_record_destination_verified'] is not True)):
++        raise RuntimeError('Exact canonical DOI destination evidence absent or contradictory')
++    if 'destination_verified' in value:
++        bound = value['destination_verified']
++        if (not isinstance(bound, dict) or type(bound.get('record')) is not int or bound['record'] != record
++                or type(bound.get('status')) is not int or bound['status'] != 200 or bound.get('resolved_url') != target):
++            raise RuntimeError('Nested DOI destination proof contradicts its record')
+ 
+ 
+ def verify_completed_publications(own, effective, reopened):
+@@ -92,7 +122,8 @@
+             raise RuntimeError('Completed entry and effective disposition name different canonical evidence')
+         proof = evidence_json(name)
+         merge = item.get('merge_commit')
+-        if (type(proof.get('pr')) is not int or proof['pr'] != number
++        if (type(entry.get('pr')) is not int or entry['pr'] != number
++                or type(proof.get('pr')) is not int or proof['pr'] != number
+                 or proof.get('record') != record or type(proof.get('record')) is not int
+                 or proof.get('doi') != doi or entry.get('doi') != doi
+                 or proof.get('problem_ids') != [problem] or entry.get('problem_ids') != [problem]
+@@ -105,37 +136,48 @@
+                 or proof.get('doi_url') != 'https://doi.org/'+doi
+                 or proof.get('record_url') != 'https://zenodo.org/records/'+str(record)):
+             raise RuntimeError('Completed publication cross-artifact identities disagree')
+-        resolution = proof.get('doi_resolution', {})
+-        status = resolution.get('http_status') if resolution.get('status') == 'resolved' else resolution.get('status')
+-        if type(status) is not int or status != 200 or resolution.get('resolved_url') != proof['record_url']:
+-            raise RuntimeError('Exact canonical DOI destination evidence absent')
++        verify_resolution(proof.get('doi_resolution'), record, doi)
+         files = public_files(proof)
+         evidence = proof.get('evidence', {})
+         prefix = f'audits/pr{number:04d}_{problem}/'
+         if evidence.get('ledger') != prefix+'LEDGER_PUBLICATION_VERIFICATION.json':
+             raise RuntimeError('Ledger receipt is outside the corresponding publication')
+         ledger = evidence_json(evidence['ledger'])
++        values = ledger.get('values')
+         if (type(ledger.get('pr')) is not int or ledger['pr'] != number or ledger.get('doi') != doi
+                 or type(ledger.get('row_number')) is not int or ledger['row_number'] != row
+                 or ledger.get('status') != 'verified' or ledger.get('read_back_exact') is not True
+-                or ledger.get('unique_target_and_DOI') is not True):
++                or ledger.get('unique_target_and_DOI') is not True
++                or ledger.get('spreadsheet_id') != SHEET or type(ledger.get('sheet_gid')) is not int
++                or ledger['sheet_gid'] != SHEET_GID or not isinstance(values, list) or len(values) != 4
++                or any(not isinstance(v, str) for v in values) or values[2] not in {doi, 'https://doi.org/'+doi}
++                or not re.search(r'(?<![0-9])'+re.escape(problem)+r'(?![0-9])', values[0])
++                or not re.search(r'https://github\.com/AlecKriebel/Math/pull/'+str(number)+r'(?![0-9])', ' '.join(values))):
+             raise RuntimeError('Bound ledger receipt disagrees with publication')
+         if 'public_files' in evidence:
+             if evidence['public_files'] != prefix+'ZENODO_PUBLIC_FILE_VERIFICATION.json':
+                 raise RuntimeError('Public file receipt is outside the corresponding publication')
+             payload = evidence_json(evidence['public_files'])
++            verify_resolution(payload.get('doi_resolution'), record, doi)
+             metadata_flags = [payload[k] for k in (
+                 'all_intended_authenticated_and_public_metadata_verified',
+                 'all_intended_metadata_verified_by_existing_tool') if k in payload]
+             if (type(payload.get('pr')) is not int or payload['pr'] != number
+                     or type(payload.get('record')) is not int or payload['record'] != record
+                     or payload.get('doi') != doi or public_files(payload) != files
++                    or payload.get('doi_url') != 'https://doi.org/'+doi
++                    or type(payload.get('record_http_status')) is not int or payload['record_http_status'] != 200
++                    or payload.get('title') != proof.get('title')
++                    or ('version' in proof and payload.get('version') != proof['version'])
+                     or payload.get('all_public_file_bytes_match_reviewed') is not True
+                     or not metadata_flags or any(v is not True for v in metadata_flags)):
+                 raise RuntimeError('Bound public file receipt disagrees with publication')
+         else:
+             # The first released receipt uses the documented legacy download
+             # schema and separately records its reviewed PDF/archive SHA pins.
++            if (name != LEGACY_RECEIPT[0] or number != 292
++                    or hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != LEGACY_RECEIPT[1]):
++                raise RuntimeError('Only the exact pinned historical receipt may use legacy compatibility')
+             pins = proof.get('reviewed_hashes', {})
+             for extension, key in [('.pdf', 'pdf'), ('.zip', 'zip')]:
+                 if {v[1] for n, v in files.items() if n.endswith(extension)} != {pins.get(key)}:
+@@ -148,12 +190,18 @@
+     state = json.loads((ROOT/'STATE.json').read_text())
+     inventory = json.loads((ROOT/'rest_inventory.json').read_text())
+     journal = [json.loads(line) for line in (ROOT/'dispositions.jsonl').read_text().splitlines() if line.strip()]
++    if any(type(entry.get('pr')) is not int for entry in journal):
++        raise RuntimeError('Historical journal PR identities must be exact integers')
+     numbers = [entry['pr'] for entry in journal]
+     if numbers != list(range(state['start_pr'], state['next_pr'])):
+         raise RuntimeError('Ordered journal is not the exact numerical prefix ending before next_pr')
+     if state['last_completely_processed_pr'] != state['next_pr']-1 or state['completed_pr_count'] != len(numbers):
+         raise RuntimeError('Cursor/count disagrees with ordered journal')
+-    known = {entry['number'] for entry in inventory['pull_requests']}
++    inventory_numbers = [entry['number'] for entry in inventory['pull_requests']]
++    if (any(type(n) is not int or n < state['start_pr'] for n in inventory_numbers)
++            or len(inventory_numbers) != len(set(inventory_numbers))):
++        raise RuntimeError('Inventory PR identities must be unique exact integers')
++    known = set(inventory_numbers)
+     if len(known) != inventory['in_scope_pr_count'] or max(known) != inventory['highest_pr']:
+         raise RuntimeError('Inventory total/maximum mismatch')
+     gaps = set(inventory['numeric_gaps'])
+@@ -194,7 +242,8 @@
+         replacement = evidence_json(item['replacement_disposition'])
+         publication = evidence_json(replacement['publication_evidence'])
+         completed = [v for v in own if v['pr'] == number]
+-        if (replacement['pr'] != number or replacement['disposition'] != 'published_verified_full_solution'
++        if (type(replacement['pr']) is not int or replacement['pr'] != number
++                or replacement['disposition'] != 'published_verified_full_solution'
+                 or replacement.get('historical_disposition_sha256') != item['historical_disposition_sha256']
+                 or len(completed) != 1 or completed[0]['doi'] != replacement['doi']
+                 or publication.get('published') is not True or publication['doi'] != replacement['doi']

@@ -1,0 +1,9 @@
+# Concurrent GET source preparation log
+
+2026-10-17T22:42:40.113567+00:00 — Preparation100%. Implementation and gate contract are frozen for final independent source review;63 owned offline controls passed. Exact result stdout is retained. No production factory/Runtime/gate/transport, actual lock, native object/ref/PR/provider/globalfive/intake operation occurred. Overall goal remains active and incomplete; actual program counts/cursor were not changed.
+
+Root preliminary review identified two mandatory resource bounds: aggregate retention must be reserved before appending, and the whole prefetch needs an overall deadline. Both were repaired before freeze. A locked48MB canonical+origin budget is now reserved before each result; a fixed120s dispatch/acceptance deadline stops new jobs and joins bounded in-flight requests. Controls reproduce oversized extra metadata overflow and controlled-clock late-response/source-check cases, with joined workers and no late activity.
+
+The extension explicitly wraps the old Runtime and adds fresh source/gate checks; it imports the unchanged approved driver and preserves exact logical/source identities and current Root-admitted parent bindings. Each old API belongs to one worker at a time, and the original NativeBodyProofs pool remains sequential. Dynamic delegated blobs also retain validated actual raw origins. Candidate has the original sequential twoPOST/lease/ledger orchestration and only changes its verification reader. Old hold_CAS and sync are invoked unchanged. No ref/PR/newglobal-five authority is added.
+
+Final independent source acceptance and exact actual parameter/gate review remain Root tasks. Any runtime use requires a new actual Root extension acceptance; no gate/admission/candidate/actualreceipt is created by this preparation. The current logical overlay is unchanged; this finite operational source closure can be positively carried at a later checkpoint.

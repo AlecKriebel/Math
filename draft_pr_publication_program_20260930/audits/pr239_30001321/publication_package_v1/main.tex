@@ -1,0 +1,866 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+ pdftitle={Coarse endpoint concentration at every diverging scale for one-dimensional space-time random walks},
+ pdfauthor={Alec Kriebel},
+ pdfsubject={A self-contained concentration theorem with unresolved historical priority},
+ pdfkeywords={space-time random environment, quenched concentration, coarse graining, coalescing coupling},
+ pdflang={en}
+}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert_1}
+\DeclareMathOperator{\Var}{Var}
+\title{Coarse endpoint concentration at every diverging scale\\
+for one-dimensional space-time random walks}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{18 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a nearest-neighbor walk on $\ZZ$ in a fixed i.i.d.\ space-time
+environment with transition probabilities strictly between zero and one,
+we prove that its quenched and averaged endpoint laws agree, after
+coarse graining into deterministic intervals of any diverging length,
+outside an environment event of probability smaller than every inverse
+power of time. No uniform ellipticity or quantitative rate of divergence
+of the interval length is required. This is the affirmative
+one-dimensional assertion contrary to Conjecture~1 in Berger's contribution
+to Oberwolfach Report~38/2009. The proof combines replica overlap
+estimates, environmental martingales, same-parity coalescence and
+concentration over a short final segment.
+\textbf{Priority qualification:} novelty and historical priority remain
+unresolved. A bounded literature audit established no exact full
+anticipation, but four relevant older original full texts could not be
+accessed. We make no claim of firstness, independent discovery or that
+the conjecture remained open until this work. Established late-layer
+and coalescing methods, including those of Dunlap--Gu and
+Barraquand--Rychnovsky, are explicitly credited.
+\end{abstract}
+
+\section{Statement, interpretation and prior work}
+
+Let $\omega=(p_{s,x}:s\geq0,\ x\in\ZZ)$ have i.i.d.\ coordinates with
+\begin{equation}\label{eq:ell}
+             0<p_{s,x}<1\qquad\PP\text{-almost surely}.
+\end{equation}
+In a fixed environment the walk starts at $X_0=0$ and at time $s$ jumps
+from $x$ to $x+1$ with probability $p_{s,x}$ and to $x-1$ otherwise.
+Write $P^\omega$ for this quenched law,
+$\mu_n^\omega(x)=P^\omega(X_n=x)$, and
+$\alpha_n(x)=\EE\mu_n^\omega(x)$. The environment expectation and
+probability are $\EE$ and $\PP$. We suppress $\omega$ in intermediate
+calculations. For a deterministic partition $\cP$ of $\ZZ$ define
+\[
+ L_{n,\cP}=\sum_{I\in\cP}|\mu_n(I)-\alpha_n(I)|.
+\]
+This uses the full $\ell^1$ distance, twice the usual total variation
+distance. For real $M>0$ and $b\in\mathbb R$, the intervals
+$[b+jM,b+(j+1)M)$, $j\in\ZZ$, intersected with $\ZZ$, define a
+partition; empty cells are harmless.
+
+\begin{theorem}\label{thm:main}
+For every fixed environment law satisfying \eqref{eq:ell}, every
+deterministic sequence $M_N>0$ with $M_N\to\infty$, and every
+$\varepsilon,K>0$, there are finite $C_{\varepsilon,K}$ and $N_0$
+such that, for $N\geq N_0$ and every deterministic alignment $b_N$,
+\begin{equation}\label{eq:main}
+       \PP(L_{N,\cP_N}>\varepsilon)
+                    \leq C_{\varepsilon,K}N^{-K},
+ \qquad
+ \cP_N=\{[b_N+jM_N,b_N+(j+1)M_N)\cap\ZZ:j\in\ZZ\}.
+\end{equation}
+The constants may depend on the fixed environment law.
+The eventual threshold may also depend on the sequence $M_N$.
+The bound is uniform in each deterministic alignment.
+\end{theorem}
+
+Here and below \emph{superpolynomially small} means $O(N^{-K})$ for
+every fixed $K>0$, with its own constant and eventual threshold.
+The theorem includes biased averaged walks, nearest-neighbor parity,
+integer cells containing $M_N$ sites, real interval lengths and
+arbitrarily slowly diverging nonmonotone scales.
+It does not assert a simultaneous bound for environment-selected
+partitions, a law-uniform bound as ellipticity degenerates, or a
+result for static or correlated environments.
+
+Berger's report \cite[pp.~2151--2152, Theorem~1 and Conjecture~1]{Berger}
+states the analogous concentration assertion in transverse dimension
+at least two and conjectures its failure in dimension one.
+Theorem~\ref{thm:main} gives the affirmative assertion for its i.i.d.,
+nearest-neighbor, elliptic one-dimensional model. A deterministic
+elliptic law has $\mu_N=\alpha_N$; the theorem also covers every
+nondegenerate law under \eqref{eq:ell}, so its conclusion is not based
+on that trivial special case.
+
+The difference-walk and quenched-mean mechanisms already occur in
+Bal\'azs--Rassoul-Agha--Sepp\"al\"ainen \cite{BRAS}.
+Independent particles and coupling in dynamical environments are
+treated in Joseph--Rassoul-Agha--Sepp\"al\"ainen \cite{JRAS}.
+Dunlap--Gu \cite{DG} isolate a short final layer in a
+Gaussian-times-stationary-corrector local limit theorem for a continuum
+stochastic flow with molecular Brownian noise.
+Barraquand--Rychnovsky \cite[Section~1.4, Proposition~1.13 and
+Section~4.5]{BR} prove a full-space beta-environment local limit
+theorem and use final-layer decomposition and ordered coalescence.
+Those mechanisms, as well as replica calculations, martingale exposure
+and bounded differences, are established methods. All analytic inputs
+needed here are proved below.
+
+The modern distribution-valued fluctuation limits of
+Drillick--Parekh \cite{DP} and Parekh \cite{Parekh} are also relevant.
+The inspected statements concern different observables and convergence
+topologies and do not state \eqref{eq:main}'s shrinking-cell
+$\ell^1$ conclusion with a superpolynomial environment tail.
+Nearest-neighbor parity is not a reason to exclude that framework:
+Parekh \cite[Section~6.1, Remark~6.2]{Parekh} handles it by two-step
+kernels on $2\ZZ$. A qualitative local or weak limit does not, by
+itself, supply every inverse-power probability bound.
+
+The bounded audit verified no earlier theorem with the full
+quantifiers of \eqref{eq:main}; it did not establish novelty.
+The complete original texts of Boldrighini--Minlos--Pellegrinotti
+(1999) \cite{BMP1999}, Boldrighini--Pellegrinotti
+(2001) \cite{BP2001}, Boldrighini--Minlos--Pellegrinotti
+(2004) \cite{BMP2004}, and B\'erard (2004) \cite{Berard} could not be
+accessed. Their metadata, abstracts or later primary discussions were
+available, but do not exclude stronger estimates in the original
+proofs. None of these four sources is represented as fully eliminated
+as an anticipation. The accompanying priority ledger records exact
+access and reading limits. Accordingly this note reports a verified
+self-contained theorem with originality and historical priority
+unresolved; it does not assert firstness, independent discovery,
+a new method or present-day open status.
+
+Put
+\begin{equation}\label{eq:params}
+ q=\EE p,\quad a=q(1-q),\quad
+ \delta=\EE[p(1-p)],\quad \sigma^2=\Var(p)=a-\delta,\quad v=2q-1.
+\end{equation}
+Then $0<\delta\leq a\leq1/4$. The averaged walk has independent
+sign increments of mean $v$ and variance $4a$. This follows by
+successively averaging fresh time layers even when a path revisits
+an old spatial location. Constants $C,c>0$ below may change from
+line to line and depend on the fixed law. Let $\cF_s$ contain the
+environment layers with time index less than $s$, and put
+$I_s=\sum_x\mu_s(x)^2$.
+
+\section{Replica returns and occupation moments}
+
+\begin{lemma}\label{lem:overlap}
+There is $C<\infty$ such that, for all deterministic integers $s,t\geq0$,
+\begin{equation}\label{eq:condoverlap}
+       \EE[I_{s+t}\mid\cF_s]\leq \frac{C}{\sqrt{t+1}}.
+\end{equation}
+For $L,k\geq1$ integers,
+\begin{equation}\label{eq:moments}
+ \EE\left[\left(\sum_{j=0}^{L-1}I_{s+j}\right)^k
+                    \biggm|\cF_s\right]\leq k!C^kL^{k/2}.
+\end{equation}
+Consequently, for every fixed $\eta>0$, $L\leq N$ and deterministic
+$s$, the event
+$\sum_{j<L}I_{s+j}>N^\eta\sqrt L$ is superpolynomially unlikely.
+\end{lemma}
+
+\begin{proof}
+Take two independent walks conditional on the same environment.
+Their half-difference $D=(X-Y)/2$ is integral because the positions
+have the same parity. On environmental averaging its transition
+probabilities to each neighbor are $a$ away from zero and $\delta$
+at zero; its holding probabilities are $1-2a$ and $1-2\delta$,
+respectively. Indeed different current sites use independent fresh
+variables, whereas at a shared site the probabilities of the two
+opposite step pairs are both $\EE[p(1-p)]$. In particular,
+\[
+              \EE I_t=P_0(D_t=0)=:g_t .
+\]
+
+We derive a pointwise return bound. For $0<z<1$, the hitting
+transform from $d\geq1$ to zero is $\rho(z)^d$, where the root in
+$(0,1)$ solves
+\[
+ az\rho^2-[1-(1-2a)z]\rho+az=0.
+\]
+The other root exceeds one; the bounded solution of the hitting
+recurrence is the stated one. First-return decomposition at zero gives
+\begin{align}
+ G(z):=\sum_{t\geq0}g_tz^t
+ &=\frac{1}{1-(1-2\delta)z-2\delta z\rho(z)}\notag\\
+ &=\frac{1}{
+ (1-\delta/a)(1-z)+(\delta/a)
+       \sqrt{(1-z)(1-(1-4a)z)}}\notag\\
+ &\leq \frac{\sqrt a}{2\delta\sqrt{1-z}} .\label{eq:green}
+\end{align}
+The square root is positive on $(0,1)$; the last inequality uses
+$\delta\leq a$ and $1-(1-4a)z\geq4a$.
+
+To pass from this generating-function bound to individual coefficients,
+use reversibility with weights $\pi(0)=a/\delta$ and $\pi(d)=1$
+for $d\ne0$. The transition operator $P$ is a self-adjoint
+contraction on $\ell^2(\pi)$: contraction follows from Jensen's
+inequality and invariance of $\pi$. Every holding probability is
+at least $1/2$, so $2P-\mathrm{Id}$ is also a self-adjoint Markov
+contraction. Thus the spectrum of $P$ lies in $[0,1]$.
+The spectral measure of $\one_{\{0\}}$, divided by $\pi(0)$,
+is a probability measure $\nu$ with
+$g_t=\int_{[0,1]}\lambda^t\,d\nu(\lambda)$.
+Therefore $g_t$ decreases with $t$. For $n\geq1$ this implies
+\[
+ g_n\frac{1-z^{n+1}}{1-z}\leq G(z).
+\]
+Set $z=n/(n+1)$, note $z^{n+1}\leq e^{-1}$, and apply
+\eqref{eq:green}. After including $n=0$, we obtain
+$g_n\leq C/\sqrt{n+1}$.
+
+We also need the backward return profile
+$u_t(d)=P_d(D_t=0)$ to be maximal at zero.
+It is symmetric. Write $b_t(d)=u_t(d)-u_t(d+1)$ for $d\geq0$.
+The backward transition equation gives
+\begin{align*}
+ b_{t+1}(0)&=(1-2\delta-a)b_t(0)+a b_t(1),\\
+ b_{t+1}(d)&=a b_t(d-1)+(1-2a)b_t(d)+a b_t(d+1),
+                       &&d\geq1.
+\end{align*}
+All coefficients are nonnegative, since
+$1-2\delta-a\geq1-3a\geq1/4$.
+Initially $b_0(0)=1$ and all other $b_0(d)=0$.
+Induction proves $u_t(d)\leq u_t(0)=g_t$.
+Conditioning on $\cF_s$ now fixes the starting replica law
+$\mu_s\otimes\mu_s$ and leaves later layers fresh, so
+\[
+ \EE[I_{s+t}\mid\cF_s]
+    =\sum_{x,y}\mu_s(x)\mu_s(y)u_t((x-y)/2)\leq g_t.
+\]
+Every half-difference here is integral.
+
+Let $A_L=\sum_{j<L}g_j\leq C\sqrt L$.
+Expand the $k$th power in \eqref{eq:moments} and order its time
+indices, overcounting by at most $k!$. In each resulting nonnegative
+ordered sum, condition at its penultimate selected time.
+The sum of conditional expectations of the last overlap is at most
+$A_L$. Iterating removes all indices and costs at most $A_L^k$.
+Repeated indices are included: at a zero time gap use $I_t\leq1=g_0$.
+This proves \eqref{eq:moments} without independence of overlaps.
+Markov's inequality gives $k!C^kN^{-k\eta}$ for the stated tail.
+For each desired power choose a fixed sufficiently large $k$.
+\end{proof}
+
+\section{Environmental martingales and coarse expectation}
+
+Let $T_tf(x)$ be the averaged expectation of $f$ for a $t$-step
+walk started at $x$. For deterministic bounded $f$, the exposure
+martingale for $\mu_n(f)$ is $\mu_s(T_{n-s}f)$, $0\leq s\leq n$.
+Its next increment is exactly
+\begin{equation}\label{eq:increment}
+ D_s(f)=\sum_x\mu_s(x)(p_{s,x}-q)
+       [T_{n-s-1}f(x+1)-T_{n-s-1}f(x-1)].
+\end{equation}
+If $h_s(x)$ denotes the bracket, independence within the next layer gives
+\begin{equation}\label{eq:variation}
+ |D_s(f)|\leq\sup_x|h_s(x)|,\qquad
+ \EE[D_s(f)^2\mid\cF_s]
+             =\sigma^2\sum_x\mu_s(x)^2h_s(x)^2.
+\end{equation}
+All sums at a fixed horizon have finite support.
+For a $1/r$-Lipschitz $f$, the translation semigroup preserves its
+Lipschitz constant; thus the increment bound is $2/r$ and the
+predictable quadratic variation is at most
+$Cr^{-2}\sum_{s<n}I_s$.
+
+We use two elementary scalar concentration estimates, recorded here
+to fix their conditional meaning. If martingale differences satisfy
+$|D_j|\leq b$ and $Q=\sum_j\EE[D_j^2\mid\mathcal G_{j-1}]$, then
+\begin{equation}\label{eq:freedman}
+ \PP\left(\left|\sum_jD_j\right|\geq u,\ Q\leq w\right)
+       \leq2\exp\left\{-\frac{u^2}{4(w+bu)}\right\}.
+\end{equation}
+Indeed $e^x\leq1+x+x^2$ for $|x|\leq1$ makes
+$\exp(\lambda\sum_{i\leq j}D_i-\lambda^2Q_j)$ a nonnegative
+supermartingale for $\lambda b\leq1$.
+Markov's inequality on the joint event, with
+$\lambda=u/[2(w+bu)]$, and the same argument for negative sums prove
+\eqref{eq:freedman}. We never condition the martingale law on a
+future small-variation event.
+
+We will also use the following bounded-increment estimate.
+For independent centered increments with range length at most two,
+\[
+       \EE e^{\lambda Z}\leq e^{\lambda^2/2}.
+\]
+To check this, the second derivative of the log moment-generating
+function is a variance under an exponential tilt, bounded by one
+for any variable supported on an interval of length two.
+Integrate twice, using the zero mean.
+The corresponding exponential supermartingale, stopped at the first
+crossing and then bounded at the terminal time, gives
+\begin{equation}\label{eq:maximal}
+ \PP\left(\max_{t\leq h}|S_t|\geq u\right)
+             \leq2e^{-u^2/(2h)}
+\end{equation}
+for centered partial sums of such independent increments.
+The same argument, applied to conditional ranges of martingale
+increments, gives the independent-input bounded-differences
+inequality
+\begin{equation}\label{eq:BD}
+ \PP(F-\EE F>u)
+       \leq\exp\left\{-\frac{2u^2}{\sum_jc_j^2}\right\}
+\end{equation}
+when altering input $j$ changes $F$ by at most $c_j$.
+For completeness, exposing independent inputs yields martingale
+increments of conditional range at most $c_j$; the preceding
+log-moment argument after rescaling gives
+$\EE(e^{\lambda D_j}\mid\mathcal G_{j-1})
+ \leq e^{\lambda^2c_j^2/8}$.
+Multiplication and optimization prove \eqref{eq:BD}.
+
+\begin{lemma}\label{lem:expectation}
+Uniformly in real interval lengths $M\geq1$, deterministic alignments,
+$n\geq2$ and $B\geq1$,
+\begin{equation}\label{eq:expectation}
+ \EE L_{n,\cP}\leq
+ C\sqrt{\left(\frac B M+n^{-1/2}\right)
+       \left[1+\log(1+\min(M+1,\sqrt n))\right]}+\frac C{B^2}.
+\end{equation}
+In particular there is a deterministic bound $\rho(n,M)\leq2$,
+uniform in alignment, with $\rho(n,M)\to0$ whenever both $n,M\to\infty$.
+\end{lemma}
+
+\begin{proof}
+On its parity lattice the averaged kernel is the binomial mass
+$b_t(j)=\PP(\operatorname{Bin}(t,q)=j)$.
+For $\phi(\theta)=1-q+qe^{i\theta}$,
+\[
+ |\phi(\theta)|^2=1-4a\sin^2(\theta/2),\qquad
+ |\phi(\theta)|^t\leq e^{-2at\theta^2/\pi^2},
+                  \quad |\theta|\leq\pi.
+\]
+Fourier inversion, with and without the factor
+$|e^{i\theta}-1|\leq|\theta|$, proves
+\[
+ \max_j b_t(j)\leq C(t+1)^{-1/2},\qquad
+ \max_j|b_t(j+1)-b_t(j)|\leq C(t+1)^{-1}.
+\]
+Unimodality and zeros outside the support give
+$\sum_j|b_t(j+1)-b_t(j)|=2\max_j b_t(j)$.
+These are physical shifts by two, not one.
+
+For $h_I(x)=T_t\one_I(x+1)-T_t\one_I(x-1)$, summing over the
+contiguous parity sites of an interval telescopes to at most two
+endpoint masses. Alternatively bound its at most $M+1$ site terms
+by the adjacent-mass bound. The partition cannot increase the
+$\ell^1$ norm of a signed measure, so
+\begin{align*}
+ \max_I|h_I(x)|
+     &\leq C\min((t+1)^{-1/2},(M+1)(t+1)^{-1}),\\
+ \sum_I|h_I(x)|&\leq C(t+1)^{-1/2},\\
+ \sum_I h_I(x)^2
+     &\leq C\min((t+1)^{-1},(M+1)(t+1)^{-3/2}).
+\end{align*}
+Orthogonality of \eqref{eq:increment} in time and
+$\EE I_s=g_s$ therefore imply
+\[
+ \sum_I\Var(\mu_n(I))
+  \leq C\sum_{s<n}(s+1)^{-1/2}
+       \min((n-s)^{-1},(M+1)(n-s)^{-3/2}).
+\]
+For $s\leq n/2$ the sum is at most $Cn^{-1/2}$.
+For $s>n/2$, bound $(s+1)^{-1/2}\leq Cn^{-1/2}$ and split the
+remaining sum over $k=n-s$ at $k=(M+1)^2$.
+This yields
+\begin{equation}\label{eq:sumvar}
+ \sum_I\Var(\mu_n(I))
+       \leq\frac C{\sqrt n}
+                 [1+\log(1+\min(M+1,\sqrt n))].
+\end{equation}
+The window $[vn-B\sqrt n,vn+B\sqrt n]$ intersects at most
+$2B\sqrt n/M+2$ cells. Cauchy--Schwarz and \eqref{eq:sumvar}
+bound the expected discrepancy on them by the square-root term
+in \eqref{eq:expectation}. All other cells lie outside this window.
+Their expected discrepancy is at most twice its averaged tail,
+which is at most $C/B^2$ by the variance $4an$.
+For fixed $B$, the square-root term tends to zero as $n,M\to\infty$:
+if $M\leq\sqrt n$, use $\log(1+M)/M\to0$; otherwise use
+$\log n/\sqrt n\to0$. Then let $B\to\infty$.
+The infimum of the displayed bounds over $B\geq1$, capped at two,
+defines a suitable $\rho$.
+\end{proof}
+
+\section{A polynomial auxiliary coarse scale}
+
+The next estimate is used only at an auxiliary scale, not at the
+possibly much slower target scale $M_N$.
+
+\begin{proposition}\label{prop:coarse}
+For fixed $\gamma>1/4$, $u>0$ and $K>0$,
+\[
+ \PP(L_{n,\cP}>u)=O(n^{-K})
+\]
+uniformly over integer cell lengths $M\geq n^\gamma$
+and all deterministic alignments.
+\end{proposition}
+
+\begin{proof}
+It suffices to treat $1/4<\gamma<1/2$, since a fixed exponent in
+that range also covers all larger $\gamma$.
+Put
+\[
+ d=\gamma-\tfrac14,\quad
+ \beta=\tfrac14+\tfrac d2,\quad \eta=\tfrac d4,\quad
+ r=n^\beta,\quad h=\left\lfloor\frac{n^{2\beta}}{(\log n)^2}\right\rfloor,
+ \quad m=n-h.
+\]
+Eventually $1\leq h\leq n/2$. Average just the final $h$ layers:
+$\nu_n=\EE[\mu_n\mid\cF_m]=\mu_mT_h$.
+For any deterministic $|f|\leq1$, the gradient bound in the preceding
+proof gives
+\[
+ |D_s(f)|\leq C/\sqrt h,\qquad
+ Q_f\leq C\sum_{s<m}\frac{I_s}{n-s}.
+\]
+Divide these indices into deterministic consecutive dyadic blocks
+$B_j$ on which
+$2^jh\leq n-s-1<2^{j+1}h$.
+Their lengths are at most $h_j=2^jh$, and there are $O(\log n)$
+nonempty blocks. By Lemma~\ref{lem:overlap}, the common event
+\[
+ E_n=\left\{\sum_{s\in B_j}I_s\leq n^\eta\sqrt{h_j}
+                         \text{ for all }j\right\}
+\]
+has superpolynomially small complement. A shorter last block can
+be bounded by extending its deterministic interval to length $h_j$.
+On $E_n$, $Q_f\leq Cn^\eta/\sqrt h$.
+Equation~\eqref{eq:freedman}, applied to the joint event, yields,
+for each fixed $t>0$,
+\begin{equation}\label{eq:smoothtest}
+ \PP(|\nu_n(f)-\alpha_n(f)|>t,\ E_n)
+       \leq2\exp\{-c_t n^{\beta-\eta}/\log n\}.
+\end{equation}
+
+The window $W_n=[vn-\sqrt n\log n,vn+\sqrt n\log n]$ meets
+$J\leq Cn^{1/2-\gamma}\log n+2$ cells. On those complete cells the
+$\ell^1$ discrepancy is the maximum over their $2^J$ deterministic
+sign tests, each bounded by one. Union bound \eqref{eq:smoothtest}
+over the signs and charge $\PP(E_n^c)$ once.
+Since
+\[
+       \beta-\eta-(1/2-\gamma)=5d/4>0,
+\]
+the negative exponential dominates $J\log2$.
+The averaged mass outside $W_n$ is at most
+$Ce^{-c(\log n)^2}$ by \eqref{eq:maximal} (or its terminal bound).
+The expectation of $\nu_n(W_n^c)$ is this same mass.
+Markov's inequality therefore controls the remaining cells with a
+superpolynomial fixed-threshold tail. We have proved
+\begin{equation}\label{eq:nusmooth}
+       \PP(\norm{\nu_n(\cP)-\alpha_n(\cP)}>t)
+                       \text{ is superpolynomially small}.
+\end{equation}
+
+We restore the final layers by controlling boundary crossings.
+Represent the integer cells as real intervals with boundary grid
+$b+M\ZZ$. Let
+\[
+ B_n=\{x\in\ZZ:\operatorname{dist}(x+vh,b+M\ZZ)\leq r\}.
+\]
+Choose the deterministic periodic majorant
+\[
+ f_B(x)=\max\{0,\min\{1,\,
+                2-\operatorname{dist}(x+vh,b+M\ZZ)/r\}\}.
+\]
+It is $1/r$-Lipschitz, equals one on $B_n$, and vanishes outside
+the radius-$2r$ boundary strips. Those strips are eventually
+disjoint because $r/M\to0$ uniformly for $M\geq n^\gamma$.
+
+For a unimodal probability sequence $(b_j)$ and integer $D\geq1$,
+its mass on one residue class modulo $D$ is at most
+$D^{-1}+2\max b_j$. To see this, discard at most two sampled
+points next to the mode and compare each remaining sampled value
+with the average of a disjoint $D$-term block toward the mode,
+where the values are larger. The sum of these block averages
+is at most $D^{-1}$.
+A physical residue class modulo $M$ for $-m+2j$ corresponds,
+when nonempty, to one binomial-index class modulo
+$M/\gcd(2,M)$. Its mass is therefore at most
+$2/M+2\max b_j$. The support of $f_B$ has at most $C(r+1)$
+physical residues in one period, uniformly in the real shift.
+The peak estimate gives
+\[
+       \EE\mu_m(f_B)\leq C(r+1)/M+C(r+1)/\sqrt m=o(1).
+\]
+For this Lipschitz test, \eqref{eq:variation} and
+Lemma~\ref{lem:overlap} bound the predictable variation, off a
+superpolynomially unlikely event, by
+$Cn^{\eta+1/2-2\beta}$, with increment bound $2n^{-\beta}$.
+For a fixed positive deviation, \eqref{eq:freedman} has exponent
+at least
+\[
+        \frac{c}{n^{\eta+1/2-2\beta}+n^{-\beta}},
+\]
+which grows as a positive power since
+$2\beta-1/2-\eta=3d/4>0$.
+Thus $\mu_m(B_n)$ has a superpolynomial fixed-threshold tail.
+
+Let
+$D_n^\omega=P^\omega(|X_n-X_m-vh|>r)$.
+By averaging fresh final layers and \eqref{eq:maximal},
+$\EE D_n^\omega\leq Ce^{-cr^2/h}\leq Ce^{-c(\log n)^2}$.
+Its fixed-threshold tail is superpolynomial by Markov's inequality.
+Compare the actual endpoint and an averaged final endpoint with the
+real position $X_m+vh$ under the same old law. If the start is outside
+$B_n$ and the displacement error is at most $r$, the two compared
+positions belong to the same cell. The coupling inequality gives
+\[
+ \norm{\mu_n(\cP)-\nu_n(\cP)}
+       \leq4\mu_m(B_n)+2D_n^\omega+Ce^{-c(\log n)^2}.
+\]
+Half-open endpoint conventions cause no exception because equality
+with a boundary is included in $B_n$.
+Combining this bound with \eqref{eq:nusmooth} proves the proposition.
+\end{proof}
+
+\section{Final-segment smoothing and independent strips}
+
+We now prove the all-scale assertion. Set, for large $N$,
+\begin{equation}\label{eq:closureparams}
+ \ell=\lfloor N^{3/4}\rfloor,\quad m=N-\ell,\quad
+ H=\lceil N^{5/16}\rceil,\quad r=N^{3/8},\quad
+ R=\lceil N^{3/8}\log N\rceil,\quad
+ \eta=\kappa=1/32.
+\end{equation}
+Here $m\geq N/2$ eventually. All partitions and intervals introduced
+below are deterministic.
+
+\begin{lemma}\label{lem:oldmass}
+For any prescribed family of at most $CN$ intervals, each containing
+at most $10R+10$ integer sites,
+\[
+       \PP\left(\max_J\mu_m(J)>N^{-\kappa}\right)
+                       \text{ is superpolynomially small}.
+\]
+\end{lemma}
+
+\begin{proof}
+For each interval choose a $[0,1]$ majorant equal to one on it,
+tapering linearly to zero over distance $r$ on each side.
+It is $1/r$-Lipschitz. The averaged binomial peak bound gives its
+mean at most
+$C(R+r+1)/\sqrt m=O(N^{-1/8}\log N)=o(N^{-1/32})$.
+By Lemma~\ref{lem:overlap}, the single event
+$\sum_{s<m}I_s\leq N^\eta\sqrt N$ has superpolynomially small
+complement. On it the predictable variation for every majorant
+is at most $CN^{-7/32}$ and the increment bound is $2N^{-3/8}$.
+With $u=N^{-1/32}/2$, \eqref{eq:freedman} bounds each joint tail
+by $2e^{-cN^{5/32}}$. Union bound over the prescribed intervals,
+charging the common overlap failure only once.
+\end{proof}
+
+Write $K_\ell^\omega(x,\cdot)$ for the last-$\ell$-step kernel
+in the fresh environment after time $m$.
+
+\begin{lemma}\label{lem:coal}
+For starts $x,y$ of the same parity,
+\begin{equation}\label{eq:coalkernel}
+ \EE_{\rm future}
+     \norm{K_\ell^\omega(x,\cdot)-K_\ell^\omega(y,\cdot)}
+            \leq C|x-y|/\sqrt{\ell+1}.
+\end{equation}
+Both sides may be capped by two.
+\end{lemma}
+
+\begin{proof}
+In each fixed environment use independent transition coins until
+the two paths meet and common coins thereafter. This preserves
+each quenched marginal. Same-parity nearest-neighbor paths cannot
+cross without meeting. Before meeting, environmental averaging
+makes the positive half-gap a homogeneous lazy walk, killed at
+zero, with neighbor probabilities $a,a$ and holding probability
+$1-2a$. If $p_\ell(j)$ is its unrestricted mass from zero, the killed
+kernel from $d\geq1$ to $z\geq1$ is
+$p_\ell(z-d)-p_\ell(z+d)$. This follows either by reflection,
+which leaves holding steps unchanged, or by checking its transition
+recursion, zero boundary and initial values. Its survival probability is
+\[
+ \sum_{z\geq1}[p_\ell(z-d)-p_\ell(z+d)]
+               =\sum_{j=1-d}^{d}p_\ell(j)
+               \leq Cd/\sqrt{\ell+1}.
+\]
+The last bound follows by Fourier inversion:
+$1-2a+2a\cos\theta$ is nonnegative for $a\leq1/4$ and at most
+$e^{-c_a\theta^2}$ on $[-\pi,\pi]$.
+The coupling inequality in full $\ell^1$ distance supplies factor
+two, and $2d=|x-y|$. The case $x=y$ is zero.
+\end{proof}
+
+Condition on the old environment and write $\mu=\mu_m$.
+In a fixed $H$-site partition $\cP_H$, replace the conditional
+distribution within each cell by the conditional $\alpha_m$
+distribution, keeping $\mu$'s cell mass:
+\[
+       \mu'(x)=\mu(J)\frac{\alpha_m(x)}{\alpha_m(J)},
+                       \qquad x\in J,\ \alpha_m(J)>0.
+\]
+Null $\alpha_m$ cells also have zero $\mu_m$ mass: every reachable
+parity site has positive $\alpha_m$ mass. Omit those cells.
+Couple starts of $\mu$ and $\mu'$ within each cell; their distance
+is less than $H$. Lemma~\ref{lem:coal} gives
+\[
+ \EE_{\rm future}\norm{\mu K_\ell-\mu'K_\ell}
+                        \leq CH/\sqrt\ell,\qquad
+ \norm{\mu'-\alpha_m}=L_{m,\cP_H}.
+\]
+The latter identity is an exact cellwise calculation.
+Markov kernels and partitioning contract $\ell^1$ distance.
+Moreover, convexity and Lemma~\ref{lem:expectation} give
+\[
+ \EE_{\rm future}
+   \norm{\alpha_mK_\ell(\cP_N)-\alpha_N(\cP_N)}
+                      \leq\rho(\ell,M_N).
+\]
+Indeed each start in the $\alpha_m$ mixture only translates the
+deterministic target partition alignment. Thus, for
+\[
+       F=\norm{\mu_mK_\ell(\cP_N)-\alpha_N(\cP_N)},
+\]
+we have
+\begin{equation}\label{eq:meantransfer}
+ \EE[F\mid\cF_m]
+     \leq L_{m,\cP_H}+CH/\sqrt\ell+\rho(\ell,M_N).
+\end{equation}
+Here $H/\sqrt\ell=O(N^{-1/16})$ and $\rho(\ell,M_N)\to0$
+without a rate assumption on $M_N$.
+Proposition~\ref{prop:coarse} applies at the fixed auxiliary
+exponent $5/16$: $H\geq m^{5/16}$ and $m\geq N/2$.
+
+It remains to concentrate $F$ over the future. From a start $x$
+at time $m$, kill a path after its first step $t\in\{1,\ldots,\ell\}$
+with
+\[
+                   |X_{m+t}-x-vt|>R,
+\]
+and let $K^\dagger(x,\cdot)$ be its surviving endpoint
+subprobability kernel. Averaging and \eqref{eq:maximal} yield,
+uniformly in $x$,
+\begin{equation}\label{eq:killedmean}
+ \EE_{\rm future}[1-K^\dagger(x,\ZZ)]
+       \leq d_N:=Ce^{-cR^2/\ell}\leq Ce^{-c(\log N)^2}.
+\end{equation}
+This is a maximum over the entire segment.
+
+Partition the fresh environmental coordinates into deterministic
+moving strips
+\[
+ S_k=\{(t,y):0\leq t<\ell,\quad kR\leq y-vt<(k+1)R\},
+                                  \qquad k\in\ZZ.
+\]
+Only finitely many reachable coordinates are needed in each strip.
+These disjoint input vectors are independent and independent of
+$\cF_m$, including when $v$ is irrational.
+An alive path from $x$ can use only sites satisfying
+$y-vt\in[x-R,x+R]$.
+Consequently changing strip $k$ affects $K^\dagger(x,\cdot)$
+only if
+\[
+            x\in J_k=[kR-R-1,(k+1)R+R+1]\cap\ZZ.
+\]
+This statement holds in both the original and the altered environment,
+since the allowed tube is deterministic. No environmental variable at
+a killed destination is consulted.
+
+Put $w_k=\mu_m(J_k)$ and
+$F^\dagger=\norm{\mu_mK^\dagger(\cP_N)-\alpha_N(\cP_N)}$.
+Changing strip $k$ changes $F^\dagger$ by at most $2w_k$,
+because each affected row is a subprobability measure and the norm
+satisfies the reverse triangle inequality.
+Each integer start belongs to at most six $J_k$: its admissible
+real interval of indices has length $3+2/R\leq5$.
+Therefore
+\[
+             \sum_kw_k\leq6,\qquad
+             \sum_kw_k^2\leq6\max_kw_k.
+\]
+Only $O(N)$ strips can influence starts in $[-m,m]$;
+choose a deterministic finite index range containing them all.
+Their $J_k$ contain at most $10R+10$ integer sites.
+Conditional on $\cF_m$, \eqref{eq:BD} now gives
+\begin{equation}\label{eq:strip}
+ \PP(F^\dagger-\EE[F^\dagger\mid\cF_m]>t\mid\cF_m)
+        \leq\exp\{-t^2/(12\max_kw_k)\}.
+\end{equation}
+If the denominator is zero the function is constant and the tail
+is zero. Lemma~\ref{lem:oldmass} bounds $\max_kw_k$ by
+$N^{-1/32}$ off an old-environment event of superpolynomially
+small probability. Thus each fixed positive upper deviation in
+\eqref{eq:strip} has cost at most $e^{-c_tN^{1/32}}$.
+The independent objects here are the strip vectors; no independence
+of endpoint masses or overlapping starting cones is assumed.
+
+Finally let $D=1-\mu_mK^\dagger(\ZZ)$.
+Positivity of $K_\ell-K^\dagger$ gives $|F-F^\dagger|\leq D$.
+By \eqref{eq:killedmean}, for every old environment,
+\begin{equation}\label{eq:restore}
+ \EE[D\mid\cF_m]\leq d_N,\quad
+ \EE[F^\dagger\mid\cF_m]\leq\EE[F\mid\cF_m]+d_N,\quad
+ \PP(D>t\mid\cF_m)\leq d_N/t .
+\end{equation}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Fix $\varepsilon>0$.
+For sufficiently large $N$,
+$CH/\sqrt\ell+\rho(\ell,M_N)+d_N<\varepsilon/8$.
+By Proposition~\ref{prop:coarse}, outside a superpolynomially
+unlikely event, $L_{m,\cP_H}\leq\varepsilon/8$.
+Equations~\eqref{eq:meantransfer} and \eqref{eq:restore} then give
+$\EE[F^\dagger\mid\cF_m]\leq\varepsilon/4$.
+Outside another superpolynomially unlikely event,
+Lemma~\ref{lem:oldmass} supplies the strip weight bound.
+If also $D\leq\varepsilon/4$, then $F>\varepsilon$ implies
+$F^\dagger-\EE[F^\dagger\mid\cF_m]>\varepsilon/2$.
+Equations~\eqref{eq:strip}--\eqref{eq:restore} therefore give,
+for every fixed $K$,
+\[
+ \PP(F>\varepsilon)
+    \leq O(N^{-K})+e^{-c_\varepsilon N^{1/32}}
+                       +4d_N/\varepsilon.
+\]
+Both explicit errors are superpolynomial. Since $F=L_{N,\cP_N}$,
+this proves \eqref{eq:main}. All uses of the target partition were
+in norms, contraction and the real-interval expectation estimate;
+the auxiliary integer partition imposes no restriction on $M_N$.
+\end{proof}
+
+\section{Scope, verification and disclosure}
+
+The proof uses the fixed-law inequalities
+$0<\delta\leq a\leq1/4$, fresh space-time independence and bounded
+nearest-neighbor jumps. It uses neither inverse moments of $p$ or
+$1-p$ nor a common positive lower support bound.
+Same-parity coupling is sufficient because the old quenched and
+averaged laws have the same reachable parity. An arrow law with
+$p\in\{0,1\}$ has $\delta=0$ and is excluded; constants and
+thresholds need not remain bounded as a family of elliptic laws
+approaches such a law.
+
+The asymptotic claim follows from the proofs above.
+The accompanying verification package includes finite exact calculations
+of replica transitions, overlap moments,
+martingale identities, parity residue bounds, coalescing kernels
+and strip influences;
+such calculations check identities and edge cases and are not a
+substitute for the analytic argument.
+
+AI tools were used extensively in solving, drafting and checking
+this work. Separate adversarial AI reviews of the underlying argument and exact
+verification calculations informed this note.
+It is unrefereed and has not undergone conventional human peer review.
+The author is responsible for the statements and for any remaining
+errors. The bounded priority audit leaves the explicit full-text
+access gaps described in the introduction. The manuscript does not
+certify a novel discovery or establish when the historical conjecture
+was first resolved.
+
+\begin{thebibliography}{99}
+\bibitem{Berger}
+N.~Berger,
+\emph{Quenched Local Limit Theorem for Space-time Random Walk in
+Random Environment}, pp.~2151--2152, in
+\emph{Scaling Limits in Models of Statistical Mechanics},
+Oberwolfach Report 38/2009.
+\href{https://doi.org/10.4171/OWR/2009/38}
+     {doi:10.4171/OWR/2009/38}.
+
+\bibitem{BRAS}
+M.~Bal\'azs, F.~Rassoul-Agha and T.~Sepp\"al\"ainen,
+\emph{The random average process and random walk in a space-time
+random environment in one dimension},
+Commun.\ Math.\ Phys.\ \textbf{266} (2006), 499--545.
+\href{https://www.math.utah.edu/~firas/Papers/rap.pdf}
+     {Author manuscript}.
+
+\bibitem{DG}
+A.~Dunlap and Y.~Gu,
+\emph{A quenched local limit theorem for stochastic flows},
+J.\ Funct.\ Anal.\ (2022).
+\href{https://doi.org/10.1016/j.jfa.2021.109372}
+     {doi:10.1016/j.jfa.2021.109372}.
+
+\bibitem{BR}
+G.~Barraquand and M.~Rychnovsky,
+\emph{Random walk on nonnegative integers in beta distributed
+random environment},
+Commun.\ Math.\ Phys.\ (2023).
+\href{https://doi.org/10.1007/s00220-022-04536-1}
+     {doi:10.1007/s00220-022-04536-1};
+\href{https://arxiv.org/abs/2201.07270v3}
+     {arXiv:2201.07270v3}, Sections~1.4 and~4.5.
+
+\bibitem{JRAS}
+M.~Joseph, F.~Rassoul-Agha and T.~Sepp\"al\"ainen,
+\emph{Independent Particles in a Dynamical Random Environment},
+in \emph{Probability and Analysis in Interacting Physical Systems},
+Springer Proceedings in Mathematics \& Statistics \textbf{283}
+(2019), 75--121.
+\href{https://doi.org/10.1007/978-3-030-15338-0_4}
+     {doi:10.1007/978-3-030-15338-0\_4}.
+\bibitem{DP}
+H.~Drillick and S.~Parekh,
+\emph{Random walks in space-time random media in all spatial
+dimensions: the full subcritical fluctuation regime} (2025).
+\href{https://arxiv.org/abs/2510.22155v1}{arXiv:2510.22155v1}.
+
+\bibitem{Parekh}
+S.~Parekh,
+\emph{Hierarchy of KPZ limits arising from directed random walk
+models in random media},
+Forum Math.\ Sigma (2026).
+\href{https://doi.org/10.1017/fms.2026.10220}
+     {doi:10.1017/fms.2026.10220}.
+
+\bibitem{BMP1999}
+C.~Boldrighini, R.~A.~Minlos and A.~Pellegrinotti,
+\emph{Central limit theorem for a random walk in dynamical
+environment: integral and local},
+Theory Stoch.\ Process.\ \textbf{5(21)} (1999), nos.~3--4, 16--28.
+Original full text unavailable in the present audit.
+
+\bibitem{BP2001}
+C.~Boldrighini and A.~Pellegrinotti,
+\emph{$T^{-1/4}$-Noise for random walks in dynamic environment on $\ZZ$},
+Mosc.\ Math.\ J.\ \textbf{1} (2001), no.~3, 365--380.
+\href{https://doi.org/10.17323/1609-4514-2001-1-3-365-380}
+     {doi:10.17323/1609-4514-2001-1-3-365-380}.
+Original full text unavailable in the present audit.
+
+\bibitem{BMP2004}
+C.~Boldrighini, R.~A.~Minlos and A.~Pellegrinotti,
+\emph{Random walks in quenched i.i.d.\ space-time random environment
+are always a.s.\ diffusive} (2004).
+\href{https://doi.org/10.1007/s00440-003-0331-x}
+     {doi:10.1007/s00440-003-0331-x}.
+Original full text unavailable in the present audit.
+
+\bibitem{Berard}
+J.~B\'erard,
+\emph{The almost sure central limit theorem for one-dimensional
+nearest-neighbour random walks in a space-time random environment}
+(2004).
+\href{https://doi.org/10.1239/jap/1077134669}
+     {doi:10.1239/jap/1077134669}.
+Original full text unavailable in the present audit.
+\end{thebibliography}
+\end{document}

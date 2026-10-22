@@ -1,0 +1,7 @@
+# Research log
+
+- 2026-10-17T17:20:29.773654+00:00: Review started on main. Scope: immutable PR1211 head d96c9fca74195a8706fd9481eeb35a4c3c0d384c; submitted PROOF.md SHA256 2037b27ff80f81551008000c07aee5e7bb8cb27d957c15170790015509ecbea4. Read candidate and audit without relying on historical acceptance. Completion estimate: 10%.
+
+- 2026-10-17T17:23:08.294772+00:00: Original-file reasoning and independent quantitative checks completed. Fresh source renderings inspected OWR414–416 and dissertation124–130. Exact counts bad/common4/common5/common6 = 0/0/8/6336; 25,431 arbitrary-list greedy runs, 4,099 extension vectors, 8,000 rank-compression checks all pass. Found missing explicit local-domain guards in historical SDR recurrence; core Sections1–5 and7 remain verified. Completion estimate: 85%.
+
+- 2026-10-17T17:25:38.871668+00:00: Completed adversarial review and original-source scope audit; completion estimate100%. Core exact result verified; explicit local-domain repair evaluated and accepted at repaired-proof SHA256884db1d388a3528bd197b0346d2ea8586fe76993edb82ab93876f41b51d7a95e. Additional visual OWR417 inspection establishes complete contribution pages414–417. Local git-object identity check now succeeds for proof/audit/source metadata after parent fetched pinned object; former limitation resolved. REPORT.md and VERDICT.json written. No publication/priority conclusion asserted.

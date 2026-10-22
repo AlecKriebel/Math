@@ -1,0 +1,9 @@
+from pathlib import Path
+import hashlib,json,datetime
+W=Path(__file__).resolve().parent
+def pin(p,root):
+ b=p.read_bytes();return {'path':p.relative_to(root).as_posix(),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+def dump(p,x):p.write_text(json.dumps(x,indent=2)+'\n')
+private=W/'private';pf=sorted((p for p in private.rglob('*') if p.is_file() and p.name!='PRIVATE_MANIFEST.json' and '__pycache__' not in p.relative_to(private).parts),key=lambda p:p.relative_to(private).as_posix());pm={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'scope':'Complete retained private evidence inventory; self excluded; raw bodies not part of public projection','files':[pin(p,private) for p in pf]};dump(private/'PRIVATE_MANIFEST.json',pm);b=(private/'PRIVATE_MANIFEST.json').read_bytes();dump(W/'PRIVATE_MANIFEST_SEAL.json',{'manifest':'private/PRIVATE_MANIFEST.json','sha256':hashlib.sha256(b).hexdigest(),'files':len(pf),'payload_bytes':sum(x['bytes'] for x in pm['files']),'raw_bodies_in_public_projection':False})
+public=sorted((p for p in W.rglob('*') if p.is_file() and 'private' not in p.relative_to(W).parts and '__pycache__' not in p.relative_to(W).parts and p.name not in ['PUBLIC_MANIFEST.json','FINAL_SEAL.json']),key=lambda p:p.relative_to(W).as_posix());dump(W/'PUBLIC_MANIFEST.json',{'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'scope':'Sanitized exact public review projection excluding private/, caches and detached seal/self','files':[pin(p,W) for p in public]});b=(W/'PUBLIC_MANIFEST.json').read_bytes();dump(W/'FINAL_SEAL.json',{'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'public_manifest':'PUBLIC_MANIFEST.json','public_manifest_sha256':hashlib.sha256(b).hexdigest(),'review_completion_estimate_percent':100,'verdict':'BOUNDED_PASS','scope':'PR906–937 dispositions only; no global, proof, novelty or human-review certificate'})
+print('sealed',len(public),'public',len(pf),'private files')

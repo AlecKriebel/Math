@@ -1,0 +1,7 @@
+# Independent audit log
+
+2026-10-22T06:25:47.999290+00:00 — Fresh GWS numeric data-filter full 43-column read completed: 191 populated rows, 1178 allocated rows. Exact identifiers and semantic candidates will be classified. Pinned eight-blob materialization begun. Audit completion estimate 12%; overall parent goal remains 79%.
+
+2026-10-22T06:35:48.092558+00:00 — All 12 manuscript pages plus original report page 62 read and visually inspected. Current PDF exactly matches pin; all three current payloads verified; all 102 ZIP entries hashed and CRC checked; 45 Python members parsed statically, no source programs run. Independent checker passes 702059 checks in normal and -O; -OO in progress. Audit completion estimate 86%; parent overall research goal remains 79%.
+
+2026-10-22T06:44:06.001713+00:00 — FINAL: exact target accepted as a credited existing result, no mathematical gap identified. Fresh current v1.1 publication and family authenticated; original page62 and all12 manuscript pages read and visually inspected; 102-entry archive and all45 Python members statically inventoried, no author execution. Independent checker passed702059 checks per mode normal/-O/-OO, byte-identical outputs; final PR head/base/body unchanged. Target/family aliases absent from191-row tracker; shared report row81 resolved as different Sanyal target, and27 other semantic leads resolved. Exactly one qualified A:D proposal, B empty, no external mutation. Audit family100% complete; parent overall goal79%. GWS local generation side effect preserved, no restore/delete/stage.

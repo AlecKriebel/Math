@@ -1,0 +1,92 @@
+--- original/verify_independent.py
++++ portable/verify_independent.py
+@@ -7,9 +7,15 @@
+ """
+ from itertools import combinations, combinations_with_replacement, permutations
+ from pathlib import Path
++import argparse
+ import hashlib, json
+ import sympy as s
+ from sympy.matrices.normalforms import smith_normal_form
++
++
++def require(condition, message):
++    if not condition:
++        raise RuntimeError(message)
+ 
+ 
+ def setup(n):
+@@ -34,8 +40,8 @@
+     for k,(i,j) in enumerate(mons):
+         if i==j and i<n:P[i,k]=1
+         elif i<n<=j and j-n!=i:P[n+i,k]=1
+-    assert P*G.T==s.zeros(d2,len(relations))
+-    assert P.rank()==d2
++    require(P*G.T==s.zeros(d2,len(relations)), 'Independent check failed: P*G.T==s.zeros(d2,len(relations))')
++    require(P.rank()==d2, 'Independent check failed: P.rank()==d2')
+     return mons,G,P
+ 
+ 
+@@ -65,13 +71,16 @@
+ 
+ 
+ def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--output", type=Path, help="Also create a new JSON result file; existing files are never overwritten.")
++    args = parser.parse_args()
+     smith=[]; symbolic=[]; grid=[]; inclusion=[]
+     for n in range(1,8):
+         mons,G,P=setup(n)
+         D=smith_normal_form(G,domain=s.ZZ)
+         inv=[abs(int(D[i,i])) for i in range(min(D.shape)) if D[i,i]]
+-        assert all(v==1 for v in inv)
+-        assert len(mons)-len(inv)==P.rows
++        require(all(v==1 for v in inv), 'Independent check failed: all(v==1 for v in inv)')
++        require(len(mons)-len(inv)==P.rows, 'Independent check failed: len(mons)-len(inv)==P.rows')
+         smith.append({'n':n,'quadratic_monomials':len(mons),'generator_rows':G.rows,
+                       'relation_rank':len(inv),'nonzero_smith_invariants':sorted(set(inv)),
+                       'degree_two_dimension':P.rows})
+@@ -80,7 +89,7 @@
+             M=mult(mons,P,coeff)
+             expected=(-1)**(n-1)*(n-1)*s.prod(a*a for a in coeff[:n])
+             det=s.factor(M.det())
+-            assert s.expand(det-expected)==0
++            require(s.expand(det-expected)==0, 'Independent check failed: s.expand(det-expected)==0')
+             symbolic.append({'n':n,'determinant':str(det)})
+     for n in range(1,14):
+         mons,G,P=setup(n)
+@@ -91,9 +100,9 @@
+         for p in (2,3,5,7,11):
+             rank=modrank(M,p)
+             expected=1 if n==1 else 2*n-int((n-1)%p==0)
+-            assert rank==expected
+-            assert any(int(v)%p for v in square)
+-            if n>=2:assert (all(int(v)%p==0 for v in M*z))==((n-1)%p==0)
++            require(rank==expected, 'Independent check failed: rank==expected')
++            require(any(int(v)%p for v in square), 'Independent check failed: any(int(v)%p for v in square)')
++            if n>=2:require((all(int(v)%p==0 for v in M*z))==((n-1)%p==0), 'Independent check failed: (all(int(v)%p==0 for v in M*z))==((n-1)%p==0)')
+             grid.append({'n':n,'p':p,'rank_sum_x':rank,'square_nonzero':True})
+     for n in range(1,5):
+         mons,G,P=setup(n)
+@@ -105,15 +114,19 @@
+             T=s.zeros(len(mons2),len(mons))
+             for j,(a,b) in enumerate(mons):
+                 T[ix2[tuple(sorted((img(a),img(b))))],j]=1
+-            assert P2*T*G.T==s.zeros(P2.rows,G.rows)
++            require(P2*T*G.T==s.zeros(P2.rows,G.rows), 'Independent check failed: P2*T*G.T==s.zeros(P2.rows,G.rows)')
+             checked+=1
+         inclusion.append({'source_n':n,'target_n':n+1,'all_column_injections_checked':checked})
+     result={'status':'PASS','method':'Integer Smith normal form of all quadratic generator types; raw monomial multiplication projected only after relation verification; symbolic determinants and exact modular ranks.',
+             'integer_quotients':smith,'symbolic_determinants':symbolic,'modular_grid':grid,
+             'chain_inclusion':inclusion,
+             'scope':'Finite checks support, but do not replace, the all-n proof in AUDIT.md.'}
++    encoded = json.dumps(result,indent=2)+'\n'
+     p=Path(__file__).with_name('results_independent.json')
+-    p.write_text(json.dumps(result,indent=2)+'\n')
++    require(encoded.encode('utf-8') == p.read_bytes(), 'Computed results differ from historical results_independent.json')
++    if args.output is not None:
++        with args.output.open('x', encoding='utf-8', newline='') as stream:
++            stream.write(encoded)
+     print(json.dumps({'status':'PASS','smith_cases':len(smith),'symbolic_cases':len(symbolic),
+                       'modular_cases':len(grid),'injection_cases':sum(x['all_column_injections_checked'] for x in inclusion),
+                       'results_sha256':hashlib.sha256(p.read_bytes()).hexdigest()},indent=2))

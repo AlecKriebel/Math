@@ -1,0 +1,7 @@
+# Research log
+
+2026-10-17T22:56:48.923444+00:00 — 35% complete. All483 frozen inputs authenticate with exact path spelling. Independently checked actual manuscript proofs and rendered/viewed all five PDF pages, plus primary theorem interfaces. No defect identified. Package and workflow adversarial controls remain.
+
+2026-10-17T23:01:22.908908+00:00 — 90% complete. Actual archive/registries, all403 required lexical source/artifact/prior-review paths, prior immutable seals and bytes, actual11 metadata pre-POST drift, same-ID/exclusive-intent recovery, blankB/four-cell tracker, exact13 prospective paths, all13 postmerge blobs, expected merge parent/head/body and DOI200 fault probes pass. Actual deployed workflow and portable verifier pass in normal/-O/-OO; optional floating checkers pass normal-only in own scratch. Test-harness setup corrections (synthetic gate fields, copied validator dependency, explicit license projection and ledger field name) were made only in own new controls; they are not package findings. Final input reauthentication and seal remain. No external mutation.
+
+2026-10-17T23:02:38.065435+00:00 — 100% review complete; CLEAN, no actionable finding. End authentication passes every466 authored+17readonly input including exact lexical spelling, and branch remains main. Full actual manuscript/package/workflow review completed; target coverage100% relative named imports, original-discovery/firstness certified0%. No actual final gate or external action. Sealing authored files next.

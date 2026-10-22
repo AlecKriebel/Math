@@ -1,0 +1,39 @@
+# Root analytic review of PR1225 / 2307058
+
+Status: root analytic PASS of the full precise theorem; independent mathematical gate and priority adjudication remain pending. This is candidate-aware internal AI analysis, not external human review, novelty clearance or a formal certificate. The complete submitted PROOF.md and AUDIT.md were read; historical acceptance records were not treated as proof by authority.
+
+## Exact claim and primary scope
+
+For compact E subset [0,1] on the real axis, F is its complement within R. Positive planar2-modulus of the full E-to-circle(radius2) family implies infinite modulus of the full E-to-F family. Fresh version2 primary PDF is1706228bytes, SHA2568e28fd4403a07e4e19a9816b7efaafddf9f475d59cf8c34a8255cb03833ed4f0. Root read live HTML Problem7.58 and visually inspected printed178/PDF179, including attribution Gonchar communicated Vuorinen. The original says all connecting curves; the candidate precisely defines endpoint integrals/extended Borel densities and also proves the consistent globally rectifiable version. The later2019 edition and current priority/openness have not yet been authenticated by root.
+
+## Pointwise metric mechanism
+
+The dyadic open-cover majorant is genuinely pointwise. If rho is infinite on a dense area-null set, each superlevel is still contained in an open set of arbitrarily small added area. The increasing weighted sum is lower semicontinuous and may be infinite on an area-null residual set without contradiction: being infinite at a dense set does not force an extended lower-semicontinuous function to be infinite everywhere. The bound sum 2^(k+1)1_(h>2^k) <=4h plus cover error1/4 is correct; h<=1 is covered by the constant term. This avoids replacing rho by an almost-everywhere representative, which would destroy every-curve information.
+
+For continuous weights each partition chord lower sum is continuous under uniform convergence; refining partitions both approximates total variation and makes weight oscillation small. Its supremum therefore equals weighted length. Increasing continuous infimal-convolution approximants extend lower semicontinuity to the extended-valued lower-semicontinuous majorant. Near-minimal weighted cost bounds Euclidean length because g>=1. Constant-speed parametrization gives a common Lipschitz bound, and compact Q plus compact E prevents escaping paths/endpoints. Arzela–Ascoli therefore proves lower semicontinuity of the path infimum even when some distances are infinite or unattained. Constant curves have zero length even if g at that point is infinite.
+
+The truncated path inequality holds also with infinite distances: a finite-cost connection from a finite-distance point would make both distances finite; if both are infinite both truncated values are1. Exact E/F plate values are consequences of every-curve admissibility, not arbitrary representative assignments. On almost every horizontal/vertical line, g is integrable; the inequality on EVERY subsegment implies absolute continuity of the actual pointwise u on that line. Slice integration by parts gives W1,2 and the sufficient gradient bound2g². Compactly supported cutoff near the entire segment gives actual vertical trace1_E almost everywhere, including zero values on all of F. No capacity-zero conclusion is assigned to the exceptional vertical lines.
+
+## Critical trace and arbitrary positive length
+
+For smooth compactly supported w, integration of d_y|W|² on the upper half-plane followed by2ab<=a²+b² yields integral |xi||fhat|² <= integral_(y>0)|grad w|²; frequency0 causes no division. The separate inhomogeneous vertical estimate controls the L2 trace of mollification differences, so smooth traces converge to the actual ACL trace. Plancherel subsequence/Fatou passes the homogeneous bound. Tonelli and scaling prove the full difference quotient identity with finite positive constant C. No trace identification from pointwise mollifier convergence is assumed.
+
+For arbitrary measurable E subset[0,1], N=ceil(2/h) separates the supports at translation Nh and N<=3/h. L1 telescoping gives ||1_E(.+h)-1_E||²_2=the corresponding L1 norm >=(2/3)|E|h. The critical integral therefore diverges logarithmically unless E has length0. This covers fat Cantor sets with no intervals; there is no hidden interior assumption. For the explicit interval E=[0,1], the exact norm² is2h for0<h<1, an independent check on the divergence and scaling.
+
+## Length-zero positive-capacity case and every endpoint
+
+For ANY assumed finite-energy admissible rho, q=rho+1_(disk3) is still finite-energy and admissible. A curve from E to circle2 with finite q-cost has a finite-Euclidean-length initial portion through its first circle2 hit, since q>=1 throughout disk2. This holds even if the original allowed connector has infinite length at an endpoint. Reparametrization by arclength removes constant portions; finite q-cost is an ordinary integrable function of arclength.
+
+Fix the actual starting endpoint e BEFORE using polar integration. The circle energy A_e(r) is integrable in r. Length0 implies e+r belongs to F for almost every positive r. A full-measure set of good radii must have arbitrarily small rA_e(r), since a positive essential lower bound would force integral dr/r divergence. Recursively choose decreasing good radii. Initial first-exit times tend to0: an arclength-parametrized curve is nonconstant on every positive initial time interval, even with infinite retracing/oscillations or returns to e. Absolute continuity of the cost integral makes its initial costs vanish. A connecting circular arc has cost <=sqrt(2*pi*r*A_e(r)) and hence vanishes. The concatenation is an actual globally rectifiable E-to-F curve, contradicting admissibility. No exceptional set of E endpoints is discarded, no quasicontinuous representative or touching-plate equivalence is imported, and noncompact F is handled by the actual point e+r.
+
+Every E-to-circle2 connector thus has INFINITE q-cost, not merely cost>=1 outside an exceptional family. q/n is admissible for the entire family for every n, with energy tending to0. Infinite-cost curves remain included. Finite modulus supplies one finite-energy admissible density by the definition of infimum, without an extremal minimizer assumption. Empty E is handled separately. This proves the full contrapositive under both stated consistent curve conventions.
+
+## Adversarial boundary witnesses
+
+1. rho=infinity on the real axis and0 elsewhere has area energy0 but is NOT admissible: a semicircle from any e in E to any different real point in F has rho-length0 because its only real points are endpoints. Infinite endpoint values alone cannot create admissibility. This validates the need to preserve every curve and endpoint integration precisely.
+2. For E={0}, rho(z)=1/(|z|*log(1/|z|)) on0<|z|<exp(-1),0 outside, has energy2*pi and infinite cost on every curve from0 to a nonzero point, by radial distance variation and the divergent integral dr/(r log(1/r)). Scaling rho/n proves modulus0 to circle2 and to R\{0}. The positive-capacity premise is essential; the proof does not falsely turn nonempty or zero-length sets into positive capacity.
+3. For zero-length positive-capacity compact E, only the small-circle all-endpoint argument supplies capacity information. Almost-everywhere trace1_E=0 alone supplies none. No numerical/finite calculation is presented as proof of this analytic implication.
+
+## Remaining gates
+
+The submitted proof needs no root mathematical repair at this stage. A source-question-only reconstruction and a fresh candidate-aware adversary are still independently running; no information has been exchanged between them. Extensive priority/later-edition authentication follows a satisfactory mathematical gate. No firstness/current-openness claim and no PR1225 publication/tracker/merge mutation has been made.

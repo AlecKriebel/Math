@@ -1,8 +1,27 @@
 # Current result, priority and scope
 
-This notice supersedes the historical packet's bounded source discussion.
+This notice supersedes earlier candidate and review source discussion.
 The frozen packet and its original audit are preserved as research evidence;
 their claims that further review was pending describe their creation stage.
+
+## Version-specific source locator correction
+
+The directly inspected Shalit–Skeide arXiv:2003.05166v3 labels its roadmap
+Appendix **R(i)**, printed/PDF pp. 211–212, with the general dilation definition
+and strong/weak distinctions. Definition 2.3 and diagram (2.3) are additional
+direct locators. Earlier frozen packet and review references to Appendix B(i)
+for that arXiv version are locator errors. This correction applies to all such
+earlier references; their mathematical category statements are supported by
+the correctly located text. The journal's appendix numbering has not been
+verified and is not inferred from the preprint.
+
+The paper now also identifies BFH arXiv v2 Section 2, equations (1)–(3),
+for the explicit amplitude-damping model, and DMB arXiv v3 Method and
+Appendices A–B for finite paths and initial singularities. Historical audit
+records and the frozen original files remain as dated evidence; this notice
+and the current paper give the corrected source locators.
+
+## Accepted result and antecedents
 
 The accepted result is a counterexample to the concrete forward-generation-only
 GNS descent proposal in Michael Skeide's first module-approach problem, OWR

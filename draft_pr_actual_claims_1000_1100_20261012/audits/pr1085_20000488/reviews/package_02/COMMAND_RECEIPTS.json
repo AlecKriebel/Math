@@ -1,0 +1,1162 @@
+[
+  {
+    "label": "normal README default verification",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "normal README math",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"Fourier_square_guards\": 144,\n  \"Hardy_coefficient_guards\": 5,\n  \"Hardy_margin\": \"597499/1200480\",\n  \"N_coarse_upper\": \"1/240\",\n  \"coercivity_minors\": 15,\n  \"coercivity_probes\": 125,\n  \"mass_scaling_guards\": 12,\n  \"package\": {\n    \"archive_verified\": false,\n    \"exact_historical_copies\": 66,\n    \"external_deposit_binding_verified\": false,\n    \"individual_exclusions\": 126,\n    \"new_whole_reviews\": 0,\n    \"passed\": true,\n    \"payload_members_verified\": 90,\n    \"publication_ready\": false,\n    \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n  },\n  \"passed\": true,\n  \"scope\": \"Finite rational diagnostics supplement the universal proofs; no discretized PDE, source theorem reproof, historical executable replay or formal proof certificate.\",\n  \"trace_guards\": 16,\n  \"v_upper\": \"2501/6000000\",\n  \"vertical_guards\": 12\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "normal README archive rebuild",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/normal-archive.zip"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"archive_bytes\": 348815,\n  \"archive_sha256\": \"e297c94c2f71f74d55e77d29d6af850125c52e346652af2672b2671492afd52b\",\n  \"passed\": true\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "normal README repeat verification",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "normal present strict native binding",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py",
+      "--require-deposit"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"archive_verified\": true,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": true,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "normal missing required descriptor",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py",
+      "--require-deposit"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 93, in verify\n    regular(descriptor) # rejects dangling symlink as well as nonregular input\n    ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 20, in regular\n    require(path.is_file() and stat.S_ISREG(path.stat().st_mode),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"regular input required: \" + str(path))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: regular input required: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/zenodo-deposit.json\n"
+  },
+  {
+    "label": "normal shipped semantic fault normal_sign",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py",
+      "--mutation",
+      "normal_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 41, in run\n    require(boundary*surface == F(1,4), \"normal defect with surface Jacobian\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: normal defect with surface Jacobian\n"
+  },
+  {
+    "label": "normal shipped semantic fault lost_jacobian",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py",
+      "--mutation",
+      "lost_jacobian"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 41, in run\n    require(boundary*surface == F(1,4), \"normal defect with surface Jacobian\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: normal defect with surface Jacobian\n"
+  },
+  {
+    "label": "normal shipped semantic fault preprint_theta",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py",
+      "--mutation",
+      "preprint_theta"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 11, in run\n    require(denominator > 0, \"published HHRV theta range; older preprint differs\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: published HHRV theta range; older preprint differs\n"
+  },
+  {
+    "label": "normal shipped semantic fault fourier_boundary_sign",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py",
+      "--mutation",
+      "fourier_boundary_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 75, in run\n    require(energy==completed+(rho-beta)*(A+B)**2 and completed>=0,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"Fourier trace square identity\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: Fourier trace square identity\n"
+  },
+  {
+    "label": "normal bootstrap identical symlink SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 46, in members\n    regular(ROOT / \"SUPPORT_MANIFEST.json\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/SUPPORT_MANIFEST.json\n"
+  },
+  {
+    "label": "normal builder bootstrap symlink SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/bad.zip"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 27, in main\n    data = archive_bytes()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 8, in archive_bytes\n    verify(check_archive=False, check_deposit=False)\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 46, in members\n    regular(ROOT / \"SUPPORT_MANIFEST.json\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/SUPPORT_MANIFEST.json\n"
+  },
+  {
+    "label": "normal bootstrap identical symlink PAYLOAD_MEMBERS.txt",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 38, in members\n    regular(ROOT / \"PAYLOAD_MEMBERS.txt\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/PAYLOAD_MEMBERS.txt\n"
+  },
+  {
+    "label": "normal builder bootstrap symlink PAYLOAD_MEMBERS.txt",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/bad.zip"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 27, in main\n    data = archive_bytes()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 8, in archive_bytes\n    verify(check_archive=False, check_deposit=False)\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 38, in members\n    regular(ROOT / \"PAYLOAD_MEMBERS.txt\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/PAYLOAD_MEMBERS.txt\n"
+  },
+  {
+    "label": "normal duplicate JSON key",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 12, in verify\n    manifest = read_json(ROOT / \"SUPPORT_MANIFEST.json\")\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 34, in read_json\n    return json_bytes(regular(path).read_bytes())\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 31, in json_bytes\n    return json.loads(data.decode(\"utf-8\"), object_pairs_hook=pairs)\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 365, in loads\n    return cls(**kw).decode(s)\n           ~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 28, in pairs\n    require(key not in out, \"duplicate JSON key: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: duplicate JSON key: schema\n"
+  },
+  {
+    "label": "normal archive hardlink guard paper.tex",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal checker hardlink guard paper.tex",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal verifier hardlink guard paper.tex",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal archive hardlink guard SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal checker hardlink guard SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal verifier hardlink guard SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal archive hardlink guard MATHEMATICAL_REPORT.md",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal checker hardlink guard MATHEMATICAL_REPORT.md",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal verifier hardlink guard MATHEMATICAL_REPORT.md",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal external descriptor hardlink guard",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py",
+      "--deposit",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/external-descriptor.json",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal output symlink build_archive.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/symbolic-output"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "normal output ancestor symlink build_archive.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/linked-parent/new.json"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "normal output symlink check_math.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/symbolic-output"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "normal output ancestor symlink check_math.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/linked-parent/new.json"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "normal output symlink verify_package.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/symbolic-output"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "normal output ancestor symlink verify_package.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/linked-parent/new.json"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "normal compiler protected hardlink child paper.tex",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/hostile-pdf"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal compiler protected hardlink child paper.pdf",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/hostile-pdf"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal compiler protected hardlink child paper.log",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/hostile-pdf"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal compiler protected hardlink child COMPILE_RECEIPT.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/hostile-pdf"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "normal REAL clean Tectonic compilation",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/pdf-normal"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"engine\": \"Tectonic\",\n  \"overfull_boxes\": 0,\n  \"passed\": true,\n  \"pdf_bytes\": 97501,\n  \"pdf_sha256\": \"464de043ac6b723f3bd5c03dddb6efd1c0bfeb05b5209bb532006580b7aedc2d\",\n  \"source_date_epoch\": \"1791936000\",\n  \"source_sha256\": \"c18a6ed12250dcee413e85f9a6297c525015396f151cdab8d89a6eb76938046d\",\n  \"stderr\": \"\",\n  \"stdout\": \"note: Running TeX ...\\nnote: Rerunning TeX because \\\"paper.aux\\\" changed ...\\nnote: Running xdvipdfmx ...\\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/pdf-normal/pr1085-tex-cww5vvyk/paper.log` (18.4091796875 KiB)\\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/pdf-normal/pr1085-tex-cww5vvyk/paper.pdf` (95.2158203125 KiB)\\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\\n\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "optimized README default verification",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "optimized README math",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"Fourier_square_guards\": 144,\n  \"Hardy_coefficient_guards\": 5,\n  \"Hardy_margin\": \"597499/1200480\",\n  \"N_coarse_upper\": \"1/240\",\n  \"coercivity_minors\": 15,\n  \"coercivity_probes\": 125,\n  \"mass_scaling_guards\": 12,\n  \"package\": {\n    \"archive_verified\": false,\n    \"exact_historical_copies\": 66,\n    \"external_deposit_binding_verified\": false,\n    \"individual_exclusions\": 126,\n    \"new_whole_reviews\": 0,\n    \"passed\": true,\n    \"payload_members_verified\": 90,\n    \"publication_ready\": false,\n    \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n  },\n  \"passed\": true,\n  \"scope\": \"Finite rational diagnostics supplement the universal proofs; no discretized PDE, source theorem reproof, historical executable replay or formal proof certificate.\",\n  \"trace_guards\": 16,\n  \"v_upper\": \"2501/6000000\",\n  \"vertical_guards\": 12\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "optimized README archive rebuild",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/optimized-archive.zip"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"archive_bytes\": 348815,\n  \"archive_sha256\": \"e297c94c2f71f74d55e77d29d6af850125c52e346652af2672b2671492afd52b\",\n  \"passed\": true\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "optimized README repeat verification",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"archive_verified\": false,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": false,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "optimized present strict native binding",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py",
+      "--require-deposit"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"archive_verified\": true,\n  \"exact_historical_copies\": 66,\n  \"external_deposit_binding_verified\": true,\n  \"individual_exclusions\": 126,\n  \"new_whole_reviews\": 0,\n  \"passed\": true,\n  \"payload_members_verified\": 90,\n  \"publication_ready\": false,\n  \"scope\": \"Finite custody and declared-scope checks only. Universal proofs are in paper.tex; new whole reviews and root adoption are pending.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "optimized missing required descriptor",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py",
+      "--require-deposit"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 93, in verify\n    regular(descriptor) # rejects dangling symlink as well as nonregular input\n    ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 20, in regular\n    require(path.is_file() and stat.S_ISREG(path.stat().st_mode),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"regular input required: \" + str(path))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: regular input required: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/zenodo-deposit.json\n"
+  },
+  {
+    "label": "optimized shipped semantic fault normal_sign",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py",
+      "--mutation",
+      "normal_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 41, in run\n    require(boundary*surface == F(1,4), \"normal defect with surface Jacobian\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: normal defect with surface Jacobian\n"
+  },
+  {
+    "label": "optimized shipped semantic fault lost_jacobian",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py",
+      "--mutation",
+      "lost_jacobian"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 41, in run\n    require(boundary*surface == F(1,4), \"normal defect with surface Jacobian\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: normal defect with surface Jacobian\n"
+  },
+  {
+    "label": "optimized shipped semantic fault preprint_theta",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py",
+      "--mutation",
+      "preprint_theta"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 11, in run\n    require(denominator > 0, \"published HHRV theta range; older preprint differs\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: published HHRV theta range; older preprint differs\n"
+  },
+  {
+    "label": "optimized shipped semantic fault fourier_boundary_sign",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py",
+      "--mutation",
+      "fourier_boundary_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 97, in main\n    result=run(args.mutation)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 75, in run\n    require(energy==completed+(rho-beta)*(A+B)**2 and completed>=0,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"Fourier trace square identity\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: Fourier trace square identity\n"
+  },
+  {
+    "label": "optimized bootstrap identical symlink SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 46, in members\n    regular(ROOT / \"SUPPORT_MANIFEST.json\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/SUPPORT_MANIFEST.json\n"
+  },
+  {
+    "label": "optimized builder bootstrap symlink SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/bad.zip"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 27, in main\n    data = archive_bytes()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 8, in archive_bytes\n    verify(check_archive=False, check_deposit=False)\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 46, in members\n    regular(ROOT / \"SUPPORT_MANIFEST.json\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/SUPPORT_MANIFEST.json\n"
+  },
+  {
+    "label": "optimized bootstrap identical symlink PAYLOAD_MEMBERS.txt",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 38, in members\n    regular(ROOT / \"PAYLOAD_MEMBERS.txt\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/PAYLOAD_MEMBERS.txt\n"
+  },
+  {
+    "label": "optimized builder bootstrap symlink PAYLOAD_MEMBERS.txt",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/bad.zip"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 27, in main\n    data = archive_bytes()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 8, in archive_bytes\n    verify(check_archive=False, check_deposit=False)\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 11, in verify\n    names = members()  # preflight every input, including self-hash-excluded manifest\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 38, in members\n    regular(ROOT / \"PAYLOAD_MEMBERS.txt\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 19, in regular\n    require(not part.is_symlink(), \"symlink input or ancestor: \" + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: symlink input or ancestor: /Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/PAYLOAD_MEMBERS.txt\n"
+  },
+  {
+    "label": "optimized duplicate JSON key",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 129, in main\n    result = verify(deposit=args.deposit, require_deposit=args.require_deposit)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 12, in verify\n    manifest = read_json(ROOT / \"SUPPORT_MANIFEST.json\")\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 34, in read_json\n    return json_bytes(regular(path).read_bytes())\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 31, in json_bytes\n    return json.loads(data.decode(\"utf-8\"), object_pairs_hook=pairs)\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 365, in loads\n    return cls(**kw).decode(s)\n           ~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 28, in pairs\n    require(key not in out, \"duplicate JSON key: \" + key)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: duplicate JSON key: schema\n"
+  },
+  {
+    "label": "optimized archive hardlink guard paper.tex",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized checker hardlink guard paper.tex",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized verifier hardlink guard paper.tex",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized archive hardlink guard SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized checker hardlink guard SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized verifier hardlink guard SUPPORT_MANIFEST.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized archive hardlink guard MATHEMATICAL_REPORT.md",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized checker hardlink guard MATHEMATICAL_REPORT.md",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized verifier hardlink guard MATHEMATICAL_REPORT.md",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized external descriptor hardlink guard",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py",
+      "--deposit",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/external-descriptor.json",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/alias"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized output symlink build_archive.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/symbolic-output"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "optimized output ancestor symlink build_archive.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_archive.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/linked-parent/new.json"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "optimized output symlink check_math.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/symbolic-output"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "optimized output ancestor symlink check_math.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "check_math.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/linked-parent/new.json"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "optimized output symlink verify_package.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/symbolic-output"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "optimized output ancestor symlink verify_package.py",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "verify_package.py",
+      "--output",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/linked-parent/new.json"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 132, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/verify_package.py\", line 128, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 70, in safe_output\n    require(not part.is_symlink(), \"output symlink or ancestor\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output symlink or ancestor\n"
+  },
+  {
+    "label": "optimized compiler protected hardlink child paper.tex",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/hostile-pdf"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized compiler protected hardlink child paper.pdf",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/hostile-pdf"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized compiler protected hardlink child paper.log",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/hostile-pdf"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized compiler protected hardlink child COMPILE_RECEIPT.json",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/hostile-pdf"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/build_pdf.py\", line 16, in main\n    safe_output(out / name)\n    ~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 77, in safe_output\n    require(not os.path.samefile(p, source), \"output hardlinks protected input\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/clean/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output hardlinks protected input\n"
+  },
+  {
+    "label": "optimized REAL clean Tectonic compilation",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "build_pdf.py",
+      "--out-dir",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/pdf-optimized"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"engine\": \"Tectonic\",\n  \"overfull_boxes\": 0,\n  \"passed\": true,\n  \"pdf_bytes\": 97501,\n  \"pdf_sha256\": \"464de043ac6b723f3bd5c03dddb6efd1c0bfeb05b5209bb532006580b7aedc2d\",\n  \"source_date_epoch\": \"1791936000\",\n  \"source_sha256\": \"c18a6ed12250dcee413e85f9a6297c525015396f151cdab8d89a6eb76938046d\",\n  \"stderr\": \"\",\n  \"stdout\": \"note: Running TeX ...\\nnote: Rerunning TeX because \\\"paper.aux\\\" changed ...\\nnote: Running xdvipdfmx ...\\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/pdf-optimized/pr1085-tex-jchvt1fi/paper.log` (18.4091796875 KiB)\\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/scratch/review02-are2_333/pdf-optimized/pr1085-tex-jchvt1fi/paper.pdf` (95.2158203125 KiB)\\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\\n\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "independent exact math False",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"counts\": {\n    \"complex_shear\": 500,\n    \"mass_scaling\": 36,\n    \"normal_area\": 4,\n    \"polynomial_Fourier_fibers\": 450,\n    \"regularized_Hardy\": 48,\n    \"weighted_trace_polynomials\": 45\n  },\n  \"hardy_margin\": \"597499/1200480\",\n  \"passed\": true,\n  \"scope\": \"New finite exact diagnostics; analytic universal arguments and source applicability independently read, not proved by samples.\",\n  \"source_count_coarse\": \"1/240\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "independent semantic fault Fourier_trace_sign optimized=False",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "Fourier_trace_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 52, in run\n    need(energy==completed and inner(square,square,r)>=0,\"polynomial Fourier completion\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: polynomial Fourier completion\n"
+  },
+  {
+    "label": "independent semantic fault mass_exponent optimized=False",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "mass_exponent"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 68, in run\n    need((16*beta*C*(16*beta*C+2*beta))**(m//2)==beta**exponent*(16*C*(16*C+2))**(m//2),\"mass is beta, not fixed one\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: mass is beta, not fixed one\n"
+  },
+  {
+    "label": "independent semantic fault normal_sign optimized=False",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "normal_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 79, in run\n    need((1+nuy)*area==surface-1,\"normal defect includes area\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: normal defect includes area\n"
+  },
+  {
+    "label": "independent semantic fault area_lost optimized=False",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "area_lost"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 79, in run\n    need((1+nuy)*area==surface-1,\"normal defect includes area\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: normal defect includes area\n"
+  },
+  {
+    "label": "independent semantic fault old_theta optimized=False",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "old_theta"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 82, in run\n    need(denominator>0 and theta*theta/denominator**2==F(1,4),\"published version theta\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: published version theta\n"
+  },
+  {
+    "label": "independent semantic fault Hardy_m2 optimized=False",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "Hardy_m2"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 84, in run\n    need(m>2 and F(m-2,2)>0,\"homogeneous Hardy dimension\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: homogeneous Hardy dimension\n"
+  },
+  {
+    "label": "independent semantic fault flat_sign optimized=False",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "flat_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 86, in run\n    need(F(1,2)+F(1,2)+flat_boundary==0,\"flat decaying mode threshold\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: flat decaying mode threshold\n"
+  },
+  {
+    "label": "independent exact math True",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"counts\": {\n    \"complex_shear\": 500,\n    \"mass_scaling\": 36,\n    \"normal_area\": 4,\n    \"polynomial_Fourier_fibers\": 450,\n    \"regularized_Hardy\": 48,\n    \"weighted_trace_polynomials\": 45\n  },\n  \"hardy_margin\": \"597499/1200480\",\n  \"passed\": true,\n  \"scope\": \"New finite exact diagnostics; analytic universal arguments and source applicability independently read, not proved by samples.\",\n  \"source_count_coarse\": \"1/240\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "label": "independent semantic fault Fourier_trace_sign optimized=True",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "Fourier_trace_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 52, in run\n    need(energy==completed and inner(square,square,r)>=0,\"polynomial Fourier completion\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: polynomial Fourier completion\n"
+  },
+  {
+    "label": "independent semantic fault mass_exponent optimized=True",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "mass_exponent"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 68, in run\n    need((16*beta*C*(16*beta*C+2*beta))**(m//2)==beta**exponent*(16*C*(16*C+2))**(m//2),\"mass is beta, not fixed one\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: mass is beta, not fixed one\n"
+  },
+  {
+    "label": "independent semantic fault normal_sign optimized=True",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "normal_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 79, in run\n    need((1+nuy)*area==surface-1,\"normal defect includes area\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: normal defect includes area\n"
+  },
+  {
+    "label": "independent semantic fault area_lost optimized=True",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "area_lost"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 79, in run\n    need((1+nuy)*area==surface-1,\"normal defect includes area\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: normal defect includes area\n"
+  },
+  {
+    "label": "independent semantic fault old_theta optimized=True",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "old_theta"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 82, in run\n    need(denominator>0 and theta*theta/denominator**2==F(1,4),\"published version theta\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: published version theta\n"
+  },
+  {
+    "label": "independent semantic fault Hardy_m2 optimized=True",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "Hardy_m2"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 84, in run\n    need(m>2 and F(m-2,2)>0,\"homogeneous Hardy dimension\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: homogeneous Hardy dimension\n"
+  },
+  {
+    "label": "independent semantic fault flat_sign optimized=True",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-O",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py",
+      "--fault",
+      "flat_sign"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 93, in <module>\n    print(json.dumps(run(a.fault),indent=2,sort_keys=True))\n                     ~~~^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 86, in run\n    need(F(1,2)+F(1,2)+flat_boundary==0,\"flat decaying mode threshold\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/reviews/package_02/check_independent_forms.py\", line 8, in need\n    raise ValueError(message)\nValueError: flat decaying mode threshold\n"
+  }
+]

@@ -1,0 +1,354 @@
+{
+  "mode": "OO",
+  "source_sha256": "cc3b78b9728f4dbc9b5f3a899e7d5029c872387ab5af989ecddd1feb04d5bf6a",
+  "operations_sha256": "eab69e53e9d32510bbf00d74c1b94b70542a8b29cf326c42f5d974e510f09d00",
+  "cases": [
+    {
+      "case": "valid_first_actual_stage",
+      "native_calls": [
+        "create",
+        "upload:finite-warm-thresholds.pdf",
+        "upload:finite-warm-thresholds-source-and-verification.zip",
+        "update"
+      ],
+      "create_POSTs": 1,
+      "upload_attempts": 2,
+      "update_attempts": 1,
+      "exception": null,
+      "resumption_intent": true,
+      "stage_verified": true,
+      "failure_receipt": false,
+      "account_page_observations": 72,
+      "dual_numeric_reads": 8,
+      "actual_external_mutations": 0,
+      "result": {
+        "id": 777,
+        "state": "ready_to_publish",
+        "doi": null,
+        "doi_url": null,
+        "record_url": null
+      }
+    },
+    {
+      "case": "initial_adoption_known_attempt_not_false",
+      "native_calls": [],
+      "create_POSTs": 0,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "known-unattempted stage not established"
+      },
+      "resumption_intent": false,
+      "stage_verified": false,
+      "failure_receipt": false,
+      "account_page_observations": 0,
+      "dual_numeric_reads": 0,
+      "actual_external_mutations": 0
+    },
+    {
+      "case": "initial_adoption_unresolved",
+      "native_calls": [],
+      "create_POSTs": 0,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "known-unattempted stage not established"
+      },
+      "resumption_intent": false,
+      "stage_verified": false,
+      "failure_receipt": false,
+      "account_page_observations": 0,
+      "dual_numeric_reads": 0,
+      "actual_external_mutations": 0
+    },
+    {
+      "case": "initial_adoption_wrong_action",
+      "native_calls": [],
+      "create_POSTs": 0,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "wrong target/action adoption"
+      },
+      "resumption_intent": false,
+      "stage_verified": false,
+      "failure_receipt": false,
+      "account_page_observations": 0,
+      "dual_numeric_reads": 0,
+      "actual_external_mutations": 0
+    },
+    {
+      "case": "existing_saved_state",
+      "native_calls": [],
+      "create_POSTs": 0,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "existing target state; GET-only reconcile, never allocate"
+      },
+      "resumption_intent": false,
+      "stage_verified": false,
+      "failure_receipt": false,
+      "account_page_observations": 0,
+      "dual_numeric_reads": 0,
+      "actual_external_mutations": 0
+    },
+    {
+      "case": "existing_resumption_intent",
+      "native_calls": [],
+      "create_POSTs": 0,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "resumption already entered; GET-only reconcile"
+      },
+      "resumption_intent": true,
+      "stage_verified": false,
+      "failure_receipt": false,
+      "account_page_observations": 0,
+      "dual_numeric_reads": 0,
+      "actual_external_mutations": 0
+    },
+    {
+      "case": "gate_fails_before_create",
+      "native_calls": [],
+      "create_POSTs": 0,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "independent pre-create GET failure"
+      },
+      "resumption_intent": true,
+      "stage_verified": false,
+      "failure_receipt": true,
+      "account_page_observations": 0,
+      "dual_numeric_reads": 2,
+      "actual_external_mutations": 0,
+      "reentry_error": {
+        "type": "RuntimeError",
+        "message": "resumption already entered; GET-only reconcile"
+      },
+      "failure_capture": {
+        "at": "2026-10-22T09:21:48.122262+00:00",
+        "client_target_id": null,
+        "exception_type": "RuntimeError",
+        "no_mutation_retry_authorized": true,
+        "unknown_outcome_requires_GET_only_reconciliation": true
+      }
+    },
+    {
+      "case": "create_succeeds_response_lost",
+      "native_calls": [
+        "create"
+      ],
+      "create_POSTs": 1,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "DepositError",
+        "message": "independent POST success response lost. No draft ID was saved; reconcile your Zenodo account before restaging if the request may have reached the server"
+      },
+      "resumption_intent": true,
+      "stage_verified": false,
+      "failure_receipt": true,
+      "account_page_observations": 18,
+      "dual_numeric_reads": 2,
+      "actual_external_mutations": 0,
+      "reentry_error": {
+        "type": "RuntimeError",
+        "message": "resumption already entered; GET-only reconcile"
+      },
+      "failure_capture": {
+        "at": "2026-10-22T09:21:49.614079+00:00",
+        "client_target_id": null,
+        "exception_type": "DepositError",
+        "no_mutation_retry_authorized": true,
+        "unknown_outcome_requires_GET_only_reconciliation": true
+      }
+    },
+    {
+      "case": "known_ID_native_policy_rejects",
+      "native_calls": [
+        "create"
+      ],
+      "create_POSTs": 1,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "Native access/embargo/custom fields changed"
+      },
+      "resumption_intent": true,
+      "stage_verified": false,
+      "failure_receipt": true,
+      "account_page_observations": 18,
+      "dual_numeric_reads": 2,
+      "actual_external_mutations": 0,
+      "reentry_error": {
+        "type": "RuntimeError",
+        "message": "resumption already entered; GET-only reconcile"
+      },
+      "failure_capture": {
+        "at": "2026-10-22T09:21:51.180693+00:00",
+        "client_target_id": 777,
+        "exception_type": "RuntimeError",
+        "no_mutation_retry_authorized": true,
+        "unknown_outcome_requires_GET_only_reconciliation": true
+      }
+    },
+    {
+      "case": "upload_succeeds_response_lost",
+      "native_calls": [
+        "create",
+        "upload:finite-warm-thresholds.pdf"
+      ],
+      "create_POSTs": 1,
+      "upload_attempts": 1,
+      "update_attempts": 0,
+      "exception": {
+        "type": "DepositError",
+        "message": "independent upload success response lost"
+      },
+      "resumption_intent": true,
+      "stage_verified": false,
+      "failure_receipt": true,
+      "account_page_observations": 36,
+      "dual_numeric_reads": 4,
+      "actual_external_mutations": 0,
+      "reentry_error": {
+        "type": "RuntimeError",
+        "message": "resumption already entered; GET-only reconcile"
+      },
+      "failure_capture": {
+        "at": "2026-10-22T09:21:54.083568+00:00",
+        "client_target_id": 777,
+        "exception_type": "DepositError",
+        "no_mutation_retry_authorized": true,
+        "unknown_outcome_requires_GET_only_reconciliation": true
+      }
+    },
+    {
+      "case": "late_original_clearance_change",
+      "native_calls": [],
+      "create_POSTs": 0,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "Root operational clearance changed"
+      },
+      "resumption_intent": true,
+      "stage_verified": false,
+      "failure_receipt": true,
+      "account_page_observations": 18,
+      "dual_numeric_reads": 2,
+      "actual_external_mutations": 0,
+      "full_stage_gates": 1,
+      "result": null,
+      "counterexample": false,
+      "adoption_original_sha": "4640cc21b220d8b25619c669d905fa0bf9f01df3e3c7f3bfc336a8dbd1c907b0",
+      "adoption_final_sha": "4640cc21b220d8b25619c669d905fa0bf9f01df3e3c7f3bfc336a8dbd1c907b0",
+      "old_intent_original_sha": "dfbe028bcd58c38d4810f7ed73544ee744d7e2ea415acc213eec861e3e857936",
+      "old_intent_final_sha": "dfbe028bcd58c38d4810f7ed73544ee744d7e2ea415acc213eec861e3e857936"
+    },
+    {
+      "case": "late_merge_head_change",
+      "native_calls": [],
+      "create_POSTs": 0,
+      "upload_attempts": 0,
+      "update_attempts": 0,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "PR identity/head/base changed"
+      },
+      "resumption_intent": true,
+      "stage_verified": false,
+      "failure_receipt": true,
+      "account_page_observations": 18,
+      "dual_numeric_reads": 2,
+      "actual_external_mutations": 0,
+      "full_stage_gates": 1,
+      "result": null,
+      "counterexample": false,
+      "adoption_original_sha": "4640cc21b220d8b25619c669d905fa0bf9f01df3e3c7f3bfc336a8dbd1c907b0",
+      "adoption_final_sha": "4640cc21b220d8b25619c669d905fa0bf9f01df3e3c7f3bfc336a8dbd1c907b0",
+      "old_intent_original_sha": "dfbe028bcd58c38d4810f7ed73544ee744d7e2ea415acc213eec861e3e857936",
+      "old_intent_final_sha": "dfbe028bcd58c38d4810f7ed73544ee744d7e2ea415acc213eec861e3e857936"
+    },
+    {
+      "case": "late_resumption_adoption_revoked",
+      "native_calls": [
+        "create",
+        "upload:finite-warm-thresholds.pdf",
+        "upload:finite-warm-thresholds-source-and-verification.zip",
+        "update"
+      ],
+      "create_POSTs": 1,
+      "upload_attempts": 2,
+      "update_attempts": 1,
+      "exception": null,
+      "resumption_intent": true,
+      "stage_verified": true,
+      "failure_receipt": false,
+      "account_page_observations": 72,
+      "dual_numeric_reads": 8,
+      "actual_external_mutations": 0,
+      "full_stage_gates": 4,
+      "result": {
+        "id": 777,
+        "state": "ready_to_publish",
+        "doi": null,
+        "doi_url": null,
+        "record_url": null
+      },
+      "counterexample": true,
+      "adoption_original_sha": "4640cc21b220d8b25619c669d905fa0bf9f01df3e3c7f3bfc336a8dbd1c907b0",
+      "adoption_final_sha": "4a87c7b9dd17eafc8dfc892f6a89a5d20d3bef24b4fe9c5d4ceb71a60dbb9994",
+      "old_intent_original_sha": "dfbe028bcd58c38d4810f7ed73544ee744d7e2ea415acc213eec861e3e857936",
+      "old_intent_final_sha": "dfbe028bcd58c38d4810f7ed73544ee744d7e2ea415acc213eec861e3e857936"
+    },
+    {
+      "case": "late_old_stage_intent_changed",
+      "native_calls": [
+        "create",
+        "upload:finite-warm-thresholds.pdf",
+        "upload:finite-warm-thresholds-source-and-verification.zip",
+        "update"
+      ],
+      "create_POSTs": 1,
+      "upload_attempts": 2,
+      "update_attempts": 1,
+      "exception": {
+        "type": "RuntimeError",
+        "message": "old stage intent altered"
+      },
+      "resumption_intent": true,
+      "stage_verified": true,
+      "failure_receipt": false,
+      "account_page_observations": 72,
+      "dual_numeric_reads": 8,
+      "actual_external_mutations": 0,
+      "full_stage_gates": 4,
+      "result": null,
+      "counterexample": true,
+      "adoption_original_sha": "4640cc21b220d8b25619c669d905fa0bf9f01df3e3c7f3bfc336a8dbd1c907b0",
+      "adoption_final_sha": "4640cc21b220d8b25619c669d905fa0bf9f01df3e3c7f3bfc336a8dbd1c907b0",
+      "old_intent_original_sha": "dfbe028bcd58c38d4810f7ed73544ee744d7e2ea415acc213eec861e3e857936",
+      "old_intent_final_sha": "f8a73f522e9b56829a63146733d4f1a9f43d42a73d148677f0382c68681ac73c"
+    }
+  ],
+  "case_count": 14,
+  "actual_external_mutations": 0,
+  "real_escape_attempts": [],
+  "allocated_bytes": 18702336,
+  "counterexamples": [
+    "late_resumption_adoption_revoked",
+    "late_old_stage_intent_changed"
+  ]
+}

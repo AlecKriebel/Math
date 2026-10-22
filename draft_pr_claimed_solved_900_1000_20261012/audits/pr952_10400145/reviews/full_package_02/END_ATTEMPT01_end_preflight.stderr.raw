@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import argparse,base64,json,sys; b=json.loads(sys.stdin.buffer.read()); c={"inventory_sha256":b["inventory_sha256"],"inventory":b["inventory"],"captured":{n:base64.b64decode(v,validate=True) for n,v in b["captured"].items()}}; p=sys.argv[1]; n={"__name__":"_pr952_authenticated_core_","__file__":p,"__package__":None}; exec(compile(c["captured"][sys.argv[2]],p,"exec",dont_inherit=True,optimize=0),n); n["operation"](b["action"],argparse.Namespace(**b["args"]),c)
+                                                                                                                                                                                                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 1447, in operation
+    {'preflight':readonly_preflight,'accept':accept,'merge':merge,'zenodo':zenodo,'tracker':tracker_append,'native':native_write,'finalize':finalize}[action](args,context)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 1436, in readonly_preflight
+    gate=premerge_gate(freeze,require_draft=True)
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 479, in premerge_gate
+    try:return _premerge_gate(freeze,require_draft)
+               ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 468, in _premerge_gate
+    source=source_gate(parent);native=native_safety(parent)
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 356, in source_gate
+    catalog=strict_json(blob(parent,CATALOG))
+                        ~~~~^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 189, in blob
+    return run(['git', 'show', ref + ':' + path], raw=True)
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 184, in run
+    return subprocess.run(args, cwd=ROOT, check=True, capture_output=True,
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                          text=not raw, **kwargs).stdout
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', 'show', 'aee2abd3422050f10b8cac8640ae58e48728da9c:unsolved_math_prioritization/catalog.json']' returned non-zero exit status 128.

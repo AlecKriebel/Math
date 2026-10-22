@@ -1,0 +1,394 @@
+{
+  "status": "PASS",
+  "at_utc": "2026-10-17T21:11:19.972542+00:00",
+  "tracker_whole_main": [
+    {
+      "case": "new",
+      "outcomes": [
+        true,
+        true
+      ],
+      "appends": 1,
+      "events": [
+        "get",
+        "get",
+        "append",
+        "get",
+        "get",
+        "get",
+        "get"
+      ]
+    },
+    {
+      "case": "existing",
+      "outcomes": [
+        true,
+        true
+      ],
+      "appends": 0,
+      "events": [
+        "get",
+        "get",
+        "get",
+        "get",
+        "get",
+        "get"
+      ]
+    },
+    {
+      "case": "duplicate",
+      "outcomes": [
+        "RuntimeError: Existing problem/DOI row needs reconciliation; no append made"
+      ],
+      "appends": 0,
+      "events": [
+        "get",
+        "get"
+      ]
+    },
+    {
+      "case": "mismatch",
+      "outcomes": [
+        "RuntimeError: Existing problem/DOI row needs reconciliation; no append made"
+      ],
+      "appends": 0,
+      "events": [
+        "get",
+        "get"
+      ]
+    },
+    {
+      "case": "header",
+      "outcomes": [
+        "RuntimeError: Unexpected tracker headers"
+      ],
+      "appends": 0,
+      "events": [
+        "get",
+        "get"
+      ]
+    },
+    {
+      "case": "renamed",
+      "outcomes": [
+        "RuntimeError: Tracker tab title changed; reconcile before append"
+      ],
+      "appends": 0,
+      "events": [
+        "get"
+      ]
+    },
+    {
+      "case": "lost",
+      "outcomes": [
+        "RuntimeError: fake uncertain append",
+        true
+      ],
+      "appends": 1,
+      "events": [
+        "get",
+        "get",
+        "append",
+        "get",
+        "get",
+        "get"
+      ]
+    },
+    {
+      "case": "unconfirmed",
+      "outcomes": [
+        "RuntimeError: fake uncertain append",
+        "RuntimeError: Earlier append intent has no exact matching row; reconcile before retrying"
+      ],
+      "appends": 1,
+      "events": [
+        "get",
+        "get",
+        "append",
+        "get",
+        "get"
+      ]
+    },
+    {
+      "case": "bad_readback",
+      "outcomes": [
+        "RuntimeError: Tracker readback differs"
+      ],
+      "appends": 1,
+      "events": [
+        "get",
+        "get",
+        "append",
+        "get"
+      ]
+    }
+  ],
+  "public_whole_main": [
+    {
+      "case": "exact",
+      "accepted": true,
+      "error": null
+    },
+    {
+      "case": "bad_id",
+      "accepted": false,
+      "error": "RuntimeError: Public record identity mismatch"
+    },
+    {
+      "case": "bad_doi",
+      "accepted": false,
+      "error": "RuntimeError: Public record identity mismatch"
+    },
+    {
+      "case": "duplicate_files",
+      "accepted": false,
+      "error": "RuntimeError: Public file inventory mismatch"
+    },
+    {
+      "case": "bad_content",
+      "accepted": false,
+      "error": "RuntimeError: Public artifact mismatch"
+    },
+    {
+      "case": "field_title",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at title"
+    },
+    {
+      "case": "field_upload_type",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at upload_type"
+    },
+    {
+      "case": "field_publication_type",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at publication_type"
+    },
+    {
+      "case": "field_description",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at description"
+    },
+    {
+      "case": "field_creators",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at creators"
+    },
+    {
+      "case": "field_access_right",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at access_right"
+    },
+    {
+      "case": "field_license",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at license"
+    },
+    {
+      "case": "field_version",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at version"
+    },
+    {
+      "case": "field_publication_date",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at publication_date"
+    },
+    {
+      "case": "field_keywords",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at keywords"
+    },
+    {
+      "case": "field_related_identifiers",
+      "accepted": false,
+      "error": "RuntimeError: Public supplied metadata differs at related_identifiers"
+    }
+  ],
+  "pr_whole_main": [
+    {
+      "case": "exact",
+      "outcomes": [
+        true,
+        true
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch",
+        "diff-tree",
+        "ls-remote",
+        "rev-list",
+        "show"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "push",
+      "outcomes": [
+        true,
+        true
+      ],
+      "pushes": 1,
+      "edits": 0,
+      "read_commands": [
+        "branch",
+        "diff-tree",
+        "ls-remote",
+        "push",
+        "rev-list",
+        "show"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "push_lost",
+      "outcomes": [
+        "RuntimeError: fake accepted push with lost response",
+        true
+      ],
+      "pushes": 1,
+      "edits": 0,
+      "read_commands": [
+        "branch",
+        "diff-tree",
+        "ls-remote",
+        "push",
+        "rev-list",
+        "show"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "api_lag",
+      "outcomes": [
+        "RuntimeError: PR API head/state not yet the intended commit; reconcile read-only before retry"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch",
+        "diff-tree",
+        "ls-remote",
+        "rev-list",
+        "show"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "unknown_body",
+      "outcomes": [
+        "RuntimeError: PR body differs from original and intended final body"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "parent",
+      "outcomes": [
+        "RuntimeError: Saved publication commit has unexpected parent"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch",
+        "rev-list"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "paths",
+      "outcomes": [
+        "RuntimeError: Saved publication commit paths differ"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch",
+        "diff-tree",
+        "rev-list"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "bytes",
+      "outcomes": [
+        "RuntimeError: Saved commit bytes differ from reviewed package at unsolved_math_prioritization/attempts/11000082/ACCEPTANCE.json"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch",
+        "diff-tree",
+        "rev-list",
+        "show"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "wrong_public_id",
+      "outcomes": [
+        "RuntimeError: Full public metadata verification required"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "tracker_cell",
+      "outcomes": [
+        "RuntimeError: Full four-cell tracker row differs"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "tracker_range",
+      "outcomes": [
+        "RuntimeError: Tracker range must be one A:D data row on Math Puzzles"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "gate_missing",
+      "outcomes": [
+        "RuntimeError: Review gate must cover exactly every required workflow script"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch"
+      ],
+      "desired_paths": 13
+    },
+    {
+      "case": "stale_intent",
+      "outcomes": [
+        "RuntimeError: Saved PR intent/receipt differs from current reviewed package at metadata_sha256"
+      ],
+      "pushes": 0,
+      "edits": 0,
+      "read_commands": [
+        "branch"
+      ],
+      "desired_paths": 13
+    }
+  ],
+  "limits": "All mutations are in-memory server events or isolated copied receipts. No actual external/Git/index/ref mutation. PR main tests cover saved-intent and completed-receipt branches, pinned 13-file byte trees, non-force push/retry and API lag; final-body edit/lost-response paths are also exercised by the copied workflow worker, not falsely certified as live operations."
+}

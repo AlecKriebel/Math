@@ -1,0 +1,7 @@
+# Portable verification entrypoint
+
+2026-10-16T10:17:06.805193+00:00 — 10%: contract frozen; pin142 planned package materials, execute28 required live cases in copied temporary layouts, preserve raw streams compressed, verify input hashes/ctime and dependency bytecode inventory before/after. No historical bare-assert script runs; no sealed file changes. Initial mkdir/heredoc attempts failed ENOSPC; Root restored bounded space, no cleanup by this agent.
+
+2026-10-16T10:25:45.648814+00:00 — 85%: attempt01 honestly FAIL with13 successful cases and15 ENOSPC setup failures; exact old code/receipt/raw streams retained. Operational revision uses finally cleanup per case,2 workers, symlink guard and start/end driver binding; attempt02 has24/28 expected outcomes, no mathematical failure reported, reviewer quartet pending. Only scripts+needed fixture inputs copied, never all142 files per case.
+
+2026-10-16T10:29:07.099290+00:00 — 100% complete: distinct attempt02 passed28/28 actual outcomes,14 valid+14 intended false/NaN rejections; all7 valid mode pairs agree. Post-run audit independently reconstructed raw streams and checked code/flags/identity labels,142 material SHA/size/mtime/ctime snapshots and169 cache records. Exact attempt01 FAIL code/receipt/raw preserved. Driver,README,receipt/report and proposed allowlist sealed. No universal-proof or novelty clearance; no sealed material or external state changes.

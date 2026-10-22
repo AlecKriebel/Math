@@ -1,0 +1,20 @@
+# Claim-to-source table
+
+All entries concern primary sources independently retrieved in this shard. Full source objects, extraction, and provider pages are private reading material and excluded from the public manifest. SOURCE_PINS.json records their identity and hashes. Formula specializations are explicitly identified as deductions.
+
+| Claim | Exact primary object and anchor | Direct statement or deduction | Limit |
+|---|---|---|---|
+| Target has positive ordered particles, drift `dX_i/dt=X_i`, rate-one nearest-right fallback, consistent prefixes; page says posted February 2018 | [Aldous problem page](https://www.stat.berkeley.edu/~aldous/Research/OP/left_Hamm.html), finite-particle paragraph, Problem and History | Direct | Does not establish acknowledgement of an earlier answer |
+| Same finite-particle process and simultaneous limit `Gamma(B(1)),...,Gamma(B(k))` | [Aldous–Diaconis 1993 notes](https://www.stat.berkeley.edu/~aldous/Research/OP/patience.pdf), printed 36–37, equations (40)–(42), compatibility preceding (41) | Direct asserted representation | Draft derivation contains unsafe scaling and a coupling-rate error; do not use those errors as proof |
+| Entire insertion-tableau first row equals the patience pile tops; RSK is bijective | [Aldous–Diaconis 1999](https://www.stat.berkeley.edu/~aldous/Papers/me86.pdf), printed 418; printed 419 Proposition 4 is only the one-size marginal | Direct | Joint value-restriction law is the elementary deduction in FINAL_REPORT.md |
+| Coherent small-label restriction determines the joint `B` law | 1993 printed 2, 36–37 compatibility; 1999 printed 418 row insertion/bijection | Explicit deduction, independently proved and exhaustively checked | Do not call Proposition 4 by itself a joint-law theorem |
+| Horizontal ascending curve gives rate-one pure birth chain, with Plancherel up transitions | [Borodin–Olshanski 2004v2](https://arxiv.org/pdf/math-ph/0402064v2), printed 3 up probabilities; printed 5 equation (1.9); printed 6 Remark 1.5 | Direct | Curve parameter is spatial threshold, not physical drift time |
+| Entire shape trajectory on that curve is RSK of one Poisson field | BO2004v2, printed 6–7 Definitions 2.1–2.2 and Theorem 2.3 | Direct | No hyperbolic specialization is used |
+| Submitted chain weights follow from old transitions | BO2004v2 preceding entries | Telescoping deduction displayed in FINAL_REPORT.md | Does not show identical earlier certificate wording |
+| Explicit correct Schur product for all shape times and skew exponential specialization | [Nica v1](https://arxiv.org/pdf/1404.4015v1), printed 5 Theorem 3.2 and Remark 3.3; full proof subsection 3.1, printed 7–10 | Direct | Earlier date is the arXiv version date; automatic title date caveat recorded |
+| Same direct joint formula in a separate early version | [Nica v3](https://arxiv.org/pdf/1404.4015v3), printed 6 Theorem 3.2 and Remark 3.3; proof subsection 3.4, printed 8–11 | Direct | This corroborates content, rather than silently trusting the v4 typo |
+| Decorated tableau threshold process equals nested-rectangle RSK | Nica v1 Definitions 2.4 and 2.10 (printed 3–4), Theorem 4.1/proof (printed 13–14); [v4](https://arxiv.org/pdf/1404.4015v4), printed 14–15 | Direct with the exact finite rectangle map displayed in FINAL_REPORT.md | No stationary dynamics are inferred from the line ensemble alone |
+| Formula available before February 2018 | [Nica version history](https://arxiv.org/abs/1404.4015v4): v1 15 April 2014, v3 29 April 2015, v4 29 March 2017; [BO history](https://arxiv.org/abs/math-ph/0402064v2): v2 29 September 2004; actual versioned source packages pinned | Direct version metadata plus compilation-date inference | No evidence of explicit connection to the 2018 page |
+| Candidate stationary formula and rational certificate under audit | Submitted local PROOF.md, sections 2–5, exact input hash in INPUT_PINS.json | New audit input, mathematically independently validated by parent | No earlier exact certificate claim made |
+
+No BO2013 heuristic claim is used as a rigorous source. No search absence is treated as a proof of novelty or historical completeness.

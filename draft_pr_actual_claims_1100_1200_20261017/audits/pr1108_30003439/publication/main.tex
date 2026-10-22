@@ -1,0 +1,292 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={A negative-curvature normal barrier on an algebraic cone that is not a hyperbolicity cone},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb R}
+\newcommand{\inter}{\operatorname{int}}
+\newcommand{\diag}{\operatorname{diag}}
+\title{A negative-curvature normal barrier on an algebraic cone\protect\\that is not a hyperbolicity cone}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{October 17, 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an explicit affirmative answer to Tun\c{c}el's 2017 existential
+question about algebraic convex cones with negative-curvature normal
+barriers. The one-sided power cone
+$K=\{(x,y,z)\geq0:xy^2\geq z^3\}$ admits the barrier
+$F=-25\log\bigl(z(xy^2-z^3)\bigr)$ with parameter $100$ and
+$D^3F(a)[h,u,u]\leq0$ for every $a\in\inter K$, $h\in K$, and
+$u\in\R^3$. Exact polynomial and positive-semidefinite certificates prove
+the curvature inequality, including its degenerate directions. A boundary
+divisibility argument rules out every homogeneous hyperbolic polynomial
+defining $K$ in $\R^3$. The cone itself is a known member of Hildebrand's
+classification; the contribution here is the explicit barrier certificate
+and its verification for the stated existential problem.
+\end{abstract}
+
+\section{The problem and the example}
+Tun\c{c}el \cite[p.~799, Open Problem~1]{T} asks whether an algebraic convex
+cone can admit a normal barrier with negative curvature without being a
+hyperbolicity cone. Here algebraic means defined by homogeneous polynomial
+inequalities. For a regular cone (closed, pointed, convex, with nonempty
+interior), negative curvature means
+\begin{equation}\label{negative}
+ D^3F(a)[h,u,u]\leq0 \quad(a\in\inter K,\ h\in K,\ u\in\R^3).
+\end{equation}
+This is the third-derivative convention of \cite{T,NT}, equivalently the
+concavity of $a\mapsto DF(a)[h]$ for fixed $h\in K$ \cite[Definition~3.1]{DTV}.
+A normal barrier is a logarithmically homogeneous self-concordant barrier;
+we also verify its gradient bound directly.
+
+\begin{theorem}\label{main}
+Let
+\[
+ K=\{(x,y,z)\in\R^3:x,y,z\geq0,\ p(x,y,z):=xy^2-z^3\geq0\}.
+\]
+Then $K$ is a regular algebraic convex cone. On $\inter K$, the function
+\[
+ f=-\log p-\log z,\qquad F=25f
+\]
+is a normal barrier with parameter $100$ satisfying \eqref{negative}.
+No homogeneous polynomial in three variables has $K$ as its
+hyperbolicity cone.
+\end{theorem}
+
+The underlying cone appears in Hildebrand \cite[Theorem~3.2, family~5]{H}:
+take the conjugate exponents $3,3/2$ and coordinates
+$(x_1,x_2,x_3)=(x,z,y)$. Self-concordant barriers for this same nonnegative
+power-cone family are also known: Roy--Xiao \cite[Theorem~2]{RX} give,
+for this cone, the parameter-$3$ barrier
+\[
+ B=-\log(x^{1/3}y^{2/3}-z)-\tfrac23\log x-\tfrac13\log y-\log z.
+\]
+Our parameter $100$ is not an improvement of their self-concordance
+parameter. The property established here is the negative-curvature
+certificate for the displayed polynomial-logarithmic barrier, together
+with the all-polynomial hyperbolicity obstruction. The theorem concerns this
+one-sided cone and the original existential question. It does not resolve
+the broader question whether every regular cone admits such a barrier
+\cite[Section~6]{DTV}. All arguments below are analytic; the accompanying
+exact computations are independently checkable supplements.
+
+\section{Geometry and normality}
+The displayed homogeneous inequalities make $K$ closed and conic. The
+nonnegative orthant makes it pointed; $(2,1,1)$ is strictly feasible, and
+\[
+ \inter K=\{x,y,z>0:xy^2>z^3\}.
+\]
+For $m(x,y)=x^{1/3}y^{2/3}$ on the positive orthant,
+\[
+ \nabla^2m=-\frac29x^{-5/3}y^{-4/3}
+ \begin{pmatrix}y^2&-xy\\-xy&x^2\end{pmatrix}\preceq0.
+\]
+Concavity extends to the closed orthant by continuity. Thus
+$K=\{x,y\geq0,\ 0\leq z\leq m(x,y)\}$ is convex.
+
+Put $g=z^3/y^2$ and $\delta=x-g>0$. Then
+$f=-\log\delta-2\log y-\log z$. At a fixed base point, for any direction
+$u$, define the linear functionals
+\[
+ b_u=u_y/y,\quad c_u=u_z/z,\quad
+ w_u=\frac{u_x-g(3c_u-2b_u)}{\delta},\quad
+ v_u=\sqrt{6g/\delta}\,(c_u-b_u),\quad \ell_u=c_u-4b_u.
+\]
+Direct differentiation gives
+\begin{align}
+ \|u\|_f^2:=D^2f[u,u]&=w_u^2+v_u^2+2b_u^2+c_u^2,\label{hess}\\
+ D^3f[u,u,u]&=-2w_u^3-3w_uv_u^2+\ell_uv_u^2-4b_u^3-2c_u^3.\label{cubic}
+\end{align}
+For example, $Dg[u]=g(3c_u-2b_u)$,
+$D^2g[u,u]=6g(c_u-b_u)^2$, and
+$D^3g[u,u,u]=6g(c_u-b_u)^2(c_u-4b_u)$, which yield these identities.
+Equation \eqref{hess} is positive definite: zero forces $b_u=c_u=w_u=0$
+and hence $u=0$.
+
+For completeness we prove the mixed form of self-concordance used in
+\cite[Section~2.2]{DTV}. Polarizing \eqref{cubic} gives
+\begin{align*}
+ D^3f[h,u,u]={}&-2w_hw_u^2-w_hv_u^2-2w_uv_hv_u\\
+ &+\tfrac13(\ell_hv_u^2+2\ell_uv_hv_u)-4b_hb_u^2-2c_hc_u^2.
+\end{align*}
+Weighted Cauchy--Schwarz gives $|\ell_a|\leq3\sqrt{2b_a^2+c_a^2}
+\leq3\|a\|_f$. The four groups in this display have absolute values
+bounded respectively by $2,3,3,2$ times $\|h\|_f\|u\|_f^2$.
+For the last bound, use
+\[
+ |4b_hb_u^2+2c_hc_u^2|
+ \leq2\sqrt{2b_h^2+c_h^2}\sqrt{2b_u^4+c_u^4}
+ \leq2\|h\|_f\|u\|_f^2.
+\]
+Consequently $|D^3f[h,u,u]|\leq10\|h\|_f\|u\|_f^2$. Since
+$\|u\|_F=5\|u\|_f$, scaling by $25$ gives
+\[
+ |D^3F[h,u,u]|\leq2\|h\|_F\|u\|_F^2,
+\]
+including the standard scalar self-concordance inequality when $h=u$.
+
+The polynomial $zp$ has degree four, so
+$F(ta)=F(a)-100\log t$. Differentiation yields
+$\nabla^2F(a)a=-\nabla F(a)$ and $a^T\nabla^2F(a)a=100$; hence
+\[
+ \nabla F(a)^T\nabla^2F(a)^{-1}\nabla F(a)=100.
+\]
+At every finite boundary point of $K$, either $z=0$ or $p=0$.
+Thus along every interior sequence tending to that point, $zp\to0^+$
+and $F\to+\infty$. Extended by $+\infty$ outside $\inter K$, $F$ is a
+closed convex function. These facts prove its claimed normality.
+
+\section{The negative-curvature certificate}
+The diagonal maps $D=\diag(\alpha,\beta,\gamma)$ with positive entries
+and $\alpha\beta^2=\gamma^3$ are automorphisms of $K$, and
+$f(Dq)=f(q)-4\log\gamma$. For a fixed interior point $(x,y,z)$, take
+$D=\diag(y^2/z^3,1/y,1/z)$. It sends that point to $(r,1,1)$,
+where $r=xy^2/z^3>1$. Differentiating with this $D$ held fixed gives
+\[
+ D^3f(q)[h,u,u]=D^3f(Dq)[Dh,Du,Du].
+\]
+It is therefore enough to prove the matrix inequality at $(r,1,1)$
+for every $r>1$.
+
+Every $h\in K$ with $h_y>0$ has the decomposition
+\[
+ h=h_y(t^3,1,t)+\bigl(h_x-h_z^3/h_y^2\bigr)e_x,\qquad t=h_z/h_y\geq0,
+\]
+with both coefficients nonnegative. If $h_y=0$, then $h_z=0$ and $h$
+is a nonnegative multiple of $e_x$. By linearity in $h$, it remains to
+check $h(t)=(t^3,1,t)$ for $t\geq0$, and $e_x$.
+
+Set $s=r-1>0$ and $M=-s^3D^3f(r,1,1)[h(t)]$. Its symmetric entries are
+\begin{align*}
+ M_{11}&=2(t-1)^2(t+2),\\
+ M_{12}&=2(t-1)(2t^2+2t-1-3r),\\
+ M_{13}&=6(t-1)(r-t^2-t+1),\\
+ M_{22}&=4r^3+12r^2-18r^2t+6rt^3-6rt+2t^3,\\
+ M_{23}&=12r^2t-18r^2-6rt^3+24rt-6r-6t^3,\\
+ M_{33}&=6(r+2)t^3+2(r^3-6r^2-18r-4)t+12r(r+2).
+\end{align*}
+These follow, for instance, by differentiating
+$f_{ij}=p_ip_j/p^2-p_{ij}/p+\mathbf1_{i=j=z}/z^2$.
+The next two leading minors are the following polynomial identities:
+\begin{align}
+ M_{11}M_{22}-M_{12}^2&=4s(t-1)^2P,\label{minor}\\
+ \det M&=8s^4(t-1)^2R,\label{det}
+\end{align}
+where
+\begin{align*}
+ P&=2(t+2)s^2-3(t-1)(3t+5)s+3(t-1)^2(t+2)^2,\\
+ R&=(t+2)\bigl(2ts^2-3(t-1)(3t+1)s
+             +3(t-1)^2(t^2+4t+1)\bigr).
+\end{align*}
+For $0\leq t<1$, every term in these expressions is nonnegative and
+the constant terms are positive. At $t=1$, $P=R=6s^2>0$.
+For $t\geq1$ use the exact square identities
+\begin{align}
+ 8(t+2)P={}&[4(t+2)s-3(t-1)(3t+5)]^2\notag\\
+          &+3(t-1)^2(8t^3+21t^2+6t-11),\label{squarep}\\
+ \frac{8tR}{t+2}={}&[4ts-3(t-1)(3t+1)]^2\notag\\
+          &+3(t-1)^3(8t^2+13t+3).\label{squarer}
+\end{align}
+The first remainder polynomial, at $t=1+v$, equals
+$8v^3+45v^2+72v+24>0$ for $v\geq0$. Both remainders are strictly
+positive for $t>1$, and all divisors used are positive. Hence $P,R>0$
+throughout $s>0,t\geq0$. If $t\ne1$, the first three leading minors
+are positive, so Sylvester's criterion gives $M\succ0$.
+
+At the exceptional direction $t=1$, substitution instead gives
+\[
+ M=2s^2\begin{pmatrix}0&0&0\\0&2r+1&-3\\0&-3&r+2\end{pmatrix}\succeq0,
+\]
+because the lower block has positive diagonal and determinant
+$(2r+1)(r+2)-9=(r-1)(2r+7)>0$.
+For the remaining endpoint there is a direct Gram certificate:
+\[
+ -s^3D^3f(r,1,1)[e_x]=2aa^T+6sbb^T\succeq0,\qquad
+ a=(1,2,-3)^T,\quad b=(0,1,-1)^T.
+\]
+Thus all cone directions are covered. Congruence under $D$, linearity
+in $h$, and multiplication by $25$ prove \eqref{negative}.
+
+\section{Excluding every hyperbolicity polynomial}
+Recall that a homogeneous polynomial $H$ is hyperbolic in $e$ if
+$H(e)>0$ and $H(v+te)$ has only real roots for every $v$.
+Its closed hyperbolicity cone is the closure of the positive-eigenvalue
+region in the convention of \cite{T}. The direction $e$ lies in the
+interior of that cone. Boundary eigenvalues are nonnegative by continuity
+from the positive region. The boundary lies in $\{H=0\}$: if all eigenvalues
+there were positive, continuity of roots (with fixed
+nonzero leading coefficient) would give an interior neighborhood.
+
+Suppose that this cone were $K$. Then $e\in\inter K$, and the curved
+boundary patch implies
+\[
+ H(z^3/y^2,y,z)=0\qquad(y,z>0).
+\]
+Clearing denominators gives a polynomial identity on an open set in
+$\R^2$, hence an identity everywhere. In $\R(y,z)[x]$ this says
+$x-z^3/y^2$ divides $H$. The polynomial $p=y^2x-z^3$ is primitive
+over $\R[y,z]$, since $\gcd(y^2,z^3)=1$, and is irreducible over the
+fraction field, being linear in $x$. Gauss's lemma gives $p\mid H$
+in $\R[x,y,z]$.
+
+Write $a=(e_xe_y^2)^{1/3}$ and $b=e_z$, so $a>b>0$. For $v=(0,0,1)$,
+\begin{align*}
+ p(v+te)&=a^3t^3-(1+bt)^3\\
+ &=((a-b)t-1)\bigl((a^2+ab+b^2)t^2+(a+2b)t+1\bigr).
+\end{align*}
+The quadratic discriminant is $(a+2b)^2-4(a^2+ab+b^2)=-3a^2<0$.
+Therefore $p(v+te)$ has nonreal roots. Since $p\mid H$ and $H(e)>0$,
+the restricted product is nonzero and these roots cannot cancel.
+This contradicts hyperbolicity in $e$, proving the final assertion of
+Theorem~\ref{main}. The argument treats arbitrary homogeneous $H$,
+without an assumed degree or a particular defining polynomial.
+
+\section*{Verification, attribution, and research status}
+The supplement supplies independently authored exact rational-polynomial
+checkers for the derivative, minor, square, and endpoint identities, with
+additional logarithm-series checks and deliberately false controls.
+The proof above establishes the universal inequalities; finite samples
+are supplementary evidence. The term $-\log z$ is substantive: for
+$f_0=-\log p$, the matrix $-s^3D^3f_0[h]$ has determinant $-24576$
+at base $(5,1,1)$ and direction $h=(8,1,2)$.
+
+The cone's prior occurrence in \cite{H} is explicitly credited; its
+hyperbolic affine spheres are distinct from polynomial hyperbolicity.
+Definitions and related barrier results are credited to \cite{NT,DTV}.
+A bounded primary-source priority audit accompanies the supplement;
+no assertion of exhaustive literature coverage or first-ever priority
+is made.
+
+\textbf{AI and review disclosure.} AI tools were used extensively in
+developing, checking, and writing this result and its verification
+materials. This preprint is unrefereed. The accompanying independent
+adversarial AI reviews do not constitute external human peer review
+or proof-assistant certification.
+
+\begin{thebibliography}{9}
+\bibitem{T} L.~Tun\c{c}el, \emph{Polynomial optimization with a focus on
+hyperbolic polynomials}, Oberwolfach Report 14/2017, 797--800,
+Open Problem~1 on p.~799.
+\href{https://doi.org/10.4171/owr/2017/14}{doi:10.4171/owr/2017/14}.
+\bibitem{NT} Yu.~Nesterov and L.~Tun\c{c}el,
+\emph{Local superlinear convergence of polynomial-time interior-point
+methods for hyperbolic cone optimization problems}, SIAM J. Optim.
+\textbf{26} (2016), 139--170; \href{https://arxiv.org/abs/1412.1857}{arXiv:1412.1857}.
+\bibitem{DTV} J.~Dahl, L.~Tun\c{c}el, and L.~Vandenberghe,
+\emph{New complexity bounds for primal--dual interior-point algorithms
+in conic optimization}, \href{https://arxiv.org/abs/2509.10263}{arXiv:2509.10263v2}
+(version record June 12, 2026). Sections 2.2, 3.1, and 6.
+The inspected PDF is internally revised June 16; the HTML representation
+instead says August 24. Both representations were checked.
+\bibitem{H} R.~Hildebrand, \emph{Analytic formulas for complete hyperbolic
+affine spheres}, \href{https://arxiv.org/abs/1305.4814}{arXiv:1305.4814},
+Theorem~3.2, family~5.
+\bibitem{RX} S.~Roy and L.~Xiao, \emph{On self-concordant barriers for
+generalized power cones}, Microsoft Research Technical Report
+MSR-TR-2018-3, January 30, 2018, Theorem~2.
+\href{https://optimization-online.org/2018/01/6441/}{Optimization Online}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,17 @@
+{
+  "mutation": {
+    "old": "ck('universal_U_plus_V',sy.expand(U+V-2*q*(1-z*t))==0)",
+    "new": "ck('universal_U_plus_V',False)  # DELIBERATE NEGATIVE CONTROL"
+  },
+  "purpose": "Show -O printed PASS/counts do not establish checks",
+  "runs": {
+    "normal": {
+      "returncode": 1,
+      "printed_PASS": false
+    },
+    "optimized": {
+      "returncode": 0,
+      "printed_PASS": true
+    }
+  }
+}

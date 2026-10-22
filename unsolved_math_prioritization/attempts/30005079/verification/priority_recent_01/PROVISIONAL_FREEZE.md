@@ -1,0 +1,13 @@
+# Independent recent-priority scope and provisional disposition
+
+Frozen 2026-10-16T05:31:31.283527+00:00 (audit progress estimate: 35%).
+
+Target: eligible PR888 / PID30005079, original head `a7571ddbbbe2de3600b96bd7ccccf86e4d5748e7`, original effort 1/5. Only original source files, native pair, parent mathematical disposition, and public primary sources have been read. No report from the separately assigned classical-theorem family has been read, and no communication with it has occurred.
+
+The actual source is Harold Blum's contribution on printed pp. 888–889 of OWR 17/2022 (PDF pp. 28–29). The question is to compute a nontrivial **first** canonical global H-degeneration with original X not isomorphic to its first central fiber Z and, preferably, a nondivisorial minimizing valuation. It does not exclude products or impose a dimension bound. An irrational positive scalar times a prime-divisor valuation is still divisorial. Local normalized-volume results and weighted second-step degenerations do not establish this target.
+
+Provisional result: no complete prior example matching both requirements has yet been verified in the recent family. Miao–Wang 2401.13999v2 (13 April 2026), Corollaries 1.4 and 1.8, explicitly give positive multiples of ord_H and ord_Eo. Their original varieties do change in the first step. Miao–Wang 2309.14212v4 (22 April 2025) gives KRS examples and moduli; this does not alone change the first central variety. The native citation's journal is wrong: DOI 10.1007/s00208-025-03202-w is Mathematische Annalen 392 (2025), 4483–4523 (version of record 29 May 2025), rather than Mathematische Zeitschrift. The report is numbered 17/2022 and the workshop was in 2022; the EMS record shows publication on 14 April 2023, so the native parenthetical year 2023 is ambiguous rather than simply false. A precise citation should give both.
+
+Recent primary-body leads under active attack: Linsheng Wang 2409.15718v3, Delcroix 2411.07864v1, Han–Miao–Qi–Wang–Zhang 2603.09269v2, the 2024 online/2026 issue spherical and horosymmetric flow papers, and the cited group-compactification papers. The generalized H^g examples in Wang Section 5 retain divisorial first degenerations for family 2.23(a); Delcroix explicitly separates his arbitrary-weight examples from ordinary unweighted H-optimal degenerations. These observations are provisional until the citation and edition checks finish.
+
+This bounded negative result cannot prove priority, continued openness, or a first-example claim. The strongest acceptable eventual wording must distinguish the verified construction from the unresolved bibliographic priority question. No PR status, merge, close, Git, index, ref, config, remote, or Zenodo mutation is authorized to this family.

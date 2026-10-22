@@ -1,6 +1,6 @@
 """Publish a scoped present-day acceptance mirror after verified publication and merge.
 
-An isolated index and fresh remote parent preserve the shared dirty checkout.
+A scoped Git tree and fresh remote parent preserve the shared dirty checkout.
 Only the named problem's entries and two new acceptance sidecars are changed.
 Historical proof-attempt lifecycle events are never reconstructed.
 """
@@ -10,10 +10,10 @@ import datetime
 import hashlib
 import io
 import json
-import os
+import re
 from pathlib import Path
 import subprocess
-import tempfile
+from scoped_tree import replace_paths
 
 REPO = Path(__file__).resolve().parent.parent
 NATIVE = 'unsolved_math_prioritization'
@@ -137,6 +137,16 @@ def main():
     audit = args.audit.resolve()
     gate_path = audit / 'FINAL_READINESS.json'
     gate = json.loads(gate_path.read_text())
+    priority_summary = gate.get('priority_summary',
+        'A bounded priority audit found no earlier full resolution; first historical priority is not certified.')
+    if not isinstance(priority_summary, str) or not priority_summary.strip():
+        raise ValueError('Priority summary must be a nonempty authored statement')
+    accepted_scope = gate.get('accepted_scope',
+        'The accepted theorem is the full source target, with the hypotheses stated in the paper.')
+    acceptance_result = gate.get('acceptance_result', 'accepted_full_resolution_unrefereed_preprint')
+    if any(not isinstance(value, str) or not value.strip()
+           for value in (accepted_scope, acceptance_result)):
+        raise ValueError('Acceptance scope and result must be nonempty authored statements')
     publication_path = audit / 'publication/PUBLISH_RECEIPT.json'
     publication = json.loads(publication_path.read_text())
     tracker_path = audit / 'publication/SHEET_VERIFICATION.json'
@@ -157,149 +167,150 @@ def main():
     doi = publication['doi']
     native_acceptance = f'{NATIVE}/attempts/{args.problem}/acceptance.json'
     native_note = f'{NATIVE}/attempts/{args.problem}/PREPRINT_PUBLICATION.md'
-    with tempfile.TemporaryDirectory(prefix='pr-acceptance-index-') as temp:
-        env = os.environ.copy()
-        env['GIT_INDEX_FILE'] = str(Path(temp) / 'index')
-        for attempt in range(3):
-            parent = run('gh', 'api', 'repos/AlecKriebel/Math/git/ref/heads/main',
-                         '--jq', '.object.sha').strip()
-            present = subprocess.run(['git', 'cat-file', '-e', parent + '^{commit}'],
-                                     cwd=REPO, capture_output=True)
-            if present.returncode:
-                run('git', 'fetch', '--no-write-fetch-head', 'origin', parent)
-            for sidecar in (native_acceptance, native_note):
-                existing = subprocess.run(['git', 'cat-file', '-e', parent + ':' + sidecar],
-                                          cwd=REPO, capture_output=True)
-                if existing.returncode == 0:
-                    raise ValueError('An acceptance sidecar already exists; reconcile before writing')
-            names = ['QUEUE.md', 'state.json', 'history.jsonl', 'catalog.json', 'ranking.csv']
-            before = {name: run('git', 'show', f'{parent}:{NATIVE}/{name}') for name in names}
-            queue = before['QUEUE.md']
-            target_rows = [line for line in queue.splitlines(keepends=True)
-                           if line.startswith('| ') and f' {args.problem} / ' in line]
-            if len(target_rows) != 1:
-                raise ValueError('Target queue row is not unique')
-            old_line = target_rows[0]
-            cells = old_line.split('|')
-            if len(cells) != 14:
-                raise ValueError('Unexpected queue schema')
-            if cells[8].strip() == 'preprint_published' and cells[12].strip() in (doi, 'https://doi.org/' + doi):
-                raise ValueError('Acceptance already recorded: inspect before repeating')
-            if cells[8].strip() != 'claimed_solved' or cells[12].strip():
-                raise ValueError('Only an unpublished claimed_solved target may be promoted')
-            used, limit = map(int, cells[9].strip().split('/'))
-            if not 1 <= used <= limit == 5:
-                raise ValueError('Original explicit proof-attempt budget is invalid')
-            state = json.loads(before['state.json'])
-            catalog = json.loads(before['catalog.json'])
-            target = [item for item in catalog if item['id'] == args.problem]
-            if len(target) != 1:
-                raise ValueError('Target catalog row is not unique')
-            current = target[0]
-            if current['statement_hash'] != gate['statement_hash'] or current['review_hash'] != gate['review_hash']:
-                raise ValueError('The source hashes changed after final readiness')
-            now = datetime.datetime.now(datetime.timezone.utc).isoformat()
-            acceptance = {'accepted_utc': now, 'problem': args.problem, 'pr': args.pr,
-                          'reviewed_head': args.head, 'merge_commit': pr['merge_commit_sha'],
-                          'result': 'accepted_full_resolution_unrefereed_preprint',
-                          'doi': doi, 'record_url': publication['record_url'],
-                          'statement_hash': current['statement_hash'], 'review_hash': current['review_hash'],
-                          'final_readiness': bind(gate_path), 'publication': bind(publication_path),
-                          'tracker': bind(tracker_path), 'publication_files': inventory['files'],
-                          'historical_priority_certified': False, 'external_human_peer_review': False,
-                          'formal_proof_verification': False, 'extensive_AI_use': True,
-                          'historical_candidate_preserved': True, 'turns_used': used, 'turn_limit': limit}
-            acceptance_raw = encode(acceptance)
-            event = {'at': now, 'id': args.problem, 'status': 'preprint_published',
-                     'event': 'acceptance_mirror_import', 'pr': args.pr, 'doi': doi,
-                     'statement_hash': current['statement_hash'], 'review_hash': current['review_hash'],
-                     'turns_used': used, 'turn_limit': limit,
-                     'note': 'Present-day acceptance of the complete internally audited preprint; original candidate history preserved.',
-                     'evidence': {'canonical_acceptance': {'path': native_acceptance,
-                         'sha256': hashlib.sha256(acceptance_raw.encode()).hexdigest()},
-                         'reviewed_head': args.head, 'merge_commit': pr['merge_commit_sha'],
-                         'final_gate': bind(gate_path), 'publication': bind(publication_path),
-                         'tracker': bind(tracker_path), 'queue_explicit_budget': cells[9].strip(),
-                         'historical_transitions_asserted': False, 'historical_priority_certified': False}}
-            event['event_id'] = hashlib.sha256(json.dumps(event, sort_keys=True).encode()).hexdigest()
-            state[args.problem] = {**state.get(args.problem, {}), **event}
-            current.update(local_status='preprint_published', turns_used=used, eligible=False, rank=None)
-            cells[8] = ' preprint_published '
-            cells[11] = cells[11].rstrip() + (
-                f' {now} — ACCEPTED/PUBLISHED after fresh mathematical families, bounded priority '
-                f'audit and successive whole-preprint adversarial reviews; five-page note and '
-                f'source/verification package, DOI {doi}; PR#{args.pr} merged at '
-                f'{pr["merge_commit_sha"]}; extensive AI use, unrefereed, no external human '
-                'peer review or formal proof verification; first historical priority not certified. ')
-            cells[12] = f' {doi} '
-            changed_queue = queue.replace(old_line, '|'.join(cells), 1)
-            csv_lines = before['ranking.csv'].splitlines(keepends=True)
-            header = next(csv.reader([csv_lines[0]]))
-            found = 0
-            for i, line in enumerate(csv_lines[1:], 1):
-                row = next(csv.reader([line]))
-                if row[header.index('id')] != args.problem:
-                    continue
-                found += 1
-                for key, value in [('rank', ''), ('local_status', 'preprint_published'),
-                                   ('turns_used', str(used)), ('eligible', 'False')]:
-                    row[header.index(key)] = value
-                out = io.StringIO(newline=''); csv.writer(out).writerow(row); csv_lines[i] = out.getvalue()
-            if found != 1:
-                raise ValueError('Target ranking row is not unique')
-            audit_relative = audit.relative_to(REPO).as_posix()
-            note = (f'# Accepted preprint for problem {args.problem}\n\n'
-                    f'[{publication["title"]}](https://doi.org/{doi}) by Alec Kriebel, '
-                    'ORCID 0009-0001-9320-500X, version 1.0. The accepted theorem is the '
-                    'full source target, with the hypotheses stated in the paper.\n\n'
-                    f'[Current audit and publication records](https://github.com/AlecKriebel/Math/tree/main/{audit_relative}) '
-                    f'bind the exact manuscript, PDF, support archive, fresh reviews, '
-                    f'publication receipt and tracker readback. PR#{args.pr} head `{args.head}` '
-                    f'was merged as `{pr["merge_commit_sha"]}`.\n\n'
-                    'AI tools were used extensively. This preprint is unrefereed; internal '
-                    'AI-assisted review is not external human peer review or formal proof '
-                    'verification. A bounded priority audit found no earlier full resolution; '
-                    'first historical priority is not certified. The original candidate files '
-                    'and historical adverse findings are retained unchanged. See acceptance.json '
-                    'for the present-day acceptance bindings.\n')
-            updates = {f'{NATIVE}/QUEUE.md': changed_queue,
-                       f'{NATIVE}/state.json': replace_root_member(before['state.json'], args.problem, state[args.problem]),
-                       f'{NATIVE}/history.jsonl': before['history.jsonl'] +
-                           ('' if not before['history.jsonl'] or before['history.jsonl'].endswith('\n') else '\n') +
-                           json.dumps(event, ensure_ascii=False) + '\n',
-                       f'{NATIVE}/catalog.json': replace_array_record(before['catalog.json'], args.problem, current),
-                       f'{NATIVE}/ranking.csv': ''.join(csv_lines),
-                       native_acceptance: acceptance_raw, native_note: note}
-            # Neither the native attempt's frozen files nor any unrelated row is staged.
-            run('git', 'read-tree', parent, env=env)
-            for path, raw in updates.items():
-                blob = run('git', 'hash-object', '-w', '--stdin', raw=raw).strip()
-                run('git', 'update-index', '--add', '--cacheinfo', '100644', blob, path, env=env)
-            changed = run('git', 'diff', '--cached', '--name-only', parent, env=env).splitlines()
-            if set(changed) != set(updates):
-                raise ValueError('Unexpected native acceptance changes')
-            tree = run('git', 'write-tree', env=env).strip()
-            commit = run('git', 'commit-tree', tree, '-p', parent,
-                         raw=f'Accept PR{args.pr} published preprint and synchronize its own queue mirrors\n').strip()
-            push = subprocess.run(['git', 'push', 'origin', commit + ':refs/heads/main'],
-                                  cwd=REPO, capture_output=True, text=True)
-            if push.returncode:
-                if 'fetch first' in push.stderr or 'non-fast-forward' in push.stderr:
-                    continue
-                raise RuntimeError(push.stderr)
-            receipts = {'completed_utc': now, 'result': 'PASS', 'commit': commit, 'parent': parent,
-                        'doi': doi, 'pr': args.pr, 'reviewed_head': args.head,
-                        'merge_commit': pr['merge_commit_sha'], 'paths': list(updates),
-                        'shared_checkout_and_index_untouched': True,
-                        'unrelated_entries_preserved': True,
-                        'file_hashes': {path: hashlib.sha256(raw.encode()).hexdigest() for path, raw in updates.items()}}
-            for path, expected in updates.items():
-                if run('git', 'show', commit + ':' + path) != expected:
-                    raise ValueError('Committed native acceptance readback differs')
-            (audit / 'publication/NATIVE_ACCEPTANCE_RECEIPT.json').write_text(encode(receipts))
-            print(json.dumps({key: value for key, value in receipts.items() if key not in ['paths', 'file_hashes']}))
-            return
-        raise RuntimeError('Remote main advanced during all three attempts')
+    for attempt in range(3):
+        parent = run('gh', 'api', 'repos/AlecKriebel/Math/git/ref/heads/main',
+                     '--jq', '.object.sha').strip()
+        present = subprocess.run(['git', 'cat-file', '-e', parent + '^{commit}'],
+                                 cwd=REPO, capture_output=True)
+        if present.returncode:
+            run('git', 'fetch', '--no-write-fetch-head', 'origin', parent)
+        for sidecar in (native_acceptance, native_note):
+            existing = subprocess.run(['git', 'cat-file', '-e', parent + ':' + sidecar],
+                                      cwd=REPO, capture_output=True)
+            if existing.returncode == 0:
+                raise ValueError('An acceptance sidecar already exists; reconcile before writing')
+        names = ['QUEUE.md', 'state.json', 'history.jsonl', 'catalog.json', 'ranking.csv']
+        before = {name: run('git', 'show', f'{parent}:{NATIVE}/{name}') for name in names}
+        queue = before['QUEUE.md']
+        target_rows = [line for line in queue.splitlines(keepends=True)
+                       if line.startswith('| ') and f' {args.problem} / ' in line]
+        if len(target_rows) != 1:
+            raise ValueError('Target queue row is not unique')
+        old_line = target_rows[0]
+        cells = old_line.split('|')
+        if len(cells) != 14:
+            raise ValueError('Unexpected queue schema')
+        if cells[8].strip() == 'preprint_published' and cells[12].strip() in (doi, 'https://doi.org/' + doi):
+            raise ValueError('Acceptance already recorded: inspect before repeating')
+        if cells[8].strip() != 'claimed_solved' or cells[12].strip():
+            raise ValueError('Only an unpublished claimed_solved target may be promoted')
+        used, limit = map(int, cells[9].strip().split('/'))
+        if not 1 <= used <= limit == 5:
+            raise ValueError('Original explicit proof-attempt budget is invalid')
+        state = json.loads(before['state.json'])
+        catalog = json.loads(before['catalog.json'])
+        target = [item for item in catalog if item['id'] == args.problem]
+        if len(target) != 1:
+            raise ValueError('Target catalog row is not unique')
+        current = target[0]
+        if current['statement_hash'] != gate['statement_hash'] or current['review_hash'] != gate['review_hash']:
+            raise ValueError('The source hashes changed after final readiness')
+        now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        acceptance = {'accepted_utc': now, 'problem': args.problem, 'pr': args.pr,
+                      'reviewed_head': args.head, 'merge_commit': pr['merge_commit_sha'],
+                      'result': acceptance_result,
+                      'doi': doi, 'record_url': publication['record_url'],
+                      'statement_hash': current['statement_hash'], 'review_hash': current['review_hash'],
+                      'final_readiness': bind(gate_path), 'publication': bind(publication_path),
+                      'tracker': bind(tracker_path), 'publication_files': inventory['files'],
+                      'historical_priority_certified': False, 'external_human_peer_review': False,
+                      'formal_proof_verification': False, 'extensive_AI_use': True,
+                      'historical_candidate_preserved': True, 'turns_used': used, 'turn_limit': limit,
+                      'accepted_scope': accepted_scope, 'priority_summary': priority_summary,
+                      'known_equivalent_results': gate.get('known_equivalent_results', [])}
+        acceptance_raw = encode(acceptance)
+        event = {'at': now, 'id': args.problem, 'status': 'preprint_published',
+                 'event': 'acceptance_mirror_import', 'pr': args.pr, 'doi': doi,
+                 'statement_hash': current['statement_hash'], 'review_hash': current['review_hash'],
+                 'turns_used': used, 'turn_limit': limit,
+                 'note': 'Present-day acceptance of the complete internally audited preprint; original candidate history preserved.',
+                 'evidence': {'canonical_acceptance': {'path': native_acceptance,
+                     'sha256': hashlib.sha256(acceptance_raw.encode()).hexdigest()},
+                     'reviewed_head': args.head, 'merge_commit': pr['merge_commit_sha'],
+                     'final_gate': bind(gate_path), 'publication': bind(publication_path),
+                     'tracker': bind(tracker_path), 'queue_explicit_budget': cells[9].strip(),
+                     'historical_transitions_asserted': False, 'historical_priority_certified': False}}
+        event['event_id'] = hashlib.sha256(json.dumps(event, sort_keys=True).encode()).hexdigest()
+        state[args.problem] = {**state.get(args.problem, {}), **event}
+        current.update(local_status='preprint_published', turns_used=used, eligible=False, rank=None)
+        cells[8] = ' preprint_published '
+        cells[11] = cells[11].rstrip() + (
+            f' {now} — ACCEPTED/PUBLISHED after fresh mathematical families, bounded priority '
+            f'audit and successive whole-preprint adversarial reviews; research note and '
+            f'source/verification package, DOI {doi}; PR#{args.pr} merged at '
+            f'{pr["merge_commit_sha"]}; extensive AI use, unrefereed, no external human '
+                'peer review or formal proof verification; first historical priority not certified. '
+                + priority_summary + ' ')
+        cells[12] = f' {doi} '
+        changed_queue = queue.replace(old_line, '|'.join(cells), 1)
+        csv_lines = before['ranking.csv'].splitlines(keepends=True)
+        header = next(csv.reader([csv_lines[0]]))
+        found = 0
+        for i, line in enumerate(csv_lines[1:], 1):
+            row = next(csv.reader([line]))
+            if row[header.index('id')] != args.problem:
+                continue
+            found += 1
+            for key, value in [('rank', ''), ('local_status', 'preprint_published'),
+                               ('turns_used', str(used)), ('eligible', 'False')]:
+                row[header.index(key)] = value
+            out = io.StringIO(newline=''); csv.writer(out).writerow(row); csv_lines[i] = out.getvalue()
+        if found != 1:
+            raise ValueError('Target ranking row is not unique')
+        audit_relative = audit.relative_to(REPO).as_posix()
+        note = (f'# Accepted preprint for problem {args.problem}\n\n'
+                f'[{publication["title"]}](https://doi.org/{doi}) by Alec Kriebel, '
+                f'ORCID 0009-0001-9320-500X, version 1.0. {accepted_scope}\n\n'
+                f'[Current audit and publication records](https://github.com/AlecKriebel/Math/tree/main/{audit_relative}) '
+                f'bind the exact manuscript, PDF, support archive, fresh reviews, '
+                f'publication receipt and tracker readback. PR#{args.pr} head `{args.head}` '
+                f'was merged as `{pr["merge_commit_sha"]}`.\n\n'
+                'AI tools were used extensively. This preprint is unrefereed; internal '
+                'AI-assisted review is not external human peer review or formal proof '
+                'verification. ' + priority_summary + ' The original candidate files '
+                'and historical adverse findings are retained unchanged. See acceptance.json '
+                'for the present-day acceptance bindings.\n')
+        updates = {f'{NATIVE}/QUEUE.md': changed_queue,
+                   f'{NATIVE}/state.json': replace_root_member(before['state.json'], args.problem, state[args.problem]),
+                   f'{NATIVE}/history.jsonl': before['history.jsonl'] +
+                       ('' if not before['history.jsonl'] or before['history.jsonl'].endswith('\n') else '\n') +
+                       json.dumps(event, ensure_ascii=False) + '\n',
+                   f'{NATIVE}/catalog.json': replace_array_record(before['catalog.json'], args.problem, current),
+                   f'{NATIVE}/ranking.csv': ''.join(csv_lines),
+                   native_acceptance: acceptance_raw, native_note: note}
+        # Frozen attempt files and unrelated entries retain their Git objects.
+        object_updates = {}
+        for path, raw in updates.items():
+            blob = run('git', 'hash-object', '-w', '--stdin', raw=raw).strip()
+            object_updates[path] = ('100644', blob)
+        tree = replace_paths(REPO, parent, object_updates)
+        changed = run('git', 'diff', '--name-only', parent, tree).splitlines()
+        if set(changed) != set(updates):
+            raise ValueError('Unexpected native acceptance changes')
+        commit = run('git', 'commit-tree', tree, '-p', parent,
+                     raw=f'Accept PR{args.pr} published preprint and synchronize its own queue mirrors\n').strip()
+        push = subprocess.run(['git', 'push', 'origin', commit + ':refs/heads/main'],
+                              cwd=REPO, capture_output=True, text=True)
+        if push.returncode:
+            ref_race = re.search(
+                r"cannot lock ref 'refs/heads/main': is at [0-9a-f]{40} but expected [0-9a-f]{40}",
+                push.stderr)
+            if 'fetch first' in push.stderr or 'non-fast-forward' in push.stderr or ref_race:
+                continue
+            raise RuntimeError(push.stderr)
+        receipts = {'completed_utc': now, 'result': 'PASS', 'commit': commit, 'parent': parent,
+                    'doi': doi, 'pr': args.pr, 'reviewed_head': args.head,
+                    'merge_commit': pr['merge_commit_sha'], 'paths': list(updates),
+                    'shared_checkout_and_index_untouched': True,
+                    'unrelated_entries_preserved': True,
+                    'file_hashes': {path: hashlib.sha256(raw.encode()).hexdigest() for path, raw in updates.items()}}
+        for path, expected in updates.items():
+            if run('git', 'show', commit + ':' + path) != expected:
+                raise ValueError('Committed native acceptance readback differs')
+        (audit / 'publication/NATIVE_ACCEPTANCE_RECEIPT.json').write_text(encode(receipts))
+        print(json.dumps({key: value for key, value in receipts.items() if key not in ['paths', 'file_hashes']}))
+        return
+    raise RuntimeError('Remote main advanced during all three attempts')
 
 
 if __name__ == '__main__':

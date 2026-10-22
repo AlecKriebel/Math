@@ -1,0 +1,7 @@
+# Independent Batch B1 prior DOI accounting review
+
+2026-10-22T05:14:38.786424+00:00 Started independent review; fresh numeric-sheet read completed before substantive theorem work. Own review0%; overall79%. No external mutation.
+
+2026-10-22T05:26:01.633807+00:00 Independent primary review70%:45publication reads and25additional original/source reads; all15paper PDFs match. Sixteen livePRidentities bound;PR1007cached109nullblobSHAs rebound to exact current immutable path/status comparison and head blobs, initial strict failure preserved. Independent notebook literal-only exact32768choice verification passed; finitecurve all-k factorizations checked. Original Graham1971pp24/34/36 visually read; Erdős1948p692 visually read after initial adjacentp691render. OEIS directly verifies separate omissions conjecture. Overall79%; no external mutation.
+
+2026-10-22T05:35:16.048348+00:00 Completed independent15publication identity/applicability verdicts and concrete15rows, oneGenesonpublicationcovers16PRs. Fifteenfullprioranswers or exactqualifiedoriginalclauses retained; no newuploads. Finalreadonlyreplay16PR/224paths/262stablepins at05:31:44UTC passed, ledger183rows no targetleads, exactmathstdout472f18f6 unchanged,0stderr. Added final-report/source precision and fixed verifier completeclosure filter to exclude only top-level MANIFEST, preserving nested authored manifests. Boundedreview100%; overall79%. Finalwholeclosureverification follows; externalmutations0.

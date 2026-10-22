@@ -20,8 +20,26 @@ Preprints disclose extensive AI assistance and their unrefereed status. Publicat
 uses the repository Zenodo tool followed by a Google Workspace CLI row in the
 requested `Math Puzzles` tracker (gid 1254632077). PR #904 is accepted, merged and published: [10.5281/zenodo.23331258](https://doi.org/10.5281/zenodo.23331258), tracker row 68. Its audited publication record is preserved in `audits/pr904_30000347/`.
 
-Own work is isolated here. No other shard or individual is contacted. Main
-checkpoints use a private index and nonforced remote main pushes; the shared
-checkout, shared index and local branch pointer are preserved.
+Own work is isolated here. No other shard or individual is contacted. Current main
+checkpoints replace only explicit own blobs and their ancestor trees, then use
+nonforced remote main pushes; no index is allocated and the shared checkout,
+shared index and local branch pointer are preserved. Earlier receipts document
+the retired private-index method.
 
 PR #905 is accepted, merged and published: [10.5281/zenodo.23333002](https://doi.org/10.5281/zenodo.23333002), tracker 'Math Puzzles'!A76:D76. The frozen revision 2 passed the fresh review after the source-version repair; its queue conflict reconciliation preserved all reviewed bytes.
+
+PR #906 is accepted, merged and published: [10.5281/zenodo.23356680](https://doi.org/10.5281/zenodo.23356680), tracker 'Math Puzzles'!A83:D83. Exact energy-specific scope, classical credits, bounded priority and unrefereed AI disclosures are explicit.
+
+PR #908 is accepted, merged and published: [10.5281/zenodo.23383930](https://doi.org/10.5281/zenodo.23383930), tracker 'Math Puzzles'!A89:D89. Exact bounded-region scope, prior mechanism credits, bounded priority and unrefereed AI disclosures are explicit.
+
+PR #909 is accepted, merged and published: [10.5281/zenodo.23384938](https://doi.org/10.5281/zenodo.23384938), tracker 'Math Puzzles'!A93:D93. Exact summed multibranch scope, classical construction/method credits, bounded priority and unrefereed AI disclosures are explicit.
+
+PR #919 is accepted, merged and published: [10.5281/zenodo.23387550](https://doi.org/10.5281/zenodo.23387550), tracker 'Math Puzzles'!A98:D98. Exact prescribed-matrix scope, prior finiteness credits, bounded priority and unrefereed AI disclosures are explicit.
+
+PR #932 closed without merging on verified exact-priority grounds. Candidate mathematics has no unresolved gap found; Winter's prior finite theorem already covers the entire strengthening. No preprint/DOI/tracker entry.
+
+PR #938 accepted, merged and published: [10.5281/zenodo.23393596](https://doi.org/10.5281/zenodo.23393596); tracker 'Math Puzzles'!A108:D108. All finite derived depths, credited prior general inputs, bounded priority and unrefereed AI disclosures explicit; original observed1/5 preserved with one separately counted strengthening, known2/5.
+
+PR #946 accepted, merged and published: [10.5281/zenodo.23409904](https://doi.org/10.5281/zenodo.23409904); tracker 'Math Puzzles'!A117:D117. Fully credited global Hessian construction; original declared4/5 and native-history uncertainty preserved; audit adds0.
+
+PR #948 accepted, merged and published: [10.5281/zenodo.23422055](https://doi.org/10.5281/zenodo.23422055); tracker 'Math Puzzles'!A129:D129. Three fixed anti-invariant classes on a compact nonintegrable four-manifold; seven sealed full-package review rounds, final two clean. Bounded priority, extensive AI and unrefereed status disclosed; original PR-declared4/5 and UNKNOWN historical native count preserved, audit adds0.

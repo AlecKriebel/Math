@@ -1,0 +1,59 @@
+--- reviewed417f_ops_binding.py
++++ current_ops_binding.py
+@@ -21,7 +21,7 @@
+ QUEUE = 'unsolved_math_prioritization/QUEUE.md'
+ TITLE = 'A fixed birational map without a prime-field cycle-distribution limit'
+ PREFIX = 'birational-cycle-verification/'
+-RELEASE_SHA = '548b7a4ae1f13a92029255fc9ef485002b7c33376b9dd9168ffcdb532fc4c20e'
++RELEASE_SHA = 'da0388503e1c6f03c809ec256989d10039b1f1a1b2eba87528d77651a7863e60'
+ NAMES = {'fixed-birational-cycle-nonlimit.pdf', 'fixed-birational-cycle-nonlimit.tex',
+          'fixed-birational-cycle-nonlimit-verification.zip', 'zenodo-deposit.json', 'README.md'}
+ UPLOADS = {'fixed-birational-cycle-nonlimit.pdf', 'fixed-birational-cycle-nonlimit-verification.zip'}
+@@ -82,7 +82,7 @@
+         raise RuntimeError('Unexpected exact five-file publication inventory')
+     if (value.get('intended_uploads') != ['fixed-birational-cycle-nonlimit.pdf',
+             'fixed-birational-cycle-nonlimit-verification.zip']
+-            or value.get('archive_members') != 65 or value.get('archive_payloads') != 64):
++            or value.get('archive_members') != 69 or value.get('archive_payloads') != 68):
+         raise RuntimeError('Unexpected upload/archive inventory')
+     return value
+ 
+@@ -90,24 +90,24 @@
+ def check_zip(data):
+     with zipfile.ZipFile(io.BytesIO(data)) as archive:
+         names = archive.namelist()
+-        if len(names) != 65 or len(set(names)) != 65 or archive.testzip() is not None:
++        if len(names) != 69 or len(set(names)) != 69 or archive.testzip() is not None:
+             raise RuntimeError('ZIP inventory, duplicates or CRC invalid')
+         for info in archive.infolist():
+             safe_file(Path('/synthetic'), info.filename)
+             if info.is_dir() or (info.external_attr >> 16 & 0o170000) == 0o120000:
+                 raise RuntimeError('Directory or symlink ZIP member')
+         declared = json.loads(archive.read(PREFIX + 'MANIFEST.json'))['files']
+-        if not isinstance(declared, list) or len(declared) != 64:
+-            raise RuntimeError('PR280 manifest must be a list of 64 payloads')
++        if not isinstance(declared, list) or len(declared) != 68:
++            raise RuntimeError('PR280 manifest must be a list of 68 payloads')
+         keys = [v['path'] for v in declared]
+-        if len(set(keys)) != 64 or set(names) != {PREFIX+'MANIFEST.json'} | {PREFIX+p for p in keys}:
++        if len(set(keys)) != 68 or set(names) != {PREFIX+'MANIFEST.json'} | {PREFIX+p for p in keys}:
+             raise RuntimeError('ZIP manifest member set differs')
+         for item in declared:
+             safe_file(Path('/synthetic'), item['path'])
+             body = archive.read(PREFIX + item['path'])
+             if len(body) != item['bytes'] or sha(body) != item['sha256']:
+                 raise RuntimeError('ZIP manifest payload changed: ' + item['path'])
+-        return {'members': 65, 'all_manifest_payloads_verified': 64, 'zip_crc_safe_unique_pass': True}
++        return {'members': 69, 'all_manifest_payloads_verified': 68, 'zip_crc_safe_unique_pass': True}
+ 
+ 
+ def manifest():
+@@ -118,7 +118,7 @@
+             'fixed-birational-cycle-nonlimit.pdf', 'fixed-birational-cycle-nonlimit-verification.zip']]:
+         raise RuntimeError('Manifest local paths/names must be the exact two adjacent uploads')
+     metadata, files = zenodo.load_manifest(path)
+-    if (metadata['title'] != TITLE or metadata.get('version') != '1.0'
++    if (metadata['title'] != TITLE or metadata.get('version') != '1.1'
+             or not any(v.get('identifier') == 'https://github.com/AlecKriebel/Math/pull/280'
+                        for v in metadata.get('related_identifiers', []))):
+         raise RuntimeError('Publication metadata identity changed')

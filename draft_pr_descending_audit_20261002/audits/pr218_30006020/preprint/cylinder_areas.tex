@@ -1,0 +1,226 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Intermediate-area cylinders in the principal quadratic stratum},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\E}{\mathbb E}\newcommand{\Prob}{\mathbb P}
+\newcommand{\N}{\mathbb N}\newcommand{\TV}{d_{\mathrm{TV}}}
+\newcommand{\Poi}{\operatorname{Poisson}}\newcommand{\Gam}{\operatorname{Gamma}}
+\newcommand{\Dir}{\operatorname{Dirichlet}}\newcommand{\PPP}{\operatorname{PPP}}
+\newcommand{\fall}[2]{(#1)_{\underline{#2}}}
+\title{Intermediate-area cylinders in the principal quadratic stratum}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{15 October 2026\\\small Unrefereed preprint, version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+Delecroix asked for the area spectrum of cylinders on large-genus square-tiled surfaces, highlighting the normalized-area window $[g^{-1/2},2g^{-1/2}]$. For the principal holomorphic quadratic stratum, with the number of squares tending to infinity before the genus, we derive a Poisson limit at every intermediate scale $s_g\to0$, $gs_g\to\infty$. The rescaled cylinder areas converge to a Poisson point process of intensity $dx/(2x)$; compact-window counts converge with every fixed joint moment. The highlighted count tends to $\Poi((\log2)/2)$, and its mean and variance have the same limit. The proof extracts a uniform Gamma/Dirichlet approximation from the published formulas of Delecroix--Liu and Delecroix--Goujard--Zograf--Zorich, then applies classical assembly identities and elementary tail estimates. The weighted permutation model and its unmarked Poisson approximation are prior results. We explicitly credit the earlier microscopic announcements and retain their unresolved normalization discrepancy with the short problem report. AI tools were used extensively; no external human peer review is asserted.
+\end{abstract}
+
+\section{Question, ensemble and conclusion}
+
+Fix $g\ge2$. Sample an isomorphism class of square-tiled half-translation surfaces in the principal holomorphic quadratic stratum $\mathcal Q(1^{4g-4})$, uniformly among those made from at most $N$ unit squares. Count each maximal horizontal cylinder once, and divide its area by the entire surface area. Cylinder heights are unbounded; in the multicurve notation of \cite{DL} this is $m=\infty$. The normalized areas sum to one. The fixed-genus $N\to\infty$ law of their unordered multiset exists by \cite[Theorem 1.4]{DL}; denote it by $\nu_g$. The usual automorphism-weighted sampling has the same fixed-genus limiting law, as in those counting formulas. All subsequent limits refer to $\nu_g$, hence to the iterated limit $N\to\infty$ followed by $g\to\infty$.
+
+Problem 2 in Delecroix's report \cite[p.~2387]{OWR} asks for the cylinder-area spectrum and, specifically, intermediate areas such as $[g^{-1/2},2g^{-1/2}]$. The surrounding law is the principal quadratic law just specified. Arbitrary-stratum extensions are conjectural there, and diagonal sampling $N=N(g)$ is its separate Problem 3.
+
+\begin{theorem}\label{thm:main}
+Let $s_g>0$, $s_g\to0$ and $gs_g\to\infty$. For a multiset $(X_i)$ with law $\nu_g$,
+\[
+ \sum_i\delta_{X_i/s_g}\ \Longrightarrow\ \PPP\left(\frac{dx}{2x}\right)
+ \quad\text{vaguely on }(0,\infty).
+\]
+For finitely many pairwise disjoint intervals $[a_\ell,b_\ell]\subset(0,\infty)$, the counts converge jointly to independent Poisson variables of means $\tfrac12\log(b_\ell/a_\ell)$, and every fixed joint moment converges. In particular, for
+\[
+ C_g=\#\{i:g^{-1/2}\le X_i\le2g^{-1/2}\},\qquad \lambda=\frac{\log2}{2},
+\]
+we have $C_g\Rightarrow\Poi(\lambda)$, $\E C_g\to\lambda$, $\operatorname{Var}(C_g)\to\lambda$ and $\Prob(C_g=0)\to2^{-1/2}$.
+\end{theorem}
+
+This answers the written intermediate-area question in its controlling ensemble. It gives no all-stratum assertion, diagonal $N(g)$ limit, simultaneous statement about all directions on one surface, or claim that all possible meanings of a full spectrum have been resolved. The vertical marginal has the same law by symmetry.
+
+\paragraph{Prior work and the claim boundary.}
+The exact weighted permutation law below is already \cite[(1.7)--(1.8), Lemma 3.6]{DGZZ}. The finite-genus geometric law and uniform intersection-number estimates are supplied by \cite{DL,DGZZ}, with Aggarwal's work \cite{Agg} underlying the uniform coefficients. Arratia--Tavar\'e's assembly identity \cite[Lemma 5, (126)]{AT} gives the factorial moments, and Arratia--Barbour--Tavar\'e \cite[Theorem 3.1]{ABT} already imply the unmarked Poisson approximation at every intermediate rate. Our contribution is the explicit geometric consequence, including the uniform comparison and the Gamma-marking and count-moment transfer; no new enumeration, weighted permutation model or general assembly theory is claimed. We include elementary proofs of the probability steps to expose the required uniformity.
+
+Delecroix--Liu announced microscopic small-component work in \cite[p.~5098]{DL}; the project is listed as in preparation in \cite[reference 5]{OWR}. Liu's 2022 thesis \cite[Remark 1.5.9]{Liu} displays the all-multiplicity microscopic intensity and fixed windows at scale $(6g-6)^{-1}$. His February 2025 Durham slides \cite[slide 195]{Slides} label a primitive microscopic version a conjecture and display its $1/(2x)$ tail. These announcements are prior intellectual contributions. A fixed-window microscopic limit and its limiting-density tail do not themselves justify a growing-window limit. A bounded public-source audit through 15 October 2026 did not locate the complete announced manuscript or an explicit same-ensemble geometric intermediate-window theorem. We make no universal first-priority claim; additional contents of the announced project remain a priority uncertainty.
+
+\paragraph{Microscopic normalization.}
+The exact formulas used here have Gamma total parameter $6g-6$, consistent with the thesis. The separate microscopic summary in \cite{OWR} prints $4g-4$. These factors yield different fixed microscopic laws and are not silently identified here. We neither use that summary nor claim a new microscopic theorem or a correction of the report. The window in Theorem~\ref{thm:main} is kept exactly as posed.
+
+\section{The prior weighted permutation law and its area marking}
+
+Put $n=3g-3$ and
+\begin{equation}\label{eq:H}
+ a_j=\frac{\zeta(2j)}{2j},\qquad H(z)=\exp\left(\sum_{j\ge1}a_jz^j\right),\qquad h_n=[z^n]H(z),\quad h_0=1.
+\end{equation}
+Choose an ordered positive composition $(j_1,\ldots,j_k)$ of $n$ with probability
+\begin{equation}\label{eq:composition}
+ \frac{1}{h_n k!}\prod_{i=1}^k a_{j_i}.
+\end{equation}
+Summing over all compositions and $1\le k\le n$ normalizes this law. Equivalently, let $Z_1,\ldots,Z_n$ be independent with $Z_j\sim\Poi(a_j)$. The vector $(C_1,\ldots,C_n)$ has their conditional law given $\sum_{j=1}^n jZ_j=n$; set $C_j=0$ for $j>n$. This finite conditioning event has probability $e^{-\sum_{j=1}^n a_j}h_n>0$. This is precisely the cycle-count law $P_{n,\infty,1/2}$ of \cite{DGZZ}, after forgetting cycle labels and using an independent ordering of components.
+
+Given the composition, choose independent $Y_i\sim\Gam(2j_i,1)$, where the second parameter is the rate, and put $T=\sum_iY_i$. Let $\mu_n$ be the law of the unordered multiset $(Y_i/T)$. Conditional on the composition this is $\Dir(2j_1,\ldots,2j_k)$.
+
+\begin{proposition}\label{prop:tv}
+For the geometric law above, $\TV(\nu_g,\mu_{3g-3})\to0$. More precisely, the two laws have latent good events of polynomially small complementary probability, on which their conditional density ratio is uniformly $1+o(1)$. Their total component counts $K$ satisfy $\E K^r=O((\log n)^r)$ for every fixed $r$.
+\end{proposition}
+
+\begin{proof}
+We spell out the extraction from the published positive formulas. For the one-vertex stable graph with vertex genus $g-k$ and $k$ loops, the graph automorphism factor is $2^k k!$. The expansion in the proof of \cite[Lemma 6.4]{DL} is
+\begin{align}
+ F_{g,k}(x)&=A_{g,k}\sum_{\substack{j_i\ge1\\\sum j_i=n}}
+ \widetilde c_{g,k}(j)\prod_{i=1}^k\frac{x_i^{2j_i-1}}{(2j_i)!},\label{eq:F}\\
+ A_{g,k}&=\frac{(6g-5-2k)!\,2^{3k-3}}{(g-k)!\,(3g-3-k)!\,3^{g-k}}.\nonumber
+\end{align}
+All coefficients are positive. Set
+\begin{equation}\label{eq:cutoff}
+ k_g=\left\lfloor\frac35\log(2n)\right\rfloor.
+\end{equation}
+Equation (6.1) of \cite{DL}, applied at genus $g-k$, gives
+\begin{equation}\label{eq:cuniform}
+ \sup_{\substack{1\le k\le k_g\\j_i\ge1,\ \sum j_i=n}}
+ |\widetilde c_{g,k}(j)-1|\longrightarrow0.
+\end{equation}
+The logarithmic number of marked points lies in that uniform range. Summing all positive cylinder heights supplies $\zeta(2j_i)$, and integrating over the unit simplex supplies $\prod_i(2j_i-1)!/(2n-1)!$. The exact graph mixture in \cite[Theorem 3.2]{DL} therefore has, up to a common factor independent of $k,j$, latent composition weights
+\begin{equation}\label{eq:weights}
+ \frac{D_{g,k}}{k!}\,\widetilde c_{g,k}(j)\prod_i a_{j_i},\qquad
+ D_{g,k}=\frac{A_{g,k}}{2^k}.
+\end{equation}
+Conditional on the selected monomial the normalized area vector is exactly $\Dir(2j_1,\ldots,2j_k)$. Direct cancellation gives
+\[
+ \frac{D_{g,k+1}}{D_{g,k}}
+ =\frac{12(g-k)(3g-3-k)}{(6g-5-2k)(6g-6-2k)}.
+\]
+Its logarithm is $O((k+1)/g)$, uniformly for $k\le k_g$. Thus $D_{g,k}/D_{g,1}=1+O((\log g)^2/g)$ uniformly there. Combining this with \eqref{eq:cuniform}, normalizing the positive weights, and using the common Dirichlet kernel proves the uniform conditional density-ratio assertion on the geometric event ``one vertex and $K\le k_g$'' and model event $K\le k_g$.
+
+For completeness, the exceptional probability and moment estimates need more than an unquantified concentration statement. Theorem 1.12 of \cite{DGZZ}, with $t=11/10<8/7$, yields
+\begin{equation}\label{eq:pgf}
+ \E t^K=O(n^{(t-1)/2}),\qquad
+ \Prob(K>k_g)=O(n^{-\eta}),\quad
+ \eta=\frac35\log(11/10)-\frac1{20}>\frac1{220}.
+\end{equation}
+The surface correspondence is \cite[Theorem 1.7]{DGZZ}, consistently with \cite[Theorem 1.4]{DL}. Summing the exponential Chernoff tail beyond a sufficiently large multiple of $\log n$ gives $\E K^r=O((\log n)^r)$ for every fixed $r$. For $k\le k_g$, \cite[Theorem 5.2]{DGZZ} bounds the multivertex contribution relative to the one-vertex contribution by
+\[
+ O\left((\log g)^{25}g^{-1}2^k\right).
+\]
+Our cutoff is within the stated low-$k$ range $k\le\log g/\log(9/4)$. Since $\tfrac35\log2<1$, averaging the bound and adding \eqref{eq:pgf} gives a geometric bad probability $O(n^{-c})$ for some $c>0$. No unrestricted extension of that low-$k$ estimate is needed.
+
+For the model, $\E t^K=[z^n]H(z)^t/h_n=O(n^{(t-1)/2})$ by Lemma~\ref{lem:coeff} below. The same cutoff and moment bounds follow. Conditioning on the good events and then forgetting the latent variables proves total variation. Moreover, for every fixed integer $r\ge1$, in either law,
+\begin{equation}\label{eq:badmoment}
+ \E[K^r;\mathrm{bad}]\le(\E K^{2r})^{1/2}\Prob(\mathrm{bad})^{1/2}=o(1).
+\end{equation}
+On the good events, every nonnegative measurable $f$ with finite expectation obeys
+\begin{equation}\label{eq:RN}
+ \E_{\rm geom}[f\mid\mathrm{good}]=(1+O(\varepsilon_g))
+ \E_{\rm model}[f\mid K\le k_g],\qquad\varepsilon_g\to0,
+\end{equation}
+where the error is uniform in $f$. This stronger statement will transfer moments.
+\end{proof}
+
+\section{A self-contained intermediate-scale calculation}
+
+\begin{lemma}\label{lem:coeff}
+There are positive constants $c_1,c_2,C$ such that
+\begin{gather}
+ h_n\sim\sqrt{2/\pi}\,n^{-1/2},\qquad
+ c_1(n+1)^{-1/2}\le h_n\le c_2(n+1)^{-1/2},\label{eq:hasym}\\
+ \frac{h_{n-r}}{h_n}\le C\sqrt{\frac{n+1}{n-r+1}}\quad(0\le r\le n),\label{eq:ratio}
+\end{gather}
+The ratio tends uniformly to one for $0\le r\le r_n$ whenever $r_n=o(n)$. For each fixed $t>0$,
+\[
+ [z^n]H(z)^t\sim\frac{2^{t/2}}{\Gamma(t/2)}n^{t/2-1}.
+\]
+\end{lemma}
+\begin{proof}
+Expanding $\zeta(2j)$ gives
+\[
+ H(z)=(1-z)^{-1/2}B(z),\qquad
+ B(z)=\prod_{m\ge2}(1-z/m^2)^{-1/2}.
+\]
+Here $B$ is analytic in $|z|<4$, $B(1)=\sqrt2$, and its Taylor coefficients decrease exponentially; see also \cite[Lemma 6.7]{DL}. Convolution with $[z^n](1-z)^{-1/2}\sim(\pi n)^{-1/2}$ proves \eqref{eq:hasym}: for convolution indices $k=o(n)$ the coefficient ratio tends uniformly to one, and the remaining analytic tail is negligible. The same argument for $(1-z)^{-t/2}B(z)^t$ proves the last assertion. The two-sided bounds, including finitely many small indices, imply \eqref{eq:ratio}; the uniform ratio statement follows directly from the asymptotic when $n-r\sim n$.
+\end{proof}
+
+We now work entirely in the prior model \eqref{eq:composition}. Put $q=ns_g$, so $q\to\infty$ and $q=o(n)$. Removing selected components gives the classical factorial identity
+\begin{equation}\label{eq:fact}
+ \E\prod_j\fall{C_j}{r_j}
+ =\frac{h_{n-\sum jr_j}}{h_n}\prod_j a_j^{r_j}
+ \quad\text{if }\sum jr_j\le n,
+\end{equation}
+and zero otherwise. This is the positive-weight specialization of \cite[Lemma 5, (126)]{AT}; it also follows directly by shifting the exponents in $\prod a_j^{C_j}/C_j!$.
+
+For fixed $0<a<b<\infty$,
+\begin{equation}\label{eq:harmonic}
+ \sum_{aq\le j\le bq}a_j\longrightarrow\frac12\log(b/a).
+\end{equation}
+In any fixed joint factorial moment of counts in bounded $q$-scale windows, the total selected size is $O(q)=o(n)$. Equations \eqref{eq:fact}, \eqref{eq:ratio} and \eqref{eq:harmonic} give the factorial moments of independent Poisson limits. Poisson laws are moment determinate, and bounded first moments give local tightness. Consequently
+\begin{equation}\label{eq:unmarked}
+ \sum_i\delta_{j_i/q}\Rightarrow\PPP(dx/(2x)).
+\end{equation}
+This unmarked conclusion is also directly covered by \cite[Theorem 3.1]{ABT}: for $Z_j\sim\Poi(a_j)$ the uniform logarithmic condition holds with parameter $1/2$, error $O(1/j)$ and factorially summable tail constants. Its total-variation approximation for all $j\le b_n=o(n)$ includes every window used here.
+
+\subsection*{Gamma marking without a rate restriction}
+Let $Z_n=\sum_i\delta_{Y_i/(2q)}$. For a nonnegative Lipschitz function $f$ supported in $[a,b]\subset(0,\infty)$, the expected absolute difference between its marked and unmarked integrals is at most
+\begin{equation}\label{eq:smoothing}
+ \sum_{j=1}^n a_j\frac{h_{n-j}}{h_n}
+ \E\left|f(Y_j/(2q))-f(j/q)\right|,
+ \qquad Y_j\sim\Gam(2j,1).
+\end{equation}
+For $aq/2\le j\le2bq$, the coefficient ratio is bounded and $\E|Y_j/(2q)-j/q|\le\sqrt{2j}/(2q)$. Since $a_j\le C/j$, this part is $O(q^{-1/2})$.
+For $j<aq/2$, the unmarked term vanishes, and the Gamma moment generating function gives
+\[
+ \Prob(Y_j\ge2aq)\le e^{-aq}2^{2j}
+ \le e^{-a(1-\log2)q}.
+\]
+Its weighted sum is $O(\log(q+2)e^{-c_aq})$. For $j>2bq$, the other tail satisfies
+\[
+ \Prob(Y_j\le2bq)\le e^{bq}(3/2)^{-2j}\le e^{-c j}
+\]
+for $c=2\log(3/2)-1/2>0$. Up to $j=n/2$ the coefficient ratio stays bounded; above it the ratio is $O(\sqrt n)$, dominated by the exponential tail. Thus \eqref{eq:smoothing} tends to zero for every $q\to\infty$, $q=o(n)$. This expected-sum estimate avoids a union bound over all $K$ components, which would impose an unnecessary slow-scale restriction.
+
+Laplace functionals against these tests determine vague convergence, so $Z_n\Rightarrow\PPP(dx/(2x))$. Conditional on every composition, $T\sim\Gam(2n,1)$; hence $T/(2n)\to1$ in probability. Since
+\[
+ \frac{Y_i/T}{s_g}=\frac{Y_i}{2q}\frac{2n}{T},
+\]
+continuity of positive dilation in the vague topology and Slutsky's theorem prove the normalized model point-process limit. Independence of $T$ and $Z_n$ is not required.
+
+\subsection*{Uniform integrability of all compact-window count moments}
+Let $M_n$ count $Y_i/(2q)\in[a,b]$, and write $p_{n,j}=\Prob(Y_j/(2q)\in[a,b])$. The same three ranges give
+\begin{equation}\label{eq:marksum}
+ \sum_{j=1}^n a_jp_{n,j}\le C_{a,b}
+\end{equation}
+uniformly for large $n$. Independent marking and \eqref{eq:fact} give, for fixed $r\ge1$,
+\begin{equation}\label{eq:markedmom}
+ \E\fall{M_n}{r}=\sum_{j_1+\cdots+j_r\le n}
+ \frac{h_{n-\sum j_i}}{h_n}\prod_{i=1}^r a_{j_i}p_{n,j_i}.
+\end{equation}
+If $\sum j_i\le n/2$, \eqref{eq:ratio} and \eqref{eq:marksum} bound this by $C C_{a,b}^r$. Otherwise some $j_i\ge n/(2r)$. Since $q=o(n)$, its Gamma lower-tail probability is at most $e^{-c_r n}$ for large $n$. Bounding the coefficient ratio by $C\sqrt n$ and the remaining weight sums by $O(\log n)$ shows that this part is $o(1)$. Every fixed ordinary moment of $M_n$ is therefore uniformly bounded. The argument also applies to a finite union of compact intervals.
+
+On $1/2\le T/(2n)\le2$, a normalized count in $[a,b]$ is bounded by the marked count in $[a/2,2b]$. The complementary event has probability $O(e^{-c n})$ by Gamma Chernoff bounds. Since $K\le n$, its contribution to a fixed $r$th moment is $O(n^re^{-cn})$. All normalized compact-window moments are uniformly bounded. Applying a higher-moment bound gives uniform integrability of each fixed moment. The limiting Poisson process has no atoms at fixed interval endpoints, so point-process convergence implies joint count convergence; uniform integrability gives every joint moment, using the total count on the union to bound mixed powers.
+
+\section{Transfer and the sampling order}
+
+Proposition~\ref{prop:tv} transfers every bounded point-process observation to the geometric law, even when $s_g$ depends on $g$: total variation controls any measurable observation at each genus. For a fixed nonnegative count moment, the bad-event contribution is $o(1)$ by \eqref{eq:badmoment}. On the good event, \eqref{eq:RN} applies uniformly to that statistic. Its model expectation is bounded by the preceding argument, and removing the model cutoff changes it by $o(1)$, again by \eqref{eq:badmoment}. This proves convergence of the geometric moments. In particular, total variation alone has not been used to infer convergence of unbounded expectations.
+
+For each fixed sufficiently large $g$, the endpoints of the relevant normalized-area windows have no atoms under $\nu_g$. Mixture components with at least two cylinders have simplex densities; the one-cylinder atom is at area one, outside these windows. The same holds for finite unions of windows. Since the cylinder count is at most $3g-3$ at fixed genus, the fixed-genus $N\to\infty$ law also gives convergence of these counts and their fixed moments. Taking $g\to\infty$ afterward proves Theorem~\ref{thm:main} in the stipulated order.
+
+No result at the endpoints $gs_g=O(1)$ or $s_g\asymp1$ is inferred from this proof. Proposition~\ref{prop:tv} is a whole-multiset approximation for the stated ensemble, rather than a relative-error assertion for arbitrarily rare events.
+
+\paragraph{Verification and research status.}
+The accompanying source and verification archive provides finite exact controls for composition normalization, selected-component identities, prefactors and low-genus intersection-number expansions, including independently enumerated labelled permutations. These controls check transcription and algebra; they do not replace the analytic proof or independently reprove the substantial published geometric inputs. Primary-source hashes and audit boundaries are documented there. This is an unrefereed research note, with no external human peer review and no proof-assistant formalization. AI tools were used extensively in developing the argument, proof drafting, computation, literature research, independent internal adversarial checking and preparation of this text. Internal AI review is not human peer review. The named human author is responsible for the submitted work; the cited researchers did not participate in, endorse or review it.
+
+\begin{thebibliography}{9}
+\bibitem{Agg} A. Aggarwal, \emph{Large genus asymptotics for intersection numbers and principal strata volumes of quadratic differentials}, Invent. Math. \textbf{226} (2021), 897--1010. The uniform estimate is used through its explicit form in \cite{DL}.
+\bibitem{AT} R. Arratia and S. Tavar\'e, \emph{Independent process approximations for random combinatorial structures}, Adv. Math. \textbf{104} (1994), 90--154. \url{https://www.columbia.edu/cu/simontavare/STpapers-pdf/AT94.pdf}.
+\bibitem{ABT} R. Arratia, A. D. Barbour and S. Tavar\'e, \emph{Limits of logarithmic combinatorial structures}, Ann. Probab. \textbf{28} (2000), 1620--1644. \href{https://doi.org/10.1214/aop/1019160500}{doi:10.1214/aop/1019160500}.
+\bibitem{OWR} V. Delecroix, \emph{What we do not know (yet) about square-tiled surfaces in large genus?}, Oberwolfach Reports \textbf{41/2024}, 2384--2387, Problem 2 on p.~2387. Report published 14 February 2025. \href{https://doi.org/10.4171/owr/2024/41}{doi:10.4171/owr/2024/41}.
+\bibitem{DGZZ} V. Delecroix, \'E. Goujard, P. Zograf and A. Zorich, \emph{Large genus asymptotic geometry of random square-tiled surfaces and of random multicurves}, Invent. Math. \textbf{230} (2022), 123--224. \href{https://doi.org/10.1007/s00222-022-01123-y}{doi:10.1007/s00222-022-01123-y}.
+\bibitem{DL} V. Delecroix and M. Liu, \emph{Length partition of random multicurves on large genus hyperbolic surfaces}, J. Eur. Math. Soc. \textbf{27} (2025), 5093--5131; online 7 June 2024. \href{https://doi.org/10.4171/JEMS/1469}{doi:10.4171/JEMS/1469}.
+\bibitem{Liu} M. Liu, \emph{Random multi-geodesics on hyperbolic surfaces}, doctoral thesis, Universit\'e Paris Cit\'e, 2022, Remark 1.5.9, p.~22. \url{https://www.imj-prg.fr/theses/pdf/mingkun_liu.pdf}.
+\bibitem{Slides} M. Liu, Durham Spectra and Moduli Seminar slides, February 2025, slides 26 and 195 in the publicly posted PDF. \url{https://www.math.univ-paris13.fr/~mingkun.liu/talks/Durham.pdf}. Public announcements and unpublished small-components work are discussed in the text, without assuming unavailable contents.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,4 @@
+# Context assembly research log
+
+2026-10-18T03:05:19.704445+00:00 — Authored deterministic registrar using the actual seventeen family schemas and six durable exact-output programs. Metadata proposal accepted after lowercasing bare DOIs and adding explicit CNS prior-framework credit. No generated publication outputs written by this family. Read-only actual validation is next. Completion estimate75%.
+2026-10-18T03:08:12.011615+00:00 — Actual local registrar and all17 explicit family schemas verified; normal/-O/-OO inspections identical, five real PDF pages and exact compile/layout/source/gate/current-correction bindings checked. Six durable exact-stdout diagnostics actually replayed in all3modes; wrong pages rejected; root context/metadata unchanged. Stable root metadata workflow receipt included explicitly at runtime. Finalizing authored family only; no context/metadata write or external mutation. Completion estimate100% for this assembler assignment.

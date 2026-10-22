@@ -1,0 +1,13 @@
+# PR191 source-scope checkpoint
+
+2026-10-15 UTC. Mathematical clearance is withheld. The original16 native artifacts are authenticated, and three independent source-first families are active.
+
+The exact printed target is Fuchs2021 Conjecture2.6, p511: a short trajectory starting at O of type A_k, k modulo n−2, has the parallel short trajectory at the slope α'=ellπ/n+εα of type A_(εk−ell), ε=±1; ell must be even for even n. Slope representatives must actually be admissible outgoing rays in the initial vertex sector. Arbitrarily adding full turns to a representative while retaining the same ell formula is not justified. Section2.5 supplies the parallel-direction convention; the initial small fundamental intervals there and the global all-admissible formulation need to be reconciled explicitly.
+
+Read directly in the authenticated full Fuchs PDF extraction: §2.1, §2.2/Definition2.1 and the adjacent diagonal calibration, p506 shorthand, §2.5pp510–512 including the statement and elementary hexagon proof. The printed formulas require comparison with the actual tables/figures: the extraction loses some symbols, and the definition's parity context and exceptional-direction branch overlap cannot be assumed away. The previous PR190 source ambiguity is context, not proof that this new target is false or repaired. Complete-page visual inspection for this case remains to be recorded.
+
+The source defines types modulo n−2 with different even/odd n formula systems and imposes even ell in the even family. Edges, first-face diagonals, symmetry-fixed directions, n=3,4,6 and both even congruence classes are necessary boundary checks. A universal proof needs an actual geometric transport of endpoint sectors or an equivalent independently established mechanism. An abstract cyclic-label identity or a finite sweep alone cannot establish that the labels coincide with the printed geometric types.
+
+Root has not read the author candidate or original review verdict. Root has read the status-only QUEUE row (which contains a prior PASS assertion), source_manifest.json and continuity.json; the latter discloses the retained common-label/affine-shift mechanism. Therefore Root's assessment is not described as blind. None of those prior opinion/counter claims is mathematical evidence. The three new families were initialized without Root/sibling opinions and must seal their source-derived findings before reading candidate or old reviews.
+
+Original effort2/5 and original source/proof history are retained without a new budget. This publication audit is separately logged. No priority clearance, present-open-status assertion, firstness or publication readiness is claimed. PR190 is complete and accepted at39completed/23published; the overall goal remains active.

@@ -1,0 +1,7 @@
+{
+  "utc": "2026-10-15T14:02:00.531171+00:00",
+  "kind": "synthetic harness error",
+  "error": "On a deliberately failing helper run, runpy did not return the namespace, so the harness did not close its release-lock handle. The retained exception traceback kept it alive; the next same-fixture entry correctly failed with Another release stage is active before reaching the expected stage-intent assertion.",
+  "provider_or_network_effects": 0,
+  "repair": "Capture and close every acquire() handle in the synthetic harness finally block, including exception exits. Do not alter helper bytes or operational gates."
+}

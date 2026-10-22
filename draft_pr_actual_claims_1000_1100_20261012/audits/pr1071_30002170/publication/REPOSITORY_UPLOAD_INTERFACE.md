@@ -1,0 +1,3 @@
+# Repository upload interface
+
+This external repository-native manifest contains exactly metadata and files. Its metadata object is exactly the unchanged, reviewed metadata.json object, and its two paths select the unchanged paper PDF and repaired support ZIP. The historical deposit.json inside the package is a metadata-only wrapper, not a repository upload manifest. It is preserved exactly. Use publication/zenodo-deposit.json for the repository uploader. This addition changes no paper, metadata, kit member, archive or historical seal. Local check is read-only; no deposit has been staged or published. The ordered service hold remains at PR1032.

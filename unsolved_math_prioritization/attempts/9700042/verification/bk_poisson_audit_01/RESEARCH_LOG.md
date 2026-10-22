@@ -1,0 +1,11 @@
+# Research log
+
+- 2026-10-15 13:52 UTC — 8% complete. Read the actual primary model and root retrieval receipt; froze SOURCE_CONTRACT before candidate/earlier-audit reading. Target is the sqrt(2q) defect asymptotic in the stated fixed-q-then-small-q order. Independent stochastic audit begins. No claim accepted.
+
+- 2026-10-15 13:54 UTC — 45% complete. Read C4 revised and C1 completely; verified candidate/manifest hashes. Visually inspected actual DZ introduction pp.1–2 and Theorem 2 p.9 and BK definition/product theorem pp.2–3. Derived Poissonization, exponential-moment conversion, separation stability, skeleton entropy and BK certificates independently. No earlier audit/clarification read. No unsupported central lemma identified so far; finite falsification controls remain and no final verdict yet.
+
+- 2026-10-15 13:58 UTC — 78% complete. All independent controls passed: 4,854 geometric segments; 442,368 certificate cases; 581 separated mark sets; 24,000 exact rational finite BK inequalities; 30 coordinate-count pairs. Initial memo save failed when shared disk filled; removed only own already-inspected private renders/extracted text. Successfully froze ANALYTIC_MEMO_FROZEN before prior-audit/clarification reading: PASS for stochastic implication conditional on finite identity and source-stated flow limit. No central stochastic gap found. Remaining: post-freeze comparison and public integrity.
+
+- 2026-10-15T14:02:43.867921+00:00 — 96% complete. Post-freeze complete reading of author clarification and Audits A/B/C1 agrees with independently frozen stochastic verdict. Revised bytes incorporate the local enclosure/indexing/UI precision fixes; C1 alone remains partial, while C4 proves the sharp implication. REPORT and DECISION written. Remaining: final explicit allowlist/hash and public-text checks.
+
+- 2026-10-15T14:02:43.869946+00:00 — 100% complete for assigned initial stochastic audit. Explicit authored allowlist, no-private-path text scan, original frozen analytic hash and PASS output checks passed. No required mechanism-review work remains. Whole-package/finite-identity/priority boundaries remain as stated in REPORT; original research attempt budget unchanged at 5/5.

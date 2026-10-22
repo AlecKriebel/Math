@@ -1,0 +1,7 @@
+# Independent classical-priority audit
+
+2026-10-15T05:57:46.471965+00:00 — Started exact-hypothesis search for classical SL2 identities, representation kernels, and spare-generator lifting. Read the complete native proof and prior audit/source metadata. No assumptions of novelty or current openness. Completion estimate: 10%.
+
+2026-10-15T06:01:59.572809+00:00 — Confirmed exact prior P identity in Burde arXiv:1411.0950v2 Eq.(4)/Theorem4.14; traced Filippov specialization. Full Drensky–Fındık2010 read, generic PI kernel confirmed but no integral group/jet comparison theorem. Original Razmyslov PDF request timed out, so its exact text is not claimed inspected. Twelve exact source-specialization/anti-conflation controls pass in normal and optimized Python. Initial concrete group-law test used an accidentally degenerate sample C=BA; replaced by C=AB, yielding the explicit nonidentity matrix. Completion estimate: 70%.
+
+2026-10-15T06:05:57.904271+00:00 — Current Shestakov–Umirbaevv2 independently retrieved; relevant definitions/theorems and added Proposition1 checked. Relative-algebra/divergence/wildness results still do not provide target integral free-group/component-ring bridge. Forty-five bounded queries total. All23native files rehashed unchanged;12exact controls normal/-O agree. Final finding:0mathematical gaps,1mandatory classical-attribution requirement for forthcoming paper,0optional; no verified older complete resolution and no firstness/current-openness certificate. Audit completion estimate:100%.

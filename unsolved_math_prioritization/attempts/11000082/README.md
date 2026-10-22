@@ -1,0 +1,9 @@
+# Problem11000082 / AMR-109-0082 / Farb Question7.6
+
+Accepted: the full historical fixed-genus/fixed-depth unbounded-multiplicity theorem, counted by ambient orientation-preserving mapping-class conjugacy. The paper supplies a complete alternative convex-core proof. The original arithmetic proof and original8file identities remain separately immutable; the current proof record reproduces that argument after a clearly marked current edition.
+
+Alper Ferudun2026 Theorem1.1, DOI10.5281/zenodo.23301731, explicitly records the same theorem and is credited. Classical sources and Anderson's earlier ambient-fusion discussion are acknowledged. No firstness, new-existence, new-mechanism, current-openness or disclosure-lineage claim is made. The optional older FLM small-component seed is not a dependency or independently promoted construction. The exact bounded priority conclusion and source limitations govern all current claims.
+
+The theorem fixes g>=2 and finite k>=3 before N grows, includes powers, and permits the common dilatation to vary. Simple loops, ambient primitivity, a single value of infinite multiplicity, all-depth intersection and stronger orientation-reversing/inversion assertions are outside scope. Finite diagnostics are consistency checks, not proof certificates. The archive includes original/current editions, full independent written derivations and scoped review/priority records, source receipts, TeX source and a standard-library verifier. External source bodies and unavailable historical code are omitted. Publication files and receipts are added under publication_20261017 only after the separate whole-package and external-operation gates.
+
+AI tools were used extensively in research, proof development, literature review, adversarial verification and writing. Unrefereed; no external human peer review, journal acceptance or formal proof-assistant certification is claimed.

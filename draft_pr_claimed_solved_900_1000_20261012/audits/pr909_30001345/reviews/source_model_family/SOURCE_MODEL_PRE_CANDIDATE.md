@@ -1,0 +1,13 @@
+# Independently reconstructed source model
+
+Recorded before opening the candidate proof or prior audit verdicts.
+
+- OWR 43/2009, Borodzik contribution pp.2446-2448, Definition 1 and Questions 2-3 visibly concern the barred rough invariant K(K+D). The clean imported record loses the bar but its plain M wording does not itself impose fine-M conventions. No explicit irreducibility or unibranched hypothesis precedes those questions.
+- The preceding paragraph motivates this invariant with parametric equisingularity codimension. Question 2 asks arbitrary deformations; the next paragraph points to fixed local geometric genus/delta constancy; Question 3 inserts delta constancy. This motivation makes a narrower intended question plausible but does not state it.
+- The next page considers all singularities z1,...,zN inside one transverse ball; its later inequality sums their invariants. That supports the total-over-the-fiber reading rather than the value on a single marked section. The questions themselves do not write the sum, so a final theorem must make that reading explicit.
+- The one-branch condition in Proposition 5 is attached to the signature estimate, after the questions. The later cusp/node restrictions are introduced as additional assumptions for the estimate; applying them retroactively to the question would narrow its literal quantifier.
+- The 2014 Osaka paper explicitly defines general deformations using flatness, a fixed transverse ball and central locality. Definition 2.1 distinguishes rational (genus zero) from unibranched (central fiber a disk); parametric means both. The rough invariant Definition 3.3 explicitly allows multibranched singularities. Conjecture 3.8 is expressly parametric.
+- Current arXiv is v3, 24 September 2009, and the retrieved current/v3 PDFs are byte-identical. This old preprint has Definitions 2.2 and 3.3/3.4 but no published Remark 3.4 or Conjecture 3.8. It is not a substitute for the 2014 version.
+- The OWR fine formula prints +N^2; the published 2014 fine formula uses -N^2 and rough <= fine. For ordinary points N=0, so that discrepancy disappears. The 2014 Remark 3.4 distinguishes Orevkov's multibranch extension by r-1. All formulas must state conventions explicitly.
+
+Provisional source fidelity criterion: a reduced flat family in a common transverse ball, delta-constant and rational but with a multibranch central fiber, can refute the literal broad summed OWR Question 3 if its summed K(K+D) increases. It cannot refute published Conjecture 3.8. A theorem claiming to settle the author's intended narrower question, or an unspecified marked-section semicontinuity property, would overstate the authenticated source.

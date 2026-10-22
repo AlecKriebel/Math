@@ -1,0 +1,459 @@
+{
+  "utc": "2026-10-15T12:46:16.720873+00:00",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "actual_outer_flags": {
+    "optimize": 2,
+    "debug": false,
+    "isolated": 0,
+    "bytecode_disabled": true
+  },
+  "portable_replay": {
+    "actual_child_flags": {
+      "optimize": 0,
+      "debug": true,
+      "isolated": 1,
+      "bytecode_disabled": true
+    },
+    "stdout_sha256": "b35eb43bb5f534c9c2013e97d26040ed4ba26573265199f529cd9f9c6e0918e0",
+    "result": {
+      "status": "PASS",
+      "gate_outer_optimize": 0,
+      "worker_bootstrap_flags": {
+        "optimize": 0,
+        "debug": true,
+        "isolated": 1,
+        "bytecode_disabled": true
+      },
+      "original_manifest_sha256": "29cb50b07af6a65b633516b5d86eed1dae93d57cf2abfb264b18eb9555a29903",
+      "proof_sha256": "a26c1755bc6f61085db4c01b6579701ff380822f2cc58a3ffbfb4acfa49370a2",
+      "original_files": 33,
+      "worker": {
+        "status": "PASS",
+        "actual_worker_flags": {
+          "optimize": 0,
+          "debug": true,
+          "isolated": 1,
+          "bytecode_disabled": true
+        },
+        "original_files": 33,
+        "replays": [
+          {
+            "script": "public/verify_packet.py",
+            "status": "PASS",
+            "actual_child_flags": {
+              "optimize": 0,
+              "debug": true,
+              "isolated": 1,
+              "bytecode_disabled": true
+            },
+            "stdout_sha256": "88a43f509e8678c173a4b3889f29e01a3f0dd3d0e26492333389111fd7132c30",
+            "comparison": "original authenticated inventory checker"
+          },
+          {
+            "script": "independent_global_audit/public/verify_audit_packet.py",
+            "status": "PASS",
+            "actual_child_flags": {
+              "optimize": 0,
+              "debug": true,
+              "isolated": 1,
+              "bytecode_disabled": true
+            },
+            "stdout_sha256": "111e66a11b7c286dd3ba926070811733cc398001c48b81069abdc401090c1d44",
+            "comparison": "original authenticated inventory checker"
+          },
+          {
+            "script": "independent_audit_b/public/verify_audit.py",
+            "status": "PASS",
+            "actual_child_flags": {
+              "optimize": 0,
+              "debug": true,
+              "isolated": 1,
+              "bytecode_disabled": true
+            },
+            "stdout_sha256": "70cd9289a76c7f09211f6b04d68eb65c93c8dab5c3095ed80924895dfe8db6d6",
+            "comparison": "original authenticated inventory checker"
+          },
+          {
+            "script": "public/verify_math.py",
+            "status": "PASS",
+            "actual_child_flags": {
+              "optimize": 0,
+              "debug": true,
+              "isolated": 1,
+              "bytecode_disabled": true
+            },
+            "stdout_sha256": "08eb43d7255ee552578f48fd168c8d90dbce1508eac7eab3e0ebde25fc30d898",
+            "comparison": "12-explicit-float bounded comparator; other fields exact and typed"
+          },
+          {
+            "script": "independent_global_audit/public/independent_controls.py",
+            "status": "PASS",
+            "actual_child_flags": {
+              "optimize": 0,
+              "debug": true,
+              "isolated": 1,
+              "bytecode_disabled": true
+            },
+            "stdout_sha256": "0840bcf082043f84427cd92be2bbcd60f4cb7aab8d6252db7ff9a1b318ce2d53",
+            "comparison": "version-only fields removed; all other fields exact and typed"
+          },
+          {
+            "script": "independent_audit_b/public/independent_checks.py",
+            "status": "PASS",
+            "actual_child_flags": {
+              "optimize": 0,
+              "debug": true,
+              "isolated": 1,
+              "bytecode_disabled": true
+            },
+            "stdout_sha256": "b9051241cefa400c7a565e5d2813c529b13380f245b3f84f9b0f1f079a4ef647",
+            "comparison": "version-only fields removed; all other fields exact and typed"
+          }
+        ],
+        "limitation": "Finite identities and bounded numerical consistency only; no global proof, priority, OS sandbox, or byte-identical numeric replay claim."
+      },
+      "limitation": "Finite consistency only. Trusted local Python/runtime/site packages and process/filesystem are assumed; no OS sandbox. External pins must come from a trusted separate record; an attacker controlling that record can replace the checker."
+    }
+  },
+  "independent_finite_checks": {
+    "reviews/jet_calculus/independent_checks.py": {
+      "actual_child_flags": {
+        "optimize": 0,
+        "debug": true,
+        "isolated": 1,
+        "bytecode_disabled": true
+      },
+      "stdout_sha256": "4c8603734f315960a4490e389af3f0c235d4d6720e0cae5b4f8ec49ab54afda4",
+      "result": {
+        "all_pass": true,
+        "arithmetic": "exact fractions, no external packages",
+        "limitations": "Finite controls detect formula errors; global proof is in FULL_REPORT.md.",
+        "checks": {
+          "connection_algebra": {
+            "ordered_triples": 8,
+            "pass": true,
+            "curved_metric": "g=(2+u+2v+u^2+v^2)(du^2+dv^2)",
+            "Gaussian_curvature_at_origin": "-3/16"
+          },
+          "nonlinear_coordinate_compatibility": {
+            "pass": true,
+            "Jacobian_determinant": "3",
+            "ordered_third_derivatives_checked": 8,
+            "omitted_connection_term_rejected": true
+          },
+          "normal_cubic_factor": {
+            "pass": true,
+            "factor_2_mutation_rejected": true
+          },
+          "scalar_3jet_feature_rank": {
+            "pass": true,
+            "ambient_K": 5,
+            "N": 56,
+            "jet_dimension": 10,
+            "ranks": [
+              {
+                "point": [
+                  "0",
+                  "0"
+                ],
+                "rank": 10
+              },
+              {
+                "point": [
+                  "1/2",
+                  "-1/3"
+                ],
+                "rank": 10
+              },
+              {
+                "point": [
+                  "5",
+                  "-7"
+                ],
+                "rank": 10
+              }
+            ],
+            "degree_2_linear_embedding_rank": 6,
+            "constant_removed_origin_rank": 9
+          },
+          "differentiated_pair_identities": {
+            "pass": true,
+            "g": "1+t^2",
+            "C": "2+2t^3",
+            "Gamma_lower": "t-1-t^3",
+            "phi_sign_mutation_rejected": true
+          },
+          "ordered_ambient_connection_projection": {
+            "pass": true,
+            "Sylvester_leading_minors": [
+              "20",
+              "20",
+              "395",
+              "7800"
+            ],
+            "pullback_metric": "1",
+            "D_induced_Gamma_lower": "-1",
+            "Dstar_induced_Gamma_lower": "1",
+            "swapped_order_rejected": true,
+            "ambient_Psi_111": "2"
+          }
+        }
+      }
+    },
+    "reviews/global_hessian/independent_controls.py": {
+      "actual_child_flags": {
+        "optimize": 0,
+        "debug": true,
+        "isolated": 1,
+        "bytecode_disabled": true
+      },
+      "stdout_sha256": "8727c95a71a5788bd6d9a2c44887a961764918cfd9cb1f2cad098d6f6da76d7f",
+      "result": {
+        "utc": "2026-10-15T12:46:24.475833+00:00",
+        "pass": true,
+        "arithmetic": "Python standard library fractions; exact rational arithmetic; analytic trigonometric control uses pi<22/7",
+        "universal_claim_limit": "Finite controls supplement the written argument; they are not a proof of universal existence.",
+        "schur_and_bundle_frame_checks": [
+          {
+            "k": 1,
+            "lambda": "41",
+            "hessian_positive": true,
+            "schur_bound_positive_semidefinite": true,
+            "orthonormal_frame_change_exact": true
+          },
+          {
+            "k": 2,
+            "lambda": "19841/16",
+            "hessian_positive": true,
+            "schur_bound_positive_semidefinite": true,
+            "orthonormal_frame_change_exact": true
+          },
+          {
+            "k": 10,
+            "lambda": "1140402150401/10000",
+            "hessian_positive": true,
+            "schur_bound_positive_semidefinite": true,
+            "orthonormal_frame_change_exact": true
+          },
+          {
+            "k": 100,
+            "lambda": "1001400040002001500040001/100000000",
+            "hessian_positive": true,
+            "schur_bound_positive_semidefinite": true,
+            "orthonormal_frame_change_exact": true
+          },
+          {
+            "k": 10000,
+            "lambda": "1000000140000000400000002000000150000000400000001/10000000000000000",
+            "hessian_positive": true,
+            "schur_bound_positive_semidefinite": true,
+            "orthonormal_frame_change_exact": true
+          }
+        ],
+        "mutations_rejected": [
+          "normal correction removed",
+          "uniform constant correction under degeneration",
+          "mixed block discarded changes induced connection"
+        ],
+        "curved_parabola_mixed_block": {
+          "H0": [
+            [
+              "1",
+              "-1/2"
+            ],
+            [
+              "-1/2",
+              "0"
+            ]
+          ],
+          "H": [
+            [
+              "1",
+              "-1/2"
+            ],
+            [
+              "-1/2",
+              "5/2"
+            ]
+          ],
+          "induced_lowered_connection": "-1"
+        },
+        "compact_circle_positive_annulus": "r>1/2",
+        "noninjective_gradient_connected_control": {
+          "potential": "exp(x)+exp(-x)*cos(y)+y^2/(2*pi)",
+          "equal_gradient_points": [
+            "(log(2), pi/2)",
+            "(log(2), -pi/2)"
+          ],
+          "equal_gradient": "(2,0)",
+          "positive_path": "horizontal rails to x=log(4), joined vertically; all inside same positive-Hessian component",
+          "rail_determinant_lower_bound": "17/44",
+          "connector_determinant_lower_bound": "37/176"
+        },
+        "dual_connection_checks": [
+          {
+            "point": [
+              "0",
+              "0"
+            ],
+            "positive_hessian": true,
+            "torsion_zero": true,
+            "curvature_zero_exact": true,
+            "eta_covariant_hessian_zero_exact": true
+          },
+          {
+            "point": [
+              "1/10",
+              "-1/10"
+            ],
+            "positive_hessian": true,
+            "torsion_zero": true,
+            "curvature_zero_exact": true,
+            "eta_covariant_hessian_zero_exact": true
+          }
+        ]
+      }
+    },
+    "reviews/global_adversary/global_controls.py": {
+      "actual_child_flags": {
+        "optimize": 0,
+        "debug": true,
+        "isolated": 1,
+        "bytecode_disabled": true
+      },
+      "stdout_sha256": "01b02ee0865fb16dc4d6952df0814148dfb4d1fca6c4f3925910ced9521ad701",
+      "result": {
+        "status": "PASS",
+        "utc": "2026-10-15T12:46:24.508984+00:00",
+        "python": "3.14.6",
+        "arithmetic": "exact rational; Python standard library only",
+        "compact_circle": {
+          "hessian_at_theta_zero": [
+            [
+              "1601",
+              "2",
+              "-400",
+              "-2"
+            ],
+            [
+              "2",
+              "801",
+              "2",
+              "-400"
+            ],
+            [
+              "-400",
+              "2",
+              "200",
+              "0"
+            ],
+            [
+              "-2",
+              "-400",
+              "0",
+              "200"
+            ]
+          ],
+          "leading_principal_minors": [
+            "1601",
+            "1282397",
+            "128309796",
+            "31238416"
+          ],
+          "gradient_at_theta_zero": [
+            "1",
+            "2",
+            "0",
+            "-1"
+          ],
+          "metric": "1",
+          "ordered_connection_coefficients": [
+            "-6",
+            "6"
+          ],
+          "parallel_transport_around_positive_loop": [
+            "exp(12*pi)",
+            "exp(-12*pi)"
+          ],
+          "global_positivity_argument": "Orthogonal U(1) action preserves Psi and acts transitively on circle; Hessians conjugate.",
+          "convex_support_violation": "1",
+          "chord_midpoint_directional_hessian": "-798"
+        },
+        "noncompact_parabola": {
+          "determinant_divided_by_exp_minus_2x": "-2*q^2+7*q+7/4",
+          "positive_domain": "(7-sqrt(63))/4 < x^2-y < (7+sqrt(63))/4",
+          "metric": "exp(-x)*dx^2",
+          "ordered_connection_coefficients": [
+            "1",
+            "-2"
+          ],
+          "positive_end_length_from_zero": "2",
+          "normalized_cubic": "-3*exp(x/2)",
+          "global_positivity_argument": "H_yy=2*exp(-x)>0 and determinant positive on stated domain."
+        },
+        "limitations": [
+          "Explicit models falsify proposed obstruction mechanisms; they do not prove universal realization.",
+          "Completeness and convexity controls constrain additional requirements or these fixed models, not all possible embeddings.",
+          "The full theorem requires the independently reviewed arguments and standard topology dependencies in FULL_REPORT.md."
+        ]
+      }
+    },
+    "reviews/reproducibility/independent_exact_controls.py": {
+      "actual_child_flags": {
+        "optimize": 0,
+        "debug": true,
+        "isolated": 1,
+        "bytecode_disabled": true
+      },
+      "stdout_sha256": "9da673a898e7f7d2caa0f63b7946bf3576a128a1d246ff8d0a6e36008b821d86",
+      "result": {
+        "status": "PASS",
+        "python": "3.14.6",
+        "sympy": "1.14.0",
+        "three_dimensional_chain_rule_entries": 27,
+        "tensor_only_failures": 12,
+        "full_jet_shape": [
+          20,
+          120
+        ],
+        "full_jet_rank": 20,
+        "right_inverse_exact": true,
+        "quadratic_negative_rank": 10,
+        "actual_ambient_hessian_samples": [
+          {
+            "t": "-7/3",
+            "leading_principal_minors": [
+              "1258403419/3044304",
+              "4114207849645149958373/83410081599744",
+              "4783588296460875817062600931387/253925645054427058176",
+              "2002423228203717696442030147/8756056726014726144"
+            ],
+            "lowered_induced_connection": "95/27"
+          },
+          {
+            "t": "0",
+            "leading_principal_minors": [
+              "21/8",
+              "21/8",
+              "861/128",
+              "16317/1024"
+            ],
+            "lowered_induced_connection": "-1/2"
+          },
+          {
+            "t": "11/2",
+            "leading_principal_minors": [
+              "26306934673/64000",
+              "18506249349100641594093589/13107200000",
+              "2398964529368108169576419365941712873/4194304000000000",
+              "18205929309528028902533964791217/16777216000000"
+            ],
+            "lowered_induced_connection": "-1251/16"
+          }
+        ],
+        "connection_and_sign_negative_controls": true,
+        "limits": "Finite exact checks only; no arbitrary-manifold global extension, source interpretation, novelty, or priority certification."
+      }
+    }
+  }
+}

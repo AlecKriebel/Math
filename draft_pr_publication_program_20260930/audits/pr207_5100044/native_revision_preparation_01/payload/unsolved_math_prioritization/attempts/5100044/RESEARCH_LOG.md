@@ -1,0 +1,7 @@
+# Current research record
+
+- 2026-10-16T23:48:03.452536+00:00: Prepared a prospective correction to the native problem files, on the accepted scoped mathematics and attributed editorial route. Original 20-file text and outputs remain unchanged in the [submitted archive](../../../draft_pr_publication_program_20260930/audits/pr207_5100044/submitted_snapshot/). Later corrections are dated 16 October 2026, not backdated to the PR.
+- The least-period N=4n theorem is valid and known from Ferudun; the unrestricted repeated-list reading is false. Either focus, every admitted coprime elliptical star, reversal and r-squared traversal scaling have the scope stated in PROOF.md. Classical local/cyclic and Landen mechanisms are credited.
+- Current robust exact and geometric programs are byte copies of the accepted portable proposal. Fresh executions and their actual hashes are recorded in current_execution_receipt.json. Original assertion-only checker outputs remain historical data.
+- Model/effort and author-turn counts remain unverified; preserved ledger cells claimed_solved and 1/5 are not reconstructed from three commits. AI use is extensive; no conventional human peer review or proof-assistant formalization is claimed.
+- Completion estimate: 100% of the bounded native staging task once the accompanying pin/consistency receipt passes. Whole-package review, final manuscript seal, publication and our unassigned DOI remain pending. No discovery-priority completion estimate is asserted.

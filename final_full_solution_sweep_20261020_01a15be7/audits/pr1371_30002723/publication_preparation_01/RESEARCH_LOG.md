@@ -1,0 +1,7 @@
+# PR1371 publication preparation research log
+
+2026-10-22T15:03:20.350844+00:00 — 3% preparation / 80% overall. Newisolatedfolder; freshread-onlynumericgiddualviewfull43columnGWSduplicatecheckcompletedbeforemathematics. Noexternalwrite,DOIreservation,Git/QUEUE/STATE/PRmutation. ReadinesswillremainfalseawaitingtwoNEWwholeindependentreviewsandrootadoption.
+
+2026-10-22T15:15:43.928127+00:00 — 45% preparation / 80% overall. Fullproofdraftwrittenwithunrestrictedstandardnonnegativecompetitors,explicitrefinedface/edge/singletoninterpolationbeforeintervallemma,13sectors,signedlift/prefix/taggedgroupedAHToutputandbitheightbounds. Nativecreate_latex_project/open/compile successful; exactfinalPDFexportandreproduciblepackagefollow. ClosestPartVIIactual72/73–75/100/102/§12readinfull;PartVIIIbodyunrecovered,titleonlynotfullprior.
+
+2026-10-22T15:29:49.484274+00:00 — 100% preparation / 80% overall. Complete10pnote, nativeproject+finalbuiltincompile, cachedonlysandboxedPDFexport, everypagevisualQA; extractedsourcefreshTeXtextandall10PNGidentical, sixarchiveoutputsbyteidentical. Exactpublicnormal/O/OOdiagnosticsandclosedzip/metadatafilechecksPASS. FreshfinaldualGWS208rowsvsinitial192; onlysameunrelatednativelead, nooursmutation. FullpriorlimitsandPartVIIIaccessretained, no priorfulltheoremDOIauthenticated. Elevenpredecessorsealsunchanged. PacketreadinessfalseawaitingtwoNEWwholeindependentreviewsandrootexactadoption;finalsealnext.
