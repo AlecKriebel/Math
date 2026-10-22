@@ -495,7 +495,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 484 | 30005144 / OWR-10252937-007 | CMC Min–Max Width Under Nonnegative Scalar Curvature | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 485 | 30005220 / OWR-11101920-004 | Sylow Restrictions and Character Fields of Values | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 486 | 30005248 / OWR-11695855-001 | Local Complexity of Functional Estimation | 0.1263 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 487 | 2305057 / AMR-022-5057 | Research Problems in Function Theory — Problem 5.57 | 0.1260 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 487 | 2305057 / AMR-022-5057 | Research Problems in Function Theory — Problem 5.57 | 0.1260 | 7.0 | 3 | unknown | already_solved | 1/5 |  | [Credited negative answer: Ivrii, 16 Sep 2026 preprint; independent AI verification PASS; no novelty or journal-status claim.](attempts/2305057/PUBLICATION.md) |  |
 | 488 | 30005507 / OWR-13750328-012 | Frobenius–Schur Indicators in Real Nilpotent Blocks | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 489 | 30005508 / OWR-13750328-013 | Projective Characters and Square Roots in Real Blocks | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 490 | 30005717 / OWR-14298007-012 | Even-Dimensional Stress-Space Reconstruction | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
