@@ -1,0 +1,150 @@
+--- a/PROOF.md
++++ b/PROOF.md
+@@ -6,14 +6,25 @@
+ a face is a set of vertices, and two faces cannot be distinct with the same
+ vertex set. Work with compact connected triangulable topological manifolds.
+ Punctures are standard locally flat open n-balls with pairwise disjoint closures.
+-The same arguments hold in the PL category with PL triangulations, standard
+-PL balls, and PL gluings, if every minimum is taken in that category consistently.
++The PL version takes minima only over PL triangulations of a fixed PL manifold,
++with standard PL balls and PL gluings. The TOP version takes minima over all
++finite simplicial triangulations of a fixed topological manifold. These are
++distinct minimization domains; no equality between their minima is assumed.
++Boundary-facet gluing below carries an explicit local-flatness hypothesis in
++the TOP version.
+ 
+ For a triangulation Delta of a manifold with nonempty boundary, write v=f0,
+ e=f1, and i for the number of interior vertices, and define
+ 
+     gamma(Delta) = e - n v + binom(n+1,2) - i.
+     Gamma(M) = min gamma(Delta).
++
++The domain is nonempty by triangulability in the chosen category. The boundary
++lower bound gamma(Delta) >= 0, reported in [S1, p. 1429] and [S2, p. 412] and
++attributed there to Kalai, makes this a nonempty set of integers bounded below.
++Its infimum is therefore finite and attained. The punctured-manifold formula
++below proves attainment for its own domain directly, using only the closed
++lower bound and an explicit construction.
+ 
+ This is the h2-minus-interior-vertices invariant in the question, not minimum
+ vertices, minimum facets, Matveev complexity, or a minimum over face-pairing
+@@ -113,20 +124,46 @@
+ Here G(S^n)=0 follows from its simplex-boundary triangulation and g2≥0.
+ 
+ For two manifolds with nonempty boundary, take disjoint triangulations Delta1
+-and Delta2 and identify one boundary (n-1)-simplex from each. This is boundary
+-connected sum, denoted M1 natural M2. The gluing simplex has n vertices and
++and Delta2 and identify one boundary (n-1)-simplex from each. Require each
++selected closed simplex to be a locally flat codimension-zero ball in its
++boundary manifold. This holds in the PL category and for the explicit
++simplicial-sphere boundaries used here; it is not assumed for an arbitrary
++facet in an arbitrary non-PL topological triangulation. With this hypothesis
++and a collar of each manifold boundary, the operation is boundary connected
++sum, denoted M1 natural M2. The gluing simplex has n vertices and
+ binom(n,2) edges. Each of its vertices stays on the boundary; the simplex has
+ no vertex in its relative interior. It follows that
+ 
+     v = v1+v2-n,  e = e1+e2-binom(n,2),  i=i1+i2,
+     gamma(Delta1 natural Delta2)=gamma(Delta1)+gamma(Delta2).   (4)
+ 
+-Thus Gamma is subadditive for boundary connected sum whenever the minima
+-exist. Applied to the explicit complexes above, adjoining C_n by a boundary
+-sum adds one puncture: C_n is an n-ball with an interior ball removed, and
+-boundary sum with the unpunctured ball does not change M. Repeated use of
+-(3)–(4) with a minimizing triangulation from Section 3 gives the reverse of (2).
+-Therefore, for all b ≥ 1,
++Thus the construction proves subadditivity in the PL category, and in the
++TOP category whenever the minimizing triangulations have such gluing facets.
++The identity (4) alone does not certify local flatness or identify the topology
++of an unrestricted facet gluing. Adjoining C_n to the explicit punctured
++complexes is legitimate and gives the examples checked by the diagnostic code.
++
++Here is a direct proof of the reverse of (2) for both stated categories that
++does not use general boundary-facet gluing. Start with a closed minimizing K.
++Produce b pairwise vertex-disjoint protected facets as follows. Choose any
++unprotected facet and carry out the n+1 nested subdivisions of Section 3.
++The final retained facet has only newly created vertices, so it is vertex-
++disjoint from every previously protected facet. Its closed affine simplex
++lies inside the interior of the starting facet and is therefore a standard
++locally flat ball in a Euclidean chart. Protect that facet and repeat. There
++is always an unprotected facet: each subdivision replaces one facet by n+1,
++and only one facet per batch is protected. Previously protected facets are
++never subdivided. The resulting closed triangulation Kprime still has
++g2(Kprime)=G(N).
++
++Delete the interiors of all b protected facets, retaining their proper faces.
++No vertex or edge is lost, and exactly b(n+1) vertices are boundary vertices.
++Consequently gamma equals
++
++    f1(Kprime) - (n+1)f0(Kprime) + binom(n+1,2) + b(n+1)
++      = G(N) + (n+1)(b-1).
++
++Together with (2), this proves, for all b ≥ 1,
+ 
+     Gamma(N_b) = G(N)+(n+1)(b-1).                    (5)
+ 
+@@ -159,9 +196,12 @@
+ consistent standard gluing choices; in the oriented category take the usual
+ orientation-reversing boundary identification.
+ 
+-For closed complexes the facet connected sum identifies n+1 vertices and
++For closed complexes, first use Section 3 to obtain a standard locally flat
++inner facet in each minimizing triangulation, without changing either g2.
++The facet connected sum along these facets identifies n+1 vertices and
+ binom(n+1,2) edges and deletes the two facet interiors. Its g2 is exactly the
+-sum of the two g2 values. Minimizing proves the familiar upper bound
++sum of the two g2 values. Thus this construction proves, in both stated
++categories, the familiar upper bound
+ 
+     G(N1#N2) ≤ G(N1)+G(N2).                          (8)
+ 
+@@ -189,8 +229,9 @@
+ separator has s=n+1 and g2(S)=0, hence loss zero.
+ 
+ In particular, if a g2-minimizing triangulation of N1#N2 contains a separating
+-missing facet realizing those factors, (9) and (8) prove additivity for that
+-pair. There is no proof here that such a minimizing triangulation must exist.
++missing facet satisfying the local-flatness and factor-identification
++hypotheses of this section, (9) and (8) prove additivity for that pair. There is
++no proof here that such a minimizing triangulation must exist.
+ A topological prime decomposition alone supplies no missing facet in an
+ arbitrary minimizing triangulation. Subdivision to exhibit a separator also
+ does not, by itself, control the minimum or remove the loss in (9).
+--- a/README.md
++++ b/README.md
+@@ -30,7 +30,7 @@
+ Before executing package code, use the accompanying external bootstrap with
+ isolated Python and no site initialization:
+ 
+-    python -I -S CONNECTED_SUM_30002054_AUTHOR_BOOTSTRAP.py EXTRACTED_DIRECTORY EXTERNAL_MANIFEST.json
++    python -I -S CONNECTED_SUM_30002054_CORRECTED_BOOTSTRAP.py EXTRACTED_DIRECTORY EXTERNAL_MANIFEST.json
+ 
+ The bootstrap pins the external manifest, rejects inventory differences and
+ symlinks, checks every file, and only then invokes the checker in isolated mode.
+@@ -39,5 +39,7 @@
+ 
+ This package contains authored analysis and diagnostic code plus public
+ verification metadata. It contains no downloaded source documents, extracted
+-source text, supplied corpora, or private coordination material. A separate fresh
+-independent audit is required before publication.
++source text, supplied corpora, or private coordination material. This is the
++independently audited derivative: the companion audit supplies
++the correction rationale, exact patch, and replayed acceptance. The original
++author archive is immutable. The intended additivity problem remains unresolved.
+--- a/STATUS.json
++++ b/STATUS.json
+@@ -53,7 +53,12 @@
+     "supplied_catalogue": "Desk review, zero proof-search approaches; not counted as an actual prior attempt",
+     "limitation": "No exhaustive all-branch, deleted-history, or synonym completeness claim"
+   },
+-  "independent_audit": "pending; must be fresh against immutable freeze before publication",
++  "independent_audit": "See accompanying independent audit and acceptance report; accepted only as corrected partial results.",
+   "publication_performed": false,
+-  "date_utc": "2026-10-06"
++  "date_utc": "2026-10-06",
++  "audit_correction": {
++    "scope": "Category/local-flatness clarification and direct simultaneous-puncture construction; intended conjecture remains unresolved.",
++    "original_archive_sha256": "b61e853074b015a1b3c3723aed57d6055586e18a64522e1a6b376c8c38a697c2",
++    "new_proof_search_approach": false
++  }
+ }
