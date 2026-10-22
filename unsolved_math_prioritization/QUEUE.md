@@ -1901,7 +1901,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1890 | 30005760 / OWR-14298158-005 | Inversion Monotonicity in the Domino Subclass | 0.0466 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1891 | 30000903 / OWR-1782-017 | Real-Rooted Barycentric h-Polynomials and g-Theorem Conditions | 0.0460 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 1892 | 11000162 / AMR-109-0162 | Problem 2.5 — Knowing that d(φ)≥ 1, can we decide whether it is ≥ 2? | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1893 | 1200024 / AMR-011-0024 | Some Questions — Question 24 | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1893 | 1200024 / AMR-011-0024 | Some Questions — Question 24 | 0.0450 | 5.0 | 3 | unknown | claimed_solved | 5/5 |  | Nonunimodular binary grandparent counterexample: b_F(G)-b_F(G^2)>1/200; arbitrary vertex-transitive scope, not Cayley/common unimodular actions. [Proof and exact replay](attempts/1200024_graph_square_20261021/RESULT.md). Unrefereed; no novelty claim. |  |
 | 1894 | 158 / GREEN-070 | Sets with No Unique Sum Representations | 0.0450 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1895 | 20000022 / AIM-ALGEBRAIC_GEOMETRY-0022 | Immaculate line bundles as unit-orthogonal toric branes | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1896 | 20000162 / AIM-ALGEBRAIC_GEOMETRY-0162 | A modern étale criterion and an all-characteristic constant-functor test | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
