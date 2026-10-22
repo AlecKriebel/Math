@@ -1,0 +1,5 @@
+# Research log
+
+2026-10-22T13:21:43.065115+00:00 — Preparation 5%; overall research 80%. Read root adoption and complete independent report. Scope: fixed positive characteristic, two-row compatible chain; arbitrary fixed fields in original question. Storage initially below reserve; root freed space without loss of evidence. Reserve now available. Starting fresh read-only publication preflight before authoring. No publication readiness or firstness claim.
+
+2026-10-22T13:36:23.835513+00:00 — Preparation100%; overall research80%. Four-page complete theorem/proof with exact original scope and modest priority comparison; fresh initial/final GWS and native public preflight; all final pages inspected; built-in/cache-only compilation succeeded; new finite checker and12 false controls pass normal/-O/-OO;18 source members and5 kit members read back; fresh extraction rebuilt all6 release files byte-identically; two packaging mutations rejected. Old57-member adopted packet and seal preserve bytes/modes/mtime/path. Complete packet is frozen for two NEW whole-package reviews and later root adoption; publication_ready=false. No publication or external contact.
