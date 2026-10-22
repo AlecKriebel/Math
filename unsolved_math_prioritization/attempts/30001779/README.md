@@ -1,0 +1,3 @@
+# 30001779: covariance moment scope and restricted radial classification
+
+Original general characterization remains unsolved,3/5. PARTIAL_RESULT.md credits the published radial counterexample and proves a bounded-radius expectation application of Tikhomirov's theorem, a fixed-radius-law Rademacher classification, and explicit exponential-radius necessary bounds. No unrestricted-moment sufficiency, new discovery, or general distribution classification. Independent review pending. Run `python verify.py` here. Finite exact controls support algebra; primary theorem and analytic quantifiers require written review. Source PDFs are not redistributed.
