@@ -1,0 +1,623 @@
+{
+  "freeze_unchanged": true,
+  "frozen_file_count": 9,
+  "frozen_files": {
+    "CHECKS.md": {
+      "bytes": 2281,
+      "sha256": "5663d5bb8696ca2ee548d486e14aaadbf8980171324c4e757992f5fa17e960d7"
+    },
+    "MANIFEST.sha256": {
+      "bytes": 645,
+      "sha256": "a8cd4866d04bba62d53083e3e3f353e90974d955f09218f59244687f6d9152e4"
+    },
+    "README.md": {
+      "bytes": 1207,
+      "sha256": "8f154d357d83c1a06c1a5b488c6a6f549ba68eb3fff589c3563b09223b5e2269"
+    },
+    "REPORT.md": {
+      "bytes": 22709,
+      "sha256": "d225a30ed01a47a2476430d70cdcdf753f0aa33dfdd098cdd8595e0d22221a8c"
+    },
+    "SOURCE_AUDIT.md": {
+      "bytes": 5289,
+      "sha256": "03454a7b8d263fdc82692389730a520a52f534b2e4a915a580a880d709cf0ea6"
+    },
+    "attempts.json": {
+      "bytes": 1692,
+      "sha256": "52a275d9f2cd17f16cc106e11f502e0a72807565f8907b0f0658a5ec51020fa1"
+    },
+    "source_manifest.json": {
+      "bytes": 2730,
+      "sha256": "dccea850218d54b439863b6728f7b7676ca84c57abd7b8acdd385d4e014e5be9"
+    },
+    "verification_results.json": {
+      "bytes": 23969,
+      "sha256": "b85cb80dfd9a9b7b25b3257e04ca162c75964cd35d640adf174c899ab0a60b2a"
+    },
+    "verify.py": {
+      "bytes": 7321,
+      "sha256": "bef6898cc003dbebf4567bcac7c6ccdf54aa240645ee19f53ee4242fbd989cac"
+    }
+  },
+  "frozen_total_bytes": 67843,
+  "independent_result": {
+    "arithmetic": {
+      "arithmetic_sha256": "014562bfd823480430d209eda2dde0951e387bd5083b57ba911d313ccfd0793e",
+      "canonical_r3": {
+        "K2": 16,
+        "euler": 116,
+        "pencils": [
+          [
+            1,
+            17,
+            16,
+            196
+          ],
+          [
+            2,
+            49,
+            64,
+            372
+          ],
+          [
+            4,
+            161,
+            256,
+            1012
+          ],
+          [
+            8,
+            577,
+            1024,
+            3444
+          ],
+          [
+            16,
+            2177,
+            4096,
+            12916
+          ]
+        ],
+        "pg": 10,
+        "r": 3,
+        "signature": -72
+      },
+      "pencil_degrees": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "r_range": [
+        2,
+        101
+      ]
+    },
+    "finite_group": {
+      "A4_order": 12,
+      "SL2_order": 24,
+      "disjoint": true,
+      "lift_products": [
+        "I",
+        "-I"
+      ],
+      "orbit_sha256": [
+        "4e8b99bf12589ed4e6b1795931d6ace8c1706a8e402b9a1f2fc0a10af088cfb2",
+        "2a0dfa94557433e70efecbfcdb1eefde2e53f6bde43bacc6ed58afc0769a2402"
+      ],
+      "orbit_sizes": [
+        216,
+        144
+      ],
+      "order_three_generating_identity_tuple_universe_with_two_factors_per_class": 360
+    },
+    "scope": "Exact algebra only; no geometric realization or KP-4.94 equivalence established.",
+    "status": "passed"
+  },
+  "limits": [
+    "Finite arithmetic supplements mathematical argument, not induction.",
+    "The finite example is not a quotient of actual Horikawa monodromy.",
+    "No surface diffeomorphism or canonical symplectomorphism has been computed."
+  ],
+  "mutation_count": 15,
+  "mutation_executions": 45,
+  "mutations": [
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "collapse_first_generator",
+      "program": "candidate",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: len(group) == 24 and P in group and NEG_I in group",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: len(group) == 24 and P in group and NEG_I in group",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: len(group) == 24 and P in group and NEG_I in group",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "remove_partial_conjugator",
+      "program": "candidate",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: mul(C,C) == NEG_I and mul(P,P) == NEG_I",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: mul(C,C) == NEG_I and mul(P,P) == NEG_I",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: mul(C,C) == NEG_I and mul(P,P) == NEG_I",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_saturation_pairing",
+      "program": "candidate",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: det(gx)==det(gy)==-4 and det(saturated)==-1",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: det(gx)==det(gy)==-4 and det(saturated)==-1",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: det(gx)==det(gy)==-4 and det(saturated)==-1",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_canonical_coefficient",
+      "program": "candidate",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: square(gx,kx)==square(saturated,ky)==d",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: square(gx,kx)==square(saturated,ky)==d",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: square(gx,kx)==square(saturated,ky)==d",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_signature",
+      "program": "candidate",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: Fraction(d-2*e,3) == sig",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: Fraction(d-2*e,3) == sig",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: Fraction(d-2*e,3) == sig",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_pencil_nodes",
+      "program": "candidate",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: e+base==4-4*genus+nodes",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: e+base==4-4*genus+nodes",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: e+base==4-4*genus+nodes",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_hurwitz_inverse",
+      "program": "candidate",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: orbit_t.isdisjoint(orbit_tp)",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: orbit_t.isdisjoint(orbit_tp)",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: orbit_t.isdisjoint(orbit_tp)",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_formal_canonical_vector",
+      "program": "candidate",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: sum(s*k*k for s,k in zip(signs,kval))==d",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: sum(s*k*k for s,k in zip(signs,kval))==d",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: check failed: sum(s*k*k for s,k in zip(signs,kval))==d",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "saved_output_mismatch",
+      "mutation": "truncate_orbit_to_seed",
+      "program": "candidate",
+      "runs": [
+        {
+          "exit_code": 0,
+          "failure": "strict saved-output comparison rejected changed orbit sizes",
+          "flags": [],
+          "stdout_sha256": "f4ae36cf61d37cb90766ff4b55060b15c67bf1af2647524a39bdafdb55ce44e7"
+        },
+        {
+          "exit_code": 0,
+          "failure": "strict saved-output comparison rejected changed orbit sizes",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "f4ae36cf61d37cb90766ff4b55060b15c67bf1af2647524a39bdafdb55ce44e7"
+        },
+        {
+          "exit_code": 0,
+          "failure": "strict saved-output comparison rejected changed orbit sizes",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "f4ae36cf61d37cb90766ff4b55060b15c67bf1af2647524a39bdafdb55ce44e7"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_orbit_cardinality",
+      "program": "independent",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: exact full orbit cardinalities 216 and 144",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: exact full orbit cardinalities 216 and 144",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: exact full orbit cardinalities 216 and 144",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_saturation_pairing",
+      "program": "independent",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: primitive versus saturated determinant",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: primitive versus saturated determinant",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: primitive versus saturated determinant",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_pencil_nodes",
+      "program": "independent",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: pencil node formula from Euler identity",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: pencil node formula from Euler identity",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: pencil node formula from Euler identity",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_hurwitz_inverse",
+      "program": "independent",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: exact full orbit cardinalities 216 and 144",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: exact full orbit cardinalities 216 and 144",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: exact full orbit cardinalities 216 and 144",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "wrong_canonical_coefficient",
+      "program": "independent",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: canonical square in integral cover lattices",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: canonical square in integral cover lattices",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: canonical square in integral cover lattices",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "expected_rejection": "RuntimeError",
+      "mutation": "collapse_partial_conjugation",
+      "program": "independent",
+      "runs": [
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: distinct central lift products",
+          "flags": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: distinct central lift products",
+          "flags": [
+            "-O"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "exit_code": 1,
+          "failure": "RuntimeError: distinct central lift products",
+          "flags": [
+            "-OO"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "python_version": "3.12.14",
+  "readonly_probe": {
+    "creation_denied": true,
+    "directory_mode": "0o555",
+    "directory_writable": false,
+    "euid": 1000,
+    "uid": 1000
+  },
+  "readonly_runs": [
+    {
+      "exit_code": 0,
+      "flags": [],
+      "output_bytes": 23969,
+      "program": "candidate",
+      "sha256": "b85cb80dfd9a9b7b25b3257e04ca162c75964cd35d640adf174c899ab0a60b2a"
+    },
+    {
+      "exit_code": 0,
+      "flags": [
+        "-O"
+      ],
+      "output_bytes": 23969,
+      "program": "candidate",
+      "sha256": "b85cb80dfd9a9b7b25b3257e04ca162c75964cd35d640adf174c899ab0a60b2a"
+    },
+    {
+      "exit_code": 0,
+      "flags": [
+        "-OO"
+      ],
+      "output_bytes": 23969,
+      "program": "candidate",
+      "sha256": "b85cb80dfd9a9b7b25b3257e04ca162c75964cd35d640adf174c899ab0a60b2a"
+    },
+    {
+      "exit_code": 0,
+      "flags": [],
+      "output_bytes": 1343,
+      "program": "independent",
+      "sha256": "cc399e3de012e1aec6596b43ae1464d949c163bb69a57b3e9e97a4a1b8546896"
+    },
+    {
+      "exit_code": 0,
+      "flags": [
+        "-O"
+      ],
+      "output_bytes": 1343,
+      "program": "independent",
+      "sha256": "cc399e3de012e1aec6596b43ae1464d949c163bb69a57b3e9e97a4a1b8546896"
+    },
+    {
+      "exit_code": 0,
+      "flags": [
+        "-OO"
+      ],
+      "output_bytes": 1343,
+      "program": "independent",
+      "sha256": "cc399e3de012e1aec6596b43ae1464d949c163bb69a57b3e9e97a4a1b8546896"
+    }
+  ],
+  "status": "passed"
+}

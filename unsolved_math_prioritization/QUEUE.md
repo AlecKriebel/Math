@@ -1058,7 +1058,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1047 | 2945 / KP-4.69 | Kirby Problem 4.69 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1048 | 2956 / KP-4.80 | Kirby Problem 4.80 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1049 | 2960 / KP-4.84 | Kirby Problem 4.84 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1050 | 2970 / KP-4.94 | Kirby Problem 4.94 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1050 | 2970 / KP-4.94 | Kirby Problem 4.94 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Audited partial results; both odd-r smooth and canonical-symplectic equivalences unresolved. Cover-lattice and fiber obstructions remain marked; Lagrangian-span obstruction conditional. PSL(2,F3) partial-conjugation counterexample has exact orbits 216 and 144 but is not an actual Horikawa quotient. Matching smooth -3 spheres at r=3 do not prove canonical-symplectic representability. r=4 degeneration counterexample is outside target; AEHK normal r=3 bridge still needs relative fillings. Original false-PASS truncation disclosed; separate two-line guard adopted and pinned. See [source-free audited packet](attempts/2970/README.md). |  |
 | 1051 | 2974 / KP-4.98 | Kirby Problem 4.98 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1052 | 2980 / KP-4.104 | Kirby Problem 4.104 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1053 | 2991 / KP-4.115 | Kirby Problem 4.115 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
