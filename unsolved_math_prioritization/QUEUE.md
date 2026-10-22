@@ -512,7 +512,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 501 | 30006510 / OWR-14299586-001 | Typical Cells in Hyperbolic Tessellations with Unbounded Cells | 0.1227 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 502 | 30002086 / OWR-11789-007 | Gradient Lower Bounds for Shrinking Ricci Solitons | 0.1224 | 6.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 503 | 30002320 / OWR-12481-005 | Existence of Random-Graph Coloring Growth Rates | 0.1221 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
-| 504 | 30005961 / OWR-14298581-008 | Positive-Entropy Automorphisms of Strict Calabi-Yau Threefolds | 0.1212 | 7.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 504 | 30005961 / OWR-14298581-008 | Positive-Entropy Automorphisms of Strict Calabi-Yau Threefolds | 0.1212 | 7.0 | 3 | 2024 | unsolved | 5/5 |  |  |  |
 | 505 | 30003616 / OWR-15951-003 | Half-Line Spectra for Fibonacci Schrödinger Operators | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 506 | 30003656 / OWR-15958-003 | Wraith Redundancy for Algebraic Theories | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 507 | 10400136 / AMR-103-0136 | Problem 7.21 — (S. | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
