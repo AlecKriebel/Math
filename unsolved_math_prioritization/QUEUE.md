@@ -511,7 +511,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 500 | 30001148 / OWR-3388-006 | Local–Global Principles for Homogeneous Spaces over Semi-Global Fields | 0.1231 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 501 | 30006510 / OWR-14299586-001 | Typical Cells in Hyperbolic Tessellations with Unbounded Cells | 0.1227 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 502 | 30002086 / OWR-11789-007 | Gradient Lower Bounds for Shrinking Ricci Solitons | 0.1224 | 6.0 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 503 | 30002320 / OWR-12481-005 | Existence of Random-Graph Coloring Growth Rates | 0.1221 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
+| 503 | 30002320 / OWR-12481-005 | Existence of Random-Graph Coloring Growth Rates | 0.1221 | 5.0 | 3 | 2013 | unsolved | 5/5 |  | 2026-10-03: Audited partial. Original OWR asks E[Z^(1/n)] with root inside E; the outside-root catalog variant has an elementary formula, but the original all-density limit remains unresolved. Five approaches; prior condensation results credited. [Report](attempts/30002320/README.md). |  |
 | 504 | 30005961 / OWR-14298581-008 | Positive-Entropy Automorphisms of Strict Calabi-Yau Threefolds | 0.1212 | 7.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 505 | 30003616 / OWR-15951-003 | Half-Line Spectra for Fibonacci Schrödinger Operators | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 506 | 30003656 / OWR-15958-003 | Wraith Redundancy for Algebraic Theories | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
