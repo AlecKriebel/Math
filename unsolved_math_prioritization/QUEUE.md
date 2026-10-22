@@ -1902,7 +1902,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1891 | 30000903 / OWR-1782-017 | Real-Rooted Barycentric h-Polynomials and g-Theorem Conditions | 0.0460 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 1892 | 11000162 / AMR-109-0162 | Problem 2.5 — Knowing that d(φ)≥ 1, can we decide whether it is ≥ 2? | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1893 | 1200024 / AMR-011-0024 | Some Questions — Question 24 | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1894 | 158 / GREEN-070 | Sets with No Unique Sum Representations | 0.0450 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
+| 1894 | 158 / GREEN-070 | Sets with No Unique Sum Representations | 0.0450 | 5.0 | 2 | unknown | unsolved | 5/5 |  | Five bounded approaches; exact finite minima through p=31, elementary determinant bound and certified m(p)>=8 for p>=17, and weak-quaternary transfer counterexample. Asymptotic c(log p)^2 question remains open; no novelty claim. Authored proof, independent review and replay certificates: [packet](attempts/158_unique_sums_20261021/RESULT.md). |  |
 | 1895 | 20000022 / AIM-ALGEBRAIC_GEOMETRY-0022 | Immaculate line bundles as unit-orthogonal toric branes | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1896 | 20000162 / AIM-ALGEBRAIC_GEOMETRY-0162 | A modern étale criterion and an all-characteristic constant-functor test | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1897 | 20000726 / AIM-ANALYTIC_NUMBER_THEORY-0090 | A rational j-equation for a mixed mock Kaneko-Zagier solution | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
