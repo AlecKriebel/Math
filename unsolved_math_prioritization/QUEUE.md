@@ -627,7 +627,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 616 | 30001391 / OWR-4137-007 | Degree Bounds for Degenerate Herman Rings | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 617 | 30001393 / OWR-4137-010 | Complete Invariance of Singular-Value Basins | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 618 | 30003790 / OWR-16161-003 | Consistent Noisy Single-Index Regression | 0.1114 | 4.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 619 | 30001672 / OWR-4791-032 | High Influence Small Sets in Boolean Functions | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 619 | 30001672 / OWR-4791-032 | High Influence Small Sets in Boolean Functions | 0.1112 | 5.5 | 3 | 2011 | already_solved | 1/5 |  | Prior negative resolution: Kahn–Kalai (2013), Bourgain–Kahn–Kalai (2024); polynomial deficit beats exponential for every coalition of at most n/3; independent AI audit. |  |
 | 620 | 30001687 / OWR-4793-001 | Spectral Thickness of Fibonacci Hamiltonians | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 621 | 30001721 / OWR-4800-012 | Tree Modules for Roots of Acyclic Quivers | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 622 | 30002048 / OWR-11784-007 | Exceptional-Unit Bounds by Algebraic Degree | 0.1110 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
