@@ -1,0 +1,111 @@
+--- audited-original/checks/audit_independent_model.py
++++ publication/checks/audit_independent_model.py
+@@ -93,20 +93,23 @@
+         ('six_snc_lines', [x+t*y+t**3*z for t in range(1,7)], 2, 5),
+     ]
+     change = {x:x+y, y:y+z, z:x+2*z}
+-    assert s.Matrix([[1,1,0],[0,1,1],[1,0,2]]).det() != 0
++    if not (s.Matrix([[1,1,0],[0,1,1],[1,0,2]]).det() != 0):
++        raise AssertionError('Audit integrity check failed')
+     cases.append(('five_tangent_lines_changed_coordinates',
+                   [F.subs(change, simultaneous=True) for F in tangent_lines], 2, 4))
+     results = []
+     for name, branches, r, k in cases:
+         ambient, dimension = horizontal_dimension(branches, r, k)
+         incidence = kernel(branches, r, k)
+-        assert (ambient, dimension) == (incidence['ambient_dimension'], incidence['dimension'])
++        if not ((ambient, dimension) == (incidence['ambient_dimension'], incidence['dimension'])):
++            raise AssertionError('Audit integrity check failed')
+         results.append(dict(name=name, order=r, twist=k,
+                             ambient_dimension=ambient, branch_integral_dimension=dimension))
+         print(name, ambient, dimension, flush=True)
+     # A squarefree hypothesis is essential, not merely convenient.
+     reduced = kernel([z], 2, 4)['dimension']
+-    assert reduced == 5
++    if not (reduced == 5):
++        raise AssertionError('Audit integrity check failed')
+     try:
+         kernel([z*z], 2, 4)
+     except ValueError as error:
+--- audited-original/checks/audit_division_free.py
++++ publication/checks/audit_division_free.py
+@@ -64,17 +64,24 @@
+     output=[]
+     for name,branches,r,k in cases:
+         dimension=division_free_dimension(branches,r,k)
+-        assert dimension==kernel(branches,r,k)['dimension']
++        if not (dimension==kernel(branches,r,k)['dimension']):
++            raise AssertionError('Audit integrity check failed')
+         output.append(dict(name=name,r=r,k=k,dimension=dimension))
+-    assert divides_without_division(z,0)
+-    assert not divides_without_division(z,1)
++    if not (divides_without_division(z,0)):
++        raise AssertionError('Audit integrity check failed')
++    if not (not divides_without_division(z,1)):
++        raise AssertionError('Audit integrity check failed')
+     # For the line z=0, gradient=(0,0,1): a is valid, a+c is not.
+-    assert divides_without_division(z,a.subs({a:0,b:0,c:1}))
+-    assert not divides_without_division(z,(a+c).subs({a:0,b:0,c:1}))
++    if not (divides_without_division(z,a.subs({a:0,b:0,c:1}))):
++        raise AssertionError('Audit integrity check failed')
++    if not (not divides_without_division(z,(a+c).subs({a:0,b:0,c:1}))):
++        raise AssertionError('Audit integrity check failed')
+     cross=(y*w-z*v,z*u-x*w,x*v-y*u)
+     zero=s.expand((x*a+y*b+z*c).subs(dict(zip(A,cross)),simultaneous=True))
+-    assert zero==0
+-    assert s.expand(a.subs(dict(zip(A,cross)),simultaneous=True))!=0
++    if not (zero==0):
++        raise AssertionError('Audit integrity check failed')
++    if not (s.expand(a.subs(dict(zip(A,cross)),simultaneous=True))!=0):
++        raise AssertionError('Audit integrity check failed')
+     Path(__file__).with_name('audit_division_free_results.json').write_text(json.dumps(dict(
+         method='Coefficient blocks E(P)-FQ; exact QQ rank; no polynomial division',
+         tests=output,valid_witness_accepted=True,altered_witness_rejected=True,
+--- audited-original/checks/audit_saved_cases.py
++++ publication/checks/audit_saved_cases.py
+@@ -23,27 +23,36 @@
+                 expected.append((r,k))
+                 if k==case['minimum_twist'] and r==case['witness_order']:
+                     break
+-        assert expected==[(q['r'],q['k']) for q in case['search']]
+-        assert all(q['dimension']==0 for q in case['search'][:-1])
+-        assert case['search'][-1]['dimension']>0
++        if not (expected==[(q['r'],q['k']) for q in case['search']]):
++            raise AssertionError('Audit integrity check failed')
++        if not (all(q['dimension']==0 for q in case['search'][:-1])):
++            raise AssertionError('Audit integrity check failed')
++        if not (case['search'][-1]['dimension']>0):
++            raise AssertionError('Audit integrity check failed')
+         for result in case['search']:
+             r,k=result['r'],result['k']
+             ambient,dimension=horizontal_dimension(branches,r,k)
+-            assert ambient==result['ambient_dimension'] and dimension==result['dimension'],(name,r,k,ambient,dimension,result)
+-            assert division_free_dimension(branches,r,k)==dimension
++            if not (ambient==result['ambient_dimension'] and dimension==result['dimension']):
++                raise AssertionError((name,r,k,ambient,dimension,result))
++            if not (division_free_dimension(branches,r,k)==dimension):
++                raise AssertionError('Audit integrity check failed')
+             results.append(dict(example=name,r=r,k=k,dimension=dimension,ambient_dimension=ambient))
+             if 'witness_incidence_polynomial' in result:
+                 P=s.sympify(result['witness_incidence_polynomial'],locals=dict(zip('xyzabc',X+A)))
+-                assert P!=0
++                if not (P!=0):
++                    raise AssertionError('Audit integrity check failed')
+                 for mon in s.Poly(P,*X,*A).monoms():
+-                    assert sum(mon[:3])==k-2*r and sum(mon[3:])==r and not(mon[0] and mon[3])
++                    if not (sum(mon[:3])==k-2*r and sum(mon[3:])==r and not(mon[0] and mon[3])):
++                        raise AssertionError('Audit integrity check failed')
+                 for F in branches:
+                     E=P.subs(dict(zip(A,[s.diff(F,t) for t in X])),simultaneous=True)
+-                    assert not linear_normal_form(E,F)
++                    if not (not linear_normal_form(E,F)):
++                        raise AssertionError('Audit integrity check failed')
+                 x,y,z=X
+                 u,v,w=U
+                 W=s.expand(P.subs(dict(zip(A,[y*w-z*v,z*u-x*w,x*v-y*u])),simultaneous=True))
+-                assert W!=0 and s.expand(sum(xx*s.diff(W,uu) for xx,uu in zip(X,U)))==0
++                if not (W!=0 and s.expand(sum(xx*s.diff(W,uu) for xx,uu in zip(X,U)))==0):
++                    raise AssertionError('Audit integrity check failed')
+                 witnesses.append(dict(example=name,r=r,k=k,valid=True))
+         print(name,len(case['search']),'PASS',flush=True)
+     output=dict(source_sha256=hashlib.sha256(raw).hexdigest(),source_bytes=len(raw),

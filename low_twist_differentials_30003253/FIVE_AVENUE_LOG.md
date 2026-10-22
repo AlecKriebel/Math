@@ -1,0 +1,13 @@
+# Five-avenue research record
+
+Problem 30003253, OWR-15170-020, 20 October 2026.
+
+Final mathematical disposition: **UNSOLVED after five substantive avenues**, with exact and reusable partial results. The authentic source asks for geometric hypotheses on a surface/morphism and branch divisor making a low-twist differential useful for genus-bounded curves. It is not replaced by the catalogue's scalar-section premise.
+
+1. **Logarithmic and conormal obstructions.** Proved exact first-order minima for SNC divisors and the stronger all-orders minimum b+1 for a smooth irreducible branch. Checked both residue and Jacobian-syzygy routes. Rejected a naive higher symmetric logarithmic sheaf identity; replaced it by the correct conormal elementary-transform sequence.
+2. **Exact algebraic optimization.** Derived the complete incidence-polynomial representation, sharp ambient threshold k≥2r, and exact linear branch tests. The universal first-order bound makes minimum absolute twist computable over all symmetric orders, not just a fixed order. Implemented exact rational examples, input rejection, witness checks, and coordinate controls.
+3. **Projective duality and line arrangements.** Classified all forms at k=2r by dual equations and point interpolation. Proved that every reduced plane divisor attains normalized twist 2 at finite order. Established the sharp absolute minimum 4 for at least five conic tangents, while crediting the existing conic-tangent cover literature. Derived a safe dimension-count criterion without assuming generic independence.
+4. **Pencils and concrete surface morphisms.** Classified integral curves of saturated pencil forms and their products. Constructed smooth generically finite Lefschetz-pencil base changes with a complete genus-bounded conclusion, retaining the exceptional correction and the nonfinite nature of the plane morphism. Audited the concurrent-line finite-cover obstruction separately.
+5. **Ramification valuations and genus budgets.** Calculated the exact local pullback order, showing why branch integrality does not justify multiplying the ramification gain by symmetric order. Gave a finite test for one specified, numerically certified sufficient genus-budget criterion, explicitly treating nefness and exceptional curves as additional inputs rather than solved general problems.
+
+The results do not supply a general effective positivity criterion for arbitrary π, a general resolution-of-singularities correction, or a procedure listing all integral curves of every computed differential. Those omissions prevent a full-resolution claim. Existing transfer theorems, algebraic-web theory, and published cyclic-cover examples are credited, with no assertion of novelty priority.

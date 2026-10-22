@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "review_kind": "Exact structural diff review by package preparer; not an external review or formal verification of the mathematics.",
+  "method": "Parse originals and publication copies into Python ASTs. Replace every original Assert(test,msg) with If(Not(test), Raise(AssertionError(msg))), supplying a neutral diagnostic only when msg was absent. Compare complete ASTs without source locations.",
+  "scripts": [
+    {
+      "file": "checks/audit_independent_model.py",
+      "assertions_converted": 3,
+      "ast_equal_after_exact_assert_to_if_raise_transform": true,
+      "all_other_ast_nodes_unchanged": true,
+      "original_sha256": "e7f29678885360d28f4a6fa146154d8686889d3f37646ee3dfbe09e8d1ca192e",
+      "publication_sha256": "09753e212946b2f17e8fad4b52bb9ffd46f033e345b70cce71df9f2d1e0105c3"
+    },
+    {
+      "file": "checks/audit_division_free.py",
+      "assertions_converted": 7,
+      "ast_equal_after_exact_assert_to_if_raise_transform": true,
+      "all_other_ast_nodes_unchanged": true,
+      "original_sha256": "19c366e612e5076795445e1e03bfe5cc3367187bdcfa893d0cc4151f056f848c",
+      "publication_sha256": "1f003dc9fcb977bba0f8e0485ac87e1ed80d43f6083f9141ffb7ce991b23106e"
+    },
+    {
+      "file": "checks/audit_saved_cases.py",
+      "assertions_converted": 9,
+      "ast_equal_after_exact_assert_to_if_raise_transform": true,
+      "all_other_ast_nodes_unchanged": true,
+      "original_sha256": "d04665df9b536adf1cdffd8fbd12ba12b8e4f59632cc118f01121b420ecfa5ac",
+      "publication_sha256": "eeae8d0eeafe71e791943c290f067fada447a7e4ed80a9c37096a03b0036b866"
+    }
+  ],
+  "assertions_total": 19,
+  "proof_manuscripts_byte_identical": [
+    "RESEARCH_REPORT.md",
+    "HIGHER_ORDER_AUDIT.md",
+    "PENCIL_COVER_AUDIT.md"
+  ],
+  "audit_link_edit_only": true,
+  "semantic_scope": "In normal Python mode, each test and diagnostic expression is preserved and evaluated with the same conditional timing. Under -O the publication copies intentionally retain those checks instead of dropping them."
+}

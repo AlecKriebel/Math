@@ -1,0 +1,373 @@
+{
+  "status": "PASS",
+  "problem_id": 30003253,
+  "overall_problem_status": "UNSOLVED",
+  "python": "3.12.14",
+  "sympy": "1.14.0",
+  "manifest_check": {
+    "verified": false,
+    "reason": "Manifest not yet generated; staging replay only."
+  },
+  "isolated_replays": [
+    {
+      "mode": "normal",
+      "scripts": [
+        {
+          "script": "branch_integrality.py",
+          "exit_code": 0,
+          "stdout": "line 2 1\nsmooth_conic 3 1\nfermat_cubic 4 1\nfermat_quartic 5 1\nfermat_quintic 6 1\ntriangle 3 1\nfive_tangent_lines 4 2\nseven_tangent_lines 4 2\nfive_concurrent_lines 2 1\nsix_snc_lines 5 2\ntwo_conic_fibers 4 1\nten_snc_lines 7 2\nPASS: exact minima, witnesses, input rejection, and coordinate controls\n"
+        },
+        {
+          "script": "audit_independent_model.py",
+          "exit_code": 0,
+          "stdout": "line_k_below_2r 0 0\nline_order_3 10 9\nline_order_1 3 2\nline_order_2 6 5\nsmooth_conic_order_1_below 3 0\nsmooth_conic_order_1 8 3\nsmooth_conic_order_2 6 1\ntransformed_conic_regression_order_1 8 3\ntransformed_conic_regression_order_2 6 1\nsmooth_cubic_order_2_below 15 0\nsmooth_cubic_order_2 27 9\nfive_tangent_lines 6 1\nsix_snc_lines 15 3\nfive_tangent_lines_changed_coordinates 6 1\nPASS: all independent-model comparisons\n"
+        },
+        {
+          "script": "audit_division_free.py",
+          "exit_code": 0,
+          "stdout": "PASS: division-free conic, multiple-branch, and witness mutation controls\n"
+        },
+        {
+          "script": "audit_saved_cases.py",
+          "exit_code": 0,
+          "stdout": "line 1 PASS\nsmooth_conic 2 PASS\nfermat_cubic 3 PASS\nfermat_quartic 5 PASS\nfermat_quintic 7 PASS\ntriangle 2 PASS\nfive_tangent_lines 4 PASS\nseven_tangent_lines 4 PASS\nfive_concurrent_lines 1 PASS\nsix_snc_lines 6 PASS\ntwo_conic_fibers 3 PASS\nten_snc_lines 11 PASS\nPASS 49 saved cases 12 witnesses\n"
+        },
+        {
+          "script": "publication_controls.py",
+          "exit_code": 0,
+          "stdout": "PASS: 17 rejection controls, valid witness, conic regression, additivity, split/product, explicit guards\n"
+        }
+      ],
+      "byte_comparisons": {
+        "exact_results.json": {
+          "bytes": 17054,
+          "sha256": "626efa2f31bee992de97964546b7fd1e31daadaa66c091875423323a8c220a2d",
+          "exact_match": true
+        },
+        "validation_controls.json": {
+          "bytes": 2024,
+          "sha256": "9dfd44d73f79583d6c2b2f06f92c118daa30532f86fb550cdfe215d9ab14ea58",
+          "exact_match": true
+        },
+        "audit_independent_results.json": {
+          "bytes": 2539,
+          "sha256": "00b29a7a39c8135b5883ae434972d00f5c7171a1f303e06a21db40f75ad9cabf",
+          "exact_match": true
+        },
+        "audit_division_free_results.json": {
+          "bytes": 710,
+          "sha256": "db771a9f2316ee0efdb3f67b9a3a7d4f2fe545842e139ea345ad1b20eb18a5c5",
+          "exact_match": true
+        },
+        "audit_saved_results.json": {
+          "bytes": 7805,
+          "sha256": "21b769cc610a8424c801d729330b095640739a0a5f7a2b82c661b9308a9e3231",
+          "exact_match": true
+        }
+      },
+      "main_stdout_exact_match": true,
+      "publication_controls": {
+        "negative_controls_count": 17,
+        "negative_controls": [
+          {
+            "name": "empty",
+            "rejected": true
+          },
+          {
+            "name": "zero",
+            "rejected": true
+          },
+          {
+            "name": "constant",
+            "rejected": true
+          },
+          {
+            "name": "nonhomogeneous",
+            "rejected": true
+          },
+          {
+            "name": "nonreduced",
+            "rejected": true
+          },
+          {
+            "name": "duplicate",
+            "rejected": true
+          },
+          {
+            "name": "shared_component",
+            "rejected": true
+          },
+          {
+            "name": "zero_order",
+            "rejected": true
+          },
+          {
+            "name": "negative_order",
+            "rejected": true
+          },
+          {
+            "name": "nonintegral_order",
+            "rejected": true
+          },
+          {
+            "name": "nonintegral_twist",
+            "rejected": true
+          },
+          {
+            "name": "zero_witness",
+            "rejected": true
+          },
+          {
+            "name": "wrong_bidegree",
+            "rejected": true
+          },
+          {
+            "name": "zero_incidence_class",
+            "rejected": true
+          },
+          {
+            "name": "wrong_branch_witness",
+            "rejected": true
+          },
+          {
+            "name": "invalid_witness_order",
+            "rejected": true
+          },
+          {
+            "name": "false_require",
+            "rejected": true
+          }
+        ],
+        "valid_line_witness_accepted": true,
+        "transformed_conic_dimensions": [
+          3,
+          1
+        ],
+        "division_free_transformed_conic_dimensions": [
+          3,
+          1
+        ],
+        "independent_normal_form_additivity": true,
+        "split_product_agreement": true,
+        "no_optimization_removable_asserts": [
+          "audit_division_free.py",
+          "audit_independent_model.py",
+          "audit_saved_cases.py",
+          "branch_integrality.py",
+          "publication_controls.py"
+        ]
+      },
+      "saved_result_mutations": [
+        {
+          "mutation": "dimension",
+          "rejected": true,
+          "exit_code": 1
+        },
+        {
+          "mutation": "coverage",
+          "rejected": true,
+          "exit_code": 1
+        },
+        {
+          "mutation": "zero_witness",
+          "rejected": true,
+          "exit_code": 1
+        },
+        {
+          "mutation": "wrong_bidegree",
+          "rejected": true,
+          "exit_code": 1
+        },
+        {
+          "mutation": "wrong_branch",
+          "rejected": true,
+          "exit_code": 1
+        }
+      ]
+    },
+    {
+      "mode": "optimized",
+      "scripts": [
+        {
+          "script": "branch_integrality.py",
+          "exit_code": 0,
+          "stdout": "line 2 1\nsmooth_conic 3 1\nfermat_cubic 4 1\nfermat_quartic 5 1\nfermat_quintic 6 1\ntriangle 3 1\nfive_tangent_lines 4 2\nseven_tangent_lines 4 2\nfive_concurrent_lines 2 1\nsix_snc_lines 5 2\ntwo_conic_fibers 4 1\nten_snc_lines 7 2\nPASS: exact minima, witnesses, input rejection, and coordinate controls\n"
+        },
+        {
+          "script": "audit_independent_model.py",
+          "exit_code": 0,
+          "stdout": "line_k_below_2r 0 0\nline_order_3 10 9\nline_order_1 3 2\nline_order_2 6 5\nsmooth_conic_order_1_below 3 0\nsmooth_conic_order_1 8 3\nsmooth_conic_order_2 6 1\ntransformed_conic_regression_order_1 8 3\ntransformed_conic_regression_order_2 6 1\nsmooth_cubic_order_2_below 15 0\nsmooth_cubic_order_2 27 9\nfive_tangent_lines 6 1\nsix_snc_lines 15 3\nfive_tangent_lines_changed_coordinates 6 1\nPASS: all independent-model comparisons\n"
+        },
+        {
+          "script": "audit_division_free.py",
+          "exit_code": 0,
+          "stdout": "PASS: division-free conic, multiple-branch, and witness mutation controls\n"
+        },
+        {
+          "script": "audit_saved_cases.py",
+          "exit_code": 0,
+          "stdout": "line 1 PASS\nsmooth_conic 2 PASS\nfermat_cubic 3 PASS\nfermat_quartic 5 PASS\nfermat_quintic 7 PASS\ntriangle 2 PASS\nfive_tangent_lines 4 PASS\nseven_tangent_lines 4 PASS\nfive_concurrent_lines 1 PASS\nsix_snc_lines 6 PASS\ntwo_conic_fibers 3 PASS\nten_snc_lines 11 PASS\nPASS 49 saved cases 12 witnesses\n"
+        },
+        {
+          "script": "publication_controls.py",
+          "exit_code": 0,
+          "stdout": "PASS: 17 rejection controls, valid witness, conic regression, additivity, split/product, explicit guards\n"
+        }
+      ],
+      "byte_comparisons": {
+        "exact_results.json": {
+          "bytes": 17054,
+          "sha256": "626efa2f31bee992de97964546b7fd1e31daadaa66c091875423323a8c220a2d",
+          "exact_match": true
+        },
+        "validation_controls.json": {
+          "bytes": 2024,
+          "sha256": "9dfd44d73f79583d6c2b2f06f92c118daa30532f86fb550cdfe215d9ab14ea58",
+          "exact_match": true
+        },
+        "audit_independent_results.json": {
+          "bytes": 2539,
+          "sha256": "00b29a7a39c8135b5883ae434972d00f5c7171a1f303e06a21db40f75ad9cabf",
+          "exact_match": true
+        },
+        "audit_division_free_results.json": {
+          "bytes": 710,
+          "sha256": "db771a9f2316ee0efdb3f67b9a3a7d4f2fe545842e139ea345ad1b20eb18a5c5",
+          "exact_match": true
+        },
+        "audit_saved_results.json": {
+          "bytes": 7805,
+          "sha256": "21b769cc610a8424c801d729330b095640739a0a5f7a2b82c661b9308a9e3231",
+          "exact_match": true
+        }
+      },
+      "main_stdout_exact_match": true,
+      "publication_controls": {
+        "negative_controls_count": 17,
+        "negative_controls": [
+          {
+            "name": "empty",
+            "rejected": true
+          },
+          {
+            "name": "zero",
+            "rejected": true
+          },
+          {
+            "name": "constant",
+            "rejected": true
+          },
+          {
+            "name": "nonhomogeneous",
+            "rejected": true
+          },
+          {
+            "name": "nonreduced",
+            "rejected": true
+          },
+          {
+            "name": "duplicate",
+            "rejected": true
+          },
+          {
+            "name": "shared_component",
+            "rejected": true
+          },
+          {
+            "name": "zero_order",
+            "rejected": true
+          },
+          {
+            "name": "negative_order",
+            "rejected": true
+          },
+          {
+            "name": "nonintegral_order",
+            "rejected": true
+          },
+          {
+            "name": "nonintegral_twist",
+            "rejected": true
+          },
+          {
+            "name": "zero_witness",
+            "rejected": true
+          },
+          {
+            "name": "wrong_bidegree",
+            "rejected": true
+          },
+          {
+            "name": "zero_incidence_class",
+            "rejected": true
+          },
+          {
+            "name": "wrong_branch_witness",
+            "rejected": true
+          },
+          {
+            "name": "invalid_witness_order",
+            "rejected": true
+          },
+          {
+            "name": "false_require",
+            "rejected": true
+          }
+        ],
+        "valid_line_witness_accepted": true,
+        "transformed_conic_dimensions": [
+          3,
+          1
+        ],
+        "division_free_transformed_conic_dimensions": [
+          3,
+          1
+        ],
+        "independent_normal_form_additivity": true,
+        "split_product_agreement": true,
+        "no_optimization_removable_asserts": [
+          "audit_division_free.py",
+          "audit_independent_model.py",
+          "audit_saved_cases.py",
+          "branch_integrality.py",
+          "publication_controls.py"
+        ]
+      },
+      "saved_result_mutations": [
+        {
+          "mutation": "dimension",
+          "rejected": true,
+          "exit_code": 1
+        },
+        {
+          "mutation": "coverage",
+          "rejected": true,
+          "exit_code": 1
+        },
+        {
+          "mutation": "zero_witness",
+          "rejected": true,
+          "exit_code": 1
+        },
+        {
+          "mutation": "wrong_bidegree",
+          "rejected": true,
+          "exit_code": 1
+        },
+        {
+          "mutation": "wrong_branch",
+          "rejected": true,
+          "exit_code": 1
+        }
+      ]
+    }
+  ],
+  "scripts_sha256": {
+    "branch_integrality.py": "3bc4ef94e6b43690688b449725a3312403851ad4e0b21038a34065688056c67f",
+    "audit_independent_model.py": "09753e212946b2f17e8fad4b52bb9ffd46f033e345b70cce71df9f2d1e0105c3",
+    "audit_division_free.py": "1f003dc9fcb977bba0f8e0485ac87e1ed80d43f6083f9141ffb7ce991b23106e",
+    "audit_saved_cases.py": "eeae8d0eeafe71e791943c290f067fada447a7e4ed80a9c37096a03b0036b866",
+    "publication_controls.py": "247989c3be6e4a22cf4b31d5fe842853336181b64e7f8e1b0ec9f08ef4ebee61"
+  },
+  "scope": "Exact replay of 12 authored examples, 49 searched spaces, 12 witnesses, 14 independent structural/regression checks, main controls, 17 added guard controls per mode, and 5 saved-result tamper controls per mode. No claim of a general surface criterion, new priority, external peer review, or formal proof verification."
+}
