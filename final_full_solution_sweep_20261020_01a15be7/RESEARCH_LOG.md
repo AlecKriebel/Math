@@ -844,3 +844,21 @@ PRIVATE_DUPLICATE_CUSTODY_N_SHA256=ef51a39c2269f1490de03e84a04c2b2928faaff50cf0a
 2026-10-22T04:43:23.480266+00:00 — PR1183 full prior finite multiples refutation matched exact public proof. No new publication; cursor1184; overall79%.
 
 2026-10-22T04:44:06.419929+00:00 — PR1184 complete credited prior fixed-r matching order; no new theorem. Cursor1185; overall79%.
+
+2026-10-22T04:45:20.035890+00:00 — PR1185 partial fixed-start matching reduction/finite shortcut failure; asymptotic untouched. Cursor1186; overall79%.
+
+2026-10-22T04:46:19.379667+00:00 — PR1186 audits prior interval-matching bounds and complete prior divergence; no new full solution. Background reference DOI distinguished from audit publication. Cursor1187; overall79%.
+
+2026-10-22T04:47:44.307118+00:00 — PR1187 partial; aliases2150/2304007 reconciled, generic Hayman publication leads unrelated. Cursor1188; overall79%.
+
+2026-10-22T04:48:18.376261+00:00 — PR1188 partial; unrestricted starts acknowledged, k and gap remain bounded. Cursor1189; overall79%.
+
+2026-10-22T04:49:44.419269+00:00 — PR1180 priority challenge resolved by independently derived/root-checked finite reflection of established Tao–Teravainen sieve machinery, bypassing disputed Lau proof. Historical nonfinal receipt preserved; final effective override PR1180_FINAL_PRIORITY_DISPOSITION.json. No publication/row/PR mutation. Overall79%.
+
+2026-10-22T04:50:16.928038+00:00 — PR1189 partial original targets; substantive Freud endpoint repair retained, no invented general sequence conclusion. Cursor1190; overall79%.
+
+2026-10-22T04:51:35.901537+00:00 — PR1190 prior full prime-support theorem matched exact public source. Cursor1191; overall79%. Separately reconciling reviewer-identified existing vanDoorn DOI for1186.
+
+2026-10-22T05:02:36.959307+00:00 PR1191: partial exact all-real seed-extension obstruction; original optimum unresolved. 79% overall.
+
+2026-10-22T05:02:37.719188+00:00 Root adopted independent1177–1186 bounded audit: all23pins matched, readonly replay10PR/86paths/20texts passed. Nine exclusions sustained;1186existing-publication accounting correction pending,1180final override preserved. Overall79%.
