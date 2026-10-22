@@ -986,7 +986,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 975 | 30001405 / OWR-4196-003 | Homotopy Groups of Definable Quotients | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 976 | 30001518 / OWR-4412-008 | Existence of Perfect Billiard Retroreflectors | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 977 | 30001525 / OWR-4413-009 | Integral Skyline Bases for Symmetric-Group Cohomology | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 978 | 30001591 / OWR-4429-002 | Borderline Soliton–Potential Interactions | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 978 | 30001591 / OWR-4429-002 | Borderline Soliton–Potential Interactions | 0.0917 | 5.5 | 3 | 2010 | unsolved | 5/5 |  | Accepted corrected partials: critical reduced-ODE orbit and conditional logarithmic escape; stationary and cubic compactness obstructions; energy and signed-integral restrictions; tail and invariant-drift controls. Section 5 repaired to require a-prime > 0, with a flat-crossing counterexample; boundedness and center-velocity dependencies clarified. Critical PDE equality remains unresolved; no novelty claim. [Packet](attempts/30001591/README.md). |  |
 | 979 | 30001738 / OWR-4804-006 | Multiplicity Formulas for Galois-Invariant Induced Representations | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 980 | 30001810 / OWR-5158-010 | Ordinary Versus Immersive Simplicial Volume | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 981 | 30001840 / OWR-11127-008 | Galois Images in Genus-Two Real-Multiplication Families | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
