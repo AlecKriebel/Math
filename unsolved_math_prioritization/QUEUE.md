@@ -615,7 +615,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 604 | 4300001 / AMR-042-0001 | Order of mixing | 0.1121 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
 | 605 | 10400107 / AMR-103-0107 | Problem 5.11 — (C. | 0.1120 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 606 | 30000706 / OWR-1460-013 | Four-Value-Sharing Meromorphic Functions with $\psi=1$ | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 607 | 30000707 / OWR-1460-014 | Exponential Auxiliary Systems for Four-Value-Sharing Meromorphic Functions | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 607 | 30000707 / OWR-1460-014 | Exponential Auxiliary Systems for Four-Value-Sharing Meromorphic Functions | 0.1119 | 5.5 | 3 | 2007 | unsolved | 5/5 |  |  |  |
 | 608 | 30000750 / OWR-1537-002 | Reduced Length and Mahler-Measure Inequality | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 609 | 30000971 / OWR-1971-004 | Eisenbud's Fiber-Regularity Conjecture | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 610 | 30001033 / OWR-2053-013 | Finite Width of the 14-Triangle Complex Group | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
