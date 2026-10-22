@@ -665,7 +665,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 654 | 30001988 / OWR-11575-015 | Splitting Sets Under Differential-Transcendental Extensions | 0.1061 | 6.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 655 | 30000403 / OWR-1188-004 | Optimal Descent Degrees in Reduced Hurwitz Spaces | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 656 | 30000492 / OWR-1274-008 | Settled Quadratic Polynomials and Markov Factorization Models | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
-| 657 | 30000510 / OWR-1275-010 | Topology of Baby Teichmüller Spaces | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
+| 657 | 30000510 / OWR-1275-010 | Topology of Baby Teichmüller Spaces | 0.1055 | 5.5 | 3 | 2006 | already_solved | 1/5 |  | Prior result verified, singular scope only: Alper Ferudun, 2026-10-01 unrefereed AI-assisted preprint, DOI 10.5281/zenodo.23071801. For n>=3 and any constant abelian coefficient group A: exactly n-1 components, H^0=A^(n-1), extra A in degree n-3 for even n, all other positive singular cohomology zero. One substantive approach; no novelty or other-cohomology-theory claim. [Proof and independent audit](attempts/30000510/RELEASE_NOTES.md). |  |
 | 658 | 30000576 / OWR-1323-013 | Chaos of Individual Operators in Chaotic Semigroups | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 659 | 30000700 / OWR-1460-004 | IM-Sharing Variants of Theorem H for Entire Functions | 0.1053 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 660 | 30000704 / OWR-1460-010 | Boundary Regularity for Complete Conformal Metrics | 0.1053 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
