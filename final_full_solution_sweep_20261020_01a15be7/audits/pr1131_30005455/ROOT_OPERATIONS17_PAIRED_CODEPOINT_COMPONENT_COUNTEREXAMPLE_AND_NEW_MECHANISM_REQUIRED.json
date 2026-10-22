@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-22T21:43:30.039640+00:00",
+  "pr": 1131,
+  "sweep_completion_estimate_percent": 86,
+  "root_independently_reproduced_component_counterexample": [
+    {
+      "case": "raw_two_surrogate_codepoints",
+      "SDK_JSON_decoder_component_input_hex": "7b2273223a22eda0bdedb880227d",
+      "parsed_codepoints": [
+        55357,
+        56832
+      ],
+      "ASCII_json_bytes_hex": "7b0a20202273223a20225c75643833645c7564653030220a7d",
+      "ASCII_reloaded_codepoints": [
+        128512
+      ],
+      "ASCII_same_parsed_string": false,
+      "surrogatepass_bytes_hex": "7b0a20202273223a2022eda0bdedb880220a7d",
+      "surrogatepass_reloaded_codepoints": [
+        55357,
+        56832
+      ],
+      "surrogatepass_same_parsed_string": true
+    },
+    {
+      "case": "escaped_valid_pair",
+      "SDK_JSON_decoder_component_input_hex": "7b2273223a225c75643833645c7564653030227d",
+      "parsed_codepoints": [
+        128512
+      ],
+      "ASCII_json_bytes_hex": "7b0a20202273223a20225c75643833645c7564653030220a7d",
+      "ASCII_reloaded_codepoints": [
+        128512
+      ],
+      "ASCII_same_parsed_string": true,
+      "surrogatepass_bytes_hex": "7b0a20202273223a2022f09f9880220a7d",
+      "surrogatepass_reloaded_codepoints": [
+        128512
+      ],
+      "surrogatepass_same_parsed_string": true
+    },
+    {
+      "case": "proper_astral_scalar",
+      "SDK_JSON_decoder_component_input_hex": "7b2273223a22f09f9880227d",
+      "parsed_codepoints": [
+        128512
+      ],
+      "ASCII_json_bytes_hex": "7b0a20202273223a20225c75643833645c7564653030220a7d",
+      "ASCII_reloaded_codepoints": [
+        128512
+      ],
+      "ASCII_same_parsed_string": true,
+      "surrogatepass_bytes_hex": "7b0a20202273223a2022f09f9880220a7d",
+      "surrogatepass_reloaded_codepoints": [
+        128512
+      ],
+      "surrogatepass_same_parsed_string": true
+    },
+    {
+      "case": "escaped_lone_high",
+      "SDK_JSON_decoder_component_input_hex": "7b2273223a225c7564383030227d",
+      "parsed_codepoints": [
+        55296
+      ],
+      "ASCII_json_bytes_hex": "7b0a20202273223a20225c7564383030220a7d",
+      "ASCII_reloaded_codepoints": [
+        55296
+      ],
+      "ASCII_same_parsed_string": true,
+      "surrogatepass_bytes_hex": "7b0a20202273223a2022eda080220a7d",
+      "surrogatepass_reloaded_codepoints": [
+        55296
+      ],
+      "surrogatepass_same_parsed_string": true
+    }
+  ],
+  "exact_scope": "Python json.loads(bytes) accepts raw surrogate-pass UTF8 as two codepoints. ASCII JSONdump plus json.loads coalesces an adjacent high/low pair. Parsed Python string identity and dict-key identity need not be retained. This is component evidence, not a root-run full actor/SDK-request proof. Independent whole17 reviewer reports actual unchanged actor create path confirms it; complete closed report/custody stillpending.",
+  "operations17_route_status": "BLOCKED_FOR_COMPLETE_PARSED_OBJECT_CUSTODY; no action adoption or1131allocation",
+  "new_mechanisms_to_investigate": "A fully injective tagged parsed-JSON tree retaining every string as codepoint vectors and numeric type/IEEE information, or independently proved raw surrogate-pass representation. These are hypotheses until complete domain proof, actual SDK/frozen actor tests, cold custody, fresh whole review and root adoption. Standard RFC-valid UTF8 claims must not be attached to surrogate-pass bytes.",
+  "all84finite_old_controls_do_not_close_gap": true,
+  "actual_service_or_Git_or_sheet_effects": 0
+}

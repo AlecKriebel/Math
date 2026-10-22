@@ -1,0 +1,7 @@
+# Private research log
+
+2026-10-22T21:08:32.224892+00:00: edition02 preparation 15%; global85%. Captured complete current legal append prefix read-only, not the historical86-file namespace. Full original POST retained. No service/Git/CASE authority/effect writes.
+
+2026-10-22T21:15:56.489399+00:00: helper preparation70%, global85%. Forty-one exact complete-data/typed authority controls pass. Cold physical parsed positive reconciles original POST, validates public/DOI/two payloads, appends one row and rejects repeat. Mode-O/OO and forbidden-action CLI controls stop. Negative transport worlds still running; no completion claim yet. Two earlier fixture-only failures retained with original code/archive; original native validation correctly rejected their stale synthetic public-family references.
+
+2026-10-22T21:22:57.524842+00:00: preparation100% subject to final read-only custody verification; global85%. Nine individually successful physical worlds,41 unique complete-data/typed-authority cases,31 delegate/method checks and7 real CLI cases. Three development fixture failures and their source/worlds remain explicit. Current own allocated footprint is below8MiB after lossless completed-run compaction; disclosed observed transient9,998,336B overrun. No live calls, credential use, CASE/STATE/Git/service/ledger writes, new passing authority or readiness flip. Fresh independent whole review and root adoption remain mandatory.
