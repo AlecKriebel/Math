@@ -890,7 +890,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 879 | 136 / GREEN-048 | Balanced Ham Sandwich Line | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 880 | 1392 / GRAPH-005 | Graph Coloring Game Monotonicity | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 881 | 1500006 / AMR-014-0006 | Algebraic Stories — The $k$-rank of monomials | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 882 | 1500024 / AMR-014-0024 | Algebraic Stories — Exterior algebras | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 882 | 1500024 / AMR-014-0024 | Algebraic Stories — Exterior algebras | 0.0960 | 5.5 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 883 | 1917 / EP-81 | Erdős Problem #81 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 884 | 20000280 / AIM-ALGEBRAIC_GEOMETRY-0280 | An extremal bracket, a Segre correction, and a cubic-scroll family | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 885 | 20000363 / AIM-ALGEBRAIC_NUMBER_THEORY-0015 | Density degrees under finite extension | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |

@@ -1,0 +1,15 @@
+# Five approaches and stopping points
+
+The preliminary provenance/history gate is not counted as a substantive approach. The complete inherited report was inspected before research. Its work was a source-wording and literature search, not a proof attempt. Current exact-ID and keyword repository searches found no target attempt. These are bounded negative searches, not a claim to have inspected every historical branch byte.
+
+1. **Even-block transfer and current literature.** Recovered the complex characteristic-zero statement and exact degrees/general-position requirements. Inspected the 2018 source, CLN's 2018 preprint/2019 publication metadata, and the August 2026 Boij–Lundqvist preprint. Verified by a coordinate-change argument that the current commutative theorem applies to exactly the requested quotient, and applied the credited even-case equivalence without extending its scope. Outcome: even n and the entire commutative formula are credited prior results; odd n remains. Flagged an apparent floor-versus-ceiling inconsistency in the 2026 preprint's conjecture displays; its theorem and proof already use the correct ceiling endpoint.
+
+2. **Odd pencil and sign-free path representation.** Tested whether the even decomposition extends after adding an unused coordinate; the common-radical invariant rules this out. Constructed the exact vector-space reduction to two alternating adjacent-edge sums in a commutative squarefree algebra. Outcome: every odd multiplication matrix has a sign-free model, but these sparse quadrics are not the general linear-form squares in the already-settled commutative theorem.
+
+3. **Restriction from a known even quotient.** Derived the general hyperplane quotient and its multiplication-by-linear-form homology recurrence. Tested the maximal-rank shortcut, which fails because the differential squares to zero; verified the failure by a complete four-variable rank calculation. Outcome: the missing homology is explicitly identified, not computed in general.
+
+4. **Koszul duality and syzygies.** Derived the exact Frobenius-dual Euler identity and proved the support cutoff using elementary symplectic creation/contraction operators. Reduced the odd conjecture to formula (5.4), an exact first-Koszul-homology dimension statement. Exhibited a non-Koszul syzygy in five variables. Outcome: the ordinary complete-intersection lower expression is insufficient.
+
+5. **Gröbner/straightening route.** Tested the two displayed path generators under lex order and found a uniform cubic remainder with a new leading monomial. Gave a complete hand basis/rank proof in five variables and the corresponding overcount of the naive monomial model. Outcome: these two generators are not a Gröbner basis in the tested order; larger bases and other orders remain possible. The independence required for the full lattice-path formula was not proved.
+
+Stop: five substantive approaches used. Status remains unsolved. No later approach, computational search, or publication was performed. All results are fully scoped; no historical novelty is claimed.
