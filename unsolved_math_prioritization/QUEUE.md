@@ -1070,7 +1070,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1059 | 3422 / OPG-37293 | Sticky Cantor sets | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1060 | 3800015 / AMR-037-0015 | Shortest paths in line arrangements | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1061 | 3900016 / AMR-038-0016 | Triangulations with many distinct areas | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
-| 1062 | 5500016 / AMR-054-0016 | Simple Polygonalizations | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
+| 1062 | 5500016 / AMR-054-0016 | Simple Polygonalizations | 0.0900 | 5.5 | 4 | unknown | exhausted | 5/5 |  | Audited partial results: same-state continuation obstruction (0 versus 1); nonuniform triangulation extension counts; exact crossing-event inclusion-exclusion and forced-path formula; positivity obstruction to a direct parsimonious reduction; hull-gap count k! binomial(n-1,k), with k=0,1 exact cases. General exact counting, hardness and FPT classification unresolved; no novelty claim. See [report](attempts/5500016/author/REPORT.md) and [audit](attempts/5500016/audit/AUDIT.md). |  |
 | 1063 | 5500054 / AMR-054-0054 | Traveling Salesman Problem in Solid Grid Graphs | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1064 | 7200057 / AMR-071-0057 | For each arrangement of points in which the rectilinear crossing number is minimized, is the number of halving lines maximized | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1065 | 9500005 / AMR-094-0005 | Convergence of synchronous reflected-Brownian couplings | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
