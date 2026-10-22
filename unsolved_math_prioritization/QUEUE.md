@@ -531,7 +531,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 520 | 2302058 / AMR-022-2058 | Research Problems in Function Theory — Problem 2.58 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 521 | 2304006 / AMR-022-4006 | Research Problems in Function Theory — Problem 4.6 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 522 | 2304025 / AMR-022-4025 | Research Problems in Function Theory — Problem 4.25 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 523 | 2305028 / AMR-022-5028 | Research Problems in Function Theory — Problem 5.28 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 523 | 2305028 / AMR-022-5028 | Research Problems in Function Theory — Problem 5.28 | 0.1200 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Rubel–Shields–Taylor (1975) negative answer verified; single-function limsup ratio >=1668/1667, no novelty or optimality claim. [Proof and audit](attempts/2305028/README.md). |  |
 | 524 | 2305039 / AMR-022-5039 | Research Problems in Function Theory — Problem 5.39 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 525 | 2305050 / AMR-022-5050 | Research Problems in Function Theory — Problem 5.50 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 526 | 2306017 / AMR-022-6017 | Research Problems in Function Theory — Problem 6.17 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
