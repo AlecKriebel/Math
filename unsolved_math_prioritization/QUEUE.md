@@ -549,7 +549,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 538 | 3024 / KP-5.17 | Kirby Problem 5.17 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 539 | 3419 / OPG-37237 | Unsolvability of word problem for 2-knot complements | 0.1200 | 6.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 540 | 9700001 / AMR-096-0001 | Martingale for practical purposes | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 541 | 30004773 / OWR-8415341-012 | Character Degrees of Graph-Defined Exponent-$p$ Groups | 0.1191 | 6.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 541 | 30004773 / OWR-8415341-012 | Character Degrees of Graph-Defined Exponent-$p$ Groups | 0.1191 | 6.0 | 3 | 2021 | unsolved | 5/5 |  | 2026-10-03: Five substantive approaches; scoped partial results for ordinary characters in odd characteristic: polynomial degree-p counts for every graph and all degree counts for forests or matching number at most 3. Independent adversarial audit passed; no novelty claim. Unrestricted higher-rank field-size dependence remains unresolved. [Proofs and exact controls](attempts/30004773/public/README.md); [independent audit](attempts/30004773/audit/INDEPENDENT_AUDIT.md). |  |
 | 542 | 5200008 / AMR-051-0008 | Open Problems on Billiards and Geometric Optics | 0.1191 | 6.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 543 | 30005558 / OWR-13750339-002 | Hodge Integrals over Genus-One Admissible Covers | 0.1176 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 544 | 30005598 / OWR-14297736-004 | de Gennes Bound for Magnetic Neumann Eigenvalues | 0.1176 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
