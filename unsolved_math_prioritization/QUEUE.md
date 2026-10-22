@@ -492,7 +492,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 481 | 30004980 / OWR-9790352-030 | Maximum Twin-Width of $n$-Vertex Graphs | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 482 | 30005041 / OWR-9790362-012 | Interval Structure of Cohomology-Vanishing Exponents | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 483 | 30005075 / OWR-9790367-005 | Affine–Virasoro Derivation of Nekrasov Blow-Up Identities | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 484 | 30005144 / OWR-10252937-007 | CMC Min–Max Width Under Nonnegative Scalar Curvature | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 484 | 30005144 / OWR-10252937-007 | CMC Min–Max Width Under Nonnegative Scalar Curvature | 0.1263 | 6.0 | 3 | 2022 | already_solved | 1/5 |  | 2026-10-03: Credited Mazurowski–Zhu (2025) strict-width theorem, with an added audited transplantation bridge to the original asymptotic convention; full independent AI audit PASS, no novelty or human-review claim. [Accepted scope and packet](attempts/30005144/PUBLICATION.md). |  |
 | 485 | 30005220 / OWR-11101920-004 | Sylow Restrictions and Character Fields of Values | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 486 | 30005248 / OWR-11695855-001 | Local Complexity of Functional Estimation | 0.1263 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 487 | 2305057 / AMR-022-5057 | Research Problems in Function Theory — Problem 5.57 | 0.1260 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
