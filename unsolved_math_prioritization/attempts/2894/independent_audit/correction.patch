@@ -1,0 +1,86 @@
+--- a/PROOF.md
++++ b/PROOF.md
+@@ -6,15 +6,17 @@
+ 
+ ## Accepted literature inputs
+ 
+-HU, Corollary D (page 5), supplies a finite 2-group G with distinct kernels of the maps κ₂ˢ and κ₂ʰ on H₂(G; Z/2). Corollary 4.9 (page 16) identifies G = SmallGroup(128,1377) as a witness: κ₂ˢ is nonzero and κ₂ʰ is zero. These are accepted source theorems, not computations independently reproduced by this packet.
++HU, Corollary D (page 5), supplies a finite 2-group G with the strict inclusion ker(κ₂ˢ) ⊊ ker(κ₂ʰ) in H₂(G; Z/2). Corollary 4.9 (page 16) identifies G = SmallGroup(128,1377) as a witness: κ₂ˢ is nonzero and κ₂ʰ is zero. These are accepted source theorems, not computations independently reproduced by this packet.
+ 
+ KNV, Theorem C (page 3; proof pages 20–21), states that such a finitely presented group exists exactly when there exist closed oriented smooth four-manifolds that are homotopy equivalent but are not simple homotopy equivalent even after stabilization by S² × S². Its proof produces manifold fundamental group G * G; the finite witness group must not be misreported as the manifold fundamental group. [HU](https://arxiv.org/pdf/2602.05003v1), [KNV](https://arxiv.org/pdf/2405.06637v2).
++
++HU uses the standard oriented involution g ↦ g⁻¹ and L-groups localized at 2. KNV uses the corresponding oriented assembly components into L₄ˢ(ZG) and L₄ʰ(ZG). These are compatible: the source H₂(G; Z/2) has exponent 2, so every assembly image is killed by 2 and localization at 2 preserves its vanishing. Thus HU’s statement supplies the integral kernel inequality KNV needs. The degree-two class w used later in KNV is normal 1-type data, not a nontrivial orientation character.
+ 
+ ## Deduction of part (a)
+ 
+ A finite group is finitely presented: introduce one generator u_g for each group element, impose u_1 = 1 and u_g u_h = u_(gh) for every pair. There are finitely many generators and relations, and the evident maps to and from the group are inverse.
+ 
+-Apply this observation to the HU witness. Its unequal kernels satisfy KNV's group hypothesis. KNV consequently gives a smooth closed oriented pair M,N with an actual homotopy equivalence, and with no simple homotopy equivalence after any allowed stabilizations. Taking zero stabilizations excludes a simple homotopy equivalence M → N. Forgetting the extra orientation structure leaves smooth closed four-manifolds satisfying part (a).
++Apply this observation to the HU witness. Its strictly nested kernels satisfy KNV's group hypothesis. KNV consequently gives a smooth closed oriented pair M,N with an actual homotopy equivalence, and with no simple homotopy equivalence after any allowed stabilizations. Taking zero stabilizations excludes a simple homotopy equivalence M → N. Forgetting the extra orientation structure leaves smooth closed four-manifolds satisfying part (a).
+ 
+ The conclusion is an unmarked manifold distinction. KNV's proof checks the obstruction for all normal 1-smoothings, rather than only one marked map. It separates a nonzero mod-2 tertiary class from the zero class of a nullbordant comparison manifold, so orientation reversal does not turn this distinction into zero. This also prevents silently weakening the target to orientation-preserving maps only.
+ 
+--- a/README.md
++++ b/README.md
+@@ -6,8 +6,8 @@
+ 
+ Run:
+ 
+-python verify_packet.py . /path/to/FOUR_MANIFOLD_SIMPLE_2894_AUTHOR_EXTERNAL_MANIFEST.json
++python verify_packet.py . /path/to/FOUR_MANIFOLD_SIMPLE_2894_CORRECTED_EXTERNAL_MANIFEST.json /path/to/FOUR_MANIFOLD_SIMPLE_2894_CORRECTED_SAFE.zip
+ 
+-The same check is supported under python -O. The external manifest binds the verifier and every other packet file, as well as the ZIP. Treat it as a separately retained integrity reference; this is not a cryptographic signature or formal proof assistant. The checker does not fetch sources or validate the cited mathematical theorems.
++The same check is supported under python -O. Omitting the final ZIP argument performs only packet-file and metadata checks, and reports zip_verified false; it does not check the archive. The external manifest binds the verifier and every other packet file, as well as the ZIP. Treat it as a separately retained integrity reference; this is not a cryptographic signature or formal proof assistant. The checker does not fetch sources or validate the cited mathematical theorems.
+ 
+-No publication or independent audit is claimed by this author packet.
++This corrected derivative preserves the author freeze separately. Its literature implication and artifact were independently audited; the cited algebraic L-theory theorems were not independently re-proved. The canonical combined status is unsolved, with one of five approaches used. No publication has been performed by this audit.
+--- a/REPORT.md
++++ b/REPORT.md
+@@ -2,7 +2,7 @@
+ 
+ Checked 6 October 2026. One of five author approaches used. No new solution claimed.
+ 
+-Part (a) has an affirmative prior result, using a 2026 public preprint together with a published reduction. Part (b) is still stated as open in the latest inspected primary manuscript. The combined problem must therefore not be marked fully solved.
++Part (a) has an affirmative prior result, using a 2026 public preprint together with a published reduction. Part (b) is still stated as open in the latest inspected primary manuscript. The combined problem has canonical status unsolved, with 1/5 turns used; the affirmative disposition of part (a) belongs in qualified findings.
+ 
+ The decisive item omitted from the inherited literature triage is Hambleton–Ünlü's [Corollary D](https://arxiv.org/pdf/2602.05003v1#page=5). Combining it with [KNV Theorem C](https://arxiv.org/pdf/2405.06637v2#page=3) yields the required smooth examples. The preprint itself records this consequence. See PROOF.md for the implication and quantifier checks.
+ 
+@@ -10,4 +10,4 @@
+ 
+ [Kupers–Powell v2](https://arxiv.org/pdf/2604.27635v2#page=1), revised 22 July 2026, explicitly retains the h-versus-s question. Its results exclude certain candidate classes, not the unrestricted problem. No negative answer to part (b) is inferred from unsuccessful searching.
+ 
+-The live unsolvedmath page was inaccessible (HTTP 403). The supplied exact-ID record was checked against the actual K3 PDF instead. Its complete inherited report is empty and its background contains literature triage only, so the mandatory prior-work gate passed. No GitHub or queue mutation was performed by this author.
++The live unsolvedmath page was inaccessible (HTTP 403). The supplied exact-ID record was checked against the actual K3 PDF instead. Its complete inherited report is empty and its background contains literature triage only, so the mandatory prior-work gate passed. No GitHub or queue mutation was performed by the author or this audit. The original author freeze is preserved; the corrected derivative changes canonical status and adds explicit assembly-map scope.
+--- a/status.json
++++ b/status.json
+@@ -1,7 +1,7 @@
+ {
+   "problem_id": 2894,
+   "problem_number": "KP-4.18",
+-  "disposition": "partially_solved",
++  "disposition": "unsolved",
+   "part_a": "prior_affirmative_result_public_preprint_plus_published_reduction",
+   "part_b": "unresolved_in_checked_current_primary_literature",
+   "full_problem_solved": false,
+@@ -9,6 +9,8 @@
+   "turns_used": 1,
+   "turn_limit": 5,
+   "stop_reason": "Prior resolution of part (a) verified; no novel proof search continued. Part (b) kept explicitly unresolved.",
+-  "audit_status": "author_packet_awaiting_independent_audit",
+-  "suggested_queue_findings": "(a) affirmative via Hambleton-Unlu, arXiv:2602.05003, Cor. D, and KNV Theorem C, even after S^2 x S^2 stabilization; (b) remains open in Kupers-Powell v2 (2026-07-22). Prior result; no novelty."
++  "audit_status": "independently_audited_literature_implication",
++  "suggested_queue_findings": "(a) Prior affirmative result from HU arXiv:2602.05003v1 Cor. D/4.9 and KNV Theorem C: smooth closed examples with fundamental group G*G, not simple homotopy equivalent even after S^2 x S^2 stabilization. Accepted as a cited-theorem implication; HU L-theory computations not independently reproduced. (b) Explicitly open in Kupers-Powell v2 (2026-07-22). Combined problem unsolved; 1/5 turns; no novelty.",
++  "queue_status": "unsolved",
++  "mathematical_acceptance": "part_a_theorem_dependent_implication_accepted_part_b_unresolved"
+ }
+--- a/verify_packet.py
++++ b/verify_packet.py
+@@ -35,7 +35,7 @@
+         require(item['sha256']==sha(b),'Digest mismatch: '+item['path'])
+     s=read_json(root/'status.json')
+     require(s['problem_id']==2894 and s['problem_number']=='KP-4.18','Problem identity mismatch')
+-    require(s['disposition']=='partially_solved','Combined disposition must preserve partial status')
++    require(s['disposition']=='unsolved' and s['queue_status']=='unsolved','Combined problem and queue must remain unsolved')
+     require(s['part_a']=='prior_affirmative_result_public_preprint_plus_published_reduction','Part (a) scope mismatch')
+     require(s['part_b']=='unresolved_in_checked_current_primary_literature','Part (b) must remain unresolved')
+     require(s['full_problem_solved'] is False and s['new_solution_claimed'] is False,'Unsupported solution claim')

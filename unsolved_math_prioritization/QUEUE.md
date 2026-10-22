@@ -925,7 +925,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 914 | 2851 / KP-3.53 | Kirby Problem 3.53 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 915 | 2868 / KP-3.70 | Kirby Problem 3.70 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 916 | 2875 / KP-3.77 | Kirby Problem 3.77 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 917 | 2894 / KP-4.18 | Kirby Problem 4.18 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 917 | 2894 / KP-4.18 | Kirby Problem 4.18 | 0.0960 | 5.5 | 3 | unknown | unsolved | 1/5 |  | (a) Prior affirmative result: HU arXiv:2602.05003v1 Cor. D/4.9 + KNV Theorem C gives smooth closed homotopy-equivalent examples with fundamental group G*G and no simple equivalence even after S^2 x S^2 stabilization. Accepted cited-theorem implication; HU is a public preprint; no independent L-theory/GAP certification. (b) Explicitly open in Kupers-Powell v2 (2026-07-22). Combined unsolved; no novelty. |  |
 | 918 | 2910 / KP-4.34 | Kirby Problem 4.34 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 919 | 2928 / KP-4.52 | Kirby Problem 4.52 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 920 | 2931 / KP-4.55 | Kirby Problem 4.55 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
