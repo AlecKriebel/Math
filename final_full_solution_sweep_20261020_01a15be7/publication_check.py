@@ -12,11 +12,28 @@ from pathlib import Path
 import re
 import subprocess
 import urllib.request
+from urllib.parse import urlsplit, unquote
 import zipfile
 from sweep_io import atomic_json
 
 ROOT=Path(__file__).resolve().parent
 SHEET='1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20'
+
+
+def zenodo_dois(value):
+    """Version DOI leads in a primary cell, including equivalent URL forms."""
+    text=re.sub(r'^doi:\s*','',str(value).strip(),flags=re.I)
+    match=re.fullmatch(r'10\.5281/zenodo\.(\d+)',text,re.I)
+    if match:return {'10.5281/zenodo.'+str(int(match.group(1)))}
+    parsed=urlsplit(text)
+    if parsed.scheme.lower() not in {'http','https'} or parsed.username or parsed.password:return set()
+    path=unquote(parsed.path).strip('/')
+    if parsed.hostname in {'doi.org','dx.doi.org'}:
+        match=re.fullmatch(r'10\.5281/zenodo\.(\d+)',path,re.I)
+    elif parsed.hostname in {'zenodo.org','www.zenodo.org'}:
+        match=re.fullmatch(r'(?:api/)?(?:record|records)/(\d+)',path,re.I)
+    else:return set()
+    return {'10.5281/zenodo.'+str(int(match.group(1)))} if match else set()
 
 
 def get(url):
@@ -34,10 +51,15 @@ def main():
     parser.add_argument('--download',action='store_true')
     args=parser.parse_args()
     if args.pr<9:raise RuntimeError('Outside sweep scope')
+    inventory=json.loads((ROOT/'rest_inventory.json').read_text())
+    pr_metadata=next(p for p in inventory['pull_requests'] if p['number']==args.pr)
+    # A DOI in a PR is a lead, not a scientific-identity verdict. Older tracker
+    # notes may identify the original source but omit both numeric catalog/PR IDs.
+    body_records={int(v) for v in re.findall(r'10\.5281/zenodo\.(\d+)',pr_metadata['body'] or '')}
     raw=ROOT/'raw'/f'pr{args.pr:04d}'
     if raw.is_symlink() or not raw.resolve().is_relative_to(ROOT):raise RuntimeError('Unsafe output')
     raw.mkdir(parents=True,exist_ok=True)
-    params={'spreadsheetId':SHEET,'range':"'Math Puzzles'!A1:AQ1169",'valueRenderOption':'FORMATTED_VALUE'}
+    params={'spreadsheetId':SHEET,'range':"'Math Puzzles'!A:AQ",'valueRenderOption':'FORMATTED_VALUE'}
     value=json.loads(subprocess.run(['gws','sheets','spreadsheets','values','get','--params',json.dumps(params)],capture_output=True,text=True,check=True).stdout)
     now=dt.datetime.now(dt.timezone.utc).isoformat()
     atomic_json(raw/'ledger_live.json',{'checked_at':now,'response':value})
@@ -51,8 +73,11 @@ def main():
             if re.search(r'(?<!\d)'+re.escape(identifier)+r'(?!\d)',joined):reasons.append('problem_id:'+identifier)
         for term in args.term:
             if term.casefold() in joined.casefold():reasons.append('term:'+term)
+        if len(row)>=3:
+            if zenodo_dois(row[2]) & {'10.5281/zenodo.'+str(v) for v in body_records}:
+                reasons.append('PR_body_DOI_primary_column_lead')
         if reasons:matches.append({'row':n,'values':row,'reasons':reasons})
-    records=set(args.record)
+    records=set(args.record)|body_records
     for match in matches:
         for s in match['values']:
             records.update(int(v) for v in re.findall(r'10\.5281/zenodo\.(\d+)',str(s)))

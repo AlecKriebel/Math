@@ -1,0 +1,11 @@
+# Independent original/prior review log
+
+2026-10-22T12:10:42.871631+00:00 — family5%, parent80%. Began PR1345 original/canonical-tight counterexample/priority audit. Fresh current GWS duplicate check completed before substantive mathematics. Dedicated folder and6MiB cap; no shared Git/provider mutations. Earlier sealed audits preserved.
+
+2026-10-22T12:17:39.329870+00:00 — family65%, parent80%. Actual OSError28 disk-full during new public-priority receipt. Freed only this unsealed audit’s three PNG renders after successful visual reading; selected primary PDFs remain. Found and read Ferudun2026§§2–4 full indexed negative, so bounded bibliography now has actual public full-target coverage. DOI/date authentication pending. Earlier seals untouched.
+
+2026-10-22T12:20:38.788034+00:00 — family85%, parent80%. Full real/all-space indexed counterexample independently accepted. New rational sparse polynomial computation with full norm-tail certificate gives scalar defect about0.004999812496;99 basis controls and three deliberate mutations pass/reject identically in normal/-O/-OO. Public Ferudun preprint indexed core checked, DOI independently findable/active in DataCite, registered17Oct2026. Original historical full-priority remains unadjudicated; public full-target coverage now verified.
+
+2026-10-22T12:25:08.230322+00:00 — family95%, parent80%. Complete report/source index/explicit proposed literature-status row written. New public full-target DOI confirmed independently through DataCite; indexed proof coverage checked. No fatal gap in PR proof, no inference of priority over private14October manuscript, no novelty claim. Current literature finding updates historical bounded-search record rather than retroactively blaming it for later publication. Preparing closed seal.
+
+2026-10-22T12:25:55.102887+00:00 — family100% of assigned audit, parent80%. Complete mathematical proof audit, original visual/source recovery, current public full-target priority match and literal proposed row finished. Closing exact member/hash seal and read-only replay. Proof valid; currently published full indexed negative DOI verified; historical discovery precedence not determined. Prior sealed audits untouched; no provider/Git/publication writes.

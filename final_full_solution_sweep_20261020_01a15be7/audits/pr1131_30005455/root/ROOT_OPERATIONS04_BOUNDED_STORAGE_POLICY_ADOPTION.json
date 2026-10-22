@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-22T06:20:26.048388+00:00",
+  "root_adopted": true,
+  "publication_ready": false,
+  "scope": "Storage-only preparation policy for fresh operations04_final02; no mathematical, public-operation, source-identity or acceptance gate relaxed.",
+  "basis": {
+    "path": "audits/pr1131_30005455/operations/private/operations04_work/STORAGE_BUDGET_PROPOSAL.json",
+    "bytes": 7986,
+    "sha256": "db8ceea82830f8b703fdce49645b8ca4b1c3ba830b47ca6d10ca41e8d8db236c"
+  },
+  "reviewed_monitor_draft": {
+    "sha256": "680f32eb5cb2e674a651092b12f55aa9a79934f92adb009d4019c40d60ea9b67",
+    "bytes": 6202
+  },
+  "start_threshold_bytes": 360000000,
+  "mode_budget_bytes": 100663296,
+  "archive_hard_cap_bytes": 33554432,
+  "receipt_slack_bytes": 4194304,
+  "actual_free_reserve_bytes": 200000000,
+  "monitor_stop_free_bytes": 218103808,
+  "check_free_seconds": 1,
+  "check_unique_inode_allocated_seconds": 10,
+  "directory_metadata_allowance_bytes": 16777216,
+  "run_policy": "Start only after current complete mirrored input pins and actual free threshold. Stop and preserve on any monitor breach/error, source mismatch or archive cap. Every mode must finish all retained and new checks with unchanged acceptance gates, be fully losslessly archived and independently read back before the next mode. Interrupted final01 retained, never promoted.",
+  "historical_policy": "Previous >=2GB start policy retained as historical. This explicit root adoption uses measured hardlinked allocation and enforced quotas. External concurrent storage consumption can still force interruption.",
+  "archive_policy": "Count compressed output before each write with hard32MiB cap, check actual free reserve each block, preserve originals and partial archive on failure. Unlink only exact own completed run after every member/content/hash/mode/nsmtime and stable source snapshot checks. No unrelated files touched.",
+  "fresh_independent_review_still_required": true,
+  "current_free_bytes": 728375296
+}

@@ -1,0 +1,5 @@
+# PR #1222 full prior theorem, provisional
+
+Missing-status PR explicitly claims the full EP306 rational theorem, with distinct squarefree semiprime denominators, from Shisheng Li September2026. Root read the entire written-proof reconstruction and ACCEPTANCE, including rational reduction, CRT normalization, coherent/minor bounds and eventual cutoffs. Fresh GWS191rows has no matching record. Earlier Tang20767390 is published/DOI200; its111-member source ZIP verified for integrity, while its formal theorem/dependencies/build remain unaudited. Fresh independent full original/written theorem/analytic input/publication identity audit assigned. Do not republish either prior result or call a conditional/uninspected formal project independently verified.
+
+The Li written theorem is the preferred candidate for one existing-publication row if independently proved; Tang is earlier provenance to credit without inventing a second distinct result. Root has not yet accepted the full analytic supplement or primary written proof. Eight actual paths bound, no QUEUE status supplied. Completion79%.

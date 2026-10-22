@@ -1,0 +1,298 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable,geometry,hyperref}
+\geometry{margin=1in}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}\newcommand{\Q}{\mathbb Q}\newcommand{\Z}{\mathbb Z}
+\newcommand{\relint}{\operatorname{relint}}\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Del}{\Delta}\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\bits}{\operatorname{bits}}\newcommand{\poly}{\operatorname{poly}}
+\title{Polynomial bit complexity of one-row\newline Gomory--Johnson extremality}
+\author{Alec Kriebel\\Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{22 October 2026\quad Version 1.0.0, prepublication review copy}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a deterministic polynomial bit-time decision procedure for extremality of a periodic one-row minimal valid piecewise-linear function specified by a sparse rational list of breakpoints, point values and one-sided limits. Discontinuity from both sides of the origin is allowed. Competitors are all standard nonnegative valid functions, without a regularity or grid restriction. The proof combines the complete fourfold-grid criterion of Basu, Hildebrand and K\"oppe with the interval-orbit algorithms of Agol, Hass and Thurston. Slopes, jumps and point spikes compress the tight system into three signed interval-pairing systems and polynomially many residual equations. A two-sheet component count computes their free dimension. A dimension cutoff, prefix searches and nonnegative weighted orbit counts recover only the coefficients needed for a polynomial-size rank test. We prove the finite-grid-to-real-additivity bridge and retain all endpoint traces. The procedure is theoretical; the accompanying exact finite diagnostics do not implement its compressed orbit-counting stage. Historical priority of the combined reduction is not certified.
+\end{abstract}
+
+\section{Problem, encoding and statement}
+Fix $f\in\Q$ with $0<f<1$. The one-row group relaxation consists of finitely supported functions $y:\R\to\Z_{\geq0}$ with
+\[
+ \sum_{r\in\R}r y(r)\in f+\Z.
+\]
+A \emph{valid function} is a function $\pi:\R\to\R_{\geq0}$ such that $\sum_r\pi(r)y(r)\geq1$ for every such $y$. It is minimal if no distinct valid function is pointwise at most $\pi$. It is extreme if $\pi=(\pi_1+\pi_2)/2$ with valid functions $\pi_1,\pi_2$ implies $\pi_1=\pi_2=\pi$. No measurability, continuity, piecewise linearity or grid condition is imposed on these competitors. The standard nonnegative-function convention is essential.
+
+The input is promised to be a $\Z$-periodic minimal valid function, piecewise affine on the open intervals of a sorted rational partition
+\[
+ 0=b_0<b_1<\cdots<b_m=1.
+\]
+For each interval its endpoint limits are rational; at each breakpoint its actual point value is separately specified and rational. Periodic endpoint data agree. Thus two-sided discontinuities and point values unequal to both limits are included. Integers in reduced numerator/positive-denominator pairs are binary encoded. Let $L$ be the total length of this list and of $f$. Redundant breakpoints are permitted. In particular, the size is the sparse presentation size, not the length of a common-denominator grid.
+
+\begin{theorem}\label{thm:main}
+On this promised input class, extremality is decidable by a deterministic algorithm in $\poly(L)$ bit operations. Both one-sided limits of $\pi$ at zero may differ from $\pi(0)$. The decision is extremality against all valid functions defined above.
+\end{theorem}
+
+K\"oppe's 2014 Oberwolfach contribution, printed p.~2899, describes the first one-row extremality algorithms as pseudopolynomial and asks whether this is optimal \cite{OWR}. The all-rational polynomial-versus-strongly-polynomial formulation also appears in the introduction of \cite{BHK}. The sparse encoding above makes the ordinary bit-time alternative precise; the short OWR question itself does not specify an encoding. Theorem~\ref{thm:main} does not establish strong polynomiality, an irrational-input result, a higher-dimensional result, a practical implementation or a short dense perturbation output.
+
+The proof uses two established algorithmic results, stated in Section~\ref{sec:imports}. The compression and its coefficient recovery are proved here. Parts~V and VII of the equivariant-perturbation program supply substantial preceding grid-free theory \cite{PartV,PartVII}; Section~\ref{sec:priority} explains the precise comparison and the inaccessible Part~VIII boundary. No claim of historical firstness is made.
+
+\section{Two established inputs}\label{sec:imports}
+A periodic grid piecewise-linear function has an independent affine expression on every open grid interval and an independent value at every grid point. For a cell $F$ of the two-dimensional arrangement $x\in I$, $y\in J$, $x+y\in K$, let
+\[
+ \Del\pi_F(x,y)=\pi_I(x)+\pi_J(y)-\pi_K(x+y)
+\]
+be the affine extension of its actual relative-interior expression. The notation retains the incident cell: different cells can give different limits at one geometric point.
+
+Let $q$ be any common denominator of the input breakpoints and $f$, and put $N=4q$. Define $\mathcal H_N$ to be the space of arbitrary periodic $N$-grid piecewise-linear functions $h$ with $h(0)=0$. The \emph{complete homogeneous tight system} on this space is
+\begin{equation}\label{eq:full}
+ h(f)=0,\qquad
+ \Del h_Q(v)=0\quad\text{whenever }v\in\operatorname{vert}(\overline Q),\quad
+ \Del\pi_Q(v)=0,
+\end{equation}
+for every refined relative cell $Q$ in $[0,1]^2$, including edges and singletons. Here the affine expression is chosen from the indicated cell. Periodicity includes $h(1)=h(0)$. This is the homogeneous form of system~(10) of \cite{BHK}, including its singleton variables and all limiting incidences.
+
+\begin{lemma}[Complete-grid criterion]\label{lem:BHK}
+The input $\pi$ is extreme if and only if \eqref{eq:full} has zero kernel in $\mathcal H_N$.
+\end{lemma}
+\begin{proof}
+For the least denominator of the breakpoints, this is precisely \cite[Theorem~4.11]{BHK}, which expressly allows discontinuous functions and imposes no one-sided-origin continuity hypothesis. Its system~(10) and Theorem~3.2 include independent point values. The conclusion is unrestricted extremality, not extremality among grid functions.
+
+The same statement holds for any common multiple $q$: if $\pi$ is nonextreme, the least-denominator criterion and \cite[Theorem~3.2]{BHK} provide a nonzero effective piecewise-linear perturbation on its fourfold grid. It remains piecewise linear on the finer $N$-grid; convexity forces all tight equations, including limits, on that refinement. If the finer system has a nonzero kernel, Theorem~3.2 applied on that grid proves nonextremality. Thus adding $f$ or redundant breakpoints is harmless.
+\end{proof}
+
+An \emph{integer interval pairing} is an increasing or decreasing isometry between two integer subintervals of $\{0,\ldots,M-1\}$. Its generated equivalence classes are its orbits.
+
+\begin{lemma}[Agol--Hass--Thurston interface]\label{lem:AHT}
+For $p$ binary-encoded interval pairings on an $M$-point interval, the number of orbits is computable in $\poly(p,\log M)$ bit time. If a nonnegative integer vector weight of dimension $d$ is constant on a partition into $a$ intervals, weighted orbit sums are computable in grouped form in time polynomial in $p,a,d,\log W,\log M$, where $W\geq2$ bounds the initial list weight. Each output item gives a weight vector and the number of orbits carrying that vector; the list is polynomially encoded.
+\end{lemma}
+\begin{proof}[Source and output convention]
+These are \cite[Theorems~12 and 16]{AHT}. At the beginning of its Section~6 the output list $L'$ explicitly represents $s-r+1$ equal-weight orbits by a single interval $[r,s]$. Theorem~16's informal wording about one point per orbit is read with this grouped-list definition and its algorithm. Its statement allows $a$ arbitrary constant-weight pieces; the preceding motivating $4p$ bound is not a further hypothesis. We use nonnegative coordinates only. Neither the orbit-counting algorithm nor the weighted theorem is a new result of this note.
+\end{proof}
+
+\section{A local coordinate system}
+Write $t_k=k/N$, with cell and point indices reduced modulo $N$. For a grid function $h$, put
+\[
+ s_i=\text{slope on }(t_i,t_{i+1}),\quad
+ J_k=h(t_k+)-h(t_k-),\quad
+ P_k=h(t_k)-\frac{h(t_k+)+h(t_k-)}2.
+\]
+We call $P_k$ the point spike. Normalization gives
+\begin{equation}\label{eq:origin}
+ h(0-)=-J_0/2-P_0,\qquad h(0+)=J_0/2-P_0.
+\end{equation}
+For $1\leq k<N$,
+\begin{align}
+ h(t_k-)&=h(0+)+\frac1N\sum_{0\leq i<k}s_i+\sum_{1\leq j<k}J_j,\label{eq:trace}\\
+ h(t_k)&=h(t_k-)+J_k/2+P_k,\qquad
+ h(t_k+)=h(t_k-)+J_k.\nonumber
+\end{align}
+The remaining condition is
+\begin{equation}\label{eq:period}
+ \frac1N\sum_{i=0}^{N-1}s_i+\sum_{k=0}^{N-1}J_k=0.
+\end{equation}
+
+\begin{lemma}\label{lem:coords}
+Arrays $(s,J,P)\in\R^{3N}$ satisfying \eqref{eq:period} correspond bijectively, by \eqref{eq:origin}--\eqref{eq:trace}, to $\mathcal H_N$.
+\end{lemma}
+\begin{proof}
+The formulas reconstruct the successive interval limits and actual point values, beginning with $h(0)=0$. The total change around the period is the sum of integrated slopes and jumps; \eqref{eq:period} makes the final left limit agree with \eqref{eq:origin}. Conversely every grid function obeys these equations. Slopes, jumps and point spikes recover its arrays uniquely.
+\end{proof}
+
+We first impose local signed identifications separately on $s,J,P$, retaining \eqref{eq:period} as a residual equation. Until compatibility is imposed these arrays are formal coordinates with the displayed cyclic trace formulas. Every array surviving the residual system is an actual periodic function by Lemma~\ref{lem:coords}. No regularity is imposed on the unrestricted competitors from Section~1.
+
+\section{Sparse faces and endpoint sectors}\label{sec:faces}
+Add $f$ to the sparse partition. Use the lines $x=b$, $y=b$, $x+y=b$, with the necessary integer translates over $[0,1]^2$. Equivalently enumerate triples of open partition intervals or singleton cells, retaining only nonempty sets
+\begin{equation}\label{eq:relcell}
+ F^\circ=\{(x,y):x\in I^\circ,\ y\in J^\circ,\ x+y\in K^\circ\}.
+\end{equation}
+An interval state is open; a singleton state is its actual point value. The closure $F$ is a convex polygon, segment or point, and the relative-interior trace is fixed by \eqref{eq:relcell}. Empty relative-interior triples are discarded even when their closed intersection is nonempty. This avoids inventing an unrealizable trace.
+
+There are $\poly(m)$ such cells and incidences; the conservative enumeration bound $O(m^3)$ suffices. All closure vertices and projection endpoints belong to $q^{-1}\Z$: the intersecting normals are $(1,0),(0,1),(1,1)$ and nonzero determinants are $\pm1$. The input slack on each $F$ is affine and nonnegative. Its zero set is empty, a vertex, a supporting edge, or all of $F$.
+
+For $u\in q^{-1}\Z$, write $h(u^0)=h(u)$, $h(u^+)=h(u+)$, $h(u^-)=h(u-)$. At every vertex $v=(v_x,v_y)$ of $F$ with zero incident input slack, retain the equation
+\begin{equation}\label{eq:sector}
+ h(v_x^{\sgn d_x})+h(v_y^{\sgn d_y})-
+ h((v_x+v_y)^{\sgn(d_x+d_y)})=0
+\end{equation}
+for each feasible direction $d$ in the following fixed list:
+\begin{align*}
+ &(0,0),\ (1,0),\ (0,1),\ (-1,0),\ (0,-1),\ (1,-1),\ (-1,1),\\
+ &(1,1),\ (-1,-1),\ (2,-1),\ (1,-2),\ (-2,1),\ (-1,2).
+\end{align*}
+Feasible means $v+\epsilon d\in F^\circ$ for every sufficiently small $\epsilon>0$; the zero direction is used for a singleton cell only. The three lines $d_x=0$, $d_y=0$, $d_x+d_y=0$ divide the direction plane into six cones, six rays and the origin. The list contains one representative of each type. Feasibility and the three trace choices are constant within a type, so these thirteen representatives are complete. In particular, rays with one coordinate or the sum fixed retain actual point values. Testing only the six open cones would lose those equations.
+
+The equations \eqref{eq:sector}, \eqref{eq:period} and $h(f)=0$ form the residual system. Let $K$ be its number of rows, including duplicates if convenient. Then $K=\poly(m)$. A trace from the left of zero is represented at the endpoint one of a periodic copy; corresponding copies for $x,y,x+y$ retain every origin-side incidence.
+
+\section{Exact local compression}\label{sec:local}
+We give both directions of the equivalence with \eqref{eq:full}. A pairing on slopes has positive sign even when its geometric map reverses order. The point families $J,P$ have different reflection rules.
+
+\subsection{A fully zero two-dimensional face}
+\begin{lemma}[Finite equations first imply real additivity]\label{lem:bridge}
+If $\Del\pi_F\equiv0$ on a two-dimensional coarse cell, the complete refined tight equations imply
+\[
+ h(x)+h(y)=h(x+y)\qquad ((x,y)\in F^\circ).
+\]
+Consequently $h$ is affine with a common slope on the three open projection intervals of $F^\circ$.
+\end{lemma}
+\begin{proof}
+Intersect the coarse cell with the complete $N$-grid arrangement. On every refined open polygon, open edge and singleton in $F^\circ$, the relevant $h$-slack is an affine expression. The input expression is zero. All vertices of its closure therefore have zero $h$-slack by \eqref{eq:full}; affine interpolation makes it zero throughout that refined relative cell. These relative cells partition $F^\circ$, including artificial grid lines and their singleton intersections. Hence the displayed equation holds at every real point of $F^\circ$, with actual point values on those artificial lines.
+
+The finite piecewise-linear function $h$ is bounded. On a small open rectangle inside $F^\circ$, the bounded interval lemma makes its three projected restrictions affine with a common slope; see \cite[Lemma~1.7 and the patching in Lemma~4.1]{BHK}. This elementary result applies to a real identity on a rectangle, not to finite samples. Rectangles along a line segment inside the convex $F^\circ$ can be chosen in a finite overlapping chain. Overlap identifies their slopes and affine expressions. Every point in each open projection is attained by an interior point and has such a rectangle. This patches to the full open projections.
+\end{proof}
+
+Thus all cell slopes inside each projection, and across the three projections, agree. At all grid points strictly inside these projections impose $J=P=0$. Conversely those conditions make $h$ affine on each open projection with the common slope, so its slack is constant on $F^\circ$. One feasible inward endpoint equation \eqref{eq:sector} sets this constant to zero. Retaining all endpoint equations also preserves the distinct boundary traces.
+
+\subsection{An actual additive edge}
+For a vertical or horizontal coarse edge the identity has the form
+\[
+ h(u+t)-h(u)-h(t)=0.
+\]
+On the variable open interval impose equality of paired slopes, paired jumps and paired spikes. Slopes make the expression constant on every elementary open segment. Its jump across $u=k/N$ is $J_{Nt+k}-J_k$, and its actual value minus the average of its two limits is $P_{Nt+k}-P_k$. Equalities of $J$ and $P$ make one constant valid across all interior grid points. An endpoint sector fixes it to zero.
+
+For a diagonal coarse edge the identity is
+\[
+ h(u)+h(t-u)-h(t)=0.
+\]
+Paired slopes agree. Crossing $u=k/N$ upward crosses $t-u$ downward, so the expression's jump is $J_k-J_{Nt-k}$ and its actual-point deviation is $P_k+P_{Nt-k}$. Hence paired jumps agree but paired spikes are negatives. The cell and point maps are respectively
+\begin{equation}\label{eq:reflect}
+ i\longmapsto Nt-i-1,\qquad k\longmapsto Nt-k\pmod N.
+\end{equation}
+These conditions again give constancy on the whole actual open edge, with endpoints handled residually. Necessity follows by subtracting adjacent traces of the complete edge identity. The real identity on the edge itself follows first by affine interpolation on every refined open edge and singleton, as in the first paragraph of Lemma~\ref{lem:bridge}.
+
+\subsection{A limiting zero boundary edge}
+Suppose a two-dimensional incident cell has nonnegative slack with a whole boundary edge zero. Its interior need not be additive. Impose equality of paired slopes and force $J=P=0$ strictly inside \emph{both} variable projections of this edge.
+
+Here is why the stronger regularity is necessary. For a vertical boundary $x=t$ approached from $x>t$, fix an interior artificial grid point $y=u$, $z=t+u$, and put $A=h(t+)$. Refined incident vertices give the three feasible inward trace equations
+\[
+ A+Y^- -Z^-=0,\quad A+Y^+-Z^+=0,\quad A+Y^- -Z^+=0.
+\]
+The third uses small $x-t>0$ and $y-u<0$ with unequal magnitudes. Subtraction forces both variable jumps to zero. The inward rays $y=u$ and $x+y=z$ give
+\[
+ A+Y^0-Z^+=0,\qquad A+Y^--Z^0=0,
+\]
+forcing both spikes to zero. All are tight refined vertex equations: their incident refined cells approach the zero boundary point from the specified coarse cell. Exchanging coordinates proves the horizontal case; reversing the inward side reverses the signs.
+
+For a diagonal boundary $x+y=t$ approached from above, the $(++),(+-),(-+)$ pairs of variable side choices yield
+\[
+ X^++Y^+-h(t+)=0,\quad X^++Y^--h(t+)=0,\quad
+ X^-+Y^+-h(t+)=0.
+\]
+They force both jumps to zero; the inward rays with $x$ or $y$ fixed force both spikes to zero. The opposite side is identical with signs reversed. Along elementary open segments the limiting identity forces equality of paired slopes. Conversely this regularity and paired slopes make the limiting edge expression constant. Its endpoint equations fix the constant to zero.
+
+\subsection{Exhaustion and integer encoding}
+\begin{proposition}\label{prop:compression}
+On $\mathcal H_N$, the complete system \eqref{eq:full} is equivalent to the above three independent families of signed interval-pairing equations and forced-zero ranges, together with the residual system. The descriptions have polynomial size in $L$.
+\end{proposition}
+\begin{proof}
+Necessity was proved for zero two-faces, actual zero one-faces, incident limiting zero edges, and all zero vertices. These exhaust the possibilities: a nonnegative affine function on a polygon has no other kind of zero set. A refined tight vertex lies in the relative interior of one of these zero strata or at its endpoint. In the first cases the local conditions make every required actual or limiting slack vanish throughout that stratum. At endpoints the feasible sector equations give every refined trace. Isolated zeros contribute only these sector equations. This proves sufficiency, including all artificial grid points, all incident limits and all singleton values.
+
+For encoding, a projection $(a/N,b/N)$ has slope cells $a,\ldots,b-1$. Joining all its slopes uses the single pairing $[a,b-2]\to[a+1,b-1]$, if this range is nonempty; two singleton links join representatives of three projections. Its strictly interior point range is $[a+1,b-1]$, on which $J,P$ are forced to zero. Translation edges give translated equal-length ranges. Reflection uses the two maps in \eqref{eq:reflect}, with positive sign for slopes and jumps and negative sign for spikes. Limiting zero edges use positive slope pairings and zero ranges in both variable projections. Empty or singleton ranges are treated directly. Periodic wrapping splits each description into a bounded number of ordinary integer intervals. Every endpoint is a binary integer with $O(\log N)$ bits, and there are $\poly(m)$ descriptions.
+\end{proof}
+
+For reference, the local rules are summarized below. Endpoint equations are retained in every row.
+\begin{center}\small
+\begin{tabular}{llll}
+\toprule
+Zero stratum & Slopes & Jumps & Point spikes\\
+\midrule
+Whole two-face & common on projections & zero inside & zero inside\\
+Actual translated edge & paired equal & paired equal & paired equal\\
+Actual reflected edge & paired equal & paired equal & paired opposite\\
+Limiting boundary edge & paired equal & both zero inside & both zero inside\\
+Isolated vertex & residual only & residual only & residual only\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Signed interval systems in binary size}\label{sec:signed}
+Consider one family $z_0,\ldots,z_{N-1}$ with equations
+\begin{equation}\label{eq:signed}
+ z_{g(i)}=\sigma_g z_i,\qquad \sigma_g\in\{1,-1\},
+\end{equation}
+on polynomially many integer interval pairings, and $z_i=0$ on polynomially many integer ranges. The geometric orientation of $g$ is independent of $\sigma_g$.
+
+Forget signs to get a graph with $c$ components. Form its two-sheet graph on $(i,e)$, $e\in\{+1,-1\}$, with edges
+\[
+ (i,e)\sim(g(i),\sigma_g e).
+\]
+Put the sheets in consecutive integer blocks. Each lifted edge family is again an interval pairing; for every forced-zero range add $(i,+1)\sim(i,-1)$. Let its component count be $\widetilde c$.
+
+\begin{lemma}\label{lem:dim}
+The solution space of \eqref{eq:signed} with the forced zeros has dimension $d=\widetilde c-c$, computable in polynomial bit time.
+\end{lemma}
+\begin{proof}
+In an underlying component with consistent signs, choosing one value determines all others up to its propagated sign. Without a forced zero this is one free scalar; the lift has two components. A negative cycle identifies the two sheets and forces the scalar to zero. A forced-zero flip does the same. These components have one lifted component and no free scalar. Summing the differences proves the formula, including isolated vertices and singleton pairings. Lemma~\ref{lem:AHT} computes the two counts. Counts are at most $2N$, hence have $O(\log N)$ bits.
+\end{proof}
+
+Apply this to the three local families and write their total dimension as $D=d_s+d_J+d_P$. If $D>K$, the $K$ residual equations leave a nonzero kernel. By Lemma~\ref{lem:coords} and Proposition~\ref{prop:compression}, a nonzero array in that kernel gives a nonzero function in \eqref{eq:full}. Thus $\pi$ is not extreme. No component enumeration or dense function output is needed in this case.
+
+\subsection{At most $K$ representatives by prefix flips}
+Suppose $D\leq K$. Work with one family, initially with its original forced-zero flips. Additional flips are allowed in a separate \emph{search graph}. For $t\in\{0,\ldots,N-1\}$ temporarily add flips on $[0,t]$. The dimension drop is the number of still free components meeting that prefix, and is monotone in $t$. If the current dimension is positive, the least $t$ causing a drop exists. Binary search finds it in $O(\log(N+1))$ calls to Lemma~\ref{lem:dim}. Passing from $[0,t-1]$ to $[0,t]$ adds only vertex $t$, so this first drop is exactly one. Record $r=t$ and permanently add just its singleton flip to the search graph.
+
+Repeat until dimension zero. Exactly $d$ representatives are obtained, one for each free component of the \emph{original} graph, in $O(d\log(N+1))$ calls with only $O(d)$ added pairings. Sum over the three families. The count of calls is polynomial because $D\leq K$. These search flips are discarded for coefficient recovery; retaining them would kill the very basis being reconstructed.
+
+\subsection{Tagged nonnegative weights recover coefficients}
+For each representative $r_j$, normalize the corresponding original free component basis by $z_{r_j}=1$. Its entries are $0,1,-1$. Let $T$ be any polynomial-size set of needed prefix or singleton queries. On the \emph{original} two-sheet graph, give $(r_j,+1)$ its own unit marker coordinate. For a prefix query $t$, add two separate indicator coordinates for
+\[
+ \{(i,+1):0\leq i<t\},\qquad \{(i,-1):0\leq i<t\}.
+\]
+For a singleton query $t$, add the two indicators of $(t,+1)$ and $(t,-1)$. All input weights are nonnegative integers. There are $d+O(|T|)$ coordinates and polynomially many constant pieces, since every coordinate changes at a bounded number of interval endpoints in the concatenated sheets.
+
+Run the weighted algorithm in Lemma~\ref{lem:AHT}. A marker occurs at exactly one physical vertex. Therefore an output group with that marker nonzero has multiplicity exactly one: two orbits with marker weight one would exceed total marker weight one. Its weight vector uniquely identifies the lifted component containing $(r_j,+1)$. That component contains $(i,+1)$ when the $j$th basis coefficient of $z_i$ is $+1$, and $(i,-1)$ when it is $-1$. Consequently
+\begin{equation}\label{eq:counts}
+ \text{plus prefix count}-\text{minus prefix count}
+ =\text{coefficient of basis }j\text{ in }\sum_{i<t}z_i.
+\end{equation}
+The analogous singleton difference gives its coefficient in $z_t$. Exponentially many untagged forced-zero components can remain grouped; they are never expanded. Different selected components have different marker coordinates.
+
+There is no signed-weight extension of AHT here: subtraction occurs only after reading the two nonnegative output coordinates. A safe upper bound on the physical total indicator weight, and thus on initial list weight, is $2N(d+O(|T|))$; its logarithm is polynomial. Theorem~16's grouped output and time bound therefore apply directly.
+
+\section{Assembly and bit complexity}\label{sec:assembly}
+The queries needed in \eqref{eq:origin}--\eqref{eq:trace} are prefixes and singleton evaluations at every projected coarse vertex, $f$, zero, neighboring indices when needed, and full sums. There are polynomially many: endpoint sectors use only coordinates of the sparse arrangement. Prefix differences also recover $\sum_{1\leq j<k}J_j$ by subtracting the zero-index singleton. Modulo-one traces reduce to these same queries.
+
+If $D\leq K$, the recovered coefficients build a rational $K\times D$ residual matrix $A$ in the normalized signed-component basis. Its kernel corresponds bijectively to the kernel of \eqref{eq:full}. Compute its exact rank. The algorithm returns extreme exactly when $\rank A=D$, including $D=0$. The $D>K$ branch already returns nonextreme. This proves correctness by Lemma~\ref{lem:BHK}.
+
+We finish the bit bound rather than infer it from the existence of a finite presentation. The common denominator is an lcm of the encoded positive denominators, so
+\[
+ \log q\leq\sum \log(\text{denominator})=O(L).
+\]
+No $N$-long array is constructed by the theoretical algorithm. Sparse slopes, affine input slacks, cell feasibility signs, zero-support tests and vertices require polynomially many bounded-dimensional rational operations. Differences of rational breakpoints and their inverses have polynomial bit length; so do all such intermediate rational numbers. All pairing endpoints and geometric indices have $O(\log N)=O(L)$ bits. The numbers of cells, pairing descriptions, zero ranges, residual rows, weight pieces and marker/query coordinates are polynomial in $m\leq L$.
+
+Unweighted AHT gives the exact binary counts in polynomial time. The prefix searches use $O(K\log(N+1))$ calls on polynomial-size descriptions. Weighted AHT receives polynomially many constant nonnegative weight pieces with polynomial vector dimension and polynomial $\log W$. Thus all reconstruction calls and their grouped outputs have polynomial encoded size.
+
+Individual signed basis coefficients are $0,\pm1$, and signed prefix sums have absolute value at most $N$. Each trace coefficient is a constant-size combination of such counts, with a division by $N$ or $2$ as in \eqref{eq:origin}--\eqref{eq:trace}. Every matrix denominator divides $2N$ and every numerator has $O(\log(N+1))$ bits. Clearing the common denominator $2N$ gives entries of magnitude $O(N^2)$ and bit length $O(\log(N+1))$. Hadamard's bound gives minor bit length
+\[
+ O\bigl(D(\log(D+1)+\log(N+1))\bigr).
+\]
+Fraction-free exact elimination therefore computes rank in polynomial bit time. Ranks over $\Q$ and $\R$ agree. There is no floating-point rank test or bound on an explicitly tabulated dense perturbation hidden in the argument. Combining these bounds proves Theorem~\ref{thm:main}.
+
+\section{Prior work, validation and provenance}\label{sec:priority}
+The complete fourfold-grid criterion, the bounded interval lemma and its patching are established ingredients of Basu--Hildebrand--K\"oppe \cite{BHK}. AHT supplies the genuine polynomial-time orbit and grouped weighted-output algorithms \cite{AHT}. The present reduction is the connection between these results through local slopes, jumps, point spikes and output-sensitive signed-component reconstruction. The paper does not assert that those tools were invented here.
+
+Hong--K\"oppe--Zhou Part~V \cite{PartV} develops practical grid-free tests and relevant discontinuous-function representations. Hildebrand--K\"oppe--Zhou Part~VII \cite{PartVII} proves finite presentation of rational moves closures (Theorem~72). Its proof is a finiteness argument, and computational details are deferred. Its perturbation decomposition (Theorems~100 and 102) explicitly uses one-sided continuity at zero (Assumption~73); Section~12.2 exhibits failure of that decomposition for two-sided discontinuities. Our proof compresses a finite complete grid system and does not assume regularity of arbitrary effective perturbations. These observations distinguish inspected statements; they are not a claim that no other formulation can give a polynomial algorithm.
+
+Part~VII's bibliography lists Part~VIII, \emph{Grid-free extremality test---general algorithm and implementation}, as a 2021 manuscript; Section~12.1 describes it as forthcoming. The current author research index and bounded public-record searches did not yield a public full body of that manuscript or an authenticated full polynomial-bit theorem covering the input class here. Its unavailable statements are not inferred from its title. Priority remains uncertain, and no historical-first or present-openness claim follows. The separate source-access record in the accompanying archive identifies actual versions, hashes, retrieval dates and reading limits; copyrighted source bodies are not redistributed.
+
+The source archive contains an exact standard-library diagnostic program developed in the preceding project audit, with attribution and its input/output hashes. It compares 277 local dense/structured/joint row spaces, 384 finite signed systems, and four complete finite-grid models, and detects three deliberately wrong local variants. Normal, optimized and doubly optimized Python runs agree. These bounded tests check algebraic mechanisms; they neither implement the compressed AHT stage nor prove the general bit bound. The universal proof is Sections~2--7. The original research artifacts in PR1371, head \texttt{186e1e62c002e27b7c67bd6b2381945f496d4cf9}, are an unpublished proof source, not a previous solution DOI. Preparation/package checks are distinct from new independent whole-package reviews.
+
+\paragraph{Authorship, AI use and status.}
+Alec Kriebel is the named human author. AI tools were used extensively in research planning, mathematical exploration, proof development and reconstruction, computation, source and priority investigation, writing, editing, reproduction and adversarial auditing. This is an unrefereed preprint preparation copy. It has no claimed conventional independent human peer review, journal acceptance or proof-assistant certification; internal AI audits do not provide those. Publication readiness remains false pending two new independent whole-package reviews and adoption of that exact reviewed package.
+
+\paragraph{License.}
+Authored prose and mathematical exposition are licensed under Creative Commons Attribution 4.0 International. Authored code is MIT licensed. Third-party references retain their own rights; their bodies are excluded from the archive.
+
+\begin{thebibliography}{9}
+\bibitem{OWR} M.~K\"oppe, The Gomory--Johnson infinite group problem: A 42-year update, in \emph{Combinatorial Optimization}, Oberwolfach Reports 11 (2014), report~51, pp.~2898--2901, especially p.~2899. \href{https://doi.org/10.4171/OWR/2014/51}{doi:10.4171/OWR/2014/51}.
+\bibitem{BHK} A.~Basu, R.~Hildebrand and M.~K\"oppe, Equivariant perturbation in Gomory and Johnson's infinite group problem. I. The one-dimensional case, \emph{Math. Oper. Res.} 40 (2015), 105--129. \href{https://doi.org/10.1287/moor.2014.0660}{doi:10.1287/moor.2014.0660}. Proof statements inspected in \href{https://arxiv.org/abs/1206.2079v2}{arXiv:1206.2079v2}, especially system~(10), Theorems~3.2 and 4.11.
+\bibitem{AHT} I.~Agol, J.~Hass and W.~Thurston, The computational complexity of knot genus and spanning area, \emph{Trans. Amer. Math. Soc.} 358 (2006), 3821--3850. \href{https://doi.org/10.1090/S0002-9947-05-03919-X}{doi:10.1090/S0002-9947-05-03919-X}. Algorithm statements and grouped output inspected in \href{https://arxiv.org/abs/math/0205057v2}{arXiv:math/0205057v2}, Theorems~12, 16 and Section~6.
+\bibitem{PartV} C.~Y.~Hong, M.~K\"oppe and Y.~Zhou, Equivariant perturbation in Gomory and Johnson's infinite group problem (V). Software for the continuous and discontinuous 1-row case, \emph{Optim. Methods Softw.} 33 (2018), 475--498. \href{https://arxiv.org/abs/1609.04982v2}{arXiv:1609.04982v2}; \href{https://doi.org/10.1080/10556788.2017.1366486}{doi:10.1080/10556788.2017.1366486}.
+\bibitem{PartVII} R.~Hildebrand, M.~K\"oppe and Y.~Zhou, Equivariant perturbation in Gomory and Johnson's infinite group problem. VII. Inverse semigroup theory, closures, decomposition of perturbations, \emph{Open J. Math. Optim.} 3 (2022), article~5, 44~pp. \href{https://doi.org/10.5802/ojmo.16}{doi:10.5802/ojmo.16}. Published body inspected for Theorem~72, Assumptions~73--75, Theorems~100--102 and Section~12.
+\end{thebibliography}
+\end{document}

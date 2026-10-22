@@ -1,0 +1,7 @@
+# PR1213 eligibility scope
+
+2026-10-22T06:05:02.985940+00:00;79%.
+
+OriginaluniformP(A,B)=O(log(A)^2)forfixednumeratorPierceorbitsnotprovedorrefuted. PeriodicdecrementblocksarelogarithmicbutgeneralorbitslackO(logA)totalperiodsum; fixedwordprimepowerobstructionnotirregularwordcontrol. All-pairsCRTrecognitionequivalenceAmin>=exp(csqrtL)transfersthecentralunsupportedgrowthclaim,routeblockedpendingnewmechanism. Foursharpstructuredexamples/loglowerboundandfinite1200/10000scansnotasymptoticcounterexamples. SeparateBaraskarVukusicextinctionindexrepairt−1andLemma21/23fixedjboundsrecoverpriorTheorem3butnotoriginalPiercequestion.
+
+Readwhole19397bytePROOF+4161ACCEPTANCE+body afterfresh191rowGWSnoleads; newmathematical/prioritycertificationnotimplied.

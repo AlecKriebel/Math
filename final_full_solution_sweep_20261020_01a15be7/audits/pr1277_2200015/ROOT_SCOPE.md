@@ -1,0 +1,5 @@
+# PR1277: full unweighted Shapiro negative; one publication family with1270
+
+Root read full PR body and complete8274-byte PROOF.md. Actual Conj10 selects all nonnegative ck=ak²−ak−1ak+1 inclzero andzeroextendedendpoints; seed(1+x)^13(38x²−89x+83) positivecoeff13multiplicityrealroots parity11, correct q8=27/28,q9=140/243,q10=99/100. Explicit10^7rootperturbation13distinctsimplenegative retainspositivecoeff/strict3exclusions, paritydeletionbound≤11. Corrects undefinedsourcek0withoutaddingone, no need finitecoefficienttables/authorcode. Completeclaimedoriginalnegative distinct+mult interpretations.
+
+Credits sameKSV2024 DOI10.1016/j.jmaa.2024.128349 as1270weightedConj9, arxiv2403.12200v1§5p20/originalShapiro1503.05295v1p4. Needfresh independent original/essentialprior/proof/accounting review. Prefer ONEcombinedexistingpublicationrow with both1270/1277 if bothaccepted, no duplicateDOIrows/newpub. FreshGWS09:42:42UTC191rows onlybroadunweightedrow53 ownhafnian23205294, fullmetadataobjects/conclusionsbinaryrationalperfectmatchings/FPRAS distinctfromrealroots/coefficientparitycounterexample; nottargetmatch. All7actualblobs/liveheadbound/noQUEUE. Overall80%.

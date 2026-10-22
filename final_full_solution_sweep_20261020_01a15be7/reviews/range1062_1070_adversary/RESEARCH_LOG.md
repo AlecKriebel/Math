@@ -1,0 +1,10 @@
+# Research log: bounded PR1062–1070 adversary
+
+Completion percentages are estimates for this assigned bounded review only, not the overall sweep.
+
+- 2026-10-21 21:53 UTC — 10%: accepted independent nine-case review; confined writes to its dedicated folder. No external communications or shared/provider mutations authorized or performed.
+- 21:54 UTC — 40%: captured47 parent records; recomputed80 immutable head blobs across nine complete base...head diffs, all missing QUEUE edits; fresh live identities and immutable pushed f48de23 checkpoint match; unique journal rows.
+- 21:55 UTC — 65%: fresh whole A:AQ sheet has180 rows,33 broad semantic leads; both existing DOI records and all five files verified, closed archives77/212 members, all9 submitted originals and metadata matched. Original EMS question PDFs fetched and rendered source pages inspected.
+- 21:57–21:58 UTC — 80%: complete current PDF text/TeX and support scopes inspected. First independent copied replay passed scientific/internal checks but outer raw stderr-size comparison stopped on path-length changes. Exact repeated-path normalization isolated the cause. A second new-copy replay passed all17 checker runs, seven semantic faults rejected in both modes, all212 inputs unchanged. No builder or original evidence executed in place.
+- 22:00 UTC — 90%: second live/sheet recheck confirms all44 scoped records unchanged and both target rows unique/exact. Parent safely advanced through1079; own scope remains1062–1070. No new actionable finding. Historical MathNet raw-response limitation, five unsupported old pointers, UNKNOWN priority and dated workflow flags explicitly retained.
+- 2026-10-21 22:08 UTC — 100% of bounded review: report, machine results and closed manifests prepared; strict offline verifier checked with valid normal/-O/-OO fixtures and19 corrupt variants (41 total passing runs, all read-only). External SHA anchors supplied to parent for independent adoption. No claim of global sweep completion or novel mathematical certification.

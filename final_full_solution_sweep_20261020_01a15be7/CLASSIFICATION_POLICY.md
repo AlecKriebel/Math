@@ -9,8 +9,11 @@
    problem identifier and provenance; an unrelated added table row is not the
    PR's own status.
 3. A later explicit canonical `already_solved`/`unsolved` classification that
-   identifies this PR, together with its current description withdrawing the
-   novel full-solution claim, supersedes a historical `claimed_solved` patch.
+   identifies this PR, together with its current description or a source-bound
+   current closing correction withdrawing the novel full-solution claim,
+   supersedes a historical `claimed_solved` patch. The correction must identify
+   the same original target and its retained refinements; closed state alone
+   supplies no withdrawal.
    Record both states and the published-coverage check. This follows the user's
    instruction to skip explicitly non-claimed-solved problems. An untouched
    generic `queued` main row alone cannot exclude a missing-status PR.
@@ -19,6 +22,10 @@
    solution merely from words such as "prove", "counterexample", or "solution".
    Conversely, an absent QUEUE edit, merged state or draft label cannot exclude
    a complete solution. These cases require an explicit reasoned classification.
+   A malformed claim-like spelling such as `claimed_solved5` is not treated as
+   a usable nonsolution label: inspect whether a turn count was joined to the
+   claim status and classify the actual claim. This conservative interpretation
+   of unusable status formatting protects the user's completeness requirement.
 5. Check the live GWS ledger before substantive candidate work. Compare the
    original problem/aliases, exact mathematical result and hypotheses, title,
    PR references, and DOI/publication evidence. Title or identifier matching

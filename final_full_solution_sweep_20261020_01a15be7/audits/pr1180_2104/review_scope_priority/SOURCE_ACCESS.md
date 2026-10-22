@@ -1,0 +1,10 @@
+# Source access and actual reading limits
+
+* Fresh original Erdős Acta1979 PDF, printed p71 / PDF page1: visually inspected from a local render. It defines the weak barrier inequality, distinct-factor count, and some fixed positive epsilon variant. No full ten-page reading is claimed here.
+* Fresh Lau2604.15042v2 PDF: title/date metadata; Theorem1.3 printed p3 visually inspected; p28 false norm identity visually inspected; p16 uniform prime-sum and p35 signed CRT displays read as extracted text; smoothing hypotheses on p20 read. No complete37-page independent validation is claimed.
+* Fresh Tao–Teräväinen2512.01739v2 PDF: introductory Theorem1.1/Remark1.2 and all of Section2, printed pp11–23, read as extracted text. The full proof section, including normalization, local divisibility estimates and moment deduction, was read for the reflection transfer. No cover-to-cover reading, complete reproof of cited analytic tools, or new peer-review certification is claimed. Latest abstract metadata lists version2 dated25April2026. Its footnote credits Lau for stronger logarithmic refinements; it is not used as an independent proof of those refinements.
+* The official EP413 page/history direct web retrieval returned403. An indexed official history result identifies Lau as answering the epsilon variant. This is contextual corroboration, not the decisive proof or a current global status certificate.
+* Web search also returned third-party candidate summaries. They are not used as mathematical authorities. No outside individual was contacted.
+* All14 immutable PR files were copied and their exact Git blob/SHA256 identities checked. README, acceptance and scope statements, full KERNEL_REPAIR and DISTINCT_OMEGA_RECONSTRUCTION, and multiplicity scope/final chain were read. This does not constitute a complete independent audit of all repaired analytic modules or the earlier reviewers' historical checks.
+
+Primary PDFs, extracted texts and renders are private audit evidence. The public source pins contain URLs and byte identities, not copied third-party content.
