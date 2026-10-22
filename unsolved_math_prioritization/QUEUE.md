@@ -526,7 +526,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 515 | 20002370 / AIM-LOGIC-0146 | Exact alternation depth and variable bounds for two real rational-function fields | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 516 | 20002696 / AIM-PROBABILITY-0138 | Uniform heat convergence, spectral tails, and affiliated innerness | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 517 | 20003004 / AIM-TOPOLOGY-0092 | Digital pi_2, clique realization, and the octahedral sphere | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 518 | 2302005 / AMR-022-2005 | Research Problems in Function Theory — Problem 2.5 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 518 | 2302005 / AMR-022-2005 | Research Problems in Function Theory — Problem 2.5 | 0.1200 | 6.0 | 3 | unknown | already_solved | 1/5 |  | 2026-10-03: Verified known affirmative two-value existence result, Gol’dberg (1968), by his bounded closed at-most-countable-set theorem with A={0,1}. Fresh independent audit passed, including the original proof and Keldysh/Mergelyan approximation hypotheses. No full classification, unbounded extension, or novelty claim. [Verification](attempts/2302005/artifacts/README.md). |  |
 | 519 | 2302054 / AMR-022-2054 | Research Problems in Function Theory — Problem 2.54 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 520 | 2302058 / AMR-022-2058 | Research Problems in Function Theory — Problem 2.58 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 521 | 2304006 / AMR-022-4006 | Research Problems in Function Theory — Problem 4.6 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
