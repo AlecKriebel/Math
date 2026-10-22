@@ -1,0 +1,5 @@
+# PR1276: full prior mutual-multiphase-domination negative
+
+Root read complete PR body/ACCEPTANCE.md/PROOF.md. Original WolanskyOWR7/2017p388 asks mutual common componentwise probability-kernel domination -> deterministic maps both ways, not inverse maps. Interval/square Borel spaces with densities(1,2x)/(1,2u), common vertical probability kernel and reverse projection, allscalar/vectoratomless. Any forward deterministic map forces firstcoordinate x by secondmoments; Borelgraph nullmeasure contradicts pushforward Lebesgue square. Completed-source measurable forward maps also impossible; no simultaneous completed-target kernel extension asserted. Everywhere strictlypositive densityvariant also proved.
+
+Credits Ferudun existing Theorem3.1(1) DOI23107180, exact invertible linear density conversion from(x,1−x). Fresh record title/description/scope agrees, published200resolvingDOI,136320bytePDF/56880ZIP34members/18426report verified CRC/source/code; GWS09:40:40UTC191rows no exactmatch. Existingpublicationmissingrow needs fresh independent original/primaryproof/version/accounting review; no newpublication. All6actualblobs/liveheadbound; missingQUEUE. Overall80%.
