@@ -1862,7 +1862,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1851 | 30005646 / OWR-14297740-018 | Strict Higher Étale-Homotopy Obstructions over Global Fields | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1852 | 30005647 / OWR-14297740-019 | Next-Most-Probable Galois Groups of Random Polynomials | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1853 | 6000013 / AMR-059-0013 | Affine Vertices and Inflection Points | 0.0499 | 5.0 | 3 | 1998 | queued | 0/5 |  |  |  |
-| 1854 | 30005762 / OWR-14298158-007 | Rationality Below Growth Rate Four | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 1854 | 30005762 / OWR-14298158-007 | Rationality Below Growth Rate Four | 0.0497 | 5.5 | 3 | 2024 | unsolved | 5/5 |  | Five approaches exhausted; general conjecture unresolved. Audited known length-three corollary, exact near-four family, filters and certificate methods only; no novelty claim. Av(132) sum-closure correction retained; PP2025 is an announcement, not an audited complete proof. See growth_four_rationality_30005762/RESEARCH_REPORT.md and INDEPENDENT_AUDIT.md. |  |
 | 1855 | 30006081 / OWR-14298796-001 | Adjoint-Free Approximation of Nonsymmetric Low-Rank Matrices | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1856 | 1963 / EP-156 | Erdős Problem #156 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1857 | 20000012 / AIM-ALGEBRAIC_GEOMETRY-0012 | Cox-chart Morse theory for cellular virtual resolutions | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |

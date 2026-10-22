@@ -1,0 +1,7 @@
+# Publication editorial changes
+
+The five mathematical approaches in RESEARCH_REPORT.md are unchanged from the accepted research report (SHA-256 95d4ce96a80a3fe12dd907063a00fada43aff49746fc7572fced849faae3bb4f). Removed its opening private-workflow/dataset-mismatch sentences and replaced its task-local closing sentence with a publication-scope statement. The independent audit has only its task-local scope paragraph adjusted to distinguish original acceptance from publication inventory.
+
+SOURCE_GATE.md omits the dataset-audit/private-file discussion and corrects the false assertion that Av(132) is sum-closed, as explicitly required by the accepted report and audit. Public PDF hashes and byte counts are retained; extraction hashes and private file paths are not published.
+
+Both original check scripts are preserved byte-exact as non-entry-point text in accepted_originals. The shipped executable check scripts convert every assertion to an explicit conditional raise. The verifier checks complete forward AST equivalence and reverse AST equivalence against the accepted originals, including assertion-message expressions and their lazy evaluation. All four original expected result files/check source artifacts are preserved exactly (two sources, two JSON outputs). Both direct check entry points retain mathematical guards under Python -O; verify_package.py replays them in normal and optimized modes and compares full output.
