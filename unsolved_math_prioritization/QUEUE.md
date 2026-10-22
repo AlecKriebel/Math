@@ -762,7 +762,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 751 | 30004429 / OWR-17474-001 | Discontinuities of Two-Sided Specifications | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 752 | 30004491 / OWR-1703871-006 | Infinite Transverse Actions on Codimension-One Foliations | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 753 | 30004494 / OWR-1703871-010 | Boundary-Corrected Ampleness of Extended Hodge Bundles | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 754 | 30004541 / OWR-2654828-006 | Extinction Criteria for the Derrida–Retaux Process | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 754 | 30004541 / OWR-2654828-006 | Extinction Criteria for the Derrida–Retaux Process | 0.1021 | 5.5 | 3 | 2020 | unsolved | 5/5 |  |  |  |
 | 755 | 1200005 / AMR-011-0005 | Some Questions — Question 5 | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 756 | 1929 / EP-100 | Erdős Problem #100 | 0.1020 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 757 | 20000276 / AIM-ALGEBRAIC_GEOMETRY-0276 | Existence for Noetherian filtrations and monomial graded families | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
