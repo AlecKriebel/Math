@@ -1823,7 +1823,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1812 | 3000053 / AMR-029-0053 | Maximum weight bounded fractional matching | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1813 | 3000064 / AMR-029-0064 | Partition median problem | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1814 | 3000080 / AMR-029-0080 | Smooth well-balanced orientations with prescribed in-degrees | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1815 | 30006626 / OWR-14299911-028 | Characterization of Graphical Apiculate and Generalized Median Algebras | 0.0540 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
+| 1815 | 30006626 / OWR-14299911-028 | Characterization of Graphical Apiculate and Generalized Median Algebras | 0.0540 | 5.0 | 3 | 2026 | unsolved | 5/5 |  | Audited partial results only: finite geodetic graphs have graphical apex algebra iff block graphs; exact per-subalgebra edge-rank realization criterion (also infinite graphs); independent graph-atlas checks through order 7 and explicit counterexamples to A9+A11 necessity. Known four-point obstructions credited to Bandelt-Chepoi. Four-point sufficiency and both unrestricted structural characterizations remain unproved. No novelty claim. |  |
 | 1816 | 3039 / OPG-478 | Rainbow AP(4) in an almost equinumerous coloring | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1817 | 3100003 / AMR-030-0003 | For every non-equilateral triangle T, show that it is possible to color the plane with three colors so that there is no | 0.0540 | 5.5 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1818 | 3227 / OPG-401 | Circular coloring triangle-free subcubic planar graphs | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
