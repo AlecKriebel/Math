@@ -1,0 +1,5 @@
+# PR #1219 full existing-result claim, provisional
+
+The PR explicitly claims both original regular positive-capacity real Chebyshev existence questions are fully answered negatively by the existing Alpan-Zinchenko arxiv2608.17321v1 Corollary3.7. Root read complete PROOF and ACCEPTANCE: all-degree bounded monic Widom factors imply finite relative entropy, positive Lebesgue measure and Parreau-Widom. Fresh GWS191rows has no target/result/author/PR/arxiv lead. Current primary landing page identifies v1 and the same exact theorem; source/original retrieval and independent full proof audit remain required. No new paper upload or journal/author-method claim.
+
+The exact eight changed paths/noQUEUE edit are pinned. Scope keeps real compact regular sets and all degrees; no irregular/complex/bounded-subsequence extension. Source proper background inputs are finite-gap potential and entropy facts. Independent subagent assigned when current review capacity frees; root is continuing primary-source retrieval now. Completion estimate79%.
