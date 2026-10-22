@@ -1,0 +1,17 @@
+# Verification boundary and noncircular sealing
+
+The complete corrected mathematics and full authored audit are unchanged. Their historical review, source retrieval, preservation and inspection statements refer to the preceding audit. This packaging pass does not repeat source retrieval or inspection. Public titles, URLs, hashes, byte counts, version/status and inspection history are included; source bodies and full old-report replay are excluded.
+
+Fresh safe-source execution uses actual UID=EUID=1000, normal/-O/-OO, -I -S -B, 0444 files and 0555 directories. Each mathematical child records physical EACCES create and append-open denials. Whole-packet and mathematical-fixture before/after SHA-256/byte inventories must match. These are concrete read-only probes, not a general operating-system sandbox.
+
+The original explicit-exception checker remains unchanged. It repeats 1,482 graph identity checks on five selected subcubic graphs, 6 symbolic identities and 60 rare-event moments. The independent checker remains unchanged and repeats 42,097 exact mathematical checks, 297 numerical diagnostics at 70 decimal digits, and one environment check. The 82 graph inputs and finite or high-precision diagnostics are supporting evidence, not proof of continuum limits or imported theorems.
+
+Nineteen mathematical mutations must fail at their precise intended conditions. Three target the numerical transcription; their failures are numerical diagnostics, not exact proof. The original forced exception is a separate intentional failure. Complete fresh stdout/stderr for all cases are retained in guard references. Stable virtual compile names prevent generating local identifying paths; no captured output is stripped, normalized or rewritten.
+
+The bootstrap is first authenticated by a hash outside the packet. It then fixes the manifest, verifier and controls. The verifier pins each full mode-specific stdout/stderr reference and recursively compares exact JSON types and values. Duplicate keys, NaN/Infinity/overflow, bool/int/float confusion, changed scope, extra output, formatting drift, altered references and unexpected stderr are rejected. Integrity controls mutate every delivered file, test extra/missing files, symlinks, hardlinks, special files, fixed-pin reseal attempts and unauthenticated controls. Hostile import/startup environment tests must reproduce the full baseline bytes.
+
+Python and installed SymPy 1.14.0/mpmath 1.3.0 are a stated trusted dependency boundary. Version checks are not an audit of dependency implementation bytes. DEPENDENCY_RUNNER.py explicitly appends the interpreter's installed purelib path under isolated no-site execution; it does not execute .pth/startup hooks or load dependencies from this packet/current directory. No dependencies are installed or uploaded. Hostile local import tests include sympy.py and mpmath.py. This does not exclude compromise of the trusted interpreter or installed packages.
+
+Pre-seal receipts describe their earlier manifest and are bound by the final manifest. The final external bootstrap is fixed before final testing. Final full-output receipts remain outside the delivered inventory and bind its complete before/after hashes; no receipt hashes itself.
+
+NOT_RUN: historical audit-harness replay, historical patch application, full original-report replay, source-body replay, new source search, dataset replay, formal proof-assistant verification. Remote publication is outside this no-upload candidate-preparation stage.
