@@ -473,7 +473,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 462 | 20002237 / AIM-LOGIC-0013 | Addition with directed p-power divisibility | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 463 | 20002290 / AIM-LOGIC-0066 | A positive-existential definition of nonzero rationals | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 464 | 2561 / KOU-21.52 | Kourovka Notebook Problem 21.52 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
-| 465 | 2566 / KOU-21.57 | Kourovka Notebook Problem 21.57 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 465 | 2566 / KOU-21.57 | Kourovka Notebook Problem 21.57 | 0.1275 | 6.0 | 2 | 2026 | unsolved | 5/5 |  |  |  |
 | 466 | 2569 / KOU-21.60 | Kourovka Notebook Problem 21.60 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 467 | 2580 / KOU-21.71 | Kourovka Notebook Problem 21.71 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 468 | 2607 / KOU-21.98 | Kourovka Notebook Problem 21.98 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
