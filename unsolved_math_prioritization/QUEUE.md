@@ -637,7 +637,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 626 | 30004994 / OWR-9790354-005 | Entropy and Nondiagonal Asymptotic Pairs | 0.1105 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 627 | 30005253 / OWR-11695855-006 | Optimality of Monotonized Asymptotic Risk | 0.1105 | 4.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 628 | 30006276 / OWR-14299284-004 | Multiplicativity of Tautological Chow Projections | 0.1104 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 629 | 30006336 / OWR-14299291-005 | Prismatic Extension of Generic-Point Vanishing | 0.1104 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 629 | 30006336 / OWR-14299291-005 | Prismatic Extension of Generic-Point Vanishing | 0.1104 | 7.0 | 3 | 2025 | unsolved | 5/5 |  | First-order integral divisibility verified; Esnault–Kisin–Petrov extension announced, but full proof not verified here. All-order m-adic separated-target gap remains. [Audited unresolved checkpoint](attempts/30006336/README.md). |  |
 | 630 | 30003296 / OWR-15177-013 | Complete Surfaces inside the Genus-Four Moduli Space | 0.1099 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 631 | 30003592 / OWR-15586-003 | Polyhedrality of Movable Cycle Cones on Toric Varieties | 0.1096 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 632 | 30003644 / OWR-15956-010 | Zero-Free Dirichlet Polynomials on the Unit Line | 0.1096 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
