@@ -1,0 +1,38 @@
+# Independent whole-capsule review of exact instance v 2
+
+No material objection was found within the stated finite parsed-data profile. The v 1 idempotent final-ledger escape is closed. This finding does not create an operational acceptance, authorize a mutation, approve any generic alias parser, or certify unobserved sheet grid metadata.
+
+The immutable target is `reconcile_exact_instance_v2.py`, 19, 390 bytes, SHA 256 `d0fe59f4967facfd64db7332aad0f9663b4771f7a116c463c89bf4c30b88eacb`. The unchanged 4, 337 byte plan has SHA 256 `83df78463704c63ea3969a87325f18ab21c21893d6e1b8b49c5b16a6b4e3b2e1`.
+
+## Claim and exact success criteria
+
+This review concerns one independently adjudicated 197 record account and 181 row ledger view. Each current account record must equal its frozen parsed JSON record recursively, including types, dictionary keysets, nested list lengths/order, all strings/scalars, metadata, files, links, pids and parents. Only the eight named top-level `stats` counters may differ, and each remains an exact nonnegative integer. Whole-account record order and page grouping are immaterial. The ledger claim covers the four-column `FORMATTED_VALUE` strings returned by the exact full A:AQ read. Before, the returned rows must be the exact 181 baseline or the exact 182 baseline plus the planned four-cell row. After, they must be the exact 181 baseline plus the planned row, 182 rows total.
+
+The credited publication is existing external Alper Ferudun record 23350364 / concept 23350363. The planned chat cell is blank and notes explicitly exclude Alec Kriebel authorship. No scientific novelty, chronological priority, new publication, raw-grid metadata equality or universal normalization claim is inferred.
+
+## Independent reading and evidence
+
+I read the entire target, unchanged plan, all reachable dependency functions and independent actual/fresh context audit source/report. The complete 768, 646 byte checkpoint dependency was parsed and pinned; 366 NAMES-list updates were independently confirmed literal string-list data, and the remaining full source, including filters and guarded functions, was read separately. The six exact dependency SHA pins match the prior root acceptance. Their code is executed only from freshly captured hash-checked byte buffers in private fixture modules; injected source shadows and pyc artifacts do not execute.
+
+The new independent context inspection compares 22, 526 leaves across all 197 records, counts 43, 495 string keys/values, and confirms exactly 152 fresh differences, all within the permitted counters. It verifies actual/fresh evidence manifests and the root actual-instance acceptance. No target/result semantic lead appears in the independently scanned fixed strings. The separately adjudicated full DOI/native-URL/query/fragment context remains finite evidence, not a generic parser theorem. All 16 protected originals and 10.3 MB of new private source/payload copies remain byte-exact; none are original hardlinks.
+
+## Whole-main falsification
+
+There are 3, 198 primary full-main executions: 1, 066 each in normal, -O and -OO modes, plus 12 supplementary pilot/targeted executions. All 371 inherited controls/mode behave as expected after explicitly changing unrelated-data positive expectations to rejection under the finite profile. There are 695 new controls/mode.
+
+New account-shape controls cover every 122 observed normalized path/type shape, 89 scalar perturbations, 17 new-key insertions, 113 key removals and 12 list length/order mutations. Every such mutation rejects before append. Sixty-four new idempotent postread changes/mode, including opaque URLs, HTML entities, Unicode/full-width/zero-width identities and changes in every column, reject with 0 appends and no verified receipt. Other controls cover all eight counter types/bounds, 197 inventory add/remove/duplicate IDs, actual/fresh positive instances, realistic repaging, corruption/absence of frozen inputs, dependency/acceptance/source pins, provider metadata/family/payload/DOI, PR/freshness races, durable exclusive intent, lost outcomes/nonretry, sheet binding/schema, response/range/echo and postappend row changes.
+
+There are 1, 060 raw expectation matches and 6 disclosed mismatches per mode. No mismatch is hidden or changed into an all-green test claim. Four are diagnostic numeric-response accepts, described below. Two are attempted positive 196/197 record single-page fixtures that exceed the inherited 1 MiB API response cap; they correctly halt 0 writes. Their original positive hypothesis was invalid. All outcomes agree across optimization modes after normalizing temporary directory names. The harness exits 1 because these six desired-expectation mismatches are intentionally retained. `verify_review.py` strictly requires this exact observed result inventory.
+
+## Disclosed diagnostics and limits
+
+1. `updates.updatedRows=true` or `1.0`, `updatedCells=4.0`, and `updatedColumns=4.0` are accepted by Python numeric equality. Each yields a verified receipt after one simulated append with the exact correct 182 final rows, row 182, exact response range and echo. This is a response-schema hardening opportunity. It is not a material finite-identity or wrong-write escape when the independent final ledger/range/echo guards also pass. The capsule does not support a strict-integer-response-schema claim.
+2. Idempotent existing 182 row adoption permits an 181 second simulated age and performs only one PR read. It writes 0 rows. The append path still checks the immediate PR head/base/body/state/merged/draft and 0..180 second age. Neither path forms a cross-service transaction or protects observations from later external changes.
+3. Ledger equality concerns returned `FORMATTED_VALUE` strings. Underlying formula text, hyperlink targets, rich-text metadata, cell notes and formatting preserving those strings are outside its observations. No evidence of an actual hidden identity in the 181 row instance was found or claimed by this review. Root plans separate fresh FORMULA/UNFORMATTED inspection. No raw-grid identity-equivalence conclusion is warranted.
+4. Fresh provider/DOI/PR/account/ledger observations and root adoption remain necessary before any real action. Any actual identity-bearing record/view change leaves this finite review's applicability. Unknown append outcomes retain the durable intent and require read-only reconciliation; there is no automatic retry.
+
+## Offline boundary and reproduction
+
+Only this review's newly created private bytes/fixtures execute. Socket/process audit blockers are installed before project-source execution; actual subprocess/network paths cannot serve as expected rejections. Only an in-memory fixture token is exposed to the target; the real environment mapping is replaced without reading any token, and secret-file opens are denied. No original source was edited; no real service, token, Git/PR/Zenodo/Sheets mutation or external communication occurred. Each per-case tree is deleted immediately; source-mutating fixtures get separate byte copies, while ordinary cases may hardlink only this review's own immutable snapshots.
+
+Replay `offline_whole_v2.py --output RESULTS_NORMAL.json`, then the same command with Python -O and -OO and their respective output names. Run in a new private review copy with the SOURCE_PINS snapshots; outputs stay beneath that copy. Each replay deliberately exits 1 for the six disclosed diagnostic/fixture expectations. Run `verify_review.py` after sealing to verify strict artifact closure, exact source pins and observed outcomes. The review's audit-completion estimate is 100%; it supplies no real-action clearance.
