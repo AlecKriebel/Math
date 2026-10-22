@@ -1,0 +1,9 @@
+# The 2026 literature-status warning
+
+The June 29, 2026 paper by Milićević and Scoville, [A McCord-type theorem for pseudotopological spaces and directed graphs](https://doi.org/10.1007/s41468-026-00246-y), Example 2, explicitly describes comparison with the cited 2024 digital homotopy groups as unknown. Its reference is to the same relevant digital second-group construction used here. That statement must not be dismissed merely by saying that the authors use a different digital convention.
+
+The independent audit nevertheless passes the precise finite-box identification in this packet. With reflexive graphs, strong products, fixed spatial boundaries, and trivial basepoint extensions, the finite representatives and equivalence relation identify with Grandis's finite-support iterated-loop construction. His established all-dimensional realization theorem then applies. This is the explicitly checked argument supporting the scoped disposition, rather than an assertion that the 2026 article proves, accepts, or states the identification.
+
+The proper classification is resolution by prior theory under the specified strong-product convention, with this contrary literature-status statement preserved. No novelty, global priority, agreement of every digital-homotopy convention, or additional relative-group theory is claimed. The six-point digital sphere's degree-two value was independently published in 2024. See the full [independent audit](audit/AUDIT_REPORT.md), particularly Sections 4-8, and the preserved [author proof](public/PROOF.md).
+
+The historical author packet remains byte-identical to its frozen version, including its former audit-pending labels. The later independent PASS is recorded separately in [AUDIT_STATUS.json](audit/AUDIT_STATUS.json) and the publication status below.
