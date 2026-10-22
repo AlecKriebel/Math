@@ -1872,7 +1872,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1861 | 20000691 / AIM-ANALYTIC_NUMBER_THEORY-0055 | Quadratic moments, Poisson squares, and swap terms | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1862 | 20000707 / AIM-ANALYTIC_NUMBER_THEORY-0071 | Smoothed second moments and the sigma=1 boundary term | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1863 | 20000721 / AIM-ANALYTIC_NUMBER_THEORY-0085 | Orbifold expansions of the mirror-quintic free energies | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1864 | 20001237 / AIM-COMPUTATION-0075 | Saturation-aware exceptional likelihood fibers and the 2x2 independence locus | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1864 | 20001237 / AIM-COMPUTATION-0075 | Saturation-aware exceptional likelihood fibers and the 2x2 independence locus | 0.0495 | 5.0 | 3 | unknown | unsolved | 5/5 |  | 2026-10-21: UNSOLVED after five approaches. Exact normalized-independence and rank-one expected-count strata, homogeneous toric zero-total criterion, 2x2 projective closure, and localization/specialization audit. The distinct families are not conflated. Arbitrary homogeneous toric nonzero-total exceptional fibers remain unresolved; no novelty or general-resolution claim. [Report and audit](../likelihood_fibers_20001237/report.md). |  |
 | 1865 | 20001341 / AIM-CRYPTOGRAPHY-0028 | Explicit near-minimal units from the golden-ratio radical | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1866 | 2218 / EP-624 | Erdős Problem #624 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1867 | 2225 / EP-635 | Erdős Problem #635 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
