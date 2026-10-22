@@ -1,0 +1,198 @@
+--- a/MATHEMATICAL_AUDIT.md
++++ b/MATHEMATICAL_AUDIT.md
+@@ -32,37 +32,65 @@
+ 
+ ### 2.3 Cuntz-semigroup transfer
+ 
+-[PTWW, Corollary 4.15] gives
++[PTWW, Corollary 4.15] prints the following conclusion
+ 
+     d(A,B)<1/6422957, A≅A⊗Z
+       ⇒ d_cb(A,B)<1/42
+       ⇒ (Cu(A),Σ(Cu(A))) ≅ (Cu(B),Σ(Cu(B))).
+ 
+-The last arrow is [PTWW, Theorem 3.10]. The scale is included. This does not provide a *-isomorphism of A and B or an absorption theorem for B. [STW, §27] explicitly distinguishes the Cuntz-semigroup result from the absorption problem. Nuclear classification theorems cannot be applied after silently adding nuclearity or Z-absorption to B.
++The last arrow is [PTWW, Theorem 3.10]. The scale is included. The radius 1/6422957 is recorded here as a published statement, not as an independently certified quantitative bound: the source has an unresolved parameter discrepancy described in §2.4. A conservative retained-parameter bound 1/16000000 is verified below for the common-unit unital subcase. This does not provide a *-isomorphism of A and B or an absorption theorem for B. [STW, §27] explicitly distinguishes the Cuntz-semigroup result from the absorption problem. Nuclear classification theorems cannot be applied after silently adding nuclearity or Z-absorption to B.
+ 
+-### 2.4 Exact check of the printed numerical threshold
++### 2.4 Printed arithmetic, a source discrepancy, and a conservative bound
+ 
+-A direct verification of the quantitative hypotheses is useful because the proof of [PTWW, Corollary 4.14] also displays a stronger sufficient condition γ<10⁻¹¹. The corollary's larger printed threshold is nevertheless consistent with its preceding proposition.
++The original author check correctly evaluates the formulas printed in [PTWW, Proposition 4.13], but it does not validate the proof chain leading to those formulas. Both the arXiv v2 and published versions have the following discrepancy:
+ 
+-Write N=6422957 and k=5/2. The formulas in [PTWW, Proposition 4.13] become
++- Lemma 4.11 uses β=96kα(600k+1).
++- Substitution α=11γ gives β=1056k(600kγ+γ), as printed in Lemma 4.12.
++- Proposition 4.13 instead prints β=1056(600kγ+γ), without the leading k, while its proof invokes Lemma 4.12.
++
++This is a source-level bookkeeping gap. No claim is made that Corollary 4.15 is false, that its radius is optimal, or that the discrepancy has not previously been noticed. The numerical check below distinguishes what each calculation establishes.
++
++**Printed-parameter calculation.** Write N=6422957 and k=5/2. Using Proposition 4.13 exactly as printed gives
+ 
+     β=1585056γ,
+     η=3203122γ+52306848000γ²,
+     d_cb(A,B) ≤ 10γ/(1-2η-5γ).
+ 
+-For 0<γ<1/N, first use √2<3/2 to obtain
++For 0<γ<1/N, the first smallness condition follows from √2<3/2 and
+ 
+     24(12√2 k+4k+1)γ < 1344/N < 1/2200,
++    1344·2200=2956800<N.
+ 
+-because 1344·2200=2956800<N. Next,
+-
+-    2η+425γ=6406669γ+104613696000γ²<1,
+-
+-as the polynomial is increasing on γ≥0 and
++Also 2η+425γ=6406669γ+104613696000γ²<1, since this polynomial is increasing on γ≥0 and
+ 
+     N²-6406669N-104613696000 = 3427616 > 0.
+ 
+-Consequently 1-2η-5γ>420γ>0 and 10γ/(1-2η-5γ)<1/42. This checks the claimed radius directly; it neither improves the published constant nor upgrades the conclusion from Cuntz-semigroup isomorphism to absorption. The arithmetic is exact and independently reproducible from the displayed integers.
++Thus these printed formulas imply the announced complete-distance estimate. This arithmetic is correct. It does not account for the factor k from Lemma 4.12. The proof's additional γ<10⁻¹¹ observation does not by itself resolve the larger-radius issue either.
++
++**Retained-parameter calculation.** Keeping the parameter supplied by Lemma 4.12 gives
++
++    β_*=1056k(600kγ+γ)=3962640γ,
++    η_*=10γ+2β_*+13200kγ(1+β_*)
++       =7958290γ+130767120000γ².
++
++For the common-unit unital subcase, the perturbation argument in the proof of Proposition 4.13 then uses the conservative expression
++
++    d_cb(A,B) ≤ 10γ/(1-2η_*-5γ),
++
++provided its smallness hypotheses hold with η_*. Take M=16000000. For 0<γ<1/M, the first condition still follows from 1344·2200<M. Moreover,
++
++    2η_*+425γ=15917005γ+261534240000γ²<1,
++    M²-15917005M-261534240000=1066385760000>0.
++
++Hence 1-2η_*-5γ>420γ>0, and the complete-distance bound is less than 1/42. Applying [PTWW, Theorem 3.10] gives scaled Cuntz-semigroup transfer at the conservative radius 1/16000000 in this common-unit unital subcase. This is an audited consequence of the existing perturbation method with the larger parameter retained, not a novelty claim or an improvement of the published statement.
++
++The restriction on the conservative deduction is deliberate: [PTWW, Proposition 4.2] assumes nondegenerate representations, whereas Corollary 4.15 is printed for arbitrary algebras on a shared Hilbert space. Passing to the common support of the shared unit satisfies that hypothesis. This audit does not independently reconstruct a bound for arbitrary different supports or arbitrary nonunital pairs. It does not impose these restrictions on the source-stated Corollary 4.15.
++
++The discrepancy matters: at γ=1/7000000, which is below 1/6422957, the retained expression is
++
++    2η_*+5γ = 2791940731/1225000000 > 1.
++
++Thus that proof's positivity hypothesis can fail inside the printed radius. This invalidates an independent verification of the full printed radius by this calculation; it does not supply a counterexample to Cuntz transfer or to Jiang–Su stability.
+ 
+ ## 3. Direct transfer: the error that does not disappear
+ 
+@@ -102,7 +130,7 @@
+ 
+ Suppose that for some 0<γ<1/12600000 every contraction in F_A is within γ of a contraction in F_B. Then B≅B⊗Z.
+ 
+-**Proof.** By [TW, Theorem 2.2], because A is unital, separable, and Z-stable, there is a unital *-homomorphism ρ:Z→Q(A)∩A′. It is injective because Z is simple. Hence the unital separable nuclear subalgebra ρ(Z) is γ-nearly included in F_B. Represent Q(C) faithfully on a Hilbert space; such a representation preserves all these norm distances. Apply [CSSWW, Corollary 4.7], choosing the prescribed finite set to contain 1. This produces an embedding σ:Z→F_B with ||σ(1)-1||<152√γ<1. The projection argument above makes σ unital. Apply [TW, Theorem 2.2] to B to conclude B≅B⊗Z. ∎
++**Proof.** By [TW, Theorem 2.2], because A is unital, separable, and Z-stable, there is a unital *-homomorphism ρ:Z→Q(A)∩A′. It is injective because Z is simple. Choose γ₁ with γ<γ₁<1/12600000. The pointwise distance premise implies ρ(Z)⊆_γF_B, and hence ρ(Z)⊂_γ₁F_B in the strict uniform convention of [CSSWW, Definition 2.2]. Represent Q(C) faithfully on a Hilbert space; such a representation preserves all these norm distances. Apply [CSSWW, Corollary 4.7] with γ₁, choosing the prescribed finite set to contain 1. This produces an embedding σ:Z→F_B with ||σ(1)-1||<152√γ₁<1. The projection argument above makes σ unital. Apply [TW, Theorem 2.2] to B to conclude B≅B⊗Z. ∎
+ 
+ F_A and F_B may be nonseparable. This causes no problem: the embedding theorem is applied to the separable copy ρ(Z), and does not require its target F_B to be separable. The final absorption criterion does require B to be separable, as explicitly assumed. The natural maps Q(A)→Q(C) and Q(B)→Q(C) are injective because a bounded sequence from A or B tends to zero in C exactly when it tends to zero in its own algebra.
+ 
+@@ -133,7 +161,7 @@
+ 
+ ## 6. Disposition
+ 
+-All five approaches stop at the boundaries stated above. No counterexample meeting the exact source hypotheses was constructed, and no proof of the universal δ assertion was found. The meaningful outputs are the verified source/status match, credited partial results, explicit constant audit, and conditional bridge identifying a missing premise. The original problem remains unresolved in this work.
++All five approaches stop at the boundaries stated above. No counterexample meeting the exact source hypotheses was constructed, and no proof of the universal δ assertion was found. The meaningful outputs are the verified source/status match, credited partial results, explicit constant audit with its source discrepancy and conservative bound, and conditional bridge identifying a missing premise. The original problem remains unresolved in this work.
+ 
+ ## References
+ 
+--- a/README.md
++++ b/README.md
+@@ -8,10 +8,10 @@
+ 
+ - the exact hypotheses and metric, including the absent nuclearity assumption;
+ - credited nuclear-isomorphism, embedding, Cuntz-semigroup, and closedness results;
+-- a direct rational verification of the published Cuntz-transfer constant;
++- a rational check of the printed Cuntz-transfer formulas, the source’s dropped-factor discrepancy, and a conservative verified radius 1/16000000 in the common-unit unital subcase;
+ - a rigorous conditional central-sequence near-inclusion criterion;
+ - explicit explanations of the fixed-error and relative-commutant gaps.
+ 
+ `MATHEMATICAL_AUDIT.md` is the complete argument. `TURN_1.md`–`TURN_5.md` record the five approaches and their stopping points. `SOURCE_METADATA.json` records only public verification metadata. `STATUS.json` is the machine-readable disposition. `VERIFICATION.md` states the author checks and limits.
+ 
+-No source PDFs, copied source documents, catalog/review records, private coordination, or executable code are included. Independent mathematical/source review is required before publication; this author package does not claim that review has happened.
++No source PDFs, copied source documents, catalog/review records, private coordination, or executable code are included. This is the corrected derivative of the frozen author package. A separate independent audit and acceptance report record its review. The original archive remains unchanged; the printed Cuntz-transfer radius is not independently certified.
+--- a/SOURCE_METADATA.json
++++ b/SOURCE_METADATA.json
+@@ -111,5 +111,19 @@
+     "exact_owr_number_pr_search_matches": 0,
+     "exact_jiang_su_pr_search_matches": 0,
+     "scope_limit": "No matching actual attempt found by these bounded checks; no exhaustive-history claim."
++  },
++  "independent_review": {
++    "date_utc": "2026-10-06",
++    "source_level_parameter_discrepancy": {
++      "source": "https://eprints.gla.ac.uk/90387/1/90387.pdf",
++      "locations": "pp. 944–946, Lemma 4.12, Proposition 4.13, Corollaries 4.14–4.15",
++      "lemma_beta": "1056k(600kγ+γ)",
++      "proposition_beta": "1056(600kγ+γ)",
++      "published_radius_independently_certified": false,
++      "conservative_retained_parameter_radius": "1/16000000",
++      "conservative_retained_parameter_scope": "Common-unit unital subcase; no arbitrary-support or nonunital quantitative reconstruction claimed."
++    },
++    "conditional_proof_correction": "Enlarge γ to γ₁ below the embedding threshold before applying strict uniform near inclusion.",
++    "historical_repository_searches": "Author-reported; not independently rerun in this mathematical audit."
+   }
+ }
+--- a/STATUS.json
++++ b/STATUS.json
+@@ -13,11 +13,14 @@
+     "Common-unit unital closedness"
+   ],
+   "authored_scoped_results": [
+-    "Exact rational check of published Cuntz-transfer constant",
++    "Exact arithmetic with printed Cuntz parameters; source discrepancy identified; conservative retained-parameter radius 1/16000000 verified for the common-unit unital subcase",
+     "Finite-set commutator transfer estimate",
+     "Conditional common-unit unital central-sequence near-inclusion criterion",
+     "Counterexamples to two general shortcut arguments, not to the original problem"
+   ],
+-  "independent_review_status": "pending",
+-  "code_artifacts": false
++  "independent_review_status": "corrected_derivative_accepted_at_stated_scope",
++  "code_artifacts": false,
++  "published_cuntz_radius": "1/6422957, source-stated; not independently certified by this audit",
++  "independently_checked_conservative_cuntz_radius": "1/16000000 in the common-unit unital subcase",
++  "source_discrepancy_resolved_for_published_radius": false
+ }
+--- a/TURN_3.md
++++ b/TURN_3.md
+@@ -1,9 +1,9 @@
+ # Approach 3: Recover absorption from complete closeness and invariants
+ 
+-Z-absorption yields enough similarity control for the Perera–Toms–White–Winter theorem to turn small ordinary Kadison–Kastler distance into complete closeness and an isomorphism of scaled Cuntz semigroups. Corollary 4.15 applies at distance less than 1/6422957.
++Z-absorption gives the similarity control used by Perera–Toms–White–Winter to transfer complete closeness and scaled Cuntz semigroups. Their Corollary 4.15 prints the radius 1/6422957. That statement is cited as published, with an unresolved parameter discrepancy in its proof chain.
+ 
+-I checked the published PDF, rather than relying only on the report or catalog. Section 2.4 of `MATHEMATICAL_AUDIT.md` verifies the quantitative inequalities directly. The exact positive integer remainder is 3427616, and the square-root inequality is bounded rationally using √2<3/2. The stronger sufficient γ<10⁻¹¹ displayed within the published proof is not needed for this direct check.
++The original exact-integer check of the printed Proposition 4.13 is arithmetically correct: its remainder is 3427616. Independent inspection found that Lemma 4.12 has a leading factor k in β which Proposition 4.13 omits. At k=5/2 the retained coefficient is 3962640, rather than 1585056. Keeping it gives a conservative sufficient radius 1/16000000 for the common-unit unital subcase, verified in §2.4 of `MATHEMATICAL_AUDIT.md`; the positive integer remainder is 1066385760000. The larger published radius is not independently certified by these calculations. No counterexample to that radius is asserted.
+ 
+-The missing step is a theorem that this Cuntz-semigroup information forces Z-absorption under the full nonnuclear hypotheses. The 2026 survey's §27 explicitly retains the absorption question while discussing this partial result. Nuclear classification cannot be inserted without proving its hypotheses.
++The missing step remains a theorem forcing Z-absorption from the available Cuntz-semigroup information under the full nonnuclear hypotheses. The 2026 survey's §27 retains that question. No proof can silently insert nuclear classification hypotheses.
+ 
+-Outcome: credited invariant transfer plus an authored exact constant audit. No full absorption conclusion or improved radius is claimed.
++Outcome: credited invariant transfer, corrected quantitative verification, and an explicit source-level caveat. No absorption conclusion, improved radius, or novelty claim.
+--- a/TURN_4.md
++++ b/TURN_4.md
+@@ -2,7 +2,7 @@
+ 
+ I formulated and proved a conditional criterion in §4 of `MATHEMATICAL_AUDIT.md`. For separable common-unit unital A and B, with A Z-stable, a one-sided near inclusion F_A⊂_γF_B at γ<1/12600000 suffices, where F_A=Q(A)∩A′ and F_B=Q(B)∩B′ are represented in Q(C).
+ 
+-The proof applies the existing strongly self-absorbing embedding theorem to the separable copy of Z in F_A, verifies the resulting map is unital, and invokes the established central-sequence absorption criterion for B. The potentially nonseparable F_B is permitted as the embedding target. No coordinate lift of a homomorphism out of Q(B) is assumed.
++The proof applies the existing strongly self-absorbing embedding theorem to the separable copy of Z in F_A, first enlarges γ to γ₁ below the threshold to meet the source’s strict uniform near-inclusion convention, verifies the resulting map is unital, and invokes the established central-sequence absorption criterion for B. The potentially nonseparable F_B is permitted as the embedding target. No coordinate lift of a homomorphism out of Q(B) is assumed.
+ 
+ The original distance estimate does not yet supply this near inclusion. Proximity to Q(B) and proximity to a commutant are not proximity to their intersection. The rotating diagonal-algebra example in M₂ proves discontinuity of a general relative-commutant intersection map, so a generic continuity argument is false. It is carefully scoped and is not a counterexample to the original question.
+ 
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -7,10 +7,10 @@
+ - Live access to the problem page failed: the web tool could not retrieve it and a direct HTTP request returned 403. No successful live-page comparison is claimed.
+ - Read the May 8, 2026 revision of Schafhauser–Tikuisis–White, §27, pp. 82–83. Problem XCIX matches the exact target. Its arXiv metadata describes the manuscript as to appear; no later publication status is inferred.
+ - Read the relevant nuclear perturbation statements, the Toms–Winter central-sequence criterion, and both the arXiv and published versions of the Cuntz-semigroup perturbation result. Source PDF hashes and byte counts are supplied as metadata, not as copied source files.
+-- Checked the Cuntz-transfer constant with exact rational/integer arithmetic under an isolated Python startup, and gave the full arithmetic derivation in the mathematical audit. Numerical testing does not establish any analytic theorem.
+-- Checked the commutator expansion, common-unit projection argument, central-sequence ambient injection, the rotating-MASA calculation, and the quantifiers in the vanishing-distance argument.
++- The original check of the printed Cuntz-transfer formulas is arithmetically correct but misses a leading-factor discrepancy between the source’s Lemma 4.12 and Proposition 4.13. Independent review retained that factor and verified the conservative radius 1/16000000 for the common-unit unital subcase. Section 2.4 distinguishes the published statement from the independently supported quantitative claim. Exact arithmetic supplements the analytic reasoning; it does not prove it.
++- Checked the commutator expansion, common-unit projection argument, central-sequence ambient injection, the rotating-MASA calculation, and the quantifiers in the vanishing-distance argument. Independent review also inserted a strict-parameter enlargement in the conditional central-sequence proof.
+ - Bounded prior-attempt checks in AlecKriebel/Math: exact problem-ID code, PR, branch, and commit searches; exact OWR-number PR search; exact Jiang-Su PR search. They found no matching actual attempt. One broad OR search returned an unrelated Poisson/L-function PR. The catalog's desk review is not counted as an earlier mathematical attempt. No exhaustive repository-history claim is made.
+ - The deliverables are text and JSON only. There is no verifier, entrypoint, executable script, importable module, or test-result artifact in this package. Normal/optimized/relocation/import-shadow execution gates are therefore not applicable to a published program. The mathematics is fully displayed and must be reviewed mathematically.
+ - Every package entry is an explicitly selected regular text file. No PDFs, copied third-party text documents, raw datasets, private coordination, symlinks, or caches are included. The external manifest records exact entry hashes, lengths, and archive hash.
+ 
+-These are author checks. A fresh independent mathematical/source review has not yet been performed as part of this package. It must not be represented as independently accepted until that review occurs. The conditional criterion, examples, and reproduced known results do not solve the original problem.
++The historical author checks above are retained with the identified corrections. A separate independent audit reviews the mathematical claims and source hypotheses and accepts this corrected derivative only at its stated scope. The original version is not accepted unchanged. Repository-search and failed-live-page history remain author-reported where not independently rerun. The conditional criterion, examples, and reproduced known results do not solve the original problem.

@@ -1,0 +1,16 @@
+# Author verification and limits
+
+Research and verification date: 2026-10-06 UTC.
+
+- Read the original Oberwolfach PDF, especially pp. 3140–3143. The two-sided unit-ball metric, separability of A, and absence of nuclearity agree with the selected record.
+- Checked the complete supplied problem record and its complete review-pair hash. Both requested identity hashes match. No corpus contents are packaged.
+- Live access to the problem page failed: the web tool could not retrieve it and a direct HTTP request returned 403. No successful live-page comparison is claimed.
+- Read the May 8, 2026 revision of Schafhauser–Tikuisis–White, §27, pp. 82–83. Problem XCIX matches the exact target. Its arXiv metadata describes the manuscript as to appear; no later publication status is inferred.
+- Read the relevant nuclear perturbation statements, the Toms–Winter central-sequence criterion, and both the arXiv and published versions of the Cuntz-semigroup perturbation result. Source PDF hashes and byte counts are supplied as metadata, not as copied source files.
+- The original check of the printed Cuntz-transfer formulas is arithmetically correct but misses a leading-factor discrepancy between the source’s Lemma 4.12 and Proposition 4.13. Independent review retained that factor and verified the conservative radius 1/16000000 for the common-unit unital subcase. Section 2.4 distinguishes the published statement from the independently supported quantitative claim. Exact arithmetic supplements the analytic reasoning; it does not prove it.
+- Checked the commutator expansion, common-unit projection argument, central-sequence ambient injection, the rotating-MASA calculation, and the quantifiers in the vanishing-distance argument. Independent review also inserted a strict-parameter enlargement in the conditional central-sequence proof.
+- Bounded prior-attempt checks in AlecKriebel/Math: exact problem-ID code, PR, branch, and commit searches; exact OWR-number PR search; exact Jiang-Su PR search. They found no matching actual attempt. One broad OR search returned an unrelated Poisson/L-function PR. The catalog's desk review is not counted as an earlier mathematical attempt. No exhaustive repository-history claim is made.
+- The deliverables are text and JSON only. There is no verifier, entrypoint, executable script, importable module, or test-result artifact in this package. Normal/optimized/relocation/import-shadow execution gates are therefore not applicable to a published program. The mathematics is fully displayed and must be reviewed mathematically.
+- Every package entry is an explicitly selected regular text file. No PDFs, copied third-party text documents, raw datasets, private coordination, symlinks, or caches are included. The external manifest records exact entry hashes, lengths, and archive hash.
+
+The historical author checks above are retained with the identified corrections. A separate independent audit reviews the mathematical claims and source hypotheses and accepts this corrected derivative only at its stated scope. The original version is not accepted unchanged. Repository-search and failed-live-page history remain author-reported where not independently rerun. The conditional criterion, examples, and reproduced known results do not solve the original problem.
