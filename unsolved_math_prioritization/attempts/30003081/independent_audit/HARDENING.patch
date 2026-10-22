@@ -1,0 +1,11 @@
+--- verify_packet.py
++++ verify_packet.py
+@@ -77,7 +77,7 @@
+     a=p.parse_args()
+     try:
+         result=verify(a.root,a.manifest_sha256)
+-    except (VerificationError,ValueError,OSError,KeyError,TypeError,subprocess.SubprocessError) as e:
++    except (VerificationError,ValueError,OSError,KeyError,TypeError,SyntaxError,subprocess.SubprocessError) as e:
+         print('REJECT: '+str(e),file=sys.stderr)
+         return 1
+     print(json.dumps(result,sort_keys=True))
