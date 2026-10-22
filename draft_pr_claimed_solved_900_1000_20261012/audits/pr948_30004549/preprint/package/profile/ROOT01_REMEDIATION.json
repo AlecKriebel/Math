@@ -1,0 +1,58 @@
+{
+  "finding_id": "R948-PROFILE-ROOT-01",
+  "reported_by": "root fresh source inspection",
+  "prior_driver_sha256": "bad990b1b93bf0affd80cb8a6e65cfa2548191370ad11752678e7a4fa31b0170",
+  "problem": "Full-file-path casefold uniqueness omitted directory and implied-ancestor aliases and file-as-ancestor conflicts.",
+  "examples": [
+    [
+      "A/one",
+      "a/two"
+    ],
+    [
+      "A",
+      "a/two"
+    ],
+    [
+      "A",
+      "A/one"
+    ]
+  ],
+  "implementation_response": "validate_namespace combines files, explicit directories and every implied ancestor; rejects exact file/directory overlaps and distinct names with one casefold. scan_tree and inspect_archive invoke it before reads/decompression.",
+  "regression_events": [
+    "tree_directory_case_alias",
+    "tree_file_directory_case_alias",
+    "tree_file_used_as_ancestor",
+    "tree_shared_ancestor_positive_control",
+    "actual_tree_scanner_checks_files_and_directories",
+    "ZIP_shared_ancestor_positive_control",
+    "ZIP_directory_case_alias",
+    "ZIP_file_directory_case_alias",
+    "ZIP_file_used_as_ancestor"
+  ],
+  "test_scope": "Tree collision inputs are filesystem-neutral unit regressions because case-insensitive hosts cannot represent those conflicting entries. Actual tree wiring and full ZIP helper are exercised; no synthetic filesystem attack is described as an actual disk fixture.",
+  "complete_suite": {
+    "utc": "2026-10-16T08:15:34.333548+00:00",
+    "events": 85,
+    "skips": 0,
+    "failures": 0
+  },
+  "reauthentication_utc": "2026-10-16T08:16:47.463201+00:00",
+  "updated_hashes": {
+    "verify_package.py": {
+      "bytes": 26726,
+      "sha256": "252b38c10858eab3fd2ea2e7314e1d2aeee7a257bb5fb6360bac3e9526949046"
+    },
+    "test_profile.py": {
+      "bytes": 21082,
+      "sha256": "3a2db515aa0bfb20271599386e195cc548e943d14a8a9cafc11f30da72bbea24"
+    },
+    "README.md": {
+      "bytes": 8105,
+      "sha256": "11971bf2dad36876730e01e2510e0d3cc1b29db0544ba6d374f0811af2a55515"
+    }
+  },
+  "history_manifest_sha256": "a948328d3edf37568b48eb9b2cdac6efae89f5c74b3aee2758570a0fe1e885dd",
+  "status": "remediated_in_development_pending_fresh_root_and_whole_package_review",
+  "new_author_responses": 0,
+  "unrelated_strengthening": false
+}

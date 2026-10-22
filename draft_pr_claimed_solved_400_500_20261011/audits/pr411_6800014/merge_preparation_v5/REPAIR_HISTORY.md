@@ -1,0 +1,15 @@
+# Preserved V5 repair history
+
+The initial validator source9755 rejected genuine custody because prior plan and STOP carried different GET observation metadata. No intent was created. The comparison was corrected to the unchanged canonical approval policy; initial source and failure note remain private.
+
+The first tested source942 passed53 normal/optimized controls and14 isolated CLI controls. Its initial public test aggregate incorrectly embedded full raw synthetic CLI stdout/plans/QUEUE; the exact8MB aggregate was moved private and public output replaced by compact outcomes and capture hashes. Original executions remain unchanged.
+
+A new independent adversary at source942 passed71 controls per mode but then reproduced a second synthetic PUT by reusing the same open successor Journal after response loss. Its blocked review and exact two-PUT counterexample remain authentic. That finding is not relabeled as passed.
+
+Intermediate source2c23 preserves every original action/evidence function and adds a continuation-only exact merge intent check and durable exclusive remote-intent fence before appending the first intent. Own repaired controls59/59 in each Python mode plus14 isolated CLI controls pass, including same-object response-loss reuse, eight-way remote-intent race, and failure after fence before intent append. The ongoing second independent reviewer preserves its source2c23 controls and then checks sourceabd32’s live-FD guard, independently reproducing the closed-object edge through intercepted os.open without touching CWD. After all global corrections, a NEW fresh final adversary checks exactabd32 and the compact package before promotion. No genuine operator record, claim, journal, STOP, science or asset was altered; no remote request was made.
+
+Updated 2026-10-13T13:54:46.709061+00:00; finite software preparation90% pending final review/custody.
+
+Current sourceabd32 requires captured integer directory/journal FDs before continuation intent processing and uses the captured directory for the remote fence. Own60/60 controls per Python mode plus14 isolated CLI executions pass, including a closed-object probe that forbids every os.open. All source942 blocker and source2c23 intermediate artifacts remain private/authentic. Updated 2026-10-13T14:05:06.285667+00:00; final fresh review and custody pending.
+
+The separately fresh sourceabd32 reviewer completed89 controls in each mode and14 CLI tests, then reproduced one first-PUT after a pre-intent terminal STOP on the same open Journal. Its BLOCKED sealb355004a7a9264043fcd8c51012d3b932f0253bdd43203c859093dce7e828d90 and both-mode counterexample remain intact. Current98fb adds anchored any-entry receipt refusal before continuation intent; own66/66 controls per mode and14 isolated CLI executions pass, including dirty-STOP direct reuse and regular/torn/empty/symlink/FIFO/directory receipts. All original action/evidence/finish functions stay exact. A NEW independent post-correction final reviewer follows; no actual root state/native action occurred. Updated 2026-10-13T14:22:06.256904+00:00.

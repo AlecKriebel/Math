@@ -1,0 +1,54 @@
+{
+  "checked_utc": "2026-10-21T22:56:57.783512+00:00",
+  "all_expected_outcomes": true,
+  "external_manifest_sha256": "6d48cba3d7e3025e86d1bf4803f859fbec16a70bbf76d113cbbea937b3c0b19c",
+  "runs": [
+    {
+      "test": "baseline normal",
+      "exit_code": 0,
+      "stdout": "{\"result\": \"PASS\", \"files_bound\": 38, \"local_delta\": 3, \"total_real_delta\": 6, \"meaning\": \"integrity, exact symbolic local calculation and finite support checks; imported theorem remains trusted\"}\n",
+      "stderr": ""
+    },
+    {
+      "test": "baseline -O",
+      "exit_code": 0,
+      "stdout": "{\"result\": \"PASS\", \"files_bound\": 38, \"local_delta\": 3, \"total_real_delta\": 6, \"meaning\": \"integrity, exact symbolic local calculation and finite support checks; imported theorem remains trusted\"}\n",
+      "stderr": ""
+    },
+    {
+      "test": "baseline -OO",
+      "exit_code": 0,
+      "stdout": "{\"result\": \"PASS\", \"files_bound\": 38, \"local_delta\": 3, \"total_real_delta\": 6, \"meaning\": \"integrity, exact symbolic local calculation and finite support checks; imported theorem remains trusted\"}\n",
+      "stderr": ""
+    },
+    {
+      "test": "unresealed captured PDF mutation",
+      "expected": "FAIL hash mismatch",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "FAIL: hash mismatch: private/stubborn_v1.pdf\n"
+    },
+    {
+      "test": "consistently resealed wrong total real delta",
+      "expected": "FAIL wrong total real delta",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "FAIL: wrong total real delta\n"
+    },
+    {
+      "test": "consistently resealed wrong blow-up exponent",
+      "expected": "FAIL blow-up identity fails",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "FAIL: blow-up identity fails\n"
+    },
+    {
+      "test": "wrong external manifest digest",
+      "expected": "FAIL external manifest digest mismatch",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "FAIL: external manifest digest mismatch\n"
+    }
+  ],
+  "scope": "Verifier executed only in disposable own copies. No original, pinned, captured or sealed scripts executed in place."
+}

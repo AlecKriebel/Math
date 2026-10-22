@@ -1,0 +1,30 @@
+--- immutable_workflow_proposal/verification_verify.py
++++ workflow_revision1/verification_verify.py
+@@ -106,7 +106,7 @@
+     if require_complete:
+         for raw,shape in MINIMUM.items():
+             need(raw in listed and tuple(listed[raw][k] for k in ['base','entries_key','path_key','size_key'])==shape,'required freeze/schema '+raw)
+-        need(any(raw.startswith('priority/') for raw in listed),'final priority authored freeze required')
++        need(any(raw.startswith(('priority/','reviews/priority_')) for raw in listed),'final explicitly registered priority family authored freeze required')
+     return checked
+ 
+ def authenticate_snapshot(root, snapshot):
+@@ -169,7 +169,7 @@
+         if item['role']=='authored_evidence' and (filename=='manifest.json' or filename.endswith(('_manifest.json','_freeze.json'))):need(item['path'] in registered,'unregistered portable authored freeze '+item['path'])
+     need(isinstance(context['diagnostic_replays'],list),'explicit diagnostic replay list required')
+     for replay in context['diagnostic_replays']:
+-        need(set(replay)=={'program','mode','result','output_mode','scope','layout','arguments','comparison'} and replay['mode'] in {'normal','normal_O_OO'} and replay['output_mode'] in {'stdout','file'} and replay['layout'] in {'isolated','original_submission'} and replay['arguments'] in [[],['--output','{output}']] and replay['comparison'] in {'json_exact','json_ignore_runtime','json_ignore_at_utc','bytes_exact'} and bool(replay['scope']),'explicit replay contract required')
++        need(set(replay)=={'program','mode','result','output_mode','scope','layout','arguments','comparison'} and replay['mode'] in {'normal','normal_O_OO'} and replay['output_mode'] in {'stdout','file'} and replay['layout'] in {'isolated','original_submission'} and replay['arguments'] in [[],['--output','{output}']] and replay['comparison'] in {'json_exact','json_ignore_runtime','json_ignore_at_utc','json_ignore_start_end_utc','bytes_exact'} and bool(replay['scope']),'explicit replay contract required')
+         need(safe(replay['program']) in seen and safe(replay['result']) in seen,'replay program/result must be retained authored members')
+     need(set(context['document_bindings'])=={'source_sha256','pdf_sha256','compile_receipt_sha256','layout_receipt_sha256'},'exact document anchors required')
+     if document_root is not None:
+@@ -201,6 +201,9 @@
+                     if spec['comparison']=='json_ignore_runtime':
+                         for obj in [actual_obj,expected_obj]:
+                             for key in ['run_utc','python','optimization']:obj.pop(key,None)
++                    elif spec['comparison']=='json_ignore_start_end_utc':
++                        for obj in [actual_obj,expected_obj]:
++                            for key in ['run_started_utc','run_completed_utc']:obj.pop(key,None)
+                     elif spec['comparison']=='json_ignore_at_utc':
+                         for obj in [actual_obj,expected_obj]:obj.pop('at_utc',None)
+                     equal=actual_obj==expected_obj

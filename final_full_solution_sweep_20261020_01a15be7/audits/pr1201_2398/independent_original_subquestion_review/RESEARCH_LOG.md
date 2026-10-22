@@ -1,0 +1,7 @@
+# Independent original-subquestion audit: PR1201 /2398
+
+2026-10-22T05:32:45.220000+00:00 — Started independent exact original-scope, proof, construction/certificate and prior-publication audit.0%bounded;79%overall. No external mutations; closedrange1187–1196 preserved.
+
+2026-10-22T05:49:58.710875+00:00 — Independent review checkpoint (own completion95%; overall79%). Original printed113 visually checked: first all-k single-edge question is distinct. Fresh independent Cayley/DSATUR and independent finite-domain/direct all181-instance runs succeed in normal/-O/-OO; NBER complete original-first theorem and DOI verified. Registered support ZIP checksum and graph/certificate identity match. Fresh live PR eight-path/body/source bindings match; spreadsheet has no relevant record. Final report and read-only sealed-bundle replay are being prepared. No provider/Git/ledger/root-owned file mutation or external communication.
+
+2026-10-22T05:55:15.017161+00:00 — Bounded review complete (own100%; parent79%). Complete FIRST original question accepted as prior published NBER answer, with fresh independent finite proof and conventional higher-k closure. Final semantic DOI/name/result GWS check05:54:24 has183 rows and only unrelated geometric Steiner hits120/122. No new upload/append permitted by disposition; existing-row reconciliation remains parent action. Authored report, four-cell proposal, two independent exact checkers and read-only bundle verifier prepared. Sealing now; a failed final replay would reopen this checkpoint.

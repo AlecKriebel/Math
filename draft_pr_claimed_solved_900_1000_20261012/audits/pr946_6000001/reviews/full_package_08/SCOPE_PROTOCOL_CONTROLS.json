@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-16T06:16:18.125814+00:00",
+  "source": {
+    "bytes": 5562,
+    "sha256": "72acfd41da2406a28567e804cd4b43524a3fd3fa91ea95d6613a2a2c16167949"
+  },
+  "protocol": {
+    "bytes": 3188,
+    "sha256": "c24ec261f9cb5f1af6aba6e41af477d70ea8b4a562b2b03447a41e432df4fb95"
+  },
+  "cases": [
+    {
+      "case": "unchanged_head_reuses_exact_initial_identity_without_call",
+      "result": {
+        "identity_method": "initial_identity_at_exact_unchanged_head",
+        "identity_reconciled": true,
+        "problem_id": "111"
+      }
+    },
+    {
+      "case": "changed_single",
+      "result": {
+        "identity_method": "current_PR_filename_metadata_after_head_change",
+        "identity_reconciled": true,
+        "problem_id": "222"
+      }
+    },
+    {
+      "case": "changed_duplicate_sameID",
+      "result": {
+        "identity_method": "current_PR_filename_metadata_after_head_change",
+        "identity_reconciled": true,
+        "problem_id": "222"
+      }
+    },
+    {
+      "case": "changed_ambiguous",
+      "result": {
+        "identity_method": "current_PR_filename_metadata_after_head_change",
+        "identity_reconciled": false,
+        "candidate_problem_ids": [
+          "222",
+          "333"
+        ]
+      }
+    },
+    {
+      "case": "changed_missing",
+      "result": {
+        "identity_method": "current_PR_filename_metadata_after_head_change",
+        "identity_reconciled": false,
+        "candidate_problem_ids": []
+      }
+    },
+    {
+      "case": "changed_nonnumeric",
+      "result": {
+        "identity_method": "current_PR_filename_metadata_after_head_change",
+        "identity_reconciled": false,
+        "candidate_problem_ids": []
+      }
+    },
+    {
+      "case": "literal_status_claimed_solved",
+      "result": {
+        "status": "claimed_solved",
+        "turns": "4/5",
+        "queue_row_sha256": "f6ec727a5cb397b1ab1f47a9bfd2d928bba1fd98093a7bec223a164674bdbd6c"
+      }
+    },
+    {
+      "case": "literal_status_partially_solved",
+      "result": {
+        "status": "partially_solved",
+        "turns": "4/5",
+        "queue_row_sha256": "8a0946958844f77eb2fac9bb20a85e860af07ff5d43ed244436136069b782797"
+      }
+    },
+    {
+      "case": "literal_status_preprint_published",
+      "result": {
+        "status": "preprint_published",
+        "turns": "4/5",
+        "queue_row_sha256": "f6337676249a3d6250b01a36248114294fe5ace1f70273ab01a48483926270f1"
+      }
+    },
+    {
+      "case": "literal_status_claimed_solved_but_unchecked",
+      "result": {
+        "status": "claimed_solved_but_unchecked",
+        "turns": "4/5",
+        "queue_row_sha256": "1efd2ff49e8cf8d376014470c36335aa3e1c7057e8d23d38974460288c389378"
+      }
+    },
+    {
+      "case": "duplicate",
+      "rejected": true,
+      "reason": "Ambiguous/missing target QUEUE row 222"
+    },
+    {
+      "case": "missing",
+      "rejected": true,
+      "reason": "Ambiguous/missing target QUEUE row 222"
+    }
+  ],
+  "case_count": 12,
+  "all_GitHub_calls_fake": true,
+  "math_source_reads": 0,
+  "external_writes": 0,
+  "interpretation": "Frozen gate_next is metadata proposal only. Controller must bind changed-head filename identity to observed immutable head, refresh actual PR state around scope intake, require exact claimed_solved and independently sweep all101 after ascending work. Prior-target convenience cleanup remains explicit controller duty."
+}

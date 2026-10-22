@@ -1,0 +1,17 @@
+# Independent reconstruction and attack map
+Frozen before reading inherited review/checker results: 2026-10-15T11:23:28Z.
+
+Target: For the strict nondegenerate confocal elliptical caustic of an ellipse a>b>0, signed straight-edge areas of unit inversions of OUTER consecutive tangent intersections about the ORIGINAL foci have positive phase-independent product for every odd least period N, all coprime admissible rotations. Repetitions multiply areas linearly; reversal negates them. Historical novelty is separate.
+
+Independent reconstruction: Coordinates give Q=(-alpha*d^2*sn(u)/q,alpha*k'*cn(u)/q). Real tangent determinants are nonzero and Q lies outside the original ellipse; original foci are inside. Focal bilinear distance is a quadratic in sn with two generally different linear factors. The inverse edge is rational in sn times dn, and therefore lies in the quadratic function field C(sn,dn) with dn^2=1-k^2 sn^2. On the sn torus, its anti-period is 2iK'. The candidate squared denominator fiber has two simple points r0 +/- v; reflection through r0 reverses dn while retaining sn, forcing opposite quadratic Laurent coefficients. Cyclic translation by delta=2v aligns these points, so quadratic principal parts disappear. The other denominator fiber lies r0 +/-3v, hence in the same delta orbit. Only a single pole modulo real period L and imaginary anti-period remains. Positivity excludes vanishing sum, forcing paired simple poles on the doubled imaginary torus. Reflection gives the complementary real-half-period zero pair; degree balances and translation swaps divisors, giving constant F(u)F(u+L/2). The original second focus is the 2K phase shift, equal to L/2 modulo L for odd N.
+
+Distinct adversarial attacks planned:
+1. Reconstruct rational identities in a polynomial/function-field quotient, including factor q^4, all divisions C,d,Z, triple angle relations and actual distance/determinant.
+2. Analyze branch fibers and valuation at all Jacobi poles and denominator zeros; explicitly test the N=3 coalescence and dn zero, lattice coincidences for every N, and possibility of extra poles or vanishing F.
+3. Independently solve physical confocal chords and Cartesian tangent intersections; check outer geometry, both original-focus areas, stars, reversal, repeated traversal, circle and scaling. These are falsification controls, not proof for all N.
+4. Check torus signs numerically at complex generic points and inspect local Laurent orders/coefficient cancellation, especially N=3.
+5. Inspect primary source target/canonical-coordinate passages; distinguish primary full-text access from selected passages and restricted final journal access.
+6. Verify every current frozen payload, original intake preservation, ZIP entry/manifest binding, metadata and release-plan coupling, portable harness path safety and distinction between exact tests and numerical diagnostics.
+7. Read all 6 PDF pages and compare rendered contents with source; inspect current native payloads and history for stale wrong claims and inappropriate public primary content. Only after this map is frozen inspect inherited review findings and confirm global repairs.
+
+Success: mathematically complete proof with exact source match, no counterexample or unsupported general step, package internally reproducible and coherently qualified. Any concern is reported; no promotion/publication approval is granted by this review.

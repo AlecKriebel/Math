@@ -1,0 +1,84 @@
+--- sealed_pre_repair_independent_harness
++++ supplement_casefold_safe_indexed_retention_harness
+@@ -17,7 +17,7 @@
+ OUT=HERE/args.output
+ if OUT.parent!=HERE or OUT.exists():raise RuntimeError('New own output directory required')
+ OUT.mkdir();(OUT/'raw_receipts').mkdir()
+-tests=[];forbidden_calls=[]
++tests=[];forbidden_calls=[];controller_invocations=[];active_testcase=None
+ 
+ def require(ok,label='Control expectation failed'):
+  if not ok:raise RuntimeError(label)
+@@ -29,8 +29,11 @@
+  n['run']=forbidden
+  return n
+ def check(label,fn):
+- try:fn();tests.append({'name':label,'status':'PASS'})
+- except Exception as e:tests.append({'name':label,'status':'FAIL','error':type(e).__name__+': '+str(e)})
++ global active_testcase
++ previous=active_testcase;active_testcase=label;first_invocation=len(controller_invocations)
++ try:fn();tests.append({'name':label,'status':'PASS','controller_invocation_indices':[x['index'] for x in controller_invocations[first_invocation:]]})
++ except Exception as e:tests.append({'name':label,'status':'FAIL','error':type(e).__name__+': '+str(e),'controller_invocation_indices':[x['index'] for x in controller_invocations[first_invocation:]]})
++ finally:active_testcase=previous
+ def rejects(fn):
+  try:fn()
+  except Exception:return
+@@ -47,6 +50,13 @@
+ 
+ def scan(label,status='unsolved',paths=None,seed_patch=None,initial_patch=None,pr_patch=None,second_patch=None,queue=None,blob_patch=None,pages=None,expected='SKIP_STATUS_ONLY',clear=True,min_files=1):
+  """Run the actual main controller with 101 synthetic PRs and no service calls."""
++ require(active_testcase==label,'Scan label must equal the actual active named testcase')
++ index=len(controller_invocations)+1
++ safe_label=''.join(c if c.isascii() and (c.isalnum() or c in '_-') else '_' for c in label)
++ raw_name=f'{index:04d}--{safe_label}.json'
++ require(raw_name.casefold() not in {x['raw_filename'].casefold() for x in controller_invocations},'Case-insensitive raw filename collision')
++ invocation={'index':index,'testcase':active_testcase,'control_label':label,'raw_filename':raw_name,'retained':False}
++ controller_invocations.append(invocation)
+  n=ns();p=pr();p.update(pr_patch or {})
+  q=row(status=status) if queue is None else queue
+  seed={'id':'25','pr_head_queue_row_sha256':sha(row(status=status))}
+@@ -86,8 +96,10 @@
+   finally:sys.argv=previous
+   result=json.loads((d/'receipt.json').read_bytes())
+   record=next(x for x in result['rows'] if x['pr']==952)
+-  receipt={'provenance':'OFFLINE SYNTHETIC SERVICE FIXTURES; these are not actual GitHub or Git calls','control':label,'actual_live_service_calls':0,'requests_to_synthetic_callable':seen,'synthetic_controller_receipt':result}
+-  (OUT/'raw_receipts'/(label+'.json')).write_text(json.dumps(receipt,indent=2)+'\n')
++  receipt={'provenance':'OFFLINE SYNTHETIC SERVICE FIXTURES; these are not actual GitHub or Git calls','control':label,'actual_named_testcase':active_testcase,'controller_invocation_index':index,'raw_receipt_filename':raw_name,'actual_python_optimization_level':sys.flags.optimize,'source_sha256':PIN,'actual_live_service_calls':0,'requests_to_synthetic_callable':seen,'synthetic_controller_receipt':result}
++  raw_path=OUT/'raw_receipts'/raw_name
++  with raw_path.open('x') as raw_file:raw_file.write(json.dumps(receipt,indent=2)+'\n')
++  invocation.update(retained=True,raw_sha256=hashlib.sha256(raw_path.read_bytes()).hexdigest(),raw_bytes=raw_path.stat().st_size)
+   require(record['action']==expected,'Unexpected action '+record['action']+' expected '+expected)
+   require(result['pr_count']==101 and len(result['rows'])==101,'Full synthetic numbered range required')
+   require(metadata_calls==2,'Both complete metadata snapshots required')
+@@ -204,7 +216,29 @@
+ parser_test('immutable_head_branch_name_reject',lambda n:rejects(lambda:n['immutable_queue']('main')))
+ parser_test('immutable_queue_empty_blob_reject',lambda n:(n.update(graphql=lambda *a,**k:{'object':blob('')}),rejects(lambda:n['immutable_queue']('1'*40))))
+ 
+-result={'utc':datetime.now(timezone.utc).isoformat(),'status':'PASS' if all(x['status']=='PASS' for x in tests) and not forbidden_calls else 'FAIL','actual_python_optimization_level':sys.flags.optimize,'source_sha256':hashlib.sha256(raw).hexdigest(),'source_authentication':'Unconditional explicit RuntimeError before compile, checked shared entire source and independent local backing copy against root-supplied external pin','passed':sum(x['status']=='PASS' for x in tests),'failed':sum(x['status']!='PASS' for x in tests),'actual_live_service_calls':0,'unexpected_live_operation_attempts':len(forbidden_calls),'all_service_responses_are_synthetic_fixtures':True,'tests':tests}
++raw_files=list((OUT/'raw_receipts').iterdir())
++require(len(controller_invocations)==72,'Every one of the 72 actual controller invocations must be recorded')
++require(len(raw_files)==72 and len({x.name.casefold() for x in raw_files})==72,'All 72 raw files must exist uniquely under case folding')
++require({x.name for x in raw_files}=={x['raw_filename'] for x in controller_invocations},'Invocation-to-raw filename sets differ')
++require(len({x['name'] for x in tests})==len(tests),'Named testcases must be unique')
++bound_indices=[]
++for test in tests:
++ for index in test['controller_invocation_indices']:
++  invocation=controller_invocations[index-1]
++  require(invocation['testcase']==test['name'] and invocation['control_label']==test['name'],'Test-to-invocation binding mismatch')
++  bound_indices.append(index)
++require(sorted(bound_indices)==list(range(1,73)),'Each actual controller invocation must bind exactly once to its named testcase')
++for invocation in controller_invocations:
++ path=OUT/'raw_receipts'/invocation['raw_filename'];b=path.read_bytes();receipt=json.loads(b)
++ require(invocation['retained'] and hashlib.sha256(b).hexdigest()==invocation['raw_sha256'] and len(b)==invocation['raw_bytes'],'Raw fingerprint binding mismatch')
++ require(receipt['control']==invocation['control_label']==receipt['actual_named_testcase']==invocation['testcase'],'Raw control/case binding mismatch')
++ require(receipt['controller_invocation_index']==invocation['index'] and receipt['raw_receipt_filename']==path.name,'Raw invocation/filename mismatch')
++for label,literal,expected_action in [('legacy_fresh_status_claimed_solved','claimed_solved','ELIGIBLE_REQUIRES_PROCESSING'),('legacy_fresh_status_CLAIMED_SOLVED','CLAIMED_SOLVED','SKIP_STATUS_ONLY')]:
++ invocation=next(x for x in controller_invocations if x['testcase']==label)
++ receipt=json.loads((OUT/'raw_receipts'/invocation['raw_filename']).read_bytes())
++ record=next(x for x in receipt['synthetic_controller_receipt']['rows'] if x['pr']==952)
++ require(record['status']==literal and record['action']==expected_action,'Case-distinct fresh status/action evidence lost')
++result={'utc':datetime.now(timezone.utc).isoformat(),'status':'PASS' if all(x['status']=='PASS' for x in tests) and not forbidden_calls else 'FAIL','actual_python_optimization_level':sys.flags.optimize,'source_sha256':hashlib.sha256(raw).hexdigest(),'source_authentication':'Unconditional explicit RuntimeError before compile, checked shared entire source and independent local backing copy against root-supplied external pin','passed':sum(x['status']=='PASS' for x in tests),'failed':sum(x['status']!='PASS' for x in tests),'actual_controller_invocations':len(controller_invocations),'retained_raw_receipt_count':len(raw_files),'casefold_unique_raw_filenames':True,'every_invocation_one_to_one_bound_to_actual_named_testcase_and_raw_receipt':True,'controller_invocations':controller_invocations,'actual_live_service_calls':0,'unexpected_live_operation_attempts':len(forbidden_calls),'all_service_responses_are_synthetic_fixtures':True,'tests':tests}
+ (OUT/'INDEPENDENT_RESULTS.json').write_text(json.dumps(result,indent=2)+'\n')
+-print(json.dumps({k:result[k] for k in ['utc','status','actual_python_optimization_level','passed','failed','actual_live_service_calls','unexpected_live_operation_attempts']}))
++print(json.dumps({k:result[k] for k in ['utc','status','actual_python_optimization_level','passed','failed','actual_controller_invocations','retained_raw_receipt_count','casefold_unique_raw_filenames','actual_live_service_calls','unexpected_live_operation_attempts']}))
+ if result['status']!='PASS':sys.exit(1)

@@ -1,0 +1,9 @@
+# Exact-priority falsification review
+
+The earlier primary source contains a complete ZFC counterexample to the exact countable Hausdorff 21.107 target. A directly retrieved Internet Archive capture dated 2026-10-02T01:45:49Z is byte-identical to the inspected current 598093-byte PDF, SHA-256 eb095248a64ebe4a52ea2cd32b40012cefc03b18475c5432c58747febc4e5de7. Its SHA-1 matches the CDX digest. This fixes the complete proof before the submitted commit's stated 2026-10-08T04:42:54Z timestamp.
+
+The submitted candidate uses the same group, topology, dense partition, and maxima/thinning/parity argument. No mathematical falsifier or novelty-preserving repair of this current result was found. Attribution or rediscovery relabeling does not supply a novel solution of the original unsolved problem. No ultimate-firstness, dependence, or misconduct claim is made.
+
+Read INDEPENDENT_ASSESSMENT.md for the full quantified claim, topology/density/empty/identity/finite-fiber/thinning/parity/fixed-open checks, and limitations. INDEPENDENCE_PHASE_BOUNDARY.json seals that unchanged assessment before any fresh family report or root observation intake. A later primary-source notification from the parent is recorded in POST_BOUNDARY_NOTICE.json; this review's own archive retrieval and sealed assessment preceded it. No other family report or root disposition was read.
+
+SOURCE_COVERAGE.json distinguishes 26-file identity authentication from the deliberately narrow substantive proof coverage. The original 26 files were reauthenticated after review. CHRONOLOGY.md, ARCHIVE_CONTENT_VALIDATION.json, and fetch receipts preserve the archive evidence and negative attempts. ADVERSE_FINDINGS.md preserves limitations. RESEARCH_LOG.md provides actual UTC and checkpoint percentages. Source PDFs, extracts, and images remain private. MANIFEST.json binds an exact public allowlist and excludes itself.

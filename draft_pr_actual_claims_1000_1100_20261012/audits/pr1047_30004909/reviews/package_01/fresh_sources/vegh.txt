@@ -1,0 +1,2772 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                  Report No. 53/2021
+
+                            DOI: 10.4171/OWR/2021/53
+
+
+                         Combinatorial Optimization
+                             (hybrid meeting)
+                                       Organized by
+                                    Karen Aardal, Delft
+                                   Satoru Iwata, Tokyo
+                                 Volker Kaibel, Magdeburg
+                                  Ola Svensson, Lausanne
+
+
+                          7 November – 13 November 2021
+
+         Abstract. Combinatorial Optimization deals with optimization problems
+         defined on combinatorial structures such as graphs and networks. Moti-
+         vated by diverse practical problem setups, the topic has developed into a
+         rich mathematical discipline with many connections to other fields of Math-
+         ematics (such as, e.g., Combinatorics, Convex Optimization and Geometry,
+         and Real Algebraic Geometry). It also has strong ties to Theoretical Com-
+         puter Science and Operations Research. A series of Oberwolfach Workshops
+         have been crucial for establishing and developing the field. The workshop we
+         report about was a particularly exciting event—due to the depth of results
+         that were presented, the spectrum of developments that became apparent
+         from the talks, the breadth of the connections to other mathematical fields
+         that were explored, and last but not least because for many of the particiants
+         it was the first opportunity to exchange ideas and to collaborate during an
+         on-site workshop since almost two years.
+
+
+Mathematics Subject Classification (2010): Primary: 90C27; Secondary: 90C57, 90C10, 90C11,
+90C22, 90C06, 90C59, 90C90.
+
+
+
+                        Introduction by the Organizers
+
+The workshop has been organized by Karen Aardal (Delft), Ola Svensson (Lau-
+sanne), Satoru Iwata (Tokyo), and Volker Kaibel (Magdeburg). It was held in a
+hybrid format with 31 on-site participants and 17 remote participants. Most par-
+ticipants were affiliated with Mathematics departments and some with Computer
+Science or Operations Research (Economics) departments. All remote particpiants
+2894                                                  Oberwolfach Report 53/2021
+
+were located either in Europe or in the U.S., some of them at the U.S. west coast
+with a time difference of 9 hours to local time at Oberwolfach. This situation
+imposed quite a challenge w.r.t. determining a reasanable time schedule for the
+workshop, which we tried to meet by introducing night sessions at 20:00. In order
+to nevertheless reserve enough time to discuss and to collaborate, in the mornings
+we scheduled only one session right after breakfast, followed by a longer break
+including lunch.
+   The workshop proved that the field of Combinatorial Optimzation is extremely
+active and growing, also in terms of establishing more and more connections to
+other mathematical fields. We provide some insight about examples of topics
+that played central roles by sketching the topics of the five focus lectures of 60-90
+minutes length that were delivered upon invitation of the organizers.
+   Nathan Klein reported about spectacular progress that has been made by
+him and his coauthors Anna Karlin and Shayan Oveis Gharan on the traveling
+salesman problem (TSP). After the question whether there is a better-than 1.5-
+approximation algorithm for the metric TSP had been open (and urgent) since
+Christofides came up with his famous algorithm more than 45 years ago, they
+eventually managed to design an algorithm that indeed beats that barrier (by
+10−37 ). The algorithm is based on constructing from an optimal solution to the
+subtour relaxation an appropriate probability distribution from which a spanning
+tree is sampled. While this algorithmic approach had been pursued before, the
+breakthrough resulted in particular from a deepened understanding of the class of
+distributions that are relevant here.
+   The traveling salesman problem is related to survivable network design problems
+where we wish to find a cheap subgraph that has certain connectivity requirements.
+In their focus lecture, Vera Traub and Rico Zenklusen gave an overview of their
+recent progress on such problems. This progress has been achieved by combining
+deep insights into the structure of linear programming relaxations with smart
+combinatorial techniques. This combination has allowed them to overcome decade-
+old difficulties and to give improved algorithms for several fundamental problems.
+In particular, they gave a detailed explanation of their new local search based
+algorithms for the weighted tree augmentation and steiner tree problems. For the
+weighted tree augmentation problem they achieve an approximation guarantee of
+3/2 (surpassing the old barrier of 2) and for the Steiner tree problem they gave a
+much cleaner proof of the state-of-the-art guarantee.
+   The concept of extended formulations has receieved a lot of attention during
+the last 10-15 years. The approach here is to express polytopes that are naturally
+associated with combinatorial optimization problems as projections of higher di-
+mensional polytopes that can be described much easier than the original ones. For
+many concrete optimization problems this has been done very succesfully, for oth-
+ers it has been proved that it is impossible to significantly reduce the complexity
+of the representation in this way. In any case, the approach raises fundamental
+extremal questions within the general theory of convex polytopes. In her focus
+lecture, Lisa Sauermann explained results (jointy obtained with Matthew Kwan
+Combinatorial Optimization                                                       2895
+
+and Yufei Zhao) on the extension complexity (the smallest number of inequalities
+in an extended formulation) of random polytopes in fixed dimensions. They not
+only obtained remarkably sharp estimates (showing, e.g., that in fixed dimensions
+the extension complexity
+                   √       of the convex hull of n random points on a sphere grows
+proportionally to n with probability tending to one), but they also introduced
+novel methods for constructing extended formulations that hopefully can be useful
+in other situations as well.
+   Nima Anari reported about the solution of a problem that had been posed
+by Mihail and Vazirani some 30 years ago: The graphs of the base polytopes of
+matroids have edge expansion at least one. This implies that random walks on
+those graphs are rapidly mixing, which opens up possibilities for generating ran-
+dom bases of matroids efficiently. For general 0/1-polytopes, the corresponding
+conjecture remains open. The lecture discussed several special cases and variations
+of that general conjecture, in particular such ones that seem promosing for imply-
+ing efficient random generation algorithms as well, thus providing very interesting
+directions for the future research in this area.
+   Sebastian Pokutta provided an overview of interplay between machine learn-
+ing and discrete optimization. Various machine learning tasks can be formulated
+in terms of discrete optimization. The topics of this direction include best sub-
+set selection, optimal classification trees, network verification, and rate-distortion
+explanation. In the opposite direction, one can think of using machine learning
+techniques for solving discrete optimization problems. One example is to train a
+reinforcement learning agent to select good branching variables or cuts for solv-
+ing integer programs. Another approach is to solve mixed integer programs with
+neural networks. His explanation on reinforcement learning demonstrated an ani-
+mation of a game situation, which was very interesting and entertaining as well.
+   Next to those five focus lectures there were 25 talks of 30 minutes length each,
+both from on-site as well as from remote participants. You find details on the entire
+program below, including descriptions of the problems that have been posed and
+discussed during two open problem sessions.
+Acknowledgement: The MFO and the workshop organizers would like to thank the
+National Science Foundation for supporting the participation of junior researchers
+in the workshop by the grant DMS-1641185, “US Junior Oberwolfach Fellows”.
+Moreover, the MFO and the workshop organizers would like to thank the Simons
+Foundation for supporting Jesús de Loera (UC Davis) in the “Simons Visiting
+Professors” program at the MFO.
+Combinatorial Optimization                                                                                                 2897
+
+
+
+
+Workshop (hybrid meeting): Combinatorial Optimization
+Table of Contents
+
+
+Chandra Chekuri (joint with Karthik Chandrasekaran)
+  Submodular k-Partitioning and Hypergraph k-Cut . . . . . . . . . . . . . . . . . . . 2901
+David P. Williamson (joint with Samuel C. Gutekunst, Billy Jin)
+  The Two-Stripe Symmetric Circulant TSP is in P . . . . . . . . . . . . . . . . . . . 2901
+Jens Vygen (joint with Vera Traub)
+   Better ATSP approximation, even on graphs . . . . . . . . . . . . . . . . . . . . . . . . 2902
+Santanu S. Dey (joint with Grigoriy Blekherman, Marco Molinaro, Kevin
+   Shu, Shengding Sun)
+   Sparse PSD approximation of the PSD cone . . . . . . . . . . . . . . . . . . . . . . . . 2902
+Neil Olver (joint with Leon Sering, Laura Vargas Koch)
+   Uniqueness, continuity and long-term behaviour of Nash flows over time 2904
+Vera Traub, Rico Zenklusen
+   [Focus] Better-Than-2 Approximations for Weighted Tree Augmentation
+   and Connections to Steiner Tree . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2905
+Gérard Cornuéjols (joint with Ahmad Abdi, Bertrand Guenin, Levent
+    Tuncel)
+    Dyadic linear programming . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2906
+Jakub Tarnawski (joint with Janardhan Kulkarni, Yang P. Liu, Ashwin
+   Sah, Mehtaab Sawhney)
+   Online Edge Coloring via Tree Recurrences and Correlation Decay . . . . . 2908
+Yuri Faenza (joint with Xuan Zhang)
+   Stable matchings, lattices, and polytopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2909
+Samuel Fiorini, Stefan Weltge
+   Integer programs with bounded subdeterminants and two nonzeros per
+   row . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2912
+László Végh (joint with Edin Husić, Georg Loho, Ben Smith)
+    On complete classes of valuated matroids . . . . . . . . . . . . . . . . . . . . . . . . . . . 2913
+Daniel Dadush (joint with Sander Borst, Sophie Huiberts, Samarth Tiwari)
+  On the Integrality Gap of Binary Integer Programs with Gaussian Data 2913
+Giacomo Zambelli (joint with Daniel Dadush, László A. Végh)
+   On finding exact solutions of linear programs in the oracle model . . . . . . 2914
+Thomas Rothvoss (joint with Moritz Venzin)
+  Approximate CVP in time 20.802n - now in any norm! . . . . . . . . . . . . . . . 2915
+2898                                                                             Oberwolfach Report 53/2021
+
+Britta Peis (joint with Katharina Eickhoff, S. Thomas McCormick, Niklas
+   Rieken, Laura Vargas Koch)
+   Computing buyer-optimal Walrasian prices in multi-unit matching
+   markets via a sequence of max flow computations . . . . . . . . . . . . . . . . . . . . 2917
+Nathan Klein (joint with Anna Karlin, Shayan Oveis Gharan)
+   [Focus] A (Slightly) Improved Approximation Algorithm for Metric TSP 2920
+Laura Sanità (joint with Haris Angelidakis, Dylan Hyatt-Denesik)
+   Node Connectivity Augmentation via Iterative Randomized Rounding . . . 2922
+Friedrich Eisenbrand (joint with Martina Gallato, Ola Svensson and
+    Moritz Venzin)
+    A QPTAS for Stabbing Rectangles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2923
+Mohit Singh (joint with Vivek Madan, Sasho Nikolov, Uthaipon
+  Tantipongpipat, Weijun Xie)
+  Determinant Maximization: Approximation and Estimation Algorithms 2926
+Daniel Dadush (joint with Sander Borst, Sophie Huiberts, Samarth Tiwari)
+  On the Integrality Gap of Binary Integer Programs with Gaussian Data 2926
+Eric Balkanski
+   A Deterministic Parallel Algorithm for Maximum Coverage via Steiner
+   Systems . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2927
+Lisa Sauermann (joint with Matthew Kwan, Yufei Zhao)
+   [Focus] On the extension complexity of low-dimensional polytopes . . . . . 2927
+David Shmoys (joint with Nikhil Garg, Wes Gurnee, David Rothschild)
+  Algorithmic Tools for US Congressional Districting: Fairness
+  via Analytics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2929
+Nima Anari
+   [Focus] The High-Dimesnional-Expander Perspective on Combinatorial
+   Distributions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2930
+Martin Skutella (joint with Max Klimm, Guillaume Sagnol, Khai Van Tran)
+  Symmetric Rendezvous on the Line . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2931
+Sebastian Pokutta
+   [Focus] Discrete Optimization in Machine Learning – an (informal)
+   overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2932
+Sarah Morell (joint with Martin Skutella)
+   Single source unsplittable flows with arc-wise lower and upper bounds . . 2934
+Jesús A. De Loera (joint with Alexander Black, Niklas Lutjeharms, Raman
+    Sanyal)
+    The Geometry of All Pivot Rules for the Simplex Method . . . . . . . . . . . . . 2935
+András Sebő (joint with Dehia Ait Ferhat, Zoltán Király, Gautier Stauffer)
+  How many matchings cover the nodes of a graph? . . . . . . . . . . . . . . . . . . . 2938
+Combinatorial Optimization                                                                                              2899
+
+Amitabh Basu
+  Complexity of optimizing over the integers . . . . . . . . . . . . . . . . . . . . . . . . . . 2939
+Chandra Chekuri
+  Open Problem: Approximating Symmetric Submodular Functions
+  by Hypergraphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2941
+Laura Sanità
+   Open Problem: Computing the diameter of the bipartite perfect matching
+   polytope . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2943
+Robert Weismantel (joint with Marcel Celaya)
+  Open Problem: Integer infeasible subsystems . . . . . . . . . . . . . . . . . . . . . . . . 2943
+Samuel Fiorini
+   Open Problem: Iterative rounding for feedback vertex set . . . . . . . . . . . . . 2944
+Nima Anari
+   Open Problem: Maximizing Subdeterminants in Nonsymmetric Matrices 2944
+Nathan Klein
+   Open Problem: α-Multiplicative Connectivity Augmentation and Polygon
+   Augmentation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2945
+László Végh
+    Open problem: Approximating submodular functions by matroid
+    rank functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2946
+Michel Goemans
+   Open problem: Signings in the subtour polytope . . . . . . . . . . . . . . . . . . . . . 2946
+Michel Goemans
+   Open problem: Representation for 4/3-near-mincuts . . . . . . . . . . . . . . . . . 2947
+Nicole Megow
+   Open problem: Unrelated graph balancing . . . . . . . . . . . . . . . . . . . . . . . . . . . 2947
+Ola Svensson
+   Open problem: Perfect matching that maximizes the k-heaviest edges . . . 2948
+Combinatorial Optimization                                                            2901
+
+                                      Abstracts
+
+            Submodular k-Partitioning and Hypergraph k-Cut
+                            Chandra Chekuri
+                 (joint work with Karthik Chandrasekaran)
+
+Submodular k-Partition is the following problem: given a submodular set func-
+tion f : 2V → R and an integer k, find a partition of V into k non-empty parts
+                                Pk
+V1 , V2 , . . . , Vk to minimize i=1 f (Vi ). Several interesting problems such as Graph
+k-Cut, Hypergraph k-Cut and Hypergraph k-Partition are special cases. Submod-
+ular k-Partition admits a polynomial-time algorithm for k = 2, 3 and when f is
+symmetric also for k = 4. The complexity is open for k = 4, and when f is
+symmetric for k = 5. Motivated by this problem, we examined the complexity of
+Hypergraph k-Cut which recently admitted a randomized polynomial-time algo-
+rithm for any fixed k. We obtained a deterministic polynomial-time algorithm for
+Hypergraph k-Cut as well as new insights into Graph k-Cut [1]. The ideas also led
+to a polynomial-time algorithm for Min-Max Symmetric Submodular k-Partition
+for any fixed k [2]. The talk will discuss these results with the goal of highlighting
+the open problem of resolving the complexity of Submodular k-Partition.
+
+                                      References
+ [1] K. Chandrasekaran and C. Chekuri, Hypergraph k-Cut for fixed k in deterministic polyno-
+     mial time, To appear in Mathematics of OR. Preliminary version in Proc. of IEEE FOCS,
+     2020.
+ [2] K. Chandrasekaran and C. Chekuri, Minmax Partitioning of Hypergraphs and Symmetric
+     Submodular Functions, Proc. of ACM-SIAM SODA, 2021.
+
+
+
+             The Two-Stripe Symmetric Circulant TSP is in P
+                            David P. Williamson
+                (joint work with Samuel C. Gutekunst, Billy Jin)
+
+The symmetric circulant TSP is a special case of the traveling salesman problem
+in which edge costs are symmetric and obey circulant symmetry. Despite the sub-
+stantial symmetry of the input, remarkably little is known about the symmetric
+circulant TSP. The complexity of the problem has been an often-cited open ques-
+tion. Considerable effort has been made to understand the case in which only edges
+of two lengths a1 and a2 are allowed to have finite cost: the two-stripe symmetric
+circulant TSP (see Greco and Gerace [2] and Gerace and Greco [1]). In this paper,
+we resolve the complexity of the two-stripe symmetric circulant TSP, providing
+the first step toward resolving the polynomial-time solvability of circulant TSP.
+To do so, we reduce two-stripe symmetric circulant TSP to the problem of finding
+certain minimum-cost Hamiltonian paths on cylindrical graphs. We then solve
+this Hamiltonian path problem. Our results show that the two-stripe symmetric
+2902                                                         Oberwolfach Report 53/2021
+
+circulant TSP is in P. Note that the input size of a two-stripe symmetric circu-
+lant TSP instance is a constant number of numbers (including n, the number of
+cities), so that a polynomial-time algorithm for the decision problem must run in
+time polylogarithmic in n, and a polynomial-time algorithm for the optimization
+problem cannot output the tour. We address this latter difficulty by showing that
+the optimal tour must fall into one of two parameterized classes of tours, and that
+we can output the class and the parameters in polynomial time.
+
+                                       References
+ [1] I. Gerace and F. Greco. The travelling salesman problem in symmetric circulant matrices
+     with two stripes. Mathematical Structures in Computer Science, 18(1):165–175, 2008.
+ [2] F. Greco and I. Gerace. The traveling salesman problem in circulant weighted graphs with
+     two stripes. Electronic Notes in Theoretical Computer Science, 169:99–109, 2007.
+
+
+                 Better ATSP approximation, even on graphs
+                                  Jens Vygen
+                          (joint work with Vera Traub)
+
+In previous work we reduced the approximation ratio for ATSP from 506 [2] to
+22 + ǫ, for any ǫ > 0 [4]. Now we could improve it further to 17 + ǫ. The core
+is a better approximation algorithm for Graph ATSP, for which we improve the
+approximation ratio from 13 + ǫ [3] to 8 + ǫ. Our two new ingredients are a better
+potential function for re-intializing Svensson’s algorithm [1] and an algorithm for
+subtour cover with a better local guarantee.
+                                       References
+ [1] O. Svensson, Approximating ATSP by relaxing connectivity, Proceedings of the 56th Annual
+     IEEE Symposium on Foundations of Computer Science (FOCS 2015), 1–19
+ [2] O. Svensson, J. Tarnawski, and L. Végh, A constant-factor approximation algorithm for the
+     asymmetric traveling salesman problem, Journal of the ACM 67 (2020), Article 37
+ [3] V. Traub: Approximation Algorithms for Traveling Salesman Problems, PhD thesis, Uni-
+     versity of Bonn 2020
+ [4] V. Traub, and J. Vygen [2020]: An improved approximation algorithm for the asymmetric
+     traveling salesman problem., SIAM Journal on Computing 51 (2022), 139–173 (Preliminary
+     version in STOC 2020)
+
+
+                Sparse PSD approximation of the PSD cone
+                               Santanu S. Dey
+       (joint work with Grigoriy Blekherman, Marco Molinaro, Kevin Shu,
+                                 Shengding Sun)
+
+While semidefinite programming (SDP) problems are polynomially solvable in the-
+ory, it is often difficult to solve large SDP instances in practice. One technique to
+address this issue is to relax the global positive-semidefiniteness (PSD) constraint
+and only enforce PSD-ness on smaller k × k principal submatrices – we call this
+the sparse SDP relaxation. Surprisingly, it has been observed empirically that in
+Combinatorial Optimization                                                     2903
+
+some cases this approach appears to produce bounds that are close to the optimal
+objective function value of the original SDP. In this talk, we formally attempt to
+compare the strength of the sparse SDP relaxation vis-‘a-vis the original SDP from
+a theoretical perspective.
+   In order to simplify the question, we arrive at a data independent version of it,
+where we compare the sizes of SDP cone and the k-PSD closure, which is the cone
+of matrices where PSDness is enforced on all k × k principal submatrices (denoted
+as S n,k ). In particular, we investigate the question of how far a matrix of unit
+Frobenius norm in the k-PSD closure can be from the SDP cone. Formally, let
+            distF (S n,k , S+
+                            n
+                              ) = supM∈S n,k ,kMkF ≤1 infN ∈S+n kM − N kF .
+We provide the following two incomparable upper bounds on this farthest distance
+distF (S n,k , S+
+                n
+                  ) as a function of k and n:
+Theorem 1. [1] Let 2 ≤ k ≤ n be integers. Then:
+                                                n−k
+                        distF (S n,k , S+
+                                        n
+                                          )≤         .
+                                               n+k−2
+Theorem 2. [2] Let 2 ≤ k ≤ n be integers. Then:
+                                           (n − k)3/2
+                 distF (S n,k , S+
+                                 n
+                                   )≤ p                      .
+                                       (n − k)2 + (n − 1)k 2
+   The second upper bound is based on the key insight that there is a convex cone
+H(enk ) so that if X ∈ S n,k , then the vector of eigenvalues of X is contained in
+H(enk ). The cone H(enk ) is thePhyperbolicity
+                                             Q cone of the elementary symmetric
+polynomial enk (where enk (x) = S⊆[n]:|S|=k i∈S xi ) with respect to the all ones
+vector.
+   We also provide the following matching lower bounds, which show that the
+upper bounds are tight within a constant in different regimes of k and n.
+Theorem 3. [1] Let 2 ≤ k ≤ n be integers. Then:
+                                              n−k
+                 distF (S n,k , S+
+                                 n
+                                   )≥ p                      .
+                                       (k − 1)2 n + n(n − 1)
+   Other than linear algebra techniques, we extensively use probabilistic methods
+to arrive at these bounds. The second lower bound is obtained by observing a
+connection between matrices in the k-PSD closure and matrices satisfying the
+restricted isometry property (RIP).
+   Finally, we also prove the following result.
+                                                                   1
+Theorem 4. [1] Let 2 ≤ k ≤ n be integers such that k = rn and r < 93 . The:
+                                          √
+                                            r − 93r2
+                     distF (S n,k , S+
+                                     n
+                                       )≥ √          .
+                                           162r + 3
+  We also prove the following result.
+2904                                                         Oberwolfach Report 53/2021
+
+Theorem 5. [1] Let 2 ≤ k ≤ n − 1. Consider ǫ, δ > 0 and let
+                                    2       
+                                     n     n
+                            m = 24      ln     .
+                                     ǫ2    δ
+Let I = (I1 , . . . , Im ) be a sequence of random k-sets independently uniformly sam-
+                
+pled from [n]
+            k , and define SI as the set of matrices satisfying the PSD constraints
+for the principal submatrices indexed by the Ii ’s, namely
+                        SI := {M ∈ Rn×n | MIi  0, ∀i ∈ [m]}.
+Then with probability at least 1 − δ we have
+                                        n                n−k
+                           distF (SI , S+ ) ≤ (1 + ǫ)         .
+                                                        n+k−2
+
+                                       References
+ [1] G. Blekherman, S.S. Dey, M. Molinaro, S. Sun, Sparse PSD approximation of the PSD cone,
+     Mathamatical Programming (2020), https://doi.org/10.1007/s10107-020-01578-y.
+ [2] G. Blekherman, S.S. Dey, K. Shu, S. Sun, Hyperbolic Relaxation of -kLocally Positive Semi-
+     definite Matrices, arXiv preprint arXiv:2012.04031 (2020).
+
+
+
+
+       Uniqueness, continuity and long-term behaviour of Nash flows
+                                  over time
+                                 Neil Olver
+               (joint work with Leon Sering, Laura Vargas Koch)
+
+We consider a dynamic model of traffic that has received a lot of attention in the
+past few years. Users control infinitesimal flow particles aiming to travel from a
+source to destination as quickly as possible. Flow patterns vary over time, and
+congestion effects are modeled via queues, which form whenever the inflow into a
+link exceeds its capacity. This model was first studied from an algorithmic per-
+spective by Koch and Skutella [3], who uncovered the key structure of equilibria
+in this model. The precise analytic foundations of the model, as well as a demon-
+stration of the existence of equilibria, followed in work of Cominetti, Correa and
+Larré [1]. Despite lots of interest, some very basic questions remain open; we
+resolve a number of them.
+       • We show uniqueness of journey times in equilibria.
+       • We show continuity of equilibria: small perturbations to the instance or
+         to the traffic situation at some moment cannot lead to wildly different
+         equilibrium evolutions.
+       • We demonstrate that, assuming constant inflow into the network at the
+         source, equilibria always settle down into a “steady state” in which the
+         behavior extends forever in a linear fashion.
+Combinatorial Optimization                                                            2905
+
+One of our main conceptual contributions is to show that the answer to the first
+two questions, on uniqueness and continuity, are intimately connected to the third.
+Our result also shows very clearly that resolving uniqueness and continuity, despite
+initial appearances, cannot be resolved by analytic techniques, but are related to
+very combinatorial aspects of the model.
+   To resolve the third question, we substantially extend the approach of [2], who
+show a steady-state result in the regime where the input flow rate is smaller than
+the network capacity. In essence, the key is to construct an appropriate potential,
+but it is far from clear what it should be. Linear programming duality plays a
+starring role in uncovering the correct choice.
+
+                                     References
+[1] R. Cominetti, J. Correa, and O. Larré. Dynamic equilibria in fluid queueing networks.
+    Operations Research, 63(1):21–34, 2015.
+[2] R. Cominetti, J. Correa, and N. Olver. Long-term behavior of dynamic equilibria in fluid
+    queuing networks. Operations Research, published online, 2021.
+[3] R. Koch and M. Skutella. Nash equilibria and the price of anarchy for flows over time.
+    Theory of Computing Systems, 49(1):71–97, 2011.
+
+
+Better-Than-2 Approximations for Weighted Tree Augmentation and
+                  Connections to Steiner Tree
+                  Vera Traub, Rico Zenklusen
+
+Augmentation problems ask about the cheapest way to increase the (edge-)connec-
+tivity of a graph by adding edges among a given set of options. One of the most
+elementary and intensely studied augmentation problems is (Weighted) Tree Aug-
+mentation. Here, a spanning tree has to be augmented into a 2-edge-connected
+graph. We give the first approximation algorithms for Weighted Tree Augmenta-
+tion that beat the longstanding approximation factor of 2, which can be achieved
+through many standard techniques. More precisely, we present a relative greedy
+approach and a local search procedure that can be interpreted as a refinement
+thereof, leading to a (1.5 + ǫ)-approximation. Moreover, we show how ideas of
+our local search approach extend to Steiner Tree, leading to an alternative way
+to obtain the currently best approximation factor of ln 4 + ǫ. Contrary to prior
+methods, our approach is purely combinatorial without the need to solve an LP.
+Nevertheless, the solution value can still be bounded in terms of the well-known
+hypergraphic LP, leading to an alternative, and arguably simpler, technique to
+bound its integrality gap by ln 4.
+
+                                     References
+[1] V. Traub and R. Zenklusen. A Better-Than-2 Approximation for Weighted Tree Augmen-
+    tation. In Proceedings of the 62nd Annual IEEE Symposium on Foundations of Computer
+    Science (FOCS), 2021. To appear. https://arxiv.org/abs/2104.07114.
+[2] V. Traub and R. Zenklusen. Local Search for Weighted Tree Augmentation and Steiner Tree.
+    In Proceedings of the 33rd ACM-SIAM Symposium on Discrete Algorithms (SODA), 2021.
+    To appear. https://arxiv.org/abs/2107.07403.
+2906                                                   Oberwolfach Report 53/2021
+
+                        Dyadic linear programming
+                           Gérard Cornuéjols
+        (joint work with Ahmad Abdi, Bertrand Guenin, Levent Tuncel)
+
+
+
+A rational number is dyadic if it is an integer multiple of 21k for some nonnegative
+integer k. Dyadic numbers are important for numerical computations because
+they have a finite binary representation, and therefore they can be represented
+exactly on a computer in floating-point arithmetic. When real or rational numbers
+are approximated by dyadic numbers on a computer, approximation errors may
+propagate and accumulate throughout the computations. So it is natural to ask
+when linear programs have dyadic optimal solutions. A vector x is dyadic if all its
+entries are dyadic rational numbers.
+   A dyadic linear program is an optimization problem of the form
+                              
+                           sup w⊤ x : Ax ≤ b, x dyadic
+
+where A, b, w have integral entries.
+   Note that we do not restrict ourselves to fixed precision; we just require a finite
+number of bits in the binary representation. This is an important point as we
+will see that it makes the problem tractable. On the other hand, if the vector x
+in the dyadic linear program were restricted to be of the form 2yk for an integral
+vector y and a nonnegative integer k bounded above by a given value K, then the
+problem would be a classical integer linear program. Indeed the problem can then
+be written as max w⊤ x : Ax ≤ b, x = 2yK , y integral .
+   Some natural questions about dyadic linear programs are: When is the problem
+feasible? Can we check feasibility in polynomial time? If the problem is infeasible,
+can we provide a certificate of infeasibility? When does a dyadic linear program
+have an optimal solution? For example, in dimension one, sup {x : 3x ≤ 1, x dyadic}
+does not have an optimal solution. Can dyadic linear programs be solved in poly-
+nomial time? When can we guarantee that the dual also has a dyadic optimal
+solution? This paper addresses these questions. In particular, we show that dyadic
+linear programs can be solved in polynomial time.
+   Much of this work can be extended to p-adic linear programming. Given a prime
+integer p ≥ 2, a rational number is p-adic if it is of the form pqk for some integer
+q and nonnegative integer k. A p-adic linear program requires the entries of the
+solution vector x to be p-adic. p-adic numbers give rise to interesting mathematics;
+see Gouvêa [1] for example. For ease of exposition, this paper focuses on dyadic
+linear programming.
+   We prove the following key lemma. A nonempty rational polyhedron contains
+a dyadic point if, and only if, its affine hull contains a dyadic point.
+   It is therefore useful to characterize when a system of linear equations Ax = b
+has a dyadic solution. As earlier, we assume that A, b have integral entries. We
+show that exactly one of the following statements holds:
+Combinatorial Optimization                                                        2907
+
+    (1) Ax = b has a dyadic solution,
+    (2) there exists a vector y ∈ Rm such that y ⊤ A is integral and y ⊤ b is non-
+        dyadic.
+   This is the analog of a classical theorem of the alternative for integer equations
+(sometimes called the ”integer Farkas lemma”), stating that, if A, b have integral
+entries, exactly one of the following statements holds:
+    (1) Ax = b has an integral solution,
+    (2) there exists a vector y ∈ Rm such that y ⊤ A is integral and y ⊤ b is not
+        integer.
+   Putting the two above results together, we get a theorem of the alternative
+for a polyhedron: Let P be a nonempty rational polyhedron whose affine hull is
+{x : Ax = b}, for some A, b with integral entries. Then exactly one of the following
+statements holds:
+    (1) P contains a dyadic point,
+    (2) there exists a vector y such that y ⊤ A is integral and y ⊤ b is non-dyadic.
+   We show that there are four possible outcomes for a dyadic linear program:
+(i) it is infeasible, (ii) it is unbounded, (iii) it has an optimal solution, (iv) it is
+not unbounded, has feasible solution(s) and a finite optimal value, but no optimal
+solution.
+   In each case, we provide a concise certificate for that outcome. In particular,
+we give an optimal solution if one exists. We present polynomial algorithms to
+generate these certificates. In other words, we show how to solve dyadic linear
+programs in polynomial time.
+   We also consider dyadic linear programs where the constraints are available
+through a separation oracle, as well as the situation where the columns of the
+constraint matrix are accessed through column generation. In each case, we show
+how to obtain polynomial-time algorithms.
+   We then introduce the notion of a dyadic polyhedron: A nonempty rational
+polyhedron is dyadic if every nonempty face contains a dyadic point. We prove
+that a polyhedron P is dyadic if and only if, for every integral vector c for which
+max{c⊤ x : x ∈ P } has an optimal solution, it has an optimal dyadic value.
+   A system of inequalities Ax ≤ b is Totally Dual Dyadic if for every integral c
+for which min{b⊤ z : A⊤ z = c, z ≥ 0} has an optimal solution, it has an optimal
+solution that is dyadic. In Section 4, we characterize such systems in terms of
+dyadic generating sets for subspaces and cones. We prove that Totally Dual Dyadic
+linear systems give rise to dyadic polyhedra.
+
+
+                                       References
+ [1] F. Gouvêa. p-adic Numbers - An Introduction, Springer, 1997.
+2908                                                   Oberwolfach Report 53/2021
+
+  Online Edge Coloring via Tree Recurrences and Correlation Decay
+                            Jakub Tarnawski
+       (joint work with Janardhan Kulkarni, Yang P. Liu, Ashwin Sah,
+                             Mehtaab Sawhney)
+
+
+Given a graph G = (V, E) with maximum degree ∆, the edge coloring problem
+is to assign colors to edges such that any two edges sharing a common vertex get
+different colors. A well-known theorem by Vizing [7] says that every graph can be
+edge-colored using ∆ + 1 colors.
+    Bar-Noy, Motwani, and Naor [3] initiated the study of edge coloring in the
+online setting. Here, the online algorithm has knowledge of the vertex set V of
+the graph and the maximum degree ∆. However, the edges are revealed one by
+one, and the online algorithm has to irrevocably assign a color to each newly
+arriving edge. The goal is to minimize the number of colors used by the online
+algorithm while maintaining a valid edge coloring of the graph at all time steps.
+In the original paper, [3] showed that for graphs with maximum degree O(log n),
+no online algorithm can maintain a proper coloring using fewer than 2∆ − 1 colors
+— a trivial bound achieved by the greedy algorithm which simply assigns every
+arriving edge any color that is not used at either endpoint. However, this result
+only applies to graphs with logarithmic maximum degree. Consequently, the focus
+has shifted to the much more interesting regime of ∆ = ω(log     √ n). In this regime,
+[3] conjectured that the online algorithm that uses ∆ + O( ∆ log n) colors and
+samples a color for each edge uniformly at random from the set of valid colors
+succeeds with constant probability. However, we do not know how to analyze
+this algorithm or give any online algorithm that beats the competitive ratio of
+2 achieved by the trivial greedy algorithm; this has been raised as a challenging
+open problem by all subsequent works.
+    A competitive ratio of 1+o(1) is achievable in important special cases: random-
+order (instead of adversarial-order) edge arrival [1, 2, 4] and one-sided vertex
+arrivals (instead of edge arrivals) for bipartite graphs [5]. Very recently, a compet-
+itive ratio of 1.9 was obtained by Saberi and Wajc [6] for general vertex arrivals
+on graphs of maximum degree ω(log n). Despite these impressive results, no algo-
+rithm was known to beat the competitive ratio of 2 in the most general setting of
+online edge arrivals. The main result of this paper makes the first progress in this
+direction.
+
+Theorem 1. There is an online randomized    algorithm that on a graph with max-
+                                              e
+imum degree ∆ = ω(log n) outputs an e−1         + o(1) ∆-edge coloring with high
+probability in the oblivious adversary setting.
+
+  Our proof of the theorem is based on reducing the problem to a matching
+problem on locally treelike graphs, and then applying a tree recurrences based
+approach for arguing correlation decay.
+  We believe that both our algorithm and its analysis are quite simple.
+Combinatorial Optimization                                                               2909
+
+  Correlation decay is a well known and widely used technique in the statistical
+physics and sampling literature, but was not applied to online problems previously.
+
+                                       References
+[1] Gagan Aggarwal, Rajeev Motwani, Devavrat Shah, and An Zhu. Switch scheduling via
+    randomized edge coloring. In 44th Annual IEEE Symposium on Foundations of Computer
+    Science, 2003. Proceedings., pages 502–512. IEEE, 2003.
+[2] Bahman Bahmani, Aranyak Mehta, and Rajeev Motwani. Online graph edge-coloring in the
+    random-order arrival model. Theory of Computing, 8(1):567–595, 2012.
+[3] Amotz Bar-Noy, Rajeev Motwani, and Joseph Naor. The greedy algorithm is optimal for
+    on-line edge coloring. Inform. Process. Lett., 44(5):251–253, 1992.
+[4] Sayan Bhattacharya, Fabrizio Grandoni, and David Wajc. Online edge coloring algorithms
+    via the nibble method. In Proceedings of the 2021 ACM-SIAM Symposium on Discrete
+    Algorithms (SODA), pages 2830–2842. SIAM, 2021.
+[5] Ilan Reuven Cohen, Binghui Peng, and David Wajc. Tight bounds for online edge coloring.
+    In David Zuckerman, editor, 60th IEEE Annual Symposium on Foundations of Computer
+    Science, FOCS 2019, Baltimore, Maryland, USA, November 9-12, 2019, pages 1–25. IEEE
+    Computer Society, 2019.
+[6] Amin Saberi and David Wajc. The greedy algorithm is not optimal for on-line edge coloring.
+    In 48th International Colloquium on Automata, Languages, and Programming (ICALP
+    2021). Schloss Dagstuhl-Leibniz-Zentrum für Informatik, 2021.
+[7] V. G. Vizing. On an estimate of the chromatic class of a p-graph. Diskret. Analiz, 3:25–30,
+    1964.
+
+
+                   Stable matchings, lattices, and polytopes
+                                  Yuri Faenza
+                          (joint work with Xuan Zhang)
+
+Since Gale and Shapley’s seminal publication [8], the concept of stability in match-
+ing markets has been widely studied by the optimization community. In this work,
+matching markets have two sides, which we call firms F and workers W . In the
+classical marriage model, every agent from F ∪ W has a strict preference list that
+ranks agents in the opposite side of the market. The goal is to find a stable match-
+ing, which is a matching where no pair of agents prefer each other to their assigned
+partners. A stable matching can be found efficiently via the Deferred Acceptance
+(DA) algorithm [8]. Although successful, the marriage model does not capture
+important features such as diversity in school cohorts [12, 15].
+   To model these and other features, instead of ranking individual potential part-
+ners, each agent a ∈ F ∪ W is endowed with a choice function Ca that picks a
+collection of agents she prefers the best from a given set of potential partners.
+Models with choice functions were first studied in [10, 13]. Mutatis mutandis, one
+can define a concept of stability in this model as well. Two classical assumptions
+on choices functions are substitutability and consistency, under which the exis-
+tence of stable matchings is guaranteed [7, 2]. Clearly, existence results are not
+enough for applications (and for optimizers). Little is known about algorithms in
+models with choice functions: only extensions of the classical Deferred Acceptance
+algorithm for finding the one-side optimal matching have been studied [5, 13].
+2910                                                        Oberwolfach Report 53/2021
+
+    The goal of our work is to study algorithms for optimizing a linear function w
+over the set of stable matchings in models with choice functions, where w is defined
+over firm-worker pairs. Such questions are classical in combinatorial optimization,
+see, e.g., [14] (and [11] for problems on matching markets). We focus on the QF-
+Model, that assumes that all choice functions are substitutable, consistent, and
+quota-filling. The QF-Model generalizes all classical models where agents have
+strict preference lists, on which results for the question above were known. The
+stable matchings in this model can be arranged as to form a distributive lattice [1].
+Our contributions and techniques. All sets considered in this paper are finite.
+Let L = (X , ) be a distributive lattice, where the elements of X are distinct
+subsets of a base set E and  is a partial order on X . We refer to S ∈ X as an
+element (of the lattice). Birkhoff’s theorem [4] implies that we can associate1 to
+L a poset B = (Y, ⋆ ) such that there is a bijection ψ : X → U(B), where U(B)
+is the family of upper sets of B. U ⊆ Y is an upper set of B if y ∈ U and y ′ ⋆ y
+for some y ′ ∈ Y implies y ′ ∈ U . We say therefore that B is a representation poset
+for L with the representation function ψ. B may contain much fewer elements
+than the lattice L it represents, thus giving a possibly “compact” description of
+L. The representation poset B and the representation function ψ are univocally
+defined per Birkhoff’s theorem. Moreover, the representation function ψ satisfies
+that for S, S ′ ∈ X , S  S ′ if and only if ψ(S) ⊆ ψ(S ′ ). Although B explains how
+elements of X are related to each other with respect to , it does not contain
+any information on which items from E are contained in each lattice element. We
+introduce therefore Definition 1. For S ∈ X and U ∈ U(B), we write χS ∈ {0, 1}E
+and χU ∈ {0, 1}Y to denote their characteristic vectors, respectively.
+Definition 1. Let L = (X , ) be a distributive lattice on a base set E and B =
+(Y, ⋆ ) be a representation poset for L with representation function ψ. B is an
+affine representation of L if there exists an affine function g : RY → RE such
+                 −1
+that g(χU ) = χψ (U) , for all U ∈ U(B). In this case, we also say that B affinely
+represents L via function g and that L is affinely representable.
+   As we show next, affine representability allows one to efficiently solve linear
+optimization problems over elements of a distributive lattice. In particular, it
+generalizes properties that are at the backbone of algorithms for optimizing a
+linear function over the set of stable matchings in the marriage model and its
+one-to-many and many-to-many generalizations (see, e.g., [9, 3]). For instance, in
+the marriage model, the base set E is the set of potential pairs of agents from two
+sides of the market, X is the set of stable matchings, and for S, S ′ ∈ X , we have
+S  S ′ if every firm prefers its partner in S to its partner in S ′ .
+Lemma 2. Suppose we are given a poset B = (Y, ⋆ ) that affinely represents a
+lattice L = (X , ) with representation function ψ. Let w : E → R be a linear
+function over the base set E of L. Then max{w⊺ χS : S ∈ X } can be solved in
+
+   1The result proved by Birkhoff is actually a bijection between the families of lattices and
+posets, but we shall not need it in full generality.
+Combinatorial Optimization                                                              2911
+
+time min-cut(|Y | + 2), where min-cut(k) is the time complexity required to solve
+a minimum cut problem with nonnegative weights in a digraph with k nodes.
+   We want to apply Lemma 2 to the QF-Model. As a choice function may be
+defined on all the (exponentially many) subsets of agents from the opposite side,
+we model access to choice functions via an oracle model. We let oracle-call be
+time required to compute the choice function Ca (X) of any agent a ∈ F ∪ W for
+any set X in the domain of Ca .
+Theorem 3. The distributive lattice (S, ) of stable matchings in the QF-Model
+is affinely representable. Its representation poset (Π, ⋆ ) has O(|F ||W |) elements.
+This representation poset, as well as its representation function ψ and affine func-
+tion g(u) = Au + x0 , can be computed in time O(|F |3 |W |3 oracle-call). More-
+over, matrix A has full column rank.
+  Theorem 3 is the union of two statements. First, the distributive lattice of stable
+matchings in the QF-Model is affinely representable. Second, this representation
+and the corresponding functions ψ and g can be found efficiently. From Theorem 3,
+Lemma 2 and algorithms for min-cut (see, e.g., [14]), we obtain the following.
+Corollary 4. The problem of optimizing a linear function over the set of stable
+matchings in the QF-Model can be solved in time O(|F |3 |W |3 oracle-call).
+   As a consequence of studying a distributive lattice via the poset that affinely
+represents it, one immediately obtains a linear description of the convex hull of
+the characteristic vectors of elements of the lattice.
+Theorem 5. Let L = (X , ) be a distributive lattice and B = (Y, ⋆ ) be a poset
+that affinely represents it via function g(u) = Au + x0 . Then the extension com-
+plexity of conv(X ) := conv{χS : S ∈ X } is O(|Y |2 ). If moreover A has full column
+rank, then conv(X ) has O(|Y |2 ) facets.
+   Theorem 3 and Theorem 5 imply the following description of the stable match-
+ing polytope, i.e., the convex hull of the characteristic vectors of stable matchings.
+Corollary 6. conv(S) has O(|F |2 |W |2 ) facets in the QF-Model.
+  For examples and extended discussions, we refer to the arXiv version of the
+paper [6] and to the Ph.D. thesis of the second author [16].
+
+                                       References
+ [1] Alkan, Ahmet. “A class of multipartner matching markets with a strong lattice structure.”
+     Economic Theory 19.4 (2002): 737-746.
+ [2] Aygün, Orhan, and Tayfun Sönmez. “Matching with contracts: Comment.” American Eco-
+     nomic Review 103.5 (2013): 2050-51.
+ [3] Bansal, Vipul, Aseem Agrawal, and Varun S. Malhotra. “Polynomial time algorithm for
+     an optimal stable assignment with multiple partners.” Theoretical Computer Science 379.3
+     (2007): 317-328.
+ [4] Birkhoff, Garrett. “Rings of sets.” Duke Mathematical Journal 3.3 (1937): 443-454.
+ [5] Chambers, Christopher P., and M. Bumin Yenmez. “Choice and matching.” American Eco-
+     nomic Journal: Microeconomics 9.3 (2017): 126-47.
+2912                                                          Oberwolfach Report 53/2021
+
+ [6] Faenza, Yuri, and Xuan Zhang. “Affinely representable lattices, stable matchings, and choice
+     functions.” arXiv preprint arXiv:2011.06763 (2020).
+ [7] Hatfield, John William, and Paul R. Milgrom. “Matching with contracts.” American Eco-
+     nomic Review 95.4 (2005): 913-935.
+ [8] Gale, David, and Lloyd S. Shapley. “College admissions and the stability of marriage.” The
+     American Mathematical Monthly 69.1 (1962): 9-15.
+ [9] Irving, Robert W., Paul Leather, and Dan Gusfield. “An efficient algorithm for the ‘optimal’
+     stable marriage.” Journal of the AQF (JAQF) 34.3 (1987): 532-543.
+[10] Kelso Jr, Alexander S., and Vincent P. Crawford. “Job matching, coalition formation, and
+     gross substitutes.” Econometrica: Journal of the Econometric Society (1982): 1483-1504.
+[11] Manlove, David. Algorithmics of matching under preferences. Vol. 2. World Scientific, 2013.
+[12] Nguyen, Thành, and Rakesh Vohra. “Stable matching with proportionality constraints.”
+     Operations Research 67.6 (2019): 1503-1519.
+[13] Roth, Alvin E. “Stability and polarization of interests in job matching.” Econometrica:
+     Journal of the Econometric Society (1984): 47-57.
+[14] Schrijver, Alexander. Combinatorial optimization: polyhedra and efficiency. Vol. 24.
+     Springer Science & Business Media, 2003.
+[15] Tomoeda, Kentaro. “Finding a stable matching under type-specific minimum quotas.” Jour-
+     nal of Economic Theory 176 (2018): 81-117.
+[16] Zhang, Xuan. Two-Sided Matching Markets: Models, Structures, and Algorithms.
+     Ph.D. thesis, IEOR Department, Columbia University, 2021.
+
+
+
+
+  Integer programs with bounded subdeterminants and two nonzeros
+                                 per row
+                     Samuel Fiorini, Stefan Weltge
+              (joint work with Gwenaël Joret, Yelena Yuditsky)
+
+
+Consider integer programs max{c⊺ x : Ax ≤ b, x ∈ Zn } with integer matrices A.
+It is an open question whether such integer programs can be solved in polynomial
+time if the absolute value of the determinant of every square submatrix of A is
+bounded by some constant ∆. In the case ∆ = 1, the matrix A is totally unimodu-
+lar and the integer program can be replaced by its linear programming relaxation.
+Recently, Artmann, Weismantel & Zenklusen [1] gave a strongly polynomial-time
+algorithm for the case ∆ = 2. However, the question is open in the case ∆ ≥ 3.
+    In this work, we give a strongly polynomial-time algorithm for general constant
+∆ under the further requirement that A contains at most two nonzero entries
+in each row. The core of our approach is the first polynomial-time algorithm
+for the weighted stable set problem on graphs that do not contain more than k
+vertex-disjoint odd cycles, where k is any constant. Previously, polynomial-time
+algorithms were only known for k = 0 (bipartite graphs) and for k = 1 (implied
+by [1]).
+    We also observe that the case of two nonzeros per column can be also solved in
+strongly polynomial-time, using a reduction to b-matching.
+Combinatorial Optimization                                                          2913
+
+                                     References
+[1] S. Artmann, R. Weismantel, and R. Zenklusen, “A strongly polynomial algorithm for bi-
+    modular integer linear programming,” in Proceedings of the 49th Annual ACM SIGACT
+    Symposium on Theory of Computing (STOC), 2017, pp. 1206–1219.
+
+
+
+                  On complete classes of valuated matroids
+                                 László Végh
+              (joint work with Edin Husić, Georg Loho, Ben Smith)
+
+Valuated matroids were introduced by Dress and Wenzel in 1992 [1]. They are a
+central object in discrete convex analysis, and play important roles in other areas
+such as mathematical economics and tropical geometry. Finding a constructive
+characterization, i.e., showing that all valuated matroids can be derived from a
+simple class by some basic operations has been a natural question proposed in
+various contexts.
+   Motivated by this, we study the class of R-minor valuated matroids, that in-
+cludes the indicator functions of matroids, and is closed under operations such
+as taking minors, duality, and induction by network. Our main result exhibits
+valuated matroids that are not R-minor.
+   Valuated matroids are inherently related to gross substitute valuations in math-
+ematical economics. By the same token we refute the Matroid Based Valuation
+Conjecture by Ostrovsky and Paes Leme from 2015 [2], asserting that every gross
+substitute valuation arises from weighted matroid rank functions by repeated ap-
+plications of merge and endowment operations. Our result also has implications
+in the context of Lorentzian polynomials: it reveals the limitations of known con-
+struction operations.
+
+                                     References
+[1] A. W. M. Dress and W. Wenzel, Valuated matroids, Advances in Mathematics 93(2) (1990),
+    214–250.
+[2] M. Ostrovsky and R. Paes Leme, Gross substitutes and endowed assignment valuations,
+    Theoretical Economics, 10(3) (2015), 853–865.
+
+
+
+        On the Integrality Gap of Binary Integer Programs with
+                                Gaussian Data
+                               Daniel Dadush
+        (joint work with Sander Borst, Sophie Huiberts, Samarth Tiwari)
+
+For a binary integer program (IP) max cT x, Ax ≤ b, x ∈ {0, 1}n , where A ∈ Rm×n
+and c ∈ Rn have independent Gaussian entries and the right-hand side b ∈ Rm
+satisfies that its negative coordinates have ℓ2 norm at most n/10, we prove that the
+gap between the value of the linear programming relaxation and the IP is upper
+bounded by poly(m)(log n)2 /n with probability at least 1 − 2/n7 − 2− poly(m) . Our
+2914                                                      Oberwolfach Report 53/2021
+
+results give a Gaussian analogue of the classical integrality gap result of Dyer and
+Frieze (Math. of O.R., 1989) in the case of random packing IPs. In constrast
+to the packing case, our integrality gap depends only polynomially on m instead
+of exponentially. Building upon recent breakthrough work of Dey, Dubey and
+Molinaro (SODA, 2021), we show that the integrality gap implies that branch-
+and-bound requires npoly(m) time on random Gaussian IPs with good probability,
+which is polynomial when the number of constraints m is fixed. We derive this
+result via a novel meta-theorem, which relates the size of branch-and-bound trees
+and the integrality gap for random logconcave IPs.
+
+
+
+   On finding exact solutions of linear programs in the oracle model
+                           Giacomo Zambelli
+              (joint work with Daniel Dadush, László A. Végh)
+
+We consider the linear programming in the oracle model, that is, the problem
+min{c⊤ x : x ∈ P } where the polyhedron P = {x ∈ Rn : Ax ≤ b} is given
+by a separation oracle that returns violated inequalities from the system Ax ≤
+b. We present an algorithm that finds exact primal and dual solutions using
+O(n2 log(n/δ)) oracle calls and O(n4 log(n/δ) + n5 log log(1/δ)) arithmetic opera-
+tions, where δ := δ(A,b) is a geometric condition number associated with the matrix
+(A, b). Specifically, for a matrix V with rows vi ∈ Rn , i ∈ [m], δV is the largest
+value such that, for any set I ⊆ [m] such that the vectors {vi : i ∈ I} are linearly
+independent and for every λ ∈ RI ,
+                           X
+                                 λi vi ≥ δV max |λi | · kvi k .
+                                              i∈I
+                           i∈I
+
+This condition number was previously studied in the context of the shadow simplex
+algorithm by various authors [1, 3, 5]. The running time bounds above do not
+depend on the cost vector c. Furthermore, the algorithm does not require any
+knowledge of the problem instance, such as the condition number δ.
+   The algorithm works in a black box manner, requiring a subroutine for approx-
+imate primal and dual solutions; the above running times are achieved when using
+the cutting plane method of Jiang, Lee, Song, and Wong [8] for this subroutine.
+Other methods can be used, such as the ellipsoid method [7], geometric rescaling
+methods [4, 9] or Vaidya’s cutting plane method [10], albeit with worse running
+time bounds. Whereas approximate solvers may return primal solutions only, we
+develop a general framework for extracting dual certificates based on the work of
+Burrell and Todd [2].
+   Our algorithm works in the real model of computation, and extends results by
+Grötschel, Lovász, and Schrijver [7], and by Frank and Tardos [6] on solving LPs in
+the bit-complexity model.In particular, our method does not rely on simultaneous
+Diophantine approximation.
+Combinatorial Optimization                                                              2915
+
+                                       References
+ [1] T. Brunsch, H. Röglin, Finding short paths on polytopes by the shadow vertex algorithm,
+     International Colloquium on Automata, Languages, and Programming (2013), 279–290.
+ [2] B. Burell, M.J. Todd, The ellipsoid method generates dual variables, Mathematics of Oper-
+     ations Research 10 (1985), 688–700.
+ [3] D. Dadush, N. Hähnle, On the shadow simplex method for curved polyhedra, Discrete &
+     Computational Geometry 56 (2016), 882–909.
+ [4] D. Dadush, L. Vegh, G. Zambelli, Rescaling Algorithms for Linear Conic Feasibility, Math-
+     ematics of Operations Research 45 (2020), 732–754.
+ [5] F. Eisenbrand, S. Vempala, Geometric random edge, Mathematical Programming 164
+     (2017), 325–339.
+ [6] A. Frank and E. Tardos, An application of simultaneous diophantine approximation in
+     combinatorial optimization, Combinatorica 7 (1987), 49–65.
+ [7] M. Grötschel, L. Lovász, A. Schrijver, Geometric methods in combinatorial optimization,
+     Progress in combinatorial optimization (1984), 167–183.
+ [8] H. Jiang, Y.T. Lee, Z. Song, S.C. Wong, An improved cutting plane method for convex
+     optimization, convex-concave games, and its applications, Proceedings of the 52nd Annual
+     ACM Symposium on Theory of Computing (STOC) (2020), 944–953.
+ [9] R. Hoberg, T. Rothvoß, An improved deterministic rescaling for linear programming algo-
+     rithms, Integer Programming and Combinatorial Optimization (IPCO) (2017), 267–278.
+[10] P. Vaidya, A new algorithm for minimizing convex functions over convex sets, Mathematical
+     Programming 73 (1996), 291–341.
+
+
+
+           Approximate CVP in time 20.802n - now in any norm!
+                            Thomas Rothvoss
+                      (joint work with Moritz Venzin)
+
+A (full rank) lattice is the set L := {Bx | x ∈ Zn }, where B ∈ Rn×n is a regular
+matrix. The two best studied computational problems on lattices are the following:
+For the Shortest Vector problem we are given a lattice L (described by a matrix
+B) and a norm k · kK and the goal is to find the shortest non-zero vector in the
+lattice, i.e. min{kxkK : x ∈ L \ {0}}. For the Closest Vector problem we are given
+a lattice L, a norm k · kK and a target vector t ∈ Rn . The goal is to find the lattice
+vector closest to t, i.e. min{kx − tkK | x ∈ L}. We abbreviate SVPp and CVPp
+                                     P
+for the case of the norms kxkp := ( ni=1 |xi |p )1/p .
+   Both SVP and CVP and their respective (approximation) algorithms have found
+considerable applications. These include Integer Programming [6, 5], factoring
+polynomials over the rationals [7] and cryptanalysis [9]. The problem SVPK can
+be solved in time 2O(n) regardless of the norm [1]. The Euclidean norm k · k2
+allows a faster algorithm with time 2n [2]. In fact, for SVP2 one can find a
+constant factor approximation in time 20.802n ; then this result can be transfered
+to any k · kp -norm [4].
+   For the harder CVP problem, only the case CVP2 can be solved exactly in
+single exponential time; the best exact algorithm for any other norm takes time
+nO(n) . However (1 + ε)-approximations can be obtained for any norm k · kK
+in time (1/ε)O(n) [3]. Moreover, if one is satisfied with a large constant factor
+approximation, then for CVPp and any p ≥ 1, running time 20.802n suffices [4].
+2916                                                     Oberwolfach Report 53/2021
+
+  The main contribution of our work is the following:
+Theorem 1. For any lattice L ⊆ Rn and any norm k · kK on Rn one can find an
+O(1)-approximate solution to CVPK and SVPK in time 20.802n and space 20.401n .
+  The core algorithmic ingredient is the well known sieving procedure due to Ajtai,
+Kumar, Sivakumar [1] which can be paraphrased as follows:
+Theorem 2. Given ǫ > 0, R > 0, N ∈ N and a lattice L ⊆ Rd of rank n, there is
+a randomized procedure that produces independent samples v1 , · · · , vN ∼ D, where
+the distribution D satisfies the following two properties:
+    (1) Every sample v ∼ D has v ∈ L and kvk2 ≤ aǫ · R, where aǫ is a constant
+         only depending on ǫ.
+    (2) For any s ∈ L with ksk2 ≤ R, there are distributions D0s and D1s and some
+         parameter ρs with 2−ǫn ≤ ρs ≤ 1 such that the distribution D is equivalent
+         to the following process:
+          (a) With probability ρs , sample u ∼ D0s . Then, flip a fair coin and with
+              probability 1/2, return u, otherwise return u + s.
+          (b) With probability 1 − ρs , sample u ∼ D1s .
+This procedure takes expected time 2(0.802+ǫ)n + N · 2(0.401+ǫ)n and requires N +
+2(0.401+ǫ)n space.
+   In short: we can generate short lattice vectors whose length is within a constant
+factor of a target vector s (most importantly, that vector s does not need to be
+known to the algorithm). Moreover a substantial number of returned samples will
+be a uniform choice from {u, u + s} for some lattice vector u.
+   Note that this procedure works in the specified running time only for the Eu-
+clidean norm. Now, given an arbitrary norm k · kK , the key obstacle is to approxi-
+mate the symmetric convex body K by balls (or ellipsoids). For two convex bodies
+A, B ⊆ Rn we define the covering number N (A, B) as the minimum number of
+translates of B necessary to cover A. Then we rely on the following deep result
+from convex geometry:
+Theorem 3 (Milman, Pisier). For any symmetric convex body, after applying a
+linear transformation one has
+                                                             n 
+                N (K, tB2n ), N (B2n , tK) ≤ exp O(1) · 1.99           ∀t ≥ 1
+                                                            t
+                                                               n
+                                                                   
+(in fact, also N (K ◦ , tB2n ), N (B2n , tK ◦ ) ≤ exp O(1) · t1.99  ).
+  Milman proved this statement for t = 1 [8]. The later proof of Pisier for
+general t ≥ 1 is non-constructive. However one can modify Milman’s Isomorphic
+symmetrization scheme [8] to make it work for any fixed t. We prove:
+Theorem 4. Let ε > 0. In time nO(log n) one can bring K in a position so that
+                    N (K, Oε (1) · B2n ), N (B2n , Oε (1) · K) ≤ 2εn
+   Then the algorithm to solve SVPK and CVPK works by transforming the lat-
+tice accordingly; then cover K with 2εn many balls and apply the AKS sieving
+argument with some care.
+Combinatorial Optimization                                                                 2917
+
+                                        References
+ [1] Miklós Ajtai, Ravi Kumar, and D. Sivakumar, A sieve algorithm for the shortest lattice
+     vector problem, Proceedings on 33rd Annual ACM Symposium on Theory of Computing,
+     July 6-8, 2001, Heraklion, Crete, Greece, 2001, pp. 601–610.
+ [2] D. Aggarwal, D. Dadush, and N. Stephens-Davidowitz, Solving the closest vector problem
+     in 2n time – the discrete gaussian strikes again!, 2015 IEEE 56th Annual Symposium on
+     Foundations of Computer Science, Oct 2015, pp. 563–582.
+ [3] Johannes Blömer and Stefanie Naewe, Sampling methods for shortest vectors, closest vectors
+     and successive minima, Theor. Comput. Sci. 410 (2009), no. 18, 1648–1665.
+ [4] Friedrich Eisenbrand and Moritz Venzin, Approximate cvpp in time 20.802 n , 28th Annual
+     European Symposium on Algorithms, ESA 2020, September 7-9, 2020, Pisa, Italy (Virtual
+     Conference) (Fabrizio Grandoni, Grzegorz Herman, and Peter Sanders, eds.), LIPIcs, vol.
+     173, Schloss Dagstuhl - Leibniz-Zentrum für Informatik, 2020, pp. 43:1–43:15.
+ [5] Ravi Kannan, Minkowski’s convex body theorem and integer programming, Math. Oper.
+     Res. 12 (1987), no. 3, 415–440.
+ [6] Hendrik W. Lenstra, Integer programming with a fixed number of variables, Math. Oper.
+     Res. 8 (1983), no. 4, 538–548.
+ [7] A. K. Lenstra, H. W. Lenstra, and L. Lovász, Factoring polynomials with rational coeffi-
+     cients, Mathematische Annalen 261 (1982), no. 4, 515–534.
+ [8] V. D. Milman, Isomorphic symmetrization and geometric inequalities, Geometric aspects
+     of functional analysis (1986/87), Lecture Notes in Math., vol. 1317, Springer, Berlin, 1988,
+     pp. 107–131. MR 950978
+ [9] A. M. Odlyzko, The rise and fall of knapsack cryptosystems, In Cryptology and Computa-
+     tional Number Theory, A.M.S, 1990, pp. 75–88.
+
+
+
+  Computing buyer-optimal Walrasian prices in multi-unit matching
+            markets via a sequence of max flow computations
+                                Britta Peis
+  (joint work with Katharina Eickhoff, S. Thomas McCormick, Niklas Rieken,
+                             Laura Vargas Koch)
+
+We consider a multi-unit auction market where discrete indivisible items of n
+different types, denoted by Ω = {i1 , . . . , in }, are sold to a set of m buyers B =
+{j1 , . . . , jm }. We assume that each product type (or object) i ∈ Ω is available in
+a quantity bi ∈ Z+ . Each buyer j ∈ B is interested in buying at most dj ∈ Z+
+items in total. The goal of the auctioneer is to find a per-unit price p(i) for each
+                                                                 Ω×B
+object i, together with an allocation (or assignment) x ∈ Z+          of items to buyers
+such that the prices p and the allocation x satisfy certain desirable properties.
+Certainly, the allocation x should be feasible in the sense that at most bi units
+are sold of each object i ∈ Ω, and each buyer j buys at most dj items. That is,
+         Ω×B
+x ∈ Z+          needs to satisfy the feasibility constraints
+               X                                    X
+(1)                 xij ≤ bi for all i ∈ Ω, and         xij ≤ dj for all j ∈ B.
+           j∈B                                       i∈Ω
+
+   The full version of this this extended abstract, which can be found on https://
+rwth-aachen.de/oms) is mainly concerned with the case where the buyers have
+linear valuations of the objects, i.e., where buyer j ∈ B has a value of vij ∈ Z+
+2918                                                    Oberwolfach Report 53/2021
+
+for each copy of object i ∈ Ω. This value is reduced by the price p(i) that the
+auctioneer charges, so the net value (or payoff) of one unit of object i to buyer
+j is vij − p(i). For an assignment x ∈ ZΩ×B we denote the items assigned to
+buyer j by x•j . Then, in addition to the feasibility constraints (1), each buyer
+j ∈ B should be happy with her allocation x•j , i.e., she should be assigned one of
+her preferred bundles under the current prices. That is, x•j should be an optimal
+integral solution of the linear program
+               (                                                               )
+                 X                      X
+(LPj )    max        (vij − p(i)) · xij   xij ≤ dj , 0 ≤ xij ≤ bi for all i ∈ Ω .
+           x•j
+                 i∈Ω                   i∈Ω
+A feasible assignment where each buyer achieves a preferred bundle is called stable.
+Prices which admit a stable allocation are called competitive. Note that competi-
+tive prices can easily be achieved. For example, if each price p(i) exceeds the maxi-
+mum valuation maxj∈B vij for this item, the prices are competitive since each buyer
+achieves a preferred bundle under the assignment where nothing is sold. Thus, the
+goal of an auctioneer lies in finding competitive prices whichPare market-clearing
+                                                                         P
+in the sense that the maximum possible amount D := min{ i∈Ω bi , j∈B dj } of
+items is sold. Such market-clearing competitive prices are also known as Walrasian
+prices. A tuple (p∗ , x∗ ) consisting of Walrasian prices p∗ and an associated stable
+allocation x∗ is called Walrasian equilibrium [1].
+Special case: housing market. The model we consider generalizes the classical
+matching market (a.k.a. housing market) model, which corresponds to the special
+case where bi = 1 for all i ∈ S and dj = 1 for all j ∈ B. For such housing markets,
+Demange et al. [2] describe an ascending auction which starts at the minimal
+possible selling prices (e.g. pi = 0 for all i ∈ Ω) and iteratively raises the prices on
+some overdemanded set (“Hall set”) until the prices are market-clearing. By always
+raising the prices on an inclusion-wise minimal overdemanded set, Demange et al.
+guarantee that the prices are the (unique) component-wise minimal competitive
+prices, and that they are market-clearing, thus buyer-optimal Walrasian prices.
+A naı̈ve approach to reduce our more general multi-unit auction to a single-unit
+auction is via the following copy method : we replace the bi items of object i by
+bi copies of a unit object, and replace the dj items demanded by buyer j by dj
+unit-item buyers, with the same valuations. Certainly, an ascending auction of
+the single-unit instance will return market-clearing prices, but these prices are in
+general not buyer-optimal: Consider, for example, one buyer with a demand of
+two and two different items with a supply of one which are valued differently by
+her, say v = (5, 1). If we copy the buyer, both copies will prefer object 1 until the
+price increased to 4. Now both copies of the sole buyer are indifferent between the
+objects and thus p = (4, 0) and x = (1, 1) is a Walrasian equilibrium. However,
+considering the original situation, since the buyer is alone p = (0, 0) and x = (1, 1)
+is the buyer-optimal Walrasian equilibrium. Thus, the prices computed by the
+copy method are not buyer-optimal.
+More general case: multi-unit auctions with strong substitute valua-
+tions. The model we consider fits into the more general model of multi-unit
+Combinatorial Optimization                                                                 2919
+
+auctions on heterogenous indivisible goods with strong substitute valuations func-
+tions, as studied by e.g. Ausubel [4] and Murota, Shioura and Yang [3]. It
+is knownP (see, e.g., [4])
+                       P that the minimal minimizer of the Lyapunov function
+L(p) = j∈B Vj (p) + i∈Ω bi p(i), where Vj (p) denotes the maximum payoff each
+buyer j ∈ B can achieve under prices p, corresponds exactly to the unique buyer-
+optimal Walrasian price vector p∗ of such multi-unit auctions. Moreover, the
+ascending auction, which starts at all-zero prices and iteratively raises the prices
+uniformly by one on the unique minimal minimizer of the submodular function
+X → L(p + χX ) for X ⊆ Ω, is known to terminate with the unique buyer-optimal
+Walrasian price vector (cf. [4]). Using tools from discrete convexity and the fact
+that the definitions of strong substitute and M ♮ -concavity are essentially equiva-
+lent, Murota, Shioura and Yang [3] show that each price-raising step can be done in
+strongly polynomial time. Additionally, [3] provides tight bounds on the number
+of iterations of the auction.
+
+Our contributions. In this paper, we focus on multi-unit auctions with linear
+valuation functions and demands. For this special case we provide a flow based as-
+cending auction. We prove our results independent from the literature on auctions
+with strong substitute valuations and discrete convex analysis by using network
+flow properties. This enables us to show sensitivity regarding changes in supply
+and demand. More concretely, we present an ascending auction which iteratively
+raises the prices on the objects in the left-most min cut in an associated auxil-
+iary flow network, and prove that the algorithm terminates with component-wise
+minimal Walrasian prices. We show how to construct the corresponding stable
+allocation where as much as possible is sold, and where every object with positive
+price is completely sold. We furthermore show that structural insights obtained
+from our flow-based approach lead to several insights regarding the sensitivity
+analysis of our ascending auction.
+
+
+
+                                       References
+[1] L. Walras, Éléments d’économie politique pure ou théorie de la richesse sociale, F. Rouge
+    (1874).
+[2] G. Demange, D. Gale, David, and M. Sotomayor, Multi-item auctions, Journal of political
+    economy 94 (1986), 863–872.
+[3] K. Murota, A. Shioura, Akiyoshi, and Z. Yang, Computing a Walrasian equilibrium in it-
+    erative auctions with multiple differentiated items, International Symposium on Algorithms
+    and Computation (2013), 468–478.
+[4] L. M. Ausubel, An efficient dynamic auction for heterogeneous commodities, American
+    Economic Review 3, (2006), 602–629.
+2920                                                    Oberwolfach Report 53/2021
+
+       [Focus] A (Slightly) Improved Approximation Algorithm for
+                                 Metric TSP
+                                Nathan Klein
+              (joint work with Anna Karlin, Shayan Oveis Gharan)
+
+In an instance of TSP we are given a set of n cities V along with their pairwise
+symmetric distances, c : V × V → R≥0 . The goal is to find a Hamiltonian cycle
+of minimum cost. In the metric TSP problem, which we study here, the distances
+satisfy the triangle inequality. Therefore, the problem is equivalent to finding a
+closed Eulerian connected walk of minimum cost. An algorithm of Christofides-
+Serdyukov from four decades ago gives a 32 -approximation for TSP. This remained
+the best known approximation algorithm for the general case of the problem despite
+significant work.
+   In [1, 2] we prove the following theorem:
+
+Theorem 1. For some absolute constant ε > 10−36 , there is a randomized algo-
+rithm that outputs a tour with expected cost at most ( 23 − ε) · c(x), where x is an
+optimal solution to the subtour elimination LP for TSP.
+
+   The algorithm we analyze is (a slight variant of) the so-called max entropy
+algorithm for TSP, introduced by Oveis Gharan, Saberi, and Singh in 2010 [3].
+In particular, we first solve the subtour elimination relaxation of TSP to obtain
+a point x. Then, we find a distribution of maximum entropy over spanning trees
+with marginals x and sample a tree T from this distribution. Finally, similar to
+Christofides’ algorithm, we add the minimum cost perfect matching on the odd
+degree vertices of the sampled tree.
+   This theorem also immediately implies that the integrality gap of the subtour
+polytope is at most 32 − ǫ. We remark that [1] only showed that the max entropy
+algorithm has expected cost at most ( 23 − ε) · OP T ; [2] extended this to compare
+against the cost of the LP.
+   Here we highlight three techniques which are crucial to the analysis of the
+algorithm. The analysis is solely concerned with bounding the expected cost of
+the matching, and uses the dominant of the O-Join polytope, where O is the set
+of odd vertices of the sampled tree T .
+
+The Polygon Structure for Near Minimum Cuts Crossed on one Side.
+Let G = (V, E, x) be an undirected graph equipped with a weight function x :
+E → R≥0 such that for any cut (S, S) such that u0 , v0 6∈ S, x(δ(S)) ≥ 2. For some
+(small) η ≥ 0, consider the family of η-near min cuts of G, i.e. sets S such that
+x(δ(S)) ≤ 2 + η. Let C be a connected component of crossing η-near min cuts.
+Given C we can partition vertices of G into sets a0 , . . . , am−1 (called atoms); this
+is the coarsest partition such that for each ai , and each (S, S) ∈ C, we have ai ⊆ S
+or ai ⊆ S.
+    Benczúr and Goemans [5, 4] studied the case when η ≤ 6/5 and introduced the
+notion of polygon representation, in which case atoms can be placed on the sides of
+Combinatorial Optimization                                                                  2921
+
+an equilateral polygon and some atoms placed inside the polygon, such that every
+cut in C can be represented by a diagonal of this polygon.
+   In this pair of papers, we show that (after a reduction using the polygon repre-
+sentation) it suffices to study the structure of edges in a special family of polygon
+representations. Suppose we have a polygon representation for a connected com-
+ponent C of η-near min cuts of G such that no atom is mapped inside, and if we
+identify each cut (S, S) ∈ C with the interval along the polygon that does not
+contain a0 , then any interval is only crossed on one side (only on the left or only
+on the right). Then, we have that for any atom ai , x(δ(ai )) ≤ 2 + O(η) and for
+any pair of atoms ai , ai+1 , x(E(ai , ai+1 ) ≥ 1 − Ω(η).
+
+Generalized Gurvits’ Lemma. For a real stable polynomial p ∈ R≥0 [z1 , . . . , zn ]
+(with non-negative coefficients), Gurvits proved the following inequality:
+            n!      p(z1 , . . . , zn )                             p(z1 , . . . , zn )
+              n
+                inf                     ≤ ∂z1 . . . ∂zn p|z=0 ≤ inf                     .
+            n   z>0   z1 . . . zn                               z>0   z1 . . . zn
+   As an immediate consequence, one can prove the following theorem about
+strongly Rayleigh distributions, a class of distribution which includes max entropy
+trees.
+
+Theorem 2. Let µ : 2[n] → R≥0 be SR and A1 , . . . , Am be random variables
+corresponding to the number of elements sampled in m disjoint subsets of [n] such
+that EAi = ni for all i. If ni = 1 for all 1 ≤ i ≤ n, then P[∀i, Ai = 1] ≥ mm!m .
+
+   One can ask what happens if the vector ~n = (n1 , . . . , nm ) in the above theorem is
+not equal but close to the all ones vector. We show that as long as ||~n −1||1 < 1−ε
+then P[∀i, Ai = 1] ≥ f (ε, m) where f (ε, m) has no dependence on n, the number
+of underlying elements in the support of µ.
+
+Theorem 3. Let µ : 2[n] → R≥0 be SR and let A1 , . . . , Am be random vari-
+ables corresponding to the number of elements sampled in m disjoint subsets of
+[n].
+  P Suppose P that there are integers n1 , . . . , nm such that for any set S ⊆ [m],
+P i∈S Ai = i∈S ni ≥ ε. Then,
+
+                                  P[∀i, Ai = ni ] ≥ f (ε, m).
+
+Conditioning while Preserving Marginals. Consider a strongly Rayleigh
+distribution µ : 2[n] → R≥0 and let x : [n] → R≥0 , where for all i, xi = PT ∼µ [i ∈ T ],
+be the marginals.
+   Let A, B ⊆ [n] be two disjoint sets such that E[AT ], E[BT ] ≈ 1. It follows from
+the above that P[AT = BT = 1] ≥ Ω(1). Here, however, we are interested in a
+stronger event; let ν = µ|AT = BT = 1 and let yi = PT ∼µ [i ∈ T ]. It turns out
+that the y vector can be very different from the x vector, in particular, for some
+i’s we can have |yi − xi | bounded away from 0. We show that there is an event
+of non-negligible probability that is a subset of AT = BT = 1 under which the
+marginals of elements in A, B are almost preserved.
+2922                                                         Oberwolfach Report 53/2021
+
+Theorem 4. Let µ : 2[n] → R≥0 be a SR distribution and let A, B ⊆ [n] be two
+disjoint subsets such that E[AT ], E[BT ] ≈ 1. For any α ≪ 1 there is an event EA,B
+such that PEA,B ≥ Ω(α2 ) and
+      • PPAT = BT = 1|EA,B = 1,
+      • Pi∈A |P[i] − P[i | E]| ≤ α,
+      •    i∈B |P[i] − P[i | E]| ≤ α.
+
+
+                                        References
+ [1] A. R. Karlin, N. Klein, and S. Oveis Gharan, A (slightly) improved approximation algorithm
+     for metric TSP, Proceedings of the 53rd Annual ACM SIGACT Symposium on Theory of
+     Computing (STOC 2021). Association for Computing Machinery, New York, NY, USA,
+     32–45.
+ [2] A. R. Karlin, N. Klein, and S. Oveis Gharan, A (slightly) improved bound on the integrality
+     gap of the subtour LP for TSP, https://arxiv.org/abs/2105.10043, 2021.
+ [3] S. Oveis Gharan, A. Saberi and M. Singh, A Randomized Rounding Approach to the Travel-
+     ing Salesman Problem, IEEE 52nd Annual Symposium on Foundations of Computer Science
+     (FOCS 2011), 550–559.
+ [4] András A. Benczúr and Michel X. Goemans. Deformable Polygon Representation and Near-
+     Mincuts In Building Bridges: Between Mathematics and Computer Science, M. Groetschel
+     and G.O.H. Katona, Eds., Bolyai Society Mathematical Studies, 2008.
+ [5] András A. Benczúr. A Representation of Cuts within 6/5 Times the Edge Connectivity with
+     Applications. In FOCS, 1995.
+
+
+
+Node Connectivity Augmentation via Iterative Randomized Rounding
+                            Laura Sanità
+        (joint work with Haris Angelidakis, Dylan Hyatt-Denesik)
+
+Many network design problems deal with the design of low-cost networks that
+are resilient to the failure of their elements (such as nodes or links). One such
+problem is Connectivity Augmentation, with the goal of cheaply increasing the
+(edge- or node-)connectivity of a given network from a value k to k + 1. The
+problem is NP-hard for k ≥ 1, and the most studied setting focuses on the case of
+edge-connectivity with k = 1.
+    In this work, we give a 1.892-approximation algorithm for the NP-hard prob-
+lem of augmenting the node-connectivity of any given graph from 1 to 2, which
+improve upon the the state-of-the-art approximation previously developed in the
+literature. The starting point of our work is a known reduction from Connectivity
+Augmentation to some specific instances of the Node-Steiner Tree problem [1, 2],
+and our result is obtained by developing a new and simple analysis of the iterative
+randomized rounding technique [3] when applied to such Steiner Tree instances.
+Our results also imply a 1.892-approximation algorithm for the problem of aug-
+menting the edge-connectivity of a given graph from any value k to k + 1. While
+this does not beat the best approximation factor known for this problem [4], a
+key point of our work is that the analysis of our approximation factor is less in-
+volved when compared to previous results in the literature. In addition, our work
+Combinatorial Optimization                                                              2923
+
+gives new insights on the iterative randomized rounding method, that might be of
+independent interest.
+
+                                       References
+ [1] J. Byrka, F. Grandoni, A. Jabal Ameli, Breaching the 2-approximation barrier for con-
+     nectivity augmentation: a reduction to Steiner tree, Proceedings of the 52nd Annual ACM
+     SIGACT Symposium on Theory of Computing (STOC), (2020), 815–825.
+ [2] Z. Nutov, 2-node-connectivity network design, Proceedings of the 18th International Work-
+     shop on Approximation and Online Algorithms (WAOA), (2020), 220–235.
+ [3] J. Byrka, F. Grandoni, T. Rothvoss, L. Sanità, Steiner tree approximation via iterative
+     randomized rounding., J. ACM, 60(1):6:1–6:33, (2013).
+ [4] F. Cecchetto, V. Traub, R. Zenklusen, Bridging the gap between tree and connectivity aug-
+     mentation: unified and stronger approaches, Proceedings of the 53rd Annual ACM SIGACT
+     Symposium on Theory of Computing (STOC), (2021), 370–383.
+
+
+
+                     A QPTAS for Stabbing Rectangles
+                           Friedrich Eisenbrand
+       (joint work with Martina Gallato, Ola Svensson and Moritz Venzin)
+
+We consider the following problem, calles stabbing: Given a set R = {R1 , · · · , Rn }
+of axis-aligned rectangles in the plane, the task is to find a set of horizontal line
+segments of minimal total length such that all rectangles are stabbed. A rectangle
+is stabbed if a line-segment in the solution intersects both its left and right edge.
+This natural geometric optimization problem was introduced by Chan et al. [4].
+Stabbing can be understood as a geometric interpretation of various combinatorial
+optimization problems such as message scheduling with time-windows on a directed
+path, frequency assignment, or problems in network design, see, for example, [1,
+4, 7].
+   To understand stabbing as a message scheduling problem, consider the case of
+a directed path {v1 , . . . , vk } with weighted edges, along which we want to send
+some messages. Each message has a release node vi and an arrival node vj , for
+some i < j ∈ [k], and it needs to be sent during a specific time window [ti , tj ].
+Opening an edge at a certain time to transmit messages along it has a cost equal to
+its weight. Furthermore, edges are uncapacitated, meaning that a single edge can
+transmit an arbitrary number of messages simultaneously. Therefore, messages
+which are sharing some edges in the path and whose time intervals overlap, can
+aggregate along the common edges and be transmitted together to decrease the
+total cost of the transmission. The goal is to transmit all messages and minimize
+the total cost of activated edges over time.
+   Each message request can be seen as a rectangle [vi , vj ] × [ti , tj ] ⊆ R2 . A
+segment [vi , vj ] × {t} stabbing this rectangle, corresponds to a transmission of the
+message from node vi to node vj at time t, with t1 ≤ t ≤ t2 .
+   We can think of the cost of transmitting a message as the width of the corre-
+sponding rectangle, that is to say, we can define rectangles such that |vi+1 − vi | =
+w(vi , vi+1 ). Messages can aggregate exactly where their corresponding rectangles
+2924                                                   Oberwolfach Report 53/2021
+
+overlap and can share portions of the same segment to be stabbed. Finding an
+optimal stabbing solution exactly corresponds to finding an optimal schedule.
+   We note that this generalises a special case studied in [1], where all messages
+have the same arrival node. The frequency assignment problem can be modeled
+analogously, see [4].
+stabbing in turn can be interpreted as a geometric set cover problem, in which
+the rectangles are the elements and the line-segments are the sets. An element
+(rectangle) is contained in a set (line segment), if it is stabbed by the line segment.
+This immediately implies that there is a O(log n)-approximation algorithm for
+stabbing [5, 10].
+   Improving upon the log n-approximation for set cover in geometric settings has
+been an important area of research in computational geometry. One successful
+approach [2] for unweighted geometric set cover is via ǫ-nets [8] in range-spaces
+of bounded VC-dimension. Since ǫ-nets are of linear size in certain geometric
+settings [6, 11, 12], constant factor approximation algorithms can be obtained
+via linear programming in these cases. Another very successful approach to tackle
+geometric set cover problems is the quasi-uniform sampling technique of Varadara-
+jan [13]. It gives rise to a sub-logarithmic approximation algorithms for geometric
+set cover problems of small union complexity. The technique was improved by
+Chan et al. [3] which then yields constant factor approximation algorithms for
+weighted geometric set cover problems of small shallow cell complexity. This is the
+case in the weighted disk cover problem for example.
+
+The state-of-the-art for stabbing is as follows. Chan et al. [4] provide a constant-
+factor approximation algorithm for stabbing that is based on a decomposition
+technique and the framework of quasi-uniform sampling. More precisely, they
+show how to decompose stabbing into two set cover instances of small shallow
+cell complexity for which the technique of Varadarajan [13] and its improvement
+by Chan et al. [3] yields a constant factor approximation. The authors show
+furthermore that stabbing is NP-hard via a reduction from planar vertex cover.
+
+Our contribution. In this paper, we provide the following results.
+    (1) We show that there is a PTAS for instances of stabbing for which the ratio
+        between the widths of the rectangles is bounded by a constant.
+    (2) This technique can then be recursively applied to yield a quasi-polynomial
+        time approximation scheme (QPTAS) for stabbing in general. The running
+                                          3    2
+        time of our algorithm is nO(log (n)/ǫ ) . This shows that stabbing is not
+        APX-hard unless NP ⊆ DTIME(2polylog(n) ).
+    (3) We provide a simple 8-approximation algorithm for stabbing. First, we
+        round the instance to a laminar instance, i.e., an instance in which the pro-
+        jections of the rectangles to the x-axis yields a laminar family of intervals.
+        This laminar instance is then solved optimally via dynamic programming.
+
+The contributions 2 and 3 settle two open problems raised in [4].
+Combinatorial Optimization                                                                    2925
+
+To put our work into perspective, we also rely on a decomposition technique to
+obtain our QPTAS. However, we do not rely on the balanced cut framework.
+Instead we use a variation of the shifted grid technique by Hochbaum and Maass [9]
+that we combine with a simple charging scheme and careful guessing.
+
+
+
+
+                                         References
+ [1] Luca Becchetti, Alberto Marchetti-Spaccamela, Andrea Vitaletti, Peter Korteweg, Mar-
+     tin Skutella, and Leen Stougie. Latency-constrained aggregation in sensor networks. ACM
+     Transactions on Algorithms (TALG), 6(1):1–20, 2009.
+ [2] Hervé Brönnimann and Michael T Goodrich. Almost optimal set covers in finite vc-
+     dimension. Discrete & Computational Geometry, 14(4):463–479, 1995.
+ [3] Timothy Chan, Elyot Grant, Jochen Könemann, and Malcolm Sharpe. Weighted capaci-
+     tated, priority, and geometric set cover via improved quasi-uniform sampling. Proceedings
+     of the Annual ACM-SIAM Symposium on Discrete Algorithms, pages 1576–1585, 05 2012.
+ [4] Timothy M. Chan, Thomas C. van Dijk, Krzysztof Fleszar, Joachim Spoerhase, and Alexan-
+     der Wolff. Stabbing rectangles by line segments - how decomposition reduces the shallow-cell
+     complexity. In Wen-Lian Hsu, Der-Tsai Lee, and Chung-Shou Liao, editors, 29th Interna-
+     tional Symposium on Algorithms and Computation, ISAAC 2018, December 16-19, 2018,
+     Jiaoxi, Yilan, Taiwan, volume 123 of LIPIcs, pages 61:1–61:13. Schloss Dagstuhl - Leibniz-
+     Zentrum für Informatik, 2018.
+ [5] Vasek Chvatal. A greedy heuristic for the set-covering problem. Mathematics of operations
+     research, 4(3):233–235, 1979.
+ [6] Kenneth L Clarkson and Kasturi Varadarajan. Improved approximation algorithms for geo-
+     metric set cover. Discrete & Computational Geometry, 37(1):43–58, 2007.
+ [7] Aparna Das, Krzysztof Fleszar, Stephen G Kobourov, Joachim Spoerhase, Sankar Veera-
+     moni, and Alexander Wolff. Polylogarithmic approximation for generalized minimum man-
+     hattan networks. In 29th European Workshop on Computational Geometry, pages 81–84,
+     2013.
+ [8] David Haussler and Emo Welzl. ε-nets and simplex range queries. Discrete & Computational
+     Geometry, 2(2):127–151, 1987.
+ [9] Dorit S Hochbaum and Wolfgang Maass. Approximation schemes for covering and packing
+     problems in image processing and vlsi. Journal of the ACM (JACM), 32(1):130–136, 1985.
+[10] László Lovász. On the ratio of optimal integral and fractional covers. Discrete mathematics,
+     13(4):383–390, 1975.
+[11] Jiřı́ Matoušek, Raimund Seidel, and Emo Welzl. How to net a lot with little: Small ε-nets
+     for disks and halfspaces. In Proceedings of the sixth annual symposium on Computational
+     geometry, pages 16–22, 1990.
+[12] Evangelia Pyrga and Saurabh Ray. New existence proofs for ε-nets. In Proceedings of the
+     twenty-fourth annual symposium on Computational geometry, pages 199–207, 2008.
+[13] Kasturi Varadarajan. Weighted geometric set cover via quasi-uniform sampling. In Pro-
+     ceedings of the Forty-Second ACM Symposium on Theory of Computing, STOC ’10, page
+     641–648, New York, NY, USA, 2010. Association for Computing Machinery.
+2926                                                       Oberwolfach Report 53/2021
+
+             Determinant Maximization: Approximation and
+                           Estimation Algorithms
+                               Mohit Singh
+    (joint work with Vivek Madan, Sasho Nikolov, Uthaipon Tantipongpipat,
+                                Weijun Xie)
+
+In the determinant maximization problem, given a collection of vectors, we aim
+to pick a subset to maximize the determinant of a natural matrix associated with
+these vectors. The abstract problem captures problems in multiple areas including
+statistics, convex geometry, allocation problems and network design. We will
+survey the known results and techniques for the problem when the picked subset
+must satisfy natural combinatorial constraints. The results vary from arbitrary
+good approximations [3, 4, 5] to only estimation algorithms [1, 2]. The techniques
+vary from stable and log-concave polynomials to sparsity properties of solutions
+of convex programs.
+
+                                      References
+ [1] A. Nikolov, and Mohit Singh.Maximizing determinants under partition constraints, Pro-
+     ceedings of the forty-eighth annual ACM symposium on Theory of Computing. 2016.
+ [2] V. Madan, A. Nikolov, M. Singh, U. Tantipongpipat, Maximizing determinants under ma-
+     troid constraints, In 2020 IEEE 61st Annual Symposium on Foundations of Computer Sci-
+     ence (FOCS) (pp. 565-576).
+ [3] M. Singh, Weijun Xie,Approximate positive correlated distributions and approximation al-
+     gorithms for d-optimal design, Proceedings of the Twenty-Ninth Annual ACM-SIAM Sym-
+     posium on Discrete Algorithms. Society for Industrial and Applied Mathematics, 2018.
+ [4] A. Nikolov, M. Singh, U. Tantipongpipat, Proportional volume sampling and approximation
+     algorithms for A-optimal design, Proceedings of the Thirtieth Annual ACM-SIAM Sympo-
+     sium on Discrete Algorithms. Society for Industrial and Applied Mathematics, 2019.
+ [5] N. Anari, S. O. Gharan, A. Saberi, M. Singh, Nash social welfare, matrix permanent, and
+     stable polynomials, arXiv preprint arXiv:1609.07056, 2016.
+
+
+
+        On the Integrality Gap of Binary Integer Programs with
+                                Gaussian Data
+                               Daniel Dadush
+        (joint work with Sander Borst, Sophie Huiberts, Samarth Tiwari)
+
+For a binary integer program (IP) max cT x, Ax ≤ b, x ∈ {0, 1}n, where A ∈ Rm×n
+and c ∈ Rn have independent Gaussian entries and the right-hand side b ∈ Rm
+satisfies that its negative coordinates have ℓ2 norm at most n/10, we prove that the
+gap between the value of the linear programming relaxation and the IP is upper
+bounded by poly(m)(log n)2 /n with probability at least 1 − 2/n7 − 2− poly(m) . Our
+results give a Gaussian analogue of the classical integrality gap result of Dyer and
+Frieze (Math. of O.R., 1989) in the case of random packing IPs. In constrast
+to the packing case, our integrality gap depends only polynomially on m instead
+of exponentially. Building upon recent breakthrough work of Dey, Dubey and
+Combinatorial Optimization                                                         2927
+
+Molinaro (SODA, 2021), we show that the integrality gap implies that branch-
+and-bound requires npoly(m) time on random Gaussian IPs with good probability,
+which is polynomial when the number of constraints m is fixed. We derive this
+result via a novel meta-theorem, which relates the size of branch-and-bound trees
+and the integrality gap for random logconcave IPs.
+
+
+    A Deterministic Parallel Algorithm for Maximum Coverage via
+                           Steiner Systems
+                           Eric Balkanski
+
+In this paper, we study the problem of maximizing a coverage function in the
+adaptive complexity model. Adaptivity was recently introduced in the context
+of submodular optimization as an information-theoretic measure for the parallel
+runtime of an algorithm [1]. A recent line of work has designed algorithms that
+achieve constant factor approximations for maximizing submodular functions, as
+well as other classes of functions, under various constraints in a logarithmic (or
+poly-logarithmic) number of adaptive rounds of function evaluations. These par-
+allel algorithms all heavily rely on randomization and a fundamental question is
+whether randomness is necessary to obtain parallel algorithms in the adaptive
+complexity model.
+   We present a deterministic algorithm for maximizing coverage functions, an
+important subclass of submodular functions, under a cardinality constraint that is
+O(ǫ−2 log n) adaptive and achieves a nearly optimal 1−1/e−ǫ approximation. This
+algorithm is the first deterministic algorithm for maximum coverage with sublinear
+adaptivity that achieves a constant factor approximation. When the algorithm is
+given as input the explicit representation of a coverage function, instead of a value
+oracle, we obtain the first NC approximation algorithm for maximum coverage.
+The algorithm relies on a novel connection between combinatorial optimization and
+Steiner systems from combinatorial design theory that is of independent interest.
+
+                                    References
+ [1] Eric Balkanski and Yaron Singer. The adaptive complexity of maximizing a submodular
+     function. STOC, 2018.
+
+
+
+  [Focus] On the extension complexity of low-dimensional polytopes
+                            Lisa Sauermann
+               (joint work with Matthew Kwan, Yufei Zhao)
+
+The extension complexity xc(P ) of a d-dimensional polytope P is defined to be
+the minimum number of facets in a (possibly higher-dimensional) polytope P ′ such
+that one can obtain P as the image of P ′ under a linear projection. This notion
+is motivated by its relevance in combinatorial optimization, and has been studied
+intensively for various specific polytopes associated with important optimization
+2928                                                  Oberwolfach Report 53/2021
+
+problems. In contrast, this talk discusses some (more theoretical) questions about
+extension complexity for some more general classes of (low-dimensional) polytopes.
+   A natural extremal question about extension complexity is the following (es-
+sentially asking how much the extension complexity of a polytope is controlled by
+its dimension): For a fixed dimension d, what is the maximum possible extension
+complexity of a d-dimensional polytope with n vertices (or with n facets)? It
+is equivalent to ask this question for polytopes with n vertices or for polytopes
+with n facets (this can be seen by passing between a polytope and its polar dual
+polytope). This question is still wide open, and most likely very difficult.
+   For d = 2, the best known upper bound is that every 2-dimensional n-vertex
+polytope (i.e. every n-gon) has extension complexity O(n2/3 ) [4], while for d ≥ 3 no
+non-trivial upper bounds are known (meaning that the √     best known upper bound
+is n). The best known lower bounds are of the form Ω( n) for every fixed d (see
+[2] and also the earlier work [1] for d = 2). These lower bounds were obtained
+by considering random d-dimensional√ polytopes and proving that their extension
+complexity is typically at least Ω( n). Heuristically, it makes sense to expect that
+random d-dimensional polytopes should exhibit high extension complexity, so it
+is natural to consider random polytopes in order to prove lower bounds for the
+original extremal question.
+   This approach raises the question of actually finding the typical extension com-
+plexity of a random d-dimensional polytope (this may, of course, depend on the
+chosen model of random d-dimensional polytopes). In [1] and [2], the authors only
+prove lower bounds for the typical extension complexity of the random polytopes
+they consider, and it is a priori possible that the actual extension complexity of
+these random polytopes is much higher.
+   We answer this question up to constant factors (depending on d) for two different
+models of random d-dimensional polytopes, namely polytopes obtained as the
+convex hull of n independent uniformly random points on the unit sphere or of m
+independent uniformly random points in the unit ball (the latter model is a very
+well-studied model for random polytopes and it is known that in this model the
+number of vertices is asymptotically almost surely of the form Θ(m(d−1)/(d+1) ),
+see for example [3]). More precisely, we prove the following two theorems.
+Theorem 1. For every fixed d ≥ 2, there exist constants cd and Cd sch that the
+following holds. Let P be √
+                          the convex hull of n√random points on the unit sphere
+in Rd . Then, we have cd · n ≤ xc(P ) ≤ Cd · n with probability tending to 1 as
+n → ∞.
+Theorem 2. For every fixed d ≥ 2, there exist constants cd and Cd sch that the
+following holds. Let P be the convex hull of m random
+                                                   √ points on the unit
+                                                                     √ ball in
+Rd , and let n = m(d−1)/(d+1) . Then, we have cd · n ≤ xc(P ) ≤ Cd · n with
+probability tending to 1 as m → ∞.
+   In short, for fixed dimension d ≥ 2, for both of the two models of random
+polytopes that we considered, we proved that the extension complexity is asymp-
+totically almost surely on the order of the square root of the number of vertices.
+Combinatorial Optimization                                                               2929
+
+While the lower bounds were known (or follow from known techniques), the new
+contributions of our results are the upper bounds for the extension complexity in
+the two theorems above.
+   In light of these results, and the heuristic that random polytopes should exhibit
+high extension complexity, it would be tempting to conjecture that for every fixed
+d ≥ 2, every  √ d-dimensional polytope with n vertices has extension complexity
+at most O( n). Since showing such a bound would most likely be extremely
+difficult, it might also make sense to consider some special classes of d-dimensional
+polytopes, for example polytopes with all vertices on a common sphere.
+   Is it true that for every fixed d ≥ 2, every d-dimensional n-vertex polytope
+                                                                           √     with
+all vertices on a common sphere has extension complexity at most O( n)? This
+question is also open, but we prove that the answer is “Yes” for d = 2:
+Theorem 3. Let P be a (2-dimensional) n-gon with  √ all vertices on a common
+circle. Then P has extension complexity at most 24 n.
+   This bound is tight up to the constant factor 24.
+
+                                       References
+ [1] S. Fiorini, T. Rothvoß, and H. R. Tiwary, Extended formulations for polygons, Discrete
+     Comput. Geom. 48 (2012), 658–668.
+ [2] A. Padrol, Extension complexity of polytopes with few vertices or facets, SIAM J. Discrete
+     Math. 30 (2016), 2162–2176.
+ [3] M. Reitzner, The combinatorial structure of random polytopes, Adv. Math. 191 (2005),
+     178–208.
+ [4] Y. Shitov, Sublinear extensions of polygons, arXiv preprint arXiv:1412.0728v2 (2020).
+
+
+
+      Algorithmic Tools for US Congressional Districting: Fairness
+                                via Analytics
+                               David Shmoys
+         (joint work with Nikhil Garg, Wes Gurnee, David Rothschild)
+
+The American winner-take-all congressional district system empowers politicians
+to engineer electoral outcomes by manipulating district boundaries. To date, com-
+putational solutions mostly focus on drawing unbiased maps by ignoring political
+and demographic input, and instead simply optimize for compactness and other
+related metrics. However, we maintain that this is a flawed approach because
+compactness and fairness are orthogonal qualities; to achieve a meaningful notion
+of fairness, one needs to model political and demographic considerations, using
+historical data.
+We will discuss two papers that explore and develop this perspective.
+      • In the first paper [1] (joint with Wes Gurnee), we present a scalable ap-
+        proach to explicitly optimize for arbitrary piecewise-linear definitions of
+        fairness; this employs a stochastic hierarchical decomposition approach to
+2930                                                     Oberwolfach Report 53/2021
+
+         produce an exponential number of distinct district plans that can be op-
+         timized via a standard set partitioning integer programming formulation.
+         This enables the largest-ever ensemble study of congressional districts,
+         providing insights into the range of possible expected outcomes and the
+         implications of this range on potential definitions of fairness.
+       • In the second paper [2] (joint with Nikhil Garg, Wes Gurnee, and David
+         Rothschild), we study the design of multi-member districts (MMDs) in
+         which each district elects multiple representatives, potentially through a
+         non-winner-takes-all voting rule (as currently proposed in H.R. 4000). We
+         carry out large-scale analyses for the U.S. House of Representatives under
+         MMDs with different social choice functions, under algorithmically gener-
+         ated maps optimized for either partisan benefit or proportionality. We find
+         that with three-member districts using Single Transferable Vote, fairness-
+         minded independent commissions can achieve proportional outcomes in
+         every state (up to rounding), and this would significantly curtail the power
+         of advantage-seeking partisans to gerrymander. We believe that this work
+         opens up a rich research agenda at the intersection of social choice and
+         computational redistricting.
+
+                                     References
+ [1] W. Gurnee, D.B. Shmoys, Fairmandering: A column generation heuristic for fairness-
+     optimized political districting, ACDA (2021), 88-99
+ [2] N. Garg, W. Gurnee, D. Rothschild, D.B. Shmoys, Combatting Gerrymandering with Social
+     Choice: the Design of Multi-member Districts, CoRR abs/2107.07083 (2021).
+
+
+
+         [Focus] The High-Dimesnional-Expander Perspective on
+                      Combinatorial Distributions
+                             Nima Anari
+Over the past few years, a new tool, namely high-dimensional expanders, has
+emerged as a powerful method for analyzing local Markov chains that sample
+from combinatorial distributions. I will survey some of the breakthroughs in the
+field of approximate sampling and counting obtained using this framework.
+    As the main motivation, I will introduce an open conjecture posed by Mihail and
+Vazirani: in every polytope whose vertices are a subset of {0, 1}n , the skeleton,
+i.e., the graph formed by vertices and edges, has expansion ≥ 1. The original
+target of this conjecture were base polytopes of matroids, where the conjecture
+would imply fast mixing of random walks on the so-called basis-exchange graph. I
+will briefly talk about how high-dimensional expanders were used in resolving this
+conjecture for matroids.
+    Beyond matroids, the conjecture of Mihail and Vazirani remains open. However,
+unlike the matroid case, for general 0/1 polytopes, a resolution of the conjecture
+does not imply fast Markov chains or sampling algorithms. I will introduce new
+conjectures related to the one made by Mihail and Vazirani, that if true, would
+imply fast mixing of random walks for 0/1 polytopes that have short edges. In
+Combinatorial Optimization                                                       2931
+
+fact, if true, these conjectures would nail the precise mixing time of natural random
+walks that can sample vertices of these polytopes.
+   Providing evidence for these conjectures, I will demonstrate fast mixing of ran-
+dom walks for several classes of (not necessarily uniform) distributions whose sup-
+ports are 0/1 polytopes with short edges. These distributions include, amongst
+others, monomers in monomer-dimer systems, and nonsymmetric determinantal
+point processes. As an application of fast mixing of random walks for these dis-
+tributions, we resolve a question of Jerrum about sampling from monomer-dimer
+systems in planar graphs.
+   I will talk about the main two tools from the study of high-dimensional ex-
+panders that we use in analyzing random walks: spectral independence and en-
+tropic independence. These tools can respectively yield polynomial (but lossy)
+mixing time and optimal mixing of random walks associated to the aforemen-
+tioned combinatorial distributions. I will connect these tools to the geometry of
+polynomials, revealing new connections between spectral and entropic analysis of
+Markov chains.
+   Based on several joint works with Yeganeh Alimohmmadi, Vishesh Jain, Fred-
+eric Koehler, Kuikui Liu, Shayan OveisGharan, Huy Tuan Pham, Kiran Shiragur,
+Cynthia Vinzant, and June Vuong.
+
+
+                    Symmetric Rendezvous on the Line
+                             Martin Skutella
+        (joint work with Max Klimm, Guillaume Sagnol, Khai Van Tran)
+
+In the Symmetric Rendezvous Search on the Line with Unknown Initial Distance,
+two identical agents are placed on the real line with their distance, the other’s
+location, and their orientation unknown to them. Moving along the line at unit
+speed and executing the same randomized search strategy, the agents’ goal is to
+meet up as early as possible. The expected meeting time obviously depends on
+the unknown initial distance and orientations. The quality of a randomized search
+strategy is thus measured by its competitive ratio, that is, the ratio of the expected
+meeting time and the earliest possible meeting time (half the initial distance).
+   We present a class of successively refined randomized search strategies together
+with a rigorous mathematical analysis of their continuously improved competitive
+ratios. These strategies all rely on the basic idea of performing an infinite sequence
+of steps of geometrically increasing size in random directions, always returning to
+the agent’s initial position before starting the next step. In addition, our more re-
+fined strategies use two novel ideas. First, remembering their past random choices,
+the agents randomly choose the direction of the next step in a Markov-chain-like
+manner. Second, choosing the next few random directions in advance, each agent
+may combine consecutive steps in the same direction into one longer step. As our
+main result, we show that this combination of looking into the past as well as into
+the future leads to a substantially improved competitive ratio of 13.93 compared
+to the previously best known bound of 24.85 (Ozsoyeller et al. 2013).
+2932                                                         Oberwolfach Report 53/2021
+
+  [Focus] Discrete Optimization in Machine Learning – an (informal)
+                              overview
+                         Sebastian Pokutta
+
+Machine Learning problems are often linked to empirical risk minimization prob-
+lems that in turn are typically solved with continuous optimization methods. More
+recently however, it has been recognized that certain problems in machine learn-
+ing naturally lead to discrete optimization problems. In this talk I will give an
+overview of the role of discrete optimization methods in machine learning and
+discuss some associated tradeoffs. Problems of interest include
+    (1) Best Subset Selection
+    (2) Optimal Classification Trees
+    (3) Feature Selection
+    (4) Architecture Search for NNs
+    (5) Boosting for Classification
+    (6) Network Verification
+    (7) Sinkhorn Networks
+    (8) Rate Distortion Explanations
+as well as many related problems. Currently many important questions, for exam-
+ple when the discrete solution to a learning problem outperforms the continuous
+solution in learning tasks are wide open. The references below provide a sample
+of works (a) using discrete optimization in machine learning, (b) using machine
+learning in discrete optimization, and (c) combining machine learning with discrete
+optimization.
+
+                                       References
+ [1] J. Altschuler, J. Weed, and P. Rigollet. Near-linear time approximation algorithms for op-
+     timal transport via sinkhorn iteration. arXiv preprint arXiv:1705.09634, 2017.
+ [2] D. Anderson, G. Hendel, P. Le Bodic, and M. Viernickel. Clairvoyant restarts in branch-
+     and-bound search using online tree-size estimation. In Proceedings of the AAAI Conference
+     on Artificial Intelligence, volume 33, pages 1427–1434, 2019.
+ [3] R. Anderson, J. Huchette, W. Ma, C. Tjandraatmadja, and J. P. Vielma. Strong mixed-
+     integer programming formulations for trained neural networks. Mathematical Programming,
+     pages 1–37, 2020.
+ [4] J.-Y. Audibert, S. Bubeck, and G. Lugosi. Regret in online combinatorial optimization.
+     Mathematics of Operations Research, 39(1):31–45, 2014.
+ [5] O. E. Balghiti, A. N. Elmachtoub, P. Grigas, and A. Tewari. Generalization bounds in the
+     predict-then-optimize framework. arXiv preprint arXiv:1905.11488, 2019.
+ [6] A. Bärmann, A. Martin, S. Pokutta, and O. Schneider. An online-learning approach to
+     inverse optimization. arXiv preprint arXiv:1810.12997, 2018.
+ [7] G. Belov, S. Esler, D. Fernando, P. Le Bodic, and G. L. Nemhauser. Estimating the size of
+     search trees by sampling with domain knowledge. In IJCAI, pages 473–479, 2017.
+ [8] D. Bertsimas and J. Dunn. Optimal classification trees. Machine Learning, 106(7):1039–
+     1082, 2017.
+ [9] D. Bertsimas and N. Kallus. From predictive to prescriptive analytics. Management Science,
+     66(3):1025–1044, 2020.
+[10] D. Bertsimas and R. Shioda. Classification and regression via integer optimization. Opera-
+     tions research, 55(2):252–271, 2007.
+Combinatorial Optimization                                                                 2933
+
+[11] D. Bertsimas and B. Van Parys. Sparse high-dimensional regression: Exact scalable algo-
+     rithms and phase transitions. The Annals of Statistics, 48(1):300–323, 2020.
+[12] D. Bertsimas, A. King, and R. Mazumder. Best subset selection via a modern optimization
+     lens. The annals of statistics, 44(2):813–852, 2016.
+[13] A. Chmiela, E. Khalil, A. Gleixner, A. Lodi, and S. Pokutta. Learning to Schedule Heuristics
+     in Branch-and-Bound. preprint, 3 2021.
+[14] R. Combes, M. S. Talebi, A. Proutiere, and M. Lelarge. Combinatorial bandits revisited.
+     arXiv preprint arXiv:1502.03475, 2015.
+[15] M. Cuturi. Sinkhorn distances: Lightspeed computation of optimal transport. Advances in
+     neural information processing systems, 26:2292–2300, 2013.
+[16] S. S. Dey, R. Mazumder, and G. Wang. A convex integer programming approach for optimal
+     sparse pca. arXiv preprint arXiv:1810.09062, 2018.
+[17] A. N. Elmachtoub and P. Grigas. Smart “predict, then optimize”. Management Science,
+     2021.
+[18] M. Fischetti and J. Jo. Deep neural networks as 0-1 mixed integer linear programs: A
+     feasibility study. arXiv preprint arXiv:1712.06174, 2017.
+[19] O. Günlük, J. Kalagnanam, M. Li, M. Menickelly, and K. Scheinberg. Optimal decision trees
+     for categorical data via integer programming. Journal of Global Optimization, pages 1–28,
+     2021.
+[20] J. Hannan. Approximation to bayes risk in repeated play. In Contributions to the Theory
+     of Games (AM-39), Volume III, pages 97–140. Princeton University Press, 1957.
+[21] T. Hastie, R. Tibshirani, and R. J. Tibshirani. Extended comparisons of best subset selec-
+     tion, forward stepwise selection, and the lasso. arXiv preprint arXiv:1707.08692, 2017.
+[22] G. Hendel, D. Anderson, P. Le Bodic, and M. E. Pfetsch. Estimating the size of branch-
+     and-bound trees. INFORMS Journal on Computing, 2021.
+[23] C. Hertrich, A. Basu, M. Di Summa, and M. Skutella. Towards lower bounds on the depth
+     of relu neural networks. arXiv preprint arXiv:2105.14835, 2021.
+[24] A. Kalai and S. Vempala. Efficient algorithms for online decision problems. Journal of Com-
+     puter and System Sciences, 71(3):291–307, 2005.
+[25] E. Khalil, P. Le Bodic, L. Song, G. Nemhauser, and B. Dilkina. Learning to branch in mixed
+     integer programming. In Proceedings of the AAAI Conference on Artificial Intelligence,
+     volume 30, 2016.
+[26] E. B. Khalil, B. Dilkina, G. L. Nemhauser, S. Ahmed, and Y. Shao. Learning to run heuristics
+     in tree search. In IJCAI, pages 659–666, 2017.
+[27] E. B. Khalil, A. Gupta, and B. Dilkina. Combinatorial attacks on binarized neural networks.
+     arXiv preprint arXiv:1810.03538, 2018.
+[28] J. Macdonald, S. Wäldchen, S. Hauch, and G. Kutyniok. A rate-distortion framework for
+     explaining neural network decisions. arXiv preprint arXiv:1905.11092, 2019.
+[29] J. Macdonald, M. Besançon, and S. Pokutta. Interpretable Neural Networks with Frank-
+     Wolfe: Sparse Relevance Maps and Relevance Orderings. preprint, 10 2021.
+[30] V. Nair, S. Bartunov, F. Gimeno, I. von Glehn, P. Lichocki, I. Lobov, B. O’Donoghue,
+     N. Sonnerat, C. Tjandraatmadja, P. Wang, et al. Solving mixed integer programs using
+     neural networks. arXiv preprint arXiv:2012.13349, 2020.
+[31] M. Pfetsch and S. Pokutta. Ipboost–non-convex boosting via integer programming. In In-
+     ternational Conference on Machine Learning, pages 7663–7672. PMLR, 2020.
+[32] A. Prouvost, J. Dumouchelle, L. Scavuzzo, M. Gasse, D. Chételat, and A. Lodi. Ecole: A
+     gym-like library for machine learning in combinatorial optimization solvers. arXiv preprint
+     arXiv:2011.06069, 2020.
+[33] E. Real, S. Moore, A. Selle, S. Saxena, Y. L. Suematsu, J. Tan, Q. V. Le, and A. Kurakin.
+     Large-scale evolution of image classifiers. In International Conference on Machine Learning,
+     pages 2902–2911. PMLR, 2017.
+2934                                                            Oberwolfach Report 53/2021
+
+[34] E. Real, A. Aggarwal, Y. Huang, and Q. V. Le. Regularized evolution for image classifier ar-
+     chitecture search. In Proceedings of the aaai conference on artificial intelligence, volume 33,
+     pages 4780–4789, 2019.
+[35] P. Savickỳ, J. Klaschka, and J. Antoch. Optimal classification trees. In COMPSTAT, pages
+     427–432. Springer, 2000.
+[36] R. S. Sutton and A. G. Barto. Reinforcement learning: An introduction. MIT press, 2018.
+[37] Y. Tang, S. Agrawal, and Y. Faenza. Reinforcement learning for integer programming:
+     Learning to cut. In International Conference on Machine Learning, pages 9367–9376.
+     PMLR, 2020.
+[38] S. Verwer and Y. Zhang. Learning optimal classification trees using a binary linear program
+     formulation. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 33,
+     pages 1625–1632, 2019.
+[39] E. Wong and Z. Kolter. Provable defenses against adversarial examples via the convex outer
+     adversarial polytope. In International Conference on Machine Learning, pages 5286–5295.
+     PMLR, 2018.
+[40] G. Zarpellon, J. Jo, A. Lodi, and Y. Bengio. Parameterizing branch-and-bound search trees
+     to learn branching policies. arXiv preprint arXiv:2002.05120, page 12, 2020.
+
+
+
+
+Single source unsplittable flows with arc-wise lower and upper bounds
+                             Sarah Morell
+                     (joint work with Martin Skutella)
+
+In a digraph with a source node and several destination nodes with associated
+demands, an unsplittable flow routes each demand along a single path from the
+common source to its destination. Given some flow x that is not necessarily
+unsplittable but satisfies all demands, we ask for an unsplittable flow y that does
+not deviate from x by too much, i.e., ya ≈ xa for all arcs a.
+   Twenty years ago, in a landmark paper, Dinitz, Garg, and Goemans [1] proved
+that, given some flow x, there exists an unsplittable flow y such that
+                              ya ≤ xa + dmax         for all arcs a,
+where dmax denotes the maximum demand value. Unsplittable flows with arc-wise
+lower bounds have, to the best of the authors’ knowledge, not been considered yet.
+Based upon an entirely new approach, we prove the following result: Given some
+flow x, there exists an unsplittable flow y such that
+                              ya ≥ xa − dmax         for all arcs a.
+Secondly, building upon an iterative rounding technique previously introduced by
+Kolliopoulos and Stein [2] and Skutella [4], we prove existence of an unsplittable
+flow that simultaneously satisfies the upper and lower bounds for the special case
+when demands are integer multiples of each other. For arbitrary demand values,
+we prove the slightly weaker simultaneous bounds
+                   xa /2 − dmax ≤ ya ≤ 2xa + dmax               for all arcs a.
+This talk is based on the paper [3].
+Combinatorial Optimization                                                                   2935
+
+                                         References
+ [1] Y. Dinitz, N. Garg, M. X. Goemans, On the single source unsplittable flow problem. Com-
+     binatorica 19, 17–41 (1999).
+ [2] S. G. Kolliopoulos, C. Stein, Approximation algorithms for single-source unsplittable flow.
+     SIAM Journal on Computing 31, 919–946 (2002).
+ [3] S. Morell, M. Skutella, Single source unsplittable flows with arc-wise lower and upper bounds.
+     Mathematical Programming, 1–20 (2021).
+ [4] M. Skutella, Approximating the single source unsplittable min-cost flow problem. Mathe-
+     matical Programming 91, 493–514 (2002).
+
+
+
+        The Geometry of All Pivot Rules for the Simplex Method
+                             Jesús A. De Loera
+      (joint work with Alexander Black, Niklas Lutjeharms, Raman Sanyal)
+
+For a matrix A ∈ Rn×d , and vectors b ∈ Rn , c ∈ Rd we consider the linear program
+(LP)
+                                 max ct x
+                                 s.t.   Ax ≤ b
+The linear inequalities give rise to a polyhedron P that we will throughout assume
+to be bounded. That is, we assume that P := {x ∈ Rd : Ax ≤ b} is a polytope.
+We denote by G(P ) the vertex-edge graph of P . We further assume that the
+objective function c is generic and hence yields an acyclic orientation of G(P ). We
+will refer to (P, c) as the linear program.
+    The simplex method is one of the two most popular algorithms for solving linear
+programs. Geometrically the simplex method finds a c-monotone path from any
+initial vertex to the optimal vertex. The algorithm starts at some vertex v of P
+and proceeds along directed edges to the unique sink which is the optimum vertex
+vopt . At any non-sink v, a pivot rule chooses a neighboring vertex u of v with
+ct u > ct v. Since the inception of the simplex algorithm, many different pivot rules
+have been proposed and analyzed. To this day, no pivot rule is known to produce
+only polynomially many steps on every LP. In this paper we provide polyhedral
+structure that organizes the pivot rules on LPs.
+    In 1972 Klee and Minty first showed that Dantzig’s original pivot rule may
+require exponentially many steps. The algorithm could be tricked into visiting all
+2d vertices of a deformed cube to find a path between two nodes which are only
+one step apart in the skeleton of the cube. Since 1972 researchers have shown
+many of the popular pivot rules are known to require an exponential number of
+steps to solve some concrete “twisted” linear programs.
+    We will not try to give a precise definition of what constitutes a pivot rule. A
+first reason is pivot rules are all about decisions of switching pairs of variables, one
+variable enters another leaves, but several authors arrived to the conclusion that
+pivot rules can be used to encode hard problems, hard in the sense of complexity
+theory. E.g., Fearnley and Savani showed that it is PSPACE-complete to decide
+whether Dantzig’s pivot rule ever chooses a specific variable to enter the basis. In
+2936                                                   Oberwolfach Report 53/2021
+
+
+
+
+        Figure 1. Three arborescences on an cube. The middle arbores-
+        cence does not come from a NW-rule.
+
+
+contrast, Adler et al. showed the simplex method with the shadow vertex pivot
+rule can decide this query in polynomial time. A second reason is that we do not
+need to formally defined what a pivot rule is because our taxonomy of pivot rules
+uses only a polyhedral geometry perspective.
+
+Definition 1. The footprint of a pivot rule Γ on an LP (P, c) is the directed
+subgraph obtained as the union of all monotone paths produced by Γ, starting with
+any vertex of P .
+
+Definition 2. A memory-less pivot rule is one where its footprint for every LP
+is an arborescence, i.e., a directed tree with root at optimum.
+
+    An equivalent way to say this is a pivot rule is memory-less if it chooses the
+neighbor of v 6= vopt using only local information provided by the set of neighbors
+NbP (v) of v. Many rules that are used in practice, including greatest improvement
+and steepest edge, are memory-less. Pivot rules not in this class include Zadeh’s
+least visited facet rule as well as the original the shadow vertex rule. Similarly,
+the celebrated random-edge pivot rule may or may not have an arborescence as a
+footprint, so it cannot be considered memory-less.
+    Memory-less pivot-rules are interesting because for every pivot rule Γ there is
+always a Memory-less pivot rule applied to the LP, whose footprint is contained
+in the footprint of Γ and the lengths of monotone paths are less or equal than
+the paths produced by Γ. This follows immediately from the computation of the
+shortest path arborescence of any rooted directed graph. Therefore if we wish to
+show there is a pivot rule that gives polynomial-size paths for all LPs, then one
+can find such a rule within the family of memory-less pivot rules.
+    Now, the essence of a memory pivot rule to (P, c) is captured by an arbores-
+cence induced by the union of edges in the collection of simplex-paths obtained
+by varying the starting vertex. Note also that the knowledge of the arborescence
+is sufficient to give a pivot rule for (P, c). Figure 1 shows three such arborescences
+on a 3-cube.
+    The two main questions that we address in this paper are
+    (1) How do the arborescences vary for fixed objective function c and varying
+        pivot rule?
+    (2) How do the arborescences vary for fixed pivot rule and varying objective
+        function c?
+Combinatorial Optimization                                                       2937
+
+   To be able to change the pivot rules in a controlled and continuous manner,
+we restrict to the following setup: For given P ⊂ Rd and c ∈ Rd , choose a
+normalization η : Rd → R and a weight w ∈ Rd . For v 6= vopt , the next vertex
+on the simplex-path from v is
+                          t                                        
+                           w (u − v)                        t     t
+(1)       u∗ = argmax                : u adjacent to v and c u > c v .
+                           η(u − v)
+A mechanism to choose w and η given (P, c) is called a normalized-weight pivot
+rule, or NW-rule for short. If R is a normalized-weight pivot rule, we sometimes
+write η R (P, c) and wR (P, c) to stress the dependence of η and w on the LP (P, c).
+As we explain in the next section, the main pivot rules (greatest-improvement,
+steepest-edge), as well as our generalization of the shadow-vertex rule, max-slope,
+belong to that class.
+   Although NW-rules are a strict subclass of memory-less pivot rules, we first
+show the following universality result.
+Theorem 3. For every simple polytope P there is a perturbation P ′ such that for
+any memory-less pivot rule there is a NW-rule that produces the same arborescence
+for (P ′ , c) for every c.
+   The simplicity of P means that (P, c) is a non-degenerate LP for every c and
+guarantees that the combinatorics of P and P ′ are isomorphic.
+   Now for a fixed LP (P, c) and a fixed normalization η, (1) determines an arbores-
+cence A, that is, a map on the vertices of P with A(vopt ) = vopt and A(v) = u∗
+otherwise. We can continuously change the pivot rule by varying the weight w. We
+call an arborescence that arises via (1) for a fixed weight w a coherent arbores-
+cence and write A = AηP,c (w). This terminology underlines the proximity to the
+theory of coherent monotone paths started in the 1990’s by Billera and Sturmfels.
+   An answer to question (A) is provided by the following theorem.
+   For a polytope Q ⊆ Rd , we write Qw = {x ∈ Q : wt x ≥ wt y, y ∈ Q} for the
+face that maximizes x 7→ wt x.
+Theorem 4. Let (P, c) be a linear program and η a normalization function. There
+is a polytope ΠηP,c ⊂ Rd called the pivot polytope such that the following holds:
+For any generic weights w, w′
+                AηP,c (w) = AηP,c (w′ )   ⇐⇒ (ΠηP,c )w = (ΠηP,c )w .
+                                                                   ′
+
+
+
+    Now coherent arborescences are special and we compare their number the total
+number of arborescences. We are able to completely determine the face lattice of
+the pivot rule polytopes in terms of arborescences and show that how they relate
+to the monotone path polytope.
+    Question (B) is strongly related to parametric linear programming. Whereas the
+basic question there is roughly which objective functions yield the same optimum,
+we will address the more subtle question which objective functions yield the same
+arborescence. We make two assumptions on the NW-rule R, namely that η R (P, c)
+is independent of c and that wR (P, c) = c. Thus, for a fixed normalization function
+η, we will write BPη (c) := AηP,c (c) for the arborescence of (P, c) obtained from (1)
+2938                                                      Oberwolfach Report 53/2021
+
+with respect to η and weight w = c. We show that the that the collection of
+arborescences BPη (c) is governed by another polytope.
+
+Theorem 5. Let P ⊂ Rd be a polytope and R a NW-rule as defined above. There
+is a polytope ΓηP ⊂ Rd called the neighbotope of P and η such that the following
+holds: For any generic objective functions c, c′ ∈ Rd
+                    BPη (c) = BPη (c′ )           (ΓηP )c = (ΓηP )c .
+                                                                    ′
+                                          ⇐⇒
+
+
+
+            How many matchings cover the nodes of a graph?
+                                András Sebő
+       (joint work with Dehia Ait Ferhat, Zoltán Király, Gautier Stauffer)
+
+Given an undirected graph, are there k matchings whose union covers all of its
+nodes, that is, a matching-k-cover? When k = 1, the problem is equivalent to
+the existence of a perfect matching for which Tutte’s celebrated matching theorem
+[1] provides a ‘good’ characterization. We prove here, when k is greater than
+one, a ‘good’ characterization à la Kőnig: for k ≥ 2, there exist k matchings
+covering every node if and only if for every stable set S, we have |S| ≤ k · |N (S)|.
+Moreover, somewhat surprisingly, we use only techniques from bipartite matching
+in the proof, through a simple, polynomial algorithm. A different approach to
+matching-k-covers has been previously suggested by Wang, Song and Yuan [2],
+relying on general matching and using matroid union for matching-matroids, or the
+Edmonds-Gallai structure theorem. Our approach provides a simpler polynomial
+algorithm together with an elegant certificate of non-existence when appropriate.
+   Further results, generalizations and interconnections between several problems
+are then deduced as consequences of the new minimax theorem, with surprisingly
+simple proofs (again using only the level of difficulty of bipartite matchings). One
+of the equivalent formulations leads to a solution of weighted minimization for
+non-negative edge-weights, while the edge-cardinality maximization of matching-
+2-covers turns out to be already NP-hard.
+   We have arrived at this problem as the line graph special case of a model
+arising for manufacturing integrated circuits with the technology called ‘Directed
+Self Assembly’.
+
+                                     References
+ [1] W. T. Tutte, The factorization of linear graphs, J. London Math. Soc., 22, (1947), pp.
+     107–111.
+ [2] X. Wang, X. Song and Y. Yuan, On matching cover of graphs, Mathematical Programming,
+     147(1), (2014), pp. 499–518.
+Combinatorial Optimization                                                                 2939
+
+                    Complexity of optimizing over the integers
+                                 Amitabh Basu
+
+We will consider problems of the form
+
+
+(1)                      inf{f (x, y) : (x, y) ∈ C, (x, y) ∈ Zn × Rd }.
+where f : Rn ×Rd → R is a convex (possibly nonsmooth) function and C ⊆ Rn ×Rd
+is a closed, convex set. We wish to design algorithms that returns a point in
+C ∩ (Zn × Rd ) with value at most ǫ more than the optimal value. Since we want to
+allow general nonlinear objective functions f and convex sets C, we will assume
+the algorithm will have access to a first order oracle for f , i.e., for any point
+z ∈ Rn × Rd , the oracle returns f (z) and a subgradient in ∂f (z), and assume
+access to a separation oracle for C.
+   To analyze the complexity of such problems, we have to introduce a way to
+parameterize the problems in a reasonable way and investigate the complexity as
+a function of these parameters. The parameters are meant to label problems to
+mimic their “difficulty levels”. In other words, the “harder” instances should have
+“higher” values of the parameter. The most common choice of parameters for this
+class of optimization problems are the following five: n, d ∈ N and R, M, ρ ∈ R.
+In,d,R,M,ρ are those instances of (1) such that
+      (1) The domain of f and C are both subsets of Rn × Rd .
+      (2) C is contained in the box {z ∈ Rn × Rd : kzk∞ ≤ R}, and
+      (3) f is Lipschitz continuous with respect to the k · k∞ -norm with Lipschitz
+          constant M on any set of the form {x} × [−R, R]d with x ∈ [−R, R]n ∩ Zn ,
+          i.e., for any (x, y), (x, y ′ ) with ky − y ′ k∞ ≤ R, |f (x, y) − f (x, y ′ )| ≤ M ky −
+          y ′ k∞ .
+      (4) If (x⋆ , y ⋆ ) is the optimum solution, then there exists yb ∈ Rd and ρ > 0
+          such that {(x⋆ , y) : ky − ybk∞ ≤ ρ} ⊆ C, i.e., there is a “strictly feasible”
+          point (x⋆ , yb) in the same fiber as the optimum (x⋆ , y ⋆ ) with a fiber box
+          of width ρ in Rd (the continuous space) around (x⋆ , yb) contained in C.
+          Note that if d = 0 (the pure integer case), then this requirement becomes
+          vacuous.
+   The ǫ-information complexity of the class of optimization problems (1), parame-
+terized by n, d, R, M, ρ, is defined as the minimum number of oracle queries needed
+by any algorithm to return an ǫ-approximate solution to a problem in In,d,R,M,ρ .
+This will be denoted by icompǫ (n, d, R, M, ρ). Thus, icompǫ (n, d, R, M, ρ) is an
+unconditional lower bound on the overall complexity of any ǫ-approximation algo-
+rithm for (1).
+   One can prove the following bounds on ǫ-information complexity.
+Lower bounds.
+        • If n, d ≥ 1,
+                                                            
+                         icomp ǫ (n, d, R, M, ρ) ∈ Ω d2n log R
+                                                             ρ   .
+2940                                                     Oberwolfach Report 53/2021
+
+       • If d = 0,
+                       icomp ǫ (n, d, R, M, ρ) ∈ Ω (2n log (R)) .
+       • If n = 0,
+                                                          
+                      icomp ǫ (n, d, R, M, ρ) ∈ Ω d log MR
+                                                         ρǫ    .
+Upper bounds.
+    • If n, d ≥ 1
+                                                              
+                 icomp ǫ (n, d, R, M, ρ) ∈ O (n + d)d2n log MR
+                                                             ρǫ    .
+       • If d = 0
+                      icomp ǫ (n, d, R, M, ρ) ∈ O (n2n log(R)) .
+       • If n = 0
+                                                         
+                     icomp ǫ (n, d, R, M, ρ) ∈ O d log MR
+                                                        ρǫ    .
+
+
+
+   Note that when n = 0, i.e., we consider continuousconvex    optimization
+                                                                               with no
+                                                                 MR
+integer variables, we have icomp ǫ (n, d, R, M, ρ) = Θ d log ρǫ          , giving a tight
+characterization of the complexity. In fact, these results can be obtained for a
+much broader class of oracles that include first-order/separation oracles as special
+cases; see [2, 3, 1, 4].
+   For pure integer optimization with d = 0, our upper and lower bounds are off
+by a linear factor in the dimension, which is of much lower order compared to the
+dominating term of 2n log(R). Put another way, both bounds are 2O(n) log(R).
+Since the strict feasibility assumption is vacuous and for small enough ǫ > 0, ǫ-
+approximate solutions are the same as exact optimum solutions, M, ǫ and ρ do not
+play a role in the upper and lower bounds.
+   There seems to be scope for nontrivial improvement in the bounds presented
+for the mixed-integer case with n, d ≥ 1:
+    (1) It would be nice to unify the lower bound for n = 0 (the continuous case)
+         and n ≥ 1 (the truly mixed-integer case). The proof for n, d ≥ 1 is based
+         on the feasibility question, which is why M and ǫ do not appear in the
+         lower bound.
+    (2) When one plugs in n = 0 in the mixed-integer upper bound (n, d ≥ 1),
+         one does not recover the tight upper bound for n = 0; instead, the bound
+         is off by a factor of d. We believe this can likely be improved.
+   We do not have upper bounds on algorithmic complexity that are close to
+the bounds established on information complexity when integer variables are in-
+volved. In the casewith no integer
+                                   variables, n = 0, the classical ellipsoid algorithm
+has complexity O d2 log MR     ρǫ   . Combining this with techniques from algorith-
+mic geometry of numbers and enumeration based on branching on general split
+disjunctions, one can give an algorithm for the general mixed-integer case with
+Combinatorial Optimization                                                             2941
+                                    
+complexity O 2n log(n+d) log MR    ρǫ    . It is a major open question to design an al-
+gorithm
+       with improved     running time closer to the information complexity bound
+                            
+of O (n + d)2n log MR   ρǫ    .
+                                                                    
+   However, the algorithms that achieve O 2n log(n+d) log MR       ρǫ    complexity do
+not explicitly utilize non-trivial cutting planes, i.e., halfspaces H such that C 6⊆ H
+but C ∩ (Zn × Rd ) ⊆ H. While it has not been established theoretically that
+using such cutting planes can produce algorithms with better overall complex-
+ity, it has been observed in practice that mixed-integer solvers rely heavily on
+such cutting planes. Recently, two results have been established that give some
+theoretical basis to this empirical fact. The first result establishes very general
+conditions under which combining non-trivial cutting planes with enumeration
+schemes gives an exponential advantage over using cutting planes alone or branch-
+ing schemes
+             alone. See
+                        [5].If we hold n to be a fixed constant, then the complex-
+ity O 2n log(n+d) log MR ρǫ     is a polynomial in the remaining parameters, and is
+achieved by algorithms that use branching schemes without cutting planes. It is
+an intriguing question to see if one can design a pure cutting plane algorithm that
+is polynomial time if the number n of integer variables is a fixed constant. Such a
+result has been recently established for pure integer problems (d = 0) in the plane,
+i.e., n = 2; see [6]. Even the n = 3 case remains open.
+
+                                      References
+ [1] Arkadi Nemirovski. Efficient methods in convex programming. Lecture notes, 1994.
+ [2] Arkadii S Nemirovski and David B Yudin. Problem Complexity and Method Efficiency in
+     Optimization. John Wiley, 1983.
+ [3] Yurii E Nesterov. Introductory Lectures on Convex Optimization, volume 87 of Applied
+     Optimization. Kluwer Academic Publishers, Boston, 2004.
+ [4] Gábor Braun, Cristóbal Guzmán, and Sebastian Pokutta. Lower bounds on the oracle com-
+     plexity of nonsmooth convex optimization via information theory. IEEE Transactions on
+     Information Theory, 63(7):4709–4724, 2017.
+ [5] Amitabh Basu, Michele Conforti, Marco Di Summa, and Hongyi Jiang. Complexity
+     of cutting plane and branch-and-bound algorithms for mixed-integer optimization–ii.
+     https://arxiv.org/abs/2011.05474, 2020.
+ [6] Amitabh Basu, Michele Conforti, Marco Di Summa, and Hongyi Jiang. Split cuts in the
+     plane. to appear in SIAM J. on Optimization, https://arxiv.org/abs/2003.05022, 2020.
+
+
+
+  Open Problem: Approximating Symmetric Submodular Functions
+                       by Hypergraphs
+                      Chandra Chekuri
+
+Devanur et al. [1] raised the question of approximating submodular functions and
+symmetric submodular functions by simpler classes of functions. In particular
+they showed that any non-negative symmetric submodular function f : 2N → R+
+can be approximated to a relative factor of (n − 1) by graph cut functions; the
+approximator is simply the cut function of the Gomory-Hu tree of f . They also
+2942                                                       Oberwolfach Report 53/2021
+
+observed that this bound is tight for a very simple function, namely f where
+f (S) = 0 for S = ∅ and S = N and f (S) = 1 otherwise. They raised the
+question of approximating symmetric submodular functions via hypergraphs and
+also observed that rank r hypergraphs cannot approximate better than a factor of
+Ω(n/r).
+   Is there a fixed constant c such that every symmetric submodular function
+can be approximated by a hypergraph cut function within a factor of c? This is
+open. We know that c ≥ 2. Experiments have shown that all functions on upto
+10 elements can be approximated to within a factor of 2. Via relatively simple
+arguments, Calvin Beideman, Karthik Chandrasekaran, Chao Xu, and myself have
+shown that hypergraph cut functions can approximate, to within a constant factor,
+symmetrizations of functions of the form f (S) = g(|S|) where g is a concave
+function. Thus, hypergraph cut functions are able to overcome the strong lower
+bound that holds for graph cut functions on these classes of simple functions.
+Natural examples to try are symmetrizations of rank functions of simple matroids.
+Laminar matroids are a natural example to try to generalize the case of concave
+functions and these already pose various challenges.
+   On the pessimistic side we observed the following. Suppose we can construct a
+hypergraph cut function that approximates f in an efficient and compact fashion
+to within a factor of α. Then we can approximate the sparsest cut, defined as
+min|S|≤|N |/2 f (S)/|S|, to within an O(α log n) factor since we can approximate
+sparsest cut for hypergraphs to within a factor of O(log n). The results of Svitkina
+and Fleischer [2] show that one needs exponential number of value queries to f to
+approximate f (S)/|S| to better than a polynomial factor in n.
+   Is it likely that f can be approximated via hypergraph cut functions to within
+a small factor but it is computationally difficult to find such a representation?
+Note that sparsification results for hypergraphs show that O( ǫ12 n log n) weighted
+hyperedges suffice to approximate the cut function of any hypergraph on n vertices
+to within a (1 + ǫ)-factor [3]. Thus the size of the hypergraph is not the bottleneck.
+
+
+
+
+                                      References
+ [1] N. Devanur, S. Dughmi, R. Schwartz, A. Sharma, and M. Singh, On the Approximation of
+     Submodular Functions, CoRR abs/1304.4948 (2013).
+ [2] Z. Svitkina and L. Fleischer, Submodular approximation: Sampling-based algorithms and
+     lower bounds, SIAM Journal on Computing, 40(6), 1715–1737, 2011.
+ [3] Y. Chen, S. Khanna, and A. Nagda, Near-linear size hypergraph cut sparsifiers, Proc. of
+     IEEE FOCS, 2020.
+Combinatorial Optimization                                                   2943
+
+   Open Problem: Computing the diameter of the bipartite perfect
+                      matching polytope
+                        Laura Sanità
+
+
+The diameter of a polytope P is the maximum value of a shortest path between
+any two vertices on the 1-skeleton of P, where the 1-skeleton of P can be regarded
+as the graph where vertices (resp. edges) correspond to 0-dimensional (resp. 1-
+dimensional) faces of P. We are here interested in the complexity of computing
+the diameter of the polytope given by perfect matchings of a bipartite graph.
+   Formally, for a given bipartite graph G = (V, E), the perfect matching polytope
+PM(G) associated to G is:
+                                  X
+         PM(G) := {x ∈ RE :               xe = 1 ∀v ∈ V, xe ≥ 0 ∀e ∈ E}
+                                 e∈δ(v)
+
+
+where δ(v) indicates the edges of G with one endpoint being v. Consider the
+following problem:
+     • Input: Bipartite graph G = (V, E).
+     • Output: Diameter of PM(G).
+Is the above problem NP-hard?
+
+
+
+
+              Open Problem: Integer infeasible subsystems
+                          Robert Weismantel
+                     (joint work with Marcel Celaya)
+
+
+Let A be an integral m × n matrix and b an integral vector with m components.
+Let ∆ be the largest magnitude of any subdeterminant of A. We define P = {x |
+Ax ≤ b} and make the following assumptions.
+     • P is full dimensional,
+     • P does not contain any integer point, but any proper subsystem of Ax ≤ b
+       contains integer points.
+   Can we upper bound m as a linear function of n, provided that ∆ is con-
+stant? More formally, do there exist one-dimensional functions f , g such that
+m ≤ nf (∆) + g(∆)?
+   From a theorem of Doignon it follows that m ≤ 2n [1]. In the special case
+when ∆ ∈ {1, 2} it follows from LP theory, theory of TU matrices and [2] that
+m ≤ n + 1. For ∆ = 3 an upper bound of the desired form is not known. Note
+that the number of distinct rows of A can always be upper bounded by O(n2 h(∆))
+where h is a one-dimensional function only depending on ∆, see [3] for details.
+2944                                                          Oberwolfach Report 53/2021
+
+                                        References
+ [1] J.P. Doignon, Convexity in cristallographical lattices, Journal of Geometry 3 (1973), 71–85.
+ [2] S.I. Veselov and A.J. Chirkov, Integer program with bimodular matrix, Discrete Optimization
+     6 (2009), 220–222.
+ [3] Ch. Glanzer, R. Weismantel and R. Zenklusen, On the number of distinct rows of a matrix
+     with bounded subdeterminants, SIAM Journal on Discrete Mathematics 3, (2018), 1706–1720
+
+
+
+         Open Problem: Iterative rounding for feedback vertex set
+                            Samuel Fiorini
+The (undirected) feedback vertex set problem is to find, given a vertex-weighted
+graph (G, c) a minimum cost set X such that G − X is a forest. This seems to
+be a central problem. However, there is basically just one 2-approximation algo-
+rithm to solve it, due to Bafna, Berman and Fujito (1995) and Becker and Geiger
+(1994). Chudak, Hochbaum, Goemans and Williamson (1998) gave a primal-dual
+interpretation of this algorithm, based on the following LP:
+            P
+       min            c(v)x(v)
+            Pv∈V (G)
+       s.t.   v∈S (dS (v) − 1)x(v) ≥ |E(S)| − |S| + 1 ∀S ⊆ V (G) : E(S) 6= ∅
+            x(v) ≥ 0                                  ∀v ∈ V (G) .
+   Is it true that for every extreme solution x∗ to the LP, there is a vertex v with
+ ∗
+x (v) ≥ 1/2? This would immediately imply a new 2-approximation algorithm
+based on iterative rounding. I can prove that when the LP is weakened by changing
+the right-hand sides of the first block of constraints to |E(S)| − |S|, there is always
+a vertex v such that x∗ (v) ≥ 1/3. Stefan Weltge can show that both LPs can be
+solved in polynomial time, since each has a polynomial size extended formulation.
+
+
+               Open Problem: Maximizing Subdeterminants in
+                         Nonsymmetric Matrices
+                              Nima Anari
+
+Given a matrix L ∈ Rn×n with L + L⊺  0, and an integer k ∈ {1, 2, . . . , n}, find
+the k × k principal submatrix of L that has the maximum determinant:
+                                               
+                                                [n]
+                        max det(LS,S ) S ∈           .
+                                                 k
+This is NP-hard to even approximately solve within a factor of ck for some universal
+constant c (Di Summa-Eisenbrand-Faenza-Moldenhauer’14), so the ultimate goal
+is a 2O(k) approximation. We currently know how to find a k O(k) -approximation
+by local search (Anari-Vuong’21). In the case where L is symmetric (and PSD),
+the approximation factor of 2O(k) is achievable by a clever continuous relaxation
+(Nikolov’14).
+   An important application of the conjectured 2O(k) approximation would be a
+O(log n)-factor approximation for computing the hereditary discrepancy of an n×n
+Combinatorial Optimization                                                              2945
+
+matrix (see Reis-Jiang’21), beating the current best O(log3/2 n). For this partic-
+ular application, it’s enough to solve the subdeterminant maximization problem
+for skew-symmetric L: L = −L⊺ . It’s even enough to assume L has the following
+form:                                         
+                                         0    A
+                                 L=              ,
+                                        −A⊺ 0
+where A is some arbitrary rectangular matrix. In this special case the problem
+becomes equivalent to finding the k/2 × k/2 (not necessarily principal) submatrix
+of A with the largest determinant in magnitude.
+
+
+   Open Problem: α-Multiplicative Connectivity Augmentation and
+                    Polygon Augmentation
+                         Nathan Klein
+
+Let α > 1 be a constant, let G = (V, E) be a k-edge-connected graph, and let L
+be a weighted multiset of edges that may be added to the graph G called links (to
+distinguish them from the edges of G). Then, the α-multiplicative connectivity
+augmentation problem is to add the minimum weight set of links to G from L such
+that E ∪ L is at least ⌈αk⌉-edge-connected.
+   For α ≤ 6/5, the cuts of G of size at most αk admit a compact polygon repre-
+sentation [4, 3]. Therefore, we propose first studying α-multiplicative connectivity
+augmentation for α ≤ 6/5 which may alternately be called polygon augmentation,
+following the naming convention of the problems tree augmentation and cactus
+augmentation in which the goal is to increase the connectivity of a graph by 1.
+   The main open problem is to design a better-than-2 approximation for this
+problem for any constant α > 1. Due to recent exciting progress on the tree aug-
+mentation problem [1, 2], we believe this is a good time to study its generalizations.
+This is a natural generalization since for many networks, increasing connectivity
+by 1 may have a negligible effect (for example, if the edge connectivity of the graph
+is already very large).
+
+                                       References
+ [1] V. Traub and R. Zenklusen. A Better-Than-2 Approximation for Weighted Tree Augmen-
+     tation. In Proceedings of the 62nd Annual IEEE Symposium on Foundations of Computer
+     Science (FOCS), 2021. To appear. https://arxiv.org/abs/2104.07114.
+ [2] V. Traub and R. Zenklusen. Local Search for Weighted Tree Augmentation and Steiner Tree.
+     In Proceedings of the 33rd ACM-SIAM Symposium on Discrete Algorithms (SODA), 2021.
+     To appear. https://arxiv.org/abs/2107.07403.
+ [3] András A. Benczúr and Michel X. Goemans. Deformable Polygon Representation and Near-
+     Mincuts In Building Bridges: Between Mathematics and Computer Science, M. Groetschel
+     and G.O.H. Katona, Eds., Bolyai Society Mathematical Studies, 2008.
+ [4] András A. Benczúr. A Representation of Cuts within 6/5 Times the Edge Connectivity with
+     Applications. In FOCS, 1995.
+2946                                                    Oberwolfach Report 53/2021
+
+   Open problem: Approximating submodular functions by matroid
+                         rank functions
+                          László Végh
+
+Let f : 2V → R+ be a nonnegative and monotone increasing submodular function
+with f (∅) = 0. Further, assume that for each i ∈ V , f ({i}) = 1. If we further
+assume that f is integer-valued, then f is a matroid rank function. The question
+is whether a non-integer function f can still be well-approximated by a matroid
+rank?
+   That is, does there exists a constant α > 0 such that for any function f as
+above, there exists a matroid rank function f : 2V → Z+ such that
+                          r(S)
+                               ≤ f (S) ≤ αr(S)      ∀S ⊆ V ?
+                           α
+
+
+
+
+             Open problem: Signings in the subtour polytope
+                           Michel Goemans
+
+Consider the subtour polytope P of the TSP on G = (V, E) (where we have
+dropped the degree constraints, without loss of generality, for the question below):
+                 P = {x ∈ RE : x(δ(S)) ≥ 2 for all S ⊆ V, x ≥ 0}.
+For any T ⊆ V of even cardinality, we know that x/2 belongs to the dominant of
+the T -join polytope for G [2]. But is the following true:
+Open question 1. For any x ∈ P and for any T ⊆ VPof even cardinality, does
+there exist a signing s : T → {−1, +1} (with s(T ) := v∈T s(v) = 0) such that
+there exists a transshipment (flow) f in G with capacities {ue : e ∈ E} and whose
+excess at vertex v is s(v) for v ∈ T and 0 otherwise.
+   By Gale’s theorem (see Corollary 11.2g in [1]), this transshipment exists (s is a
+valid signing) if and only if s satisfies that, for all S ⊂ V , one has s(S) ≤ x(δ(S))
+(and this can be tested efficiently and the transshipment can be found efficiently).
+Using splitting-off (à la Lovász), it is sufficient to consider the case in which |V |
+is even and T = V .
+   The signing clearly exists if x is the incidence vector of an Hamiltonian cycle
+(and in this case there is an exponential number of valid signings). If x is half-
+integral, then a valid signing also exists; one can for example take an Eulerian
+walk in 2x, consider the first visit of every vertex, and alternate +1 and −1
+sign assignments. Proving the existence of the transshipment in the graph with
+capacities αx for some small α ≥ 1 would also be interesting (α < 1 does not work
+for many x). In fact, this would be implied if one could show the existence of thin
+trees (as one could then alternate sign in a traversal of the tree).
+Combinatorial Optimization                                                          2947
+
+                                     References
+ [1] A. Schrijver, “Combinatorial Optimization: Polyhedra and Efficiency”, Springer, 2003.
+ [2] L.A. Wolsey, “Heuristic Analysis, Linear Programming and Brand and Bound”, Combina-
+     torial Optimization II, 1980.
+
+
+
+           Open problem: Representation for 4/3-near-mincuts
+                          Michel Goemans
+In the recent result of Anna Karlin, Nathan Klein and Shayan Oveis Gharan on
+the subtour polytope [3] presented at this workshop, the polygon representation of
+approximately mincuts played an important role (among other tools). This poly-
+gon representation (Benczúr Ph.D. thesis and [1]) generalizes the cactus represen-
+tation of minimum cuts in a weighted undirected graph, and allows to represent
+6
+5 -mincuts (in a simple geometric way); these are the cuts whose capacity is strictly
+less than 6/5 times the minimum cut value. Finding a compact representation of
+all 4/3-mincuts is an important open problem. The ratio 4/3 is the limit α where
+the number of α-mincuts is always at most n2 in a graph with n vertices (and
+when other properties start breaking as well, like approximate splitting-off [2]).
+
+                                     References
+ [1] A.A. Benczúr and M.X Goemans, “Deformable Polygon Representation and Approximate
+     Near-Mincuts”, in: Building Bridges Between Mathematics and Computer Science, M.
+     Groetschel and G.O.H. Katona, Eds., Bolyai Society Mathematical Studies 19, 103–135,
+     2008.
+ [2] M.X. Goemans, “Approximate Edge Splitting”, SIAM Journal on Discrete Mathematics,
+     14, 138–141, 2001.
+ [3] A.R. Karlin, N. Klein and S. Oveis Gharan, “A (Slightly) Improved Approximation Algo-
+     rithm for Metric TSP”, arXiv:2007.01409v4, 2021.
+
+
+                 Open problem: Unrelated graph balancing
+                             Nicole Megow
+Let G = (V, E) be an undirected graph. Each edge e = {u, v} ∈ E has two
+possible weights, w(u, v) ∈ R+ and w(v, u) ∈ R+ , depending on how the edge
+gets oriented. An orientation γ : E → V is a function that maps every edge
+to one of its endpoints, we say, it orients the edges. Given an orientation, the
+weighted
+   P      indegree of a node v is the total weight of edges oriented towards v, that
+is, {u,v}∈γ −1 (v) w(u, v). The unrelated graph orientation problem is to find an
+orientation γ for G that minimizes the maximum weighted indegree over all nodes
+in G. The natural generalization of this problem to multigraphs is called unrelated
+graph balancing.
+   Lenstra, Shmoys, and Tardos [2] provide a 2-approximation via LP rounding.
+In fact, they consider the more general unrelated machine scheduling problem
+R||Cmax . Graph balancing is a special case thereof, in which each job has a finite
+processing time only on two machines; one could formulate the scheduling problem
+2948                                                       Oberwolfach Report 53/2021
+
+as unrelated graph balancing in hypergraphs. Improving upon the approximation
+factor of 2 for R||Cmax is considered as one of the major open problems in sched-
+uling [3].
+   Unrelated graph balancing seems to capture already the major difficulties and
+no better approximation factor than 2 is known, not even in simple graphs. Ver-
+schae and Wiese [4] show that the configuration LP has an integrality gap of 2
+for this problem. The instance in their gap construction has edge weights only in
+{1, k} for some arbitrary but large k. We are interested in beating the factor of 2
+for this particular class of instances via a strengthened LP or some other approach.
+We can show (with my PhD students Alexander Lindermayr and Jens Schlöter)
+that there is a 7/4-approximation if the optimum value is k.
+   Note that Ebenlendr, Krcál and Sgall [1] give a 7/4-approximation via LP
+rounding for the special case in which each edge has the same weight independently
+of its orientation.
+
+
+
+                                      References
+ [1] T. Ebenlendr, M. Krcál, and J. Sgall, Graph Balancing: A Special Case of Scheduling
+     Unrelated Parallel Machines,
+ [2] J.L. Lenstra, D.B. Shmoys, and E. Tardos, Approximation Algorithms for Scheduling Un-
+     related Parallel Machines, Math. Program. 46, 259–271, 1990.
+ [3] P. Schuurman and G.J. Woeginger, Polynomial time approximation algorithms for machine
+     scheduling: ten open problems, J. Sched. 3(5), 203–213, 1999.
+ [4] J. Verschae and A. Wiese, On the configuration-LP for scheduling on unrelated machines,
+     J. Sched. 17(4), 371—381, 2014.
+
+
+
+
+Open problem: Perfect matching that maximizes the k-heaviest edges
+                         Ola Svensson
+
+
+Given a bipartite graph G = (V, E) with edge-weights w : E → R, efficient
+algorithms for finding a perfect matching of maximum weight can be traced back
+to the work of Jacobi over a century ago [2].
+   However, can you efficiently (in polynomial time) find a perfect matching that
+maximizes the weight of the k-heaviest edges? This problem can be equivalently
+stated as the following problem: find k edges of maximum weight that can be
+extended to a perfect matching.
+   If the weights are polynomially bounded, then the randomized technique by
+Mulmuley, Vazirani, & Vazirani [1] gives such an algorithm (even a parallel one).
+It remains open if we can get a deterministic polynomial-time algorithm for this
+problem. In addition, the complexity of the problem (without restrictions on the
+edge-weights) remains open.
+Combinatorial Optimization                                                            2949
+
+                                     References
+[1] K. Mulmuley, U. Vazirani, and V. Vazirani, Matching is as easy as matrix inversion, Com-
+    binatorica. 7(1), 105—113, 1987.
+[2] Jacobi’s Bound https://www.lix.polytechnique.fr/~ ollivier/JACOBI/jacobiEngl.htm .
+    Accessed: 2022-02-16.
+
+
+
+
+                                                                Reporter: Nathan Klein
+2950                                               Oberwolfach Report 53/2021
+
+                                   Participants
+
+
+Prof. Dr. Karen I. Aardal                Prof. Dr. Chandra Chekuri
+Delft Institute of Applied Mathematics   Department of Computer Science
+Faculty EEMCS                            University of Illinois at
+Delft University of Technology           Urbana-Champaign
+Mekelweg 4                               3228 Siebel Center
+2628 CD Delft                            201 N. Goodwin Avenue
+NETHERLANDS                              Urbana, IL 61801
+                                         UNITED STATES
+Prof. Dr. Nima Anari
+Department of Computer Science           Prof. Dr. Michele Conforti
+Stanford University                      Dipartimento di Matematica Pura
+2040 Columbia Street                     ed Applicata
+Palo Alto CA 94306                       Università di Padova
+UNITED STATES                            via Trieste, 63
+                                         35131 Padova (PD)
+                                         ITALY
+Dr. Eric Balkanski
+Department of Industrial Engineering
+and Operations Research                  Prof. Dr. William J. Cook
+Columbia University                      Department of Combinatorics and
+500 W 120th Street #315                  Optimization
+New York, NY 10027                       University of Waterloo
+UNITED STATES                            Waterloo N2L3G1
+                                         CANADA
+Prof. Dr. Nikhil Bansal
+Centrum Wiskunde & Informatica           Prof. Dr. Gérard P. Cornuéjols
+(CWI)                                    Tepper School of Business
+Postbus 94079                            Carnegie Mellon University
+1090 GB Amsterdam                        5000 Forbes Avenue
+NETHERLANDS                              Pittsburgh, PA 15213-3890
+                                         UNITED STATES
+Prof. Dr. Amitabh Basu
+Department of Applied Mathematics        Dr. Daniel Dadush
+and Statistics                           Centrum Wiskunde and Informatica
+Johns Hopkins University                 (CWI)
+100 Whitehead Hall                       Postbus 94079
+3400 N. Charles Street                   1090 GB Amsterdam
+Baltimore, MD 21218                      NETHERLANDS
+UNITED STATES
+Combinatorial Optimization                                                   2951
+
+Prof. Dr. Jesús A. De Loera             Prof. Dr. Michel X. Goemans
+Department of Mathematics                Department of Mathematics
+University of California, Davis          Massachusetts Institute of Technology
+1, Shields Avenue                        77 Massachusetts Avenue
+Davis, CA 95616-8633                     Cambridge, MA 02139-4307
+UNITED STATES                            UNITED STATES
+
+Prof. Dr. Santanu S. Dey                 Prof. Dr. Anupam Gupta
+H. Milton Stewart School of Industrial   Department of Computer Science
+and Systems Engineering                  Carnegie Mellon University
+Georgia Institute of Technology          7203 Gates Building
+765 Ferst Drive                          Pittsburgh PA 15213-3890
+Atlanta GA 30332                         UNITED STATES
+UNITED STATES
+                                         Prof. Dr. Satoru Iwata
+Prof. Dr. Marco Di Summa                 Department of Mathematical Informatics
+Dipartimento di Matematica               Graduate School of Information Science
+Università di Padova                    and Technology
+via Trieste, 63                          University of Tokyo
+35121 Padova (PD)                        7-3-1 Hongo, Bunkyo-ku
+ITALY                                    Tokyo 113-8656
+                                         JAPAN
+Prof. Dr. Friedrich Eisenbrand
+EPFL SB MATH DISOPT                      Prof. Dr. Tibor Jordan
+Station 8                                Department of Operations Research
+1015 Lausanne                            ELTE Eötvös Loránd University
+SWITZERLAND                              Pazmany Peter setany 1/C
+                                         1117 Budapest
+                                         HUNGARY
+Prof. Dr. Yuri Faenza
+Department of Industrial Engineering
+and Operations Research                  Prof. Dr. Volker Kaibel
+Columbia University                      Fakultät für Mathematik
+Seeley W., Mudd Building                 Otto-von-Guericke-Universität
+500 West 120th Street                    Magdeburg
+New York, NY 10027                       Universitätsplatz 2
+UNITED STATES                            39106 Magdeburg
+                                         GERMANY
+Prof. Dr. Samuel Fiorini
+Département de Mathématique            Nathan Klein
+Université Libre de Bruxelles           Department of Computer Science
+CP 216 Campus Plaine                     and Engineering
+Boulevard du Triomphe                    University of Washington
+1050 Bruxelles                           Box 352350
+BELGIUM                                  Seattle WA 98195-2350
+                                         UNITED STATES
+2952                                                  Oberwolfach Report 53/2021
+
+Prof. Dr. Monique Laurent                  Kent Quanrud
+Centrum Wiskunde & Informatica             Lawson #1211
+(CWI)                                      Department of Computer Science
+Postbus 94079                              Purdue University
+1090 GB Amsterdam                          305 N University St
+NETHERLANDS                                West Lafayette IN, 47907
+                                           UNITED STATES
+Prof. Dr. Nicole Megow
+FB 3 - Mathematik/Informatik               Prof. Dr. Thomas Rothvoss
+Universität Bremen                        Department of Mathematics and CSE
+Bibliothekstrasse 5                        University of Washington
+28359 Bremen                               Padelford Hall
+GERMANY                                    Seattle WA 98195-4350
+                                           UNITED STATES
+Sarah Maria Morell
+Institut für Mathematik                   Dr. Laura Sanità
+Fakultät II - Sekr. MA 5-2                Department of Mathematics
+Technische Universität Berlin             Eindhoven University of Technology
+Straße des 17. Juni 136                    P.O.Box 513
+10623 Berlin                               5600 MB Eindhoven
+GERMANY                                    NETHERLANDS
+
+Dr. Neil Olver                             Prof. Dr. Lisa Sauermann
+Department of Management                   Massachusetts Institute of Technology
+London School of Economics                 Department of Mathematics
+Houghton Street                            Building 2
+London WC2A 2AE                            77 Massachusetts Avenue
+UNITED KINGDOM                             Cambridge MA 02139
+                                           UNITED STATES
+Prof. Dr. Britta Peis
+Fakultät für Wirtschaftswissenschaften   Prof. Dr. András Sebö
+Lehrstuhl für Management Science          Institut National Polytechnique de
+RWTH Aachen                                Grenoble, CNRS, G-Scop
+Kackertstrasse 7                           Université Grenoble-Alpes
+52072 Aachen                               46, Avenue Felix Viallet
+GERMANY                                    38031 Grenoble Cedex 1
+                                           FRANCE
+Prof. Dr. Sebastian Pokutta
+Konrad-Zuse-Zentrum für                   Prof. Dr. David B. Shmoys
+Informationstechnik Berlin (ZIB)           School of Operations Research and
+Takustraße 7                               Information Engineering
+14195 Berlin                               Cornell University
+GERMANY                                    Frank H. T. Rhodes Hall 231
+                                           136 Hoy Road
+                                           Ithaca NY 14853-4201
+                                           UNITED STATES
+Combinatorial Optimization                                                   2953
+
+Prof. Dr. Mohit Singh                    Prof. Dr. László Végh
+H. Milton Stewart School of Industrial   Department of Mathematics
+and Systems Engineering                  London School of Economics
+Georgia Institute of Technology          Houghton Street
+755 Ferst Drive, NW                      London WC2A 2AE
+Atlanta, GA 30332                        UNITED KINGDOM
+UNITED STATES
+                                         Prof. Dr. Jan Vondrak
+Prof. Dr. Martin Skutella                Department of Mathematics
+Institut für Mathematik                 Stanford University
+Fakultät II, Sekr. MA 5-2               450 Serra Mall
+Technische Universität Berlin           Stanford CA 94305-2125
+Straße des 17. Juni 136                  UNITED STATES
+10623 Berlin
+GERMANY
+                                         Prof. Dr. Jens P. Vygen
+                                         Forschungsinstitut für Diskrete
+Prof. Dr. Ola Nils A. Svensson           Mathematik
+EPFL IC IINFCOM THL2                     Universität Bonn
+Bâtiment INJ 112                        Lennestrasse 2
+Station 14                               53113 Bonn
+1015 Lausanne                            GERMANY
+SWITZERLAND
+                                         Prof. Dr. Robert Weismantel
+Dr. Jakub Tarnawski                      Institute for Operations Research
+Microsoft Research                       ETH Zürich
+Untere Heslibachstrasse 66               HG G 21.5
+8700 Küsnacht                           Rämistrasse 101
+SWITZERLAND                              8092 Zürich
+                                         SWITZERLAND
+Dr. Rekha R. Thomas
+Department of Mathematics                Stefan Weltge
+University of Washington                 Zentrum Mathematik
+Padelford Hall                           Technische Universität München
+P.O. Box Box 354350                      Boltzmannstraße 3
+Seattle, WA 98195-4350                   85748 Garching bei München
+UNITED STATES                            GERMANY
+
+Dr. Vera Traub                           Prof. Dr. David P. Williamson
+Mathematik Department                    School of Operations Research and
+ETH Zürich                              Information Engineering
+Rämistrasse 101                         Cornell University
+8092 Zürich                             236 Rhodes Hall
+SWITZERLAND                              Ithaca, NY 14853-4201
+                                         UNITED STATES
+2954                                  Oberwolfach Report 53/2021
+
+Prof. Dr. Giacomo Zambelli   Prof. Dr. Rico Zenklusen
+Department of Mathematics    Department of Mathematics
+London School of Economics   ETH Zurich
+Houghton Street              HG G 22.4
+London WC2A 2AE              Rämistrasse 101
+UNITED KINGDOM               8092 Zürich
+                             SWITZERLAND
+

@@ -23,3 +23,8 @@ This addresses DKW Question 5.3.5 and Question 2 in both Dykema workshop reports
 Material credit belongs to Dykema–Köstler–Williams for the canonical expectation and coefficient-stabilization framework, to standard Kaplansky density, and to related prior past/future coefficient arguments in Liu's work. Quantum-symmetric moment generation is established prior work. A bounded literature check as of 13 October 2026 located no earlier theorem in the full stated generality; novelty remains unverified. Analytic acceptance is not a formal proof-assistant certificate or journal acceptance.
 
 The public reader contains authored mathematics, analytic review, and verification metadata only. Finite controls test specific mechanisms; the full general conclusion is justified by the analytic argument.
+
+
+## Reviewed research note
+
+The four-page note in [publication/tail-generation.pdf](publication/tail-generation.pdf) and its editable source/verification package give the full general tail-generation deduction. The source archive includes the detailed bilateral bridge and provenance. Both catalog aliases30003208/30002897 refer to one result. DKW/Liu methods and Kaplansky density are credited; the separate D-inclusion question remains open here. Two complete independent AI package reviews and root mathematical adoption are recorded in the final sweep. The note is an unrefereed preprint with extensive AI involvement; no independent human peer review or exclusive historical priority is claimed. Zenodo publication and tracker reconciliation remain pending.

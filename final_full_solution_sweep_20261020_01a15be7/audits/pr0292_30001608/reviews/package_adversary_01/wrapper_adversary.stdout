@@ -1,0 +1,73 @@
+{
+  "status": "PASS_WRAPPER_ADVERSARIAL_MUTATIONS",
+  "utc": "2026-10-21T03:53:37.092638+00:00",
+  "cases": [
+    {
+      "case": "missing",
+      "rejected": true,
+      "exception": "Missing or unlisted package files"
+    },
+    {
+      "case": "tampered",
+      "rejected": true,
+      "exception": "Size mismatch: main.tex"
+    },
+    {
+      "case": "unlisted",
+      "rejected": true,
+      "exception": "Missing or unlisted package files"
+    },
+    {
+      "case": "symlink",
+      "rejected": true,
+      "exception": "Symlink in package: /Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_01/mutation-xkqzkgih/package/extra-link"
+    },
+    {
+      "case": "duplicate_manifest",
+      "rejected": true,
+      "exception": "Repeated manifest path"
+    },
+    {
+      "case": "negative exits zero despite marker",
+      "rejected": true,
+      "exception": "Negative control failed to reject: zero_with_marker.py"
+    },
+    {
+      "case": "negative exits nonzero without marker",
+      "rejected": true,
+      "exception": "Negative control failed to reject: nonzero_without_marker.py"
+    },
+    {
+      "case": "negative nonzero with exact marker",
+      "correctly_accepted": true
+    },
+    {
+      "case": "positive program fails",
+      "rejected": true,
+      "exception": "Reproduction failed: positive_failure.py\nTraceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_advers"
+    },
+    {
+      "case": "positive stdout is not JSON",
+      "rejected": true,
+      "exception": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "case": "Python -O",
+      "rejected": true
+    },
+    {
+      "case": "PYTHONOPTIMIZE=1",
+      "rejected": true
+    },
+    {
+      "case": "only stated float tolerance; bad float, NaN and integer change",
+      "rejected": true
+    },
+    {
+      "case": "changed frozen output, outer manifest recomputed",
+      "rejected": true,
+      "stderr_tail": "eError: Reproduction failed: original/verify_package.py\nTraceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_01/tmp/dfc-stability-reproduction-f21s5afm/dfc_stability_verification/original/verify_package.py\", line 16, in <module>\n    assert len(b)==e['bytes'],(rel,e['path'],'size')\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: ('TURN_1_MANIFEST.json', 'checks/turn1_output.json', 'size')\n\n"
+    }
+  ],
+  "frozen_payloads_still_valid": 91
+}

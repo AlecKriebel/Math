@@ -1,0 +1,22 @@
+Supplementary completion trace transcribed from the audit's own tool outputs.
+This is not the aggregate JSON, which was overwritten by the final size-four replay.
+
+Extended command: python3 independent_controls.py
+At that invocation the script's default --maximum-size was 6.
+
+Observed progress:
+{"progress": "F2_exhaustion", "size_finished": 4, "seconds": 2.197, "cumulative_configurations": 59535}
+{"progress": "F2_exhaustion", "size_finished": 5, "seconds": 24.263, "cumulative_configurations": 384167}
+{"progress": "F2_exhaustion", "size_finished": 6, "seconds": 193.311, "cumulative_configurations": 2007327}
+{"status": "PASS_EXACT_FINITE_CONTROLS", "assertions": 4027195, "seconds": 221.864}
+
+At parent instruction, the process was inspected and then its termination attempted.
+The termination returned: kill 74609 failed: no such process.
+Polling the tool session immediately returned the successful completion above.
+
+The script default was restored to maximum size 4. The final sealing replay returned:
+{"progress": "F2_exhaustion", "size_finished": 4, "seconds": 2.218, "cumulative_configurations": 59535}
+{"status": "PASS_EXACT_FINITE_CONTROLS", "assertions": 125930, "seconds": 4.388}
+
+No extended run remains active. The final size-four JSON is the retained primary result.
+The optional extended run can be reproduced explicitly with --maximum-size 6.

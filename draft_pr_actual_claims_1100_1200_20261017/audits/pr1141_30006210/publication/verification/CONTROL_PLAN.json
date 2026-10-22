@@ -1,0 +1,220 @@
+{
+  "all_checks": "Exact integer/Fraction mathematics; no floating tolerance. Only specified runtime fields are removed after runtime identity validation; all mathematical fields and checker/proof hashes remain strict. Four programs in both modes, forty actual wrong-mathematics process failures.",
+  "controls": [
+    {
+      "drop_paths": [
+        [
+          "runtime",
+          "utc"
+        ],
+        [
+          "runtime",
+          "seconds"
+        ],
+        [
+          "runtime",
+          "python"
+        ],
+        [
+          "runtime",
+          "optimization"
+        ]
+      ],
+      "expected": "reviews/separator_01/results.normal.json",
+      "mutants": [
+        {
+          "code": "m.require(2<=m.degree((1,0,0,-1),2)**2,'factor two lost')",
+          "diagnostic": "factor two lost",
+          "name": "omitted_Markov_factor_two"
+        },
+        {
+          "code": "m.validate_hitting_reduction((0,1,1,2),2,[1])",
+          "diagnostic": "not inclusion-maximal",
+          "name": "nonmaximal_family"
+        },
+        {
+          "code": "r,f=m.restrict((0,1,0,0),2,2,2); m.require(m.mobius(r,1)[1]==1,'non-top monomial does not survive')",
+          "diagnostic": "non-top monomial",
+          "name": "lower_degree_monomial_survival"
+        },
+        {
+          "code": "m.verify_tree(('leaf',0),(1,0,2,0),2)",
+          "diagnostic": "wrong support label",
+          "name": "wrong_total_separator"
+        },
+        {
+          "code": "m.verify_tree(('query',0,('query',0,('leaf',1),('leaf',1)),('leaf',2)),(1,2),1)",
+          "diagnostic": "repeated or invalid query",
+          "name": "repeated_coordinate"
+        }
+      ],
+      "output_argument": true,
+      "program": "reviews/separator_01/verify_exact.py",
+      "runtime_kind": "separator"
+    },
+    {
+      "drop_paths": [
+        [
+          "started_utc"
+        ],
+        [
+          "completed_utc"
+        ]
+      ],
+      "expected": "reviews/covariance_01/CONTROLS.normal.json",
+      "mutants": [
+        {
+          "args": [
+            "--mutant",
+            "covariance_factor"
+          ],
+          "diagnostic": "wrong covariance factor",
+          "name": "covariance_factor"
+        },
+        {
+          "args": [
+            "--mutant",
+            "full_transcript"
+          ],
+          "diagnostic": "wrong full-transcript pair law",
+          "name": "full_transcript"
+        },
+        {
+          "args": [
+            "--mutant",
+            "unreplaced_history"
+          ],
+          "diagnostic": "wrong unreplaced-history pair law",
+          "name": "unreplaced_history"
+        },
+        {
+          "args": [
+            "--mutant",
+            "square_factor"
+          ],
+          "diagnostic": "wrong square bound",
+          "name": "square_factor"
+        }
+      ],
+      "output_argument": true,
+      "program": "reviews/covariance_01/exact_controls.py",
+      "runtime_kind": "none"
+    },
+    {
+      "drop_paths": [
+        [
+          "python_version"
+        ],
+        [
+          "optimized"
+        ]
+      ],
+      "expected": "reviews/target_01/RESULTS.normal.json",
+      "mutants": [
+        {
+          "args": [
+            "--mutate",
+            "omit_constant"
+          ],
+          "diagnostic": "full-mean denominator",
+          "name": "omit_constant"
+        },
+        {
+          "args": [
+            "--mutate",
+            "flip_resampling"
+          ],
+          "diagnostic": "resampling includes",
+          "name": "flip_resampling"
+        },
+        {
+          "args": [
+            "--mutate",
+            "nonstrict_old_endpoint"
+          ],
+          "diagnostic": "false nonstrict old endpoint",
+          "name": "nonstrict_old_endpoint"
+        },
+        {
+          "args": [
+            "--mutate",
+            "accept_zero"
+          ],
+          "diagnostic": "zero polynomials",
+          "name": "accept_zero"
+        },
+        {
+          "args": [
+            "--mutate",
+            "assume_partition"
+          ],
+          "diagnostic": "false assumption",
+          "name": "assume_partition"
+        },
+        {
+          "args": [
+            "--mutate",
+            "constant_arithmetic"
+          ],
+          "diagnostic": "final contradiction",
+          "name": "constant_arithmetic"
+        }
+      ],
+      "output_argument": true,
+      "program": "reviews/target_01/exact_target_controls.py",
+      "runtime_kind": "target"
+    },
+    {
+      "drop_paths": [],
+      "expected": "root_reproduction/ROOT_CONTROLS.normal.json",
+      "mutants": [
+        {
+          "args": [
+            "--mutant",
+            "covariance-quarter"
+          ],
+          "diagnostic": "sharp adaptive covariance",
+          "name": "covariance-quarter"
+        },
+        {
+          "args": [
+            "--mutant",
+            "square-one"
+          ],
+          "diagnostic": "square influence Cauchy",
+          "name": "square-one"
+        },
+        {
+          "args": [
+            "--mutant",
+            "markov-no-rescale"
+          ],
+          "diagnostic": "rescaled Markov",
+          "name": "markov-no-rescale"
+        },
+        {
+          "args": [
+            "--mutant",
+            "variance-denominator"
+          ],
+          "diagnostic": "constant belongs",
+          "name": "variance-denominator"
+        },
+        {
+          "args": [
+            "--mutant",
+            "old-inclusive-endpoint"
+          ],
+          "diagnostic": "strict old threshold",
+          "name": "old-inclusive-endpoint"
+        }
+      ],
+      "output_argument": false,
+      "program": "root_reproduction/root_exact_controls.py",
+      "runtime_kind": "none"
+    }
+  ],
+  "source_input_count": 10,
+  "source_prefix": "draft_pr_actual_claims_1100_1200_20261017/audits/pr1141_30006210",
+  "source_proof_sha256": "20bf5956520b2b53bb4b415d7d5683a6ae1cf1273bd36372accbc49fab482da1"
+}

@@ -1,0 +1,349 @@
+--- before/preprint_v1_0/kit_common.py
++++ after/preprint_v1_0/kit_common.py
+@@ -71,6 +71,18 @@
+     target = p.resolve()
+     require(target != ROOT and ROOT not in target.parents,
+             "output must be outside canonical kit directory")
++    # resolve() preserves spelling on case/normalization-insensitive hosts.
++    # Compare every existing ancestor physically, even above absent directories.
++    # This also works when __file__ names the kit through a different alias.
++    root_stat = ROOT.stat()
++    root_identity = (root_stat.st_dev, root_stat.st_ino)
++    for ancestor in [target, *target.parents]:
++        try:
++            ancestor_stat = ancestor.stat()
++        except FileNotFoundError:
++            continue
++        require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,
++                "output must be outside physical kit directory")
+     for source in protected(extra):
+         require(target != source.resolve(), "output aliases protected input")
+         if p.exists() and source.exists():
+--- before/preprint_v1_0/README.md
++++ after/preprint_v1_0/README.md
+@@ -6,7 +6,7 @@
+ 
+ The convention is alpha=-beta<0, outward derivative beta u and threshold -beta². The printed HHRV journal formula permits theta=1/4 with denominator (1-2theta)²; its older arXiv v2 uses (1-4theta)² and does not permit that substitution. Magnetic BSZ's positive-field/large-strength model does not apply to zero field. The 2017 Robin passages are expectations, not theorems. There is no claim of all-strength absence for one fixed nonzero graph, a general higher-dimensional nongraph classification, or exclusion of embedded eigenvalues.
+ 
+-The paper is AI-assisted and unrefereed, with no human peer review or formal proof certificate. The unchanged dated preparation STATUS.json records the pre-review stage. TERMINAL_ACCOUNTING.json now records two completed **new** complete whole-package reviews (minimum two), both with zero actionable P0–P3 findings and both adopted by root. Current readiness and all-issues-clearance remain false pending the external root terminal integrity adoption. Publication services remain held behind PR #1032's priority cursor. Historical preparation and review records retain exact original bytes and their captured-stage meaning.
++The paper is AI-assisted and unrefereed, with no human peer review or formal proof certificate. The unchanged dated preparation STATUS.json records the pre-review stage. TERMINAL_ACCOUNTING.json now records two completed **new** complete whole-package reviews (minimum two), both with zero actionable P0–P3 findings and both adopted by root. Those captured zero-finding verdicts predate the later case-alias finding. CASE_ALIAS_REPAIR_ACCOUNTING.json now requires external root repair adoption and a NEW complete whole03 review; current readiness and all-issues-clearance remain false. Publication services remain held behind PR #1032's priority cursor. Historical preparation and review records retain exact original bytes and their captured-stage meaning.
+ 
+ ## Portable reproduction
+ 
+@@ -17,7 +17,7 @@
+     python3 -B build_archive.py --output /ABSOLUTE/NEW/OUTPUT/pr1085_support_v1_0.zip
+     python3 -B verify_package.py
+ 
+-Use an actual nonsymlink output directory: on macOS /tmp is a symlink, so use /private/tmp. The builder requires an output outside the canonical kit. It validates payload and produces a closed sorted deterministic deflate-9 ZIP, with 2026-10-14 00:00:00 timestamps and Unix regular mode0644. Compare the new archive's SHA-256 with the reviewed upload binding in the complete publication kit. Normal and python3 -O -B runs agree; every new guard uses explicit exceptions, not assertions.
++Use an actual nonsymlink output directory: on macOS /tmp is a symlink, so use /private/tmp. The builder requires an output outside the physical kit directory, including case or normalization aliases on filesystems that identify those spellings. Existing output ancestors are compared by device/inode identity, including above absent intermediate directories, in either script-root spelling direction. It validates payload and produces a closed sorted deterministic deflate-9 ZIP, with 2026-10-14 00:00:00 timestamps and Unix regular mode0644. Compare the new archive's SHA-256 with the reviewed upload binding in the complete publication kit. Normal and python3 -O -B runs agree; every new guard uses explicit exceptions, not assertions.
+ 
+ The checker verifies selected rational coercivity, Hardy/trace coefficients, normal/Jacobian signs, Fourier-square identities, mass scaling and both margins. It is not a sampled proof of analytic theorems, numerical PDE certificate or cited theorem reproof. The original submitted edition had no executable. Exact historical checker copies retain their original environment assumptions and are **not these portable entry points**. The old Hardy reviewer used assertions and wrote a dated result; no optimized replay of it is claimed.
+ 
+@@ -27,7 +27,7 @@
+ 
+ This compiles a disposable source copy with SOURCE_DATE_EPOCH=1791936000 and writes the PDF, source copy, log and receipt only to that output. The installed engine/bundle reproduced the exact canonical PDF. The built-in compiler first returned success, without exporting a PDF. Exact reproducibility across different engines/bundles is not promised. Every final page was rendered and viewed.
+ 
+-All output-writing CLI paths reject direct, resolved, symlink and existing-hardlink aliases to protected inputs **before** any write, directory creation or compiler invocation. Guards cover a supplied external descriptor too. This is a static local-file workflow, without concurrent adversarial filesystem race promises.
++All output-writing CLI paths reject physical kit ancestry, direct, resolved, symlink and existing-hardlink aliases to protected inputs **before** any write, directory creation or compiler invocation. Guards cover a supplied external descriptor too. This is a static local-file workflow, without concurrent adversarial filesystem race promises.
+ 
+ ## Copies, exclusions and upload forms
+ 
+@@ -48,3 +48,9 @@
+ TERMINAL_INPUT_PINS.json hash-freezes all immediate pre-terminal inputs. TERMINAL_COPY_MAP.json and TERMINAL_EXCLUSIONS.json form their exact source-by-source partition. Selected authored whole01/02 reports, independent derivations/checkers, bounded source-interface/custody receipts and root adoptions are exact copies in evidence/terminal/. Five small before-edit snapshots retain their old bytes; the previous support ZIP stays only in local custody. Raw compiler/command streams, third-party bodies, source extracts, pixels, runtimes and old archives are not added. Earlier locators and receipts are historical; no omitted program or original no-executable submission is represented as newly replayed. The original preparation copy/exclusion maps, status, reports, pins and seals are unchanged.
+ 
+ The operative verifier checks both the preserved preparation stage and the separate terminal accounting. It requires two reviews, latest zero findings, exact root review adoption/output-manifest identities and the complete terminal copy/exclusion partition. It rejects premature readiness, service-hold bypass, false priority/novelty/refereeing promotion and missing or changed review evidence. The terminal administration changes neither the proof nor the paper PDF, mathematical checker, writer guards or exact bibliographic metadata. The unchanged paper has already been actually compiled in both modes and all seven pages actually viewed by both whole reviewers. No new compilation or image-generation claim is made by this administrative step.
++
++## Later case-alias repair and current review hold
++
++CASE_ALIAS_REPAIR_ACCOUNTING.json supplements the unchanged dated TERMINAL_ACCOUNTING.json. It records CASE-1085 (P3), the static physical-ancestor guard repair, two completed historical whole reviews, the minimum of two reviews, mandatory external root repair adoption and a NEW complete whole03 review. The new review is pending; readiness, all-issues-clearance and publication remain false, and services remain held after PR1032. Historical zero-finding verdicts and their seals keep their captured-stage meaning. This focused repair is not a new whole-package review.
++
++CASE_ALIAS_REPAIR_COPY_MAP.json pins six necessary authored finding/root-hold and exact old-interface copies in evidence/case_alias01/. The original 66/126 preparation and 52/323 terminal copy/exclusion partitions remain exact. No raw streams, third-party bodies, pixels, runtimes or old ZIPs are added. The paper PDF/TeX, mathematical checker, credits, metadata constants and every native metadata field remain byte-exact. No new PDF compilation, render or authoring marker is needed for the unchanged paper.
+--- before/preprint_v1_0/verify_package.py
++++ after/preprint_v1_0/verify_package.py
+@@ -148,6 +148,49 @@
+                     all(type(verdict.get("severity_counts", {}).get(k)) is int and
+                     verdict["severity_counts"][k] == 0 for k in ["P0", "P1", "P2", "P3"]),
+                     "whole02 zero finding semantics")
++    # The terminal stage above remains an exact dated snapshot. The later
++    # case-alias repair cannot inherit its old zero-finding clearance.
++    repair = read_json(ROOT / "CASE_ALIAS_REPAIR_ACCOUNTING.json")
++    require(type(repair.get("schema")) is int and repair["schema"] == 1,
++            "case repair schema")
++    require(type(repair.get("pr")) is int and repair["pr"] == 1085 and
++            type(repair.get("problem_id")) is int and repair["problem_id"] == 20000488 and
++            repair.get("audited_head") == status["audited_head"], "case repair identity")
++    require(repair.get("status") == "CASE_ALIAS_REPAIRED_PENDING_ROOT_ADOPTION_AND_NEW_COMPLETE_WHOLE03" and
++            repair.get("finding") == "CASE-1085" and repair.get("finding_severity") == "P3",
++            "case repair pending stage")
++    for key in ["historical_whole_reviews_completed", "minimum_whole_reviews"]:
++        require(type(repair.get(key)) is int and repair[key] == 2, "case repair two historical reviews")
++    for key in ["new_complete_whole03_required", "root_repair_adoption_required",
++                "historical_STATUS_and_TERMINAL_ACCOUNTING_preserved"]:
++        require(repair.get(key) is True, "case repair required review/adoption/history")
++    for key in ["new_complete_whole03_completed", "publication_ready", "all_actionable_issues_resolved",
++                "published", "human_peer_review", "formal_proof_certificate"]:
++        require(repair.get(key) is False, "case repair forbidden promotion: " + key)
++    require(repair.get("services_hold") == status["services_hold"], "case repair ordered hold")
++    for key in ["priority", "novelty", "worldwide_open_status", "independent_discovery"]:
++        require(repair.get(key) == status[key], "case repair historical scope: " + key)
++    for key in ["paper_pdf_sha256", "paper_tex_sha256"]:
++        require(repair.get(key) == terminal[key], "case repair unchanged paper")
++    repair_map = read_json(ROOT / "CASE_ALIAS_REPAIR_COPY_MAP.json")
++    require(type(repair_map.get("schema")) is int and repair_map["schema"] == 1,
++            "case repair copy schema")
++    repair_copies = repair_map["files"]
++    expected_copies = ["evidence/case_alias01/" + n for n in ["FINDING_AND_REPAIR.md",
++        "ROOT_CASE_ALIAS_SCOPE_REVIEW.json", "ROOT_TERMINAL_ADMIN_REVIEW_20261016.json",
++        "before/kit_common.py", "before/README.md", "before/verify_package.py"]]
++    require([r["copy"] for r in repair_copies] == expected_copies and
++            len({r["source_relative_program"] for r in repair_copies}) == len(repair_copies),
++            "case repair exact evidence membership")
++    for row in repair_copies:
++        require(set(row) == {"source_relative_program", "copy", "bytes", "sha256"} and
++                type(row["bytes"]) is int and row["copy"] in names, "case repair copy fields")
++        data = regular(ROOT / row["copy"]).read_bytes()
++        require(len(data) == row["bytes"] and sha(data) == row["sha256"], "case repair copied bytes")
++    hold = read_json(ROOT / expected_copies[2])
++    require(hold.get("new_complete_whole03_required") is True and
++            hold.get("publication_ready") is False and hold.get("published") is False and
++            hold.get("services_held_after_pr") == 1032, "case repair root hold evidence")
+     require(regular(ROOT / "paper.pdf").read_bytes().startswith(b"%PDF-"), "paper PDF signature")
+     archive_verified = False
+     archive = ROOT / ARCHIVE
+@@ -201,8 +244,9 @@
+             "individual_exclusions": len(excluded), "archive_verified": archive_verified,
+             "external_deposit_binding_verified": binding_verified,
+             "publication_ready": False, "new_whole_reviews": 2,
++            "new_complete_whole03_required": True, "new_complete_whole03_completed": False,
+             "terminal_exact_copies": len(terminal_copies), "terminal_individual_exclusions": len(terminal_exclusions),
+-            "scope": "Finite custody and declared-scope checks only. Universal proofs are in paper.tex; two complete whole reviews are recorded, external root terminal integrity adoption remains required, and services are held after PR1032."}
++            "scope": "Finite custody and declared-scope checks only. Universal proofs are in paper.tex; two historical complete whole reviews are recorded; the later case-alias repair requires external root adoption and NEW complete whole03, and services are held after PR1032."}
+ 
+ def main():
+     p = argparse.ArgumentParser()
+--- before/preprint_v1_0/PAYLOAD_MEMBERS.txt
++++ after/preprint_v1_0/PAYLOAD_MEMBERS.txt
+@@ -1,5 +1,7 @@
+ .zenodo.json
+ BUILTIN_COMPILE_RECEIPT.json
++CASE_ALIAS_REPAIR_ACCOUNTING.json
++CASE_ALIAS_REPAIR_COPY_MAP.json
+ COPY_MAP.json
+ EXCLUSIONS.json
+ LICENSE.txt
+@@ -23,6 +25,12 @@
+ evidence/ROOT_MATH_REPRODUCTION.json
+ evidence/ROOT_PRIORITY_ADOPTION.json
+ evidence/SUBMITTED_PINS.json
++evidence/case_alias01/FINDING_AND_REPAIR.md
++evidence/case_alias01/ROOT_CASE_ALIAS_SCOPE_REVIEW.json
++evidence/case_alias01/ROOT_TERMINAL_ADMIN_REVIEW_20261016.json
++evidence/case_alias01/before/README.md
++evidence/case_alias01/before/kit_common.py
++evidence/case_alias01/before/verify_package.py
+ evidence/reviews/ground_state_01/CONTROL_OPTIMIZED_RECEIPT.json
+ evidence/reviews/ground_state_01/CONTROL_RESULTS.json
+ evidence/reviews/ground_state_01/FINAL_CUSTODY_CHECK.json
+--- before/preprint_v1_0/SUPPORT_MANIFEST.json
++++ after/preprint_v1_0/SUPPORT_MANIFEST.json
+@@ -12,6 +12,16 @@
+       "sha256": "eed4e7e8bda417e1d31e15cdb085c0b6c653d64b20a9329c827785169d11be50"
+     },
+     {
++      "path": "CASE_ALIAS_REPAIR_ACCOUNTING.json",
++      "bytes": 1697,
++      "sha256": "3ff8b8b185222e4780d347496d5095d6d013377e32700b793b9e96ddfd12461b"
++    },
++    {
++      "path": "CASE_ALIAS_REPAIR_COPY_MAP.json",
++      "bytes": 1984,
++      "sha256": "22cb9d137d7e8ca3c69ad302dadad3bffc7a744b6e57c74fb722d55e9fb08c39"
++    },
++    {
+       "path": "COPY_MAP.json",
+       "bytes": 17144,
+       "sha256": "c6bbab5f59daf66cf56816361c8b9c5dfad0618a1c52e5a141120777cdb49038"
+@@ -28,8 +38,8 @@
+     },
+     {
+       "path": "PAYLOAD_MEMBERS.txt",
+-      "bytes": 6890,
+-      "sha256": "193ada40bd3b16523bc51405aaac35b70246ce770efb363003cc6c575a720493"
++      "bytes": 7248,
++      "sha256": "d7793c5583c7cac089e850b05e21b1c15c01f7bedb6c5017575c8ce0ff681b61"
+     },
+     {
+       "path": "PREPARATION_INPUT_PINS.json",
+@@ -43,8 +53,8 @@
+     },
+     {
+       "path": "README.md",
+-      "bytes": 8221,
+-      "sha256": "b01dd71bb8595ed19947e0ce8cd0a2dde82912c0b1496d7c7b1f93aad1d489a4"
++      "bytes": 9764,
++      "sha256": "33979e20547ae25d28847059e5c16e8123d4433fb6011296f9abd99d4dbb542a"
+     },
+     {
+       "path": "SOURCE_METADATA.json",
+@@ -127,6 +137,36 @@
+       "sha256": "3815cb4b6a0a6d2e1a81aee209210ce3e5106dcc8013543fc11e82c0cb3c8663"
+     },
+     {
++      "path": "evidence/case_alias01/FINDING_AND_REPAIR.md",
++      "bytes": 1455,
++      "sha256": "0831fc428d6c8f03d455098e38ec5da0e53cb4b20f7ce1c9a564db8925819f39"
++    },
++    {
++      "path": "evidence/case_alias01/ROOT_CASE_ALIAS_SCOPE_REVIEW.json",
++      "bytes": 8299,
++      "sha256": "0fc30d85a48ebd4c5e119256c05186a9321e35942e4263c303f4c1c8095c4fec"
++    },
++    {
++      "path": "evidence/case_alias01/ROOT_TERMINAL_ADMIN_REVIEW_20261016.json",
++      "bytes": 4153,
++      "sha256": "2b3ee15958a474f4b19d577a52e331dcc2afb7e71e7dd39b965c4ed7afaedff6"
++    },
++    {
++      "path": "evidence/case_alias01/before/README.md",
++      "bytes": 8221,
++      "sha256": "b01dd71bb8595ed19947e0ce8cd0a2dde82912c0b1496d7c7b1f93aad1d489a4"
++    },
++    {
++      "path": "evidence/case_alias01/before/kit_common.py",
++      "bytes": 3239,
++      "sha256": "c5135105bfeb07470a4932e545660d82a81f7ed8410cea29558be0126b37af67"
++    },
++    {
++      "path": "evidence/case_alias01/before/verify_package.py",
++      "bytes": 16036,
++      "sha256": "43338973c93c7b0a2a507a2609643c5ce7bfc8ec9803454b81f8d18fa6413640"
++    },
++    {
+       "path": "evidence/reviews/ground_state_01/CONTROL_OPTIMIZED_RECEIPT.json",
+       "bytes": 224,
+       "sha256": "a760ffa9223963b0cfb1193a6d7e36091d1f9c9f034be5dd9e2ebff65cd35d82"
+@@ -683,8 +723,8 @@
+     },
+     {
+       "path": "kit_common.py",
+-      "bytes": 3239,
+-      "sha256": "c5135105bfeb07470a4932e545660d82a81f7ed8410cea29558be0126b37af67"
++      "bytes": 3861,
++      "sha256": "9bd3f2ea5a91b70300a6dfd6d4f69509b9e00537eb5e2ab9311d10aea88bf570"
+     },
+     {
+       "path": "metadata.json",
+@@ -728,8 +768,8 @@
+     },
+     {
+       "path": "verify_package.py",
+-      "bytes": 16036,
+-      "sha256": "43338973c93c7b0a2a507a2609643c5ce7bfc8ec9803454b81f8d18fa6413640"
++      "bytes": 19455,
++      "sha256": "51cca74fa4e5ab0251a1b95252687edbab45d16c309630cc296a1d326543433a"
+     }
+   ],
+   "self_hash_excluded": [
+--- before/preprint_v1_0/UPLOAD_BINDINGS.json
++++ after/preprint_v1_0/UPLOAD_BINDINGS.json
+@@ -63,8 +63,8 @@
+     },
+     {
+       "filename": "pr1085_support_v1_0.zip",
+-      "bytes": 495659,
+-      "sha256": "77a2b789e16c868e8c73b6c55a726957d63ab9f50441c9b4e20828ddabbe5533"
++      "bytes": 513981,
++      "sha256": "e550ae4098acc41ea9ebf11d2f452de64acfceb375b63a4197853607b8c9c591"
+     }
+   ]
+ }
+--- /dev/null
++++ after/preprint_v1_0/CASE_ALIAS_REPAIR_ACCOUNTING.json
+@@ -0,0 +1,32 @@
++{
++  "schema": 1,
++  "utc": "2026-10-16T04:30:33.924718+00:00",
++  "pr": 1085,
++  "problem_id": 20000488,
++  "audited_head": "5e23f0c801d23976830657d2eef2b32bdc7da05a",
++  "status": "CASE_ALIAS_REPAIRED_PENDING_ROOT_ADOPTION_AND_NEW_COMPLETE_WHOLE03",
++  "finding": "CASE-1085",
++  "finding_severity": "P3",
++  "finding_scope": "Fresh physical internal output insertion; no existing overwrite or mathematical finding.",
++  "historical_whole_reviews_completed": 2,
++  "minimum_whole_reviews": 2,
++  "new_complete_whole03_required": true,
++  "new_complete_whole03_completed": false,
++  "root_repair_adoption_required": true,
++  "publication_ready": false,
++  "all_actionable_issues_resolved": false,
++  "published": false,
++  "human_peer_review": false,
++  "formal_proof_certificate": false,
++  "services_hold": "preceding PR1032 priority cursor",
++  "historical_STATUS_and_TERMINAL_ACCOUNTING_preserved": true,
++  "priority": "UNKNOWN_EXACT_REMAINING_GEOMETRIC_FORMULATIONS",
++  "novelty": "UNKNOWN",
++  "worldwide_open_status": "UNKNOWN",
++  "independent_discovery": "UNKNOWN",
++  "paper_pdf_sha256": "464de043ac6b723f3bd5c03dddb6efd1c0bfeb05b5209bb532006580b7aedc2d",
++  "paper_tex_sha256": "c18a6ed12250dcee413e85f9a6297c525015396f151cdab8d89a6eb76938046d",
++  "physical_ancestor_policy": "Existing ancestor device/inode identity against kit root, including above absent intermediate directories; no case-folding assumption.",
++  "guard_scope": "Static local filesystem; no hostile concurrent-race security claim.",
++  "meaning": "Historical zero findings predate the new case-alias P3. This bounded repair is not a whole-package review or readiness grant. New complete whole03 and external root adoption remain required."
++}
+--- /dev/null
++++ after/preprint_v1_0/CASE_ALIAS_REPAIR_COPY_MAP.json
+@@ -0,0 +1,42 @@
++{
++  "schema": 1,
++  "scope": "Minimal authored finding/root hold and exact old interface copies only; locators refer to local program custody. Old ZIP is retained locally, never distributed. Original preparation and terminal partitions are unchanged.",
++  "files": [
++    {
++      "source_relative_program": "audits/pr1085_20000488/repairs/case_alias01/FINDING_AND_REPAIR.md",
++      "copy": "evidence/case_alias01/FINDING_AND_REPAIR.md",
++      "bytes": 1455,
++      "sha256": "0831fc428d6c8f03d455098e38ec5da0e53cb4b20f7ce1c9a564db8925819f39"
++    },
++    {
++      "source_relative_program": "ROOT_CASE_ALIAS_SCOPE_REVIEW.json",
++      "copy": "evidence/case_alias01/ROOT_CASE_ALIAS_SCOPE_REVIEW.json",
++      "bytes": 8299,
++      "sha256": "0fc30d85a48ebd4c5e119256c05186a9321e35942e4263c303f4c1c8095c4fec"
++    },
++    {
++      "source_relative_program": "audits/pr1085_20000488/ROOT_TERMINAL_ADMIN_REVIEW_20261016.json",
++      "copy": "evidence/case_alias01/ROOT_TERMINAL_ADMIN_REVIEW_20261016.json",
++      "bytes": 4153,
++      "sha256": "2b3ee15958a474f4b19d577a52e331dcc2afb7e71e7dd39b965c4ed7afaedff6"
++    },
++    {
++      "source_relative_program": "audits/pr1085_20000488/repairs/case_alias01/before/preprint_v1_0/kit_common.py",
++      "copy": "evidence/case_alias01/before/kit_common.py",
++      "bytes": 3239,
++      "sha256": "c5135105bfeb07470a4932e545660d82a81f7ed8410cea29558be0126b37af67"
++    },
++    {
++      "source_relative_program": "audits/pr1085_20000488/repairs/case_alias01/before/preprint_v1_0/README.md",
++      "copy": "evidence/case_alias01/before/README.md",
++      "bytes": 8221,
++      "sha256": "b01dd71bb8595ed19947e0ce8cd0a2dde82912c0b1496d7c7b1f93aad1d489a4"
++    },
++    {
++      "source_relative_program": "audits/pr1085_20000488/repairs/case_alias01/before/preprint_v1_0/verify_package.py",
++      "copy": "evidence/case_alias01/before/verify_package.py",
++      "bytes": 16036,
++      "sha256": "43338973c93c7b0a2a507a2609643c5ce7bfc8ec9803454b81f8d18fa6413640"
++    }
++  ]
++}
+--- /dev/null
++++ after/preprint_v1_0/evidence/case_alias01/FINDING_AND_REPAIR.md
+@@ -0,0 +1,7 @@
++# PR1085 static physical-case output-location repair
++
++The new P3 finding CASE-1085 reproduced fresh archive insertion below a physically identical uppercase kit-directory alias in ordinary and optimized Python. Canonical-spelling controls rejected the same location. Existing protected-input overwrite and mathematical error were not observed. The root scope adoption and subsequent terminal hold are exact authored evidence copies here.
++
++The repaired shared guard preserves its lexical, symlink, resolved-input and existing-hardlink checks. It additionally compares device/inode identity for each existing output ancestor against the kit root, including the existing ancestor above absent intermediate directories. This uses actual filesystem identity without assuming a lowercase normalization rule, and covers either script-root spelling direction. All four current writers call the guard before directory creation, output writes or compiler invocation. The scope remains static local files, without hostile concurrent-race promises.
++
++The paper, mathematics, credits, exact native metadata and historical accounting/seals remain unchanged. Two completed whole reviews are historical evidence. This new repair requires external root adoption and a NEW complete whole03 review before any clearance. All current readiness/publication flags remain false; services remain held after PR1032. No new paper compilation, render or authoring marker is asserted.

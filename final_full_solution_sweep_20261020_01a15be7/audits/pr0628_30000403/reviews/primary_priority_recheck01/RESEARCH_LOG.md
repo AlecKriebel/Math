@@ -1,0 +1,13 @@
+# Independent primary-source and priority recheck
+
+2026-10-21 17:58 UTC - 5% complete. Scope fixed to immutable candidate head 677673860f9e67dffc610f52384f0bd60e65e363. Reading primary sources before any old priority verdict. Only this new review directory will be written; all project/Git/provider/PR/sheet surfaces remain read only. Essential primary sources retrieved independently where network permits. No contact with individuals or other agents.
+
+2026-10-21 18:03 UTC - 45% complete. Source-first checkpoint sealed before prior priority verdict/candidate proof. Original coarse-point/characteristic-zero/r>=3 target recovered and key later general theorem hypotheses read. Direct conic/gerbe implication identified independently; source version and publication cross-checks remain.
+
+2026-10-21T18:00:59.901526+00:00 - 65% complete. Read immutable candidate and prior priority conclusions only after source-first checkpoint. Primary 2024 Proposition 28 verified freshly, matching prior cited hash. Cadoret publisher body currently not retrieved: nominal PDF request returned an HTML subscription/cookie page; manuscript numbering is not being attributed to the publisher. Bounded current primary search found Naccarato 2026 section 3.2, which treats rational degree-one lifting and repeats older bounds, without locating an explicit named OWR resolution.
+
+Timestamp correction: the earlier manually entered 18:03 UTC source-first label was ahead of the clock. Its actual filesystem birth/modify time is 2026-10-21T17:59:27.900 UTC. It was created before the subsequent old-report reads. This correction does not change its original sealed bytes or mathematical findings.
+
+2026-10-21T18:04:19.415210+00:00 - 85% complete. Published2023 structures PDF freshly retrieved, with same theorem/definition/lemma numbering as arXivv2. Fresh Hugginsv1 primary text confirms an earlier quadratic-obstruction family independently of unpublished-version numbering. Source hypotheses, original target, and coarse split-line bridge verified; report and seals remain.
+
+2026-10-21T18:08:02.227876+00:00 - 100% complete toward this independent audit goal. Original question/hypotheses and full scoped implication verified against fresh primary sources; prior sharpness corroborated by Hugginsv1 and Cadoret manuscript; published-numbering/date distinctions recorded; bounded current search completed; independent exact certificate passed. Verdict: prior implication verified, no support to reopen as a substantive new universal-bound discovery. Historical firstness remains undetermined. Final report, ledgers and immutable output seal prepared. No external communications or mutations outside this review directory.

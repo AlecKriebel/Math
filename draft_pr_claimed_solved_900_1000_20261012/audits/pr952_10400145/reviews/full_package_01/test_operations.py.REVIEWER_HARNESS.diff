@@ -1,0 +1,12 @@
+--- authenticated/test_operations.py
++++ reviewer_owned/test_operations.py
+@@ -4,7 +4,8 @@
+ if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):raise SystemExit('Use -I -S -B')
+ import argparse,copy,hashlib,json,os,tempfile
+ from pathlib import Path
+-OWN=Path(__file__).resolve().parent;P=OWN.parents[2];CORE=P/'accept_pr952.py'
++OWN=Path(__file__).resolve().parent;P=Path('/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012'); # REVIEWER_HARNESS: fixed trusted core/private-input root only
++CORE=P/'accept_pr952.py'
+ def sha(b):return hashlib.sha256(b).hexdigest()
+ def enc(x):return (json.dumps(x,indent=2,sort_keys=True)+'\n').encode()
+ p=argparse.ArgumentParser();p.add_argument('--core-sha256',required=True);a=p.parse_args()

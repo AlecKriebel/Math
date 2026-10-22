@@ -1,0 +1,9 @@
+# Independent first whole-package review: frozen mechanism and scope
+
+UTC 2026-10-16T05:35Z. Completion estimate for case discovery/review: 45% (starting inherited case estimate; this fresh review has only frozen bytes).
+
+Before reading any earlier audit conclusions, I bind the candidate actual manuscript, PDF, metadata, package/source manifests and ZIP in FROZEN_BYTES.json. Every declared source entry was read and hashed. ZIP entries were decompressed and hashed, not accepted on declared hashes. The first freeze uses literal archive paths, so prefix-normalized membership must be assessed next; no conclusion of mismatch is yet made.
+
+My independent mechanism is to reconstruct the canonical support line and Euclidean projection directly from ellipse geometry; derive the angle-cosine kernel; examine the elliptic function divisor and cancellation at each pole; then independently test physical Cartesian controls, including excluded-domain falsifiers and scaling. I will test parity, nonprimitive steps/repetition, stars, reversal, endpoint failure, units, classical product-to-sum constants, and contemporary attribution. Numerical checks supplement rather than establish the universal claim.
+
+Whole-deliverable scope: manuscript proof and actual PDF correspondence, exact pinned problem scope, all current packet documents and historical preservation, source and package manifests, every ZIP member actual bytes/safety, metadata/deposit/bibliography/disclosure, runnable offline harness portability and failure disclosure. I will read substantive scientific and harness programs before any execution. Earlier scoped conclusions will be consulted only after independent proof assessment. I will not perform release actions, communicate externally, mutate candidate, create release machinery, or infer failure from future clearance/release events not having happened.

@@ -1,0 +1,3 @@
+# Metadata and presentation reconciliation
+
+The original1October2026 bibliography correction and both original manifests remain under `history/original_submission_20261015/`. This15October presentation adds exact edition chronology, correct outer-construction locator, explicit primitive/star/repetition formulation, old-method/current-work credits and bounded-priority limitations. The original proof and all20 original files remain byte-exact in history; verify.py and the inherited independent_review/ packet are unchanged. Inherited checker hashes bind their original proof, while current manifests bind this reconciled presentation. No historical priority or human-peer-review claim is added.

@@ -1,0 +1,7 @@
+# Actual local harness failure
+
+2026-10-16 UTC, tool command chunk dab344 / process session4831, final chunk0afa4d: actual `python3 -B finalization/terminal_admin_after_whole05_20261016/custody.py` exited1, stdout empty. Its traceback ended at line141, `source_rows=load(source)[key];newgroups[source]=len(source_rows)`, with `KeyError: 'records'`. The new-stage array adapter used the wrong container name for whole05's frozen input array. The preceding terminal baseline reconciliation completed; no final custody success was claimed. This was a bounded terminal harness schema error, not a candidate finding. The corrected later run is recorded separately; this failed execution is not counted as a complete check.
+
+No disk failure occurred in this bounded administration. Prior review/repair ENOSPC events and UNKNOWN exits retain their original recorded meanings; no deeper cause is inferred from subsequent free-space observations.
+
+2026-10-16 UTC, fully recorded `custody-full-structured-resolution` child exited1 with empty stdout; exact argv/stderr/exit are in COMMANDS.jsonl and custody-full-structured-resolution.stderr. The new structured-output adapter tried to format the native checker source outside this audit as an audit-relative path, raising ValueError at custody.py line77. No source body or candidate was changed. The adapter now preserves an absolute locator when the original source is outside this audit. This additional local reporting-harness failure is not counted as a completed custody check.

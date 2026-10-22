@@ -1,0 +1,85 @@
+{
+  "checker_sha256": "8cbfc42ea0fb21a9e6e123067bfe664de9895082a13b1e7a1d180e4aeb8256fe",
+  "control_count": 8,
+  "finished_at": "2026-10-16T19:21:21.920150+00:00",
+  "manifest_sha256": "18a9c5af827deeffbb20b947db499023ac6ca3030662cd62801651757d989c80",
+  "negative": 6,
+  "original_packet_unchanged": true,
+  "positive": 2,
+  "records": [
+    {
+      "exit_code": 0,
+      "expected_pass": true,
+      "fresh_manifest_used": false,
+      "name": "relocated_hostile_normal",
+      "optimized": false,
+      "stderr_tail": "",
+      "stdout": "{\"status\": \"PASS\", \"coverage\": 101, \"open_drafts\": 90, \"statuses\": {\"already_solved\": 9, \"claimed_solved\": 1, \"unsolved\": 80}, \"current_eligible\": [799], \"newly_eligible_outside_known_current\": [], \"source_blobs_replayed\": 90, \"network_calls\": 0, \"scope\": \"metadata and own queue row only; no mathematical review\"}"
+    },
+    {
+      "exit_code": 0,
+      "expected_pass": true,
+      "fresh_manifest_used": false,
+      "name": "relocated_hostile_optimized",
+      "optimized": true,
+      "stderr_tail": "",
+      "stdout": "{\"status\": \"PASS\", \"coverage\": 101, \"open_drafts\": 90, \"statuses\": {\"already_solved\": 9, \"claimed_solved\": 1, \"unsolved\": 80}, \"current_eligible\": [799], \"newly_eligible_outside_known_current\": [], \"source_blobs_replayed\": 90, \"network_calls\": 0, \"scope\": \"metadata and own queue row only; no mathematical review\"}"
+    },
+    {
+      "exit_code": 1,
+      "expected_pass": false,
+      "fresh_manifest_used": false,
+      "name": "missing_file",
+      "optimized": false,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/missing_file/verify_certificate.py\", line 164, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/missing_file/verify_certificate.py\", line 65, in main\n    need(set(p.name for p in root.iterdir()) == set(files) | {'MANIFEST.json', 'verify_certificate.py'}, 'Closed inventory mismatch')\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/missing_file/verify_certificate.py\", line 26, in need\n    raise RuntimeError(message)\nRuntimeError: Closed inventory mismatch\n",
+      "stdout": ""
+    },
+    {
+      "exit_code": 1,
+      "expected_pass": false,
+      "fresh_manifest_used": false,
+      "name": "extra_file",
+      "optimized": false,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/extra_file/verify_certificate.py\", line 164, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/extra_file/verify_certificate.py\", line 65, in main\n    need(set(p.name for p in root.iterdir()) == set(files) | {'MANIFEST.json', 'verify_certificate.py'}, 'Closed inventory mismatch')\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/extra_file/verify_certificate.py\", line 26, in need\n    raise RuntimeError(message)\nRuntimeError: Closed inventory mismatch\n",
+      "stdout": ""
+    },
+    {
+      "exit_code": 1,
+      "expected_pass": false,
+      "fresh_manifest_used": false,
+      "name": "symlink_entry",
+      "optimized": false,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/symlink_entry/verify_certificate.py\", line 164, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/symlink_entry/verify_certificate.py\", line 67, in main\n    need(stat.S_ISREG(p.lstat().st_mode), 'Nonregular entry')\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/symlink_entry/verify_certificate.py\", line 26, in need\n    raise RuntimeError(message)\nRuntimeError: Nonregular entry\n",
+      "stdout": ""
+    },
+    {
+      "exit_code": 1,
+      "expected_pass": false,
+      "fresh_manifest_used": true,
+      "name": "fresh_manifest_missing_number800",
+      "optimized": false,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/fresh_manifest_missing_number800/verify_certificate.py\", line 164, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/fresh_manifest_missing_number800/verify_certificate.py\", line 74, in main\n    need(cert['expected_numbers'] == NUMBERS and cert['coverage_complete'] is True and cert['numbers_accounted'] == 101, 'Complete range not certified')\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/fresh_manifest_missing_number800/verify_certificate.py\", line 26, in need\n    raise RuntimeError(message)\nRuntimeError: Complete range not certified\n",
+      "stdout": ""
+    },
+    {
+      "exit_code": 1,
+      "expected_pass": false,
+      "fresh_manifest_used": true,
+      "name": "fresh_manifest_forged_799_status",
+      "optimized": false,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/fresh_manifest_forged_799_status/verify_certificate.py\", line 164, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/fresh_manifest_forged_799_status/verify_certificate.py\", line 141, in main\n    need(own_row(raw, problem) == (record['own_row'], status, turns), 'Replayed own source row differs')\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/fresh_manifest_forged_799_status/verify_certificate.py\", line 26, in need\n    raise RuntimeError(message)\nRuntimeError: Replayed own source row differs\n",
+      "stdout": ""
+    },
+    {
+      "exit_code": 1,
+      "expected_pass": false,
+      "fresh_manifest_used": true,
+      "name": "fresh_manifest_wrong_799_immutable_expression",
+      "optimized": false,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/fresh_manifest_wrong_799_immutable_expression/verify_certificate.py\", line 164, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/fresh_manifest_wrong_799_immutable_expression/verify_certificate.py\", line 110, in main\n    need(doc['query'] == expected and not doc['response'].get('errors'), 'Queue query binding mismatch')\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/final_screen_20261016/control-scratch/owned-opaz82mt/fresh_manifest_wrong_799_immutable_expression/verify_certificate.py\", line 26, in need\n    raise RuntimeError(message)\nRuntimeError: Queue query binding mismatch\n",
+      "stdout": ""
+    }
+  ],
+  "scope": "Only owned disposable copies and read-only existing source blob reads; no network or Git writes",
+  "status": "PASS"
+}

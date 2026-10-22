@@ -1,0 +1,23 @@
+# Root pre-candidate analytic route — hypothesis, not clearance
+
+Recorded 2026-10-16T07:34Z after the authenticated18-file original custody and direct source reading, before Root reads PROOF.md or an original favorable verdict. Independent families have frozen their own plans. The following is a proposed checkable mechanism; every local order, exclusion and real-component assertion remains subject to verification.
+
+Let E=(a,b), C=(alpha,beta) be proper nested confocal ellipses, alpha²=a²−lambda, beta²=b²−lambda, a>b>0,0<lambda<b². On their smooth genus-one tangent-incidence curve X, sigma exchanges endpoints on a caustic tangent and tau exchanges caustic tangents through a boundary vertex. T=tau sigma is a translation of exact order N=2m with m even. Pi=pi(T^i x) and ell_i=rho(T^i x), where pi forgets line and rho forgets endpoint. Central inversion I=T^m follows from the faithful finite orientation-preserving action on the real directed circle, then analytic continuation. Both area traces descend to the unramified cyclic quotient Y.
+
+**Original area poles.** Coordinates of P have simple poles above the two original E infinities. No consecutive P_i,P_i+1 can both be infinite: their line would be the line at infinity or the E tangent at infinity, neither tangent to C. Thus original signed A has at most simple poles on a quotient support S. At an original-infinity flag x, tau x=I x=T^m x; hence sigma x=T^(m−1)x.
+
+**Side-foot poles.** Write ell=[u:v:w], and foot Q=M−(u Mx+v My+w)(u,v)/(u²+v²). This rational map on the caustic dual conic is regular at line-coordinate infinity: with normalized n=(U_x/alpha²,U_y/beta²), the leading normal there has norm1/alpha²−1/beta²≠0. Its only poles on C* are the four finite isotropic normals. Because E and C are confocal, their dual equations differ by lambda(u²+v²), so these are exactly the four common E/C tangent lines. Their dual-conic intersections must be verified transverse; the endpoint projection rho:X→C* branches simply there, so a simple rational foot pole on C* pulls back to order at most two on X, not order one.
+
+**Exhaustion and local cancellation.** At a sigma-fixed common-tangent flag z, any other sigma-fixed flag in its T orbit has index j satisfying2j=0mod2m, hence exactly0,m. Thus only Q0 and Qm can have poles at z. For m>=2 they are nonadjacent, including the smallest N4. Choose a local uniformizer t with sigma:t↦−t. rho sigma=rho makes Q0 and Qm even functions of t with order≤2. Also Qi(sigma x)=Q_−i(x). At t=0, Q1=Q_−1 and Q_(m+1)=Q_(m−1); their differences are O(t). Consequently the only singular area contributions are
+
+  2B_M = det(Q0,Q1−Q_−1) + det(Qm,Q_(m+1)−Q_(m−1)) + regular terms,
+
+which have order≤1. For m2 these two terms still list all four edge contributions exactly once. This avoids mistakenly treating the branch pullback as unramified. Any zero leading coefficient for a special M can only improve the order. B_M has at most simple poles on quotient support R represented by sigma-fixed flags.
+
+**Supports disjoint for even m.** If the T orbit of an original infinity also contained a sigma-fixed flag T^k x, the relations imply2k=m−1mod2m. Since m is even, the right side is odd, impossible. Therefore S and R are disjoint.
+
+**Complementary zeros.** At a sigma-fixed flag z, tau z=Tz and pi tau=pi give P_j(z)=P_(1−j)(z). The finite original vertex cycle is reversed up to a cyclic shift, so A=0 at every R representative. At an original-infinity flag x, sigma x=T^(m−1)x and rho sigma=rho give ell_j(x)=ell_(m−1−j)(x), hence the same equality for the finite feet Q_j(M). Their cyclic shoelace area is zero, so B_M=0 on S. These are zeros of regular functions there, with order at least one. They cancel all possible simple poles of A B_M. The product is holomorphic on compact Y and therefore constant.
+
+**Checks still required.** Verify smoothness and global exact order; justify all real-component/central-action assertions for stars; exhaust finite and projective foot poles rigorously; verify simple branch orders at all four common tangents (not merely a picture); inspect nonadjacent-index cancellation at N4 and all stars; confirm the two palindromes use the actual side indexing and fixed M; test all source conventions and repeated-list interpretations; obtain independent exact and physical controls. This route supplies no priority or novelty conclusion and is not a replacement for auditing the submitted proof. Foot poles have a different ramification mechanism from outer-boundary pedals, so a previous-case verdict cannot certify this argument.
+
+Estimate: proposed analytic mechanism35percent toward this route; case mathematical clearance still false, case workflow15percent.

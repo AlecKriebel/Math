@@ -1,0 +1,2900 @@
+SIAM J. COMPUT.                                     c 2018 Society for Industrial and Applied Mathematics
+Vol. 47, No. 3, pp. 703–754
+
+
+
+
+                 SUBMODULAR FUNCTIONS: LEARNABILITY,
+                     STRUCTURE, AND OPTIMIZATION∗
+                  MARIA-FLORINA BALCAN† AND NICHOLAS J. A. HARVEY‡
+
+    Abstract. Submodular functions are discrete functions that model laws of diminishing returns
+and enjoy numerous algorithmic applications. They have been used in many areas, including combi-
+natorial optimization, machine learning, and economics. In this work we study submodular functions
+from a learning theoretic angle. We provide algorithms for learning submodular functions, as well as
+lower bounds on their learnability. In doing so, we uncover several novel structural results revealing
+ways in which submodular functions can be both surprisingly structured and surprisingly unstruc-
+tured. We provide several concrete implications of our work in other domains including algorithmic
+game theory and combinatorial optimization. At a technical level, this research combines ideas
+from many areas, including learning theory (distributional learning and PAC-style analyses), com-
+binatorics and optimization (matroids and submodular functions), and pseudorandomness (lossless
+expander graphs).
+
+    Key words. submodular functions, distributional learning, matroids, algorithmic game theory,
+optimization, PAC model, gross substitutes
+
+    AMS subject classifications. 68Q01, 68P01
+
+    DOI. 10.1137/120888909
+
+
+     1. Introduction. Submodular functions are a discrete analogue of convex func-
+tions that enjoy numerous applications and have structural properties that can be
+exploited algorithmically. They arise naturally in the study of graphs, matroids,
+covering problems, facility location problems, etc., and they have been extensively
+studied in operations research and combinatorial optimization for many years [22].
+More recently, submodular functions have become key concepts in other areas in-
+cluding machine learning, algorithmic game theory, and social sciences. For example,
+submodular functions have been used to model bidders’ valuation functions in combi-
+natorial auctions [41, 67, 20, 4, 95] and for solving several machine learning problems,
+including feature selection problems in graphical models [61] and various clustering
+problems [76].
+     In this work we use a learning theory perspective to uncover new structural prop-
+erties of submodular functions. In addition to providing algorithms and lower bounds
+for learning submodular functions, we discuss numerous implications of our work in
+algorithmic game theory, economics, matroid theory, and combinatorial optimization.
+     One of our foremost contributions is to provide the first known results about
+learnability of submodular functions in a distributional (i.e., PAC-style) learning set-
+ting. Informally, such a setting has a fixed but unknown submodular function f ∗ and
+
+   ∗ Received by the editors August 22, 2012; accepted for publication (in revised form) February
+
+20, 2018; published electronically May 31, 2018. A preliminary version of this paper appeared in
+the Proceedings of the 43rd ACM Symposium on Theory of Computing under the title “Learning
+Submodular Functions.’’
+     http://www.siam.org/journals/sicomp/47-3/88890.html
+     Funding: This work was supported in part by NSF grants CCF-0953192 and CCF-1101283,
+AFOSR grant FA9550-09-1-0538, ONR grant N00014-09-1-0751, an NSERC Discovery Grant, and a
+Microsoft Research Faculty Fellowship.
+   † School of Computer Science, Carnegie Mellon University, Pittsburgh, PA 15213 (ninamf@cs.
+
+cmu.edu).
+   ‡ Department of Computer Science, University of British Columbia, Vancouver, BC, V6T 1Z1,
+
+Canada (nickhar@cs.ubc.ca).
+                                                 703
+704            MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+a fixed but unknown distribution over the domain of f ∗ . The goal is to design an
+efficient algorithm which provides a good approximation of f ∗ with respect to that
+distribution, given only a small number of samples from the distribution.
+     Formally, let [n] = {1, . . . , n} denote a ground set of items and let 2[n] be the
+power set of [n]. A function f : 2[n] → R is submodular if it satisfies
+
+        f (T ∪ {i}) − f (T ) ≤ f (S ∪ {i}) − f (S)      ∀S ⊆ T ⊆ [n], i ∈ [n].
+
+The goal is to output a function f that, with probability 1 − δ over the samples,
+is a good approximation of f ∗ on most of the sets coming from the distribution.
+Here “most” means a 1 −  fraction and “good approximation” means that f (S) ≤
+f ∗ (S) ≤ α · f (S) for some approximation factor α. We prove α = O(n1/2 ) upper and
+α = Ω̃(n1/3 ) lower bounds on the approximation factor achievable when the algorithm
+receives only poly(n, 1/, 1/δ) examples from an arbitrary (fixed but unknown) dis-
+tribution. We additionally provide a learning algorithm with constant approximation
+factor for the case that the underlying distribution is a product distribution. This is
+based on strong concentration properties of submodular functions, a topic that has
+independently been studied in prior work [40, Lemma 9], [14, Theorem 1.4], [97].
+      To prove the Ω̃(n1/3 ) lower bound for learning under arbitrary distributions, we
+construct a new family of matroids whose rank functions are fiendishly unstructured.
+Since matroid rank functions are submodular, this shows unexpected extremal prop-
+erties of submodular functions and gives new insights into their complexity. This
+construction also provides a general tool for proving lower bounds in several areas
+where submodular functions arise. We derive and discuss such implications in two
+areas:
+      • Algorithmic game theory and economics: An important consequence of our
+         construction is that matroid rank functions do not have a “sketch,” i.e., a
+         concise, approximate representation. As matroid rank functions are known
+         to satisfy the gross substitutes property [75], our work implies that gross
+         substitutes functions also do not have a concise, approximate representation.
+         This provides a surprising answer to an open question in algorithmic game
+         theory and economics [8], [9, section 6.2.1], [10, section 2.2].
+      • Combinatorial optimization: Many optimization problems involving submod-
+         ular functions, such as submodular function minimization, are very well be-
+         haved and their optimal solutions have a rich structure. In contrast, we show
+         that, for several other submodular optimization problems which have been
+         considered recently in the literature, including submodular s-t min cut and
+         submodular vertex cover, their optimal solutions are very unstructured, in
+         the sense that the optimal solutions do not have a succinct representation, or
+         even a succinct, approximate representation.
+      Although our new family of matroids proves that matroid rank functions (and
+more generally submodular functions) are surprisingly unstructured, the concentra-
+tion result for submodular functions shows that, in a different sense, matroid rank
+functions (and other sufficiently “smooth” submodular functions) are surprisingly
+structured.
+      Submodularity has been an increasingly useful tool in machine learning in recent
+years. For example, it has been used for feature selection problems in graphical
+models [61] and various clustering problems [76]. In fact, submodularity has been
+the topic of several tutorials and workshops at recent major conferences in machine
+learning [78, 62, 63, 79]. Nevertheless, our work is the first to use a learning theory
+                            LEARNING SUBMODULAR FUNCTIONS                                       705
+
+perspective to derive new structural results for submodular functions and related
+structures (including matroids), thereby yielding implications in many other areas.
+Our work also potentially has useful applications—our learning algorithms can be
+employed in many areas where submodular functions arise (e.g., medical decision
+making and economics). We discuss such applications in section 1.2. Furthermore,
+our work defines a new learning model for approximate distributional learning that
+could be useful for analyzing learnability of other interesting classes of real-valued
+functions. In fact, this model has already been used to analyze the learnability of
+several classes of set functions widely used in economics—see sections 1.1.2 and 8.1.
+    1.1. Our results and techniques. The central topic of this paper is proving
+new structural results for submodular functions, motivated by learnability considera-
+tions. In the following we provide a more detailed description of our results. For ease
+of exposition, we start by describing our new structural results, then we present our
+learning model and our learnability results within this model, and finally we describe
+implications of our results in various areas.
+     1.1.1. New structural results.
+     A new matroid construction. The first result in this paper is the construction of a
+family of submodular functions with interesting technical properties. These functions
+are the key ingredient in our lower bounds for learning submodular functions, inap-
+proximability results for submodular optimization problems, and the nonexistence of
+succinct, approximate representations for gross substitutes functions.
+     Designing submodular functions directly is difficult because there is very little
+tangible structure to work with. It turns out to be more convenient to work with
+matroids,1 because every matroid has an associated submodular function (its rank
+function) and because matroids are a very rich class of combinatorial objects with
+numerous well-understood properties.
+     Our goal is to find a collection of subsets of [n] and two values rhigh and rlow
+such that for any labeling of these subsets as either High or Low, we can construct
+a matroid for which each set labeled High has rank value rhigh and each set labeled
+Low has rank value rlow . We would like both the size of the collection and the ratio
+rhigh /rlow to be as large as possible.
+     Unfortunately existing matroid constructions can only achieve this goal with very
+weak parameters; for further discussion of existing matroids, see section 1.3. Our new
+matroid construction, which involves numerous technical steps, achieves this goal with
+the collection of size superpolynomial in n and the ratio rhigh /rlow = Ω̃(n1/3 ). This
+shows that matroid rank functions can be fiendishly unstructured—in our construc-
+tion, knowing the value of the rank function on all but one of the sets in the collection
+does not determine the rank value on the remaining set, even to within a multiplicative
+factor Ω̃(n1/3 ).
+     More formally, let the collection of sets be A1 , . . . , Ak ⊆ [n] where each |Ai | =
+rhigh . For every set of indices B ⊆ {1, . . . , k} there is a matroid MB whose associated
+rank function rB : 2[n] → R has the form
+(1.1)
+                   (                    S                           P              S            )
+                                   I∩       j∈J Aj ≤ rlow · |J| −    j∈J |Aj | +       j∈J Aj
+rB (S) = max           |I ∩ S| :                                                                    .
+                                                                          ∀J ⊆ B, |J| < τ
+    1 For the reader unfamiliar with matroids, a brief introduction to them is given in section 2.2.
+
+For the present discussion, the only fact that we need about matroids is that the rank function of a
+matroid on [n] is a submodular function on 2[n] .
+706              MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+We show that if the sets Ai satisfy a strong expansion property, in the sense that any
+small collection of Ai has small overlap, and the parameters rhigh , rlow , τ are carefully
+chosen, then this function satisfies rB (Ai ) = rlow whenever i ∈ B and rB (Ai ) = rhigh
+whenever i 6∈ B.
+     Concentration of submodular functions. A major theme in probability theory is
+proving concentration bounds for a function f : 2[n] → R≥0 under product distribu-
+tions.2 For example, when f is linear, the Chernoff–Hoeffding bound is applicable.
+For arbitrary f , the McDiarmid inequality is applicable. The quality of these bounds
+also depends on the “smoothness” of f , which can be quantified using the Lipschitz
+constant L := maxS,i |f (S ∪ {i}) − f (S)|.
+     For a 1-Lipschitz function (i.e., L = 1), McDiarmid’s inequality gives concentra- √
+tion comparable to that of a Gaussian random variable   √ with standard deviation n.
+For example, the probability that the value of f is n less than its expectation is
+bounded above by a constant.
+                           √     Such a bound is quite weak when the expectation of f
+is significantly less than n, because it says that the probability of f being negative
+is at most a constant, even though that probability is actually zero.
+     Several groups of researchers have independently shown that 1-Lipschitz, mono-
+tone, submodular functions are extremely tightly concentrated around their expected
+value. The quality of concentration is similar to Chernoff–Hoeffding bounds—
+importantly, it depends only on the expected value of the function and not on the
+dimension n. This phenomenon seems to have been first noticed by Hajiaghayi et
+al. [40], who used the self-bounding function technique of Boucheron, Lugosi, and
+Massart [11] to prove this sort of concentration for a particular subadditive function.
+Independently, Chekuri and Vondrák [14, Theorem 1.4] used the Fortuin–Kasteleyn–
+Ginibre (FKG) inequality to prove this sort of concentration for arbitrary nonnegative,
+monotone, submodular functions. A subsequent note of Vondrák [97] explains how
+the technique of Boucheron, Lugosi, and Massart easily yields such concentration for
+arbitrary nonnegative submodular functions (without requiring monotonicity). In sec-
+tion 3.2 we show that Talagrand’s concentration inequality can also be used to prove
+such concentration for nonnegative, monotone, submodular functions.
+     Approximate characterization of matroids. Our new matroid construction de-
+scribed above can be viewed at a high level as saying that matroids can be surprisingly
+unstructured. One can pick numerous large regions of the matroid (namely, the sets
+Ai ) and arbitrarily decide whether each region should have large rank or small rank.
+Thus the matroid’s structure is very unconstrained.
+     Our next result shows that, in a different sense, a matroid’s structure is actually
+very constrained. If one fixes any integer k and looks at the rank values among all sets
+of size k, then those values are extremely tightly concentrated around their average—
+almost all sets of size k have nearly the same rank value. Moreover, these averages are
+concave as a function of k. That is, there exists a concave function h : [0, n] → R≥0
+such that almost all sets S have rank approximately h(|S|).
+     This provides an interesting converse to the well-known fact that the function
+f : 2[n] → R defined by f (S) = h(|S|) is a submodular function whenever h : R → R
+is concave. Our proof uses the aforementioned result on concentration for submodular
+functions under product distributions, and the multilinear extension [13] of submod-
+ular functions, which has been of great value in recent work.
+
+
+   2 A random set S ⊆ 2[n] is said to have a product distribution if the events i ∈ S and j ∈ S are
+
+independent for every i 6= j.
+                         LEARNING SUBMODULAR FUNCTIONS                                   707
+
+     1.1.2. Learning submodular functions.
+     The learning model. To study the learnability of submodular functions, we extend
+Valiant’s classic PAC model [92], which captures settings where the learning goal is
+to predict the future based on past observations. The abbreviation PAC stands for
+“probably approximately correct.” The PAC model, however, is primarily designed for
+learning Boolean-valued functions, such as linear threshold functions, decision trees,
+and low-depth circuits [92, 58]. For real-valued functions, it is more meaningful to
+change the model by ignoring small-magnitude errors in the predicted values. Our
+results on learning submodular functions are presented in this new model, which we
+call the probably mostly approximately correct (PMAC) model.
+     In this model, a learning algorithm is given a collection S = {S1 , S2 , . . .} of
+polynomially many sets drawn independent and identically distributed (i.i.d.) from
+some fixed, but unknown, distribution D over sets in 2[n] . There is also a fixed but
+unknown function f ∗ : 2[n] → R+ , and the algorithm is given the value of f ∗ at
+each set in S. The goal is to design a polynomial-time algorithm that outputs a
+polynomial-time-evaluatable function f such that, with large probability over S, the
+set of sets for which f is a good approximation for f ∗ has large measure with respect
+to D. More formally,
+          PrS1 ,S2 ,...∼D [PrS∼D [ f (S) ≤ f ∗ (S) ≤ αf (S) ] ≥ 1 − ] ≥ 1 − δ,
+where f is the output of the learning algorithm on inputs { (Si , f ∗ (Si )) }i=1,2,... . The
+approximation factor α ≥ 1 allows for multiplicative error in the function values.
+Thus, whereas the PMAC model requires one to approximate the value of a function
+on a set of large measure and with high confidence, the traditional PAC model requires
+one to predict the value exactly on a set of large measure and with high confidence.
+The PAC model is the special case of our model with α = 1.
+     An alternative approach for dealing with real-valued functions in learning theory
+is to consider other loss functions such as the squared-loss or the L1-loss. However,
+this approach does not distinguish between the case of having low error on most of
+the distribution and high error on just a few points, versus moderately high error
+everywhere. In comparison, the PMAC model allows for more fine-grained control
+with separate parameters for the amount and extent of errors, and in addition it
+allows for consideration of multiplicative error which is often more natural in this
+context. We discuss this further in section 1.3.
+     Within the PMAC model we prove several algorithmic and hardness results for
+learning submodular functions, as follows.
+     Algorithm for product distributions. Our first learning result concerns product
+distributions. This is a natural first step when studying learnability of various classes
+of functions, particularly when the class of functions has high complexity [53, 54, 69,
+87]. By making use of the strong concentration results for monotone, submodular
+functions under product distributions, we show that if the underlying distribution is
+a product distribution, then sufficiently “smooth” (formally, 1-Lipschitz) submodular
+functions can be PMAC-learned with a constant approximation factor α by a very
+simple algorithm.
+     Inapproximability for general distributions. Although submodular functions that
+are 1-Lipschitz can be PMAC-learned with a constant approximation factor under
+product distributions, this result does not generalize to arbitrary distributions. By
+making use of our new matroid construction, we show that every algorithm for PMAC-
+learning monotone, submodular functions under arbitrary distributions must have
+approximation factor Ω̃(n1/3 ) even for constant  and δ, and even if the functions
+708            MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+are matroid rank functions. Moreover, this lower bound holds even if the algorithm
+knows the underlying distribution and it can adaptively query the given function at
+points of its choice.
+     Algorithm for general distributions. Our Ω̃(n1/3 ) inapproximability result for gen-
+eral distributions turns out to be close to optimal. We give an algorithm to PMAC-
+learn an arbitrary
+          √         nonnegative, monotone, submodular function with approximation
+factor O( n) for any  and δ by using a number of samples Õ(n/ log(1/δ)).
+     This algorithm is based on a recent structural result which shows that any mono- √
+tone, nonnegative, submodular function can be approximated within a factor of n
+on every point by the square root of a linear function [33]. We leverage this result to
+reduce the problem of PMAC-learning a submodular function to learning a linear sep-
+arator in the usual PAC model. We remark that an improved structural result for any
+subclass of submodular functions would yield an improved analysis of our algorithm
+for that subclass. Moreover, the algorithmic approach we provide is quite robust and
+can be extended to handle more general scenarios, including forms of noise.
+     The PMAC model. Although this paper focuses only on learning submodular
+functions, the PMAC model that we introduce is interesting in its own right and can
+be used to study the learnability of other real-valued functions. Subsequent work
+by Badanidiyuru et al. [3] and Balcan et al. [5] has used this model for studying
+the learnability of other classes of real-valued set functions that are widely used in
+algorithmic game theory. See section 1.3 for further discussion.
+     1.1.3. Other hardness implications of our matroid construction.
+     Algorithmic game theory and economics. An important consequence of our ma-
+troid construction is that matroid rank functions do not have a “sketch,” i.e., a concise,
+approximate representation. Formally, there exist matroid rank functions on 2[n] that
+do not have any poly(n)-space representation which approximates every value of the
+function to within a o(n1/3 / log n) factor.
+     In fact, as matroid rank functions are known to satisfy the gross substitute prop-
+erty [75], our work implies that gross substitutes do not have a concise, approximate
+representation, or, in game theoretic terms, gross substitutes do not have a bidding
+language. This provides a surprising answer to an open question in economics [8] [9,
+section 6.2.1], [10, section 2.2].
+     Implications for submodular optimization. Many optimization problems involving
+submodular functions, such as linear optimization over a submodular base polytope,
+submodular function minimization, and submodular flow, are very well behaved and
+their optimal solutions have a rich structure. We consider several other submodular
+optimization problems which have been considered recently in the literature, specif-
+ically submodular function minimization under a cardinality constraint, submodular
+s-t min cut, and submodular vertex cover. These are difficult optimization problems,
+in the sense that the optimum value is hard to compute. We show that they are
+also difficult in the sense that their optimal solutions are very unstructured: the opti-
+mal solutions do not have a succinct representation, or even a succinct, approximate
+representation.
+     Formally, the problem of submodular function minimization under a cardinality
+constraint is
+                              min{ f (A) : A ⊆ [n], |A| ≥ d },
+where f is a monotone, submodular function. We show that there is no representation
+in poly(n) bits for the minimizers of this problem, even allowing a factor o(n1/3 / log n)
+multiplicative error. In contrast, a much simpler construction [34, 89, 33] shows
+                         LEARNING SUBMODULAR FUNCTIONS                                  709
+
+that no deterministic algorithm performing poly(n) queries to f can approximate the
+minimum value to within a factor o(n1/2 / log n), but that construction implies nothing
+about small-space representations of the minimizers.
+     For the submodular s-t min cut problem, which is a generalization of the classic
+s-t min cut problem in network flow theory, we show that there is no representation
+in poly(n) bits for the minimizers, even allowing a factor o(n1/3 / log n) multiplicative
+error. Similarly, for the submodular vertex cover problem, which is a generalization
+of the classic vertex cover problem, we show that there is no representation in poly(n)
+bits for the minimizers, even allowing a factor 4/3 multiplicative error. In contrast,
+the minimizers for the classic s-t min cut problem and the classic vertex cover problem
+trivially have a representation in poly(n) bits as they are determined by a graph on n
+vertices. Moreover, for the s-t min cut problem [83] and the vertex cover problem in
+bipartite graphs, the minimizers can be expressed as the minimizers of a submodular
+function, and so they can be efficiently represented as a lattice [71, section 5.1].
+     1.2. Applications. Algorithms for learning submodular functions could be very
+useful in some of the applications where these functions arise. For example, in the con-
+text of economics, our work provides useful tools for learning the valuation functions
+of (typical) customers, with applications such as bundle pricing, predicting demand,
+advertisement, etc. Our algorithms are also useful in settings where one would like
+to predict the value of some function over objects described by features, where the
+features have positive but decreasing marginal impact on the function’s value. Ex-
+amples include predicting the rate of growth of jobs in cities as a function of various
+amenities or enticements that the city offers, predicting the sales price of a house as a
+function of features (such as an updated kitchen, extra bedrooms, etc.) that it might
+have, and predicting the demand for a new laptop as a function of various add-ons
+that might be included. In all of these settings (and many others) it is natural to
+assume diminishing returns, making them well-suited to a formulation as a problem
+of learning a submodular function.
+     1.3. Related work. This section focuses primarily on prior work. Section 8.1
+discusses subsequent work that was directly motivated by this paper.
+     Submodular optimization. Optimization problems involving submodular functions
+have long played a central role in combinatorial optimization. Recently there have
+been many applications of these optimization problems in machine learning, algorith-
+mic game theory, and social networks.
+     The past decade has seen significant progress in algorithms for solving submodular
+optimization problems. There have been improvements in both the conceptual under-
+standing and the running time of algorithms for submodular function minimization
+[45, 47, 85]. There has also been much progress on approximation algorithms for
+various problems. For example, there are now optimal approximation algorithms for
+submodular maximization subject to a matroid constraint [13, 29, 95], nearly optimal
+algorithms for nonmonotone submodular maximization [24, 25, 81], and algorithms
+for submodular maximization subject to a wide variety of constraints [15, 16, 26, 64,
+65, 66, 81, 96].
+     Approximation algorithms for submodular analogues of several other optimization
+problems have been studied, including load balancing [89], set cover [46, 98], shortest
+path [32], sparsest cut [89], s-t min cut [50], vertex cover [32, 46], etc. In this paper we
+provide several new results on the difficulty of such problems. Most of these previous
+papers on submodular optimization prove inapproximability results using matroids
+whose rank function has the same form as (1.1), but only for the drastically simpler
+710               MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+case of k = 1. Our construction is much more intricate since we must handle the case
+k = nω(1) .
+     Recent work of Dobzinski and Vondrák [21] proves inapproximability of welfare
+maximization in combinatorial auctions with submodular valuations. Their proof is
+based on a collection of submodular functions that take high values on every set
+in a certain exponential-sized family and low values on sets that are far from that
+family. Their proof is in the same spirit as our inapproximability result, although
+their construction is technically very different from ours. In particular, our result uses
+a special family of submodular functions and family of sets for which the sets are local
+minima of the functions, whereas their result uses a different family of submodular
+functions and family of sets for which the sets are local maxima of the functions.
+     Learning real-valued functions and the PMAC model. In the machine learning
+literature [42, 93], learning real-valued functions in a distributional setting is often
+addressed by considering loss functions such as the L2 -loss or the L1 -loss, where
+the loss incurred by predicting according to hypothesis f on a given example x is
+lf (x, f ∗ ) = (f (x) − f ∗ (x))2 for L2 -loss and lf (x, f ∗ ) = |f (x) − f ∗ (x)| for L1 -loss. In
+this context, one typically normalizes the function to be in [0, 1], and the aim is to
+achieve low expected loss Ex [ lf (x, f ∗ ) ]. However, lower bounds on expected loss do
+not distinguish between the case of achieving low loss on most of the distribution and
+high loss on just a few points, versus moderately high loss everywhere.
+     For example, consider a function f with codomain {0, 1, . . . , n}. Here we would
+normalize by a factor 1/n, so a lower bound of Ω(n1/3 ) on expected L1 -loss before
+normalizing is equivalent to a lower bound of Ω(n−2/3 ) after normalizing. But such
+a lower bound would not distinguish between the following two scenarios: (1) one
+where any hypothesis f produced by the algorithm has L1 -loss of Ω(n−2/3 ) on a 1/2
+fraction of the points, and (2) one where an algorithm can output a hypothesis f that
+is exactly correct on a 1−O(n−2/3 ) fraction of the points but has high loss on the rest.
+     In comparison, the PMAC model provides more fine-grained control, with sepa-
+rate parameters for the amount  and extent α of errors. For instance, in scenario
+(1) if the normalized function has f (x) = 1/n on the points of high L1 -loss, then this
+would correspond to a lower bound of α = Ω(n1/3 ) and  = 1/2 in the PMAC model.
+In contrast, scenario (2) would correspond to having an upper bound of α = 1 and
+ = n−2/3 .
+     Another advantage of the PMAC model is that, since it uses multiplicative er-
+ror, an algorithm in the PMAC model provides good approximations uniformly at all
+scales.3 Existing work in the learning theory literature has also considered guaran-
+tees that combine both multiplicative and additive aspects, in the context of sample
+complexity bounds [43, 68]. However, this work did not consider the development of
+efficient algorithms or learnability of submodular functions.
+     We remark that our construction showing the Ω̃(n1/3 ) inapproximability in the
+PMAC model immediately implies a lower bound of Ω̃(n−2/3 ) for the L1 -loss and
+Ω̃(n−4/3 ) for the L2 -loss (after normalization).
+     Learning submodular functions. To our knowledge, there is no prior work on learn-
+ing submodular functions in a distributional, PAC-style learning setting. The most
+relevant work is a paper of Goemans et al. [33], which considers the problem of “ap-
+proximating submodular functions everywhere.” That paper considers the algorithmic
+
+    3 For example, if f is a good hypothesis in the PMAC model, and one focuses on points x such
+
+that f ∗ (x) ≤ c and rescales, then the multiplicative approximation guarantee provided by f remains
+true in the restricted and rescaled domain, as long as this set has sufficiently large probability mass.
+                           LEARNING SUBMODULAR FUNCTIONS                                        711
+
+problem of efficiently finding a function which approximates a submodular function
+at every set
+           √ in its domain. They give √ an algorithm which achieves an approximation
+factor Õ( n), and they also show Ω̃( n) inapproximability. Their algorithm adap-
+tively queries the given function on sets of its choice, and their output function must
+approximate the given function on every set.4 In contrast, our PMAC model falls
+into the more widely studied passive, supervised learning setting [2, 58, 92, 93], which
+is more relevant for our motivating applications discussed in section 1.2.
+     Our algorithm for PMAC-learning under general distributions and the Goemans
+et al. algorithm both rely on the structural result (due to Goemans et al.) that mono-
+tone, submodular functions
+                        √ can be approximated by the square root of a linear func-
+tion to within a factor n. In both cases, the challenge is to find this linear function.
+The Goemans et al. algorithm is very sophisticated: it gives an intricate combinato-
+rial algorithm to approximately solve a certain convex program which produces the
+desired function. Their algorithm requires query access to the function and so it is not
+applicable in the PMAC model. Our algorithm, on the other hand, is very simple:
+given the structural result, we can reduce our problem to that of learning a linear
+separator, which is easily solved by linear programming. Moreover, our algorithm is
+noise-tolerant and more amenable to extensions; we elaborate on this in section 4.4.
+     On the other hand, our lower bound is significantly more involved than the lower
+bound of Goemans et al. [33] and the related lower bounds of Svitkina and Flei-
+scher [89]. Essentially, the previous results show only worst-case inapproximability,
+whereas we need to show average-case inapproximability. A similar situation occurs
+with Boolean functions, where lower bounds for distributional learning are typically
+much harder to show than lower bounds for exact learning (i.e., learning everywhere).
+For instance, even conjunctions are hard to learn in the exact learning model (from
+random examples or via membership queries), and yet they are trivial to PAC-learn.
+Proving a lower bound for PAC-learning requires exhibiting some fundamental com-
+plexity in the class of functions. It is precisely this phenomenon which makes our
+lower bound challenging to prove.
+     Learning valuation functions and other economic solutions concepts. As discussed
+in section 1.2, one important application of our results on learning is for learning
+valuation functions. Kalai [56] considered the problem of learning rational choice
+functions from random examples. Here, the learning algorithm observes sets S ⊆ [n]
+drawn from some distribution D, along with a choice c(S) ∈ [n] for each S. The goal
+is then to learn a good approximation to c under various natural assumptions on c.
+For the assumptions considered in [56], the choice function c has a simple description
+as a linear ordering. In contrast, in our work we consider valuation functions that
+may be much more complex and for which the PAC model would not be sufficient
+to capture the inherent easiness or difficulty of the problem. Kalai briefly considers
+utility functions over bundles and remarks that “the PAC-learnability of preference
+relations and choice functions on commodity bundles . . . deserves further study” [55].
+
+   1.4. Structure of the paper. We begin with background about matroids and
+submodular functions in section 2. In section 3 we present our new structural results:
+
+    4 Technically speaking, their model can be viewed as “approximate learning everywhere with
+
+value queries,” which is less natural in certain machine learning scenarios. In particular, in many
+applications arbitrary membership or value queries are undesirable because natural oracles, such as
+hired humans, have difficulty labeling synthetic examples [7]. Also, negative results for approximate
+learning everywhere do not necessarily imply hardness for learning in more widely used learning
+models. We discuss this in more detail below.
+712             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+a new extremal family of matroids and the concentration result for submodular func-
+tions. We present our new framework for learning real-valued functions as well as our
+results for learning submodular functions within this framework in section 4. We fur-
+ther present implications of our matroid construction in optimization and algorithmic
+game theory in sections 6 and 7.
+      2. Preliminaries: Submodular functions and matroids.
+    2.1. Notation. Let [n] denote the set {1, 2, . . . , n}. This will typically be used
+as the ground set for the matroids and submodular functions that we discuss. For any
+set S ⊆ [n] and element x ∈ [n], we let S + x denote S ∪ {x}. The indicator vector
+                                 n
+of a set S ⊆ [n] is χ(S) ∈ {0, 1} , where χ(S)i is 1 if i is in S and 0 otherwise. We
+                                                          n
+frequently use this natural isomorphism between {0, 1} and 2[n] .
+     2.2. Submodular functions and matroids. In this section we give a brief
+introduction to matroids and submodular functions and discuss some standard facts
+that will be used throughout the paper. A more detailed discussion can be found
+in standard references [30, 31, 70, 82, 86]. The reader familiar with matroids and
+submodular functions may wish to skip to section 3.
+     Let V = {v1 , . . . , vn } be a collection of vectors in some vector space Fm . Roughly
+one century ago, several researchers observed that the linearly independent subsets of
+V satisfy some interesting combinatorial properties. For example, if B ⊆ V is a basis
+of Fm and I ⊆ V is linearly independent but not a basis, then there is always a vector
+v ∈ B which is not in the span of I, implying that I + v is also linearly independent.
+     These combinatorial properties are quite interesting to study in their own right, as
+there are a wide variety of objects which satisfy these properties but (at least superfi-
+cially) have no connection to vector spaces. A matroid is defined to be any collection
+of elements that satisfies these same combinatorial properties, without referring to
+any underlying vector space. Formally, a pair M = ([n], I) is called a matroid if
+I ⊆ 2[n] is a nonempty family such that
+      • if J ⊆ I and I ∈ I, then J ∈ I, and
+      • if I, J ∈ I and |J| < |I|, then there exists an i ∈ I \ J such that J + i ∈ I.
+The sets in I are called independent.
+     Let us illustrate this definition with two examples:           S
+Partition matroid. Let V1 ∪· · ·∪Vk be a partition of [n], i.e., i Vi = [n] and Vi ∩Vj = ∅
+         whenever i 6= j. Define I ⊆ 2[n] to be the family of partial transversals of
+         [n], i.e., I ∈ I iff |I ∩ Vi | ≤ 1 for all i ∈ [k]. It is easy to verify that the pair
+         ([n], I) satisfies the definition of a matroid. This is called a partition matroid.
+         This definition can be generalized slightly. Let I ∈ I iff |I ∩ Vi | ≤ bi for all
+         i = 1, . . . , k, where the bi values are arbitrary. The resulting pair ([n], I) is a
+         (generalized) partition matroid.
+Graphic matroid. Let G be a graph with edge set E. Define I ⊆ 2E to be the
+         collection of all acyclic sets of edges. One can verify that the pair ([n], I)
+         satisfies the definition of a matroid. This is called a graphic matroid.
+     One might wonder, Given an arbitrary matroid ([n], I), do there necessarily exist
+vectors V = {v1 , . . . , vn } in some vector space for which the independent subsets of V
+correspond to I? Although this is true for partition matroids and graphic matroids,
+in general the answer is no. So matroids do not capture all properties of vector spaces.
+Nevertheless, many concepts from vector spaces do generalize to matroids.
+     For example, given vectors V ⊂ Fm , all maximal linearly independent subsets of
+V have the same cardinality, which is the dimension of the span of V . Similarly, given
+                        LEARNING SUBMODULAR FUNCTIONS                                    713
+
+a matroid ([n], I), all maximal sets in I have the same cardinality, which is called the
+rank of the matroid.
+    More generally, for any subset V 0 ⊆ V , we can define its rank to be the dimension
+of the span of V 0 ; equivalently, this is the maximum size of any linearly independent
+subset of V 0 . This notion generalizes easily to matroids. The rank function of the
+matroid ([n], I) is the function rankM : 2[n] → N defined by
+                      rankM (S) := max { |I| : I ⊆ S, I ∈ I } .
+     Rank functions also turn out to have numerous interesting properties, the most
+interesting of which is the submodularity property. Let us now illustrate this via an
+example. Let V 00 ⊂ V 0 ⊂ V be collections of vectors in some vector space. Suppose
+that v ∈ V is a vector which does not lie in span(V 0 ). Then it is clear that v does not
+lie in span(V 00 ) either. Consequently,
+     rank(V 0 + v) − rank(V 0 ) = 1        =⇒        rank(V 00 + v) − rank(V 00 ) = 1.
+The submodularity property is closely related: it states that
+rankM (T + i) − rankM (T ) ≤ rankM (S + i) − rankM (S)              ∀S ⊆ T ⊆ [n], i ∈ [n].
+     The following properties of real-valued set functions play an important role in
+this paper. A function f : 2[n] → R is
+     • normalized if f (∅) = 0,
+     • nonnegative if f (S) ≥ 0 for all S,
+     • monotone (or nondecreasing) if f (S) ≤ f (T ) for all S ⊆ T ,
+     • submodular if it satisfies
+        (2.1)    f (T + i) − f (T ) ≤ f (S + i) − f (S)        ∀S ⊆ T ⊆ [n], i ∈ [n],
+        and an equivalent definition is
+        (2.2)     f (A) + f (B) ≥ f (A ∪ B) + f (A ∩ B)            ∀A, B ⊆ [n],
+     • L-Lipschitz if |f (S + i) − f (S)| ≤ L for all S ⊆ [n] and i ∈ [n].
+Matroid rank functions are integer-valued, normalized, nonnegative, monotone, sub-
+modular, and 1-Lipschitz. The converse is also true: any function satisfying those
+properties is a matroid rank function.
+    The most interesting of these properties is submodularity. It turns out that there
+are a wide variety of set functions which satisfy the submodularity property but do
+not come from matroids. Let us mention two examples:
+Coverage function. Let S1 , . . . , Sn be a subsets of a ground set [m]. Define the func-
+        tion f : 2[n] → N by                        [
+                                          f (I) =       Si .
+                                                    i∈I
+       This is called a coverage function. It is integer-valued, normalized, nonnega-
+       tive, monotone, and submodular, but it is not 1-Lipschitz.
+Cut function. Let G = ([n], E) be a graph. Define the function f : 2[n] → N by
+                                          f (U ) = |δ(U )|,
+        where δ(U ) is the set of all edges that have exactly one endpoint in U . This
+        is called a cut function. It is integer-valued, normalized, nonnegative, and
+        submodular, but it is not monotone or 1-Lipschitz.
+714              MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+      n1/3
+                                             A1
+
+  8 log2 n
+                                                     A2
+
+                                                                                             V
+
+             ∅
+
+      Fig. 1. This figure aims to illustrate a function rankMB that is constructed by Theorem 1. This
+is a real-valued function whose domain is the lattice of subsets of V . The family B contains the sets
+A1 and A2 , both of which have size n1/3 . Whereas rankMB (S) is large (close to n1/3 ) for most sets
+S of size n1/3 , we have rankMB (A1 ) = rankMB (A2 ) = 8 log2 n. In order to ensure submodularity,
+sets near A1 or A2 also have low values.
+
+
+
+      3. New structural results about matroids and submodular functions.
+    3.1. A new family of extremal matroids. In this section we present a new
+family of matroids whose rank functions take wildly varying values on many sets. The
+formal statement of this result is as follows.
+                                                        1/3
+     Theorem 1. For any k ≥ 8 with k = 2o(n ) , there exists a family of sets A ⊆
+ [n]
+2 and a family of matroids M = { MB : B ⊆ A } with the following properties:
+     • |A| = k and |A| = n1/3 for every A ∈ A.
+     • For every B ⊆ A and every A ∈ A, we have
+                                      (
+                                        8 log k    (if A ∈ B),
+                     rankMB (A) =
+                                        |A|        (if A ∈ A \ B).
+
+     Theorem 1 implies that there exists a superpolynomial-sized collection of subsets
+of [n] such that, for any labeling of those sets as High or Low, we can construct a
+matroid where the sets in High have rank rhigh and the sets in Low have rank rlow ,
+and the ratio rhigh /rlow = Ω̃(n1/3 ). For example, by picking k = nlog n , in the matroid
+MB , a set A has rank only O(log2 n) if A ∈ B, but has rank n1/3 if A ∈ A \ B. In
+other words, as B varies, the rank of a set A ∈ A varies wildly, depending on whether
+A ∈ B.
+     Later sections of the paper use Theorem 1 to prove various negative results. In
+section 4.3 we use the theorem to prove our inapproximability result for PMAC-
+learning submodular functions under arbitrary distributions. In section 6 we use the
+theorem to prove results on the difficulty of several submodular optimization problems.
+     In the remainder of section 3.1 we discuss Theorem 1 and give a detailed proof.
+    3.1.1. Discussion of Theorem 1 and sketch of the construction. We begin
+by discussing some set systems which give intuition on how Theorem 1 is proven. Let
+A = {A1 , . . . , Ak } be a collection of subsets of [n] and let b1 , . . . , bk be positive integers.
+                         LEARNING SUBMODULAR FUNCTIONS                                 715
+
+Consider the set system
+
+                   I = { I : |I| ≤ r ∧ |I ∩ Aj | ≤ bj ∀j ∈ [k] } .
+
+If I is the family of independent sets of a matroid M, and if rankM (Aj ) = bj for each
+j, then perhaps such a construction can be used to prove Theorem 1.
+     Even in the case k = 2, understanding I is quite interesting. First of all, I
+typically is not a matroid. Consider taking n = 5, r = 4, A1 = {1, 2, 3}, A2 = {3, 4, 5},
+and b1 = b2 = 2. Then both {1, 2, 4, 5} and {2, 3, 4} are maximal sets in I but their
+cardinalities are unequal, which violates a basic matroid property. However, one can
+verify that I is a matroid if we additionally require that r ≤ b1 + b2 − |A1 ∩ A2 |. In
+fact, we could place a constraint on |I ∩ (A1 ∪ A2 )| rather than on |I|, obtaining
+
+ { I : |I ∩ A1 | ≤ b1 ∧ |I ∩ A2 | ≤ b2 ∧ |I ∩ (A1 ∪ A2 )| ≤ b1 + b2 − |A1 ∩ A2 | } ,
+
+which is the family of independent sets of a matroid. In the case that A1 and A2 are
+disjoint, the third constraint becomes |I ∩ (A1 ∪ A2 )| ≤ b1 + b2 , which is redundant
+because it is implied by the first two constraints. In the case that A1 and A2 are
+“nearly disjoint,” this third constraint becomes necessary and it incorporates an “error
+term” of −|A1 ∩ A2 |.
+     To generalize to k > 2, we impose similar constraints for every subcollection of
+A, and we must include additional “error terms” that are small when the Aj ’s are
+nearly disjoint. First define                  [
+                                    A(J) :=       Aj .
+                                               j∈J
+
+Theorem 2 proves that
+
+(3.1)                  I = { I : |I ∩ A(J)| ≤ g(J) ∀J ⊆ [k] }
+
+is a matroid, where the function g : 2[k] → Z is defined by
+                                                           
+                                X            X
+(3.2)                g(J) :=         bj −  |Aj | − |A(J)| .
+                                  j∈J          j∈J
+
+
+ThePproof appears in section 3.1.3. In the definition of g(J), we should think of
+−( j∈J |Aj | − |A(J)|) as an “error term,” since it is nonpositive, and it captures the
+“overlap” of the sets { Aj : j ∈ J }. In particular, in the case J = {1, 2}, this error
+term is −|A1 ∩ A2 |, as it was in our discussion of the case k = 2.
+   Theorem 2. The family I given in (3.1) is the family of independent sets of a
+matroid, if it is nonempty.
+    Let us now consider a special case of this construction. If the Aj ’s are all disjoint,
+then the error terms are all 0, so the family I reduces to
+
+                            { I : |I ∩ Aj | ≤ bj ∀j ∈ [k] } ,
+
+which is a (generalized) partition matroid, regardless of the bj values. Unfortunately
+these matroids cannot achieve our goal of having superpolynomially many sets labeled
+High or Low. The reason is that, since the Aj ’s must be disjoint, there can be at
+most n of them.
+716            MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+    In fact, it turns out that any matroid of the form (3.1) can have at most n sets
+in the collection A. To obtain a superpolynomially large A we must modify this
+construction slightly. Theorem 3 shows that, under certain conditions, the family
+            Ī = {I : |I| ≤ d ∧ |I ∩ A(J)| ≤ g(J) ∀J ⊆ [k], |J| < τ }
+is also the family of independent sets of a matroid. Introducing the crucial parameter
+τ allows us to obtain a superpolynomially large A.
+     There is an important special case of this construction. Suppose that |Aj | = d
+and bj = d − 1 for every j and that |Ai ∩ Aj | ≤ 2 for all i 6= j. The resulting matroid
+is called a paving matroid, a well-known type of matroid. These matroids are quite
+relevant to our goals of having superpolynomially many sets labeled High and Low.
+The reason is that the conditions on the Aj ’s are equivalent to A being a constant-
+weight error-correcting code of distance 4, and it is well known that such codes can
+have superpolynomial size. Unfortunately this construction has rlow = d − 1 and
+rhigh = d; this small, additive gap is much too weak for our purposes.
+     The high-level plan underlying Theorem 1 is to find a new class of matroids that
+somehow combines the positive attributes of both partition and paving matroids.
+From paving matroids we will inherit the large size of the collection A, and from
+partition matroids we will inherit a large ratio rhigh /rlow .
+     One of our key observations is that there is a commonality between partition
+and paving matroids: the collection A must satisfy an “expansion” property, which
+roughly means that the Aj ’s cannot overlap too much. With partition matroids the
+Aj ’s must be disjoint, which amounts to having “perfect” expansion. With paving
+matroids the Aj ’s must have small pairwise intersections, which is a fairly weak sort
+of expansion.
+     It turns out that the “perfect” expansion required by partition matroids is too
+strong for A to have superpolynomial size, and the “pairwise” expansion required by
+paving matroids is too weak to allow a large ratio rhigh /rlow . Fortunately, weakening
+the expansion from “perfect” to “nearly perfect” is enough to obtain a collection A
+of superpolynomial size. With several additional technical ideas, we show that these
+nearly perfect expansion properties can be leveraged to achieve our desired ratio
+rhigh /rlow = Ω̃(n1/3 ). These ideas lead to a proof of Theorem 1.
+    3.1.2. Our main matroid construction. As mentioned above, our basic ma-
+troid construction (Theorem 2) does not suffice to prove Theorem 1. To see why,
+suppose that |A| = k > n and that bi < |Ai | for every i. Then g([k]) ≤ n − k < 0,
+and therefore I is empty. So the construction of Theorem 2 is applicable only when
+k ≤ n, which is insufficient for proving Theorem 1.
+    We now modify the preceding construction by introducing a sort of “truncation”
+operation which allows us to take k  n. We emphasize that this truncation is not
+ordinary matroid truncation. The ordinary truncation operation decreases the rank
+of the matroid, whereas we want to increase the rank by throwing away constraints
+in the definition of I. We will introduce an additional parameter τ and only keep
+constraints for |J| < τ . So long as g is large enough for a certain interval, then we
+can truncate g and still get a matroid.
+     Definition 1. Let d and τ be nonnegative integers. A function g : 2[k] → R is
+called (d, τ )-large if
+                               (
+                                 0 ∀J ⊆ [k], |J| < τ,
+(3.3)                   g(J) ≥
+                                 d ∀J ⊆ [k], τ ≤ |J| ≤ 2τ − 2.
+                            LEARNING SUBMODULAR FUNCTIONS                                         717
+
+The truncated function ḡ : 2[k] → Z is defined by
+                                    (
+                                      g(J)      (if |J| < τ ),
+                           ḡ(J) :=
+                                      d         (otherwise).
+
+    Theorem 3. Suppose that the function g defined in (3.2) is (d, τ )-large. Then
+the family
+                  Ī = { I : |I ∩ A(J)| ≤ ḡ(J) ∀J ⊆ [k] }
+is the family of independent sets of a matroid.
+     Consequently, we claim that the family
+
+              Ī = {I : |I| ≤ d ∧ |I ∩ A(J)| ≤ g(J) ∀J ⊆ [k], |J| < τ }
+
+is also the family of independent sets of a matroid. This claim follows immediately
+if the Ai ’s cover the ground set (i.e., A([k]) = [n]), because the matroid definition in
+Theorem 3 includes the constraint |I| = |I ∩ A([k])| ≤ ḡ([k]) = d. Alternatively, if
+A([k]) 6= [n], we may we apply the well-known matroid truncation operation which
+constructs a new matroid simply by removing all independent sets of size greater
+than d.
+     This construction yields quite a broad family of matroids. We list several interest-
+ing special cases in Appendix E. In particular, partition matroids and paving matroids
+are both special cases. Thus, our construction can produce “nonlinear” matroids (i.e.,
+matroids that do not correspond to vectors over any field), as the Vámos matroid is
+a paving matroid that is nonlinear [82].
+    3.1.3. Proofs of Theorems 2 and 3. In this section, we will prove Theorems 2
+and 3. We start with a simple but useful lemma which describes a general set of
+conditions that suffice to obtain a matroid.
+    Let C ⊆ 2[n] be an arbitrary family of sets and let g : C → Z be a function.
+Consider the family
+
+(3.4)                       I = { I : |I ∩ C| ≤ g(C) ∀C ∈ C } .
+
+For any I ∈ I, define T (I) = { C ∈ C : |I ∩ C| = g(C) } to be the set of constraints
+that are “tight” for the set I. Suppose that g has the following property:
+
+(3.5)      ∀I ∈ I,     C1 , C2 ∈ T (I)      =⇒       (C1 ∪ C2 ∈ T (I)) ∨ (C1 ∩ C2 = ∅).
+
+Properties of this sort are commonly called “uncrossing” properties. Note that we do
+not require that C1 ∩ C2 ∈ C. We show in the following lemma that this uncrossing
+property is sufficient5 to obtain a matroid.
+   Lemma 1. Assume that (3.5) holds. Then I is the family of independent sets of
+a matroid if it is nonempty.
+    Proof. We will show that I satisfies the required axioms of an independent set
+family. If I ⊆ I 0 ∈ I, then clearly I ∈ I also. So suppose that I ∈ I, I 0 ∈ I, and
+|I| < |I 0 |. Let C1 , . . . , Cm be the maximal sets in T (I) and let C ∗ = ∪i Ci . Note
+    5 There are general matroid constructions in the literature which are similar in spirit to Lemma 1,
+
+e.g., the construction of Edmonds [22, Theorem 15] and the construction of Frank and Tardos [86,
+Corollary 49.7a]. However, we were unable to use those existing constructions to prove Theorems 2
+or 3.
+718               MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+that these maximal sets are disjoint; otherwise we could replace any intersecting sets
+with their union. In other words, Ci ∩ Cj = ∅ for i 6= j; otherwise (3.5) implies that
+Ci ∪ Cj ∈ T (I), contradicting maximality. So
+                            m
+                            X                     m
+                                                  X                m
+                                                                   X
+          |I 0 ∩ C ∗ | =          |I 0 ∩ Ci | ≤         g(Ci ) =         |I ∩ Ci | = |I ∩ C ∗ |.
+                            i=1                   i=1              i=1
+
+Since |I 0 | > |I| but |I 0 ∩ C ∗ | ≤ |I ∩ C ∗ |, we must have that |I 0 \ C ∗ | > |I \ C ∗ |. The
+                                                    0
+key consequence is that some
+                    0       ∗
+                                  element x ∈ I \ I is not contained in any tight set, i.e.,
+there exists x ∈ I \ C ∪ I . Then I + x ∈ I because for every C ∈ C with x ∈ C we
+have |I ∩ C| ≤ g(C) − 1.
+      We now use Lemma 1 to prove Theorem 2, restated here.
+      Theorem 2. The family I defined in (3.1), namely,
+
+                           I = { I : |I ∩ A(J)| ≤ g(J) ∀J ⊆ [k] } ,
+
+where
+                                            
+                  X           X                                                            [
+        g(J) :=         bj −  |Aj | − |A(J)|                     and           A(J) :=         Aj ,
+                  j∈J              j∈J                                                     j∈J
+
+is the family of independent sets of a matroid if it is nonempty.
+     This theorem is proven by showing that the constraints defining I can be “un-
+crossed” (in the sense that they satisfy (3.5)), then applying Lemma 1. It is not
+a priori obvious that these constraints can be uncrossed: in typical uses of uncross-
+ing, the right-hand side g(J) should be a submodular function of J and the left-hand
+side |I ∩ A(J)| should be a super modular function of J. In our case both g(J) and
+|I ∩ A(J)| are submodular functions of J.
+      Proof of Theorem 2. The proof applies Lemma 1 to the family
+
+                                         C = { A(J) : J ⊆ [k] } .
+
+We must also define a function g 0 : C → Z for which (3.5) will hold. However, there is a
+small issue: it is possible that there exist J 6= J 0 with A(J) = A(J 0 ) but g(J) 6= g(J 0 ),
+so we cannot simply define g 0 (A(J)) = g(J). Instead, we define the value of g 0 (A(J))
+according the tightest constraint on |I ∩ A(J)|, i.e.,
+
+                        g 0 (C) := min { g(J) : A(J) = C }                 ∀C ∈ C.
+
+    Now fix I ∈ I and suppose that C1 and C2 are tight, i.e., |I ∩ Ci | = g 0 (Ci ) for
+both i = 1, 2. Define hI : 2[k] → Z by
+                                                        X
+             hI (J) := g(J) − |I ∩ A(J)| = |A(J) \ I| −   (|Aj | − bj ).
+                                                                           j∈J
+
+We claim that hI is a submodular function of J. This follows because J 7→P|A(J)\I| is
+a submodular function of J (cf. Theorem 24 in Appendix A.1), and J 7→ j∈J (|Aj | −
+bj ) is a modular function of J.
+      Now choose Ji satisfying Ci = A(Ji ) and g 0 (Ci ) = g(Ji ) for both i ∈ {1, 2}. Then
+
+                   hI (Ji ) = g(Ji ) − |I ∩ A(Ji )| = g 0 (Ci ) − |I ∩ Ci | = 0
+                         LEARNING SUBMODULAR FUNCTIONS                                 719
+
+for both i ∈ {1, 2}. However, hI ≥ 0, since we assume I ∈ I and therefore |I ∩A(J)| ≤
+g(J) for all J. So we have shown that J1 and J2 are both minimizers of hI . It is
+well known that the minimizers of any submodular function are closed under union
+and intersection. (See Lemma 7 in Appendix A.1.) So J1 ∪ J2 and J1 ∩ J2 are also
+minimizers, implying that A(J1 ∪ J2 ) = A(J1 ) ∪ A(J2 ) = C1 ∪ C2 is also tight.
+     This shows that (3.5) holds, so the theorem follows from Lemma 1.
+    A similar approach is used for our second construction.
+    Proof of Theorem 3. Fix I ∈ Ī. Let J1 and J2 satisfy |I ∩ A(Ji )| = ḡ(Ji ). By
+considering two cases, we will show that
+
+                             |I ∩ A(J1 ∪ J2 )| ≥ ḡ(J1 ∪ J2 ),
+
+so the desired result follows from Lemma 1.
+    Case 1: max {|J1 |, |J2 |} ≥ τ . Without loss of generality, |J1 | ≥ |J2 |. Then
+
+               ḡ(J1 ∪ J2 ) = d = ḡ(J1 ) = |I ∩ A(J1 )| ≤ |I ∩ A(J1 ∪ J2 )|.
+
+      Case 2: max {|J1 |, |J2 |} ≤ τ − 1. So |J1 ∪ J2 | ≤ 2τ − 2. We have |I ∩ A(Ji )| =
+ḡ(Ji ) = g(Ji ) for both i. As argued in the proof of Theorem 2, we also have |I ∩
+A(J1 ∪ J2 )| = g(J1 ∪ J2 ). But g(J1 ∪ J2 ) ≥ ḡ(J1 ∪ J2 ) since g is (d, τ )-large, so
+|I ∩ A(J1 ∪ J2 )| ≥ ḡ(J1 ∪ J2 ), as desired.
+    3.1.4. Putting it all together: Proof of Theorem 1. In this section we use
+the construction in Theorem 3 to prove Theorem 1, which is restated here.
+                                                   1/3
+     Theorem 1. For any k ≥ 8 with k = 2o(n ) , there exists a family of sets A ⊆
+ [n]
+2 and a family of matroids M = { MB : B ⊆ A } with the following properties:
+     • |A| = k and |A| = n1/3 for every A ∈ A.
+     • For every B ⊆ A and every A ∈ A, we have
+                                      (
+                                        8 log k   (if A ∈ B),
+                     rankMB (A) =
+                                        |A|       (if A ∈ A \ B).
+
+     To prove this theorem, we must construct a family of sets A = {A1 , . . . , Ak }
+where each |Ai | = n1/3 , and for every B ⊆ A we must construct a matroid MB with
+the desired properties: It will be convenient to let d = n1/3 denote the size of the
+Ai ’s, to let the index set of A be denoted by U := [k], and to let the index set for B be
+denoted by UB := { i ∈ U : Ai ∈ B }. Each matroid MB is constructed by applying
+Theorem 3 with the set family B instead of A, so its independent sets are
+
+          IB := {I : |I| ≤ d ∧ |I ∩ A(J)| ≤ gB (J) ∀J ⊆ UB , |J| < τ } ,
+
+where the function gB : 2UB → R is defined as in (3.2), taking all bi ’s to be equal to
+a common value b (independent of i and B):
+                                       
+              X          X
+    gB (J) :=     b −  |Aj | − |A(J)| = (b − d)|J| + |A(J)|             ∀J ⊆ UB .
+                j∈J        j∈J
+
+
+    Several steps remain. We must choose the set family A, then choose parameters
+carefully such that, for every B ⊆ A, we have as follows:
+720              MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+      • P1: MB is indeed a matroid;
+      • P2: rankMB (Ai ) = 8 log k for all Ai ∈ B; and
+      • P3: rankMB (Ai ) = |A| for all Ai ∈ A \ B.
+      Let us start with P2. Suppose Ai ∈ B. The definition of IB includes the constraint
+|I ∩ Ai | ≤ gB ({i}), which implies that rankMB (Ai ) ≤ gB ({i}) = b. This suggests that
+choosing b := 8 log k may be a good choice to satisfy P2.
+      On the other hand, if Ai 6∈ B, then P3 requires that Ai is independent in MB .
+To achieve this, we need the constraints |I ∩ A(J)| ≤ gB (J) to be as loose as possible,
+                                                                                  P
+i.e., gB (J) should be as large as possible. Notice that gB (J) has two terms, j∈J b,
+                                          P                   
+which grows as a function of J, and −       j∈J |Aj | − |A(J)|
+                                                         P      , which is nonpositive. So
+we desire that |A(J)| should be as close as possible to j∈J |Aj | for all J with |J| < τ .
+Set systems with this property can be constructed from expander graphs.
+      Definition 2. Let G = (U ∪ V, E) be a bipartite graph. For J ⊆ U , define
+                    Γ(J) := { v : ∃u ∈ J such that {u, v} ∈ E } .
+The graph G is called a (d, L, )-expander if
+                   |Γ({u})| = d                      ∀u ∈ U,
+                     |Γ(J)| ≥ (1 − ) · d · |J|      ∀J ⊆ U, |J| ≤ L.
+Additionally, G is called a lossless expander if  < 1/2.
+    Given such a graph G, we construct the set family A = {A1 , . . . , Ak } ⊆ 2[n] by
+identifying U = [k], V = [n], and for each vertex i ∈ U defining Ai := Γ({i}). The
+resulting sets satisfy
+                                     |Ai | = d                    ∀i ∈ U,
+(3.6)                P             |A(J)|  ≥ (1 − ) · d · |J|    ∀J ⊆ U, |J| ≤ L,
+            =⇒        j∈J |A j | − |A(J)|  ≤  · d · |J|          ∀J ⊆ U, |J| ≤ L.
+This last inequality will allow us to show that gB (J) is sufficiently large.
+     To make things concrete, let us now state the expander construction that we
+will use. Lossless expanders are well-studied [39, 44], and several probabilistic con-
+structions are known, both in folklore and in the literature [12, Lemma 3.10], [44,
+section 1.2], [88, Theorem 26], [91, Theorem 4.4]. The following construction has
+parameters that match our requirements.
+    Theorem 4 (Buhrman et al. [12, Lemma 3.10]). Suppose that k ≥ 8, that
+n ≥ 25L log(k)/2 , and that d ≥ log(k)/2. Then there exists a graph G = (U ∪ V, E)
+with |U | = k and |V | = n that is a (d, L, )-lossless expander.
+    The next theorem states another (folklore) probabilistic construction that also
+matches our requirements. We include a proof in Appendix D for the sake of com-
+pleteness and because we will require a slight variant in section 6.
+    Theorem 5. Let G = (U ∪V, E) be a random multigraph where |U | = k, |V | = n,
+and every u ∈ U has exactly d incident edges, each of which has an endpoint chosen
+uniformly and independently from all nodes in V . Suppose that k ≥ 4, d ≥ log(k)/,
+and n ≥ 16Ld/. Then, with probability at least 1 − 2/k,
+                    |Γ(J)| ≥ (1 − ) · d · |J|      ∀J ⊆ U, |J| ≤ L.
+If it is desired that |Γ({u})| = d for all u ∈ U , then this can be achieved by replacing
+any parallel edges incident on u by new edges with distinct endpoints. This cannot
+decrease |Γ(J)| for any J.
+                        LEARNING SUBMODULAR FUNCTIONS                                 721
+
+    We require an expander with the following parameters. Recall that n is arbitrary
+            1/3
+and k = 2o(n ) :
+                                               n1/3                 2 log k
+                d := n1/3 ,         L :=              ,      :=            .
+                                              2 log k                n1/3
+These satisfy the hypotheses of Theorem 4 (and Theorem 5), so a (d, L, )-expander
+exists, and a set family A satisfying (3.6) exists. Next we use these properties of A
+to show that P1, P2, and P3 hold.
+    The fact that P1 holds follows from Theorem 3 and the following claim. Recall
+that b = 8 log k.
+    Claim 1. Set τ = n1/3 /4 log k. Then gB is (d, τ )-large, as defined in (3.3).
+    Proof. Consider any J ⊆ UB with |J| ≤ 2τ − 2. Then
+
+             gB (J) = (b − d)|J| + |A(J)|
+                    ≥ b|J| − d|J|    (by (3.6), since |J| ≤ 2τ − 2 ≤ L)
+                      3b
+(3.7)               =    |J|    (since  = b/4d).
+                       4
+This shows gB (J) ≥ 0. If additionally |J| ≥ τ , then gB (J) ≥ (3/4)bτ > d.
+    The following claim implies that P2 holds.
+    Claim 2. For all B ⊆ A and all Ai ∈ B we have rankMB (Ai ) = b.
+    Proof. The definition of IB includes the constraint |I ∩ Ai | ≤ gB ({i}) = b. This
+immediately implies rankMB (Ai ) ≤ b. To prove that equality holds, it suffices to
+prove that gB (J) ≥ b whenever |J| ≥ 1, since this implies that every constraint in the
+definition of IB has a right-hand side at least b (except for the constraint corresponding
+to J = ∅, which is vacuous). For |J| = 1 this is immediate, and for |J| ≥ 2 we use
+(3.7) to obtain gB (J) = 3b|J|/4 > b.
+    Finally, the following claim implies that P3 holds.
+    Claim 3. For all B ⊆ A and all Ai ∈ A \ B we have rankMB (Ai ) = d.
+     Proof. Since d = |Ai |, the condition rankMB (Ai ) = d holds iff Ai ∈ IB . So it
+suffices to prove that Ai satisfies all constraints in the definition of IB .
+     The constraint |Ai | ≤ d is trivially satisfied. So it remains to show that for every
+J ⊆ UB with |J| < τ , we have
+
+(3.8)                             |Ai ∩ A(J)| ≤ gB (J).
+
+This is trivial if J = ∅, so assume |J| ≥ 1. We have
+
+               |Ai ∩ A(J)| = |Ai | + |A(J)| − |A(J + i)|
+                              ≤ d + d|J| − (1 − )d|J + i|         (by (3.6))
+                                b |J + i|
+                              =                 (since  = b/4d)
+                                    4
+                                b |J|
+                              ≤
+                                  2
+                              ≤ gB (J)        (by (3.7)).
+
+This proves (3.8), so Ai ∈ IB , as desired.
+722            MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+    3.2. Concentration properties of submodular functions. In this section
+we prove the following strong concentration bound for submodular functions.
+    Theorem 6. Let f : 2[n] → R+ be a nonnegative, monotone, submodular, 1-
+Lipschitz function. Let the random variable X ⊆ [n] have a product distribution. For
+any b, t ≥ 0,
+                  h             √ i
+                Pr f (X) ≤ b − t b · Pr [ f (X) ≥ b ] ≤ exp(−t2 /4).
+
+     To understand Theorem 6, it is instructive to compare it with standard results.
+For example, the Chernoff bound is precisely a concentration bound for linear, Lip-
+schitz functions. On the other hand, if f is an arbitrary 1-Lipschitz function, then
+McDiarmid’s inequality implies
+                            √ concentration, although of a much weaker form, with
+standard deviation roughly n. If f is additionally known to be submodular, then we
+can apply Theorem 6 with b equal to a median, which can be much smaller than n. So
+Theorem 6 can be viewed as saying that McDiarmid’s inequality can be significantly
+strengthened when the given function is known to be submodular.
+     Our proof of Theorem 6 is based on the Talagrand inequality [90, 1, 74, 49]. As
+mentioned above, similar results have previously been proven using the machinery of
+self-bounding functions [40, 97] and using the FKG inequality [14].
+     Theorem 6 most naturally implies concentration around a median of f (X). As
+shown in the following corollary, this also implies concentration around the expected
+value. This corollary, with better constants, also follows from the results of Chekuri
+and Vondrák [14] and Vondrák [97]
+    Corollary 1. Let f : 2[n] → R+ be a nonnegative, monotone, submodular, 1-
+Lipschitz function. Let the random variable X ⊆ [n] have a product distribution. For
+any 0 ≤ α ≤ 1,
+
+      Pr [ |f (X) − E [ f (X) ] | > α E [ f (X) ] ] ≤ 4 exp − α2 E [ f (X) ] /422 .
+                                                                                 
+
+     As an interesting application of Corollary 1, let us consider the case where f is the
+rank function of a linear matroid. Formally, fix a matrix A over any field. Construct
+a random submatrix by selecting the ith column of A with probability pi , where these
+selections are made independently. Then Corollary 1 implies that the rank of the
+resulting submatrix is highly concentrated around its expectation, in a way that does
+not depend on the number of rows of A.
+     The proofs of this section are technical applications of Talagrand’s inequality
+and are provided in Appendix B. Later sections of the paper use Theorem 6 and
+Corollary 1 to prove various results. In section 4.2 we use these theorems to analyze
+our algorithm for PMAC-learning submodular functions under product distributions.
+In section 5 we use these theorems to give an approximate characterization of matroid
+rank functions.
+      4. Learning submodular functions.
+      4.1. A new learning model: The PMAC model. In this section we intro-
+duce a new learning model for learning real-valued functions in the passive, supervised
+learning paradigm, which we call the PMAC model. In this model, a learning algo-
+rithm is given a collection S = {x1 , x2 , . . . , x` } of polynomially many sets drawn
+i.i.d. from some fixed, but unknown, distribution D over an instance space X . There
+is also a fixed but unknown function f ∗ : X → R+ , and the algorithm is given the
+value of f ∗ at each set in S. The algorithm may perform an arbitrary polynomial time
+                         LEARNING SUBMODULAR FUNCTIONS                                   723
+
+computation on the examples {(xi , f ∗ (xi ))}1≤i≤` , then must output another function
+f : X → R+ . This function is called a “hypothesis function.” The goal is that, with
+high probability, f is a good approximation of f ∗ for most points in D. Formally, we
+have the following.
+     Definition 3. Let F be a family of nonnegative, real-valued functions with do-
+main X . We say that an algorithm A PMAC-learns F with approximation factor α
+if, for any distribution D over X , for any target function f ∗ ∈ F, and for  ≥ 0 and
+δ ≥ 0 sufficiently small,
+      • the input to A is a sequence of pairs {(xi , f ∗ (xi ))}1≤i≤` where each xi is
+         i.i.d. from D,
+      • the number of inputs ` provided to A and the running time of A are both at
+         most poly(n, 1/, 1/δ),
+      • the output of A is a function f : X → R that can be evaluated in time
+         poly(n, 1/, 1/δ) and that satisfies
+
+              Prx1 ,...,x` ∼D [Prx∼D [ f (x) ≤ f ∗ (x) ≤ α · f (x) ] ≥ 1 − ] ≥ 1 − δ.
+
+     PMAC is an extension of the PAC model to learning nonnegative, real-valued
+functions, allowing multiplicative error α. The PAC model for learning Boolean func-
+tions is precisely the special case when α = 1.
+     In this paper we focus on the PMAC-learnability of submodular functions. In
+                      n
+this case X = {0, 1} and F is the family of all nonnegative, monotone, submodular
+functions. We note that it is quite easy to PAC-learn the class of Boolean submodular
+functions. Details are given in Appendix C.1. The rest of this section considers
+the much more challenging task of PMAC-learning the general class of real-valued,
+submodular functions.
+     4.2. Product distributions. A first natural and common step in studying
+learning problems is to study learnability of functions when the examples are dis-
+tributed according to the uniform distribution or a product distribution [53, 60, 69].
+In this section we consider learnability of submodular functions when the underlying
+distribution is a product distribution. Building on the concentration results in sec-
+tion 3.2 we provide an algorithm that PMAC learns the class of Lipschitz submodular
+functions with a constant approximation factor.
+     We will let L < M < H and K be universal constants, whose values we can
+take to be L = 10550, M = 11250, H = 12500, and K = 26000. We begin with the
+following technical lemma, which states some useful concentration bounds.
+      Lemma 2. Let f : 2[n] → R be a nonnegative, monotone, submodular, 1-Lipschitz
+function. Suppose that S1 , . . . , Sl are drawn
+                                               P` from     a product distribution D over
+                                                      ∗
+2[n] . Let µ the empirical average µ =           i=1 f (Si )/`, which is our estimate for
+ES∼D [ f ∗ (S) ]. Let , δ ≤ 1/5. We have the following:
+      (1) If E [ f ∗ (S) ] > H log(1/) and ` ≥ 16 log(1/δ), then
+
+                                Pr [ µ ≥ M log(1/) ] ≥ 1 − δ/4.
+
+    (2) If E [ f ∗ (S) ] > L log(1/) and ` ≥ 16 log(1/δ), then
+
+                         Pr 65 E [ f ∗ (S) ] ≤ µ ≤ 43 E [ f ∗ (S) ] ≥ 1 − δ/4.
+                                                                  
+
+    (3) If E [ f ∗ (S) ] ≤ H log(1/), then
+
+                               Pr [ f ∗ (S) < K log(1/) ] ≥ 1 − .
+724              MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+Algorithm 1. An algorithm for PMAC-learning a nonnegative, monotone, 1-
+Lipschitz, submodular function f ∗ with minimum nonzero value 1, when the examples
+come from a product distribution. Its input is a sequence of labeled training examples
+(S1 , f ∗ (S1 )), . . . , (S` , f ∗ (S` )), parameters  and `.
+                         P`
+      • Let µ = i=1 f ∗ (Si )/`.
+      • Case 1: If µ ≥ M log(1/), then return the constant function f = µ/4.
+                                                                S
+      • Case 2: If µ < M log(1/), then compute the set U = i : f ∗ (Si )=0 Si . Return
+           the function f where f (A) = 0 if A ⊆ U and f (A) = 1 otherwise.
+
+
+      (4) If E [ f ∗ (S) ] < L log(1/) and ` ≥ 16 log(1/δ), then
+                                 Pr [ µ < M log(1/) ] ≥ 1 − δ/4.
+    The proof of Lemma 2, which is provided in Appendix C.2, follows easily from The-
+orem 6 and Corollary 1. We now present our main result in this section.
+     Theorem 7. Let F be the class of nonnegative, monotone, 1-Lipschitz, submod-
+ular functions with ground set [n] and minimum nonzero value 1. Let D be a product
+                       n
+distribution on {0, 1} . For any sufficiently small  > 0 and δ > 0, Algorithm 1
+PMAC-learns F with approximation factor α = K log(1/). The number of training
+examples used is ` = n log(n/δ)/ + 16 log(1/δ).
+     If it is known a priori that E [ f ∗ (S) ] ≥ L log(1/), then the approximation factor
+improves to 8, and the number of examples can be reduced to ` = 16 log(1/δ), which
+is independent of n and .
+      Proof. We begin with an overview of the proof. Consider the expected value of
+f ∗ (S) when S is drawn from distribution D. When this expected value of f ∗ is large
+compared to log(1/), we simply output a constant function given by the empirical
+average µ estimated by the algorithm. The concentration bounds for submodular
+functions (Theorem 6 and Corollary 1) allow us to show that this constant func-
+tion provides a good estimate. However, when the expected value of f ∗ is small,
+we must carefully handle the zeros of f ∗ , since they may have large measure under
+distribution D. The key idea here is to use the fact that the zeros of a nonnegative,
+monotone, submodular function have special structure: they are both union-closed
+and downward-closed, so it is sufficient to PAC-learn the Boolean Nor function which
+indicates the zeros of f ∗ .
+      We now present the proof formally. By Lemma 2, with probability at least 1 − δ
+over the choice of examples, we may assume that the following implications hold:
+(4.1)
+µ ≥ M log(1/) =⇒         E [ f ∗ (S) ] ≥ L log(1/) and 56 E [ f ∗ (S) ] ≤ µ ≤ 43 E [ f ∗ (S) ] ,
+µ < M log(1/) =⇒         E [ f ∗ (S) ] ≤ H log(1/).
+Now we show that the function f output by the algorithm approximates f ∗ to within
+a factor K log(1/).
+    Case 1. µ ≥ M log(1/). Since we assume that (4.1) holds, we have 65 E [ f ∗ (S) ] ≤
+µ ≤ 34 E [ f ∗ (S) ] and E [ f ∗ (S) ] ≥ L log(1/). Using these together with Corollary 1
+we obtain
+       Pr [ µ/4 ≤ f ∗ (S) ≤ 2µ ] ≥ Pr 13 E [ f ∗ (S) ] ≤ f ∗ (S) ≤ 35 E [ f ∗ (S) ]
+                                                                                   
+
+(4.2)                              ≥ 1 − Pr [ |f ∗ (S) − E [ f ∗ (S) ]| ≥ (2/3) E [ f ∗ (S) ] ]
+                                   ≥ 1 − 4 exp − E [ f ∗ (S) ] /950 ≥ 1 − ,
+                                                                        
+                        LEARNING SUBMODULAR FUNCTIONS                                725
+
+since L ≥ 4000 and  ≤ 1/2. Therefore, with confidence at least 1 − δ, the constant
+function f output by the algorithm approximates f ∗ to within a factor 8 on all but
+an  fraction of the distribution.
+    Case 2. µ < M log(1/). As mentioned above, we must separately handle the
+zeros and the nonzeros of f ∗ . To that end, define
+
+             P = { S : f ∗ (S) > 0 }        and       Z = { S : f ∗ (S) = 0 } .
+                                       S
+Recall that the algorithm sets U = f ∗ (Si )=0 Si . Monotonicity and submodularity
+imply that f ∗ (U ) = 0. Furthermore, setting L = { T : T ⊆ U }, monotonicity implies
+that
+
+(4.3)                             f ∗ (T ) = 0      ∀T ∈ L.
+
+    We wish to analyze the measure of the points for which the function f output by
+the algorithm fails to provide a good estimate of f ∗ . So let S be a new sample from
+D and let E be the event that S violates the inequality
+
+                       f (S) ≤ f ∗ (S) ≤
+                                                           
+                                                 K log(1/) · f (S).
+
+Our goal is to show that, with probability 1 − δ over the training examples, we have
+Pr [ E ] ≤ . Clearly
+
+                   Pr [ E ] = Pr [ E ∧ S ∈ P ] + Pr [ E ∧ S ∈ Z ] .
+
+We will separately analyze these two probabilities.
+    First we analyze the nonzeros of f ∗ . So assume that S ∈ P, which implies that
+ ∗
+f (S) ≥ 1 by our hypothesis. Then S 6⊆ U (by (4.3)), and hence f (S) = 1 by the
+definition of f . Therefore the event E ∧ S ∈ P can only occur when f ∗ (S) > K log(1/).
+Since we assume that (4.1) holds, we have E [ f ∗ (S) ] ≤ H log(1/), so we can apply
+Lemma 2, statement (3). This shows that
+
+                 Pr [ E ∧ S ∈ P ] ≤ Pr [ f ∗ (S) > K log(1/) ] ≤ .
+
+    It remains to analyze the zeros of f ∗ . Assume that S ∈ Z, i.e., f ∗ (S) = 0. Since
+our hypothesis has f (S) = 0 for all S ∈ L, the event E ∧ S ∈ Z holds only if S ∈ Z \ L.
+The proof now follows from Claim 4.
+    Claim 4. With probability at least 1 − δ, the set Z \ L has measure at most .
+     Proof. The idea of the proof is as follows. At any stage of the algorithm, we
+can compute the set U and the subcube L = { T : T ⊆ U }. We refer to L as the
+algorithm’s null subcube. Suppose that there is at least an  chance that a new example
+is a zero of f ∗ but does not lie in the null subcube. Then such an example should
+be seen in the next sequence of log(1/δ)/ examples, with probability at least 1 − δ.
+This new example increases the dimension of the null subcube by at least one, and
+therefore this can happen at most n times.
+     Formally, for k ≤ `, define
+                           [
+                Uk =             Si     and        Lk = { S : S ⊆ Uk } .
+                            i≤k
+                        f ∗ (Si )=0
+726            MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+As argued above, we have Lk ⊆ Z for any k. Suppose that, for some k, the set Z \ Lk
+has measure at least . Define k 0 = k + log(n/δ)/. Then among the subsequent
+examples Sk+1 , . . . , Sk0 , the probability that none of them lie in Z \ Lk is at most
+
+                                 (1 − )log(n/δ)/ ≤ δ/n.
+
+On the other hand, if one of them does lie in Z \ Lk , then |Uk0 | > |Uk |. But |Uk | ≤ n
+for all k, so this can happen at most n times. Since ` ≥ n log(n/δ)/, with probability
+at least δ the final set Z \ L` has measure at most .
+     The class F defined in Theorem 7 contains the class of matroid rank functions.
+We remark that Theorem 7 can be easily modified to handle the case where the
+minimum nonzero value for functions in F is η < 1. To do this, we simply modify
+step 2 of the algorithm to output f (A) = η for all A 6⊆ U . The same proof shows that
+this modified algorithm has an approximation factor of K log(1/)/η.
+
+    4.3. Inapproximability under arbitrary distributions. The simplicity of
+Algorithm 1 might raise one’s hopes that a constant-factor approximation is possible
+under arbitrary distributions. However, we show in this section that no such approx-
+imation is possible. In particular, by making use of the new family of matroids we
+presented in section 3.1, we show that no algorithm can PMAC-learn the class of non-
+negative, monotone, submodular functions with approximation factor o(n1/3 /log n).
+Formally, we have the following.
+     Theorem 8. Let ALG be an arbitrary learning algorithm that uses only a polyno-
+mial number of training examples drawn i.i.d. from the underlying distribution. There
+exists a distribution D and a submodular target function f ∗ such that, with probability
+at least 1/8 (over the draw of the training samples), the hypothesis function f output
+by ALG does not approximate f ∗ within an o(n1/3 /log n) factor on at least a 1/4
+fraction of the examples under D. This holds even for the subclass of matroid rank
+functions.
+     Proof. To show the lower bound, we use the family of matroids from Theorem 1
+in section 3.1.4, whose rank functions take wildly varying values on a large set of
+points. The high-level idea is to show that for a superpolynomial-sized set of k points
+         n
+in {0, 1} , and for any partition of those points into High and Low, we can construct
+a matroid where the points in High have rank rhigh and the points in Low have rank
+rlow , and the ratio rhigh /rlow = Ω̃(n1/3 ). This then implies hardness for learning over
+the uniform distribution on these k points from any polynomial-sized sample, even
+with value queries.
+     To make the proof formal, we use the probabilistic method. Assume that ALG
+uses ` ≤ nc training examples for some constant c. To construct a hard family of
+submodular functions, we will apply Theorem 1 with k = 2t , where t = c log(n) + 3.
+Let A and M be the families that are guaranteed to exist by Theorem 1. Let the
+underlying distribution D on 2[n] be the uniform distribution on A. (We note that D
+is not a product distribution.) Choose a matroid MB ∈ M uniformly at random and
+let the target function be f ∗ = rankMB . Clearly ALG does not know B.
+     Assume that ALG uses a set S of ` training examples. For any A ∈ A that is not a
+training example, the algorithm ALG has no information about f ∗ (A); in particular,
+the conditional distribution of its value, given S, remains uniform in {8t, |A|}. So ALG
+cannot determine its value better than randomly guessing between the two possible
+                        LEARNING SUBMODULAR FUNCTIONS                              727
+
+values 8t and |A|. The set of nontraining examples has measure 1 − 2−t+log ` . Thus
+               h     h                 1/3      ii    1 − 2−t+log `
+        Ef ∗ ,S Pr f ∗ (A) 6∈ f (A), n16t f (A)
+                                
+                                                    ≥                ≥ 7/16.
+                 A∼D                                         2
+Therefore, there exists f ∗ such that
+                   h      h         h       1/3
+                                                    ii      i
+                 Pr Pr f ∗ (A) 6∈ f (A), n16t f (A) ≥ 1/4 ≥ 1/8.
+                S   A∼D
+
+That is, there exists f ∗ such that with probability at least 1/8 (over the draw of the
+training samples) we have that the hypothesis function f output by ALG does not
+approximate f ∗ within a o(n1/3 /log n) factor on at least 1/4 fraction of the examples
+under D.
+     We can further show that the lower bound in Theorem 8 holds even if the algo-
+rithm is told the underlying distribution, even if the algorithm can query the func-
+tion on inputs of its choice, and even if the queries are adaptive. In other words,
+this inapproximability still holds in the PMAC model augmented with value queries.
+Specifically, we have the following.
+     Theorem 9. Let ALG be an arbitrary learning algorithm that uses only a polyno-
+mial number of training examples, which can be either drawn i.i.d. from the underlying
+distribution or value queries. There exists a distribution D and a submodular target
+function f ∗ such that, with probability at least 1/4 (over the draw of the training
+samples), the hypothesis function output by ALG does not approximate f ∗ within an
+o(n1/3 /log n) factor on at least a 1/4 fraction of the examples under D. This holds
+even for the subclass of matroid rank functions.
+     Theorem 8 is an information-theoretic hardness result. A slight modification
+yields Corollary 2, which is a complexity-theoretic hardness result.
+    Corollary 2. Suppose one-way functions exist. For any constant  > 0, no
+algorithm can PMAC-learn the class of nonnegative, monotone, submodular functions
+with approximation factor O(n1/3− ), even if the functions are given by polynomial-
+time algorithms computing their value on the support of the distribution.
+    The proofs of Theorem 9 and Corollary 2 are given in Appendix C.3. The lower
+bound in Corollary 2 gives a family of submodular functions that are hard to learn,
+even though the functions can be evaluated by polynomial-time algorithms on the
+support of the distribution. However, we do not prove that the functions can be
+evaluated by polynomial-time algorithms at arbitrary points, and we leave it as an
+open question whether such a construction is possible.
+                 √
+    4.4. An O( n)-approximation algorithm. In this section we discuss our
+most general upper bound for efficiently PMAC-learning the class √ of nonnegative,
+monotone, submodular functions with an approximation factor of O( n).
+    We start with a useful structural lemma concerning submodular functions.
+   Lemma 3 (Goemans et al. [33]). Let f : 2[n] → R+ be a normalized, nonnegative,
+monotone, submodular function. Then there exists a function fˆ of the form fˆ(S) =
+p
+  wT χ(S) where w ∈ Rn+ such that for all S ⊆ [n] we have
+                                              √
+                           fˆ(S) ≤ f (S) ≤ nfˆ(S).
+    This result, proven by Goemans et al. [33], follows from properties of submodular
+polyhedra and John’s theorem on approximating centrally symmetric convex bodies
+by ellipsoids [52]. We now use it in proving our main algorithmic result.
+728             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+Algorithm 2. Algorithm for PMAC-learning the class of nonnegative, monotone,
+submodular functions.
+Input:        A sequence of labeled training examples S = {(S1 , f ∗ (S1 )),
+(S2 , f (S2 )), . . . (S` , f ∗ (S` ))}.
+       ∗
+
+      • Let S6=0 = {(A1 , f ∗ (A1 )), . . . , (Aa , f ∗ (Aa ))} be the subsequence of S with
+         f ∗ (Ai ) 6= 0 ∀i. Let S0 = S \ S6=0 . Let U0 be the set of indices defined as
+                                                          [
+                                            U0 =              Si .
+                                                      i≤`
+                                                 f ∗ (Si )=0
+
+
+      • For each i ∈ [a], let yi be the outcome of flipping a fair {+1, −1}-valued coin,
+        each coin flip independent of the others. Let xi ∈ Rn+1 be the point defined
+        by                   (
+                                 χ(Ai ), f ∗ 2 (Ai )
+                                                     
+                                                                 (if yi = +1),
+                     xi =
+                                 χ(Ai ), (n + 1) · f ∗ 2 (Ai )
+                                                               
+                                                                 (if yi = −1).
+
+   • Find a linear separator u = (w, −z) ∈ Rn+1 , where w ∈ Rn and z ∈ R, such
+     that u is consistent with the labeled examples (xi , yi ) ∀i ∈ [a], and with the
+     additional constraint that wj = 0 ∀j ∈ U0 .
+                                           T      1/2
+Output: The function f defined as f (S) = w   χ(S)
+                                            (n+1)z      .
+
+
+    Theorem 10. Let F be the class of nonnegative, monotone, submodular functions
+            [n]
+√ X = 2 . There is an algorithm that PMAC-learns F with approximation factor
+over
+  n + 1. That is, for any distribution D over X , for any , δ sufficiently small, with
+probability 1 − δ, the algorithm
+                           √       produces a function f that approximates f ∗ within
+a multiplicative factor of n + 1 on a set of measure 1 −  with respect to D. The
+algorithm uses ` = 48n      9n
+                      log( δ ) training examples and runs in time poly(n, 1/, 1/δ).
+     Proof. As in Theorem 7, because of the multiplicative error allowed by the PMAC-
+learning model, we will separately analyze the subset of the instance space where f ∗
+is zero and the subset of the instance space where f ∗ is nonzero. For convenience, let
+us define
+              P = { S : f ∗ (S) 6= 0 }     and       Z = { S : f ∗ (S) = 0 } .
+     The main idea of our algorithm is to reduce our learning problem to the standard
+problem of learning a binary classifier (in fact, a linear separator) from i.i.d. samples
+in the passive, supervised learning setting [58, 93] with a slight twist in order to handle
+the points in Z. The problem of learning a linear separator in the passive supervised
+learning setting is one where the instance space is Rm , the samples are independently
+drawn from some fixed and unknown distribution D0 on Rm , and there is a fixed but
+unknown target function c∗ : Rm → {−1, +1} defined by c∗ (x) = sgn(uT x) for some
+vector u ∈ Rm . The examples induced by D0 and c∗ are called linearly separable.
+     The linear separator learning problem we reduce to is defined as follows. The
+instance space is Rm where m = n + 1 and the distribution D0 is defined by the
+following procedure for generating a sample from it. Repeatedly draw a sample S ⊆ [n]
+from the distribution D until f ∗ (S) 6= 0. Next, flip a fair coin. The sample from D0 is
+                   χ(S), f ∗ (S)2
+                                  
+                                                   (if the coin is heads),
+(4.4)                               ∗    2
+                                           
+                   χ(S), (n + 1) · f (S)           (if the coin is tails).
+                           LEARNING SUBMODULAR FUNCTIONS                                      729
+
+The function c∗ defining the labels is as follows: samples for which the coin was heads
+are labeled +1, and the others are labeled −1.
+     We claim that the distribution over labeled examples induced by D0 and c∗ is
+linearly separable in Rm . To prove this we use Lemma 3, which says that there exists
+a linear function fˆ(S) = wT χ(S) such that
+
+(4.5)               fˆ(S) ≤ f ∗ (S)2 ≤ n · fˆ(S)   ∀S ⊆ [n].
+
+Let u = (n + 1/2) · w, −1 ∈ Rm . For any point x in the support of D0 we have
+                          
+
+
+                  χ(S), f ∗ (S)2               uT x = (n + 12 ) · fˆ(S) − f ∗ (S)2 > 0,
+                                   
+          x =                             =⇒
+        χ(S), (n + 1) · f ∗ (S)2               uT x = (n + 1 ) · fˆ(S) − (n + 1) · f ∗ (S)2 < 0.
+                                 
+x =                                       =⇒                   2
+
+This proves the claim.
+    Moreover, due to (4.5), the linear function fˆ also satisfies fˆ(S) = 0 for every
+S ∈ Z. In particular, every training example Si satisfies fˆ(Si ) = 0 whenever Si ∈ Z,
+and moreover
+                                                                    [
+            fˆ({j}) = wj = 0 ∀j ∈ UD ,       where        UD =          Si .
+                                                                              Si ∈Z
+
+    Our algorithm is now as follows. It first partitions the training set
+
+                           S = {(S1 , f ∗ (S1 )), . . . , (S` , f ∗ (S` ))}
+
+into two sets S0 and S6=0 , where S0 is the subsequence of S with f ∗ (Si ) = 0, and
+S6=0 = S \ S0 . For convenience, let us denote the sequence S6=0 as
+
+                                 A1 , f ∗ (A1 ) , . . . , Aa , f ∗ (Aa ) .
+                                                                       
+                      S6=0 =
+
+Note that a is a random variable and we can think of the sets the Ai as drawn
+independently from D, conditioned on belonging to P. Let
+                       [
+            U0 =              Si     and      L0 = { S : S ⊆ U0 } .
+                       Si : f ∗ (Si )=0
+
+                                                             0
+                                                                                                  
+     Using S6=0 , the algorithm then constructs a sequence S6= 0 = (x1 , y1 ), . . . , (xa , ya )
+of training examples for the binary classification problem. For each i ∈ [a], let yi be
+−1 or 1, each with probability 1/2. Define xi as in (4.4):
+                         (
+                             χ(Ai ), f ∗ (Ai )2
+                                                
+                                                            (if yi = +1),
+                 xi =                             ∗   2
+                                                        
+                             χ(Ai ), (n + 1) · f (Ai )      (if yi = −1).
+
+The last step of our algorithm is to solve a linear program in order to find a linear
+separator u = (w, −z) where w ∈ Rn , z ∈ R, and
+    • u is consistent with the labeled examples (xi , yi ) for all i = 1, . . . , a, and
+    • wj = 0 for all j ∈ U0 .
+                                           T
+The output hypothesis is f (S) = ( w χ(S) 1/2
+                                   (n+1)z )   .
+    To prove correctness, note first that the linear program is feasible; this follows
+                                                       0
+from our earlier discussion using the facts that (1) S6= 0 is a set of labeled examples
+               0                  ∗
+drawn from D and labeled by c , and (2) U0 ⊆ UD . It remains to show that f
+730             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+approximates the target on most of the points. Let Y denote the set of points S ∈ P
+such that both of the points (χ(S), f ∗ 2 (S)) and (χ(S), (n + 1) · f ∗ 2 (S)) are correctly
+labeled by sgn(uT x), the linear separator found by our algorithm.
+                                                            √              It is easy to see
+that the function f approximates f ∗ to within a factor n + 1 on all the points in
+the set Y: for any point S ∈ Y, we have
+           wT χ(S) − zf ∗ (S)2 > 0   and      wT χ(S) − z(n + 1)f ∗ (S)2 < 0
+                                1/2                                 1/2
+                                                  √
+                     T                                   T
+                      w χ(S)                                w χ(S)
+             =⇒                      < f ∗ (S) < n + 1                    .
+                      (n + 1)z                             (n + 1)z
+                                                           T
+So, for any point in S ∈ Y, the function f (S) = ( w      χ(S) 1/2
+                                                        (n+1)z )     approximates f ∗ to
+                √
+within a factor n + 1.
+     Moreover, by design the function f correctly labels as 0 all the examples in L0 . To
+finish the proof, we now note two important facts: for our choice of ` = 16n          n
+                                                                               log( δ ),
+with high probability both P \ Y and Z \ L0 have small measure.
+   Claim 5. With probability at least 1 − δ, the set Z \ L0 has measure at most 
+under D.
+      Proof. The proof is very similar to Claim 4. For 1 ≤ k ≤ `, define
+                           [
+                Uk =           Si      and     Lk = { S : S ⊆ Uk } .
+                            i≤k
+                        f ∗ (Si )=0
+
+For any k, monotonicity and submodularity imply that f ∗ (Uk ) = 0, so monotonic-
+ity again implies that Lk ⊆ Z. Suppose that, for some k, the set Z \ Lk has
+measure at least . Define k 0 = k + log(n/δ)/. Then among the subsequent ex-
+amples Sk+1 , . . . , Sk0 , the probability that none of them lie in Z \ Lk is at most
+(1 − )log(n/δ)/ ≤ δ/n. On the other hand, if one of them does lie in Z \ Lk , then
+|Uk0 | > |Uk |. But |Uk | ≤ n for all k, so this can happen at most n times. Since
+` ≥ n log(n/δ)/, with probability at least δ the final set Z \ L` = Z \ L0 has measure
+at most .
+   Claim 6. With probability at least 1 − 2δ, the set P \ Y has measure at most 2
+under D.
+    Proof. Let q = 1 − p = PrS∼D [ S ∈ P ]. If q < , then the claim is immediate,
+since P has measure at most . So assume that q ≥ . Let µ = E [ a ] = q`. By
+assumption µ > 16n log(n/δ) q . Then Chernoff bounds give that
+                h                   qi
+             Pr a < 8n log(n/δ)        < exp(−n log(n/δ)q/) < δ.
+                                    
+So with probability at least 1 − δ, we have a ≥ 8n log(qn/δ) q . By a standard sample
+complexity argument [93] (which we reproduce in Theorem 25 in Appendix A.2), with
+probability at least 1 − δ, any linear separator consistent with S 0 will be inconsistent
+with the labels on a set of measure at most /q under D0 . In particular, this property
+holds for the linear separator computed by the linear program. So for any set S,
+the conditional probability that either (χ(S), f ∗ (S)2 ) or (χ(S), (n + 1) · f ∗ (S)2 ) is
+incorrectly labeled, given that S ∈ P, is at most 2/q. Thus
+       Pr [ S ∈ P ∧ S 6∈ Y ] = Pr [ S ∈ P ] · Pr [ S 6∈ Y | S ∈ P ] ≤ q · (2/q),
+as required.
+                          LEARNING SUBMODULAR FUNCTIONS                                   731
+
+                                                                                ∗
+    In summary,√ our algorithm produces a hypothesis f that approximates f to
+within a factor n + 1 on the set Y∪L` . The complement of this set is (Z\L` )∪(P\Y),
+which has measure at most 3, with probability at least 1 − 3δ.
+    Remark. Our algorithm proving Theorem 10 is significantly simpler than the
+algorithm of Goemans et al. [33], which achieves a slightly worse approximation factor
+in the model of approximately learning everywhere with value queries.
+     4.4.1. Extensions. Our algorithm for learning submodular functions is quite
+robust and can be extended to handle more general scenarios, including forms of
+noise. In this section we discuss several such extensions.
+     It is clear from the proofs of Theorem 10 that any improvements in the approxima-
+tion factor for approximating submodular functions by linear functions (i.e., Lemma 3)
+for specific subclasses of submodular functions yield PMAC-learning algorithms with
+improved approximation factors.
+     Next, let us consider the more general case where we do not even assume that
+the target function is submodular but that it is within a factor α of a submodular
+function on every point in the instance space.
+                                             √ Under this relaxed assumption we are
+able to achieve the approximation factor α n + 1. Specifically, we have the following.
+    Theorem 11. Let F be the class of nonnegative, monotone, submodular functions
+over X = 2[n] and let
+
+               F 0 = { f : ∃g ∈ F, g(S) ≤ f (S) ≤ α · g(S) ∀ S ⊆ [n] }
+
+for some known√α > 1. There is an algorithm that PMAC-learns F 0 with approxi-
+mation factor α n + 1. The algorithm uses ` = 48n     9n
+                                                log( δ ) training examples and
+runs in time poly(n, 1/, 1/δ).
+   Proof. By assumption, there exists g ∈ F such that g(S) ≤ f ∗ (S) ≤ α · g(S).
+Combining this with Lemma 3, we get that there exists fˆ(S) = wT χ(S) such that
+
+                  wT χ(S) ≤ f ∗ 2 (S) ≤ n · α2 · wT χ(S)        ∀ S ⊆ [n].
+
+We then apply the algorithm described in Theorem 10 with the following modifica-
+tions: (1) in the second step if yi = +1 we set xi = (χ(S), f ∗ 2 (S)) and if yi = −1 we set
+xi = (χ(S), α2 (n+1)·f ∗ (S)); (2) we output the function f (S) = ( α2 (n+1)z
+                                                                          1
+                                                                                 wT χ(S))1/2 .
+It is then easy to show that the distribution over labeled examples induced by D0 and
+c∗ is linearly separable in Rn+1 ; in particular, u = (α2 (n+1/2)·w, −1) ∈ Rn+1 defines
+a good linear separator. The proof then proceeds as in Theorem 10.
+    We can also extend the result in Theorem 10 to the agnostic case where we
+assume that there exists a submodular function that agrees with the target on all
+but an η fraction of the points; note that on the η fraction of the points the target
+can be arbitrarily far from a submodular function. In this case we can still PMAC-
+                                                        n
+learn with a polynomial number of samples O( n2 log( δ  )), but using a potentially
+computationally inefficient procedure.
+    Theorem 12. Let F be the class of nonnegative, monotone, submodular functions
+over X = 2[n] . Let
+
+ F 0 = { f : ∃g ∈ F s.t. f (S) = g(S) on more than 1 − η fraction of the points } .
+                                                                      √
+There is an algorithm that PMAC-learns F 0 with approximation factor n + 1. That
+is, for any distribution D over X , for any , δ sufficiently small, with probability
+732             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+1−δ, the √  algorithm produces a function f that approximates f ∗ within a multiplicative
+factor of n + 1 on a set of measure 1 −  − η with respect to D. The algorithm uses
+O( n2 log( δ
+            n
+               )) training examples.
+
+    Proof sketch. The proof proceeds as in Theorem 10. The main difference is
+that in the new feature space Rm , the best linear separator has error (fraction of
+mistakes) η. It is well known that even in the agnostic case the number of samples
+                                                                  n
+needed to learn a separator of error at most η +  is O( n2 log( δ )) (see Theorem 26
+in Appendix A.2). However, it is NP-hard to minimize the number of mistakes, even
+approximately [38], so the resulting procedure uses a polynomial number of samples,
+but it is computationally inefficient.
+
+    5. An approximate characterization of matroid rank functions. We now
+present an interesting structural result that is an application of the ideas in section 4.2.
+The statement is quite surprising: matroid rank functions are very well approximated
+by univariate, concave functions. The proof is also based on Theorem 6. To motivate
+the result, consider the following easy construction of submodular functions, which
+can be found in Lovász’s survey [70, p. 251]
+    Proposition 1. Let h : R → R be concave. Then f : 2[n] → R defined by
+f (S) = h(|S|) is submodular.
+      Surprisingly, we now show that a partial converse is true.
+     Theorem 13. There is an absolute constant c > 1 such that the following is
+true. Let f : 2[n] → Z+ be the rank function of a matroid with no loops, i.e., f (S) ≥ 1
+whenever S 6= ∅. Fix any  > 0, sufficiently small. There exists a concave function
+h : [0, n] → R such that, for every k ∈ [n], and for a 1− fraction of the sets S ∈ [n]
+                                                                                        
+                                                                                     k ,
+
+                      h(k)/(c log(1/)) ≤ f (S) ≤ c log(1/)h(k).
+
+    The idea behind this theorem is as follows. For x ∈ [0, n], we define h(x) to be
+the expected value of f under the product distribution which samples each element
+independently with probability x/n. The value of f under this distribution is tightly
+concentrated around h(x), by the results of sections 3.2 and 4.2. For any k ∈ [n], the
+distribution defining h(k) is very similar to the uniform distribution on sets of size k,
+so f is also tightly concentrated under the latter distribution. So the value of f for
+most sets of size k is roughly h(k). The concavity of this function h is a consequence
+of submodularity of f .
+    Henceforth, we will use the following notation. For p ∈ [0, 1], let R(p) ⊆ [n]
+denote the random variable obtained by choosing each element of [n] independently
+with probability p. For k ∈ [n], let S(k) ⊆ [n] denote a set of cardinality k chosen
+uniformly at random. Define the function h0 : [0, 1] → R by
+
+                                 h0 (p) = E [ f (R(p)) ] .
+
+For any τ ∈ R, define the functions gτ : [0, 1] → R and gτ0 : [n] → R by
+
+                              gτ (p) = Pr [ f (R(p)) > τ ] ,
+                              gτ0 (k) = Pr [ f (S(k)) > τ ] .
+
+Finally, let us introduce the notation X ∼
+                                         = Y to denote that random variables X and
+Y are identically distributed.
+                         LEARNING SUBMODULAR FUNCTIONS                                733
+
+    Lemma 4. h0 is concave.
+     Proof. One way to prove this is by appealing to the multilinear extension of f ,
+which has been of great value in recent work [13]. This is the function F : [0, 1][n] → R
+                                                       [n]
+defined by F (y) = E [ f (ŷ) ], where ŷ ∈ {0, 1}         is a random variable obtained
+by independently setting ŷi = 1 with probability yi , and ŷi = 0 otherwise. Then
+                                                    2
+h0 (p) = F (p, . . . , p). It is known [13] that ∂y∂i ∂y
+                                                      F
+                                                        j
+                                                           ≤ 0 for all i, j. By basic cal-
+culus, this implies that the second derivative of h0 is nonpositive, and hence h0 is
+concave.
+    Lemma 5. gτ0 is a monotonically nondecreasing function.
+     Proof. Fix k ∈ [n − 1] arbitrarily. Pick a set S = S(k). Construct a new set T
+by adding to S a uniformly chosen element of V \ S. By monotonicity of f we have
+f (S) > τ =⇒ f (T ) > τ . Thus Pr [ f (S) > τ ] ≤ Pr [ f (T ) > τ ]. Since T ∼
+                                                                             = S(k + 1),
+this implies that gτ (k) ≤ gτ (k + 1), as required.
+    Lemma 6. gτ0 (k) ≤ 2 · gτ (k/n) for all τ ∈ R and k ∈ [n].
+    Proof. This lemma is reminiscent of a well-known property of the Poisson ap-
+proximation [73, Theorem 5.10], and the proof is also similar. Let p = k/n. Then
+
+             gτ (p) = Pr [ f (R(p)) > τ ]
+                      Xn
+                    =      Pr [ f (R(p)) > τ | |R(p)| = i ] · Pr [ |R(p)| = i ]
+                        i=0
+                        n
+                        X
+                    =         gτ0 (i) · Pr [ |R(p)| = i ]
+                        i=0
+                        n
+                        X
+                    ≥         gτ0 (k) · Pr [ |R(p)| = i ]   (by Lemma 5)
+                        i=k
+                    =   gτ0 (k) · Pr [ |R(p)| ≥ k ]
+                    ≥   gτ0 (k)/2,
+
+since the mean k of the binomial distribution B(n, k/n) is also a median.
+    Proof of Theorem 13. For x ∈ [0, n], define h(x) = h0 (x/n) = E [ f (R(x/n)) ]. Fix
+k ∈ [n] arbitrarily. We use the same constants L < M < H and K as in section 4.2.
+    Case 1. Suppose that h(k) ≥ L log(1/). As argued in (4.2), since L ≥ 4000 and
+ ≤ 1/2 we have
+                                                                        
+                       1                                           5
+    Pr f (R(k/n)) < h(k) ≤              and     Pr f (R(k/n)) > h(k) ≤ .
+                       3                                           3
+
+                            > 35 h(k) ≤ 2.
+                                    
+By Lemma 6, Pr f (S(k))                   By a symmetric argument, which we omit,
+one can show that Pr f (S(k)) < 13 h(k) ≤ 2. Thus,
+                       
+
+
+                     Pr 13 h(k) ≤ f (S(k)) ≤ 53 h(k)
+                                                     
+                                                        ≥ 1 − 4.
+
+This completes the proof of Case 1.
+    Case 2. Suppose that h(k) < L log(1/). This immediately implies that
+                                       
+                                h(k)
+(5.1)         Pr f (S(k)) <               ≤ Pr [ f (S(k)) < 1 ] = 0
+                             L log(1/)
+734            MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+since k ≥ 1 and since we assume that f (S) ≥ 1 whenever S 6= ∅. These same
+assumptions lead to the following lower bound on h:
+(5.2) h(k) ≥ Pr [ f (R(k/n)) ≥ 1 ] = Pr [ R(k/n) 6= ∅ ] = 1−(1−k/n)n ≥ 1−1/e.
+Thus
+                                       
+        Pr f (S(k)) > 2K log(1/) · h(k)
+                                                   
+            ≤ 2 · Pr f (R(k/n)) > 2K log(1/) · h(k)                 (by Lemma 6)
+             ≤ 2 · Pr [ f (R(k/n)) > K log(1/) ]       (by (5.2))
+             ≤ 2 · ,
+by Lemma 2, statement (3), since E [ f (R(k/n)) ] = h(k) < L log(1/). Thus,
+                                                            
+                 h(k)                                 
+        Pr               ≤ f (S(k)) ≤ 2K log(1/) h(k)          ≥ 1 − 2,
+              L log(1/)
+completing the proof of Case 2.
+    6. Implications of our matroid construction for submodular optimiza-
+tion. The original motivation of our matroid construction in section 4.3 is to show
+hardness of learning in the PMAC model. In this section we show that this con-
+struction has implications beyond learning theory; it reveals interesting structure of
+matroids and submodular functions. We illustrate this interesting structure by us-
+ing it to show strong inapproximability results for several submodular optimization
+problems.
+    6.1. Submodular minimization under a cardinality constraint. Minimiz-
+ing a submodular function is a fundamental problem in combinatorial optimization.
+Formally, the problem is
+(6.1)                           min { f (S) : S ⊆ [n] } .
+There exist efficient algorithms to solve this problem exactly.
+     Theorem 14 (Grötschel, Lovász, and Schrijver [35], Iwata, Fleischer, and Fu-
+jishige [45], Schrijver [85]). Let f : 2[n] → R be any submodular function.
+      (a) There is an algorithm with running time poly(n) that computes the minimum
+          value of (6.1).
+      (b) There is an algorithm with running time poly(n) that constructs a lattice
+          which represents all minimizers of (6.1). This lattice can be represented in
+          space poly(n).
+     The survey of McCormick [71, section 5.1] contains further discussion about algo-
+rithms to construct the lattice of minimizers. This lattice efficiently encodes a lot of
+information about the minimizers. For example, given any set S ⊆ [n], one can use the
+lattice to efficiently determine whether S is a minimizer of (6.1). Also, the lattice can
+be used to efficiently find the inclusionwise-minimal and the inclusionwise-maximal
+minimizer of (6.1). In summary, submodular function minimization is a very tractable
+optimization problem, and its minimizers have a rich combinatorial structure.
+     The submodular function minimization problem becomes much harder when we
+impose some simple constraints. In this section we consider submodular function
+minimization under a cardinality constraint:
+(6.2)                       min { f (S) : S ⊆ [n], |S| ≥ d } .
+                         LEARNING SUBMODULAR FUNCTIONS                                  735
+
+This problem, which was considered in previous work [89], is a minimization variant
+of submodular function maximization under a cardinality constraint [77] and is a
+submodular analogue of the minimum coverage problem [94]. Unfortunately, (6.2) is
+not a tractable optimization problem. We show that, in a strong sense, its minimizers
+are very unstructured.
+    The main result of this section is that the minimizers of (6.2) do not have a
+succinct, approximate representation.
+    Theorem 15. There exists a randomly chosen nonnegative, monotone, submod-
+ular function f : 2[n] → R such that, for any algorithm that performs any number of
+queries to f and outputs a data structure of size poly(n), that data structure cannot
+represent the minimizers of (6.2) to within an approximation factor o(n1/3 / log n).
+Moreover, any algorithm that performs poly(n) queries to f cannot compute the min-
+imum value of (6.2) to within a o(n1/3 / log n) factor.
+    Here, a “data structure representing the minimizers to within a factor α” is a
+program of size poly(n) that, given a set S, returns “yes” if S is a minimizer, returns
+“no” if f (S) is at least α times larger than the minimum, and otherwise can return
+anything.
+    Previous work [34, 89, 33] showed that there exists a randomly chosen nonneg-
+ative, monotone, submodular function f : 2[n] → R such that any algorithm that
+performs poly(n) queries to f cannot approximate the minimum value of (6.2) to
+within a o(n1/2 / log n) factor. Also, implicit in the work of Jensen and Korte [51,
+p. 186] is the fact that no data structure of size poly(n) can exactly represent the
+minimizers of (6.2). In contrast, Theorem 15 is much stronger because it implies that
+no data structure of size poly(n) can even approximately represent the minimizers of
+(6.2).
+    To prove Theorem 15 we require the matroid construction of section 3.1.4, which
+we restate as follows.
+     Theorem 16. Let n be a sufficiently large integer and let h(n) be any function
+satisfying h(n) = o(n1/3 / log n). Define k = nh(n) + 1, d = n1/3 , b = 8 log k, τ =
+d/4 log k, and  = 2 log(k)/n1/3 .
+     Set U = {u1 , . . . , uk } and V = {v1 , . . . , vn }. Suppose that H = (U ∪ V, E) is a
+(d, L, )-lossless expander. We construct a family A = {A1 , . . . , Ak } of subsets of [n],
+each of size d, by setting
+(6.3)             Ai = { j ∈ [n] : vj ∈ Γ({ui }) }         ∀i = 1, . . . , k.
+As before, Γ(J) denotes the neighbors of the vertex set J ⊆ U .
+    For every B ⊆ U there is a matroid MB = ([n], I) whose rank function satisfies
+                                      (
+                                        b       (if ui ∈ B),
+                    rankMB (Ai ) =
+                                        d       (if ui ∈ U \ B).
+Furthermore, every set S ⊆ [n] with |S| ≥ b has rankMB (S) ≥ b.
+    Proof of Theorem 6.2. Fix any function h(n) = ω(1). Let d = n1/3 , k = nh(n) +1,
+and let U = {u1 , . . . , uk } be a set of vertices. Pick a subset B ⊆ U \ {uk } randomly.
+We now define a submodular function on the ground set [n]. We apply Theorem 5
+with L = d/2 log k and  = 1/L to obtain a random bipartite multigraph H. With
+probability at least 1−2/k, the resulting graph H is a (d, L, )-lossless expander (after
+eliminating parallel edges). In this case, we can apply Theorem 16 to obtain the
+matroid MB , which we emphasize does not depend on Γ({uk }). We let f = rankMB .
+736             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+      Define Ai as in (6.3) for i = 1, . . . , k − 1. The last sentence of Theorem 16 ensures
+that f (S) ≥ b whenever |S| ≥ b, and therefore Ai is a minimizer of (6.2) whenever
+ui ∈ B.
+      First consider an algorithm ALG that performs any number of queries to f and
+attempts to represent B in poly(n) bits. Since B is a random subset of U \ {uk },
+which has cardinality nh(n) , the probability that B can be represented in poly(n) bits
+is o(1). If B cannot be exactly represented by ALG, then, with probability 1/2, there
+is some set Ai whose value is not correctly represented. The multiplicative error in
+the value of Ai is d/b = Θ(n1/3 /h(n) log n). This proves the first statement of the
+theorem.
+      Next we will argue that any algorithm ALG performing m = poly(n) queries
+to f = rankMB has low probability of determining whether B = ∅. If B = ∅, then
+f (S) = min {|S|, d}, so the minimum value of (6.2) is d = n1/3 . On the other hand,
+if B 6= ∅, then the minimum value of (6.2) is b = O(h(n) log n). Therefore this will
+establish the second part of the theorem.
+      Suppose the algorithm ALG queries the value of f on the sets S1 , . . . , Sm ⊆ [n].
+Consider the ith query and suppose inductively that rankMB (Sj ) = rankM∅ (Sj ) for
+all j < i. Thus ALG has not yet distinguished between the cases f = rankMB
+and f = rankM∅ . Consequently the set Si used in the ith query is independent of
+A1 , . . . , Ak−1 .
+      Let Si0 be a set of size |Si0 | = d obtained from Si by either adding (if |Si | < d)
+or removing (if |Si | > d) arbitrary elements of [n], or setting Si0 = Si if |Si | = d. We
+will apply Theorem 5 again, but this time we make an additional observation. Since
+the definition of expansion does not depend on the labeling of the ground set, one
+may assume in Theorem 5 that one vertex in U , say, uk , chooses its neighbors deter-
+ministically and that all remaining vertices in U choose their neighbors at random.
+Specifically, we will set
+                                Γ({uk }) = { vj : j ∈ Si0 } .
+The neighbors Γ({ui }) for i < k are not randomly rechosen; they are chosen to be
+the same as they were in the first invocation of Theorem 5. With probability at least
+1 − 2/k we again obtain a (d, L, )-lossless expander, in which case Theorem 16 shows
+that rankMB (Si0 ) = d = |Si0 |. That event implies
+                                   (
+                                     |Si | = rankM∅ (Si )  (if |Si | < d),
+                rankMB (Si ) =
+                                     d = rankM∅ (Si )      (if |Si | ≥ d),
+
+and hence the inductive hypothesis holds for i as well.
+    By a union bound over all m queries, the probability of distinguishing whether
+B = ∅ is at most 2m/k = o(1).
+    6.2. Submodular s-t min cut. Let G be an undirected graph with edge set
+E and n = |E|. Let s and t be distinct vertices of G. A set C ⊆ E is called an s-t
+cut if every s-t path intersects C. Let C ⊂ 2E be the collection of all s-t cuts. The
+submodular s-t min cut problem [50] is
+(6.4)                             min { f (C) : C ∈ C } ,
+where f : 2E → R is a nonnegative, monotone, submodular function.
+    Theorem 17 (Jegelka and Bilmes [50]). Any algorithm for the submodular s-t
+min cut problem with approximation ratio o(n1/3 ) must perform exponentially many
+queries to f .
+                              LEARNING SUBMODULAR FUNCTIONS                                737
+
+    Modifying their result to incorporate our matroid construction in section 4.3, we
+obtain the following theorem.
+    Theorem 18. Let d = n1/3 . Let G be a graph with edge set E consisting of d
+internally-vertex-disjoint s-t paths, each of length exactly n/d. Assume that f : 2E →
+R is a nonnegative, monotone, submodular function. For any algorithm that performs
+any number of queries to f and outputs a data structure of size poly(n), that data
+structure cannot represent the minimizers of (6.4) to within an approximation factor
+o(n1/3 / log n). Moreover, any algorithm that performs poly(n) queries to f cannot
+compute the minimum value of (6.4) to within a o(n1/3 / log n) factor.
+    The proof of this theorem is almost identical to the proof of Theorem 15. All that
+we require is a slightly different expander construction.
+      Theorem 19. Let U = {u1 , . . . , uk } and V be disjoint vertex sets, where |V | = n
+and n is a multiple of d. Write V as the disjoint union V = V1 ∪ · · · ∪ Vd , where each
+|Vi | = n/d.
+      Generate a random bipartite multigraph H with left-vertices U and right-vertices
+V as follows. The vertex uk has exactly d neighbors in V , chosen deterministically
+and arbitrarily. For each vertex u` with ` ≤ k − 1, pick exactly one neighbor from
+each Vi , uniformly and independently at random. Thus each vertex in U has degree
+exactly d.
+      Suppose that k ≥ 4, L ≥ d, d ≥ log(k)/, and n ≥ 22Ld/. Then, with probability
+at least 1 − 2/k, the multigraph H has no parallel edges and satisfies
+
+                       |Γ({u})| = d     ∀u ∈ U,
+                         |Γ(J)| ≥ (1 − ) · d · |J|          ∀J ⊆ U, |J| ≤ L.
+
+    Proof. The proof is nearly identical to the proof of Theorem 5 in Appendix D. The
+only difference is in analyzing the probability of a repeat when sampling the neighbors
+of a set J ⊆ U with |J| = j. First consider the case that uk ∈ J. When sampling
+the neighbors Γ(J), an element vi is considered a repeat if vi ∈ {v1 , . . . , vi−1 } or if
+vi ∈ Γ({uk }). Conditioned on v1 , . . . , vi−1 , the probability of a repeat is at most j+d
+                                                                                         n/d .
+If uk 6∈ J, then this probability is at most jd/n. Consequently, the probability of
+having more than jd repeats is at most
+                                   jd        e jd  (j + d)d jd
+                 jd        (j + d)d
+                                             ≤                              ≤ (1/4)jd .
+                jd           n                              n
+
+The last inequality follows from j + d ≤ 2L and our hypothesis n ≥ 22Ld/. The
+remainder of the proof is identical to the proof of Theorem 5.
+     Proof of Theorem 18. Let Vi be the edges of the ith s-t path. The minimal s-t
+cuts are those which choose exactly one edge from each s-t path; in other words, they
+are the transversals of the Vi ’s. Let V = V1 ∪ · · · ∪ Vd ; this is also the edge set of the
+graph G.
+     As in Theorem 15, fix h(n) = ω(1), k = nh(n) + 1, and U = {u1 , . . . , uk }. Pick a
+subset B ⊆ U \ {uk } randomly. We now define a submodular function on the ground
+set V = [n]. We apply Theorem 19 with L = d and  = 2 log(k)/d to obtain a random
+bipartite multigraph H. With probability at least 1 − 2/k, the resulting graph H is a
+(d, L, )-lossless expander. In this case we can apply Theorem 16 to obtain a matroid
+MB . We let f = rankMB .
+738            MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+     Define Ai as in (6.3) for i = 1, . . . , k − 1. Because the expander construction
+of Theorem 19 ensures that each vertex u` has exactly one neighbor in each Vi , the
+corresponding set A` = Γ(u` ) is a minimal s-t cut. Consequently, Ai ∈ C. The last
+sentence of Theorem 16 ensures that f (S) ≥ b whenever |S| ≥ b, and therefore Ai is
+a minimizer of (6.4) whenever ui ∈ B.
+     First consider an algorithm ALG that performs any number of queries to f and
+attempts to represent B in poly(n) bits. As in Theorem 15, with probability 1/2
+there is some set Ai whose value is not correctly represented, with multiplicative
+error Θ(n1/3 /h(n) log n). This proves the first statement of the theorem.
+     Next we will argue that any algorithm ALG performing m = poly(n) queries to f
+has low probability of determining whether B = ∅. If B = ∅, then f (S) = min {|S|, d},
+so the minimum value of (6.2) is d = n1/3 , because any S ∈ C has |S| ≥ d. On the
+other hand, if B 6= ∅, then, as mentioned above, Ai is a minimizer whenever ui ∈ B.
+The remainder of the argument that establishes the second statement of the theorem
+is analogous to Theorem 15, replacing Theorem 5 with Theorem 19.
+     6.3. Submodular vertex cover. Let G = (V, E) be a graph with n = |V |. A
+set C ⊆ V is a vertex cover if every edge has at least one endpoint in C. Let C ⊂ 2V
+be the collection of vertex covers in the graph. The submodular vertex cover problem
+[32, 46] is
+
+(6.5)                           min { f (S) : S ∈ C } ,
+
+where f : 2V → R is a nonnegative, submodular function. An algorithm for this
+problem is said to have approximation ratio α if, for any function f , it returns a set
+S for which f (S) ≤ α · min { f (S) : S ∈ C }.
+    Theorem 20 (Goel et al. [32], Iwata and Nagano [46]). There is an algorithm
+which performs poly(n) queries to f and has approximation ratio 2.
+    Goel et al. only state that their algorithm is applicable for monotone, submodular
+functions, but the monotonicity restriction seems to be unnecessary.
+    Theorem 21 (Goel et al. [32]). For any constant  > 0, any algorithm for the
+submodular vertex cover problem with approximation ratio 2 −  must perform expo-
+nentially many queries to f .
+    Modifying their result to incorporate our matroid construction in section 4.3, we
+obtain the following theorem.
+    Theorem 22. Let G = (U ∪ V, E) be a bipartite graph. Assume that f : 2U ∪V →
+R is a nonnegative, monotone, submodular function. Let  ∈ (0, 1/3) be a constant.
+For any algorithm that performs any number of queries to f and outputs a data
+structure of size poly(n), that data structure cannot represent the minimizers of (6.5)
+to within an approximation factor better than 4/3 − . Moreover, any algorithm that
+performs poly(n) queries to f cannot compute the minimum value of (6.4) to within
+a 4/3 −  factor.
+
+    Proof. Let G be a graph with vertex set U ∪ V such that |U | = |V | = |E| =
+n/2, and where the edges in E form a matching between U and V . The minimal
+vertex covers are those that contain exactly one endpoint of each edge in E. Set
+      2
+k = 2 n/40 + 1. Let A = {A1 , . . . , Ak } be a family of sets where
+     • each Ai ⊆ U ∪ V ,
+     • Ak is an arbitrary set with |Ak | = n/2, and
+     • A1 , . . . , Ak−1 are independently and uniformly chosen minimal vertex covers.
+                          LEARNING SUBMODULAR FUNCTIONS                                    739
+
+For any i 6= j, E [ |Ai ∩ Aj | ] = n/4 and a Chernoff bound shows that
+                     Pr [ |Ai ∩ Aj | > (1 + )n/4 ] ≤ exp(−2 n/12).
+A union bound shows that, with high probability, |Ai ∩ Aj | ≤ (1 + )n/4 for all i 6= j.
+We now condition on that event.
+    We now apply Lemma 8 (in Appendix E.2) with each bi = b = (3 + )n/8 and
+d = n/2. We have
+ min (bi + bj − |Ai ∩ Aj |) ≥ 2b − (1 + )n/4 = 2(3 + )n/8 − (1 + )n/4 = n/2,
+i,j∈[k]
+
+and therefore the hypotheses of Lemma 8 are satisfied. It follows that for any set
+B ⊆ A the set
+                   IB = { I : |I| ≤ d ∧ |I ∩ Aj | ≤ b          ∀Aj ∈ B }
+is the family of independent sets of a matroid. Let f = rankMB be the rank function
+of this matroid. Observe that f (S) ≥ b whenever |S| ≥ b.
+     Suppose ALG performs any number of queries to f . As in Theorem 15, the set
+B has probability o(1) of being representable in poly(n) bits, in which case there is
+a minimal vertex cover Ai whose value is not correctly represented with probability
+1/2. The multiplicative error in the value of Ai is
+                                d      n/2       4
+                                  =            >   − .
+                                b   (3 + )n/8   3
+This proves the first part of the theorem.
+    Next we will argue that any algorithm ALG performing m = poly(n) queries to f
+has low probability of determining whether B = ∅. If B = ∅, then f (S) = min {|S|, d},
+so the minimum value of (6.4) is d. On the other hand, suppose that B 6= ∅. As every
+C ∈ C has |C| ≥ n/2, we must have f (C) ≥ b, and hence the minimum value
+of (6.4) is b. This will show that the multiplicative error is at least d/b, thereby
+proving the second part of the theorem. The remainder of the proof is analogous to
+Theorem 15.
+
+     7. Implications to algorithmic game theory and economics. An impor-
+tant consequence of our matroid construction in section 3.1 is that matroid rank func-
+tions do not have a “sketch,” i.e., a concise, approximate representation. As matroid
+rank functions can be shown to satisfy the “gross substitutes” property [75], our work
+implies that gross substitutes functions do not have a concise, approximate represen-
+tation. This provides a surprising answer to an open question in economics [8, 9, 10].
+In this section we define gross substitutes functions, briefly describe their importance
+in economics, and formally state the implications of our results for these functions.
+     Gross substitutes functions play an important role in algorithmic game theory
+and economics, particularly through their use as valuation functions in combinatorial
+auctions [18, 36, 80]. Intuitively, in a gross substitutes valuation, increasing the price
+of certain items cannot reduce the demand for items whose price has not changed.
+Formally, we have the following.
+    Definition 4. For price vector p~ ∈ Rn , the demand correspondence Df (~
+                                                                           p) of
+valuation f is the collection of preferred sets at prices p~, i.e.,
+                                             n         P          o
+                       Df (~p) = argmax f (S) − j∈S pj .
+                                     S⊆{1,...,n}
+
+A function f is gross substitutes if for any price vector q~ ≥ p~ (i.e., for which qi ≥
+                                     p) there exists A0 ∈ Df (~q) with A0 ⊇ {i ∈ A : pi = qi }.
+pi for all i ∈ [n]), and any A ∈ Df (~
+740             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+     In other words, the gross substitutes property requires that all items i in some
+preferred set A at the old prices p~ and for which the old and new prices are equal
+(pi = qi ) are simultaneously contained in some preferred set A0 at the new prices q~.
+     Gross substitutes valuations (introduced by Kelso and Crawford [59]) enjoy sev-
+eral appealing structural properties whose implications have been extensively studied
+by many researchers [8]. For example, given bidders with gross substitutes valua-
+tions, simple item-price ascending auctions can be used for determining the socially
+efficient allocation. As another example, the gross substitute condition is actually
+necessary for important economic conclusions. For example, Gul and Stacchetti [36]
+and Milgrom [72] showed that given any valuation that is not gross substitutes, one
+can specify very simple valuations for the other agents to create an economy in which
+no Walrasian equilibrium exists.
+     One important unsolved question concerns the complexity of describing gross sub-
+stitutes valuations. Several researchers have asked whether there exists a “succinct”
+representation for such valuations [8], [9, section 6.2.1], [10, section 2.2]. In other
+words, can a bidder disclose the exact details of his valuation without conveying an
+exceptionally large amount of information? An implication of our work is that the
+answer to this question is “no,” in a very strong sense. Our work implies that gross
+substitutes functions cannot be represented succinctly, even approximately, and even
+with a large approximation factor. Formally, we have the following.
+    Definition 5. We say that g : 2[n] → R+ is an α-sketch for f : 2[n] → R+ if g
+can be represented in poly(n) space and for every set S we have that f (S)/α ≤ g(S) ≤
+f (S).
+     As matroid rank functions are known to satisfy the gross substitute property [75],
+our work implies that gross substitutes do not have a concise, approximate represen-
+tation. Specifically, we have the following.
+      Theorem 23. Gross substitutes functions do not admit o(n1/3 /log n) sketches.
+     8. Conclusions. In this work we have used a learning theory perspective to
+uncover new structural properties of submodular functions. We have presented the
+first algorithms and lower bounds for learning submodular functions in a distributional
+learning setting. We also presented numerous implications of our work in algorithmic
+game theory, economics, matroid theory, and combinatorial optimization.
+     Regarding learnability, we presented polynomial upper and lower bounds on the
+approximation factor achievable when using only a polynomial number of examples
+drawn i.i.d. from an arbitrary distribution. We also presented a simple algorithm
+achieving a constant-factor approximation under product distributions. These results
+show that, with respect to product distributions, submodular functions behave in
+a fairly simple manner, whereas with respect to general distributions, submodular
+functions behave in a much more complex manner.
+     We constructed a new family of matroids with interesting technical properties
+in order to prove our lower bound on PMAC-learnability. The existence of these
+matroids also resolves an open question in economics: an immediate corollary of
+our construction is that gross substitutes functions have no succinct, approximate
+representation. We also used these matroids to show that the optimal solutions of
+various submodular optimization problems can have a very complicated structure.
+     The PMAC model provides a new approach for analyzing the learnability of real-
+valued functions. This paper has analyzed submodular functions in the PMAC model.
+We believe that it will be interesting to study PMAC-learnability of other classes
+                        LEARNING SUBMODULAR FUNCTIONS                                 741
+
+of real-valued functions. Indeed, as discussed below, subsequent work has already
+studied subadditive and XOS functions in the PMAC model.
+    One technical question left open by this work is determining the precise approx-
+imation factor achievable for PMAC-learning submodular functions—there is a gap
+between the O(n1/2 ) upper bound in Theorem 10 and the Ω̃(n1/3 ) lower bound in The-
+orem 8. We suspect that the lower bound can be improved to Ω̃(n1/2 ). If such an
+improved lower bound is possible, the matroids or submodular functions used in its
+proof are likely to be very interesting.
+
+     8.1. Subsequent work. Following our work, several authors have provided fur-
+ther results for learning submodular functions in a distributional learning setting.
+     Balcan et al. [5] and Badanidiyuru et al. [3] have provided further learnability
+results in the PMAC model for various classes of set functions commonly used in al-
+gorithmic game theory and economics. Building on our algorithmic technique, Balcan
+et al. [5] give a computationally
+                             √       efficient algorithm for PMAC-learning subadditive
+functions to within an Õ( n) factor. They also provide new target-dependent learn-
+ability result for XOS (or fractionally subadditive) functions. Their algorithms use
+the algorithmic technique that we develop in section 4.4, together with new structural
+results for these classes of functions. Badanidiyuru et al. [3] consider the problem of
+sketching subadditive and submodular functions. They show that the existence of
+such a sketch implies that PMAC-learning to within a factor α is possible if computa-
+tional efficiency is ignored. As a consequence they  √obtain (computationally inefficient)
+algorithms for PMAC-learning to within an Õ( n) factor for subadditive functions
+and to within a 1 +  factor for both coverage functions and OXS functions.
+     Regarding inapproximability, Badanidiyuru et al. and Balcan et al. show that
+XOS (i.e., fractionally√subadditive) functions do not have sketches that approximate
+to within a factor o( n). Consequently, every      √ algorithm for PMAC-learning XOS
+functions must have approximation factor Ω̃( n). The construction used to prove
+this result is significantly simpler than our construction in section 4.3, because XOS
+functions are a more expressive class than submodular functions.
+     Motivated by problems in privacy preserving data analysis, Gupta et al. [37]
+considered how to perform statistical queries to a data set in order to learn the answers
+to all statistical queries from a certain class. They showed that this problem can be
+efficiently solved when the queries are described by a submodular function. One of
+the technical pieces in their work is an algorithm to learn submodular functions under
+a product distribution. A main building block of their technique is the algorithm we
+provide in section 4.2 for learning under a product distribution, and their analysis is
+inspired by ours. Their formal guarantee is incomparable to ours: it is stronger in
+that they allow non-Lipschitz and nonmonotone functions, but it is weaker in that
+they require access to the submodular function via a value oracle, and they guarantee
+only additive error (assuming the function is appropriately normalized). Moreover,
+their running time is npoly (1/) , whereas ours is poly (n, 1/). Feldman and Vondrák
+further refined these results in a series of papers [28, 27].
+     Cheraghchi et al. [17] study the noise stability of submodular functions. As a con-
+sequence they obtained an algorithm for learning a submodular function under prod-
+uct distributions. Their algorithm also works for nonsubmodular and non-Lipschitz
+functions and only requires access to the submodular function via statistical queries,
+though the running time is npoly (1/) . Their algorithm is agnostic (meaning that
+they do not assume the target function is submodular), and their performance guar-
+antee proves that the L1 -loss of their hypothesis is at most  more than the best
+742             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+error achieved by any submodular function (assuming the function is appropriately
+normalized).
+    Raskhodnikova and Yaroslavtsev [84] consider learnability of integer-valued, sub-
+modular functions and prove that any submodular function f : {0, 1}n → {0, 1, . . . , k}
+can be represented as a pseudo-Boolean 2k-DNF formula. They use this to provide
+an algorithm for learning such functions using membership queries under the uniform
+distribution; the algorithm runs in time polynomial in poly(n, k O(k log k/) , 1/).
+    Iyer, Jegelka, and Bilmes [48] show that for submodular functions with good
+curvature, our general PMAC learnability results can be further improved in a target-
+dependent manner.
+    Balcan, Vitercik, and White [6] further explored a variant of our PMAC learning
+model where the goal is to learn an underlying combinatorial function up to pairwise
+comparisons, from pairwise comparisons. They present several general algorithms that
+can be used to learn over a variety of combinatorial function classes, including those
+consisting of submodular, XOS, subadditive, coverage, and Fourier sparse functions.
+      Appendix A. Standard facts.
+      A.1. Submodular functions.
+     Theorem 24. Given a finite universe U , let S1 , S2 , . . . , Sn be subsets of U . De-
+fine f : 2[n] → R+ by
+                       f (A) = |∪i∈A Si | for A ⊆ [n].
+Then f is monotone and submodular. More generally, for any nonnegative weight
+function w : U → R+ , the function f defined by
+
+                            f (A) = w (∪i∈A Si )     for     A ⊆ [n]
+
+is monotone and submodular.
+    Lemma 7. The minimizers of any submodular function are closed under union
+and intersection.
+      Proof. Assume that J1 and J2 are minimizers for f . By submodularity we have
+
+                         f (J1 ) + f (J2 ) ≥ f (J1 ∩ J2 ) + f (J1 ∪ J2 ).
+
+We also have
+                         f (J1 ∩ J2 ) + f (J1 ∪ J2 ) ≥ f (J1 ) + f (J2 ),
+so f (J1 ) = f (J2 ) = f (J1 ∩ J2 ) = f (J1 ∪ J2 ), as desired.
+    A.2. Sample complexity results. We state here several known sample com-
+plexity bounds that were used for proving the results in section 4.4. See, e.g., [19, 2].
+     Theorem 25. Let C be a set of functions from X to {−1, 1} with finite VC-
+dimension D ≥ 1. Let D be an arbitrary but fixed probability distribution over X and
+let c∗ be an arbitrary target function. For any , δ > 0, if we draw a sample S from
+D of size                                                
+                                   1          1             2
+                     m(, δ, D) =     4D log       + 2 log       ,
+                                                          δ
+then with probability 1 − δ, all hypotheses with error ≥  are inconsistent with the
+data; i.e., uniformly for all h ∈ C with err(h) ≥ , we have c       err(h) > 0. Here
+err(h) = Prx∼D [h(x) 6= c∗ (x)] is the true error of h and c
+                                                           err(h) = Prx∼S [h(x) 6= c∗ (x)]
+is the empirical error of h.
+                        LEARNING SUBMODULAR FUNCTIONS                                 743
+
+    Theorem 26. Suppose that C is a set of functions from X to {−1, 1} with finite
+VC-dimension D ≥ 1. For any distribution D over X , any target function (not
+necessarily in C), and any , δ > 0, if we draw a sample from D of size
+                                                       
+                                  64           12         4
+                     m(, δ, D) = 2 2D ln           + ln      ,
+                                                        δ
+
+then with probability at least 1 − δ, we have |err(h) − c
+                                                        err(h)| ≤  for all h ∈ C.
+    Appendix B. Proofs for concentration of submodular functions.
+    B.1. Proof of Theorem 6.
+
+    Theorem 6. Let f : 2[n] → R+ be a nonnegative, monotone, submodular, 1-
+Lipschitz function. Let the random variable X ⊆ [n] have a product distribution. For
+any b, t ≥ 0,
+                  h             √ i
+                Pr f (X) ≤ b − t b · Pr [ f (X) ≥ b ] ≤ exp(−t2 /4).
+
+
+     Proof. We begin by observing that the theorem is much easier to prove in the
+special case that f is integer-valued. Together with our other hypotheses on f , this
+implies that f must actually be a matroid rank function. Whenever f (S) is large,
+this fact can “certified” by any maximal independent subset of S. The theorem then
+follows easily from a version of Talagrand’s inequality which leverages this certification
+property; see, e.g., [1, section 7.7] or [74, section 10.1].                          √
+     We now prove the theorem in its full generality. We may assume that t ≤ b;
+otherwise the theorem is trivial, since f (X) is nonnegative. Talagrand’s inequality
+                                 n                 n
+states that for any A ⊆ {0, 1} and y ∈ {0, 1} drawn from a product distribution,
+
+(B.1)                Pr [ y ∈ A ] · Pr [ ρ(A, y) > t ] ≤ exp(−t2 /4),
+
+where ρ is a distance function defined by
+                                                       X
+                           ρ(A, y) =     sup min                αi .
+                                         α∈Rn z∈A i : y 6=z
+                                                       i    i
+                                        kαk2 =1
+
+                                                                            √
+We apply this inequality to the set A ⊆ 2V defined by A = {X : f (X) < b − t b}.
+    Claim 7. For every Y ⊆ V , f (Y ) ≥ b implies ρ(A, Y ) > t.
+    Proof. Suppose to the contrary that ρ(A, Y ) ≤ t. By relabeling, we can write Y
+as Y = {1, . . . , k}. For i ∈ {0, . . . , k}, let Ei = {1, . . . , i}. Define
+                               (
+                                 f (Ei ) − f (Ei−1 )            (if i ∈ Y ),
+                        αi =
+                                 0                              (otherwise).
+                                                                             pP
+Since f is monotone and 1-Lipschitz, we have 0 ≤ αi ≤ 1. Thus kαk2 ≤
+p                                                                                 i αi ≤
+  f (Y ), by nonnegativity of f .
+     The definition of ρ and our supposition ρ(A, Y ) ≤ t imply that there exists Z ∈ A
+with
+                         X                                   p
+(B.2)                             αi ≤ ρ(A, Y ) · kαk2 ≤ t f (Y ).
+                   i∈(Y \Z)∪(Z\Y )
+744                MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+We may assume that Z ⊂ Y , since Z ∩ Y also satisfies the desired conditions. This
+follows since monotonicity of f implies that α ≥ 0 and that A is downward-closed.
+                                                                             p
+     We will obtain a contradiction by showing that f (Y ) − f (Z) ≤ t f (Y ). First
+let us order Y \ Z as (φ(1), . . . , φ(m)), where φ(i) < φ(j) iff i < j. Next, define
+Fi = Z ∪ {φ(1), . . . , φ(i)} ⊆ Y . Note that Ej ⊆ Fφ−1 (j) ; this follows from our choice
+of φ, since Z ⊆ Fφ−1 (j) but we might have Z 6⊆ Ej . Therefore
+
+  f (Y ) − f (Z)
+             Xm
+                                     
+         =       f (Fi ) − f (Fi−1 )
+             i=1
+              X                                         
+         =            f (Fφ−1 (j) ) − f (Fφ−1 (j)−1 )
+             j∈Y \Z
+              X                             
+         ≤            f (Ej ) − f (Ej−1 )        (since Ej ⊆ Fφ−1 (j) and f is submodular)
+             j∈Y \Z
+              X
+         =            αj
+             j∈Y \Z
+            p
+         ≤ t f (Y )         (by (B.2)).
+                     p              √                           √
+So f (Z) ≥ f (Y ) − t f (Y ) ≥ b − t b, since f (Y ) ≥ b and t ≤ b. This contradicts
+Z ∈ A.
+    This claim implies Pr [ f (Y ) ≥ b ] ≤ Pr [ ρ(A, Y ) > t ], so the theorem follows from
+(B.1).
+      B.2. Proof of Corollary 1.
+
+    Corollary 1. Let f : 2[n] → R+ be a nonnegative, monotone, submodular,
+1-Lipschitz function. Let the random variable X ⊆ [n] have a product distribution.
+For any 0 ≤ α ≤ 1,
+
+      Pr [ |f (X) − E [ f (X) ] | > α E [ f (X) ] ] ≤ 4 exp − α2 E [ f (X) ] /422 .
+                                                                                 
+
+
+
+    Proof. Let Y = f (X) and let M be a median of Y . The idea of the proof is
+simple: Theorem 6 shows tight concentration of Y around M . Since Y is so tightly
+concentrated, we must have E [ Y ] ≈ M . This allows us to show tight concentration
+around E [ Y ]. The remainder of the proof is simply a matter of detailed calculations.
+Similar arguments can be found in [49, section 2.5] and [74, section 20.2].
+    Claim 8.
+                                      (      2
+                                        4e−λ /8M        (0 ≤ λ ≤ M ),
+                Pr [ |Y − M | ≥ λ ] ≤      −λ/8
+                                        2e              (λ ≥ M ).
+
+Also,
+                                                    2
+                    Pr [ |Y − M | ≥ λ ] ≤ 4e−λ /24M
+                                                  (0 ≤ λ ≤ 5M ).
+                                                       √
+    Proof. First, apply Theorem 6 with b = M and t = λ/ M . Since Pr [ Y ≥ b ] ≤
+1/2, we get
+
+(B.3)                       Pr [ Y ≤ M − λ ] ≤ 2 exp(−t2 /4M ).
+                        LEARNING SUBMODULAR FUNCTIONS                               745
+                                               √
+Next, apply Theorem 6 with b = M + λ and t = λ/ M + λ. Since
+                      h         √ i                     1
+                   Pr Y ≤ b − t b = Pr [ Y ≤ M ] ≤ ,
+                                                        2
+we get
+                  Pr [ Y ≥ M + λ ] ≤ 2 exp − t2 /4(M + λ) .
+                                                          
+(B.4)
+Combining (B.3) and (B.4) proves the claim.
+                                 p
+     Claim 9. |E [pY ] − M | ≤ 15 E [ Y ] + 16. Consequently, if E [ Y ] ≥ 256, then
+|E [ Y ] − M | ≤ 16 E [ Y ].
+    Proof. This is a standard calculation; see, e.g., [49, section 2.5]. Using Claim 8,
+               |E [ Y ] − M | ≤ E [ |Y − M | ]
+                                Z ∞
+                              =       Pr [ |Y − M | ≥ λ ] dλ
+                                   0
+                                  Z M                   Z ∞
+                                            2
+                              =         4e−λ /8M dλ +          2e−λ/8 dλ
+                                 0                        M
+                                 √
+                              ≤ 4 2πM + 16e−M/8 .
+Since Y ≥ 0 we have 0 ≤ M ≤ 2 E [ Y ] (by Markov’s inequality), so
+                                               p
+                          |E [ Y ] − M | ≤ 15 E [ Y ] + 16.
+                            p
+This quantity is at most 16 E [ Y ] if E [ Y ] ≥ 256.
+    Case 1: E [ Y ] ≥ 584/α2 . Then
+              h                  √          p        i
+            Pr |Y − E [ Y ]| ≥ ( 2t + 16) E [ Y ]
+                         h            √          p                      i
+                  ≤ Pr |Y − M | ≥ ( 2t + 16) E [ Y ] − |E [ Y ] − M |
+                         h            p          i
+                  ≤ Pr |Y − M | ≥ t 2 E [ Y ]           (by Claim 9)
+                         h            √ i
+                  ≤ Pr |Y − M | ≥ t M             (since E [ Y ] ≥ M/2)
+                                                 √
+(B.5)             ≤ 4 exp(−t2 /24)      (if t ≤ 5 M )
+                       p               √
+by Claim 8. Set t = (α E [ Y ] − 16)/ 2. One may check that
+                                 p
+                       t2      (α E [ Y ] − 16)2       α2 E [ Y ]
+(B.6)                      =                       ≥              ,
+                       24           2 · 24                422
+since we assume E [ Y ] ≥ 584/α2 . Furthermore,
+                    p             √    p
+                      E [ Y ] ≤ M + |E [ Y ] − M |
+                                  √            1/4
+                              ≤ M + 4E[Y ]             (by Claim 9)
+                                  √        p
+                              ≤ M + 0.82 E [ Y ],
+             1/4
+                                                        p         √
+since E [ Y ]    ≥ 5841/4 > 4/0.82. Rearranging, 0.18 · E [ Y ] ≤ M . Therefore we
+have                    p          √              p            √
+                   t <     E [ Y ]/ 2 < 4 · 0.18 · E [ Y ] ≤ 4 M ,
+746             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+so we may apply (B.5) with this value of t.
+                                           h                 √        p        i
+      Pr [ |Y − E [ Y ]| ≥ α E [ Y ] ] = Pr |Y − E [ Y ]| ≥ ( 2t + 16) E [ Y ]
+                                     ≤ 4 exp(−t2 /24)
+                                     ≤ 4 exp(−α2 E [ Y ] /422),
+
+by (B.6).
+      Case 2: E [ Y ] < 584/α2 . Then α2 E [ Y ] /422 < ln(4), so
+
+                              4 exp(−α2 E [ Y ] /422) > 1,
+
+and the claimed inequality is trivial.
+      Appendix C. Additional proofs for learning submodular functions.
+      C.1. Learning Boolean submodular functions.
+     Theorem 27. The class of monotone, Boolean-valued, submodular functions is
+efficiently PMAC-learnable with approximation factor 1.
+    Proof. Let f : 2[n] → {0, 1} be an arbitrary monotone, Boolean, submodular
+function. We claim that f is either constant or a monotone disjunction. If f (∅) = 1,
+then this is trivial, so assume f (∅) = 0.
+    Since submodularity is equivalent to the property of decreasing marginal values,
+and since f (∅) = 0, we get
+
+                 f (T ∪ {x}) − f (T ) ≤ f ({x})    ∀T ⊆ [n], x ∈ [n] \ T.
+
+If f ({x}) = 0, then this together with monotonicity implies that f (T ∪ {x}) = f (T )
+for all T . On the other hand, if f ({x}) = 1, then monotonicity implies that f (T ) = 1
+for all T such that x ∈ T . Thus we have argued that f is a disjunction:
+                                       (
+                                         1 (if S ∩ X 6= ∅),
+                             f (S) =
+                                         0 (otherwise),
+
+where X = { x : f ({x}) = 1 }. This proves the claim.
+    It is well known that the class of disjunctions is easy to learn in the supervised
+learning setting [58, 93].
+     Nonmonotone, Boolean, submodular functions need not be disjunctions. For ex-
+ample, consider the function f where f (S) = 0 if S ∈ {∅, [n]} and f (S) = 1 otherwise;
+it is submodular, but not a disjunction. However, it turns out that any submodular
+Boolean function is a 2-DNF. This was already known [23], and it can be proven
+by case analysis as in Proposition 27. It is well known that 2-DNFs are efficiently
+PAC-learnable. We summarize this discussion as follows.
+  Theorem 28. The class of Boolean-valued, submodular functions is efficiently
+PMAC-learnable with approximation factor 1.
+      C.2. Learning under product distributions.
+
+    Lemma 2. Let f : 2[n] → R be a nonnegative, monotone, submodular, 1-
+Lipschitz function. Suppose that S1 , . . . , Sl are
+                                                  P`drawn from a product distribution
+D over 2[n] . Let µ the empirical average µ = i=1 f ∗ (Si )/`, which is our estimate
+for ES∼D [ f ∗ (S) ]. Let , δ ≤ 1/5. We have the following:
+                         LEARNING SUBMODULAR FUNCTIONS                                      747
+
+    (1) If E [ f ∗ (S) ] > H log(1/) and ` ≥ 16 log(1/δ), then
+
+                                Pr [ µ ≥ M log(1/) ] ≥ 1 − δ/4.
+
+    (2) If E [ f ∗ (S) ] > L log(1/) and ` ≥ 16 log(1/δ), then
+
+                         Pr 56 E [ f ∗ (S) ] ≤ µ ≤ 43 E [ f ∗ (S) ] ≥ 1 − δ/4.
+                                                                  
+
+    (3) If E [ f ∗ (S) ] ≤ H log(1/), then
+
+                                Pr [ f ∗ (S) < K log(1/) ] ≥ 1 − .
+
+    (4) If E [ f ∗ (S) ] < L log(1/) and ` ≥ 16 log(1/δ), then
+
+                                Pr [ µ < M log(1/) ] ≥ 1 − δ/4.
+
+
+    Proof. (1) Let fˆ : 2[n]×[`] → R be defined by
+                                                       `
+                                                       X
+                              fˆ(S1 , . . . , S` ) =         f ∗ (Si ).
+                                                       i=1
+
+It is easy to check that fˆ is also nonnegative, monotone, submodular, and 1-Lipschitz.
+We will apply Corollary 1 to fˆ with α = 1/10. Then
+
+        Pr [ µ < M log(1/) ]
+                  hP                            i
+                     `    ∗
+            = Pr     i=1 f (Si ) < M ` log(1/)
+                  h           h     i         h   i    i
+            ≤ Pr fˆ(X) − E f (X)  ˆ      > E fˆ(X) /10                    (since M ≤ 0.9 · H)
+                          h      i
+            ≤ 4 exp − E fˆ(X) /42200
+                                         
+                            
+            ≤ 4 exp − `/4 (since H > 10550)
+(C.1)       ≤ 4δ 3 ≤ δ/4.
+
+    (2) Let fˆ and X be as above. Then
+
+                 Pr 56 E [ f ∗ (S) ] ≤ µ ≤ 43 E [ f ∗ (S) ]
+                                                           
+
+                      ≤ Pr µ − E [ f ∗ (S) ] > E [ f ∗ (S) ] /10
+                                                                  
+                               h           h         i        h   i    i
+                      = Pr fˆ(X) − E fˆ(X)               > E fˆ(X) /10
+                       ≤ δ/4,
+
+as in (C.1), since L ≥ 10550.            p                         √
+    √(3) Set b = K log(1/) and t = 4 log(1/). Since K −       √ 4 K ≥ 2H we have
+b−t b ≥ 2H log(1/) ≥ 2 E [ f ∗ (S) ], and so Pr f ∗ (S) ≤ b − t b ≥ 1/2 by Markov’s
+                                                                  
+                                          ∗                     2
+inequality. By Theorem 6, we have Pr [  pf (S) ≥ b ] ≤ 2 exp(−t /4) ≤  since  ≤ 1/2.
+     (4) Set b = M log(1/)` and t = 4 log(1/δ). Then
+                      √                       p          p
+                 b − t b = M log(1/)` − 4 log(1/δ) M log(1/)`
+                                   √
+                         > (M − M ) log(1/)`
+748              MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+          p
+since 4    log(1/δ)` ≤ ` and  ≤ 1/5. Then, by Markov’s inequality,
+                                                       hP                i
+                                                           `
+                  hP                     √  i        E     i=1 f ∗ (Si )
+                      `    ∗
+               Pr     i=1 f (Si ) ≤ b − t b   ≥ 1−       √
+                                                    (M − M ) log(1/)`
+                                                        L log(1/)`
+                                              ≥ 1−       √
+                                                    (M − M ) log(1/)`
+                                              ≥ 1/20
+             √
+since L/(M − M ) ≤ 0.95. Applying Theorem 6 to the submodular function fˆ(S1 , . . . ,
+       P`                        P`
+S` ) = i=1 f ∗ (Si ), we have Pr[ i=1 f ∗ (Si ) ≥ b] ≤ 20 exp(−t2 /4) ≤ 20 · δ 4 ≤ δ/4.
+       C.3. Learning lower bounds.
+
+     Theorem 9.       Let ALG be an arbitrary learning algorithm that uses only a
+polynomial number of training examples, which can be either drawn i.i.d. from the
+underlying distribution or value queries. There exists a distribution D and a submod-
+ular target function f ∗ such that, with probability at least 1/4 (over the draw of the
+training samples), the hypothesis function output by ALG does not approximate f ∗
+within an o(n1/3 /log n) factor on at least a 1/4 fraction of the examples under D.
+This holds even for the subclass of matroid rank functions.
+
+     Proof. First, consider a fully deterministic learning algorithm ALG, i.e., an al-
+gorithm that doesn’t even sample from D, though it knows D and can use it in
+deterministically choosing queries. Say this algorithm makes q < nc queries (which
+could be chosen adaptively). Each query has at most n possible answers, since the
+minimum rank of any set is zero and the maximum rank is at most n. So the total
+number of possible sequences of answers is at most nq .
+     Now, since the algorithm is deterministic, the hypothesis it outputs at the end
+is uniquely determined by this sequence of answers. To be specific, its choice of the
+second query is uniquely determined by the answer given to the first query, its choice
+of the third query is uniquely determined by the answers given to the first two queries,
+and by induction, its choice of the ith query qi is uniquely determined by the answers
+given to all queries q1 , . . . , qi−1 so far. Its final hypothesis is uniquely determined by
+all q answers. This then implies that ALG can output at most nq different hypotheses.
+     We will apply Theorem 1 with k = 2t , where t = c log(n) + log(ln n) + 14 (so
+k = nc · ln(n) · 214 > 10000 · q · ln(n)). Let A and M be the families constructed by
+Theorem 1. Let the underlying distribution D on 2[n] be the uniform distribution on
+A. (Note that D is not a product distribution.) Choose a matroid MB ∈ M uniformly
+at random and let the target function be f ∗ = rankMB . Let us fix a hypotheses h
+that ALG might output. By Hoeffding bounds, we have
+     h      h           h                    i        ii             2
+                                   n1/3
+ Pr
+ ∗
+        Pr    f ∗
+                  (A) ∈
+                      6   h(A),     16t h(A)   ≤ 0.49     ≤ e−2(.01) k = e−2q·ln(n) = n−2q ,
+f ,S    A∼D
+
+
+i.e., with probability at least 1 − n−2q , h has high approximation error on over 49%
+of the examples.
+      By a union bound over all over all the nq hypotheses h that ALG might output, we
+obtain that with probability at least 1/4 (over the draw of the training samples) the
+hypothesis function output by ALG does not approximate f ∗ within a o(n1/3 /log n)
+factor on at least 1/4 fraction of the examples under D.
+                         LEARNING SUBMODULAR FUNCTIONS                                 749
+
+     The above argument is a fixed randomized strategy for the adversary that works
+against any deterministic ALG making at most nc queries. By Yao’s minimax prin-
+ciple, this means that, for any randomized algorithm making at most nc queries,
+there exists MB which the algorithm does not learn well, even with arbitrary value
+queries.
+    Corollary 2. Suppose one-way functions exist. For any constant  > 0, no
+algorithm can PMAC-learn the class of nonnegative, monotone, submodular functions
+with approximation factor O(n1/3− ), even if the functions are given by polynomial-
+time algorithms computing their value on the support of the distribution.
+
+     Proof of Corollary 2. The argument follows Kearns and Valiant [57]. We will
+apply Theorem 1 with k = 2t , where t = n . There exists a family of pseudoran-
+                                             t
+dom Boolean functions Ht = {hy : y ∈ {0, 1} }, where each function is of the form
+           t                                                         t
+hy : {0, 1} → {0, 1}. Choose an arbitrary bijection between {0, 1} and A. Then
+each hy ∈ Ht corresponds to some subfamily B ⊆ A and hence to a matroid rank
+function rankMB . Suppose there is a PMAC-learning algorithm for this family of func-
+tions which achieves an approximation ratio better than n1/3 /16t on a set of measure
+1/2 + 1/ poly(n). Then this algorithm must be predicting the function hy on a set of
+size 1/2 + 1/ poly(n) = 1/2 + 1/ poly(t). This is impossible, since the family Ht is
+pseudorandom.
+    Appendix D. Expander construction.
+
+    Theorem 5. Let G = (U ∪V, E) be a random multigraph where |U | = k, |V | = n,
+and every u ∈ U has exactly d incident edges, each of which has an endpoint chosen
+uniformly and independently from all nodes in V . Suppose that k ≥ 4, d ≥ log(k)/,
+and n ≥ 16Ld/. Then, with probability at least 1 − 2/k,
+(D.1)               |Γ(J)| ≥ (1 − ) · d · |J|      ∀J ⊆ U, |J| ≤ L.
+If it is desired that |Γ({u})| = d for all u ∈ U , then this can be achieved by replacing
+any parallel edges incident on u by new edges with distinct endpoints. This cannot
+decrease |Γ(J)| for any J, and so (D.1) remains satisfied.
+    The proof is an variant of the argument in Vadhan’s survey [91, Theorem 4.4].
+       Proof. Fix j ≤ L and consider any set J ⊆ U of size |J| = j. The sampling process
+decides the neighbors Γ(J) by picking a sequence of jd neighbors v1 , . . . , vjd ∈ V . An
+element vi of that sequence is called a repeat if vi ∈ {v1 , . . . , vi−1 }. Conditioned on
+v1 , . . . , vi−1 , the probability that vi is a repeat is at most jd/n. The set J violates
+(D.1) only if there exist more than jd repeats. The probability of this is at most
+                           jd             e jd  jd jd
+                          jd     jd
+                                         ≤                       ≤ (1/4)jd .
+                         jd     n                      n
+The last inequality follows from j ≤ L and our hypothesis n ≥ 16Ld/. So the
+probability that there exists a J ⊆ U with j = |J| that violates (D.1) is at most
+                 
+                  k
+                     (1/4)−jd ≤ k j 2−2jd = 2−j(2d−log k) ≤ k −j ,
+                  j
+since d ≥ log(k)/. Therefore the probability that any J with |J| ≤ L violates (D.1)
+is at most                       X
+                                     k −j ≤ 2/k.
+                                    j≥1
+750             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+    Appendix E. Special cases of the matroid construction. The matroid
+constructions of Theorems 2 and 3 have several interesting special cases.
+     E.1. Partition matroids. Suppose we are given disjoint sets A1 , . . . , Ak and
+values b1 , . . . , bk . We claim that the matroid
+                                            P      I defined in Theorem 2 is a partition
+matroid. To see this, note that g(J) = j∈J bj , since the Aj ’s are disjoint, so g is a
+modular function. Similarly, |I ∩ A(J)| is a modular function of J. Thus, whenever
+|J| > 1, the constraint |I ∩A(J)| ≤ g(J) is redundant—it is implied by the constraints
+|I ∩ Aj | ≤ bj for j ∈ J. So we have
+
+      I = { I : |I ∩ A(J)| ≤ g(J) ∀J ⊆ [k] } = { I : |I ∩ Aj | ≤ bj ∀j ∈ [k] } ,
+
+which is the desired partition matroid.
+       E.2. Pairwise intersections. Suppose we are given sets A1 , . . . , Ak and values
+b1 , . . . , bk . We now describe the special case of the matroid construction which only
+considers the pairwise intersections of the Ai ’s.
+     Lemma 8. Let d be a nonnegative integer such that d ≤ mini,j∈[k] (bi + bj − |Ai ∩
+Aj |). Then
+                  I = { I : |I| ≤ d ∧ |I ∩ Aj | ≤ bj ∀j ∈ [k] }
+is the family of independent sets of a matroid.
+      Proof. Note that for any pair J = {i, j}, we have g(J) = bi + bj − |Ai ∩ Aj |. Then
+
+                  d ≤    min (bi + bj − |Ai ∩ Aj |) =         min        g(J),
+                        i,j∈[k]                           J⊆[k], |J|=2
+
+so g is (d, 2)-large. The lemma follows from Theorem 3.
+    E.3. Paving matroids. A paving matroid is defined to be a matroid M = (V, I)
+of rank m such that every circuit has cardinality either m or m + 1. We will show
+that every paving matroid can be derived from our matroid construction (Theorem 3).
+First of all, we require a structural lemma about paving matroids.
+   Lemma 9. Let M = (V, I) be a paving matroid of rank m. There exists a family
+A = {A1 , . . . , Ak } ⊂ 2V such that
+
+(E.1a)              I = { I : |I| ≤ m ∧ |I ∩ Ai | ≤ m − 1 ∀i } ,
+(E.1b)                            |Ai ∩ Aj | ≤ m − 2   ∀i 6= j.
+
+    Related results can be found in Theorem 5.3.5, Problem 5.3.7, and Exercise 5.3.8
+of Frank’s book [30].
+    Proof. It is easy to see that there exists A satisfying (E.1a), since we may simply
+take A to be the family of circuits which have size m. So let us choose a family A
+that satisfies (E.1a) and minimizes |A|. We will show that this family must satisfy
+(E.1b). Suppose otherwise, i.e., there exist i 6= j such that |Ai ∩ Aj | ≥ m − 1.
+    Case 1: r(Ai ∪ Aj ) ≤ m − 1. Then A \ {Ai , Aj } ∪ {Ai ∪ Aj } also satisfies (E.1a),
+contradicting minimality of |A|.
+    Case 2: r(Ai ∪ Aj ) = m. Observe that r(Ai ∩ Aj ) ≥ m − 1 since |Ai ∩ Aj | ≥ m − 1
+and every set of size m − 1 is independent. So we have
+
+ r(Ai ∪ Aj ) + r(Ai ∩ Aj ) ≥ m + (m − 1) > (m − 1) + (m − 1) ≥ r(Ai ) + r(Aj ).
+
+This contradicts submodularity of the rank function.
+                          LEARNING SUBMODULAR FUNCTIONS                                      751
+
+    For any paving matroid, Lemma 9 implies that its independent sets can be written
+in the form
+                  I = { I : |I| ≤ m ∧ |I ∩ Ai | ≤ m − 1 ∀i } ,
+where |Ai ∩ Aj | ≤ m − 2 for each i 6= j. This is a special case of Theorem (3) since
+we may apply Lemma 8 with each bi = m − 1 and d = m, since
+
+                min (bi + bj − |Ai ∩ Aj |) ≥ 2(m − 1) − (m − 2) = m.
+               i,j∈[k]
+
+
+     Acknowledgments. We thank Jan Vondrák for simplifying our original proof
+of Theorem 2, Atri Rudra for explaining how our original proof of Theorem 1 was
+connected to expander graphs, and Florin Constantin for discussions about gross sub-
+stitutes. We also thank Avrim Blum, Shahar Dobzinski, Steve Hanneke, Satoru Iwata,
+Lap Chi Lau, Noam Nisan, Alex Samorodnitsky, Mohit Singh, Santosh Vempala, and
+Van Vu for helpful discussions.
+
+                                        REFERENCES
+
+ [1] N. Alon and J. Spencer, The Probabilistic Method, Wiley, New York, 2000.
+ [2] M. Anthony and P. Bartlett, Neural Network Learning: Theoretical Foundations, Cam-
+         bridge University Press, Cambridge, UK, 1999.
+ [3] A. Badanidiyuru, S. Dobzinski, H. Fu, R. Kleinberg, N. Nisan, and T. Roughgarden,
+         Sketching valuation functions, in Proceedings of the ACM-SIAM Symposium on Discrete
+         Algorithms, 2012.
+ [4] M. F. Balcan, A. Blum, and Y. Mansour, Item pricing for revenue maxmimization, in
+         Proceedings of the ACM Conference on Electronic Commerce, 2009.
+ [5] M.-F. Balcan, F. Constantin, S. Iwata, and L. Wang, Learning valuation functions, in
+         Proceedings of the 25th Conference on Learning Theory, 2012.
+ [6] M. F. Balcan, E. Vitercik, and C. White, Learning combinatorial functions from pairwise
+         comparisons, in Proceedings of the 29th Conference on Learning Theory, 2016.
+ [7] E. Baum and K. Lang, Query learning can work poorly when a human oracle is used, in
+         Proceedings of the IEEE International Joint Conference on Neural Networks, 1993.
+ [8] M. Bing, D. Lehmann, and P. Milgrom, Presentation and structure of substitutes valuations,
+         in Proceedings of the ACM Conference on Electronic Commerce, 2004.
+ [9] L. Blumrosen, Information and Communication in Mechanism Design, Ph.D. thesis, Hebrew
+         University, Jerusalem, 2006.
+[10] L. Blumrosen and N. Nisan, On the computational power of iterative auctions, in Proceedings
+         of the ACM Conference on Electronic Commerce, 2005, pp. 29–43.
+[11] S. Boucheron, G. Lugosi, and P. Massart, On concentration of self-bounding functions,
+         Electron. J. Probab., 14 (2009), pp. 1884–1899.
+[12] H. Buhrman, P. B. Miltersen, J. Radhakrishnan, and S. Venkatesh, Are bitvectors opti-
+         mal?, SIAM J. Comput., 31 (2002), pp. 1723–1744.
+[13] G. Calinescu, C. Chekuri, M. Pál, and J. Vondrák, Maximizing a submodular set function
+         subject to a matroid constraint, SIAM J. Comput., 40 (2011), pp. 1740–1766.
+[14] C. Chekuri and J. Vondrák, Randomized Pipage Rounding for Matroid Polytopes and Ap-
+         plications, arXiv:0909.4348v1, 2009.
+[15] C. Chekuri, J. Vondrák, and R. Zenklusen, Dependent randomized rounding via exchange
+         properties of combinatorial structures, in Proceedings of the 48th Annual IEEE Symposium
+         on Foundations of Computer Science, 2010, pp. 575–584.
+[16] C. Chekuri, J. Vondrak, and R. Zenklusen, Submodular function maximization via the
+         multilinear relaxation and contention resolution schemes, in Proceedings of the ACM Sym-
+         posium on Theory of Computing, 2011.
+[17] M. Cheraghchi, A. R. Klivans, P. Kothari, and H. K. Lee, Submodular functions are noise
+         stable, in Proceedings of the ACM-SIAM Symposium on Discrete Algorithms, 2012.
+[18] P. Cramton, Y. Shoham, and R. Steinberg, eds., Combinatorial Auctions, MIT Press,
+         Cambridge, MA, 2006.
+[19] L. Devroye, L. Györfi, and G. Lugosi, A Probabilistic Theory of Pattern Recognition,
+         Springer, New York, 1996.
+752             MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+[20] S. Dobzinski, N. Nisan, and M. Schapira, Truthful randomized mechanisms for combinatorial
+         auctions, in Proceedings of the 38th Annual ACM Symposium on Theory of Computing,
+         2006, pp. 644–652.
+[21] S. Dobzinski and J. Vondrák, Communication complexity of combinatorial auctions with
+         submodular valuations, in Proceedings of the 24th Annual ACM-SIAM Symposium on
+         Discrete Algorithms, 2013, pp. 1205–1215.
+[22] J. Edmonds, Submodular Functions, Matroids, and Certain Polyhedra, in Combinatorial Struc-
+         tures and Their Applications, R. Guy, H. Hanani, N. Sauer, and J. Schönheim, eds., Gordon
+         and Breach, New York, 1970, pp. 69–87.
+[23] O. Ekin, P. L. Hammer, and U. N. Peled, Horn functions and submodular boolean functions,
+         Theoret. Comput. Sci., 175 (1997), pp. 257–270.
+[24] U. Feige, V. Mirrokni, and J. Vondrák, Maximizing non-monotone submodular functions,
+         in Proceedings of the 48th Annual IEEE Symposium on Foundations of Computer Science,
+         2007.
+[25] M. Feldman, J. Naor, and R. Schwartz, Nonmonotone submodular maximization via a
+         structural continuous greedy algorithm, in Proceedings of the 38th International Collo-
+         quium on Automata, Languages and Programming, 2011.
+[26] M. Feldman, J. Naor, and R. Schwartz, A unified continuous greedy algorithm for submod-
+         ular maximization, in Proceedings of the 52nd Annual IEEE Symposium on Foundations
+         of Computer Science, 2011.
+[27] V. Feldman and J. Vondrák, Tight bounds on low-degree spectral concentration of submodular
+         and XOS functions, in Proceedings of the 56th Annual IEEE Symposium on Foundations
+         of Computer Science, 2015.
+[28] V. Feldman and J. Vondrák, Optimal bounds on approximation of submodular and XOS
+         functions by juntas, SIAM J. Comput., 45 (2016), pp. 1129–1170.
+[29] Y. Filmus and J. Ward, A tight combinatorial algorithm for submodular maximization subject
+         to a matroid constraint, in Proceedings of the 53rd Annual IEEE Symposium on Founda-
+         tions of Computer Science, 2012, pp. 659–668.
+[30] A. Frank, Connections in Combinatorial Optimization, Oxford University Press, New York,
+         2011.
+[31] S. Fujishige, Submodular Functions and Optimization, Elsevier, Amsterdam, 2005.
+[32] G. Goel, C. Karande, P. Tripathi, and L. Wang, Approximability of combinatorial problems
+         with multi-agent submodular cost functions, in Proceedings of the 50th Annual Symposium
+         on Foundations of Computer Science, 2009.
+[33] M. Goemans, N. Harvey, S. Iwata, and V. Mirrokni, Approximating submodular functions
+         everywhere, in Proceedings of the ACM-SIAM Symposium on Discrete Algorithms, 2009.
+[34] M. Goemans, R. Kleinberg, N. Harvey, and V. Mirrokni, On Learning Submodular Func-
+         tions, manuscript, 2008.
+[35] M. Grötschel, L. Lovász, and A. Schrijver, Geometric Algorithms and Combinatorial
+         Optimization, Springer, New York, 1993.
+[36] F. Gul and E. Stacchetti, Walrasian equilibrium with gross substitutes, J. Econom. Theory,
+         87 (1999), pp. 95–124.
+[37] A. Gupta, M. Hardt, A. Roth, and J. Ullman, Privately releasing conjunctions and the
+         statistical query barrier, in Proceedings of the 43rd Annual ACM Symposium on Theory
+         of Computing, 2011.
+[38] V. Guruswami and P. Raghavendra, Hardness of learning halfspaces with noise, in Proceed-
+         ings of the 47th Annual IEEE Symposium on Foundations of Computer Science, 2006.
+[39] V. Guruswami, C. Umans, and S. P. Vadhan, Unbalanced expanders and randomness extrac-
+         tors from Parvaresh–Vardy codes, J. ACM, 56 (2009).
+[40] M. T. Hajiaghayi, J. H. Kim, T. Leighton, and H. Räcke, Oblivious routing in directed
+         graphs with random demands, in Proceedings of the 37th Annual ACM Symposium on
+         Theory of Computing, 2005, pp. 193–201.
+[41] W. Hanson and R. K. Martin, Optimal bundle pricing, Management Sci., 36 (1990),
+         pp. 155–174.
+[42] T. Hastie, R. Tibshirani, and J. Friedman, The Elements of Statistical Learning: Data
+         Mining, Inference, and Prediction, Springer, New York, 2009.
+[43] D. Haussler, Decision theoretic generalizations of the PAC model for neural net and other
+         learning applications, Inform. and Comput., 100 (1992), pp. 78–150.
+[44] S. Hoory, N. Linial, and A. Wigderson, Expander graphs and their applications, Bull. AMS,
+         43 (2006), pp. 439–561.
+[45] S. Iwata, L. Fleischer, and S. Fujishige, A combinatorial, strongly polynomial-time algo-
+         rithm for minimizing submodular functions, J. ACM, 48 (2001), pp. 761–777.
+                          LEARNING SUBMODULAR FUNCTIONS                                       753
+
+[46] S. Iwata and K. Nagano, Submodular function minimization under covering constraints, in
+         Proceedings of the 50th Annual Symposium on Foundations of Computer Science, 2009.
+[47] S. Iwata and J. Orlin, A simple combinatorial algorithm for submodular function minimiza-
+         tion, in Proceedings of the ACM-SIAM Symposium on Discrete Algorithms, 2009.
+[48] R. K. Iyer, S. Jegelka, and J. A. Bilmes, Curvature and optimal algorithms for learning
+         and minimizing submodular functions, in 27th Annual Conference on Neural Information
+         Processing Systems, 2013.
+[49] S. Janson, T. Luczak, and A. Ruciński, Random Graphs, Wiley-Interscience, New York,
+         2000.
+[50] S. Jegelka and J. Bilmes, Notes on graph cuts with submodular edge weights, in Proceedings
+         of the Workshop on Discrete Optimization in Machine Learning: Submodularity, Sparsity
+         & Polyhedra, 2009.
+[51] P. M. Jensen and B. Korte, Complexity of matroid property algorithms, SIAM J. Comput,
+         11 (1982), pp. 184–190.
+[52] F. John, Extremum Problems with inequalities as subsidiary conditions, in Studies and Essays,
+         Interscience, New York, 1948, pp. 187–204.
+[53] A. Kalai, A. Klivans, Y. Mansour, and R. Servedio, Agnostically learning halfspaces, SIAM
+         J. Comput., 37 (2008), pp. 1777–1805.
+[54] A. T. Kalai, A. Samorodnitsky, and S. Teng, Learning and smoothed analysis, in Proceed-
+         ings of the 50th Annual Symposium on Foundations of Computer Science, 2009.
+[55] G. Kalai, Learnability and Rationality of Choice, Technical report, Institute of Mathematics
+         and Center for Rationality, Hebrew University of Jerusalem, Jerusalem, Israel, 2001.
+[56] G. Kalai, Learnability and rationality of choice, J. Econom. Theory, 113 (2003), pp. 104–117.
+[57] M. Kearns and L. Valiant, Cryptographic limitations on learning boolean formulae and finite
+         automata, J. ACM, 41 (1994), pp. 67–95.
+[58] M. Kearns and U. Vazirani, An Introduction to Computational Learning Theory, MIT Press,
+         Cambridge, MA, 1994.
+[59] A. Kelso and V. Crawford, Job matching, coalition formation, and gross substitutes, Econo-
+         metrica, 50 (1982), pp. 1483–1504.
+[60] A. Klivans, R. O’Donnell, and R. Servedio, Learning intersections and thresholds of half-
+         spaces, J. Comput. System Sci., 68 (2004), pp. 808–840.
+[61] A. Krause and C. Guestrin, Near-optimal nonmyopic value of information in graphical
+         models, in Proceedings of the 21st Conference on Uncertainty in Artificial Intelligence,
+         2005.
+[62] A. Krause and C. Guestrin, Beyond Convexity: Submodularity in Machine Learning, 2008,
+         http://www.select.cs.cmu.edu/tutorials/icml08submodularity.html.
+[63] A. Krause and C. Guestrin, Intelligent Information Gathering and Submodular Function
+         Optimization, http://www.ijcai.org/past/ijcai-09/tutorials/tutorial-MP4.html (2009).
+[64] A. Kulik, H. Shachnai, and T. Tamir, Maximizing submodular set functions subject to mul-
+         tiple linear constraints, in Proceedings of the ACM-SIAM Symposium on Discrete Algo-
+         rithms, 2009, pp. 545–554.
+[65] J. Lee, V. Mirrokni, V. Nagarajan, and M. Sviridenko, Maximizing nonmonotone sub-
+         modular functions under matroid and knapsack constraints, SIAM J. Discrete Math., 23
+         (2010), pp. 2053–2078.
+[66] J. Lee, M. Sviridenko, and J. Vondrak, Submodular maximization over multiple matroids
+         via generalized exchange properties, Math. Oper. Res., 35 (2010), pp. 795–806.
+[67] B. Lehmann, D. J. Lehmann, and N. Nisan, Combinatorial auctions with decreasing marginal
+         utilities, Games Econom. Behav., 55 (2006), pp. 270–296.
+[68] Y. Li, P. M. Long, and A. Srinivasan, Improved bounds on the sample complexity of learning,
+         J. Comput. System Sci., (2001), pp. 516–527.
+[69] N. Linial, Y. Mansour, and N. Nisan, Constant depth circuits, Fourier transform and learn-
+         ability, J. ACM, 40 (1993), pp. 607–620.
+[70] L. Lovász, Submodular functions and convexity, Mathematical Programmming: The State of
+         the Art, Springer, New York, 1983, pp. 235–257.
+[71] S. T. McCormick, Submodular Function Minimization, in Handbook on Discrete Optimiza-
+         tion, K. Aardal, G. Nemhauser, and R. Weismantel, eds., Elsevier, Amsterdam, 2006,
+         pp. 321–391.
+[72] P. R. Milgrom, Putting auction theory to work: The simultaneous ascending auction, J.
+         Political Economy, 108 (2000), pp. 245–272.
+[73] M. Mitzenmacher and E. Upfal, Probability and Computing: Randomized Algorithms and
+         Probabilistic Analysis, Cambridge University Press, Cambridge, UK, 2005.
+[74] M. Molloy and B. Reed, Graph Colouring and the Probabilistic Method, Springer, New York,
+         2001.
+754            MARIA-FLORINA BALCAN AND NICHOLAS J. A. HARVEY
+
+
+[75] K. Murota, Discrete Convex Analysis, Discrete Math. Appl., SIAM, Philadelphia, 2003.
+[76] M. Narasimhan and J. Bilmes, Local search for balanced submodular clusterings, in Proceed-
+         ings of the 20th International Joint Conference on Artificial Intelligence, 2007.
+[77] G. L. Nemhauser, L. A. Wolsey, and M. L. Fisher, An analysis of approximations for
+         maximizing submodular set functions—I, Math. Programm., 14 (1978), pp. 265–294.
+[78] Proceedings of the NIPS Workshop on Discrete Optimization in Machine Learning (DISCML):
+         Submodularity, Sparsity & Polyhedra, http://www.discml.cc (2009).
+[79] Proceedings of the NIPS Workshop on Discrete Optimization in Machine Learning (DISCML):
+         Uncertainty, Generalization and Feedback, http://las.ethz.ch/discml (2011).
+[80] N. Nisan, T. Roughgarden, E. Tardos, and V. V. Vazirani, eds., Algorithmic Game The-
+         ory, Cambridge University Press, Cambridge, UK, 2007.
+[81] S. O. Gharan and J. Vondrák, Submodular maximization by simulated annealing, in Pro-
+         ceedings of the ACM-SIAM Symposium on Discrete Algorithms, 2011, pp. 1098–1117.
+[82] J. G. Oxley, Matroid Theory, Oxford University Press, New York, 1992.
+[83] J.-C. Picard and M. Queyranne, On the structure of all minimum cuts in a network and
+         applications, Math. Program. Study, 13 (1980), pp. 8–16.
+[84] S. Raskhodnikova and G. Yaroslavtsev, Learning Pseudo-Boolean k-DN F and Submodular
+         Functions, arXiv:1208.2294, 2012.
+[85] A. Schrijver, A combinatorial algorithm minimizing submodular functions in strongly poly-
+         nomial time, J. Combin. Theory Ser. B, 80 (2000), pp. 346–355.
+[86] A. Schrijver, Combinatorial Optimization: Polyhedra and Efficiency, Springer, New York,
+         2004.
+[87] R. Servedio, On learning monotone DNF under product distributions, Inform. and Comput.,
+         193 (2004), pp. 1710–1722.
+[88] M. Sipser and D. A. Spielman, Expander codes, IEEE Trans. Inform. Theory, 42 (1996),
+         pp. 1710–1722.
+[89] Z. Svitkina and L. Fleischer, Submodular approximation: Sampling-based algorithms and
+         lower bounds, in Proceedings of the 49th Annual IEEE Symposium on Foundations of
+         Computer Science, 2008.
+[90] M. Talagrand, Concentration of measure and isoperimetric inequalites in product spaces,
+         Publ. Math. Inst. Hautes Etudes Sci., 81 (1995), pp. 73–205.
+[91] S. P. Vadhan, Pseudorandomness, Found. Trends Theor. Comput. Sci., 7, (2012), pp. 1–336.
+[92] L. G. Valiant, A theory of the learnable, Commun. ACM, 27 (1984), pp. 1134–1142.
+[93] V. N. Vapnik, Statistical Learning Theory, Wiley, New York, 1998.
+[94] S. A. Vinterbo, A stab at approximating minimum subadditive join, in Proceedings of the
+         10th International Workshop on Algorithms and Data Structures, 2007.
+[95] J. Vondrák, Optimal approximation for the submodular welfare problem in the value oracle
+         model, in Proceedings of the 40th Annual ACM Symposium on Theory of Computing,
+         2008.
+[96] J. Vondrák, Symmetry and approximability of submodular maximization problems, in Pro-
+         ceedings of the IEEE Symposium on Foundations of Computer Science, 2009, pp. 651–670.
+[97] J. Vondrák, A Note on Concentration of Submodular Functions, arXiv:1005.2791, 2010.
+[98] L. A. Wolsey, An analysis of the greedy algorithm for the submodular set covering problem,
+         Combinatorica, 2 (1982), pp. 385–393.
+

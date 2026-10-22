@@ -1,0 +1,76 @@
+{
+  "schema": "pr209-helper02-targeted-repair-schema-v1",
+  "case_completion_percent": 65,
+  "role": "Internal implementation schema; no release authority",
+  "tracker_properties": {
+    "required": [
+      "spreadsheetId exact",
+      "unique sheets[].properties.sheetId1254632077",
+      "title Math Puzzles",
+      "gridProperties.rowCount integer>=2",
+      "gridProperties.columnCount integer>=4"
+    ],
+    "sheetType": "If supplied, must equal GRID",
+    "returns": "Authenticated rowCount"
+  },
+  "tracker_readback": {
+    "signature": "tracker_readback(record,target,properties)",
+    "request": "Exact {spreadsheetId:SHEET,range:target}",
+    "response": "Object with explicit majorDimension ROWS and quoted finite range 'Math Puzzles'!Afirst:Dlast",
+    "target": "first==last==canonical requested row, within authenticated rowCount",
+    "full_scan": "first1,last==authenticated rowCount; exact A:D columns. Returned values may omit trailing blank rows.",
+    "matrix": "List of row lists, <=covered row count, each row<=4 cells",
+    "reject": [
+      "missing/wrong/tab/columns/row/dimension",
+      "truncated full coverage",
+      "missing or invalid grid dimensions"
+    ],
+    "concurrency": "Grid changes between properties and values may fail closed; recover read-only with fresh metadata."
+  },
+  "tracker_evidence": {
+    "properties_before": "Pinned initial actual spreadsheet metadata",
+    "before_scan": "Pinned initial full response request/response pair for every receipt",
+    "properties": "Pinned fresh post-attempt actual spreadsheet metadata",
+    "target_readback": "Pinned exact row response against fresh properties",
+    "after_scan": "Pinned final full response against fresh properties",
+    "append_count1": "Before scan contains no problem/DOI, exact append result required",
+    "append_count0": "reconciliation_before exactly equals before_scan; unique exact problem/DOI at target; no additional write"
+  },
+  "publication_preflight": {
+    "stage_intent_addition": "preflight case-relative pin",
+    "preflight_record": [
+      "release_binding",
+      "head ORIGINAL_HEAD",
+      "QUEUE_status claimed_solved",
+      "existing_problem_tracker_rows []",
+      "tracker_properties pin",
+      "tracker_scan pin"
+    ],
+    "tracker_scan": "Exact request/response wrapper, validated with authenticated metadata, full grid/header/no problem",
+    "pure_acceptance": "publication_lineage reads and validates pinned preflight responses before accepting stage ancestry"
+  },
+  "binary_process_capture": {
+    "callers": [
+      "append_verified_tracker.reader",
+      "verify_published_readonly.inspect_existing",
+      "publish_preprint.publish_once nested run"
+    ],
+    "capture": "capture_output=True,text=False",
+    "save": "save_process_streams writes raw stdout/output and stderr before strict UTF-8/JSON parse",
+    "exceptions": "Available stdout/output and stderr retained before exception details/rethrow",
+    "fixtures": "Historical string-returning adapters remain unchanged; NEW adapters implement binary contract"
+  },
+  "public_http": {
+    "saved_payload": "Exclusive file opened before reading; incremental binary chunks written and hashed",
+    "interrupted": "Append IncompleteRead.partial after earlier chunks; flush and save READ_FAILURE type/size/hash/partial count; rethrow",
+    "other_exceptions": "Earlier chunks remain retained",
+    "oversize": "Returned bytes already read are retained, then fail when above cleared size",
+    "recovery": "Existing intents prohibit repeated mutation; known publication recovers read-only"
+  },
+  "public_interfaces_unchanged": [
+    "verify_tracker_live(R,PUB,CTX,z)",
+    "verify_publication_live(R,PUB,CTX)",
+    "context/binding/publication/tracker/public_exports"
+  ],
+  "remaining": "Root resolution and NEW independent six-source audit required"
+}

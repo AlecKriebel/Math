@@ -1,0 +1,9 @@
+# PR212 independent inactive Root terminal source audit
+
+2026-10-17T22:41:35.684882+00:00 — Checkpoint1: target, pins, scope and falsification mechanisms frozen before source/report reading. Assigned audit estimate5%.
+
+2026-10-17T22:45:46.263392+00:00 — Checkpoint2: entire V1 inspector/contract/docs/producer controls, approved driver/primitives and relevant model read. Initial6-file64227-byte source closure matches allpins. Independently reproduced Root-identified V1 post-publication mutable-guard failure and actual generated-record rejection by unchanged after212 parser (three fields missing). Producer notified before any seal. Added39 separately authored real actual-CAS-parser synthetic controls; all expected accepts/refusals pass, no production actions. Review estimate50%; old source remains historical pending repair and fresh final-version tests.
+
+2026-10-17T22:57:00.087030+00:00 — Checkpoint3: repaired exact V2 source fully reviewed; six81906B source payloads and twelve112155B public-evidence payloads independently match every pin/seal. M1/M2 resolved by generated-record integration and staged publication. Independent39 CAS controls,16 publication scenarios,40 consumer negatives and5 AST/positive checks pass; inherited129 fixture checks separately labelled. Pending final finite review seal. Assigned audit estimate95%.
+
+2026-10-17T22:57:44.762062+00:00 — Final checkpoint: all reviewed dependency pins rechecked; final findings, substantive report and exact source/effect binding saved. No open mandatory issue on exact repaired V2. Independent39 CAS controls +16 publication scenarios +40 consumer negatives +5 AST/positive checks; inherited129 separately labelled. No production effects. Finite authored manifest and separate seal now being written. Assigned audit estimate100%; no operational acceptance or case/global progress implied.

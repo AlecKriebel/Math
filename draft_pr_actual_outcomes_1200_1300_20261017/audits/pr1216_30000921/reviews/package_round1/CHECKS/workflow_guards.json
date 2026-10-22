@@ -1,0 +1,170 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "script": "append_tracker.py",
+      "case": "first_append",
+      "append_calls": 1,
+      "outcome": "PASS",
+      "external_calls": 0
+    },
+    {
+      "script": "append_tracker.py",
+      "case": "exact_row_recovery",
+      "append_calls": 0,
+      "outcome": "PASS",
+      "external_calls": 0
+    },
+    {
+      "script": "append_tracker.py",
+      "case": "uncertain_intent",
+      "append_calls": 0,
+      "outcome": "Earlier append intent has no exact matching row; reconcile before retrying",
+      "external_calls": 0
+    },
+    {
+      "script": "append_tracker.py",
+      "case": "duplicate_rows",
+      "append_calls": 0,
+      "outcome": "Existing problem/DOI row needs reconciliation; no append made",
+      "external_calls": 0
+    },
+    {
+      "script": "append_tracker.py",
+      "case": "wrong_existing_row",
+      "append_calls": 0,
+      "outcome": "Existing problem/DOI row needs reconciliation; no append made",
+      "external_calls": 0
+    },
+    {
+      "script": "append_tracker.py",
+      "case": "wrong_headers",
+      "append_calls": 0,
+      "outcome": "Unexpected tracker headers",
+      "external_calls": 0
+    },
+    {
+      "script": "append_tracker.py",
+      "case": "unpublished",
+      "append_calls": 0,
+      "outcome": "Confirmed publication required",
+      "external_calls": 0
+    },
+    {
+      "script": "append_tracker.py",
+      "case": "readback_mismatch",
+      "append_calls": 1,
+      "outcome": "Tracker readback differs",
+      "external_calls": 0
+    },
+    {
+      "script": "update_pr_publication.py",
+      "case": "not_main",
+      "outcome": "Stay on main",
+      "git_calls": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    },
+    {
+      "script": "update_pr_publication.py",
+      "case": "failed_gate",
+      "outcome": "Review/publication/tracker gates required",
+      "git_calls": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    },
+    {
+      "script": "update_pr_publication.py",
+      "case": "artifact_drift",
+      "outcome": "Reviewed file drift",
+      "git_calls": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    },
+    {
+      "script": "update_pr_publication.py",
+      "case": "metadata_drift",
+      "outcome": "Reviewed metadata drift",
+      "git_calls": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    },
+    {
+      "script": "update_pr_publication.py",
+      "case": "workflow_drift",
+      "outcome": "Reviewed workflow drift fixture_workflow.py",
+      "git_calls": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    },
+    {
+      "script": "update_pr_publication.py",
+      "case": "unexpected_branch",
+      "outcome": "Unexpected PR branch/state",
+      "git_calls": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    },
+    {
+      "script": "update_pr_publication.py",
+      "case": "closed_pr",
+      "outcome": "Unexpected PR branch/state",
+      "git_calls": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    },
+    {
+      "script": "update_pr_publication.py",
+      "case": "unknown_retry_head",
+      "outcome": "Unknown outcome; PR changed outside recorded update",
+      "git_calls": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    },
+    {
+      "script": "update_pr_publication.py",
+      "case": "recorded_receipt_head_changed",
+      "outcome": "Recorded PR update no longer current",
+      "git_calls": [
+        [
+          "branch",
+          "--show-current"
+        ]
+      ],
+      "external_calls": 0
+    }
+  ],
+  "scope": "Offline rejection/recovery tests only; no deployment, network, Git, gws, gh, upload, append or merge occurred. The current update script does not itself implement upload or merge; those stages remain separately gated."
+}

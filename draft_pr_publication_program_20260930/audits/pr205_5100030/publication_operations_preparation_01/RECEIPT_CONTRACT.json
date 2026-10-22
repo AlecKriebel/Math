@@ -1,0 +1,31 @@
+{
+  "kind": "INTERFACE_CONTRACT_NOT_ACTUAL_RECEIPT",
+  "PR": 205,
+  "original_head": "e8d7e925d19698edcb75822e40ca5ac820eb4388",
+  "root_adoption": {
+    "schema": "pr205-root-publication-operations-adoption-v1",
+    "evidence_scope": "ACTUAL_ROOT_RECEIPT",
+    "accepted_preparation_only": true,
+    "PR": 205,
+    "original_head": "e8d7e925d19698edcb75822e40ca5ac820eb4388",
+    "sources": "Exactly the five publication_operations_preparation_01/{operations_common.py,publish_exact.py,update_tracker.py,offline_tests.py,run_offline.py} keys, each plain {bytes,sha256}; real current pins in PREPARATION_01_BOUND_04_BINDINGS.json",
+    "approved_publication_gate_pin": "Actual final ROOT_PUBLICATION_GATE_01.json plain {bytes,sha256}; must not be guessed"
+  },
+  "configure_authority": "operations_common.configure_authority(adoption_relative_path, {bytes:int,sha256:lowerhex64}); side effect is local configuration only",
+  "entrypoints": {
+    "publish_exact": "main(): explicit stage|inspect|publish|inspect-doi|finalize; --confirm-id required for publish and unknown-outcome recovery inspection; --base --adoption --adoption-bytes --adoption-sha256",
+    "update_tracker": "main(): explicit append|recover; same authority arguments, optional --gws; direct __main__ refused"
+  },
+  "context_fields": [
+    "gate_pin",
+    "ready_pointer_pin",
+    "ready_acceptance_pin",
+    "checkpoint_commit",
+    "package_seal",
+    "package",
+    "manifest_pin"
+  ],
+  "authentic_publication_receipt": "ROOT_PUBLICATION_RECEIPT.json: unchanged PR204 schema with PR205; actual ID/DOI, exact metadata/no normalizations, package/gate/context, three file/public-download pins and independent DOI resolution",
+  "authentic_tracker_receipt": "ROOT_TRACKER_RECEIPT.json: unchanged PR204 schema with PR205; actual DOI, exact SID/gid/range/row, original baseline pin, RAW_INSERT_ROWS/full foreign retention, publication receipt pin/context, B blank",
+  "actual_facts": "None supplied or fabricated by this preparation. Accepted preparation alone is not an actual publication or tracker receipt. Root's final gate and actual ready checkpoint remain mandatory."
+}

@@ -1,0 +1,91 @@
+{
+  "UTC": "2026-10-17T03:40:00.647400+00:00",
+  "V1_peer_reports": [
+    {
+      "external_seal": {
+        "bytes": 649,
+        "path": "EXTERNAL_SEAL.json",
+        "sha256": "cd794fd6d7536dcd9d08ab46c3d46f76c7ce51ad64ba1f24e22d1a841cd17f40"
+      },
+      "historical_archive": "Report bodies plus exact declaration/seal pins only; the older full control/source bundle is not exported.",
+      "peer_folder": "native_source_adversary_01",
+      "public_manifest": {
+        "bytes": 1420,
+        "path": "PUBLIC_MANIFEST.json",
+        "sha256": "ba5a5140fecafd921a156db00c2cd771b74d6555829d87f8c170ba580d5755d9"
+      },
+      "report": {
+        "bytes": 8510,
+        "path": "SOURCE_AUDIT.md",
+        "sha256": "c1684544b62abc8d6f9bad9467f81e5ff5d845c5cfffd97f759a7349e19c005a"
+      },
+      "report_scope": "V1_REQUIRES_TWO_REPAIRS_NOT_A_FIXED_V2_CLEARANCE",
+      "selected_report_copy": "history/V1_SOURCE_AUDIT.md"
+    },
+    {
+      "external_seal": {
+        "bytes": 325,
+        "path": "MANIFEST_SEAL.json",
+        "sha256": "31eb5a91b9ff6f9a2abe3bf37acaa2b97248a37b4864b13776c38c6ab9d2d98c"
+      },
+      "historical_archive": "Report bodies plus exact declaration/seal pins only; the older full control/source bundle is not exported.",
+      "peer_folder": "native_exact_packet_adversary_02",
+      "public_manifest": {
+        "bytes": 1601,
+        "path": "PUBLIC_MANIFEST.json",
+        "sha256": "fd82b822c578d237d8a20e2500867acbd77780c322c52c203a35b53cd883a62f"
+      },
+      "report": {
+        "bytes": 6874,
+        "path": "REPORT.md",
+        "sha256": "6e00d742503fbf631898f154740bc90f713f7cf09fc10709f25dac3c90225056"
+      },
+      "report_scope": "V1_REQUIRES_TWO_REPAIRS_NOT_A_FIXED_V2_CLEARANCE",
+      "selected_report_copy": "history/V1_EXACT_PACKET_REPORT.md"
+    }
+  ],
+  "V1_source_manifest": {
+    "bytes": 3658,
+    "sha256": "66cc2152310d29f7205f071956f35d88db57e7cee23d7b2912cf603dfd18aca9"
+  },
+  "V2_executor": {
+    "bytes": 29203,
+    "sha256": "8b6bb9c34bcc02d644a3cbc143cc11ba054e0550c26d8c6e130f6e96d83e78cb"
+  },
+  "actual_objects_refs_PR_currentfive_live_lock_or_Root_gates_created": false,
+  "controls_count": 87,
+  "findings": [
+    {
+      "controls": [
+        "hostile_GH_HOST_exact_GET_argv",
+        "hostile_GH_HOST_exact_POST_argv"
+      ],
+      "id": "canonical_host",
+      "required": "Explicit github.com regardless GH_HOST",
+      "resolution": "Every API call uses api_argv whose argv includes --hostname github.com; all existing route/intent/transport/expectedOID guards retained."
+    },
+    {
+      "controls": [
+        "real_candidate_first_POST_flock_held_exclusion_probe",
+        "missing_or_replaced_inode_zero_injected_POSTs",
+        "inode_replaced_after_tree_blocks_commit_POST",
+        "payload_modified_after_tree_blocks_commit_POST",
+        "lock_released_on_controlled_stop",
+        "candidate_AST_equal_except_scope_and_checks"
+      ],
+      "id": "candidate_lock",
+      "required": "Original stable-inode/payload lock held and checked for every immutable candidate effect",
+      "resolution": "Candidate enters original manifest-bound WriterLock before state/construction, holds it through independent verification; lock.check at entry and end of every fresh effect_guard immediately preceding POST. No inode replacement/recreation."
+    }
+  ],
+  "fresh_fixed_V2_native_source_and_concrete_packet_reviews_required": true,
+  "model_and_core_unchanged": true,
+  "provider_calls": 0,
+  "schema": "pr210-V2-two-mandatory-repair-resolution-v1",
+  "science127_or_marker_policy_changed": false,
+  "status": "SOURCE_REPAIRS_IMPLEMENTED_NOT_INDEPENDENTLY_CLEARED_OR_AUTHORIZED",
+  "synthetic_result": {
+    "bytes": 5176,
+    "sha256": "8780a995a635eb026ca93584d95b21eb07f426281bb03dffdcaeb815c1c2e01a"
+  }
+}

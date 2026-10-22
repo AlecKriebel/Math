@@ -1,0 +1,3 @@
+# Review log
+
+- 2026-10-17T23:34:44.353903+00:00 — 100% of assigned mathematical family review complete. Retrospective checkpoint: initial pinned proof and primary definitions read independently; fixed-basis certificate reconstructed; square-class argument checked. Identified ancillary exponent-one base/extension differential shortcut, notified parent, verified the parent's exact minimal correction after the core finding. Normal and optimized diagnostics agree and all 18 wrong-result subprocess controls fail as intended. This percentage concerns the assigned family, not overall publication readiness.

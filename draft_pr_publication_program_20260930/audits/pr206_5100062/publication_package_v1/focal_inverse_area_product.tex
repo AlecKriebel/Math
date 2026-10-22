@@ -1,0 +1,422 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.95in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\A}{\mathcal A}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\PP}{\mathbb P}
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\cn}{cn}
+\DeclareMathOperator{\dn}{dn}
+\title{Verification of the odd-period\protect\\ focal inversion area product}
+\author{Alec Kriebel\\[3pt]\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{16 October 2026}
+\hypersetup{pdftitle={Verification of the odd-period focal inversion area product},pdfauthor={Alec Kriebel}}
+\begin{document}
+\maketitle
+\begin{abstract}
+For an odd periodic billiard in a proper confocal ellipse pair, invert its
+original vertices in unit circles centered at the original outer foci.
+The product of the two signed straight-edge areas is independent of phase.
+This is the historical invariant k903,a of Reznik--Garcia--Koiller and
+Conjecture 1 of Reznik--Garcia--Helman. Ferudun's 2026 preprint proves the
+same theorem using substantially the same meromorphic divisor mechanism.
+This attributed verification note gives a self-contained intrinsic
+flag-curve presentation: four isotropic common tangents identify every
+possible pole, odd torsion separates their orbit grids, and reversal
+supplies the opposite-focus zeros needed for compactness.
+Primitive admitted star windings, signs, and indexed repetitions are
+specified. Four exact finite billiard controls accompany the proof,
+including two same-caustic even orbits with different products.
+No novelty or absolute-priority claim is made.
+\end{abstract}
+
+\section{Historical target and attribution}
+
+Reznik, Garcia, and Koiller define signed polygon area in
+\cite[Eq.~(1)]{RGK}, original-vertex inversion about the original billiard
+foci in \cite[\S3.9]{RGK}, and the odd focal-inverse area product in
+\cite[Table~10, p.~12, k903,a]{RGK}. The row is dated 10/20. The shorter
+journal edition does not contain this row. Reznik, Garcia, and Helman give
+the triangle product as Proposition~7 and its odd-period extension as
+Conjecture~1 in \cite[p.~6]{RGH}.
+
+Ferudun's \emph{Products of the Two Focal Inversion Areas in Elliptic
+Billiards}, version 1.0 \cite{Ferudun}, states and proves this same
+strict odd-period theorem, including admitted stars, reversal, and
+repetitions. Its Jacobi-coordinate proof and the flag-curve proof below
+share the essential architecture: bound the area poles, use reversal to
+reduce their orders, obtain opposite-focus zeros, and apply compactness.
+The intrinsic formulation here is an attributed verification and
+exposition of that theorem and mechanism.
+
+Complexification, flag involutions, and removal of poles on a compact
+curve are established tools for Poncelet invariants; see
+Akopyan--Schwartz--Tabachnikov \cite{AST}, Ch\'avez-Caliz \cite{Chavez},
+and Schwartz \cite{Schwartz}. Their cited invariants concern other
+observables. For the present inverse areas the focal divisor and
+adjacent-pole calculation must still be supplied; these are made explicit
+below. Source and chronology limitations are recorded in Section~\ref{sec:limits}.
+
+\section{Statement and conventions}
+
+Fix
+\begin{equation}\label{eq:pair}
+ E:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,
+ \qquad C:\frac{x^2}{\alpha^2}+\frac{y^2}{\beta^2}=1,
+ \quad
+ \begin{gathered}
+ a>b>0,\quad 0<\lambda<b^2,\\
+ \alpha^2=a^2-\lambda,\quad\beta^2=b^2-\lambda.
+ \end{gathered}
+\end{equation}
+Put \(c=\sqrt{a^2-b^2}>0\), so \(\alpha^2-\beta^2=c^2\), and let
+\(F_f=(f,0)\), \(f=\pm c\). For an ordered real billiard
+\((P_0,\ldots,P_{N-1})\), with indices taken modulo \(N\), define
+\begin{equation}\label{eq:inversearea}
+ I_f(P)=F_f+\frac{P-F_f}{\|P-F_f\|^2},\qquad
+ A_f=\frac12\sum_{j=0}^{N-1}\det(I_f(P_j),I_f(P_{j+1})).
+\end{equation}
+Only the vertices are inverted; successive image vertices are joined by
+straight segments. For \(P=(a\cos\theta,b\sin\theta)\),
+\(\|P-F_f\|=a-f\cos\theta\ge a-c>0\), so real inversion is nonsingular.
+
+\begin{theorem}\label{thm:main}
+Suppose the pair \eqref{eq:pair} admits a primitive real billiard of odd
+period \(N\ge3\). For each oriented family of such billiards, the product
+\(A_cA_{-c}\) in \eqref{eq:inversearea} is independent of phase and is
+strictly positive. The assertion includes each coprime star winding
+actually admitted by the pair. Reversal negates both areas and preserves
+the product. Repeating a primitive cycle \(r\ge1\) times multiplies each
+area by \(r\) and the product by \(r^2\).
+\end{theorem}
+
+Primitive means that the ordered billiard flag first returns after
+\(N\) steps. The star formulation does not permit arbitrary reordering
+of one vertex set. In Stachel's convention \cite[Theorem~4.3]{Stachel},
+the modulus is \(k=c/\alpha\in(0,1)\), the vertices are
+\((-a\sn u,b\cn u)\), and the step is \(2v\), where
+\[
+ \cn v=\beta/b,\qquad a=\alpha\dn v/\cn v,\qquad
+ v=2\nu K(k)/N,\quad 1\le\nu<N/2,\quad\gcd(\nu,N)=1.
+\]
+The software parameter for these functions is \(k^2\). These relations
+specify the period and winding conventions; the proof uses no complex
+Jacobi period identity. Circular, coincident, degenerate, and hyperbolic
+caustics are outside the strict statement.
+
+\section{The compact flag curve}
+
+Let \(X\) be the normalized projective curve of flags \((P,\ell)\), where
+\(P\in E\) and \(\ell\) is a tangent to \(C\) through \(P\). Projection
+\(\pi:X\to E\) has degree two. Its branch vertices are \(E\cap C\):
+\begin{equation}\label{eq:branches}
+ x^2=\frac{a^2\alpha^2}{c^2},\qquad
+ y^2=-\frac{b^2\beta^2}{c^2}.
+\end{equation}
+They are four distinct finite points with nonzero coordinates. The conic
+gradients there are independent, since
+\(a^2/\alpha^2\ne b^2/\beta^2\).
+
+An explicit check on normalization and infinity is useful. Parametrize
+\(E\) by
+\[
+ x=a\frac{1-t^2}{1+t^2},\qquad y=\frac{2bt}{1+t^2}.
+\]
+The tangent discriminant gives the double cover, up to a nonzero square
+factor, as
+\begin{equation}\label{eq:quartic}
+ q^2=\beta^2t^4+(4\alpha^2-2\beta^2)t^2+\beta^2.
+\end{equation}
+The discriminant in \(t^2\) is \(16\alpha^2c^2\ne0\), and the constant
+and leading coefficients are nonzero. Thus the four branch roots are
+distinct and nonzero. At \(t=\pm\ii\), the right side is
+\(-4c^2\ne0\); these are the geometric points at infinity of \(E\).
+The parameter value \(t=\infty\) instead lies over \((-a,0)\) and is
+unbranched. The compact cover is connected, because it has simple branch
+points, and has genus one by Riemann--Hurwitz.
+
+Let \(\sigma\) exchange the two outer endpoints on \(\ell\), and let
+\(\tau\) exchange the two caustic tangents through \(P\). These extend
+to involutions of \(X\), with
+\begin{equation}\label{eq:involutions}
+ T=\tau\sigma,\quad \pi\tau=\pi,\quad \pi T=\pi\sigma,
+ \qquad \sigma T\sigma=T^{-1}.
+\end{equation}
+The map \(T\) advances along the tangent chord and then chooses the
+other outgoing caustic tangent: it is the billiard successor.
+Each involution has fixed points and is nonidentity. A fixed-point
+involution on a genus-one curve acts in an Abel coordinate as
+\(u\mapsto d-u\): its linear part is \(-1\), since a nonidentity
+translation cannot fix a point. Consequently \(T\) is a translation.
+A primitive period-\(N\) real flag makes its translation element have
+exact order \(N\) on all of \(X\).
+
+A fixed flag of \(\sigma\) corresponds to a common tangent of the two
+conics. For a line \(ux+vy+w_0=0\), the two tangency conditions are
+\[
+ a^2u^2+b^2v^2=w_0^2,\qquad
+ \alpha^2u^2+\beta^2v^2=w_0^2.
+\]
+Their difference is \(\lambda(u^2+v^2)=0\). Thus the four common
+tangents, all distinct and transverse as dual-conic intersections, are
+\begin{equation}\label{eq:isotropic}
+ z=x+\ii y=\pm c,\qquad w=x-\ii y=\pm c.
+\end{equation}
+Write their \(\sigma\)-fixed flags as \(s_{f,z},s_{f,w}\), \(f=\pm c\).
+
+\section{Complete focal pole inventory}
+
+Translation of every image vertex by \(-F_f\) leaves its closed
+shoelace area unchanged. In the two complex coordinates, inversion then
+has the meromorphic form
+\begin{equation}\label{eq:reciprocal}
+ Z_f=\frac1{w-f},\qquad W_f=\frac1{z-f}.
+\end{equation}
+These are algebraic extensions of ordinary real inversion; complex
+conjugation is not being used as a holomorphic operation.
+On \(E\),
+\begin{equation}\label{eq:factor}
+ z-f=-\frac{a+f}{1+t^2}
+       \left(t-\frac{\ii b}{a+f}\right)^2.
+\end{equation}
+Hence \(W_f\) has a double pole at the isotropic contact
+\[
+ P_{f,z}=\left(\frac{a^2}{f},\frac{\ii b^2}{f}\right),
+ \qquad w-f=\frac{2b^2}{f}\ne0.
+\]
+At \(P_{f,w}=(a^2/f,-\ii b^2/f)\), the roles of \(Z_f,W_f\) are
+reversed. Each contact has caustic residual
+\[
+ \frac{x^2}{\alpha^2}+\frac{y^2}{\beta^2}-1
+ =-\frac{\lambda^2}{\alpha^2\beta^2}\ne0.
+\]
+Therefore \(\pi\) is unramified there. Above \(P_{f,z}\) the two flags
+are \(s_{f,z}\) and \(\tau s_{f,z}=Ts_{f,z}\); each pole has order two.
+The analogous statement holds above \(P_{f,w}\).
+
+There are no hidden poles at infinity. At either geometric infinity,
+\(y=\pm\ii(b/a)x\), so both \(z\) and \(w\) have simple poles with
+nonzero leading coefficients proportional to \(a\pm b\).
+Their reciprocals in \eqref{eq:reciprocal} vanish. We have thus listed
+every polar flag of both inverse coordinates.
+
+\begin{lemma}\label{lem:grids}
+If \(N\) is odd, the four grids
+\(G_s=\{T^js:j\in\mathbb Z/N\}\), for the four fixed flags in
+\eqref{eq:isotropic}, are pairwise disjoint.
+\end{lemma}
+\begin{proof}
+If \(s'=T^js\) and both flags are fixed by \(\sigma\), then
+\eqref{eq:involutions} gives \(s'=T^{-j}s\). Hence \(T^{2j}s=s\).
+Exact order \(N\) and oddness give \(j=0\pmod N\), so \(s'=s\).
+\end{proof}
+
+Every possible area pole lies on one of these grids, because its
+coordinate poles occur at \(s,Ts\). The proof of the lemma uses no
+primality or generic-parameter assumption. It covers composite odd
+periods and every admitted primitive winding.
+
+\section{Reversal removes every product pole}
+
+For a phase \(Q\in X\), put \(R_j=W_f(T^jQ)\), \(S_j=Z_f(T^jQ)\).
+The complexified signed area is
+\begin{equation}\label{eq:trace}
+ \A_f(Q)=\frac1{4\ii}\sum_j(R_jS_{j+1}-S_jR_{j+1})
+       =\frac1{4\ii}\sum_jR_j(S_{j+1}-S_{j-1}).
+\end{equation}
+It is invariant under \(T\). Moreover
+\(\pi T^j\sigma Q=\pi T^{1-j}Q\), so \(\sigma\) reverses the vertex
+list and
+\begin{equation}\label{eq:odd}
+ \A_f(\sigma Q)=-\A_f(Q).
+\end{equation}
+
+At \(s=s_{f,z}\), only vertices 0 and 1 have poles, both of order two
+in the \emph{same} coordinate \(R\). Every \(S_j\) is regular there by
+Lemma~\ref{lem:grids}. In particular, the determinant for the edge joining
+the two singular vertices contains no \(R_0R_1\) term. The area pole
+therefore has order at most two before any symmetry is applied.
+
+Choose a local coordinate \(h\) at the fixed point \(s\) with
+\(\sigma:h\mapsto-h\). Equation~\eqref{eq:odd} eliminates the double
+coefficient and constant term, giving \(\A_f=\rho/h+O(h)\).
+For an explicit principal-part check, write
+\[
+ R_0=r_{-2}h^{-2}+r_{-1}h^{-1}+O(1),\qquad
+ D_0=S_1-S_{-1}=d_0+d_1h+O(h^2).
+\]
+Reversal gives \(R_1(h)=R_0(-h)\) and
+\(D_1(h)=S_2-S_0=-D_0(-h)\). Thus the polar terms in \eqref{eq:trace}
+are \([R_0(h)D_0(h)-R_0(-h)D_0(-h)]/(4\ii)\), and
+\begin{equation}\label{eq:residue}
+ \rho=\frac{r_{-2}d_1+r_{-1}d_0}{2\ii}.
+\end{equation}
+No unsupported trace-cancellation identity is needed.
+
+At the same phase the opposite-focus area \(\A_{-f}\) is regular,
+since its pole grids are disjoint from this one. It is odd by
+\eqref{eq:odd}, so \(\A_{-f}=b_1h+O(h^3)\). The product is removable
+and takes value \(\rho b_1\). At \(s_{f,w}\) interchange \(R,S\);
+the same pole bound and oddness apply. Translation handles all points
+of each grid. Elsewhere the inverse coordinates are regular. The
+product is therefore holomorphic on compact connected \(X\), and is
+constant. This proves phase constancy in Theorem~\ref{thm:main}.
+
+Orient real tangent chords with \(C\) on their left. Each focus is
+strictly inside \(C\), since \(\alpha^2-c^2=\beta^2>0\). Consequently
+\[
+ \det(P_j-F_f,P_{j+1}-F_f)>0.
+\]
+The corresponding determinant after inversion is this positive number
+divided by
+\(\|P_j-F_f\|^2\|P_{j+1}-F_f\|^2\). Both signed areas, and hence
+their constant product \(K_0\), are positive. This argument is edgewise
+and applies to stars. Reversal negates both shoelace sums. Repetition
+simply repeats the sum \(r\) times, proving the stated \(r,r^2\) laws.
+
+Positivity also sharpens the divisor description without circularity.
+If \(\rho=0\) at any listed grid, both factors would be analytic and
+odd there and their product would be zero. Thus all these poles and
+opposite zeros are exactly simple; there are no additional zeros.
+As reduced sums of \(N\) points per grid,
+\[
+ (\A_f)=G_{s_{-f,z}}+G_{s_{-f,w}}-G_{s_{f,z}}-G_{s_{f,w}}.
+\]
+
+\section{Exact finite controls and the parity restriction}
+
+Take \(a^2=8\), \(b^2=5\), so \(f=\pm\sqrt3\). For
+\(\lambda=40/9\), two positive primitive triangles are
+\begin{align*}
+ H&=\bigl((2\sqrt2,0),(-4\sqrt2/3,5/3),(-4\sqrt2/3,-5/3)\bigr),\\
+ V&=\bigl((0,\sqrt5),(-8/3,-\sqrt5/3),(8/3,-\sqrt5/3)\bigr).
+\end{align*}
+Direct inversion and shoelace sums give
+\[
+ \begin{array}{c|cc|c}
+ &A_c&A_{-c}&A_cA_{-c}\\ \hline
+ H&\sqrt2/10-\sqrt3/80&\sqrt2/10+\sqrt3/80&5/256\\
+ V&\sqrt5/16&\sqrt5/16&5/256
+ \end{array}
+\]
+The source formula comparison requires care. On p.~3 of \cite{RGH},
+the printed \(\delta=\sqrt{a^4-a^2b^2-b^4}\) has radicand \(-1\) at
+these axes. Replacing its final minus by plus gives \(\delta=7\) and
+makes the Proposition~7 expression agree with \(5/256\) at this exact
+control. This checks that control only; no general corrected formula or
+inspected journal correction is asserted. The universal proof above
+uses neither expression.
+
+Oddness is essential. For arbitrary \(a>b>0\), put
+\(S=a^2+b^2\), \(\lambda=a^2b^2/S\), so
+\(\alpha=a^2/\sqrt S\), \(\beta=b^2/\sqrt S\). Two genuine primitive
+four-period billiards for this same pair are
+\[
+ D=((a,0),(0,b),(-a,0),(0,-b)),\qquad
+ R=((\alpha,\beta),(-\alpha,\beta),(-\alpha,-\beta),(\alpha,-\beta)).
+\]
+For \(D\), its side lines \(\pm x/a\pm y/b=1\) are tangent to \(C\)
+because \(\alpha^2/a^2+\beta^2/b^2=1\); reflection holds by axis
+symmetry. For \(R\), the sides \(x=\pm\alpha,y=\pm\beta\) are
+tangent, its vertices lie on \(E\), and the outer normal is proportional
+to \((\pm1,\pm1)\), which reflects its horizontal and vertical edges.
+Four distinct vertices establish primitivity.
+
+For either focus, direct inversion gives \(A_f(D)=2/(ab)\) and
+\(A_f(R)=1/(\alpha\beta)\). Their products differ:
+\[
+ A_c(D)A_{-c}(D)=\frac4{a^2b^2},\qquad
+ A_c(R)A_{-c}(R)=\frac{S^2}{a^4b^4},\qquad
+ \frac{S^2-4a^2b^2}{a^4b^4}=\frac{c^4}{a^4b^4}>0.
+\]
+At the specified axes and \(\lambda=40/13\), the rectangle vertices
+are \((\pm8/\sqrt{13},\pm5/\sqrt{13})\) in cyclic order. The two
+products are \(1/10\) and \(169/1600\). These even controls were
+derived during the present verification and carry no discovery claim.
+
+The accompanying standard-library exact verifier checks the four
+polygons' incidences, segment tangencies, reflections, inversions,
+areas, reversal, and triple repetition. It also distinguishes inversion
+radius scaling from physical similarity: radius 2 multiplies each
+area by 16 and the product by 256; scaling the orbit and both foci by
+\(s=3/2\), with radius fixed at 1, multiplies area by \(s^{-2}\) and
+product by \(s^{-4}\). Its 245 checks in 27 nonempty groups are finite
+controls, not a certificate of the all-period proof. Explicit exceptions
+remain active under Python optimization; deliberate false and malformed
+inputs are tested separately. All four finite controls are convex
+winding-one trajectories; higher stars are covered by the analytic
+proof, not by this finite suite.
+
+\section{Scope, record dates, and assistance}\label{sec:limits}
+
+The priority comparison was bounded. In particular the official
+15-page preview of \cite{Book} lists \S8.5, ``Invariant area product,''
+but omits that section's text; the full section was unavailable for this
+comparison. The RGH journal full text and its typography were not
+inspected. These access gaps do not establish absence of earlier proofs.
+The direct exact theorem and overlapping mechanism in \cite{Ferudun}
+are expressly credited.
+
+The preserved \href{https://github.com/AlecKriebel/Math/pull/206}{GitHub
+PR206} record reports creation at 2026-10-01T05:36:26Z; its preserved
+HEAD has committer time 2026-10-01T05:36:15Z. Ferudun's Zenodo record
+reports creation at 2026-10-02T07:08:59.065762+00:00, and the paper
+declares 2 October 2026 as its date. These are facts about those records.
+They do not certify first public availability of every byte, visibility
+history, intellectual independence, literal simultaneity, or absolute
+priority. The note makes no claim that the historical conjecture was
+still open when this verification was prepared.
+
+AI tools were used extensively in research, proof development,
+drafting, computation, and verification. Separate AI adversarial checks
+are not independent human peer review. This is an unrefereed research
+note; no conventional human refereeing or proof-assistant certification
+is claimed.
+
+\paragraph{License and materials.}
+Copyright 2026 Alec Kriebel. The authored paper and accompanying
+verification materials are available under
+\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.
+External works retain their own rights. The package includes source,
+finite exact code, raw run receipts, and source/attribution notes;
+it includes no third-party full texts or software dependencies.
+
+\begin{thebibliography}{9}
+\bibitem{RGK} D. Reznik, R. Garcia, J. Koiller,
+\emph{Eighty New Invariants of N-Periodics in the Elliptic Billiard},
+arXiv:2004.12497v11 (29 October 2020),
+\url{https://arxiv.org/abs/2004.12497v11}.
+\bibitem{RGH} D. Reznik, R. Garcia, M. Helman,
+\emph{The Talented Mr. Inversive Triangle in the Elliptic Billiard},
+arXiv:2012.03020v2 (13 July 2021),
+\url{https://arxiv.org/abs/2012.03020v2}.
+\bibitem{Ferudun} A. Ferudun,
+\emph{Products of the Two Focal Inversion Areas in Elliptic Billiards},
+version 1.0 (2 October 2026),
+\url{https://doi.org/10.5281/zenodo.23096994}.
+\bibitem{AST} A. Akopyan, R. Schwartz, S. Tabachnikov,
+\emph{Billiards in ellipses revisited}, arXiv:2001.02934v2 (2020),
+\url{https://arxiv.org/abs/2001.02934v2}.
+\bibitem{Chavez} A. C. Ch\'avez-Caliz,
+\emph{More About Areas and Centers of Poncelet Polygons},
+Arnold Mathematical Journal \textbf{7} (2021), 91--106,
+\url{https://doi.org/10.1007/s40598-020-00154-8}.
+\bibitem{Schwartz} R. Schwartz,
+\emph{Monodromy and Poncelet Families} (9 August 2008),
+\url{https://www.math.brown.edu/reschwar/Papers/poncelet.pdf}.
+\bibitem{Stachel} H. Stachel,
+\emph{On the motion of billiards in ellipses},
+European Journal of Mathematics \textbf{8} (2022), 1602--1622,
+\url{https://doi.org/10.1007/s40879-021-00524-2}.
+\bibitem{Book} R. Garcia, D. Reznik,
+\emph{Poncelet Surprises in the Euclidean Plane}, IMPA (2021),
+ISBN 978-65-89124-43-6; official preview,
+\url{https://coloquio33.impa.br/pdf/33CBM06-eBook-preview.pdf}.
+\end{thebibliography}
+\end{document}

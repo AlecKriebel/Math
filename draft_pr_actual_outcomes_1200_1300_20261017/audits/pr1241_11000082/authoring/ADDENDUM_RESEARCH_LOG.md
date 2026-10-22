@@ -1,0 +1,4 @@
+# Research log — detached Anderson citation addendum
+
+- 2026-10-17T20:39:31Z — Independently inspected the primary author-PDF context on PDF pp.18–20 and the institutional metadata record. Identified and retained the difference between institutional range 307–341, publisher-deposited registry range 307–342, and author-PDF running pages. Decided to cite section 5 without a disputed final range. This checkpoint is recorded retrospectively from actual retrieval receipts. Best guess toward this addendum: **75%**.
+- 2026-10-17T20:40:32.700499+00:00 — Completed citation-only revised source/proof, scoped bibliographic QA, static source checks and handoff notes. The fixed-subgroup theorem and proof are unchanged, no stronger Anderson uniformity claim is imported, and the original eight-file freeze remains exact. No PDF or publication operation occurred. Best guess toward this addendum: **100%**.

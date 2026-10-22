@@ -1,0 +1,421 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pr209:binding-repair-01:schemas",
+  "title": "PR209 sealed release binding interfaces (internal implementation specification)",
+  "description": "No authority is granted by this document. Exact sources perform additional byte, chronology, set-equality, DOI and payload checks. All fixture evidence is synthetic.",
+  "$defs": {
+    "pin": {
+      "type": "object",
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Case-relative POSIX path; basename only where explicitly stated. No traversal, empty/dot components, backslashes or symlinks."
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Machine UTC with zero offset, no future timestamp."
+    },
+    "binding": {
+      "type": "object",
+      "required": [
+        "clearance_sha256",
+        "package_manifest_sha256",
+        "deposit_manifest_sha256",
+        "metadata_sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "clearance_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "package_manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "deposit_manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "metadata_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "reviewEntry": {
+      "type": "object",
+      "required": [
+        "assessment",
+        "authored_manifest",
+        "supplements"
+      ],
+      "properties": {
+        "assessment": {
+          "$ref": "#/$defs/pin"
+        },
+        "authored_manifest": {
+          "$ref": "#/$defs/pin"
+        },
+        "supplements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pin"
+          }
+        },
+        "resolution": {
+          "$ref": "#/$defs/pin"
+        },
+        "source_freeze": {
+          "$ref": "#/$defs/pin"
+        }
+      },
+      "description": "Assessment and manifest are sibling ASSESSMENT.json/AUTHORED_MANIFEST.json. Every manifest payload is read and hashed. Helper source_freeze is required and sealed. Findings require resolution. Supplemental payloads are additive, preserve every original payload, and bind the original manifest."
+    },
+    "publicExportManifest": {
+      "type": "object",
+      "required": [
+        "schema",
+        "files"
+      ],
+      "properties": {
+        "schema": {
+          "const": "pr209-public-export-manifest-v1"
+        },
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pin"
+          }
+        }
+      },
+      "description": "Paths are case-relative. Cleared c.public_export_manifest pin must name publication/PUBLIC_EXPORT_MANIFEST.json. Unique exact pins, no self/FINAL_CLEARANCE/mutable receipts/private/cache/env files. .gitignore is the sole permitted hidden basename. Extra top-level preprint/publication files outside source/admin names stop release."
+    },
+    "appendIntent": {
+      "type": "object",
+      "required": [
+        "utc",
+        "spreadsheet_id",
+        "sheet_id",
+        "range",
+        "doi_url",
+        "payload",
+        "release_binding",
+        "publication_receipt_sha256",
+        "status"
+      ],
+      "properties": {
+        "utc": {
+          "$ref": "#/$defs/utc"
+        },
+        "spreadsheet_id": {
+          "const": "1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20"
+        },
+        "sheet_id": {
+          "const": 1254632077
+        },
+        "range": {
+          "const": "'Math Puzzles'!A:D"
+        },
+        "doi_url": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object",
+          "required": [
+            "majorDimension",
+            "values"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "majorDimension": {
+              "const": "ROWS"
+            },
+            "values": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "items": {
+                "type": "array",
+                "minItems": 4,
+                "maxItems": 4,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "release_binding": {
+          "$ref": "#/$defs/binding"
+        },
+        "publication_receipt_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "status": {
+          "const": "single append about to be attempted"
+        }
+      }
+    },
+    "trackerReadback": {
+      "type": "object",
+      "required": [
+        "request",
+        "response"
+      ],
+      "properties": {
+        "request": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "range"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "spreadsheetId": {
+              "const": "1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20"
+            },
+            "range": {
+              "type": "string"
+            }
+          }
+        },
+        "response": {
+          "type": "object",
+          "properties": {
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      },
+      "description": "Retains the complete actual provider JSON; canonical requested range is checked separately from provider-normalized response.range."
+    },
+    "trackerReceipt": {
+      "type": "object",
+      "required": [
+        "utc",
+        "verified",
+        "spreadsheet_id",
+        "sheet_id",
+        "updated_range",
+        "doi_url",
+        "values",
+        "append_count",
+        "reconciled_existing_attempt",
+        "exact_all_four_cells_readback",
+        "release_binding",
+        "publication_receipt_sha256",
+        "append_attempt_sha256",
+        "evidence"
+      ],
+      "properties": {
+        "updated_range": {
+          "type": "string",
+          "pattern": "^'Math Puzzles'!A([1-9][0-9]*):D\\1$"
+        },
+        "append_count": {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "reconciled_existing_attempt": {
+          "type": "boolean"
+        },
+        "evidence": {
+          "type": "object",
+          "required": [
+            "properties",
+            "target_readback",
+            "after_scan"
+          ],
+          "properties": {
+            "properties": {
+              "$ref": "#/$defs/pin"
+            },
+            "target_readback": {
+              "$ref": "#/$defs/pin"
+            },
+            "after_scan": {
+              "$ref": "#/$defs/pin"
+            },
+            "append_result": {
+              "$ref": "#/$defs/pin"
+            },
+            "reconciliation_before": {
+              "$ref": "#/$defs/pin"
+            }
+          }
+        }
+      },
+      "description": "Count1 requires exact append_result; count0 requires exact reconciliation_before and true reconciliation. Both require saved exact target cells and full after scan with exactly one problem/DOI row at the same canonical target."
+    }
+  },
+  "clearance_contract": {
+    "required_review_fields": [
+      "whole_package_reviews",
+      "release_helper_reviews",
+      "fresh_manuscript_reviews",
+      "final_frozen_clean_reviews"
+    ],
+    "whole_package_reviews": {
+      "minItems": 2,
+      "item": "#/$defs/reviewEntry",
+      "assessment_schema": "pr209-whole-package-assessment-v1",
+      "id_field": "review_id",
+      "required_assessment": [
+        "review_completed=true",
+        "frozen_utc",
+        "completed_utc",
+        "frozen_bindings",
+        "mandatory_findings",
+        "optional_findings",
+        "evidence.report",
+        "evidence.freeze"
+      ]
+    },
+    "release_helper_reviews": {
+      "minItems": 2,
+      "item": "#/$defs/reviewEntry",
+      "assessment_schema": "pr209-release-helper-assessment-v1",
+      "id_field": "reviewer",
+      "required_assessment": [
+        "completed_utc",
+        "frozen_sources",
+        "mandatory_findings",
+        "optional_findings"
+      ],
+      "freeze": "source_freeze actual FROZEN_SOURCES.json frozen_utc and rows, with exact sealed helper copies"
+    },
+    "chronology": "Each freeze < completion; next freeze > prior completion or later resolution UTC. Unique IDs in each chain. Final whole frozen_bindings equal exact current seven-core map, final helper frozen_sources equal exact current six helper pins.",
+    "resolution": "Actual pinned root record review_id (or reviewer), review_assessment_sha256, review_manifest_sha256, utc>=completion, all and only actual finding IDs with status=resolved, empty unresolved lists. Whole package_bindings must equal next frozen_bindings; helper source_bindings must equal next frozen_sources. Additive report supplement digest is linked where supplied.",
+    "clean_verdicts": [
+      "PASS",
+      "CLEAN",
+      "NO_FINDINGS",
+      "PASS_NO_FINDINGS",
+      "PASS_WITH_NO_FINDINGS",
+      "CLEAN_NO_FINDINGS"
+    ],
+    "counters": "fresh_manuscript_reviews equals actual whole chain length. final_frozen_clean_reviews equals exact-current no-finding whole reviews, >=1. Booleans rejected.",
+    "core": [
+      "SOURCE_MANIFEST.json",
+      "PACKAGE_MANIFEST.json",
+      "manuscript.tex",
+      "manuscript.pdf",
+      "metadata.json",
+      "deposit.json",
+      "k303b-source-verification.zip"
+    ],
+    "helpers": [
+      "append_verified_tracker.py",
+      "integrate_reviewed_pr.py",
+      "publish_preprint.py",
+      "release_binding.py",
+      "verify_and_merge.py",
+      "verify_published_readonly.py"
+    ]
+  },
+  "publication_lineage": {
+    "order": [
+      "STAGE_ATTEMPT.json",
+      "ZENODO_STAGED_VERIFIED.json",
+      "ZENODO_PREPUBLICATION_INSPECT.json",
+      "PUBLISH_ATTEMPT.json",
+      "ZENODO_TOOL_PUBLICATION_RECEIPT.json",
+      "ZENODO_PROVIDER_CONFIRMED_PUBLICATION.json",
+      "ZENODO_VERIFIED_PUBLICATION.json"
+    ],
+    "common_required": [
+      "utc",
+      "release_binding",
+      "metadata",
+      "files"
+    ],
+    "stage_intent": {
+      "operation": "single stage about to be attempted"
+    },
+    "staged": [
+      "positive integer id",
+      "state=ready_to_publish",
+      "stage_attempt_sha256",
+      "tool_readback"
+    ],
+    "prepublication_inspect": [
+      "same integer id",
+      "staged_receipt_sha256",
+      "tool_readback state=ready_to_publish"
+    ],
+    "publish_intent": [
+      "same integer id",
+      "operation=single publish about to be attempted",
+      "staged_receipt_sha256",
+      "prepublication_inspect_sha256"
+    ],
+    "tool_receipt": [
+      "same integer id",
+      "publish_attempt_sha256",
+      "source=publish-tool or read-only-recovery",
+      "tool_readback state=published"
+    ],
+    "provider_receipt": [
+      "same integer id",
+      "publish_attempt_sha256",
+      "tool_publication_receipt_sha256",
+      "submitted=true",
+      "tool_readback state=published"
+    ],
+    "verified_receipt": [
+      "lineage exact digest map of six prior records",
+      "same provider tool_postpublication_readback",
+      "exact metadata/files/release_binding",
+      "exact id/DOI/record URLs",
+      "resolved DOI to exact HTTPS zenodo.org version record",
+      "both actual retained public downloaded bytes with payload pins and matching URL/size/SHA256"
+    ],
+    "acyclic": "No ancestor hashes the final verified receipt. Tracker hashes final publication, never vice versa. Public export manifest precedes clearance and excludes itself/clearance/later mutable records.",
+    "unknown_outcome": "Existing stage/publish intents prohibit repeat mutations; retained known-ID publication may recover by inspect/public download/DOI only."
+  },
+  "api": {
+    "context(root)": "Pure local, keeps existing CTX and binding keys. Checks actual review chains, source/helper/core pins, metadata/deposit pair and public export manifest.",
+    "publication(root,pub,ctx=None)": "Pure complete stored publication acceptance; requires retained lineage and downloaded payload bytes.",
+    "tracker(root,pub,ctx=None,z=None)": "Pure complete stored tracker acceptance; requires APPEND_ATTEMPT and actual retained readbacks.",
+    "public_exports(root,pub,ctx)": "Pure {case-relative-path: bytes} from only the cleared manifest; exact source/admin top-level guard.",
+    "expected_tracker_row(ctx,z)": "Exact four strings; title/version/publication_date derive from cleared metadata, source2004.12497v11, blank SolutionChatURL, actual DOI URL, reviewed theorem/credits/limitations notes.",
+    "verify_tracker_live(R,PUB,CTX,z)": "Import-safe append module function. Caller holds stage lock. Only GWS get reads for metadata, exact target and full A:D scan; saves private timestamped evidence and returns utc/binding/publication and tracker digests/target/values/evidence pins. Accepted receipts untouched.",
+    "verify_publication_live(R,PUB,CTX)": "Import-safe readonly module function. Caller holds stage lock. Pure receipt validation then inspect --check-doi and actual public byte downloads; returns utc/binding/publication digest/id/DOI/resolver/inspect pin/download records. Accepted receipts untouched.",
+    "append_once(R,PUB)": "Acquires shared lock; at most one append; existing uncertain outcome can reconcile exact unique existing row with append_count0.",
+    "publish_once(R,PUB,ROOT=None)": "Acquires shared lock; at most one stage/publish; calls readonly verifier after the once mutation."
+  },
+  "scope_limits": [
+    "Internal implementation, not independent source review or final clearance.",
+    "No live publication/tracker/native provider calls used by repair probes.",
+    "No proof of malicious coordinated rewriting of every trust anchor.",
+    "Final new independent source audit remains required."
+  ]
+}

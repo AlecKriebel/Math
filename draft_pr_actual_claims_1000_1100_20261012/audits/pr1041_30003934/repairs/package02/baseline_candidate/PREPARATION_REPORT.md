@@ -1,0 +1,23 @@
+# Current editorial repair preparation report
+
+Alec Kriebel, independent researcher, ORCID 0009-0001-9320-500X. Version 1.0, 13 October 2026. This report describes the repaired package; its current machine review and release disposition is `STATUS.json`. The byte-identical initial preparation report, PDF checks, status, copy/integrity manifests and receipts are under `history/initial_preparation/`, with their original 85-file input scope. They retain their original historical meanings.
+
+## Exact repair
+
+The root recorded ROOT-P3-RELEASE-WORDING-01 after the first complete review had returned a clean verdict on its frozen candidate. Only the Section 7 sentence stating that the preparation package remained pending was replaced with a durable pointer to dated AI review history, exact frozen input scopes and `STATUS.json`. Related README, supplement, index and prepared metadata prose now uses the same lasting disclosure. Reversing that single literal replacement restores every original TeX byte; no mathematical proof, scope, source attribution, bounded priority/unknowns, title, date/version, author/ORCID or substantive AI/unrefereed disclosure changed.
+
+## Preserved evidence and current artifacts
+
+All eleven originals and all original 53 copy-map records retain their exact bytes and mappings. Forty-one authored first complete review terminal files, including its output pins, independence checkpoint, complete report, clean verdict, source scope receipts, exact checks and legitimate test stdout/stderr, are copied unchanged. The root observation is also copied unchanged. No old input/output pin was retargeted to the repaired candidate. The first review's clean verdict applies to its recorded original TeX/PDF/archive, not to this editorially repaired input. Source bodies, extracted text including fullsource.txt outside raw folders, images, caches and disposable replay trees remain excluded.
+
+`paper.tex` and `output/pdf/paper.pdf` are the repaired paper. `PDF_QA.json` identifies their exact current hashes and viewed pages. The built-in standalone compiler succeeded and Tectonic exported the actual nine-page PDF. All nine pages were individually viewed without a visual defect. Pages 1–8 have identical rendered bytes to the initial candidate; page 9 contains the intended disclosure. The existing line 41 theorem hbox warning is on unchanged mathematical source and causes no clipping or loss of legibility.
+
+The deterministic archive builder preserves sorted safe relative paths, fixed epoch/owners/modes and gzip mtime zero. It includes the current content/integrity records and unchanged evidence. Only explicitly pinned first-review test stdout/stderr streams are exceptions to the general text-extract exclusion. Current build, archive-hash and verification receipts describe this candidate, while earlier receipts retain their historical scope. Archive reproducibility means identical supplied content bytes produce identical archive bytes; a newly exported PDF's creation time can change its binary hash.
+
+The external `zenodo-deposit.json` is locally prepared for the repository tool. Its metadata object exactly equals `publication/zenodo.json`; its two safe upload names bind `output/pdf/paper.pdf` and `supportkit-v1.0.tar.gz`. The wrapper is excluded from the archive/current-integrity domain because it names that archive, preventing self-reference. Its metadata and file hashes are checked separately. It is neither a remote record nor a publication/DOI action.
+
+## Verification boundary
+
+`verify_package.py` checks actual content hashes and membership, the 95 source-to-package copies, all eleven immutable original pins, all distributed family and first-complete-review output pins, explicit historical exclusions, archive payload equality, sorted/path/casefold uniqueness, regular-file modes/owners, fixed timestamps, gzip CRC/isize, and external wrapper metadata/file binding. The independent repair receipt outside this package records byte-identical rebuilds, actual checks and current output pins. These are integrity and layout checks, not a new complete theorem review or formal proof verification.
+
+The repaired candidate remains PENDING_NEW_WHOLE_02 with publication_ready=false and all_issues_resolved=false until a new independent complete manuscript/package review and root decision. Extensive AI assistance and unrefereed review remain disclosed. Worldwide priority remains unknown under the existing bounded audit and unchanged source-body gaps. No Git index/branch, PR, release, remote service, upload, DOI, external communication or other worker files were changed. Repair completion is recorded in the dedicated repair log and external repair report.

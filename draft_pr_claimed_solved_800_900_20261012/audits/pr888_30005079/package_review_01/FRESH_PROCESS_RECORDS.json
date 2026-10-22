@@ -1,0 +1,203 @@
+{
+  "scope": "Unmodified redacted per-case records persisted immediately after actual subprocess returns, before later assertions. These are eight fresh cases; historical eight are separate.",
+  "records": [
+    {
+      "label": "wrong_current_pin",
+      "started_utc": "2026-10-16T06:20:26.487358+00:00",
+      "completed_utc": "2026-10-16T06:20:26.580797+00:00",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "stdout_raw_pin": {
+        "bytes": 75,
+        "sha256": "9ee29e0a493215f2417dad5447b3f6cb83b08f69b80387762c38da3daa9f9f7b"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "current",
+        "0000000000000000000000000000000000000000000000000000000000000000",
+        "--verify-only"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions."
+    },
+    {
+      "label": "current_authentication_only",
+      "started_utc": "2026-10-16T06:20:26.583262+00:00",
+      "completed_utc": "2026-10-16T06:20:26.782956+00:00",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "stdout_raw_pin": {
+        "bytes": 854,
+        "sha256": "a38e025a93a3ad36b29d2479043ce7e0aa165c9535b81625d69b26bd46fe6cfe"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "current",
+        "db1810399e605970d022afc971438561bbf4f3bca60ee93f457919d7b7a051c1",
+        "--verify-only"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions."
+    },
+    {
+      "label": "build_forbids_verify_only",
+      "started_utc": "2026-10-16T06:20:26.783838+00:00",
+      "completed_utc": "2026-10-16T06:20:26.846013+00:00",
+      "returncode": 2,
+      "expected_returncode": 2,
+      "stdout_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_raw_pin": {
+        "bytes": 121,
+        "sha256": "31c058b573dc6555d500354ff9783a3c5590799f6b0b1ef8915d9f0c8f27cbae"
+      },
+      "stderr_redacted": "usage: portable.py [-h] {verify,build,current,source-only} ...\nportable.py: error: unrecognized arguments: --verify-only\n",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "build",
+        "a41885c94a6a7d97ac16700256d10a29b616895b80b37db693239e59f7475480",
+        "<AUDIT_ROOT>/package_review_01/private_tmp/blocked_build/rank-two-fano-verification.zip",
+        "--root",
+        "<AUDIT_ROOT>/candidate/verification",
+        "--verify-only"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions."
+    },
+    {
+      "label": "build_existing_output",
+      "started_utc": "2026-10-16T06:20:26.847806+00:00",
+      "completed_utc": "2026-10-16T06:20:26.926156+00:00",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "stdout_raw_pin": {
+        "bytes": 57,
+        "sha256": "7e1ead4c026dfb7ffcd7e85788578dd1e265de3220a4e8be6eda9ea886201c37"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "build",
+        "a41885c94a6a7d97ac16700256d10a29b616895b80b37db693239e59f7475480",
+        "<AUDIT_ROOT>/package_review_01/private_tmp/default_build/rank-two-fano-verification.zip",
+        "--root",
+        "<AUDIT_ROOT>/candidate/verification",
+        "--dependency-dir",
+        "<AUDIT_ROOT>/publication_tools_01/private_tmp/wheels"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions."
+    },
+    {
+      "label": "default_build_missing_dependencies",
+      "started_utc": "2026-10-16T06:20:26.927164+00:00",
+      "completed_utc": "2026-10-16T06:20:27.007757+00:00",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "stdout_raw_pin": {
+        "bytes": 119,
+        "sha256": "a5c569b1a5de082fc9dc050fa9f7b499acdadaf44a5563a5077c94df00e7b27e"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "build",
+        "a41885c94a6a7d97ac16700256d10a29b616895b80b37db693239e59f7475480",
+        "<AUDIT_ROOT>/package_review_01/private_tmp/missing_dependency_output/rank-two-fano-verification.zip",
+        "--root",
+        "<AUDIT_ROOT>/candidate/verification"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions."
+    },
+    {
+      "label": "original_root_actual_optimized",
+      "started_utc": "2026-10-16T06:20:27.008803+00:00",
+      "completed_utc": "2026-10-16T06:20:27.076458+00:00",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "stdout_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_raw_pin": {
+        "bytes": 871,
+        "sha256": "73b438b6f58f9d87d3211b92f01408ff759cea6f26da74b1a180285e987adea0"
+      },
+      "stderr_redacted": "Traceback (most recent call last):\n  File \"<AUDIT_ROOT>/candidate/verification/source/verify_publication.py\", line 148, in <module>\n    main()\n    ~~~~^^\n  File \"<AUDIT_ROOT>/candidate/verification/source/verify_publication.py\", line 137, in main\n    require(not sys.flags.optimize, 'Run with assertions enabled, without -O or PYTHONOPTIMIZE')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<AUDIT_ROOT>/candidate/verification/source/verify_publication.py\", line 29, in require\n    raise RuntimeError(message)\nRuntimeError: Run with assertions enabled, without -O or PYTHONOPTIMIZE\n",
+      "argv_redacted": [
+        "-O",
+        "<AUDIT_ROOT>/candidate/verification/source/verify_publication.py"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions."
+    },
+    {
+      "label": "source_only_complete_corpora",
+      "started_utc": "2026-10-16T06:20:27.077249+00:00",
+      "completed_utc": "2026-10-16T06:20:28.252146+00:00",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "stdout_raw_pin": {
+        "bytes": 2343,
+        "sha256": "ec488099d6d505c3385345418337fe7ab7afef1a2d0dd2ad34c384a4c77e88d8"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "source-only",
+        "--catalog",
+        "<PROJECT_ROOT>/unsolved_math_prioritization/catalog.json",
+        "--problems",
+        "<PROJECT_ROOT>/unsolved_math_prioritization/cache/problems.json",
+        "--reports",
+        "<PROJECT_ROOT>/unsolved_math_prioritization/cache/research_results.json",
+        "--primary-dir",
+        "<AUDIT_ROOT>/private_sources"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions."
+    },
+    {
+      "label": "hostile_environment_full_replay",
+      "started_utc": "2026-10-16T06:20:28.253387+00:00",
+      "completed_utc": "2026-10-16T06:20:43.025672+00:00",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "stdout_raw_pin": {
+        "bytes": 11314,
+        "sha256": "dfdbea093338a8795cbc09b5aaceacea46b4b8af550e45be45267e4c7c97f27b"
+      },
+      "stderr_raw_pin": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_redacted": "",
+      "argv_redacted": [
+        "<AUDIT_ROOT>/candidate/portable.py",
+        "current",
+        "db1810399e605970d022afc971438561bbf4f3bca60ee93f457919d7b7a051c1",
+        "--dependency-dir",
+        "<AUDIT_ROOT>/publication_tools_01/private_tmp/wheels"
+      ],
+      "returncode_record_provenance": "Direct actual subprocess.run returncode, immediately persisted before outcome/semantic assertions."
+    }
+  ]
+}

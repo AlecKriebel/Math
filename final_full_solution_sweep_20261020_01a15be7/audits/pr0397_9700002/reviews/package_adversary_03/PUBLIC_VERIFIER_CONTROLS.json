@@ -1,0 +1,141 @@
+{
+  "utc": "2026-10-21T07:07:30.568887+00:00",
+  "all_assertions_passed": true,
+  "controls": 19,
+  "accepted": 1,
+  "rejected": 18,
+  "cases": [
+    {
+      "case": "exact_public_record_pdf_zip_all138members",
+      "expected": "accept",
+      "actual": "accept"
+    },
+    {
+      "case": "authenticated_metadata_description_changed",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "DepositError",
+      "reason": "Remote metadata differs at 'description'; inspect the draft"
+    },
+    {
+      "case": "authenticated_metadata_creator_changed",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "DepositError",
+      "reason": "Remote metadata differs at 'creators'; inspect the draft"
+    },
+    {
+      "case": "authenticated_metadata_AI_disclosure_missing",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "DepositError",
+      "reason": "Remote metadata differs at 'description'; inspect the draft"
+    },
+    {
+      "case": "authenticated_file_checksum_changed",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "DepositError",
+      "reason": "Remote checksum/size differs for congestion-fragmentation.pdf"
+    },
+    {
+      "case": "inspection_wrong_id",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Saved record is not the exact verified published DOI"
+    },
+    {
+      "case": "inspection_not_published",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Saved record is not the exact verified published DOI"
+    },
+    {
+      "case": "inspection_DOI_wrong",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Saved record is not the exact verified published DOI"
+    },
+    {
+      "case": "inspection_DOI_unresolved",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Saved record is not the exact verified published DOI"
+    },
+    {
+      "case": "public_wrong_id",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Public record identity/title/version/DOI differs"
+    },
+    {
+      "case": "public_wrong_DOI",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Public record identity/title/version/DOI differs"
+    },
+    {
+      "case": "public_title_changed",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Public record identity/title/version/DOI differs"
+    },
+    {
+      "case": "public_version_changed",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Public record identity/title/version/DOI differs"
+    },
+    {
+      "case": "public_extra_payload",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Public record has missing or unexpected payloads"
+    },
+    {
+      "case": "public_missing_payload",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Public record has missing or unexpected payloads"
+    },
+    {
+      "case": "public_duplicate_payload",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "DepositError",
+      "reason": "Zenodo returned an invalid file list"
+    },
+    {
+      "case": "public_metadata_file_size_changed",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Public file metadata checksum/size differs"
+    },
+    {
+      "case": "actual_downloaded_pdf_changed",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Actual public bytes differ from reviewed payload: congestion-fragmentation.pdf"
+    },
+    {
+      "case": "actual_downloaded_zip_changed",
+      "expected": "reject",
+      "actual": "reject",
+      "exception": "RuntimeError",
+      "reason": "Actual public bytes differ from reviewed payload: congestion-fragmentation-verification.zip"
+    }
+  ],
+  "scope": "Actual candidate public verifier main and existing Zenodo metadata/file verifier AST; synthetic provider replies and local files only. Exact release bytes used for positive PDF/ZIP case. No network, account state, publication or shared filesystem mutation."
+}

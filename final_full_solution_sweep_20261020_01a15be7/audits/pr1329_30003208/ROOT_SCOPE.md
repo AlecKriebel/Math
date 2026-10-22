@@ -1,0 +1,9 @@
+# Root provisional full-claim receipt: PR1329 /30003208
+
+The full original asks whether the recursive Dykema-Koestler-Williams tail C*-algebra D generates the tail von Neumann algebra T, for every unital C*-algebra and finite-permutation-symmetric state on its countable universal unital free product in the original GNS representation. Duplicate catalog30002897 refers to the same target/budget; it must not receive a second publication.
+
+Root read the complete9404-byte PROOF.md, complete README.md, complete FINAL_READER_ACCEPTANCE.md, complete current PR description and cached original. ACCEPTANCE.md was only partially read in a tool-truncated combined output and is NOT recorded as fully read.
+
+Claimed proof: for initial-copy cyclic subspaces H_N with P_N->I strongly, finite permutation completion, including overlapping shifted supports, gives P_N F(x) P_N=P_N x P_N for every future-algebra x. Exact-radius Kaplansky approximation inside C_N'' for a chosen tail t and finite initial-vector tests, plus uniform bound and arbitrary-vector compression error, gives WOT density F(pi(Afree))=T with input norms at mostnormt. Ordinary word moments lie in recursive D, hence D''=T. No WOT limit is passed through nonnormal F. Nonseparable H, nonfaithful state, nonselfadjoint t and repeated indices are explicitly included.
+
+Prior canonical expectation/coefficient stabilization belong to Dykema-Koestler-Williams; Liu past/future identity and Kaplansky are materially credited. Quantum symmetry is a prior special case, not this full target. The distinct inclusion D subsetpi(Afree) remains open and is not an added requirement for the generation question. Independent original/dependency proof and extensive priority checks remain necessary; root has not established novelty or readiness. Expanded GWS preflight has zero target/alias leads. No external mutation, publication or row authority. Overall80%.

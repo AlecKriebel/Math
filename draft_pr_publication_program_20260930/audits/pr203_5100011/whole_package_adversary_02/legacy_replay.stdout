@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "material_manifest_files": 106,
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "sympy": "1.14.0",
+  "mpmath": "1.3.0",
+  "optimization": 0,
+  "scope": "282 exact geometry controls +7 symbolic N4 controls + actual false-coefficient rejection; optional finite noninterval diagnostics/ordinary legacy replay",
+  "reports": [
+    {
+      "command": [
+        "python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/verify_exact_controls.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\"actual_utc\": \"2026-10-16T08:49:13.570783+00:00\", \"status\": \"PASS\", \"checks\": 282, \"optimization_level\": 0, \"script_sha256\": \"cca5b1ebfbf1fcab69764d7d1a8dcb0948fda6c6032c4411ccb92f3d3a2cd3b0\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/physical_audit.py",
+        "--exact-only",
+        "--out",
+        "exact.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"cases\": 0, \"checks\": {\"exact_arbitrary_M\": 1, \"exact_boundary_q\": 1, \"exact_product\": 1, \"exact_reflection_sign_margin\": 1, \"exact_reflection_squared\": 1, \"exact_tangency\": 2}, \"optimized\": 0, \"out\": \"exact.json\", \"status\": \"PASS\", \"total_checks\": 7}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/physical_audit.py",
+        "--exact-only",
+        "--mutate-coefficient",
+        "--out",
+        "false.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/physical_audit.py\", line 183, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/physical_audit.py\", line 178, in main\n    exact=exact_n4(args.mutate_coefficient)\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/physical_audit.py\", line 101, in exact_n4\n    zero('exact_product',coeff*determinant**4*(a*a+b*b)**2-8*a**4*b**4*minus*plus)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/physical_audit.py\", line 91, in zero\n    require(name,basis.reduce(num)[1]==0,str(num))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/physical_audit.py\", line 16, in require\n    if not cond: raise RuntimeError(kind+': '+str(detail))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: exact_product: -8*D**4*a**8*b**4*x**4 - 16*D**4*a**6*b**6*x**2*y**2 - 8*D**4*a**4*b**8*y**4 + 16*D**2*a**12*b**4*x**2*y**2 - 16*D**2*a**10*b**6*y**4 - 64*D**2*a**8*b**8*x**2*y**2 - 16*D**2*a**6*b**10*x**4 + 16*D**2*a**4*b**12*x**2*y**2 + 9*a**16*b**4*y**8 - 8*a**16*b**4*y**4 + 36*a**14*b**6*x**2*y**6 + 18*a**14*b**6*y**8 + 54*a**12*b**8*x**4*y**4 + 72*a**12*b**8*x**2*y**6 + 9*a**12*b**8*y**8 + 36*a**10*b**10*x**6*y**2 + 108*a**10*b**10*x**4*y**4 + 36*a**10*b**10*x**2*y**6 - 16*a**10*b**10*x**2*y**2 + 9*a**8*b**12*x**8 + 72*a**8*b**12*x**6*y**2 + 54*a**8*b**12*x**4*y**4 + 18*a**6*b**14*x**8 + 36*a**6*b**14*x**6*y**2 + 9*a**4*b**16*x**8 - 8*a**4*b**16*x**4\n"
+    },
+    {
+      "command": [
+        "python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/legacy/verify.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"proof_sha256\": \"3b8e009c730ce29c59f4240b1b8d52e90970f5061d58d4983512a8979e3ce820\",\n  \"exact_assertions\": 21419,\n  \"exact_groups\": {\n    \"radial_signed_area\": 1104,\n    \"fixed_polygon_reflection_M\": 1104,\n    \"fixed_polygon_negative_M\": 1104,\n    \"reversal_signed_area\": 1104,\n    \"universal_real_shift_projection\": 1,\n    \"universal_imag_shift_projection\": 1,\n    \"no_higher_Laurent_pole\": 3,\n    \"simple_Laurent_residue\": 1,\n    \"primitive_real_lattice\": 4181,\n    \"K_in_cyclic_orbit\": 4181,\n    \"neighbors_not_poles\": 4181,\n    \"double_cover_same_residues\": 4181,\n    \"complex_transversality\": 273\n  },\n  \"numerical_diagnostics\": 2691,\n  \"numerical_groups\": {\n    \"actual_product_constancy\": 351,\n    \"actual_pedal_contact_ratio\": 351,\n    \"canonical_pedal_formula\": 351,\n    \"universal_area_dn_formula\": 351,\n    \"contact_area_dn_formula\": 351,\n    \"real_radial_reflection\": 351,\n    \"complex_reduced_real_period\": 117,\n    \"complex_imag_antiperiod\": 117,\n    \"complex_two_pole_proportionality\": 117,\n    \"complex_even_about_pole\": 234\n  },\n  \"numeric_precision_digits\": 85,\n  \"maximum_scaled_error\": \"6.1377862251428e-83\",\n  \"limits\": \"Finite exact controls and high-precision diagnostics support the written general proof; numerical calculations are not interval certificates.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr203_5100011/whole_package_adversary_02/runtime_tmp/pedal-verification-hwn6z3bc/legacy/independent_review/independent_checks.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"exact_assertions\": 19039,\n  \"exact_groups\": {\n    \"symbolic_radial_telescope\": 1,\n    \"symbolic_area_addition_numerator\": 1,\n    \"Laurent_order_reduction\": 1,\n    \"Laurent_residue\": 1,\n    \"real_period_bezout\": 263,\n    \"pole_residue_multiplicity\": 263,\n    \"quarter_shift_period\": 263,\n    \"two_simultaneous_nonadjacent_vertices\": 8898,\n    \"incident_edge_groups_disjoint\": 8898,\n    \"exact_arbitrary_point_four_period\": 225,\n    \"exact_radial_M_reflection\": 225\n  },\n  \"numerical_diagnostics\": 1539,\n  \"numerical_groups\": {\n    \"direct_vs_meromorphic_projection_area\": 243,\n    \"universal_area_trace\": 243,\n    \"full_arbitrary_M_product\": 162,\n    \"pedal_contact_proportionality\": 162,\n    \"complex_meromorphic_proportionality\": 162,\n    \"complex_quotient_real_period\": 162,\n    \"complex_imaginary_antiperiod\": 162,\n    \"projection_even_near_double_pole\": 162,\n    \"no_even_double_pole_in_area\": 81\n  },\n  \"precision_digits\": 90,\n  \"maximum_scaled_error\": \"2.4309762185084e-72\",\n  \"primitive_families\": 27,\n  \"star_families\": 15,\n  \"limits\": \"Exact algebra/finite controls and non-interval numerical diagnostics corroborate the separately audited proof. No numerical test establishes the universal theorem.\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

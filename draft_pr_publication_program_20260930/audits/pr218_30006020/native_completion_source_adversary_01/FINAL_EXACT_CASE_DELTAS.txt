@@ -1,0 +1,874 @@
+--- pinned214/native214_model.py
++++ frozen218/native218_model.py
+@@ -1,4 +1,4 @@
+-"""Pure conditional PR214 adopted-publication completion model. No writer, transport or CLI."""
++"""Pure conditional PR218 adopted-publication completion model. No writer, transport or CLI."""
+ import base64,calendar,datetime,hashlib,json,math,os,re,stat,types
+ from pathlib import Path,PurePosixPath
+ BASE=Path(__file__).absolute().parent
+@@ -6,34 +6,32 @@
+ LOCAL_PROGRAM=LOCAL_CASE.parents[1]
+ CHECKOUT=LOCAL_PROGRAM.parent
+ PROGRAM='draft_pr_publication_program_20260930/'
+-CASE=PROGRAM+'audits/pr214_30005244/'
+-OLD_CASE=PROGRAM+'audits/pr212_30005310/'
+-ATTEMPT='unsolved_math_prioritization/attempts/30005244'
+-SHARED='draft_pr_descending_audit_20261002/audits/pr214_30005244'
++CASE=PROGRAM+'audits/pr218_30006020/'
++OLD_CASE=PROGRAM+'audits/pr214_30005244/'
++ATTEMPT='unsolved_math_prioritization/attempts/30006020'
++SHARED='draft_pr_descending_audit_20261002/audits/pr218_30006020'
+ QUEUE='unsolved_math_prioritization/QUEUE.md'
+ VIEWS=(CASE+'CURRENT_CASE_STATUS.json',CASE+'RESEARCH_LOG.md',PROGRAM+'CURRENT_PROGRESS.json',PROGRAM+'CURRENT_PROGRESS.md',PROGRAM+'RESEARCH_LOG.md')
+-ANCHOR='cc8bddeff9f8e27848b94808915c22473b7e68e7'
+-ORIGINAL='36d5ef15098163e74bf14c2e696f560ce592affd'
+-ORIGINAL_TREE='6788a74181eb1730ec961f78c3ddee6c763b728c'
+-ORIGINAL_PARENT='37e5d6ee0f3e03de5636edf2b00dd6df77f9a494'
+-CURRENT='95ba37055ebf1e7b4f9d76aa43816c9978c7bce8'
+-CURRENT_TREE='eb7cdb30bff245e3f36ea282fbcaa099e1038c57'
+-CURRENT_PARENTS=[ORIGINAL,'5fde5b9aa46bb620d7a0d3b036ceb914076c6303']
+-MERGED='4abf30daa991860a275b3d25745159852757ad35'
+-MERGED_TREE=CURRENT_TREE
+-MERGED_PARENTS=['5fde5b9aa46bb620d7a0d3b036ceb914076c6303',CURRENT]
+-CURRENT_QUEUE='db667ab8e5eab5cabe907f00d7ba2eebba496a3f'
+-CURRENT_ROW={'bytes':279,'sha256':'5959bcc920b7eb0026004888f85a038caaea9f6950b232e6b4ca04d95a38d9b5'}
+-EXISTING_DOI='10.5281/zenodo.23390551'
+-EXISTING_TRACKER="'Math Puzzles'!A105:D105"
+-COMMIT_MESSAGE='Archive PR214 accepted existing publication completion\n'
++ANCHOR='a489bcea665d60f5a6fdf4fce5fb71eb4e5e7bb5'
++ORIGINAL='dc457c741c779fbf90fbfdcdc73f750b3716f561'
++ORIGINAL_TREE='4e8470aa1962e3137be0aaf062b6e913c6674f35'
++ORIGINAL_PARENT='7004f06fada174b500d9c308d622b4c08728d8b9'
++CURRENT='698f85a0f608e5a90924567d761663dfb100f3c2'
++CURRENT_TREE='95efad392b6c8ac117557252faaf34d43d41a1a9'
++CURRENT_PARENTS=['dc457c741c779fbf90fbfdcdc73f750b3716f561', '2f6aa7a8a4c2456c335be24d64ba9c071d599944']
++MERGED='8172b404db36b931005ac48a94ec91fdff866023'
++MERGED_TREE='fb365e1f22c7d4487980d49af574ec3679ce6b96'
++MERGED_PARENTS=['3fe2f64accb5a057e6eddb64bac73eb573be6eab', '698f85a0f608e5a90924567d761663dfb100f3c2']
++CURRENT_QUEUE='e17e1bcf9f4ac4a14694865c1c8b614874b65acb'
++CURRENT_ROW={'bytes': 303, 'sha256': '1b29bb895866a03415a373817194a391067571c1bdb998e35453ae4d48e682a2'}
++EXISTING_DOI='10.5281/zenodo.23387774'
++EXISTING_TRACKER="'Math Puzzles'!A99:D99"
++COMMIT_MESSAGE='Archive PR218 accepted existing publication completion\n'
+ CORE_PIN={'bytes':4719,'sha256':'c71575a580c43fea8d302c978e0b6c340a16474779ffeb4671e77b967cf6e2ce'}
+ WRITER_LOCK_REFERENCE={'path':PROGRAM+'ROOT_GLOBAL_FIVE_WRITER.lock','device':16777232,'inode':439078796,'bytes':153,'sha256':'61404e167a3dedccc0fd17a1a1823fd772bc12a9144a4f012ab26d5e2a26fc0a'}
+-PRIOR_TERMINAL_PATH=OLD_CASE+'ROOT_ACTUAL_ADMINISTRATIVE_SKIP_VERIFICATION_01.json'
+-PRIOR_TERMINAL_PIN={'bytes':15982,'sha256':'abe1832e140850c6ac935042775e6180a0c8483738b311abe04de7272a551611'}
+-CARRY_INVENTORY=LOCAL_PROGRAM/'audits/pr212_30005310/next_checkpoint_carry_preparation_01/PROPOSED_CARRY_INVENTORY.json'
+-CARRY_INVENTORY_PIN={'bytes':150305,'sha256':'47c291d5f4c3bb86ad6745a10d72628d850825d10733707584416550d546ec13'}
+-BASELINE_PIN={'bytes': 853, 'sha256': 'b4fe8858faebc0f14ab956d8849af28072837807f3fc87e85a2abe356bfb2f1e'}
++PRIOR_TERMINAL_PATH=OLD_CASE+'ROOT_ACTUAL_COMPLETION_VERIFICATION_01.json'
++PRIOR_TERMINAL_PIN={'bytes': 20188, 'sha256': '3508b57a2aea544b68f62c32597747228dafd58a7fb3137fd203cd65de461abc'}
++BASELINE_PIN={'bytes': 871, 'sha256': 'ae2786a2fa2d199cd92003830fd2555a1a8d1fa26d32a2e30c79b0e236c66637'}
+ MAX_BODY=4_000_000
+ MAX_FILES=600
+ MAX_TOTAL=8_000_000
+@@ -191,7 +189,7 @@
+ 
+     def __call__(self, method, path, body=None):
+         need(not self.failed, 'Observer stopped after first uncertainty')
+-        allowed = path in ('git/ref/heads/main','pulls/214') or re.fullmatch(
++        allowed = path in ('git/ref/heads/main','pulls/218') or re.fullmatch(
+             r'git/(?:commits|trees|blobs)/[0-9a-f]{40}', path) is not None or re.fullmatch(
+             r'compare/[0-9a-f]{40}\.\.\.[0-9a-f]{40}', path) is not None
+         need(method == 'GET' and allowed and body is None, 'Only bounded native GET routes allowed')
+@@ -311,8 +309,7 @@
+     return result
+ 
+ 
+-ROOT_EVIDENCE={'math':{'bytes':8102,'sha256':'bbe3367361a402b920d6576ed8ab398f96998a28077d7278e7b8a0ee7727b5ad'},
+- 'custody':{'bytes':3365,'sha256':'529fbbb3ca2b850e530434b7d10f2d356e58a7e2c18a1349bc45fff08343075e'}}
++ROOT_EVIDENCE={'math':{'bytes':7236,'sha256':'f40b40ca5d3a52cdc73283cfc75b084186182fa58e57e22dd2b239b3dd770a87'},'custody':{'bytes':7054,'sha256':'4b4deaed33b198a3e9814a46536108eed5c49cc26ff81975afd760b464d9e663'}}
+ ROOT_EVIDENCE_PATHS={'math':'ROOT_MATHEMATICAL_ACCEPTANCE_01.json','custody':'ROOT_NATIVE_CUSTODY_ACCEPTANCE_01.json'}
+ EVIDENCE_ROLES={'math','custody','priority','adoption','case_ready'}
+ 
+@@ -325,9 +322,9 @@
+ 
+ def phase_facts(phase='completion100'):
+     need(phase=='completion100','Only conditional adopted-publication completion')
+-    return {'active_PR':214,'workflow_percent':100,'completed':True,
+-            'fully_completed_count':54,'published_count':38,'last_completed_PR':214,
+-            'next_numeric_intake_cursor':215,'goal_complete':False,
++    return {'active_PR':218,'workflow_percent':100,'completed':True,
++            'fully_completed_count':55,'published_count':39,'last_completed_PR':218,
++            'next_numeric_intake_cursor':219,'goal_complete':False,
+             'completed_eligible_workflow':True,'publication_workflow_completed':True,'publication_ready':True,
+             'original_eligible_status':'claimed_solved','current_status':'claimed_solved',
+             'actual_original_PR_merged':True,'adopted_existing_publication':True,
+@@ -338,16 +335,16 @@
+             'advance_to_next_PR_authorized_now':False}
+ 
+ def baseline_facts():
+-    # PR213 status-only skip need not have rewritten the previous native five.
+-    return {'fully_completed_count':53,'published_count':37,'last_completed_PR':211,
+-            'next_numeric_intake_cursor':213,'goal_complete':False}
++    # Original215–217 unsolved skips did not rewrite the actual214 native five.
++    return {'fully_completed_count':54,'published_count':38,'last_completed_PR':214,
++            'next_numeric_intake_cursor':215,'goal_complete':False}
+ 
+ def phase_marker(phase='completion100'):
+-    return ('<!-- PR214_NATIVE_PHASE_FACTS '+compact(phase_facts(phase))+' -->').encode()
++    return ('<!-- PR218_NATIVE_PHASE_FACTS '+compact(phase_facts(phase))+' -->').encode()
+ 
+ def markdown_current(raw,phase,append_log):
+     need(type(raw) is bytes and type(append_log) is bool,'Explicit Markdown body/log policy')
+-    current=phase_marker(phase);stem=b'<!-- PR214_NATIVE_PHASE_FACTS'
++    current=phase_marker(phase);stem=b'<!-- PR218_NATIVE_PHASE_FACTS'
+     lines=raw.splitlines()
+     while lines and lines[-1]==b'':lines.pop()
+     markers=[line for line in lines if line.startswith(stem)]
+@@ -358,8 +355,8 @@
+     rel(path)
+     if not path.startswith(CASE) or path in VIEWS:return False
+     parts=path[len(CASE):].split('/')
+-    forbidden=('private','_private','packet','journal','runtime','_runtime','sandbox','_synthetic','root_admin214_','root_complete214_')
+-    if any(p.lower().startswith(forbidden) or p.lower() in ('extracted','objects','inputs') for p in parts):return False
++    forbidden=('private','_private','packet','journal','runtime','_runtime','sandbox','_synthetic','root_admin','root_complete','raw','_raw')
++    if any(p.lower().startswith(forbidden) or p.lower() in ('extracted','objects','inputs') or any(x in p.lower() for x in ('raw_stdout','raw_stderr','api_receipt')) for p in parts):return False
+     return Path(path).suffix.lower() in ('.json','.md','.py','.txt','.tex','.csv','.patch','.sha256')
+ 
+ def preserved_tuple(row,tree_only=False):
+@@ -376,10 +373,10 @@
+         # suspected own-ID cells before requiring our exact canonical form;
+         # malformed/indented duplicates must never disappear from uniqueness.
+         stripped=line.lstrip(b' \t');cells=stripped.split(b'|')
+-        suspected=any(re.search(rb'(?<![0-9])30005244(?![0-9])',cell) for cell in cells[:4])
++        suspected=any(re.search(rb'(?<![0-9])30006020(?![0-9])',cell) for cell in cells[:4])
+         if not suspected:continue
+         need(line.startswith(b'|') and len(cells)==14
+-             and cells[2].strip()==b'30005244 / OWR-11101924-008',
++             and cells[2].strip()==b'30006020 / OWR-14298589-005',
+              'Indented/malformed own QUEUE row or noncanonical own code')
+         found.append((line,cells))
+     need(len(found)==1,'Exactly one own QUEUE row; missing/duplicate refused')
+@@ -406,8 +403,8 @@
+ 
+ def native_identity(m):
+     receipt=root_ref(m['native_identity_receipt'])
+-    matches(receipt,{'schema':'pr214-root-native-completion-identity-acceptance-v1',
+-        'evidence_scope':'ACTUAL_ROOT_RECEIPT','PR':214,'accepted':True,
++    matches(receipt,{'schema':'pr218-root-native-completion-identity-acceptance-v1',
++        'evidence_scope':'ACTUAL_ROOT_RECEIPT','PR':218,'accepted':True,
+         'raw_commit_SHA1_SHA256_and_ordered_parents_verified':True,
+         'fresh_Main_existing_merged_science_association_verified':True,
+         'whole_existing_science_and_old_audit_protected_without_rewrite':True,
+@@ -416,7 +413,7 @@
+         'current_PR_opaque_body_pin':m['current_PR_opaque_body_pin']},
+         'Later exact Root native identity/custody acceptance required')
+     drift=root_ref(receipt.get('post_merge_Main_drift_extension'))
+-    matches(drift,{'PR':214,'accepted':True},'Exact accepted Root post-merge drift extension required')
++    matches(drift,{'PR':218,'accepted':True},'Exact accepted Root post-merge drift extension required')
+     rows=receipt.get('commits')
+     need(type(rows) is list and len(rows)==3,'Original, prepared and actual merge separately authenticated')
+     for row,oid,tree,parents in zip(rows,[ORIGINAL,CURRENT,MERGED],
+@@ -426,21 +423,21 @@
+     return receipt
+ 
+ def validate_pr_metadata(value,m):
+-    matches(value,{'number':214,'title':'30005244: audited DDA spectral convergence under (G) and published preprint',
+-        'state':'closed','draft':False,'merged':True,'merged_at':'2026-10-15T09:28:52Z',
++    matches(value,{'number':218,'title':'30006020: audited intermediate-area cylinder theorem and published preprint',
++        'state':'closed','draft':False,'merged':True,'merged_at':'2026-10-15T07:35:42Z',
+         'merge_commit_sha':MERGED},'Already merged original PR must remain unchanged')
+-    need(value['head']['sha']==CURRENT and value['head']['ref']=='dot/math-30005244'
++    need(value['head']['sha']==CURRENT and value['head']['ref']=='dot/math-30006020'
+          and value['base']['ref']=='main','Exact current HEAD/branch/base')
+     need(exact(pin(compact(value.get('body')).encode()),m['current_PR_opaque_body_pin']),'Opaque PR body changed')
+     return value
+ 
+ def validate_ready_value(m,evidence,ready):
+-    matches(ready,{'schema':'pr214-root-case-ready-adoption-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+-        'PR':214,'accepted':True,'mathematical_review_accepted':True,'priority_review_accepted':True,
++    matches(ready,{'schema':'pr218-root-case-ready-adoption-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
++        'PR':218,'accepted':True,'mathematical_review_accepted':True,'priority_review_accepted':True,
+         'existing_publication_adoption_accepted':True,'two_sequential_fresh_whole_package_reviews_accepted':True,
+         'original_and_current_claimed_solved_eligibility_preserved':True,'already_merged_original_PR_verified':True,
+         'existing_DOI_and_unique_tracker_row_reused':True,'no_new_provider_publication_or_tracker_append':True,
+-        'existing_scientific_package_frozen':True,'prior_PR213_status_only_skip_accepted':True,
++        'existing_scientific_package_frozen':True,'prior_PR217_status_only_skip_accepted':True,
+         'native_identity_receipt':m['native_identity_receipt'],
+         'current_head':CURRENT,'original_merge_commit':MERGED,'existing_publication_DOI':EXISTING_DOI,
+         'existing_tracker_range':EXISTING_TRACKER,
+@@ -457,14 +454,14 @@
+              and [x['sha'] for x in commit['parents']]==row['parents'],
+              'Actual original/prepared/merge ordered association differs')
+     def pr():
+-        value=api('GET','pulls/214')
++        value=api('GET','pulls/218')
+         validate_pr_metadata(value,m)
+         return value
+     pr()
+     trees=core().NativeTrees(api)
+     need(trees.lookup(CURRENT_TREE,QUEUE)==('100644','blob',CURRENT_QUEUE),'Prepared HEAD QUEUE association')
+     body=pool.get(observer,CURRENT_QUEUE);row,cells=own_queue_row(body)
+-    need(exact(pin(row),CURRENT_ROW) and cells[8].strip()==b'claimed_solved' and cells[9].strip()==b'2/5',
++    need(exact(pin(row),CURRENT_ROW) and cells[8].strip()==b'claimed_solved' and cells[9].strip()==b'1/5',
+          'Original eligible/current native claimed_solved status required')
+     pr()
+     return {'HEAD':CURRENT,'state':'closed','draft':False,'merged':True,'current_status':'claimed_solved',
+@@ -519,26 +516,39 @@
+     return decode(sealed('BASELINE_MEMBERSHIP.json',BASELINE_PIN))
+ 
+ def completion_memberships():
+-    return {key:value+[214] for key,value in source_baseline().items()}
+-
+-def carry_inventory():
+-    raw,unused=read_regular(CARRY_INVENTORY)
+-    need(exact(pin(raw),CARRY_INVENTORY_PIN),'Exact finite149-file carry inventory required')
+-    value=decode(raw)
++    return {key:value+[218] for key,value in source_baseline().items()}
++
++CARRY_REQUIRED={
++ PRIOR_TERMINAL_PATH:PRIOR_TERMINAL_PIN,
++ PROGRAM+'ordered_intakes_after_PR214_20261017/PR215_PRESERVED_STATUS_INTAKE.json':{'bytes':6554,'sha256':'7bcbb4f2c4ed4bd796e0a3289b30a2f4854ed1222ceb42fbf869ecf4769a4f27'},
++ PROGRAM+'ordered_intakes_after_PR214_20261017/PR216_PRESERVED_STATUS_INTAKE.json':{'bytes':6652,'sha256':'fdd7a303a691643b2529015c5476b19af465323ec4835f94878cd8423cd3c1c9'},
++ PROGRAM+'ordered_intakes_after_PR214_20261017/PR217_PRESERVED_STATUS_INTAKE.json':{'bytes':6653,'sha256':'f74053e128df5239187fd9c53645703538dced9b53fcb07f1587ace2612c31e0'},
++ PROGRAM+'ordered_intakes_after_PR214_20261017/PR218_PRESERVED_STATUS_INTAKE.json':{'bytes':24998,'sha256':'2a56688bb676f9eac75ecfdf2998ea0f4c225290ef53813c5c36fe41ac74283e'}}
++def carry_path(path):
++    rel(path)
++    if path in CARRY_REQUIRED:return True
++    if not path.startswith(OLD_CASE):return False
++    parts=path[len(OLD_CASE):].split('/')
++    forbidden=('private','_private','packet','journal','runtime','_runtime','sandbox','_synthetic','root_admin','root_complete','raw','_raw')
++    return not any(p.lower().startswith(forbidden) or p.lower() in ('extracted','objects','inputs') or any(x in p.lower() for x in ('raw_stdout','raw_stderr','api_receipt')) for p in parts) and Path(path).suffix.lower() in ('.json','.md','.py','.txt','.tex','.csv','.patch','.sha256')
++def carry_inventory(reference):
++    value=root_ref(reference)
++    matches(value,{'schema':'pr218-root-prior-operational-carry-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
++        'PR':218,'accepted':True,'prior_terminal_pin':PRIOR_TERMINAL_PIN,
++        'finite_positive_public_selection_reviewed':True},'Later exact Root finite carry acceptance required')
+     rows=value.get('files')
+-    if rows is None:rows=value.get('proposed_files')
+-    need(type(rows) is list and len(rows)==149,'Exact prior149 positive carry records')
++    need(type(rows) is list and len(CARRY_REQUIRED)<=len(rows)<=MAX_FILES,'Finite positive prior214/intake carry records')
+     result={}
+     for row in rows:
++        need(type(row) is dict and set(row)=={'path','bytes','sha256'},'Exact carry path/body pin')
+         path=rel(row['path']);p=bytepin({k:row[k] for k in ('bytes','sha256')})
+-        need(path not in result,'Duplicate positive carry path');result[path]=p
+-    need(exact(result.get(PRIOR_TERMINAL_PATH),PRIOR_TERMINAL_PIN),'Exact actual212 terminal carry')
++        need(carry_path(path) and path not in result,'Unsafe, duplicate or out-of-case carry path');result[path]=p
++    need(all(exact(result.get(path),p) for path,p in CARRY_REQUIRED.items()),'Actual214 terminal and complete215–218 status chain required')
+     return result
+-
+-def validate_carryforward(carry):
+-    carrypins=carry_inventory()
+-    need(type(carry) is list and len(carry)==149 and all(type(r) is dict and set(r)=={'path','bytes','sha256'} for r in carry)
+-         and len({r['path'] for r in carry})==149,'Exactly the reviewed finite149 carry paths')
++def validate_carryforward(carry,reference):
++    carrypins=carry_inventory(reference)
++    need(type(carry) is list and len(carry)==len(carrypins) and all(type(r) is dict and set(r)=={'path','bytes','sha256'} for r in carry)
++         and len({r['path'] for r in carry})==len(carrypins),'Exactly Root-reviewed finite carry paths')
+     need(exact({r['path']:{k:r[k] for k in ('bytes','sha256')} for r in carry},carrypins),
+          'Carry exceptions are exact path/body pins, no folder permission')
+     return carrypins
+@@ -546,11 +556,11 @@
+ def load_inputs(manifest_ref,acceptance_ref,source_manifest_pin,protocol_pin,primitive_pin):
+     m=root_ref(manifest_ref)
+     keys={'schema','PR','problem_id','phase','facts','files','total_files','total_bytes','local_views',
+-          'protected_queue','protected_queue_row_pin','protected_nodes','current_PR_opaque_body_pin',
++          'carry_inventory','protected_queue','protected_queue_row_pin','protected_nodes','current_PR_opaque_body_pin',
+           'expected_new_directories','expected_changed_paths','carryforward','commit_author','commit_committer','commit_message',
+           'retired_candidates','body_proof_policy','QUEUE_policy','writer_lock','evidence_references','native_identity_receipt','protected_bodies'}
+     need(type(m) is dict and set(m)==keys,'Exact completion logical packet fields')
+-    matches(m,{'schema':'pr214-conditional-completion-logical-packet-v1','PR':214,'problem_id':'30005244',
++    matches(m,{'schema':'pr218-conditional-completion-logical-packet-v1','PR':218,'problem_id':'30006020',
+         'phase':'completion100','facts':phase_facts(),'body_proof_policy':BODY_POLICY,'QUEUE_policy':QUEUE_POLICY,
+         'writer_lock':WRITER_LOCK_REFERENCE},'Typed completion facts/policies')
+     need(type(m['retired_candidates']) is list and len(m['retired_candidates'])<=100
+@@ -569,7 +579,7 @@
+     need(type(m['expected_new_directories']) is list and len(m['expected_new_directories'])<=600
+          and m['expected_new_directories']==sorted(set(m['expected_new_directories'])),'Finite exact expected directories')
+     for path in m['expected_new_directories']:rel(path)
+-    carrypins=validate_carryforward(m['carryforward'])
++    carrypins=validate_carryforward(m['carryforward'],m['carry_inventory'])
+     rows=m['files']
+     need(type(rows) is list and 5<len(rows)<=MAX_FILES and all(type(r) is dict and set(r)=={'path','source','bytes','sha256','git_blob','preimage'} for r in rows)
+          and len({r['path'] for r in rows})==len(rows),'Finite positive selected body records')
+@@ -581,7 +591,7 @@
+         overlay[path]=body;pre[path]=tuple_pin(row['preimage'])
+         if path not in VIEWS:need(pre[path] in (None,('100644','blob',row['git_blob'])),'New archives/carry are add-or-exact-noop, never overwrite')
+         if path in carrypins:need(exact(pin(body),carrypins[path]),'Carryforward exact body differs')
+-    for reference in (m['native_identity_receipt'],native_receipt['post_merge_Main_drift_extension']):
++    for reference in (m['native_identity_receipt'],native_receipt['post_merge_Main_drift_extension'],m['carry_inventory']):
+         target=Path(reference['path']).relative_to(CHECKOUT).as_posix()
+         need(public_path(target) and target in overlay
+              and exact(pin(overlay[target]),{k:reference[k] for k in ('bytes','sha256')}),
+@@ -602,7 +612,7 @@
+             need(obj['new_publication_or_tracker_append_performed'] is False,'No new provider action')
+     progress=decode(overlay[VIEWS[2]])
+     for key,value in completion_memberships().items():
+-        need(exact(progress.get(key),value),'Exact baseline plus214 only')
++        need(exact(progress.get(key),value),'Exact baseline plus218 only')
+     need(type(progress.get('dated_eligible_total')) is int and progress['dated_eligible_total']==99,'Dated99 unchanged')
+     for path in (VIEWS[1],VIEWS[3],VIEWS[4]):markdown_current(overlay[path],m['phase'],path in (VIEWS[1],VIEWS[4]))
+     local=m['local_views']
+@@ -629,14 +639,14 @@
+                  and path==LOCAL_CASE/ROOT_EVIDENCE_PATHS[role],'Pinned existing Root math/custody')
+     ready=root_ref(evidence['case_ready'])
+     validate_ready_value(m,evidence,ready)
+-    for role in ('priority','adoption'):
+-        matches(root_ref(evidence[role]),{'PR':214,'accepted':True},'Actual separate priority/adoption acceptance')
++    for role in ('math','priority','adoption'):
++        matches(root_ref(evidence[role]),{'PR':218,'accepted':True},'Actual separate priority/adoption acceptance')
+     gate=root_ref(acceptance_ref)
+-    matches(gate,{'schema':'pr214-root-completion-logical-packet-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+-        'PR':214,'accepted':True,'manifest_pin':{k:manifest_ref[k] for k in ('bytes','sha256')},
++    matches(gate,{'schema':'pr218-root-completion-logical-packet-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
++        'PR':218,'accepted':True,'manifest_pin':{k:manifest_ref[k] for k in ('bytes','sha256')},
+         'source_manifest_pin':source_manifest_pin,'protocol_pin':protocol_pin,'primitive_pin':primitive_pin,
+         'facts':phase_facts(),'case_ready_receipt':evidence['case_ready'],'native_identity_receipt':m['native_identity_receipt'],'public_selection_reviewed':True,'case_ready_adoption_gate_accepted':True,
+-        'no_new_provider_or_PR_actions':True,'exact_baseline_plus214_memberships':True,'QUEUE_policy':QUEUE_POLICY,
++        'no_new_provider_or_PR_actions':True,'exact_baseline_plus218_memberships':True,'QUEUE_policy':QUEUE_POLICY,
+         'Root_full_source_read':True,'independent_source_adversarial_review_accepted':True,
+         'independent_exact_packet_review_accepted':True},'Separate actual Root logical/source/exact packet acceptance required')
+     audits=gate.get('audit_receipts')
+--- pinned214/native214_primitives.py
++++ frozen218/native218_primitives.py
+@@ -1,4 +1,4 @@
+-"""Reviewed generic bounded native/descriptor primitives for inactive PR214 protocol."""
++"""Reviewed generic bounded native/descriptor primitives for inactive PR218 protocol."""
+ import fcntl,hashlib,json,os,re,selectors,stat,subprocess,sys,time,types
+ from pathlib import Path
+ BASE=Path(__file__).absolute().parent
+@@ -79,7 +79,7 @@
+     def __call__(self,method,path,body=None,expected_oid=None):
+         h = self.h
+         need(not self.failed, 'Attempt stopped; inspect same attempt read-only')
+-        get = path in ('git/ref/heads/main','pulls/214') or re.fullmatch(
++        get = path in ('git/ref/heads/main','pulls/218') or re.fullmatch(
+             r'git/(?:commits|trees|blobs)/[0-9a-f]{40}',path) is not None or re.fullmatch(
+             r'compare/[0-9a-f]{40}\.\.\.[0-9a-f]{40}',path) is not None
+         need((method == 'GET' and get and body is None)
+--- pinned214/completion_checkpoint.py
++++ frozen218/completion_checkpoint.py
+@@ -1,6 +1,6 @@
+-"""Inactive PR214 completion native checkpoint; no ref or PR writer.
++"""Inactive PR218 completion native checkpoint; no ref or PR writer.
+ All inputs, gates, admissions and actual receipts are separately Root-bound.
+-Adoption54/38 is conditional until separate actual Root terminal; no new publication.
++Adoption55/39 is conditional until separate actual Root terminal; no new publication.
+ """
+ import argparse,datetime,hashlib,json,os,re,selectors,signal,stat,sys,time,types
+ from pathlib import Path
+@@ -9,8 +9,8 @@
+ NATIVE=BASE
+ PROGRAM=CASE.parents[1]
+ CHECKOUT=PROGRAM.parent
+-MODEL_PIN={'bytes': 38904, 'sha256': 'f9850c22381f7be5937cd01b9b01890faed56eb252f7ee300ae7ed0b3b1ffee4'}
+-PRIMITIVE_PIN={'bytes': 16405, 'sha256': 'f64ecc9301a2870526ee27582246a5b7c6c013e64a45881bc3f2df423ad71a13'}
++MODEL_PIN={'bytes': 40648, 'sha256': '5f6136ae4335dea22e219c7b1b9d62d416a975e9a8d590a9ca617d732627ae3d'}
++PRIMITIVE_PIN={'bytes': 16405, 'sha256': '6f0162bab7e080445fca633818167476501de9920d566d567fddb1b26f97177c'}
+ RETIRED=set()
+ IMMUTABLE_SCOPE='IMMUTABLE_CANDIDATE_ONLY_NOT_MAIN_LEASE_CAS_OR_COMPLETION'
+ 
+@@ -82,11 +82,11 @@
+     out=types.ModuleType(name);out.__file__=str(path);exec(compile(raw,str(path),'exec'),out.__dict__);return out
+ 
+ class Seed:
+-    """Fresh PR214 source/logical authority, never implicit operational permission."""
++    """Fresh PR218 source/logical authority, never implicit operational permission."""
+     def __init__(self,manifest_ref,logical_gate_ref):
+         self.s=types.SimpleNamespace(read_regular=read_regular)
+-        self.h=load_module('pr214_conditional_model',BASE/'native214_model.py',MODEL_PIN)
+-        self.e=load_module('pr214_owned_primitives',BASE/'native214_primitives.py',PRIMITIVE_PIN)
++        self.h=load_module('pr218_conditional_model',BASE/'native218_model.py',MODEL_PIN)
++        self.e=load_module('pr218_owned_primitives',BASE/'native218_primitives.py',PRIMITIVE_PIN)
+         self.c=self.h.core()
+         self.source,self.source_identity=read_regular(Path(__file__).absolute())
+         self.source_pin=pin(self.source)
+@@ -98,12 +98,12 @@
+         self.refresh()
+     def refresh(self):
+         h=self.h
+-        for name,wanted in (('native214_model.py',MODEL_PIN),('native214_primitives.py',PRIMITIVE_PIN)):
++        for name,wanted in (('native218_model.py',MODEL_PIN),('native218_primitives.py',PRIMITIVE_PIN)):
+             need(pin(read_regular(BASE/name)[0])==wanted,'Frozen implementation changed')
+         need(read_regular(Path(__file__).absolute())[0]==self.source
+              and read_regular(BASE/'SOURCE_MANIFEST.json')[0]==self.manifest_raw,'Protocol/source manifest changed')
+         sm=h.decode(self.manifest_raw)
+-        h.matches(sm,{'schema':'pr214-completion-source-manifest-v1','self_excluded':True,'source_only':True},'New source closure')
++        h.matches(sm,{'schema':'pr218-completion-source-manifest-v1','self_excluded':True,'source_only':True},'New source closure')
+         rows=sm.get('files')
+         need(type(rows) is list and 4<=len(rows)<=20 and all(type(r) is dict and set(r)=={'path','bytes','sha256'} for r in rows)
+              and len({r['path'] for r in rows})==len(rows),'Finite positive implementation files')
+@@ -121,7 +121,7 @@
+         'logical_manifest_pin','logical_gate_pin','facts','body_proof_policy','QUEUE_policy','parent','parent_tree',
+         'created_UTC','commit_author','commit_committer','commit_message','parents','tree','candidate','candidate_journal'},
+         'Exact typed completion admission')
+-    h.matches(a,{'schema':'pr214-completion-parent-admission-v1','PR':214,
++    h.matches(a,{'schema':'pr218-completion-parent-admission-v1','PR':218,
+         'evidence_scope':'FACTUAL_PARENT_ADMISSION_REQUIRES_ROOT_ACCEPTANCE','protocol_pin':seed.source_pin,
+         'source_manifest_pin':seed.source_manifest_pin,'logical_manifest_pin':seed.manifest_pin,
+         'logical_gate_pin':seed.logical_gate_pin,'facts':h.phase_facts(),'body_proof_policy':h.BODY_POLICY,
+@@ -130,7 +130,7 @@
+          and h.exact(a['parents'],[a['parent']]) and a['parent'] not in (h.ORIGINAL,h.CURRENT,h.MERGED) and a['candidate'] not in RETIRED
+          and a['candidate'] not in seed.logical['retired_candidates'],'Only canonical one-parent archive; retired candidates forbidden')
+     need(type(a['candidate_journal']) is str and len(a['candidate_journal'])<=80
+-         and re.fullmatch('ROOT_COMPLETE214_CANDIDATE_[A-Za-z0-9_-]{1,50}',a['candidate_journal']) is not None,'Fresh exact one-use candidate journal')
++         and re.fullmatch('ROOT_COMPLETE218_CANDIDATE_[A-Za-z0-9_-]{1,50}',a['candidate_journal']) is not None,'Fresh exact one-use candidate journal')
+     for key in ('commit_author','commit_committer'):
+         need(type(a[key]) is dict and set(a[key])=={'name','email','date'},'Fixed commit identity fields')
+         for k in ('name','email'):need(h.exact(a[key][k],seed.logical[key][k]),'Identity substitution refused')
+@@ -154,12 +154,12 @@
+         self.admission_pin={k:self.admission_ref[k] for k in ('bytes','sha256')}
+         self.gate=ref(h,self.seed.s,self.gate_ref)
+         self.gate_pin={k:self.gate_ref[k] for k in ('bytes','sha256')}
+-        h.matches(self.gate,{'schema':'pr214-root-completion-admission-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+-            'PR':214,'accepted':True,'protocol_pin':self.seed.source_pin,'source_manifest_pin':self.seed.source_manifest_pin,
++        h.matches(self.gate,{'schema':'pr218-root-completion-admission-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
++            'PR':218,'accepted':True,'protocol_pin':self.seed.source_pin,'source_manifest_pin':self.seed.source_manifest_pin,
+             'admission_pin':self.admission_pin,'logical_manifest_pin':self.seed.manifest_pin,'logical_gate_pin':self.seed.logical_gate_pin,
+             'facts':h.phase_facts(),'body_proof_policy':h.BODY_POLICY,'QUEUE_policy':h.QUEUE_POLICY,
+             'parent_only_parameterization_reviewed':True,'one_use_two_immutable_POSTs_authorized':True,
+-            'no_ref_writer_or_PR_action_authority':True,'exact_baseline_plus214_memberships':True,
++            'no_ref_writer_or_PR_action_authority':True,'exact_baseline_plus218_memberships':True,
+             'Root_full_source_read':True,'independent_source_review_accepted':True,
+             'parent_only_admissions_without_new_peer_review_approved':True},'Separate exact Root completion admission acceptance')
+         self.overlay,self.pre=self.seed.overlay,self.seed.pre
+@@ -179,7 +179,7 @@
+ def parent_state(rt,observer):
+     """Immutable fixed-parent truth, never a mutable Main observation."""
+     h,c,m=rt.h,rt.c,rt.m;api=h.GetOnly(observer);parent=m['expected_parent'];root=m['expected_parent_tree']
+-    need(parent not in (h.ORIGINAL,h.CURRENT,h.MERGED),'A PR214 snapshot can never be the archival commit parent')
++    need(parent not in (h.ORIGINAL,h.CURRENT,h.MERGED),'A PR218 snapshot can never be the archival commit parent')
+     value=api('GET','git/commits/'+parent)
+     need(value.get('sha')==parent and value['tree']['sha']==root,'Admission parent/root differs')
+     if parent!=h.ANCHOR:
+@@ -188,7 +188,7 @@
+     comp=api('GET','compare/'+h.MERGED+'...'+parent)
+     need((parent==h.MERGED and comp.get('status')=='identical') or
+          (comp.get('status')=='ahead' and comp['merge_base_commit']['sha']==h.MERGED),
+-         'Fresh parent must preserve actual already-merged PR214 ancestry')
++         'Fresh parent must preserve actual already-merged PR218 ancestry')
+     h.pr_identity(observer,m,rt.pool)
+     trees=c.NativeTrees(api);protected(rt,trees,root,False)
+     queue=h.queue_observation(observer,trees,root,m,rt.pool,False)
+@@ -197,7 +197,7 @@
+     need(rt.pre[h.VIEWS[2]] is not None,'Native progress baseline required')
+     progress=h.decode(rt.pool.get(observer,rt.pre[h.VIEWS[2]][2]))
+     h.matches(progress,h.baseline_facts(),'Intervening ascending checkpoint refused')
+-    for key,value in h.source_baseline().items():need(h.exact(progress.get(key),value),'Exact53/37 memberships changed')
++    for key,value in h.source_baseline().items():need(h.exact(progress.get(key),value),'Exact54/38 memberships changed')
+     need(type(progress.get('dated_eligible_total')) is int and progress['dated_eligible_total']==99,'Dated99 baseline changed')
+     for path in (h.VIEWS[1],h.VIEWS[4]):
+         if rt.pre[path] is not None:need(rt.overlay[path].startswith(rt.pool.get(observer,rt.pre[path][2])),'Native log prefix changed')
+@@ -232,8 +232,8 @@
+     trees=c.NativeTrees(api);leaves,dirs,deleted=trees.changes(a['parent_tree'],wanted)
+     need(leaves==expected_leaves and dirs==expected_dirs and not deleted,'Full native scope/foreign preservation differs')
+     selected,queue=body_associations(rt,observer,trees,wanted)
+-    return {'schema':'pr214-completion-immutable-candidate-verification-v1','evidence_scope':IMMUTABLE_SCOPE,
+-        'PR':214,'protocol_pin':rt.seed.source_pin,'source_manifest_pin':rt.seed.source_manifest_pin,
++    return {'schema':'pr218-completion-immutable-candidate-verification-v1','evidence_scope':IMMUTABLE_SCOPE,
++        'PR':218,'protocol_pin':rt.seed.source_pin,'source_manifest_pin':rt.seed.source_manifest_pin,
+         'logical_manifest_pin':rt.seed.manifest_pin,'logical_gate_pin':rt.seed.logical_gate_pin,'admission_pin':rt.admission_pin,
+         'parent':a['parent'],'parent_tree':a['parent_tree'],'candidate':oid,'tree':wanted,'parents':[a['parent']],
+         'selected_files':selected,'selected_count':len(selected),'protected_body_paths_verified':len(rt.m['protected_bodies']),'changed_leaves':sorted(leaves),'new_directories':sorted(dirs),'deleted_directories':[],
+@@ -245,8 +245,8 @@
+ 
+ def accepted_verifications(rt,row):
+     root=ref(rt.h,rt.seed.s,row);h=rt.h
+-    h.matches(root,{'schema':'pr214-root-completion-preCAS-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+-        'PR':214,'accepted':True,'protocol_pin':rt.seed.source_pin,'admission_pin':rt.admission_pin,
++    h.matches(root,{'schema':'pr218-root-completion-preCAS-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
++        'PR':218,'accepted':True,'protocol_pin':rt.seed.source_pin,'admission_pin':rt.admission_pin,
+         'logical_manifest_pin':rt.seed.manifest_pin,'logical_gate_pin':rt.seed.logical_gate_pin,'candidate':rt.admission['candidate'],
+         'tree':rt.admission['tree'],'immutable_candidate_verification_accepted':True,
+         'independent_GET_candidate_verification_accepted':True,'body_proof_policy':h.BODY_POLICY,'QUEUE_policy':h.QUEUE_POLICY},
+@@ -255,7 +255,7 @@
+     need(type(reports) is list and len(reports)==2 and len({r.get('path') for r in reports})==2,'Two distinct native GET proof records')
+     for row in reports:
+         proof=ref(h,rt.seed.s,row)
+-        h.matches(proof,{'schema':'pr214-completion-immutable-candidate-verification-v1','evidence_scope':IMMUTABLE_SCOPE,
++        h.matches(proof,{'schema':'pr218-completion-immutable-candidate-verification-v1','evidence_scope':IMMUTABLE_SCOPE,
+             'protocol_pin':rt.seed.source_pin,'source_manifest_pin':rt.seed.source_manifest_pin,'admission_pin':rt.admission_pin,
+             'logical_manifest_pin':rt.seed.manifest_pin,'logical_gate_pin':rt.seed.logical_gate_pin,
+             'candidate':rt.admission['candidate'],'tree':rt.admission['tree'],'parent':rt.admission['parent'],
+@@ -288,7 +288,7 @@
+     h=seed.h;seed.refresh()
+     parent=api('GET','git/ref/heads/main')['object']['sha'];need(h.hexid(parent),'Actual proposed parent')
+     commit=api('GET','git/commits/'+parent);need(commit.get('sha')==parent and h.hexid(commit['tree']['sha']),'Actual proposed root')
+-    a={'schema':'pr214-completion-parent-admission-v1','PR':214,'evidence_scope':'FACTUAL_PARENT_ADMISSION_REQUIRES_ROOT_ACCEPTANCE',
++    a={'schema':'pr218-completion-parent-admission-v1','PR':218,'evidence_scope':'FACTUAL_PARENT_ADMISSION_REQUIRES_ROOT_ACCEPTANCE',
+        'protocol_pin':seed.source_pin,'source_manifest_pin':seed.source_manifest_pin,'logical_manifest_pin':seed.manifest_pin,
+        'logical_gate_pin':seed.logical_gate_pin,'facts':h.phase_facts(),'body_proof_policy':h.BODY_POLICY,'QUEUE_policy':h.QUEUE_POLICY,
+        'parent':parent,'parent_tree':commit['tree']['sha'],'parents':[parent],'created_UTC':date,
+@@ -338,7 +338,7 @@
+         parent.check()
+         fd=os.open(name,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o444,dir_fd=parent.fd)
+         try:
+-            raw=enc({'schema':'pr214-one-use-canonical-candidate-reservation-v1','candidate':oid,
++            raw=enc({'schema':'pr218-one-use-canonical-candidate-reservation-v1','candidate':oid,
+                 'admission_pin':rt.admission_pin,'protocol_pin':rt.seed.source_pin,
+                 'candidate_journal':rt.admission['candidate_journal'],
+                 'semantics':'Permanent attempt reservation before immutable POST. Never remove/reuse after failure or uncertainty.'})
+@@ -383,8 +383,8 @@
+ def actual_cas(rt,row,api):
+     """Actual request/result/readback, never ancestry alone or a planned receipt."""
+     h=rt.h;a=ref(h,rt.seed.s,row)
+-    h.matches(a,{'schema':'pr214-root-completion-actual-CAS-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+-        'PR':214,'accepted':True,'hostname':'github.com','repository_full_name':'AlecKriebel/Math',
++    h.matches(a,{'schema':'pr218-root-completion-actual-CAS-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
++        'PR':218,'accepted':True,'hostname':'github.com','repository_full_name':'AlecKriebel/Math',
+         'protocol_pin':rt.seed.source_pin,'source_manifest_pin':rt.seed.source_manifest_pin,
+         'admission_pin':rt.admission_pin,'logical_manifest_pin':rt.seed.manifest_pin,'logical_gate_pin':rt.seed.logical_gate_pin,
+         'body_proof_policy':rt.h.BODY_POLICY,'QUEUE_policy':rt.h.QUEUE_POLICY,'facts':rt.m['facts'],
+@@ -394,7 +394,7 @@
+         'Separate actual external Root CAS acceptance required')
+     accepted_verifications(rt,a.get('preCAS_acceptance'))
+     ready=ref(h,rt.seed.s,a.get('actual_lock_guard_ready'))
+-    h.matches(ready,{'schema':'pr214-completion-locked-CAS-ready-v1',
++    h.matches(ready,{'schema':'pr218-completion-locked-CAS-ready-v1',
+         'evidence_scope':'HELD_LOCK_AND_DATED_FRESH_LEASE_NOT_CAS_SUCCESS',
+         'protocol_pin':rt.seed.source_pin,'admission_pin':rt.admission_pin,
+         'parent':rt.admission['parent'],'candidate':rt.admission['candidate'],
+@@ -414,7 +414,7 @@
+     # Root separately confirms a same-session live poll after actual CAS/readback
+     # and before acceptance/ack, binding its raw poll, PID and exact evidence.
+     confirmation=ref(h,rt.seed.s,a.get('post_CAS_same_live_guard_confirmation'))
+-    h.matches(confirmation,{'schema':'pr214-root-postCAS-same-live-guard-confirmation-v1',
++    h.matches(confirmation,{'schema':'pr218-root-postCAS-same-live-guard-confirmation-v1',
+         'evidence_scope':'ACTUAL_ROOT_RECEIPT','accepted':True,'protocol_pin':rt.seed.source_pin,
+         'admission_pin':rt.admission_pin,
+         'actual_lock_guard_ready_pin':{k:a['actual_lock_guard_ready'][k] for k in ('bytes','sha256')},
+@@ -481,7 +481,7 @@
+     try:
+         with rt.e.WriterLock(rt.m['writer_lock']) as lock:
+             lease_guard(rt,api,lock)
+-            ready={'schema':'pr214-completion-locked-CAS-ready-v1',
++            ready={'schema':'pr218-completion-locked-CAS-ready-v1',
+                 'evidence_scope':'HELD_LOCK_AND_DATED_FRESH_LEASE_NOT_CAS_SUCCESS',
+                 'UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'guard_pid':os.getpid(),
+                 'protocol_pin':rt.seed.source_pin,'admission_pin':rt.admission_pin,
+@@ -528,7 +528,7 @@
+             guard();path=CHECKOUT/row['path'];body=rt.overlay[row['path']];post=pin(body)
+             if e.local_pin(h,path)!=post:
+                 with e.ParentHandle(path) as parent:
+-                    temp='.pr214-completion-'+journal.name+'-'+str(index)+'.tmp'
++                    temp='.pr218-completion-'+journal.name+'-'+str(index)+'.tmp'
+                     guard();parent.check()
+                     fd=os.open(temp,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o444,dir_fd=parent.fd)
+                     try:
+@@ -547,14 +547,14 @@
+             observation=guard()
+             e.put(journal,'VIEW_'+str(index)+'.json',{'path':row['path'],'postimage':post,'native_observation':observation})
+         local_states(rt,all_post=True);observation=guard();local_states(rt,all_post=True)
+-        receipt={'schema':'pr214-completion-actual-five-sync-v1','evidence_scope':'ACTUAL_SYNC_REQUIRES_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE',
+-            'PR':214,'protocol_pin':rt.seed.source_pin,'source_manifest_pin':rt.seed.source_manifest_pin,
++        receipt={'schema':'pr218-completion-actual-five-sync-v1','evidence_scope':'ACTUAL_SYNC_REQUIRES_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE',
++            'PR':218,'protocol_pin':rt.seed.source_pin,'source_manifest_pin':rt.seed.source_manifest_pin,
+             'admission_pin':rt.admission_pin,'actual_CAS_pin':{k:cas_ref[k] for k in ('bytes','sha256')},
+             'CAS_target':rt.admission['candidate'],'CAS_target_tree':rt.admission['tree'],**observation,
+             'all_five_local_postimages_verified':True,'facts':rt.m['facts'],'external_Root_terminal_acceptance_inferred':False}
+         e.put(journal,'ACTUAL_FIVE_SYNC.json',receipt)
+         observation=guard();local_states(rt,all_post=True)
+-        e.put(NATIVE,pointer.name,{'schema':'pr214-completion-actual-five-pointer-v1','evidence_scope':'ACTUAL_SYNC_NOT_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE',
++        e.put(NATIVE,pointer.name,{'schema':'pr218-completion-actual-five-pointer-v1','evidence_scope':'ACTUAL_SYNC_NOT_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE',
+             'protocol_pin':rt.seed.source_pin,'admission_pin':rt.admission_pin,
+             'actual_CAS_pin':{k:cas_ref[k] for k in ('bytes','sha256')},'sync_path':str(journal/'ACTUAL_FIVE_SYNC.json'),
+             'sync_pin':pin(enc(receipt)),**observation,'all_five_local_postimages_verified':True,
+@@ -570,17 +570,17 @@
+ def checked_pointer(rt,cas_ref):
+     raw,unused=rt.seed.s.read_regular(NATIVE/'ROOT_ACTUAL_COMPLETION_POINTER.json')
+     pointer=rt.h.decode(raw)
+-    rt.h.matches(pointer,{'schema':'pr214-completion-actual-five-pointer-v1',
++    rt.h.matches(pointer,{'schema':'pr218-completion-actual-five-pointer-v1',
+         'evidence_scope':'ACTUAL_SYNC_NOT_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE','protocol_pin':rt.seed.source_pin,
+         'admission_pin':rt.admission_pin,'actual_CAS_pin':{k:cas_ref[k] for k in ('bytes','sha256')},
+         'CAS_target':rt.admission['candidate'],'CAS_target_tree':rt.admission['tree'],
+         'all_five_local_postimages_verified':True,'recorded_under_original_stable_lock':True,
+         'external_Root_terminal_acceptance_inferred':False},'Exact actual-sync pointer required before terminal readout')
+     path=Path(pointer['sync_path'])
+-    need(path.parent.parent==NATIVE and path.parent.name.startswith('ROOT_COMPLETE214_SYNC_')
++    need(path.parent.parent==NATIVE and path.parent.name.startswith('ROOT_COMPLETE218_SYNC_')
+          and path.name=='ACTUAL_FIVE_SYNC.json','Exact actual sync journal pointer')
+     proof=ref(rt.h,rt.seed.s,{'path':str(path),**pointer['sync_pin']})
+-    rt.h.matches(proof,{'schema':'pr214-completion-actual-five-sync-v1',
++    rt.h.matches(proof,{'schema':'pr218-completion-actual-five-sync-v1',
+         'evidence_scope':'ACTUAL_SYNC_REQUIRES_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE',
+         'protocol_pin':rt.seed.source_pin,'admission_pin':rt.admission_pin,
+         'actual_CAS_pin':{k:cas_ref[k] for k in ('bytes','sha256')},'CAS_target':rt.admission['candidate'],
+@@ -607,7 +607,7 @@
+         return {'path':getattr(args,name),'bytes':getattr(args,name+'_bytes'),'sha256':getattr(args,name+'_sha256')}
+     seed=Seed(supplied('manifest'),supplied('logical-gate'));h,e=seed.h,seed.e
+     if args.action=='admit':
+-        journal=read_journal(e,args.journal,'ROOT_COMPLETE214_READ_');api=e.API(h,journal,mutate=False)
++        journal=read_journal(e,args.journal,'ROOT_COMPLETE218_READ_');api=e.API(h,journal,mutate=False)
+         result=propose(seed,api,args.commit_date,args.candidate_journal)
+         e.put(journal,'ADMISSION.json',result)
+     else:
+@@ -616,14 +616,14 @@
+             need(args.journal is None,'Mutation journal only from accepted admission')
+             result=candidate(rt)
+         else:
+-            prefix='ROOT_COMPLETE214_SYNC_' if args.action=='sync' else 'ROOT_COMPLETE214_READ_'
++            prefix='ROOT_COMPLETE218_SYNC_' if args.action=='sync' else 'ROOT_COMPLETE218_READ_'
+             journal=read_journal(e,args.journal,prefix);api=e.API(h,journal,mutate=False)
+             if args.action=='verify':
+                 rt.refresh();result=verify_immutable(rt,api);rt.refresh();e.put(journal,'VERIFIED.json',result)
+             elif args.action=='preCAS':
+                 accepted_verifications(rt,supplied('preCAS-acceptance'))
+                 with e.WriterLock(rt.m['writer_lock']) as lock:lease_guard(rt,api,lock)
+-                result={'schema':'pr214-completion-preCAS-fresh-lease-observation-v1','parent':rt.admission['parent'],
++                result={'schema':'pr218-completion-preCAS-fresh-lease-observation-v1','parent':rt.admission['parent'],
+                         'candidate':rt.admission['candidate'],'expected_sha':rt.admission['parent'],'force':False,
+                         'ref_writer_exists':False,'observation_is_not_atomic_CAS_or_future_lease':True}
+                 e.put(journal,'PRECAS_FRESH_OBSERVATION.json',result)
+--- pinned214/concurrent_get_extension.py
++++ frozen218/concurrent_get_extension.py
+@@ -1,4 +1,4 @@
+-"""Inactive PR214 GET transport extension; no ref/PR writer or new effect authority."""
++"""Inactive PR218 GET transport extension; no ref/PR writer or new effect authority."""
+ import argparse,base64,concurrent.futures,hashlib,json,os,re,stat,sys,threading,time,types
+ from pathlib import Path
+ BASE=Path(__file__).absolute().parent
+@@ -6,7 +6,7 @@
+ PROGRAM=CASE.parents[1]
+ CHECKOUT=PROGRAM.parent
+ DRIVER=BASE
+-PROTOCOL_PIN={'bytes': 44492, 'sha256': '30bdc4dd56c176da4176be136a34ba2424d73c8653e50a501dd624210957a945'}
++PROTOCOL_PIN={'bytes': 44492, 'sha256': '41386909675f745896475f03e0594835c40118b4f78a65996b4322cf89913487'}
+ MAX_BLOBS=664
+ MAX_DECODED=32_000_000
+ MAX_CANONICAL=48_000_000
+@@ -66,14 +66,14 @@
+ def source_module():
+     raw,unused=read_regular(DRIVER/'completion_checkpoint.py')
+     need(pin(raw)==PROTOCOL_PIN,'Approved old protocol changed')
+-    q=types.ModuleType('approved_PR214_protocol');q.__file__=str(DRIVER/'completion_checkpoint.py')
++    q=types.ModuleType('approved_PR218_protocol');q.__file__=str(DRIVER/'completion_checkpoint.py')
+     exec(compile(raw,q.__file__,'exec'),q.__dict__);return q
+ 
+ def wanted_blobs(rt,aux):
+     h=rt.h
+     need(type(aux) is dict and set(aux)=={'schema','PR','files'}
+-         and aux['schema']=='pr214-concurrent-GET-auxiliary-blob-pins-v1'
+-         and type(aux['PR']) is int and aux['PR']==214,'Exact auxiliary native body pin descriptor')
++         and aux['schema']=='pr218-concurrent-GET-auxiliary-blob-pins-v1'
++         and type(aux['PR']) is int and aux['PR']==218,'Exact auxiliary native body pin descriptor')
+     rows=aux['files']
+     need(type(rows) is list and len(rows)<=32 and all(type(r) is dict and set(r)=={'oid','bytes','sha256'} for r in rows)
+          and len({r['oid'] for r in rows})==len(rows),'Finite exact auxiliary body pins')
+@@ -124,7 +124,7 @@
+         need(pin(read_regular(DRIVER/'completion_checkpoint.py')[0])==PROTOCOL_PIN
+              and read_regular(DRIVER/'SOURCE_MANIFEST.json')[0]==self.manifest_raw,'Approved old source identity changed')
+         manifest=h.decode(self.manifest_raw)
+-        h.matches(manifest,{'schema':'pr214-completion-source-manifest-v1','source_only':True,'self_excluded':True},
++        h.matches(manifest,{'schema':'pr218-completion-source-manifest-v1','source_only':True,'self_excluded':True},
+                   'Positive extension source closure')
+         rows=manifest.get('files')
+         need(type(rows) is list and 3<=len(rows)<=20 and len({r.get('path') for r in rows})==len(rows)
+@@ -136,8 +136,8 @@
+                  'Frozen extension source/document changed')
+         gate=self.driver.ref(h,self.base.seed.s,self.acceptance_ref)
+         need(h.exact(gate,self.acceptance_raw),'Exact extension acceptance changed')
+-        h.matches(gate,{'schema':'pr214-root-concurrent-GET-extension-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+-            'PR':214,'accepted':True,'extension_pin':self.source_pin,'extension_source_manifest_pin':self.source_manifest_pin,
++        h.matches(gate,{'schema':'pr218-root-concurrent-GET-extension-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
++            'PR':218,'accepted':True,'extension_pin':self.source_pin,'extension_source_manifest_pin':self.source_manifest_pin,
+             'protocol_pin':PROTOCOL_PIN,'protocol_source_manifest_pin':self.source_manifest_pin,
+             'logical_manifest_pin':self.base.seed.manifest_pin,'logical_gate_pin':self.base.seed.logical_gate_pin,
+             'admission_pin':self.base.admission_pin,'admission_gate_pin':self.base.gate_pin,
+@@ -291,7 +291,7 @@
+             self.failed=True;raise
+     def provenance(self):
+         need(not self.failed,'Failed observer cannot issue successful provenance')
+-        return {'schema':'pr214-current-invocation-concurrent-GET-provenance-v1',
++        return {'schema':'pr218-current-invocation-concurrent-GET-provenance-v1',
+             'observer':'Fresh composite GET observer, not original driver CLI',
+             'extension_pin':self.guard.source_pin,'extension_source_manifest_pin':self.guard.source_manifest_pin,
+             'extension_acceptance':self.guard.acceptance_ref,'operation':self.guard.operation,
+@@ -304,12 +304,12 @@
+ def make_readonly_api(driver,runtime,journal):
+     need(type(runtime) is GuardedRuntime and runtime.driver is driver,'Explicit bound extension Runtime required')
+     runtime.refresh()
+-    need(journal.parent==DRIVER and journal.name.startswith(('ROOT_COMPLETE214_FAST_READ_','ROOT_COMPLETE214_SYNC_FAST_','ROOT_COMPLETE214_CANDIDATE_','ROOT_COMPLETE214_READ_ROOT_TERMINAL_')),
++    need(journal.parent==DRIVER and journal.name.startswith(('ROOT_COMPLETE218_FAST_READ_','ROOT_COMPLETE218_SYNC_FAST_','ROOT_COMPLETE218_CANDIDATE_','ROOT_COMPLETE218_READ_ROOT_TERMINAL_')),
+          'Exact reviewed owned main journal prefix')
+     workers=[]
+     for index in range(runtime.worker_count):
+         runtime.check_sources()
+-        name='ROOT_COMPLETE214_FAST_WORK_'+hashlib.sha256((journal.name+runtime.operation).encode()).hexdigest()[:20]+'_'+str(index)
++        name='ROOT_COMPLETE218_FAST_WORK_'+hashlib.sha256((journal.name+runtime.operation).encode()).hexdigest()[:20]+'_'+str(index)
+         worker_journal=runtime.e.journal_new(name)
+         workers.append(runtime.e.API(runtime.h,worker_journal,mutate=False))
+     api=FastAPI(runtime,journal,workers)
+@@ -366,7 +366,7 @@
+         need(args.journal is None,'Candidate uses exact old admitted journal only')
+         result=candidate(q,rt)
+     else:
+-        prefix='ROOT_COMPLETE214_SYNC_FAST_' if args.operation=='sync' else 'ROOT_COMPLETE214_FAST_READ_'
++        prefix='ROOT_COMPLETE218_SYNC_FAST_' if args.operation=='sync' else 'ROOT_COMPLETE218_FAST_READ_'
+         rt.refresh()
+         journal=q.read_journal(rt.e,args.journal,prefix)
+         api=make_readonly_api(q,rt,journal)
+--- pinned214/ROOT_TERMINAL_INSPECTION.py
++++ frozen218/ROOT_TERMINAL_INSPECTION.py
+@@ -1,4 +1,4 @@
+-"""Inactive Root PR214 completion terminal inspector; import has no effects.
++"""Inactive Root PR218 completion terminal inspector; import has no effects.
+ 
+ Preparation does not invoke this CLI. Later actual Root use requires separately
+ pinned source acceptance, logical/admission/CAS evidence and actual five sync.
+@@ -12,11 +12,11 @@
+ A=BASE.parent
+ B=BASE
+ CHECKOUT=A.parents[2]
+-DRIVER_PIN={'bytes': 44492, 'sha256': '30bdc4dd56c176da4176be136a34ba2424d73c8653e50a501dd624210957a945'}
+-RECEIPT_SCHEMA='pr214-root-actual-completion-verification-v1'
+-SOURCE_SCHEMA='pr214-root-terminal-inspector-source-acceptance-v1'
+-BASELINE_PIN={'bytes': 853, 'sha256': 'b4fe8858faebc0f14ab956d8849af28072837807f3fc87e85a2abe356bfb2f1e'}
+-FIXED_FACTS={'active_PR': 214, 'workflow_percent': 100, 'completed': True, 'fully_completed_count': 54, 'published_count': 38, 'last_completed_PR': 214, 'next_numeric_intake_cursor': 215, 'goal_complete': False, 'completed_eligible_workflow': True, 'publication_workflow_completed': True, 'publication_ready': True, 'original_eligible_status': 'claimed_solved', 'current_status': 'claimed_solved', 'actual_original_PR_merged': True, 'adopted_existing_publication': True, 'no_new_provider_publication_or_tracker_append': True, 'current_head': '95ba37055ebf1e7b4f9d76aa43816c9978c7bce8', 'original_merge_commit': '4abf30daa991860a275b3d25745159852757ad35', 'existing_publication_DOI': '10.5281/zenodo.23390551', 'existing_tracker_range': "'Math Puzzles'!A105:D105", 'numeric_advance_conditional_on_actual_Root_terminal': True, 'advance_to_next_PR_authorized_now': False}
++DRIVER_PIN={'bytes': 44492, 'sha256': '41386909675f745896475f03e0594835c40118b4f78a65996b4322cf89913487'}
++RECEIPT_SCHEMA='pr218-root-actual-completion-verification-v1'
++SOURCE_SCHEMA='pr218-root-terminal-inspector-source-acceptance-v1'
++BASELINE_PIN={'bytes': 871, 'sha256': 'ae2786a2fa2d199cd92003830fd2555a1a8d1fa26d32a2e30c79b0e236c66637'}
++FIXED_FACTS={'active_PR': 218, 'workflow_percent': 100, 'completed': True, 'fully_completed_count': 55, 'published_count': 39, 'last_completed_PR': 218, 'next_numeric_intake_cursor': 219, 'goal_complete': False, 'completed_eligible_workflow': True, 'publication_workflow_completed': True, 'publication_ready': True, 'original_eligible_status': 'claimed_solved', 'current_status': 'claimed_solved', 'actual_original_PR_merged': True, 'adopted_existing_publication': True, 'no_new_provider_publication_or_tracker_append': True, 'current_head': '698f85a0f608e5a90924567d761663dfb100f3c2', 'original_merge_commit': '8172b404db36b931005ac48a94ec91fdff866023', 'existing_publication_DOI': '10.5281/zenodo.23387774', 'existing_tracker_range': "'Math Puzzles'!A99:D99", 'numeric_advance_conditional_on_actual_Root_terminal': True, 'advance_to_next_PR_authorized_now': False}
+ 
+ def need(value,message):
+     if type(value) is not bool or not value:raise RuntimeError(message)
+@@ -93,7 +93,7 @@
+ def source_closure():
+     source=readonly(Path(__file__).absolute())
+     raw=readonly(BASE/'SOURCE_MANIFEST.json');m=decode(raw)
+-    need(type(m) is dict and m.get('schema')=='pr214-completion-source-manifest-v1'
++    need(type(m) is dict and m.get('schema')=='pr218-completion-source-manifest-v1'
+          and m.get('source_only') is True and m.get('self_excluded') is True,'Terminal source-only closure')
+     rows=m.get('files')
+     need(type(rows) is list and 3<=len(rows)<=20 and all(type(r) is dict for r in rows),'Finite terminal source rows')
+@@ -115,7 +115,7 @@
+             'extension_source':ext,'extension_acceptance':gate}
+ 
+ def check_source_acceptance(value,source_pin,manifest_pin,policy):
+-    expected={'schema':SOURCE_SCHEMA,'evidence_scope':'ACTUAL_ROOT_RECEIPT_SOURCE_ONLY','PR':214,
++    expected={'schema':SOURCE_SCHEMA,'evidence_scope':'ACTUAL_ROOT_RECEIPT_SOURCE_ONLY','PR':218,
+        'accepted':True,'terminal_source_pin':source_pin,'terminal_source_manifest_pin':manifest_pin,
+        'approved_driver_pin':DRIVER_PIN,'receipt_schema':RECEIPT_SCHEMA,
+        'Root_full_source_read':True,'independent_source_review_accepted':True,
+@@ -130,7 +130,7 @@
+     for key in ('manifest','logical_gate','admission','Root_gate','actual_CAS','pointer','sync','source_acceptance'):
+         checked_ref(config[key])
+     need(config['pointer']['path']==str(B/'ROOT_ACTUAL_COMPLETION_POINTER.json'),'Only original actual pointer path')
+-    need(type(config['journal']) is str and re.fullmatch('ROOT_COMPLETE214_READ_ROOT_TERMINAL_[A-Za-z0-9_-]{1,35}',config['journal']) is not None,
++    need(type(config['journal']) is str and re.fullmatch('ROOT_COMPLETE218_READ_ROOT_TERMINAL_[A-Za-z0-9_-]{1,35}',config['journal']) is not None,
+          'Fresh bounded read-only Root terminal journal')
+     need(type(config['receipt_name']) is str and config['receipt_name']=='ROOT_ACTUAL_COMPLETION_VERIFICATION_01.json',
+          'Exact external Root terminal receipt basename')
+@@ -141,15 +141,15 @@
+         return own,manifest
+     own,manifest=refresh()
+     path=B/'completion_checkpoint.py';raw=readonly(path)
+-    need(exact(pin(raw),DRIVER_PIN),'Approved pinned PR214 driver differs')
+-    driver=types.ModuleType('Root_PR214_terminal_approved_driver');driver.__file__=str(path)
++    need(exact(pin(raw),DRIVER_PIN),'Approved pinned PR218 driver differs')
++    driver=types.ModuleType('Root_PR218_terminal_approved_driver');driver.__file__=str(path)
+     exec(compile(raw,str(path),'exec'),driver.__dict__)
+     seed=driver.Seed(config['manifest'],config['logical_gate'])
+     rt=driver.Runtime(seed,config['admission'],config['Root_gate'])
+     need(exact(seed.source_pin,DRIVER_PIN),'Seed did not bind approved driver')
+     if config['extension_source'] is not None:
+         extpath=checked_ref(config['extension_source']);ext_raw=raw_ref(config['extension_source'])
+-        ext=types.ModuleType('Root_PR214_terminal_explicit_extension');ext.__file__=str(extpath)
++        ext=types.ModuleType('Root_PR218_terminal_explicit_extension');ext.__file__=str(extpath)
+         exec(compile(ext_raw,str(extpath),'exec'),ext.__dict__)
+         need(callable(getattr(ext,'bind_runtime',None)) and callable(getattr(ext,'make_readonly_api',None)),
+              'Pinned extension lacks explicit reviewed interface')
+@@ -165,7 +165,7 @@
+     def actual_GET_origins(self):return getattr(self.observer,'actual_GET_origins',{})
+     def __call__(self,method,path,body=None):
+         need(not self.failed,'Terminal observer stopped after uncertainty')
+-        allowed=path in ('git/ref/heads/main','pulls/214') or (type(path) is str and re.fullmatch(
++        allowed=path in ('git/ref/heads/main','pulls/218') or (type(path) is str and re.fullmatch(
+           r'git/(?:commits|trees|blobs)/[0-9a-f]{40}|compare/[0-9a-f]{40}\.\.\.[0-9a-f]{40}',path) is not None)
+         need(method=='GET' and body is None and allowed,'Terminal native GET-only routes')
+         try:return self.observer('GET',path)
+@@ -179,14 +179,14 @@
+         need(value.get('conditional_proposal_only') is True,'Five proposals cannot be Root actual terminal authority')
+     need(type(progress.get('dated_eligible_total')) is int and progress['dated_eligible_total']==99,'Dated denominator99')
+     need(type(baseline) is dict and set(baseline)=={'fully_completed_eligible_PRs','published_PRs'},'Exact baseline fields')
+-    for key,count in (('fully_completed_eligible_PRs',53),('published_PRs',37)):
++    for key,count in (('fully_completed_eligible_PRs',54),('published_PRs',38)):
+         arr=baseline[key]
+         need(type(arr) is list and len(arr)==count and all(type(x) is int for x in arr)
+-             and arr==sorted(set(arr)) and all(n not in arr for n in (212,213,214))
+-             and exact(progress.get(key),arr+[214]),'Exact prior baseline plus214 only')
+-    return {'old_memberships':baseline,'new_memberships':{k:v+[214] for k,v in baseline.items()},
+-            'fully_completed_eligible_PRs':baseline['fully_completed_eligible_PRs']+[214],
+-            'published_PRs':baseline['published_PRs']+[214],'dated_eligible_total':99}
++             and arr==sorted(set(arr)) and all(n not in arr for n in (212,213,215,216,217,218))
++             and exact(progress.get(key),arr+[218]),'Exact prior baseline plus218 only')
++    return {'old_memberships':baseline,'new_memberships':{k:v+[218] for k,v in baseline.items()},
++            'fully_completed_eligible_PRs':baseline['fully_completed_eligible_PRs']+[218],
++            'published_PRs':baseline['published_PRs']+[218],'dated_eligible_total':99}
+ 
+ def native_semantics(rt,api,observation):
+     h=rt.h
+@@ -206,7 +206,7 @@
+     wanted={'HEAD':h.CURRENT,'state':'closed','draft':False,'merged':True,'current_status':'claimed_solved',
+             'original_merge_commit':h.MERGED,'same_selected_PR_identity':True}
+     need(type(pr) is dict and all(k in pr and exact(pr[k],v) for k,v in wanted.items()),
+-         'Original already-merged claimed_solved PR214 must remain unchanged')
++         'Original already-merged claimed_solved PR218 must remain unchanged')
+     queue=observation.get('Main_QUEUE_observation')
+     need(type(queue) is dict and queue.get('policy')==h.QUEUE_POLICY and queue.get('foreign_rows_may_differ') is True
+          and exact(queue.get('own_row_pin'),rt.m['protected_queue_row_pin']),
+@@ -235,14 +235,14 @@
+         raw,identity=rt.seed.s.read_regular(driver.CHECKOUT/row['path'])
+         need(type(raw) is bytes and raw==rt.overlay[row['path']],'Full local five postimage bytes differ')
+         files.append({'path':row['path'],'postimage':pin(raw)});bodies[row['path']]=raw
+-    need(exact(h.BASELINE_PIN,BASELINE_PIN),'Exact accepted853-byte53/37 baseline pin required')
++    need(exact(h.BASELINE_PIN,BASELINE_PIN),'Exact accepted54/38 baseline pin required')
+     lists=accounting(h,rt.m,h.decode(bodies[h.VIEWS[0]]),h.decode(bodies[h.VIEWS[2]]),h.source_baseline())
+     return observed_pin,pin(sync_raw),files,lists
+ 
+ class TerminalPublicationUncertain(RuntimeError):
+     """Local publication/durability uncertainty; never a retry/overwrite instruction."""
+     def __init__(self,path,pending,stage,published,error):
+-        self.details={'schema':'pr214-root-terminal-local-publication-uncertainty-v1',
++        self.details={'schema':'pr218-root-terminal-local-publication-uncertainty-v1',
+           'path':str(path),'pending_path':str(pending),'stage':stage,
+           'exclusive_final_link_returned_success':published,'exception_type':type(error).__name__,
+           'final_file_may_exist':True,'local_durability_or_identity_unconfirmed':True,
+@@ -260,7 +260,7 @@
+          and path.name=='ROOT_ACTUAL_COMPLETION_VERIFICATION_01.json',
+          'Only bounded external Root terminal receipt allowed')
+     ops=os if local_ops is None else local_ops
+-    pending=path.with_name('.pr214-root-terminal-pending-'+str(os.getpid())+'-'+os.urandom(16).hex())
++    pending=path.with_name('.pr218-root-terminal-pending-'+str(os.getpid())+'-'+os.urandom(16).hex())
+     attempted=False;published=False;stage='pending_create';pending_identity=None
+     with e.ParentHandle(path) as parent:
+         parent.check()
+@@ -354,11 +354,11 @@
+               and checks['refreshes_completed_before_record']>=2
+               and checks['all_exact_pins_and_gates_rechecked_successfully'] is True)
+     return {'schema':RECEIPT_SCHEMA,'evidence_scope':'ACTUAL_ROOT_RECEIPT',
+-        'UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'PR':214,'problem_id':'30005244',
++        'UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'PR':218,'problem_id':'30006020',
+         'accepted':True,'completed':True,'workflow_percent':100,'completed_eligible_workflow':True,
+         'publication_workflow_completed':True,'publication_ready':True,
+-        'fully_completed_count':54,'published_count':38,'last_completed_PR':214,
+-        'next_numeric_intake_cursor':215,'advance_to_next_PR_authorized_now':True,'goal_complete':False,
++        'fully_completed_count':55,'published_count':39,'last_completed_PR':218,
++        'next_numeric_intake_cursor':219,'advance_to_next_PR_authorized_now':True,'goal_complete':False,
+         'numeric_advance_conditional_on_actual_Root_terminal':False,
+         'original_eligible_status':'claimed_solved','current_status':'claimed_solved',
+         'current_head':h.CURRENT,'original_merge_commit':h.MERGED,'actual_original_PR_merged':True,
+@@ -379,7 +379,7 @@
+         'all_five_local_files_match_actual_checkpoint':True,'files':files,
+         'old_memberships':lists['old_memberships'],'new_memberships':lists['new_memberships'],
+         'fully_completed_eligible_PRs':lists['fully_completed_eligible_PRs'],'published_PRs':lists['published_PRs'],
+-        'only214_added_to_exact53_37_baseline':True,'dated_eligible_denominator':99,
++        'only218_added_to_exact54_38_baseline':True,'dated_eligible_denominator':99,
+         'denominator_is_not_current_repository_census':True,'original_stable_writer_lock_held_exact':True,
+         'all_selected_native_bodies_verified':True,'full_scope_verified':True,'foreign_native_tuples_preserved':True,
+         'source_gates_verified':verified,'source_gate_checks':checks,
+@@ -442,8 +442,8 @@
+         publication=exclusive_root_receipt(e,path,enc(record),guard,identity_guard)
+         return {'terminal_receipt':{'path':str(path),**pin(enc(record))},'actual_MAIN_observed':observation['actual_MAIN_observed'],
+                 'actual_MAIN_tree':observation['actual_MAIN_tree'],'CAS_target':rt.admission['candidate'],
+-                'fully_completed_count':54,'published_count':38,'last_completed_PR':214,
+-                'next_numeric_intake_cursor':215,'completed_eligible_workflow':True,
++                'fully_completed_count':55,'published_count':39,'last_completed_PR':218,
++                'next_numeric_intake_cursor':219,'completed_eligible_workflow':True,
+                 'publication_ready':True,'goal_complete':False,'publication':publication}
+ 
+ def main():

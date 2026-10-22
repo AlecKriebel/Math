@@ -1,0 +1,168 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newcommand{\D}{\mathcal D}
+\newcommand{\C}{\mathcal C}
+\title[A dodecahedral endpoint theorem]{A parity-selected endpoint theorem for the regular dodecahedron}
+\author{Alec Kriebel}
+\thanks{ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.
+AI tools were used extensively in proof development, drafting, source checking and independent computational and adversarial verification. This is an unrefereed research note and has not undergone conventional human peer review.}
+\date{14 October 2026}
+\begin{document}
+\begin{abstract}
+We distinguish two formulations associated with Fuchs's short-geodesic question on the regular dodecahedron. The bare endpoint-angle condition admits two direct face-diagonal counterexamples at each initial face and vertex. With an explicit parity-selected convention, an unbounded endpoint-exclusion theorem follows from a double-pentagon germ calculation and the classical midpoint half-turn mechanism: the endpoints cannot have graph distance two. The convention is an adopted disambiguation, not an authenticated author correction. We credit the earlier symmetry arguments and a contemporaneous overlapping preprint, record the available chronology, and claim no historical firstness. Exact supporting checks also separate a valid public face path from errors in its angle and displayed-coordinate certificates.
+\end{abstract}
+\maketitle
+
+\section{The question and the convention}
+Let $\D$ be the surface of a regular dodecahedron. A \emph{short} geodesic runs from a vertex to its first subsequent vertex, with no vertex in its interior. Its endpoints may coincide and its image may self-intersect. There is no length bound. Write $d_G$ for distance in the one-skeleton, and $N$ for the number of straight face pieces, so a non-edge path has $N-1$ transverse edge crossings. A path along an edge stops at its other endpoint and is assigned $N=1$.
+
+Fuchs's Conjecture~3.2 \cite[p.~515]{Fuchs} excludes $d_G=2$ for type $A_0$. The angle shorthand on p.~506, also used as a definition in the imported problem record \cite{Dataset}, is
+\begin{equation}\label{bare}
+                    \beta-\alpha=2\pi/5.
+\end{equation}
+Here $\alpha$ is the initial angle from the outgoing initial boundary edge. In Fuchs's Figure~8, $\pi-\beta$ is the terminal interior angle between the reversed tangent and the outgoing boundary edge of the \emph{transported billiard polygon}. Successive reflections transport this boundary ordering; it need not agree with the outward orientation of the last physical face.
+
+There is an exceptional-direction ambiguity. The paragraph before Definition~2.1 selects the difference relation for even $N$ and the sum relation for odd $N$; Figure~9 labels sides $A_0$ and proper pentagon diagonals $A_1,A_2$. The printed disjunction and the standalone difference shorthand overlap on those diagonals. We therefore state our choice explicitly:
+\[
+\C=\{\text{edge paths}\}\ \cup\
+ \{\text{non-edge short paths with even }N\text{ satisfying \eqref{bare}}\}.
+\]
+This is the parity-selected reading supported by the sign paragraph and diagonal calibration. We do not assert that it is the uniquely compelled printed reading or an author-authenticated erratum.
+
+\begin{theorem}\label{main}
+Every $\gamma\in\C$ has endpoints $v,w$ with $d_G(v,w)\ne2$.
+\end{theorem}
+\begin{proposition}\label{literal}
+For a fixed initial face and initial vertex, the paths satisfying only \eqref{bare} are precisely the paths in $\C$ together with the two proper diagonals of that face from that vertex. Each extra path has $d_G=2$. Thus the imported angle-only exclusion is false.
+\end{proposition}
+
+The midpoint mechanism is established prior work of Athreya--Aulicino--Hooper \cite[\S5]{AAH}; Troubetzkoy \cite{Troubetzkoy} gives a related refolding argument for the other four Platonic solids. Ferudun's current preprint \cite[Remark~1.2 and \S7]{Ferudun} contains both the parity distinction and the endpoint theorem, as well as the type correction for the public face word discussed below. The present note records an audited proof with explicit interpretation limits and exact verification, without claiming a new symmetry mechanism or certified novelty.
+
+\section{The two exceptional diagonals}
+Normalize the initial unit-side pentagon above its horizontal edge:
+\[
+ r=e^{2\pi i/5},\qquad p_j=\sum_{k=0}^{j-1}r^k
+ \quad(0\le j\le4),\qquad P=\operatorname{conv}\{p_0,\ldots,p_4\}.
+\]
+Thus $p_0=0,p_1=1$ and $0\le\alpha\le3\pi/5$. Developed odd face occurrences are translates of the unlabeled $P$; even occurrences are translates of $Q=\overline P$. This follows by reflecting a regular pentagon across an edge, using its rotational symmetry.
+
+For odd $N$, the outgoing terminal boundary direction is a multiple of $2\pi/5$, and the terminal sector gives $\alpha+\beta\in(2\pi/5)\mathbb Z$, as in the sign rule preceding Fuchs's Definition~2.1. If \eqref{bare} also holds, then $\alpha\in(\pi/5)\mathbb Z$. The four rays in the permitted sector meet a vertex already in the initial face. Their first-hit paths are:
+\[
+\begin{array}{c|c|c|c}
+\text{endpoint}&\alpha&\beta&\text{path}\\ \hline
+p_1&0&2\pi/5&\text{edge}\\
+p_2&\pi/5&3\pi/5&\text{proper diagonal}\\
+p_3&2\pi/5&4\pi/5&\text{proper diagonal}\\
+p_4&3\pi/5&\pi&\text{edge}.
+\end{array}
+\]
+The proper diagonals have nonadjacent endpoints with a two-edge boundary path, hence graph distance two. The edges have distance one. For even $N$, \eqref{bare} is exactly the non-edge part of $\C$. This proves Proposition~\ref{literal}, including exhaustion of the exceptions.
+
+\section{Midpoint symmetry and endpoint distance}
+\begin{lemma}\label{midpoint}
+Every non-edge path in $\C$ has its arclength midpoint at a physical edge midpoint.
+\end{lemma}
+\begin{proof}
+Put $q_j=\overline{p_j}$. Glue the parallel edges of $P$ and $Q$ by translations to form the standard double pentagon $X$. Its involution
+\[
+                       h(z)=1-z
+\]
+interchanges the polygons, with $h(p_j)=q_{1-j\pmod5}$ and $h(p_0)=q_1$. It respects the edge gluings. On each glued edge it reverses the edge parameter; its only regular fixed points are the five edge midpoints. Polygon interiors are interchanged, and the common vertex is singular.
+
+The translation unfolding of $\D$ covers $X$, respecting face interiors, open edges and vertices \cite[Proposition~4.4 and Theorem~4.5]{AAH}. One may equivalently project the successive normalized face occurrences of the path to $P,Q$. The resulting connection $\sigma$ has no interior singularity: a projected corner would come from an actual vertex, whereas open edges and face interiors map to their corresponding strata. Choose the initial sector at $p_0$ in $P$.
+
+Since $N$ is even, the terminal sector lies in $Q$ with clockwise transported boundary ordering. If $\theta$ is its outgoing boundary direction, Figure~8's supplement gives
+\[
+       \pi-\beta\equiv\theta-(\pi+\alpha)\pmod{2\pi},
+       \qquad \theta\equiv\alpha-\beta\equiv-2\pi/5.
+\]
+The unique outgoing edge in this direction in the clockwise $Q$ boundary is $q_1q_2$, since $q_2-q_1=r^{-1}$. The terminal corner is therefore exactly $q_1=h(p_0)$.
+
+If $L$ is the length, the path $t\mapsto h(\sigma(L-t))$ begins in the same $P$ corner sector as $\sigma$ and has the same tangent, because $Dh=-I$. These are the same specified initial germ, not merely equal vectors at a singularity. Straight continuation is unique until the first singularity, so
+\[
+                         h(\sigma(L-t))=\sigma(t).
+\]
+Its midpoint is a regular fixed point of $h$, hence a glued-edge midpoint. The polygon-respecting projection takes no physical face-interior point to such a point and preserves the edge parameter. The original midpoint is consequently a physical edge midpoint.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+The edge case has $d_G=1$. Otherwise let $m=\gamma(L/2)$ be the edge midpoint from Lemma~\ref{midpoint}. The rotation $\rho$ by $\pi$ about the line through the solid's center and $m$ preserves its surface. On the locally flat intrinsic tangent plane at $m$ its derivative is $-I$: it reverses the edge direction and exchanges its two incident faces. Therefore $\rho$ reverses the geodesic germ there. Unique continuation to the first vertex in each direction gives
+\[
+                          \rho(\gamma(t))=\gamma(L-t),
+\]
+and in particular $\rho(v)=w$. This uses the parameterized germ and allows self-intersections.
+
+If $d_G(v,w)=2$, the vertices have a unique common neighbor: two common neighbors would give a four-cycle, whereas the dodecahedral graph has girth five. The graph automorphism $\rho$ exchanging $v,w$ must fix that neighbor. But a nonidentity rotational half-turn fixes no vertex of a regular dodecahedron: a vertex stabilizer has order three, acting cyclically on its three incident edges. This is a contradiction.
+\end{proof}
+
+No conjectural identification of all pentagon saddle connections with a symmetric class is used. In particular, the all-connection statement of \cite[Proposition~5.3]{AAH} applies to triangle and square decompositions, not pentagons. The specified terminal-corner calculation is essential here.
+
+\section{A public face word and exact checks}
+The mathematical face word at the pinned public commit \cite{Danny} reconstructs a legal short path from vertex $0$ to vertex $2$, through $16$ face occurrences with $15$ strictly ordered interior crossings. Its squared unit-edge length is $(307+137\sqrt5)/2$ and $d_G(0,2)=2$. In the normalized development,
+\[
+ Z=5+r-7r^2-8r^3,\qquad 0<\arg Z<\pi/5.
+\]
+The transported outgoing terminal ray is $2\to16$, of direction $216^\circ$, rather than the outward physical-face ray $2\to10$, of direction $108^\circ$. With the Figure~8 supplement this gives $\beta-\alpha=144^\circ$, type $A_1$ under the parity convention. Ferudun \cite[Remark~7.4]{Ferudun} also records this distinction.
+
+The displayed coordinates in the pinned text contain an additional, separate inconsistency. That text sets
+\[
+ \eta=e^{i\pi/5},\quad \phi=(1+\sqrt5)/2,\quad
+ A=(31+13\sqrt5)/2,\quad B=-17-8\sqrt5
+\]
+and advertises the same squared length for $A+B\eta$. Direct expansion instead gives
+\[
+ |A+B\eta|^2=A^2+\phi AB+B^2=(425+189\sqrt5)/2.
+\]
+The difference is $59+26\sqrt5$. This refutes that displayed-coordinate identity, while leaving the independently reconstructed face word valid. These observations concern the specified mathematical artifacts, not their authors.
+
+The supplement supplies standard-library exact implementations over $\mathbb Q(\sqrt5)$ and $\mathbb Q[r]/(1+r+\cdots+r^4)$. They verify the crossings, first-vertex condition, graph distances, terminal rays, corner/gluing identities and the $30$ edge-indexed rotations representing $15$ distinct half-turns. All share the vertex-distance histogram $\{1:4,3:8,4:4,5:4\}$. Current canonical checks use explicit guards that survive Python optimization; meaningful wrong-length, wrong-field, wrong-ray, empty-graph and wrong-coordinate controls reject. Finite checks corroborate the data; the universal theorem is the proof above.
+
+\section{Chronology, credit and limits}
+GitHub records draft PR~190 as created on 1~October~2026 at 04:03:35~UTC. Its identified initial artifact commit is
+\texttt{c9162a45d30120b10b42b1f79c50bab417ed287b}; the recovered V2 proof bytes in that commit have been authenticated. Commit dates alone are not independent publication timestamps, and present public repository visibility does not establish historical visibility.
+
+Ferudun's related preprint \cite{Ferudun} is currently dated 9~October~2026. DataCite records DOI registration on that date; our audit distinguishes the current website files from the inaccessible Zenodo file bodies. We acknowledge this contemporaneous overlapping work explicitly. The recorded dates do not establish historical firstness, independence of discovery or exhaustive priority. The earlier covering and midpoint symmetry mechanisms are credited to \cite{AAH,Troubetzkoy}; our distinction of the two formulations should not be read as claiming those mechanisms.
+
+The supporting priority ledger records the precise primary versions and sections read and the remaining body/version access gaps, including unavailable journal-version comparisons. No claim of guaranteed novelty, current openness, or an authenticated correction of Fuchs's intended definition follows from a search that found no earlier statement. Our claims are the two precisely stated mathematical conclusions and the artifact checks above.
+
+\begin{thebibliography}{9}
+\bibitem{Fuchs}
+D. Fuchs, \emph{Billiard trajectories in regular polygons and geodesics on regular polyhedra},
+Arnold Math. J. \textbf{7} (2021), 493--517.
+\href{https://doi.org/10.1007/s40598-020-00170-8}{doi:10.1007/s40598-020-00170-8}.
+\bibitem{AAH}
+J. S. Athreya, D. Aulicino and W. P. Hooper, with an appendix by A. Randecker,
+\emph{Platonic solids and high genus covers of lattice surfaces},
+Exp. Math. \textbf{31} (2022), 847--877.
+\href{https://doi.org/10.1080/10586458.2020.1712564}{doi:10.1080/10586458.2020.1712564}.
+Body statements checked in \href{https://arxiv.org/abs/1811.04131v2}{arXiv:1811.04131v2}.
+\bibitem{Troubetzkoy}
+S. Troubetzkoy, \emph{Vertex to vertex geodesics on Platonic solids},
+Amer. Math. Monthly \textbf{130} (2023), 379--382.
+\href{https://doi.org/10.1080/00029890.2023.2172298}{doi:10.1080/00029890.2023.2172298}.
+Body checked in \href{https://arxiv.org/abs/2202.04892v3}{arXiv:2202.04892v3}.
+\bibitem{Ferudun}
+A. Ferudun, \emph{On seven conjectures of Fuchs on billiard trajectories in regular polygons and geodesics on the regular dodecahedron},
+EulerSolve Research Papers AMR-049 (2026), unrefereed preprint.
+\href{https://doi.org/10.5281/zenodo.23267641}{doi:10.5281/zenodo.23267641};
+current body at \url{https://eulersolve.org/papers/amr-049/}.
+\bibitem{Danny}
+DannyExperiments, \emph{Exact counterexample to Fuchs Conjecture 3.2},
+\texttt{proof/PROBLEM\_AND\_PROOF.md}, repository
+\href{https://github.com/DannyExperiments/dodecahedron-short-geodesic-counterexample}{dodecahedron-short-geodesic-counterexample},
+commit \texttt{7b403decdc9317f6ba3dc2c4a91243a0bf0c9ff9}.
+\bibitem{Dataset}
+ulamai, \emph{UnsolvedMath}, problem 5000007 / AMR-049-0007,
+dataset revision \texttt{37e53eabe540fb458758e198be61634bd02ee008}.
+\url{https://huggingface.co/datasets/ulamai/UnsolvedMath}.
+\end{thebibliography}
+\end{document}
+

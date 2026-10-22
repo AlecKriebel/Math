@@ -1,0 +1,119 @@
+{
+  "timestamp": "2026-10-21T17:03:58.033846+00:00",
+  "old_source": "scope_check_history/initial_20261021T1652.py",
+  "old_sha256": "2ba3115b4102bc0afedafed1d6d203a6f6b94a01869246f74ffe21526a9e3169",
+  "current_sha256": "ee41b085d1dfa224f4ae7c40fccdb1b59cc3a0481e81df93f696bd951f23830c",
+  "change": "Reject duplicate cached path entries, wrong/non-integer file_count, mismatched files list count/name multiset. Actual pinned path/row observations remain required; disclosed merge-context blob differences retained.",
+  "root_replays": [
+    {
+      "mode": "normal",
+      "actual21_pass": true,
+      "controls": [
+        {
+          "case": "evidence_wrong_head",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Inventory/evidence identity mismatch",
+          "queue_blob_equal": null
+        },
+        {
+          "case": "evidence_missing_real_path",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Actual pinned complete path set differs from cached inventory",
+          "queue_blob_equal": null
+        },
+        {
+          "case": "cached_added_status_tampered",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Actual pinned added QUEUE rows differ from cached rows",
+          "queue_blob_equal": null
+        },
+        {
+          "case": "cached_queue_blob_tampered_disclosed_only",
+          "expected": "pass",
+          "observed": "pass",
+          "expected_behavior_met": true,
+          "error": null,
+          "queue_blob_equal": false
+        },
+        {
+          "case": "cached_duplicate_path_rejected",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Actual pinned complete path set differs from cached inventory",
+          "queue_blob_equal": null
+        },
+        {
+          "case": "cached_file_count_rejected",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Actual pinned complete path set differs from cached inventory",
+          "queue_blob_equal": null
+        }
+      ]
+    },
+    {
+      "mode": "optimized",
+      "actual21_pass": true,
+      "controls": [
+        {
+          "case": "evidence_wrong_head",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Inventory/evidence identity mismatch",
+          "queue_blob_equal": null
+        },
+        {
+          "case": "evidence_missing_real_path",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Actual pinned complete path set differs from cached inventory",
+          "queue_blob_equal": null
+        },
+        {
+          "case": "cached_added_status_tampered",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Actual pinned added QUEUE rows differ from cached rows",
+          "queue_blob_equal": null
+        },
+        {
+          "case": "cached_queue_blob_tampered_disclosed_only",
+          "expected": "pass",
+          "observed": "pass",
+          "expected_behavior_met": true,
+          "error": null,
+          "queue_blob_equal": false
+        },
+        {
+          "case": "cached_duplicate_path_rejected",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Actual pinned complete path set differs from cached inventory",
+          "queue_blob_equal": null
+        },
+        {
+          "case": "cached_file_count_rejected",
+          "expected": "reject",
+          "observed": "reject",
+          "expected_behavior_met": true,
+          "error": "Actual pinned complete path set differs from cached inventory",
+          "queue_blob_equal": null
+        }
+      ]
+    }
+  ],
+  "provider_and_shared_Git_mutations": false,
+  "historical_review_outputs_untouched": true
+}

@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "expected_rejections": 15,
+  "results": [
+    {
+      "name": "tamper_payload",
+      "exit_code": 1,
+      "immutable_after_rejection": true,
+      "stderr_last_line": "RuntimeError: Payload mismatch: support_slit.tex"
+    },
+    {
+      "name": "extra_payload",
+      "exit_code": 1,
+      "immutable_after_rejection": true,
+      "stderr_last_line": "RuntimeError: Inventory mismatch: extra={'unlisted.json'}, missing=set()"
+    },
+    {
+      "name": "missing_payload",
+      "exit_code": 1,
+      "immutable_after_rejection": true,
+      "stderr_last_line": "RuntimeError: Inventory mismatch: extra=set(), missing={'README.md'}"
+    },
+    {
+      "name": "optimized_python",
+      "exit_code": 1,
+      "immutable_after_rejection": true,
+      "stderr_last_line": "RuntimeError: Run without Python optimization"
+    },
+    {
+      "name": "symlink_payload",
+      "exit_code": 1,
+      "immutable_after_rejection": true,
+      "stderr_last_line": "RuntimeError: Unexpected symlink: unexpected_link"
+    },
+    {
+      "name": "stale_nested_after_outer_reseal",
+      "exit_code": 1,
+      "immutable_after_rejection": true,
+      "stderr_last_line": "RuntimeError: Nested size mismatch: reviews/analytic01/MANIFEST.json: reviews/analytic01/CHECKS.json"
+    },
+    {
+      "name": "replay_full_json_mismatch",
+      "exit_code": 1,
+      "immutable_after_rejection": true,
+      "stderr_last_line": "RuntimeError: Replay mismatch: original/unsolved_math_prioritization/attempts/2306072/verify_manifest.py"
+    },
+    {
+      "name": "producer_stale_nested",
+      "exit_code": 1,
+      "immutable_after_rejection": true,
+      "stderr_last_line": "RuntimeError: Nested size mismatch: reviews/analytic01/MANIFEST.json: reviews/analytic01/CHECKS.json"
+    },
+    {
+      "name": "producer_symlink_input",
+      "exit_code": 1,
+      "immutable_after_rejection": true,
+      "stderr_last_line": "RuntimeError: Unexpected source symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr563_2306072/reviews/package_preflight06/negative_controls/producer_symlink_input/publication/README.md"
+    },
+    {
+      "name": "safe_path_'../escape'",
+      "rejected": true
+    },
+    {
+      "name": "safe_path_'/absolute'",
+      "rejected": true
+    },
+    {
+      "name": "safe_path_'a\\\\b'",
+      "rejected": true
+    },
+    {
+      "name": "safe_path_'a:b'",
+      "rejected": true
+    },
+    {
+      "name": "safe_path_'a/./b'",
+      "rejected": true
+    },
+    {
+      "name": "safe_path_''",
+      "rejected": true
+    }
+  ],
+  "scope": "Deliberate corruptions on independent copies only; consistency rather than authenticity."
+}

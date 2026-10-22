@@ -1,0 +1,24 @@
+{
+  "UTC": "2026-10-17T22:32:55.688106+00:00",
+  "clarification_source": "Root scope clarification of proposed order, not another reviewer finding",
+  "correct_oracles": [
+    {
+      "boundary": "Concurrent prefetch/verify after both guarded POSTs",
+      "required": "Truthfully retain both known tree/commit results; fail with no successful immutable proof, Root acceptance, CAS, sync, terminal, publication, intake or automatic POST retry; permanent candidateOID one-use remains."
+    },
+    {
+      "boundary": "Original native/lease guard after tree POST and before commit POST",
+      "required": "Refuse before the commit POST while retaining known tree result and permanent one-use reservation; no automatic retry."
+    }
+  ],
+  "historical_oracle_correction": "The preliminary C11 assumed prefetch could fail before the commit. The stated proposed order is both original separately guarded immutable POSTs, then concurrent prefetch and full immutable verification. That later failure cannot imply that the already completed commit POST was withheld.",
+  "new_wrapper_or_other_peer_findings_read": false,
+  "original_preinspection_plan": {
+    "bytes": 10935,
+    "path": "PREINSPECTION_FALSIFICATION_PLAN_01.json",
+    "sha256": "c4af8942cf4c4649e5927899abf526eefa8703509a735c3b627bf66e04808b99"
+  },
+  "production_actions": false,
+  "schema": "pr212-concurrent-GET-independent-C11-timing-addendum-v1",
+  "source_or_operational_acceptance": false
+}

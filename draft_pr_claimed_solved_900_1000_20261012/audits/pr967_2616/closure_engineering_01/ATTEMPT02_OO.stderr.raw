@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 25, in yes
+    try:fn()
+        ~~^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 202, in <lambda>
+    yes('synthetic_entire_closure_approval_required',lambda:n['package_approval'](ap,dp,context,body,authorization))
+                                                            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 458, in package_approval
+    root=refs['root_authentication'];need(type(root) is dict and root.get('before_substantive_intake') is True and root.get('all_members_authenticated') is True and root.get('external_manifest_sha256')==doc['review_manifest']['sha256'] and utc(end)<=utc(root.get('utc'))<=utc(doc['utc']),'root before-intake authentication of the sealed closure review')
+                                                                                                                                                                                                                                                ~~~^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 54, in utc
+    need(type(value) is str,'timestamp string')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 47, in need
+    if not ok:raise RuntimeError('PR967 closure guard: '+message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: PR967 closure guard: timestamp string
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 202, in <module>
+    yes('synthetic_entire_closure_approval_required',lambda:n['package_approval'](ap,dp,context,body,authorization))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 26, in yes
+    except Exception as e:raise RuntimeError('POSITIVE '+name+' rejected: '+repr(e)) from e
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: POSITIVE synthetic_entire_closure_approval_required rejected: RuntimeError('PR967 closure guard: timestamp string')

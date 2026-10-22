@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "method": "Copied archive payloads, integrity validation and full main orchestration; mocked subprocess output only for precise differential comparison tests. Separate real offline replay checks all five actual scripts.",
+  "controls": [
+    {
+      "case": "bad_payload",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Outer payload mismatch: README.md"
+    },
+    {
+      "case": "extra_file",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Outer payload inventory mismatch"
+    },
+    {
+      "case": "missing_nested_file_after_outer_reseal",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Nested hash mismatch or missing payload: reviews/priority02/REPORT.md"
+    },
+    {
+      "case": "missing_nested_seal_after_outer_reseal",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Missing seal: reviews/priority02/SHA256SUMS"
+    },
+    {
+      "case": "bad_nested_digest_after_outer_reseal",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Nested hash mismatch or missing payload: reviews/priority02/.gitignore"
+    },
+    {
+      "case": "wrong_expected_math_after_all_reseals",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Complete mathematical JSON mismatch: reviews/oracle01/controls.py"
+    },
+    {
+      "case": "unsupported_clock_normalization_after_reseal",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Unsupported replay normalization"
+    },
+    {
+      "case": "clock_normalization_on_wrong_job",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Unsupported replay normalization"
+    },
+    {
+      "case": "mathematical_actual_field_changed",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Complete mathematical JSON mismatch: reviews/oracle01/controls.py"
+    },
+    {
+      "case": "nested_clock_named_math_changed",
+      "expected_acceptance": false,
+      "accepted": false,
+      "error": "Complete mathematical JSON mismatch: reviews/oracle01/controls.py"
+    },
+    {
+      "case": "allowed_three_clocks_only",
+      "expected_acceptance": true,
+      "accepted": true
+    },
+    {
+      "case": "producer_valid_checkout_below_cache",
+      "exit_code": 1,
+      "error": "Excluded source: weighted_centers.tex",
+      "finding": "Unrelated absolute checkout ancestry triggers payload-source exclusion."
+    }
+  ]
+}

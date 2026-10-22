@@ -1,0 +1,82 @@
+{
+  "schema": "pr948-root-post-storage-runtime-revalidation-v1",
+  "utc": "2026-10-16T15:08:59.481870+00:00",
+  "status": "PASS_REQUIRED_RUNTIME_WITH_DISCLOSED_OPTIONAL_GAPS",
+  "executable": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr906_30006419/reviews/computation_family/tmp/venv/bin/python",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "sympy": "1.14.0",
+  "mpmath": "1.3.0",
+  "checks": {
+    "sympy": {
+      "version": "1.14.0",
+      "existing_hashed_payload_count": 1568,
+      "existing_hashed_payloads_sha256": "30928e5da8fa514293afdd6c12de5397a2196b361e750783cbb4e7ec44a548d5",
+      "missing_generated_pyc_count": 1533,
+      "missing_other_payloads": [
+        "sympy/plotting/tests/test_region_and.png",
+        "sympy/plotting/tests/test_region_not.png",
+        "sympy/plotting/tests/test_region_or.png",
+        "sympy/plotting/tests/test_region_xor.png"
+      ],
+      "missing_python_sources": [],
+      "unhashed_present_entries": [
+        "sympy-1.14.0.dist-info/RECORD"
+      ],
+      "dist_info_RECORD_sha256": "1f2679402ef244a85794121a5649d06ba180382556923423f6f5bfed79360229"
+    },
+    "mpmath": {
+      "version": "1.3.0",
+      "existing_hashed_payload_count": 93,
+      "existing_hashed_payloads_sha256": "b244959b75b36745dd44bda483b8f72e83fc7c049486c05b1530d4a1e0d5cce4",
+      "missing_generated_pyc_count": 87,
+      "missing_other_payloads": [],
+      "missing_python_sources": [],
+      "unhashed_present_entries": [
+        "mpmath-1.3.0.dist-info/RECORD"
+      ],
+      "dist_info_RECORD_sha256": "901345890d54cdcd59fe71b1391fd3ccd85ab23a92ab4d433cce48e29f84b472"
+    }
+  },
+  "complete_installed_wheel_closure_claimed": false,
+  "optional_missing_file_cause_or_time": "Unknown; four optional SymPy test PNG absences already observed beforeRAMloss; generatedcache absence is nonrequired, no blanketcausationclaim.",
+  "disposable_installed_code_absence": {
+    "pip": true,
+    "numpy": true,
+    "scipy": true
+  },
+  "reconstruction_recipe_for_future_PR906_numerical_reruns": [
+    [
+      "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr906_30006419/reviews/computation_family/tmp/venv/bin/python",
+      "-I",
+      "-m",
+      "ensurepip"
+    ],
+    [
+      "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr906_30006419/reviews/computation_family/tmp/venv/bin/python",
+      "-I",
+      "-m",
+      "pip",
+      "install",
+      "--force-reinstall",
+      "--no-deps",
+      "pip==26.1.2"
+    ],
+    [
+      "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr906_30006419/reviews/computation_family/tmp/venv/bin/python",
+      "-I",
+      "-m",
+      "pip",
+      "install",
+      "--force-reinstall",
+      "--no-deps",
+      "numpy==2.3.5",
+      "scipy==1.17.0"
+    ]
+  ],
+  "reconstruction_limit": "No installation performed. Retained dist-info/RECORD metadata provides pinnedversions; future upstream byte availability and bootstrap success not certified. Chronologically supersedes earlier NumPy/SciPy install-only recipe because disposable pip code was subsequently removed. PR948 needs retained Python/SymPy/mpmath only.",
+  "historical_lost_record": {
+    "name": "ROOT_RUNTIME_SELECTION_CORRECTION_20261016.json",
+    "reported_sha256": "a969b994c30596421c21d44bc79fc798b771314b6e5cc8407a88b24846dc6ea7",
+    "scope": "Hash/name retained in conversation; full4335byte RAMrecord is unavailable and not reconstructed. This is a fresh later actual runtimecheck."
+  }
+}

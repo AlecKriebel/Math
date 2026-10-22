@@ -1,0 +1,24 @@
+--- BASE_close_pr967.py
++++ close_pr967.py
+@@ -8,7 +8,7 @@
+ import sys
+ if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):
+     raise RuntimeError('Use Python -I -S -B')
+-import argparse,base64,copy,fcntl,hashlib,json,os,re,sqlite3,stat,subprocess
++import argparse,base64,copy,fcntl,hashlib,json,math,os,re,sqlite3,stat,subprocess
+ from contextlib import contextmanager
+ from datetime import datetime,timezone
+ from email.utils import parsedate_to_datetime
+@@ -68,7 +68,11 @@
+         for k,v in items:need(k not in out,'duplicate JSON key');out[k]=v
+         return out
+     def bad(x):raise RuntimeError('Nonfinite JSON: '+x)
+-    return json.loads(raw,object_pairs_hook=pairs,parse_constant=bad)
++    def finite_float(text):
++        value=float(text)
++        need(math.isfinite(value),'nonfinite JSON float')
++        return value
++    return json.loads(raw,object_pairs_hook=pairs,parse_constant=bad,parse_float=finite_float)
+ 
+ def safe(name):
+     return (type(name) is str and bool(name) and '\\' not in name and '\0' not in name

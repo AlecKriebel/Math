@@ -1,0 +1,13 @@
+# PR786 independent Schur-family mathematical validation
+
+PASS. The claimed odd-characteristic q=1 counterexample is valid. For every odd prime p, lambda=(2p-2,1) has a simple Young module, while its polynomial injective I_n(lambda) is nonprojective for every n>=2. The explicit smallest case is characteristic 3, lambda=(4,1). No mathematical repair is required.
+
+The decisive all-ranks step is legitimate: projectivity of an injective makes it a self-dual indecomposable tilting, whose highest label must dominate lambda and therefore has at most 2 parts. The primary exact truncation theorem applies to both displayed labels, forcing the non-self-dual rank-two injective to be tilting/projective, a contradiction. No generic preservation of arbitrary projectivity or module heads is assumed.
+
+The independent computation goes beyond the author's recorded decomposition matrix: it constructs all 56 orbit-basis elements of S(2,5) on 32-dimensional tensor space and checks all 3136 products. A central Casimir idempotent isolates primitive projective left ideals. The projective cover of L_2(3,2) has actual dimension 6, while det tensor Sym^3 has dimension 4 and exactly that simple head. Its corner algebra is checked to be dual numbers, so this is an indecomposable projective cover over the algebraic closure. Normal and optimized runs are identical; formal root-weight tests also pass at 10 odd primes. Universal claims rely on the written derivation.
+
+Initial position was recorded before author proof. The new derivation and computation preceded reading historical audits. The worker session was reused from unrelated administrative PR781 work after fresh-agent initialization failed ENOSPC; no prior PR786 peer/root conclusions were supplied. Historical audit agreement and their direct stable-rank F I(lambda) label supplement were checked only afterward, with chronology and dependency disclosed.
+
+The actual OWR primary pages allow this q=1 specialization and state the length-bound existential rank. Its index-set bridge is a stronger proposal, so the catalog's word “equivalently” must not be promoted to an established theorem. The example leaves the separate De Visscher-Donkin projective-injective classification untouched and does not address a characteristic-zero/nontrivial-root restriction. Novelty and present literature status remain outside this mathematical verdict.
+
+All 41 immutable original files and complete record identities were rechecked. Primary full bodies and page images remain outside the sealed packet in sibling scratch storage. No source, Git, queue, or external-person communication occurred. Completion estimate: 100% of assigned mathematical validation; priority/publication remain parent tasks.

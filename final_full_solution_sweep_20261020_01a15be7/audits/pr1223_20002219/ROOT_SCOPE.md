@@ -1,0 +1,5 @@
+# PR #1223 eligibility
+
+The original bounded-interval Schur-ratio task asks for a classification for arbitrary partition pairs and dimensions. The PR proves a complete N=2 classification only for intervals whose closure contains1, one exact N=3 pair with a sharp cubic endpoint quotient, and general sufficient one-sided/covariance local tests. It does not classify arbitrary N>=3 pairs, arbitrary intervals even inN2, general sharp radii or the zero-covariance case. Its explicit Bernstein certificate proves the special pair rather than a general vertex-minimum reduction. Prior orthant majorization uses unbounded scaling, which does not provide the missing finite-box converse. No full original-target claim is inferred.
+
+Root read complete body, ACCEPTANCE.json and PROOF.md. Fresh GWS06:37:35UTC191rows had no relevant lead. All8 actual paths and noQUEUE status edit bound. No new mathematical program, certificate replay, source proof or priority audit for this partial exclusion. Completion79%.

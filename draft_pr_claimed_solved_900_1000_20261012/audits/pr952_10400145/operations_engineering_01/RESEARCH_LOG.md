@@ -1,0 +1,15 @@
+# PR952 operations engineering log
+
+2026-10-16T16:39:00Z — Dedicated family initialized for executable operations only. Task boundaries prohibit live service/Git mutations and scientific acceptance. Mechanism: preserve tested captured-byte operations design while replacing every PR948 scientific identity/finding/freeze dependency. Engineering completion estimate15%; no mathematical discovery or acceptance credit.
+
+2026-10-16T16:49:00Z — Stable PR authority separated from observed computed status and associated/live base pointers. Complete filename pages bind the actual live base; an advance inside source/path eligibility rejects. Exact original33, source SQLite/statement/review/no-hold/related/native-absence guards remain. Exact28 root inherited IDs adopted separately. Engineering estimate65%; live behavior untested.
+
+2026-10-16T16:54:00Z — Actual first harness attempts failed in all three modes because the synthetic harness reassigned its root but an imported function's default path retained the real root. Raw failed stdout/stderr/launch records preserved as TEST_ATTEMPT01. Production confinement correctly rejected an outside-root read. Harness now supplies the explicit fixture base; no production guard was relaxed. The exact initial harness source snapshot was not separately preserved; launch/core pin and raw failures are retained. Engineering estimate75%.
+
+2026-10-16T16:55:00Z — Re-sealed synthetic whole-review histories pass and adverse optional/inherited/chronology/auth/cold/own-attack controls reject. Durable create and publish intent tests prevent a second call, including a fresh client after lost response. Native null differs from absence; literal other-member/history/QUEUE checks pass. No service or Git call. Engineering estimate85%.
+
+2026-10-16T16:57:45Z — First actual local whole-freeze/descriptor validation passes on root's current source-free173-file package, PDF and ZIP with five root family seals and28 inherited IDs. This is static verification only, not a full reproduction or scientific review. Engineering estimate92%.
+
+2026-10-16T16:59:00Z — Read-only preflight added: actual guards execute with observations directed only to an existing reviewer-owned folder; source/freeze/history authority locations remain fixed; Git fetch disabled. Hidden numbered review directories now reject; source/page/failure observations retained independently. Final inert harness60 controls × normal/O/OO passes. Engineering estimate97%; fresh real preflight and independent adversarial whole-package review remain root work.
+
+2026-10-16T17:01:02Z — Final generator/local freeze check passes:183 frozen payload paths,26 evidence pins, five family roots,28 dispositions, exact two uploads. Operations inventory prospective SHA9141dad4bee303b7c47f6b991497e4eb7036b04506ba93d4e28f02e67989ea91. Implementation/inert-verification completion estimate100% for this assigned engineering deliverable. Actual publication completion, scientific acceptance and novelty are not assessed by this family; no real mutation authorized/executed here. Integration instructions and public allowlist sealed next.

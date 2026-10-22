@@ -111,7 +111,7 @@ def main():
     ap.add_argument('--apply', action='store_true')
     args = ap.parse_args()
     valid_doi(args.doi)
-    _, validation = publication_inputs(A / 'publication', args.doi,
+    _, _, validation = publication_inputs(A / 'publication', args.doi,
         A / 'ZENODO_PUBLICATION_RECEIPT.json', A / 'ZENODO_POST_PUBLICATION_INSPECTION.json')
     row = wanted_row(args.doi)
     values = inspect()

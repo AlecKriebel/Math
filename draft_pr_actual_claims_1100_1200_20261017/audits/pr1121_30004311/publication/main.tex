@@ -1,0 +1,383 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={A simple brace outside asymmetric products of two trivial braces},
+pdfauthor={Alec Kriebel},pdfsubject={A negative answer to Cedo's Problem 9},
+pdfkeywords={left brace, simple brace, asymmetric product, metabelian group}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\F}{\mathbb F}
+\newcommand{\C}{\mathrm C}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\Syl}{\operatorname{Syl}}
+\title{A simple brace outside asymmetric products\\of two trivial braces}
+\author{Alec Kriebel\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{17 October 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a negative answer to Ced\'o's Problem~9 in Oberwolfach Report
+51/2019. An explicit left brace of order $20\,000$ is nontrivial and
+simple, has metabelian multiplicative group with abelian Sylow
+subgroups, and is not an asymmetric product of two trivial braces.
+The obstruction is intrinsic: every such two-factor product has zero
+triple star products within each additive Sylow subbrace, whereas the
+constructed brace has $(x*x)*x=x^3\ne0$ in its $5$-primary subbrace.
+The obstruction covers the full admissible symmetric-cocycle definition,
+not only a chosen bilinear construction family. All operations and the
+simplicity argument are given directly; exact verification programs and
+independent adversarial audits accompany the note.
+\end{abstract}
+
+\section{The question}
+A left brace $(B,+,\circ)$ has an abelian additive group, a multiplicative
+group, and the compatibility
+\[
+ a\circ(b+c)=a\circ b-a+a\circ c.
+\]
+Write $\lambda_a(b)=-a+a\circ b$ and $a*b=\lambda_a(b)-b$.
+The maps $\lambda_a$ are additive automorphisms and satisfy
+$\lambda_{a\circ b}=\lambda_a\lambda_b$.
+The brace is trivial when $a*b=0$ for all $a,b$.
+An ideal is an additive subgroup invariant under all $\lambda_a$ and
+normal in the multiplicative group; a nonzero brace is simple if its
+only ideals are $0$ and itself.
+
+Ced\'o asks whether every finite nontrivial simple left brace with a
+metabelian multiplicative group and abelian multiplicative Sylow
+subgroups is an asymmetric product of two trivial braces
+\cite[p.~3228, Problem~9]{OWR}. We retain all these hypotheses.
+
+\begin{theorem}\label{thm:main}
+There is a nontrivial simple left brace $B$ of order $20\,000$ with
+\[
+ (B,+)\cong\C_5^4\times\C_2^5,\qquad
+ (B,\circ)\cong(\C_5^3\rtimes_\tau\C_2)
+                 \times(\C_2^4\rtimes_M\C_5),
+\]
+where $\tau$ negates the first and third coordinates of $\F_5^3$ and
+$M$ is the five-cycle on the even-weight subspace of $\F_2^5$.
+Its multiplicative group is metabelian with every Sylow subgroup
+abelian. No brace isomorphic to $B$ is an asymmetric product of two
+trivial braces.
+\end{theorem}
+
+\section{An invariant of every two-trivial-factor product}
+We use the full asymmetric-product definition of
+Catino--Colazzo--Stefanelli, in its left-brace formulation
+\cite{CCS,BCJO,CJOembed}. With trivial factors $T,S$, an admissible
+presentation has operations
+\begin{align}
+ (t,s)+(u,v)&=(t+u,s+v+b(t,u)),\label{eq:asymadd}\\
+ (t,s)\circ(u,v)&=(t+\alpha_s(u),s+v),\label{eq:asymmult}
+\end{align}
+where $\alpha:S\to\operatorname{Aut}(T,+)$ is a group homomorphism.
+Initially $b:T\times T\to S$ is only a normalized symmetric $2$-cocycle:
+$b(t,0)=0$, $b(t,u)=b(u,t)$, and
+\[
+ b(t+u,w)+b(t,u)=b(t,u+w)+b(u,w).
+\]
+Admissibility means that these operations define a left brace, as in
+the cited general definition.
+
+\begin{lemma}\label{lem:obstruction}
+If a finite brace has a presentation \eqref{eq:asymadd}--\eqref{eq:asymmult}
+with $T,S$ trivial and all its multiplicative Sylow subgroups abelian,
+then
+\[
+                     (a*b)*c=0
+\]
+for all $a,b,c$ in any one additive Sylow subbrace.
+\end{lemma}
+\begin{proof}
+The cocycle identity gives
+\[
+ (t,s)-(u,v)=(t-u,s-v-b(t-u,u)),
+\]
+and therefore, before assuming biadditivity,
+\[
+ \lambda_{(t,s)}(u,v)=(\alpha_s(u),v-b(\alpha_s(u),t)).
+\]
+Since $(t,0)\circ(u,0)=(t+u,0)$, lambda composition evaluated on
+$(w,0)$ forces $b(w,t+u)=b(w,t)+b(w,u)$. Symmetry makes $b$ biadditive.
+
+For a prime $p$, write $T_p,S_p$ for the primary subgroups of the
+finite abelian factor groups. Mixed-primary values of $b$ vanish, and
+$b(T_p,T_p)\subseteq S_p$: each value is killed by the relevant prime
+powers. Consequently the set $P=T_p\times S_p$ is an additive subgroup
+of the full $p$-part of the order. Its additive law need not split,
+especially for $p=2$; its order suffices. The action preserves $T_p$,
+so the same set is also a multiplicative Sylow subgroup.
+
+Commuting $(t,0)$ and $(0,s)$ inside this abelian multiplicative
+Sylow subgroup gives $\alpha_s(t)=t$ for $s\in S_p,t\in T_p$.
+For $a=(t,s)$ and $b_0=(u,v)$ in $P$, twisted additive subtraction
+now gives
+\[
+ a*b_0=(u,v-b(u,t))-(u,v)=(0,-b(u,t)).
+\]
+Every $(0,w)$ with $w\in S_p$ has identity lambda action on $P$.
+Thus $(a*b_0)*c=0$ for every $c\in P$.
+\end{proof}
+
+The lemma does not require simplicity or metabelianity.
+Brace isomorphisms preserve additive Sylow subgroups and both star
+operations, so a nonzero primary triple star excludes every possible
+presentation, including one with different factors or coordinates.
+
+\section{The explicit brace}
+Let $R=x\F_5[x]/(x^5)$, with basis $x,x^2,x^3,x^4$.
+In the ambient unital truncated polynomial ring, define
+\[
+ L(r)=r-\frac{r^2}{2}+\frac{r^3}{3}-\frac{r^4}{4},
+ \qquad E(t)=t+\frac{t^2}{2}+\frac{t^3}{6}+\frac{t^4}{24}.
+\]
+All denominators are invertible in $\F_5$. Formal expansion through
+degree four, with higher total degrees zero, proves
+\begin{equation}\label{eq:log}
+ L(E(t))=t,\quad E(L(r))=r,\quad
+ L(r+u+ru)=L(r)+L(u).
+\end{equation}
+There is no division by five or infinite-series assumption.
+Let $\sigma$ be substitution $x\mapsto-x$, and put
+\[
+                           \eta(r)=[x^4]L(r).
+\]
+Then $\eta(r+u+ru)=\eta(r)+\eta(u)$,
+$\eta(\sigma r)=\eta(r)$, and $L(\sigma r)=\sigma L(r)$.
+
+Let $V$ be the even-weight subspace of $\F_2^5$. For $v,w\in V$ set
+\[
+ \beta(v,w)=\sum_{i=0}^4v_iw_i,\qquad
+ Q(v)=\frac{\wt(v)}2\pmod2.
+\]
+The integer weight identity proves
+\begin{equation}\label{eq:quadratic}
+ Q(v+w)=Q(v)+Q(w)+\beta(v,w).
+\end{equation}
+The restricted dot form $\beta$ is nondegenerate: the orthogonal
+complement of the even-weight space in $\F_2^5$ consists of constant
+vectors, and its only even-weight constant vector is zero.
+Cyclic rotation $M$ preserves $V,\beta,Q$ and has order five.
+Its fixed vectors in $V$ are zero, so $M-\id$ is invertible.
+
+Take $B=R\times V\times\F_2$ with componentwise addition. For
+$a=(r,v,z)$ write $s(a)=\eta(r)$ and $e(a)=z+Q(v)$, and define
+\begin{equation}\label{eq:direct}
+ (r,v,z)\circ(u,w,Z)=
+ \bigl(r+\sigma^{e(a)}u+r\sigma^{e(a)}u,\
+       v+M^{s(a)}w,\
+       z+Z+\beta(v,M^{s(a)}w)\bigr).
+\end{equation}
+Exponents of $M$ are interpreted modulo five.
+
+\begin{proposition}\label{prop:brace}
+These operations make $B$ a left brace with the two groups stated
+in Theorem~\ref{thm:main}.
+\end{proposition}
+\begin{proof}
+Write $L(r)=l_1x+l_2x^2+l_3x^3+s x^4$ and $k=(l_1,l_2,l_3)$.
+The map
+\[
+ \Psi(r,v,z)=((k,z+Q(v)),(v,s))
+\]
+is a bijection onto
+$(\F_5^3\rtimes_\tau\C_2)\times(V\rtimes_M\C_5)$:
+recover $r$ with $E$, and then $z$.
+For a second input with corresponding coordinates $h,f,w,t$,
+\eqref{eq:log} gives the output logarithm $L(r)+\sigma^{e(a)}L(u)$.
+Its first three coefficients are $k+\tau^{e(a)}h$ and its fourth is
+$s+t$. Equation~\eqref{eq:quadratic} gives
+\[
+ z+Z+\beta(v,M^s w)+Q(v+M^s w)
+       =z+Q(v)+Z+Q(w)=e(a)+f.
+\]
+Thus the complete transformed product is exactly
+$((k+\tau^{e(a)}h,e(a)+f),(v+M^s w,s+t))$.
+This proves the group law, including associativity and inverses.
+
+Direct additive subtraction in \eqref{eq:direct} yields
+\begin{equation}\label{eq:lambda}
+ \lambda_{(r,v,z)}(u,w,Z)=
+ \bigl((1+r)\sigma^{z+Q(v)}u,\
+       M^{\eta(r)}w,\
+       Z+\beta(v,M^{\eta(r)}w)\bigr).
+\end{equation}
+The first block is an invertible $\F_5$-linear map, since $1+r$ is
+a unit. The last two coordinates form an invertible triangular
+$\F_2$-linear map. Every lambda map is therefore an additive
+automorphism, proving the left-brace identity.
+Finally $|B|=5^4\,2^4\,2=20\,000$.
+\end{proof}
+
+The commutator subgroup of the displayed multiplicative group is
+\[
+ (\tau-\id)\F_5^3\times(M-\id)V
+               \cong\C_5^2\times\C_2^4,
+\]
+which is abelian of order $400$. Both actions are nontrivial, so the
+group is nonabelian and metabelian. Explicit Sylow subgroups are
+$\F_5^3\times\C_5$ and $\C_2\times V$ of orders $625$ and $32$,
+respectively. Both are abelian, and Sylow conjugacy covers all Sylow
+subgroups. No normal-Sylow assumption is used.
+
+\section{Simplicity and exclusion}
+\begin{proposition}\label{prop:simple}
+Every nonzero ideal of $B$ is $B$.
+\end{proposition}
+\begin{proof}
+For an ideal $I$, $i\in I$ and $g\in B$, both
+$\lambda_g(i)-i$ and $i*g$ lie in $I$. The second inference follows
+in the quotient brace $B/I$, where $i$ becomes zero; it is not an
+assumption about arbitrary left ideals.
+
+If a nonzero element $(r,v,z)\in I$ has $r\ne0$, its additive
+sixfold multiple is $(r,0,0)\ne0$. Let $c x^j$ be the lowest nonzero
+term of $r$. For $j<4$, formula \eqref{eq:lambda} gives
+\[
+ (\lambda_{(x^{4-j},0,0)}-\id)(r,0,0)=(c x^4,0,0).
+\]
+For $j=4$ this already holds without applying a lambda difference.
+Additive rescaling gives $a=(x^4,0,0)\in I$.
+
+Otherwise $I$ has a nonzero element $(0,v,z)$. If $v=0$ it is
+$b=(0,0,1)$. If $v\ne0$, choose $w$ with $\beta(w,v)=1$.
+Then $(\lambda_{(0,w,0)}-\id)(0,v,z)=b$.
+Thus every nonzero ideal contains $a$ or $b$.
+
+From $b$ one obtains
+$b*(x,0,0)=(3x,0,0)$ and hence a nonzero ring element, which gives $a$.
+Conversely, $\eta(x^4)=1$ implies
+\[
+ a*(0,w,0)=(0,(M-\id)w,0).
+\]
+Surjectivity of $M-\id$ puts every pure $V$ vector into $I$, and a
+binary lambda difference gives $b$. Thus either starting point gives
+all of $P_2=\{0\}\times V\times\F_2$ and also $(x,0,0)$.
+For $j=1,2,3$,
+\[
+ (\lambda_{(x,0,0)}-\id)(x^j,0,0)=(x^{j+1},0,0).
+\]
+These monomials generate $P_5=R\times\{0\}\times\{0\}$ additively.
+Hence $I$ contains both primary parts and equals $B$.
+\end{proof}
+
+On $P_5$, star multiplication is ordinary ring multiplication.
+In particular $x*x=x^2\ne0$, so the brace is nontrivial, and
+\[
+                        (x*x)*x=x^3\ne0.
+\]
+Lemma~\ref{lem:obstruction} rules out every asymmetric product of two
+trivial braces. Together with Propositions~\ref{prop:brace}
+and~\ref{prop:simple}, this proves Theorem~\ref{thm:main} and gives the
+full negative answer to the original question.
+
+\section{Prior work, verification, and review status}
+Asymmetric and matched products, radical-ring braces, truncated
+logarithm/exponential identities and cyclic orthogonal actions are
+established methods \cite{CCS,BCJO,CJOabundance,CJOembed}.
+General matched-product formulas \cite{Bachiller} recover \eqref{eq:direct}, but their
+existence statement does not replace the all-ideal simplicity proof.
+No new general construction formalism is claimed. Recent work also
+uses local commutative algebras and invariant homomorphisms
+\cite{Verbeken}; those ingredients themselves are not a novelty claim.
+
+A literature audit on 17 October 2026 found no prior full answer or
+verified published full implication for this target. This is a bounded
+finding, not historical-priority certification. It included the current
+arXiv version of \cite{CO} and the recent constructions
+\cite{DameleKT,DameleIB}. The full bodies of \cite{Rump2020,Rump2022}
+and several final journal versions, including that of \cite{CO}, were
+unavailable; their broader consequences are not excluded by abstracts.
+The companion audit records exact versions, inspection boundaries,
+access failures and citation-coverage limits.
+
+The source/verification archive contains the original full proof,
+independently authored adversarial reports, four exact programs and
+expected results. Factored identities check the full construction;
+independent derivations from all $19\,999$ nonzero ideal seeds end
+at the nine additive generators. The archive retains deterministic
+seed receipts, sample derivations, deliberately broken controls and
+ordinary/optimized execution records. These supplement the universal
+proofs; no enumeration of all $20\,000^3$ triples is asserted.
+The universal nonpresentation lemma is proved above, rather than
+inferred from finite examples.
+
+AI tools were used extensively in construction, proof development,
+computation, adversarial verification, literature research and writing.
+This version is \textbf{unrefereed}. AI adversarial review is not external
+human peer review, journal acceptance or formal proof-assistant
+certification. The note and authored supporting materials are released
+under CC BY 4.0.
+
+\begin{thebibliography}{12}\small\raggedright
+\bibitem{Bachiller}
+D.~Bachiller,
+Extensions, matched products, and simple braces,
+\emph{J. Pure Appl. Algebra} \textbf{222} (2018), 1670--1691.
+\href{https://arxiv.org/abs/1511.08477v3}{arXiv:1511.08477v3}.
+\bibitem{OWR}
+F.~Ced\'o,
+Finite simple left braces: constructions and problems,
+in \emph{Mini-Workshop: Algebraic Tools for Solving the Yang--Baxter Equation},
+Oberwolfach Reports \textbf{51/2019}, 3226--3228.
+\href{https://doi.org/10.4171/OWR/2019/51}{doi:10.4171/OWR/2019/51}.
+\bibitem{CCS}
+F.~Catino, I.~Colazzo and P.~Stefanelli,
+Regular subgroups of the affine group and asymmetric product of radical braces,
+\emph{J. Algebra} \textbf{455} (2016), 164--182.
+\href{https://doi.org/10.1016/j.jalgebra.2016.01.038}{doi:10.1016/j.jalgebra.2016.01.038}.
+\bibitem{BCJO}
+D.~Bachiller, F.~Ced\'o, E.~Jespers and J.~Okni\'nski,
+Asymmetric product of left braces and simplicity; new solutions of the
+Yang--Baxter equation,
+\emph{Commun. Contemp. Math.} \textbf{21} (2019), 1850042.
+\href{https://arxiv.org/abs/1705.08493v1}{arXiv:1705.08493v1}.
+\bibitem{CJOabundance}
+F.~Ced\'o, E.~Jespers and J.~Okni\'nski,
+An abundance of simple left braces with abelian multiplicative Sylow subgroups,
+\emph{Rev. Mat. Iberoam.} \textbf{36} (2020), 1309--1332.
+\href{https://doi.org/10.4171/rmi/1168}{doi:10.4171/rmi/1168}.
+\bibitem{CJOembed}
+F.~Ced\'o, E.~Jespers and J.~Okni\'nski,
+Every finite abelian group is a subgroup of the additive group of a finite
+simple left brace,
+\emph{J. Pure Appl. Algebra} \textbf{225} (2021), 106476.
+\href{https://arxiv.org/abs/2001.08905v1}{arXiv:2001.08905v1}.
+\bibitem{Verbeken}
+B.~Verbeken,
+Powerful multiplicative groups do not force right nilpotence in finite braces,
+\href{https://arxiv.org/abs/2608.01884v2}{arXiv:2608.01884v2} (2026).
+\bibitem{CO}
+F.~Ced\'o and J.~Okni\'nski,
+New simple solutions of the Yang--Baxter equation and their permutation groups,
+\emph{J. Pure Appl. Algebra} \textbf{229} (2025), 108025.
+Inspected version:
+\href{https://arxiv.org/abs/2401.12904v2}{arXiv:2401.12904v2}.
+\bibitem{DameleKT}
+M.~Damele,
+Kernel--wreath constructions and infinite families of finite simple skew braces,
+\href{https://arxiv.org/abs/2609.20401v1}{arXiv:2609.20401v1} (2026).
+\bibitem{DameleIB}
+M.~Damele,
+Inverse Baer deformations and finite simple skew braces of nilpotent type,
+\href{https://arxiv.org/abs/2609.24640v1}{arXiv:2609.24640v1} (2026).
+\bibitem{Rump2020}
+W.~Rump,
+Affine structures of decomposable solvable groups,
+\emph{J. Algebra} \textbf{556} (2020), 725--749.
+\href{https://doi.org/10.1016/j.jalgebra.2020.04.004}{doi:10.1016/j.jalgebra.2020.04.004}.
+Full body not inspected.
+\bibitem{Rump2022}
+W.~Rump,
+Almost simple braces and primitive solutions to the Yang--Baxter equation,
+\emph{J. Algebra} \textbf{601} (2022), 72--86.
+\href{https://doi.org/10.1016/j.jalgebra.2022.03.008}{doi:10.1016/j.jalgebra.2022.03.008}.
+Full body not inspected.
+\end{thebibliography}
+\end{document}

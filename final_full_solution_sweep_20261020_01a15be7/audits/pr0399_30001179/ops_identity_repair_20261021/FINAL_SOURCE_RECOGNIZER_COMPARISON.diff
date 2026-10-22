@@ -1,0 +1,27 @@
+--- PR280_final_identity
++++ PR399_identity
+@@ -89,6 +89,14 @@
+     return result['canonical_names']|result['review_names']
+ 
+ 
++def row_identity_names(row):
++    if not isinstance(row,(list,tuple)):
++        raise RuntimeError('Identity row must be a sequence of text cells')
++    # Never short circuit: a later ambiguous alias must still fail closed.
++    names=[zenodo_doi_leads(value) for value in row]
++    return frozenset().union(*names)
++
++
+ def target_in_row(row,identifier,family_ids=()):
+     if type(identifier) is not int or identifier<=0:
+         raise RuntimeError('Expected target record ID must be an exact positive integer')
+@@ -101,8 +109,7 @@
+     targets={'10.5281/zenodo.'+str(value) for value in ids}
+     # Evaluate every cell so a later unresolved encoding cannot be hidden by an
+     # earlier match. This recognizer never writes a canonically rewritten row.
+-    identities=[zenodo_doi_leads(value) for value in row]
+-    return any(targets & names for names in identities)
++    return bool(targets & row_identity_names(row))
+ 
+ 
+ def record_identity_ids(record,identifier):

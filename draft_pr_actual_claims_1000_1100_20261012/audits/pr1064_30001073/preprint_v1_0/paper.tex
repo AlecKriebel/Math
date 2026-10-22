@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}[corollary]{Lemma}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\E}{\mathbb E}
+\title{An explicit Frobenius corollary of established\newline marginal entropy bounds for permanents}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Version 1.0, 14 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a self-contained, credited corollary of the Gibbs-marginal random-order comparison of Anari and Rezaei. For every nonnegative row-stochastic matrix $A$ of order $n\ge1$, writing $S=\sum_{i,j}a_{ij}^{2}$, the permanent is at most $\exp\{-n+e^4 S(1+\log n)\}$. The proof combines conditional Jensen with an explicit scalar relative-entropy estimate. For fixed $S\le\gamma$, it supplies a polynomial-factor $e^{-n}$ upper bound for the class in the Barvinok--Samorodnitsky question recorded in OWR 44/2008. The same corollary follows from Anari's 2026 sequential identity and Dong--Jain's matching entropy theorem. The estimate is not sharp; historical novelty and priority of the scalar or final norm statement remain unknown.
+\end{abstract}
+
+\section{Statement, source question, and credit}
+All logarithms are natural. Put $h(a)=a^2\log(e/a)$ for $a>0$ and $h(0)=0$. A row-stochastic matrix is nonnegative with every row sum equal to one; it need not have column sums equal to one.
+
+\begin{corollary}\label{cor:main}
+For every row-stochastic $n\times n$ matrix $A$, $n\ge1$, and $S=\sum_{i,j}a_{ij}^2$,
+\begin{equation}\label{eq:main}
+ \per(A)\le \exp\left\{-n+e^4\sum_{i,j}h(a_{ij})\right\}
+ \le \exp\{-n+e^4S(1+\log n)\}.
+\end{equation}
+If $S\le\gamma$, then for all $n\ge1$,
+\begin{equation}\label{eq:alln}
+ \per(A)\le e^{e^4\gamma}n^{e^4\gamma}e^{-n}.
+\end{equation}
+For $n\ge2$ this also gives $\per(A)\le n^{3e^4\gamma}e^{-n}$.
+\end{corollary}
+
+Problem 9 of Barvinok and Samorodnitsky \cite[pp.~2549--2550]{OWR} fixes $\gamma\ge1$ and bounds the \emph{unnormalized} squared Frobenius norm $S\le\gamma$ for doubly stochastic matrices. Its polynomial-factor exponential scale follows from \eqref{eq:alln} and the already-known van der Waerden lower bound $n!/n^n$ recorded there. We claim no lower bound for general row-stochastic inputs. The source's stronger hypothesis $a_{ij}\le\gamma/n$ is not substituted for $S\le\gamma$. At $n=1$, $\per([1])=1$, so a prefactor-free $n^Ce^{-n}$ upper bound is false.
+
+The direct precursor is Anari--Rezaei \cite[\S4, Eq.~(6), p.~12]{AR}, using Gibbs marginals rather than input entries and random exposure orders. The classical entropy method is credited to Radhakrishnan \cite{R}. Sections 2--3 reconstruct that mechanism and its Jensen simplification, including sparse support. Section 4 supplies an explicit scalar estimate and the norm conversion. They are estimates written out here; no new-method, first-solution, or independent-discovery claim is made. Section 5 explains further affirmative source implications.
+
+\section{Random exposure and conditional Jensen}
+Define
+\[
+ q(b)=\frac{-b^2\log b}{1-b}\quad(0<b<1),\qquad q(0)=0,\quad q(1)=1.
+\]
+The endpoint values are the continuous limits.
+\begin{lemma}\label{lem:entropy}
+If $X=(X_1,\ldots,X_n)$ is any random permutation and $b_{ij}=\Pr(X_i=j)$, then
+\begin{equation}\label{eq:entropy}
+ H(X)\le-\sum_{i,j}b_{ij}\log b_{ij}-n+\sum_{i,j}q(b_{ij}).
+\end{equation}
+Here $0\log0=0$.
+\end{lemma}
+\begin{proof}
+Independently of $X$, choose independent uniform priorities $T_i\in[0,1]$ and expose rows in increasing order. Ties have probability zero. Fix an order and a preceding history of positive probability. Let $U_i$ be the unused columns, $c_j$ the conditional law of $X_i$, and $Z_i=\sum_{j\in U_i}b_{ij}$. Whenever $c_j>0$, $j\in U_i$ and $b_{ij}>0$; hence $Z_i>0$. The law $r_j=b_{ij}/Z_i$ on $U_i$ contains the support of $c$. Thus
+\[
+ \KL(c\Vert r)=\sum_j c_j\log(c_j/b_{ij})+\log Z_i\ge0.
+\]
+Averaging $H(c)+\sum_jc_j\log b_{ij}\le\log Z_i$ over positive histories and independent orders, the entropy chain rule gives
+\begin{equation}\label{eq:chain}
+ H(X)+\sum_{i,j}b_{ij}\log b_{ij}\le\sum_i\E\log Z_i.
+\end{equation}
+No conditional law on an impossible history is used.
+
+Condition on a supported full permutation $X$ and $T_i=t$. Since $X$ is bijective, the available columns are $X_i$ and those $X_k$ with $T_k>t$. Independence and the marginal row sum give
+\[
+ \E[Z_i\mid X,T_i=t]=b_{iX_i}+(1-t)(1-b_{iX_i}).
+\]
+For every sampled permutation $b_{iX_i}>0$, and $Z_i\ge b_{iX_i}$. Finite positive support bounds the sampled logarithms, justifying these averages. Concavity of $\log$ and, for $0<b<1$, the integral
+\[
+ \int_0^1\log\{b+(1-t)(1-b)\}\,dt
+ =-1-\frac{b\log b}{1-b}
+\]
+yield $\E\log Z_i\le-1+\sum_jq(b_{ij})$. The integral is zero at $b=1$; zero marginal values are never sampled. The second factor $b$ in $q$ comes from averaging over $X_i$. Substitute in \eqref{eq:chain}. A deterministic permutation gives equality and checks $q(1)=1$.
+\end{proof}
+
+\section{Gibbs specialization and matrix relative entropy}
+If $\per(A)=0$, \eqref{eq:main} holds immediately. Otherwise define the law
+\[
+ \mu(\sigma)=\frac{\prod_i a_{i\sigma(i)}}{\per(A)}
+\]
+on permutations, and let $B=(b_{ij})$ be its marginals. Then $B$ is doubly stochastic and $b_{ij}>0$ implies $a_{ij}>0$. In general $B\ne A$. The exact entropy identity and Lemma~\ref{lem:entropy} give
+\begin{align}
+ \log\per(A)&=H(\mu)+\sum_{i,j}b_{ij}\log a_{ij},\nonumber\\
+ \log\per(A)&\le-n+\sum_{i,j}q(b_{ij})-D_{\rm mat}(B\Vert A),\label{eq:gibbs}\\
+ D_{\rm mat}(B\Vert A)&=\sum_{b_{ij}>0}b_{ij}\log(b_{ij}/a_{ij}).\nonumber
+\end{align}
+This is the matrix relative entropy: $n\KL(B/n\Vert A/n)$. It is distinct from the sequential permutation divergence discussed in Section 5.
+
+Both matrices have total mass $n$, so
+\begin{equation}\label{eq:mass}
+ D_{\rm mat}(B\Vert A)=\sum_{i,j}d(b_{ij},a_{ij}),\qquad
+ d(b,a)=b\log(b/a)-b+a.
+\end{equation}
+For $a>0$, $d(b,a)\ge0$ by $x\log x-x+1\ge0$. Its boundary values are $d(0,a)=a$ and $d(0,0)=0$; $a=0<b$ cannot occur. Input-positive, marginal-zero entries must retain their $a$ term in \eqref{eq:mass}. Only the \emph{total} linear terms cancel. Column stochasticity of $A$ is unnecessary.
+
+\section{Explicit scalar estimate and Frobenius conversion}
+\begin{lemma}\label{lem:scalar}
+For $0\le a,b\le1$, with $a=0$ permitted only at $b=0$,
+\begin{equation}\label{eq:scalar}
+ q(b)-d(b,a)\le e^4h(a).
+\end{equation}
+\end{lemma}
+\begin{proof}
+At $(a,b)=(0,0)$ the claim is immediate; at $b=0<a$ the left side is $-a$. For $0<b<1$, $b\log(1/b)\le1-b$ gives both $q(b)\le b$ and $q(b)\le h(b)$. The endpoint comparisons follow by continuity. Also
+\[
+ h'(b)=b\{1+2\log(1/b)\}>0\qquad(0<b\le1).
+\]
+If $a,b>0$ and $b\ge e^2a$, then $\log(b/a)\ge2$, so $d(b,a)\ge b+a\ge q(b)$. If $b<e^2a$, discard $d\ge0$. When $b\le a$, monotonicity on $[0,1]$ gives $h(b)\le h(a)$. When $a<b<e^2a$, use $b^2<e^4a^2$ and $\log(e/b)\le\log(e/a)$ separately. Thus $h(b)\le e^4h(a)$. This includes $b=1$ by its endpoint value and the switch line in the first case. Monotonicity is used only between points in $[0,1]$.
+\end{proof}
+
+Summing \eqref{eq:scalar} in \eqref{eq:gibbs}--\eqref{eq:mass} proves the first bound of \eqref{eq:main}. Row Cauchy--Schwarz gives $S\ge1$. The weights $p_{ij}=a_{ij}^2/S$ form a probability law on at most $n^2$ points, so $H(p)\le2\log n$ and
+\[
+ \sum_{i,j}a_{ij}^2\log(1/a_{ij})
+ =\frac S2\{H(p)-\log S\}\le S\log n.
+\]
+Zero terms use their continuous values. Adding $S$ proves the second bound. For $n\ge2$, $1+\log n\le3\log n$, proving the prefactor-free consequence.
+
+Some polynomial loss is necessary. For a fixed integer $k\ge1$ with $k\le\gamma$, take $n=km$ and $k$ uniform blocks $J_m/m$. Then $S=k$ and Stirling's formula gives
+\[
+ \per(A)=(m!/m^m)^k\sim (2\pi/k)^{k/2}n^{k/2}e^{-n}.
+\]
+An exponent valid at $\gamma=k$ is therefore at least $k/2$ asymptotically. The exponent $3e^4\gamma$ is not claimed sharp. Fixed $\gamma$ is essential to a fixed-degree polynomial conclusion; $S/n\le\gamma$ would instead admit permutation matrices.
+
+\section{Further source implications and limits}
+For a probability vector $b$, let
+\[
+ T(b)=\sum_jb_j\E_{\pi}\log\left(\sum_{k\text{ at or after }j\text{ in }\pi}b_k\right),
+\]
+where $\pi$ is a uniform coordinate order. Anari--Rezaei's cited comparison is
+\[\log\per(A)\le-D_{\rm mat}(B\Vert A)+\sum_iT(B_i).\]
+Conditional Jensen, as above, yields $T(b)\le-1+\sum_jq(b_j)$, giving \eqref{eq:gibbs}. For source statements on positive inputs, one can also approximate by $(1-\varepsilon)A+\varepsilon J_n/n$ and pass to the continuous input-only bound.
+
+Anari \cite[\S4, Lemma~7, Eq.~(24), pp.~9--10]{A26} retains the sequential term exactly. Expanding that identity on positive inputs gives
+\begin{align*}
+ \log\per(A)&=-D_{\rm mat}(B\Vert A)+\sum_iT(B_i)-D_{\rm seq},\\
+ D_{\rm seq}&=\E_{\pi}\KL(\mu\Vert\nu_{\pi})\ge0.
+\end{align*}
+Here $\nu_{\pi}$ is the sequential marginal reference law on permutations. $D_{\rm seq}$ compares \emph{permutation distributions}, whereas $D_{\rm mat}$ compares \emph{normalized entry masses}. They cannot be identified. The source's vector function named $g$ is also distinct from our scalar $q$. Discarding $D_{\rm seq}$, applying Jensen, and then Lemma~\ref{lem:scalar} proves the same corollary.
+
+Dong--Jain \cite[\S3, Theorem~3.1, p.~9, $g=4$]{DJ} supplies another route to Lemma~\ref{lem:entropy}. On the complete bipartite graph, put
+\begin{align*}
+ H_{\rm B}(B)&=-\sum b_{ij}\log b_{ij}+\sum(1-b_{ij})\log(1-b_{ij}),\\
+ F(b)&=T(b)-\sum_j(1-b_j)\log(1-b_j).
+\end{align*}
+Their specialization bounds $H(\mu)$ by $H_{\rm B}(B)+\frac12\sum_vF(B_v)$. Each edge occurs at both endpoints; expansion cancels the $(1-b)\log(1-b)$ terms. The result is
+\[
+ H(\mu)\le-\sum b_{ij}\log b_{ij}
+   +\tfrac12\left\{\sum_iT(B_i)+\sum_jT(B^j)\right\}.
+\]
+Jensen on rows and columns gives exactly \eqref{eq:entropy}. These affirmative implications establish credited dependence, without deciding whether the final scalar or norm formula was explicitly published earlier.
+
+A bounded source audit dated 14 October 2026 did not settle historical priority. Full Soules bodies from 2000, 2003, and 2005 were inaccessible (HTTP 403); richer Gurvits--Samorodnitsky Orlicz, Roos subpermanent, and optimized $\ell_p$ consequences were not exhaustively classified. Their broader implications remain unknown. No exhaustive literature, worldwide open-status, or novelty certificate is asserted.
+
+\paragraph{Verification and preparation record.}
+The proof above is analytic. The companion kit contains exact copies of nine historical submission files, distinct full mathematical/source reviews, and finite diagnostic programs. Numerical checks corroborate selected cases; they are not interval certificates or universal proofs. This version uses extensive AI assistance, including drafting, computations, and adversarial analysis. It is unrefereed, with no external human peer review or proof-assistant certification. The dated preparation snapshot is in the companion kit's \texttt{STATUS.json}; the separate delivery record \texttt{FINAL\_VERIFICATION.json} records integrity checks. Publication decisions are separate from mathematical statements. Copyright Alec Kriebel, 2026, licensed CC BY 4.0.
+
+\begin{thebibliography}{9}
+\bibitem{OWR} A. Barvinok and A. Samorodnitsky, Problem 9, in \emph{Discrete Geometry}, Oberwolfach Reports 5 (2008), no.~4, 2549--2550. Report 44/2008; publisher publication date 30 September 2009. \href{https://doi.org/10.4171/OWR/2008/44}{doi:10.4171/OWR/2008/44}; official PDF file 46191.
+\bibitem{AR} N. Anari and A. Rezaei, \emph{A Tight Analysis of Bethe Approximation for Permanent}, \href{https://arxiv.org/abs/1811.02933v2}{arXiv:1811.02933v2}, revised 9 December 2019. Formula comparison uses \S4, Eq.~(6), p.~12.
+\bibitem{R} J. Radhakrishnan, \emph{An Entropy Proof of Bregman's Theorem}, J. Combin. Theory Ser. A 77 (1997), 161--164. \href{https://doi.org/10.1006/jcta.1996.2727}{doi:10.1006/jcta.1996.2727}. Classical attribution; no uninspected theorem is needed above.
+\bibitem{A26} N. Anari, \emph{Beyond the Bethe Approximation of the Permanent}, \href{https://arxiv.org/abs/2608.28031v2}{arXiv:2608.28031v2}, revised 1 September 2026. \S4, Lemma~7, pp.~9--10.
+\bibitem{DJ} D. Dong and V. Jain, \emph{Optimal Girth-Dependent Bounds for the Bethe Approximation of the Permanent}, \href{https://arxiv.org/abs/2609.02017v1}{arXiv:2609.02017v1}, 2 September 2026. \S3, Theorem~3.1, p.~9.
+\end{thebibliography}
+\end{document}

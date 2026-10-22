@@ -1,0 +1,306 @@
+{
+  "utc": "2026-10-16T04:25:07.072412+00:00",
+  "status": "ADOPT_BOUNDED_REPAIR01_PENDING_NEW_COMPLETE_WHOLE02",
+  "full_report_complete_code_prose_diff_and_current_guard_read": true,
+  "counts_rehashed": {
+    "outputs": 211,
+    "baseline": 332,
+    "changes": 7,
+    "unchanged": 325,
+    "current": 187,
+    "history": 1127,
+    "supplemental_exact_copy_pairs": 48,
+    "custody": 332,
+    "closed_zip_members": 156
+  },
+  "historical_states": {
+    "original_audit_resolution/EXACT_CURRENT_OR_CAPTURED_BEFORE_BYTES": 1109,
+    "portable_resolution/EXACT_DISTRIBUTED_BYTES": 796,
+    "portable_resolution/INDIVIDUAL_OMISSION": 331,
+    "original_audit_resolution/INDIVIDUAL_OMISSION": 18
+  },
+  "historical_metadata_only_omissions": "18 prior source-page image identities explicitly omitted, no fabricated local bytes",
+  "independent_actual_commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/verify.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "38c5fb5e11313df67eef29dd9b87e9903d42aa88dc2ddfabde43ccfecf7b6d0e",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/run_checks.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "57a9a6e2d224efdf882e2fee8c2016f517e872cba8f8252ade9ca17024c92393",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/run_checks.py",
+        "--inject-failure"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/run_checks.py\", line 356, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/run_checks.py\", line 352, in main\n    need(not args.inject_failure,\"deliberate unconditional failure control\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/run_checks.py\", line 17, in need\n    raise ValueError(message)\nValueError: deliberate unconditional failure control\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1097-repair-vc6ts14r/support-normal.zip"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "431e772d80e88ee03002782e5007c8b6ea955700bacdafb848e90509a08c08f8",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1097_3000016/preprint_v1_0/kit/scripts/verify.py",
+        "--require-binding"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "2974ba9757398a43e2835218bf43929b308db5f9b16ff6123f91e2c7bdca2cf6",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/verify.py",
+        "--binding",
+        "/private/tmp/root1097-repair-vc6ts14r/missing.json"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/verify.py\", line 20, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/verify.py\", line 15, in main\n    result[\"binding\"] = binding_check(args.binding, args.require_binding)\n                        ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 144, in binding_check\n    require(not required and path is None, \"required/passed binding is missing\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: required/passed binding is missing\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1097-repair-vc6ts14r/KIT/forbidden-normal.zip"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/build_support.py\", line 25, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/build_support.py\", line 15, in main\n    with fresh_output(args.out) as stream:\n         ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 84, in fresh_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) not in protected_identities,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output ancestor aliases a protected root: \" + str(ancestor))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: output ancestor aliases a protected root: /private/tmp/root1097-repair-vc6ts14r/KIT\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1097-repair-vc6ts14r/KIT/scripts/forbidden-normal.zip"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/build_support.py\", line 25, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/build_support.py\", line 15, in main\n    with fresh_output(args.out) as stream:\n         ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 84, in fresh_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) not in protected_identities,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output ancestor aliases a protected root: \" + str(ancestor))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: output ancestor aliases a protected root: /private/tmp/root1097-repair-vc6ts14r/KIT\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/rebuild_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1097-repair-vc6ts14r/KIT/forbidden-normal"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/rebuild_pdf.py\", line 36, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/rebuild_pdf.py\", line 19, in main\n    out = fresh_output(args.out_dir, is_directory=True)\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 84, in fresh_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) not in protected_identities,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output ancestor aliases a protected root: \" + str(ancestor))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: output ancestor aliases a protected root: /private/tmp/root1097-repair-vc6ts14r/KIT\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/rebuild_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1097-repair-vc6ts14r/KIT/scripts/forbidden-normal"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/rebuild_pdf.py\", line 36, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/rebuild_pdf.py\", line 19, in main\n    out = fresh_output(args.out_dir, is_directory=True)\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 84, in fresh_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) not in protected_identities,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output ancestor aliases a protected root: \" + str(ancestor))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: output ancestor aliases a protected root: /private/tmp/root1097-repair-vc6ts14r/KIT\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/verify.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "38c5fb5e11313df67eef29dd9b87e9903d42aa88dc2ddfabde43ccfecf7b6d0e",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/run_checks.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "57a9a6e2d224efdf882e2fee8c2016f517e872cba8f8252ade9ca17024c92393",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/run_checks.py",
+        "--inject-failure"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/run_checks.py\", line 356, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/run_checks.py\", line 352, in main\n    need(not args.inject_failure,\"deliberate unconditional failure control\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/run_checks.py\", line 17, in need\n    raise ValueError(message)\nValueError: deliberate unconditional failure control\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1097-repair-vc6ts14r/support-optimized.zip"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "431e772d80e88ee03002782e5007c8b6ea955700bacdafb848e90509a08c08f8",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1097_3000016/preprint_v1_0/kit/scripts/verify.py",
+        "--require-binding"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "2974ba9757398a43e2835218bf43929b308db5f9b16ff6123f91e2c7bdca2cf6",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/verify.py",
+        "--binding",
+        "/private/tmp/root1097-repair-vc6ts14r/missing.json"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/verify.py\", line 20, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/verify.py\", line 15, in main\n    result[\"binding\"] = binding_check(args.binding, args.require_binding)\n                        ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 144, in binding_check\n    require(not required and path is None, \"required/passed binding is missing\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: required/passed binding is missing\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1097-repair-vc6ts14r/KIT/forbidden-optimized.zip"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/build_support.py\", line 25, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/build_support.py\", line 15, in main\n    with fresh_output(args.out) as stream:\n         ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 84, in fresh_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) not in protected_identities,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output ancestor aliases a protected root: \" + str(ancestor))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: output ancestor aliases a protected root: /private/tmp/root1097-repair-vc6ts14r/KIT\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/build_support.py",
+        "--out",
+        "/private/tmp/root1097-repair-vc6ts14r/KIT/scripts/forbidden-optimized.zip"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/build_support.py\", line 25, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/build_support.py\", line 15, in main\n    with fresh_output(args.out) as stream:\n         ~~~~~~~~~~~~^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 84, in fresh_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) not in protected_identities,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output ancestor aliases a protected root: \" + str(ancestor))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: output ancestor aliases a protected root: /private/tmp/root1097-repair-vc6ts14r/KIT\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/rebuild_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1097-repair-vc6ts14r/KIT/forbidden-optimized"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/rebuild_pdf.py\", line 36, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/rebuild_pdf.py\", line 19, in main\n    out = fresh_output(args.out_dir, is_directory=True)\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 84, in fresh_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) not in protected_identities,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output ancestor aliases a protected root: \" + str(ancestor))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: output ancestor aliases a protected root: /private/tmp/root1097-repair-vc6ts14r/KIT\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "scripts/rebuild_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1097-repair-vc6ts14r/KIT/scripts/forbidden-optimized"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/rebuild_pdf.py\", line 36, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/rebuild_pdf.py\", line 19, in main\n    out = fresh_output(args.out_dir, is_directory=True)\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 84, in fresh_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) not in protected_identities,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output ancestor aliases a protected root: \" + str(ancestor))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1097-repair-vc6ts14r/kit/scripts/common.py\", line 15, in require\n    raise ValueError(message)\nValueError: output ancestor aliases a protected root: /private/tmp/root1097-repair-vc6ts14r/KIT\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/alec/Documents/Math/zenodo_deposit_tool/zenodo.py",
+        "check",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1097_3000016/preprint_v1_0/zenodo-deposit.json"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "2310c6d4350a9a3ba1b27175a5d626162698420c924f7a04be36411d23f026d7",
+      "stderr": ""
+    }
+  ],
+  "closed_zip_rebuilt_byte_equal": true,
+  "paper_PDF_math_checker_bibliographic_metadata_unchanged_verified": true,
+  "no_new_compile_render": true,
+  "whole_reviews_completed": 1,
+  "minimum_whole_reviews": 2,
+  "new_complete_whole02_required": true,
+  "publication_ready": false,
+  "published": false,
+  "services_held_after_pr": 1032,
+  "repair_output_pins_sha256": "42ff65404249c5a7febeb6c1b3c9e957d1661d3b22ce4d1384a4c59e7acbcfe7"
+}

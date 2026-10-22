@@ -1,0 +1,110 @@
+--- v6
++++ finite_v1
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Reconcile one reviewed, already-published external result; never publish."""
++"""One fixed independently adjudicated197/181 instance; never publish or generalize."""
+ import argparse
+ import datetime as dt
+ import hashlib
+@@ -44,6 +44,49 @@
+             if PATTERN.search(' '.join(map(str, row))) or target_in_row(row, 23350364, [23350363])]
+ 
+ 
++# This capsule accepts only the independently adjudicated finite identity data.
++# It has no generic account-alias absence claim. Every other account/string/key
++# change is rejected; the eight integer usage counters carry no identity text.
++ACCOUNT_SHA = '77cfa06407b40e66b72b4f7cc056d47b7066d604bcf9cd21d8d1619aa99bde00'
++LEDGER_SHA = '9e2d9dbcc21f4ab9d26be5386ad1450176a273e2425fba0a1b3260b07d4c6acb'
++CORPUS = AUDIT / 'root/private/actual_instance08_root_copy/private'
++STATS = {'downloads','unique_downloads','version_downloads','version_unique_downloads',
++         'views','unique_views','version_views','version_unique_views'}
++
++
++def fixed_bytes(name,expected):
++    data=(CORPUS/name).read_bytes()
++    require(hashlib.sha256(data).hexdigest()==expected,'Adjudicated fixed input changed.')
++    return data
++
++
++def same_identity(old,current,path=()):
++    require(type(old) is type(current),'Fixed identity value type changed.')
++    if isinstance(old,dict):
++        require(old.keys()==current.keys(),'Fixed identity dictionary keys changed.')
++        for key in old:same_identity(old[key],current[key],path+(key,))
++    elif isinstance(old,list):
++        require(len(old)==len(current),'Fixed identity list length changed.')
++        for n,(left,right) in enumerate(zip(old,current)):same_identity(left,right,path+(n,))
++    elif len(path)==2 and path[0]=='stats' and path[1] in STATS:
++        require(type(old) is int and old>=0 and current>=0,'Invalid usage counter.')
++    else:require(old==current,'Fixed identity content changed; new review required.')
++
++
++def fixed_account(account):
++    baseline=json.loads(fixed_bytes('source_14_account.json',ACCOUNT_SHA))
++    require(account['query']==baseline['query']=='' and type(account['total']) is int
++            and account['total']==baseline['total']==197,'Fixed account query/count changed.')
++    require(isinstance(account['records'],list),'Fixed account records must be a list.')
++    require(all(isinstance(item,dict) and type(item['id']) is int and item['id']>0
++                for item in account['records']),'Invalid fixed record identity.')
++    before={item['id']:item for item in baseline['records']}
++    current={item['id']:item for item in account['records']}
++    require(len(account['records'])==len(current)==len(before)==197
++            and current.keys()==before.keys(),'Fixed owned-account inventory changed.')
++    for identifier in before:same_identity(before[identifier],current[identifier])
++
++
+ def main():
+     plan_path = AUDIT / 'LEDGER_RECONCILIATION_PLAN.json'
+     plan_bytes = plan_path.read_bytes()
+@@ -52,7 +95,7 @@
+     parser.add_argument('--acceptance-sha256',required=True)
+     args = parser.parse_args()
+     require(re.fullmatch('[a-f0-9]{64}',args.acceptance_sha256) is not None, 'External root acceptance SHA required.')
+-    acceptance_bytes = (AUDIT / 'ROOT_LEDGER_REVIEW06_ACCEPTANCE.json').read_bytes()
++    acceptance_bytes = (AUDIT / 'ROOT_EXACT_INSTANCE_ACCEPTANCE.json').read_bytes()
+     require(hashlib.sha256(acceptance_bytes).hexdigest() == args.acceptance_sha256, 'Root acceptance changed.')
+     adopted = json.loads(acceptance_bytes)
+     require(set(adopted['dependency_pins']) == set(DEPENDENCIES), 'Incomplete reviewed import inventory.')
+@@ -138,13 +181,7 @@
+     account = reader.account_search(client, '')
+     require(23408971 in {item['id'] for item in account['records']}, 'Owned-account known-record positive control missing.')
+     atomic_json(raw / 'account.json', account)
+-    expected_md5 = {f['checksum'].removeprefix('md5:') for f in plan['existing_publication']['files']}
+-    account_leads = [item['id'] for item in account['records']
+-                     if PATTERN.search(json.dumps(item,ensure_ascii=False))
+-                     or target_in_row([json.dumps(item,ensure_ascii=False)],23350364,[23350363])
+-                     or any(str(f.get('checksum','')).lower().removeprefix('md5:') in expected_md5
+-                            for f in item.get('files', []))]
+-    require(not account_leads, 'New own-account result/draft lead requires reconciliation.')
++    fixed_account(account)
+ 
+     live = cli(['gh', 'api', 'repos/AlecKriebel/Math/pulls/1156'])
+     baseline_pr = next(p for p in json.loads((ROOT / 'rest_inventory.json').read_text())
+@@ -203,6 +240,9 @@
+             [e['properties']['title'] for e in sheet_info['sheets'] if e['properties']['sheetId']==1254632077]==['Math Puzzles'],
+             'Sheet title/gid binding changed.')
+     before = read('before')
++    baseline_rows=json.loads(fixed_bytes('source_10_ledger_live.json',LEDGER_SHA))['response']['values']
++    require(len(baseline_rows)==181 and (before==baseline_rows or before==baseline_rows+[row]),
++            'Fixed ledger identity corpus changed; inspect before any append.')
+     found = matches(before)
+     intent = AUDIT / 'LEDGER_RECONCILIATION_INTENT.json'
+     appended = False
+@@ -268,14 +308,14 @@
+                'doi': record['doi'], 'doi_resolution': resolution,
+                'ledger_rows_before': len(before), 'ledger_rows_after': len(after),
+                'complete_account_records': account['total'], 'own_account_leads': [],
+-               'checksum_and_semantic_account_scan':True,'record_and_concept_ids':[23350363,23350364],
++               'independently_adjudicated_fixed_instance_equality':True,'generic_account_alias_parser_approved':False,'record_and_concept_ids':[23350363,23350364],
+                'all_preexisting_rows_preserved':True,'exact_four_updated_cells_and_range':True,
+                'known_owned_positive_control':23408971,'project_dependencies_executed_from_verified_source_bytes':True,'all_four_column_schema_and_gid_verified':True,
+                'remote_main': remote_main['object']['sha'], 'local_branch': local_branch,
+                'live_pr_head': live['head']['sha'], 'live_pr_state': live['state'],
+                'live_pr_merged': live['merged'], 'live_pr_draft': live['draft'],
+                'raw_receipts': str(raw.relative_to(ROOT)),
+-               'scope': 'One existing external publication recorded; no Zenodo/PR/Git mutation.'}
++               'scope': 'One existing external publication recorded from exact independently adjudicated identity data; no generic helper approval or Zenodo/PR/Git mutation.'}
+     atomic_json(AUDIT / 'LEDGER_PUBLICATION_VERIFICATION.json', receipt)
+     print(json.dumps(receipt, indent=2))
+ 

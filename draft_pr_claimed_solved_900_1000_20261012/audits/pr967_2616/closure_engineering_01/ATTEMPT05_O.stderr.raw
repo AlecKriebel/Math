@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 30, in yes
+    try:fn()
+        ~~^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 234, in invoke
+    with contextlib.redirect_stdout(io.StringIO()):n['close_operation'](argparse.Namespace(disposition_sha256=dp,approval_sha256=ap,execute=execute),context)
+                                                   ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 577, in close_operation
+    if exists(W/'COMMENT_POST_INTENT.json'):reconcile_comment(bound,body,write=True)
+                                            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 516, in reconcile_comment
+    identified=comment_identity(matches[0],bound,intent,stamp)
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 502, in comment_identity
+    need(utc(intent['server_not_before_utc'])<=utc(comment['created_at'])<=utc(comment['updated_at'])<=utc(server_stamp),'provable server timestamp for posted comment')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/close_pr967.py", line 47, in need
+    if not ok:raise RuntimeError('PR967 closure guard: '+message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: PR967 closure guard: provable server timestamp for posted comment
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 240, in <module>
+    reset_runtime();CFG['lost_post_response']=True;no('lost_comment_response_stops',invoke);need(exists:= (runtime/'COMMENT_POST_INTENT.json').exists(),'POST intent missing before lost response');CFG.pop('lost_post_response');yes('GET_only_unique_comment_recovery_then_close',invoke)
+                                                                                                                                                                                                                                  ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr967_2616/closure_engineering_01/test_offline.py", line 31, in yes
+    except Exception as e:raise RuntimeError('POSITIVE '+name+' rejected: '+repr(e)) from e
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: POSITIVE GET_only_unique_comment_recovery_then_close rejected: RuntimeError('PR967 closure guard: provable server timestamp for posted comment')

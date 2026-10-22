@@ -1,0 +1,36 @@
+## Result and exact scope
+
+Problem 30003634 / OWR-15955-011: **claimed_solved**. The immutable submitted packet records **1/5**; a separately saved complete strengthening uses one further proof response, giving a known combined **2/5**. The original 44 files and their initial accounting remain unchanged.
+
+The submitted explicit 104-letter nested commutator lies in P3^(3), has algebraically split standard closure and ordinary signature -2, and disproves the proposed universal containment at n=1,m=3. The 48-dimensional Goeritz form has inertia (23,25,0), determinant -7154819319988224 and zero correction; an independent exact104-term Burau--Meyer calculation agrees.
+
+A separately developed and freshly verified quasimorphism argument strengthens this: **for every m>=3 and every finite k>=1, P_m^(k) is not contained in integral smooth F_1^m**, hence **P_m^(n+2) is not contained in F_n^m for every integer n>=1**. A witness may depend on the finite depth. No single braid in the intersection of all derived subgroups is asserted. The finite104-letter certificate is only the n=1 explicit example. P1 and P2 have trivial positive derived subgroups.
+
+## Proof, attribution and priority
+
+The source is Question3 in Harvey's contribution, joint work with Park and Ray, “Pure braids, Whitney towers, and0-solvability,” OWR50/2017, printed3021/MFO PDF35, published2018. The series is ordinary derived, not a power subgroup. Otto's actual integral smooth closure-defined filtration is used.
+
+The all-depth proof uses the Gambaudo--Ghys homogenized ordinary signature, verifies its nonhomomorphic restriction inside P3, and applies persistence through solvable derived quotients. Taking a power is essential to pass from nonzero homogenized signature to nonzero ordinary signature. The universal 1-solution obstruction is reconstructed with signed cellular ranks, integral universal coefficients, local-coefficient surface classes, unit dual pairings and rank saturation, followed by Toffoli's pointwise surgery formula at -1. No averaged knot signature or signature homomorphism on all string links is assumed.
+
+General quasimorphism inputs are prior results. Credit Calegari's amenable rigidity and Kawasaki--Kimura--Maruyama--Matsushita--Mimura2025Lemma7.12, which proves a stronger defect-restriction statement. Two independent deep primary priority audits and a fresh mechanism falsifier did not establish an earlier complete answer to this precise braid/solvability question. This bounded conclusion certifies neither first priority nor continued openness, and no new general group theorem is claimed.
+
+## Review and reviewable publication candidate
+
+Five independent mathematical/source/reproducibility families audited the original witness and universal obstruction. A new clean-context falsifier independently verified the complete stronger argument. The four-page research note, editable source, exact proposed Zenodo metadata, immutable original packet, eight curated audit families and verification archive are in [the publication folder](https://github.com/AlecKriebel/Math/tree/main/draft_pr_claimed_solved_900_1000_20261012/audits/pr938_30003634/publication). Sequential NEW whole-package adversarial reviews and all required/optional fixes remain mandatory before acceptance and publication. This description is preparation, not a statement that those later gates have completed.
+
+The isolated native receipt genuinely reconciles the observed first response now and records the new second response through unmodified queue.py. It does not invent a backdated original CLI event. A status update inherits an event label without increasing its count; actual command counts are0,1,1,2. Verification adds no proof-search response.
+
+## Reproduction and limits
+
+The current closed-package verifier authenticates the inventory, all payload hashes, original anchors and copied bytes before execution. Its standard-library portable entry point runs the original286-control certificate and both full independent planar Goeritz and Meyer reconstructions, comparing exact mathematical JSON. Historical SymPy recovery/full-wrapper replays remain separately documented. Erle's inconsistent printed off-diagonal index is corrected from the actual diagram; the even-block witness alone masks that typo, and a mixed-parity countercontrol is retained. Original bootstrap ancestor-symlink and raw second-checker relocation limits are preserved alongside separate guards/recovery wrappers. These are finite reproducibility checks, not formal proof, priority certification or an operating-system sandbox.
+
+The work and proposed preprint are extensively AI-assisted and unrefereed. No independent human or journal peer review or formal proof-assistant certification is claimed. No third-party source bodies or private intake corpus are distributed.
+
+## Immutable original anchors
+
+- PR head: `2b3ea2de7a9a9ea4fa8cba9a34cbdb01063bda3b`
+- Publication manifest SHA256: `149e6144f0ad90ee12945c29155318100b65c6faee8ba2661d2c09db58b9ae30`
+- Original proof SHA256: `0492e0e0de785be263174e86d69855120b2f5c24b105c6479739cd72d64abe3b`
+- Complete stronger candidate SHA256: `8fbe6571b9dd691ca5b78a70bfb5ac0361607a0b3c196dfe527ba2180fcd9fb6`
+
+The PR's original changes remain44 packet files and the selected QUEUE.md row. All other queue rows, source identities and other researchers' work are outside this review's mutation scope.

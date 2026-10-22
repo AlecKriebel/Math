@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-15T14:11:59.692722+00:00",
+  "all_tests_passed": true,
+  "network_provider_calls": 0,
+  "actual_power_failure_simulated": false,
+  "evidence": "Descriptor ordering and injected errors only; relies on supported OS fsync semantics, no hardware durability certification",
+  "release_binding_sha256": "afc858a311137fa99e9a33207848d2ccc913a12f07862aa663b610b262bdb8ce",
+  "tests": [
+    {
+      "test": "Every newly created ancestor linkage is directory-synced",
+      "pass_result": true,
+      "directory_sync_count": 3
+    },
+    {
+      "test": "Exclusive intent fsyncs regular file then parent directory",
+      "pass_result": true,
+      "descriptor_is_directory": [
+        false,
+        true
+      ]
+    },
+    {
+      "test": "Directory sync failure retains intent and blocks associated effect",
+      "pass_result": true,
+      "provider_calls": 0
+    },
+    {
+      "test": "Retry syncs visible unconfirmed ancestor before creating descendants",
+      "pass_result": true
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "review": "Fresh independent complete operations03 review",
+  "operations_manifest_sha256": "69cb677847d73ffcfe8c3dc710978e62da1bbfc3f69e1b7944d7f5411183cea7",
+  "bootstrap_sha256": "6bde66dd5ad378b8c1164fee8013e5b524255f76d1f8b5f0b5f58003802ebde0",
+  "publication_ready": false,
+  "zero_material_objection_requirement_met": false,
+  "scientific_acceptance_unchanged": true,
+  "material_findings": [
+    {
+      "id": "F1",
+      "priority": 2,
+      "file": "operations/collect_live.py",
+      "line": 48,
+      "title": "Bare resolver host:port parsed as generic scheme and silently ignored",
+      "reproducer": "https://ordinary.invalid/?r=shortdoi.org:443/abc",
+      "evidence": ["NESTED_ALIAS_DIAGNOSTIC.json", "PORTED_AUTHORITY_FULL_GATE_RESULTS.json", "NEAR_PUBLICATION_PORTED_ALIAS_RESULTS.json", "PORT_MODE_0.json", "PORT_MODE_1.json", "PORT_MODE_2.json"],
+      "complete_full_gate_cases_accepted": 15,
+      "near_publication_model_POSTs_and_verified_receipts": 2,
+      "pure_forms_accepted_per_optimization_mode": 72
+    },
+    {
+      "id": "F2",
+      "priority": 2,
+      "file": "operations/collect_live.py",
+      "line": 180,
+      "title": "Known target family is not intersected with other owned records' declared families",
+      "reproducer": "Staged target record777/concept778; ordinary unexempt owned record declares conceptrecid778 and exact conceptdoi10.5281/zenodo.778; full account gate and publication pass",
+      "evidence": ["KNOWN_TARGET_FAMILY_SUMMARY.json", "private/KNOWN_TARGET_FAMILY_RESULTS.json"],
+      "model_POSTs_and_verified_receipts_for_shared_family": 1,
+      "actual_live_duplicate_claimed": false
+    },
+    {
+      "id": "F3",
+      "priority": 2,
+      "file": "operations/collect_live.py",
+      "line": 177,
+      "title": "Original account links and other raw fields are discarded before alias and semantic validation",
+      "reproducer": "Place explicit nested unresolved //shortdoi.org/abc reference in a raw account links entry; projected alias scan never sees it and publication passes",
+      "evidence": ["INDEPENDENT_RESULTS.json", "KNOWN_TARGET_FAMILY_SUMMARY.json", "private/KNOWN_TARGET_FAMILY_RESULTS.json"],
+      "model_POSTs_and_verified_receipts_for_raw_link_alias": 1,
+      "boundary": "New supplied link key is a fault model, not a claim about current live provider data"
+    }
+  ],
+  "real_external_mutations": 0,
+  "external_messages": 0,
+  "raw_private_evidence_publication_allowed": false,
+  "requires_repair_and_new_independent_review": true
+}

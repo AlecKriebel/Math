@@ -1,0 +1,136 @@
+# Root reconstruction of PR293
+
+2026-10-21 UTC. Planning completion estimate for the overall sweep: 20%.
+Original mathematical head: `6e717193f93c8a321cce1ce35a00eed1ecfb56e7`.
+This assessment is independent reasoning about the proof, not a claim of human
+peer review, formal verification, or historical priority.
+
+## Exact target and preliminary duplicate gate
+
+Janssen, arXiv:1306.4387v2, opens with an algebraically closed field of arbitrary
+characteristic. Question 3.1 on PDF page 8 asks whether a reduced finite line
+configuration of type `(d-1,d)` can fail to be ACM. Type means the initial degrees
+of the radical ideal and its symbolic square. OWR9/2015 printed page514 asks the
+same question separately from the classification of arbitrary reduced curves.
+Root inspected these original pages and their formulas. The candidate's
+nonempty, reduced, projective-three-space and arbitrary-characteristic scope
+matches the line question. Ordinary squares, generic lines, characteristic zero
+alone, and arbitrary curves would be different claims.
+
+The GWS ledger was read before substantive mathematics: 174 rows, no target
+by problem/OWR identifiers, exact PR, Janssen, ACM, pseudostar, or gap-one terms.
+The first overly broad `line` lead search later timed out on an unrelated DOI
+redirect; its fresh sheet read had succeeded. A precise rerun completed with
+zero matching rows and records. Absence from this ledger is not literature
+absence. A subsequent independent literature search found external published
+record23284413, which is under exact-result and custody review below.
+
+## Independent reconstruction of the central surface argument
+
+Let X be a smooth projective surface, H nef with H²=e>=2, and C an integral
+Cartier member of |H|. If pg>0, the product of a canonical section and the square
+of the section of C gives a nonzero section of K+2H. In the remaining case pg=0,
+Serre duality gives H²(O_X)=0. The obstruction group for line-bundle liftings
+through square-zero Artin extensions therefore vanishes. Smoothness of Pic⁰
+gives h¹(O_X)=dim Alb(X); this equality was not silently assumed for all
+positive-characteristic surfaces.
+
+The normalization of C generates Alb(X). Indeed its Jacobian image B is an
+abelian subvariety after choosing a basepoint on C. The Albanese quotient map
+b:X->Alb(X)/B is constant on C. For any ample M on the quotient, N=b* M is nef
+with N.H=0. Hodge index for the positive-square class H makes its orthogonal
+space negative definite, whereas N²>=0 by nefness. Thus N is numerically zero.
+A nonconstant projective b has an integral curve on X with positive pullback
+degree for M, a contradiction. This reasoning permits inseparable morphisms;
+positive finite degree does not require separability. Hence
+q=dim Alb(X)<=g(C_normal)<=pa(C).
+
+Write ga=pa(C). Adjunction gives K.H=2ga-2-e. Riemann--Roch consequently gives
+chi(K+2H)=1-q+K.H+2e=e+2ga-1-q>=e+ga-1>=1.
+Serre duality identifies h²(K+2H) with h⁰(-2H), which is zero because any
+nonzero effective divisor of class -2H has negative intersection with nef H.
+The nowhere-vanishing section case would instead force H²=0. Therefore
+h⁰(K+2H)>=1. At e=2,ga=q=0 the lower bound is exactly1. At e=1 on P² it fails,
+as expected; that excluded boundary is necessary. Integer adjunction and
+Euler-characteristic identities do not divide by2 inside the ground field.
+
+For an integral degree-e hypersurface S in P³, take its finite normalization Y
+and a projective resolution X of Y, isomorphic over Y_reg. A general integral
+plane section E of S avoids the finite images of resolution-exceptional curves.
+The pullback C has no contracted curve component. Every component dominates E,
+and its generic point lies where the birational map is an isomorphism; hence
+there is exactly one component, with multiplicity1. A Cartier divisor on smooth
+X has no embedded components, so C is integral even if it is singular at some
+closed points. This avoids invoking smooth Bertini for a potentially
+inseparable map along the conductor.
+
+The normal surface Y is Cohen--Macaulay and its canonical sheaf is reflexive.
+Restriction to Y_reg gives q_*omega_X contained in omega_Y; no equality or
+Grauert--Riemenschneider vanishing is needed. Finite normalization duality and
+the invertible omega_S give nu_*omega_Y=c tensor omega_S, where c is the
+conductor ideal. Twisting by2 and using omega_S=O_S(e-4) sends a nonzero
+section of K_X+2H to c(e-2). A singular codimension-one point of S is nonnormal:
+a normal one-dimensional Noetherian local domain is a regular DVR. A conductor
+element invertible there would identify S with its normalization. Thus the
+section vanishes generically, and then everywhere, on each reduced singular
+curve. The hypersurface restriction sequence with kernel O_P³(-2), whose H¹ is
+zero, lifts it to a nonzero form of degree e-2. Isolated normal singularities
+are not part of the assertion.
+
+## Independent reconstruction of the configuration reduction
+
+For a line prime p generated by independent linear forms, the normal-degree
+filtration shows that p² is p-primary. Consequently the symbolic square of a
+reduced line union is the intersection of these ordinary line squares. This
+remains true in characteristic2, where a first-derivative-only test would not
+be an adequate converse membership criterion.
+
+Take F in I^(2) of degree d=alpha(I)+1. Its squarefree radical already vanishes
+on every line. A degree loss at least2 contradicts alpha(I)=d-1. A degree loss
+exactly1 from repetition therefore forces one doubled linear factor, F=P²G,
+with G squarefree and coprime to P. If G is constant, all lines are coplanar.
+Otherwise a nonzero partial derivative DG exists: over the perfect field, all
+partials zero would make nonconstant squarefree G a pth power. On lines not
+contained in P, primary contraction gives G in p², whence DG in p. Thus P DG
+is a nonzero degree-(d-2) form through every target line, a contradiction.
+
+If a squarefree F has a nonlinear irreducible factor Q of degree e, multiply
+its degree-(e-2) singular-curve adjoint by F/Q. Lines in another component are
+covered by F/Q. A target line contained only in Q has Q in its squared line
+ideal, so the hypersurface Jacobian criterion puts that line in Sing(V(Q)).
+It is a singular curve because an integral hypersurface over the perfect field
+is generically smooth. The product is another forbidden degree-(d-2) form.
+All factors of F are therefore distinct planes.
+
+Every target line lies in at least two of these planes. Deleting any two
+factors would give a forbidden degree-(d-2) form unless their pair intersection
+is present as a target line and lies in no third plane. This proves completeness
+and excludes triple-containing lines, without excluding multiple planes
+through one point.
+
+For the resulting pseudostar, the matrix with columns P_i e_i-P_d e_d has
+maximal minors F/P_i. The ideal J of these minors has height2, so Hilbert--Burch
+gives a Cohen--Macaulay quotient and no embedded primes. At the generic prime
+of a pair-intersection line, all other factors are units and J is precisely
+that line prime. Generic reducedness plus no embedded primes makes J radical
+globally, including saturation. Thus J=I(L), and L is ACM. Coplanar reduced line
+unions are complete intersections. The one-line, cone-pseudostar and
+characteristic2 boundaries require no additional general-position assumption.
+
+## Current conclusion and exact remaining operational gap
+
+The root reconstruction finds a complete line theorem conditional only on
+standard surface-resolution, Picard, Hodge, adjunction and finite-duality facts
+at the stated hypotheses. Fresh independent surface and configuration
+adversaries are checking those facts and building distinct falsification
+controls. No numerical experiment substitutes for the universal argument.
+
+The newly found Ferudun record claims the same all-characteristic theorem and
+an extension to reduced curves. Its stated October10 public release follows
+this PR's server-recorded October2 creation. The current PR is publicly
+accessible; historic repository visibility on October2 has not independently
+been archived here. An existing exact-result publication would avoid a
+duplicate Zenodo upload, but would not by itself prove this earlier dated
+proof lacked originality or imply derivation in either direction. Actual
+published payloads, proof scope, authorship, DOI and chronology must be checked
+before any tracker repair or disposition. The original draft PR is preserved.

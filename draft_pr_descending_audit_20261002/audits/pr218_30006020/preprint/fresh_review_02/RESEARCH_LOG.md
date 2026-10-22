@@ -1,0 +1,7 @@
+# Fresh sequential manuscript review 02 log
+
+2026-10-15T07:12:56.456849+00:00 — Started independent reconstruction; five submission pins and all 138 ZIP payload pins checked. Estimated completion: 8%. Prior verdicts not yet read.
+
+2026-10-15T07:18:19.289978+00:00 — Independent mathematical reconstruction complete, including original OWR contribution and primary DL/DGZZ/AT/ABT controlling statements and proofs; seven manuscript pages and selected original source pages visually inspected. Extracted portable runner passed 7,100 finite exact assertions, 46,233 labeled permutation traversals, and 123 DVV composition cases. New independent controls passed 4,466 assertions. All current/history manifest and 22 original-byte checks passed (297 custody checks). Estimated completion: 85%. No mandatory mathematical finding. Next: read the previous manuscript verdict and global repair acceptance, then seal final report.
+
+2026-10-15T07:23:02.981600+00:00 — Completed first-review/repair comparison and 165 preservation/global-repair checks. M1 repaired in all current presentations; first review remains one-finding/nonclean for old inputs. Completed/rechecked short ending source-proof displays after this comparison (DGZZ1.12 normalization; DL6.4 final integral), mechanisms already present in pre-verdict reconstruction; disclosed exact reading-order precision to root. No mandatory/optional finding. Report, source/visual receipts and safe authored manifest prepared. Estimated completion: 100% of assigned review; publication remains outside this review.

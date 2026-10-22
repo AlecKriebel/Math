@@ -1,0 +1,15 @@
+# Research recovery: 30004690
+
+- 2026-10-01 03:59 UTC: Recovered the full pinned record and exact OWR source. Exact prior-report key absent; no exact-ID remote branch or all-state PR found. Prior local-only proof-turn count remains unknown.
+- 2026-10-01 04:02 UTC: Full 2015 harmonic-disc and 2019 maximal-rank papers recovered; the latter does not prove interior non-C². The 2019 duality paper's main non-C² statement is at P¹×∂D. Its full author version and a 2017 survey were recovered. The 2021 report permits smooth semipositive boundary data and identifies smooth prescribed density as the remaining construction issue. Source recovery is not counted as a proof turn.
+- 2026-10-01 04:09 UTC: Recovered substantive turn 1 studies a fixed Koebe-map radial-flow construction. Exact local HCMA formula shows that endpoint-flat density gives a smooth interior solution, while finite-order radial density cannot give smooth boundary density at the slit tip. This eliminates a concrete tempting construction; it does not settle the full target. Best-guess full-target completion: 10%, a qualitative planning estimate. Work remains active for the next documented substantive turn under the five-turn instruction.
+
+## Accounting
+
+Historical pre-interruption substantive turns: unknown. Documented recovered substantive turns completed: 4. Do not treat this as a fresh zero-attempt problem. Five documented substantive recovered author turns are requested unless a complete resolution is obtained earlier. Source triage, reviews, tool calls, diagnostics, and packaging are not proof turns.
+
+- 2026-10-01 04:14 UTC: Recovered substantive turn 2 computes the inverse density for arbitrary nested ellipse collapses and proves a bounded-density obstruction at slit endpoints. A nonelliptic construction or a different mechanism is still needed. Best-guess full-target completion remains 10%. Work remains active; the substantive checkpoint is preserved for a separately requested review interruption.
+
+- 2026-10-01 04:29 UTC: Recovered substantive turn 3 derives a conditional pressure/Legendre obstruction for nonradial slit flows with explicit endpoint boundary-derivative convergence. It proves full real-Hessian matching under those hypotheses, not general regularity. Candidate partial result awaits independent review. Full target unresolved; progress estimate 15%. Work remains active toward recovered turns 4 and 5 unless a complete solution is found earlier.
+
+- 2026-10-01 04:38 UTC: Recovered substantive turn 4 produced a complete candidate using finite-time positive-length tangency from the published Ross–Witt Nyström construction. Green comparison across the zero-area contact arc gives a strict time-slope gap; finite negative left curvature gives an interior Legendre second-derivative jump. Candidate completeness estimate 100%, correctness pending independent review; no claimed full result before PASS. Further search paused for the required separate review, with recovered turn 5 available if the candidate is rejected.

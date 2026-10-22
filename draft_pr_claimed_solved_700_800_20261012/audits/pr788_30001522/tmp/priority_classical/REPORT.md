@@ -1,0 +1,33 @@
+# PR788 classical transformation-group priority audit
+
+The fixed Wu-manifold witness is a short assembly of old mathematical ingredients. This audit independently traced an explicit earlier no-free-involution discussion to Kuhn–Lloyd's2020 preprint. It is absent from the numbered original AUTHOR LITERATURE_STATUS list, but historical audit/INDEPENDENT_LEMMAS sectionB already cites their Example2.25: it was already present in the full48-file candidate packet. It did not identify an inspected publication presenting the complete fixed-space, arbitrary-continuous-action rank gap as the answer to Hanke. Priority therefore remains unresolved; no firstness, new-example, new-ingredient or current-global-openness claim is certified.
+
+This is the reused PR781/PR786 worker, after a fresh PR788 initialization reportedly failed before start. Prior exposure is disclosed. INITIAL_PRIORITY_POSITION was frozen before candidate literature/audit conclusions or current peer/root priority outcomes; PROVISIONAL_FINDING records the later independent evidence-based position. Neither file is rewritten. Current peer/root priority conclusions have not been read.
+
+## Exact target and old components
+
+Hanke's actual [OWR32/2010 contribution](https://ems.press/content/serial-article-files/46287), printed1912/PDF28, defines free toral/free elementary-abelian ranks on the fixed finite complex, then asks about infinitely many primes under the simple-space and finite rational-homotopy hypotheses. The displayed definitions contain no almost-free or rational-replacement convention. The large-prime homotopy-Euler upper bound does not identify the free toral rank.
+
+[Yeroshkin v2](https://arxiv.org/abs/1401.7565v2),9April2014, Proposition4.2 pp6–7, explicitly computes the Wu circle quotients. The weights(1,1,-2) have stabilizers at mostC2. Restriction to every odd-order cyclic subgroup is therefore free on this same W. This is a direct specialization and subgroup consequence of the old proposition; it should not be presented as a new circle action. Its nonstandard SO3 is conjugate to the real embedding (p3, formula2); bars lost by extraction were resolved visually.
+
+[Kuhn–Lloyd v1](https://arxiv.org/abs/2008.00330v1),1August2020, Theorems2.17/9.1 pp8/27, explicitly exclude a free Wu involution using nonbounding. In [v2](https://arxiv.org/abs/2008.00330v2),27September2022, this appears in Example2.25 p12. The chromatic fixed-set theorem uses finite-G-space/admissibility hypotheses. Those are not silently promoted to a theorem about every wild continuous action. The separately stated nonbounding obstruction is classical; the candidate's topological covering/naturality argument supplies its claimed continuous scope.
+
+[Barden1965](https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/barden.pdf), printed373–374, supplies the classical simply connected H2=Z/2/nonspin manifold facts. The scan denotes Wu by X_-1; OCR drops the minus. [Debray–Yu2024](https://doi.org/10.1007/s00220-024-04937-4), Remark4.40/Lemma4.41/Corollary4.44/Proposition4.45, supplies an explicit modern account of cohomology and Stiefel–Whitney classes and credits Barden, Landweber–Stong and Calabi. The original Wu/Dold naming history must not be confused with diffeomorphic identity.
+
+## What the comparison establishes
+
+Together with standard subgroup restriction and the classical Wu topology/characteristic-number facts, these old results supply the existence mechanism. For the all-continuous conclusion one must retain the topological naturality step, rather than replace it by a smooth/isometric classification. The exact odd-prime rank-one upper bound is the classical mod-p homology-sphere restriction; it is optional for Hanke's existence question. This audit adds no new proof turn.
+
+An old ingredient assembly can mathematically imply the answer without a source having documented the Hanke connection. The search did not establish that no such documented source exists. Conversely, failure to locate a full predecessor cannot support novelty: the action and obstruction themselves have substantial explicit antecedents. A historical explanatory note retaining no-priority language is compatible with this evidence. Carrying the existing historical-audit Kuhn–Lloyd credit into an author-facing exposition, with the independently pinned2020 version chronology, would improve attribution; this is not a newly discovered citation absent from the entire original packet.
+
+The [EKS2003 classification](https://doi.org/10.1023/B:GEOM.0000006563.15371.a4) is about isometric actions and inner involutions. Its author version and journal Theorem2 differ in scope/list; both exclude Wu in the relevant restricted setting. [Galaz-Garcia–Searle2014](https://msp.org/gt/2014/18-3/gt-v18-n3-p05-p.pdf), printed1421, likewise discusses circle subgroups in an isometric torus-action setting. These statements alone do not establish arbitrary continuous toral rank zero. Almost-free/rational toral rank and unrestricted effective-action degree are different invariants.
+
+## Search limits and custody
+
+The40 actual search strings, fetched full-body hashes, versions, theorem/page locators, visual checks and exact read scopes are preserved in QUERY_LEDGER/SOURCE_LEDGER. Full bodies were available for10 pinned PDF artifacts; entire-body independent reading is not claimed. Full third-party bodies/text/renders stay exclusively in sibling scratch.
+
+Specific unresolved gaps include Bock1998 thesis, Floyd1973 original body (the attempted JSTOR PDF returned HTML), Lawson–Michelsohn AppendixD, inaccessible Stong notes and Yeroshkin's thesis403. Later references supply citation bridges, not a claim that the unread originals were excluded. The retrieved Hanke stable PDF has an internal2021 date despite its arXivv3/2009 banner; that discrepancy is recorded rather than erased.
+
+All48 original files are independently bound by SHA256 and Git blob identity with the complete selected record, empty prior record, eligibility and exact head3412d5a074c3f3a03f75735a9ccf1755e172204a. Original author priority disclaimers remain intact. No source edits, Git changes, publication, account mutation, external contact or unrelated-agent communication occurred. RAM staging is the actual location; root controls durable preservation and final publication.
+
+After PROVISIONAL_FINDING was frozen, root identified that historical-audit citation. The exact section was then read and this attribution distinction corrected before sealing; the initial/provisional positions remain unchanged. Root supplied no contrary priority verdict, and no other-family conclusion was read.

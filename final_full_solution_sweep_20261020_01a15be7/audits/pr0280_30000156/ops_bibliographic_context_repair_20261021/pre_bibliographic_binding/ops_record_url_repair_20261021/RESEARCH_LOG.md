@@ -1,0 +1,8 @@
+# PR280 record URL operational repair log
+
+- 2026-10-21T14:13:27Z — 10%: Verified and froze all122 previously bound artifacts, old manifest/checksum, root finding/clearance history and review04 binding before edits. Whole local state inventory captured. Scope is PR280 helper repair only.
+- 2026-10-21T14:17:59Z and14:18:00Z — 25%: Reproduced all32 old false-uniqueness pipelines in normal and optimized Python from exact frozen code; no actual provider attempts. Chose a shared structural parser with conservative explicit ambiguity rejection.
+- 2026-10-21T14:26:15Z through14:29:09Z — 75%: Initial909 new controls and all404 regressions passed in both modes. Initial resume fixture failed because relocated synthetic receipt root lacked SOURCE_SNAPSHOT.json; retained production guard and corrected fixture using the exact snapshot17.
+- 2026-10-21T14:32:40Z and14:32:46Z — 90%: Extended malformed scheme and encoded-authority controls; final994 actual-function route controls pass normal and optimized. No guard is implemented with assert.
+- 2026-10-21T14:32:58Z through14:33:00Z — 95%: Final404 regression replay passes both modes; root296+7 lexical benchmark has zero silent misses/false target negatives; existing-head resume3 passes each mode. No real provider access, no Git action.
+- 2026-10-21T14:37:03.262917+00:00 — 100% local preparation: Exact four-helper diff and current seven binding recorded, all130 initial copies plus43 supplemental review04 files verified, original17/science5/RELEASE/root lead/clearance history and314 state files unchanged. Publication readyfalse; NEW COMPLETE reviewer05/root decision pending. New seal will bind this report and all authored repair evidence.

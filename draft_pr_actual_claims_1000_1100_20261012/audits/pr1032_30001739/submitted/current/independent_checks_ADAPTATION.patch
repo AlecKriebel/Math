@@ -1,0 +1,23 @@
+--- a/independent_checks.py
++++ b/independent_checks.py
+@@ -3,11 +3,7 @@
+ import hashlib, itertools, json, sys
+ from pathlib import Path
+ from fractions import Fraction
+-import sympy as sp
+-ROOT=Path(__file__).resolve().parents[1]
+-READ_ONLY = '--read-only' in sys.argv
+-if any(arg != '--read-only' for arg in sys.argv[1:]):
+-    raise RuntimeError('Unknown diagnostic argument')
++import sympy as sp  # Loaded by the version-pinned isolated adapter.
+ S={'A':(0,2),'B':(1,4),'C':(3,3),'D':(2,5),'E':(4,6)}
+ 
+ def prec(a,b):
+@@ -104,6 +100,4 @@
+ if ('A','B') not in cal_adj.get(('A','D'),[]):
+     raise RuntimeError('MATCHING_ORIENTATION: Y(A,B) must cover X(A,D)')
+ report={'audit_kind':'INDEPENDENT_FINITE_CHECKS_NOT_HOM_COMPUTATION','degree':sum(b-a+1 for a,b in S.values()),'partitions':hall(),'orders':order_checks,'scalar_checks':scalars(),'parity_survivors':survivors}
+-if not READ_ONLY:
+-    ROOT.joinpath('diagnostics/INDEPENDENT_RESULTS.json').write_text(json.dumps(report,indent=2)+'\n')
+-print(json.dumps({'status':'PASS','partitions':len(report['partitions']),'orders':len(order_checks),'scalar_checks':len(report['scalar_checks']),'parity_survivors':0,'Hom_space_computed':False}))
++print(json.dumps(report, indent=2, sort_keys=True))

@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-16T03:59:17.909316+00:00",
+  "case_completion_percent": 85,
+  "tests": [
+    {
+      "test": "Normal pinned SAME23398175/exact113 transition uses only five reads and two trapped downloads",
+      "passed": true
+    },
+    {
+      "test": "R4-F2 coherent alternate record and manifest blocked by independent archive pin",
+      "passed": true
+    },
+    {
+      "test": "R4-F2 coherent alternate tracker range and manifest blocked before reads",
+      "passed": true
+    },
+    {
+      "test": "R4-F3 late archive_publication drift refuses before intent and retains changed bytes",
+      "passed": true
+    },
+    {
+      "test": "R4-F3 late current_publication drift refuses before intent and retains changed bytes",
+      "passed": true
+    },
+    {
+      "test": "R4-F3 late current_tracker drift refuses before intent and retains changed bytes",
+      "passed": true
+    },
+    {
+      "test": "R4-F3 late current_publish_intent drift refuses before intent and retains changed bytes",
+      "passed": true
+    },
+    {
+      "test": "R4-F3 original current publish-intent mismatch refuses before all provider reads",
+      "passed": true
+    },
+    {
+      "test": "Local ZENODO_VERIFIED_PUBLICATION.json replacement failure leaves exclusive intent and unusable partial pair",
+      "passed": true
+    },
+    {
+      "test": "Local TRACKER_VERIFIED_APPEND.json replacement failure leaves exclusive intent and unusable partial pair",
+      "passed": true
+    }
+  ],
+  "count": 10,
+  "all_tests_passed": true,
+  "reused_fully_read_source04_fixture_only": true,
+  "new_target_sources_executed_only_in_own_copies": true,
+  "current_reconciler_sha256": "8d516c67c6dd57cef9cac9e7bdc3fec252412b804164cb323b547fe18e51fb16",
+  "exact_initial_candidate_sha256": "c1297bbb2a0e6e364076ff539f58a5337ebc304e4efe77c3fc2dcc0623dc9104",
+  "actual_provider_network_subprocess_Git_or_spreadsheet_mutations": 0,
+  "adapted_protocol_diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n import shutil, socket, subprocess, sys, tempfile, urllib.request, zipfile\n \n OUT = Path(__file__).resolve().parent\n-D = OUT.parent\n+D = Path('/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015')\n CASE = D.parent\n SOURCE_PUB = CASE / 'publication'\n SOURCE_R = CASE / 'preprint'\n@@ -24,7 +24,7 @@\n     'meromorphic_divisor_adversary_01', 'priority_author_updates_01',\n     'priority_classical_general_01', 'whole_manuscript_adversary_01',\n     'whole_manuscript_adversary_02', 'whole_manuscript_adversary_03',\n-    'release_helpers_adversary_01', 'release_helpers_adversary_02', 'release_helpers_adversary_03', 'release_helpers_adversary_04']\n+    'release_helpers_adversary_01', 'release_helpers_adversary_02', 'release_helpers_adversary_03', 'release_helpers_adversary_04', 'release_helpers_adversary_05']\n RESULTS = []\n sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()\n blob_sha = lambda raw: hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\\0' + raw).hexdigest()\n@@ -89,7 +89,7 @@\n         self.qraw = ('| 224 | 5100033 / AMR-050-0033 | Elliptic-billiard invariant k_{605,a} | 0.1905 | 5.0 | 3 | 2021 | claimed_solved | 1/5 |  | Independently reviewed full proof: odd primitive/star signed outer-tangent focal-pedal area product; arXiv k605,a = published k606. [Proof](attempts/5100033/PROOF.md), [review](attempts/5100033/independent_review/INDEPENDENT_REVIEW.md). Classical inputs credited; no novelty claim. |  |\\n| other problem | unchanged |\\n').encode()\n         cols='| 224 | 5100033 / AMR-050-0033 | Elliptic-billiard invariant k_{605,a} | 0.1905 | 5.0 | 3 | 2021 | claimed_solved | 1/5 |  | Independently reviewed full proof: odd primitive/star signed outer-tangent focal-pedal area product; arXiv k605,a = published k606. [Proof](attempts/5100033/PROOF.md), [review](attempts/5100033/independent_review/INDEPENDENT_REVIEW.md). Classical inputs credited; no novelty claim. |  |'.split('|')\n         cols[8]=' queued ';cols[9]=' 0/5 '\n-        for i in [10,11,12]:cols[i]=' '\n+        for i in [10,11,12]:cols[i]='  '\n         self.main_qraw=('|'.join(cols)+'\\n| other problem | unchanged |\\n').encode()\n         self.intake = json.loads((self.D / 'INTAKE.json').read_text())\n         self.trees = {}; self.blobs = {}\n",
+  "byte_identical_source04_fixture_program_sha256": "5b5f110398a2344af4b8ab7e894092d60663449ba819c1fe5deaee0d79f215d8"
+}

@@ -1,0 +1,531 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\Homeo}{\operatorname{Homeo}}
+\newcommand{\Aff}{\operatorname{Aff}}
+\newcommand{\AI}{\mathcal A_I}
+\newcommand{\AR}{\mathcal A_{\R}}
+\newcommand{\GL}{G(L)}
+\title{A two-tail obstruction to ambient conjugation in Dlab groups}
+\author{Alec Kriebel\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{17 October 2026\\[3pt]
+\small Preprint for final adversarial review}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $G=D_{\langle2\rangle}([0,1])$ be the compactly supported,
+locally right $2^{\Z}$-affine Dlab group. We construct an automorphism
+preserving both Dlab orders and give a proof that it cannot be implemented
+after any embedding in either of two explicitly defined groups: all locally
+right affine increasing interval homeomorphisms, and all locally right
+affine increasing real homeomorphisms that are affine on an initial ray.
+The ambient slopes are unrestricted, and the embedding need not preserve
+an order. Perfectness separates the supports of commuting local groups;
+a two-tail construction handles both possible orientations of their least
+action components. This extends a one-tail mechanism used in prior work.
+The definitions and affine-germ decomposition of the standard Dlab
+families place them in these ambient groups. Consequently the construction
+gives an affirmative answer to the corrected Kourovka Problem 21.149,
+including arbitrary positive-real slope groups and the full and reflected
+extended-real families.
+\end{abstract}
+
+\section{The precise claim and its context}
+
+For an interval $X$, let $\Homeo^+(X)$ denote its increasing
+homeomorphisms, with ordinary composition of functions. For $f$ in this
+group, $\supp(f)=\{x:f(x)\ne x\}$ is its open support. An open support
+component is called a support component. For intervals $U,V$, write $U<V$
+if every point of $U$ precedes every point of $V$.
+
+\begin{definition}
+A map is \emph{locally right affine} if, at every finite point $a$ other
+than a right endpoint, some $\epsilon>0$ and $s>0$ satisfy
+\[
+ f(x)=f(a)+s(x-a)\qquad(a\le x\le a+\epsilon).
+\]
+Let $\AI\le\Homeo^+([0,1])$ consist of all such maps, including this
+condition at $a=0$. Let $\AR\le\Homeo^+(\R)$ consist of all such maps
+which, in addition, agree with $x\mapsto sx+t$, for some $s>0$, on an
+initial ray. No restriction is placed on the positive slopes.
+\end{definition}
+
+These are groups: right affine germs are preserved by composition and
+inversion, as are eventual affine germs at $-\infty$. Neither definition
+requires finitely many affine pieces on a compact interval; accumulation
+of pieces from the left is permitted. Put
+\[
+ G=\{f\in\AI:\text{all right slopes lie in }2^{\Z},\quad
+ f=\id\text{ near }0\text{ and }1\}.
+\]
+This is Dlab's compact-support group. For $L=(a,b)$ with
+$0<a<b<1$, put
+\[
+ G(L)=\{f\in G:\overline{\supp(f)}\text{ is compactly contained in }L\}.
+\]
+
+\begin{theorem}[Explicit ambient theorem]\label{thm:main}
+There is an automorphism $\alpha$ of $G$ preserving both Dlab bi-orders
+such that, for $A=\AI$ or $A=\AR$, every injective homomorphism
+$e:G\longrightarrow A$ and every $u\in A$ satisfy
+\[
+ e(\alpha(f))\ne u^{-1}e(f)u\quad\text{for some }f\in G.
+\]
+Consequently the same assertion holds for every subgroup of either
+explicit ambient group. No order on $A$ or order preservation by $e$ is
+assumed.
+\end{theorem}
+
+Problem 21.149 in the 21st \emph{Kourovka Notebook}, updated
+6 October 2026, printed p.~199, is attributed to V.~M.~Kopytov and
+N.~Ya.~Medvedev and communicated by A.~V.~Zenkov~\cite{KN}.
+It asks for an order automorphism of a Dlab group whose realization by
+conjugation remains impossible in a possibly larger Dlab group. The
+earlier question asked only for an automorphism which is not inner;
+van Doorn, Judin, Monticone and Morrison discuss that distinction and
+the clarification in Appendix~A of~\cite{VDJMM}.
+
+Gong, Yang and Zeng~\cite[Theorem~1.1]{GYZ} already give an ambient
+nonconjugation result for six rank-one Dlab families and order-preserving
+embeddings. Their proof uses a normalizer with support components
+descending to one endpoint. They explicitly exclude higher-rank ambient
+slopes and the reflected extended-real family from their theorem. We
+credit that one-tail support obstruction. The additional argument here
+uses perfect centralizers instead of ambient order classification, and
+uses both tails to accommodate an embedding that reverses the order
+of least local action components. The conclusion concerns the stronger ambient quantifiers, rather than
+a new claim about the already known one-tail mechanism.
+
+\section{Germs and perfect centralizers}
+
+The external group theorem needed for the support obstruction is Dlab's
+simplicity theorem~\cite[Theorem~4.3]{Dlab}. It states that $G$ is
+algebraically simple. The group is nontrivial, for it contains finite
+two-slope bumps. An increasing homeomorphism of an interval has no
+nontrivial finite order: a moved point has strictly monotone iterates.
+Thus $G$ cannot be an abelian simple group, and is nonabelian and
+perfect. An affine change from $[0,1]$ to $[a,b]$, followed by extension
+by the identity, identifies $G$ with $G(L)$. In particular every $G(L)$
+is also nonabelian simple and perfect.
+
+\begin{lemma}\label{lem:wellordered}
+For every $q\in\AI$ or $q\in\AR$, its support components are
+well ordered from left to right. If $q$ belongs to a perfect subgroup
+of the ambient group, every support component has a finite left endpoint.
+\end{lemma}
+
+\begin{proof}
+First consider a nonempty family of components with finite left
+endpoints whose infimum $a$ is finite. If no component has left endpoint
+$a$, choose distinct such endpoints $a_n\downarrow a$. They are fixed
+points of $q$, so continuity gives $q(a)=a$. A right affine germ at $a$
+then has slope $1$, because it contains the fixed points $a_n$ for
+arbitrarily large $n$. It is therefore the identity on a right
+neighborhood of $a$. No left endpoint of a nonempty open support
+component can lie in that neighborhood, a contradiction. Thus the
+family has a first component. On $[0,1]$ its infimum is always finite
+and less than $1$, so this proves the assertion there.
+
+On $\R$, if $q$ is the identity on an initial ray, all support components
+have left endpoints bounded below and the argument applies. Otherwise
+its eventual nonidentity affine formula moves every point sufficiently
+far to the left. There is a single initial support component, with left
+endpoint $-\infty$, and all other component endpoints are bounded
+below. A family containing that component has it as first member; a
+family excluding it is handled by the finite-infimum argument.
+
+For $\AI$, the right slope at $0$ is a homomorphism to the abelian
+group $\R_{>0}^{\times}$. It is trivial on any perfect subgroup, and a
+map fixing $0$ with slope $1$ is the identity on an initial interval.
+For $\AR$, the eventual affine formula defines a homomorphism into
+$\Aff_+(\R)$. This group is metabelian: its slope quotient and
+translation kernel are abelian. A perfect subgroup has trivial image
+in a solvable group, so every element of the perfect subgroup is the
+identity on an initial ray. These neighborhoods can depend on the
+element; no common neighborhood is asserted.
+\end{proof}
+
+\begin{lemma}[Perfect centralizers]\label{lem:centralizer}
+Let $q$ be an ambient element all of whose support components have
+finite left endpoints. If a perfect subgroup $P$ of the ambient group
+centralizes $q$, then every element of $P$ fixes $\supp(q)$ pointwise.
+\end{lemma}
+
+\begin{proof}
+Each $p\in P$ permutes the support components of $q$ increasingly.
+An increasing bijection of a well-ordered set is the identity, by
+transfinite induction: if every predecessor of an element is fixed,
+its image cannot be an earlier element, already having its own
+preimage, and cannot be a later element, since its own preimage would
+then lie later and violate monotonicity.
+Lemma~\ref{lem:wellordered} therefore implies that $P$ preserves
+each component $J=(a,b)$ setwise. Here $a$ is finite, so $P$ fixes $a$.
+The right slope at $a$ is a homomorphism $P\to\R_{>0}^{\times}$;
+perfectness makes it trivial. Every $p\in P$ is consequently the
+identity on a right neighborhood of $a$.
+
+The map $q$ has no fixed point in $J$, and either $q(x)>x$ throughout
+$J$ or $q(x)<x$ throughout $J$. Accordingly either $q^{-n}(x)$ or
+$q^n(x)$ tends to $a$ for each $x\in J$: a larger finite limit would
+be a fixed point by continuity. For $n$ sufficiently large this
+iterate lies in the neighborhood fixed by $p$. Commutation with $q$
+then implies $p(x)=x$. This proves the assertion for every $J$ and $p$.
+\end{proof}
+
+For a subgroup $B$ define its action support by
+\[
+ S(B)=X\setminus\Fix(B)=\bigcup_{b\in B}\supp(b).
+\]
+An \emph{action component} is a component of this open set. Finite
+endpoints of an action component are common fixed points of $B$;
+hence every element of $B$ preserves every action component setwise.
+
+\begin{corollary}\label{cor:disjoint}
+For every embedding $e:G\to A$ as in Theorem~\ref{thm:main}, disjoint
+source intervals $L,M$ satisfy
+$S(e(G(L)))\cap S(e(G(M)))=\varnothing$.
+\end{corollary}
+
+\begin{proof}
+The groups $G(L)$ and $G(M)$ commute since their supports are disjoint.
+For each $q\in e(G(L))$, its support components have finite left
+endpoints by perfectness and Lemma~\ref{lem:wellordered}.
+The perfect group $e(G(M))$ centralizes $q$; apply
+Lemma~\ref{lem:centralizer} and take the union over $q$.
+\end{proof}
+
+\section{Least components and the orientation dichotomy}
+
+Fix an embedding $e:G\to A$. Its action on every action component
+$J$ is faithful. Indeed, the restriction kernel is normal in $G$,
+and it is proper because $J$ is an action component; simplicity
+makes the kernel trivial. Fix $f\ne1$ in $G$. Every such $J$ contains
+a support component of $e(f)$, since faithfulness makes its restriction
+nonidentity and a support component cannot cross a common fixed
+endpoint of $J$. The least support component of $e(f)$ therefore lies
+in the least action component of $e(G)$; denote the latter by $J_0$.
+To justify minimality explicitly, an earlier action component would
+contain an even earlier support component of $e(f)$.
+
+For each source interval $L$, the action of $e(G(L))$ on $J_0$ is
+nontrivial, since the action of $e(G)$ there is faithful. Every local
+action component within $J_0$ carries a faithful action of $G(L)$,
+by its simplicity. Applying the preceding fixed-nonidentity-element
+argument to $G(L)$ gives a least such component, denoted $K(L)$.
+These are also global action components of $e(G(L))$: the boundary
+of $J_0$ is fixed by $e(G)$ and thus cannot be crossed by a local
+action component. Corollary~\ref{cor:disjoint} shows that $K(L)$ and
+$K(M)$ are disjoint whenever $L$ and $M$ are disjoint.
+
+Conjugation by any $g\in G$ maps $G(L)$ onto $G(gL)$. Moreover
+$e(g)$ preserves $J_0$ and sends least components to least components.
+Consequently
+\begin{equation}\label{eq:equivariant}
+ K(gL)=e(g)K(L)\qquad(g\in G).
+\end{equation}
+
+\begin{lemma}\label{lem:orientation}
+Exactly one of the following holds for every pair of relatively
+compact source intervals $L<M$ with a positive gap:
+\[
+ K(L)<K(M);\qquad K(M)<K(L).
+\]
+\end{lemma}
+
+\begin{proof}
+We first verify finite-tuple transitivity. Given two increasing
+tuples of distinct interior points of equal length, choose common
+outer endpoints $c,d\in(0,1)$ containing both tuples. Prescribe the
+tuple map and fix $c,d$. On any successive source segment of length
+$\ell$ and target segment of length $r\ell$, choose $s=2^k$ with
+$s\le r\le2s$. Use slope $s$ for length $\ell(2s-r)/s$ and slope
+$2s$ for length $\ell(r-s)/s$. These lengths are nonnegative, sum
+to $\ell$, and give target length $r\ell$. Omit zero-length pieces.
+The resulting finite piecewise affine map, extended by the identity
+outside $[c,d]$, belongs to $G$ and realizes the prescribed tuple map.
+
+Apply this construction to the four ordered endpoints of any two
+positively separated interval pairs. It maps one pair to the other.
+Equation~\eqref{eq:equivariant} and the fact that $e(g)$ increases
+show that the relative order of the two $K$-intervals is the same
+for every pair. The intervals are disjoint and nonempty, so exactly
+one of the stated alternatives holds.
+\end{proof}
+
+\section{The two-tail automorphism and the Dlab orders}
+
+For $m\ge0$, set
+\[
+ b_m=2^{-2m-2},\quad a_m=b_m/2,\quad
+ C_m=(a_m,b_m),\quad D_m=(1-b_m,1-a_m).
+\]
+Then $C_{m+1}<C_m$ and $D_m<D_{m+1}$, each with a positive gap.
+On the closure $[a,b]$ of each $C_m$ and $D_m$ define
+\begin{equation}\label{eq:bump}
+ h(x)=
+ \begin{cases}
+ a+2(x-a),&a\le x\le a+(b-a)/3,\\
+ b+(x-b)/2,&a+(b-a)/3\le x\le b,
+ \end{cases}
+\end{equation}
+and put $h(x)=x$ elsewhere. The two formulas agree at the breakpoint,
+fix $a,b$, and satisfy $h(x)>x$ for $a<x<b$. They define increasing
+homeomorphisms of each closed bump interval. Because their lengths
+tend to zero at both endpoints, their union with the identity is
+continuous also at $0,1$, and hence is an increasing homeomorphism
+of $[0,1]$. Every compact subinterval of $(0,1)$ meets only finitely
+many bumps, so both $h$ and $h^{-1}$ are finite piecewise affine
+there, with slopes in $2^{\Z}$.
+
+Define
+\begin{equation}\label{eq:alpha}
+ \alpha(f)=h^{-1}fh.
+\end{equation}
+For $f\in G$, its support closure is compactly contained in $(0,1)$,
+and the support of $\alpha(f)$ is $h^{-1}\supp(f)$. On the interior,
+composition and inversion preserve locally right $2^{\Z}$-affinity.
+Near the endpoints the conjugate is the identity. Thus $\alpha(f)$
+belongs to $G$; the same argument for $h^{-1}$ proves that $\alpha$
+is an automorphism.
+
+For completeness, the orders preserved by $\alpha$ can be specified
+without choosing an ambient order. For $1\ne f\in G$, let $a(f)$
+be the left endpoint of its first support component, and let $s(f)$
+be its right slope there. Existence follows from
+Lemma~\ref{lem:wellordered}. We have $0<a(f)<1$ and $s(f)\ne1$;
+a slope of $1$ at a fixed point would give an identity right germ.
+The condition $s(f)>1$ defines one positive cone. To check closure
+under products of positive elements, the earlier first support point
+survives unchanged if the two points differ. If they coincide, the
+right slopes multiply and their product exceeds $1$. Inversion
+reciprocates the slope, and conjugation transports the first support
+point increasingly and leaves its slope unchanged, by cancellation
+of the conjugator's right slope. This gives a bi-order; the inverse
+cone gives its reverse. Dlab's order theorem
+\cite[Theorem~4.1]{Dlab} identifies these as the two Dlab orders for
+$2^{\Z}$.
+
+The first support point of $h^{-1}fh$ is $h^{-1}(a(f))$. If the
+right slope of $h$ there is $r$, the conjugate's first right slope is
+$r^{-1}s(f)r=s(f)$. All these germs are at interior points, where
+$h$ has the required affine germs. Thus $\alpha$ preserves both
+orders, even though $h$ itself has no affine right germ at $0$.
+
+For each $L=C_m$ or $L=D_m$, we have $h(L)=L$, so
+\begin{equation}\label{eq:localalpha}
+ \alpha(G(L))=G(L),\qquad \alpha|_{G(L)}\ne\id.
+\end{equation}
+For the second assertion, choose $x\in L$ moved by $h$ and a small
+open interval $V$ compactly contained in $L$ with
+$V\cap h^{-1}(V)=\varnothing$. A nonidentity finite bump supported
+compactly in $V$, obtained by rescaling~\eqref{eq:bump}, belongs to
+$G(L)$, whereas its conjugate is supported in $h^{-1}(V)$.
+The two elements are distinct.
+
+\section{Proof of the ambient theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The automorphism and its order preservation were established above.
+Suppose, contrary to the remaining assertion, that
+\begin{equation}\label{eq:implement}
+ e(\alpha(f))=u^{-1}e(f)u\qquad\text{for all }f\in G.
+\end{equation}
+Then $u$ normalizes $e(G)$, permutes its action components
+increasingly, and fixes their least member $J_0$ setwise.
+For $L=C_m$ or $D_m$, equations~\eqref{eq:localalpha} and
+\eqref{eq:implement} imply that $u$ normalizes $e(G(L))$.
+It therefore preserves the least local component $K(L)$ within
+$J_0$ setwise.
+
+The restriction of $u$ to $K(L)$ is nonidentity. Otherwise
+\eqref{eq:implement} would give equal restrictions of
+$e(\alpha(f))$ and $e(f)$ to $K(L)$ for every $f\in G(L)$.
+The action of $G(L)$ there is faithful, so this would imply
+$\alpha(f)=f$ for all $f\in G(L)$, contradicting
+\eqref{eq:localalpha}. Choose a point of $K(L)$ moved by $u$.
+Its support component $U(L)$ for $u$ lies entirely inside $K(L)$:
+finite boundary points of the invariant interval $K(L)$ are fixed
+by $u$, and an infinite boundary cannot be crossed.
+
+If the first orientation of Lemma~\ref{lem:orientation} holds, then
+\[
+ U(C_{m+1})<U(C_m)\qquad(m\ge0).
+\]
+If the second orientation holds, then instead
+\[
+ U(D_{m+1})<U(D_m)\qquad(m\ge0).
+\]
+In either case these are distinct support components of $u$ forming
+a strictly descending sequence. This contradicts
+Lemma~\ref{lem:wellordered}, which applies to every ambient element
+$u$, whether or not it belongs to a perfect subgroup.
+\end{proof}
+
+\section{Why the left-end condition cannot be dropped}
+
+The eventual affine condition at $-\infty$ is a mathematical
+hypothesis, not a harmless convention. Here is an exact countermodel
+for the larger group $\mathcal B$ of all increasing real homeomorphisms
+that are locally right $2^{\Z}$-affine at every finite point and have
+support bounded above. No condition at $-\infty$ is imposed.
+
+\begin{proposition}\label{prop:countermodel}
+For every automorphism $\beta$ of $G$ there are an embedding
+$E:G\to\mathcal B$ and $v\in\mathcal B$ such that
+$E(\beta(f))=v^{-1}E(f)v$ for all $f\in G$.
+\end{proposition}
+
+\begin{proof}
+For $n\in\Z$ put
+$I_n=(-2^{-n},-2^{-n-1})$ and let
+$\phi_n:[0,1]\to\overline{I_n}$ be the increasing affine bijection.
+Define $E(f)$ on $I_n$ by
+\[
+ E(f)|_{I_n}=\phi_n\,\beta^n(f)\,\phi_n^{-1},
+\]
+fix every cell endpoint, and make $E(f)$ the identity on $[0,\infty)$.
+Each cell is preserved, so continuity holds at $0$ as well as at
+the cell endpoints. At a cell endpoint there is an identity right
+neighborhood, since $\beta^n(f)$ is the identity near $0$ and $1$.
+At $0$ there is an identity right ray. Interior right slopes remain
+in $2^{\Z}$ under affine conjugation. Thus $E(f)\in\mathcal B$.
+Cellwise composition proves that $E$ is a homomorphism, and its
+restriction to $I_0$ proves injectivity.
+
+Put $v(x)=x/2$ for $x<0$ and $v(x)=x$ for $x\ge0$.
+This belongs to $\mathcal B$ and satisfies
+$v\phi_n=\phi_{n+1}$. The restriction of $v^{-1}E(f)v$ to
+$I_n$ is therefore
+$\phi_n\beta^{n+1}(f)\phi_n^{-1}$, which equals the restriction
+of $E(\beta(f))$. Both maps fix all remaining points.
+\end{proof}
+
+In particular it would be incorrect to apply
+Theorem~\ref{thm:main} to $\mathcal B$. Its elements can have support
+components descending indefinitely toward $-\infty$. We do not
+identify $\mathcal B$ with any of the standard real-line Dlab families.
+
+\section{Scope, dependencies, and disclosure}
+
+The explicit theorem includes every interval Dlab subgroup from
+Dlab's original definition, with any positive-real slope subgroup
+and any group order. The source simplicity and order classification
+used here are respectively Theorems~4.3 and~4.1 of~\cite{Dlab};
+none of the arguments imposes rank one on an ambient slope group.
+There are no computational claims or numerical approximations in
+the proof.
+
+For the extended-real families, the definitions and decomposition
+in Zenkov--Medvedev~\cite[\S2, Russian pp.~538, 542--543]{ZM}
+supply the additional left-end condition. Their full group
+$\overline D_H$ consists of locally right $H$-affine maps; the subgroup
+$D_{H*}$ fixes an initial ray. In the decomposition proof on p.~542,
+every element of $\overline D_H$ is a product of a globally affine
+map $x\mapsto rx+t$ and an element of $D_{H*}$. In particular, if
+an element is not already in $D_{H*}$, the proof identifies its first
+support point as $-\infty$ and gives an affine formula on a right
+neighborhood of that point. Such a neighborhood is an initial real
+ray. Each full-group element is therefore eventually affine at
+$-\infty$, and $\overline D_H\le\AR$. The compact-support,
+bounded-below, and reflected bounded-above families are subgroups
+of this full group, so they inherit the same conclusion.
+This deduction concerns defining affine behavior; it does not apply
+a rank-one classification of ambient group orders.
+Proposition~\ref{prop:countermodel} explains why retaining that
+left-end condition is essential.
+
+\begin{corollary}[Kourovka Notebook 21.149]\label{cor:kourovka}
+Equip $G=D_{\langle2\rangle}([0,1])$ with either of its Dlab orders.
+The automorphism $\alpha$ of Theorem~\ref{thm:main} cannot be induced
+by conjugation after any embedding into any of the standard real Dlab groups
+\[
+D_H(I),\ D_{H*}(I),\ D_{*H}(I),\ \overline D_H(I),\qquad
+D_H,\ D_{H*},\ D_{*H},\ \overline D_H,
+\]
+for any positive-real slope subgroup $H$. In particular it gives an
+affirmative answer to the corrected ambient-conjugation question.
+\end{corollary}
+\begin{proof}
+The four interval groups lie in $\AI$ by their locally right affine
+definition. The preceding left-germ argument places all four extended-real
+groups in $\AR$. Apply Theorem~\ref{thm:main} to the composite of an
+embedding with the appropriate inclusion. The conclusion applies to all
+embeddings and hence to all order-preserving embeddings.
+\end{proof}
+
+The contribution relative to~\cite{GYZ} is the unrestricted ambient
+slope and embedding quantifiers, including the full and reflected
+extended-real families. The affine-germ centralizer mechanism is classical
+(cf.~\cite[Lemma~3.6 and Theorem~4.6]{Dlab}); the proof above includes
+its required one-sided version rather than treating it as a new result.
+A literature audit through 17 October 2026 found no prior result covering
+these full quantifiers. This is a bounded priority assessment, and no
+independent human peer-review or proof-assistant verification is claimed.
+
+Related questions include classifying embeddings beyond their
+orientation dichotomy, and characterizing ambient left-germ groups
+for which the perfect-centralizer argument survives.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in discovering, developing, writing,
+and checking the mathematics, including separate AI research and
+adversarial-review agents. These checks do not constitute independent
+human peer review. This preprint has not undergone independent human
+peer review. No formal proof-assistant verification is claimed.
+
+\begin{thebibliography}{9}
+
+\bibitem{Dlab}
+V.~Dlab, \emph{On a family of simple ordered groups},
+J.~Austral. Math. Soc. \textbf{8} (1968), no.~3, 591--608.
+\href{https://doi.org/10.1017/S1446788700006261}{doi:10.1017/S1446788700006261}.
+
+\bibitem{KN}
+E.~I.~Khukhro and V.~D.~Mazurov (eds.),
+\emph{Unsolved Problems in Group Theory: The Kourovka Notebook},
+21st ed., Sobolev Institute of Mathematics, Novosibirsk, 2026,
+update of 6 October 2026, Problem~21.149, p.~199.
+\href{https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/10/21tkt-1.pdf}{Official edition};
+\href{https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/10/21upd-1.pdf}{official updates}.
+
+\bibitem{GYZ}
+T.~Gong, Y.~Yang and M.~R.~Zeng,
+\emph{An order automorphism of a Dlab group not induced by conjugation},
+preprint, 16 September 2026, arXiv:2609.18630v1.
+\url{https://arxiv.org/abs/2609.18630v1}.
+
+\bibitem{VDJMM}
+W.~van Doorn, E.~Judin, P.~Monticone and D.~Morrison,
+\emph{On Some Problems from the Kourovka Notebook},
+preprint, version~2, 26 July 2026, arXiv:2607.17477v2.
+\url{https://arxiv.org/abs/2607.17477v2}.
+
+\bibitem{ZM}
+A.~V.~Zenkov and N.~Ya.~Medvedev,
+\emph{On Dlab groups}, Algebra and Logic \textbf{38} (1999),
+289--298; Russian original: Algebra i Logika \textbf{38} (1999),
+no.~5, 531--548.
+\href{https://doi.org/10.1007/BF02671746}{doi:10.1007/BF02671746}.
+
+\end{thebibliography}
+\end{document}

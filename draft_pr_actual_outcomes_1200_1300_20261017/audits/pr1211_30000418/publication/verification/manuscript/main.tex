@@ -1,0 +1,201 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\cp}{\chi^{(2,1)}}
+\newcommand{\cl}{\chi_{\ell}^{(2,1)}}
+\title{A five-list obstruction on an eleven-vertex tree}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{17 October 2026 \quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We exhibit an eleven-vertex tree \(T\) with ordinary \(L(2,1)\) initial-segment
+palette size \(5\) and arbitrary-list parameter \(6\).
+An explicit assignment of five-element positive-integer lists is infeasible
+by a short forcing argument. An ordinary five-palette labeling and the known
+\(\Delta+3\) tree list bound give the exact values.
+This contradicts the universal equality stated in Kohl's 2006
+Conjecture~4 and dissertation Conjecture~4.4.
+Independent pendant-path extensions give infinitely many examples of
+unbounded diameter. Historical priority, minimal order and present openness
+are not claimed.
+\end{abstract}
+
+\section{Conventions and the historical target}
+An \(L(2,1)\)-labeling of a finite simple graph assigns positive integers to
+vertices so that adjacent labels differ by at least \(2\), and labels at
+distance \(2\) differ. Write \(\cp(G)\) for the least \(k\) allowing such a
+labeling from the common initial segment \([k]=\{1,\ldots,k\}\).
+Write \(\cl(G)\) for the least \(k\) such that \emph{every} assignment of
+\(k\)-element subsets \(L(v)\) of the positive integers admits a labeling
+\(f(v)\in L(v)\). Lists need not be intervals.
+Ordinary zero-based span \(\lambda(G)\) satisfies
+\(\cp(G)=\lambda(G)+1\).
+
+Kohl's Oberwolfach contribution \cite[Conjecture~4, p.~416]{kohl-owr}
+and dissertation \cite[Conjecture~4.4, p.~124]{kohl-thesis}
+state \(\cl(T)=\cp(T)\) for every tree \(T\).
+The example below is a full negative answer to that stated universal equality.
+The identification is historical; it does not assert that the conjecture
+remained open immediately before this work.
+
+\section{The obstruction}
+Let \(T\) have the path \(a-b-c-d-e\). Attach leaves \(a_1,a_2\) to \(a\),
+\(b_1\) to \(b\), \(d_1\) to \(d\), and \(e_1,e_2\) to \(e\).
+These are all vertices and edges, so \(T\) has eleven vertices, ten edges,
+maximum degree \(3\), radius \(3\), and diameter \(6\).
+Set
+\[
+ A=\{1,2,3,4,5\},\qquad B=\{1,3,4,5,6\}.
+\]
+Assign \(B\) to \(a_1,a_2,e_1,e_2\) and \(A\) to every other vertex.
+
+\begin{theorem}\label{thm:main}
+The displayed assignment has no \(L(2,1)\)-labeling, while
+\(\cp(T)=5\), or equivalently \(\lambda(T)=4\), and \(\cl(T)=6\).
+\end{theorem}
+\begin{proof}
+In a putative list labeling, the three neighbors of \(b\) all have list \(A\)
+and are pairwise at distance \(2\).
+If \(f(b)=2,3,4\), respectively, at most two elements of \(A\)
+differ from \(f(b)\) by at least \(2\). Thus \(f(b)\in\{1,5\}\).
+The same argument applies to \(d\).
+Since \(b,d\) are at distance \(2\), they receive different endpoint labels.
+Reversing the spine and its attached leaves preserves the assignment,
+so assume \(f(b)=1\) and \(f(d)=5\). Then \(f(c)=3\).
+
+The edge \(ab\) and the distance-two pair \(ac\) force \(f(a)\in\{4,5\}\).
+Each of \(a_1,a_2\) has list \(B\), must differ by at least \(2\) from \(f(a)\),
+and must avoid \(1=f(b)\).
+If \(f(a)=4\), only \(6\) remains; if \(f(a)=5\), only \(3\) remains.
+In either case the two leaves receive the same label, although they are
+at distance \(2\). This contradiction proves infeasibility.
+
+An ordinary labeling from \([5]\) is
+\[
+\begin{array}{c|rrrrrrrrrrr}
+ v & a&b&c&d&e&a_1&a_2&b_1&d_1&e_1&e_2\\ \hline
+ f(v)&1&5&3&1&5&3&4&2&4&2&3
+\end{array}
+\]
+as checked directly on edges and pairs of neighbors.
+A degree-three vertex cannot be labeled from \([4]\): each possible center
+label leaves at most two admissible neighbor labels, whereas its three
+neighbors must be distinct. Hence \(\cp(T)=5\).
+The bad five-lists imply \(\cl(T)\geq6\); Lemma~\ref{lem:bound} gives
+the reverse inequality.
+\end{proof}
+
+\begin{lemma}[Known tree bound]\label{lem:bound}
+For every nonempty finite tree \(S\),
+\(\cl(S)\leq\Delta(S)+3\).
+\end{lemma}
+\begin{proof}
+Root the tree and label in breadth-first order.
+For a nonroot vertex \(v\), its parent is its only earlier neighbor,
+excluding at most three integers from \(L(v)\).
+Earlier vertices at distance \(2\) are its grandparent, if present,
+and earlier siblings. There are at most \(\Delta(S)-1\) of these:
+if the parent is the root there is no grandparent, and otherwise
+the parent has at most \(\Delta(S)-1\) children.
+They exclude at most one label each.
+At most \(\Delta(S)+2\) labels are therefore forbidden, leaving a choice
+from any \((\Delta(S)+3)\)-element list. The root has no earlier constraints.
+This also covers a singleton.
+\end{proof}
+For positive integers \(d\geq s\), the more general tree bound
+\(\chi_{\ell}^{(d,s)}(S)\leq s\Delta(S)+2d-1\)
+is attributed to Voigt in \cite[p.~416 and reference~8 on p.~417]{kohl-owr},
+citing Kohl, Schreyer, Tuza and Voigt \cite{kstv}.
+The proof above is included for self-contained verification, without a
+novelty claim for the bound.
+
+\section{Infinitely many countertrees}
+\begin{corollary}
+Attach one path, of any independently chosen nonnegative finite length,
+outward from each of the six leaves of \(T\).
+Every resulting tree \(S\) has \(\cp(S)=5\) and \(\cl(S)=6\).
+The family has unbounded diameter.
+\end{corollary}
+\begin{proof}
+The old tree is an induced subtree, its old distances are unchanged, and
+the maximum degree remains \(3\).
+Extend the displayed ordinary labeling successively along each new path.
+The parent excludes at most three labels of \([5]\), and the grandparent
+at most one, so a choice always remains.
+New vertices on different added paths have distance at least \(4\);
+no further constraints arise. Thus \(\cp(S)\leq5\), with the reverse inequality
+by restriction to \(T\).
+Extend the infeasible lists on \(T\) by arbitrary five-element lists on
+new vertices. Any labeling would restrict to a forbidden labeling of \(T\),
+so \(\cl(S)\geq6\), while the tree bound gives \(\cl(S)\leq6\).
+\end{proof}
+
+\section{Verification, attribution and limitations}
+The proof is elementary and independent of computational search.
+The accompanying verification archive contains the exact graph, lists and
+ordinary witness, TeX source, a standard-library Python enumerator,
+expected results and byte manifests. Its exhaustive finite counts are
+\(0,8,6336\) for common palettes \([4],[5],[6]\), respectively, and \(0\)
+for the displayed five-lists. These computations check fixed instances;
+the universal six-list bound and the entire infinite family follow from
+the proofs, not from sampling.
+A separate construction-input reconstruction used different constraint
+propagation and tree-state mechanisms, froze its results before comparison,
+and did not read the candidate proof. The construction was supplied to it,
+so this is not an independent discovery claim.
+Supplementary recurrence details include explicit local-state admissibility;
+the main obstruction needs no recurrence.
+
+General-graph separations were known earlier.
+Fiala and \v{S}krekovski's 2001 preprint \cite[Fig.~4, p.~14]{fs}
+displays a ten-vertex cyclic graph with an ordinary five-palette labeling
+and infeasible five-lists.
+That figure does not itself contradict tree equality.
+A bounded primary-source and citation audit did not verify an earlier
+negative tree resolution. Relevant inaccessible or unlocated source bodies
+remain, as recorded in the supporting priority audit.
+Accordingly this note makes no claim of historical firstness, minimality,
+a new obstruction mechanism, or present openness.
+The inspected 2001 preprint is cited as such; its content is not silently
+identified with the differently titled 2005 journal version.
+
+AI tools were used extensively in the research, proof development,
+literature review, computation, verification and writing.
+The internal independent and adversarial checks were AI-assisted.
+This preprint is unrefereed: no external human peer review or formal
+proof-assistant certification is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{kohl-owr}
+A. Kohl, Some notes on \(L(d,s)\)-list labellings of trees and cacti,
+in \emph{Algorithmic Graph Theory}, Oberwolfach Reports \textbf{3} (2006), report 7,
+414--417. Conjecture~4 on p.~416.
+\href{https://doi.org/10.4171/OWR/2006/07}{doi:10.4171/OWR/2006/07}.
+
+\bibitem{kohl-thesis}
+A. Kohl, \emph{Knotenf\"arbungen mit Abstandsbedingungen},
+doctoral dissertation, TU Bergakademie Freiberg, 2006,
+\S4.4, especially p.~124. Institutional deposit dated 16 December 2009.
+\href{https://nbn-resolving.org/urn:nbn:de:bsz:105-5454783}{urn:nbn:de:bsz:105-5454783}.
+
+\bibitem{kstv}
+A. Kohl, J. Schreyer, Z. Tuza and M. Voigt,
+List version of \(L(d,s)\)-labelings,
+\emph{Theoretical Computer Science} \textbf{349}(1) (2005), 92--98.
+\href{https://doi.org/10.1016/j.tcs.2005.09.032}{doi:10.1016/j.tcs.2005.09.032}.
+
+\bibitem{fs}
+J. Fiala and R. \v{S}krekovski,
+\emph{List Distance Labelings of Graphs},
+KAM-DIMATIA Series 2001-530; ITI Series 2001-28, 2001.
+\href{https://kam.mff.cuni.cz/kamserie/clanky/2001/s530.pdf}{Institutional preprint},
+Fig.~4, p.~14.
+\end{thebibliography}
+\end{document}
