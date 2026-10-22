@@ -1,0 +1,5 @@
+# PR1279: full prior cycle-continuous antichain claim
+
+Root read entirebody, ACCEPTANCE.md and complete PATH_PROOF.md. Original OPG323 asks infiniteantichain finitegraphs under edgefunctions whose inverseimage preserves fullbinarycyclespace, notsingleconnectedcircuits. SourceSamal arxiv1212.6909v1 Theorem1.3/Cor3.5/fulljournal10.1002/jgt.22047 gives stronger simple cubic connectedbridgelessfamily. Pathofequal27edgecriticalnonisomorphicBlanusasnarks with noautomorphismsendingchosenindependentattachments, flowgluing+27/21privateedgecount forcesblocklocalization; no collapse/no fold gives equalpathlength. Completeclaimedoriginaltarget, no needstrongeruniversality/cyclic4largegraphs/generalclassification.
+
+Freshindependent actualprimaryoriginal/sourceessentialproof/finiteingredientauth/prior DOI+accounting review required. Historical54flowcertificates/transcriptions notprovidedrawhere; published theoremresolution may be verified directly without manufacturing oldexecutioninputs. Finaljournalbodyuninspectedhistorically. GWS09:44:59UTC191rows no target. All6actualheadblobs/liveheadbound, missingQUEUE. No newpublication/servicewrite. Overall80%.

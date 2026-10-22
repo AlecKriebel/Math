@@ -1007,3 +1007,21 @@ Ordered journal9..1238 contiguous, next1239. PR1208 separate repaired preparatio
 2026-10-22T09:06:59.877117+00:00 PR1224rootadopted40memberfreshprimaryreview/fullnear-minimumoriginalinterpretation;3moderootreplayPASS. ExistingTaopublicproof/noauthenticatedfulltargetDOI; nogeneralrigidity/exactgreedyclaim/norepublication. Overall80%.
 
 2026-10-22T09:17:36.508659+00:00 Through1270,next1271; PR1131mergedexact67915a... thenstageGETfailedprovenbeforecreate, oldintentpreserved/freshreadonlyreconciliationpass197/191, specialresumptionpacketindependentreviewactive.16row03rootHOLDadopted3482pins/knownPRlabelsduplicategap. Root1253/1239/1224/1226finaladoptions and25literalproposalrecorded. Overall80%.
+
+2026-10-22T09:20:33.367145+00:00 PR1257rootadopted90memberfreshreview/fulloriginalunrestrictednegativealreadyBMS2011/2013, onequalifiedrowpending. Strongerpinch/normalresultsseparatelypreservednoveltyunknown/m0wordingcorrected, norepublication. Rootdidnotrepeat2575reviewerchecks. Overall80%.
+
+2026-10-22T09:24:55.194694+00:00 PR1258rootadopted52memberfreshreview/fulloriginalpriorreconstruction+entirenewGaussianJacquet/Barnesrepairderivation/qualifiedrow. Correctedarxiv1102.0195(rejectedroot1012.1356guess); literalprintedchainstillincompatible, nosharpbound/newpub. Rootdidnotrepeatreviewerfloatingdiagnostics. Overall80%.
+
+2026-10-22T09:26:18.751337+00:00 Rootrevoked1131ops05actionclearancebyrenamingexactownapprovalbytes/inode/mode/nsmtimepreserved. NewactualfullstageknownPRlabelduplicate+resumptionaftergateadoption/intentgaps; noactualcreate/deposit/DOI. Scientificmerge remainsaccepted. Repaired06/freshwholeindependentreviewrequired. Overall80%.
+
+2026-10-22T09:39:36.575672+00:00 — Root adopted PR1260 full literal original negative via independent direct algebraic proof and authenticated Dubouloz–Palka prior. All51 sealed members rehashed; report and literal proposed row fully read, reviewer computations not independently repeated by root. Qualified row pending separate guarded accounting action; no new publication/service write. Overall80%.
+
+2026-10-22T09:41:07.700417+00:00 — B1+1198v04 explicit known-PR reference repair policy/source hunks fully read and adopted. No executable source/matrix/baseline or readiness adopted; all prior capsules sealed. Await source materialization with fresh ledger and whole-action review. Overall80%.
+
+2026-10-22T09:42:08.778895+00:00 — PR1263 root accepted full original HeinigQuestion2 prior negative, universal9vertex proof independent of periphery, R1/R2 allorder proofs qualified. Full report/row read;55closed members rehashed, reviewer computations not rerun by root. DOI23004012 authenticated; qualified existing-row accounting pending, no new publication. Overall80%.
+
+2026-10-22T09:46:12.207647+00:00 — Root accepted PR1259 full original spectrality alternative proof and qualified published Schnieper-thesis announcement. Full report/literal row read;65closed members rehashed with exactpath exclusions, reviewer diagnostics not root-rerun. Initial root assertion failure preceded all writes; explicit subsequent diagnostics/allpins/closure pass, no reviewmember edits. Thesis uninspected; DOI explicitly announcement role; no new priority/publication claim. Qualified row pending. Overall80%.
+
+2026-10-22T09:48:04.874126+00:00 — Root accepted1265full inverse-square original prior theorem23113437; fullreport/rowread77closedpinsrehash, reviewer finitecontrols notrootrerun. Extension valid but earlierZenodoRemark5.3 already sketches identicalmechanism/endpoint; attributioncorrection mandatory, no novelmechanism orformalpriorlargerrange. Qualified existingrowpending, no newpublication. Overall80%.
+
+2026-10-22T09:49:31.939519+00:00 — Root fully read/adopted stage-resumption01 HOLD, rehashed4772files plus681directorymetadata;F1/F2/F3 material, no realcreate/upload/DOI/row. Frozen REPORT openingdigest has66hex typographicalerror; correct64hex ACTION/actualmanifest pin recorded in rootadoption, no source rewritten. Old05approvalrevoked-preserved;06separatepreparationactive. Ordered journal9..1280 contiguous; current highest observation1446 remainsnotcap, unresolved candidatesexplicitlyretained. Overall80%.
