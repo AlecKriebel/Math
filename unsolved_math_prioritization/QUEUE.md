@@ -1799,7 +1799,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1788 | 11000165 / AMR-109-0165 | Problem 2.8 — Recall that we noted, earlier, that every genus g Heegaard splitting of every homology 3-sphere is obtained by allowi… | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1789 | 169 / GREEN-081 | Covering by Random Translates | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1790 | 1970 / EP-168 | Erdős Problem #168 | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1791 | 2000006 / AMR-019-0006 | Some Open Problems in Elasticity — A positive Jacobian bound | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1791 | 2000006 / AMR-019-0006 | Some Open Problems in Elasticity — A positive Jacobian bound | 0.0540 | 5.5 | 3 | unknown | unsolved | 5/5 |  | E-6322 fixed 6,3,2,-2 benchmark remains unresolved after five audited passes: exact inverse class, safe comparison/mixed-moment results, conditional whole-boundary positivity, and quantified tangent/repair obstructions accepted. No unconditional lower-Jacobian theorem or compliant full-class minimizing counterexample; the broader Ball adequate-growth program is not resolved by this investigation. |  |
 | 1792 | 20000188 / AIM-ALGEBRAIC_GEOMETRY-0188 | Joint-monodromy degree classification and branch-overlap smoothness budget | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1793 | 20000200 / AIM-ALGEBRAIC_GEOMETRY-0200 | Torsion-logarithmic obstructions and realizable Euclidean signature lines | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1794 | 20000698 / AIM-ANALYTIC_NUMBER_THEORY-0062 | A square-root shifted-divisor hypothesis for the Conrey--Keating one-swap block | 0.0540 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
