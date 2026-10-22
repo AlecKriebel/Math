@@ -1,0 +1,499 @@
+{
+  "euid": 1000,
+  "mutation_count": 12,
+  "mutations": [
+    {
+      "actual_failed_tests": [
+        "test_ambient_error_identity"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_math.py",
+        "--candidate",
+        "mutant_omit_nonlinear_ambient_error.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_ambient_error_identity"
+      ],
+      "mutant_bytes": 5725,
+      "mutant_sha256": "e6ac6a416588a2bf96a1ff1a88e37065c8d39cecda096ebfab5a7190f504d09f",
+      "mutation": "omit_nonlinear_ambient_error",
+      "mutation_new": ")",
+      "mutation_old": ", nc_mul(nc_mul(d, x), ds))",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "check_algebra.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"e6ac6a416588a2bf96a1ff1a88e37065c8d39cecda096ebfab5a7190f504d09f\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"{('x'[17 chars]), ('x', 'd*'): Fraction(1, 1), ('d', 'x'): Fr[67 chars], 1)} != {('x'[17 chars]), ('y',): Fraction(-1, 1), ('d', 'x'): Fracti[33 chars], 1)}\\n  {('d', 'x'): Fraction(1, 1),\\n-  ('d', 'x', 'd*'): Fraction(1, 1),\\n   ('x',): Fraction(1, 1),\\n   ('x', 'd*'): Fraction(1, 1),\\n   ('y',): Fraction(-1, 1)}\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_ambient_error_identity\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_arbitrary_compression_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_corner_lift_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_dimension_guards\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_execution_is_unprivileged_and_read_only\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_fixed_strict_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_no_inexact_or_boolean_inputs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_nonessential_direct_sum_error\"\n    }\n  ],\n  \"tests_run\": 9,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_finite_dyadic_rectangle"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_math.py",
+        "--candidate",
+        "mutant_dyadic_rectangle_without_square.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_finite_dyadic_rectangle"
+      ],
+      "mutant_bytes": 5747,
+      "mutant_sha256": "d6599ab6c2ddd09b4f501e03149859c307a53f35f6b02c4e83942fa64fe1162e",
+      "mutation": "dyadic_rectangle_without_square",
+      "mutation_new": "return s",
+      "mutation_old": "return s * s",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "check_algebra.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 64,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"d6599ab6c2ddd09b4f501e03149859c307a53f35f6b02c4e83942fa64fe1162e\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_ambient_error_identity\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_arbitrary_compression_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_corner_lift_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_dimension_guards\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_execution_is_unprivileged_and_read_only\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(1, 2) != Fraction(1, 4)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=1)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(3, 4) != Fraction(9, 16)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=2)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(7, 8) != Fraction(49, 64)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=3)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(15, 16) != Fraction(225, 256)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=4)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(31, 32) != Fraction(961, 1024)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=5)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(63, 64) != Fraction(3969, 4096)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=6)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(127, 128) != Fraction(16129, 16384)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=7)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(255, 256) != Fraction(65025, 65536)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=8)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(511, 512) != Fraction(261121, 262144)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=9)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(1023, 1024) != Fraction(1046529, 1048576)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=10)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(2047, 2048) != Fraction(4190209, 4194304)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=11)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(4095, 4096) != Fraction(16769025, 16777216)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=12)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(8191, 8192) != Fraction(67092481, 67108864)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=13)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(16383, 16384) != Fraction(268402689, 268435456)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=14)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(32767, 32768) != Fraction(1073676289, 1073741824)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=15)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(65535, 65536) != Fraction(4294836225, 4294967296)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=16)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(131071, 131072) != Fraction(17179607041, 17179869184)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=17)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(262143, 262144) != Fraction(68718952449, 68719476736)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=18)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(524287, 524288) != Fraction(274876858369, 274877906944)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=19)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(1048575, 1048576) != Fraction(1099509530625, 1099511627776)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=20)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(2097151, 2097152) != Fraction(4398042316801, 4398046511104)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=21)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(4194303, 4194304) != Fraction(17592177655809, 17592186044416)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=22)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(8388607, 8388608) != Fraction(70368727400449, 70368744177664)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=23)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(16777215, 16777216) != Fraction(281474943156225, 281474976710656)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=24)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(33554431, 33554432) != Fraction(1125899839733761, 1125899906842624)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=25)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(67108863, 67108864) != Fraction(4503599493152769, 4503599627370496)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=26)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(134217727, 134217728) != Fraction(18014398241046529, 18014398509481984)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=27)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(268435455, 268435456) != Fraction(72057593501057025, 72057594037927936)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=28)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(536870911, 536870912) != Fraction(288230375077969921, 288230376151711744)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=29)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(1073741823, 1073741824) != Fraction(1152921502459363329, 1152921504606846976)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=30)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(2147483647, 2147483648) != Fraction(4611686014132420609, 4611686018427387904)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=31)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(4294967295, 4294967296) != Fraction(18446744065119617025, 18446744073709551616)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=32)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(8589934591, 8589934592) != Fraction(73786976277658337281, 73786976294838206464)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=33)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(17179869183, 17179869184) != Fraction(295147905144993087489, 295147905179352825856)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=34)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(34359738367, 34359738368) != Fraction(1180591620648691826689, 1180591620717411303424)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=35)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(68719476735, 68719476736) != Fraction(4722366482732206260225, 4722366482869645213696)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=36)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(137438953471, 137438953472) != Fraction(18889465931203702947841, 18889465931478580854784)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=37)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(274877906943, 274877906944) != Fraction(75557863725364567605249, 75557863725914323419136)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=38)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(549755813887, 549755813888) != Fraction(302231454902557782048769, 302231454903657293676544)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=39)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(1099511627775, 1099511627776) != Fraction(1208925819612430151450625, 1208925819614629174706176)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=40)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(2199023255551, 2199023255552) != Fraction(4835703278454118652313601, 4835703278458516698824704)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=41)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(4398046511103, 4398046511104) != Fraction(19342813113825270702276609, 19342813113834066795298816)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=42)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(8796093022207, 8796093022208) != Fraction(77371252455318674995150849, 77371252455336267181195264)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=43)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(17592186044415, 17592186044416) != Fraction(309485009821309884352692225, 309485009821345068724781056)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=44)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(35184372088831, 35184372088832) != Fraction(1237940039285309906154946561, 1237940039285380274899124224)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=45)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(70368744177663, 70368744177664) != Fraction(4951760157141380362108141569, 4951760157141521099596496896)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=46)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(140737488355327, 140737488355328) != Fraction(19807040628565802923409276929, 19807040628566084398385987584)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=47)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(281474976710655, 281474976710656) != Fraction(79228162514263774643590529025, 79228162514264337593543950336)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=48)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(562949953421311, 562949953421312) != Fraction(316912650057056224474268958721, 316912650057057350374175801344)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=49)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(1125899906842623, 1125899906842624) != Fraction(1267650600228227149696889520129, 1267650600228229401496703205376)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=50)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(2251799813685247, 2251799813685248) != Fraction(5070602400912913102387185451009, 5070602400912917605986812821504)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=51)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(4503599627370495, 4503599627370496) != Fraction(20282409603651661416747996545025, 20282409603651670423947251286016)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=52)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(9007199254740991, 9007199254740992) != Fraction(81129638414606663681390495662081, 81129638414606681695789005144064)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=53)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(18014398509481983, 18014398509481984) != Fraction(324518553658426690754359001612289, 324518553658426726783156020576256)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=54)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(36028797018963967, 36028797018963968) != Fraction(1298074214633706835075030044377089, 1298074214633706907132624082305024)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=55)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(72057594037927935, 72057594037927936) != Fraction(5192296858534827484415308253364225, 5192296858534827628530496329220096)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=56)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(144115188075855871, 144115188075855872) != Fraction(20769187434139310225891609165168641, 2076[27 chars]0384)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=57)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(288230376151711743, 288230376151711744) != Fraction(83076749736557241480027188964098049, 8307[27 chars]1536)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=58)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(576460752303423487, 576460752303423488) != Fraction(332306998946228967073030260463239169, 332[29 chars]6144)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=59)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(1152921504606846975, 1152921504606846976) != Fraction(1329227995784915870597964051066650625, 132[30 chars]4576)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=60)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(2305843009213693951, 2305843009213693952) != Fraction(5316911983139663487003542222693990401, 53[31 chars]8304)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=61)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(4611686018427387903, 4611686018427387904) != Fraction(21267647932558653957237540927630737409, 2[33 chars]3216)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=62)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(9223372036854775807, 9223372036854775808) != Fraction(85070591730234615847396907784232501249, 8[33 chars]2864)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=63)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(18446744073709551615, 18446744073709551616) != Fraction(340282366920938463426481119284349108225, [35 chars]1456)\",\n      \"status\": \"FAIL\",\n      \"subtest\": \"test_finite_dyadic_rectangle (finite_mathematics.AlgebraChecks.test_finite_dyadic_rectangle) (n=64)\",\n      \"test\": \"test_finite_dyadic_rectangle\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_fixed_strict_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_no_inexact_or_boolean_inputs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_nonessential_direct_sum_error\"\n    }\n  ],\n  \"tests_run\": 9,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_04_corner_lift_and_omitted_complement_negative"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_omit_corner_complement.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_04_corner_lift_and_omitted_complement_negative"
+      ],
+      "mutant_bytes": 7463,
+      "mutant_sha256": "b3b90553d423813ec2973fad8b917c8a9ac4413d8eefae78ebc3998128e27977",
+      "mutation": "omit_corner_complement",
+      "mutation_new": "lift=w",
+      "mutation_old": "lift=add(w,sub(eye(3),p))",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"b3b90553d423813ec2973fad8b917c8a9ac4413d8eefae78ebc3998128e27977\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Tuples differ: ((Fra[82 chars]ction(0, 1)), (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))) != ((Fra[82 chars]ction(0, 1)), (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)))\\n\\nFirst differing element 2:\\n(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\\n(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\\n\\n  ((Fraction(1, 1), Fraction(0, 1), Fraction(0, 1)),\\n   (Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)),\\n-  (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)))\\n?                                            ^\\n\\n+  (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)))\\n?                                            ^\\n\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_06_range_projection_typo_is_genuinely_false"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_retain_range_projection_typo.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_06_range_projection_typo_is_genuinely_false"
+      ],
+      "mutant_bytes": 7488,
+      "mutant_sha256": "0076d28f2004101252cfa2d2ba8ed2f3b9a4a13b2d3d9ff927d466d565f52647",
+      "mutation": "retain_range_projection_typo",
+      "mutation_new": "correct=mm(star(s),star(s)); printed=",
+      "mutation_old": "correct=mm(s,star(s)); printed=",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"0076d28f2004101252cfa2d2ba8ed2f3b9a4a13b2d3d9ff927d466d565f52647\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Tuples differ: ((Fraction(-7, 25), Fraction(24, 25)), (Fraction(-24, 25), Fraction(-7, 25))) != ((Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1)))\\n\\nFirst differing element 0:\\n(Fraction(-7, 25), Fraction(24, 25))\\n(Fraction(1, 1), Fraction(0, 1))\\n\\n- ((Fraction(-7, 25), Fraction(24, 25)), (Fraction(-24, 25), Fraction(-7, 25)))\\n?            ^^  ^^            ^^  ^^              ^^^  ^^            ^^  ^^\\n\\n+ ((Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1)))\\n?            ^  ^            ^  ^              ^  ^            ^  ^\\n\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_08_reverse_path_by_adjoint"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_forget_reverse_path_adjoint.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_08_reverse_path_by_adjoint"
+      ],
+      "mutant_bytes": 7476,
+      "mutant_sha256": "70b2acf684b10dfa91b4257d307282406b79cfa69a991631743c2399bd06d270",
+      "mutation": "forget_reverse_path_adjoint",
+      "mutation_new": "conjugate(u,y)",
+      "mutation_old": "conjugate(star(u),y)",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"70b2acf684b10dfa91b4257d307282406b79cfa69a991631743c2399bd06d270\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Tuples differ: ((Fraction(826, 125), Fraction(168, 125)), (Fraction[27 chars]25))) != ((Fraction(2, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(7, 1)))\\n\\nFirst differing element 0:\\n(Fraction(826, 125), Fraction(168, 125))\\n(Fraction(2, 1), Fraction(0, 1))\\n\\n+ ((Fraction(2, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(7, 1)))\\n- ((Fraction(826, 125), Fraction(168, 125)),\\n-  (Fraction(168, 125), Fraction(299, 125)))\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_10_wrong_rotation_sign_is_not_unitary"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_wrong_technical_rotation_sign.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_10_wrong_rotation_sign_is_not_unitary"
+      ],
+      "mutant_bytes": 7477,
+      "mutant_sha256": "cb705d8f78e58e867686644c2bbaa43030a345c87d2df4426b0a7549767e3354",
+      "mutation": "wrong_technical_rotation_sign",
+      "mutation_new": "good=block(n,m,m,n); bad=",
+      "mutation_old": "good=block(n,m,neg(m),n); bad=",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"cb705d8f78e58e867686644c2bbaa43030a345c87d2df4426b0a7549767e3354\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Tuples differ: ((Fra[33 chars]tion(24, 25), Fraction(0, 1)), (Fraction(0, 1)[183 chars] 1))) != ((Fra[33 chars]tion(0, 1), Fraction(0, 1)), (Fraction(0, 1), [175 chars] 1)))\\n\\nFirst differing element 0:\\n(Fraction(1, 1), Fraction(0, 1), Fraction(24, 25), Fraction(0, 1))\\n(Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\\n\\nDiff is 696 characters long. Set self.maxDiff to None to see it.\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_12_delayed_telescoping_indices"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_incorrect_delayed_sequence_index.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_12_delayed_telescoping_indices"
+      ],
+      "mutant_bytes": 7484,
+      "mutant_sha256": "7647683727d10c2155b2520358754bd11360c1c5e412c3a00397503f3b48117f",
+      "mutation": "incorrect_delayed_sequence_index",
+      "mutation_new": "correct=sum(F(m[k]-1-(m[k]-2)) for k in range(1,5))",
+      "mutation_old": "correct=sum(F(m[k-1]-m[k-2]) for k in range(1,5))",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"7647683727d10c2155b2520358754bd11360c1c5e412c3a00397503f3b48117f\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(4, 1) != Fraction(9, 1)\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_13_fixed_dyadic_margin"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_drop_fixed_strict_margin.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_13_fixed_dyadic_margin"
+      ],
+      "mutant_bytes": 7474,
+      "mutant_sha256": "5a0924305b1bfcf0930d975460d113d0e718402dc2c615540b5986d0536d2761",
+      "mutation": "drop_fixed_strict_margin",
+      "mutation_new": "self.assertLessEqual(s*s,F(15,16))",
+      "mutation_old": "self.assertLessEqual(s*s-F(1,16),F(15,16))",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"5a0924305b1bfcf0930d975460d113d0e718402dc2c615540b5986d0536d2761\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(961, 1024) not less than or equal to Fraction(15, 16)\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_11_quotient_unitary_lift_is_only_contractive_upstairs"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_unitary_quotient_lift_upstairs.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_11_quotient_unitary_lift_is_only_contractive_upstairs"
+      ],
+      "mutant_bytes": 7481,
+      "mutant_sha256": "c2131ab7735350bdbe15e482ef227f6148a0d6511aa833b93b33a538a7ed96ca",
+      "mutation": "unitary_quotient_lift_upstairs",
+      "mutation_new": "w=(eye(2),eye(2))",
+      "mutation_old": "w=(zero(2),eye(2))",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"c2131ab7735350bdbe15e482ef227f6148a0d6511aa833b93b33a538a7ed96ca\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"(((Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1))), ((Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1)))) == (((Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1))), ((Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1))))\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_03_multiplier_equality_without_ideal_difference_negative"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_erase_annihilator_error.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_03_multiplier_equality_without_ideal_difference_negative"
+      ],
+      "mutant_bytes": 7482,
+      "mutant_sha256": "0be6e5cd1b8fbc64929708ca71d973d1fd09e67c33c821db2e225572bcb7a59d",
+      "mutation": "erase_annihilator_error",
+      "mutation_new": "phi=(eye(2),F(0)); psi=(eye(2),F(0))",
+      "mutation_old": "phi=(eye(2),F(1)); psi=(eye(2),F(0))",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"0be6e5cd1b8fbc64929708ca71d973d1fd09e67c33c821db2e225572bcb7a59d\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(0, 1) == Fraction(0, 1)\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_05_compression_does_not_destabilize"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_compress_unitary_as_identity.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_05_compression_does_not_destabilize"
+      ],
+      "mutant_bytes": 7470,
+      "mutant_sha256": "9c09f87e08bb5df7d399ce5867a3ae5b67ed7dd5900df3f133a95d84521f9dd4",
+      "mutation": "compress_unitary_as_identity",
+      "mutation_new": "F(1)",
+      "mutation_old": "u[0][0]**2",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"9c09f87e08bb5df7d399ce5867a3ae5b67ed7dd5900df3f133a95d84521f9dd4\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"Fraction(1, 1) != Fraction(9, 25)\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    },
+    {
+      "actual_failed_tests": [
+        "test_07_forcing_initial_unitary_one_changes_conjugacy"
+      ],
+      "actual_permission_denials": [
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "create"
+        },
+        {
+          "denied": true,
+          "errno": 13,
+          "operation": "append"
+        }
+      ],
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "run_independent.py",
+        "--candidate",
+        "mutant_naive_initial_normalization.py"
+      ],
+      "exit_code": 1,
+      "expected_failed_tests": [
+        "test_07_forcing_initial_unitary_one_changes_conjugacy"
+      ],
+      "mutant_bytes": 7487,
+      "mutant_sha256": "75c48bd45c1682f34a78513f61bb15d2d227558ca2c35c804375046bc77b640c",
+      "mutation": "naive_initial_normalization",
+      "mutation_new": "y=conjugate(eye(2),x)",
+      "mutation_old": "y=conjugate(w,x)",
+      "semantic_failure_before_any_hash_comparison": true,
+      "source": "independent_checks.py",
+      "stderr": "",
+      "stdout": "{\n  \"errors\": 0,\n  \"euid\": 1000,\n  \"failures\": 1,\n  \"optimization\": 1,\n  \"problem_id\": 30005199,\n  \"schema\": 1,\n  \"scope\": \"Finite exact algebra and scope controls only; not analytic theorem certification\",\n  \"script_sha256\": \"75c48bd45c1682f34a78513f61bb15d2d227558ca2c35c804375046bc77b640c\",\n  \"skipped\": 0,\n  \"status\": \"FAIL\",\n  \"test_outcomes\": [\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_01_noncommutative_error_and_missing_term_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_02_nonessential_error_norm_is_preserved_inside_ideal\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_03_multiplier_equality_without_ideal_difference_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_04_corner_lift_and_omitted_complement_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_05_compression_does_not_destabilize\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_06_range_projection_typo_is_genuinely_false\"\n    },\n    {\n      \"error_type\": \"AssertionError\",\n      \"reason\": \"((Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(2, 1))) == ((Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(2, 1)))\",\n      \"status\": \"FAIL\",\n      \"test\": \"test_07_forcing_initial_unitary_one_changes_conjugacy\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_08_reverse_path_by_adjoint\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_09_technical_rotation_and_swap\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_10_wrong_rotation_sign_is_not_unitary\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_11_quotient_unitary_lift_is_only_contractive_upstairs\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_12_delayed_telescoping_indices\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_13_fixed_dyadic_margin\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_14_small_terms_without_summability_negative\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_15_projection_defect_obstructs_absorbing_zero\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"test\": \"test_16_actual_unprivileged_read_only_execution\"\n    }\n  ],\n  \"tests_run\": 16,\n  \"uid\": 1000\n}\n"
+    }
+  ],
+  "optimization": 1,
+  "originals_unchanged": true,
+  "problem_id": 30005199,
+  "schema": 1,
+  "scope": "Actual finite mathematical computation mutations; not stale-hash failures and not analytic certification",
+  "source_hashes": {
+    "check_algebra.py": "61a1df21a3a6c11288a5a785605bb6cd033b558a9a909b71e28d83820d28fb92",
+    "independent_checks.py": "8bdb37c7169438951166ca9a18ae9cbddd17a2e9e9399964d9e2d2461c83950a",
+    "run_independent.py": "115f4c1e4e40e775f5faeb53fbc06b26ba32ecd4bfe3b5a63b888ed13e778555",
+    "run_math.py": "cab20c4b1d726ee23db26e5fc6499b927697dc3ba4255d73615ffe0559c7de3b"
+  },
+  "status": "PASS",
+  "uid": 1000
+}
