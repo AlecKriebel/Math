@@ -1,0 +1,50 @@
+--- a/DISPOSITION.md
++++ b/DISPOSITION.md
+@@ -16,7 +16,7 @@
+ 
+ Do not label the complete wording of Problem 7.20 solved on the strength of the face-constancy theorem alone. Its first sentence refers back to the broader regularity/fiber study of Problem 7.19 for ordinary-cohomology bundles, including multiplicative and finite-coefficient inputs. No exhaustive description of the multiplicative fibers, explicit formula for arbitrary W,L, or current-literature priority claim has been established.
+ 
+-Three substantive approaches were used. The additive theorem was obtained on the second approach; the third addressed the first sentence's broader scope. This is an AI-assisted, unrefereed mathematical manuscript, pending independent review. No external publication or repository modification was performed.
++Three substantive approaches were used. The additive theorem was obtained on the second approach; the third addressed the first sentence's broader scope. This is an AI-assisted, unrefereed mathematical manuscript. The corrected derivative makes the separate fractional-power phase cancellation, shared-edge root choices, and charge-halving convention explicit. It has received a bounded independent mathematical audit; the separate acceptance report specifies the exact accepted bytes and scope. This is not peer review or a novelty certification. No external publication or repository modification was performed.
+ 
+ ## Prior-work selection gate
+ 
+--- a/PROOF.md
++++ b/PROOF.md
+@@ -21,13 +21,13 @@
+ 
+ ## Source inputs
+ 
+-We use existence and gauge invariance of this invariant from [B01], Sections 3–4, especially Theorem 4.2; the charged local formulas are in Propositions 8.3 and 8.5. The source permits a distinguished triangulation with distinct edge endpoints, a branching, an integral charge, and a full cocycle. Fullness means every upper-right edge entry is nonzero. A vertex gauge lambda acts by z(uv) -> lambda(u)^(-1) z(uv) lambda(v). Root choices do not alter K_N. These are the only imported invariant-theoretic statements. The continuity needed below is checked directly rather than inferred from the word “character.”
++We use existence and gauge invariance of this invariant from [B01], Sections 3–4, especially Theorem 4.2; the charged local formulas are in Propositions 8.3 and 8.5. The source permits a distinguished triangulation with distinct edge endpoints, a branching, an integral charge, and a full cocycle. Fix the integral charge c_int once and use the actual tensor charge c = 2^(-1)c_int mod N, as in [B01], Definition 3.9; 2 is invertible because N is odd. These charge conditions are combinatorial and do not vary with the cocycle. Fullness means every upper-right edge entry is nonzero. A vertex gauge lambda acts by z(uv) -> lambda(u)^(-1) z(uv) lambda(v). Root choices do not alter K_N. These are the only imported invariant-theoretic statements. The continuity needed below is checked directly rather than inferred from the word “character.”
+ 
+ ## Lemma 1: local continuity on the full-cocycle domain
+ 
+ Keep the finite triangulation, branching and integral charge fixed. The original K_N state sum is locally continuous as the full B-cocycle varies. In fact its permitted local determinations are holomorphic.
+ 
+-Proof. At any fixed full cocycle, every diagonal and upper-right edge entry is nonzero. On a sufficiently small neighborhood, choose local Nth roots of these finitely many entries. This can be done using a common determination on neighborhoods of the finite set of nonzero values; equal values receive the same determination. The root-independence statement for K_N permits this local choice.
++Proof. At any fixed full cocycle, every diagonal and upper-right edge entry is nonzero. On a sufficiently small neighborhood, choose local Nth roots of these finitely many entries. This can be done by taking disjoint small discs about the distinct members of the finite set of nonzero values and using one root function on each disc. Equal values receive the same determination, and every occurrence of a shared oriented edge uses its single chosen root. No multiplicativity condition is imposed on these root functions: the cocycle and Fermat equations are equations of their Nth powers. Proposition 4.3(a) of [B01] permits this local edge-root choice for K_N.
+ 
+ For a tetrahedron label its branched vertices 0,1,2,3 and write y_ij for a chosen Nth root of its upper-right edge entry x_ij. The nonconstant elementary expressions in its tensor can be written in terms of
+ 
+@@ -55,7 +55,19 @@
+ 
+ Here q=C/A is nonzero and q^N != 1 by (1). Hence all radicands 1-q zeta^j are nonzero. Local holomorphic determinations exist, g(1) != 0, and h(q) is locally holomorphic and nonzero. Both h and its reciprocal are therefore harmless. The factor [q]=(1-q^N)/(N(1-q)) in the inverse tensor is a polynomial in q; moreover q != 1 here. Charged tensors add only powers of nonzero edge roots and fixed powers of zeta. The edge normalization likewise uses only powers of nonzero entries.
+ 
+-Every summand in the finite state sum is consequently locally holomorphic. Taking the finite sum and its Nth power preserves continuity. Changes between permitted root determinations do not change K_N, by the cited invariance theorem. No assumption about generic convergence to an undefined cocycle has been used. QED.
++There are two separate root issues. The edge-root determinations just discussed are covered by Proposition 4.3(a). The fractional powers in g also admit local holomorphic choices, but a chosen global branch may jump. Any two values of g(q) obtained from these fractional powers differ by an Nth root of unity. More explicitly,
++
++    h(q)^N = q^(-m N) product_{j=1}^{N-1}(1-q zeta^j)^j / g(1)^N,
++
++which is a single-valued nonzero holomorphic function on the domain under consideration. The normalization g(1)^N is nonzero and independent of these branch choices.
++
++In the tensor R of [B01], Proposition 8.3, h(q) is a scalar common to every state index; in the inverse tensor it is replaced by 1/h(q). Proposition 8.5 adds only charged monomials and state-index shifts. Consequently the full unpowered state sum has the form
++
++    H_N = product_Delta h(q_Delta)^(epsilon_Delta) S,
++
++where epsilon_Delta is +1 or -1 according to which tensor occurs, and S is a finite sum of locally holomorphic expressions in the chosen edge roots. A change of any fractional-power branch in g therefore multiplies the entire H_N by one state-independent Nth root of unity. Its Nth power K_N is unchanged. Equivalently, K_N is the product of the single-valued factors h(q_Delta)^(N epsilon_Delta) and S^N. This proves local holomorphy as a genuine complex-valued function, not only continuity of a phase class. Zeros of S create no problem.
++
++Changes between the permitted edge-root determinations do not change K_N by Proposition 4.3(a), so these local functions agree. This argument does not claim that an arbitrarily selected unpowered phase of H_N is globally continuous. No assumption about generic convergence to an undefined cocycle has been used. QED.
+ 
+ ## Lemma 2: a nonsingular additive contraction
+ 
