@@ -1,0 +1,66 @@
+{
+  "problem_id": "30003790",
+  "code": "OWR-16161-003",
+  "rank": 618,
+  "audit_date": "2026-10-04",
+  "frozen_partial_mathematics": "PASS_WITH_SCOPED_CORRECTIONS",
+  "guard_theorem": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+  "scope_disposition": "CORRECTION_REQUIRED_NO_ADDED_DIMENSION_EFFICIENCY_REQUIREMENT",
+  "original_model_coverage": "NOT_ESTABLISHED_BY_FROZEN_PACKET",
+  "strong_dimension_efficient_result": "NOT_ESTABLISHED",
+  "global_literature_openness": "NOT_CERTIFIED",
+  "novelty": "NOT_CLAIMED",
+  "risk_mode": [
+    "expected integrated squared error tends to zero",
+    "sample-conditional integrated risk tends to zero in probability"
+  ],
+  "frozen_input_unchanged": true,
+  "remote_writes": false,
+  "all_manifest_files_verified": 9,
+  "author_guard_cases_replayed": 700,
+  "author_replay_byte_identical": true,
+  "independent_exact_guard_cases": 29160,
+  "corrections": [
+    {
+      "id": "C1",
+      "severity": "disposition",
+      "target": "RESULT.md lines 4 and 19-31; README.md; readiness.json; turns.json; MANIFEST.json",
+      "change": "Do not use failure of dimension-efficient rates alone to reject literal consistency. Distinguish proved conditional consistency, unestablished source-model coverage, and the stronger efficient objective."
+    },
+    {
+      "id": "C2",
+      "severity": "local_hypothesis",
+      "target": "RESULT.md lines 105-131",
+      "change": "State E||X||^2<infinity for coordinate-moment identification; for the Gaussian L2 statistical extension use bounded X or E||X||^4<infinity and require L2 density for every weighted measure used. Specify ratio convergence in probability and denominator fallback."
+    },
+    {
+      "id": "C3",
+      "severity": "local_geometry",
+      "target": "RESULT.md lines 131-134",
+      "change": "Require unique interior closest-point projections and finite conditional covariance; interpret exact-level conditional laws almost everywhere. Injectivity alone is insufficient at endpoints."
+    },
+    {
+      "id": "C4",
+      "severity": "formal_clarification",
+      "target": "RESULT.md lines 181-189",
+      "change": "Require joint measurability in training sample and covariate, and deterministic index ties or conditionally response-independent randomness."
+    },
+    {
+      "id": "C5",
+      "severity": "review_boundary",
+      "target": "AUXILIARY_CANDIDATE.md",
+      "change": "New candidate auxiliary proof is not independently reviewed; obtain a fresh review before changing solved or publication claims."
+    }
+  ],
+  "auxiliary_candidate": {
+    "file": "AUXILIARY_CANDIDATE.md",
+    "status": "NEW_NOT_INDEPENDENTLY_AUDITED",
+    "scope": "Arbitrary Borel design with bounded continuous regression, conditional centering and uniformly bounded conditional variance; fixed or covariate-adaptive vanishing guard."
+  },
+  "references_checked": [
+    "Klock OWR 20/2018 pp1192-1194",
+    "Wu-Maggioni JMLR27(155) Theorem3 Remark4iii and publication metadata",
+    "Wu-Maggioni arXiv2411.09686v4 metadata and relevant text",
+    "Kereta-Klock-Naumova arXiv1902.09024v2 equation23 and journal metadata"
+  ]
+}

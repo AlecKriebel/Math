@@ -1,0 +1,615 @@
+--- history/public/APPROACH_LOG.md
++++ public/APPROACH_LOG.md
+@@ -1,3 +1,20 @@
++# Corrected log and historical author record
++
++The dated author log below is retained as historical text, not a current scope
++assessment. Its use of dimension-efficient learning to define the source goal,
++and its pending-audit language, are superseded by this v2 correction. The
++literal source question has no explicit dimension-efficient-rate requirement.
++The full unchanged original log is in ../history/public/APPROACH_LOG.md.
++
++After two separate audits, conditional literal noisy consistency is established
++under the model in RESULT.md Section 5A. The exact auxiliary proof was developed
++after the author freeze and subsequently accepted independently. Full coverage
++of the underspecified source model remains unverified, so conservative queue
++status stays unsolved, 5/5; no new author search turn is represented here.
++See ../CHANGE_LEDGER.md for precise status supersessions and corrections.
++
++---
++
+ # Five-route research log
+ 
+ Date: 4 October 2026. Goal completion estimates concern the efficient geometric
+--- history/public/AUXILIARY_THEOREM.md
++++ public/AUXILIARY_THEOREM.md
+@@ -0,0 +1,89 @@
++# Candidate auxiliary proof of broader literal consistency
++
++Problem 30003790 / OWR-16161-003. Developed during independent audit, 4 October 2026.
++
++**Review status: newly developed audit candidate, not independently audited.** This is not part of the frozen author packet and must not be represented as a second independent validation. A fresh reviewer should check it before it changes any publication or solved-status claim. No novelty claim is made: the argument uses elementary nearest-neighbor localization and conditional averaging.
++
++## Candidate theorem
++
++Let D be a fixed positive integer and let P be any Borel probability law on R^D, with support K. Assume:
++
++1. The regression pairs (X_i,Y_i) are iid, Y_i=F(X_i)+epsilon_i, and the independent test point X has law P.
++2. F:K -> R is bounded and continuous in the relative Euclidean topology. Write |F|<=M. Compact support with continuous F is a sufficient special case. Neither compact support nor a design density is otherwise required.
++3. E[epsilon_i | X_i]=0 and E[epsilon_i^2 | X_i]<=sigma^2 almost surely, for one finite constant sigma^2.
++4. An auxiliary training sample T_n is independent of the regression sample and the test point. The field a_n(T_n,z) is jointly measurable in (T_n,z), with Euclidean norm at most one. It can be arbitrary, inconsistent, or identically zero. No accuracy or growth assumption on T_n is needed.
++5. Integers 1<=k_n<=n satisfy k_n -> infinity and k_n/n -> 0. All ties are broken by deterministic sample index.
++
++For a query x, let R_n(x) be the kth Euclidean-neighbor distance among X_1,...,X_n. Order the regression covariates by
++
++    d_n(x,X_i)=|a_n(T_n,X_i)^T(x-X_i)| + lambda_n(x) ||x-X_i||,
++
++and average the k_n selected responses. Call the result Fhat_n(x).
++
++Either of the following choices is allowed:
++
++(A) lambda_n(x)=lambda for any fixed constant 0<lambda<=1;
++
++(B) lambda_n(x)=min{1, sqrt(R_n(x)+1/n)}.
++
++Then E[(Fhat_n(X)-F(X))^2] -> 0. If S_n includes T_n and the entire regression sample, the conditional integrated squared error
++
++    R(S_n)=integral_K (Fhat_n(x)-F(x))^2 dP(x)
++
++converges to zero in probability. In case (B), lambda_n(X) -> 0 in probability as well. These conclusions include any fixed nonzero noise variance satisfying assumption 3. They do not supply dimension-efficient rates or tangent recovery.
++
++## Complete candidate proof
++
++**Measurability.** Distances are jointly measurable, order statistics of finitely many measurable real functions are measurable, and lexicographic sorting by (distance,index) selects a measurable set of exactly k_n indices. Thus Fhat_n, R_n, lambda_n and the nonnegative integral R(S_n) are measurable. A_n may depend on both covariates and responses in T_n, but never on regression responses.
++
++**Euclidean localization.** Fix x in K and delta>0. The definition of support gives p=P(B(x,delta))>0. For all sufficiently large n, k_n<=np/2. The number of regression covariates in B(x,delta) is Binomial(n,p), so
++
++    P(R_n(x)>delta) <= P(Binomial(n,p)<k_n) <= exp(-np/8) -> 0.
++
++This uses no uniform lower-mass constant; p depends on x and delta. Consequently R_n(x)->0 in probability for every x in K.
++
++**Guard localization.** For each fixed realized sample, the scalar lambda_n(x) is common to every candidate at that query and is strictly positive. Cauchy-Schwarz gives
++
++    lambda_n(x)||x-X_i|| <= d_n(x,X_i)
++                             <= (1+lambda_n(x))||x-X_i||.
++
++At least k_n candidates have Euclidean distance at most R_n(x). Hence the largest Euclidean distance among the selected candidates, denoted G_n(x), obeys
++
++    G_n(x) <= (1+lambda_n(x)) R_n(x) / lambda_n(x).
++
++In case (A), this is at most ((1+lambda)/lambda)R_n(x), which tends to zero in probability.
++
++In case (B), whenever R_n(x)<=1 and lambda_n(x)<1,
++
++    G_n(x) <= 2 R_n(x)/sqrt(R_n(x)+1/n) <= 2 sqrt(R_n(x)).
++
++If lambda_n(x)=1 and R_n(x)<=1, the same bound follows from 2R_n(x)<=2sqrt(R_n(x)). Thus the displayed square-root bound holds throughout {R_n(x)<=1}. Its complement has probability tending to zero. Therefore G_n(x)->0 in probability in case (B) also. The definition similarly gives lambda_n(x)->0 in probability. The 1/n term handles repeated covariates with R_n(x)=0, preserving a strictly positive guard; all selected distances are then zero.
++
++**Bias and variance.** Condition on T_n and all regression covariates, fixing x. The selected indices depend only on this conditioning information. IID regression pairs imply conditional independence of their noises. The averaged selected noise has conditional mean zero and conditional variance at most sigma^2/k_n. Put
++
++    b_n(x)=k_n^(-1) sum_selected (F(X_i)-F(x)).
++
++Continuity of F at x and G_n(x)->0 in probability imply b_n(x)->0 in probability. Also |b_n(x)|<=2M. Therefore E[b_n(x)^2]->0, and the vanishing cross term yields
++
++    E[(Fhat_n(x)-F(x))^2] = E[b_n(x)^2] + E[conditional noise variance]
++                         <= E[b_n(x)^2] + sigma^2/k_n -> 0.
++
++The expectation is bounded by 4M^2+sigma^2, independently of x and n. Dominated convergence with respect to P proves the integrated expected-risk conclusion. Tonelli gives E[R(S_n)]=E[(Fhat_n(X)-F(X))^2], and Markov proves R(S_n)->0 in probability. Integrating the bounded probabilities P(lambda_n(x)>delta) proves lambda_n(X)->0 in probability in case (B). This finishes the candidate proof.
++
++## What this changes and what it does not
++
++The frozen theorem needs a uniform lower-mass hypothesis because it chooses a specific deterministic, vanishing guard and proves an explicit rate. The candidate above does not need that hypothesis for consistency: a fixed positive guard, or a local covariate-only vanishing guard, suffices under bounded continuity and the displayed noise assumptions.
++
++Thus the lower-mass condition is not an intrinsic obstruction to literal consistency. Nor is a dimension-dependent sample rate a valid reason, by itself, to call literal consistency unsolved. The method remains an actual modification of the tangent-based neighbor rule: the tangent term can be retained even if inaccurate.
++
++The short OWR report does not formally specify bounded F, compact support, centered conditional noise, or a uniform conditional variance bound. Conventional smooth compact regression with independent finite-variance centered noise satisfies the candidate assumptions, but this is an explicit model interpretation, not a theorem covering every unspecified noise/design distribution. Without a centering/identification assumption, the decomposition Y=F(X)+epsilon does not itself identify F.
++
++The result also does not prove uniform consistency, almost-sure conditional-risk consistency, recovery of a tangent field, a one-dimensional statistical rate, or a uniform sample bound over all Borel designs. Sparse regions can make convergence arbitrarily slow. Any final disposition should state the model and risk mode rather than silently strengthen the question.
++
++## Reference and source comparison
++
++T. Klock, “Estimation of Nonlinear Single Index Models,” Oberwolfach Report 20/2018, pp.1192-1194, especially the final paragraph on p.1194. The report proposes a tangent-neighbor method for a curve-projection model and asks for noisy consistency; its surrounding discussion motivates favorable dimension dependence, without making an explicit rate part of that final question.
++
++https://ems.press/content/serial-article-files/46744
++
++The argument above is provided in full and does not rely on a claimed new theorem in the literature. Classical nearest-neighbor consistency is longstanding; the frozen packet itself disclaims novelty. This audit has not completed a novelty search for either safeguard formulation.
+--- history/public/MANIFEST.json
++++ public/MANIFEST.json
+@@ -1,42 +1,54 @@
+ {
+-  "schema": 1,
++  "schema": 2,
+   "problem_id": "30003790",
+-  "frozen_at": "2026-10-04T12:51:00Z",
++  "version": "corrected-release-v2",
++  "frozen_at": "2026-10-04T13:19:00Z",
+   "disposition": "unsolved",
+   "turns_used": 5,
+   "turn_limit": 5,
+-  "independent_audit": "pending",
+-  "scope": "Author-created public packet only. Downloaded source documents, full corpora and private repository-read inventories are excluded.",
++  "literal_bounded_model_consistency": "established; exact auxiliary theorem independently accepted",
++  "original_model_coverage": "not established",
++  "dimension_efficient_rate": "separate unproved objective; not a literal-question requirement",
++  "independent_audit": "Exact auxiliary theorem accepted; corrected release binding pending",
++  "novelty_claim": false,
++  "historical_author_manifest_sha256": "a18df1c214a6ea7ed7aa14d8a038827f463a7c9ff4f069228e0eb68b247367d2",
++  "accepted_auxiliary_sha256": "072aba944c908baf44bb86d6c9a3d1c87444b5f779c53a14b4a9648d9595351c",
++  "scope": "Corrected author-created text and code only; source fulltexts and private inventories excluded.",
+   "files": [
+     {
+       "path": "APPROACH_LOG.md",
+-      "bytes": 3882,
+-      "sha256": "1a5bfa1d0a364c335d669ffa2af830971939398711044a2caadfcaa082bfd924"
++      "bytes": 4784,
++      "sha256": "c2440635019408decac775608d70133f398617f335e0ac74474520f087aa5b2f"
++    },
++    {
++      "path": "AUXILIARY_THEOREM.md",
++      "bytes": 7678,
++      "sha256": "072aba944c908baf44bb86d6c9a3d1c87444b5f779c53a14b4a9648d9595351c"
+     },
+     {
+       "path": "README.md",
+-      "bytes": 1254,
+-      "sha256": "876ce82a3d646ad7a8bdee40ee0d8f003858958e29e223a355d44a9fe99e626d"
++      "bytes": 1714,
++      "sha256": "9ab7f9429c39a73cd5313d89a7fff5f8be4382df573b1262c39988d7f2c60c50"
+     },
+     {
+       "path": "RESULT.md",
+-      "bytes": 16005,
+-      "sha256": "0c63e1801d50434d217a8a66d16ea8bad27cac4867919f7532abc4819eb9dc16"
++      "bytes": 22624,
++      "sha256": "a993c07d3765e53d89c4c6eb4bc4c0f768ddf7f7e8d2e9038d603e0308d4c02b"
+     },
+     {
+       "path": "SOURCES.json",
+-      "bytes": 3175,
+-      "sha256": "c6c6c1ee89244cd8563a2f62910eaaeff3defb6354d3a451e7fd98a312e7c7e9"
++      "bytes": 3936,
++      "sha256": "71f29fc4f01737162a1364f57823f19d9f458df773b5ff9ca720bcb4bdc5b814"
+     },
+     {
+       "path": "readiness.json",
+-      "bytes": 1434,
+-      "sha256": "e60dfad19e128b839889b12adcb3b98ad8fa103a68a6f520bb9b8c41ee68a138"
++      "bytes": 1948,
++      "sha256": "e77cf016525cff5bd5fea3fc96030f1f3b5744b354ca178c9365f4c2026aacde"
+     },
+     {
+       "path": "turns.json",
+-      "bytes": 2026,
+-      "sha256": "f622765abae4f58b7da6ef2609bb6d6a8948a53a801bbf033a40fb6e35acb551"
++      "bytes": 2681,
++      "sha256": "b35e5ab10390d90350a8dd7a92f57cff2ac288c713fdec20fd75987272018165"
+     },
+     {
+       "path": "verification/README.md",
+--- history/public/README.md
++++ public/README.md
+@@ -1,23 +1,28 @@
+-# Consistent Noisy Single-Index Regression
++# Conditional literal noisy consistency established
+ 
+-Problem 30003790 / OWR-16161-003; rank 618 at intake.
++Problem 30003790 / OWR-16161-003; corrected release v2.
+ 
+-**Disposition: unsolved.** This packet preserves a scope distinction rather
+-than claiming the source's high-dimensional objective has been settled.
++An independently accepted Euclidean safeguard gives expected integrated squared-error
++consistency and sample-conditional integrated-risk convergence in probability in every
++fixed finite dimension, for arbitrary Borel designs, bounded continuous F, and
++conditionally centered noise with a common finite conditional second-moment bound.
++All regression covariates are ranked, ties use sample index, and geometry assignment
++uses independent training data and covariates only. The test point is independent of
++all observed data jointly. See RESULT.md, Section 5A.
+ 
+-`RESULT.md` proves a sample-split, vanishing-Euclidean-guard modification is
+-consistent at fixed ambient dimension under an explicit lower-mass design
+-condition and Hölder regularity. Its statistical bound depends adversely on
+-dimension. It also gives exact raw-slice tangent-error floors, a known-noise
+-deconvolution result and a pilot-localization lemma. Five distinct routes and
+-their remaining gaps are recorded in `APPROACH_LOG.md` and `turns.json`.
++The exact accepted theorem/proof is preserved unchanged in AUXILIARY_THEOREM.md.
++Its historical not-yet-audited notice is superseded by the fresh acceptance recorded
++in ../history/auxiliary-independent-audit/AUDIT.md and ../CHANGE_LEDGER.md.
+ 
+-The inspected August 2026 JMLR follow-up still retains a geometry/noise
+-saturation term. Neither that upper bound nor our restricted tangent lower
+-bound is a general impossibility theorem. No global literature-completeness
+-or novelty claim is made.
++Original-model coverage is not established: the short source leaves relevant
++integrability and noise-identification assumptions underspecified. Conservative
++queue disposition remains unsolved, 5/5. Dimension-efficient geometric rates are
++separately unproved and are not an added condition in the literal source question.
++No novelty is claimed; generic nearest-neighbor consistency predates this work,
++including Stone (1977).
+ 
+-Run `python3 verification/check.py` to reproduce the deterministic controls;
+-compare its JSON output with `verification/result.json`. These controls do not
+-certify the unresolved high-dimensional statement. The author packet is frozen
+-for independent review. Full source documents are not included.
++The original packet and both audits are preserved byte-for-byte under ../history/.
++The corrected author copy adds the required moment, interior/almost-everywhere,
++joint-measurability and response-independent selection clarifications. Exact edits
++are in ../AUTHOR_V1_TO_CORRECTED_V2.diff. This version is frozen for release-binding
++review; no remote publication has occurred.
+--- history/public/RESULT.md
++++ public/RESULT.md
+@@ -1,44 +1,60 @@
+-# Noisy nonlinear single-index regression: scoped consistency and the remaining gap
+-
+-Problem 30003790 / OWR-16161-003. Author investigation, 4 October 2026.
+-Disposition: **unsolved** for the efficient geometric objective described below.
+-No claim of mathematical novelty is made for the elementary lemmas in this note.
+-
+-## 1. Exact source and the scope issue
++# Conditional literal noisy consistency established
++
++Problem 30003790 / OWR-16161-003. Corrected release v2, 4 October 2026.
++
++**Established:** fixed-dimensional expected integrated squared-error consistency,
++and sample-conditional integrated-risk convergence in probability, under the
++bounded-continuous regression and conditionally centered uniformly finite-variance
++model stated in Section 5A. This holds for arbitrary Borel covariate designs.
++
++**Not established:** coverage of every distribution permitted by the original,
++incompletely specified model. Dimension-efficient geometric rates are a separate
++unproved objective, not an extra requirement in the literal source question.
++
++Conservative queue disposition remains **unsolved, 5/5** because full source-model
++coverage has not been verified. This label does not negate the affirmative
++bounded-model consistency result. No novelty claim is made.
++
++## 1. Source scope, correction and review chronology
+ 
+ Klock's contribution to the 2018 Oberwolfach report, pp. 1192–1194, studies
+-`Y = F(X) + ε`, where `F(X) = g(t(X))` and `t(X)` is the closest-point
+-coordinate on an unknown smooth simple curve. The covariate distribution can
+-fill a tube around the curve. The proposal learns tangents from response slices
+-and uses their scalar projections to select neighbors. Its last paragraph asks
+-for a modification consistent under nonzero response noise. [S1]
+-
+-This is a curved-index problem. Consistency of an ordinary linear single-index
+-estimator does not settle it. We distinguish two success criteria:
+-
+-* **Literal fixed-dimensional consistency:** risk tends to zero, allowing a
+-  dimension-dependent statistical rate and extra regularity assumptions.
+-* **Source-motivated efficient geometric consistency:** eliminate the fixed-noise
+-  error while preserving useful high-dimensional sample guarantees, rather than
+-  simply recovering ambient-dimensional nonparametric regression.
+-
+-Section 5 proves a positive result for the first criterion under explicitly
+-listed assumptions. It is a genuine tangent-neighbor modification, but its
+-sample guarantee is cursed by dimension. The short OWR question does not state
+-an explicit formal rate requirement; therefore calling the *literal* question
+-unconditionally unsolved would be too strong. Conversely, promoting Section 5
+-as a resolution of the high-dimensional research problem would hide its central
+-limitation. We retain `unsolved` rather than silently choose the easier scope.
+-
+-The latest directly relevant primary result located is Wu–Maggioni, JMLR
+-27(155), 1–75 (August 2026). Theorem 3 has a decaying one-dimensional estimation
+-term plus a geometry/noise term independent of sample size. Remark 4(iii),
+-p. 18, explicitly leaves removal of the latter to further geometric work. The
+-2019 arXiv version of Kereta–Klock–Naumova also retains a curvature/noise term
+-in equation (23), pp. 13–14. These are upper bounds, not information-theoretic
+-lower bounds for all estimators. Neither inspected theorem closes the strong
+-criterion. This limited literature check is not a certificate of global openness.
+-[S2, S3]
++`Y = F(X) + ε`, where `F(X) = g(t(X))` and `t(X)` is a closest-point
++coordinate on an unknown smooth simple curve. Covariates may fill a tube.
++The method estimates tangents from response slices and uses their scalar
++projections for neighbor selection. The final paragraph asks for a modification
++consistent with nonzero response noise. It does not impose an explicit
++dimension-efficient rate in that question. [S1]
++
++The original author packet treated failure to obtain dimension-efficient learning
++as a reason to withhold a positive literal consistency conclusion. That framing
++is superseded. Its fixed-dimensional guard theorem already gave a conditional
++positive answer under additional design assumptions. A subsequent auxiliary
++proof removes the lower-mass and bounded-support restrictions and has now been
++accepted by a fresh independent audit. The exact accepted theorem and proof are
++preserved without modification in `AUXILIARY_THEOREM.md`; its historical
++not-yet-audited banner is superseded by the acceptance record described below.
++Section 5A explicitly states the accepted joint-independence interpretation.
++
++This is a curved-index problem, but the safeguard does not need to recover the
++tangent field accurately. It ranks all regression covariates using both the
++tangent term and a Euclidean term, with independent regression labels. Bare
++consistency is distinct from useful dimension-efficient rates. Generic
++nearest-neighbor regression consistency is longstanding, including Stone's
++1977 results; the specific safeguarded ordering is proved here without a claim
++of novelty or an assertion that every such extension follows from Stone. [S4]
++
++Wu–Maggioni, JMLR 27(155), 1–75 (August 2026), Theorem 3 and Remark 4(iii),
++pp. 17–18, retain a geometry/noise term independent of sample size.
++Kereta–Klock–Naumova's inspected 2019 preprint does so in equation (23),
++pp. 13–14. Neither upper bound is an impossibility theorem for other estimators;
++these source comparisons do not negate the affirmative consistency theorem
++below. This targeted check is not a certificate of global openness. [S2, S3]
++
++The original freeze, both audits and all their recorded controls remain unchanged
++under `../history/`. `../CHANGE_LEDGER.md` identifies the corrections and exact
++stale statements superseded; `../AUTHOR_V1_TO_CORRECTED_V2.diff` records every
++change to the author packet. The present corrected assembly awaits release-binding
++review and has not been published.
+ 
+ ## 2. Route 1: exact response-slice nonlocality and tangent loss
+ 
+@@ -103,8 +119,10 @@
+ `λ̂_W(u)=ν̂_W(u) φ_ε(u)`.                                           (4)
+ 
+ If `φ_ε` is nowhere zero, (4) identifies `ν_W`. Applying this to `W=1`,
+-each coordinate of `X`, and each entry of `XXᵀ`, identifies all clean-slice
+-unnormalized first and second moments. Thus response noise alone does not
++each coordinate of `X`, and each entry of `XXᵀ` requires finite weighted
++measures: assume `E||X||²<∞` for simultaneous identification of these moments.
++Under that assumption it identifies all clean-slice unnormalized first and
++second moments. Thus response noise alone does not
+ create a population impossibility for recovering those moments.
+ 
+ Here is a quantitative elementary statistical version. Suppose
+@@ -126,14 +144,25 @@
+ needed. A signed estimate is allowed; positivity is not required for this
+ `L²` convergence assertion.
+ 
++For simultaneous quantitative application to coordinates and `XXᵀ`, bounded
++`X` suffices to bound all weights. Alternatively assume `E||X||⁴<∞` and
++replace `M²` by `E[W²]` separately for each weight. In either case, every
++weighted clean measure used must have its own `L²` density.
++
+ For any **fixed** bounded interval `I`, Cauchy–Schwarz yields
+-`|∫_I(v_n-ν_W)| ≤ |I|^(1/2)||v_n-ν_W||_2`. Normalizing by an estimated
+-positive slice mass then consistently estimates its covariance. At a clean
+-level `Z=z`, all points lie in the affine normal hyperplane to the curve,
+-provided the link is injective. If that conditional covariance has a unique
+-zero eigenvalue and a positive gap, its null line is the tangent. These facts
+-explain a possible mechanism, but they do not complete a shrinking-slice
+-algorithm.
++`|∫_I(v_n-ν_W)| ≤ |I|^(1/2)||v_n-ν_W||_2`. If the true clean slice mass
++is positive, normalize using `max(estimated_mass,η_n)` for deterministic
++`η_n>0` tending to zero. The resulting normalized moments and covariance
++converge in probability; no expectation guarantee for the ratio is inferred.
++
++For the geometric nullspace conclusion, require unique **interior** closest-point
++projection, an injective link and finite conditional second moments. For almost
++every clean level at which these conditional laws and hypotheses hold, first-order
++optimality gives `(X-γ(t))ᵀγ'(t)=0` conditionally. The conditional support is
++therefore in the affine normal hyperplane. If its covariance has rank `D-1`,
++with a positive gap above the zero eigenvalue, its null line is the tangent.
++Endpoint projection caps are not covered: orthogonality can fail there even
++with an injective link. These facts do not complete a shrinking-slice algorithm.
+ 
+ **Exact gap:** the source does not supply a known Gaussian noise law. We have
+ not established uniform shrinking-window moment control, denominator bounds,
+@@ -165,10 +194,71 @@
+ it does not produce a pilot accuracy theorem. No dimension-efficient pilot
+ with the required guarantee has been supplied here.
+ 
+-## 5. Route 4: a fully proved fixed-dimensional consistency safeguard
+-
+-The following theorem supplies an honest weaker positive answer. It deliberately
+-does not require the estimated tangent field itself to converge.
++## 5. Route 4: independently accepted general safeguard
++
++### 5A. Accepted auxiliary theorem and implementation scope
++
++The exact accepted theorem/proof is `AUXILIARY_THEOREM.md`, SHA256
++`072aba944c908baf44bb86d6c9a3d1c87444b5f779c53a14b4a9648d9595351c`.
++Its mathematical content is unchanged. The fresh independent acceptance is
++`../history/auxiliary-independent-audit/AUDIT.md`, SHA256
++`954dedd9ec67d2819b211aa6cbb6f33cd578977175fb1478ede820aa3f4aab6f`.
++This corrected release incorporates that accepted object with the following
++complete model and interpretation; it does not attribute the auxiliary proof
++to the original five-route author freeze.
++
++Fix a finite dimension `D≥1` and an arbitrary Borel probability law `P` on
++`R^D`, with support `K`. The regression pairs `(X_i,Y_i)` are iid,
++`X_i~P`, and `Y_i=F(X_i)+ε_i`. Assume `F` is bounded and continuous on
++`K` in its relative topology, and
++
++`E[ε_i|X_i]=0`, `E[ε_i²|X_i]≤σ²<∞` almost surely,
++
++with one common finite bound. For each `n`, the auxiliary training object
++`T_n` is independent of the regression data. The field `a_n(T_n,z)` is
++jointly measurable in training data and covariate, with norm at most one.
++The test point `X~P` is independent of the **joint** observed-data sigma-field
++`S_n=σ(T_n,(X_1,Y_1),…,(X_n,Y_n))`. Pairwise independence is not substituted
++for this joint independence.
++
++Choose deterministic integers `1≤k_n≤n` with `k_n→∞` and `k_n/n→0`.
++Let `R_n(x)` be the kth Euclidean-neighbor distance among **all n** regression
++covariates. Rank all n candidates lexicographically by `(d_n(x,X_i),i)`, where
++
++`d_n(x,X_i)=|a_n(T_n,X_i)ᵀ(x-X_i)|+λ_n(x)||x-X_i||`.
++
++Select exactly `k_n` distinct indices and average their responses. The accepted
++choices are (A) fixed `λ_n(x)=λ` with `0<λ≤1`, or (B)
++`λ_n(x)=min(1,sqrt(R_n(x)+1/n))`. Then
++
++`E[(F̂_n(X)-F(X))²]→0`, `E[R(S_n)]→0`, and `R(S_n)→0` in probability,
++
++where `R(S_n)=∫_K(F̂_n(x)-F(x))²dP(x)`. In case B, `λ_n(X)→0` in
++probability. No design density, lower-mass condition, compact support or
++covariate moments are required. Bounded continuity of `F` and the uniform
++conditional noise bound are retained. No rate, almost-sure or uniform
++consistency, tangent recovery, or growing-dimension conclusion is asserted.
++
++The field assignment on the regression sample uses `T_n` and `X_i` only,
++never `Y_i`; merely holding out the labels and then using them to assign
++response slices would not suffice. Deterministic sample-index ties use no
++responses. No unverified coarse-segment filter is retained before the all-n
++ranking. These are part of the accepted construction, not optional cautions.
++
++This gives an affirmative answer to literal noisy consistency under the stated
++bounded-continuous, conditionally centered uniformly finite-variance model.
++A compact tubular support on which `F=g∘t` is continuous, with independent
++centered finite-variance noise, is a covered special case. The short report
++does not fully specify boundedness/integrability or noise identification;
++coverage of every interpretation of its model is therefore not established.
++Dimension-efficient geometry learning remains a distinct unproved question.
++
++### 5B. Original quantitative theorem, with formal clarifications
++
++The earlier quantitative theorem remains valid under its stronger design
++assumptions and provides an explicit dimension-dependent bound. It does not
++require the estimated tangent field itself to converge. Section 5A is broader
++for consistency and is the current principal finding.
+ 
+ **Theorem (vanishing Euclidean guard).** Let `D≥1` be fixed. Assume:
+ 
+@@ -178,16 +268,19 @@
+ 3. `|F(x)-F(z)|≤H||x-z||^s` on `K`, with `0<s≤1`.
+ 4. Observations are iid, `E[ε|X]=0`, and `E[ε²|X]≤σ²<∞`.
+ 
+-Use an independent training part to build any measurable vector field
+-`a_n:K→R^D` with `||a_n(z)||≤1`. This may be produced by the source's
++Use an independent training part `T_n` to build a field `a_n(T_n,z)` jointly
++measurable in training data and covariate, with `||a_n(T_n,z)||≤1`. For
++brevity write this as `a_n(z)` below. The test point is independent of the
++joint training/regression data. This may be produced by the source's
+ level-set/tangent algorithm, with a fixed convention for empty or singular
+ cells. On a separate regression sample of size `n`, use only its covariates
+ to order neighbors of `x` by
+ 
+ `d_n(x,z)=|a_n(z)ᵀ(x-z)|+λ_n||x-z||`, `0<λ_n≤1`.                    (7)
+ 
+-Break ties independently of the regression responses. Average the `k_n`
+-responses selected by (7). Write this estimate as `F̂_n(x)`. If `k_n→∞`,
++Rank all n regression covariates by `(d_n(x,X_i),i)`, breaking ties by
++deterministic sample index. Field assignment and neighbor selection use no
++regression responses. Average the `k_n` responses selected by (7). Write this estimate as `F̂_n(x)`. If `k_n→∞`,
+ `k_n/n→0`, and `(k_n/n)^(1/D)/λ_n→0`, then
+ 
+ `E[(F̂_n(X)-F(X))²] → 0`.
+@@ -274,22 +367,33 @@
+ acceptable. Neither a fixed-order Taylor bound nor the smallness of curvature
+ alone supplies that missing theorem.
+ 
+-## 7. Verified conclusions and stopping point
+-
+-Five distinct mechanisms were examined: raw slicing, Fourier deconvolution,
+-pilot-denoised slicing, guarded neighbor selection, and higher-order geometry.
+-Equations (1)–(6) and Theorem (7)–(12) are scoped mathematical results with
+-proofs above. The attached checks test formulas and finite controls, not the
+-unproved high-dimensional conclusion.
+-
+-The strongest positive result is the guarded estimator's fixed-dimensional
+-consistency. The strongest negative result is a strictly positive per-slice
+-tangent-projector loss in an explicit curved tube model. Neither establishes
+-an impossibility for general estimators. The remaining substantive research gap
+-is a noise-robust way to learn the nonlinear coordinate/tangent geometry and
+-predict consistently at useful dimension-efficient sample cost under clearly
+-specified model assumptions. No complete candidate meeting that criterion was
+-obtained in this five-route investigation.
++## 7. Current findings and conservative disposition
++
++Five author mechanisms were examined. The original freeze and the original
++five-turn ledger remain unchanged in history. This release applies the first
++audit's scoped corrections and incorporates the separately developed auxiliary
++proof only after its fresh independent acceptance.
++
++The strongest positive finding is Section 5A: an explicit fixed-dimensional
++safeguard gives expected integrated squared-error consistency and sample-conditional
++integrated-risk convergence in probability for arbitrary Borel designs under
++bounded continuity and conditionally centered uniformly finite-variance noise.
++It is a genuine modification retaining the tangent term if desired. This is an
++affirmative literal bounded-model result, not merely an unproved proposal.
++
++The strongest restricted negative result remains the nonzero per-slice tangent
++projector loss for an explicit curved tube. It is not an impossibility theorem
++for arbitrary covariate-refined estimators. Known-noise deconvolution and pilot
++localization are useful conditional lemmas with the stated moment, interior
++projection and statistical gaps.
++
++Queue status is conservatively `unsolved`, 5/5 author turns, solely because
++coverage of the underspecified original model has not been established. There
++is no added dimension-efficiency condition on the literal source question.
++Dimension-efficient geometric rates remain separately unproved. Neither
++mathematical novelty nor complete current-literature coverage is asserted.
++Generic regression consistency should be credited to its established literature,
++including Stone (1977), rather than presented as a new discovery. [S4]
+ 
+ ## References
+ 
+@@ -309,3 +413,10 @@
+ 1–75 (2026), Theorem 3 and Remark 4(iii), pp. 17–18.
+ https://www.jmlr.org/papers/v27/24-2004.html
+ Matching current preprint metadata: https://arxiv.org/abs/2411.09686v4
++
++[S4] Charles J. Stone, “Consistent Nonparametric Regression,” *Annals of
++Statistics* 5(4), 595–620 (1977), especially Section 3, Theorem 2 and
++Corollary 3. https://doi.org/10.1214/aos/1176343886
++The auxiliary audit checked the primary scan. Stone's general nearest-neighbor
++consistency results supply historical context, not an automatic proof for the
++specific data-dependent guard and deterministic tie convention used here.
+--- history/public/SOURCES.json
++++ public/SOURCES.json
+@@ -59,6 +59,19 @@
+       "document_sha256": "a163ae7034e6e4a75c840bedda4a15302f1f3e88a1ac86451635e1b43762e4f1",
+       "checked_at": "2026-10-04",
+       "scope": "Version metadata verified; published JMLR text used for final source comparison."
++    },
++    {
++      "key": "S4",
++      "title": "Consistent Nonparametric Regression",
++      "author": "Charles J. Stone",
++      "year": 1977,
++      "journal": "Annals of Statistics 5(4):595\u2013620",
++      "url": "https://doi.org/10.1214/aos/1176343886",
++      "primary_scan_url": "https://websites.umich.edu/~jizhu/jizhu/wuke/Stone-AoS77.pdf",
++      "document_sha256": "544011c0923a8ac3cef34ec5c1844ed30faabf0df8146f870a0c046480213afa",
++      "checked_at": "2026-10-04",
++      "verification": "Fresh auxiliary auditor inspected primary scan, especially Section3 Theorem2/Corollary3. Parent author DOI web fetch was inaccessible.",
++      "scope": "Historical generic nearest-neighbor consistency credit; not an automatic proof of the specific guard ordering."
+     }
+   ],
+   "catalogue_page": {
+--- history/public/readiness.json
++++ public/readiness.json
+@@ -5,8 +5,8 @@
+   "code": "OWR-16161-003",
+   "review_hash": "6835ba945839af130f1ee83dfb9431db2236c7d56739d8e9c136a03406f362b2",
+   "exact_claim": "Modify curved nonlinear single-index regression to be consistent for fixed nonzero response noise despite nonshrinking latent support of raw response slices.",
+-  "scope_resolution": "The short source asks for consistency without an explicit rate. This packet proves a fixed-dimensional guarded modification under extra assumptions, but does not settle dimension-efficient geometric consistency.",
+-  "success_test": "Noise-robust tangent/coordinate and regression learning, with assumptions and high-dimensional sample/compute costs explicit; an ambient-dimensional fallback must not be presented as the full efficient result.",
++  "scope_resolution": "Conditional literal noisy consistency established for arbitrary Borel designs with bounded continuous F and conditionally centered uniformly finite-variance noise at fixed D. Full underspecified original-model coverage not established; dimension-efficient geometry is a separate unproved objective.",
++  "success_test": "Prove literal noisy mean-square consistency under an explicit model, then verify whether the source intends that complete model; do not add an unstated dimension-efficient-rate requirement.",
+   "primary_source_checked": true,
+   "literature_checked_at": "2026-10-04",
+   "duplicate_check": {
+@@ -24,7 +24,11 @@
+     "turns_used": 5
+   },
+   "disposition": "unsolved",
+-  "independent_review": "pending",
++  "independent_review": "Original packet audited with scoped corrections; exact auxiliary theorem independently accepted. Corrected v2 assembly awaits binding review.",
+   "remote_writes_performed": false,
+-  "novelty_claim": false
++  "novelty_claim": false,
++  "status_reason": "Source-model coverage remains unverified; the explicit bounded-model consistency theorem is affirmative.",
++  "affirmative_literal_result": true,
++  "version": "corrected-release-v2",
++  "supersedes": "Original scope/readiness assessment only; historical evidence and original files preserved."
+ }
+--- history/public/turns.json
++++ public/turns.json
+@@ -49,5 +49,16 @@
+       "exact_gap": "Only blocks jet-only reasoning; stable data-driven high-order reconstruction remains open here.",
+       "complete_candidate": false
+     }
+-  ]
++  ],
++  "historical_entries_preserved": true,
++  "post_review_assessment": {
++    "date": "2026-10-04",
++    "literal_bounded_model_result": "affirmative; independently accepted auxiliary consistency theorem",
++    "original_model_coverage": "not established",
++    "dimension_efficient_geometric_rate": "separate unproved objective, not a literal-question condition",
++    "conservative_status_reason": "Unverified coverage of the underspecified original model, not adverse dimension dependence.",
++    "auxiliary_theorem_sha256": "072aba944c908baf44bb86d6c9a3d1c87444b5f779c53a14b4a9648d9595351c",
++    "author_search_turns_added": 0,
++    "novelty_claim": false
++  }
+ }
