@@ -1,0 +1,26 @@
+--- a/PROOF_AUDIT.md
++++ b/PROOF_AUDIT.md
+@@ -4,7 +4,7 @@
+ 
+ The proposed bound `deg(phi) <= 4` in OWR-1971-010 is false with its stated hypotheses. A previously published construction of Christian Gleissner, Roberto Pignatelli and Carlos Rito supplies a normal projective surface X over C with precisely nine A2 singularities, ample and base-point-free canonical bundle, p_g(X)=4, and COMPLETE canonical morphism of degree 12 onto a singular quadric cone in P3.
+ 
+-This report verifies that specific construction directly; it does not depend on the correctness or exhaustiveness of the source's computer classification. It is a credited audit of a prior counterexample, not a new counterexample claim. It also repairs two typographical inconsistencies in the inspected preprint. Independent second audit remains the acceptance step for this packet.
++This report verifies that specific construction directly; it does not depend on the correctness or exhaustiveness of the source's computer classification. It is a credited audit of a prior counterexample, not a new counterexample claim. It also repairs two typographical inconsistencies in the inspected preprint. The independent second audit accepted the construction and every target hypothesis; see SECOND_AUDIT.md for its separate geometric proof and executed verification record.
+ 
+ Primary construction: Gleissner–Pignatelli–Rito, *New surfaces with canonical map of high degree*, Section 6, p.8 of [arXiv:1807.11854v2](https://arxiv.org/pdf/1807.11854v2), revised 25 March 2020; published in *Communications in Analysis and Geometry* 30 (2022), no.8, pp.1811–1823, DOI [10.4310/CAG.2022.v30.n8.a5](https://doi.org/10.4310/CAG.2022.v30.n8.a5). The authors' current publication pages confirm publication. Crossref's freshly retrieved DOI registration confirms pp.1811–1823; one author's publication list instead gives 1809–1821, so the DOI registration controls the bibliographic citation. The mathematical text audited here is the identified arXiv preprint, not an uninspected publisher PDF.
+ 
+@@ -101,7 +101,7 @@
+ 
+ psi_* O_X = direct-sum over c of O_Y(-d_E(c),-d_F(c)).
+ 
+-One can verify the degree formula locally: if t=a^3, a character c with residue r has eigenfunction a^r; normalizing the product of such local eigenfunctions gives an eigenline bundle whose cube has divisor sum r_i Ei. Equivalently this is the usual cyclic/abelian-cover eigenbundle construction. The H-invariant pairs of curve characters are the equal pairs, since H acts as (g,-g).
++One can verify the degree formula locally: if t=a^3, a character c with residue r has eigenfunction a^r. Write M_c for the function eigensheaf on a curve. Multiplication M_c^3 -> O has image O(-sum r_i p_i), so M_c has degree -sum r_i/3. Equivalently the dual building-data line L_c=M_c^dual has L_c^3=O(sum r_i p_i). The same calculation applies to the F cover. The H-invariant pairs of function characters are the equal pairs, since H acts as (g,-g). This fixes which line is dualized in the following canonical formula.
+ 
+ Finite duality gives
+ 
+@@ -184,4 +184,4 @@
+ 
+ The explicit field construction eliminates dependence on the source's enumeration, its MAGMA script, or a mere existence statement about branch data. No external proof code was executed. The small accompanying Python program rechecks all 27 characters, the inertia intersections, exact divisor identity, 25 branch strata, and invariant arithmetic. It does NOT prove the geometric dependencies above and is not presented as a substitute for them. All guards use explicit exceptions, not assertions; normal, -O and -OO runs pass, and five corrupted claims fail in each mode.
+ 
+-This establishes a complete candidate prior-result audit for independent review. It does not establish any upper bound on canonical degrees, classify all singular-target covers, or make any novelty/worldwide-openness assertion.
++Together with SECOND_AUDIT.md, this establishes an independently accepted, complete credited audit of the prior counterexample. It does not establish any upper bound on canonical degrees, classify all singular-target covers, or make any novelty/worldwide-openness assertion.
