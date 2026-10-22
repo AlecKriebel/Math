@@ -1,0 +1,7 @@
+# Substantive turn5 log
+
+2026-10-01 13:21–13:34 UTC. Made a final functional-endpoint attack using the actual nested genealogy. The uniform scalar temporal-maximal estimate from Turn4 yields an integrable maximal envelope for each descendant batch at an independent random birth parameter. The expected offspring marked jump measure has first moment exactly Lebesgue measure, even without independent parameter increments. Summing a geometric series over genealogical depths proves that every generation's macroscopic jumps come from a finite common set of intrinsic births.
+
+Proved an almost-sure square-summable common envelope for all prelimit jumps, convergence of each birth's descendant-batch martingale, and therefore l2 convergence of the complete jump-size vectors. Explicitly distinguished intrinsic birth times of already active parents from simultaneous descendant activation, and justified the equivalent Ulam-tree/source-array process laws. The result uses the exact X log X endpoint and is genuinely branching-specific.
+
+The attempted closure still lacks a bound on cumulative small-jump oscillations against the continuous normalizing drift, so it does not prove J1 tightness. No admissible source counterexample or simple full-process law for all three examples was found. The fifth turn completes the required budget with the original problem unresolved.8,046 exact finite controls pass. Earlier partials and immutable snapshots remain unchanged; the complete packet now goes to independent review before any PR or final QUEUE status.
