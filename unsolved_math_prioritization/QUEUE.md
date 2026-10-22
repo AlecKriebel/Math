@@ -296,7 +296,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 285 | 10400139 / AMR-103-0139 | Problem 7.24 — (S. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 286 | 10400196 / AMR-103-0196 | Question 10.21 — (F. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 287 | 10400216 / AMR-103-0216 | Problem 12.11 — (D. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 288 | 10400219 / AMR-103-0219 | Problem 12.14 — (N. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 288 | 10400219 / AMR-103-0219 | Problem 12.14 — (N. | 0.1760 | 5.5 | 3 | unknown | already_solved | 0/5 |  | Credited source correction: Livingston (2002) proved g_s(7_4)=1 and ordinary slicing number u_s(7_4)=2; Ohtsuki's own Update already records the negative answer. Full independent source/proof audit, including printed root-typo correction. See attempts/10400219/. |  |
 | 289 | 10400220 / AMR-103-0220 | Problem 12.15 — (M. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 290 | 10400228 / AMR-103-0228 | Problem 12.23 — (A. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 291 | 11000192 / AMR-109-0192 | Problem 2.5 — Construct an example of a pseudo-Anosov mapping class for a closed surface which is not ergodic on the SU(2)-characte… | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
