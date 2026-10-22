@@ -1,0 +1,10 @@
+# Limits and disposition
+
+1. KOU-21.61 is unresolved after five substantive approach families. None is a full candidate solution; no additional proof-search turn is hidden in the audit request.
+2. Positive algorithms cover zero height, finitely generated height kernel, and periodic outer monodromy. They do not establish termination on all finite generating tuples for arbitrary fixed monodromy.
+3. The false-plateau and virtual-retraction examples refute specific strategies. They are not counterexamples to effective coherence and do not prove undecidability.
+4. Seven scoped propositions have written proofs. Feighn-Handel coherence is imported only for the eventual-correctness statement in Proposition 5; its complete foundational proof is not independently reproved. The existing Dahmani-Touikan and Gray-Linton results are credited and their inspection limits are recorded.
+5. The verifier performs bounded exact controls. It is not a general implementation of every theoretical algorithm, and no finite computation proves general effective coherence. In particular, its direct-product check is a concrete normal-form example, not exhaustive testing over all input subgroups.
+6. The primary problem is verified in the current editor-hosted October 2026 PDF. The numeric landing page was inaccessible. The current dataset row was inspected but not immutably bound to the pinned manifest; the separate report and the duplicate's full prior AI report were not inspected. Whole-corpus hashes in the metadata are declared manifest values, not freshly verified download hashes.
+7. No human review, peer acceptance, mathematical novelty, or priority is claimed. The independent audit requested next must assess the scoped proofs, exact full-target disposition, source boundaries, executable controls and release boundary before publication.
+8. This attempt made no remote writes. The only proposed queue mutation is retained record 2570's disposition/turn count after audit. Duplicate 20001495 is contextual metadata, not a second budgeted attempt or automatic row mutation.

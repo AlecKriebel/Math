@@ -1,0 +1,6 @@
+# Publication checkpoint log
+
+- 2026-10-05 07:21–07:38 UTC: Five author approach families and source checks completed; the original timestamped account is preserved in `author/RESEARCH_LOG.md`. Full-target completion estimate: 15%, a subjective planning estimate, not a fraction of a proof. The remaining gap is a general effective stopping/presentation algorithm.
+- 2026-10-05 07:45 UTC: Independent scoped audit closed without blocking mathematical findings. Full-target outcome remains unresolved, 5/5. No novelty or priority clearance is implied.
+- 2026-10-05 07:47–07:53 UTC: Publication preparation verified both frozen manifest hashes, read all proposed author/audit files, inspected and safely replayed the previously unexecuted author helpers, and replayed independent controls. Fresh bounded main/PR/branch checks found no existing attempt for the retained target or contextual duplicate. The actual existing queue blob was authenticated before its two-cell edit.
+- Publication boundary: preserve every frozen byte and the full audit, publish scoped partial results only, and retain all source-inspection limits. Portable local and remote-byte checks are required before reporting completion. No merge, release, DOI or outside contact is part of this publication.
