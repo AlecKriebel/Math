@@ -1,0 +1,28 @@
+--- author/REPORT.md
++++ author_v2/REPORT.md
+@@ -65,14 +65,14 @@
+ 
+ where x_0>=2. Choose a compact interval [a,b] and eta>0 with
+ 
+- a>max{x_0,K+6},             b+eta<F(a).
++ a>max{x_0+2 log(K+3),K+6},   b+eta<F(a).
+ 
+ Shrinking the interval if necessary always allows the second condition. Put
+ 
+  L_(kappa,j)(w)=Log(w)-kappa+2 pi i j,
+  g_(n,kappa,s)(t)=L_(kappa,s_1) ... L_(kappa,s_n)(F^n(t)),
+ 
+-using principal logarithms on the right half-plane. These finite approximants converge to the usual dynamic ray on such tails by [FS]. We will prove that all their potential derivatives converge locally uniformly, uniformly for |kappa|<=K.
++using principal logarithms on the right half-plane. The address bound implies t_s^*:=sup_{j>=0} F^{-j}(|s_(j+1)|)<=x_0. Therefore a>t_s^*+2 log(K+3), and [FS, Lemma 4.4] identifies the locally uniform limit of these finite approximants with the standard dynamic ray. We will prove that all their potential derivatives converge locally uniformly, uniformly for |kappa|<=K.
+ 
+ For real t>=a, every intermediate value after pulling back to level j has real part at least F^j(t)-K-1. This follows by descending induction: if Re w>=F^(j+1)(t)-K-1, then
+ 
+@@ -143,7 +143,7 @@
+ 
+  2 pi |s_(N+j+1)| <= F^(N+j)(u), j>=0.
+ 
+-Increase N until F^N(inf J)>K+6 and F^N(u)>=2, where a parameter neighborhood has |kappa|<=K. Choose J smaller, if needed, so that sup J<F(inf J). Then the shifted interval [a,b]=F^N(J) satisfies b<F(a), and some eta>0 also satisfies b+eta<F(a). Section 3.2 applies to this shifted tail.
++Increase N until F^N(inf J)>max{F^N(u)+2 log(K+3),K+6} and F^N(u)>=2, where a parameter neighborhood has |kappa|<=K. This is possible because inf J>u>0: after finitely many iterates both are at least 2, and their difference then grows at least geometrically. Choose J smaller, if needed, so that sup J<F(inf J). Then the shifted interval [a,b]=F^N(J) satisfies b<F(a), and some eta>0 also satisfies b+eta<F(a). Section 3.2 applies to this shifted tail.
+ 
+ Use the dynamic-ray equation
+ 
