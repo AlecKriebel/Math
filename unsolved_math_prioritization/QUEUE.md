@@ -936,7 +936,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 925 | 3075 / OPG-605 | Average diameter of a bounded cell of a simple arrangement | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 926 | 3081 / OPG-2435 | Monochromatic empty triangles | 0.0960 | 5.5 | 2 | unknown | queued | 0/5 |  |  |  |
 | 927 | 3800003 / AMR-037-0003 | Degenerate facets of polytopes | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 928 | 3900015 / AMR-038-0015 | Packing reciprocal rectangles in a square | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 928 | 3900015 / AMR-038-0015 | Packing reciprocal rectangles in a square | 0.0960 | 5.5 | 3 | unknown | unsolved | 3/5 |  |  |  |
 | 929 | 5500072 / AMR-054-0072 | Polyhedron with Regular Pentagon Faces | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 930 | 600004 / AMR-005-0004 | Baker's Dozen — Periodic hyperbolic outer billiards | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 931 | 600011 / AMR-005-0011 | Baker's Dozen — Convex tangent-segment iteration | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
