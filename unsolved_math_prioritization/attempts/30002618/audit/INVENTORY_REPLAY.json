@@ -1,0 +1,167 @@
+{
+  "all_checks_passed": true,
+  "exact_patch_replay": {
+    "all_six_files_byte_identical": true,
+    "exit_code": 0,
+    "fuzz": 0,
+    "output": "patching file PROOF.md\npatching file README.md\npatching file SOURCE_SCOPE.md\npatching file STATUS.json\npatching file verification.json\n"
+  },
+  "hostile_archive_unit_cases": [
+    {
+      "case": "extra member",
+      "reason": "strict ZIP inventory mismatch",
+      "rejected": true
+    },
+    {
+      "case": "missing member",
+      "reason": "strict ZIP inventory mismatch",
+      "rejected": true
+    },
+    {
+      "case": "duplicate member",
+      "reason": "duplicate ZIP member",
+      "rejected": true
+    },
+    {
+      "case": "payload changed",
+      "reason": "member hash mismatch",
+      "rejected": true
+    },
+    {
+      "case": "path traversal",
+      "reason": "unsafe ZIP path",
+      "rejected": true
+    },
+    {
+      "case": "executable mode",
+      "reason": "executable mode not allowed",
+      "rejected": true
+    },
+    {
+      "case": "symbolic link",
+      "reason": "symlink not allowed",
+      "rejected": true
+    },
+    {
+      "case": "invalid UTF-8",
+      "reason": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte",
+      "rejected": true
+    },
+    {
+      "case": "duplicate JSON keys",
+      "reason": "duplicate JSON key",
+      "rejected": true
+    },
+    {
+      "case": "invalid JSON",
+      "reason": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "rejected": true
+    },
+    {
+      "case": "NUL text",
+      "reason": "binary text",
+      "rejected": true
+    }
+  ],
+  "hostile_case_count": 11,
+  "normal_optimized_relocation_runs": [
+    {
+      "exit_code": 0,
+      "mode": "normal",
+      "result": {
+        "all_utf8_text": true,
+        "archive": "ISOCRYSTAL_MONODROMY_30002618_AUTHOR_SAFE_FREEZE.zip",
+        "bytes": 11786,
+        "crc": true,
+        "input_immutable": true,
+        "manifest_sha256": "7a348b1bc2d5430ec84c790cf1758974227502220f902eea478a93f7cdc681ea",
+        "member_count": 6,
+        "no_executable_members": true,
+        "sha256": "0947c56eb1d4642ac9e92298022a21419aac91a740d1b0ee4ace588260dd2665",
+        "strict_inventory": true
+      }
+    },
+    {
+      "exit_code": 0,
+      "mode": "optimized",
+      "result": {
+        "all_utf8_text": true,
+        "archive": "ISOCRYSTAL_MONODROMY_30002618_AUTHOR_SAFE_FREEZE.zip",
+        "bytes": 11786,
+        "crc": true,
+        "input_immutable": true,
+        "manifest_sha256": "7a348b1bc2d5430ec84c790cf1758974227502220f902eea478a93f7cdc681ea",
+        "member_count": 6,
+        "no_executable_members": true,
+        "sha256": "0947c56eb1d4642ac9e92298022a21419aac91a740d1b0ee4ace588260dd2665",
+        "strict_inventory": true
+      }
+    },
+    {
+      "exit_code": 0,
+      "mode": "relocated",
+      "result": {
+        "all_utf8_text": true,
+        "archive": "ISOCRYSTAL_MONODROMY_30002618_AUTHOR_SAFE_FREEZE.zip",
+        "bytes": 11786,
+        "crc": true,
+        "input_immutable": true,
+        "manifest_sha256": "7a348b1bc2d5430ec84c790cf1758974227502220f902eea478a93f7cdc681ea",
+        "member_count": 6,
+        "no_executable_members": true,
+        "sha256": "0947c56eb1d4642ac9e92298022a21419aac91a740d1b0ee4ace588260dd2665",
+        "strict_inventory": true
+      }
+    },
+    {
+      "exit_code": 0,
+      "mode": "normal",
+      "result": {
+        "all_utf8_text": true,
+        "archive": "ISOCRYSTAL_MONODROMY_30002618_CORRECTED_SAFE.zip",
+        "bytes": 12287,
+        "crc": true,
+        "input_immutable": true,
+        "manifest_sha256": "9fb9ecf3d28d5961d48490ea17446afb0465bf34fdc97c326e629703ccab0461",
+        "member_count": 6,
+        "no_executable_members": true,
+        "sha256": "aa53b811b554fbd7655d4d18073c62ac49c65bcdc68dbf898f6e40e2286306d2",
+        "strict_inventory": true
+      }
+    },
+    {
+      "exit_code": 0,
+      "mode": "optimized",
+      "result": {
+        "all_utf8_text": true,
+        "archive": "ISOCRYSTAL_MONODROMY_30002618_CORRECTED_SAFE.zip",
+        "bytes": 12287,
+        "crc": true,
+        "input_immutable": true,
+        "manifest_sha256": "9fb9ecf3d28d5961d48490ea17446afb0465bf34fdc97c326e629703ccab0461",
+        "member_count": 6,
+        "no_executable_members": true,
+        "sha256": "aa53b811b554fbd7655d4d18073c62ac49c65bcdc68dbf898f6e40e2286306d2",
+        "strict_inventory": true
+      }
+    },
+    {
+      "exit_code": 0,
+      "mode": "relocated",
+      "result": {
+        "all_utf8_text": true,
+        "archive": "ISOCRYSTAL_MONODROMY_30002618_CORRECTED_SAFE.zip",
+        "bytes": 12287,
+        "crc": true,
+        "input_immutable": true,
+        "manifest_sha256": "9fb9ecf3d28d5961d48490ea17446afb0465bf34fdc97c326e629703ccab0461",
+        "member_count": 6,
+        "no_executable_members": true,
+        "sha256": "aa53b811b554fbd7655d4d18073c62ac49c65bcdc68dbf898f6e40e2286306d2",
+        "strict_inventory": true
+      }
+    }
+  ],
+  "scope": "Text-package inventory and exact correction replay. No mathematical source-file entrypoint exists.",
+  "validator_sha256": "7dc2851874df14a012c0d4f004c6ac4fd5449a4b04c3edf593ce59cdd2da7195"
+}

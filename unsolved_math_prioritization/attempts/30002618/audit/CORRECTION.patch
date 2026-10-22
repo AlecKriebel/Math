@@ -1,0 +1,79 @@
+--- a/PROOF.md
++++ b/PROOF.md
+@@ -19,7 +19,7 @@
+ 
+ Put U_v = C_v minus its nodes. Use the usual comparison between H^1_rig(U_v,E) tensor K and H^1_dR(X_v,E).
+ 
+-The imported inputs are the component Gysin exact sequence of Chiarellotto–Le Stum [2, Proposition 2.1.4], and the comparison, Mayer–Vietoris, monodromy factorization, and zero-residue characterization in Chiarellotto–Coleman–Di Proietto–Iovita [1, Sections 2–4, Proposition 1, Lemmas 4 and 7]. These inputs are applied only with their proper/smooth-component and no-log coefficient hypotheses.
++The imported inputs are the component Gysin exact sequence of Chiarellotto–Le Stum [2, Proposition 2.1.4], and the comparison, Mayer–Vietoris, monodromy factorization, and zero-residue characterization in Chiarellotto–Coleman–Di Proietto–Iovita [1, Sections 2–4, Proposition 1, Lemmas 4 and 7]. These inputs are applied only with their proper/smooth-component and no-log coefficient hypotheses. On the proper smooth component C_v, the convergent coefficient is also overconvergent. Since C is connected with at least two components, each C_v meets a node; hence U_v is a nonempty affine open, as required by [2, Proposition 2.1.4].
+ 
+ ## 2. The two finite-dimensional maps
+ 
+@@ -159,7 +159,7 @@
+ 
+ whose kernel is ker(T-I).
+ 
+-In Jordan form, the defect equals the number of Jordan blocks at eigenvalue 1 of size at least two, counted once per block. The statement does not require K to be algebraically closed: the generalized 1-eigenspace and its nilpotent Jordan decomposition are defined over K. Thus exactness holds precisely when the 1-eigenspace is semisimple. In particular:
++In Jordan form, the defect equals the number of Jordan blocks at eigenvalue 1 of size at least two, counted once per block. The statement does not require K to be algebraically closed: the generalized 1-eigenspace and its nilpotent Jordan decomposition are defined over K. Thus exactness holds precisely when eigenvalue 1 is semisimple, meaning that ker((T-I)^2)=ker(T-I). This condition is vacuous when 1 is not an eigenvalue. In particular:
+ 
+ - Rank-one coefficients satisfying these local hypotheses are exact.
+ - If T is unipotent, exactness holds if and only if T=I.
+--- a/README.md
++++ b/README.md
+@@ -2,7 +2,7 @@
+ 
+ Problem 30002618 / OWR-13102-007. Research date: 2026-10-06.
+ 
+-**Status: rigorous partial result, pending independent audit.** This package does not solve the general coefficient-classification question or its geometric-origin expectation, and does not assert novelty.
++**Status: rigorous partial result, independently audited with a minor terminology correction and an explicit Gysin-hypothesis clarification.** This package does not solve the general coefficient-classification question or its geometric-origin expectation, and does not assert novelty.
+ 
+ The mathematical deliverable is `PROOF.md`. It derives a finite-dimensional criterion for the exactness defect from established residue, Gysin, and Mayer–Vietoris results. It then classifies the defect when the dual graph is a cycle and the coefficient connection is trivial on each component wide open.
+ 
+@@ -18,4 +18,4 @@
+ 
+ `SOURCE_SCOPE.md` records the original question, the hypotheses, the established obstruction, later-literature scope checks, and limitations. `verification.json` and `source_metadata.json` contain bounded public verification metadata. No third-party source documents, source text, dataset contents, private records, or executable programs are included.
+ 
+-The independent audit must check the signs in the Gysin/incidence construction, residue surjectivity onto ker(D), and the cycle quotient calculation before any acceptance claim.
++The independent audit checked the signs in the Gysin/incidence construction, residue surjectivity onto ker(D), the cycle quotient calculation, coefficient/Frobenius scope, and the stated symbolic examples. Acceptance is limited to these partial results; it is not a full solution or a novelty claim.
+--- a/SOURCE_SCOPE.md
++++ b/SOURCE_SCOPE.md
+@@ -35,4 +35,4 @@
+ 
+ At most five substantive approaches were used: source/prior-attempt reconstruction; residue-factorization defect analysis; the local Gysin rank criterion; the cycle holonomy calculation; and a bounded later-literature/weight-theory scope check. The last approach was stopped without promoting a conditional result to an unconditional theorem.
+ 
+-No executable mathematics checker accompanies this package. The proof is symbolic and the checks are hand-verifiable exact identities. Independent audit remains required.
++No executable mathematics checker accompanies this package. The proof is symbolic and the checks are hand-verifiable exact identities. The independent audit accepted the stated partial results after the documented terminology correction and Gysin-hypothesis clarification. The disclosed approach count is five; the package does not contain a chronological research log independently proving that no additional approach occurred.
+--- a/STATUS.json
++++ b/STATUS.json
+@@ -1,6 +1,6 @@
+ {
+   "problem_id": 30002618,
+-  "status": "RIGOROUS_PARTIAL_PENDING_INDEPENDENT_AUDIT",
++  "status": "RIGOROUS_PARTIAL_INDEPENDENTLY_AUDITED",
+   "full_solution_claimed": false,
+   "novelty_claimed": false,
+   "broad_open_status_exhaustively_verified": false,
+@@ -15,5 +15,6 @@
+   "approaches_used": 5,
+   "approach_limit": 5,
+   "publication_performed": false,
+-  "independent_audit_status": "pending"
++  "independent_audit_status": "accepted_after_minor_precision_patch",
++  "approach_count_evidence": "Five approaches enumerated in SOURCE_SCOPE.md and declared in the author packet; no independent chronological log provided."
+ }
+--- a/verification.json
++++ b/verification.json
+@@ -112,5 +112,12 @@
+     "mathematics_checker": false,
+     "runtime_optimization_relocation_hostile_import_cache_root_entrypoint_controls": "Not applicable to this text-only proof package; no executable package entrypoint or code is delivered."
+   },
+-  "author_checks_are_not_independent_audit": true
++  "author_checks_are_not_independent_audit": true,
++  "independent_audit": {
++    "status": "accepted_after_minor_precision_patch",
++    "date_utc": "2026-10-06",
++    "full_solution": false,
++    "scope": "Residue-Gysin defect identity and cycle/local-triviality theorem only",
++    "author_verification_retained_as_historical_record": true
++  }
+ }
