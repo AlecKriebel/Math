@@ -516,7 +516,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 505 | 30003616 / OWR-15951-003 | Half-Line Spectra for Fibonacci Schrödinger Operators | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 506 | 30003656 / OWR-15958-003 | Wraith Redundancy for Algebraic Theories | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 507 | 10400136 / AMR-103-0136 | Problem 7.21 — (S. | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 508 | 10900004 / AMR-108-0004 | 1.4 (Danciger) — Convex projective structures on glued figure-eight complements | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 508 | 10900004 / AMR-108-0004 | 1.4 (Danciger) — Convex projective structures on glued figure-eight complements | 0.1200 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 509 | 20001282 / AIM-CONVEX_GEOMETRY-0014 | A sharp product-prism family for Kuperberg's fixed-combinatorial-type question | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 510 | 20001287 / AIM-CONVEX_GEOMETRY-0019 | A sharp wedge-orthant family for the spherical simplex volume product | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 511 | 20001306 / AIM-CONVEX_GEOMETRY-0038 | Closedness, dimensional correction, and a dual certificate for polar-zonoid intersection bodies | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
