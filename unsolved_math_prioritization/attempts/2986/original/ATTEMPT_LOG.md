@@ -1,0 +1,10 @@
+# Four bounded approaches for problem 2986
+
+Preflight: the complete exact-ID inherited record/report passed the no-prior-substantive-work gate; only dated literature triage was present. Statement and record/report-pair hashes matched. The current primary problem statement and the pertinent theorem hypotheses were checked. Preflight and source retrieval are not counted as proof approaches.
+
+1. **Primitive dynamics as an obstruction.** Constructed a compactly supported exact change of primitive on the standard symplectic four-ball. The resulting Liouville vector field has a periodic orbit, but the primitive has an explicit boundary-fixed Liouville homotopy to the standard Weinstein primitive. Outcome: the proposed obstruction is false; Proposition 1 is fully proved.
+2. **Homology in finite and infinite covers.** Lifted a two-dimensional handle-core CW model to arbitrary covers and considered local coefficients. Outcome: higher homology vanishes automatically for every genuine 2-handlebody; Proposition 2 is fully proved. The test cannot distinguish the exact from the Weinstein subclass under the target hypothesis.
+3. **Repair known examples by low-index attachment.** Used relative cellular chains and the long exact sequence to show persistence of third homology through arbitrary finite 0-/1-/2-handle attachments. Outcome: the product-and-handle examples cannot be repaired this way; Proposition 3 is fully proved. Round symplectic 1-handles fall under the same obstruction.
+4. **Mixed-torus splitting and reconstruction.** Used the current exact-filling theorem and its Weinstein 1-/2-handle reconstruction to prove a boundary-marked sufficient condition for Weinstein existence. Outcome: Proposition 4 is proved; the necessary splitting, boundary-marked classification, and 2-handlebody inheritance are not established in general.
+
+Stop: partial mathematics with an exact remaining gap, after 4/5 approaches. No fresh fifth route with a concrete candidate or usable universal theorem was identified. Literature non-detection does not establish novelty or continued openness beyond the inspected evidence.
