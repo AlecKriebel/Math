@@ -1829,7 +1829,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1818 | 3227 / OPG-401 | Circular coloring triangle-free subcubic planar graphs | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1819 | 3264 / OPG-46432 | Ádám's Conjecture | 0.0540 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1820 | 3700006 / AMR-036-0006 | Completely invariant Fatou components | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1821 | 8700065 / AMR-086-0065 | Question 5.2 — Bugeaud | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1821 | 8700065 / AMR-086-0065 | Question 5.2 — Bugeaud | 0.0540 | 5.5 | 3 | unknown | already_solved | 1/5 |  | Published affirmative resolution: Beresnevich (2015), Theorem 3 and Appendix B, gives full-dimensional transcendental witnesses. Audited complex lower bound, real upper bound and resultant inclusion of degree-(n+1) algebraics. Beresnevich-Nesharim-Yang (2022), Corollary 1.7, additionally resolves the countable-degree version with degree-dependent constants. Deep published theorems imported; no original-solution claim. See bugeaud_approximation_8700065/REVIEW.md. |  |
 | 1822 | 8800068 / AMR-087-0068 | Worst cases for LLL on ideal lattices | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1823 | 98 / GREEN-006 | Sum-Free Subsets of [N]^d | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1824 | 9900006 / AMR-098-0006 | Coupling characterization of setwise asymptotic stationarity | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
