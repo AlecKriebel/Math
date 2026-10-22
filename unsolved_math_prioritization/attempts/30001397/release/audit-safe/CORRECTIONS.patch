@@ -1,0 +1,70 @@
+--- a/CONTROL_RESULTS.json
++++ b/CONTROL_RESULTS.json
+@@ -4,12 +4,12 @@
+   "families": {
+     "boundary_and_extreme_value_exponents": 13,
+     "exact_tail_integral_brackets": 18,
+-    "exponent_and_moment_identities": 6720,
++    "exponent_and_moment_identities": 5600,
+     "metric_cocycle_identities": 144,
+     "parabolic_iterates_and_intervals": 1677,
+     "square_lattice_annulus_counts": 128
+   },
+   "independent_audit": false,
+   "scope": "Finite algebraic and model controls only. Not a realized elliptic parameter, not a gauge existence or nonexistence test.",
+-  "total_exact_assertions": 8700
++  "total_exact_assertions": 7580
+ }
+--- a/MANIFEST.json
++++ b/MANIFEST.json
+@@ -12,7 +12,7 @@
+     {
+       "path": "CONTROL_RESULTS.json",
+       "bytes": 591,
+-      "sha256": "0071b0f83937678fc08304f7b804e4af1015d915b6c648768cb81cbfa731b47f"
++      "sha256": "875da12941514b64d1ba005c0dc98b051643a0fc3c1d947056c44d8307fa240c"
+     },
+     {
+       "path": "LIMITATIONS.md",
+@@ -21,8 +21,8 @@
+     },
+     {
+       "path": "PROOF.md",
+-      "bytes": 19226,
+-      "sha256": "7f2c4a059988349ea71f66bb15531b535a09a4fd46806b5a44648642e10809e2"
++      "bytes": 19440,
++      "sha256": "96755e6fef1cb6f67fd2276c2c485f2d946858b7f460159f5717c71ac8bdcc1c"
+     },
+     {
+       "path": "README.md",
+@@ -62,7 +62,7 @@
+     {
+       "path": "verify.py",
+       "bytes": 3488,
+-      "sha256": "c5a05fdfadd5618064b317d504efcbb950a18f7a098d260d0eb550d5a1525a2a"
++      "sha256": "6c352c67925b3231abadf50acc2e19d1ab3d5b491308b5c81749a2a0a57ac677"
+     },
+     {
+       "path": "verify_manifest.py",
+--- a/PROOF.md
++++ b/PROOF.md
+@@ -52,7 +52,7 @@
+ 
+ ### Metric warning
+ 
+-Use spherical line element rho(z)|dz| with rho(z)=(1+|z|^2)^(-1); multiplying the metric by a fixed constant changes only the normalization. The spherical derivative is f#(z)=|f'(z)|rho(f(z))/rho(z). If m_s is spherical h-conformal, then
++Use spherical line element rho(z)|dz| with rho(z)=(1+|z|^2)^(-1). For an index-h regularly varying gauge, multiplying the metric by a constant c multiplies its Hausdorff measure by c^h. For an arbitrary gauge, the corresponding exact representation is preserved by replacing g(r) with g(r/c); it need not be a scalar rescaling of the fixed-gauge measure. The spherical derivative is f#(z)=|f'(z)|rho(f(z))/rho(z). If m_s is spherical h-conformal, then
+ 
+ dm_e(z)=rho(z)^(-h) dm_s(z)
+ 
+--- a/verify.py
++++ b/verify.py
+@@ -21,7 +21,7 @@
+                 a=h*F(p+1,p)
+                 assert p*(a-1)==beta
+                 assert (a>2)==(h>F(2*p,p+1))
+-                n+=6
++                n+=5
+                 tested.append([q,p,str(h),str(alpha),str(beta)])
+     counts['exponent_and_moment_identities']=n
+     # Exact chain-rule and interval controls for phi(x)=x/(1+x).

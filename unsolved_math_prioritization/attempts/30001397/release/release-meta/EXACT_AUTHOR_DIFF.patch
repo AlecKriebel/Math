@@ -1,0 +1,79 @@
+--- original/CONTROL_RESULTS.json
++++ corrected/CONTROL_RESULTS.json
+@@ -4,12 +4,12 @@
+   "families": {
+     "boundary_and_extreme_value_exponents": 13,
+     "exact_tail_integral_brackets": 18,
+-    "exponent_and_moment_identities": 6720,
++    "exponent_and_moment_identities": 5600,
+     "metric_cocycle_identities": 144,
+     "parabolic_iterates_and_intervals": 1677,
+     "square_lattice_annulus_counts": 128
+   },
+   "independent_audit": false,
+   "scope": "Finite algebraic and model controls only. Not a realized elliptic parameter, not a gauge existence or nonexistence test.",
+-  "total_exact_assertions": 8700
++  "total_exact_assertions": 7580
+ }
+--- original/MANIFEST.json
++++ corrected/MANIFEST.json
+@@ -12,7 +12,7 @@
+     {
+       "path": "CONTROL_RESULTS.json",
+       "bytes": 591,
+-      "sha256": "0071b0f83937678fc08304f7b804e4af1015d915b6c648768cb81cbfa731b47f"
++      "sha256": "875da12941514b64d1ba005c0dc98b051643a0fc3c1d947056c44d8307fa240c"
+     },
+     {
+       "path": "LIMITATIONS.md",
+@@ -21,8 +21,8 @@
+     },
+     {
+       "path": "PROOF.md",
+-      "bytes": 19226,
+-      "sha256": "7f2c4a059988349ea71f66bb15531b535a09a4fd46806b5a44648642e10809e2"
++      "bytes": 19921,
++      "sha256": "93e02e2c50b0fe2bd6c0505ef4a5757af36af3f1da2dc6ce25d16ef4ff24b7c6"
+     },
+     {
+       "path": "README.md",
+@@ -62,7 +62,7 @@
+     {
+       "path": "verify.py",
+       "bytes": 3488,
+-      "sha256": "c5a05fdfadd5618064b317d504efcbb950a18f7a098d260d0eb550d5a1525a2a"
++      "sha256": "6c352c67925b3231abadf50acc2e19d1ab3d5b491308b5c81749a2a0a57ac677"
+     },
+     {
+       "path": "verify_manifest.py",
+--- original/PROOF.md
++++ corrected/PROOF.md
+@@ -52,7 +52,7 @@
+ 
+ ### Metric warning
+ 
+-Use spherical line element rho(z)|dz| with rho(z)=(1+|z|^2)^(-1); multiplying the metric by a fixed constant changes only the normalization. The spherical derivative is f#(z)=|f'(z)|rho(f(z))/rho(z). If m_s is spherical h-conformal, then
++Use spherical line element rho(z)|dz| with rho(z)=(1+|z|^2)^(-1). For an index-h regularly varying gauge, multiplying the metric by a constant c multiplies its Hausdorff measure by c^h. For an arbitrary gauge, the corresponding exact representation is preserved by replacing g(r) with g(r/c); it need not be a scalar rescaling of the fixed-gauge measure. The spherical derivative is f#(z)=|f'(z)|rho(f(z))/rho(z). If m_s is spherical h-conformal, then
+ 
+ dm_e(z)=rho(z)^(-h) dm_s(z)
+ 
+@@ -142,6 +142,8 @@
+ 
+ m_e(B_e(x,r_j))/r_j^h >= c d_j^(-gamma), gamma=q(2-h)>0.
+ 
++The radii tend to zero, as required for the density argument. The inverse branches in this construction are defined on disks of a fixed radius R>0 centered at f^(n_j)(x), and their images omit a fixed pole c. Since each branch maps its disk center to the fixed finite point x, Koebe's quarter theorem gives R/(4D_j)<=|x-c|. Thus 1/D_j is bounded, and d_j->0 implies r_j=K d_j/D_j->0. This supplies no quantitative relation between the contraction D_j and the return distance d_j.
++
+ For g(r)=r^h L(1/r), this yields
+ 
+ m_e(B_e(x,r_j))/g(r_j) >= c d_j^(-gamma)/L(1/r_j).
+--- original/verify.py
++++ corrected/verify.py
+@@ -21,7 +21,7 @@
+                 a=h*F(p+1,p)
+                 assert p*(a-1)==beta
+                 assert (a>2)==(h>F(2*p,p+1))
+-                n+=6
++                n+=5
+                 tested.append([q,p,str(h),str(alpha),str(beta)])
+     counts['exponent_and_moment_identities']=n
+     # Exact chain-rule and interval controls for phi(x)=x/(1+x).

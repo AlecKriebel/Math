@@ -677,7 +677,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 666 | 30001138 / OWR-3385-009 | Linked Skeletons of Convex Four-Polytopes | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 667 | 30001155 / OWR-3389-006 | Area-Refined Spectral Gap Bounds for Convex Domains | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 668 | 30001222 / OWR-3400-006 | Rigidity Under Stable Equivalence of Quantum Complete Intersections | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 669 | 30001397 / OWR-4137-017 | Hausdorff Gauges for Conformal Measures of Elliptic Maps | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 669 | 30001397 / OWR-4137-017 | Hausdorff Gauges for Conformal Measures of Elliptic Maps | 0.1050 | 5.5 | 3 | 2009 | unsolved | 5/5 |  |  |  |
 | 670 | 10300062 / AMR-102-0062 | Immersed objects — Question 14.2 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 671 | 10400081 / AMR-103-0081 | Conjecture 4.3 — If every closed incompressible surface in M is parallel to ∂M, then S2,∞(M ) is torsion free. | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 672 | 10900010 / AMR-108-0010 | 3.2 (Agol) — A minimal-Thurston-norm surface from a tree action | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
