@@ -1,0 +1,17 @@
+# Source and novelty ledger
+
+Checked 2026-10-10 UTC. This is a bounded review, not a global novelty certificate.
+
+## Verified primary mathematical sources
+
+1. Zoltán Füredi's contribution to Combinatorics, Oberwolfach Report 01/2011, printed p. 20 (PDF p. 16), Conjecture 2. Public report: https://doi.org/10.4171/owr/2011/01 . An earlier source inspection visually checked the missing-edge bar and exact asymptotic target on this page. The proof attempt read the corresponding source text but did not freshly inspect that page visually. Public PDF identity: 731,310 bytes; SHA-256 `8462a700e9ce284ec1d3c3a5a5036ffac53bbbba6eceb5f9a7d0498153c74048`.
+
+2. Zoltán Füredi and Younjin Kim, Cycle-saturated graphs with minimum number of edges, arXiv:1103.0067v1, https://arxiv.org/pdf/1103.0067 . PDF pp. 5–6 were visually rechecked during the proof attempt; the independent auditor additionally rendered and visually inspected pp. 1, 5 and 6. Public PDF identity: 188,909 bytes; SHA-256 `1f049570ebbe0fbc760c0b6eb964044869bf74184ede791c91f8db78482df4ea`. The coordinator also visually checked pp. 5–6. Equation (6) uses a ceiling, and Conjecture 4.1 separately states the asymptotic formula and suggests eventual equality in (6). Lemma 7.1 and sections 8–9 were read as text; the recorded text-page range is pp. 5, 6, 8, 9, 10 and 11. The original construction and basic leaf lemmas are credited to this source. The partial lower bounds and one-hub-leaf modification in the authored packet were independently derived here; first-discovery priority is not established.
+
+3. Publication metadata: https://onlinelibrary.wiley.com/doi/abs/10.1002/jgt.21668 confirms J. Graph Theory 73 (2013), 203–215, with version of record first online 7 August 2012. Search-indexed text of an author-hosted journal copy repeats the optional exact-equality suggestion. However https://old.renyi.hu/~furedi/PUBS3/furedi_220_younjinkim_cycle-saturated-graphs.pdf returned HTTP 404 through web access and direct retrieval; the direct attempt was recorded at 2026-10-10T01:33:14.102720+00:00. Journal bytes were not downloaded or visually inspected in this attempt. The correction claim is therefore anchored to the verified arXiv statement, with journal persistence only an indexed-text lead. The auditor checked the official arXiv record, which listed v1 as the sole submission-history entry; a fresh request for https://arxiv.org/pdf/1103.0067v1 returned a browser cache miss. No fresh remote PDF byte comparison was performed.
+
+## Bounded search scope and limits
+
+Fresh searches included C5/C_5 with semisaturated, semisaturation with five-cycle, graph+cycle+semisaturated+lower bound, strongly saturated+C5, exact 11/8 variants, and semisaturated with 8t/11t/leaf. They retrieved the original sources, Kim's thesis, and unrelated/variant notions. None identified a later matching lower bound, the one-hub-leaf correction, or these rooted subclass theorems. This is a useful negative answer only within the searched accessible/indexed material. Search-indexed dates are often crawl dates; they were not used to infer recent publication.
+
+No broad citation-network review, paywalled full-text search, private source search, or contact with an outside researcher was performed. No claim that the general conjecture is currently universally accepted as open follows solely from these searches. No first-discovery or journal-error claim should be made beyond the precise verified arXiv text without further review.
