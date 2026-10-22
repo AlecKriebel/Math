@@ -1,0 +1,11 @@
+# Exact mathematical inputs and attribution
+
+Two public campaign proofs are copied unchanged into inputs/ for a self-contained audit of the corollary's dependencies.
+
+1. inputs/K804A_PROOF.md, SHA256 d92e9a82674b1562e0b980c78088fc48319f9fc3d9d46ec55a1a46c893e372b8, is the exact proof from [PR207](https://github.com/AlecKriebel/Math/pull/207), head a7f8486548122c7d545430821afeedbccf48b3e7. Its [pinned remote file](https://github.com/AlecKriebel/Math/blob/a7f8486548122c7d545430821afeedbccf48b3e7/unsolved_math_prioritization/attempts/5100044/PROOF.md) has Git blob d4968f8ddfe7a5f8393252e4473132612cd4224c, verified equal to the copy. The already completed separate review accepted its full strict elliptic-caustic product theorem, including its dedicated N=4 pole analysis. This is an input, not a claim that the current target had already been attempted.
+
+2. inputs/K404_PROOF.md, SHA256 b8edd78d03dac33a7be77837649eef7a8558900b3499774725174836fa54d462, is the exact proof from the k404 / 5100022 frozen candidate, [pinned remote file](https://github.com/AlecKriebel/Math/blob/ffd8d5d8a3a09c7613a5adafa8fbb2b4e2ff0407/attempts/5100022/PROOF.md). Its §§3–5 prove that the focal antipedal area is proportional to the original area for every primitive even period. That is the input used here. Its later §6 parity specialization concerns a different quotient and is not substituted for the general-even lemma. At the time of this freeze its separate review is in progress; publication of this consequence requires validation of that input as well as the exact k817 source/domain match.
+
+The present author wrote the k404 proof and previously reviewed related focal pedal work. The parallel k403,b author reported the same antipedal lemma after the k404 proof was written; the ensuing mathematical exchange is shared author coordination. Neither interaction is independent review of this corollary. No novelty or priority assertion is made.
+
+Stachel's published canonical parametrization and the classical Jacobi/compact-torus arguments used in both proofs retain their citations. Garcia–Reznik's published low-period inverse-product results remain credited by the first input. These copied files are campaign-authored mathematical artifacts, not reproduced third-party PDFs.
