@@ -1,0 +1,5 @@
+# Research log
+
+- 2026-10-01 15:29–15:34 UTC: completed exact source/prior gate. Recovered the original report, full published2012 paper, source function spaces and later-results' positivity assumptions. The ordinary locally L² correction and weighted completion are distinct targets.
+- 2026-10-01 15:34 UTC: substantive author turn1 starts. Route: a smooth scalar conductivity vanishing on a meridional cut of a toroidal conductor, with a divergence-free circulation field. Aim to distinguish approximation by weighted gradients from existence of an ordinary correction by an exact dual test.
+- 2026-10-01 15:48 UTC: completed substantive turn1. The explicit smooth meridional-degeneracy example gives a complete candidate excluding every H¹-local correction for a smooth solenoidal input. The weighted projection is separately retained. All323 symbolic controls replay identically; source topology, ordinary W(curl) output and distributional test extension are identified as mandatory independent audit points. Four author turns remain if a gap is found.
