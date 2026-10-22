@@ -1,0 +1,447 @@
+{
+  "exact_originals_unchanged": 59,
+  "fresh_active_diagnostic_failure_controls": 24,
+  "fresh_diagnostic_runs": 24,
+  "limits": [
+    "The root manifest and receipt must be compared with trusted external pins.",
+    "No checksum prevents a malicious party from rewriting an entire package and replacing all trusted pins.",
+    "Manual content review supports the source and privacy boundary; a marker scan alone cannot certify it."
+  ],
+  "manifest_file_exclusions": [
+    "MANIFEST.json (root self-reference only)"
+  ],
+  "package_validation_before_evidence_seal": [
+    {
+      "mode": "normal",
+      "result": {
+        "checked_replay_records": 2,
+        "citation_only_pdf_pins_not_bundled": 15,
+        "distinct_external_source_pin_sets": 5,
+        "embedded_artifact_pins_checked": 100,
+        "exact_original_copies": 59,
+        "frozen_acceptance_and_scope_anchors": 4,
+        "local_markdown_links_checked": 44,
+        "optimization_flag": 0,
+        "original_json_digest_fields_checked": 115,
+        "python_files_without_assert_nodes": 10,
+        "recorded_active_failure_controls_per_replay": 24,
+        "recorded_checker_runs_per_replay": 24,
+        "scope": "Packaging integrity only; this command does not rerun the diagnostic programs or prove the mathematics.",
+        "sealed_files": 75,
+        "status": "PASS",
+        "text_files_exempted_from_private_marker_scan": 0
+      }
+    },
+    {
+      "mode": "O",
+      "result": {
+        "checked_replay_records": 2,
+        "citation_only_pdf_pins_not_bundled": 15,
+        "distinct_external_source_pin_sets": 5,
+        "embedded_artifact_pins_checked": 100,
+        "exact_original_copies": 59,
+        "frozen_acceptance_and_scope_anchors": 4,
+        "local_markdown_links_checked": 44,
+        "optimization_flag": 1,
+        "original_json_digest_fields_checked": 115,
+        "python_files_without_assert_nodes": 10,
+        "recorded_active_failure_controls_per_replay": 24,
+        "recorded_checker_runs_per_replay": 24,
+        "scope": "Packaging integrity only; this command does not rerun the diagnostic programs or prove the mathematics.",
+        "sealed_files": 75,
+        "status": "PASS",
+        "text_files_exempted_from_private_marker_scan": 0
+      }
+    },
+    {
+      "mode": "OO",
+      "result": {
+        "checked_replay_records": 2,
+        "citation_only_pdf_pins_not_bundled": 15,
+        "distinct_external_source_pin_sets": 5,
+        "embedded_artifact_pins_checked": 100,
+        "exact_original_copies": 59,
+        "frozen_acceptance_and_scope_anchors": 4,
+        "local_markdown_links_checked": 44,
+        "optimization_flag": 2,
+        "original_json_digest_fields_checked": 115,
+        "python_files_without_assert_nodes": 10,
+        "recorded_active_failure_controls_per_replay": 24,
+        "recorded_checker_runs_per_replay": 24,
+        "scope": "Packaging integrity only; this command does not rerun the diagnostic programs or prove the mathematics.",
+        "sealed_files": 75,
+        "status": "PASS",
+        "text_files_exempted_from_private_marker_scan": 0
+      }
+    }
+  ],
+  "private_marker_scan_filename_exclusions": [],
+  "scope": "Package integrity, exact artifact preservation and active failure controls only; no mathematical proof certification.",
+  "status": "PASS",
+  "successful_tamper_rejections": 51,
+  "tamper_case_count": 17,
+  "tamper_controls": [
+    {
+      "case": "changed_proof",
+      "exit_code": 1,
+      "expected_rejection": "Byte count mismatch",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "missing_proof",
+      "exit_code": 1,
+      "expected_rejection": "File membership differs",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "unexpected_pdf",
+      "exit_code": 1,
+      "expected_rejection": "Unexpected file type",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "changed_nested_manifest_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Original pin mismatch",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "changed_acceptance_anchor_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Frozen acceptance anchor mismatch",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "duplicate_manifest_record",
+      "exit_code": 1,
+      "expected_rejection": "Duplicate manifest member",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "duplicate_json_key",
+      "exit_code": 1,
+      "expected_rejection": "Duplicate JSON key",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "private_marker_in_validator_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Private-path/material marker found",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "private_marker_in_nested_validator_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Private-path/material marker found",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "untracked_fifo",
+      "exit_code": 1,
+      "expected_rejection": "Unexpected filesystem entry type",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "symlink",
+      "exit_code": 1,
+      "expected_rejection": "Symbolic links are not admitted",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "disguised_pdf_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Disguised PDF document",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "omitted_embedded_mapping_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Embedded pin coverage differs",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "unqualified_source_resolution",
+      "exit_code": 1,
+      "expected_rejection": "Unqualified source resolution",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "changed_operational_disposition",
+      "exit_code": 1,
+      "expected_rejection": "Source disposition changed",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "changed_pass_count",
+      "exit_code": 1,
+      "expected_rejection": "Pass count changed",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "broken_local_link_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Broken local Markdown link",
+      "expected_rejection_observed": true,
+      "mode": "normal"
+    },
+    {
+      "case": "changed_proof",
+      "exit_code": 1,
+      "expected_rejection": "Byte count mismatch",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "missing_proof",
+      "exit_code": 1,
+      "expected_rejection": "File membership differs",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "unexpected_pdf",
+      "exit_code": 1,
+      "expected_rejection": "Unexpected file type",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "changed_nested_manifest_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Original pin mismatch",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "changed_acceptance_anchor_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Frozen acceptance anchor mismatch",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "duplicate_manifest_record",
+      "exit_code": 1,
+      "expected_rejection": "Duplicate manifest member",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "duplicate_json_key",
+      "exit_code": 1,
+      "expected_rejection": "Duplicate JSON key",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "private_marker_in_validator_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Private-path/material marker found",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "private_marker_in_nested_validator_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Private-path/material marker found",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "untracked_fifo",
+      "exit_code": 1,
+      "expected_rejection": "Unexpected filesystem entry type",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "symlink",
+      "exit_code": 1,
+      "expected_rejection": "Symbolic links are not admitted",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "disguised_pdf_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Disguised PDF document",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "omitted_embedded_mapping_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Embedded pin coverage differs",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "unqualified_source_resolution",
+      "exit_code": 1,
+      "expected_rejection": "Unqualified source resolution",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "changed_operational_disposition",
+      "exit_code": 1,
+      "expected_rejection": "Source disposition changed",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "changed_pass_count",
+      "exit_code": 1,
+      "expected_rejection": "Pass count changed",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "broken_local_link_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Broken local Markdown link",
+      "expected_rejection_observed": true,
+      "mode": "O"
+    },
+    {
+      "case": "changed_proof",
+      "exit_code": 1,
+      "expected_rejection": "Byte count mismatch",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "missing_proof",
+      "exit_code": 1,
+      "expected_rejection": "File membership differs",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "unexpected_pdf",
+      "exit_code": 1,
+      "expected_rejection": "Unexpected file type",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "changed_nested_manifest_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Original pin mismatch",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "changed_acceptance_anchor_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Frozen acceptance anchor mismatch",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "duplicate_manifest_record",
+      "exit_code": 1,
+      "expected_rejection": "Duplicate manifest member",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "duplicate_json_key",
+      "exit_code": 1,
+      "expected_rejection": "Duplicate JSON key",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "private_marker_in_validator_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Private-path/material marker found",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "private_marker_in_nested_validator_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Private-path/material marker found",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "untracked_fifo",
+      "exit_code": 1,
+      "expected_rejection": "Unexpected filesystem entry type",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "symlink",
+      "exit_code": 1,
+      "expected_rejection": "Symbolic links are not admitted",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "disguised_pdf_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Disguised PDF document",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "omitted_embedded_mapping_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Embedded pin coverage differs",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "unqualified_source_resolution",
+      "exit_code": 1,
+      "expected_rejection": "Unqualified source resolution",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "changed_operational_disposition",
+      "exit_code": 1,
+      "expected_rejection": "Source disposition changed",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "changed_pass_count",
+      "exit_code": 1,
+      "expected_rejection": "Pass count changed",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    },
+    {
+      "case": "broken_local_link_resealed",
+      "exit_code": 1,
+      "expected_rejection": "Broken local Markdown link",
+      "expected_rejection_observed": true,
+      "mode": "OO"
+    }
+  ],
+  "tamper_mode_count": 3,
+  "validator_pin": {
+    "bytes": 12568,
+    "sha256": "c268606231f512b933c63e94c5de55632002d5d5532e3191358d32b6ee8d53ca"
+  }
+}
