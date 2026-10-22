@@ -1,0 +1,54 @@
+--- original/REPORT.md
++++ corrected/REPORT.md
+@@ -14,7 +14,7 @@
+ 
+ Barlet–Magnússon (2004), Theorem 0.7, needs generically finite incidence with Y and an additional local separation condition. Sections 3.18–3.24 implement separation using intersection points, first normal directions, or suitable tangent cones; the relevant maximal-pole component matters. The fibration case in Corollary 0.8 is affirmative. The cases p=1 and n=0 are already known (Remarks 0.6(1), 0.2(3)).
+ 
+-Theorem 4.3 reduces an effective, generically irreducible reduced covering family to a residual case: dim S=p, no compact covering family of positive-dimensional Moishezon cycles on S, divisorial incidence Σ, and S\Σ a proper modification of a Stein space. Remark 4.4(2) gives holomorphic functions on a complement, explicitly allowing essential boundary singularities. This is not a meromorphic-extension theorem.
++Theorem 4.3 reduces an effective, generically irreducible reduced covering family to a residual case: dim S=p, no compact covering family of positive-dimensional Moishezon cycles on S, divisorial incidence Σ, and S\Σ a proper modification of a Stein space. Remark 4.4(2) gives holomorphic functions on a complement; Introduction 0.9 explicitly warns that these may have essential boundary singularities. This is not a meromorphic-extension theorem.
+ 
+ The relevant proofs in §§3.15–3.25 and §4 were inspected in the complete 42-page primary PDF. Foundational results cited there were not independently reproved.
+ 
+@@ -34,6 +34,6 @@
+ 
+ ## Validation and limits
+ 
+-The accompanying standard-library Python checker verifies exact dimension formulas, selected Taylor coefficients, finite-dimensional trace identities, and explicit rejection of corrupted values. It does not certify analytic geometry or replace the written proofs. It performs no floating-point experiment and writes no files by default. Checks run under both normal Python and optimized Python.
++The accompanying standard-library Python checker verifies exact dimension formulas, selected Taylor coefficients, finite-dimensional trace identities, and explicit rejection of corrupted values. It does not certify analytic geometry or replace the written proofs. It performs no floating-point experiment and writes no files by default. The original checker is unchanged. Independent audit tests additionally compare its trace values with rational multiplication matrices and its Taylor coefficients with a formal derivative/inverse-series calculation. All three CLI modes, with and without injected failures, and 22 semantic mutations were tested under normal Python, -O and -OO, with actual UID/EUID 1000 and real denial of file-write and file-creation attempts in the read-only packet. Source-interface guards are documentary checks, not formal proofs of the cited sources.
+ 
+ The general target remains unresolved by this audit. Bounded primary-literature checks through 8 October 2026 did not locate a later full theorem; they are not an exhaustive proof of worldwide openness. Independent mathematical review remains appropriate before relying on the partial lemmas in another proof.
+--- original/JET_SEPARATION.md
++++ corrected/JET_SEPARATION.md
+@@ -14,9 +14,9 @@
+ 
+ Let U be a connected complex manifold of dimension d and let a_j∈O(U), j∈N, be a countable collection that jointly separates points. Then some finite subcollection has differential of rank d on a nonempty open subset.
+ 
+-Proof. Let r be the largest rank attained by any finite subcollection, and choose a finite map A of rank r at a point. After shrinking, A has constant rank r. For each j, the map (A,a_j) has rank at most r, so da_j vanishes on the tangent spaces of A's local fibres. Each a_j is therefore constant on a connected local fibre. If r<d, such a fibre contains distinct points, contrary to joint separation. Hence r=d. A nonzero maximal minor also shows that the full-rank locus is dense in U. ∎
++Proof. Let r be the largest rank attained by any finite subcollection, and choose a finite map A of rank r at a point. After shrinking, A has constant rank r. For each j, the map (A,a_j) has rank at most r, so da_j vanishes on the tangent spaces of A's local fibres. Each a_j is therefore constant on a connected local fibre. If r<d, such a fibre contains distinct points, contrary to joint separation. Hence r=d. For the selected finite map, its d-th exterior differential is a holomorphic section that is nonzero somewhere, so its zero set has empty interior on connected U. Thus its full-rank locus is open and dense. ∎
+ 
+-Apply this to the Taylor coefficients of an analytically varying local graph, including the coordinates of its centre. If its complete graph germ determines the parameter, finitely many coefficients give generic local separation. For distinct reduced irreducible global cycles, equality of a nonempty open germ forces equality of the cycles. This explains why higher jets can recover parameters missed by tangent data, whenever such a graph chart and effective local parameterization are available.
++Apply this to the Taylor coefficients of an analytically varying local graph, including the coordinates of its centre. If its complete graph germ determines the parameter, finitely many coefficients give generic local separation. For distinct reduced irreducible global cycles, equality of a nonempty open germ forces equality of the cycles. This explains why higher jets can recover parameters missed by tangent data, whenever such a graph chart and effective local parameterization are available. The conclusion is generic local separation. It does not assert that a map on an arbitrary noncompact chart has globally finite fibres, nor that the coefficient functions extend meromorphically to the compact parameter space.
+ 
+ ## Why this does not complete the global argument
+ 
+--- original/BOUNDARY_GROWTH.md
++++ corrected/BOUNDARY_GROWTH.md
+@@ -10,7 +10,7 @@
+ 
+ Proof. The function σ^N h_i is locally bounded and holomorphic off Σ. The Riemann extension theorem on a normal complex space extends it holomorphically across Σ. Hence h_i extends meromorphically. Its extensions remain algebraically independent, since any polynomial relation restricts to one on the dense open set S\Σ. Thus a(S)≥p, while a(S)≤dim S=p. ∎
+ 
+-Now suppose there is an irreducible compact incidence space G, with dominant projections q:G→S and e:G→Z, where Z is a compact connected complex manifold and e is generically finite. Replace G by its normalization if necessary. Pullback injects M(S) into M(G). A proper generically finite map induces a finite extension M(G)/M(Z): on the finite locus, the elementary symmetric functions of the conjugate values of any meromorphic function are meromorphic on Z and give a monic polynomial for that function; these coefficients extend meromorphically across the exceptional locus. Consequently a(G)=a(Z), so the preceding growth condition implies a(Z)≥p.
++Now suppose there is an irreducible compact incidence space G, with dominant projections q:G→S and e:G→Z, where Z is a compact connected complex manifold and e is generically finite. Replace G by its normalization if necessary. Pullback injects M(S) into M(G). A proper generically finite holomorphic map induces a finite extension M(G)/M(Z). More explicitly, its Stein factorization is G→T→Z, with T normal, the first map a proper modification and the second finite. Modification invariance gives M(G)=M(T). For a meromorphic function on T, the elementary symmetric functions of its values on a generic finite fibre extend meromorphically on Z, including across branch and pole loci: locally on Z, finite direct image and a common denominator reduce this to the holomorphic symmetric-function construction. The resulting monic polynomial has degree at most the finite covering degree. Every finitely generated intermediate field is simple in characteristic zero and has degree at most that same bound, so the entire field extension is finite. This argument starts with functions meromorphic on the whole compact space; it gives no extension theorem for functions defined only off a divisor. Consequently a(G)=a(Z), so the preceding growth condition implies a(Z)≥p.
+ 
+ This isolates a sufficient bridge in the minimal-parameter incidence setting. The original geometric hypotheses have not been shown here to supply p functions with these growth bounds.
+ 
+--- original/INCIDENCE_CAVEAT.md
++++ corrected/INCIDENCE_CAVEAT.md
+@@ -4,6 +4,6 @@
+ 
+ Let S=P(V/W)=P². A point [ℓ]∈S is a one-dimensional subspace of V/W. Its inverse image V_ℓ⊂V has dimension three. Put X_[ℓ]=P(V_ℓ). The universal linear-subspace construction gives an analytic family of compact two-cycles with smooth compact normal parameter space S. Every point of Z lies in at least one X_[ℓ]: a vector outside W determines [ℓ], and every vector in W lies in all V_ℓ.
+ 
+-But X_[ℓ]∩Y=Y for every parameter. Therefore the incidence locus Σ equals S, and the incidence projection has one-dimensional fibres everywhere. No member meets Y in a finite set.
++But X_[ℓ]∩Y=Y for every parameter. Therefore the incidence locus Σ equals S, and the incidence projection {(s,y): y∈X_s∩Y}→S has one-dimensional fibres everywhere. No member meets Y in a finite set.
+ 
+ Consequently compactness, covering, analytic variation and positivity of N_{Y/Z} do not by themselves imply that this particular family has generically finite incidence with Y. In this example a(Z)=4≥2, so it is not a counterexample to the algebraic-dimension question. A successful general argument must handle this case or legitimately replace the family; it cannot silently apply a finite-incidence theorem to the supplied family.
