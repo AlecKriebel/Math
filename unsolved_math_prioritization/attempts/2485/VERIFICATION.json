@@ -1,0 +1,134 @@
+{
+  "schema": "ep1095-aggregate-verification-1",
+  "scope": "Historical mathematical regression and exact-minimality replay metadata authenticated during public-edition preparation. No finite search or certificate-verifier rerun was performed by edition preparation.",
+  "exact_minimality": {
+    "status": "PASS",
+    "k_from": 1,
+    "k_through": 46,
+    "accepted_records": 46,
+    "total_exclusion_intervals": 2562964,
+    "independent_kernel": "Local tables via exact binomial integers; complete periodic interval counts; no import of search code",
+    "arithmetic": "Python arbitrary-precision integers, no machine-word overflow",
+    "execution_modes": [
+      "normal",
+      "-O",
+      "-OO"
+    ],
+    "mode_reports_byte_identical": true,
+    "report_identity": {
+      "bytes": 3759,
+      "sha256": "b7c5be8bf83ea46a9a3df1d29d456d4d92b53bcd6090454716c590cbdf781c4c"
+    },
+    "independent_audit_replay_byte_identical": true,
+    "raw_certificates_or_per_minimum_records_distributed": false,
+    "stopping_scope": "A continuation configured through 60 was interrupted during incomplete k=47; no k=47 certificate is included and no minimality beyond 46 follows."
+  },
+  "negative_controls": {
+    "status": "PASS",
+    "total": 5,
+    "resealed_semantic_controls": 4,
+    "stale_checksum_controls": 1,
+    "all_three_author_modes_and_independent_replay_byte_identical": true,
+    "report_identity": {
+      "bytes": 709,
+      "sha256": "3a3dac2056db77d994cb91f20c57f943002c948747a065f1a6e7ff2a06b0f97c"
+    },
+    "controls": [
+      {
+        "control": "uncovered initial integer",
+        "result": "REJECTED",
+        "reason": "Interval partition failure",
+        "type": "resealed semantic"
+      },
+      {
+        "control": "interval includes admissible n=7",
+        "result": "REJECTED",
+        "reason": "Nonempty local admissible interval",
+        "type": "resealed semantic"
+      },
+      {
+        "control": "wrong rejecting prime",
+        "result": "REJECTED",
+        "reason": "Nonempty local admissible interval",
+        "type": "resealed semantic"
+      },
+      {
+        "control": "wrong alleged minimum",
+        "result": "REJECTED",
+        "reason": "Wrong final bound",
+        "type": "resealed semantic"
+      },
+      {
+        "control": "stale certificate checksum",
+        "result": "REJECTED",
+        "reason": "Certificate hash mismatch",
+        "type": "stale-checksum integrity"
+      }
+    ]
+  },
+  "independent_analytic_regressions": {
+    "all_passed": true,
+    "checks": {
+      "exact_prime_transition": {
+        "prime_range": [
+          3,
+          43
+        ],
+        "n_upper": 2000,
+        "cases": 25708
+      },
+      "filter_counterexample_family": {
+        "k_range": [
+          2,
+          1000
+        ],
+        "cases": 999,
+        "small_example": {
+          "k": 3,
+          "n": 5,
+          "binomial": 10
+        }
+      },
+      "finite_union_bound": {
+        "k_range": [
+          3,
+          80
+        ],
+        "y_range": "all integers 0<=y<=k",
+        "D_less_than_1_cases": 2669,
+        "bad_residues_tested": 614438,
+        "max_T": 1019,
+        "max_first_witness_t": 9,
+        "independent_exact_binomial_checks": "all accepted parameter pairs k<=20"
+      }
+    },
+    "script_sha256": "6a1b63f68fd66c6a625a129a8a33ad9629463991f9380d9e3add3c07a1f5c2e5",
+    "historical_report_identity": {
+      "bytes": 803,
+      "sha256": "88db2c0229ea23ae1b80b3599043ac449b48911551aa3015a9c80dfc96cab57c"
+    }
+  },
+  "independent_density_ratio_checks": {
+    "arithmetic": "Exact rational Fraction reconstruction of both full digit densities",
+    "prime_from": 3,
+    "prime_through": 199,
+    "prime_cases": 45,
+    "identity_and_inequality_all_passed": true
+  },
+  "source_table_comparison": {
+    "public_source_url": "https://github.com/AlexanderEastwood/erdos-selfridge/blob/main/data/b003458_1to400.txt",
+    "frozen_source_bytes": 9814,
+    "frozen_source_sha256": "4ea258ccb2c7deac8823ce1f8a0dced414df01846978c034c16c16da269dbc80",
+    "independently_proved_prefix": [
+      1,
+      46
+    ],
+    "values_match": true,
+    "remaining_values_minimality": "Not independently certified here"
+  },
+  "source_table_byte_identity_caution": "The frozen local public-table capture has one extra terminal LF compared with the upstream Git blob. The 9,814-byte SHA-256 pin is the unchanged local capture. Removing exactly that terminal byte yields upstream Git blob 889292916020ffb11302a95e4cdd7fd0822ec2a5. No byte-identity claim is made for the unnormalized capture.",
+  "earlier_screen_scope": "All 400 published witnesses passed admissibility checks; independent exhaustive minimality then covered only k<=20. This continuation extends that independent minimality scope to 46, not the literature computation frontier.",
+  "analytical_proofs_depend_on_finite_checks": false,
+  "private_programs_or_data_distributed": false,
+  "source_author_code_executed": false
+}
