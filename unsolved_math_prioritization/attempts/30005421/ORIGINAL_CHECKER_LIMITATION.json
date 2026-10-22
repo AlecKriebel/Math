@@ -1,0 +1,64 @@
+{
+  "status": "ORIGINAL_OPTIMIZATION_LIMITATION_CONFIRMED",
+  "original_sha256": "853fc02a91e743a3d7c77d6b5080aaa0d8985974d4fc59a23ee129308b918ec4",
+  "original_assert_count": 10,
+  "mutation": "Prepend exactly: assert False, \"deliberate audit sentinel\"\\n. Originals are unmodified.",
+  "normal_output_byte_exact": true,
+  "runs": [
+    {
+      "mode": "normal",
+      "sentinel_mutation": false,
+      "exit_code": 0,
+      "stdout_bytes": 1918,
+      "stdout_sha256": "dafc7120f2984cbce8a857341517eb2df65a975ba563868f01d7d79d4d8be37f",
+      "same_stdout_as_original_results": true,
+      "stderr_has_sentinel_assertion": false
+    },
+    {
+      "mode": "normal",
+      "sentinel_mutation": true,
+      "exit_code": 1,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_stdout_as_original_results": false,
+      "stderr_has_sentinel_assertion": true
+    },
+    {
+      "mode": "optimized",
+      "sentinel_mutation": false,
+      "exit_code": 0,
+      "stdout_bytes": 1918,
+      "stdout_sha256": "dafc7120f2984cbce8a857341517eb2df65a975ba563868f01d7d79d4d8be37f",
+      "same_stdout_as_original_results": true,
+      "stderr_has_sentinel_assertion": false
+    },
+    {
+      "mode": "optimized",
+      "sentinel_mutation": true,
+      "exit_code": 0,
+      "stdout_bytes": 1918,
+      "stdout_sha256": "dafc7120f2984cbce8a857341517eb2df65a975ba563868f01d7d79d4d8be37f",
+      "same_stdout_as_original_results": true,
+      "stderr_has_sentinel_assertion": false
+    },
+    {
+      "mode": "double_optimized",
+      "sentinel_mutation": false,
+      "exit_code": 0,
+      "stdout_bytes": 1918,
+      "stdout_sha256": "dafc7120f2984cbce8a857341517eb2df65a975ba563868f01d7d79d4d8be37f",
+      "same_stdout_as_original_results": true,
+      "stderr_has_sentinel_assertion": false
+    },
+    {
+      "mode": "double_optimized",
+      "sentinel_mutation": true,
+      "exit_code": 0,
+      "stdout_bytes": 1918,
+      "stdout_sha256": "dafc7120f2984cbce8a857341517eb2df65a975ba563868f01d7d79d4d8be37f",
+      "same_stdout_as_original_results": true,
+      "stderr_has_sentinel_assertion": false
+    }
+  ],
+  "conclusion": "Original normal execution reproduces its evidence. Original optimized PASS outputs do not establish executed assertions; a deliberate failing sentinel is removed in both optimization modes."
+}
