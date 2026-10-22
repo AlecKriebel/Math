@@ -338,7 +338,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 327 | 5100061 / AMR-050-0061 | Elliptic-billiard invariant k_{818} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 328 | 30003338 / OWR-15206-017 | Positive Association in Random Proper Colorings | 0.1645 | 7.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 329 | 30003659 / OWR-15958-006 | Completeness of Cut-Free Kozen Modal Calculus | 0.1645 | 7.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 330 | 30003661 / OWR-15958-008 | Pathwise Connected Choice in Dimension Two | 0.1645 | 7.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 330 | 30003661 / OWR-15958-008 | Pathwise Connected Choice in Dimension Two | 0.1645 | 7.0 | 3 | 2017 | unsolved | 5/5 |  |  |  |
 | 331 | 30005016 / OWR-9790358-014 | Universal Four-Point Polynomial Interpolation Subspaces | 0.1642 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 332 | 30005240 / OWR-11101924-003 | Rigorous Boundary-Layer Density Asymptotics | 0.1642 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 333 | 30005303 / OWR-11695865-001 | Total Positivity and Graphical Model Factorization | 0.1642 | 5.0 | 3 | 2022 | claimed_solved | 2/5 |  |  Accepted all-graph binary MTP2 original-edge closure and attractive-approximation theorem; zero supports and literal isolated/empty conventions included. C2/C3 negative witness credited to Gandolfi-Lenarda (published 13 April 2017). Research note and portable verification package cleared by successive new full AI reviews after global provenance/count corrections; bounded priority, extensive AI use, unrefereed. | https://doi.org/10.5281/zenodo.23146753 |
