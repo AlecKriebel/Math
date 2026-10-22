@@ -1,0 +1,7 @@
+# PR1214 shared partial scope
+
+2026-10-22T06:06:53.535749+00:00;79%.
+
+BothoriginalRossmannassertionsquantifyoverarbitraryfinitefreeintegralalgebras; PRgivesone sharedfullrank<=2calculationwithfourofgeometricbinarycubictypes, degree−2andcommonpositive(1+chi)/3leadingvalue. Neitherbitraryrankdegree/coincidence/positivityproved. ConditionalnonverticalregularDenefrepresentationisnotestablishedforallalgebrasandwouldstillnotimplypositive/nonzerocoefficient. Artificialrationalcountermodelsnotrealizedalgebras; squares-aloneclosurefailsrank3; idealfunctions/specialniceliebasesnotgeneral subalgebras. Rank2Snockenoverlapholdnoteligibilityreason; arbitraryrankgapdecisive.
+
+Readwhole16164bytePROOF+3359ACCEPTANCE+body; freshGWS191rowsnoeitherID/PR/Snocken/topologicalzetaleads. No newproof/prioritycertification.

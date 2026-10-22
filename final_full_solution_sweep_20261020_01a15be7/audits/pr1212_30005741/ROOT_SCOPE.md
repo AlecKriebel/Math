@@ -1,0 +1,7 @@
+# PR1212 eligibility scope
+
+2026-10-22T06:02:33.871567+00:00;79%.
+
+Twofulloriginalquestionsareequalityofordinary/strongnilpotencyclassesforp2or3andLie-nilpotents(L),andequalityofordinary/strongderivedlengthsforp>2andsolvables(L). ProvennilpotencydimLprime<=2/full-imageadjointclass2/directsumsandderiveddimLprime<=1arestrictsubclasses;generalclass2non-full-imageandhighernilpotency/dimLprime>=3unsettled. Finite-dimensionalfinite-fieldexactwitness/zero-stagepreservingreductiongivesunboundeddimensionandextensiondegree, notboundedsearch/fullprooforcounterexample. Characteristic2derivedseriesexampleoutsidequestion2; generalp>3priornilpotencytheoremnotp2/3target.
+
+Rootreadwhole25817bytePROOF inoverlappingsegments+3760ACCEPTANCE+body; fresh191rowGWSbeforeworknoresultleads. No newproof/citation/computationcertification.
