@@ -1891,7 +1891,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1880 | 30001558 / OWR-4425-014 | Fragile and Robust Squarefree Infinite Words | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 1881 | 30002208 / OWR-12173-004 | Additive Sets Preserving Piecewise Syndeticity | 0.0490 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1882 | 30002506 / OWR-12866-016 | Bohr-Radius Characterization of $\ell^1$ | 0.0488 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
-| 1883 | 30002965 / OWR-13941-005 | Volume of the Boolean Quadric Polytope | 0.0486 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 1883 | 30002965 / OWR-13941-005 | Volume of the Boolean Quadric Polytope | 0.0486 | 5.0 | 3 | 2015 | already_solved | 1/5 |  |  Prior good-bounds alternative resolved by Avis-Devroye-Deza, arXiv:2604.16735v2 (preprint): explicit positive lower bound and asymptotically improved upper bound; use minimum with old bound for small n. Independent analytic audit accepted. Exact general volume and finer logarithmic gap remain open; no novelty or peer-review claim. Frozen report and integrity verifier: attempts/30002965/.  |  |
 | 1884 | 10400211 / AMR-103-0211 | Conjecture 12.5 — (Y. | 0.0480 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1885 | 10400212 / AMR-103-0212 | Problem 12.6 — Find a new proof of the existence of a universal Vassiliev in- variant of knots, presenting them by KTG’s and their o… | 0.0480 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1886 | 11000031 / AMR-109-0031 | Problem 3.10 — Find a finitely presented subgroup H < Modg for which there are infinitely many conjugacy classes of finite subgroups… | 0.0480 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
