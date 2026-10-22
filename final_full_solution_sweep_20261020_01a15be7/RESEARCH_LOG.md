@@ -834,3 +834,13 @@ PRIVATE_DUPLICATE_CUSTODY_N_SHA256=ef51a39c2269f1490de03e84a04c2b2928faaff50cf0a
 2026-10-22T04:36:22.841597+00:00 — PR1178 partial: density divergence does not decide the original infinitely-many-exceptions question. Cursor1179; overall79%.
 
 2026-10-22T04:37:24.669839+00:00 — PR1179 partial: fourth-power plateau lower bound; no new full asymptotic or subsidiary original resolution. Cursor1180; overall79%.
+
+2026-10-22T04:41:07.196430+00:00 — PR1180 retains a provisional full original epsilon-subquestion candidate with substantive prior-proof corrections. Independent priority/scope review is pending; no final scientific exclusion or publication clearance. Numerical classification cursor1181 while this candidate remains explicitly tracked. Overall79%.
+
+2026-10-22T04:41:42.729355+00:00 — PR1181 partial; finite0.416 obstruction supplies neither a uniform lower coefficient nor its negation. Cursor1182; overall79%.
+
+2026-10-22T04:42:38.007646+00:00 — PR1182 credited full prior arbitrary-residue counterexample; fresh exact source theorem/activation bridge match. No new publication; cursor1183; overall79%.
+
+2026-10-22T04:43:23.480266+00:00 — PR1183 full prior finite multiples refutation matched exact public proof. No new publication; cursor1184; overall79%.
+
+2026-10-22T04:44:06.419929+00:00 — PR1184 complete credited prior fixed-r matching order; no new theorem. Cursor1185; overall79%.
