@@ -1,0 +1,646 @@
+{
+  "actual_failure_guards": [
+    {
+      "arguments": [
+        "--force-wrong-sign"
+      ],
+      "expected_diagnostic_present": true,
+      "optimized": false,
+      "program": "root_reproduction/root_control.py",
+      "returncode": 1
+    },
+    {
+      "arguments": [
+        "--force-wrong-sign"
+      ],
+      "expected_diagnostic_present": true,
+      "optimized": true,
+      "program": "root_reproduction/root_control.py",
+      "returncode": 1
+    },
+    {
+      "arguments": [
+        "--perturb-oracle"
+      ],
+      "expected_diagnostic_present": true,
+      "optimized": false,
+      "program": "reviews/quadrature_01/check_quadrature.py",
+      "returncode": 2
+    },
+    {
+      "arguments": [
+        "--perturb-oracle"
+      ],
+      "expected_diagnostic_present": true,
+      "optimized": true,
+      "program": "reviews/quadrature_01/check_quadrature.py",
+      "returncode": 2
+    }
+  ],
+  "authored_audit_members_checked": 118,
+  "floating_comparison": {
+    "absolute_tolerance": 1e-12,
+    "purpose": "full-output diagnostic reproduction, not validated error enclosure; each original program also enforces its own mathematical checks",
+    "relative_tolerance": 1e-12
+  },
+  "runs": [
+    {
+      "complete_output_compared": true,
+      "optimized": false,
+      "program": "root_reproduction/root_control.py",
+      "result": {
+        "adverse_rejections": {
+          "drop entropy at t=1/2": true,
+          "first-order scale invariant": true,
+          "reversed kernel sign": true,
+          "smaller logarithmic coefficient plus fixed constant": true,
+          "union of repeated half disks has full mass": true
+        },
+        "checks": 1458,
+        "code_sha256": "c68ad2ea9268ca45abad72c4829d8624f1ebde3cb3bcdcd844e584cd0d092e70",
+        "rational_fields": [
+          [
+            "34/625",
+            "62/625"
+          ],
+          [
+            "73777/32472040",
+            "-8783/16236020"
+          ],
+          [
+            "15161996025/150131548941124",
+            "-839278833/600526195764496"
+          ],
+          [
+            "-7484/395641",
+            "30650/395641"
+          ]
+        ],
+        "scalar_domain": "101 near-mass values, six radii, Decimal70 diagnostic only",
+        "status": "PASS",
+        "universal_proofs_required": true
+      }
+    },
+    {
+      "complete_output_compared": true,
+      "optimized": true,
+      "program": "root_reproduction/root_control.py",
+      "result": {
+        "adverse_rejections": {
+          "drop entropy at t=1/2": true,
+          "first-order scale invariant": true,
+          "reversed kernel sign": true,
+          "smaller logarithmic coefficient plus fixed constant": true,
+          "union of repeated half disks has full mass": true
+        },
+        "checks": 1458,
+        "code_sha256": "c68ad2ea9268ca45abad72c4829d8624f1ebde3cb3bcdcd844e584cd0d092e70",
+        "rational_fields": [
+          [
+            "34/625",
+            "62/625"
+          ],
+          [
+            "73777/32472040",
+            "-8783/16236020"
+          ],
+          [
+            "15161996025/150131548941124",
+            "-839278833/600526195764496"
+          ],
+          [
+            "-7484/395641",
+            "30650/395641"
+          ]
+        ],
+        "scalar_domain": "101 near-mass values, six radii, Decimal70 diagnostic only",
+        "status": "PASS",
+        "universal_proofs_required": true
+      }
+    },
+    {
+      "complete_output_compared": true,
+      "optimized": false,
+      "program": "reviews/quadrature_01/check_quadrature.py",
+      "result": {
+        "adverse": [
+          {
+            "exact_area_loss": 0.2853981633974483,
+            "field_discrepancy": 0.06779593593443546,
+            "name": "ordinary_union_is_not_smash_sum",
+            "refinement_difference": 3.9666483584035784e-10,
+            "rejected": true
+          },
+          {
+            "field_discrepancy": 12.566370614359172,
+            "hole_point": [
+              0.5,
+              0.0
+            ],
+            "name": "entire_harmonic_moments_do_not_control_holes",
+            "rejected": true
+          }
+        ],
+        "artifact_pins": {
+          "INPUT_PINS.json": "9ca2b95faa7268d25f0276751e1d599c4dae894944784ff64630a82fa29217c4",
+          "SOURCE_PINS.json": "f0d7009af79f1df600c11a62f6ae3bed2285c3115e29e828c63a1d70a76180b4",
+          "check_quadrature.py": "a17d760e99818792d240460eee73f8e0c9d9fcd25509ea9158430bb068dcf38f"
+        },
+        "limitations": "Floating-point diagnostics on explicit examples; universal claims are proved in REPORT.md.",
+        "positive": [
+          {
+            "absolute_error": 1.2354349359342582e-16,
+            "actual": [
+              0.04439999999999992,
+              0.059199999999999905
+            ],
+            "expected": [
+              0.044399999999999995,
+              0.0592
+            ],
+            "name": "arbitrary_mass_and_translate",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 5.551115123125783e-17,
+            "actual": [
+              0.25132741228718336,
+              0.18849555921538758
+            ],
+            "expected": [
+              0.2513274122871834,
+              0.18849555921538758
+            ],
+            "name": "repeated_centers_merge",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 6.206335383118183e-17,
+            "actual": [
+              0.0718078337902322,
+              0.2461982804441955
+            ],
+            "expected": [
+              0.07180783379023223,
+              0.24619828044419556
+            ],
+            "name": "disjoint_extreme_mass_ratio",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 5.855045090355223e-16,
+            "actual": [
+              0.42410248090227576,
+              0.21210044548156032
+            ],
+            "expected": [
+              0.42410248090227626,
+              0.21210044548156
+            ],
+            "minimum_disk_gap": 0.0693937124428109,
+            "name": "tangent_ring_bounded_hole",
+            "passed": true,
+            "point": [
+              0.02,
+              0.01
+            ],
+            "tolerance": 1e-10
+          },
+          {
+            "absolute_error": 1.728216467273624e-15,
+            "actual": [
+              0.42410248090227626,
+              0.21210044548156
+            ],
+            "expected": [
+              0.42410248090227476,
+              0.21210044548156087
+            ],
+            "name": "ring_rational_closed_form",
+            "passed": true,
+            "tolerance": 1e-12
+          },
+          {
+            "absolute_error": 8.881785628312768e-16,
+            "actual": [
+              3.141592653589794,
+              -5.04234093000212e-19
+            ],
+            "expected": [
+              3.141592653589793,
+              0.0
+            ],
+            "name": "ring_exact_total_area",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 5.3682780679273605e-18,
+            "actual": [
+              3.141592653589793,
+              -5.3682780679273605e-18
+            ],
+            "expected": [
+              3.141592653589793,
+              0.0
+            ],
+            "name": "overlapping_oval_area",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 1.1102230246251565e-16,
+            "actual": [
+              0.8603690081145734,
+              -0.316803019753978
+            ],
+            "expected": [
+              0.8603690081145734,
+              -0.3168030197539781
+            ],
+            "name": "overlapping_oval_exterior",
+            "passed": true,
+            "point": [
+              2.0,
+              0.3
+            ],
+            "samples": 8192,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 4.163336342344337e-17,
+            "actual": [
+              -0.27386396104901073,
+              0.10084153316056993
+            ],
+            "expected": [
+              -0.27386396104901073,
+              0.10084153316056997
+            ],
+            "name": "overlapping_oval_exterior_beurling_sign",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 7.672616896357515e-12,
+            "actual": [
+              3.4724789677230863,
+              1.385921064262777e-12
+            ],
+            "expected": [
+              3.4724789677306327,
+              -0.0
+            ],
+            "name": "overlapping_oval_near_boundary",
+            "passed": true,
+            "point": [
+              1.23,
+              0.0
+            ],
+            "samples": 32768,
+            "tolerance": 1e-08
+          },
+          {
+            "absolute_error": 2.4422523851028417e-12,
+            "actual": [
+              -1.1053243849915426,
+              -4.411523762252026e-13
+            ],
+            "expected": [
+              -1.1053243849939447,
+              0.0
+            ],
+            "name": "overlapping_oval_near_boundary_beurling_sign",
+            "passed": true,
+            "tolerance": 1e-08
+          },
+          {
+            "absolute_error": 3.510833468576701e-16,
+            "actual": [
+              0.7343109663103454,
+              -0.2253639794302847
+            ],
+            "expected": [
+              0.7343109663103455,
+              -0.22536397943028502
+            ],
+            "name": "annulus_unbounded_component_only",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 2.044433983578981e-16,
+            "actual": [
+              2.043619727402244e-16,
+              -5.7695086315904774e-18
+            ],
+            "expected": [
+              0.0,
+              0.0
+            ],
+            "name": "annulus_hole_actual_zero",
+            "passed": true,
+            "tolerance": 1e-11
+          }
+        ],
+        "python_optimization": 0,
+        "python_version": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+        "status": "passed"
+      }
+    },
+    {
+      "complete_output_compared": true,
+      "optimized": true,
+      "program": "reviews/quadrature_01/check_quadrature.py",
+      "result": {
+        "adverse": [
+          {
+            "exact_area_loss": 0.2853981633974483,
+            "field_discrepancy": 0.06779593593443546,
+            "name": "ordinary_union_is_not_smash_sum",
+            "refinement_difference": 3.9666483584035784e-10,
+            "rejected": true
+          },
+          {
+            "field_discrepancy": 12.566370614359172,
+            "hole_point": [
+              0.5,
+              0.0
+            ],
+            "name": "entire_harmonic_moments_do_not_control_holes",
+            "rejected": true
+          }
+        ],
+        "artifact_pins": {
+          "INPUT_PINS.json": "9ca2b95faa7268d25f0276751e1d599c4dae894944784ff64630a82fa29217c4",
+          "SOURCE_PINS.json": "f0d7009af79f1df600c11a62f6ae3bed2285c3115e29e828c63a1d70a76180b4",
+          "check_quadrature.py": "a17d760e99818792d240460eee73f8e0c9d9fcd25509ea9158430bb068dcf38f"
+        },
+        "limitations": "Floating-point diagnostics on explicit examples; universal claims are proved in REPORT.md.",
+        "positive": [
+          {
+            "absolute_error": 1.2354349359342582e-16,
+            "actual": [
+              0.04439999999999992,
+              0.059199999999999905
+            ],
+            "expected": [
+              0.044399999999999995,
+              0.0592
+            ],
+            "name": "arbitrary_mass_and_translate",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 5.551115123125783e-17,
+            "actual": [
+              0.25132741228718336,
+              0.18849555921538758
+            ],
+            "expected": [
+              0.2513274122871834,
+              0.18849555921538758
+            ],
+            "name": "repeated_centers_merge",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 6.206335383118183e-17,
+            "actual": [
+              0.0718078337902322,
+              0.2461982804441955
+            ],
+            "expected": [
+              0.07180783379023223,
+              0.24619828044419556
+            ],
+            "name": "disjoint_extreme_mass_ratio",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 5.855045090355223e-16,
+            "actual": [
+              0.42410248090227576,
+              0.21210044548156032
+            ],
+            "expected": [
+              0.42410248090227626,
+              0.21210044548156
+            ],
+            "minimum_disk_gap": 0.0693937124428109,
+            "name": "tangent_ring_bounded_hole",
+            "passed": true,
+            "point": [
+              0.02,
+              0.01
+            ],
+            "tolerance": 1e-10
+          },
+          {
+            "absolute_error": 1.728216467273624e-15,
+            "actual": [
+              0.42410248090227626,
+              0.21210044548156
+            ],
+            "expected": [
+              0.42410248090227476,
+              0.21210044548156087
+            ],
+            "name": "ring_rational_closed_form",
+            "passed": true,
+            "tolerance": 1e-12
+          },
+          {
+            "absolute_error": 8.881785628312768e-16,
+            "actual": [
+              3.141592653589794,
+              -5.04234093000212e-19
+            ],
+            "expected": [
+              3.141592653589793,
+              0.0
+            ],
+            "name": "ring_exact_total_area",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 5.3682780679273605e-18,
+            "actual": [
+              3.141592653589793,
+              -5.3682780679273605e-18
+            ],
+            "expected": [
+              3.141592653589793,
+              0.0
+            ],
+            "name": "overlapping_oval_area",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 1.1102230246251565e-16,
+            "actual": [
+              0.8603690081145734,
+              -0.316803019753978
+            ],
+            "expected": [
+              0.8603690081145734,
+              -0.3168030197539781
+            ],
+            "name": "overlapping_oval_exterior",
+            "passed": true,
+            "point": [
+              2.0,
+              0.3
+            ],
+            "samples": 8192,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 4.163336342344337e-17,
+            "actual": [
+              -0.27386396104901073,
+              0.10084153316056993
+            ],
+            "expected": [
+              -0.27386396104901073,
+              0.10084153316056997
+            ],
+            "name": "overlapping_oval_exterior_beurling_sign",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 7.672616896357515e-12,
+            "actual": [
+              3.4724789677230863,
+              1.385921064262777e-12
+            ],
+            "expected": [
+              3.4724789677306327,
+              -0.0
+            ],
+            "name": "overlapping_oval_near_boundary",
+            "passed": true,
+            "point": [
+              1.23,
+              0.0
+            ],
+            "samples": 32768,
+            "tolerance": 1e-08
+          },
+          {
+            "absolute_error": 2.4422523851028417e-12,
+            "actual": [
+              -1.1053243849915426,
+              -4.411523762252026e-13
+            ],
+            "expected": [
+              -1.1053243849939447,
+              0.0
+            ],
+            "name": "overlapping_oval_near_boundary_beurling_sign",
+            "passed": true,
+            "tolerance": 1e-08
+          },
+          {
+            "absolute_error": 3.510833468576701e-16,
+            "actual": [
+              0.7343109663103454,
+              -0.2253639794302847
+            ],
+            "expected": [
+              0.7343109663103455,
+              -0.22536397943028502
+            ],
+            "name": "annulus_unbounded_component_only",
+            "passed": true,
+            "tolerance": 1e-11
+          },
+          {
+            "absolute_error": 2.044433983578981e-16,
+            "actual": [
+              2.043619727402244e-16,
+              -5.7695086315904774e-18
+            ],
+            "expected": [
+              0.0,
+              0.0
+            ],
+            "name": "annulus_hole_actual_zero",
+            "passed": true,
+            "tolerance": 1e-11
+          }
+        ],
+        "python_optimization": 1,
+        "python_version": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+        "status": "passed"
+      }
+    },
+    {
+      "complete_output_compared": true,
+      "optimized": false,
+      "program": "reviews/beurling_01/verify_controls.py",
+      "result": {
+        "analytic_proof_dependency": false,
+        "complex_disk_cases": 4,
+        "controls": "deterministic smooth disk quadrature and scalar witnesses",
+        "far_disk_exact_integral": 0.5477473201825308,
+        "far_disk_quadrature_error": 2.926980111173094e-06,
+        "input_pin_checks": 12,
+        "manuscript_constant_divided_by_pi": 1.0610266217313877,
+        "max_complex_disk_error": 3.3313646553350616e-16,
+        "optimized_split_u": 1.2228702297210445,
+        "sharper_universal_constant_divided_by_pi": 1.0474673309034535,
+        "verdict": "PASS_SUPPLEMENTARY_CONTROLS",
+        "wrong_alternative_guards": {
+          "discard_far_support_when_a_zero": true,
+          "drop_positive_entropy_term": true,
+          "missing_one_over_pi": true,
+          "opposite_transform_sign": true,
+          "replace_sharp_leading_coefficient_by_smaller_value": true,
+          "spurious_L_squared_field_factor": true,
+          "spurious_inverse_L_squared_field_factor": true
+        }
+      }
+    },
+    {
+      "complete_output_compared": true,
+      "optimized": true,
+      "program": "reviews/beurling_01/verify_controls.py",
+      "result": {
+        "analytic_proof_dependency": false,
+        "complex_disk_cases": 4,
+        "controls": "deterministic smooth disk quadrature and scalar witnesses",
+        "far_disk_exact_integral": 0.5477473201825308,
+        "far_disk_quadrature_error": 2.926980111173094e-06,
+        "input_pin_checks": 12,
+        "manuscript_constant_divided_by_pi": 1.0610266217313877,
+        "max_complex_disk_error": 3.3313646553350616e-16,
+        "optimized_split_u": 1.2228702297210445,
+        "sharper_universal_constant_divided_by_pi": 1.0474673309034535,
+        "verdict": "PASS_SUPPLEMENTARY_CONTROLS",
+        "wrong_alternative_guards": {
+          "discard_far_support_when_a_zero": true,
+          "drop_positive_entropy_term": true,
+          "missing_one_over_pi": true,
+          "opposite_transform_sign": true,
+          "replace_sharp_leading_coefficient_by_smaller_value": true,
+          "spurious_L_squared_field_factor": true,
+          "spurious_inverse_L_squared_field_factor": true
+        }
+      }
+    }
+  ],
+  "scope": "Supplementary diagnostics; universal written proof and imported source interfaces required.",
+  "source_inputs_checked": 12,
+  "status": "PASS",
+  "target_source_control": "not run; use --with-target-source or --target-source-file PATH"
+}

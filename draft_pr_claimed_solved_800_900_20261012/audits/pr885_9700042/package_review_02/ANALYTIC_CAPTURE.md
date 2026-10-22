@@ -1,0 +1,7 @@
+# Capture of authoritative pre-exposure assessment
+
+Captured 2026-10-16T04:59:11.259934+00:00 after exposure to prior reviews. This file does NOT create a new pre-exposure timestamp. The authoritative assessment is the full message sent to the parent immediately after the sampled04:53:41UTC16Oct2026 clock and before prior verdict reading. The parent acknowledged preservation.
+
+The unchanged ANALYTIC_FREEZE.md contains an erroneous unsampled draft05:01 timestamp. A correction write failed ENOSPC; the error is disclosed, not used to assert chronology. Its substance matches the pre-exposure message: exact duality/normalization; independent outgoing-site coupling; one reward per simple tail with origin cancellation; auxiliary terminal/local replacement/cycle removal; individual negative-parts X≤2b; direct BGT numerical-kernel/site-threshold reconstruction; fixed-q volume limit then q then delta; C1 and revisedC4 valid within stated dependencies; active attributed-corollary framing. Whole-package review remained open at30%.
+
+The complete source-first freeze was saved04:52:07.525160UTC, before candidate reading. First full analytic save failed zsh heredoc setup due no space. Only this reviewer’s fresh extracted BGT text was removed; no source body or candidate was removed. The compact analytic file successfully exists; its timestamp correction failed. Both early files are preserved unchanged. The pre-exposure message, rather than an invented saved file, is the full analytic freeze record.

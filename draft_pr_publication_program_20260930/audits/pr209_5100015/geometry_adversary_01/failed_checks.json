@@ -1,0 +1,23 @@
+{
+  "failures_are_not_passing_evidence": true,
+  "failed_runs": [
+    {
+      "source": "failed_90digit_direct_geometry_checks.py",
+      "exit_code": 1,
+      "assertion": "outer intersection equals chord pole",
+      "location": "near_separatrix family, N=19, winding=9, after first 15 families passed",
+      "settings": "mpmath dps=90; 285 lambda bisections; absolute residual tolerance 1e-65",
+      "diagnosis": "Ill conditioning near the separatrix with a caustic distance of about 8.86e-21 from the focal limit; source did not save a completed aggregate JSON.",
+      "correction": "mpmath dps=150; 480 bisections; stricter absolute tolerance 1e-85; all 16 families subsequently passed"
+    },
+    {
+      "source": "failed_denesting_exact_closed_controls.py",
+      "exit_code": 1,
+      "assertion": "two exact triangle phases",
+      "location": "Symbolic comparison after separately denesting area expressions",
+      "diagnosis": "The equality checker did not fully reduce alternate nested-radical representations; no geometry changed.",
+      "correction": "Use exact algebraic-number-field zero reduction and represent products in Q(sqrt(13)); final exact forward reflection sign checks also use symbolic positivity"
+    }
+  ],
+  "raw_console_transcripts": "Not copied into this artifact; the triggering assertions, exit codes, executed source versions and corrections are preserved here."
+}

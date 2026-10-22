@@ -1,0 +1,387 @@
+\documentclass[11pt]{amsart}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Post-Lie nonexistence with a semisimple target},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Finite-dimensional complex post-Lie algebras}
+}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\g}{\mathfrak g}
+\newcommand{\n}{\mathfrak n}
+\newcommand{\s}{\mathfrak s}
+\newcommand{\rad}{\mathfrak r}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Der}{Der}
+
+\title{Post-Lie nonexistence with a semisimple target}
+\author{Alec Kriebel}
+\address{Independent researcher}
+\urladdr{https://orcid.org/0009-0001-9320-500X}
+\date{16 October 2026; version 1.0.0}
+\keywords{Post-Lie algebra, unimodular Lie algebra, semisimple Lie algebra,
+holomorphic action}
+
+\begin{document}
+\begin{abstract}
+Let \(\g\) be a finite-dimensional complex unimodular Lie algebra and
+\(\n\) a complex semisimple Lie algebra of the same dimension.
+We prove that if two Lie algebra homomorphisms
+\(j_1,j_2:\g\to\n\) have invertible difference, then \(\g\) is
+semisimple.  The integrated left-right action has a holomorphic
+infinitesimal determinant.  Unimodularity makes this determinant
+invariant, and its constancy on an open orbit extends to the whole
+target group.  Transitivity and simple connectedness then identify the
+source and target manifolds; their compact-form homology rules out a
+nonzero source radical.  Consequently a perfect nonsemisimple complex
+source and a semisimple target admit no post-Lie algebra structure.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+
+All Lie algebras in this note are finite-dimensional over \(\C\).
+For two brackets on a common vector space, a post-Lie product relates
+the source Lie algebra \(\g\) to the target Lie algebra \(\n\).
+Burde, reporting joint work with Dekimpe, formulated the nonexistence
+conjecture for a perfect nonsemisimple source and an arbitrary semisimple
+target in Oberwolfach Report 46/2023, printed p.~2689
+\cite{OWR}.  Burde--Dekimpe--Monadjem proved the target
+\(\mathfrak{sl}_3(\C)\) case and further special cases
+\cite[Theorem~3.10 and Propositions~3.11--3.12]{BDM}.
+An earlier result of Burde--Dekimpe excludes a \emph{solvable
+unimodular} source with a nonzero semisimple target
+\cite[Theorem~3.3]{BD}.
+
+We prove the conjectured nonexistence statement as a consequence of a
+stronger obstruction for unimodular sources.  The passage from post-Lie
+products to transverse pairs of homomorphisms is established in the
+literature \cite[Proposition~2.16]{BDV},
+\cite[Proposition~2.6]{BDM}; we include the reduction with explicit
+bracket conventions.
+
+The determinant method has a classical affine-space predecessor.
+Baues associates a determinant relative invariant to an
+\'etale affine representation and proves that triviality of its
+character forces global transitivity
+\cite[\S5.4.1, equation~(5.3), and Theorem~5.19]{Baues};
+see also his Corollary~5.20 for the unimodular, volume-preserving case.
+We use that method on a complex group: the determinant is globally
+holomorphic, and the identity theorem replaces polynomial continuation
+on affine space.  The subsequent obstruction uses classical
+integration, Levi decomposition, compact real forms and ordinary
+singular homology.  In particular, we do not invoke an affine-space
+completeness theorem for the group target.
+
+The literature comparison underlying this note is bounded: no prior
+full theorem under the matching hypotheses was located in the primary
+passages inspected.  This is not a claim of firstness, exhaustive
+coverage, or current openness.  In particular, the original body of
+Onishchik's 1969 work on reductive-group decompositions was inaccessible
+in that comparison; this is an access limitation, not an identified
+competing theorem.
+
+\section{A unimodular transverse-pair obstruction}
+
+Recall that \(\g\) is \emph{unimodular} if
+\(\tr(\ad_{\g}x)=0\) for every \(x\in\g\).
+
+\begin{theorem}\label{thm:pair}
+Let \(\g\) and \(\n\) be complex Lie algebras of the same finite
+dimension, with \(\g\) unimodular and \(\n\) semisimple.
+Suppose \(j_1,j_2:\g\to\n\) are Lie algebra homomorphisms and
+\(j_1-j_2\) is a vector-space isomorphism.  Then \(\g\) is semisimple.
+\end{theorem}
+
+We first recall the solvable-group fact needed in the proof
+\cite[Theorem~49.1]{Etingof}, including its short induction.
+
+\begin{lemma}\label{lem:solvable}
+The connected simply connected complex Lie group with a solvable
+Lie algebra \(\rad\) is diffeomorphic to
+\(\C^{\dim_{\C}\rad}\), and is therefore contractible.
+\end{lemma}
+
+\begin{proof}
+Induct on \(\dim_{\C}\rad\).  For \(\rad\ne0\), solvability gives a
+nonzero functional vanishing on \([\rad,\rad]\).  Its kernel
+\(\rad'\) is a codimension-one ideal.  A complementary line \(\C x\)
+is a subalgebra, so \(\rad=\rad'\rtimes\C x\).
+Let \(R'\) be the simply connected integration of \(\rad'\).
+The automorphisms \(\exp(t\ad x)|_{\rad'}\), for \(t\in\C\),
+integrate uniquely to automorphisms of \(R'\).  They give a
+holomorphic action of the additive group \(\C\).
+Thus \(R'\rtimes\C\) is simply connected and integrates \(\rad\).
+Uniqueness of simply connected integration identifies it with the
+required group, whose manifold is \(R'\times\C\).
+Induction proves the assertion.  We use integration and uniqueness in
+their complex, finite-dimensional form
+\cite[Theorems~9.12--9.13 and Corollary~9.14]{Etingof}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:pair}]
+Put \(d=\dim_{\C}\g=\dim_{\C}\n\).
+If \(d=0\), both algebras are zero and the conclusion holds.
+Assume \(d>0\).
+Choose connected simply connected complex Lie groups \(G,N\)
+integrating \(\g,\n\).  The maps \(j_i\) integrate to holomorphic
+homomorphisms \(J_i:G\to N\)
+\cite[Theorems~9.12--9.13 and Corollary~9.14]{Etingof}.
+They define a global holomorphic action
+\begin{equation}\label{eq:action}
+ A_h(p)=J_1(h)\,p\,J_2(h)^{-1}\qquad(h\in G,\ p\in N).
+\end{equation}
+No closedness or injectivity of the images \(J_i(G)\) is required.
+
+Under left trivialization of \(TN\), the differential at the identity
+of \(h\mapsto A_h(p)\) is
+\begin{equation}\label{eq:B}
+ B_p:\g\longrightarrow\n,\qquad
+ B_px=\Ad_N(p^{-1})j_1x-j_2x .
+\end{equation}
+Fix bases of \(\g,\n\) and define the globally holomorphic function
+\(f(p)=\det B_p\).  Since \(B_e=j_1-j_2\) is invertible, the
+holomorphic inverse function theorem makes the orbit of \(e\) open.
+
+For \(q=A_h(p)\), equivariance of the integrated homomorphisms gives
+\begin{equation}\label{eq:covariance}
+ B_q=\Ad_N(J_2(h))\,B_p\,\Ad_G(h^{-1}).
+\end{equation}
+Indeed, the first term on the right is
+\[
+ \Ad_N(J_2(h))\Ad_N(p^{-1})\Ad_N(J_1(h)^{-1})j_1,
+\]
+and the second is
+\(-\Ad_N(J_2(h))j_2\Ad_G(h^{-1})=-j_2\).
+These are the two terms of \(B_q\), since
+\(q^{-1}=J_2(h)p^{-1}J_1(h)^{-1}\).
+
+For a connected complex Lie group \(L\), the character
+\(\det\Ad_L:L\to\C^\times\) has differential
+\(x\mapsto\tr(\ad_{\operatorname{Lie}(L)}x)\).
+If this differential is zero, the character is locally constant,
+hence identically one.  This applies to \(G\) by unimodularity,
+and to \(N\) because a semisimple Lie algebra is perfect and the trace
+of a commutator is zero.  Taking determinants in
+\eqref{eq:covariance} yields
+\[
+ f(A_h(p))=f(p).
+\]
+Consequently \(f=f(e)\ne0\) on the open identity orbit.
+The identity theorem on the connected complex manifold \(N\) gives
+\(f\equiv f(e)\) on all of \(N\).
+Every \(B_p\) is therefore invertible, so every orbit is open.
+Connectedness of \(N\) implies that there is only one orbit:
+the action \eqref{eq:action} is transitive.
+
+Let \(H=\{h\in G:A_h(e)=e\}\).
+It is a closed subgroup with Lie algebra
+\(\ker B_e=0\), hence is discrete.
+The orbit map identifies \(G/H\) with \(N\) as a manifold
+\cite[Proposition~4.12 and Corollary~4.16]{Etingof}.
+For completeness, \(G\to G/H\) is a covering: choose an identity
+neighborhood \(U\) with \(U^{-1}U\cap H=\{e\}\); the sets \(Uh\),
+\(h\in H\), are disjoint sheets over the image of \(U\), and left
+translations give such neighborhoods everywhere.
+Because \(G\) is connected and \(N\) is simply connected, this
+covering has one sheet \cite[Proposition~1.32]{Hatcher}.
+Thus \(H=\{e\}\), and
+\begin{equation}\label{eq:diffeo}
+ G\ \text{is diffeomorphic to}\ N .
+\end{equation}
+The orbit map need not be a group homomorphism; no group or
+Lie algebra isomorphism is inferred from \eqref{eq:diffeo}.
+
+Take a Levi decomposition \(\g=\rad\rtimes\s\), where
+\(\rad\) is the solvable radical and \(\s\) is semisimple.
+Let \(R,S\) be their simply connected integrations.
+The Levi action integrates on \(R\); the simply connected group
+\(R\rtimes S\) has Lie algebra \(\g\).
+By uniqueness of integration, its manifold \(R\times S\) is the
+manifold of \(G\)
+\cite[Theorem~48.9 and Corollary~9.14]{Etingof}.
+This construction imposes no closed-image assumption on a
+previously chosen Levi subgroup.  Lemma~\ref{lem:solvable}
+makes the \(R\) factor contractible.
+
+Polar decomposition retracts a simply connected complex semisimple
+group onto a compact real form
+\cite[Corollary~43.5, Theorem~43.7, Corollary~43.8 and the
+following covering discussion]{Etingof}.
+Let these compact groups be \(K_N\) for \(N\) and \(K_S\) for \(S\).
+Their real dimensions are respectively \(d\) and
+\(s=\dim_{\C}\s\), rather than \(2d\) and \(2s\).
+The compact connected Lie group \(K_N\) is orientable: left
+translation of a basis at its identity gives a global frame.
+Its fundamental class therefore gives, in ordinary singular homology
+\cite[Theorem~3.26(a)]{Hatcher},
+\[
+ H_d(N;\Z)\cong H_d(K_N;\Z)\cong\Z.
+\]
+If \(\rad\ne0\), then \(s<d\).
+The product description of \(G\), contractibility of \(R\), and polar
+decomposition for \(S\) give
+\[
+ H_d(G;\Z)\cong H_d(K_S;\Z)=0,
+\]
+since \(K_S\) is a compact \(s\)-manifold
+\cite[Theorem~3.26(c)]{Hatcher}.
+This contradicts \eqref{eq:diffeo}.
+Hence \(\rad=0\), proving that \(\g\) is semisimple.
+\end{proof}
+
+\section{The post-Lie consequence}
+
+Let \(\g=(V,[\, ,\,])\) and \(\n=(V,\{\, ,\,\})\).
+Our convention for a post-Lie product \(x\cdot y\) is
+\begin{align}
+ x\cdot y-y\cdot x&=[x,y]-\{x,y\},\label{eq:PL1}\\
+ [x,y]\cdot z&=x\cdot(y\cdot z)-y\cdot(x\cdot z),\label{eq:PL2}\\
+ x\cdot\{y,z\}&=\{x\cdot y,z\}+\{y,x\cdot z\}.\label{eq:PL3}
+\end{align}
+Thus \(L(x)y=x\cdot y\) defines a homomorphism
+\(L:\g\to\Der(\n)\).
+
+\begin{corollary}\label{cor:postlie}
+If a finite-dimensional complex pair \((\g,\n)\) admits a post-Lie
+product, \(\g\) is unimodular and \(\n\) is semisimple, then
+\(\g\) is semisimple.  In particular, a perfect nonsemisimple complex
+source and a semisimple target admit no post-Lie product.
+\end{corollary}
+
+\begin{proof}
+For semisimple \(\n\), every derivation is inner and its center is
+zero.  To recall the innerness argument, let \(\kappa\) be its
+nondegenerate Killing form and \(D\in\Der(\n)\).
+Choose \(a\in\n\) such that
+\(\kappa(a,u)=\tr(D\ad_{\n}u)\).
+Using \([D,\ad_{\n}u]=\ad_{\n}(Du)\), cyclicity of trace and
+invariance of \(\kappa\), we obtain
+\[
+ \kappa(Du,v)
+ =\tr\bigl(D[\ad_{\n}u,\ad_{\n}v]\bigr)
+ =\kappa(a,\{u,v\})=\kappa(\{a,u\},v).
+\]
+Hence \(D=\ad_{\n}a\).
+The map \(\ad_{\n}:\n\to\Der(\n)\) is therefore a linear
+isomorphism.  In particular there is a unique linear map
+\[
+ R=\ad_{\n}^{-1}L:V\longrightarrow V,\qquad
+ x\cdot y=\{Rx,y\}.
+\]
+Equations \eqref{eq:PL2}--\eqref{eq:PL3} and injectivity of
+\(\ad_{\n}\) give
+\[
+ R[x,y]=\{Rx,Ry\}.
+\]
+Equation \eqref{eq:PL1} gives the signs explicitly:
+\[
+ [x,y]=\{Rx,y\}+\{x,Ry\}+\{x,y\}.
+\]
+Expanding \(\{(R+I)x,(R+I)y\}\) now shows that
+\[
+ j_1=R+I,\qquad j_2=R
+\]
+are homomorphisms \(\g\to\n\), with difference \(I\).
+Theorem~\ref{thm:pair} applies.
+Finally the functional \(x\mapsto\tr(\ad_{\g}x)\) vanishes on
+\([\g,\g]\), since
+\(\ad_{\g}[x,y]=[\ad_{\g}x,\ad_{\g}y]\).
+A perfect source is consequently unimodular.
+\end{proof}
+
+\begin{remark}
+The zero-dimensional algebra is semisimple by convention, so it gives
+no exception to the nonsemisimple-source assertion.
+Unimodularity is essential to Theorem~\ref{thm:pair}.
+For example, let \(\g\) have basis \(H,E,Z\), with
+\([H,E]=2E\) and \(Z\) central.
+In \(\n=\mathfrak{sl}_2(\C)\), use the standard basis \(H,E,F\).
+The maps
+\[
+ j_1(H)=H,\quad j_1(E)=E,\quad j_1(Z)=0,\qquad
+ j_2(H)=j_2(E)=0,\quad j_2(Z)=F
+\]
+are homomorphisms with invertible difference, but
+\(\tr(\ad_{\g}H)=2\).
+The proof makes no claim for a general real form, positive
+characteristic, infinite dimension, or a merely reductive target.
+It assumes neither algebraicity nor completeness of a locally
+defined action, and no bijectivity of a solvable exponential map.
+\end{remark}
+
+\section*{Verification and authorship disclosure}
+
+The accompanying archival checker reports 2,896 exact finite
+diagnostic conditions in each run.  Those calculations are auxiliary;
+the proof above does not infer integration, transitivity, covering
+theory or homology from finite testing.
+AI systems were used extensively in solving, checking and writing
+this work.  Separate AI audits examined the algebraic, global-action
+and topological arguments.  This is an unrefereed preprint: no
+completed human peer review or formal machine verification is claimed.
+
+\begin{thebibliography}{9}
+
+\bibitem{Baues}
+O.~Baues,
+\emph{Prehomogeneous affine representations and flat
+pseudo-Riemannian manifolds},
+\href{https://arxiv.org/abs/0809.0824v1}{arXiv:0809.0824v1} (2008).
+
+\bibitem{BD}
+D.~Burde and K.~Dekimpe,
+\emph{Post-Lie algebra structures and generalized derivations of
+semisimple Lie algebras},
+Mosc. Math. J. \textbf{13} (2013), no.~1, 1--18.
+\href{https://homepage.univie.ac.at/dietrich.burde/papers/burde_44_postlie_der.pdf}
+{Author manuscript dated 10 September 2012}.
+
+\bibitem{BDV}
+D.~Burde, K.~Dekimpe and K.~Vercammen,
+\emph{Affine actions on Lie groups and post-Lie algebra structures},
+Linear Algebra Appl. \textbf{437} (2012), 1250--1263;
+\href{https://arxiv.org/abs/1109.0251}{arXiv:1109.0251}.
+
+\bibitem{BDM}
+D.~Burde, K.~Dekimpe and M.~Monadjem,
+\emph{Post-Lie algebra structures for perfect Lie algebras},
+Comm. Algebra \textbf{52} (2024), no.~10, 4255--4267,
+\href{https://doi.org/10.1080/00927872.2024.2344638}
+{doi:10.1080/00927872.2024.2344638}.
+Theorem numbering follows the
+\href{https://homepage.univie.ac.at/dietrich.burde/papers/burde_78_perfect.pdf}
+{author manuscript dated 8 March 2024};
+preprint \href{https://arxiv.org/abs/2311.08985}{arXiv:2311.08985} (2023).
+
+\bibitem{OWR}
+D.~Burde (joint work with K.~Dekimpe),
+\emph{Pre-Lie and post-Lie algebra structures},
+in \emph{Mini-Workshop: Poisson and Poisson-type algebras},
+Oberwolfach Report 46/2023, 2688--2690,
+\href{https://doi.org/10.4171/OWR/2023/46}
+{doi:10.4171/OWR/2023/46}; conjecture at p.~2689.
+
+\bibitem{Etingof}
+P.~Etingof,
+\emph{Lie groups and Lie algebras},
+\href{https://ocw.mit.edu/courses/18-755-lie-groups-and-lie-algebras-ii-spring-2024/mit18_755_s24_lec_full.pdf}
+{MIT 18.755 lecture notes, Spring 2024}.
+
+\bibitem{Hatcher}
+A.~Hatcher,
+\emph{Algebraic Topology},
+Cambridge University Press, 2002;
+\href{https://pi.math.cornell.edu/~hatcher/AT/AT.pdf}{author's text}.
+
+\end{thebibliography}
+\end{document}

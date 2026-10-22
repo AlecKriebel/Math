@@ -1,0 +1,11 @@
+# Parent direct primary-source check
+
+2026-10-15T08:02:21.184590+00:00
+
+The parent independently downloaded both full pinned PDFs, read all three original contribution pages 2580–2582 as text and actual page images, and read CDN v3 §§1.5–1.6, 2.1–2.4, 3.5.1–3.5.4, including the Ewald bound, matrix extension, self-term distribution and static interval proofs. CDN pp28–30 were checked as actual images as well. The institutional OWR copy and arXiv v3 pins match the submitted source metadata. Full source copies are private reading material, excluded from authored checkpoints.
+
+OWR §4 describes observed off-real-interval spectral correctness and asks for a correct description and proof. It does not formulate a universal arbitrary-compact theorem or a necessary-and-sufficient geometry classification. The exact finite center-membership matrix and the Aκ−I/3 shift are explicit. The positive theorem with its visible (G) hypothesis provides the complete requested spectral behavior for the declared class, including every bounded boundary-null/Lipschitz particle, rather than just one eigenvalue example. The arbitrary-compact counterexample addresses only an additional extrapolation; it does not establish necessity of (G). No claim that (G) is printed in OWR or covers every irregular intended particle is acceptable. This is the parent’s source interpretation, awaiting completed family reports before final acceptance.
+
+The exact static interval is the numerical-range closure of the bounded selfadjoint lattice convolution. Its endpoints are defined by the symbol; the quoted decimals are numerical evidence and not needed. CDN v3 proves the static boundedness/inclusion. The subscription journal full text has not been read. The report’s material-contrast sign convention should not be copied into any paper: fix Kκ and Sκ directly, and only give physical conversion if separately derived.
+
+The entire candidate and scope continuation were reconstructed before inherited review verdicts. The parent then read the inherited source and main-review reports as historical corroboration, not independent evidence. Priority remains unevaluated; no manuscript or provider mutation is authorized by these finite checks alone.

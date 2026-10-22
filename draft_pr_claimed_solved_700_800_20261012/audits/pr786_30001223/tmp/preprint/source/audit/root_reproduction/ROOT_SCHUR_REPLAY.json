@@ -1,0 +1,239 @@
+{
+  "utc": "2026-10-16T11:57:26.658561+00:00",
+  "result": "PASS",
+  "family": "Schur/highest-weight/tensor orbit algebra",
+  "manifest_sha256": "3be42c9f1c125bc9e6243f5c6415a17114aba9a4b4719996cddad0190b329fac",
+  "authored_files": 16,
+  "flat_total_files": 17,
+  "input_binding_verified": true,
+  "runs": [
+    {
+      "label": "314normal",
+      "kind": "custody",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur"
+      ],
+      "result": "PASS",
+      "stdout_sha256": "7cdb041ec590e150734042339a8ea8efdce5022afa6cec91869accb69f5ddf9c"
+    },
+    {
+      "label": "314O",
+      "kind": "custody",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur"
+      ],
+      "result": "PASS",
+      "stdout_sha256": "7cdb041ec590e150734042339a8ea8efdce5022afa6cec91869accb69f5ddf9c"
+    },
+    {
+      "label": "312normal",
+      "kind": "custody",
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur"
+      ],
+      "result": "PASS",
+      "stdout_sha256": "7cdb041ec590e150734042339a8ea8efdce5022afa6cec91869accb69f5ddf9c"
+    },
+    {
+      "label": "312normal",
+      "kind": "schur_tensor",
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur/schur_tensor_check.py"
+      ],
+      "result": "PASS",
+      "stdout_sha256": "4ca5921832dd43104bd351370db3694bd7c8bb498698a58fa892052bfc06ed38"
+    },
+    {
+      "label": "312O",
+      "kind": "custody",
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur"
+      ],
+      "result": "PASS",
+      "stdout_sha256": "7cdb041ec590e150734042339a8ea8efdce5022afa6cec91869accb69f5ddf9c"
+    },
+    {
+      "label": "312O",
+      "kind": "schur_tensor",
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr786_30001223/tmp/math_schur/schur_tensor_check.py"
+      ],
+      "result": "PASS",
+      "stdout_sha256": "4ca5921832dd43104bd351370db3694bd7c8bb498698a58fa892052bfc06ed38"
+    }
+  ],
+  "physical_root_custody_controls": [
+    {
+      "case": "changed",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"size mismatch: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "missing",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"closed inventory mismatch\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "extra",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"closed inventory mismatch\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "symlink",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"not single-link regular file: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "fifo",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"not single-link regular file: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "hardlink",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"not single-link regular file: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "directory",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"not single-link regular file: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "bad_manifest",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"'schema'\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "manifest_fifo",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"manifest must be single-link regular file\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "manifest_directory",
+      "optimized": false,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"manifest must be single-link regular file\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "changed",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"size mismatch: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "missing",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"closed inventory mismatch\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "extra",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"closed inventory mismatch\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "symlink",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"not single-link regular file: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "fifo",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"not single-link regular file: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "hardlink",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"not single-link regular file: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "directory",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"not single-link regular file: TENSOR_CHECK_NORMAL.json\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "bad_manifest",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"'schema'\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "manifest_fifo",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"manifest must be single-link regular file\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    },
+    {
+      "case": "manifest_directory",
+      "optimized": true,
+      "result": "PASS_REJECTED",
+      "stdout": "{\"reason\": \"manifest must be single-link regular file\", \"result\": \"FAIL\"}",
+      "returncode": 1
+    }
+  ],
+  "controls": 20,
+  "finite_tensor_stdout_hashes": [
+    "4ca5921832dd43104bd351370db3694bd7c8bb498698a58fa892052bfc06ed38"
+  ],
+  "no_universal_or_priority_certification_by_finite_code": true,
+  "tensor_runtime": "Actual Python3.12.14 NumPy2.3.5 normal/O; system3.14 has no NumPy, initial import failed before computation and is not counted",
+  "failed_314_import_stderr": "schur_314normal_schur_tensor.stderr.txt"
+}

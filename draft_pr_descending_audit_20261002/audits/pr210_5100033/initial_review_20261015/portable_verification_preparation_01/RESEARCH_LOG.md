@@ -1,0 +1,6 @@
+# Portable verification preparation log
+
+- 2026-10-15T12:48:34Z — 55% preparation checkpoint; overall case 55%. All 20 originals,49 authored family payloads and 5 manifests copied only after size/SHA256 checks; no reading payloads copied.
+- 2026-10-15T12:53:47Z — 75% preparation checkpoint; overall case 55%. Nine-job harness/row validator complete; named metadata exclusions and explicit source-preflight adapter approved by root; all frozen rows validated.
+- 2026-10-15T12:55:29.556435+00:00 — 95% preparation checkpoint; overall case 55%. All 9 current replays exact scientific JSON ; 7 raw equal. Genuine-PDF extra run passed with no substitutions and identical science. Nine safeguard negatives passed.
+- 2026-10-15T12:58:15.394534+00:00 — 100% preparation checkpoint; overall case 55%. Exact-title README correction and reporting-only additions verified as the complete trial-to-final delta. Final verification seal issued once; final integrity and every archive/result row check passed. Manifest117 payload files, 1174391 bytes; SHA256 f64fc9ad80fa2520fcdb7bc6f0ee6017b5c6328ae981b8519c2429991001bc83. Supporting preparation is neither required whole-manuscript adversary. Root integration/review/publication gates remain.

@@ -1,0 +1,293 @@
+{
+  "created_utc": "2026-10-14T04:50:04.072435+00:00",
+  "environment_independent": false,
+  "source": "exact reviewed ZIP, extracted only four controls into own private directory",
+  "runs": [
+    {
+      "label": "finite_sampling_counterexample_ordinary",
+      "started_utc": "2026-10-14T04:49:40.226124+00:00",
+      "finished_utc": "2026-10-14T04:49:40.255620+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-E",
+        "-S",
+        "-B",
+        "-P",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/whole_package_review_03/private/extracted_controls/finite_sampling_counterexample.py"
+      ],
+      "script_sha256": "e48e2d0251bee92543529d98ece91eeb534025685d1831794ac3404d6798b062",
+      "returncode": 0,
+      "seconds": 0.029450832997099496,
+      "stdout_sha256": "d8275fcccf55d91721c3706200f99ca7e48e49fb8d5c5ff22605c3fab2383458",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_error": null,
+      "accepted": true,
+      "output": {
+        "status": "PASS",
+        "grid_points": 343,
+        "minimum_grid_denominator": "1",
+        "unsampled_point": [
+          "1/14",
+          "0",
+          "1/9"
+        ],
+        "unsampled_denominator": "-62/63",
+        "mechanism": "Phi=z+x*z^2+y*z^3-K*z*P(x), P(x)=product(i=0..6)(x-i/7)^2, K=2/P(1/14). Its vertical derivative is positive at every reviewer grid point and negative inside the grid box. Continuity forces a zero denominator between x=0 and x=1/14 at y=0,z=1/9.",
+        "claim_falsified": "Finite sampled positivity alone implies global nonsingularity",
+        "candidate_theorem_falsified": false
+      }
+    },
+    {
+      "label": "finite_sampling_counterexample_optimized",
+      "started_utc": "2026-10-14T04:49:40.255765+00:00",
+      "finished_utc": "2026-10-14T04:49:40.285642+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-E",
+        "-S",
+        "-B",
+        "-P",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/whole_package_review_03/private/extracted_controls/finite_sampling_counterexample.py"
+      ],
+      "script_sha256": "e48e2d0251bee92543529d98ece91eeb534025685d1831794ac3404d6798b062",
+      "returncode": 0,
+      "seconds": 0.029956499995023478,
+      "stdout_sha256": "d8275fcccf55d91721c3706200f99ca7e48e49fb8d5c5ff22605c3fab2383458",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_error": null,
+      "accepted": true,
+      "output": {
+        "status": "PASS",
+        "grid_points": 343,
+        "minimum_grid_denominator": "1",
+        "unsampled_point": [
+          "1/14",
+          "0",
+          "1/9"
+        ],
+        "unsampled_denominator": "-62/63",
+        "mechanism": "Phi=z+x*z^2+y*z^3-K*z*P(x), P(x)=product(i=0..6)(x-i/7)^2, K=2/P(1/14). Its vertical derivative is positive at every reviewer grid point and negative inside the grid box. Continuity forces a zero denominator between x=0 and x=1/14 at y=0,z=1/9.",
+        "claim_falsified": "Finite sampled positivity alone implies global nonsingularity",
+        "candidate_theorem_falsified": false
+      }
+    },
+    {
+      "label": "independent_integrable_controls_ordinary",
+      "started_utc": "2026-10-14T04:49:40.285783+00:00",
+      "finished_utc": "2026-10-14T04:49:40.449069+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-E",
+        "-S",
+        "-B",
+        "-P",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/whole_package_review_03/private/extracted_controls/independent_integrable_controls.py"
+      ],
+      "script_sha256": "83570667d5641ce240d98a0896924e14b15b6c17ee5f52a3dd1a9d478902d490",
+      "returncode": 0,
+      "seconds": 0.1634097920032218,
+      "stdout_sha256": "595393d6589d13a516a58f74d6e32b0956e59a9ed1144b0565e166b944e0a7b4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_error": null,
+      "accepted": true,
+      "output": {
+        "status": "PASS",
+        "checks": 58,
+        "mechanism": "exact rational Taylor coefficients of normalized dF for F=z+x*z^2+y*z^3",
+        "parameter_domain": "8 rational points with positive D and two positive compressions; identities separately derived in FIRST_ASSESSMENT.md",
+        "global_foliation_certificate": false,
+        "tautness_certificate": false
+      }
+    },
+    {
+      "label": "independent_integrable_controls_optimized",
+      "started_utc": "2026-10-14T04:49:40.449251+00:00",
+      "finished_utc": "2026-10-14T04:49:40.613424+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-E",
+        "-S",
+        "-B",
+        "-P",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/whole_package_review_03/private/extracted_controls/independent_integrable_controls.py"
+      ],
+      "script_sha256": "83570667d5641ce240d98a0896924e14b15b6c17ee5f52a3dd1a9d478902d490",
+      "returncode": 0,
+      "seconds": 0.16425816600531107,
+      "stdout_sha256": "595393d6589d13a516a58f74d6e32b0956e59a9ed1144b0565e166b944e0a7b4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_error": null,
+      "accepted": true,
+      "output": {
+        "status": "PASS",
+        "checks": 58,
+        "mechanism": "exact rational Taylor coefficients of normalized dF for F=z+x*z^2+y*z^3",
+        "parameter_domain": "8 rational points with positive D and two positive compressions; identities separately derived in FIRST_ASSESSMENT.md",
+        "global_foliation_certificate": false,
+        "tautness_certificate": false
+      }
+    },
+    {
+      "label": "independent_symbolic_checks_ordinary",
+      "started_utc": "2026-10-14T04:49:40.613588+00:00",
+      "finished_utc": "2026-10-14T04:49:51.223228+00:00",
+      "argv": [
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/gv_algebra_reproduction_adversary/private/control_env/bin/python",
+        "-E",
+        "-B",
+        "-P",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/whole_package_review_03/private/extracted_controls/independent_symbolic_checks.py"
+      ],
+      "script_sha256": "810ec44c9444fbb5d8d454f6d8691cdf087c22c65cc9c8135441396821480842",
+      "returncode": 0,
+      "seconds": 10.609801749997132,
+      "stdout_sha256": "826b6d90f51c7a4715986122ac6917f4da224518ebf679554a3e2689627b3cc6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_error": null,
+      "accepted": true,
+      "output": {
+        "categories": {
+          "averaged_coordinate_positive": 209,
+          "compression_GV_density": 3,
+          "compression_defining_equation": 3,
+          "constant_total_mass": 200,
+          "coordinate_partition_weights": 11,
+          "density_integral_preservation": 120,
+          "integrable_local_Frobenius": 1,
+          "integrable_local_defining_equation": 1,
+          "integrable_local_eta": 1,
+          "interior_slabs": 200,
+          "local_coordinate_positive": 343,
+          "local_density_nontrivial": 1,
+          "local_form_equation_at_rational_point": 343,
+          "separated_slabs": 200,
+          "universal_Frobenius_coefficient": 1,
+          "universal_GV_coefficient": 1,
+          "universal_contraction_identity": 1,
+          "universal_normalization": 1
+        },
+        "checks": 1640,
+        "original_proof_sha256_informational_only": "28d66c68f4497b1b2a3476d3f858902e8def73e65357320a743da43cb0564c6f",
+        "scope": "Exact local differential identities and rescaling diagnostics only. Classical suspension realization, hyperbolization, relative gluing and global tautness are checked in the written review, not inferred from these finite controls.",
+        "sympy_version": "1.14.0",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "label": "independent_symbolic_checks_optimized",
+      "started_utc": "2026-10-14T04:49:51.223450+00:00",
+      "finished_utc": "2026-10-14T04:50:01.804362+00:00",
+      "argv": [
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/gv_algebra_reproduction_adversary/private/control_env/bin/python",
+        "-E",
+        "-B",
+        "-P",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/whole_package_review_03/private/extracted_controls/independent_symbolic_checks.py"
+      ],
+      "script_sha256": "810ec44c9444fbb5d8d454f6d8691cdf087c22c65cc9c8135441396821480842",
+      "returncode": 0,
+      "seconds": 10.581476458006364,
+      "stdout_sha256": "826b6d90f51c7a4715986122ac6917f4da224518ebf679554a3e2689627b3cc6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_error": null,
+      "accepted": true,
+      "output": {
+        "categories": {
+          "averaged_coordinate_positive": 209,
+          "compression_GV_density": 3,
+          "compression_defining_equation": 3,
+          "constant_total_mass": 200,
+          "coordinate_partition_weights": 11,
+          "density_integral_preservation": 120,
+          "integrable_local_Frobenius": 1,
+          "integrable_local_defining_equation": 1,
+          "integrable_local_eta": 1,
+          "interior_slabs": 200,
+          "local_coordinate_positive": 343,
+          "local_density_nontrivial": 1,
+          "local_form_equation_at_rational_point": 343,
+          "separated_slabs": 200,
+          "universal_Frobenius_coefficient": 1,
+          "universal_GV_coefficient": 1,
+          "universal_contraction_identity": 1,
+          "universal_normalization": 1
+        },
+        "checks": 1640,
+        "original_proof_sha256_informational_only": "28d66c68f4497b1b2a3476d3f858902e8def73e65357320a743da43cb0564c6f",
+        "scope": "Exact local differential identities and rescaling diagnostics only. Classical suspension realization, hyperbolization, relative gluing and global tautness are checked in the written review, not inferred from these finite controls.",
+        "sympy_version": "1.14.0",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "label": "verify_forms_ordinary",
+      "started_utc": "2026-10-14T04:50:01.804965+00:00",
+      "finished_utc": "2026-10-14T04:50:02.928054+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-E",
+        "-S",
+        "-B",
+        "-P",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/whole_package_review_03/private/extracted_controls/verify_forms.py"
+      ],
+      "script_sha256": "0a7306e355586d46520bcc5aa275948eb32173b2d22784656ce65638a6ae557a",
+      "returncode": 0,
+      "seconds": 1.12317045799864,
+      "stdout_sha256": "f4a677e8fa70439dbc9ec6ea6744e65e05cf80e66f1781796f22b9dac05bc3e6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_error": null,
+      "accepted": true,
+      "output": {
+        "affine_rescalings": 360,
+        "checks": 2660,
+        "distinct_affine_pair_rescalings": 360,
+        "distinct_polynomial_pairs": 120,
+        "distinct_product_potentials": 50,
+        "enforcement": "Explicit conditional error, including Python optimized mode",
+        "original_proof_sha256_informational_only": "28d66c68f4497b1b2a3476d3f858902e8def73e65357320a743da43cb0564c6f",
+        "polynomial_form_cases": 120,
+        "scope": "Exact algebraic controls only; no numerical realization of the classical nonzero suspension or hyperbolic metric",
+        "stack_sizes": 100,
+        "verifier_sha256": "0a7306e355586d46520bcc5aa275948eb32173b2d22784656ce65638a6ae557a"
+      }
+    },
+    {
+      "label": "verify_forms_optimized",
+      "started_utc": "2026-10-14T04:50:02.928226+00:00",
+      "finished_utc": "2026-10-14T04:50:04.072119+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-E",
+        "-S",
+        "-B",
+        "-P",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr184_10300044/whole_package_review_03/private/extracted_controls/verify_forms.py"
+      ],
+      "script_sha256": "0a7306e355586d46520bcc5aa275948eb32173b2d22784656ce65638a6ae557a",
+      "returncode": 0,
+      "seconds": 1.1439933750007185,
+      "stdout_sha256": "f4a677e8fa70439dbc9ec6ea6744e65e05cf80e66f1781796f22b9dac05bc3e6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_error": null,
+      "accepted": true,
+      "output": {
+        "affine_rescalings": 360,
+        "checks": 2660,
+        "distinct_affine_pair_rescalings": 360,
+        "distinct_polynomial_pairs": 120,
+        "distinct_product_potentials": 50,
+        "enforcement": "Explicit conditional error, including Python optimized mode",
+        "original_proof_sha256_informational_only": "28d66c68f4497b1b2a3476d3f858902e8def73e65357320a743da43cb0564c6f",
+        "polynomial_form_cases": 120,
+        "scope": "Exact algebraic controls only; no numerical realization of the classical nonzero suspension or hyperbolic metric",
+        "stack_sizes": 100,
+        "verifier_sha256": "0a7306e355586d46520bcc5aa275948eb32173b2d22784656ce65638a6ae557a"
+      }
+    }
+  ]
+}

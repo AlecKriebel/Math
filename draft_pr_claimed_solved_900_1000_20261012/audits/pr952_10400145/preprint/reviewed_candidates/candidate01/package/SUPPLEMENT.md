@@ -1,0 +1,11 @@
+# Supporting arguments and audit navigation
+
+The concise paper contains the complete finite-quotient proof and explicit counterexample. The longer independent reports supply materially different checks.
+
+1. Algebra: reviews/algebra_falsifier_01/REVIEW_REPORT.md derives the inverse-limit evaluation and polynomial-in-n bound for every fixed Taylor order. Its independent_controls.py includes finite ring/monic division, higher jets and type-A Casimir controls. Its assertion-based control program was actually used unoptimized; no optimized semantic claim is based on those assertions.
+2. Quantum normalization: reviews/quantum_bridge_01/REPORT.md checks primary sources and gives an alternative first-jet congruence argument at infinitely many odd primes. The specialization of Φ_r(1+x) to zero modulo(r,x²) makes the Habiro root evaluation and first jet commute. This route is supporting evidence, while the paper directly cites Habiro–Lê's Taylor identification.
+3. Theta normalization: for B(X,Y)=Tr(XY), roots have squared length2, and Σ_ij[E_ij,[E_ji,X]]=2nX−2Tr(X)I, hence theta weight2n(n²−1). Its n3/n2 ratio is4. Raw Killing form K=2nB has a different raw weight and needs the corresponding parameter change; the main theorem is not derived from an unnormalized Killing-weight equality.
+4. Computation: reviews/computation_01/COMPUTATION_REVIEW.md and receipts distinguish actual launch counts, external-pin rejections, original105negative/6positive mutation cases, and the unavailable full Linux profile. The standalone checks/independent_math.py uses explicit exception guards, finite-characteristic and polynomial identities, and a general divisibility argument for the Poincaré tail. Finite samples are not the proof for an infinite tail.
+5. Priority: classical/recent family reports compare the weaker criterion of any complete prior ordinary-S counterexample, credit the1998/2000/2008 mechanisms, distinguish modern enlarged rings, and retain coverage gaps.
+
+All report/manifests are exact public allowlist copies. Original files are under original/unsolved_math_prioritization/attempts/10400145; historical claims and old acceptance words remain original provenance rather than new acceptance. INHERITED_FINDING_DISPOSITIONS.json tracks all28 inherited entries individually. New whole-paper reviewers must inspect and assess them independently.

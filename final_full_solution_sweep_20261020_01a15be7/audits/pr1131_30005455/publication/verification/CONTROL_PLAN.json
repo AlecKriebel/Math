@@ -1,0 +1,39 @@
+{
+  "suites": [
+    {
+      "name": "forest",
+      "program": "verification/forest_controls.py",
+      "args": []
+    },
+    {
+      "name": "whisker",
+      "program": "audit/whisker/VERIFY.py",
+      "args": [
+        "--manifest-sha256",
+        "f47eee26c9a314e2b95b93f57dd21a617d345ccb5a5f689ca3444e8b2d069044"
+      ]
+    },
+    {
+      "name": "prior24",
+      "program": "audit/priority01/verify_priority.py",
+      "args": [
+        "audit/priority01",
+        "--expected-manifest-sha256",
+        "ff1586924fb7fab1a7aad65623982148d4f6ead522051245af3e6d373b459d96"
+      ]
+    }
+  ],
+  "modes": [
+    [],
+    [
+      "-O"
+    ],
+    [
+      "-OO"
+    ]
+  ],
+  "comparison": "Complete JSON values AND exact recursive types, no fields dropped or normalized",
+  "scope": "Purefiniteexactcontrols; no primarytextdownload, privatecapturecustody or exhaustiveprioritycert",
+  "internal_negative_controls": "Forest6 andwhisker7deliberate mathematical/scopealternatives rejected ineachmode bytheirnewverifiers",
+  "historical_custody_programs": "Forestfullmain andpriority02fullmain requireprivateprimarycaptures; notclaimedportableofflineexecutions. Theirpurewrittenproofandallneededfinitecontrolsareincluded independently."
+}

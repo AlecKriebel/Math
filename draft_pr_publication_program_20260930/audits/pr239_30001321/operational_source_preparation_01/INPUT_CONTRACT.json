@@ -1,0 +1,481 @@
+{
+  "annotation": "Expressions are extracted from current executable validators. Symbolic values are evaluated by the source; this is not a gate/receipt/template asserting any real outcome. Additional imperative checks remain in source and CONTRACT.md.",
+  "contracts": {
+    "ROOT_TERMINAL_INSPECTION.py": [
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "sha256"
+          ]
+        ],
+        "symbol": "bytepin"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ]
+        ],
+        "symbol": "checked_ref"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ]
+        ],
+        "symbol": "source_closure"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "Root_gate",
+            "actual_CAS",
+            "admission",
+            "extension_acceptance",
+            "extension_source",
+            "journal",
+            "logical_gate",
+            "manifest",
+            "pointer",
+            "receipt_name",
+            "source_acceptance",
+            "sync"
+          ]
+        ],
+        "symbol": "context"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "fully_completed_eligible_PRs",
+            "published_PRs"
+          ]
+        ],
+        "symbol": "accounting"
+      }
+    ],
+    "completion_checkpoint.py": [
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ]
+        ],
+        "symbol": "ref"
+      },
+      {
+        "exact_match_expressions": [
+          "h.matches(sm, {'schema': 'pr239-completion-source-manifest-v1', 'self_excluded': True, 'source_only': True}, 'New source closure')"
+        ],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ]
+        ],
+        "symbol": "Seed"
+      },
+      {
+        "exact_match_expressions": [
+          "h.matches(a, {'schema': 'pr239-completion-parent-admission-v1', 'PR': 239, 'evidence_scope': 'FACTUAL_PARENT_ADMISSION_REQUIRES_ROOT_ACCEPTANCE', 'protocol_pin': seed.source_pin, 'source_manifest_pin': seed.source_manifest_pin, 'logical_manifest_pin': seed.manifest_pin, 'logical_gate_pin': seed.logical_gate_pin, 'facts': h.phase_facts(seed.logical['phase']), 'body_proof_policy': h.BODY_POLICY, 'QUEUE_policy': h.QUEUE_POLICY, 'commit_message': seed.logical['commit_message']}, 'Admission fixed semantics')"
+        ],
+        "literal_field_or_role_sets": [
+          [
+            "PR",
+            "QUEUE_policy",
+            "body_proof_policy",
+            "candidate",
+            "candidate_journal",
+            "commit_author",
+            "commit_committer",
+            "commit_message",
+            "created_UTC",
+            "evidence_scope",
+            "facts",
+            "logical_gate_pin",
+            "logical_manifest_pin",
+            "parent",
+            "parent_tree",
+            "parents",
+            "protocol_pin",
+            "schema",
+            "source_manifest_pin",
+            "tree"
+          ],
+          [
+            "date",
+            "email",
+            "name"
+          ]
+        ],
+        "symbol": "checked_admission"
+      },
+      {
+        "exact_match_expressions": [
+          "h.matches(self.gate, {'schema': 'pr239-root-completion-admission-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'protocol_pin': self.seed.source_pin, 'source_manifest_pin': self.seed.source_manifest_pin, 'admission_pin': self.admission_pin, 'logical_manifest_pin': self.seed.manifest_pin, 'logical_gate_pin': self.seed.logical_gate_pin, 'facts': h.phase_facts(self.m['phase']), 'body_proof_policy': h.BODY_POLICY, 'QUEUE_policy': h.QUEUE_POLICY, 'parent_only_parameterization_reviewed': True, 'one_use_two_immutable_POSTs_authorized': True, 'no_ref_writer_or_PR_action_authority': True, 'phase95_baseline55_39_held_phase100_only239_added': True, 'Root_full_source_read': True, 'independent_source_review_accepted': True, 'parent_only_admissions_without_new_peer_review_approved': True}, 'Separate exact Root completion admission acceptance')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "Runtime"
+      },
+      {
+        "exact_match_expressions": [
+          "h.matches(progress, h.baseline_facts(m['phase']), 'Intervening ascending checkpoint refused')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "parent_state"
+      },
+      {
+        "exact_match_expressions": [
+          "h.matches(commit.get('author'), rt.m['commit_author'], 'Canonical author')",
+          "h.matches(commit.get('committer'), rt.m['commit_committer'], 'Canonical committer')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "verify_immutable"
+      },
+      {
+        "exact_match_expressions": [
+          "h.matches(root, {'schema': 'pr239-root-completion-preCAS-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'phase': rt.m['phase'], 'accepted': True, 'protocol_pin': rt.seed.source_pin, 'admission_pin': rt.admission_pin, 'logical_manifest_pin': rt.seed.manifest_pin, 'logical_gate_pin': rt.seed.logical_gate_pin, 'candidate': rt.admission['candidate'], 'tree': rt.admission['tree'], 'immutable_candidate_verification_accepted': True, 'independent_GET_candidate_verification_accepted': True, 'body_proof_policy': h.BODY_POLICY, 'QUEUE_policy': h.QUEUE_POLICY}, 'Actual Root acceptance of independent full native proofs')",
+          "h.matches(proof, {'schema': 'pr239-completion-immutable-candidate-verification-v1', 'evidence_scope': IMMUTABLE_SCOPE, 'phase': rt.m['phase'], 'protocol_pin': rt.seed.source_pin, 'source_manifest_pin': rt.seed.source_manifest_pin, 'admission_pin': rt.admission_pin, 'logical_manifest_pin': rt.seed.manifest_pin, 'logical_gate_pin': rt.seed.logical_gate_pin, 'candidate': rt.admission['candidate'], 'tree': rt.admission['tree'], 'parent': rt.admission['parent'], 'parent_tree': rt.admission['parent_tree'], 'full_scope_verified': True, 'all_selected_native_bodies_verified': True, 'foreign_native_tuples_preserved': True, 'selected_count': len(rt.overlay), 'body_proof_policy': h.BODY_POLICY, 'QUEUE_policy': h.QUEUE_POLICY, 'mutable_Main_observed_or_spoofed': False, 'actual_CAS_or_completion_inferred': False}, 'Exact complete immutable native proof differs')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "accepted_verifications"
+      },
+      {
+        "exact_match_expressions": [
+          "h.matches(a, {'schema': 'pr239-root-completion-actual-CAS-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'hostname': 'github.com', 'repository_full_name': 'AlecKriebel/Math', 'protocol_pin': rt.seed.source_pin, 'source_manifest_pin': rt.seed.source_manifest_pin, 'admission_pin': rt.admission_pin, 'logical_manifest_pin': rt.seed.manifest_pin, 'logical_gate_pin': rt.seed.logical_gate_pin, 'body_proof_policy': rt.h.BODY_POLICY, 'QUEUE_policy': rt.h.QUEUE_POLICY, 'facts': rt.m['facts'], 'parent': rt.admission['parent'], 'candidate': rt.admission['candidate'], 'tree': rt.admission['tree'], 'actual_Root_MCP_CAS_performed': True, 'actual_tool_success_and_readback_accepted': True, 'original_lock_held_across_actual_Root_CAS': True, 'unknown_outcome': False}, 'Separate actual external Root CAS acceptance required')",
+          "h.matches(ready, {'schema': 'pr239-completion-locked-CAS-ready-v1', 'evidence_scope': 'HELD_LOCK_AND_DATED_FRESH_LEASE_NOT_CAS_SUCCESS', 'protocol_pin': rt.seed.source_pin, 'admission_pin': rt.admission_pin, 'parent': rt.admission['parent'], 'candidate': rt.admission['candidate'], 'original_stable_lock_held': True}, 'Actual held-lock ready record required')",
+          "h.matches(request, {'tool': 'NativeMCP.github_update_ref', 'owner': 'AlecKriebel', 'repo': 'Math', 'ref': 'heads/main', 'expected_sha': rt.admission['parent'], 'sha': rt.admission['candidate'], 'force': False}, 'True Root expectedSHA forcefalse request')",
+          "h.matches(result, {'isError': False, 'structuredContent': {'success': True}}, 'Actual successful MCP tool response required')",
+          "h.matches(receipt, {'method': 'GET', 'path': 'git/ref/heads/main', 'exit': 0, 'stdout_pin': {k: response_row[k] for k in ('bytes', 'sha256')}}, 'Actual native ref readback receipt differs')",
+          "h.matches(confirmation, {'schema': 'pr239-root-postCAS-same-live-guard-confirmation-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'accepted': True, 'protocol_pin': rt.seed.source_pin, 'admission_pin': rt.admission_pin, 'actual_lock_guard_ready_pin': {k: a['actual_lock_guard_ready'][k] for k in ('bytes', 'sha256')}, 'actual_tool_response_pin': {k: a['actual_tool_response'][k] for k in ('bytes', 'sha256')}, 'actual_readback_response_pin': {k: response_row[k] for k in ('bytes', 'sha256')}, 'same_session_live_poll_after_actual_MCP_and_readback_before_acceptance_and_ack': True, 'original_lock_continuity_from_linear_held_source_and_same_live_session': True}, 'Separate actual Root post-CAS same-live-session confirmation required')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "actual_cas"
+      },
+      {
+        "exact_match_expressions": [
+          "rt.h.matches(pointer, {'schema': 'pr239-completion-actual-five-pointer-v1', 'evidence_scope': 'ACTUAL_SYNC_NOT_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE', 'protocol_pin': rt.seed.source_pin, 'admission_pin': rt.admission_pin, 'actual_CAS_pin': {k: cas_ref[k] for k in ('bytes', 'sha256')}, 'CAS_target': rt.admission['candidate'], 'CAS_target_tree': rt.admission['tree'], 'all_five_local_postimages_verified': True, 'recorded_under_original_stable_lock': True, 'external_Root_terminal_acceptance_inferred': False}, 'Exact actual-sync pointer required before terminal readout')",
+          "rt.h.matches(proof, {'schema': 'pr239-completion-actual-five-sync-v1', 'evidence_scope': 'ACTUAL_SYNC_REQUIRES_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE', 'protocol_pin': rt.seed.source_pin, 'admission_pin': rt.admission_pin, 'actual_CAS_pin': {k: cas_ref[k] for k in ('bytes', 'sha256')}, 'CAS_target': rt.admission['candidate'], 'CAS_target_tree': rt.admission['tree'], 'all_five_local_postimages_verified': True, 'facts': rt.m['facts'], 'external_Root_terminal_acceptance_inferred': False}, 'Actual sync receipt association differs')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "checked_pointer"
+      }
+    ],
+    "completion_consumer.py": [
+      {
+        "exact_match_expressions": [
+          "h.matches(proof, {'schema': 'pr239-root-actual-completion-verification-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'phase': 'completion100', 'new_publication_workflow': True, 'workflow_percent': 100, 'fully_completed_count': 56, 'published_count': 40, 'last_completed_PR': 239, 'next_numeric_intake_cursor': 240, 'accepted': True, 'completed': True, 'completed_eligible_workflow': True, 'publication_workflow_completed': True, 'publication_ready': True, 'advance_to_next_PR_authorized_now': True, 'actual_original_PR_merged': True, 'adopted_existing_publication': False, 'no_new_provider_publication_or_tracker_append': False, 'new_publication_verified': True, 'new_tracker_append_verified': True, 'all_five_local_files_match_actual_checkpoint': True, 'full_scope_verified': True, 'all_selected_native_bodies_verified': True, 'actual_Root_expected_SHA_force_false_ref_update_and_native_readback': True, 'original_stable_writer_lock_held_exact': True, 'foreign_native_tuples_preserved': True, 'coherent_before_after_ref': True, 'source_gates_verified': True, 'goal_complete': False, 'CAS_or_completion_inferred_from_ancestry': False, 'perpetual_or_write_time_Main_equality_claimed': False, 'numeric_advance_conditional_on_actual_Root_terminal': False, 'original_eligible_status': 'claimed_solved', 'current_status': 'claimed_solved', 'current_head': h.CURRENT}, 'Exact typed actual239 terminal facts and authority boundary')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "completion_proof"
+      }
+    ],
+    "concurrent_get_extension.py": [
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "PR",
+            "files",
+            "schema"
+          ],
+          [
+            "bytes",
+            "oid",
+            "sha256"
+          ]
+        ],
+        "symbol": "wanted_blobs"
+      },
+      {
+        "exact_match_expressions": [
+          "h.matches(manifest, {'schema': 'pr239-completion-source-manifest-v1', 'source_only': True, 'self_excluded': True}, 'Positive extension source closure')",
+          "h.matches(gate, {'schema': 'pr239-root-concurrent-GET-extension-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'extension_pin': self.source_pin, 'extension_source_manifest_pin': self.source_manifest_pin, 'protocol_pin': PROTOCOL_PIN, 'protocol_source_manifest_pin': self.source_manifest_pin, 'logical_manifest_pin': self.base.seed.manifest_pin, 'logical_gate_pin': self.base.seed.logical_gate_pin, 'admission_pin': self.base.admission_pin, 'admission_gate_pin': self.base.gate_pin, 'Root_full_source_read': True, 'independent_source_adversarial_review_accepted': True, 'fresh_actual_parameter_bindings_accepted': True, 'old_logical_packet_and_source_identity_unchanged': True, 'actual_native_GET_transport_extension_explicitly_accepted': True, 'only_existing_inherited_per_admission_effect_authority': True, 'no_ref_PR_or_global_five_authority_added': True, 'original_driver_CLI_execution_claimed': False, 'old_sync_and_hold_CAS_invoked_unchanged': True}, 'Exact separate Root transport-extension acceptance required')",
+          "h.matches(gate, {'candidate_two_POST_orchestration_delta_reviewed': True}, 'Candidate reader-only delta must be separately reviewed')"
+        ],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ]
+        ],
+        "symbol": "GuardedRuntime"
+      },
+      {
+        "exact_match_expressions": [
+          "h.matches(origin, {'method': 'GET', 'hostname': 'github.com', 'repository': 'AlecKriebel/Math', 'route': 'git/blobs/' + oid}, 'Actual worker raw origin required')",
+          "h.matches(receipt, {'method': 'GET', 'path': 'git/blobs/' + oid, 'exit': 0, 'raw_stdout': response, 'raw_stderr': err}, 'Actual raw response/receipt route association required')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "validate_blob"
+      }
+    ],
+    "native239_model.py": [
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "sha256"
+          ]
+        ],
+        "symbol": "bytepin"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "mode",
+            "sha",
+            "type"
+          ]
+        ],
+        "symbol": "tuple_pin"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ]
+        ],
+        "symbol": "root_ref"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "mode",
+            "sha",
+            "type"
+          ]
+        ],
+        "symbol": "preserved_tuple"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "parents",
+            "raw_commit",
+            "sha",
+            "tree"
+          ],
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ]
+        ],
+        "symbol": "authenticated_commit"
+      },
+      {
+        "exact_match_expressions": [
+          "matches(origin, {'method': 'GET', 'hostname': 'github.com', 'repository': 'AlecKriebel/Math', 'route': 'git/blobs/' + oid}, 'Actual native blob provenance')",
+          "matches(receipt, {'method': 'GET', 'path': 'git/blobs/' + oid, 'exit': 0, 'raw_stdout': response, 'raw_stderr': origin['raw_stderr']}, 'Raw native GET receipt association')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "NativeBodyProofs"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "date",
+            "email",
+            "name"
+          ]
+        ],
+        "symbol": "commit_request"
+      },
+      {
+        "exact_match_expressions": [
+          "matches(r, {'schema': 'pr239-root-native-identity-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'phase': m['phase'], 'accepted': True, 'raw_original_and_parent_commit_authentication_verified': True, 'whole_submitted_HEAD_changed_scope_verified': True, 'exact_original32_archive_verified': True, 'fresh_Main_finite_preimages_and_own_row_verified': True, 'protected_nodes': m['protected_nodes'], 'protected_bodies': m['protected_bodies'], 'post_attempt_tree': m['post_attempt_tree'], 'science_allowlist': m['science_allowlist'], 'protected_queue': m['protected_queue'], 'queue_postimage': m['queue_postimage'], 'queue_pre_row_pin': m['queue_pre_row_pin'], 'protected_queue_row_pin': m['protected_queue_row_pin'], 'current_PR_opaque_body_pin': m['current_PR_opaque_body_pin']}, 'Exact future Root native acceptance, not this source')"
+        ],
+        "literal_field_or_role_sets": [
+          [
+            "changed_leaves",
+            "deleted_directories",
+            "new_directories"
+          ]
+        ],
+        "symbol": "native_identity"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "case_ready",
+            "custody",
+            "math",
+            "priority",
+            "publication",
+            "ready",
+            "tracker",
+            "whole_package"
+          ],
+          [
+            "merge"
+          ]
+        ],
+        "symbol": "evidence_roles"
+      },
+      {
+        "exact_match_expressions": [
+          "matches(pub, {'schema': 'pr239-root-actual-publication-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'published': True, 'actual_submitted_record_verified_by_top_level_kit': True, 'public_body_downloads_SHA256_verified': True, 'new_publication': True, 'unknown_outcome': False}, 'Actual NEW publication receipt required')",
+          "matches(track, {'schema': 'pr239-root-actual-tracker-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'appended_once': True, 'native_readback_verified': True, 'fresh_duplicate_check_accepted': True, 'publication_receipt': e['publication'], 'spreadsheet_id': SPREADSHEET, 'tab': 'Math Puzzles'}, 'Actual one-append tracker receipt')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "publication_identity"
+      },
+      {
+        "exact_match_expressions": [
+          "matches(r, {'schema': 'pr239-root-actual-original-pr-merge-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'actual_original_PR_merged': True, 'actual_original_head': CURRENT, 'actual_original_PR_state': 'closed', 'actual_original_PR_is_draft': False, 'merge95_full_scope_and_all_selected_bodies_verified': True, 'merge95_all_five_verified': True, 'actual_Root_expected_SHA_force_false_CAS_and_readback_accepted': True}, 'Separate actual merge95 Root receipt')",
+          "matches(cas, {'schema': 'pr239-root-completion-actual-CAS-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'candidate': r['merge_candidate'], 'tree': r['merge_tree'], 'parent': r['parent'], 'actual_Root_MCP_CAS_performed': True, 'actual_tool_success_and_readback_accepted': True, 'original_lock_held_across_actual_Root_CAS': True, 'unknown_outcome': False, 'facts': phase_facts('merge95')}, 'True earlier phase95 CAS evidence required')",
+          "matches(request, {'tool': 'NativeMCP.github_update_ref', 'owner': 'AlecKriebel', 'repo': 'Math', 'ref': 'heads/main', 'expected_sha': r['parent'], 'sha': r['merge_candidate'], 'force': False}, 'Actual merge CAS request')",
+          "matches(response, {'isError': False, 'structuredContent': {'success': True}}, 'Actual successful merge CAS response')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "merge_identity"
+      },
+      {
+        "exact_match_expressions": [
+          "matches(ready, {'schema': 'pr239-root-case-ready-publication-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'mathematical_review_accepted': True, 'priority_review_accepted': True, 'two_distinct_fresh_whole_package_reviews_accepted': True, 'final_package_frozen': True, 'actual_new_publication_and_unique_tracker_append_verified': True, 'actual_ready_PR_verified': True, 'original_and_current_claimed_solved_3of5_preserved': True, 'ordered239_intake_and234_bridge_accepted': True, 'native_identity_receipt': m['native_identity_receipt'], 'current_head': CURRENT, 'evidence_references': {k: v for k, v in evidence.items() if k not in ('case_ready', 'merge')}, 'numeric_advance_authorized_by_this_file': False, 'phase95_cumulative_publication_membership_held_at39': True}, 'Future exact Root final-publication gate required')",
+          "matches(r, {'schema': 'pr239-root-actual-ready-PR-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'actual_PR_ready_for_review': True, 'actual_draft': False, 'actual_merged': False, 'actual_state': 'open', 'actual_original_head': CURRENT, 'final_body_pin': m['current_PR_opaque_body_pin']}, 'Actual Root ready presentation receipt required')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "validate_ready_value"
+      },
+      {
+        "exact_match_expressions": [
+          "matches(value, {'number': 239, 'title': ready['final_title'], 'draft': False}, 'Exact accepted ready presentation')",
+          "matches(value, {'state': 'closed', 'merged': True, 'merge_commit_sha': oid}, 'Actual original PR merged')",
+          "matches(value, {'state': 'closed', 'merge_commit_sha': m['expected_candidate']}, 'Actual merge must match admitted C1')",
+          "matches(value, {'state': 'open', 'merged': False}, 'Open ready/unmerged before C1')"
+        ],
+        "literal_field_or_role_sets": [],
+        "symbol": "validate_pr_metadata"
+      },
+      {
+        "exact_match_expressions": [
+          "matches(r, {'schema': 'pr239-root-prior-operational-carry-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'accepted': True, 'prior_terminal_pin': PRIOR_TERMINAL_PIN, 'finite_positive_public_selection_reviewed': True, 'ordered239_intake_and_additive234_skip_preserved': True}, 'Root finite carry gate')"
+        ],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ]
+        ],
+        "symbol": "carry_inventory"
+      },
+      {
+        "exact_match_expressions": [],
+        "literal_field_or_role_sets": [
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ]
+        ],
+        "symbol": "validate_carryforward"
+      },
+      {
+        "exact_match_expressions": [
+          "matches(m, {'schema': 'pr239-conditional-publication-logical-packet-v1', 'PR': 239, 'problem_id': '30001321', 'facts': phase_facts(phase), 'body_proof_policy': BODY_POLICY, 'QUEUE_policy': QUEUE_POLICY, 'writer_lock': WRITER_LOCK_REFERENCE}, 'Typed phase facts/policies')",
+          "matches(gate, {'schema': 'pr239-root-completion-logical-packet-acceptance-v1', 'evidence_scope': 'ACTUAL_ROOT_RECEIPT', 'PR': 239, 'phase': phase, 'accepted': True, 'manifest_pin': {k: manifest_ref[k] for k in ('bytes', 'sha256')}, 'source_manifest_pin': source_manifest_pin, 'protocol_pin': protocol_pin, 'primitive_pin': primitive_pin, 'facts': phase_facts(phase), 'native_identity_receipt': m['native_identity_receipt'], 'case_ready_receipt': evidence['case_ready'], 'public_selection_reviewed': True, 'actual_new_publication_tracker_ready_verified': True, 'no_provider_or_PR_writer_in_engine': True, 'exact_baseline_plus239_only_at_completion100': True, 'QUEUE_policy': QUEUE_POLICY, 'Root_full_source_read': True, 'independent_source_adversarial_review_accepted': True, 'independent_exact_packet_review_accepted': True}, 'Separate actual exact logical/source gate')",
+          "matches(obj, phase_facts(phase), 'Exact conditional view facts')",
+          "matches(root_ref(evidence[role]), {'PR': 239, 'accepted': True}, 'Actual Root priority/full-package acceptance')"
+        ],
+        "literal_field_or_role_sets": [
+          [
+            "PR",
+            "QUEUE_policy",
+            "body_proof_policy",
+            "carry_inventory",
+            "carryforward",
+            "commit_author",
+            "commit_committer",
+            "commit_message",
+            "current_PR_opaque_body_pin",
+            "evidence_references",
+            "expected_changed_paths",
+            "expected_new_directories",
+            "facts",
+            "files",
+            "local_views",
+            "native_identity_receipt",
+            "phase",
+            "post_attempt_tree",
+            "problem_id",
+            "protected_bodies",
+            "protected_nodes",
+            "protected_queue",
+            "protected_queue_row_pin",
+            "queue_postimage",
+            "queue_pre_row_pin",
+            "retired_candidates",
+            "schema",
+            "science_allowlist",
+            "total_bytes",
+            "total_files",
+            "writer_lock"
+          ],
+          [
+            "bytes",
+            "mode",
+            "path",
+            "sha",
+            "sha256",
+            "type"
+          ],
+          [
+            "bytes",
+            "path",
+            "sha256"
+          ],
+          [
+            "bytes",
+            "git_blob",
+            "path",
+            "preimage",
+            "sha256",
+            "source"
+          ],
+          [
+            "path",
+            "preimage",
+            "source"
+          ]
+        ],
+        "symbol": "load_inputs"
+      }
+    ]
+  },
+  "manifest_schema": "pr239-conditional-publication-logical-packet-v1",
+  "operational_authority": false,
+  "phases": [
+    "merge95",
+    "completion100"
+  ],
+  "schema": "pr239-source-only-extracted-input-contract-v1",
+  "terminal_schema": "pr239-root-actual-completion-verification-v1"
+}

@@ -1,0 +1,313 @@
+--- review03_frozen/ops_binding.py
++++ current_repaired/ops_binding.py
+@@ -178,3 +178,147 @@
+     if not isinstance(record.get('metadata'), dict) or not isinstance(record.get('files'), list):
+         raise RuntimeError('Unexpected account metadata/full files schema')
+     return {'metadata': record['metadata'], 'files': record['files']}
++
++
++# Shared conservative DOI identity recognizer.
++_ASCII_LOWER=str.maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')
++_UNRESERVED=frozenset('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~')
++_TERMINATORS=frozenset(")]}>\"',;:!?&#")
++_PERCENT=re.compile(r'%([0-9A-Fa-f]{2})')
++_NAME=re.compile(r'10\.5281/zenodo\.([0-9]+)')
++_FRAGMENT=re.compile(r'zenodo\.([0-9]+)')
++_RECORD=re.compile(r'https?://(?:www\.)?zenodo\.org/(?:api/)?records?/([0-9]+)')
++
++
++def ascii_lower(value):
++    return value.translate(_ASCII_LOWER)
++
++
++def _bounded_token(text,start,end):
++    if start and (text[start-1].isalnum() or text[start-1] in '._'):
++        return False
++    rest=text[end:]
++    if not rest:
++        return True
++    first=rest[0]
++    if first=='.':
++        tail=rest.lstrip('.')
++        return not tail or tail[0].isspace() or tail[0] in _TERMINATORS
++    return first.isspace() or first in _TERMINATORS
++
++
++def _names(text):
++    lowered=ascii_lower(text)
++    return {'10.5281/zenodo.'+m.group(1) for m in _NAME.finditer(lowered)
++            if _bounded_token(lowered,m.start(),m.end())}
++
++
++def _review_names(text):
++    lowered=ascii_lower(text)
++    result={'10.5281/zenodo.'+m.group(1) for m in _FRAGMENT.finditer(lowered)
++            if _bounded_token(lowered,m.start(),m.end()) and (not m.start() or lowered[m.start()-1]!='/')}
++    for match in _RECORD.finditer(lowered):
++        rest=lowered[match.end():]
++        if _bounded_token(lowered,match.start(),match.end()) or rest.startswith('/files/'):
++            # Leading-zero record-URL IDs are only conservative aliases/leads;
++            # leading zeros in an actual DOI suffix are never discarded.
++            result.add('10.5281/zenodo.'+str(int(match.group(1))))
++    return result
++
++
++def _decode(text,unreserved_only):
++    def replace(match):
++        character=chr(int(match.group(1),16))
++        return character if not unreserved_only or character in _UNRESERVED else match.group(0)
++    return _PERCENT.sub(replace,text)
++
++
++def inspect_identity(value):
++    if not isinstance(value,str):
++        raise RuntimeError('DOI identity input must be text')
++    if len(value)>1_000_000:
++        raise RuntimeError('DOI identity text exceeds review bound')
++    normalized=_decode(value,True)
++    canonical=_names(value)|_names(normalized)
++    review=_review_names(value)|_review_names(normalized)
++    current=value
++    depth_limited=False
++    for count in range(8):
++        decoded=_decode(current,False)
++        if decoded==current:
++            break
++        current=decoded
++        review|=_names(current)|_review_names(current)
++    else:
++        depth_limited=_decode(current,False)!=current
++    malformed=False
++    for token in re.findall(r'\S+',current):
++        lowered=ascii_lower(token)
++        if any(hint in lowered for hint in ['10.5281','zenodo.','doi.org','zenodo.org']):
++            if re.search(r'%(?![0-9A-Fa-f]{2})',token):
++                malformed=True
++    return {'canonical_names':frozenset(canonical),'review_names':frozenset(review-canonical),
++            'ambiguous_encoding':depth_limited or malformed or bool(
++                re.search(r'(?<![a-z0-9.])10/[a-z0-9]+(?:$|[\s?#.,;)])',ascii_lower(current))
++                or re.search(r'https?://(?:www\.)?shortdoi\.org(?:/|$)',ascii_lower(current))
++                or re.search(r'https?://(?:dx\.)?doi\.org/[a-z][a-z0-9]*(?:$|[\s?#.,;)])',ascii_lower(current))),
++            'scope':'Lexical identity/dedup leads only; reserved/nested encodings are not certified URI equivalence.'}
++
++
++def zenodo_doi_leads(value):
++    result=inspect_identity(value)
++    if result['ambiguous_encoding']:
++        raise RuntimeError('Unresolved DOI/URL encoding requires root identity review')
++    return result['canonical_names']|result['review_names']
++
++
++def target_in_row(row,identifier,family_ids=()):
++    if type(identifier) is not int or identifier<=0:
++        raise RuntimeError('Expected target record ID must be an exact positive integer')
++    if not isinstance(row,(list,tuple)):
++        raise RuntimeError('Identity row must be a sequence of text cells')
++    ids={identifier}
++    for value in family_ids:
++        if type(value) is not int or value<=0:raise RuntimeError('Malformed family ID requires root review')
++        ids.add(value)
++    targets={'10.5281/zenodo.'+str(value) for value in ids}
++    # Evaluate every cell so a later unresolved encoding cannot be hidden by an
++    # earlier match. This recognizer never writes a canonically rewritten row.
++    identities=[zenodo_doi_leads(value) for value in row]
++    return any(targets & names for names in identities)
++
++
++def record_identity_ids(record,identifier):
++    """Target/concept/typed version-parent IDs are conservative family leads only."""
++    def integer(value):
++        if type(value) is int and value>0:return value
++        if isinstance(value,str) and re.fullmatch('[1-9][0-9]*',value):return int(value)
++        raise RuntimeError('Malformed recognized record-family identity requires root review')
++    if not isinstance(record,dict) or integer(record.get('id'))!=identifier:
++        raise RuntimeError('Expected record-family identity missing')
++    result={identifier}
++    parents=set()
++    def add_parent(value):
++        parsed=integer(value);parents.add(parsed);result.add(parsed)
++    if record.get('conceptrecid') is not None:add_parent(record['conceptrecid'])
++    if record.get('conceptdoi') is not None:
++        value=record['conceptdoi']
++        match=re.fullmatch(r'10\.5281/zenodo\.([1-9][0-9]*)',ascii_lower(value)) if isinstance(value,str) else None
++        if not match:raise RuntimeError('Unparsed concept DOI requires root identity review')
++        add_parent(match.group(1))
++    metadata=record.get('metadata',{})
++    relations=metadata.get('relations',{})
++    if not isinstance(relations,dict):raise RuntimeError('Unparsed record relations require root identity review')
++    versions=relations.get('version',[])
++    if not isinstance(versions,list):raise RuntimeError('Unparsed version relations require root identity review')
++    for version in versions:
++        parent=version.get('parent') if isinstance(version,dict) else None
++        if not isinstance(parent,dict) or parent.get('pid_type')!='recid':
++            raise RuntimeError('Unparsed version parent requires root identity review')
++        add_parent(parent.get('pid_value'))
++    if record.get('parent') is not None:
++        parent=record['parent']
++        if not isinstance(parent,dict) or 'id' not in parent:raise RuntimeError('Unparsed parent record requires root review')
++        add_parent(parent['id'])
++    if len(parents)>1:raise RuntimeError('Contradictory concept/version-parent IDs require root review')
++    return sorted(result)
+--- review03_frozen/prepublication_check.py
++++ current_repaired/prepublication_check.py
+@@ -76,7 +76,7 @@
+                if (rows[i] if i<len(rows) else None) != (baseline[i] if i<len(baseline) else None)]
+     ledger_matches = [{'row':i,'values':r} for i,r in enumerate(rows,1)
+                       if PATTERN.search(' '.join(r)) or (expected_deposit_id is not None
+-                      and re.search(r'zenodo[./]'+str(expected_deposit_id)+r'(?!\d)',' '.join(r)))]
++                      and target_in_row(r,expected_deposit_id))]
+     client = zenodo.ZenodoClient('production', zenodo.token_for('production'))
+     positive = account_search(client, 'Fibonacci')
+     if 23174283 not in {int(r['id']) for r in positive['records']}:
+@@ -98,6 +98,10 @@
+         raise RuntimeError('Keyword records missing from whole account; retry read-only collection')
+     if expected_deposit_id is not None and expected_deposit_id not in targets:
+         raise RuntimeError('Exact expected draft/record absent from complete model/file comparison')
++    identity_ids=(record_identity_ids(next(r for r in full['records'] if int(r['id'])==expected_deposit_id),expected_deposit_id)
++                  if expected_deposit_id is not None else [])
++    ledger_matches=[{'row':i,'values':r} for i,r in enumerate(rows,1) if PATTERN.search(' '.join(r))
++                    or (expected_deposit_id is not None and target_in_row(r,expected_deposit_id,identity_ids))]
+     pr = read_command(['gh','api','--hostname','github.com','repos/AlecKriebel/Math/pulls/280'])
+     main = read_command(['gh','api','--hostname','github.com','repos/AlecKriebel/Math/git/ref/heads/main'])
+     atomic_json(raw/'pr.json',pr)
+@@ -109,7 +113,7 @@
+             states.append({'path':p.relative_to(REPO).as_posix(),'sha256':sha(p.read_bytes()),
+                            'deposit_id':value.get('id',value.get('deposit_id'))})
+     receipt = {'started_utc':start,'completed_utc':stamp(),'operation':operation,'phase':phase,
+-        'read_only':True,'expected_pr_head':expected_head,'expected_deposit_id':expected_deposit_id,
++        'read_only':True,'expected_identity_record_ids':identity_ids,'expected_pr_head':expected_head,'expected_deposit_id':expected_deposit_id,
+         'release_manifest_sha256':RELEASE_SHA,'release_files':release()['files'],
+         'ledger_rows':len(rows),'ledger_sha256':digest(rows),'ledger_matches':ledger_matches,
+         'ledger_changed_rows_since_initial_candidate_check':changed,
+--- review03_frozen/publication_live_gates.py
++++ current_repaired/publication_live_gates.py
+@@ -98,6 +98,9 @@
+     if (len(prior_rows)!=len(cleared['ledger_leads']) or any(
+             not isinstance(v,str) or not re.fullmatch('[0-9a-f]{64}',v) for v in prior_rows)):
+         raise RuntimeError('Duplicate or malformed root ledger digest exemption')
++    identity_ids=(record_identity_ids(records[expected_deposit_id],expected_deposit_id) if expected_deposit_id is not None else [])
++    if gate.get('expected_identity_record_ids',identity_ids)!=identity_ids:
++        raise RuntimeError('Target concept/version-parent identity evidence changed')
+     target_rows=[]
+     if allow_target_row and expected_deposit_id is not None:
+         from record_publication_ledger import desired_row
+@@ -106,15 +109,14 @@
+         exact_target=None
+     for match in gate['ledger_matches']:
+         row=match['values']
+-        has_current_doi=(expected_deposit_id is not None and
+-            '10.5281/zenodo.'+str(expected_deposit_id) in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(row))))
++        has_current_doi=(expected_deposit_id is not None and target_in_row(row,expected_deposit_id,identity_ids))
+         if has_current_doi:
+             if digest(row) in prior_rows:
+-                raise RuntimeError('Current target DOI/row contradicts a root non-target ledger exemption')
++                raise RuntimeError('Current target DOI/identity lead contradicts a root non-target ledger exemption')
+             if exact_target is not None and row==exact_target:
+                 target_rows.append(match)
+                 continue
+-            raise RuntimeError('Current target DOI appears in a changed/unexpected ledger row')
++            raise RuntimeError('Current target DOI/identity lead appears in a changed/unexpected ledger row')
+         if digest(row) in prior_rows:
+             continue
+         raise RuntimeError('New/changed ledger lead; root review required')
+--- review03_frozen/repository_integration.py
++++ current_repaired/repository_integration.py
+@@ -123,6 +123,21 @@
+     unchanged_parent(before,after,'unsolved_math_prioritization/attempts',{'30000156'})
+ 
+ 
++
++def verify_directory_overlay(base,integrated,added_names,original=None):
++    def inventory(commit):
++        result={n:(v['mode'],v['type']) for n,v in subtree(commit,PROBLEM).items() if v['type']=='tree'}
++        if any(v!=('040000','tree') for v in result.values()):
++            raise RuntimeError('Unexpected selected directory mode/type')
++        return result
++    expected=inventory(base)
++    if original is not None:expected.update(inventory(original))
++    for name in added_names:
++        parts=PurePosixPath(name).parts
++        for end in range(1,len(parts)):expected['/'.join(parts[:end])]=('040000','tree')
++    if inventory(integrated)!=expected:
++        raise RuntimeError('Selected subtree directory inventory changed outside exact overlay')
++
+ def verify_integrated_tree(base,integrated,expected_head):
+     selected=selection()
+     expected=leaves(base,PROBLEM)
+@@ -132,6 +147,7 @@
+         if n in expected and expected[n]!=identity:
+             raise RuntimeError('Concurrent main changed selected candidate file: '+n)
+     expected.update(added)
++    verify_directory_overlay(base,integrated,added,ORIGINAL)
+     if leaves(integrated,PROBLEM)!=expected:
+         raise RuntimeError('Integration differs outside exact original17+publication5 overlay')
+     baseline,desired=original_queue_rows(expected_head)
+@@ -197,6 +213,7 @@
+             raise RuntimeError('New commit ancestry/tree differs')
+         assert_scoped_preservation(ORIGINAL,new,False)
+         expected=originals();expected.update({n:('100644','blob',blob_sha(v)) for n,v in selected.items()})
++        verify_directory_overlay(ORIGINAL,new,selected)
+         if leaves(new,PROBLEM)!=expected:
+             raise RuntimeError('New branch commit changed unselected problem files')
+         gate,_=collect('before_integration',ORIGINAL)
+--- review03_frozen/record_publication_ledger.py
++++ current_repaired/record_publication_ledger.py
+@@ -52,10 +52,10 @@
+     return schema_rows(value)
+ 
+ 
+-def matches(rows,identifier):
++def matches(rows,identifier,family_ids=()):
+     doi='10.5281/zenodo.'+str(identifier)
+     return [(i,r) for i,r in enumerate(rows[1:],2) if PATTERN.search(' '.join(r))
+-            or any(doi in set(re.findall(r'10\.5281/zenodo\.\d+',v)) for v in r)]
++            or target_in_row(r,identifier,family_ids)]
+ 
+ 
+ def append_verified(expected_head,identifier):
+@@ -68,22 +68,23 @@
+             or public.get('release_manifest_sha256')!=RELEASE_SHA):
+         raise RuntimeError('Fresh public DOI/files verification incomplete')
+     gate,acceptance=collect('before_ledger',expected_head,identifier,allow_target_row=True)
++    family_ids=gate.get('expected_identity_record_ids',[identifier])
+     operation=uuid.uuid4().hex
+     row=desired_row(identifier)
+     before=read('ledger_before_append',operation)
+     if digest(before)!=gate['ledger_sha256']:
+         raise RuntimeError('Full sheet changed since fresh gate; recollect/reconcile before append')
+     doi='10.5281/zenodo.'+str(identifier)
+-    doi_rows=[r for r in before[1:] if doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r)))]
++    doi_rows=[r for r in before[1:] if target_in_row(r,identifier,family_ids)]
+     if len(doi_rows)>1 or (doi_rows and doi_rows[0]!=row):
+-        raise RuntimeError('Existing DOI appears in a different or duplicate full-sheet row; no append')
+-    found=matches(before,identifier)
++        raise RuntimeError('Existing DOI/identity lead appears in a different or duplicate full-sheet row; no append')
++    found=matches(before,identifier,family_ids)
+     # Broad prior distinct-model rows are allowed only through the exact root
+     # reconciliation; target identity/DOI rows must still be unique and exact.
+     recon=json.loads((AUDIT/'ROOT_PREPUBLICATION_LEAD_RECONCILIATION.json').read_text())
+     known={v['values_sha256'] for v in recon['ledger_leads']}
+     if any(digest(r) in known for r in doi_rows):
+-        raise RuntimeError('Current target DOI/row contradicts a root non-target ledger exemption; no append')
++        raise RuntimeError('Current target DOI/identity lead contradicts a root non-target ledger exemption; no append')
+     found=[(i,r) for i,r in found if digest(r) not in known]
+     intent=AUDIT/'LEDGER_APPEND_INTENT.json'
+     appended=False
+@@ -111,13 +112,13 @@
+     after=read('ledger_after_append',operation)
+     # Target DOI rows are never filtered by any non-target digest, including
+     # readback after a provider boundary. Exact target identity has precedence.
+-    found=[(i,r) for i,r in matches(after,identifier) if digest(r) not in known
+-           or doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r)))]
++    found=[(i,r) for i,r in matches(after,identifier,family_ids) if digest(r) not in known
++           or target_in_row(r,identifier,family_ids)]
+     if len(found)!=1 or found[0][1]!=row or (row_number is not None and row_number!=found[0][0]):
+         raise RuntimeError('Target row readback/uniqueness mismatch; no retry')
+     doi='10.5281/zenodo.'+str(identifier)
+-    if sum(doi in set(re.findall(r'10\.5281/zenodo\.\d+',' '.join(r))) for r in after)!=1:
+-        raise RuntimeError('DOI is duplicated anywhere in full sheet')
++    if sum(target_in_row(r,identifier,family_ids) for r in after)!=1:
++        raise RuntimeError('DOI/identity lead is duplicated anywhere in full sheet')
+     if appended and (len(after)!=len(before)+1 or after[:-1]!=before or after[-1]!=row):
+         raise RuntimeError('Append readback changed other sheet rows; reconcile without retry')
+     receipt={'timestamp':stamp(),'pr':280,'status':'verified','row_number':found[0][0],

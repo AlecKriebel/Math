@@ -1,0 +1,14 @@
+# Independent proof assessment before prior verdicts
+UTC 2026-10-16T05:42Z. Case estimate 48%.
+
+For P(z)=(-a sn z,b cn z), tangency to B(z)=(-alpha sn z,beta cn z) follows by substituting P(z±v) into (-sn z/alpha,cn z/beta)·X=1, using a/alpha=dn v/cn v, b/beta=1/cn v and the addition formulas. Polarity with the outer quadratic form yields R=diag(a²/alpha²,b²/beta²)B and area scaling a b/(alpha beta) relative to P at the midpoint. The determinant kernel has the correct sign: at z=0, det(H(-t),H(t))=2AB sn t cn t. Addition of dn(z±t) then gives the kernel in the manuscript. The edge expansion yields 2A(P)-(1/2)Σdet(Pj,Pj+2); it does not require a single step-two cycle.
+
+For the Euclidean foot Q=n/(n·n), denominator is a² cn² z+b² sn² z>0 on real z. Setting w=K-v gives sn w=cn v/dn v, cn w=k' sn v/dn v, dn w=b/a. Hence P(z+w)+P(z-w) has exactly the stated denominator, and the specified diagonal L converts it to Q. Since P(z-w)=-P(z+K+v), the edge-foot formula and area factor b/(4a cn²w) follow without division by an area. The resulting b²/(4cn²w) coefficient is correct.
+
+For q odd, dn has simple poles at iK' modulo real period 2K and imaginary antiperiod 2iK'. V=Πdn(z+2Kj/q) and U=Σdn(z+2Kj/q) each have exactly the shifted simple poles: factors other than the pole are -i cs(t), all finite/nonzero since q odd. Pair t with 2K-t. With q=2m+1, (-i)^(2m)(-1)^m=1, so Res V/Res U=Π_{j=1}^m cs²(2Kj/q)=Cq. Cancellation leaves an entire doubly-periodic function, hence a constant; the common imaginary antiperiod forces that constant zero. Multiplication by the K translate gives UU_K=(k')^q/Cq². q=1 is dn(z)dn(z+K)=k'. No pole, zero or factor sign is lost.
+
+For primitive N, step 2v=4tau K/N modulo 2K exhausts q=N/gcd(N,2) shifts with r=gcd(N,2) repeats. gcd(tau,N)=1 is sufficient even for stars. q odd is equivalent to 4∤N. The T period 2v aligns u+K-v with u+K+v, so the area product equals the printed constant. Both signed areas reverse under orientation reversal. A fixed d-fold listing multiplies each area by d, giving d²; if 4∤dN, then 4∤N. The prefactor has length^4 and the trace factor is dimensionless. There is no hidden area division or omitted zero-area case.
+
+The phase-skew-hodograph statement is also consistent: the normalized forward chord has components (-cn z/dn z,-k' sn z/dn z), so diag(a,b)e=P(z+K), with z the chord midpoint phase. The foot/velocity relation follows from reflection and e_in·n=J=√lambda/(ab), where n is the unnormalized ellipse normal; Q=(e_in-e_out)/(2J).
+
+The only external input in the universal geometry is the canonical parametrization/exhaustion of the fixed elliptic caustic family; this must be checked against the actual cited Stachel primary theorem. Independent algebra has no gap. Primary source/domain/version/priority checks and actual ZIP reproduction remain separate checks; no earlier audit verdicts have yet been read.

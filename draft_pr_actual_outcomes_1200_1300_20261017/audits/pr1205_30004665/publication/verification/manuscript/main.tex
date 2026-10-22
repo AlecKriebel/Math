@@ -1,0 +1,343 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\urlstyle{same}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\DeclareMathOperator{\Spin}{Spin}
+\title{A type-$D_4$ counterexample to the\\canonical-potential exponent converse}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{17 October 2026 \quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+The exponent-bound converse stated for canonical GHKK potentials in Schumann's
+2021 Oberwolfach report is false. For an explicit reduced word in type $D_4$,
+the canonical potential has $22$ combined monomials, all of coefficient one,
+and all $22$ inequalities define distinct facets, although two monomials have
+exponent $-2$ in one canonical coordinate. The reduced word and its complete
+string-coordinate support occur in earlier public computations; we extract
+the consequence for the historical formulation and supply an independent
+canonical calculation and exact integer certificates. The chamber-ansatz
+pullback has all exponents in $\{-1,0,1\}$, so the later string-coordinate
+converse is not refuted. No first-priority or current-openness claim is made.
+\end{abstract}
+\noindent\textbf{Status.} Extensively AI-assisted, unrefereed research note.
+There has been no external human peer review or proof-assistant certification.
+
+\section{The historical assertion and the result}
+Schumann's report \cite[printed p.~1125]{OWR} formulates a converse for the
+canonical potential $W$ restricted to the dual cluster torus designated by
+a reduced word $\mathbf i$ for the longest Weyl group element. In that
+formulation, the monomial inequalities are irredundant precisely when every
+coordinate exponent of $W$ has absolute value at most one. The correspondence
+with the string cone is unimodular \cite{GKS,KS}. An invertible monomial
+change preserves irredundancy, but need not preserve that exponent bound.
+
+We use the reduced-word seed and $\mathcal X$-mutation conventions of
+\cite[Eq.~(3), Defs.~7--9]{KS}, including Dynkin adjacency in the inclined-arrow
+rule as specified in \cite[\S4.2.2]{GKS}. These are the designated canonical
+coordinates, not an arbitrary change chosen to create a large exponent.
+
+\begin{theorem}\label{thm:main}
+Let $G=\Spin_8(\C)$, with Dynkin edges $1\!-\!2$, $2\!-\!3$, $2\!-\!4$, and
+\[
+ \mathbf i=(1,2,3,2,4,2,1,2,3,2,4,2).
+\]
+In its canonical reduced-word $\mathcal X$-coordinates, $W$ has $22$ distinct
+monomials, each with coefficient one. Their $22$ tropical inequalities define
+distinct facets of a full-dimensional cone in $\R^{12}$. Two monomials
+have $X_6$-exponent $-2$. Consequently the necessary direction of the
+canonical-$W$ converse in \cite{OWR} fails.
+\end{theorem}
+
+The word and its complete chamber-pullback support already occur in the
+earlier computational data \cite[Case~267]{DATA}; see Section~\ref{sec:priority}.
+We do not claim first computation of these objects. The theorem is confined
+to the historical canonical-coordinate assertion. It does not refute the
+later $\varsigma$-coordinate converse or coefficient conjecture in
+\cite{KS}.
+
+\section{The canonical potential}
+Put $y_k=X_k^{-1}$. The frozen positions are $7,9,11,12$. The complete arrow
+set, with all multiplicities one, is
+\[
+\begin{gathered}
+ 1\to7,\quad2\to4,\quad3\to2,\quad3\to9,\quad4\to6,\quad5\to4,\quad5\to11,\quad6\to1,\\
+ 6\to8,\quad7\to6,\quad8\to3,\quad8\to10,\quad9\to8,\quad10\to5,\quad10\to12,\quad11\to10.
+\end{gathered}
+\]
+For completeness, let $k^+$ be the next occurrence of $i_k$, or $13$.
+Horizontal arrows are $k\to k^+$ when $k^+\le12$. There is an inclined
+arrow $\ell\to k$ for $k<\ell<k^+<\ell^+$ when $i_k,i_\ell$ are Dynkin
+neighbors. Arrows between frozen vertices are omitted.
+
+The inversion roots, in the ordered simple-root basis, are
+\[
+\begin{gathered}
+(1,0,0,0),(1,1,0,0),(1,1,1,0),(0,0,1,0),\\
+(1,1,1,1),(1,1,0,1),(1,2,1,1),(0,1,1,0),\\
+(0,1,1,1),(0,0,0,1),(0,1,0,1),(0,1,0,0).
+\end{gathered}
+\]
+These are all twelve positive $D_4$ roots, and the product of the simple
+reflections is $-I_4$, so the word is reduced for $w_0$.
+
+Set $b_{ab}=\#(a\to b)-\#(b\to a)$. Mutation at a mutable position $k$ gives
+\begin{equation}\label{eq:mutation}
+ y'_k=y_k^{-1},\qquad
+ y'_a=\begin{cases}
+ y_a(1+y_k)^{b_{ak}}&b_{ak}\ge0,\ a\ne k,\\
+ y_a y_k^{-b_{ak}}(1+y_k)^{b_{ak}}&b_{ak}<0,\ a\ne k.
+ \end{cases}
+\end{equation}
+The exchange matrix changes by sign reversal in row/column $k$ and otherwise
+\[
+ b'_{ab}=b_{ab}+[b_{ak}]_+[b_{kb}]_+-[-b_{ak}]_+[-b_{kb}]_+,
+\]
+with frozen--frozen entries erased. All right-hand sides use the old matrix.
+An optimized frozen position has only incoming mutable arrows; its canonical
+summand is the inverse frozen coordinate in that seed \cite[Def.~7]{KS}.
+
+\begin{lemma}\label{lem:potential}
+Writing
+\[
+ A=1+y_3+y_2y_3,\qquad B=y_2y_3y_4y_5,
+\]
+the canonical potential is
+\begin{align}
+ F_7&=1+y_6+y_6y_8A+
+ y_6y_8y_{10}\big((1+y_5)A+B(1+y_6+y_1y_6)\big),\notag\\
+ F_9&=1+y_8+y_8y_{10}(1+y_5+y_4y_5),\notag\\
+ W&=y_7F_7+y_9F_9+y_{11}(1+y_{10})+y_{12}. \label{eq:potential}
+\end{align}
+\end{lemma}
+\begin{proof}
+The following fixed-label sequences, read left to right, optimize the
+indicated frozen position:
+\[
+\begin{array}{c|l}
+f&\text{mutation sequence}\\ \hline
+7&(2,6,1,3,4,8,5,10)\\
+9&(4,8,5,10)\\
+11&(10)\\
+12&()
+\end{array}
+\]
+Every entry is mutable. In each case the final frozen row has its only
+nonzero entry $b_{f,10}=-1$, as follows by the displayed matrix rule.
+Thus the final seed is optimized, and the canonical summand is $y_f$ there.
+
+Pull back that monomial, in reverse order, by \eqref{eq:mutation}.
+For $f=7$, after the reverse steps $10,5,8,4$ the quotient by $y_7$ is
+\[
+1+y_8+y_8y_{10}+y_5y_8y_{10}+y_4y_5y_8y_{10}.
+\]
+The next step, at $3$, gives
+\[
+1+y_8+y_3y_8+y_8y_{10}
+ (1+y_5+y_3+y_3y_5+y_3y_4y_5).
+\]
+The step at $1$ adds $y_1y_3y_4y_5y_8y_{10}$. After the step at $6$ it is
+\begin{align*}
+1+y_6+y_6y_8(1+y_3)
+&+y_6y_8y_{10}(1+y_5+y_3+y_3y_5+y_3y_4y_5)\\
+&+(1+y_1)y_3y_4y_5y_6^2y_8y_{10}.
+\end{align*}
+The final step at $2$ gives $F_7$. The four-step $f=9$ pullback gives $F_9$;
+the last two summands are immediate. These exact rational identities
+identify the canonical normalized potential, rather than merely a
+polynomial defining the same cone.
+\end{proof}
+
+The summands in \eqref{eq:potential} contain $14,5,2,1$ distinct terms.
+Every term has exactly one frozen marker, and the coefficients are all one.
+In particular
+\[
+ y_2y_3y_4y_5y_6^2y_7y_8y_{10},
+ \qquad y_1y_2y_3y_4y_5y_6^2y_7y_8y_{10}
+\]
+occur. They have $X_6$-exponent $-2$.
+
+\section{An exact certificate for every facet}
+Write the $22$ terms as $y^{a^{(j)}}$. In $X$-cocharacter coordinates $t$ the
+inequality is $-a^{(j)}\cdot t\ge0$. Put $z=-t$; the cone becomes
+\[
+ C=\{z\in\R^{12}:a^{(j)}\cdot z\ge0,\quad1\le j\le22\}.
+\]
+The following table gives its complete exponent support and integer vectors
+$z^{(j)}$. Each exponent row is encoded as twelve consecutive single digits
+in position order $1,\ldots,12$; no entry has more than one digit.
+
+\begingroup\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{longtable}{rll}
+\toprule
+$j$&$a^{(j)}$&$z^{(j)}$\\ \midrule
+\endfirsthead
+\toprule $j$&$a^{(j)}$&$z^{(j)}$\\ \midrule
+\endhead
+1 & \texttt{000000000001} & $(0,0,0,0,0,0,0,0,0,0,0,-1)$ \\
+2 & \texttt{000000000010} & $(0,0,0,0,-1,0,0,0,0,1,-1,0)$ \\
+3 & \texttt{000000000110} & $(0,0,0,0,0,0,0,1,0,-1,0,0)$ \\
+4 & \texttt{000000001000} & $(0,0,-1,0,0,0,0,1,-1,0,0,0)$ \\
+5 & \texttt{000000011000} & $(-2,0,0,0,0,1,0,-1,0,1,0,0)$ \\
+6 & \texttt{000000011100} & $(-2,0,0,0,1,1,0,0,0,-1,1,0)$ \\
+7 & \texttt{000000100000} & $(-1,0,0,0,0,1,-1,0,0,0,0,0)$ \\
+8 & \texttt{000001100000} & $(0,2,0,-1,0,-1,0,1,0,0,0,0)$ \\
+9 & \texttt{000001110000} & $(0,0,1,-1,0,0,0,-1,1,1,0,0)$ \\
+10 & \texttt{000001110100} & $(0,0,1,-1,1,0,0,0,1,-1,1,0)$ \\
+11 & \texttt{000010011100} & $(-2,0,0,1,-1,1,0,0,0,0,0,0)$ \\
+12 & \texttt{000011110100} & $(0,0,1,0,-1,0,0,0,1,0,0,0)$ \\
+13 & \texttt{000110011100} & $(0,1,0,-1,0,0,0,0,0,0,0,0)$ \\
+14 & \texttt{001001110000} & $(0,1,-1,-1,0,0,0,0,0,1,0,0)$ \\
+15 & \texttt{001001110100} & $(-1,1,-1,-1,1,1,0,0,1,-1,1,0)$ \\
+16 & \texttt{001011110100} & $(-1,1,-1,0,-1,1,0,0,1,0,0,0)$ \\
+17 & \texttt{011001110000} & $(0,-1,0,0,0,0,0,0,0,1,0,0)$ \\
+18 & \texttt{011001110100} & $(-1,-1,0,0,1,1,0,0,1,-1,1,0)$ \\
+19 & \texttt{011011110100} & $(-1,-1,0,1,-1,1,0,0,1,0,0,0)$ \\
+20 & \texttt{011111110100} & $(0,0,0,-1,-1,1,0,0,2,0,0,0)$ \\
+21 & \texttt{011112110100} & $(1,0,0,0,0,-1,1,0,0,0,0,0)$ \\
+22 & \texttt{111112110100} & $(-1,0,0,0,0,0,0,0,0,0,0,0)$ \\
+\\[-9pt]\bottomrule
+\end{longtable}
+\endgroup
+Direct integer multiplication of the displayed rows and columns gives
+\begin{equation}\label{eq:cert}
+ a^{(j)}\cdot z^{(j)}=-1,\qquad
+ a^{(r)}\cdot z^{(j)}\ge0\quad(r\ne j).
+\end{equation}
+This is a complete finite certificate: no optimization tolerance or
+unprovided historical computation is a premise. Omitting the $j$th
+inequality admits $z^{(j)}$, proving irredundancy.
+
+There is also a strict facet certificate. Set
+\[
+ u=(0,0,0,0,0,0,1,0,1,0,1,1).
+\]
+Every exponent row has $a^{(j)}\cdot u=1$, so $C$ has a strict interior
+point and is full-dimensional. For $p_j=z^{(j)}+u$,
+\[
+ a^{(j)}\cdot p_j=0,\qquad a^{(r)}\cdot p_j\ge1\quad(r\ne j).
+\]
+A neighborhood of $p_j$ in the hyperplane $(a^{(j)})^\perp$ satisfies all the
+other inequalities strictly. Thus the selected face has dimension $11$.
+The certificates separate every pair of selected inequalities, so the
+$22$ facets are distinct. Together with Lemma~\ref{lem:potential}, this
+proves Theorem~\ref{thm:main}.
+
+\section{The chamber map and the scope boundary}
+Let $H$ be the $D_4$ Cartan matrix. The chamber-ansatz map of
+\cite[Def.~9]{KS} can be written
+\[
+ y_k=\prod_{\ell=1}^{12}x_\ell^{K_{k\ell}},\qquad
+ K_{k\ell}=
+ \begin{cases}
+ 1&\ell=k\text{ or }\ell=k^+\le12,\\
+ H_{i_k,i_\ell}&k<\ell<k^+,\\
+ 0&\text{otherwise}.
+ \end{cases}
+\]
+The upper-triangular matrix $K$ has diagonal one, hence determinant one.
+A monomial row $a$ pulls back to $aK$. For every one of the $22$ rows in the
+table, all entries of $aK$ lie in $\{-1,0,1\}$. In particular rows $21,22$
+give, respectively,
+\[
+ (0,1,0,1,0,1,-1,0,0,0,0,0),\qquad
+ (1,0,0,0,0,0,0,0,0,0,0,0).
+\]
+The monomial isomorphism therefore preserves the inequality presentation
+but does not preserve its coordinatewise exponent bound.
+
+The later $\varsigma$-coordinate converse in \cite[Conj.~3]{KS} is not
+refuted: this example satisfies its exponent condition. Nor is its separate
+coefficient criterion refuted, since all coefficients here are one and
+all inequalities are essential. The computation contradicts the assertion
+in the proof of \cite[Thm.~2, p.~1046]{KS} that the two exponent bounds are
+equivalent under the chamber map. It does not contradict that theorem's
+conclusion, and supplies no general replacement proof for its affected step.
+Our direct facet proof does not use that assertion or that theorem.
+
+\section{Prior computations and reproducibility}\label{sec:priority}
+The primary-author dataset \cite[Case~267]{DATA} already records this word
+and its complete $14+1+5+2$ string-coordinate support. The relevant Git commit
+is dated 6 March 2020; a Git date is provenance metadata, not independent
+proof of the date of public availability. The repository is cited by the
+later computational work \cite{KM}, providing a public pre-PR citation trail.
+We attribute the earlier word and support computations accordingly.
+The published minuscule nonredundancy results \cite{OWR,KS} also cover the
+three leaf-root summands; the central summand here is a single monomial.
+
+The contribution of this note is to spell out the consequence for the
+specified historical canonical-$W$ assertion, independently reconstruct the
+canonical potential, and give complete directly checkable facet certificates.
+A bounded literature audit found no earlier explicit statement of this
+refutation, but cannot establish first priority, current openness, or
+exhaustive coverage of inaccessible or unindexed sources. No claim is made
+that the original converse remained open in October 2026.
+
+The accompanying verification archive includes the manuscript source,
+the complete exponent and certificate data, a Python standard-library
+verifier that reconstructs the seed and optimized pullbacks over exact
+integer Laurent arithmetic, and a separate SymPy reconstruction using
+two reduced-word braid-graph searches. That reviewer inherited candidate
+context; its freeze before a local file comparison does not establish
+blindness. A further reviewer received only the word, Dynkin diagram and
+primary references in a fresh context, froze its support before comparison,
+and checked all 12,504 directed braid-graph edges and 22 separate facet
+certificates. Its replay and original input-boundary receipt are included.
+Source examples, mutation involutivity and deliberately corrupted inputs
+provide implementation controls. The written formulas and displayed certificates, rather than
+sampled numerical experiments, establish the result. Downloaded source
+documents, third-party programs, and the original unlicensed dataset are
+not redistributed.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively to develop, solve, reconstruct, verify and
+adversarially review the arguments, search the literature, and prepare this
+note and its code. Independent internal AI reviews are not external human
+peer review. This preprint is unrefereed and is not a formal
+proof-assistant certificate.
+
+\begin{thebibliography}{9}
+\bibitem{OWR}
+B.~Schumann (joint work with G.~Koshevoy),
+Optimality of string cone inequalities and potential functions,
+\emph{Oberwolfach Report} 20/2021, pp.~1123--1125.
+\href{https://doi.org/10.4171/OWR/2021/20}{doi:10.4171/OWR/2021/20}.
+
+\bibitem{KS}
+G.~Koshevoy and B.~Schumann,
+Redundancy in string cone inequalities and multiplicities in potential
+functions on cluster varieties,
+\emph{J.~Algebraic Combin.} \textbf{56} (2022), 1031--1053.
+\href{https://doi.org/10.1007/s10801-022-01144-z}{doi:10.1007/s10801-022-01144-z}.
+
+\bibitem{GKS}
+V.~Genz, G.~Koshevoy and B.~Schumann,
+Polyhedral parametrizations of canonical bases \& cluster duality,
+\emph{Adv.~Math.} \textbf{369} (2020), 107178.
+\href{https://doi.org/10.1016/j.aim.2020.107178}{doi:10.1016/j.aim.2020.107178}.
+
+\bibitem{DATA}
+D.~Mironov, \emph{crystal}, public computational repository,
+\texttt{crystal\_D\_4.out.xz}, Case~267.
+Pinned commit \texttt{0d6e564cf5e69d79c1074d5d1e3e72ac700904d6}
+(commit dated 6 March 2020).
+\url{https://github.com/mironovd/crystal}.
+
+\bibitem{KM}
+G.~Koshevoy and D.~Mironov,
+$F$-polynomials and Newton polytopes,
+\emph{EasyChair Preprint} 8975 (3 October 2022).
+\url{https://easychair.org/publications/preprint/z55N}.
+\end{thebibliography}
+\end{document}

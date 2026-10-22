@@ -1,0 +1,65 @@
+"""Auditor-owned safe subprocess runner. All writes stay under this directory."""
+from pathlib import Path
+from datetime import datetime, timezone
+import hashlib
+import json
+import subprocess
+
+OWN = Path(__file__).resolve().parent
+PACKAGE = OWN.parent / "publication_package_v1"
+PY = "/opt/homebrew/opt/python@3.14/bin/python3.14"
+VERIFIER = PACKAGE / "verification/portable_exact_verifier.py"
+PIN = "dfa1ff339e1f3a6004563aec9c01f6f14d6bb65a94e2437f3ba3a41e5b393d85"
+FLAGS = ["-E", "-S", "-B", "-P"]
+FAULTS = ["wrong-area", "wrong-product", "empty-polygon", "colliding-polygon", "nan-coordinate", "inf-coordinate", "bool-coordinate", "wrong-period", "bool-repetition", "fraction-repetition", "missing-count", "wrong-physical-area", "wrong-physical-product"]
+
+
+def main():
+    if hashlib.sha256(VERIFIER.read_bytes()).hexdigest() != PIN:
+        raise RuntimeError("Verifier pin changed")
+    output = OWN / "owned_runs"
+    output.mkdir(exist_ok=False)
+    attempts = []
+
+    def run(label, argv, expected=0, source=None):
+        started = datetime.now(timezone.utc).isoformat()
+        p = subprocess.run(argv, cwd=OWN, capture_output=True, text=True, timeout=60)
+        result = {"label": label, "utc": started, "argv": argv, "cwd": str(OWN), "expected_exit": expected, "actual_exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
+        if source is not None:
+            result["source_sha256"] = hashlib.sha256(source.read_bytes()).hexdigest()
+        attempts.append(result)
+        (output / (label+".json")).write_text(json.dumps(result, indent=2)+"\n")
+        if p.returncode != expected:
+            raise RuntimeError("Unexpected exit: "+label)
+        return p
+
+    run("independent_controls", [PY]+FLAGS+[str(OWN / "independent_exact_controls.py")], source=OWN / "independent_exact_controls.py")
+    for opt in (False, True):
+        flags = FLAGS + (["-O"] if opt else [])
+        mode = "optimized" if opt else "normal"
+        p = run(mode, [PY]+flags+[str(VERIFIER)], source=VERIFIER)
+        data = json.loads(p.stdout)
+        if data["status"] != "PASS" or data["total_checks"] != 245 or data["runtime"]["source_sha256"] != PIN:
+            raise RuntimeError("Unexpected suite binding or check count")
+        for fault in FAULTS:
+            p = run(mode+"_fault_"+fault, [PY]+flags+[str(VERIFIER), "--fault", fault], expected=1, source=VERIFIER)
+            if json.loads(p.stdout)["status"] != "FAIL" or p.stderr:
+                raise RuntimeError("Fault did not cleanly reject")
+        receipt = output / (mode+"_receipt.json")
+        p = run(mode+"_receipt", [PY]+flags+[str(VERIFIER), "--receipt", str(receipt)], source=VERIFIER)
+        if receipt.read_text() != p.stdout:
+            raise RuntimeError("Receipt differs from stdout")
+        before = receipt.read_bytes()
+        run(mode+"_receipt_collision", [PY]+flags+[str(VERIFIER), "--receipt", str(receipt)], expected=1, source=VERIFIER)
+        if receipt.read_bytes() != before:
+            raise RuntimeError("Existing receipt mutated")
+        for suffix, extra in (("unknown", ["--unknown"]), ("missing", ["--receipt"]), ("duplicate", ["--fault", "wrong-area", "--fault", "wrong-product"]), ("invalid_fault", ["--fault", "not-real"])):
+            run(mode+"_cli_"+suffix, [PY]+flags+[str(VERIFIER)]+extra, expected=1, source=VERIFIER)
+        run(mode+"_help", [PY]+flags+[str(VERIFIER), "--help"], source=VERIFIER)
+    summary = {"status": "PASS", "attempts": len(attempts), "expected_failures": sum(a["expected_exit"] != 0 for a in attempts), "source_sha256": PIN, "all_writes_within": str(output)}
+    (output / "SUMMARY.json").write_text(json.dumps(summary, indent=2)+"\n")
+    print(json.dumps(summary, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()

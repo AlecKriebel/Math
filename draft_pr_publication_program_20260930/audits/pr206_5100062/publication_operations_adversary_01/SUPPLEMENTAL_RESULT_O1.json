@@ -1,0 +1,310 @@
+{
+  "SYNTHETIC_NON_RECEIPT": true,
+  "blocked_events": [],
+  "case_count": 14,
+  "cases": [
+    {
+      "checks": [
+        "existing STAGE_INFLIGHT.json stops mutation",
+        "zero mutation transports"
+      ],
+      "id": "preexisting_STAGE_INFLIGHT.json",
+      "rejections": [
+        {
+          "message": "Mutation was already attempted; inspect read-only, never repeat",
+          "probe": "existing STAGE_INFLIGHT.json stops mutation",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "existing stage.json stops mutation",
+        "zero mutation transports"
+      ],
+      "id": "preexisting_stage.json",
+      "rejections": [
+        {
+          "message": "Mutation was already attempted; inspect read-only, never repeat",
+          "probe": "existing stage.json stops mutation",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "existing kit_state stops mutation",
+        "zero mutation transports"
+      ],
+      "id": "preexisting_kit_state",
+      "rejections": [
+        {
+          "message": "Existing kit state is prior attempt evidence; inspect/reconcile read-only, never restage",
+          "probe": "existing kit_state stops mutation",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "private ancestor symlink denied",
+        "symlink denies before transport"
+      ],
+      "id": "private_symlink",
+      "rejections": [
+        {
+          "message": "Symlinked private directory ancestor refused",
+          "probe": "private ancestor symlink denied",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "marker write failure",
+        "partial marker retained before zero transports",
+        "partial marker cannot replay",
+        "still zero transports"
+      ],
+      "id": "partial_inflight_write",
+      "rejections": [
+        {
+          "message": "SYNTHETIC disk write failure",
+          "probe": "marker write failure",
+          "type": "OSError"
+        },
+        {
+          "message": "Mutation was already attempted; inspect read-only, never repeat",
+          "probe": "partial marker cannot replay",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before stage",
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before publish",
+        "lost publish response",
+        "lost publish no duplicate",
+        "actual kit argv pinned but intercepted",
+        "read-only inspect-doi recovers lost publish"
+      ],
+      "id": "lost_publish_recovery",
+      "rejections": [
+        {
+          "message": "Kit outcome unknown; durable inflight retained; inspect read-only",
+          "probe": "lost publish response",
+          "type": "RuntimeError"
+        },
+        {
+          "message": "Mutation was already attempted; inspect read-only, never repeat",
+          "probe": "lost publish no duplicate",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before stage",
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before publish",
+        "actual kit argv pinned but intercepted",
+        "corrupt publication metadata",
+        "publication corruption rejected before Sheet reads"
+      ],
+      "id": "publication_receipt_metadata",
+      "rejections": [
+        {
+          "message": "Publication facts lost or changed",
+          "probe": "corrupt publication metadata",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before stage",
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before publish",
+        "actual kit argv pinned but intercepted",
+        "corrupt publication public_downloads",
+        "publication corruption rejected before Sheet reads"
+      ],
+      "id": "publication_receipt_public_downloads",
+      "rejections": [
+        {
+          "message": "Publication independent download evidence incomplete",
+          "probe": "corrupt publication public_downloads",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before stage",
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before publish",
+        "actual kit argv pinned but intercepted",
+        "corrupt publication context",
+        "publication corruption rejected before Sheet reads"
+      ],
+      "id": "publication_receipt_context",
+      "rejections": [
+        {
+          "message": "Publication receipt context mismatch",
+          "probe": "corrupt publication context",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before stage",
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before publish",
+        "actual kit argv pinned but intercepted",
+        "corrupt publication doi",
+        "publication corruption rejected before Sheet reads"
+      ],
+      "id": "publication_receipt_doi",
+      "rejections": [
+        {
+          "message": "Missing actual assigned DOI/record ID",
+          "probe": "corrupt publication doi",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before stage",
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before publish",
+        "actual kit argv pinned but intercepted",
+        "corrupt publication files",
+        "publication corruption rejected before Sheet reads"
+      ],
+      "id": "publication_receipt_files",
+      "rejections": [
+        {
+          "message": "Publication files differ from gate",
+          "probe": "corrupt publication files",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before stage",
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before publish",
+        "actual kit argv pinned but intercepted",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "tracker inflight file and directory fsynced before mutation",
+        "only one four-cell RAW INSERT_ROWS append",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "row shift before second full readback",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "shifted row cannot recover with stale marker range",
+        "shift never duplicates append"
+      ],
+      "id": "shift_second_full_readback",
+      "rejections": [
+        {
+          "message": "Second independent fresh full readback differs",
+          "probe": "row shift before second full readback",
+          "type": "RuntimeError"
+        },
+        {
+          "message": "Recovered row differs from original expected append range",
+          "probe": "shifted row cannot recover with stale marker range",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before stage",
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before publish",
+        "actual kit argv pinned but intercepted",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "tracker inflight file and directory fsynced before mutation",
+        "only one four-cell RAW INSERT_ROWS append",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "exact spreadsheet id",
+        "context drift after successful append",
+        "uncertain drift preserves one append without acceptance"
+      ],
+      "id": "tracker_context_drift",
+      "rejections": [
+        {
+          "message": "Pinned JSON bytes changed before parsing",
+          "probe": "context drift after successful append",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "checks": [
+        "actual kit argv pinned but intercepted",
+        "create-only marker file and directory fsynced before stage",
+        "publisher exact main prints actual fake result JSON",
+        "direct script refuses publisher206",
+        "direct script refuses tracker206",
+        "direct scripts launch no transport"
+      ],
+      "id": "main_stdout_and_direct_entry_binding",
+      "rejections": [
+        {
+          "message": "Live operations require the Root authenticated-buffer dispatcher; direct script execution refused",
+          "probe": "direct script refuses publisher206",
+          "type": "RuntimeError"
+        },
+        {
+          "message": "Live operations require the Root authenticated-buffer dispatcher; direct script execution refused",
+          "probe": "direct script refuses tracker206",
+          "type": "RuntimeError"
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "check_count": 97,
+  "offline_only": true,
+  "optimization_flag": 1,
+  "status": "PASS"
+}

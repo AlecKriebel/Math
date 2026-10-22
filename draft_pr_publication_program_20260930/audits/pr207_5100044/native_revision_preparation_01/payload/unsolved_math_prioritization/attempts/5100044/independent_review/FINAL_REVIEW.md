@@ -1,0 +1,11 @@
+# Current review summary and limits
+
+Prepared 16 October 2026. This file supersedes the current-use role of the original review wording; the historical review remains unchanged in the [submitted archive](../../../../draft_pr_publication_program_20260930/audits/pr207_5100044/submitted_snapshot/independent_review/FINAL_REVIEW.md).
+
+The recorded [Root scoped assessment](../../../../draft_pr_publication_program_20260930/audits/pr207_5100044/ROOT_SCOPED_MATHEMATICAL_ASSESSMENT_01.json) accepts the positive theorem for **least collision period N=4n**, all admitted coprime elliptical stars and either original focus. It also accepts the repeated-list counterexample. The [priority/editorial assessment](../../../../draft_pr_publication_program_20260930/audits/pr207_5100044/ROOT_PRIORITY_AND_EDITORIAL_ASSESSMENT_01.json) identifies Ferudun's exact known theorem and limitation, and classical local/cyclic and Landen mechanisms. These assessments do not establish novelty, firstness, causal independence, simultaneity or current openness.
+
+The original source does not explicitly impose least period; therefore the old phrase claiming complete unqualified original-target resolution is not adopted. Repetition of an admitted primitive 4n cycle scales the product by r squared; arbitrary lists of length 4n can repeat excluded least periods and need not have constant product. The theorem excludes hyperbolic and degenerate caustics.
+
+The current diagnostic's directory/name describes its historical location and a computational route distinct from Jacobi vertex sampling. It is **not** evidence of independent human review, causal independence of discovery, or a universal certificate. Its current runs are computed from Euclidean reflected rays and direct inversion. The current exact checker certifies finite algebraic identities and the boundary fixture.
+
+The new native proposal and manuscript have **not** completed whole-package review. AI tools were used extensively. This is an unrefereed verification; no conventional human peer review or proof-assistant formalization is claimed.

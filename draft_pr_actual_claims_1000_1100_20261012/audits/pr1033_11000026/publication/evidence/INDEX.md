@@ -51,5 +51,13 @@ not portable file dependencies or claimed included third-party papers.
 The root mathematical acceptance's output hashes describe its earlier review
 stage. The current copy manifest pins the authored copies actually included.
 The current paper is an expository corollary of the established LR theorem.
-No earlier PASS or acceptance constitutes current zero-issue package clearance;
-the PKG-01 repair is applied and a NEW independent full package review 02 remains pending.
+Earlier PASS and acceptance records retain their input-stage meanings.
+[NEW second full package review](package_02/FULL_REVIEW.md),
+[clean verdict](package_02/VERDICT.json) and
+[unchanged terminal copy pins](PACKAGE_REVIEW_02_COPY.json) independently
+verify the entire theorem, primary interfaces, all three pages and full
+package. PKG-01 is resolved and zero actionable issues remain.
+[Final acceptance](FINAL_ACCEPTANCE.json) advances readiness. After that
+review only its unchanged authored records and administrative navigation/
+acceptance were appended; reviewed TeX, PDF and metadata stay unchanged.
+Publication remains pending after preceding PR1032 priority disposition.

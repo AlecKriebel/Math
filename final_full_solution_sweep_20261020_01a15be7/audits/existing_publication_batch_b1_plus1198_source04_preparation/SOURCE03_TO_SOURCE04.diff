@@ -1,0 +1,82 @@
+--- source03/append_reviewed_rows.py
++++ source04/append_reviewed_rows.py
+@@ -1,13 +1,13 @@
+ """Sixteen existing-publication rows. Import inert; one guarded native append."""
+ from pathlib import Path
+ import datetime as dt
+-import json,hashlib,subprocess,sys,uuid
++import json,hashlib,subprocess,sys,uuid,gzip
+ from ops_core import (require,sha,canonical,folded,parse_original_ids,identity_hits,
+                       registry_identity,read_url,row_sha,resolver_identity,GateError,
+                       canonical_arxiv_identifier,expected_same_paper_arxiv_ids,typed_equal,compare_1198_record,associated_pr_alias_number,strict_json,recursive_identity_hits)
+ HERE=Path(__file__).resolve().parent
+ PLAN=HERE/'PROPOSAL.json'
+-PLAN_SHA='a72376436311c7ba3a30ed91ac7ca6d494656c583dbc235baaf2ac080b1d2f71'
++PLAN_SHA='461303a42c1d4e4dd84bcaf9f072879831dfb53b1f305bb16bc0d8015b0989bc'
+ CORE_SHA='3029474e348ca39c30a37b7d11cd1da2f4f7e985fa71e7c42fb17df4bfd65d96'
+ HELPER=HERE/'numeric.py'
+ HELPER_SHA='44f76b80704d9f93a1d32d9c62708e4be111761646b9d620c29e22f929979d2c'
+@@ -119,11 +119,51 @@
+     require(typed_equal(plan['account_semantic_clearances'],expected),'Account observation map is not exact adopted43 decisions')
+     require(typed_equal(plan['account_semantic_decision_keys'],[sha(canonical(x)) for x in decisions]),'Account decision key drift')
+     require(plan['historical_account_semantic_adoption_only'] is True,'Historical account scope changed')
+-    # No local source/state semantic decisions have been adopted in this edition.
+-    require(typed_equal(plan['local_semantic_clearances'],[]),'New local leads require separately adopted new proposal edition')
++    validate_local_semantics(plan)
++
++def validate_local_semantics(plan):
++    # Only this exact complete capture and root decision packet can justify
++    # these eight local associations. Neither author names nor public records
++    # supply general exceptions or production action authority.
++    adoption_raw=safe_path(plan['local_semantic_adoption_source']).read_bytes()
++    require(sha(adoption_raw)=='9fa4bf233deac92ca2085ac31126dcd4b43987a318238bf00eff65a948ef256a','Exact local08 adoption changed')
++    adopted=strict_json(adoption_raw)
++    require(adopted.get('accepted_for_exact_local_matching_only') is True and adopted.get('blanket_author_clearance') is False and adopted.get('local_evidence_change_requires_new_review') is True and adopted.get('action_authority') is False and adopted.get('publication_ready') is False,'Local adoption scope/authority changed')
++    prior_raw=safe_path(plan['local_semantic_prior_plan_source']).read_bytes()
++    require(sha(prior_raw)==adopted['source_plan_sha256']==plan['previous_source03_plan_sha256'],'Prior source03 proposal changed')
++    prior=strict_json(prior_raw)
++    for key in ['items','account_semantic_decisions','account_semantic_clearances','account_semantic_decision_keys','semantic_lead_clearances','intrabatch_lead_clearances']:
++        require(typed_equal(plan[key],prior[key]),'Local edition changed previously adopted rows/decisions: '+key)
++    compressed=safe_path(plan['local_semantic_capture_source']).read_bytes()
++    require(sha(compressed)==adopted['capture_sha256'],'Complete local capture changed')
++    capture=strict_json(gzip.decompress(compressed))
++    evidence=capture['local_evidence'];matches=capture['matches'];decisions=adopted['decisions']
++    require(type(evidence) is list and len(evidence)==8 and type(matches) is list and len(matches)==8 and type(decisions) is list and len(decisions)==8,'Exact eight captured local associations required')
++    require(typed_equal(matches,adopted['exact_local_matches']) and typed_equal(plan['local_semantic_decisions'],decisions),'Local decision/capture match inventory changed')
++    by_path={};recomputed=[]
++    for entry in evidence:
++        require(type(entry) is dict and set(entry)=={'path','sha256','value'} and type(entry['path']) is str and type(entry['sha256']) is str and entry['path'] not in by_path,'Malformed/repeated complete local capture')
++        by_path[entry['path']]=entry
++        for item in plan['items']:
++            hits=recursive_identity_hits(entry['value'],item)
++            hits += [h for h in recursive_identity_hits(entry['path'],item) if h not in hits]
++            if hits:recomputed.append({'pr':item['pr'],'path':entry['path'],'sha256':entry['sha256'],'matched':hits})
++    require(typed_equal(recomputed,matches),'Captured complete local matching cannot be reproduced')
++    expected=[];seen=set()
++    for decision,match in zip(decisions,matches):
++        require(typed_equal({k:decision[k] for k in ['pr','path','sha256','matched']},match),'Local root decision does not bind exact captured association')
++        key=(decision['path'],decision['pr'])
++        require(key not in seen and type(decision['pr']) is int and decision['decision']=='distinct_result_not_duplicate' and type(decision['reason']) is str and bool(decision['reason'].strip()),'Missing/repeated exact local rationale');seen.add(key)
++        item=next((i for i in plan['items'] if i['pr']==decision['pr']),None)
++        entry=by_path[decision['path']]
++        require(item is not None and sha(canonical(item['row']))==decision['target_row_sha256'],'Local decision target row changed')
++        require(entry['sha256']==decision['sha256'] and sha(canonical(entry['value']))==decision['entire_local_value_sha256'],'Complete adopted local value/raw hash changed')
++        expected.append({**match,'entire_local_value_sha256':decision['entire_local_value_sha256']})
++    require(typed_equal(plan['local_semantic_clearances'],expected),'Local observation map differs from exact adopted eight decisions')
++    require(typed_equal(plan['local_semantic_decision_keys'],[sha(canonical(d)) for d in decisions]),'Complete local decision keys changed')
+ 
+ def extra_clearance_keys(plan):
+-    return [sha(canonical(x)) for x in plan['account_semantic_decisions']], [sha(canonical(x)) for x in plan['local_semantic_clearances']]
++    return [sha(canonical(x)) for x in plan['account_semantic_decisions']], [sha(canonical(x)) for x in plan['local_semantic_decisions']]
+ 
+ def clearance_keys(plan):
+     return [sha(canonical([c['pr'],c['row'],c['row_sha256_43_columns'],c['matched']])) for c in plan['semantic_lead_clearances']], [sha(canonical([c['pr'],c['other_pr'],c['other_row_sha256_43_columns'],c['matched']])) for c in plan['intrabatch_lead_clearances']]
+@@ -266,7 +306,7 @@
+             hits=recursive_identity_hits(evidence['value'],item)
+             path_hits=recursive_identity_hits(evidence['path'],item)
+             hits=hits+[h for h in path_hits if h not in hits]
+-            if hits:local_hits.append({'pr':item['pr'],'path':evidence['path'],'sha256':evidence['sha256'],'matched':hits})
++            if hits:local_hits.append({'pr':item['pr'],'path':evidence['path'],'sha256':evidence['sha256'],'matched':hits,'entire_local_value_sha256':sha(canonical(evidence['value']))})
+     require(typed_equal(local_hits,plan['local_semantic_clearances']),'New/changed recursive local source/state/DOI/result lead requires root review')
+     capture_json(capture/(label+'_account_local_decision.json'),{'account_leads':observed,'local_leads':local_hits,'local_evidence':local,'external1198_not_presumed_owned':True})
+     return provider.now()

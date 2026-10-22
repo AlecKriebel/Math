@@ -1,0 +1,88 @@
+--- version03/ops_core.py
++++ proposed_version04/ops_core.py
+@@ -118,14 +118,51 @@
+                if a['kind'] in {'same_paper_doi','same_paper_arxiv','reviewed_identity_lead'}]
+     return sorted({x for v in values if (x:=canonical_arxiv_identifier(v))})
+ 
++# Known associated PRs are source-identity leads, not mathematical duplicate proofs.
++# decoded() already handles case, compatibility Unicode, format characters and
++# bounded repeated HTML/percent decoding; this parser does not change it.
++_PR_DECIMAL = r'[0-9]+'
++_PR_NUMBER_END = r'(?!\w|\.[0-9])'
++_PR_LABELLED = re.compile(
++    r'(?<!\w)(?:pr|pull\s+request)\s*(?::\s*)?(?:#\s*)?'
++    r'(?P<number>'+_PR_DECIMAL+r')'+_PR_NUMBER_END)
++_PR_PROJECT_URL = re.compile(
++    r'(?<!\w)https?://(?:www\.)?github\.com/aleckriebel/math/pull/'
++    r'(?P<number>'+_PR_DECIMAL+r')'+_PR_NUMBER_END)
++_PR_ALIAS_URL = re.compile(
++    r'https?://(?:www\.)?github\.com/aleckriebel/math/pull/'
++    r'(?P<number>'+_PR_DECIMAL+r')/?')
++
++def associated_pr_alias_number(value):
++    """Canonical project URL alias to its positive integer PR identity."""
++    match=_PR_ALIAS_URL.fullmatch(decoded(value).strip())
++    number=int(match.group('number')) if match else 0
++    return number if number>0 else None
++
++def associated_pr_numbers_in_text(value):
++    """Only explicit PR/pull-request labels or this project's full PR URLs.
++
++    Match the whole decimal token before comparing integer identities. This
++    accepts leading-zero spelling but never truncates10070 to1007. Bare numbers
++    and numbers embedded in longer words or decimal continuations are excluded.
++    """
++    text=decoded(value)
++    return {number for pattern in (_PR_LABELLED,_PR_PROJECT_URL)
++            for match in pattern.finditer(text)
++            if (number:=int(match.group('number')))>0}
++
++
+ def identity_hits(rows,item):
+     result=[]
+     aliases=[(alias,canonical_arxiv_identifier(alias['value'])) for alias in item['identity_leads']]
+     for number,row in enumerate(rows[1:],2):
+-        text=' '.join(map(str,row)); f=folded(text);w=' '+words(text)+' ';d=decoded(text);matched=[];arxiv_ids=arxiv_identifiers_in_text(text)
++        text=' '.join(map(str,row)); f=folded(text);w=' '+words(text)+' ';d=decoded(text);matched=[];arxiv_ids=arxiv_identifiers_in_text(text);pr_ids=associated_pr_numbers_in_text(text)
+         for alias,arxiv in aliases:
+             value=alias['value'];kind=alias['kind']
+-            if arxiv is not None:ok=arxiv in arxiv_ids
++            pr_number=associated_pr_alias_number(value)
++            if kind=='pr_reference':require(pr_number is not None,'Malformed associated PR URL alias')
++            if pr_number is not None:ok=pr_number in pr_ids
++            elif arxiv is not None:ok=arxiv in arxiv_ids
+             elif kind in {'catalog_id','record_id'}:ok=bool(re.search(r'(?<!\d)'+re.escape(value)+r'(?!\d)',d))
+             elif kind=='author':ok=(' '+words(value)+' ') in w
+             else:ok=folded(value) in f
+--- version03/append_reviewed_rows.py
++++ proposed_version04/append_reviewed_rows.py
+@@ -4,7 +4,7 @@
+ import json,hashlib,subprocess,sys,uuid
+ from ops_core import (require,sha,canonical,folded,parse_original_ids,identity_hits,
+                       registry_identity,read_url,row_sha,resolver_identity,GateError,
+-                      canonical_arxiv_identifier,expected_same_paper_arxiv_ids,typed_equal,compare_1198_record)
++                      canonical_arxiv_identifier,expected_same_paper_arxiv_ids,typed_equal,compare_1198_record,associated_pr_alias_number)
+ HERE=Path(__file__).resolve().parent
+ PLAN=HERE/'PROPOSAL.json'
+ PLAN_SHA='eea728c28be4fd19a5089d9835156515ea8f87bc0777a1a4f4bded304e7ec2f3'
+@@ -49,7 +49,8 @@
+     require(plan['new_publications']==0 and plan['new_rows']==16,'Not existing-publication action')
+     require(not plan['preparation_failures'],'Preparation contains unresolved failures')
+     require(len({x['doi'].casefold() for x in items})==16,'Duplicate chosen DOI')
+-    require(sum(len(x['associated_prs']) for x in items)==17,'Lost associatedPR')
++    associated=[n for x in items for n in x['associated_prs']]
++    require(len(associated)==len(set(associated))==17 and all(type(n) is int and n>0 for n in associated),'Lost, duplicated or mistyped associated PR inventory')
+     for item in items:
+         reviewed=json.loads(safe_path(item['reviewed_row_source']).read_bytes())
+         original=reviewed if item['pr']==1198 else next(x for x in reviewed['items'] if x['pr']==item['pr'])
+@@ -62,6 +63,10 @@
+         require(all('https://github.com/AlecKriebel/Math/pull/'+str(p) in lead_values for p in item['associated_prs']),'AssociatedPR lead missing')
+         require(any(x['kind']=='author' for x in item['identity_leads']),'Named author conservativelead missing')
+         accepted_item=next(x for x in accepted_identity['items'] if x['pr']==item['pr'])
++        expected_associations=accepted_item.get('associated_prs',[accepted_item['pr']])
++        require(typed_equal(item['associated_prs'],expected_associations),'Frozen known associated PR inventory drift')
++        alias_numbers=[associated_pr_alias_number(a['value']) for a in item['identity_leads'] if a['kind']=='pr_reference']
++        require(all(n is not None for n in alias_numbers) and sorted(alias_numbers)==sorted(expected_associations),'Missing, duplicate or extraneous known associated PR alias')
+         require(item['same_paper_alternate_dois']==accepted_item.get('same_paper_alternate_dois',[]),'Known alternate DOI omitted')
+         require(item['doi']==accepted_item['doi'] and item['selected_source']['url']==accepted_item['selected_source']['url'] and item['selected_source']['sha256']==accepted_item['selected_source']['sha256'],'Accepted chosen DOI/source drift')
+         required_ids=expected_same_paper_arxiv_ids(accepted_item)

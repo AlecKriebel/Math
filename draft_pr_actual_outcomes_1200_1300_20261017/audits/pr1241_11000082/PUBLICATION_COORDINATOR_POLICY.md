@@ -1,0 +1,7 @@
+# PR1241 publication control after sealed round2
+
+The full original-target theorem, explicit known matching Ferudun theorem attribution, six-page paper and 105-member archive remain unchanged. Round2 is CHANGES_REQUIRED, with one upload-control finding F01. Its sealed outputs remain immutable. The operational repair and local metadata-only punctuation/DOI change are recorded in R2_FIX_RECEIPT.json.
+
+The concrete operative coordinator is /Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/_local/run_pr1241_deposit.py relative to this audit (see its absolute path in the next review input freeze). It imports the shared repository kit and wraps the actual verifier to reject every reported metadata normalization before any publish POST. A fresh full exact same-ID inspection is mandatory; the mutating operation repeats strict server verification. Saved inspection receipts alone cannot authorize publication. A one-attempt intent blocks blind POST retries; already-published known records reconcile read-only. The generic shared kit itself is unchanged.
+
+No Zenodo staging/upload/publication, tracker append, or PR change has occurred for PR1241 as of this repair. A NEW different whole-package reviewer must assess the entire current release, mathematical and priority evidence, all eight guarded helpers, and this operative coordinator. A final release gate may be created only after that review is actually CLEAN and every frozen input remains exact.

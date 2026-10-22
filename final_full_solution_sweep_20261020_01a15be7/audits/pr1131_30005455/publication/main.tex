@@ -1,0 +1,481 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage{xurl}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Hess}{\operatorname{Hess}}
+\hypersetup{pdftitle={A sharp forest bound and an improved whisker bound for finite WARM graphs},pdfauthor={Alec Kriebel},pdfsubject={Unrefereed mathematical preprint; finite WARM graph reinforcement},pdfkeywords={WARM, reinforcement, forest, whisker, stability, odd cycle}}
+\title{A sharp forest bound and an improved whisker bound\protect\\for finite WARM graphs}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{21 October 2026 \quad Version 1.0.0 \quad Preprint}
+\begin{document}
+\maketitle
+\begin{abstract}
+Consider power reinforcement with exponent $\alpha>1$ on a finite simple
+loopless graph: vertices fire at positive rates and select an incident edge
+proportionally to its current count to the power $\alpha$.
+We prove that the infinitely reinforced edges almost surely form a forest
+for $\alpha>4/3$, for arbitrary positive vertex rates and positive integer
+initial counts. The known triangle obstruction shows that the constant
+$4/3$ cannot be decreased; its equality case is excluded.
+For equal rates we prove that every surviving component has diameter at
+most three when $\alpha\ge17/4$.
+The main deterministic step excludes an arbitrary weighted odd support
+cycle of length $m$ when $\alpha>\sec^2(\pi/(2m))$; the corresponding uniform
+cycle threshold and the even-cycle method are known.
+We use the published finite WARM convergence and support theorems, and
+credit the earlier least-weight and champion arguments.
+The forest result answers the forest-bound improvement requested in
+Oberwolfach Reports 12/2023; the suggested sharp whisker bound remains open.
+AI tools were extensively involved. This is an unrefereed preprint.
+\end{abstract}
+
+\section{The problem, model and contribution}
+Let $G=(V,E)$ be a finite simple undirected loopless graph. At each
+non-isolated vertex $v$ an independent Poisson clock has rate
+$\lambda_v>0$. Each edge has an initial count $N_0(e)=n_e\in\{1,2,\ldots\}$.
+At a firing of $v$, an incident edge $e$ is selected with probability
+\[
+ \frac{N_t(e)^\alpha}{\sum_{f\ni v}N_t(f)^\alpha},
+\]
+and its count is increased by one. Isolated vertices have no effect.
+Define
+\[
+ E_\infty=\{e:N_t(e)\longrightarrow\infty\},\qquad
+ E_+=\{e:\liminf_{t\to\infty}N_t(e)/t>0\}.
+\]
+A whisker is a tree of diameter at most three; an isolated vertex is harmless.
+
+Kleptsyn's contribution to Oberwolfach Reports 12/2023
+\cite[printed pp.~653--655]{OWR} asks to improve the sufficient forest
+bound $\alpha>2$, allowing unequal rates, and the sufficient equal-rate
+whisker bound $\alpha>25$. These bounds come from Holmes--Kleptsyn
+\cite{HK}, with the full stochastic bridge supplied by
+Hirsch--Holmes--Kleptsyn \cite{HHK}. The report separately suggests that
+$4/3$ might be sharp for both conclusions. An improvement request and
+this stronger sharpness suggestion are distinct.
+
+\begin{samepage}
+\begin{theorem}\label{main}
+For every graph and every positive integer initial count vector as above:
+\begin{enumerate}
+\item If $\alpha>4/3$, then $(V,E_\infty)$ is almost surely a forest,
+for arbitrary positive rates.
+\item If the rates are equal and $\alpha\ge17/4$, then almost surely every
+component of $(V,E_\infty)$ is a whisker.
+\end{enumerate}
+For each $1<\alpha<4/3$ the equal-rate triangle with unit initial counts
+has positive probability that all three edges survive.
+Consequently no smaller constant can replace $4/3$ in the first assertion.
+No assertion is made at $\alpha=4/3$.
+\end{theorem}
+\end{samepage}
+
+The new mechanism considered here is the weighted odd-cycle estimate,
+which applies to every equilibrium with that support, even with unequal
+rates, chords and attachments. The threshold for the \emph{uniform}
+equilibrium on a bare odd cycle was already given in
+van der Hofstad--Holmes--Kuznetsov--Ruszel
+\cite[Proposition~2(iv)]{VHHKR}. The even-cycle cancellation is already
+in \cite[Lemma~2]{HHK}, whose proof extends immediately to positive rate
+coefficients. The triangle obstruction is also known
+\cite[Proposition~2(v), Theorem~4(ii)]{VHHKR}.
+The whisker proof sharpens the established least-weight/champion approach.
+The earlier \emph{stated} bound is $25$; in fact the displayed constants
+in \cite[Section~5.1]{HK}, together with \cite{HHK}, already imply the
+weaker improvement $\alpha>24$. A precise derivation is recorded in
+Section~\ref{priority}. Thus we do not claim the first possible numerical
+improvement of $25$.
+
+\section{The stochastic input and initialization}
+Put $\Lambda=\sum_v\lambda_v$, discarding isolated vertices. If $E$ is
+empty the conclusions are immediate. Otherwise $\Lambda>0$. Write
+\begin{equation}\label{field}
+ S_v(a)=\sum_{e\ni v}a_e^\alpha,\qquad
+ F_e(a)=-a_e+\sum_{v\ni e}\lambda_v\frac{a_e^\alpha}{S_v(a)}.
+\end{equation}
+We use counts per unit time, so $\sum_ea_e=\Lambda$ at equilibrium.
+The probability normalization $p_v=\lambda_v/\Lambda$, $x=a/\Lambda$
+satisfies $F_\lambda(a)=\Lambda F_p(a/\Lambda)$; the Jacobians are identical.
+
+Theorem~1 of \cite[printed p.~3016]{HHK} proves, from unit initial counts
+on a finite graph, almost-sure convergence of $(N_t(e)/t)_{e\in E}$ to
+an equilibrium whose Jacobian has no positive eigenvalue. It also gives
+positive probability of convergence to each strictly linearly stable
+equilibrium. Proposition~1 of that paper identifies $E_\infty=E_+$
+almost surely under bounded degrees and bounded positive rates; these
+hypotheses are automatic for our finite graph.
+These published stochastic results are imported, not reproved here.
+
+\begin{lemma}\label{initial}
+Every almost-sure tail assertion just described, including the support
+conclusions deduced from them, transfers from unit counts to any fixed
+positive integer initial count vector.
+\end{lemma}
+\begin{proof}
+In the embedded jump chain, prescribe $n_e-1$ reinforcements of each edge
+$e$, in any fixed order. At each step prescribe one endpoint of that edge
+to fire. The vertex probability is $\lambda_v/\Lambda>0$, and every
+prescribed edge probability is positive because all counts are positive.
+The event that this finite prescription occurs has positive probability,
+and leaves exactly the count vector $n$.
+Conditional on this event, the future chain has precisely the law started
+at $n$. The Poisson memoryless property gives the corresponding
+continuous-time future law. Failure of an almost-sure tail assertion with
+positive probability from $n$ would therefore give failure with positive
+probability from unit counts. Finite prefixes and finite time shifts do
+not change convergence of counts divided by time, their limit, or which
+counts diverge. This proves the assertion.
+\end{proof}
+This one-way argument does not transfer positive attainment of every
+specified stable equilibrium to every initialization. We use attainment
+only from the unit state for the known triangle obstruction.
+Arbitrary positive noninteger initial offsets, initially zero edges,
+loops and infinite graphs are outside the stated model.
+
+At a stochastic limit $a$, each positive-rate vertex has an incident
+positive edge: its incident count sum dominates the number of firings
+at that vertex, so its limiting incident-weight sum is at least
+$\lambda_v$. Thus every $S_v(a)>0$. Restrict to the positive support $H$.
+For $\alpha>1$, derivatives of a zero coordinate's $\alpha$th power
+vanish at zero. Consequently the full Jacobian is the direct sum of
+the positive-support Jacobian and $-I$ on zero edges. This derivative
+can equivalently be obtained with the local $C^1$ extension
+$x\mapsto(\max\{x,0\})^\alpha$. Hence a positive eigenvalue on $H$
+excludes the full boundary equilibrium. All subsequent calculations
+are on this positive face.
+
+\section{A weighted cycle instability estimate}
+Define
+\[
+ L(a)=-\sum_ea_e+\frac1\alpha\sum_v\lambda_v\log S_v(a).
+\]
+Then $F=\diag(a)\nabla L$. At an equilibrium, $\nabla L=0$ and
+$DF=\diag(a)\Hess L$, which is similar to the symmetric matrix
+$\diag(\sqrt a)\Hess L\diag(\sqrt a)$. Thus a positive Hessian
+direction gives a positive real Jacobian eigenvalue, even when other
+directions are critical.
+
+Use coordinates $y_e=a_e^\alpha$ and write the same potential as
+\[
+ \Phi(y)=-\sum_ey_e^{1/\alpha}
+       +\frac1\alpha\sum_v\lambda_v\log\sum_{e\ni v}y_e.
+\]
+At an equilibrium the Hessians are congruent, since the gradient
+vanishes. Put
+\[
+ b_v=\frac{\lambda_v}{S_v},\quad c_v=\frac{\lambda_v}{S_v^2},
+ \quad D_e=a_e^{1-2\alpha}.
+\]
+The equilibrium equation gives
+\begin{equation}\label{eq}
+ a_e^{1-\alpha}=b_u+b_v\quad(e=uv),
+\end{equation}
+and direct differentiation gives, for every real edge vector $w$,
+\begin{equation}\label{hess}
+ \alpha^2\Hess\Phi[w,w]
+  =(\alpha-1)\sum_eD_ew_e^2
+     -\alpha\sum_vc_v\Big(\sum_{e\ni v}w_e\Big)^2.
+\end{equation}
+No equal-weight or equal-rate assumption occurs here.
+
+\begin{theorem}\label{cycle}
+An equilibrium whose positive support contains an even cycle is
+linearly unstable for every $\alpha>1$. If the support contains an odd
+cycle of length $m$, it is unstable whenever
+$\alpha>\sec^2(\pi/(2m))$.
+\end{theorem}
+\begin{proof}
+Let $e_0,\ldots,e_{m-1}$ be a simple support cycle, and let $v_i$
+meet $e_{i-1},e_i$, with indices modulo $m$. Put $A_i=a_{e_i}^\alpha$.
+Equation~\eqref{eq} implies
+\[
+ \sum_iD_{e_i}
+  =\sum_ib_{v_i}(A_{i-1}^{-1}+A_i^{-1}).
+\]
+Moreover
+\[
+ c_{v_i}=\frac{b_{v_i}}{S_{v_i}}
+ \le\frac{b_{v_i}}{A_{i-1}+A_i}
+ \le\frac{b_{v_i}}4(A_{i-1}^{-1}+A_i^{-1}),
+\]
+where the last inequality is $(A_{i-1}-A_i)^2\ge0$ after clearing
+positive denominators. Therefore
+\begin{equation}\label{cyclebound}
+ 4\sum_ic_{v_i}\le\sum_iD_{e_i}.
+\end{equation}
+Extra incident positive edges only increase $S_v$. Set all perturbation
+coordinates off the cycle to zero, including any chords.
+
+For even $m$ take $w_{e_i}=(-1)^i$. Every incidence sum in
+\eqref{hess} is zero and its diagonal term is strictly positive.
+This is the known alternating mechanism of \cite[Lemma~2]{HHK}, with
+positive vertex coefficients.
+
+For odd $m$ set $\theta=\pi-\pi/m$ and use the two real vectors
+$u_{e_i}=\cos(i\theta)$ and $w_{e_i}=\sin(i\theta)$.
+Since $m\theta=(m-1)\pi$ is a multiple of $2\pi$, they are cyclically
+consistent. At each edge $u_{e_i}^2+w_{e_i}^2=1$, while at each cycle
+vertex
+\[
+ (u_{e_{i-1}}+u_{e_i})^2+(w_{e_{i-1}}+w_{e_i})^2
+ =4\sin^2(\pi/(2m)).
+\]
+Adding \eqref{hess} for the two vectors and using
+\eqref{cyclebound} yields
+\[
+ \alpha^2\big(\Hess\Phi[u,u]+\Hess\Phi[w,w]\big)
+ \ge\big[\alpha\cos^2(\pi/(2m))-1\big]\sum_iD_{e_i}>0.
+\]
+At least one vector is a positive Hessian direction, proving instability.
+\end{proof}
+Every finite nonforest has a simple cycle, and for odd $m\ge3$
+we have $\sec^2(\pi/(2m))\le4/3$. The stochastic input, boundary
+argument and Lemma~\ref{initial} prove Theorem~\ref{main}(1).
+There is no spurious positive radial eigenvalue: $\sum_eF_e=\Lambda-\sum_ea_e$
+implies $\mathbf1^TDF=-\mathbf1^T$, so positive-eigenvalue vectors lie
+in the tangent space $\sum_eh_e=0$.
+
+For the known sharpness obstruction take a triangle with all rates
+and limiting weights equal to one. Its Jacobian has diagonal
+$\alpha/2-1$ and off-diagonal $-\alpha/4$, giving eigenvalues
+$-1$ and $3\alpha/4-1$ twice. It is strictly stable for
+$1<\alpha<4/3$, and the published attainment theorem gives positive
+probability from unit counts. All three edges survive. At $4/3$ the
+two transverse eigenvalues vanish, and neither this attainment clause
+nor our strict instability argument decides the stochastic outcome.
+
+\section{Equal-rate whiskers}
+Normalize the common rate to one by time scaling. For $e=uv$ write
+\[
+ q=\frac{a_e^\alpha}{S_u},\qquad r=\frac{a_e^\alpha}{S_v}.
+\]
+At equilibrium $a_e=q+r$, where $0<q,r\le1$, hence $a_e\le2$.
+At an equilibrium with no positive eigenvalue, the symmetric Jacobian
+representative is negative semidefinite. Its diagonal entries give
+\begin{equation}\label{diagonal}
+ q^2+r^2\ge(1-1/\alpha)(q+r).
+\end{equation}
+For example, direct differentiation gives
+$J_{ee}=\alpha-1-\alpha(q^2+r^2)/a_e$, proving the condition.
+It is necessary, not sufficient, for stability.
+
+\begin{lemma}[Least-weight argument of \cite{HK}]\label{least}
+For $\alpha>2$, every positive edge at such an equilibrium has weight
+at least one.
+\end{lemma}
+\begin{proof}
+Choose an edge of least positive weight in one component. If neither
+endpoint is a leaf of the support, each has a competing edge of at least
+the same weight. Then $q,r\le1/2$, so
+$q^2+r^2\le(q+r)/2$, contradicting \eqref{diagonal}.
+Thus one endpoint is a leaf and contributes one to the weight.
+All other weights in the component are no smaller.
+\end{proof}
+
+Call an edge internal if neither endpoint is a support leaf. Suppose
+an internal edge has weight $a\in[1,3/2]$. Each endpoint has a
+competitor of weight at least one, so
+\begin{equation}\label{cap}
+ q,r\le s_\alpha(a):=\frac{a^\alpha}{1+a^\alpha},\qquad q+r=a.
+\end{equation}
+For a feasible split $s\ge a/2$, convexity on $[a-s,s]$ gives
+\begin{equation}\label{f}
+ \frac{q^2+r^2}a\le f(a,s_\alpha(a)),\qquad
+ f(a,s)=\frac{s^2+(a-s)^2}a.
+\end{equation}
+The function $f$ increases in $s$ on $s\ge a/2$, and $s_\alpha(a)$
+is nondecreasing in $\alpha$ for $a\ge1$.
+
+\subsection{The closed interval $17/4\le\alpha\le7$}
+For $3\le B\le7$ and $1\le a\le3/2$, one has
+\begin{equation}\label{z}
+ \frac12\le\frac{s_B(a)}a\le\frac23.
+\end{equation}
+Indeed the lower bound is equivalent to $a^{B-1}(2-a)\ge1$, which
+follows from
+\[
+ a^2(2-a)-1=(a-1)(1+a-a^2)\ge0.
+\]
+For the upper bound use $s_B\le s_7$ and
+$R(a)=2a^7-3a^6+2>0$. Its derivative is $2a^5(7a-9)$,
+so its minimum for $a\ge0$ occurs at $9/7$, with
+$R(9/7)=52763/823543>0$.
+
+Put $z=s_B(a)/a$. Direct differentiation and \eqref{z} give
+\[
+ \frac{d}{da}f(a,s_B(a))
+ =1-2z^2+2(2z-1)s_B'(a)\ge1/9>0.
+\]
+If $A\le\alpha\le B$, it follows that
+\begin{equation}\label{endpoint}
+ \frac{q^2+r^2}a\le f(a,s_B(a))\le f(3/2,s_B(3/2)).
+\end{equation}
+For $T\ge(3/2)^B$, put $S=T/(1+T)$. The table gives exact
+positive margins $\delta=(1-1/A)-f(3/2,S)$:
+\begin{center}
+\small
+\begin{tabular}{ccccc}
+\toprule
+$[A,B]$ & $T$ & $S$ & $f(3/2,S)$ & $\delta$\\
+\midrule
+$[17/4,13/3]$ & $29/5$ & $29/34$ & $1325/1734$ & $1/1734$\\
+$[13/3,9/2]$ & $25/4$ & $25/29$ & $3869/5046$ & $163/65598$\\
+$[9/2,5]$ & $243/32$ & $243/275$ & $117039/151250$ & $5399/1361250$\\
+$[5,6]$ & $729/64$ & $729/793$ & $991335/1257698$ & $74117/6288490$\\
+$[6,7]$ & $2187/128$ & $2187/2315$ & $8580639/10718450$ & $527104/16077675$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The two nonintegral power caps follow exactly from
+\[
+ (29/5)^3-(3/2)^{13}=\frac{504313}{1024000}>0,
+ \qquad
+ (25/4)^2-(3/2)^9=\frac{317}{512}>0.
+\]
+The other caps are equalities. All $S\ge3/4$, so the second-argument
+monotonicity is applicable. The five closed intervals cover $[17/4,7]$,
+and \eqref{endpoint} is strictly less than
+$1-1/A\le1-1/\alpha$, contradicting \eqref{diagonal}.
+Thus no internal edge has weight at most $3/2$ in this exponent interval.
+
+\subsection{The unbounded tail $\alpha\ge7$}
+Write $a=1+r_0$, with $0\le r_0\le1/2$. Since $q,r\le1$
+and $q+r=a$, convexity gives $q^2+r^2\le1+r_0^2$.
+Condition~\eqref{diagonal} implies
+\begin{equation}\label{quadratic}
+ h(r_0):=\alpha r_0^2-(\alpha-1)r_0+1\ge0.
+\end{equation}
+For $\alpha\ge7$, $h(0)>0$ and $h(1/2)=(6-\alpha)/4<0$.
+Thus \eqref{quadratic} forces $r_0$ below the smaller root of $h$.
+Set $C=3-\sqrt2$. We have $1<C<8/5$, $C/\alpha<1/2$ and
+$C^2+C=7(C-1)$, whence
+\[
+ h(C/\alpha)=-(C-1)(1-7/\alpha)\le0.
+\]
+Therefore $r_0\le C/\alpha$ and
+\[
+ a^\alpha\le\exp(\alpha r_0)\le e^C<6\le\alpha-1.
+\]
+For completeness the strict bound is elementary: $\sqrt2>7/5$ gives
+$C<8/5$. The exponential series at $8/5$ through degree four sums
+to $9067/1875$; its tail from degree five has successive ratios at
+most $4/15$, so is at most $4096/34375$. Their sum is
+$510973/103125<6$.
+By \eqref{cap} both $q,r<(\alpha-1)/\alpha$. But
+\eqref{diagonal} says that their weighted mean
+$(q^2+r^2)/(q+r)$ is at least $(\alpha-1)/\alpha$, a contradiction.
+This proves the same internal-edge exclusion for every $\alpha\ge7$.
+
+\subsection{The matching conclusion}
+Every internal edge consequently has weight greater than $3/2$.
+For such an edge $e=uv$, its probability at $v$ is greater than $1/2$,
+since its other endpoint contributes at most one to $a_e=q+r$.
+Two internal edges cannot meet at a vertex, where their probabilities
+would sum to more than one. Hence internal edges form a matching.
+Every cycle has adjacent internal edges and is excluded directly.
+A tree of diameter at least four also has adjacent internal edges:
+take the two middle edges of a four-edge path. Every support component
+therefore has diameter at most three. This proof of the whisker bound
+does not depend on the new odd-cycle theorem. Apply the published
+stochastic input and Lemma~\ref{initial} to finish Theorem~\ref{main}(2).
+
+\section{Priority, attribution and precise limits}\label{priority}
+The main comparison is with the arbitrary-rate forest threshold in
+\cite[Theorem~3 and Corollary~1]{HK}, the equal-rate whisker theorem
+\cite[Theorem~2(a)]{HK}, the uniform odd-cycle calculation in
+\cite[Proposition~2(iv)]{VHHKR}, and the even-cycle proof in
+\cite[Lemma~2]{HHK}. We make no new claim for the stochastic convergence
+or support-identification theorems, the triangle obstruction, or the
+least-weight/champion mechanism. A bounded current literature audit
+recovered no earlier theorem giving the arbitrary-equilibrium weighted
+odd-cycle estimate or either substantive bound in Theorem~\ref{main}.
+This is not a certificate of exhaustive priority or worldwide firstness.
+Repository creation dates do not certify historical public visibility.
+
+The earlier published argument already has a small numerical improvement
+of its stated $25$. Here is an explicit bridge, to avoid understating it.
+In \cite[Section~5.1, Lemmas~5--7]{HK} put $c=9/4$.
+For $\alpha>81/4$, its diagonal/least-weight argument gives
+\[
+ a_e\in[1,1+c/\alpha)\ \cup\ (2-2c/\alpha,2].
+\]
+An edge in the first interval must have a leaf endpoint once
+$\alpha>c(e^c+1)$: otherwise its champion probability is at most
+$e^c/(e^c+1)$ instead of greater than $1-c/\alpha$.
+The exact bound
+\[
+ e^{9/4}\le\sum_{k=0}^{12}\frac{(9/4)^k}{k!}
+ +\frac{(9/4)^{13}/13!}{1-(9/4)/14}
+ =\frac{191714244173193067}{20206532637491200}<\frac{19}2
+\]
+gives $c(e^c+1)<189/8<24$. For $\alpha>24$ the second interval has
+lower endpoint greater than $29/16>3/2$, so these edges form a matching
+and the other edges have leaf endpoints. The published convergence
+and support bridge then yields whiskers. Thus the purely literal request
+for some improvement of $25$ has this earlier consequence; our
+contribution is the stronger $17/4$ bound, alongside the forest result.
+
+The interval $4/3<\alpha<17/4$ in the suggested sharp equal-rate
+whisker conclusion is unresolved by this paper. The stochastic equality
+case $\alpha=4/3$ is also unresolved here. Unequal-rate whisker conclusions
+are false in general \cite[Example~1]{HK}. We assert neither an infinite-graph
+extension nor results for loops or noninteger initial offsets.
+The finite simple graph model and all quantifiers appear explicitly above.
+
+\section{Reproducibility and research disclosure}
+The proof, including every rational margin and the unbounded tail, is
+contained in this paper and does not depend on numerical searches.
+The supporting package preserves the eight original PR artifacts,
+separate mathematical and priority audits, exact finite controls and
+instructions for reproduction in a disposable copy. Historical source
+wrappers label the work partial by requiring the sharper suggested
+whisker bound; that label is explicitly superseded here for the literal
+improvement requests. The added integer-count conditioning argument and
+prior-method credits are identified, and original inputs remain unchanged.
+Finite rational checks and rejected deliberately false alternatives
+corroborate the derivations; hashes establish custody rather than proof.
+No exploratory finite tree search is used as universal evidence.
+Third-party primary texts and private operational captures are not
+redistributed. Standard background results are cited at their interfaces.
+
+AI tools were extensively involved in mathematical research, proof
+development, symbolic and computational checks, adversarial auditing,
+literature investigation and manuscript preparation. Independent internal
+AI reviews are not independent human peer review. This manuscript is a
+preprint and has not undergone formal independent human peer review,
+journal acceptance or proof-assistant certification.
+
+\begin{thebibliography}{9}
+\bibitem{OWR} V.~Kleptsyn, Graph-based interacting P\'olya urns,
+in
+\emph{MATRIX--MFO Tandem Workshop: Stochastic Reinforcement Processes and
+Graphs}, Oberwolfach Reports 12/2023, printed pp.~653--655,
+Open Problems~1--2 on p.~655.
+\href{https://doi.org/10.4171/owr/2023/12}{doi:10.4171/owr/2023/12}.
+\url{https://ems.press/content/serial-article-files/47008}.
+\bibitem{VHHKR} R.~van der Hofstad, M.~Holmes, A.~Kuznetsov and W.~Ruszel,
+Strongly reinforced P\'olya urns with graph-based competition,
+\emph{Ann. Appl. Probab.}~26 (2016), 2494--2539.
+\href{https://doi.org/10.1214/16-AAP1153}{doi:10.1214/16-AAP1153}.
+\bibitem{HK} M.~Holmes and V.~Kleptsyn,
+Proof of the WARM whisker conjecture for neuronal connections,
+\emph{Chaos}~27 (2017), 043104.
+\href{https://doi.org/10.1063/1.4978683}{doi:10.1063/1.4978683}.
+Author manuscript:
+\url{https://researchers.ms.unimelb.edu.au/~mholmes1@unimelb/Reinforced-graphs_final.pdf}.
+\bibitem{HHK} C.~Hirsch, M.~Holmes and V.~Kleptsyn,
+Infinite WARM graphs III: strong reinforcement regime,
+\emph{Nonlinearity}~36 (2023), 3013--3042.
+\href{https://doi.org/10.1088/1361-6544/acc9a0}{doi:10.1088/1361-6544/acc9a0}.
+\end{thebibliography}
+\end{document}

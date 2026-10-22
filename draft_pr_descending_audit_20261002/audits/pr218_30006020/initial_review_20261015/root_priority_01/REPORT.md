@@ -1,0 +1,47 @@
+# Root independent priority lane: geometric precursors and adjacent ensembles
+
+UTC: 2026-10-15T06:35:16.759784+00:00. Assigned lane100%; whole-case priority not cleared. All mathematical/source acceptance at the parent checkpoint is retained. This report is a scoped comparison of primary theorems, not an exhaustive absence theorem.
+
+## Target and source discipline
+
+The exact target is the entire normalized cylinder-area multiset in the iterated N→∞ then g→∞ principal holomorphic quadratic ensemble, and its intermediate windows. The proposed count in [g^−1/2,2g^−1/2] tends to Poisson((log2)/2), with all fixed compact-window joint moments at every s→0,gs→∞. A theorem about another random geometric object or a fixed topological type does not anticipate that conclusion merely because it also has a Poisson limit. The root already independently checked the complete original OWRcontribution and controlling finalDL/DGZZ formulas before this priority work.
+
+SEARCH_AND_READ_LEDGER.json records17 root search queries and the exact pages/results read. RETRIEVAL_RECEIPT.json, AH_RETRIEVAL_FOLLOWUP.json and CURRENT_ZCOVER_RETRIEVAL_RECEIPT.json pin complete primary PDFs, including a genuinely current October2026 lead. All complete PDFs, extraction and raw browser captures are private; safe artifacts contain only authored comparisons and source hashes. Failed UMD404 retrieval was followed by the actual current Rice author PDF and arXiv. The latter is not relabeled a final publisher PDF. An unsuccessful guessed Indico contribution URL was not used as positive evidence; the observed official event timetable is the only such source lead.
+
+## Positive overlap already established
+
+DGZZ, Inventiones230(2022), equations(1.7)–(1.8) on PDF12 explicitly introduce the exact permutation weights θ_j=ζ(2j)/2. Its Lemma3.6, equations(3.20)–(3.23) on PDF42–43, proves the ordered-composition law with factor1/k! and productθ_j/j. Thus its normalizerW_n equals candidateh_n and its size assembly is literally the candidate's unmarked composition law. The same product/singular coefficient methods are developed in its Section3 and reused by DL. These are substantial credited inputs. The candidate cannot be framed as inventing this composition law. Root read the exact definitions and entire Lemma3.6 proof, including repeated-cycle/ordered-slot factors. The updated credit must cite the exact law as well as the DGZZ count asymptotics.
+
+An independent general-assembly lane has reported prior coverage of the unmarked Poisson approximation and factorial formula; that report is not adopted as a root-verified primary theorem here until its full text and parameter map are read. This family did not read sibling reports or rely on their unsealed verdicts. Parent will synthesize them separately.
+
+## Fixed-genus component geometry is an input, not the full growing-genus answer
+
+[Liu, GroupsGeomDyn16(2022),437–459, DOI10.4171/GGD/674](https://doi.org/10.4171/GGD/674): mainTheorem1.2 gives a fixed-topological-type normalized length polynomial law as length cutoffR tends to infinity. Root read its setting, main statement, Section7 proof and examples, and searched the entire text for later large-genus/Poisson claims. This is the conditional geometry underlying later mixture formulas. It does not average over all topological types with their changing genus-dependent frequencies or state a moving-window large-genus theorem.
+
+[Arana-Herrera, GeomTopol26(2022),1291–1347, DOI10.2140/gt.2022.26.1291](https://doi.org/10.2140/gt.2022.26.1291): a complete later author manuscript and the dated2020arXiv were retrieved. MainTheorems1.6/1.9/1.14 describe individual component length counts for fixedg,n and topologicaltype;1.16 identifies the associated Thurston measure;1.18 and Section5 prove fixed-type square-tile frequencies under square-count cutoff. Root read those statements, the fixed-parameter declaration and the full square-tile application proof. There is no asserted genus-uniform mesoscopic area limit. The final publisher PDF was not obtained; the complete author manuscript is explicitly the edition controlling this scoped comparison.
+
+[Arana-Herrera–Calderon, arXiv2208.04339v1](https://arxiv.org/abs/2208.04339), with later2025Inventionespublication DOI10.1007/s00222-025-01364-7: Theorem1.1 and general7.7 give fixed-g, growing-length equidistribution of complementary subsurface shapes in fibered Kontsevich measure. Root read the full statements/definitions and general-case section, and checked the same7.7 on publisherHTML. This strengthens conditional finite-genus geometry; it does not state the full random-type growing-genus area mixture or every mesoscopic scale.
+
+A checkable obstruction to substituting these conditional laws is available in a pants-type example. The displayed product density of the fixed pants law is Dirichlet(2,...,2) with n=3g−3 coordinates. A coordinate has Beta(2,2n−2) law. At x>0 its survival is
+
+    P(X≥x)=(1−x)^(2n−2)(1+(2n−2)x).
+
+This follows by differentiating, yielding the negative Beta density and the correct survival endpoint. Therefore a pants-conditioned expected count in the target window is bounded by
+
+    n(1−g^(−1/2))^(2n−2)(1+(2n−2)g^(−1/2))→0.
+
+The exponent is −6sqrt(g)+O(logg). It cannot be substituted for the proposed positive all-type limit(log2)/2. This is not a counterexample to the candidate: the candidate samples every type and its typical cylinder number is logarithmic, whereas the pants-conditioned count is3g−3. scope_comparison.py independently checks115 exact rational Beta/Bernstein identities. SCOPE_COMPARISON_RESULT.json includes clearly nonvalidated finite log-bound diagnostics. The calculation establishes a concrete difference in sampling, not novelty by itself.
+
+## Other current Poisson or large-genus cylinder theorems
+
+[Barazer–Giacchetto–Liu, arXiv2312.10517](https://arxiv.org/abs/2312.10517), finalForumMathSigma13(2025)e70,[DOI10.1017/fms.2025.31](https://doi.org/10.1017/fms.2025.31): mainTheoremsA/B concern short metric-ribbon-graph cycles with a fixed number of faces and total boundary length asymptotic to12g. Their intensity is(coshℓ−1)/ℓ. Root read the datedpreprint main statements/relatedwork and the final publisherHTML mainA/B/D with its precise cycle definition. These are random graphs and cycle lengths, rather than the component areas of one sampled periodic cylinder decomposition. No inspected statement identifies the candidate's law with that ensemble, nor supplies a full-multiset TV approximation. TheoremD's infinite higher moments for all simple closed curves further cautions against silently changing the counted object. A new coupling/mixture argument would be needed to infer the candidate theorem; none is provided by the inspected statements.
+
+[Artigiani–Pardo, arXiv2610.06609v1](https://arxiv.org/abs/2610.06609), submitted5October2026: TheoremsA/B count bounded-geodesic-length cylinders up to deck action on zero-holonomy Zcovers of genus2 Abelian square-tiles. TheoremC obtains their Siegel–Veech constants as limits over finite cyclic covers. Root read the complete first four pages, allmainstatements, relatedwork and proofoverview, plus source-wide searches. This is genuinely current but a different problem. Cyclic pullbacks of a holomorphic1-form retain trivial translation holonomy; their squared quadratics have even zero orders, whereas Q(1^(4g−4)) has odd simple zeros. Thus the cover ensemble is not the original principal-quadratic ensemble. Bounded-length all-direction/deck-quotient counts also do not form a normalized area partition summing to1. No exact target coverage is established. Its reference to further2026 cyclic-cover work remains a lead about a distinct model, not positive anticipation of this target.
+
+## What can and cannot be concluded
+
+The exact composition law and the finite-genus geometric formulas are already published and must be credited precisely. Root found no full prior theorem in the inspected geometric precursors/adjacent current ensembles that states the full-area approximation and every-rate mesoscopic cylinder law. That scoped noncoverage does not prove originality. The candidate's full-TV statement is close to a positive-coefficient extraction from DL's published proof and should be presented as such, not as a new geometric enumeration or a new permutation model.
+
+The OWR/DL small-components announcement is a concrete priority lead. Separate current-history and novelty-challenge lanes are inspecting public original-author material, theses and slides. Their completion and root primary-source review are required before deciding whether a defensible new-consequence preprint is clear. No outside individual has been contacted and no outreach has been prepared. An unobserved private manuscript cannot be presumed either to contain or not to contain the mesoscopic conclusion. Publicly announced fixed microscopic windows and their large-x intensity asymptotic do not alone justify a simultaneous moving-window theorem; the two limits cannot simply be interchanged.
+
+The original unused OWRmicroscopic4g−4/DL6g−6 discrepancy remains explicit. This comparison does not claim a new microscopic theorem or silently correct the report. The mathematical gate remains PASS for the exact written intermediate problem; overallpriority remains OPEN. No manuscript, Zenodo deposit, tracker row, queue change, PRcomment/closure/merge is cleared by this scoped report.

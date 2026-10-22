@@ -1,0 +1,11 @@
+# Independent target reconstruction
+
+Written before opening the candidate counterexample. The source is Laghribi's full talk in OWR 5/2016, printed pp.248-251, especially Question 2 on p.251.
+
+The base field has characteristic two. L/F is an arbitrary finite purely inseparable extension; its exponent is not bounded by one. B is an anisotropic bilinear Pfister form over F, and is additionally anisotropic after extension to L. K/F is a separable quadratic extension. The question asks whether the degree-(n+1) Kato kernel of the composite L.K(B) is the sum of the three separate kernels for L, K, and F(B). This is a universal equality, so one allowed choice and one cohomological degree can refute it.
+
+The talk explicitly defines F(B) by the PROJECTIVE quadric of the associated quasilinear form B(v,v). It does not impose positive-dimensional, smooth, or geometrically integral quadric hypotheses. In this characteristic the quasilinear quadric is naturally often not smooth. A one-fold bilinear Pfister form has dimension two; no minimum fold count greater than one appears. The exact predecessor defines n-fold bilinear Pfister forms for every n>=1 (and also the zero-fold case), and uses the AFFINE quadric function field. Thus binary forms must not be excluded by unstated geometric conventions; the two function-field conventions differ by a rational parameter for an integral homogeneous quadric.
+
+For the binary associated form X^2+aY^2 with a nonsquare, its projective quadric has Y nonzero at every point: on Y=0 the equation forces X=0, which is impossible in projective space. It is therefore Spec F[z]/(z^2+a), an integral zero-dimensional scheme with function field F(sqrt(a)). It is not geometrically reduced, a property not required in the source. In the affine convention the field is F(sqrt(a))(Y), and the extra independent transcendental variable does not alter the base-field Kato kernel.
+
+The degree n=0 convention is H_2^1(F)=F/wp(F). The talk uses Omega^0=F and states the main theorem for 0<=n<m. I will distinguish this from n=1, where H_2^2 is Brauer 2-torsion, and will check the candidate's claimed n=0 statement separately. I have not yet read the candidate, old PR audits, parent review, or sibling conclusions.

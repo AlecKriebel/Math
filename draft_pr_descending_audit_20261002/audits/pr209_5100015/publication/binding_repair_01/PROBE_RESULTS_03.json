@@ -1,0 +1,80 @@
+[
+  {
+    "label": "final_baseline",
+    "status": "PASS",
+    "detail": {
+      "stages": 1,
+      "publishes": 1,
+      "appends": 1,
+      "immutable_receipts_unchanged_by_live_checks": true,
+      "publication_ancestors": [
+        "STAGE_ATTEMPT.json",
+        "ZENODO_STAGED_VERIFIED.json",
+        "ZENODO_PREPUBLICATION_INSPECT.json",
+        "PUBLISH_ATTEMPT.json",
+        "ZENODO_TOOL_PUBLICATION_RECEIPT.json",
+        "ZENODO_PROVIDER_CONFIRMED_PUBLICATION.json"
+      ]
+    }
+  },
+  {
+    "label": "unknown_stage",
+    "status": "PASS",
+    "detail": {
+      "first": {
+        "type": "TimeoutError",
+        "error": "Synthetic stage response lost after stub stage"
+      },
+      "blocked_retry": {
+        "type": "RuntimeError",
+        "error": "Prior stage attempt: no second stage permitted"
+      },
+      "stage_calls": 1,
+      "publish_calls": 0,
+      "retry_provider_calls": 0
+    }
+  },
+  {
+    "label": "stage_intent_sync_failure",
+    "status": "PASS",
+    "detail": {
+      "error": {
+        "type": "OSError",
+        "error": "Synthetic parent fsync failure"
+      },
+      "no_provider_mutation": true,
+      "intent_retained": true
+    }
+  },
+  {
+    "label": "boolean_publication_id",
+    "status": "PASS",
+    "detail": {
+      "type": "RuntimeError",
+      "error": "Stage/publish identity lineage differs"
+    }
+  },
+  {
+    "label": "wrong_spreadsheet_id",
+    "status": "PASS",
+    "detail": {
+      "error": {
+        "type": "RuntimeError",
+        "error": "Wrong spreadsheet readback identity"
+      },
+      "append_calls": 0
+    }
+  },
+  {
+    "label": "wrong_append_data_range",
+    "status": "PASS",
+    "detail": {
+      "error": {
+        "type": "RuntimeError",
+        "error": "Append response cell range differs"
+      },
+      "append_calls": 1,
+      "no_verified_receipt": true
+    }
+  }
+]

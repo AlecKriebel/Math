@@ -1,0 +1,38 @@
+[
+  {
+    "case": "existing_exact_target_row_marked_as_root_distinct_non_target",
+    "preexisting_exact_DOI_rows": 1,
+    "synthetic_append_calls": 1,
+    "actual_gate_reconcile_accepted": true,
+    "gate_target_rows": [],
+    "appended_exact_target_again": true,
+    "outcome": {
+      "exception": "RuntimeError",
+      "message": "Target row readback/uniqueness mismatch; no retry"
+    },
+    "actual_provider_access": false,
+    "expected_safety": "No append should occur when the exact target DOI/row is already present, regardless of a contradictory root exemption."
+  },
+  {
+    "case": "classified_distinct_record_unrelated_local_state_blocks",
+    "expected_target_id": null,
+    "without_local_state_accepted": true,
+    "metadata_and_entire_files_projection_bound": true,
+    "with_known_distinct_local_state": {
+      "exception": "RuntimeError",
+      "message": "Unexpected local target deposit state"
+    },
+    "actual_provider_access": false
+  },
+  {
+    "case": "classified_distinct_record_unrelated_local_state_blocks",
+    "expected_target_id": 999,
+    "without_local_state_accepted": true,
+    "metadata_and_entire_files_projection_bound": true,
+    "with_known_distinct_local_state": {
+      "exception": "RuntimeError",
+      "message": "Unexpected local target deposit state"
+    },
+    "actual_provider_access": false
+  }
+]

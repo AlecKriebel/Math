@@ -1,0 +1,100 @@
+{
+  "schema": "pr948-focused-publish-reconciliation-inert-controls-v1",
+  "utc": "2026-10-16T16:00:10.781140+00:00",
+  "status": "PASS",
+  "network_calls": 0,
+  "git_calls": 0,
+  "authoritative_file_writes": 0,
+  "actual_source_pins": {
+    "draft_pr_claimed_solved_900_1000_20261012/accept_pr948.py": "3be81538c4e17e6b220208992a8d56422218f37773f84c8a690a4ab10a41d823",
+    "zenodo_deposit_tool/zenodo.py": "a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca"
+  },
+  "checks": [
+    {
+      "check": "actual zenodo function propagates simulated line865 guard exception",
+      "passed": true
+    },
+    {
+      "check": "publish intent is saved before that guard failure",
+      "passed": true
+    },
+    {
+      "check": "pre-client failure produces no inner-try failure receipt",
+      "passed": true
+    },
+    {
+      "check": "only earlier kit command is inert check",
+      "passed": true
+    },
+    {
+      "check": "client construction and token retrieval remain unreachable",
+      "passed": true
+    },
+    {
+      "check": "publish-command kit.run remains unreachable",
+      "passed": true
+    },
+    {
+      "check": "different ID is rejected before any GET or POST",
+      "passed": true
+    },
+    {
+      "check": "fresh unpublished exact ID permits one POST",
+      "passed": true
+    },
+    {
+      "check": "a second publish on same guarded instance is refused",
+      "passed": true
+    },
+    {
+      "check": "fresh submitted exact ID returns without POST",
+      "passed": true
+    },
+    {
+      "check": "uncertain publish exception is preserved",
+      "passed": true
+    },
+    {
+      "check": "publish counter increments before uncertain call",
+      "passed": true
+    },
+    {
+      "check": "uncertain POST cannot be repeated on same client",
+      "passed": true
+    },
+    {
+      "check": "inspect client cannot publish",
+      "passed": true
+    },
+    {
+      "check": "kit check returns before client or saved state use",
+      "passed": true
+    },
+    {
+      "check": "kit inspect unpublished performs GET and no POST",
+      "passed": true
+    },
+    {
+      "check": "kit inspect published performs no POST",
+      "passed": true
+    },
+    {
+      "check": "kit publish already submitted performs no POST",
+      "passed": true
+    },
+    {
+      "check": "kit wrong confirm ID rejected without POST",
+      "passed": true
+    },
+    {
+      "check": "kit uncertain unpublished outcome performs one POST then GET without retry",
+      "passed": true
+    }
+  ],
+  "simulated_failure_events": [
+    "merged_gate_1",
+    "kit_run_check",
+    "merged_gate_2"
+  ],
+  "limitations": "Inert source-function checks; no independent replay or witness of original failed invocation, no live account-wide history audit."
+}

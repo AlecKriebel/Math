@@ -1,0 +1,5 @@
+# PR #1218 eligibility
+
+The original fast-Maker question requires a prescribed finite nonempty simple d-regular seed for every d with exp(o(d)) moves per vertex, yielding infinitely many graphs by disjoint-union amplification. This PR supplies a corrected exact seed reduction, elementary counting bounds and obstructions only to fixed-pool/full-activation or unprepared common-neighbor methods. It neither constructs the requested subexponential seed sequence nor proves a general negative theorem. Its conditional Gebauer benchmark is still 2^((2/3+o(1))d); component batching, adaptive role assignment and general strategies remain unexcluded. The two no-isolated-vertices patches fix subsidiary statements, not the original target.
+
+Root read the body, full ACCEPTANCE.json and full PROOF.md (the latter part repeated separately to avoid output truncation). Eight actual paths and head blobs are bound and no QUEUE edit changes the scope. Fresh GWS06:26:11UTC191rows had no relevant lead. No source/candidate program or new whole theorem audit was run. Completion estimate79%.

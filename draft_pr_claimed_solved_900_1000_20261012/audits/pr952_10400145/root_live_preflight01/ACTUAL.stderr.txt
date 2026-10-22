@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import argparse,base64,json,sys; b=json.loads(sys.stdin.buffer.read()); c={"inventory_sha256":b["inventory_sha256"],"inventory":b["inventory"],"captured":{n:base64.b64decode(v,validate=True) for n,v in b["captured"].items()}}; p=sys.argv[1]; n={"__name__":"_pr952_authenticated_core_","__file__":p,"__package__":None}; exec(compile(c["captured"][sys.argv[2]],p,"exec",dont_inherit=True,optimize=0),n); n["operation"](b["action"],argparse.Namespace(**b["args"]),c)
+                                                                                                                                                                                                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 1311, in operation
+    {'preflight':readonly_preflight,'accept':accept,'merge':merge,'zenodo':zenodo,'tracker':tracker_append,'native':native_write,'finalize':finalize}[action](args,context)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 1300, in readonly_preflight
+    gate=premerge_gate(freeze,require_draft=True)
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 475, in premerge_gate
+    try:return _premerge_gate(freeze,require_draft)
+               ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 464, in _premerge_gate
+    source=source_gate(parent);native=native_safety(parent)
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 342, in source_gate
+    need(frozen.get('review_hash')==REVIEW and frozen.get('prior_research')=={} and str(frozen.get('problem',{}).get('id'))==KEY,'private source identity')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 50, in need
+    raise RuntimeError('PR952 guard: ' + label)
+RuntimeError: PR952 guard: private source identity

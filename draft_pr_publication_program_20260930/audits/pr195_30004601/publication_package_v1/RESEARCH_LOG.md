@@ -1,0 +1,5 @@
+# PR195 publication-package log
+
+2026-10-15T12:12:42.027229+00:00 — Package preparation estimate70%. Six-page complete qualified note built; desktop compiler success; Tectonic PDF rendered and all6pages visually checked. Exact mathematical and bounded-priority artifacts copied by authenticated pins into54payload-file verification archive. Full archive replay, local deposit validation, and successive NEW whole-package adversaries remain. No DOI, tracker update, merge, publication-ready certification or overall completion claimed. Historical priority unresolved.
+
+2026-10-15T12:14:13.039022+00:00 — Package preparation estimate75%. The freshly extracted exact archive passed54inventory hashes and all4deterministic no-write replay commands (counterexample, orthogonal controls,3PTcomparisons,14rigidoctics). Repository Zenodo kit local check passed against exact3intendedfiles. Six-page PDF and source consistency reviewed; no substantive mathematical repair needed. Snapshot now frozen for first NEW whole-package adversary. Publication readiness, DOI, tracker and merge remain unclaimed; priority unresolved.

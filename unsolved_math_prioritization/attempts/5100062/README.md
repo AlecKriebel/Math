@@ -1,0 +1,13 @@
+# Verification of the odd-period focal inversion area product
+
+For a proper nested confocal ellipse pair admitting an odd primitive Poncelet billiard family, the product of the signed areas obtained by unit-circle inversion of the original orbit vertices in the two original foci is constant along each admitted family, including all coprime stars and reversal. For every integer r>=1, repeating an odd primitive cycle r times scales each signed area by r and the product by r squared.
+
+Attributed verification/research note: the historical RGK k903,a target is Table10 on page12, row k903,a dated10/20 (October2020); RGH N=3 and Conjecture1 are credited. Alper Ferudun, DOI10.5281/zenodo.23096994, treats the same target with substantially the same compact flag-curve mechanism. The RGH public-preprint delta defect is disclosed; journal full text/typography were uninspected and no general corrected RGH formula is claimed. Chavez-Caliz DOI10.1007/s40598-020-00154-8 is used. No theorem/formula/method novelty, absolute firstness, certified discovery independence, literal simultaneity or current-open status is claimed. Specified GitHub/Zenodo record dates do not certify first public availability of every byte or repository visibility history.
+
+Original submitted claimed_solved1/5 is preserved; author turns and actual model/reasoning effort remain unverified. Four Git commits are not four author turns; later audits are separate.
+
+DOI https://doi.org/10.5281/zenodo.23425494; tracker 'Math Puzzles'!A133:D133. Extensive AI assistance; unrefereed; no conventional human peer review or formal proof-assistant certificate. Current scientific/source/priority scope: CURRENT_STATUS.json, CURRENT_PROOF_SOURCE.tex, CURRENT_SOURCE_AND_PRIORITY.json. CURRENT_PROVENANCE.json authenticates every original archive leaf and labels original reviews and PASS counts historical.
+
+Both current executable paths verify_triangles.py and independent_review/independent_check.py are the same exact Root-accepted dependency-free source. Run python3 -E -S -B -P verify_triangles.py or python3 -E -S -B -P -O independent_review/independent_check.py. These exact controls cover four specified convex primitive polygons only and fail closed at4096-bit radical sign bounds; they do not computationally prove arbitrary odd periods/stars or priority. Original assertion-dependent programs remain unchanged in the21-file audit archive.
+
+Actual publication/tracker and already-accepted predecessor facts only are listed in CURRENT_PUBLICATION_LEDGER.json. Even factual98 remains incomplete; program completion requires the separate actual100 full acceptance/local-five sync/pointer. No native wrapper authorizes207 intake.

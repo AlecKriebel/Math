@@ -1,0 +1,376 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Tv}{T_v}
+\setlength{\emergencystretch}{1em}
+\title{A vertex maximum principle for subcritical reinforcement}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{13 October 2026\quad---\quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a self-contained alternative proof of positive-equilibrium uniqueness
+and almost-sure coordinatewise homogenization for subcritical reinforcement on
+countable graphs of bounded degree. Positive vertex firing rates are bounded
+above but may have infimum zero. The proof combines an exact compensated jump
+transform with a maximum principle for bounded positive complete trajectories
+in vertex coordinates. Initial edge counts are arbitrary finite positive
+integers. Qin has also proved the full homogenization theorem, with broader
+positive real initialization; that result is prominently credited here.
+Unrestricted uniqueness among nonnegative equilibria is false, and is kept
+separate from the corrected positive statement. No first-priority claim is made.
+\end{abstract}
+
+\section{The question and the precise result}
+
+In the graph-based reinforcement model, each vertex has an independent
+Poisson clock. At a ring, one incident edge is chosen proportionally to its
+current weight raised to a power $\alpha$, and its weight increases by one.
+Couzini\'e and Hirsch~\cite{CH} proved homogenization on general bounded-degree
+graphs for $\alpha<1/2$, slightly beyond $1/2$ on regular graphs, and throughout
+the subcritical range on $\mathbb Z$. Earlier heterogeneous-rate results and
+the all-subcritical conjecture appear in Couzini\'e's thesis~\cite{thesis}.
+The question for bounded positive heterogeneous firing rates is stated in the
+Oberwolfach report~\cite{OWR} and the official pre-publication version of the
+MATRIX chapter~\cite{MATRIX}.
+
+The report's literal equilibrium definition does not require positive
+coordinates. Unrestricted uniqueness is false. On $\mathbb Z$, with unit
+vertex rates and $0<\alpha<1$, put weight two on a perfect matching and zero
+on all other edges. Every incident denominator is $2^\alpha$. Each positive
+edge receives rate two, and each zero edge receives rate zero. Both phases
+and the constant-one array are equilibria. This is the same local matching
+mechanism as the older normalized alternating-cycle allocation in finite
+WARM~\cite[\S3.6]{WARM}; its validity for every positive exponent follows by
+direct substitution. Qin~\cite[Remark 1.3]{Qin} also records the infinite
+matching example. We claim no novelty for this boundary construction.
+
+The positive theorem below is an explicitly corrected homogenization
+formulation, not a proof of that false unrestricted uniqueness sentence.
+Qin~\cite[Theorem 1.1]{Qin} proves this theorem and permits arbitrary finite
+positive real initial weights. His connected formulation extends componentwise
+to disconnected countable graphs. Our initialization class is smaller.
+The contribution here is a different proof: finite-volume vertex minimization,
+an exact jump compensator, and an approximate space-time maximum principle.
+The power/incidence reduction and complete-limit strategy are shared structural
+ideas, and are not asserted to originate here. Qin also reports independent
+Angel--Hermon--Yao work; its full manuscript and public date were not verified
+in our bounded literature audit.
+
+Let $G=(V,E)$ be a countable undirected simple graph. Discard isolated vertices
+and assume
+\[
+ 1\leq d(v)\leq D<\infty,\qquad 0<p_v\leq P<\infty.
+\]
+There is no positive lower bound on all $p_v$. For an edge array $w>0$, set
+\[
+ S_v(w)=\sum_{e\ni v}w_e^\alpha.
+\]
+The clocks have rates $p_v$, and choose $e\ni v$ with probability
+$N_e^\alpha/S_v(N)$. Initially $N_e(0)=n_e\in\N$, with $n_e\geq1$ finite for
+each edge; no uniform bound on $(n_e)$ is imposed. Write $X_e(t)=N_e(t)/t$.
+
+\begin{theorem}\label{thm:main}
+For $0\leq\alpha<1$, there is exactly one equilibrium positive on every edge:
+\begin{equation}\label{eq:edge}
+ x_{uv}=x_{uv}^{\alpha}
+ \left(\frac{p_u}{S_u(x)}+\frac{p_v}{S_v(x)}\right).
+\end{equation}
+Almost surely, $X_e(t)\longrightarrow x_e$ simultaneously for all $e\in E$.
+The convergence is coordinatewise.
+\end{theorem}
+
+The empty edge set gives the unique empty array and vacuous convergence.
+For the proof assume $E\ne\varnothing$ and $0<\alpha<1$, and put
+$c=1-\alpha$ and $\beta=\alpha/c>0$. The endpoint $\alpha=0$ is treated at the
+end. No uniform spatial convergence, stochastic rate, zero-initial-edge,
+critical-exponent or unbounded-degree extension is claimed.
+
+\section{Positive equilibria in vertex coordinates}
+
+For a positive equilibrium define $z_v=p_v/S_v(x)$. Dividing
+\eqref{eq:edge} by $x_{uv}^{\alpha}$ gives the bijective correspondence
+\begin{equation}\label{eq:vertex}
+ x_{uv}=(z_u+z_v)^{1/c},\qquad
+ z_v\Tv(z)=p_v,\qquad
+ \Tv(z)=\sum_{w\sim v}(z_v+z_w)^\beta.
+\end{equation}
+Every positive vertex solution obeys
+\begin{equation}\label{eq:zupper}
+ z_v\leq(p_v/d(v))^c\leq B:=P^c,
+\end{equation}
+since $\Tv(z)\geq d(v)z_v^\beta$. Thus boundedness is a deduction for every
+positive equilibrium, rather than an extra hypothesis.
+
+\begin{proposition}\label{prop:equilibrium}
+The vertex equations in \eqref{eq:vertex} have exactly one positive solution.
+\end{proposition}
+\begin{proof}
+For a finite vertex set $F$, set $z_w=0$ outside $F$ and minimize
+\[
+ \Phi_F(z)=\sum_{\{u,v\}\in E:\{u,v\}\cap F\ne\varnothing}
+ \frac{(z_u+z_v)^{\beta+1}}{\beta+1}
+ -\sum_{v\in F}p_v\log z_v
+ \qquad(z_v>0, v\in F).
+\]
+Only finitely many edges occur. The power sum dominates a positive multiple of
+$\sum_{v\in F}z_v^{\beta+1}$ and hence the logarithms at infinity. On bounded
+sublevel sets, approaching a coordinate hyperplane costs infinity. An interior
+minimum exists. The logarithmic terms are strictly convex and the power terms
+are convex, so the minimum is unique. Its equations are precisely
+$z_v\Tv(z)=p_v$ for $v\in F$.
+
+The upper estimate \eqref{eq:zupper} holds, as does
+\[
+ z_v\geq \frac{p_v}{d(v)(2B)^\beta}>0\qquad(v\in F).
+\]
+Exhaust $V$ by finite sets and take a diagonal subsequence of their minimizers.
+Each fixed coordinate eventually has this positive lower bound and the common
+upper bound $B$. Every vertex equation is a finite sum, so it passes to the
+coordinatewise limit. This proves positive infinite-volume existence.
+
+For uniqueness let $z,y$ be positive solutions and suppose
+$M=\sup_v|z_v-y_v|>0$. Interchange them if necessary and choose, for arbitrarily
+small $\varepsilon>0$, a vertex with $z_v-y_v>M-\varepsilon$. Each adjacent
+pair sum for $z$ is at least the corresponding sum for $y$ minus $\varepsilon$.
+Let $\omega$ be a modulus of continuity of $r^\beta$ on $[0,2B]$. Then
+$\Tv(z)-\Tv(y)\geq-D\omega(\varepsilon)$, while
+$z_v\geq M-\varepsilon$ and $\Tv(z)\geq(M-\varepsilon)^\beta$. Consequently
+\[
+ 0=(z_v-y_v)\Tv(z)+y_v[\Tv(z)-\Tv(y)]
+ \geq(M-\varepsilon)^{\beta+1}-BD\omega(\varepsilon),
+\]
+which is positive for small $\varepsilon$. No maximum attainment or uniform
+positive lower bound is used.
+\end{proof}
+
+\section{An exact stochastic transform}
+
+The graphical construction is local. A fixed query up to time $T$ has causal
+predecessors along vertex-clock paths with at most $D+1$ choices at each step
+and strictly decreasing times. The expected number of length-$m$ ordered paths
+is bounded by a fixed local factor times $((D+1)PT)^m/m!$, tending to zero.
+The predecessor tree is finitely branching; infinite ancestry would give an
+infinite path. Thus local queries have finite ancestry almost surely. Marks
+resolve those finite histories. Countably many edge queries and integer
+horizons give a consistent process, even when the total firing rate is infinite.
+This clock construction does not require bounded initial counts.
+
+For $e=\{u,v\}$, endpoint-clock strong laws imply
+\begin{equation}\label{eq:uppergrowth}
+ \limsup_{t\to\infty}X_e(t)\leq p_u+p_v\leq2P.
+\end{equation}
+Use predictable left limits to define
+\[
+ q_e(t)=\frac{p_u}{S_u(N(t-))}+\frac{p_v}{S_v(N(t-))},\qquad
+ Q_e(t)=\int_0^t q_e(s)\,ds.
+\]
+The edge count has intensity $N_e(t-)^\alpha q_e(t)\leq p_u+p_v$.
+For positive integers let
+\[
+ H(n)=\sum_{j=1}^{n-1}j^{-\alpha}=\frac{n^c}{c}+O(1).
+\]
+Its exact jump is $n^{-\alpha}$. Therefore
+\begin{equation}\label{eq:compensator}
+ H(N_e(t))-H(n_e)=Q_e(t)+M_e(t),\qquad
+ \langle M_e\rangle(t)=\int_0^t N_e(s-)^{-\alpha}\,dQ_e(s)\leq Q_e(t),
+\end{equation}
+where $M_e(0)=0$. Since $N_e\geq1$ and $q_e\leq2P$, all finite-horizon
+martingales here are square integrable.
+
+Whenever $Q_e\to\infty$, \eqref{eq:compensator} gives $M_e/Q_e\to0$ almost
+surely. Indeed, with $A=1+Q_e$, the martingale
+$L(t)=\int_0^t A(s)^{-1}\,dM_e(s)$ has bracket at most
+$\int_0^\infty(1+Q_e)^{-2}\,dQ_e\leq1$. It is bounded in $L^2$ and converges
+almost surely. Integration by parts gives
+\[
+ \frac{M_e(t)}{A(t)}=L(t)-\frac{1}{A(t)}\int_0^t L(s)\,dA(s).
+\]
+On $A(t)\to\infty$, weighted Cesaro convergence makes the two terms have the
+same limit. This argument does not assume independence of $Q_e$ and $M_e$.
+
+Fix $\varepsilon>0$. By \eqref{eq:uppergrowth}, eventually all finitely many
+edges incident to $u$ or $v$ have counts at most $(2P+\varepsilon)t$. Thus
+\[
+ q_e(t)\geq k_{e,\varepsilon}t^{-\alpha},\qquad
+ k_{e,\varepsilon}=\frac{p_u/d(u)+p_v/d(v)}{(2P+\varepsilon)^\alpha}>0.
+\]
+This first proves $Q_e\to\infty$ and
+$\liminf Q_e(t)/t^c\geq k_{e,\varepsilon}/c$. The transform and its normalized
+martingale law then imply $N_e(t)^c/(cQ_e(t))\to1$, and hence
+\begin{equation}\label{eq:lowergrowth}
+ \liminf_{t\to\infty}X_e(t)\geq
+ m_e:=\left(\frac{p_u/d(u)+p_v/d(v)}{(2P)^\alpha}\right)^{1/c}>0.
+\end{equation}
+The upper bound also gives $H(N_e(t))=O(t^c)$, so $Q_e(t)=O(t^c)$ and
+$M_e(t)/t^c\to0$. All statements hold on one probability-one event by
+countability. The constants and random starting times need not be uniform in
+space. The fixed initial term $H(n_e)$ vanishes after scaling.
+
+\section{Complete limiting trajectories}
+
+Define nonnegative vertex primitives
+\[
+ A_v(t)=ct^{-c}\int_0^t\frac{p_v}{S_v(N(s))}\,ds.
+\]
+Left limits are immaterial in this Lebesgue integral. Splitting $Q_e$ in
+\eqref{eq:compensator} gives
+\begin{equation}\label{eq:representation}
+ X_{uv}(t)^c=A_u(t)+A_v(t)+r_{uv}(t),\qquad r_{uv}(t)\longrightarrow0.
+\end{equation}
+Nonnegativity and \eqref{eq:uppergrowth} imply
+$\limsup A_v(t)\leq K:=(2P)^c$. Integrating the local incident-count upper
+bound similarly gives
+\[
+ \liminf_{t\to\infty}A_v(t)\geq
+ \ell_v:=\frac{p_v}{d(v)(2P)^\alpha}>0.
+\]
+In logarithmic time $a_v(s)=A_v(e^s)$, differentiation holds almost everywhere:
+\begin{equation}\label{eq:prelimit}
+ a_v'(s)=c\left[\frac{p_v}{S_v(X(e^s))}-a_v(s)\right].
+\end{equation}
+The finitely many incident-edge lower bounds \eqref{eq:lowergrowth} bound this
+derivative for each fixed vertex at all sufficiently large times. Thus the
+translated coordinate functions are eventually uniformly Lipschitz on each
+compact interval, with a bound allowed to depend on the coordinate.
+
+For any $s_n\to\infty$, Arzela--Ascoli and a diagonal subsequence over the
+countably many vertices and intervals $[-j,j]$ give locally uniform coordinate
+limits $a_v(s_n+s)\to b_v(s)$, defined for every $s\in\R$, with
+\[
+ \ell_v\leq b_v(s)\leq K.
+\]
+For each edge the error in \eqref{eq:representation} is uniformly small on a
+shifted compact logarithmic interval, because its minimum physical time tends
+to infinity. Since $X_{uv}^\alpha=(X_{uv}^c)^\beta$, finite incident sums and
+positive limiting coordinates justify passing through the denominators in the
+integral form of \eqref{eq:prelimit}. Every limit is a classical complete
+trajectory of
+\begin{equation}\label{eq:limit}
+ b_v'=c\left[R_v(b)-b_v\right],\qquad
+ R_v(b)=\frac{p_v}{\Tv(b)}.
+\end{equation}
+This is product-topology compactness. No spatially uniform random time,
+supremum-norm compactness or infinite-dimensional stochastic approximation
+theorem has been assumed.
+
+\section{The vertex maximum principle and convergence}
+
+\begin{lemma}\label{lem:rigidity}
+Every positive complete classical solution of \eqref{eq:limit} with a common
+finite upper bound is the equilibrium $z$ of Proposition~\ref{prop:equilibrium}.
+No common positive lower bound is required.
+\end{lemma}
+\begin{proof}
+Choose a common upper bound $K_0\geq B$ for $b$ and $z$, and suppose
+$M=\sup_{v,s}|b_v(s)-z_v|>0$. Set $d_v=b_v-z_v$. Let $\omega$ be a modulus
+for $r^\beta$ on $[0,2K_0]$. Choose $0<\varepsilon<M/4$ so that
+\[
+ \frac{BD\omega(\varepsilon)}{(M/2)^\beta}<M/4.
+\]
+If $d_v\geq M-\varepsilon$, every neighbor has $d_w\geq-M$, whence
+$\Tv(b)\geq\Tv(z)-D\omega(\varepsilon)$. Also $b_v>M/2$, so
+$\Tv(b)\geq(M/2)^\beta$. Using $p_v=z_v\Tv(z)$ gives
+\[
+ R_v(b)-z_v=\frac{z_v[\Tv(z)-\Tv(b)]}{\Tv(b)}<M/4,
+ \qquad d_v'\leq-cM/2.
+\]
+If $d_v\leq-M+\varepsilon$, every neighbor has $d_w\leq M$, whence
+$\Tv(b)\leq\Tv(z)+D\omega(\varepsilon)$. Here $z_v>M/2$, so
+$\Tv(z)\geq(M/2)^\beta$. Reciprocal monotonicity gives
+\[
+ R_v(b)-z_v\geq
+ -\frac{z_vD\omega(\varepsilon)}{\Tv(z)+D\omega(\varepsilon)}>-M/4,
+ \qquad d_v'\geq cM/2.
+\]
+In particular, the lower-strip estimate needs no uniform lower bound on the
+current denominator $\Tv(b)$.
+
+Some fixed coordinate at some time lies strictly in one extreme strip.
+In the upper case, take the connected component of
+$\{s:d_v(s)>M-\varepsilon\}$ containing that time. A finite left endpoint
+would have value $M-\varepsilon$; integrating the negative derivative from it
+contradicts entry into the strip. The component therefore extends to minus
+infinity. Integrating backward gives arbitrarily large $d_v$, contradicting
+$d_v\leq M$. The lower case is identical with the sign reversed. Thus $M=0$.
+Uniform continuity suffices even for $0<\beta<1$; neither an attained maximum
+nor differentiation of an infinite supremum is used.
+\end{proof}
+
+Every limiting trajectory from the previous section satisfies the lemma and
+equals $z$. Hence $a_v(s)\to z_v$ for each vertex: a sequence separated from
+$z_v$ would have a limiting trajectory separated at time zero, a contradiction.
+Equation~\eqref{eq:representation} then gives
+$X_{uv}(t)\to(z_u+z_v)^{1/c}$. Proposition~\ref{prop:equilibrium} identifies
+this as the unique positive equilibrium. For $\alpha=0$, independent marking
+and Poisson thinning directly give
+\[
+ X_{uv}(t)\longrightarrow p_u/d(u)+p_v/d(v),
+\]
+which is also the unique positive equilibrium. This completes the proof of
+Theorem~\ref{thm:main}.
+
+\section*{Chronology, verification and disclosure}
+
+The candidate argument is recorded in repository PR~764~\cite{candidate},
+whose current GitHub server creation and update timestamps are 5 October 2026;
+Qin's arXiv submission is dated 8 October 2026. These observations do not
+certify when every current proof byte first became publicly available, or
+historical priority over all work. The available literature now contains the
+full positive theorem. Our note presents an alternative proof and makes no
+first, sole, new-theorem or currently-open claim. The AHY manuscript reported
+by Qin remains a bibliographic limitation, not a purportedly inspected proof.
+The final publisher MATRIX chapter body was not obtained; references to its
+question's wording concern the official hosted pre-publication version.
+
+The companion archive supplies the source, frozen candidate, dated mathematical
+and priority audits, bibliographic receipts, and reproducible finite and
+integrity controls. Computation does not certify the infinite stochastic proof
+or exhaustive priority. AI tools were used extensively in development, writing,
+reproduction, verification and adversarial review. This is an unrefereed
+research note: it has not undergone external human peer review or formal
+proof-assistant certification. The note and companion materials are released
+under CC BY 4.0.
+
+\begin{thebibliography}{9}\small\raggedright
+\bibitem{CH} Y. Couzini\'e and C. Hirsch,
+\emph{Weakly reinforced P\'olya urns on countable networks},
+Electronic Communications in Probability \textbf{26} (2021), paper 35, 1--10.
+\href{https://doi.org/10.1214/21-ECP404}{doi:10.1214/21-ECP404}.
+Inspected author version: \href{https://arxiv.org/abs/2010.03347v2}{arXiv:2010.03347v2}.
+\bibitem{thesis} Y. Couzini\'e,
+\emph{Sublinearly reinforced P\'olya urns on graphs of bounded degree},
+master's thesis, Ludwig-Maximilians-Universit\"at M\"unchen, 17 September 2018.
+\href{https://www.theorie.physik.uni-muenchen.de/TMP/theses/couziniethesis.pdf}{Primary thesis}.
+\bibitem{OWR} V. Kleptsyn (joint work with C. Hirsch and M. Holmes),
+\emph{Graph-based interacting P\'olya urns}, in MATRIX-MFO Tandem Workshop:
+Stochastic Reinforcement Processes and Graphs, Oberwolfach Reports
+\textbf{20} (2023), 653--656, especially 654--655.
+\href{https://doi.org/10.4171/OWR/2023/12}{Report doi:10.4171/OWR/2023/12}.
+\bibitem{MATRIX} G. Aletti et al.,
+\emph{Open problems in stochastic reinforcement models},
+2023 MATRIX Annals, Springer (2025), 477--498.
+\href{https://doi.org/10.1007/978-3-031-76738-8_29}{doi:10.1007/978-3-031-76738-8\_29}.
+Inspected \href{https://www.matrix-inst.org.au/wp_Matrix2016/wp-content/uploads/2023/Aletti.pdf}{official pre-publication version}, \S5, 8--10.
+\bibitem{WARM} R. van der Hofstad, M. Holmes, A. Kuznetsov and W. Ruszel,
+\emph{Strongly reinforced P\'olya urns with graph-based competition},
+Annals of Applied Probability \textbf{26} (2016), 2494--2539.
+Inspected \href{https://arxiv.org/abs/1406.0449v1}{arXiv:1406.0449v1}, \S3.6, 28.
+\bibitem{Qin} S. Qin,
+\emph{Homogenization of weakly reinforced P\'olya urns on countable networks},
+\href{https://arxiv.org/abs/2610.11780v1}{arXiv:2610.11780v1}, submitted 8 October 2026.
+\bibitem{candidate} A. Kriebel,
+\emph{Subcritical reinforcement: audited corrected positive-equilibrium candidate},
+\href{https://github.com/AlecKriebel/Math/pull/764}{Math repository PR 764}.
+Current frozen head: \texttt{88acf20cdd5b4fe8605dab7eb27733b7deda1c47}.
+\end{thebibliography}
+\end{document}

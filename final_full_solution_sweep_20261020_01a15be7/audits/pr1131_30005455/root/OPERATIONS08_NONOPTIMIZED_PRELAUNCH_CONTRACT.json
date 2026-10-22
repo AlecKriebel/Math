@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-22T12:46:18.502295+00:00",
+  "driver_path": "/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr1131_30005455/root/operations08_prelaunch.py",
+  "driver_sha256": "91e5195f621df1b3db98515506cac84ac4069e9b7ce2b1c3d1c3fccd462cd48e",
+  "source_manifest_sha256": "3d4d250e56a5ce25c5a7365b8e5afdacc81da3c521d72542d6393736965e37f1",
+  "bootstrap_sha256": "77b9800c55221810174cf0de9dc7b6dc345b999877c13d6f8971ed1b4ca2ad43",
+  "outer_seal_sha256": "36b8dd22241ddf089ee63cb8d479dce53b0d74bf5e2f1ec858cafa62c1855f46",
+  "root_rehashed_packet_files": 179,
+  "root_rehashed_packet_directories": 12,
+  "execution_contract": "Python -I -S -B optimize0 only; external driver SHA and exact08 source/bootstrap pins; own entry explicit rejects optimization before project loading. Check-only invokes source-byte verification without provider calls. Existing phase independent authority/intent/source/live-provider guards remain mandatory. No earlier clearance applies.",
+  "readonly_controls": [
+    {
+      "flags": [],
+      "returncode": 0,
+      "stdout": "{\"bootstrap_sha256\": \"77b9800c55221810174cf0de9dc7b6dc345b999877c13d6f8971ed1b4ca2ad43\", \"execution_authority_granted\": false, \"optimize\": 0, \"provider_calls\": 0, \"source_manifest_sha256\": \"3d4d250e56a5ce25c5a7365b8e5afdacc81da3c521d72542d6393736965e37f1\", \"source_members\": 6, \"status\": \"PRELAUNCH_SOURCE_CHECK_ONLY_PASS\"}\n",
+      "stderr": "",
+      "expected_behavior": true
+    },
+    {
+      "flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr1131_30005455/root/operations08_prelaunch.py\", line 39, in <module>\n    if __name__==\"__main__\":main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr1131_30005455/root/operations08_prelaunch.py\", line 12, in main\n    need(sys.flags.optimize == 0 and __debug__,\"HOLD: optimized interpreter is outside the reviewed execution contract\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr1131_30005455/root/operations08_prelaunch.py\", line 8, in need\n    if not ok:raise RuntimeError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: HOLD: optimized interpreter is outside the reviewed execution contract\n",
+      "expected_behavior": true
+    },
+    {
+      "flags": [
+        "-OO"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr1131_30005455/root/operations08_prelaunch.py\", line 39, in <module>\n    if __name__==\"__main__\":main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr1131_30005455/root/operations08_prelaunch.py\", line 12, in main\n    need(sys.flags.optimize == 0 and __debug__,\"HOLD: optimized interpreter is outside the reviewed execution contract\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr1131_30005455/root/operations08_prelaunch.py\", line 8, in need\n    if not ok:raise RuntimeError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: HOLD: optimized interpreter is outside the reviewed execution contract\n",
+      "expected_behavior": true
+    }
+  ],
+  "provider_calls": 0,
+  "root_action_accepted": false,
+  "publication_ready": false,
+  "review_status": "AWAITING_FRESH_WHOLE08_REVIEW",
+  "preparation_percent": 100,
+  "overall_goal_percent_estimate": 80
+}

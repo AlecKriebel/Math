@@ -1,0 +1,40 @@
+{
+  "UTC": "2026-10-16T09:50:29.709281+00:00",
+  "method": "Extract original AST function source verbatim; deliberately false input; no complete original runtime or original output writes",
+  "results": {
+    "verify.py:ck:normal": {
+      "returncode": 1,
+      "stdout": "",
+      "stderr_final_line": "AssertionError: deliberately_false"
+    },
+    "verify.py:ck:optimized": {
+      "returncode": 0,
+      "stdout": "{'deliberately_false': 1}",
+      "stderr_final_line": ""
+    },
+    "independent_check.py:assert_close:normal": {
+      "returncode": 1,
+      "stdout": "",
+      "stderr_final_line": "AssertionError: ('deliberately_false', '1.0')"
+    },
+    "independent_check.py:assert_close:optimized": {
+      "returncode": 0,
+      "stdout": "{'count': 1, 'maxerr': '1.0'}",
+      "stderr_final_line": ""
+    }
+  },
+  "actual_false_symbolic_identity_control": {
+    "normal": {
+      "mutation": "First exact contact identity requires its zero polynomial to equal1, in memory only; no original bytes changed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr_final_line": "AssertionError: universal_chord_contact_plus"
+    },
+    "optimized": {
+      "mutation": "First exact contact identity requires its zero polynomial to equal1, in memory only; no original bytes changed",
+      "returncode": 0,
+      "stdout": "{'universal_chord_contact_plus': 1}",
+      "stderr_final_line": ""
+    }
+  }
+}

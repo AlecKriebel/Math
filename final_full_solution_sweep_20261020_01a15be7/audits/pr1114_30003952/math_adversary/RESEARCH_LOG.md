@@ -1,0 +1,7 @@
+# PR1114 mathematical adversarial review log
+
+- 2026-10-21T22:28:40Z — Captured eight exact-head files and began fresh original-question and background retrieval. Best-guess completion of this bounded mathematical review:20%. Root's wider sweep and the priority audit are separate.
+- 2026-10-21T22:30:00Z — Fresh original report and FM draft retrieved with exact historical PDF hashes; full question and critical matrix/capping/chain pages read and rendered. Independently reconstructed the global flow, common-power relation, unit winding and all-integer offset proof. Best-guess bounded mathematical review completion:85%.
+- 2026-10-21T22:32:00Z — New exact checker passed26 positive checks and rejected9 false controls identically under normal/-O/-OO. No original author/auditor script executed. No substantive objection within the oriented theorem; prior literature/novelty are explicitly outside this audit. Best-guess bounded mathematical review completion:95%, sealing/replay still pending.
+
+- 2026-10-21T22:34:35.926180+00:00 — All eight original PR-body pins and the closed seven-payload original manifest match actual head bytes; fresh live head unchanged. New verifier accepted its fixture and rejected13 malformed/tampered inputs per mode, normal/-O/-OO. Bounded mathematical correctness review100%; root priority/publication decision remains separate. Final output seal is prepared for parent fresh-copy verification.

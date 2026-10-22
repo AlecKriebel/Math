@@ -1,0 +1,244 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\HC}{\operatorname{HC}}
+\newcommand{\FHC}{\operatorname{FHC}}
+\newcommand{\C}{\mathbb C}
+\newcommand{\norm}[2]{\lVert #1\rVert_{#2}}
+\title{Polynomial multipliers of differentiation-hypercyclic functions}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{17 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a self-contained elementary negative answer to the polynomial-multiplier
+question posed by Costakis in 2008. There is a dense family of entire functions
+hypercyclic for differentiation such that every nonconstant complex polynomial
+multiple fails to be hypercyclic; in fact its derivative values at zero escape
+in modulus. The proof uses prescribed annular bounds on derivative-normalized
+Taylor coefficients and relative Baire category. This is an attributed
+historical-answer note, without a claim of a new first solution: Nikula's older
+random-function theorem already implies a stronger frequently hypercyclic
+version, as explained below.
+\end{abstract}
+
+Let $H(\C)$ have the topology of uniform convergence on compact sets, write
+$Df=f'$, and put $\norm{f}{R}=\max_{|z|\le R}|f(z)|$.
+A function is in $\HC(D)$ if $\{D^nf:n\ge0\}$ is dense in $H(\C)$.
+Costakis's Question~5 \cite[p.~330]{Costakis} asks whether $pf$ must be in
+$\HC(D)$ whenever $f\in\HC(D)$ and $p$ is a nonconstant polynomial.
+The operation is the pointwise product $p(z)f(z)$.
+
+\begin{theorem}\label{thm:main}
+There is a dense subset $B\subset H(\C)$, contained in $\HC(D)$, such that
+for every $f\in B$ and every nonconstant $p\in\C[z]$,
+\[
+                 |(pf)^{(n)}(0)|\longrightarrow\infty.
+\]
+Consequently the polynomial multipliers preserving every member of $\HC(D)$
+are exactly the nonzero constants.
+\end{theorem}
+
+The same $f$ works for all $p$; the onset of the limit may depend on $p$.
+We first prove the theorem without using random hypercyclicity.
+Set
+\[
+ \ell_n=(n+1)^{-1/2},\qquad u_n=\log(n+e),\qquad
+ X_M=\{f\in H(\C):\ell_n\le |f^{(n)}(0)|\le u_n\ (n\ge M)\}.
+\]
+Each $X_M$ is nonempty and closed in the complete metrizable space $H(\C)$.
+Indeed the baseline series $\sum_{n\ge0}\ell_nz^n/n!$ is entire, and each
+derivative evaluation is continuous. The bounds $u_n\le n+1$ give normally
+convergent series and uniformly small factorial tails on each fixed disk.
+
+\begin{lemma}\label{lem:density}
+For every integer $M\ge0$, $\HC(D)\cap X_M$ is dense in $X_M$.
+\end{lemma}
+\begin{proof}
+Use the countable target polynomials with coefficients in $\mathbb Q+i\mathbb Q$.
+For such a target $q$, and integers $R,s\ge1$, the relative hitting set
+\[
+ U(q,R,s)=\bigcup_{N\ge0}
+       \{f\in X_M:\norm{D^Nf-q}{R}<1/s\}
+\]
+is open in $X_M$. We show it is relatively dense.
+
+Fix $g\in X_M$ and a neighborhood $\norm{f-g}{r}<\varepsilon$.
+Choose $L\ge M$ with
+\[
+                 2\sum_{n>L}u_n\frac{r^n}{n!}<\varepsilon.
+\]
+Write $q(z)=\sum_{k=0}^d\beta_kz^k/k!$ (for $q=0$, take $d=0$).
+For a large $N>L$, retain the jets of $g$ through $L$, use the baseline
+$\ell_n$ afterward, and replace jets $N,\ldots,N+d$ by $\gamma_k$.
+Choose $\gamma_k=\beta_k$ if $|\beta_k|\ge\ell_{N+k}$ and otherwise
+move $\beta_k$ radially to modulus $\ell_{N+k}$, choosing the positive
+boundary point when $\beta_k=0$. Then
+\[
+ |\gamma_k-\beta_k|\le\ell_{N+k},\qquad
+ \ell_{N+k}\le|\gamma_k|\le\max(1,|\beta_k|).
+\]
+Since $u_n\to\infty$, these finitely many jets satisfy their upper bounds
+for sufficiently large $N$. The resulting entire function $F_N$ lies in
+$X_M$ and is within $\varepsilon$ of $g$ on the $r$-disk: both tails
+after $L$ have jets bounded by $u_n$.
+
+Under $D^N$, all retained low jets vanish. On the target block the jet errors
+are at most $\ell_{N+k}$, and after that block the jets are the baseline.
+Thus
+\[
+                   \norm{D^NF_N-q}{R}\le \ell_Ne^R\longrightarrow0.
+\]
+Every relative neighborhood therefore meets $U(q,R,s)$.
+Baire's theorem, applied inside the complete space $X_M$, gives a dense
+intersection of these hitting sets. Membership means density of the derivative
+orbit, since the target polynomials are dense and integer disks and
+reciprocal-integer errors suffice. No invariance of $X_M$ under $D$ is needed.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $f\in X_M$, $a_n=f^{(n)}(0)$, and
+$p(z)=\sum_{j=0}^dc_jz^j$ with $d\ge1$ and $c_d\ne0$.
+For $n\ge M+d$, Leibniz gives
+\[
+ (pf)^{(n)}(0)=\sum_{j=0}^dc_j(n)_j a_{n-j},
+ \qquad (n)_j=\frac{n!}{(n-j)!}.
+\]
+The top-degree term has modulus at least
+\[
+               |c_d|\frac{(n)_d}{\sqrt{n-d+1}}
+                    \asymp_p n^{d-1/2},
+\]
+whereas the sum of the moduli of all lower terms is at most
+\[
+             \left(\sum_{j<d}|c_j|\right)n^{d-1}\log(n+e)
+                         =o(n^{d-1/2}).
+\]
+The reverse triangle inequality proves escape, including $d=1$ and arbitrary
+complex phases. This deterministic argument holds for every $p$ after $f$
+has been fixed; no uncountable intersection is used.
+
+Evaluation at zero is continuous and onto $\C$. An escaping scalar sequence
+has a tail outside the unit disk; an open subdisk avoiding its finitely many
+earlier values remains. It is not dense, so $pf\notin\HC(D)$.
+
+To see ambient density, approximate any entire target by a polynomial $P$.
+For large $M>\deg P$, the function
+$P+\sum_{n\ge M}\ell_nz^n/n!$ belongs to $X_M$ and is arbitrarily close to $P$.
+Lemma~\ref{lem:density} then gives nearby hypercyclic members of $X_M$.
+Thus $B=\bigcup_M(X_M\cap\HC(D))$ is dense and has the required property.
+Nonzero constants preserve a dense derivative orbit by scaling; the zero
+polynomial and every nonconstant polynomial fail to preserve the full class.
+\end{proof}
+
+Each $X_M$ has empty ambient interior: it is closed and contains no
+polynomial, while polynomials are dense. Hence the displayed $B$ is meagre.
+This is compatible with Costakis's Theorem~6 \cite[p.~330]{Costakis}, which
+gives a residual common family on which every nonzero polynomial multiple
+is hypercyclic.
+
+\paragraph{Earlier implication and priority.}
+The existence conclusion of Theorem~\ref{thm:main} already follows from
+Nikula's random-function theorem \cite[arXiv v1, Thm.~1, pp.~2--3]{Nikula},
+even with frequent hypercyclicity. Here frequent hypercyclicity means
+positive lower density of visits to every nonempty open set.
+For IID standard circular complex Gaussian jets $X_n$, that theorem gives
+an almost surely entire, frequently hypercyclic series
+$f(z)=\sum_{n\ge0}X_nz^n/n!$. Its full-support and logarithmic-tail
+hypotheses hold for the density $\pi^{-1}e^{-|z|^2}$.
+
+Indeed, $\Pr(|X|<t)\le t^2$ and $\Pr(|X|>t)=e^{-t^2}$.
+For $\alpha=3/4$, Borel--Cantelli gives, on one probability-one event,
+\[
+       (n+1)^{-\alpha}\le |X_n|\le\log(n+e)\quad\hbox{eventually}.
+\]
+Intersect with the frequent-hypercyclicity event. For any polynomial of
+degree $d\ge1$, the same Leibniz estimate has leading size
+$n^{d-\alpha}$ and lower-term bound $O_p(n^{d-1}\log n)$; their ratio
+tends to zero. The event was chosen independently of $p$, so it supplies
+all-polynomial escape simultaneously. Polynomial additions preserve both
+frequent hypercyclicity and all sufficiently high jets, giving a dense
+family from a single realization.
+
+Even the exact annular existence in Lemma~\ref{lem:density} is a consequence
+of that older theorem and elementary clipping. Radially project jets
+$n\ge M$ into $[\ell_n,u_n]$ in modulus. Upper violations occur only finitely
+often almost surely; lower corrections are at most $\ell_n$.
+The correction jets $c_n$ therefore tend to zero, and their entire series
+$h$ satisfies
+\[
+              \norm{D^nh}{R}\le e^R\sup_{k\ge n}|c_k|\longrightarrow0.
+\]
+Such a perturbation preserves frequent hypercyclicity by retaining visits
+to smaller target neighborhoods after a finite prefix.
+The clipped independent coordinates have full relative support on their
+annuli (at $n=0$, Gaussian phase gives full support on the unit circle), and the common factorial-tail bound makes finite-coordinate cylinders
+a neighborhood basis in $X_M$. Thus frequently hypercyclic functions are
+dense in each $X_M$. Nikula is applied before clipping; the clipped laws
+are not IID with full-plane support.
+
+A still earlier general Gaussian-eigenfield route is supplied by
+Bayart--Matheron \cite[arXiv v1, Prop.~3.3]{BayartMatheron}: on the unit
+circle with Haar measure use $E(\lambda)(z)=e^{\lambda z}$.
+Its integral operator sends Fourier basis vectors to $z^n/n!$ or zero;
+the Gaussian series converges normally almost surely, has full support,
+and the Fourier-decay hypothesis follows from the Riemann--Lebesgue lemma.
+The resulting mixing Gaussian law gives almost-sure frequent hypercyclicity.
+The supporting audit records the specialization and its limits.
+
+We do not claim that these sources explicitly state the polynomial-multiplier
+corollary, nor determine its first explicit recording or earliest underpinning.
+This note provides a self-contained elementary proof of the historical
+negative answer with the prior implication credited; it does not claim a
+new first solution, new existence theorem, or a problem still open in 2026.
+The repository's original finer fixed-polynomial null-orbit perturbation
+argument is retained in the supplement, without a novelty claim.
+
+\clearpage
+\paragraph{Verification, AI use, and review status.}
+The accompanying archive contains this TeX source, immutable submitted and
+current mathematical editions, a reconstruction from the original question
+alone, independent analytic and direct-block adversarial reviews, exact
+standard-library coefficient checks and receipts, and bounded primary-source
+priority audits. Finite diagnostics support coefficient identities; the
+infinite-dimensional conclusions rest on the proofs.
+AI tools were used extensively in research, proof development, literature
+review, computation, internal adversarial verification, and writing.
+This preprint is unrefereed. No external human peer review, journal acceptance,
+or formal proof-assistant certification is claimed. Source bodies are not
+redistributed, and historical unavailable checks are not presented as fresh
+reproductions.
+
+\begin{thebibliography}{9}
+\bibitem{Costakis}
+G.~Costakis, \emph{Which maps preserve universal functions?},
+in Mini-Workshop: Complex Approximation and Universality,
+Oberwolfach Reports \textbf{5} (2008), 328--331
+(whole report 297--346), Question~5 on 330.
+\href{https://doi.org/10.4171/OWR/2008/06}{doi:10.4171/OWR/2008/06}.
+
+\bibitem{Nikula}
+M.~Nikula, \emph{Frequent hypercyclicity of random entire functions for the
+differentiation operator}, Complex Analysis and Operator Theory \textbf{8}
+(2014), 1455--1474; online 8 October 2013.
+\href{https://doi.org/10.1007/s11785-013-0328-0}{doi:10.1007/s11785-013-0328-0}.
+Inspected theorem: \href{https://arxiv.org/abs/1209.6209v1}{arXiv:1209.6209v1},
+repository submission 27 September 2012.
+The served PDF's later internal date is separately recorded in the audit.
+
+\bibitem{BayartMatheron}
+F.~Bayart and \'E.~Matheron, \emph{Mixing operators and small subsets of the
+circle}, J.~Reine Angew.~Math. \textbf{715} (2016), 75--123.
+\href{https://doi.org/10.1515/crelle-2014-0002}{doi:10.1515/crelle-2014-0002}.
+Inspected general theorem:
+\href{https://arxiv.org/abs/1112.1289v1}{arXiv:1112.1289v1},
+6 December 2011, Proposition~3.3; no backdating of a later explicit remark.
+\end{thebibliography}
+\end{document}

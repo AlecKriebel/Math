@@ -1,0 +1,19 @@
+# New02 independent re-audit attack plan — frozen before repaired source intake
+
+Preserve all v01 evidence. Do not read evolving new02 source. Await Root final exact four-source manifest/seal/contract pins. Authenticate exact bytes, read all source/contracts fully, freeze primary repaired-source assessment before author-test consultation. Only bounded pure synthetic/native objects and owned filesystem fixtures, ordinary prescribed Python3.14 -E -S -B -P plus explicit-O runs. No Git/backend/cache/API/service/live phases/actual receipts/global-five/original changes. No external human communication.
+
+Retest all original independent invariants and the three mandatory v01 failures. Existing test expectations must be adapted only where the published contract legitimately changes, and those changes must be explicit. Never weaken a failure solely to match implementation.
+
+A. Exclusive creation: deterministic interleaving target creation after final absence check and before final install; concurrent independent create-only writers; existing target bytes/type/mode preserved, no overwriting receipt/pointer, no success on collision. Verify no-replace relies on actual filesystem semantics. Ensure target readback and staging identity have honest guarantees.
+
+B. Cooperating view ownership: one stable no-symlink regular lock inode; descriptor/path identity pinned after lock and through operation; correct no-unlink/replacement policy, process/thread ownership and lock-descriptor lifetime. Reject view writes outside active ownership. Hold lock across complete five prechecks/writes/readbacks and sync receipt, and hold it around complete pointer validation/install. Independently test lock contention with bounded child processes without importing project code. Test lock alias/replacement, same-process reentrance/wrong process, exceptions/partial writes, backup preservation/conflict latch and pointer prohibition. Explicitly distinguish enforceable cooperating-writer safety from arbitrary same-user noncooperating writes; do not request impossible filesystem content CAS.
+
+C. Original metadata: exact canonical original metadata18017/SHA256198a22a7e5b536d6b96f65597446e3b7d2d5e7648d2ad23390106dc49d48800a, anchored to full actual custody4416 map before local read. Attempt substituted local metadata that matches altered live PR, wrong/missing custody map pin, path substitution, old source-free baseline and independently changed title/body/updated_at. Positive controls use synthetic properly rooted pins; hardcoded real pin checked statically without actual metadata as a test receipt.
+
+D. Native expansion: authenticate nonrecursive tree object rows before descent. Probe shared valid DAG, aggregate leaf and work exhaustion before excessive allocation, depth/path limits and malformed/cyclic references with hard fake-call limits. Verify exact original/current path sets and parent/full changed-scope checks remain intact. No huge resource case is executed; use bounded counters/tracing near thresholds.
+
+E. Full regression: complete4416 synthetic expected-map rooting/non-QUEUE pins, malformed/truncated/extra/substituted/laundered maps, protected/scoped foreign QUEUE at both reconciliation legs, ancestry, original HEAD/21files55033bytes/inherited39 exclusion, exact externally pinned source/final-gate authority, whole-package event/final seal dependencies, all publication/tracker copied facts and literal-True two readbacks, all-r repetition/date/Ferudun credit, current21804 source in both executable paths, incomplete98, conditional100 full acceptance/five-sync/pointer, and no207intake.
+
+Freeze raw normal/O results, code identities, evidence-backed verdict and explicit untested operational boundaries. Final independent completion percentage concerns this audit only; actual project remains custody10,48/32,last205,cursor206 until separately accepted real phases.
+
+Initial new02 re-audit completion estimate:5% (frozen plan only).

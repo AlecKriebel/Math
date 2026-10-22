@@ -1,0 +1,8 @@
+# Research log — symbolic/topological adversary
+
+Custody: PR781-SYMBOLIC-4A38C3C-20261016. Goal: independently verify or falsify PR781's exact prescribed block-code extension criterion. Percentages estimate completion toward settling this assigned claim within this approach family, not the whole field's research program.
+
+- 2026-10-16T10:02:31Z — 15%. Read only SELECTED_PUBLIC_RECORD.json and the original author PROOF.md/verify_math.py. Preserved initial assessment and source digests before primary sources or historical audits. Core reduction plausible; PRZ bound and exact target unverified.
+- 2026-10-16T10:02:56Z — 40%. Retrieved primary Boyle and PRZ PDF bodies into memory, recorded hashes and source locators, retained no PDF. Boyle target agrees; PRZ4.2 has claimed bound and profile convention. Original checks PASS3456. No historical or sibling material read.
+- 2026-10-16T10:05:51Z — 90%. Independent standard-library verification PASS117708. Strongly connected canonical graphs, short-word semantics, profile boundaries, periodic nonmixing cases, completions, and onto/equality controls survive. Infinite padding argument independently rederived with arbitrary n and arbitrary obstruction. No central repair identified.
+- 2026-10-16T10:07:54.592034+00:00 — 100%. Completed independent derivation/report and closed authored manifest. Verdict: no substantive defect found; published-theorem reliance explicit. No fresh unfinished-proof search, no contacts, no Git commands or repository metadata changes, no other PR audit. One local syntax error in the new finite-check script was corrected before successful capture; it was an audit-tool typo, not evidence against the candidate.

@@ -1,0 +1,59 @@
+{
+  "utc": "2026-10-13T23:28:46.466890+00:00",
+  "review": "NEW independent whole preprint/package review package_01",
+  "status": "REPAIR_REQUIRED",
+  "input_stage": "prepared_application_note_pending_NEWwhole01",
+  "candidate_pdf_sha256": "9dc9ff1198294fa7d64d6bc0f94d0466572cddcd1fda11a8e28e545a6afa5841",
+  "candidate_tex_sha256": "56a869e03a2ef0ee2f17fba48ad7f9fd07278d954938036bbcb8f3725e7c6d0d",
+  "candidate_zip_sha256": "1d7b2c997799445dbc137dea103279ee5ebeff10e8bd8efd4d948c359f76b6e7",
+  "whole_current_tex_read": true,
+  "independent_complete_derivation_before_old_verdicts": true,
+  "all13_pdf_pages_individually_rendered_and_viewed": true,
+  "fresh_controlling_source_pages_individually_viewed": 16,
+  "source_interfaces_supported": true,
+  "scoped_mathematical_conclusions_supported": true,
+  "actionable_findings": [
+    {
+      "id": "PACKAGE01-P2-01",
+      "severity": "P2",
+      "category": "mathematical_display",
+      "path": "publication/research_note.tex",
+      "line": 146,
+      "pdf_page": 3,
+      "equation": 4,
+      "problem": "The complete order-two coordinate expansion has literal +sum_{i<j<h} instead of a summation command. In the rendered PDF the letters s,u,m carry the subscript, leaving the distinct-index triple term malformed.",
+      "repair": "Replace +sum_{i<j<h} with +\\sum_{i<j<h}; recompile and individually inspect the refreshed PDF, update current preparation/evidence hashes and input pins, rebuild the deterministic archive, and obtain a new exact-candidate whole review. Preserve all originals and historical review stages."
+    },
+    {
+      "id": "PACKAGE01-P3-02",
+      "severity": "P3",
+      "category": "rebuild_documentation",
+      "path": "publication/README.md",
+      "line": 17,
+      "problem": "The advertised disk-PDF command fails on a clean extraction because tmp/pdfs is absent. Exact test exited1 with output directory does not exist.",
+      "repair": "Add mkdir -p tmp/pdfs immediately before the Tectonic command, or use an existing explicitly created output directory. Include the corrected README in refreshed input pins and archive."
+    }
+  ],
+  "counts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1,
+    "P3": 1
+  },
+  "novelty_established": false,
+  "original_head": "86d076dae3e3fa8b7cda7fd9c6a822c3d7392c14",
+  "original19_actual_git_show_and_full_tree_verified": true,
+  "archive92_actual_entries_verified": true,
+  "archive_deterministic_reconstruction_and_clean_extraction_builder_identical": true,
+  "all_pins_unchanged": true,
+  "publication_ready": false,
+  "authorization_grant": false,
+  "external_actions": "none",
+  "completion_percent": 100,
+  "remaining_gap": "Repair the two current package defects and review the changed exact candidate. Research scope3--6/minimum/higherorders remains unaddressed; historical novelty remains undetermined.",
+  "stage_wording_advice": {
+    "actionable_current_defect": false,
+    "locator": "PDFpage1 disclosure",
+    "assessment": "Pending fresh-review sentence is true for frozen pendingNEWwhole01 candidate; a cleared durable paper should point to kit review history/current state instead. If changed alongside repairs, include it in next exact full review."
+  }
+}

@@ -1,0 +1,26 @@
+# PR894 publication tooling (problem 30005737)
+
+This directory supplies a standard-library-only Python >=3.11 command-line verifier and reproducible ZIP builder. It preserves all 18 original files at frozen head `401f86e018e8cc5075e37a29bae9350eb9f89c36` in `verification/source/`. The historical effort is **1/5**. Passing this tool authenticates bytes and reproduces finite diagnostics; it does not establish the theorem, novelty, priority, publication approval, or a visually checked PDF.
+
+**The supplied TeX and metadata description are NOT ACTUAL PAPER fixtures. No final paper has been assembled.** The current-publication tests use an explicitly marked header-only PDF fixture in private scratch. A real paper must replace those fixtures and receive separate mathematical, citation and visual review.
+
+Authenticate `portable.py` using an independently obtained SHA256 before launching it. A self-reported hash or an index next to an untrusted program does not authenticate the launcher. Likewise, obtain the package-index or current-manifest pin independently. Run with actual isolation flags:
+
+```
+python3 -I -S -B portable.py verify INDEX_SHA256 --root verification --verify-only
+python3 -I -S -B portable.py verify INDEX_SHA256 --root verification --receipt-dir FRESH_OUTSIDE_DIRECTORY
+python3 -I -S -B -O portable.py verify INDEX_SHA256 --root verification --receipt-dir ANOTHER_FRESH_OUTSIDE_DIRECTORY
+python3 -I -S -B portable.py build INDEX_SHA256 OUTSIDE_DIRECTORY/post-lie-verification.zip --root verification --receipt-dir FRESH_OUTSIDE_DIRECTORY
+python3 -I -S -B portable.py current MANIFEST_SHA256 --root CURRENT_DIRECTORY --verify-only
+python3 -I -S -B portable.py source-only --catalog COMPLETE_CATALOG --problems COMPLETE_PROBLEMS --reports COMPLETE_RESEARCH_RESULTS
+```
+
+`verify` and `current` replay by default. `build` always replays and has no `--verify-only` option. `--verify-only` reports the exact label `VERIFY_ONLY_BYTE_AUTHENTICATION_NO_ARCHIVAL_EXECUTION` and launches no archival process. `source-only` reads no archival code: all three complete native corpora must authenticate before any JSON parsing or target selection. It then authenticates the entire canonical pair and statement, including the absent report. Optional `--primary-dir` requires exactly the five pinned PDF filenames defined in the tool. No network, downloads, installs or external communication occur.
+
+Replay executes unchanged original verifier bytes in a private copy under an actual measured isolated interpreter. Its exact two requested diagnostics execute with actual optimization levels 0 and 1. Six extra subprocesses test the original PA2 rejection of the invalid product R=I, the original explicit require(False) guard, and rejection of damaged checker bytes, in both modes. Python startup environment variables are removed for every archival process in addition to actual -I -S -B isolation. No interpreter flags are spoofed and original source is not recompiled at a different optimization level. Each actual process has raw stdout/stderr plus recorded UTC start/end, PID, return code and stream hashes written before success assertions. Failed receipts persist. If `--receipt-dir` is omitted, a fresh system temporary directory is retained and its path is reported. Receipts can contain private local paths and stay outside the public payload.
+
+The generated verification ZIP has sorted regular-file members, fixed 2026-10-16 timestamp, fixed permissions and DEFLATE level 9. Byte reproducibility is promised only for identical input bytes with the same Python ZIP implementation and zlib. Strict raw ZIP validation rejects prefixes, gaps, suffixes, duplicate or aliased paths, metadata disagreements and unused compressed-stream suffixes. Input trees reject symlinks, special files, empty unindexed directories and path aliases. Build output must be fresh and physically outside every indexed input directory; device/inode ancestry catches APFS case aliases. The tool does not provide an OS sandbox or general concurrent-mutation/TOCTOU guarantee. The selected Python and standard library are trusted.
+
+The exact deposit assets are `post-lie-note.pdf` and `post-lie-verification.zip`. Current mode binds their bytes to an independently pinned closed manifest, rebuilds the ZIP, and checks outer/inner equality of the tool, TeX, metadata and deposit JSON. PDF checking is **HEADER ONLY**, explicitly requiring separate visual QA. The fixed proposed identity is “Post-Lie nonexistence with a semisimple target”, 2026-10-16, version 1.0.0, sole creator Alec Kriebel, Independent researcher, ORCID 0009-0001-9320-500X, preprint/open/CC BY 4.0. Description, references and related identifiers require editorial review before release.
+
+See `REPORT.md`, `REGRESSION_RESULTS.json` and `INHERITED_CODE.md` for evidence and limits. `SAFE_MANIFEST.json` lists the intentionally public tooling payload; it excludes itself, private scratch, raw source bodies, native corpora, local process evidence and credential material. The historical packet is separately authenticated by its immutable original manifest and its package index. Nothing here authorizes an upload, release, Git mutation or external communication.

@@ -1,0 +1,6 @@
+# Research log
+
+- 2026-10-15T13:16:23.129676+00:00 - Read intake and original official OWR report; independently froze target, assumptions and falsification risks before candidate access. Source-contract audit 20% complete.
+- 2026-10-15T13:18:58.481690+00:00 - Read candidate only after source freeze; checked main AIF contracts and both earlier published papers. Verified six primary PDF files in shared excluded cache (core five plus Compositio arXiv precursor); AIF exact checksum matches archived expectation. Original report announces/sketches an interior construction and is not a formal world-open conjecture. Source-contract audit 65% complete.
+- 2026-10-15T13:23:07.608498+00:00 - Completed independent source-contract derivations and checked literal AIF closure bars in existing renders; covered Green comparison, finite left curvature, global duality and interior location. No new family report or favorable historical report read. Source-contract audit 90% complete; final artifact verification remains.
+- 2026-10-15T13:23:39.656447+00:00 - Finalized source-contract PASS and explicit provenance correction; checked all safe outputs, source/input byte hashes and source-free allowlist. Audit 100% complete. No unsupported source-contract gap remains; novelty/priority/publication clearance unassessed. Final authored files sealed read-only 0444.

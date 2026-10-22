@@ -1,0 +1,7 @@
+# PR421–490 independent adversarial classification review
+
+2026-10-21T17:16:35.362110+00:00 — Started; 5% review completion. Individually froze policy, inventory, state, journal, and scoped eligibility/disposition/publication/scope receipts. No broad-tree snapshot; inputs may have distinct observation times. No shared Git, provider, publication, ledger, or scientific mutation authorized.
+
+2026-10-21T17:20:55.584228+00:00 — 85% review completion. All 70 actual pinned path/row checks and fresh PR metadata comparisons pass. Fresh entire A:AQ ledger read gives 178 rows. Three DOI records are published/done/submitted; all seven downloaded payloads match provider size/MD5 and prior SHA-256. Four ZIPs have safe unique paths and clean CRC; positive manifests independently verify 22/180/67 payloads. Custom-folder exact IDs and KOU-21.136↔2645 binding confirmed. Remaining work: finalize source/identity observations, per-PR review matrix, and own output manifest.
+
+2026-10-21T17:24:59.706761+00:00 — Final checkpoint; 100% assigned-review completion. PASS_SCOPED_CLASSIFICATIONS for all70:50unsolved,17already_solved,3existing-publication matches. All frozen journal entries equal per-PR dispositions. Fresh metadata differences0. Seven public files, four safe unique ZIPs,269 positive manifest payloads verified. No blocking findings. Exact scope/residual limitations and per-PR outcomes recorded in REPORT.md/RESULT.json; no new proof/priority conclusions or external mutations.

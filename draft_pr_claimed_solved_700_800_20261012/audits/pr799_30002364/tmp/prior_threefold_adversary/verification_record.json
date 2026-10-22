@@ -1,0 +1,64 @@
+{
+  "verified_utc": "2026-10-16T19:17:50.163239+00:00",
+  "arithmetic": "PARI/GP2.17.4; exact run; AUDIT_OK",
+  "counts": {
+    "X_Tate": [
+      1,
+      3,
+      3,
+      1
+    ],
+    "X_Lefschetz": [
+      1,
+      3,
+      3,
+      1
+    ],
+    "X_square_Tate": [
+      1,
+      12,
+      51,
+      90,
+      51,
+      12,
+      1
+    ],
+    "X_square_Lefschetz": [
+      1,
+      12,
+      51,
+      88,
+      51,
+      12,
+      1
+    ]
+  },
+  "controls": [
+    {
+      "test": "supplied external manifest pin, all authored files and exact arithmetic",
+      "exit": 0,
+      "outcome": "passed"
+    },
+    {
+      "test": "all-zero incorrect external pin",
+      "exit": 1,
+      "outcome": "rejected before arithmetic"
+    },
+    {
+      "test": "copied authored GP file modified after manifest sealing",
+      "exit": 1,
+      "outcome": "rejected as authored-file mismatch"
+    },
+    {
+      "test": "selected Frobenius root replaced by its complex conjugate",
+      "outcome": "normalized eigenvalue is neither1 nor−1, hence fails Tate test"
+    },
+    {
+      "test": "variety itself has no extra Tate dimension",
+      "outcome": "Tate and Lefschetz dimensions both1,3,3,1"
+    }
+  ],
+  "manifest_control_run_pin": "6c1752140fc8369c846bf48df0b081551ad93f988f1c548617cf0cefd164f32d",
+  "target_intake_sha256": "c37a148225d5f1b341fa502221f3ddd8dcbddf92c0c38b29eb9e374bc310192f",
+  "limitations": "Checker verifies arithmetic and authored integrity. Original theorem applicability and all-powers proof are audited in report.md, not machine proved."
+}

@@ -1,0 +1,11 @@
+# Exact-claim/current-history audit log
+
+- 2026-10-16T06:00:23.258845+00:00 — Search approach frozen before sibling reports; audit completion estimate 3%. Defined primary-only review and exact-scope chronology separation.
+
+- 2026-10-16T06:02:44.770606+00:00 — Completion estimate 45%. Checked all eleven cached arXiv texts and distinct journal row. Located exact contemporary theorem in Ferudun v1.0/v1.1, downloaded small primary deposit files and registrant metadata, read complete v1.0 and v1.1 changes. Main exact overlap is certain at statement level; deposit dates do not resolve first disclosure or independence.
+
+- 2026-10-16T06:05:56.659362+00:00 — Completion estimate 78%. Primary PDFs inspected visually for v11 Table 4, journal p346 and archived competing Thm1. All eleven source editions retain a question mark. Ferudun v1.0/v1.1 exact-statement overlap and unchanged main proof confirmed. Current author bibliographies and related later primary full texts checked; no pre-2026 exact proof found in that bounded set. GitHub unauthenticated code search returned401; public repository search returned zero narrow-name results, which is not a code-content search. Shared disk reached ENOSPC; removed4440847bytes of only own redundant PDF/renderings after retaining extracted readings and source receipts. No external outreach, Git writes, code execution from downloaded archives, or publication mutation.
+
+- 2026-10-16T06:11:14.059537+00:00 — Bounded audit completion estimate100%. Authored report, exact comparison, query/source ledgers, chronology and editorial assessment complete. Confirmed all six archived-file MD5 checks against Zenodo, live PDF/source SHA identity with v1.1, and task-bound root gate SHA. Final metadata repeat returned HTTP403; before/after stability remains unverified. Exact contemporary theorem overlap is established; firstness, independence and proof novelty remain unqualified. No publication or Git authority granted.
+
+- 2026-10-16T06:11:46.304307+00:00 — Final access limitation recorded explicitly in report, source/query ledgers and integrity receipt. No restriction bypass attempted. Safe authored manifest excludes all private source payloads. Bounded audit100%; firstness/independence and theorem/proof novelty clearance remain false.

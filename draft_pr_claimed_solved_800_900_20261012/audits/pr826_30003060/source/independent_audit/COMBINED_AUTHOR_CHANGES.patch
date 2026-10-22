@@ -1,0 +1,113 @@
+--- a/DERIVATIVE_NOTES.md
++++ b/DERIVATIVE_NOTES.md
+@@ -0,0 +1,7 @@
++# Corrected derivative, not a replacement of the author freeze
++
++The original author archive and all original external files are unchanged. This derivative applies the separately reviewed source-scope patch, removes an unsupported exclusive historical-intention inference, adds the public v1 source metadata, and records qualified independent acceptance. The full algebraic argument and both mathematical/provenance checker programs are unchanged. RESULTS.json and PROVENANCE_RESULT.json remain original replay results.
++
++Use the separately pinned corrected external bootstrap with python -I -S -B. Its own process and the checker child both disable site startup and bytecode writes; optimized execution deliberately fails closed. The bootstrap verifies its external manifest, the complete archive, exact inventory, and every member before loading any archive code. It rejects symlinked entrypoints and inputs. The separately distributed audit contains actual normal, optimized-rejection, hostile-startup, symlink, changed-entrypoint, and mutation controls.
++
++Acceptance is limited to the unrestricted-field equivalence being false. The characteristic-zero converse is not proved or disproved, and this package makes no first-priority or human-referee claim. One substantive approach was used. No repository publication or queue mutation is performed by this derivative.
+--- a/PROOF.md
++++ b/PROOF.md
+@@ -4,7 +4,7 @@
+ 
+ This note concerns problem 30003060 / OWR-14218-004, attributed to Andrea Solotar's contribution, joint with Roland Berger and Thierry Lambre, in the 2016 Oberwolfach report *Hochschild Cohomology in Algebra, Geometry, and Topology*, printed pp. 479-481, DOI [10.4171/owr/2016/10](https://doi.org/10.4171/owr/2016/10).
+ 
+-The unrestricted-field equivalence in that question is false. We exhibit a Koszul quadratic algebra with nonzero positive-degree higher Koszul homology in every positive characteristic. This is a complete counterexample to the literal unrestricted-field formulation, not to the characteristic-zero equivalence. In particular, the implication from vanishing to Koszulness in characteristic zero remains unresolved here. No novelty or first-priority claim is made.
++The unrestricted-field equivalence in that question is false. We exhibit a Koszul quadratic algebra with nonzero positive-degree higher Koszul homology in every positive characteristic. This is a complete counterexample to the literal unrestricted-field formulation, not to the characteristic-zero equivalence. In particular, the implication from vanishing to Koszulness in characteristic zero remains unresolved here. The characteristic-zero question is mathematically distinct. The report does not explicitly restrict the field, and the sources do not establish a uniquely characteristic-zero historical intention. No novelty or first-priority claim is made.
+ 
+ The invariant is higher Koszul homology with coefficients in the algebra itself and the fundamental degree-one Koszul cocycle, as in Berger-Lambre-Solotar, [*Koszul calculus*, arXiv:1512.00183v3](https://arxiv.org/abs/1512.00183v3), Sections 2 and 5.2. It is not ordinary Koszul homology, and it is not computed with coefficients in the trivial module.
+ 
+@@ -94,4 +94,4 @@
+ 
+ The infinite statements above have algebraic proofs independent of computation. The accompanying standard-library verifier compares exact matrix/nullspace calculations with a separately implemented orbit computation in 114 bounded cases and checks explicit telescoping witnesses for 11 primes through 31. These are controls, not a proof by finite sampling. Both implementations were prepared in this author investigation; they do not constitute external independent review.
+ 
+-This authored note and its controls are AI-assisted and unrefereed. A fresh mathematical and source-scope review is pending. No characteristic-zero resolution, new theorem priority, formal proof-assistant verification, or human peer review is claimed.
++This authored note and its controls are AI-assisted and unrefereed. The corrected derivative has a separately recorded independent mathematical and source-scope audit. No characteristic-zero resolution, new theorem priority, formal proof-assistant verification, or human peer review is claimed.
+--- a/README.md
++++ b/README.md
+@@ -6,7 +6,7 @@
+ 
+ A free associative algebra on two generators is Koszul over every field. In characteristic p>0, a cyclic sum built from x^(p-1)y yields a nonzero higher Koszul homology class in degree one. The smallest example is x tensor y + y tensor x over F_2.
+ 
+-This settles the literal unrestricted-field formulation negatively. It does not settle the characteristic-zero equivalence or its vanishing-to-Koszulness implication. The status of that intended research question is **unresolved in this investigation**. Queue disposition is deliberately left for independent source-scope review; no queue or remote repository has been changed.
++This settles the literal unrestricted-field formulation negatively. It does not settle the characteristic-zero equivalence or its vanishing-to-Koszulness implication. The characteristic-zero research question is **unresolved in this investigation**. Whether the abbreviated OWR statement was intended to inherit characteristic zero cannot be established from the report; its literal text has no such restriction. Queue disposition is deliberately left for independent source-scope review; no queue or remote repository has been changed.
+ 
+ ## Files
+ 
+@@ -19,12 +19,12 @@
+ - PROVENANCE_RESULT.json: recorded full-corpus and six-PDF byte checks; textual inspection is separate.
+ - verify_provenance.py: optional complete-corpus and supplied-PDF hash checks; no source texts are bundled.
+ 
+-The immutable safe archive contains only these authored files. An external manifest binds every archive member and the original ZIP byte stream. The external bootstrap verifies its pinned manifest, ZIP hash, exact inventory, names, types, sizes and hashes before extracting or running the checker. It uses isolated Python and rejects optimized execution. A successful computational replay must exactly reproduce RESULTS.json.
++The immutable safe archive contains only these authored files. An external manifest binds every archive member and the original ZIP byte stream. The external bootstrap verifies its pinned manifest, ZIP hash, exact inventory, names, types, sizes and hashes before extracting or running the checker. The corrected external bootstrap requires isolated, no-site, no-bytecode Python for itself and its child checker; it rejects optimized execution. A successful computational replay must exactly reproduce RESULTS.json.
+ 
+ ## Review protocol
+ 
+ Read PROOF.md and SOURCE_AUDIT.md before accepting any disposition. Independently check the coefficient convention, the ordinary versus higher differentials, the absence of incoming boundaries, and the unrestricted-field versus characteristic-zero distinction. The whole Solotar contribution, not a neighboring speaker's field assumptions, is the relevant OWR context.
+ 
+-Run the separately supplied bootstrap with Python's -I -B flags, passing the safe ZIP and external manifest. The optional provenance checker accepts explicit corpus/PDF paths; without those inputs, source rehash is not performed. Replaying finite algebra controls does not redo textual source inspection or establish literature exhaustiveness.
++Run the separately supplied bootstrap with Python's -I -S -B flags, passing the safe ZIP and external manifest. The optional provenance checker accepts explicit corpus/PDF paths; without those inputs, source rehash is not performed. Replaying finite algebra controls does not redo textual source inspection or establish literature exhaustiveness.
+ 
+-No PDFs, source extracts, images, raw corpora, upstream source code, private sources, or private coordination files are included. Existing source results are credited. There is no novelty, first-priority, characteristic-zero solution, formal-certification, or external human-review claim. AI assistance was used throughout. Fresh independent review remains pending.
++No PDFs, source extracts, images, raw corpora, upstream source code, private sources, or private coordination files are included. Existing source results are credited. There is no novelty, first-priority, characteristic-zero solution, formal-certification, or external human-review claim. AI assistance was used throughout. Independent mathematical and source-scope review is recorded separately in the accompanying acceptance; external human review has not been claimed.
+--- a/SOURCE_AUDIT.md
++++ b/SOURCE_AUDIT.md
+@@ -14,7 +14,7 @@
+ 
+ The primary detailed reference is Berger-Lambre-Solotar, [*Koszul calculus*, Glasgow Mathematical Journal 60 (2018), 361-399](https://doi.org/10.1017/S0017089517000167), also [arXiv:1512.00183v3](https://arxiv.org/abs/1512.00183v3). Both the publisher PDF and v3 PDF were retrieved and inspected at the relevant sections.
+ 
+-Section 2 permits arbitrary relation subspaces, including R=0. Section 5.2 defines the fundamental-cocycle higher homology in all characteristics. Section 6.2 explicitly assumes characteristic zero for Theorem 6.4; there HK^hi_0(A)=k holds for every quadratic A, and Koszulness implies positive-degree vanishing. The subsequent Conjecture 6.5 displays both these conditions, without an explicit characteristic hypothesis in its statement. Its preceding discussion asks about removing the characteristic restriction and about a converse. Hence a source-faithful report must distinguish the literal unrestricted statement from the characteristic-zero converse motivated by the theorem.
++Section 2 permits arbitrary relation subspaces, including R=0. Section 5.2 defines the fundamental-cocycle higher homology in all characteristics. Section 6.2 explicitly assumes characteristic zero for Theorem 6.4; there HK^hi_0(A)=k holds for every quadratic A, and Koszulness implies positive-degree vanishing. The subsequent Conjecture 6.5 displays both these conditions, without an explicit characteristic hypothesis in its statement. Its preceding discussion asks about removing the characteristic restriction and about a converse. Hence a source-faithful report must distinguish the literal unrestricted statement from the characteristic-zero converse motivated by the theorem. This distinction already appears in [arXiv:1512.00183v1](https://arxiv.org/abs/1512.00183v1), dated 1 December 2015, before the February 2016 workshop: printed p. 24 has the characteristic-zero Theorem 6.4, the proposed removal of that hypothesis, and the displayed Conjecture 6.5 without it. Thus a characteristic-zero reading is a plausible research motivation, not a verified exclusive historical intention. A reviewer may accept the unrestricted counterexample without claiming to have settled the characteristic-zero converse.
+ 
+ The [2019 addendum](https://doi.org/10.1017/S0017089518000137), published online 22 April 2018, was retrieved completely. It is a dedication to Jean-Louis Koszul, not a mathematical correction or a solution of this conjecture.
+ 
+--- a/SOURCE_METADATA.json
++++ b/SOURCE_METADATA.json
+@@ -114,6 +114,23 @@
+       "inspection": "List checked; points to arXiv for other preprints.",
+       "title": "Liste des prepublications",
+       "url": "https://perso.univ-st-etienne.fr/rberger/mes-preprints.html"
++    },
++    {
++      "authors": [
++        "Roland Berger",
++        "Thierry Lambre",
++        "Andrea Solotar"
++      ],
++      "id": "bls_v1_second_review",
++      "inspection": "Second reviewer independently retrieved the PDF; inspected introduction and Section 6.2; printed p.24 rendered and visually checked. No source text is included.",
++      "pdf": {
++        "bytes": 510330,
++        "sha256": "3b0db72d14afe5d94ab03890313ab6c0533f98e9c30e4dbe4c33d9697c21ab01"
++      },
++      "pdf_url": "https://arxiv.org/pdf/1512.00183v1",
++      "status": "Author preprint v1, 1 December 2015; predates February 2016 workshop",
++      "title": "Koszul Calculus",
++      "url": "https://arxiv.org/abs/1512.00183v1"
+     }
+   ]
+ }
+--- a/STATUS.json
++++ b/STATUS.json
+@@ -2,15 +2,16 @@
+   "AI_assisted": true,
+   "characteristic_zero_equivalence": "UNRESOLVED_IN_THIS_INVESTIGATION",
+   "characteristic_zero_vanishing_implies_koszul": "UNRESOLVED_IN_THIS_INVESTIGATION",
++  "derivative": "SOURCE_SCOPE_AND_EXECUTION_HYGIENE_CORRECTION_NO_MATHEMATICAL_CODE_CHANGE",
+   "formal_verification": false,
+   "human_peer_review": false,
+-  "independent_review": "PENDING",
+-  "literal_unrestricted_field_equivalence": "DISPROVED_BY_AUTHORED_COUNTEREXAMPLE_PENDING_REVIEW",
++  "independent_review": "ACCEPTED_LITERAL_NEGATIVE_WITH_EXPLICIT_CHAR0_NONRESOLUTION",
++  "literal_unrestricted_field_equivalence": "DISPROVED_BY_REVIEWED_COUNTEREXAMPLE",
+   "new_priority_claim": false,
+   "problem_id": 30003060,
+   "problem_number": "OWR-14218-004",
+   "publication_performed": false,
+-  "queue_disposition": "DEFER_TO_FRESH_INDEPENDENT_SOURCE_SCOPE_REVIEW",
++  "queue_disposition": "RECOMMENDED_LITERAL_NEGATIVE_ACCEPTANCE_WITH_CHAR0_CONVERSE_RETAINED_UNRESOLVED",
+   "queue_rank": 865,
+   "substantive_approaches_used": 1
+ }

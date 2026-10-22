@@ -1,0 +1,34 @@
+{
+  "at_utc": "2026-10-17T21:01:42.646653+00:00",
+  "actionable_findings": 1,
+  "findings": [
+    {
+      "id": "F01",
+      "priority": "P1",
+      "category": "publication_coordinator_pre_mutation_exactness",
+      "status": "OPEN",
+      "path": "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/_local/run_pr1241_deposit.py",
+      "line_start": 37,
+      "line_end": 44,
+      "actual_source_sha256": "ad1690233c038de11f3c86849194766b9498d5dd5a8dccaaf24ce3e619c72418",
+      "title": "Reject nonexact metadata before invoking publish",
+      "mechanism": "Generic kit verification accepts and reports paragraph apostrophe normalization, then publishes. Coordinator calls kit publish without a mandatory exact inspect gate and checks normalizations only after the irreversible publish action returns.",
+      "actual_metadata_description_sha256": "b735d653580cb7198b2dd293d3b94309e2b03cfc21b4a4913fab180d0c26e466",
+      "accepted_normalized_description_sha256": "3585c7a71d263602c536c25dfdb4e2d9084f881b8e5a62b12efeabbaee7ec0e8",
+      "normalization": {
+        "field": "description",
+        "kind": "paragraph_apostrophes_u2019_to_ascii"
+      },
+      "offline_reproducer": "coordinator_probes.py",
+      "results": "COORDINATOR_RESULTS.json",
+      "simulated_publish_posts": 1,
+      "real_publish_posts": 0,
+      "receipt_saved_after_refusal": false,
+      "inspect_receipt_required_by_current_code": false,
+      "repair_required": "Same-known-ID complete exact metadata/files with an empty normalization list must be enforced before any publish POST, including the verifier actually used for the mutation; mandatory exact inspect state and zero-POST negative controls. Canonicalizing current description alone is insufficient. Preserve known-ID reconciliation and read-only published-state handling.",
+      "fresh_review_required_after_repair": true
+    }
+  ],
+  "no_other_actionable_findings": true,
+  "no_input_repairs_by_reviewer": true
+}

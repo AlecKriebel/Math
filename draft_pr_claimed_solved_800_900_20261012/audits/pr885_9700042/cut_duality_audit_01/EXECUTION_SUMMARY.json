@@ -1,0 +1,36 @@
+{
+  "hash_labels": "Checker SHA256 identifies source bytes read before execution. Stdout SHA256 identifies saved stdout bytes, not the private tool-envelope receipt.",
+  "checkers": [
+    {
+      "path": "independent_finite_checks.py",
+      "checker_sha256": "3fdfb6f302b8bbc8aa69f171c3f1fe44408c75824472321a1ef60006fbbf8709",
+      "fully_read_before_execution": true,
+      "normal_command_role": "python3 -I -S -B <finite-checker>",
+      "optimized_command_role": "python3 -I -S -B -O <finite-checker>",
+      "normal_exit": 0,
+      "optimized_exit": 0,
+      "stdout_path": "FINITE_CHECK_RESULTS.json",
+      "optimized_stdout_path": "FINITE_CHECK_RESULTS_OPTIMIZED.json",
+      "stdout_sha256_both": "c020d03dac30e16aaed019a997523dbbccd64161d2c1734e9d26a476a36afb86",
+      "checks_survive_optimization": true
+    },
+    {
+      "path": "independent_completion_checks.py",
+      "checker_sha256": "dd088e34e103fbbe20399bf5ce39ce6d328992eb76270ae34e71f16f9f542f8f",
+      "fully_read_before_execution": true,
+      "normal_command_role": "python3 -I -S -B <completion-checker>",
+      "optimized_command_role": "python3 -I -S -B -O <completion-checker>",
+      "normal_exit": 0,
+      "optimized_exit": 0,
+      "stdout_path": "COMPLETION_CHECK_RESULTS.json",
+      "stdout_sha256_both": "cfbf826576da2623dfc07f7d329544e42683e1c45ec35ee702bd1766fc097259",
+      "stdout_persistence": "Normal and optimized stdout were identical; exact normal tool stdout was saved after transient shared-disk exhaustion.",
+      "checks_survive_optimization": true,
+      "failed_preexecution_launches": [
+        {"exit": 1, "reason": "shared disk exhausted during shell stdout redirection; Python did not start"}
+      ]
+    }
+  ],
+  "original_checkers_executed": false,
+  "source_mutations": false
+}

@@ -1,0 +1,292 @@
+{
+  "command_count": 24,
+  "commands": [
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py",
+        "--output",
+        "/USERS/ALEC/DOCUMENTS/MATH/DRAFT_PR_ACTUAL_CLAIMS_1000_1100_20261012/AUDITS/PR1098_3000018/whole02-must-not-create-alias"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py\", line 12, in <module>\n    destination = fresh(a.output)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 66, in fresh\n    require(not os.path.samefile(ancestor, protected),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output is inside physical protected root')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: output is inside physical protected root\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py",
+        "--output",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/no-parent/new"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py\", line 12, in <module>\n    destination = fresh(a.output)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 60, in fresh\n    require(p.parent.is_dir(), 'existing real output parent required')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: existing real output parent required\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py",
+        "--output",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/new-source-rebuild_archive.pyFalse"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py\", line 13, in <module>\n    raw = archive_bytes()\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 86, in archive_bytes\n    raw = member(r['path']).read_bytes()\n          ~~~~~~^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 54, in member\n    return regular(ROOT/p)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 37, in regular\n    require(info.st_nlink == 1, 'hardlinked input rejected: '+str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: hardlinked input rejected: /private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py",
+        "--output",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/new-dirlink-rebuild_archive.pyFalse"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py\", line 13, in <module>\n    raw = archive_bytes()\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 86, in archive_bytes\n    raw = member(r['path']).read_bytes()\n          ~~~~~~^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 54, in member\n    return regular(ROOT/p)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 34, in regular\n    no_links(p)\n    ~~~~~~~~^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 30, in no_links\n    require(not p.is_symlink(), 'symlink leaf/ancestor rejected: '+str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: symlink leaf/ancestor rejected: /private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/publication\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py",
+        "--out-dir",
+        "/USERS/ALEC/DOCUMENTS/MATH/DRAFT_PR_ACTUAL_CLAIMS_1000_1100_20261012/AUDITS/PR1098_3000018/whole02-must-not-create-alias"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py\", line 15, in <module>\n    out = fresh(a.out_dir)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 66, in fresh\n    require(not os.path.samefile(ancestor, protected),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output is inside physical protected root')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: output is inside physical protected root\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/no-parent/new"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py\", line 15, in <module>\n    out = fresh(a.out_dir)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 60, in fresh\n    require(p.parent.is_dir(), 'existing real output parent required')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: existing real output parent required\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/new-source-build_pdf.pyFalse"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py\", line 16, in <module>\n    archive_bytes()  # Authenticate all payload and bootstrap before authoring.\n    ~~~~~~~~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 86, in archive_bytes\n    raw = member(r['path']).read_bytes()\n          ~~~~~~^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 54, in member\n    return regular(ROOT/p)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 37, in regular\n    require(info.st_nlink == 1, 'hardlinked input rejected: '+str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: hardlinked input rejected: /private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/new-dirlink-build_pdf.pyFalse"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py\", line 16, in <module>\n    archive_bytes()  # Authenticate all payload and bootstrap before authoring.\n    ~~~~~~~~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 86, in archive_bytes\n    raw = member(r['path']).read_bytes()\n          ~~~~~~^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 54, in member\n    return regular(ROOT/p)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 34, in regular\n    no_links(p)\n    ~~~~~~~~^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 30, in no_links\n    require(not p.is_symlink(), 'symlink leaf/ancestor rejected: '+str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: symlink leaf/ancestor rejected: /private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/publication\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 37, in <module>\n    print(json.dumps(verify(), sort_keys=True, indent=2))\n                     ~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 12, in verify\n    require(obj == EXPECTED_METADATA, 'native metadata mismatch: '+path)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: native metadata mismatch: metadata.json\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 37, in <module>\n    print(json.dumps(verify(), sort_keys=True, indent=2))\n                     ~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 15, in verify\n    require(native['files'] == [\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n        {'path':'../paper.pdf','name':'paper.pdf'},\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        {'path':'../pr1098_support_v1_0.zip','name':'pr1098_support_v1_0.zip'}],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        'native exact file selections')\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: native exact file selections\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 37, in <module>\n    print(json.dumps(verify(), sort_keys=True, indent=2))\n                     ~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 27, in verify\n    require(expected == {'bytes':len(raw),'sha256':digest(raw)}, 'artifact binding: '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: artifact binding: paper.pdf\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 37, in <module>\n    print(json.dumps(verify(), sort_keys=True, indent=2))\n                     ~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 22, in verify\n    archive = archive_bytes()\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 87, in archive_bytes\n    require(len(raw) == r['bytes'] and digest(raw) == r['sha256'],\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'payload binding mismatch: '+r['path'])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: payload binding mismatch: ARTIFACT_BINDINGS.json\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py",
+        "--output",
+        "/USERS/ALEC/DOCUMENTS/MATH/DRAFT_PR_ACTUAL_CLAIMS_1000_1100_20261012/AUDITS/PR1098_3000018/whole02-must-not-create-alias"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py\", line 12, in <module>\n    destination = fresh(a.output)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 66, in fresh\n    require(not os.path.samefile(ancestor, protected),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output is inside physical protected root')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: output is inside physical protected root\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py",
+        "--output",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/no-parent/new"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py\", line 12, in <module>\n    destination = fresh(a.output)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 60, in fresh\n    require(p.parent.is_dir(), 'existing real output parent required')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: existing real output parent required\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py",
+        "--output",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/new-source-rebuild_archive.pyTrue"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py\", line 13, in <module>\n    raw = archive_bytes()\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 86, in archive_bytes\n    raw = member(r['path']).read_bytes()\n          ~~~~~~^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 54, in member\n    return regular(ROOT/p)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 37, in regular\n    require(info.st_nlink == 1, 'hardlinked input rejected: '+str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: hardlinked input rejected: /private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py",
+        "--output",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/new-dirlink-rebuild_archive.pyTrue"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/rebuild_archive.py\", line 13, in <module>\n    raw = archive_bytes()\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 86, in archive_bytes\n    raw = member(r['path']).read_bytes()\n          ~~~~~~^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 54, in member\n    return regular(ROOT/p)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 34, in regular\n    no_links(p)\n    ~~~~~~~~^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 30, in no_links\n    require(not p.is_symlink(), 'symlink leaf/ancestor rejected: '+str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: symlink leaf/ancestor rejected: /private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/publication\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py",
+        "--out-dir",
+        "/USERS/ALEC/DOCUMENTS/MATH/DRAFT_PR_ACTUAL_CLAIMS_1000_1100_20261012/AUDITS/PR1098_3000018/whole02-must-not-create-alias"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py\", line 15, in <module>\n    out = fresh(a.out_dir)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 66, in fresh\n    require(not os.path.samefile(ancestor, protected),\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'output is inside physical protected root')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: output is inside physical protected root\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/no-parent/new"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py\", line 15, in <module>\n    out = fresh(a.out_dir)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 60, in fresh\n    require(p.parent.is_dir(), 'existing real output parent required')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: existing real output parent required\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/new-source-build_pdf.pyTrue"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py\", line 16, in <module>\n    archive_bytes()  # Authenticate all payload and bootstrap before authoring.\n    ~~~~~~~~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 86, in archive_bytes\n    raw = member(r['path']).read_bytes()\n          ~~~~~~^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 54, in member\n    return regular(ROOT/p)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 37, in regular\n    require(info.st_nlink == 1, 'hardlinked input rejected: '+str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: hardlinked input rejected: /private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/paper.tex\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py",
+        "--out-dir",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/new-dirlink-build_pdf.pyTrue"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/build_pdf.py\", line 16, in <module>\n    archive_bytes()  # Authenticate all payload and bootstrap before authoring.\n    ~~~~~~~~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 86, in archive_bytes\n    raw = member(r['path']).read_bytes()\n          ~~~~~~^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 54, in member\n    return regular(ROOT/p)\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 34, in regular\n    no_links(p)\n    ~~~~~~~~^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 30, in no_links\n    require(not p.is_symlink(), 'symlink leaf/ancestor rejected: '+str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: symlink leaf/ancestor rejected: /private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/publication\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 37, in <module>\n    print(json.dumps(verify(), sort_keys=True, indent=2))\n                     ~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 12, in verify\n    require(obj == EXPECTED_METADATA, 'native metadata mismatch: '+path)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: native metadata mismatch: metadata.json\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 37, in <module>\n    print(json.dumps(verify(), sort_keys=True, indent=2))\n                     ~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 15, in verify\n    require(native['files'] == [\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n        {'path':'../paper.pdf','name':'paper.pdf'},\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        {'path':'../pr1098_support_v1_0.zip','name':'pr1098_support_v1_0.zip'}],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        'native exact file selections')\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: native exact file selections\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 37, in <module>\n    print(json.dumps(verify(), sort_keys=True, indent=2))\n                     ~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 27, in verify\n    require(expected == {'bytes':len(raw),'sha256':digest(raw)}, 'artifact binding: '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: artifact binding: paper.pdf\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-B",
+        "/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py"
+      ],
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 37, in <module>\n    print(json.dumps(verify(), sort_keys=True, indent=2))\n                     ~~~~~~^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/verify_kit.py\", line 22, in verify\n    archive = archive_bytes()\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 87, in archive_bytes\n    require(len(raw) == r['bytes'] and digest(raw) == r['sha256'],\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'payload binding mismatch: '+r['path'])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pr1098-whole02-95f14b7d-5220-4543-b167-1b07e20892fa/kit/code/common.py\", line 17, in require\n    raise ValueError(message)\nValueError: payload binding mismatch: ARTIFACT_BINDINGS.json\n",
+      "stdout": ""
+    }
+  ],
+  "runtime_ROOT_or_ORIGINAL_modified": false,
+  "scope": "Actual unchanged scripts, own external fixture; each protected alias/no-parent/well-formed-output-bad-input rejected with absent destination.",
+  "status": "PASS"
+}

@@ -1,0 +1,7 @@
+# Ledger reconciliation review 02
+
+- 2026-10-22T00:30:54.544243+00:00 — Independent first inspection complete. Exact reviewed helper is 13,017 bytes, SHA-256 `75dd23fad8e65c87fb19267d168a26d05997a1e03a694d751bd85407bfa799da`; plan matches requested `83df78463704c63ea3969a87325f18ab21c21893d6e1b8b49c5b16a6b4e3b2e1`. No live helper invocation or external mutation. Initial estimated review completion: 20%.
+
+- 2026-10-22T00:39:11.120695+00:00 — Completed195 exact-copy offline controls across normal/-O/-OO,65 fixtures each. Two import-execution countercontrols, six account-lead/account-origin bypasses, four response inconsistencies and second-PR-base-only drift reproduced in all modes; recorded elapsed-time recommendation separately. No real external effects or source-copy changes. Existing row attribution/math scope accepted after primary/public text inspection and three-payload/closed-source-archive recheck. Review completion estimate:100%; live operational readiness remains false pending repairs and fresh independent review.
+
+- 2026-10-22T00:40:51.982942+00:00 — At root request, verified and deduplicated only this review's two completed fixture trees:8,580 files /451,889,163 source bytes became585 unique blobs in a1,157,548-byte ZIP. Every file path/byte/SHA/mode/mtime and3,686 directory mappings were checked against originals; full archive CRC/member closure passed before removing only the verified owned trees. Review completion remains100%; no broader/newer-helper review performed.

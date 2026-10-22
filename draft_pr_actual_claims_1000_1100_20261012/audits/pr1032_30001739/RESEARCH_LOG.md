@@ -14,3 +14,7 @@ Root read the frozen Langlands report and derivation in full; all 61 output pins
 ## 2026-10-13T22:24:43.592400+00:00: priority audit inspected and gap retained
 
 Read complete fresh report/verdict and verified 110 frozen files. No inspected predecessor matches the GL15 parameters, but exact overlap with full Luo–Zha body remains unknown. A PDF-filename inventory found no matching local title/DOI file; fulltext was not searched across unrelated efforts. User asked asynchronously for lawful local path/public URL. Mathematical acceptance stands; novelty-framed publication pending. PR workflow best-guess completion: 45%, priority clearance 0%.
+
+## 2026-10-14T03:37:08.199539+00:00 — read-only exact connected-Drive source search (candidate60%)
+
+Fresh GWS query succeeded, returned0matches/no next page/incompleteSearchfalse. No fullbody obtained; this only measures queried name/fullText index under current permissions. The Luo–Zha kernel-generation paper remains a material unknown, and #1032 stays priority-held. Other candidate math/preprint work continues. No external contact or publication occurred.

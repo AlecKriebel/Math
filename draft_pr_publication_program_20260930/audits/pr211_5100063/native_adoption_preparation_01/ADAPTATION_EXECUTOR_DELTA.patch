@@ -1,0 +1,85 @@
+--- accepted210v2/native210_future_executor.py
++++ PR211/native211_future_executor.py
+@@ -1,4 +1,4 @@
+-"""Inactive future PR210 native executor. Import is inert; no ref writer exists.
++"""Inactive future PR211 native executor. Import is inert; no ref writer exists.
+ 
+ This source has not been operationally authorized. Every CLI action requires
+ sealed actual Root envelopes and the exact two source/manifest audit bindings.
+@@ -28,7 +28,7 @@
+ LOCK_BYTES = (b'PR publication program: stable Root cooperating global-five writer lock v1\n'
+               b'Never unlink or replace this inode; every existing-view writer must flock it.\n')
+ # Filled only after the model source is sealed; no live source is loaded now.
+-MODEL_PIN = {'bytes': 34675, 'sha256': 'ff8d79fc245fcf55ac1d109ece1d3c5cd9c5f28bd51060e7efbc750ec41d2c4d'}
++MODEL_PIN = {'bytes': 35385, 'sha256': 'a018c56a6ad9723d8e89caf48b8532dc2d927ea703d4e84db3bd4751603c766d'}
+ 
+ 
+ def need(ok,message):
+@@ -46,7 +46,7 @@
+ 
+ def model():
+     need(type(MODEL_PIN) is dict, 'Unsealed preparation source cannot execute')
+-    path = BASE/'native210_model.py'
++    path = BASE/'native211_model.py'
+     need(path.resolve() == path, 'Canonical model source required')
+     with ParentHandle(path) as parent:
+         fd = os.open(path.name,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK,dir_fd=parent.fd)
+@@ -64,7 +64,7 @@
+             parent.check()
+         finally:
+             os.close(fd)
+-    result = types.ModuleType('pr210_owned_conditional_model')
++    result = types.ModuleType('pr211_owned_conditional_model')
+     result.__file__ = str(path)
+     exec(compile(raw,str(path),'exec'),result.__dict__)
+     return result
+@@ -126,7 +126,7 @@
+     def __call__(self,method,path,body=None,expected_oid=None):
+         h = self.h
+         need(not self.failed, 'Attempt stopped; inspect same attempt read-only')
+-        get = path in ('git/ref/heads/main','pulls/210') or re.fullmatch(
++        get = path in ('git/ref/heads/main','pulls/211') or re.fullmatch(
+             r'git/(?:commits|trees|blobs)/[0-9a-f]{40}',path) is not None or re.fullmatch(
+             r'compare/[0-9a-f]{40}\.\.\.[0-9a-f]{40}',path) is not None
+         need((method == 'GET' and get and body is None)
+@@ -419,8 +419,8 @@
+ 
+ def actual_acceptance(h,m,wanted,name,expected):
+     a = h.decode(h.sealed(name,expected))
+-    h.matches(a,{'schema':'pr210-root-native-actual-CAS-acceptance-v1',
+-                 'evidence_scope':'ACTUAL_ROOT_RECEIPT','PR':210,'phase':m['phase'],'accepted':True,
++    h.matches(a,{'schema':'pr211-root-native-actual-CAS-acceptance-v1',
++                 'evidence_scope':'ACTUAL_ROOT_RECEIPT','PR':211,'phase':m['phase'],'accepted':True,
+                  'manifest_pin':wanted,'helper_pin':m['helper_pin'],'executor_pin':m['executor_pin'],
+                  'core_pin':h.CORE_PIN,'facts':m['facts'],'parent':m['expected_parent'],
+                  'original_head':h.ORIGINAL,'prepared_head':h.PREPARED,'original_merge_commit':h.MERGED,'original_PR_already_merged':True,
+@@ -464,7 +464,7 @@
+             if now != post:
+                 need(now == row['preimage'], 'Local preimage changed before install')
+                 with ParentHandle(path) as parent:
+-                    temp = '.pr210-native-'+journal.name+'-'+str(index)+'.tmp'
++                    temp = '.pr211-native-'+journal.name+'-'+str(index)+'.tmp'
+                     effect_guard()
+                     parent.check()
+                     fd = os.open(temp,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o444,dir_fd=parent.fd)
+@@ -491,16 +491,16 @@
+             put(journal,'VIEW_'+str(index)+'.json',{'path':row['path'],'postimage':post})
+         effect_guard()
+         need(all(local_pin(h,CHECKOUT/path) == h.pin(overlay[path]) for path in h.VIEWS), 'Exact five postimages required')
+-        receipt = {'schema':'pr210-native-actual-five-sync-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+-                   'PR':210,'phase':m['phase'],'facts':m['facts'],'candidate':a['candidate'],'tree':a['tree'],
++        receipt = {'schema':'pr211-native-actual-five-sync-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
++                   'PR':211,'phase':m['phase'],'facts':m['facts'],'candidate':a['candidate'],'tree':a['tree'],
+                    'acceptance_pin':actual_pin,'manifest_pin':wanted,
+                    'all_five_local_files_match_actual_checkpoint':True,
+                    'files':[{'path':path,'postimage':h.pin(overlay[path])} for path in h.VIEWS]}
+         put(journal,'LOCAL_GLOBAL_FIVE_SYNC.json',receipt)
+         effect_guard()
+         need(all(local_pin(h,CHECKOUT/path) == h.pin(overlay[path]) for path in h.VIEWS), 'Exact all-five before pointer')
+-        put(BASE,pointer.name,{'schema':'pr210-native-actual-pointer-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+-             'PR':210,'phase':m['phase'],'facts':m['facts'],'candidate':a['candidate'],'tree':a['tree'],
++        put(BASE,pointer.name,{'schema':'pr211-native-actual-pointer-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
++             'PR':211,'phase':m['phase'],'facts':m['facts'],'candidate':a['candidate'],'tree':a['tree'],
+              'acceptance_pin':actual_pin,'manifest_pin':wanted,'sync_path':str(journal/'LOCAL_GLOBAL_FIVE_SYNC.json'),
+              'sync_pin':pin(enc(receipt)),'recorded_only_after_actual_ref_readback_and_exact_all_five_files':True})
+     return receipt

@@ -1,0 +1,9 @@
+# PR400–420 adversarial classification review
+
+- 2026-10-21T16:51:52.807531+00:00: Started read-only independent review. Scope: eligibility, actual pinned diff/row correspondence, completeness, live metadata, and PR411 publication identity/coverage. No mathematical correctness or novelty audit of excluded/already-published results. Completion estimate: 0%.
+
+- 2026-10-21T16:54:37.822152+00:00: All 21 live metadata snapshots and pinned path/row sets match. All 19 explicit-status exclusions have single corresponding own rows. PR415 actual patch is solely title/source header restoration. PR411 branch-vs-merge explanation directly checked: all99 scientific payload blobs are identical and cached queue blob is the merge object; exact own row preserved. Review completion estimate: 65%.
+
+- 2026-10-21T16:58:42.154948+00:00: Public DOI23331232, all3 delivered files, 2-source/99-support positive manifests and full member coverage verified from fresh downloads. Exact PDF/source/ZIP bytes equal pinned branch. Whole live row77 matches prior record and is unique among exact/semantic leads in all1173 ledger identity rows. Original source PDF fresh fetch timed out; archived primary TeX independently read and metadata hash matched. Helper tested on21 actual PRs and6 controls; no range disposition blocker. Completion estimate: 95%.
+
+- 2026-10-21T17:01:26.235850+00:00: Completed substantive REVIEW.md and VERDICT.json. All21 existing dispositions upheld within stated review scope; no eligibility or publication-correspondence blocker. Optional helper metadata-hardening findings recorded. Full520-blob input manifest, all provider snapshots, diff evidence, public payloads, source/coverage receipts and output checksums preserved. Review completion estimate: 100%. Parent owns any repository checkpoint/release; no commit/push performed by this read-only reviewer.

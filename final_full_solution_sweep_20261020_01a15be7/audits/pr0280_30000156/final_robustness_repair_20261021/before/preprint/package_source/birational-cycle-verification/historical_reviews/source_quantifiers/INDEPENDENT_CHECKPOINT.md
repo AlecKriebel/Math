@@ -1,0 +1,13 @@
+# Independent source/quantifier checkpoint
+
+Captured before reading any prior review, source audit, result file, or conclusion. Only immutable original/PROOF.md, SOURCE_SNAPSHOT.json, the primary OWR PDF web extraction, and the author two-page primary contribution have been read. Directory names of old reports were listed solely to find source assets.
+
+Independent mechanism: on p=3 mod 4, every nonzero-v point in the u-fiber has period ord_p(u^2+1), while v=0 has period one. Thus all p^2 affine points are periodic; at every fixed x in [1/2,1), the only omitted fiber periods are p-1 once p(1-x)>1. The claimed exact count and primitive-root character mechanism appear sound on initial reading.
+
+The author primary text defines algebraic integrability using rational L, inverse L, and I; it states a universal birational-map limit before listing separate integrable/reversible/nonintegrable cases. Generic genus <=1 appears in the exposition and genus one only in the later heuristic. No constant-Jacobian, polynomial-inverse, elliptic-only, or genericity condition is stated for the universal sentence. The proposed map has invariant u and genus-zero fibers, so it attacks the literal broad integrable case. It cannot by itself settle an intended restricted elliptic/polynomial-automorphism version.
+
+Prime-set issue requiring explicit resolution: the source selects suitable positive-density primes for coefficient/quantity reductions. This is not the same as arbitrary data-dependent subsequence selection after viewing distributions. For Q coefficients the natural reduction set is all primes (up to finitely many); p=3 mod 4 is a legitimate infinite subsequence, so its nonconvergence obstructs convergence on all reduction primes. Its own positive density and full-permutation property give a particularly clean admissible phase space. A stronger statement against every conceivable positive-density refinement has not been shown by the written proof and should not be attributed to it.
+
+Weak-convergence mechanism: the probability measures of T_p/p are supported in (0,1); if they converged weakly, CDFs would converge at every continuity point of the limiting CDF. A probability CDF has at most countably many discontinuities, while the asserted failure is at every x in an interval. Therefore no weak limit. Failure at 3/4 alone would not suffice, but the interval claim does.
+
+Provisional assigned-audit completion: 40%. Exact remaining tasks: authenticate printed primary pages; read exact imported question; test prime quantifier and projective/exceptional-set issues fully; check finite diagnostics and endpoint behavior; compare prior reviews only after independent work; finish explicit scope/gap and hash-pinned audit.

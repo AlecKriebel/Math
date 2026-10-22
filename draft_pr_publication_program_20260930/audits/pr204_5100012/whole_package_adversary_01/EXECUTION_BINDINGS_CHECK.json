@@ -1,0 +1,54 @@
+{
+  "utc": "2026-10-16T10:55:06.042579+00:00",
+  "status": "PASS",
+  "driver_probe_optimized": true,
+  "driver_guard_rejections": [
+    "require_false",
+    "JSON_NaN",
+    "numeric_inf",
+    "numeric_nan",
+    "string_inf"
+  ],
+  "portable_raw_bindings": [
+    {
+      "name": "fresh",
+      "receipt_sha256": "409c91fa35260623e0317563b7a3762203b884f5eb559497e0f4653da86b5b3e",
+      "raw_sha256": "1313fa325be0417713de8b258853b18c727a9f06238ca0c05528c97cee7be8b3",
+      "bound_cases": 28,
+      "status": "PASS"
+    },
+    {
+      "name": "archived_success",
+      "receipt_sha256": "48b364539e0b16acc7f0e8637f9e0474c190af1d295a1eca2c7370085caf466e",
+      "raw_sha256": "132b0143ff622007484f610c328586b7a632e7bfe1ac14a1b3d80e34fd8c7d35",
+      "bound_cases": 28,
+      "status": "PASS"
+    },
+    {
+      "name": "archived_ENOSPC",
+      "receipt_sha256": "d655b24bb12cf2a3fbdd3db015e0ced5507e808d25e54efb852322bcdff8b0eb",
+      "raw_sha256": "2aaadf78c73f7d341b61774ffc01a7ce8df5db38cb3c427b40efad2e12b0ad98",
+      "bound_cases": 13,
+      "status": "FAIL"
+    }
+  ],
+  "assert_only_AST_repairs": [
+    "verify.py",
+    "independent_review/independent_check.py"
+  ],
+  "historical_raw_bindings": [
+    {
+      "receipt": "math_algebra_physical_01/original_execution_receipts.json",
+      "cases_bound": 8
+    },
+    {
+      "receipt": "math_algebra_physical_01/authored_execution_receipts.json",
+      "cases_bound": 8
+    },
+    {
+      "receipt": "math_algebra_physical_01/repaired_original_controls_01/REPAIR_EXECUTION_RECEIPTS.json",
+      "cases_bound": 8
+    }
+  ],
+  "limits": "This establishes byte/code/flag/output consistency of archived receipts, not independent authentication of past execution. The fresh run was actually executed during this review."
+}

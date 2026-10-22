@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/common.py", line 27, in no_links
+    s = q.lstat()
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 661, in lstat
+    return os.lstat(self)
+           ~~~~~~~~^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/private/tmp/pr1097-package02-n30he1uw/missing-parent'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/rebuild_pdf.py", line 36, in <module>
+    main()
+    ~~~~^^
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/rebuild_pdf.py", line 19, in main
+    out = fresh_output(args.out_dir, is_directory=True)
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/common.py", line 69, in fresh_output
+    no_links(p.parent, directory=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/common.py", line 29, in no_links
+    require(q == p and not leaf_required, "missing ancestor/input: " + str(q))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/common.py", line 15, in require
+    raise ValueError(message)
+ValueError: missing ancestor/input: /private/tmp/pr1097-package02-n30he1uw/missing-parent

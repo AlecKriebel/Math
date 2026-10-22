@@ -1,0 +1,699 @@
+--- /dev/null
++++ after/preprint_v1_0/CURRENT_STATUS_REPAIR01.json
+@@ -0,0 +1,13 @@
++{
++  "as_of_utc": "2026-10-14T05:54:37.026183+00:00",
++  "stage": "bounded repair01 complete; fresh whole02 required",
++  "whole_reviews_completed": 1,
++  "minimum_whole_reviews": 2,
++  "new_complete_review_required": true,
++  "publication_ready": false,
++  "published": false,
++  "services_held_at": 1032,
++  "math_research_completion_best_guess_percent": 60,
++  "paper_tex_pdf_changed": false,
++  "dated_history": "Old STATUS.json, preparation metadata and old verdicts retain their exact dated meaning; this current record supersedes their pending-review counts."
++}
+--- before/preprint_v1_0/EXTERNAL_BINDING.json
++++ after/preprint_v1_0/EXTERNAL_BINDING.json
+@@ -1,9 +1,11 @@
+ {
+-  "schema_version": 1,
+-  "as_of_utc": "2026-10-14T05:07:57.575049+00:00",
+-  "scope": "External noncircular binding; PDF, ZIP and this binding are excluded from archive. No human peer review or signature claimed.",
+-  "manifest_sha256": "c89992031168a12b500ecbdd37bd57ea3193caa1598cd8f7fb43b0dc1eaa5d0b",
+-  "metadata_sha256": "162404bfcb5c034581ed8ad6097ef82f694ddbe0637e1fe5144d909a56c82c9d",
++  "schema_version": 2,
++  "as_of_utc": "2026-10-14T05:56:20.823641+00:00",
++  "scope": "External noncircular repaired-candidate binding. Live wrapper, binding, PDF and ZIP are excluded from the current archive; captured older bytes inside are explicitly historical. No signature or human peer review is claimed.",
++  "manifest_sha256": "0dcabd96446d786666d7c2d36196f0b162647dd1a4edefbafa78ad825a121497",
++  "metadata_sha256": "550516506a72be24a41ba72466bc9a6b1a51184175fa6ead4a0367acb261f6ba",
++  "research_metadata_sha256": "162404bfcb5c034581ed8ad6097ef82f694ddbe0637e1fe5144d909a56c82c9d",
++  "deposit_manifest_sha256": "59e35e1c0c37ec745779607b534532ae16fb505b0e4c36563ef1ddf671e5f7a7",
+   "pdf": {
+     "filename": "preprint.pdf",
+     "bytes": 84937,
+@@ -11,7 +13,39 @@
+   },
+   "archive": {
+     "filename": "verification_kit.zip",
+-    "bytes": 607553,
+-    "sha256": "d1c03ef097938934641907c3552f05a0687347ea7945b399fff1a365322a1a1b"
+-  }
++    "bytes": 2056267,
++    "sha256": "9d585b3626bc349611626c5449819e4e1fd6f0f80cb06c467bae96f0532916a0"
++  },
++  "external_files": [
++    {
++      "filename": "CURRENT_STATUS_REPAIR01.json",
++      "bytes": 558,
++      "sha256": "b322b897213dd2a98e9745ae53f4ed93ea2962821700de4ff2b5b93e7266187c"
++    },
++    {
++      "filename": "README.md",
++      "bytes": 5313,
++      "sha256": "6aa007a000c8beca75d1c1be5731cb9503e4d307f5f6d8fb4dd15e2ea94bdcb4"
++    },
++    {
++      "filename": "deposit_metadata.json",
++      "bytes": 3366,
++      "sha256": "59e35e1c0c37ec745779607b534532ae16fb505b0e4c36563ef1ddf671e5f7a7"
++    },
++    {
++      "filename": "metadata.json",
++      "bytes": 3121,
++      "sha256": "550516506a72be24a41ba72466bc9a6b1a51184175fa6ead4a0367acb261f6ba"
++    },
++    {
++      "filename": "preprint.tex",
++      "bytes": 26569,
++      "sha256": "43115a1b12108340e4e3b28eb315e6d7d79ff3a8a208286abf3528c537ea6587"
++    },
++    {
++      "filename": "research_metadata.json",
++      "bytes": 2329,
++      "sha256": "162404bfcb5c034581ed8ad6097ef82f694ddbe0637e1fe5144d909a56c82c9d"
++    }
++  ]
+ }
+--- before/preprint_v1_0/README.md
++++ after/preprint_v1_0/README.md
+@@ -1,13 +1,25 @@
+-# PR1080, problem11000150: version 1.0 preparation candidate
++# PR1080, problem11000150: version 1.0 repaired candidate
+ 
+-Prepared 14 October 2026 UTC: a seven-page credited finiteness deduction/exposition by Alec Kriebel, independent researcher, ORCID [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X), with extensive AI assistance and CC BY 4.0 licensing. The candidate is unrefereed, has no external human peer review or formal certification, and awaits at least two fresh whole-candidate adversarial reviews. Publication readiness is false at this preparation checkpoint.
++Prepared 14 October 2026 UTC: a seven-page credited finiteness deduction/exposition by Alec Kriebel, independent researcher, ORCID [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X), with extensive AI assistance and CC BY 4.0 licensing. The candidate is unrefereed, has no external human peer review or formal certification. One complete whole-candidate review found two package issues; this bounded repair fixes them and requires a fresh complete second review. Publication readiness remains false. `CURRENT_STATUS_REPAIR01.json` is the current successor to unchanged dated preparation records.
+ 
+ The note proves fixed-genus finite simultaneous-conjugacy classes of ordered positive factorizations of ONE boundary twist on oriented compact S(g,1), g>=1, with maps/isotopies fixing the boundary pointwise, non-null-homotopic factor curves, repetitions allowed and pairwise geometric intersection <=1. Thus M(g) is finite and attained, with chain lower bound 4g(2g+1). Peripheral factors are singleton only; other factors are nonseparating. M(1)=12 and M(2)=40 are credited deductions from prior lengths with the convention bridge explicit. The CT Cor4.13 finite-alphabet prior corollary and JMM/MRT/CFP surface mechanisms are credited precisely.
+ 
+ This answers the separately stated original restricted arbitrary-length clause negatively under these conventions. Exact M(g) for g>=3, explicit upper formulas, an effective stopping criterion, extremizers and Hurwitz/positive Artin/T-move/A5/D6 classifications remain unresolved in this work. Historical novelty, exact application priority and worldwide continuing-open status remain UNKNOWN.
+ 
+-Deliverables are `preprint.pdf`, the standalone `preprint.tex`, `verification_kit.zip`, and `EXTERNAL_BINDING.json`. `metadata.json`, `deposit_metadata.json` and the kit's `metadata.json` are byte-identical. The kit README supplies clean extraction, internal verification, normal/-O finite checks, targeted faults, byte-identical archive rebuilding, strict optional/required external binding, and standalone compile commands. Every documented command was run successfully from clean extraction; receipts are in `CLEAN_EXTRACTION_RESULTS.json`.
++Deliverables are `preprint.pdf`, the standalone `preprint.tex`, `verification_kit.zip`, and `EXTERNAL_BINDING.json`. `metadata.json` and the kit's `metadata.json` are byte-identical native Zenodo API objects. `deposit_metadata.json` is the repository upload manifest containing exactly `metadata` and `files`; its metadata object equals the two bare objects and its attachments are exactly the unchanged PDF and repaired ZIP. `research_metadata.json` preserves the old custom research object byte-for-byte, including its dated preparation checkpoint. This custom object is not an upload manifest. The kit README supplies clean extraction, internal verification, normal/-O finite checks, targeted faults, byte-identical archive rebuilding, strict optional/required external binding, and standalone compile commands. Current standard-library, archive, binding and local uploader commands were rerun for this repair; receipts are in `../repairs/package01/REPRODUCTION_RECEIPTS.jsonl`. `CLEAN_EXTRACTION_RESULTS.json` records the original preparation commands. Real compilation and all seven page views were last checked in complete whole01 on unchanged TeX/PDF; this bounded repair performs no new compilation or visual review. Whole02 must perform those checks again.
+ 
+ `PREPARATION_REPORT.md` gives the complete preparation and preservation account; `FINAL_VERIFICATION.json` records checks and current review boundaries. `INPUT_PINS.json` protects all 194 preexisting audit files. `OUTPUT_PINS.json` pins final new files except itself; it is not a self-signature. Source body/images, raw service/Git captures, environments and duplicate archives are not distributed. The kit's individual copy/exclusion ledger keeps historical receipt omissions explicit. All selected old authored records remain unchanged.
+ 
+ The original six-file edition has no executable. The kit's newly authored portable adapters reproduce subsequent reviewers' finite controls without claiming omitted historical executable or 52-input replay. Finite checks detect faults; universal mathematics is the written proof and credited source interfaces. The ZIP is deterministic from its explicit allowlist, fixed timestamp/mode/order and stored members. Its external binding and PDF stay outside it, so hashing is noncircular. PDF recompilation is checked for success and layout; runtime-independent PDF byte identity is not promised.
++
++## Current repair and local submission check
++
++The exact TeX, PDF, mathematical theorem and source credits are unchanged. `repair01_history` in the kit retains the captured-before bytes of every changed old artifact and the complete whole01 outputs. `REPAIR01_HISTORY_RESOLUTION.json` individually resolves prior pins to exact stage copies or records a precise omission; `REPAIR01_STAGE_COPIES.json` verifies every delivered captured-stage copy. Earlier `INPUT_PINS.json` and `OUTPUT_PINS.json` stay unchanged historical records. Current repair custody and ordinary/optimized receipts are in `../repairs/package01`.
++
++From the repository root, the entirely local uploader validation is:
++
++```sh
++python3 -B zenodo_deposit_tool/zenodo.py check draft_pr_actual_claims_1000_1100_20261012/audits/pr1080_11000150/preprint_v1_0/deposit_metadata.json
++```
++
++No deposition, publication, DOI, spreadsheet write or PR disposition has occurred for this candidate. Native metadata's dated preparation note does not certify final clearance. The external binding binds the kit manifest, native metadata, historical research object, upload manifest, and exact PDF/ZIP without placing the wrapper or binding inside the ZIP.
+--- before/preprint_v1_0/deposit_metadata.json
++++ after/preprint_v1_0/deposit_metadata.json
+@@ -1,36 +1,38 @@
+ {
+-  "schema_version": 1,
+-  "title": "A credited finiteness deduction for restricted boundary-twist factorizations",
+-  "version": "1.0 preparation candidate",
+-  "author": {
+-    "name": "Alec Kriebel",
+-    "affiliation": "Independent researcher",
+-    "orcid": "https://orcid.org/0009-0001-9320-500X"
++  "metadata": {
++    "title": "A credited finiteness deduction for restricted boundary-twist factorizations",
++    "upload_type": "publication",
++    "publication_type": "preprint",
++    "creators": [
++      {
++        "name": "Kriebel, Alec",
++        "affiliation": "Independent researcher",
++        "orcid": "0009-0001-9320-500X"
++      }
++    ],
++    "description": "For each fixed genus g ≥ 1, let S(g,1) be an oriented compact surface with one boundary component, and let maps and isotopies fix that boundary pointwise. We prove that ordered positive factorizations of one positive boundary Dehn twist, along non-null-homotopic simple closed curves with repetitions permitted and pairwise geometric intersection at most one, have finitely many simultaneous-conjugacy classes. Their maximal length M(g) is finite and attained, with M(g) ≥ 4g(2g+1). Peripheral factors occur only in the singleton factorization; otherwise all factors are nonseparating. The values M(1) = 12 and M(2) = 40 are credited deductions from prior work with the convention bridge stated. This gives a complete negative answer, under the stated conventions, to the separately printed restricted arbitrary-length clause in the Wajnryb/Farb problem collection. The full original maximum and classification bundle remains partial: exact M(g) for g ≥ 3, explicit upper formulas, an effective exhaustive-enumeration stopping criterion, extremizers, and Hurwitz, positive Artin, T-move and A5/D6 classifications remain unresolved in this work. The note is a credited deduction and exposition. Cossu and Tringali's arXiv:2208.05869v3, Corollary 4.13, supplies the generic finite-alphabet finiteness corollary through a normal reduced cone and nonerasing atomic expansions. The support and ribbon arguments explicitly build on Juvan–Malnič–Mohar, Malestein–Rivin–Theran, and Cahn–Fanoni–Petri. Honda–Kazez–Matić, Smith, the chain relation, and Baykur–Monden–Van Horn-Morris provide credited premises. Exact historical priority of the resulting surface application, novelty, and worldwide current-open status remain UNKNOWN; a bounded literature audit is not an absence proof. Extensive AI tools were used in mathematical and source checking, writing, code, and package preparation. This preprint is unrefereed, has no external human peer review, and is not formally certified. The accompanying verification kit provides written proof and source/custody records plus reproducible finite fault controls; those controls do not replace the universal proof or replay omitted historical inputs.",
++    "access_right": "open",
++    "license": "cc-by-4.0",
++    "publication_date": "2026-10-14",
++    "version": "1.0",
++    "language": "eng",
++    "keywords": [
++      "mapping class groups",
++      "Dehn twist factorizations",
++      "geometric intersection",
++      "finite factorizations",
++      "credited mathematical exposition"
++    ],
++    "notes": "Prepared locally on 2026-10-14 before deposit or publication. One complete whole-candidate review has been completed; a fresh complete second review is required after the metadata and output-interface repair. Publication readiness has not been affirmed."
+   },
+-  "license": "CC-BY-4.0",
+-  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+-  "problem_id": 11000150,
+-  "PR": 1080,
+-  "genre": "Credited finiteness deduction and exposition",
+-  "exact_claim": "For fixed g>=1 on oriented compact S(g,1), with maps/isotopies fixing boundary pointwise, ordered positive factorizations of ONE positive boundary twist along non-null-homotopic curves, repetitions permitted, pairwise geometric intersection <=1, have finitely many simultaneous-conjugacy classes and an attained finite M(g), with 4g(2g+1)<=M(g). Peripheral only singleton; separating excluded otherwise. Credited M(1)=12 and M(2)=40.",
+-  "prior_generic_corollary": "Cossu--Tringali arXiv2208.05869v3 Cor4.13 via ambient normal reduced cone, strong positivity, weak local finite generation and nonerasing atomic expansions; ordered-word finiteness uses BF consequence.",
+-  "source_scope": "Wajnryb/Farb printed126/PDF133 separately stated restricted arbitrary-length clause answered negatively under the exact conventions; full original maximum/classification bundle remains partial.",
+-  "unresolved_in_this_work": [
+-    "Exact M(g) for g>=3",
+-    "Explicit upper formula and effective exhaustive-enumeration stopping criterion",
+-    "Extremizers; Hurwitz, positive Artin, T-move and A5/D6 classifications"
+-  ],
+-  "novelty": "UNKNOWN",
+-  "exact_historical_priority": "UNKNOWN",
+-  "worldwide_current_open_status": "UNKNOWN",
+-  "ai_assistance": "Extensive AI assistance in mathematical/source checking, writing, code and package preparation.",
+-  "human_peer_review": false,
+-  "formal_certification": false,
+-  "dated_preparation_status": {
+-    "as_of_utc": "2026-10-14",
+-    "stage": "preparation candidate pending at least two fresh whole-candidate adversarial reviews",
+-    "publication_ready": false,
+-    "fresh_whole_candidate_reviews_completed": 0
+-  },
+-  "computational_role": "New portable finite reviewer controls; no universal geometry enumeration, formal certification or omitted historical executable replay."
++  "files": [
++    {
++      "path": "preprint.pdf",
++      "name": "preprint.pdf"
++    },
++    {
++      "path": "verification_kit.zip",
++      "name": "verification_kit.zip"
++    }
++  ]
+ }
+--- before/preprint_v1_0/metadata.json
++++ after/preprint_v1_0/metadata.json
+@@ -1,36 +1,26 @@
+ {
+-  "schema_version": 1,
+   "title": "A credited finiteness deduction for restricted boundary-twist factorizations",
+-  "version": "1.0 preparation candidate",
+-  "author": {
+-    "name": "Alec Kriebel",
+-    "affiliation": "Independent researcher",
+-    "orcid": "https://orcid.org/0009-0001-9320-500X"
+-  },
+-  "license": "CC-BY-4.0",
+-  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+-  "problem_id": 11000150,
+-  "PR": 1080,
+-  "genre": "Credited finiteness deduction and exposition",
+-  "exact_claim": "For fixed g>=1 on oriented compact S(g,1), with maps/isotopies fixing boundary pointwise, ordered positive factorizations of ONE positive boundary twist along non-null-homotopic curves, repetitions permitted, pairwise geometric intersection <=1, have finitely many simultaneous-conjugacy classes and an attained finite M(g), with 4g(2g+1)<=M(g). Peripheral only singleton; separating excluded otherwise. Credited M(1)=12 and M(2)=40.",
+-  "prior_generic_corollary": "Cossu--Tringali arXiv2208.05869v3 Cor4.13 via ambient normal reduced cone, strong positivity, weak local finite generation and nonerasing atomic expansions; ordered-word finiteness uses BF consequence.",
+-  "source_scope": "Wajnryb/Farb printed126/PDF133 separately stated restricted arbitrary-length clause answered negatively under the exact conventions; full original maximum/classification bundle remains partial.",
+-  "unresolved_in_this_work": [
+-    "Exact M(g) for g>=3",
+-    "Explicit upper formula and effective exhaustive-enumeration stopping criterion",
+-    "Extremizers; Hurwitz, positive Artin, T-move and A5/D6 classifications"
++  "upload_type": "publication",
++  "publication_type": "preprint",
++  "creators": [
++    {
++      "name": "Kriebel, Alec",
++      "affiliation": "Independent researcher",
++      "orcid": "0009-0001-9320-500X"
++    }
+   ],
+-  "novelty": "UNKNOWN",
+-  "exact_historical_priority": "UNKNOWN",
+-  "worldwide_current_open_status": "UNKNOWN",
+-  "ai_assistance": "Extensive AI assistance in mathematical/source checking, writing, code and package preparation.",
+-  "human_peer_review": false,
+-  "formal_certification": false,
+-  "dated_preparation_status": {
+-    "as_of_utc": "2026-10-14",
+-    "stage": "preparation candidate pending at least two fresh whole-candidate adversarial reviews",
+-    "publication_ready": false,
+-    "fresh_whole_candidate_reviews_completed": 0
+-  },
+-  "computational_role": "New portable finite reviewer controls; no universal geometry enumeration, formal certification or omitted historical executable replay."
++  "description": "For each fixed genus g ≥ 1, let S(g,1) be an oriented compact surface with one boundary component, and let maps and isotopies fix that boundary pointwise. We prove that ordered positive factorizations of one positive boundary Dehn twist, along non-null-homotopic simple closed curves with repetitions permitted and pairwise geometric intersection at most one, have finitely many simultaneous-conjugacy classes. Their maximal length M(g) is finite and attained, with M(g) ≥ 4g(2g+1). Peripheral factors occur only in the singleton factorization; otherwise all factors are nonseparating. The values M(1) = 12 and M(2) = 40 are credited deductions from prior work with the convention bridge stated. This gives a complete negative answer, under the stated conventions, to the separately printed restricted arbitrary-length clause in the Wajnryb/Farb problem collection. The full original maximum and classification bundle remains partial: exact M(g) for g ≥ 3, explicit upper formulas, an effective exhaustive-enumeration stopping criterion, extremizers, and Hurwitz, positive Artin, T-move and A5/D6 classifications remain unresolved in this work. The note is a credited deduction and exposition. Cossu and Tringali's arXiv:2208.05869v3, Corollary 4.13, supplies the generic finite-alphabet finiteness corollary through a normal reduced cone and nonerasing atomic expansions. The support and ribbon arguments explicitly build on Juvan–Malnič–Mohar, Malestein–Rivin–Theran, and Cahn–Fanoni–Petri. Honda–Kazez–Matić, Smith, the chain relation, and Baykur–Monden–Van Horn-Morris provide credited premises. Exact historical priority of the resulting surface application, novelty, and worldwide current-open status remain UNKNOWN; a bounded literature audit is not an absence proof. Extensive AI tools were used in mathematical and source checking, writing, code, and package preparation. This preprint is unrefereed, has no external human peer review, and is not formally certified. The accompanying verification kit provides written proof and source/custody records plus reproducible finite fault controls; those controls do not replace the universal proof or replay omitted historical inputs.",
++  "access_right": "open",
++  "license": "cc-by-4.0",
++  "publication_date": "2026-10-14",
++  "version": "1.0",
++  "language": "eng",
++  "keywords": [
++    "mapping class groups",
++    "Dehn twist factorizations",
++    "geometric intersection",
++    "finite factorizations",
++    "credited mathematical exposition"
++  ],
++  "notes": "Prepared locally on 2026-10-14 before deposit or publication. One complete whole-candidate review has been completed; a fresh complete second review is required after the metadata and output-interface repair. Publication readiness has not been affirmed."
+ }
+--- /dev/null
++++ after/preprint_v1_0/research_metadata.json
+@@ -0,0 +1,36 @@
++{
++  "schema_version": 1,
++  "title": "A credited finiteness deduction for restricted boundary-twist factorizations",
++  "version": "1.0 preparation candidate",
++  "author": {
++    "name": "Alec Kriebel",
++    "affiliation": "Independent researcher",
++    "orcid": "https://orcid.org/0009-0001-9320-500X"
++  },
++  "license": "CC-BY-4.0",
++  "license_url": "https://creativecommons.org/licenses/by/4.0/",
++  "problem_id": 11000150,
++  "PR": 1080,
++  "genre": "Credited finiteness deduction and exposition",
++  "exact_claim": "For fixed g>=1 on oriented compact S(g,1), with maps/isotopies fixing boundary pointwise, ordered positive factorizations of ONE positive boundary twist along non-null-homotopic curves, repetitions permitted, pairwise geometric intersection <=1, have finitely many simultaneous-conjugacy classes and an attained finite M(g), with 4g(2g+1)<=M(g). Peripheral only singleton; separating excluded otherwise. Credited M(1)=12 and M(2)=40.",
++  "prior_generic_corollary": "Cossu--Tringali arXiv2208.05869v3 Cor4.13 via ambient normal reduced cone, strong positivity, weak local finite generation and nonerasing atomic expansions; ordered-word finiteness uses BF consequence.",
++  "source_scope": "Wajnryb/Farb printed126/PDF133 separately stated restricted arbitrary-length clause answered negatively under the exact conventions; full original maximum/classification bundle remains partial.",
++  "unresolved_in_this_work": [
++    "Exact M(g) for g>=3",
++    "Explicit upper formula and effective exhaustive-enumeration stopping criterion",
++    "Extremizers; Hurwitz, positive Artin, T-move and A5/D6 classifications"
++  ],
++  "novelty": "UNKNOWN",
++  "exact_historical_priority": "UNKNOWN",
++  "worldwide_current_open_status": "UNKNOWN",
++  "ai_assistance": "Extensive AI assistance in mathematical/source checking, writing, code and package preparation.",
++  "human_peer_review": false,
++  "formal_certification": false,
++  "dated_preparation_status": {
++    "as_of_utc": "2026-10-14",
++    "stage": "preparation candidate pending at least two fresh whole-candidate adversarial reviews",
++    "publication_ready": false,
++    "fresh_whole_candidate_reviews_completed": 0
++  },
++  "computational_role": "New portable finite reviewer controls; no universal geometry enumeration, formal certification or omitted historical executable replay."
++}
+--- /dev/null
++++ after/preprint_v1_0/verification_kit/CURRENT_STATUS_REPAIR01.json
+@@ -0,0 +1,13 @@
++{
++  "as_of_utc": "2026-10-14T05:54:37.026183+00:00",
++  "stage": "bounded repair01 complete; fresh whole02 required",
++  "whole_reviews_completed": 1,
++  "minimum_whole_reviews": 2,
++  "new_complete_review_required": true,
++  "publication_ready": false,
++  "published": false,
++  "services_held_at": 1032,
++  "math_research_completion_best_guess_percent": 60,
++  "paper_tex_pdf_changed": false,
++  "dated_history": "Old STATUS.json, preparation metadata and old verdicts retain their exact dated meaning; this current record supersedes their pending-review counts."
++}
+--- before/preprint_v1_0/verification_kit/README.md
++++ after/preprint_v1_0/verification_kit/README.md
+@@ -1,6 +1,6 @@
+-# PR1080 verification kit, version 1.0 preparation candidate
++# PR1080 verification kit, version 1.0 repaired candidate
+ 
+-This accompanies **A credited finiteness deduction for restricted boundary-twist factorizations**, by Alec Kriebel, independent researcher, ORCID [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X). Authored materials use CC BY 4.0. Extensive AI assistance was used. This is unrefereed, with no external human peer review or formal certification. The dated metadata records preparation on 14 October 2026 UTC, pending at least two fresh whole-candidate adversarial reviews; publication readiness has not been affirmed.
++This accompanies **A credited finiteness deduction for restricted boundary-twist factorizations**, by Alec Kriebel, independent researcher, ORCID [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X). Authored materials use CC BY 4.0. Extensive AI assistance was used. This is unrefereed, with no external human peer review or formal certification. The native metadata records local preparation on 14 October 2026 UTC. One complete whole-candidate review found two package issues; this repair requires a fresh complete second review. Publication readiness remains false. `CURRENT_STATUS_REPAIR01.json` supersedes dated pending-count statements without changing historical records.
+ 
+ For each fixed g>=1 on oriented compact S(g,1), maps and isotopies fix its sole boundary pointwise. Ordered positive factorizations of ONE positive boundary twist use non-null-homotopic simple closed curves, permit repetitions and require pairwise geometric intersection <=1. There are finitely many simultaneous-conjugacy classes, hence finite attained M(g), with 4g(2g+1)<=M(g). Peripheral factors are singleton only; otherwise factors are nonseparating. M(1)=12 and M(2)=40 are credited prior deductions.
+ 
+@@ -25,6 +25,7 @@
+ python3 -I run_checks.py
+ python3 -I -O run_checks.py
+ python3 -I fault_checks.py
++python3 -I output_guard_checks.py
+ python3 -I build_archive.py --output ../rebuilt.zip
+ cmp ../../verification_kit.zip ../rebuilt.zip
+ python3 -I verify.py --require-binding --binding ../../EXTERNAL_BINDING.json --pdf ../../preprint.pdf --archive ../../verification_kit.zip
+@@ -34,6 +35,8 @@
+ 
+ The default verifier works from clean extraction without any external binding. If an adjacent `../EXTERNAL_BINDING.json` exists, it is always checked strictly, including bound PDF and ZIP files. `--binding` also checks strictly and fails for a missing, malformed or mismatched supplied binding. `--require-binding` fails if neither an explicit nor adjacent binding is available. Artifact overrides support relocated extraction. A PDF/ZIP/binding combination must come from the same candidate.
+ 
++Current Python checks and archive/binding rebuilds were actually rerun after repair. Real compilation and all seven page views were last checked by complete whole01 on the unchanged paper. This bounded interface repair makes no new compilation or page-view claim; fresh complete whole02 must check them again. Captured earlier preparation and review receipts retain their exact dated meaning.
++
+ `fault_checks.py` checks three altered mathematical mechanisms and eight custody faults under normal and optimized Python: omitted conjugation, wrong parity, an erasing expansion, changed member, extra file, unsafe manifest path, symlink, missing required/explicit binding, malformed present binding and wrong present binding. Every injected fault must fail with nonzero exit. Temporary copies are removed automatically; the kit stays unchanged.
+ 
+ ## Archive integrity contract
+@@ -41,3 +44,13 @@
+ `ALLOWLIST.json` is the explicit sorted member list. `MANIFEST.json` hashes every allowlisted member except itself, avoiding a self-hash cycle. The external binding hashes that manifest and metadata and binds the delivered PDF and ZIP; it is excluded from the ZIP, as are the PDF, wrapper reports, render scratch and delivery metadata duplicates. The verifier rejects missing/extra files and directories, noncanonical or unsafe paths, symlinks and incorrect copy hashes. Without an external binding, this is internal consistency and accidental-corruption detection, not a signature or authentication of author intent.
+ 
+ `build_archive.py` verifies existing pins before building and never silently regenerates them. It uses stored ZIP members in explicit sorted order, UTC date 2026-10-14 00:00:00, Unix regular-file mode 0644, no directory records and no archive comments. The deterministic promise therefore does not depend on a zlib version. There is no program in this kit for resealing changed evidence. Any revised candidate requires a newly reviewed manifest and binding.
++
++## Native metadata, historical stage resolution, and output safety
++
++`metadata.json` is native Zenodo API metadata and equals the external bare metadata and the `metadata` object of the external `{metadata, files}` upload manifest. `research_metadata.json` preserves the original custom research object unchanged; it is historical research metadata rather than API metadata. The external binding checks both objects and the complete upload manifest before affirming attachment identities. Its manifest hashes have no cycle: native/custom metadata and captured-before stage copies are kit payloads; the live PDF, ZIP, upload manifest and binding remain external.
++
++`REPAIR01_STAGE_COPIES.json` enumerates exact immutable old-stage copies. `REPAIR01_HISTORY_RESOLUTION.json` checks all 309 immediate inputs, all 194 preparation inputs, all 90 preparation outputs, all 289 whole01 inputs and all 17 whole01 outputs against exact current/captured-stage copies or individual omissions. The prior 269-reference ledger is also checked unchanged. An omitted primary body is not represented as a delivered or replayed source. Captured old code and archives are history, not current executable instructions.
++
++The archive builder accepts only a fresh output file outside the kit, with an existing ordinary parent directory. It rejects the unresolved leaf and every symlink ancestor before any archive write, including dangling symlinks and paths through aliases. Every existing destination is rejected, covering hardlinks to all kit inputs, external PDF/TeX, upload metadata, descriptors, and sentinels. Creation uses exclusive mode, so an existing file or leaf symlink appearing between preflight and open is not truncated. A fresh independent outside rebuild destination works in both Python modes. Rebuild commands require a fresh filename; remove only your own previous rebuild before repeating them.
++
++`output_guard_checks.py` exercises direct and nested protected paths, hardlinks to every kit input and external delivery-like files, outside symlink targets, symlinked ancestors (including paths containing `..`), and existing sentinels under normal and optimized Python. Rejections are checked against all protected input and sentinel hashes. Positive rebuilds are byte-identical. Other command interfaces expose no user-supplied file destination; reviewer calculations write only their own fresh temporary scratch. Direct Tectonic compilation is a separately documented source compilation command, not a writer offered by the kit CLI.
+--- before/preprint_v1_0/verification_kit/build_archive.py
++++ after/preprint_v1_0/verification_kit/build_archive.py
+@@ -14,19 +14,19 @@
+ 
+ 
+ def build(destination):
++    output = verify.fresh_output(destination)
+     verify.verify()
+-    output = Path(destination).resolve()
+-    verify.require(not output.is_relative_to(verify.ROOT), "archive must be outside the kit")
+-    verify.require(not output.is_symlink(), "archive output symlink rejected")
+     names = json.loads((verify.ROOT / "ALLOWLIST.json").read_text())["members"]
+-    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_STORED) as z:
+-        for name in names:
+-            record = zipfile.ZipInfo("verification_kit/" + name, (2026, 10, 14, 0, 0, 0))
+-            record.create_system = 3
+-            record.external_attr = 0o100644 << 16
+-            record.compress_type = zipfile.ZIP_STORED
+-            record.flag_bits = 0
+-            z.writestr(record, (verify.ROOT / name).read_bytes())
++    # Exclusive creation never truncates an existing output or inode alias.
++    with output.open("xb") as stream:
++        with zipfile.ZipFile(stream, "w", compression=zipfile.ZIP_STORED) as z:
++            for name in names:
++                record = zipfile.ZipInfo("verification_kit/" + name, (2026, 10, 14, 0, 0, 0))
++                record.create_system = 3
++                record.external_attr = 0o100644 << 16
++                record.compress_type = zipfile.ZIP_STORED
++                record.flag_bits = 0
++                z.writestr(record, (verify.ROOT / name).read_bytes())
+     return {"status": "PASS", "archive": str(output), "bytes": output.stat().st_size,
+             "sha256": verify.digest(output), "members": len(names), "method": "stored; fixed date, mode and sorted order"}
+ 
+--- before/preprint_v1_0/verification_kit/metadata.json
++++ after/preprint_v1_0/verification_kit/metadata.json
+@@ -1,36 +1,26 @@
+ {
+-  "schema_version": 1,
+   "title": "A credited finiteness deduction for restricted boundary-twist factorizations",
+-  "version": "1.0 preparation candidate",
+-  "author": {
+-    "name": "Alec Kriebel",
+-    "affiliation": "Independent researcher",
+-    "orcid": "https://orcid.org/0009-0001-9320-500X"
+-  },
+-  "license": "CC-BY-4.0",
+-  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+-  "problem_id": 11000150,
+-  "PR": 1080,
+-  "genre": "Credited finiteness deduction and exposition",
+-  "exact_claim": "For fixed g>=1 on oriented compact S(g,1), with maps/isotopies fixing boundary pointwise, ordered positive factorizations of ONE positive boundary twist along non-null-homotopic curves, repetitions permitted, pairwise geometric intersection <=1, have finitely many simultaneous-conjugacy classes and an attained finite M(g), with 4g(2g+1)<=M(g). Peripheral only singleton; separating excluded otherwise. Credited M(1)=12 and M(2)=40.",
+-  "prior_generic_corollary": "Cossu--Tringali arXiv2208.05869v3 Cor4.13 via ambient normal reduced cone, strong positivity, weak local finite generation and nonerasing atomic expansions; ordered-word finiteness uses BF consequence.",
+-  "source_scope": "Wajnryb/Farb printed126/PDF133 separately stated restricted arbitrary-length clause answered negatively under the exact conventions; full original maximum/classification bundle remains partial.",
+-  "unresolved_in_this_work": [
+-    "Exact M(g) for g>=3",
+-    "Explicit upper formula and effective exhaustive-enumeration stopping criterion",
+-    "Extremizers; Hurwitz, positive Artin, T-move and A5/D6 classifications"
++  "upload_type": "publication",
++  "publication_type": "preprint",
++  "creators": [
++    {
++      "name": "Kriebel, Alec",
++      "affiliation": "Independent researcher",
++      "orcid": "0009-0001-9320-500X"
++    }
+   ],
+-  "novelty": "UNKNOWN",
+-  "exact_historical_priority": "UNKNOWN",
+-  "worldwide_current_open_status": "UNKNOWN",
+-  "ai_assistance": "Extensive AI assistance in mathematical/source checking, writing, code and package preparation.",
+-  "human_peer_review": false,
+-  "formal_certification": false,
+-  "dated_preparation_status": {
+-    "as_of_utc": "2026-10-14",
+-    "stage": "preparation candidate pending at least two fresh whole-candidate adversarial reviews",
+-    "publication_ready": false,
+-    "fresh_whole_candidate_reviews_completed": 0
+-  },
+-  "computational_role": "New portable finite reviewer controls; no universal geometry enumeration, formal certification or omitted historical executable replay."
++  "description": "For each fixed genus g ≥ 1, let S(g,1) be an oriented compact surface with one boundary component, and let maps and isotopies fix that boundary pointwise. We prove that ordered positive factorizations of one positive boundary Dehn twist, along non-null-homotopic simple closed curves with repetitions permitted and pairwise geometric intersection at most one, have finitely many simultaneous-conjugacy classes. Their maximal length M(g) is finite and attained, with M(g) ≥ 4g(2g+1). Peripheral factors occur only in the singleton factorization; otherwise all factors are nonseparating. The values M(1) = 12 and M(2) = 40 are credited deductions from prior work with the convention bridge stated. This gives a complete negative answer, under the stated conventions, to the separately printed restricted arbitrary-length clause in the Wajnryb/Farb problem collection. The full original maximum and classification bundle remains partial: exact M(g) for g ≥ 3, explicit upper formulas, an effective exhaustive-enumeration stopping criterion, extremizers, and Hurwitz, positive Artin, T-move and A5/D6 classifications remain unresolved in this work. The note is a credited deduction and exposition. Cossu and Tringali's arXiv:2208.05869v3, Corollary 4.13, supplies the generic finite-alphabet finiteness corollary through a normal reduced cone and nonerasing atomic expansions. The support and ribbon arguments explicitly build on Juvan–Malnič–Mohar, Malestein–Rivin–Theran, and Cahn–Fanoni–Petri. Honda–Kazez–Matić, Smith, the chain relation, and Baykur–Monden–Van Horn-Morris provide credited premises. Exact historical priority of the resulting surface application, novelty, and worldwide current-open status remain UNKNOWN; a bounded literature audit is not an absence proof. Extensive AI tools were used in mathematical and source checking, writing, code, and package preparation. This preprint is unrefereed, has no external human peer review, and is not formally certified. The accompanying verification kit provides written proof and source/custody records plus reproducible finite fault controls; those controls do not replace the universal proof or replay omitted historical inputs.",
++  "access_right": "open",
++  "license": "cc-by-4.0",
++  "publication_date": "2026-10-14",
++  "version": "1.0",
++  "language": "eng",
++  "keywords": [
++    "mapping class groups",
++    "Dehn twist factorizations",
++    "geometric intersection",
++    "finite factorizations",
++    "credited mathematical exposition"
++  ],
++  "notes": "Prepared locally on 2026-10-14 before deposit or publication. One complete whole-candidate review has been completed; a fresh complete second review is required after the metadata and output-interface repair. Publication readiness has not been affirmed."
+ }
+--- /dev/null
++++ after/preprint_v1_0/verification_kit/output_guard_checks.py
+@@ -0,0 +1,98 @@
++#!/usr/bin/env python3
++"""Bounded, reproducible prewrite controls in one disposable extraction."""
++import hashlib
++import json
++import os
++import shutil
++import subprocess
++import sys
++import tempfile
++from pathlib import Path
++
++sys.dont_write_bytecode = True
++ROOT = Path(__file__).resolve().parent
++
++
++def require(test, message):
++    if not test:
++        raise RuntimeError(message)
++
++
++def sha(p):
++    return hashlib.sha256(p.read_bytes()).hexdigest()
++
++
++def pins(paths):
++    return {str(p): sha(p) for p in paths}
++
++
++def main():
++    observations = []
++    with tempfile.TemporaryDirectory(prefix="pr1080-output-guards-") as temp:
++        base = Path(temp).resolve()
++        kit = base / "verification_kit"
++        shutil.copytree(ROOT, kit)
++        outside = base / "outside"
++        outside.mkdir()
++        extra = []
++        for name in ["preprint.pdf", "preprint.tex", "deposit_metadata.json", "metadata.json", "EXTERNAL_BINDING.json", "sentinel.txt"]:
++            p = outside / name
++            p.write_text("protected external-like input " + name + "\n")
++            extra.append(p)
++        protected = sorted(p for p in kit.rglob("*") if p.is_file()) + extra
++        expected = pins(protected)
++        positive_hashes = []
++        for optimized in [False, True]:
++            prefix = [sys.executable, "-I", "-B"] + (["-O"] if optimized else [])
++
++            def command(dest):
++                return subprocess.run(prefix + [str(kit / "build_archive.py"), "--output", str(dest)],
++                                      capture_output=True, text=True, timeout=120)
++
++            def reject(kind, dest, cleanup=None):
++                result = command(dest)
++                require(result.returncode != 0, "output fault accepted: " + kind)
++                require("archive" in result.stderr, "unexpected rejection reason: " + kind)
++                require(pins(protected) == expected, "protected input/sentinel changed: " + kind)
++                observations.append({"fault": kind, "optimized": optimized, "returncode": result.returncode,
++                                     "all_protected_bytes_unchanged": True})
++                if cleanup:
++                    cleanup()
++
++            for index, target in enumerate(protected):
++                alias = outside / "hardlink-output.zip"
++                os.link(target, alias)
++                reject("hardlink:" + str(target.relative_to(base)), alias, alias.unlink)
++            reject("direct-kit-file", kit / "preprint.tex")
++            reject("protected-descendant", kit / "originals/submitted/new-output.zip")
++            reject("external-file-descendant", outside / "preprint.pdf/new-output.zip")
++            reject("existing-independent-sentinel", outside / "sentinel.txt")
++            leaf = outside / "leaf-symlink.zip"
++            leaf.symlink_to(outside / "sentinel.txt")
++            reject("outside-leaf-symlink", leaf, leaf.unlink)
++            leaf.symlink_to(outside / "absent-target.zip")
++            reject("dangling-leaf-symlink", leaf, leaf.unlink)
++            ancestor = base / "ancestor-alias"
++            ancestor.symlink_to(outside, target_is_directory=True)
++            reject("ancestor-alias-fresh", ancestor / "fresh-output.zip")
++            alias = outside / "hardlink-output.zip"
++            os.link(kit / "preprint.tex", alias)
++            reject("ancestor-alias-hardlink", ancestor / alias.name, alias.unlink)
++            # Do not normalize away the aliased component before checking it.
++            reject("ancestor-alias-dotdot", ancestor / ".." / "fresh-output.zip")
++            ancestor.unlink()
++            dest = outside / ("fresh-optimized.zip" if optimized else "fresh-normal.zip")
++            result = command(dest)
++            require(result.returncode == 0, "fresh outside rebuild failed: " + result.stderr)
++            positive_hashes.append(sha(dest))
++            require(pins(protected) == expected, "positive rebuild changed protected inputs")
++            dest.unlink()
++        require(len(set(positive_hashes)) == 1, "normal/optimized archives differ")
++    print(json.dumps({"status": "PASS", "rejections": observations,
++                      "rejection_count": len(observations), "protected_file_count": len(protected),
++                      "positive_normal_optimized_archive_sha256": positive_hashes,
++                      "scope": "Concrete CLI prewrite controls; no mathematical theorem or concurrency-lock certification."}, indent=2))
++
++
++if __name__ == "__main__":
++    main()
+--- /dev/null
++++ after/preprint_v1_0/verification_kit/research_metadata.json
+@@ -0,0 +1,36 @@
++{
++  "schema_version": 1,
++  "title": "A credited finiteness deduction for restricted boundary-twist factorizations",
++  "version": "1.0 preparation candidate",
++  "author": {
++    "name": "Alec Kriebel",
++    "affiliation": "Independent researcher",
++    "orcid": "https://orcid.org/0009-0001-9320-500X"
++  },
++  "license": "CC-BY-4.0",
++  "license_url": "https://creativecommons.org/licenses/by/4.0/",
++  "problem_id": 11000150,
++  "PR": 1080,
++  "genre": "Credited finiteness deduction and exposition",
++  "exact_claim": "For fixed g>=1 on oriented compact S(g,1), with maps/isotopies fixing boundary pointwise, ordered positive factorizations of ONE positive boundary twist along non-null-homotopic curves, repetitions permitted, pairwise geometric intersection <=1, have finitely many simultaneous-conjugacy classes and an attained finite M(g), with 4g(2g+1)<=M(g). Peripheral only singleton; separating excluded otherwise. Credited M(1)=12 and M(2)=40.",
++  "prior_generic_corollary": "Cossu--Tringali arXiv2208.05869v3 Cor4.13 via ambient normal reduced cone, strong positivity, weak local finite generation and nonerasing atomic expansions; ordered-word finiteness uses BF consequence.",
++  "source_scope": "Wajnryb/Farb printed126/PDF133 separately stated restricted arbitrary-length clause answered negatively under the exact conventions; full original maximum/classification bundle remains partial.",
++  "unresolved_in_this_work": [
++    "Exact M(g) for g>=3",
++    "Explicit upper formula and effective exhaustive-enumeration stopping criterion",
++    "Extremizers; Hurwitz, positive Artin, T-move and A5/D6 classifications"
++  ],
++  "novelty": "UNKNOWN",
++  "exact_historical_priority": "UNKNOWN",
++  "worldwide_current_open_status": "UNKNOWN",
++  "ai_assistance": "Extensive AI assistance in mathematical/source checking, writing, code and package preparation.",
++  "human_peer_review": false,
++  "formal_certification": false,
++  "dated_preparation_status": {
++    "as_of_utc": "2026-10-14",
++    "stage": "preparation candidate pending at least two fresh whole-candidate adversarial reviews",
++    "publication_ready": false,
++    "fresh_whole_candidate_reviews_completed": 0
++  },
++  "computational_role": "New portable finite reviewer controls; no universal geometry enumeration, formal certification or omitted historical executable replay."
++}
+--- before/preprint_v1_0/verification_kit/verify.py
++++ after/preprint_v1_0/verification_kit/verify.py
+@@ -4,6 +4,7 @@
+ import hashlib
+ import json
+ import re
++import os
+ from pathlib import Path, PurePosixPath
+ 
+ ROOT = Path(__file__).resolve().parent
+@@ -16,6 +17,44 @@
+ 
+ def digest(path):
+     return hashlib.sha256(path.read_bytes()).hexdigest()
++
++
++def regular_input(path):
++    """Reject leaf/ancestor symlinks before reading any bootstrap or binding."""
++    p = Path(path).absolute()
++    for part in [p, *p.parents]:
++        require(not part.is_symlink(), "input symlink rejected: " + str(part))
++    require(p.is_file(), "input missing or nonregular: " + str(p))
++    return p
++
++
++def fresh_output(path):
++    """Inspect the unresolved path before normalization and before any write.
++
++    Every existing leaf is forbidden, including all inode aliases. Exclusive
++    creation in the builder additionally handles an intervening leaf creation.
++    This is a bounded CLI input guarantee, not an adversarial concurrency lock.
++    """
++    raw = Path(path).absolute()
++    for part in [raw, *raw.parents]:
++        require(not part.is_symlink(), "archive output symlink/ancestor rejected: " + str(part))
++    output = Path(os.path.abspath(raw))
++    require(not output.is_relative_to(ROOT), "archive must be outside the kit")
++    require(not output.exists(), "archive destination must be fresh; existing files and aliases rejected")
++    require(output.parent.is_dir(), "archive parent must be an existing ordinary directory")
++    return output
++
++
++def native_metadata():
++    data = json.loads(regular_input(ROOT / "metadata.json").read_text())
++    require(data["upload_type"] == "publication" and data["publication_type"] == "preprint", "native publication type")
++    require(data["creators"] == [{"name": "Kriebel, Alec", "affiliation": "Independent researcher", "orcid": "0009-0001-9320-500X"}], "native author/ORCID")
++    require(data["license"] == "cc-by-4.0" and data["access_right"] == "open", "native license/access")
++    require(data["publication_date"] == "2026-10-14" and data["version"] == "1.0", "native date/version")
++    require(bool(data["title"]) and bool(data["description"]), "native title/description")
++    for text in ["simultaneous-conjugacy", "Cossu and Tringali", "unresolved in this work", "UNKNOWN", "AI", "unrefereed", "no external human peer review"]:
++        require(text in data["description"], "native scope/disclosure absent: " + text)
++    return data
+ 
+ 
+ def safe_path(name):
+@@ -31,7 +70,7 @@
+     adjacent = ROOT.parent / "EXTERNAL_BINDING.json"
+     if binding is None and (adjacent.exists() or adjacent.is_symlink()):
+         binding = adjacent
+-    allow = json.loads((ROOT / "ALLOWLIST.json").read_text())
++    allow = json.loads(regular_input(ROOT / "ALLOWLIST.json").read_text())
+     names = allow["members"]
+     require(names == sorted(set(names)), "allowlist order/duplicates")
+     for name in names:
+@@ -51,7 +90,7 @@
+             raise RuntimeError("nonregular member")
+     require(sorted(files) == names, "unexpected or missing files")
+     require(dirs == expected_dirs, "unexpected or missing directories")
+-    manifest = json.loads((ROOT / "MANIFEST.json").read_text())
++    manifest = json.loads(regular_input(ROOT / "MANIFEST.json").read_text())
+     require(manifest["self_hash_scope"] == "All allowlisted members except MANIFEST.json", "self scope")
+     rows = manifest["files"]
+     require([r["path"] for r in rows] == [n for n in names if n != "MANIFEST.json"], "manifest members")
+@@ -74,20 +113,46 @@
+             require(digest(safe_path(r["destination"])) == r["sha256"], "historical canonical-copy mismatch")
+         else:
+             require(r["disposition"] == "omitted" and bool(r["reason"]), "undocumented historical omission")
++    stage = json.loads((ROOT / "REPAIR01_STAGE_COPIES.json").read_text())
++    for r in stage["files"]:
++        q = safe_path(r["destination"])
++        require(q.stat().st_size == r["bytes"] and digest(q) == r["sha256"], "repair old-stage copy mismatch")
++    history = json.loads((ROOT / "REPAIR01_HISTORY_RESOLUTION.json").read_text())
++    for r in history["references"]:
++        if r["disposition"] == "exact_captured_stage_or_canonical_copy":
++            q = safe_path(r["destination"])
++            require(q.stat().st_size == r["bytes"] and digest(q) == r["sha256"], "repair historical pin mismatch")
++        else:
++            require(r["disposition"] == "omitted" and bool(r["reason"]), "repair historical omission unexplained")
++    native = native_metadata()
+     require(not require_binding or binding is not None, "external binding required")
+     bound = False
+     if binding is not None:
+-        p = Path(binding)
+-        require(p.is_file() and not p.is_symlink(), "specified external binding missing or symlink")
++        p = regular_input(binding)
+         data = json.loads(p.read_text())
+         require(data["manifest_sha256"] == digest(ROOT / "MANIFEST.json"), "external manifest binding mismatch")
+         require(data["metadata_sha256"] == digest(ROOT / "metadata.json"), "external metadata binding mismatch")
++        require(data["research_metadata_sha256"] == digest(ROOT / "research_metadata.json"), "external research metadata mismatch")
++        outer = regular_input(p.parent / "metadata.json")
++        require(outer.read_bytes() == (ROOT / "metadata.json").read_bytes(), "external native metadata differs")
++        wrapper = regular_input(p.parent / "deposit_metadata.json")
++        require(digest(wrapper) == data["deposit_manifest_sha256"], "upload manifest binding mismatch")
++        upload = json.loads(wrapper.read_text())
++        require(set(upload) == {"metadata", "files"} and upload["metadata"] == native, "native upload schema/metadata differs")
++        require(upload["files"] == [{"path": "preprint.pdf", "name": "preprint.pdf"},
++                                    {"path": "verification_kit.zip", "name": "verification_kit.zip"}], "native upload attachments differ")
++        require(regular_input(p.parent / "research_metadata.json").read_bytes() == (ROOT / "research_metadata.json").read_bytes(), "external research object differs")
++        require(regular_input(p.parent / "CURRENT_STATUS_REPAIR01.json").read_bytes() == (ROOT / "CURRENT_STATUS_REPAIR01.json").read_bytes(), "external current status differs")
++        require([r["filename"] for r in data["external_files"]] ==
++                ["CURRENT_STATUS_REPAIR01.json", "README.md", "deposit_metadata.json", "metadata.json", "preprint.tex", "research_metadata.json"], "external delivery file inventory differs")
++        for r in data["external_files"]:
++            q = regular_input(p.parent / r["filename"])
++            require(q.stat().st_size == r["bytes"] and digest(q) == r["sha256"], "external delivery member mismatch")
+         # Present bindings are always strict. Explicit artifact paths work after extraction.
+         for key, override in [("pdf", pdf), ("archive", archive)]:
+             record = data[key]
+             require(Path(record["filename"]).name == record["filename"], "unsafe external filename")
+-            q = Path(override) if override else p.parent / record["filename"]
+-            require(q.is_file() and not q.is_symlink(), "bound artifact missing: " + key)
++            q = regular_input(Path(override) if override else p.parent / record["filename"])
+             require(q.stat().st_size == record["bytes"] and digest(q) == record["sha256"], "bound artifact mismatch: " + key)
+         bound = True
+     else:

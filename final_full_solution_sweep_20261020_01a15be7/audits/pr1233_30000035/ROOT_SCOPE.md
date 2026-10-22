@@ -1,0 +1,7 @@
+# PR #1233 full exact finite-generator characterization retained
+
+Root read entire AUDIT.md19598 and ACCEPTANCE.json2163 plus PRdescription; audit includes complete integrated fiber/rank/closure/specialization argument. Separate PROOF.md16599 not yet read by root. All8 actualheadblobs/noQUEUEcomparison bound; livehead/body match. FreshGWS07:08:32UTC191rows no target/DOI/arxiv/shift-invariance title lead.
+
+The exact closed-span finite-L2-generator extra1/ntranslation invariance rank criterion is claimed in full and includes original identity-Gramian case/scalar Fourier-support reduction. Credit Aldroubi-Cabrelli-Heil-Kornelson-Molter JFAA2010 Thm5.2, DOI10.1007/s00041-009-9068-y/arxiv0804.1597v3 and Chui-Sun2003. Closure(P_kS) is needed before invariance; no effective arbitrary-L2algorithm or separate approximate-invariance theorem. Original qualitative request may be an analogue of a useful scalar support test; subjective useful/similar language must not automatically disqualify a complete exact characterization, but actual original scope must be recovered independently before final acceptance. Componentwise support patterns alone insufficient in higher rank.
+
+Retain as provisional full exact characterization with original-scope qualification. Independent fresh original/sourceproof/fiber measurability/closure/cyclic projection/normalizedspecialization/DOI accounting audit assigned. No new discovery, upload, row or merge. Overall79%.

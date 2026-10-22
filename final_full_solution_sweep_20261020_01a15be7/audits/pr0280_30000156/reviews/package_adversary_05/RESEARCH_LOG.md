@@ -1,0 +1,7 @@
+# Review05 research log
+
+- 2026-10-21T14:45:42.085104+00:00: Started independent reconstruction. Completion estimate 10%. Scope is complete adversarial review after URL repair; no external communication or provider mutations authorized.
+- 2026-10-21T14:56:04.742548+00:00: Mathematical reconstruction, primary inputs, complete PDF visual inspection, archive/legacy replays, all 1704 operational controls per mode, and new independent finite/alias controls complete. P280-OPS-05 reproduced; overall completion estimate 75%. Root clearance remains suspended; no publication authorization.
+- 2026-10-21T15:05:54.680432+00:00: Complete report/verdict drafted. Assigned review completion estimate100%; overall verdict REPAIR_REQUIRED P280-OPS-05. Strongest scientific result remains the full stated theorem; no publication authorization. Final preservation and self-excluding seal follow.
+- 2026-10-21T15:09:42.916022+00:00: Parent source-quantifier falsification challenge resolved by a supplementary all-odd-prime regular-fiber proof and O(1/p) exceptional-mass comparison. Printed theorem remains explicitly scoped to class3. Completion estimate100%; OPS05 remains sole material defect.
+- 2026-10-21T15:11:44.818791+00:00: Final390/state314 recheck passes. Private-custody sealing distinguishes deliberately preserved symlink/FIFO hostile fixtures from regular files after an initial seal-only type rejection; no sealed public manifest yet existed. Completion estimate100%; final verdict remains REPAIR_REQUIRED OPS05.

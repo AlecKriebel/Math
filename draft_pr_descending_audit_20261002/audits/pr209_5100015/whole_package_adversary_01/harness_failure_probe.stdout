@@ -1,0 +1,61 @@
+ordinary_nonzero_exit FAIL
+{
+  "utc": "2026-10-16T05:40:15.920787+00:00",
+  "tested_program": "verification/run_checks.py",
+  "tested_sha256": "cd2add6e913815d648399e75ece985c7c076bd69afc3acd48d6c1fd73bc89846",
+  "method": "Execute exact parsed run() function with controlled subprocess.run failures; scientific programs never executed.",
+  "finding": "subprocess.run(timeout=900) is outside the exception handler. Supported timeout and launch failures escape without stdout/stderr/per-suite failure receipt; timeout partial bytes exist in exception but are not retained by the harness.",
+  "rows": [
+    {
+      "mode": "ordinary_nonzero_exit",
+      "synthetic_child_failure": true,
+      "returned_receipt": {
+        "name": "ordinary_nonzero_exit",
+        "started_utc": "2026-10-16T05:40:15.917630+00:00",
+        "finished_utc": "2026-10-16T05:40:15.918041+00:00",
+        "returncode": 17,
+        "source_program": "audits/priority_classical_general_01/bridge_verify.py",
+        "program_sha256": "8d88921dd93cf35386d80faaf87aabbebbd036a99cf4ce81aad9f1a2cf02114f",
+        "copied_program_byte_identical": true,
+        "ignored_nonscientific_fields": [],
+        "status": "FAIL",
+        "error": "Checker failed; outputs retained"
+      },
+      "files_created_by_actual_run_function": [
+        "REPLAY_RECEIPT.json",
+        "bridge_verify.py",
+        "stderr.txt",
+        "stdout.txt"
+      ],
+      "stdout_saved_by_harness": true,
+      "stderr_saved_by_harness": true,
+      "receipt_saved_by_harness": true
+    },
+    {
+      "mode": "timeout_with_partial_output",
+      "synthetic_child_failure": true,
+      "exception_type": "TimeoutExpired",
+      "exception_text": "Command '['/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3', '-B', '/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/whole_package_adversary_01/harness_failure_probe/timeout_with_partial_output/bridge_verify.py']' timed out after 900 seconds",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/whole_package_adversary_01/harness_failure_probe.py\", line 20, in <module>\n    try:row['returned_receipt']=ns['run']((mode,'audits/priority_classical_general_01/bridge_verify.py',None,'bridge_results.json','audits/priority_classical_general_01/bridge_results.json',[]))\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/preprint/verification/run_checks.py\", line 35, in run\n    r=subprocess.run(command,cwd=work,capture_output=True,timeout=900)\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/whole_package_adversary_01/harness_failure_probe.py\", line 15, in fake\n    if mode=='timeout_with_partial_output':raise subprocess.TimeoutExpired(command,kwargs['timeout'],output=b'partial timeout stdout\\x00\\xff\\n',stderr=b'partial timeout stderr\\x00\\xfe\\n')\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsubprocess.TimeoutExpired: Command '['/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3', '-B', '/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/whole_package_adversary_01/harness_failure_probe/timeout_with_partial_output/bridge_verify.py']' timed out after 900 seconds\n",
+      "files_created_by_actual_run_function": [
+        "bridge_verify.py"
+      ],
+      "stdout_saved_by_harness": false,
+      "stderr_saved_by_harness": false,
+      "receipt_saved_by_harness": false
+    },
+    {
+      "mode": "launch_error",
+      "synthetic_child_failure": true,
+      "exception_type": "FileNotFoundError",
+      "exception_text": "synthetic executable lookup failure",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/whole_package_adversary_01/harness_failure_probe.py\", line 20, in <module>\n    try:row['returned_receipt']=ns['run']((mode,'audits/priority_classical_general_01/bridge_verify.py',None,'bridge_results.json','audits/priority_classical_general_01/bridge_results.json',[]))\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/preprint/verification/run_checks.py\", line 35, in run\n    r=subprocess.run(command,cwd=work,capture_output=True,timeout=900)\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/whole_package_adversary_01/harness_failure_probe.py\", line 16, in fake\n    raise FileNotFoundError('synthetic executable lookup failure')\nFileNotFoundError: synthetic executable lookup failure\n",
+      "files_created_by_actual_run_function": [
+        "bridge_verify.py"
+      ],
+      "stdout_saved_by_harness": false,
+      "stderr_saved_by_harness": false,
+      "receipt_saved_by_harness": false
+    }
+  ]
+}

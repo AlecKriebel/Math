@@ -1,0 +1,28 @@
+{
+  "utc_recorded": "2026-10-16T06:13:17.152187+00:00",
+  "replay_child_result": {
+    "execution": [
+      {
+        "script": "probes.py",
+        "returncode": 0
+      },
+      {
+        "script": "additional_probes.py",
+        "returncode": 0
+      },
+      {
+        "script": "final_probes.py",
+        "returncode": 0
+      }
+    ],
+    "check_count": 29,
+    "all_expected_outcomes_reproduced": true,
+    "providers": "in-memory stubs only",
+    "fixture_archive": "PROBE_FIXTURES_FINAL.zip"
+  },
+  "initial_root_comparator_exit": 1,
+  "first_difference_file": "ADDITIONAL_PROBE_RESULTS.json",
+  "difference": "Expected FileNotFoundError contains actual fresh owned reproduction absolute path instead of original reviewer path. All29 stub control outcomes PASS; no source/provider issue.",
+  "prior_fixture_removal_guard": "root_replay.py validates exact entire file set, ZIP CRC and every uncompressed byte against still-present fresh fixture tree BEFORE own fixture rmtree; initial comparator failure occurred after that guard and successful REPRODUCE completion.",
+  "second_control_execution_performed": false
+}

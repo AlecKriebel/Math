@@ -1,0 +1,13 @@
+# Acceptance of the attributed smooth hypersurface reconstruction
+
+The audited reconstruction is mathematically accepted in its exact stated scope: for every prime p, n≥2, and d≥n+1, a geometrically smooth, geometrically integral degree-d hypersurface over F_p exists whose F_p-point count is not 1 modulo p. No correction to the frozen candidate is required by the audit.
+
+The theorem and construction are attributed to Alper Ferudun, *Smooth Hypersurfaces Beyond the Chevalley-Warning Range over Prime Fields*, 6 September 2026, https://eulersolve.org/papers/aim-algebraic-geometry-0125/ and https://doi.org/10.5281/zenodo.22514087 . The manuscript is unrefereed and discloses AI assistance. This acceptance is an independent mathematical audit, not a novelty claim, human peer review, or formal proof-assistant certification.
+
+The proof was checked for every parameter branch: the finite-field moment and nonzero-grid argument, simultaneous diagonal coefficient selection, dividing-characteristic chain smoothness on every boundary stratum, both exponent-composition constructions, the equal-prime boundary over the algebraic closure, and the characteristic-two odd-degree family. The standard Jacobian criterion and the height bound for two homogeneous factors justify geometric smoothness and geometric integrality. The proof keeps F=0 in the dividing-characteristic singularity test and applies Fermat's identity in the equal-prime case only after deriving that normalized coordinates lie in F_p.
+
+The literal AIM Problem 9.5 does not explicitly impose smoothness and already has classical point-free norm-form witnesses. The accepted result proves the stronger smooth numerical alternative. The separate n=1 example is smooth and point-free but not geometrically integral; no n=0 or all-extension-fields claim is made.
+
+Independent, exact bounded checks passed: 79,967 prefix compositions; 1,084 residue cases; 142 formal moment families; 134 direct point counts inspecting 459,929 projective points; and unit singular ideals on 34 charts of ten equations. Four negative controls were correctly rejected. Results agree in ordinary Python, -O, and -OO modes. These finite checks supplement the unbounded proof and do not replace it. Only independently authored audit checks were executed; no manuscript-source code was executed.
+
+PROOF.md contains the complete argument. SOURCE_PINS.json records the source hashes and inspection limitations. CHECK_SUMMARY.json contains aggregate verification metadata only. Raw coefficient/exponent reports, chart bases, source renderings and text, and local input locations are excluded from the public selection. No publication, queue edit, commit, or push was performed by this audit.

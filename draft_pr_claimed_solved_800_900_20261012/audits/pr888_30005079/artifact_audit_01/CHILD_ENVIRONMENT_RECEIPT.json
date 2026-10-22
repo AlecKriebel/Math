@@ -1,0 +1,33 @@
+{
+  "timestamp_utc": "2026-10-16T05:22:58.332833+00:00",
+  "control": "Explicit external PYTHONPATH sitecustomize hook records actual flags in unchanged root and its two unchanged script children.",
+  "root_exit_code": 0,
+  "root_stdout": "{\n  \"packet_files_verified\": 21,\n  \"edition_hashes_verified\": 4,\n  \"forward_and_reverse_patches_verified\": 3,\n  \"author_results_byte_identical\": true,\n  \"independent_results_byte_identical\": true,\n  \"python_version\": \"3.14.6\",\n  \"sympy_version\": \"1.14.0\",\n  \"scope\": \"Integrity and auxiliary exact checks only; mathematical acceptance is in the two AI audit reports. No formal-proof or novelty certification.\"\n}\n",
+  "root_stderr": "",
+  "process_flags": [
+    {
+      "optimize": 0,
+      "isolated": 0,
+      "no_site": 0,
+      "dont_write_bytecode": 1,
+      "argv0": "verify_publication.py"
+    },
+    {
+      "optimize": 0,
+      "isolated": 0,
+      "no_site": 0,
+      "dont_write_bytecode": 1,
+      "argv0": "verify_construction.py"
+    },
+    {
+      "optimize": 0,
+      "isolated": 0,
+      "no_site": 0,
+      "dont_write_bytecode": 1,
+      "argv0": "independent_checks.py"
+    }
+  ],
+  "hook_sha256": "a5268f12a17470f0ec62f97cf50dc9fc659a5a3f32f87896148e17d03e4317cb",
+  "hook_source": "import json,os,sys\nfrom pathlib import Path\np=Path(os.environ[\"AUDIT_PROBE_LOG\"])\nwith p.open(\"a\") as f:\n f.write(json.dumps({\"optimize\":sys.flags.optimize,\"isolated\":sys.flags.isolated,\"no_site\":sys.flags.no_site,\"dont_write_bytecode\":sys.flags.dont_write_bytecode,\"argv0\":Path(sys.argv[0]).name})+\"\\n\")\n",
+  "scope": "Harmless environment probe demonstrates ordinary environment inheritance; temporary filesystem layout is not a Python environment or operating-system sandbox."
+}
