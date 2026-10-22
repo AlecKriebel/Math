@@ -1,5 +1,6 @@
-sha: c87c275c638939b8008fd58db80657491d14971e size: 363342
-e198be61634bd02ee008`. Policy: `2.0-five-turn-proof`.
+# Prioritized research queue
+
+Source: `37e53eabe540fb458758e198be61634bd02ee008`. Policy: `2.0-five-turn-proof`.
 
 **Provisional expected-value ranking. Probabilities are subjective planning assumptions, not measured AI success rates.**
 Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at ultra reasoning; modest exact checks only; no large exhaustive search. No problem is cleared for research until the readiness checks are recorded.
