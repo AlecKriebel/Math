@@ -1,0 +1,32 @@
+# Theta-volume partials: problem 30004711
+
+Rank 943; five substantive approaches; **unsolved, 5/5**. The literal OWR torsion-volume identity remains unresolved. This is an authored partial-result and mathematical-audit packet, not a solution of that identity.
+
+## Current reading guide
+
+Begin with this guide and the [cumulative report](theta_twisted_volumes_30004711/authored/CUMULATIVE_PARTIAL_REPORT.md), then read the following original artifacts together with their qualifications. All original proof, audit, acceptance, check, and public-source-manifest bytes are preserved. Historical statements describe their original stage, not the final publication state.
+
+1. The [source-scoped report](theta_twisted_volumes_30004711/authored/SOURCE_SCOPED_IMPLICATION_REPORT.md) **must always accompany** the [corrective addendum](theta_twisted_volumes_30004711/authored/CORRECTIVE_ADDENDUM.md). The report overstated omissions in the torsion normalization. Stanford–Witten specifies normalization and spin/boundary conventions; identifying those actual conventions and representatives with the canonical construction remains unproved. Read the [full normalization audit](theta_volume_normalization_audit/authored/INDEPENDENT_NORMALIZATION_AUDIT.md), [conditional countercheck](theta_volume_normalization_audit/authored/CONDITIONAL_OWR_COUNTERCHECK.md), and [correction/A1 acceptance](theta_volume_normalization_audit/authored/ADDENDUM_AND_APPROACH_1_ACCEPTANCE.md).
+2. [Approach 1](theta_twisted_volumes_30004711/authored/AUTHOR_APPROACH_1_BOUNDARY_TRANSGRESSION.md) proves a precise boundary-transgression obstruction and a counterexample to unrestricted noncompact exact-deformation invariance. It does not compute the actual torsion residue.
+3. [Approach 2](theta_twisted_volumes_30004711/authored/AUTHOR_APPROACH_2_SUPER_KAEHLER_LINE.md) proves a conditional rank-one Berezin/Chern comparison and the compactified odd-line degree. Its [full audit](theta_line_comparison_audit/authored/APPROACH_2_INDEPENDENT_AUDIT.md) and mandatory [convention clarification](theta_twisted_volumes_30004711/authored/APPROACH_2_CONVENTION_CLARIFICATION.md) fix the tangent/dual metric distinction. The identical clarification is also retained in the audit folder.
+4. [Approach 3](theta_twisted_volumes_30004711/authored/AUTHOR_APPROACH_3_GEOMETRIC_RECURSION.md) establishes conditional recursion normalization, kernel arithmetic and uniqueness. It does not prove that the actual geometric torsion integrals satisfy the required recursion. Positive-boundary recursion alone does not settle n=0. Read the [full A3/A5 audit](theta_current_recursion_audit/authored/POSITIVE_CURRENT_AND_RECURSION_INDEPENDENT_AUDIT.md) and [pinned acceptance](theta_current_recursion_audit/authored/PINNED_CURRENT_RECURSION_ACCEPTANCE.json).
+5. [Approach 4](theta_twisted_volumes_30004711/authored/AUTHOR_APPROACH_4_ODD_TORUS_COLLAR.md), its [full audit](theta_cusp_growth_audit/authored/ODD_TORUS_COLLAR_INDEPENDENT_AUDIT.md), and [pinned acceptance](theta_cusp_growth_audit/authored/PINNED_CUSP_CORRECTION_ACCEPTANCE.json) disprove the asserted positive smooth-metric and bounded-curvature extension at the actual odd Ramond degeneration in the proofs of Theorem 6 of Norbury's arXiv:2005.04378v4 and Theorem 3.3 of arXiv:2312.14558v3. This precise assertion is the scope of the source criticism. It does not disprove a current-level extension or any numerical volume theorem. Growth bounds alone do not prove a flux limit.
+6. [Approach 5](theta_twisted_volumes_30004711/authored/AUTHOR_APPROACH_5_POSITIVE_CURRENT_REPAIR.md), with the A3/A5 audit and acceptance above, repairs the canonical odd genus-one integral by a positive-current extension with zero cusp atom. The value is **+1/32 on F-dual**, and **−1/32 on F**. The repair neither restores smoothness nor establishes the actual torsion comparison, the even component, higher-rank top Chern extension, or all genera.
+
+**Historical smooth-extension references are superseded.** The original source report, normalization audit, and Approach 2 clarification retain earlier reliance on a smooth canonical extension theorem. For the odd canonical open integral, read those passages subject to the accepted A4 correction and A5 current-level repair. The cumulative report's request for A5 independent acceptance is historical: the retained later audit supplies that acceptance, at its explicitly limited scope.
+
+The canonical normalization is W = 2^(1−g−n) V^Theta and N = 2^(g−1+n) W = V^Theta. The canonical normalized identity is credited to the cited literature. This packet does not independently certify its all-genus open-metric integral interpretation: Approach 4 invalidates the inspected smooth-extension shortcut, and Approach 5 repairs only the odd genus-one case. A same-stack genus-one scalar mismatch is not a counterexample to OWR's actual torsion measure without the missing comparison.
+
+## Reproduction and scope
+
+From any working directory, run:
+
+```sh
+python /path/to/30004711/verify.py
+```
+
+Requires Python 3.10+, SymPy 1.14.0 and mpmath 1.3.0 (the versions used for the publication replay). The driver validates the exact allowlist and all preserved bytes, all author-deliverable and acceptance pins, both mandatory addenda, and runs nine unchanged historical checkers in a temporary copy with their original relative folder layout. Each generated check JSON is compared to the preserved expected JSON. The driver separately reproduces the elementary cusp arithmetic.
+
+The tenth checker, `theta_cusp_growth_audit/authored/verify_cusp_audit.py`, is **explicitly skipped** in the source-free replay because its complete historical run also requires excluded source PDFs. The driver does not intercept, erase, or turn its source-pin checks into successes. Original source-pin checks, PDF retrieval, page inspections, and analytic theorem applications are not replayed by the source-free driver. Historical pass results and acceptance reports retain their original scope. A fresh mathematical reader must evaluate the written arguments and cited primary sources; finite arithmetic and integrity checks are not formal proofs or human review.
+
+See [EXCLUSIONS.md](EXCLUSIONS.md) for the publication boundary and [PUBLIC_MANIFEST.json](PUBLIC_MANIFEST.json) for the complete file allowlist. No novelty claim, comprehensive literature certification, human-review claim, or formal-proof claim is made.
