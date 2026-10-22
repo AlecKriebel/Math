@@ -1,0 +1,163 @@
+--- a/check_math.py
++++ b/check_math.py
+@@ -5,6 +5,11 @@
+ from fractions import Fraction as Q
+ from itertools import product
+ import json
++
++def require(condition, message):
++    """Retain validation in normal, -O, and -OO interpreters."""
++    if not condition:
++        raise ValueError(message)
+ 
+ checks = {}
+ 
+@@ -27,7 +32,7 @@
+         w += commutator([2*i+1], [2*i+2])
+     for n in range(1, 10):
+         for x in range(1, 2*g+1):
+-            assert exponent_vector(commutator(w*n, [x]), 2*g) == [0]*(2*g)
++            require(exponent_vector(commutator(w*n, [x]), 2*g) == [0]*(2*g), 'check_math.py:30: verification predicate failed')
+             count += 1
+ checks['boundary_twist_relator_abelianizations'] = count
+ 
+@@ -35,15 +40,15 @@
+ for g in range(1, 51):
+     for h in range(0, g+4):
+         b_min = max(1, 2*g+1-2*h)
+-        assert 2*h+b_min-1 >= 2*g
+-        assert 2*h+b_min-2 >= 2*g-1
++        require(2*h+b_min-1 >= 2*g, 'check_math.py:38: verification predicate failed')
++        require(2*h+b_min-2 >= 2*g-1, 'check_math.py:39: verification predicate failed')
+         if b_min > 1:
+-            assert 2*h+(b_min-1)-1 < 2*g
++            require(2*h+(b_min-1)-1 < 2*g, 'check_math.py:41: verification predicate failed')
+         count += 1
+-    assert 2*g+1-2 == 2*g-1
+-    assert (2*(g-1)+1-1) < 2*g
++    require(2*g+1-2 == 2*g-1, 'check_math.py:43: verification predicate failed')
++    require((2*(g-1)+1-1) < 2*g, 'check_math.py:44: verification predicate failed')
+     if g>=2:
+-        assert 2*1+(2*g-1)-2 == 2*g-1
++        require(2*1+(2*g-1)-2 == 2*g-1, 'check_math.py:46: verification predicate failed')
+ checks['page_complexity_cases'] = count
+ checks['annulus_control'] = {'absolute_monodromy_cokernel_rank': 1,
+     'actual_filled_rank_for_nonzero_twist': 0,
+@@ -52,9 +57,9 @@
+ count = 0
+ for g,b,d in product(range(1,13), repeat=3):
+     h = 1+d*(g-1)+Q((d-1)*b,2)
+-    assert 2-2*h-b == d*(2-2*g-b)
+-    assert h-g == (d-1)*(g-1+Q(b,2))
+-    assert h>=g
++    require(2-2*h-b == d*(2-2*g-b), 'check_math.py:55: verification predicate failed')
++    require(h-g == (d-1)*(g-1+Q(b,2)), 'check_math.py:56: verification predicate failed')
++    require(h>=g, 'check_math.py:57: verification predicate failed')
+     count += 1
+ checks['horizontal_cover_arithmetic'] = count
+ 
+@@ -62,7 +67,7 @@
+ count = 0
+ for f,px,py,vx,vy in product(range(1,5),range(-2,3),range(-2,3),range(-2,3),range(-2,3)):
+     zx,zy=Q(py,f*f),Q(-px,f*f)
+-    assert zx*vy-zy*vx == Q(px*vx+py*vy,f*f)
++    require(zx*vy-zy*vx == Q(px*vx+py*vy,f*f), 'check_math.py:65: verification predicate failed')
+     count += 1
+ checks['conformal_reeb_linear_equations'] = count
+ 
+@@ -72,8 +77,8 @@
+     chi=2-2*g
+     signature=-1
+     d3=Q(c_square-2*chi-3*signature,4)
+-    assert d3 == -g*g+2*g-Q(1,2)
+-    assert -d3-Q(1,2) == g*g-2*g
++    require(d3 == -g*g+2*g-Q(1,2), 'check_math.py:75: verification predicate failed')
++    require(-d3-Q(1,2) == g*g-2*g, 'check_math.py:76: verification predicate failed')
+     if g<=6:
+         samples.append({'g':g,'d3':str(d3),'candidate_contact_grading':g*g-2*g})
+ checks['d3_arithmetic']={'cases':101,'samples':samples}
+@@ -82,12 +87,12 @@
+ for m in range(0,21):
+     c=1<<m
+     mask=(1<<(m+1))-1
+-    assert ((c<<1)&mask)==0
++    require(((c<<1)&mask)==0, 'check_math.py:85: verification predicate failed')
+     for d in range(m+3):
+         # U^d image has monomial basis u^d,...,u^m.
+         image_support=sum(1<<j for j in range(d,m+1))
+         belongs = (c & ~image_support)==0
+-        assert belongs == (d<=m)
++        require(belongs == (d<=m), 'check_math.py:90: verification predicate failed')
+         count+=1
+ checks['finite_U_summand_depth_cases']=count
+ checks['tower_control']='For every d>=0, U^d times the class of U^(-d) equals the class of 1.'
+@@ -102,13 +107,13 @@
+             es=[n+12*sum(s for mask,s in zip(subsets,multiplicities) if mask&(1<<i)) for i in range(b)]
+             total=sum(es)
+             length=n+sum(multiplicities)
+-            assert total==b*n+12*sum(mask.bit_count()*s for mask,s in zip(subsets,multiplicities))
+-            assert n<=min(es)
+-            assert all(e>=0 and e%12==n%12 for e in es)
+-            assert length<=Q(total,min(b,12))
++            require(total==b*n+12*sum(mask.bit_count()*s for mask,s in zip(subsets,multiplicities)), 'check_math.py:105: verification predicate failed')
++            require(n<=min(es), 'check_math.py:106: verification predicate failed')
++            require(all(e>=0 and e%12==n%12 for e in es), 'check_math.py:107: verification predicate failed')
++            require(length<=Q(total,min(b,12)), 'check_math.py:108: verification predicate failed')
+             candidates=[v for v in range(min(es)+1) if all((e-v)%12==0 for e in es)]
+             sharper=max(Q(total,12)+v*(1-Q(b,12)) for v in candidates)
+-            assert length<=sharper
++            require(length<=sharper, 'check_math.py:111: verification predicate failed')
+             count+=1
+ checks['capping_vector_factor_counts']=count
+ 
+@@ -116,15 +121,15 @@
+ # Their capping vector would be (12,...,12), but they are not allowable factors.
+ for b in range(1,21):
+     allowed=range(1,(1<<b)-1)
+-    assert ((1<<b)-1) not in allowed
++    require(((1<<b)-1) not in allowed, 'check_math.py:119: verification predicate failed')
+ checks['excluded_homologically_trivial_separating_types']=20
+ 
+ for h in range(0,10):
+     for b in range(1,10):
+         old_chi=2-2*h-b
+-        assert 2-2*h-(b+1)==old_chi-1
++        require(2-2*h-(b+1)==old_chi-1, 'check_math.py:125: verification predicate failed')
+         if b>=2:
+-            assert 2-2*(h+1)-(b-1)==old_chi-1
++            require(2-2*(h+1)-(b-1)==old_chi-1, 'check_math.py:127: verification predicate failed')
+ checks['stabilization_euler_controls']=90
+ 
+ result={'status':'PASS','arithmetic_only':True,
+--- a/verify_packet.py
++++ b/verify_packet.py
+@@ -2,18 +2,23 @@
+ """Verify this source-free frozen packet and rerun its deterministic math checks."""
+ from pathlib import Path
+ import hashlib,json,subprocess,sys
++def require(condition, message):
++    """Retain validation in normal, -O, and -OO interpreters."""
++    if not condition:
++        raise ValueError(message)
++
+ base=Path(__file__).resolve().parent
+ manifest=json.loads((base/'FROZEN_MANIFEST.json').read_text())
+ expected={item['path']:item for item in manifest['files']}
+ actual={str(p.relative_to(base)) for p in base.rglob('*') if p.is_file() and p.name!='FROZEN_MANIFEST.json'}
+-assert actual==set(expected), (actual-set(expected),set(expected)-actual)
++require(actual==set(expected), (actual-set(expected),set(expected)-actual))
+ for name,item in expected.items():
+     data=(base/name).read_bytes()
+-    assert len(data)==item['bytes'],name
+-    assert hashlib.sha256(data).hexdigest()==item['sha256'],name
+-assert all(Path(name).suffix in {'.md','.py','.json'} for name in expected)
++    require(len(data)==item['bytes'], name)
++    require(hashlib.sha256(data).hexdigest()==item['sha256'], name)
++require(all(Path(name).suffix in {'.md','.py','.json'} for name in expected), 'verify_packet.py:14: verification predicate failed')
+ observed=json.loads(subprocess.check_output([sys.executable,str(base/'check_math.py')],text=True))
+ saved=json.loads((base/'CHECK_RESULTS.json').read_text())
+-assert observed==saved
+-assert observed['status']=='PASS' and observed['does_not_prove_original_problem']
++require(observed==saved, 'verify_packet.py:17: verification predicate failed')
++require(observed['status']=='PASS' and observed['does_not_prove_original_problem'], 'verify_packet.py:18: verification predicate failed')
+ print(json.dumps({'status':'PASS','verified_files':len(expected),'math_results_reproduced':True,'problem_status':'unresolved'},sort_keys=True))
