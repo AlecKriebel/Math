@@ -1,0 +1,202 @@
+--- author/PROOF.md
++++ PROOF.md
+@@ -116,22 +116,32 @@
+ 
+ ### 3.1 Homologically trivial classes cannot witness failure
+ 
+-Here is a direct explanation in characteristic zero. One may first pass to a
+-finite smooth level cover and a smooth normal-crossing toroidal
+-compactification X, then divide integrals by the covering degree. Let
+-D=X minus A_g. Boundary vanishing implies that cl(lambda_g) restricts to zero
+-in H^(2g)(D). By the exact sequence of the pair (X,D), choose a lift
+-
+-    u in H^(2g)(X,D) = H_c^(2g)(A_g)
+-
+-mapping to cl(lambda_g). For any extended algebraic class bar(a), compatibility
+-of relative cup product with integration gives
+-
+-    integral_X cl(bar(a)) cl(lambda_g)
+-      = integral_(A_g) cl(a) u.
+-
+-The same identity holds after inserting a tautological test class. If cl(a)=0
+-on A_g, every such integral is zero, and P(a)=0. Thus
++Pass to a smooth finite level cover U of A_g and a smooth proper toroidal
++compactification X with simple normal-crossing boundary D. The Hodge bundle
++is pulled back throughout. Each smooth proper boundary component D_i has
++lambda_g|D_i=0 in Chow, hence also in ordinary cohomology. Let D_tilde be the
++disjoint union of the D_i and let q:D_tilde -> D be the normalization.
++Deligne's Proposition 8.2.7 [S7] identifies the kernels of
++
++    H*(X,Q) -> H*(D,Q),
++    H*(X,Q) -> H*(D_tilde,Q).
++
++Its hypotheses hold: X is smooth, D is proper, D_tilde is proper and smooth,
++and q is surjective. Thus cl(lambda_g)|D=0, without treating the singular
++boundary D as smooth. The exact sequence of (X,D) then supplies
++
++    u in H^(2g)(X,D) = H_c^(2g)(U,Q)
++
++mapping to cl(lambda_g) in H^(2g)(X,Q). Relative cup product gives, whenever
++the degrees are complementary,
++
++    integral_X cl(bar(a)) cl(bar(r)) cl(lambda_g)
++      = integral_U cl(a) cl(r) u.
++
++Here a and the tautological test class r have been pulled back from A_g to U.
++If cl(a)=0 on A_g, the right side is zero. Divide by the level-cover degree
++and use the tautological perfect pairing to obtain P(a)=0. No uniqueness of u
++is required. Thus
+ 
+     H := ker(CH*(A_g) -> H^(2*)(A_g,Q)) is an ideal contained in K.
+ 
+@@ -172,6 +182,12 @@
+ abelian subvariety of a fixed dimension and polarization type. This excludes
+ the separate real-multiplication loci whose general member is simple.
+ Intersection with any class preserves these supports, so I is an ideal.
++
++In the following annihilator calculation assume g >= 2. For g=1 the
++nonsimple locus is empty, I=0, and this route is vacuous; multiplicativity is
++already covered by the small-genus case. In particular, the displayed
++annihilator and square-zero statements below are not assertions about
++lambda_0=1.
+ 
+ Set lambda=lambda_(g-1). After the finite covers used to record the subvariety
+ and its complementary factor, the Hodge bundle splits as E_u direct-sum
+@@ -224,6 +240,16 @@
+ 
+     c_g=(g-2)(g-3)/2,    N-c_g=2g-3.
+ 
++For the following formula choose a toroidal compactification to which the
++Torelli map extends, and interpret pullbacks in a smooth neighborhood of its
++image, or on a compatible resolution. Arbitrary smooth compactifications
++need not themselves carry an extension from bar(M_g). The second Voronoi or
++perfect-cone compactification supplies the usual extension, with the image
++in its nonsingular locus [S4, Section 1.9]. Equivalently, extend the pullback
++classes from M_g^ct to bar(M_g); lambda_g kills ambiguity supported outside
++compact type. In the displayed formula T^* on extended classes denotes the
++pullback by this compatible extended morphism.
++
+ For a homogeneous alpha, the homomorphism property with J_g is equivalent to
+ 
+     integral_(bar M_g) T^*(bar(alpha)-bar(P(alpha))) T^*(bar(r)) lambda_g = 0
+--- author/README.md
++++ README.md
+@@ -1,6 +1,12 @@
+ # Multiplicativity of tautological Chow projections
+ 
+ Problem **30006276 / OWR-14299284-004**. Result: **unsolved**.
++
++This corrected packet incorporates audit amendments C1-C3: the annihilator
++lemma is restricted to g>=2 (the nonsimple ideal is zero at g=1), the
++singular-boundary cohomology step is justified explicitly, and the Torelli
++integral uses a compatible compactification. The original author packet and
++the complete independent audit are retained unchanged in author/ and audit/.
+ 
+ The question concerns the canonical rational projection
+ CH*(A_g) -> R*(A_g) on the moduli stack of principally polarized abelian
+@@ -30,16 +36,28 @@
+ - `RESULT.json`: machine-readable outcome
+ - `verify_controls.py`: Python 3.10+ standard-library exact verifier
+ - `control_results.json`: deterministic output from the verifier
++- `CORRECTION_LEDGER.json` and `CORRECTION_DIFF.patch`: exact changes and
++  hash bindings to the preserved originals
++- `author/`: original frozen packet, including its original manifest
++- `audit/`: complete original independent audit, checker and results
+ 
+ Replay from this directory:
+ 
+     python3 verify_controls.py > /tmp/chow-projection-controls.json
+     diff -u control_results.json /tmp/chow-projection-controls.json
++    python3 audit/independent_checks.py > /tmp/chow-projection-independent.json
++    diff -u audit/independent_results.json /tmp/chow-projection-independent.json
+     sha256sum -c SHA256SUMS
+ 
+ The recorded run passes 5,250 exact assertions and enumerates 215,267
+ nontrivial partitions in the bounded cutoff check. It does not compute a
+ general Chow ring or certify the conjecture.
+ 
++The independent checker additionally requires SymPy 1.14.0. Its unchanged
++run passes 2,736 assertions and examines 1,295,920 bounded partition cases.
++It binds to the retained original author packet. Both mathematical checker
++programs and both result fixtures are byte-identical to their pre-correction
++versions; the corrections do not alter any computed value.
++
+ Author attribution: Alec Kriebel,
+ https://orcid.org/0009-0001-9320-500X.
+--- author/RESEARCH_LOG.md
++++ RESEARCH_LOG.md
+@@ -111,3 +111,16 @@
+ lambda_g test of such a product. The packet records finite witness targets
+ and excludes unsupported shortcuts rather than claiming the missing step.
+ Completion estimate toward the full target: 5%.
++
++## 14:22-14:24: audited correction checkpoint
++
++Prepared a separate corrected packet while preserving the original author
++files and full independent audit unchanged. Incorporated C1 by restricting
++the lambda_(g-1) annihilator and square-zero lemma to g>=2 and stating I=0
++at g=1. Incorporated C2 by supplying the singular-boundary normalization
++comparison from Deligne before constructing the compact-support lift.
++Incorporated C3 by specifying a Torelli-compatible compactification for the
++integral formula. No projection polynomial, scalar target, checker, or result
++fixture changed. The target remains unsolved, all five geometric Torelli
++left-hand integrals remain unevaluated, and no novelty or full-solution claim
++is added. Completion estimate remains 5%.
+--- author/RESULT.json
++++ RESULT.json
+@@ -32,5 +32,25 @@
+   "control_results": "control_results.json",
+   "controls_status": "passed: 5250 exact assertions; 215267 finite partition cases examined; not a full-target proof certificate",
+   "full_target_completion_estimate_percent": 5,
+-  "source_access_limit": "Requested catalogue returned 403. Exact target was checked against the supplied fixed record and independently inspected original OWR page. Published article PDF retrieval failed; full author-posted arXiv versions were inspected instead."
++  "source_access_limit": "Requested catalogue returned 403. Exact target was checked against the supplied fixed record and independently inspected original OWR page. Published article PDF retrieval failed; full author-posted arXiv versions were inspected instead.",
++  "corrected_at": "2026-10-04T14:24:00Z",
++  "corrections_applied": [
++    {
++      "id": "C1",
++      "scope": "Annihilator and square-zero lemma assume g>=2; g=1 has empty nonsimple locus and I=0."
++    },
++    {
++      "id": "C2",
++      "scope": "Deligne Proposition 8.2.7 supplies the singular-boundary cohomology comparison before the compact-support lift."
++    },
++    {
++      "id": "C3",
++      "scope": "The Torelli pullback integral uses a compatible toroidal compactification or compatible resolution."
++    }
++  ],
++  "original_author_manifest_sha256": "83549a36a97a878966348ab32cdfe0798e235e299b6841973e21c63434afec08",
++  "preserved_audit_manifest_sha256": "e9514f008b747812b43947ee71dc7818d3df20a775e78c7cb7ffeb4505ab0d98",
++  "independent_control_results": "audit/independent_results.json",
++  "independent_controls_status": "passed: 2736 exact assertions; 1295920 finite partition cases examined; mathematical code and result fixture unchanged",
++  "geometric_Torelli_left_hand_integrals_computed": 0
+ }
+--- author/SOURCES.md
++++ SOURCES.md
+@@ -76,6 +76,17 @@
+   compact codimension-g complex subvariety for g>=3. It excludes that proof
+   mechanism, not the homomorphism conjecture itself.
+ 
++**S7. Pierre Deligne, “Theorie de Hodge III.”**
++
++- https://www.numdam.org/articles/10.1007/BF02685881/
++- *Publications Mathematiques de l'IHES* 44 (1974), pp. 5-77.
++- Proposition 8.2.7, printed p. 40, with the weight argument in Proposition
++  8.2.5 on p. 39. This is the precise kernel-comparison input in the audited
++  clarification of PROOF.md, Section 3.1. Its application uses a smooth X,
++  a proper singular boundary D, and its smooth proper normalization mapping
++  surjectively to D. It avoids inferring ordinary cohomology vanishing on a
++  singular boundary merely by treating that boundary as smooth.
++
+ ## Catalogue and bounded literature check
+ 
+ The requested catalogue URL is https://www.unsolvedmath.com/problems/30006276.
+@@ -102,3 +113,8 @@
+ No downloaded source full text, source PDF, image of a source page, or imported
+ catalogue corpus is part of this research packet. Citations identify the
+ underlying works; the packet contains original exposition and exact controls.
++
++The original source account is preserved in author/SOURCES.md. The complete
++independent audit is retained in audit/, including its corrections and exact
++input binding. The updated source reference above implements correction C2;
++the Torelli-compatible compactification qualification implements C3.
