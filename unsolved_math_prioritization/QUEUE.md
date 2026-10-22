@@ -854,7 +854,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 843 | 30002618 / OWR-13102-007 | Monodromy Exactness for Isocrystals on Semistable Curves | 0.0975 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 844 | 10300026 / AMR-102-0026 | Leaf spaces and transverse structures — Question 8.3 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 845 | 10300029 / AMR-102-0029 | Leaf spaces and transverse structures — Question 8.6 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 846 | 10400124 / AMR-103-0124 | Conjecture 7.9 — (Topological interpretations of the dj ’s) Let Mj be the union of components of the moduli space of flat connections… | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 846 | 10400124 / AMR-103-0124 | Conjecture 7.9 — (Topological interpretations of the dj ’s) Let Mj be the union of components of the moduli space of flat connections… | 0.0975 | 6.0 | 3 | unknown | unsolved | 3/5 |  |  |  |
 | 847 | 10400215 / AMR-103-0215 | Conjecture 12.10 — (D. | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 848 | 11100062 / AMR-110-0062 | Unstable homotopy theory 3 — Suppose X is a simply connected finite complex. | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 849 | 20001938 / AIM-GEOMETRY-0276 | Regular-stratum curvature-jet tests for projective metrizability | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
