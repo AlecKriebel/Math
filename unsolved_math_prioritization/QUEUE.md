@@ -1860,7 +1860,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1849 | 30004262 / OWR-17288-004 | Finite-Dimensional Uniform Embeddings of Compact Metric Spaces | 0.0512 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1850 | 30004632 / OWR-4990379-002 | Global Optimality of Domain-Decomposition Transport Algorithms | 0.0508 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 1851 | 30005646 / OWR-14297740-018 | Strict Higher Étale-Homotopy Obstructions over Global Fields | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 1852 | 30005647 / OWR-14297740-019 | Next-Most-Probable Galois Groups of Random Polynomials | 0.0502 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 1852 | 30005647 / OWR-14297740-019 | Next-Most-Probable Galois Groups of Random Polynomials | 0.0502 | 5.5 | 3 | 2023 | unsolved | 5/5 |  | 2026-10-21: Five scoped approaches; general conjecture UNSOLVED. For fixed n>=10, square-event/full-A_n reduction has additive O_n(H^-2) error; repeated roots Theta_n(H^-2) for n>=3; signed composition identity and failed routes recorded. Independent audit and exact normal/optimized replay plus mutation controls passed. No novelty claim; Wiley exact dates remain reported, not independently replicated. See random_galois_groups_30005647/. |  |
 | 1853 | 6000013 / AMR-059-0013 | Affine Vertices and Inflection Points | 0.0499 | 5.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 1854 | 30005762 / OWR-14298158-007 | Rationality Below Growth Rate Four | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1855 | 30006081 / OWR-14298796-001 | Adjoint-Free Approximation of Nonsymmetric Low-Rank Matrices | 0.0497 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
