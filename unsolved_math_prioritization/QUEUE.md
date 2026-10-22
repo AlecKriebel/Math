@@ -468,7 +468,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 457 | 20001670 / AIM-GEOMETRY-0008 | Attainment and a quantitative segment bound for planar p-capacity | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 458 | 20001782 / AIM-GEOMETRY-0120 | Element-order reduction and short-span bounds for Delone cluster groups | 0.1275 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 459 | 20001851 / AIM-GEOMETRY-0189 | A one-coordinate unlockability certificate for open chains in three-space | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 460 | 20001939 / AIM-GEOMETRY-0277 | Affine rigidity and a mobility-two reduction on the Lorentz 3-sphere | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 460 | 20001939 / AIM-GEOMETRY-0277 | Affine rigidity and a mobility-two reduction on the Lorentz 3-sphere | 0.1275 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 461 | 20002029 / AIM-GEOMETRY-0367 | Critical-weight conformal invariants built from Schouten jets | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 462 | 20002237 / AIM-LOGIC-0013 | Addition with directed p-power divisibility | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 463 | 20002290 / AIM-LOGIC-0066 | A positive-existential definition of nonzero rationals | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
