@@ -1,0 +1,11 @@
+--- a/check_adversarial_records.py
++++ b/check_adversarial_records.py
+@@ -2,7 +2,7 @@
+ from pathlib import Path
+ from exact_model import trees,maximum,member,require
+ results=[]
+-for path in sorted(Path('../results').glob('adversarial_best_n*.json')):
++for path in sorted((Path(__file__).resolve().parents[1] / 'author/results').glob('adversarial_best_n*.json')):
+  r=json.loads(path.read_text());n=r['n'];es=tuple(map(tuple,r['edges']));w=r['w'];k=r['k']
+  require(member(n,es,w,k),'bad recorded point')
+  ts=trees(n,es);vals=[maximum(n,es,w,k,t)[0] for t in ts]
