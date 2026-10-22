@@ -1,0 +1,558 @@
+{
+  "author_manifest_sha256": "9516d60833e6f198eea54faf502f70d151aafe39ed26504ae9be3af05b22bab4",
+  "author_zip_sha256": "6bc7b4cc916c38afbc1f7a6289e0dd9643f577d17778ecc79524c1f4646a538b",
+  "boundary": "The replay verifier is not a proof checker and cannot authenticate a caller-replaced manifest. Independently pin the supplied original ZIP/manifest hashes.",
+  "cases": [
+    {
+      "accepted": true,
+      "case": "original",
+      "diagnostic": "verified",
+      "optimized": false,
+      "returncode": 0
+    },
+    {
+      "accepted": true,
+      "case": "original",
+      "diagnostic": "verified",
+      "optimized": true,
+      "returncode": 0
+    },
+    {
+      "accepted": true,
+      "case": "relocated foreign cwd",
+      "diagnostic": "verified",
+      "optimized": false,
+      "returncode": 0
+    },
+    {
+      "accepted": true,
+      "case": "relocated foreign cwd",
+      "diagnostic": "verified",
+      "optimized": true,
+      "returncode": 0
+    },
+    {
+      "accepted": false,
+      "case": "missing proof",
+      "diagnostic": "ValueError: Strict inventory mismatch",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "missing proof",
+      "diagnostic": "ValueError: Strict inventory mismatch",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "unexpected file",
+      "diagnostic": "ValueError: Strict inventory mismatch",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "unexpected file",
+      "diagnostic": "ValueError: Strict inventory mismatch",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "nested directory",
+      "diagnostic": "ValueError: Strict inventory mismatch",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "nested directory",
+      "diagnostic": "ValueError: Strict inventory mismatch",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "bytecode directory",
+      "diagnostic": "ValueError: Strict inventory mismatch",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "bytecode directory",
+      "diagnostic": "ValueError: Strict inventory mismatch",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "symlink payload",
+      "diagnostic": "ValueError: Nonregular payload: PROOF.md",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "symlink payload",
+      "diagnostic": "ValueError: Nonregular payload: PROOF.md",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "symlink root",
+      "diagnostic": "ValueError: Root is not an ordinary directory",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "symlink root",
+      "diagnostic": "ValueError: Root is not an ordinary directory",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "symlink manifest",
+      "diagnostic": "ValueError: Manifest is not a regular file",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "symlink manifest",
+      "diagnostic": "ValueError: Manifest is not a regular file",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest inside root",
+      "diagnostic": "ValueError: Manifest must be external",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest inside root",
+      "diagnostic": "ValueError: Manifest must be external",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "proof byte mutation",
+      "diagnostic": "ValueError: Byte count mismatch: PROOF.md",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "proof byte mutation",
+      "diagnostic": "ValueError: Byte count mismatch: PROOF.md",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "result byte mutation",
+      "diagnostic": "ValueError: Byte count mismatch: RESULTS.json",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "result byte mutation",
+      "diagnostic": "ValueError: Byte count mismatch: RESULTS.json",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "verifier byte mutation",
+      "diagnostic": "ValueError: Byte count mismatch: verify_bundle.py",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "verifier byte mutation",
+      "diagnostic": "ValueError: Byte count mismatch: verify_bundle.py",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "certificate byte mutation",
+      "diagnostic": "ValueError: Byte count mismatch: certificate.py",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "certificate byte mutation",
+      "diagnostic": "ValueError: Byte count mismatch: certificate.py",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest missing file",
+      "diagnostic": "ValueError: Manifest count",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest missing file",
+      "diagnostic": "ValueError: Manifest count",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest duplicate record",
+      "diagnostic": "ValueError: Manifest inventory",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest duplicate record",
+      "diagnostic": "ValueError: Manifest inventory",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest traversal path",
+      "diagnostic": "ValueError: Manifest inventory",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest traversal path",
+      "diagnostic": "ValueError: Manifest inventory",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest absolute path",
+      "diagnostic": "ValueError: Manifest inventory",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest absolute path",
+      "diagnostic": "ValueError: Manifest inventory",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest wrong schema",
+      "diagnostic": "ValueError: Manifest schema",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest wrong schema",
+      "diagnostic": "ValueError: Manifest schema",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest wrong problem",
+      "diagnostic": "ValueError: Manifest problem ID",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest wrong problem",
+      "diagnostic": "ValueError: Manifest problem ID",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest bool problem",
+      "diagnostic": "ValueError: Manifest problem ID",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest bool problem",
+      "diagnostic": "ValueError: Manifest problem ID",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest bool byte count",
+      "diagnostic": "ValueError: Byte-count type",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest bool byte count",
+      "diagnostic": "ValueError: Byte-count type",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest float byte count",
+      "diagnostic": "ValueError: Byte-count type",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest float byte count",
+      "diagnostic": "ValueError: Byte-count type",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest negative byte count",
+      "diagnostic": "ValueError: Byte-count type",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest negative byte count",
+      "diagnostic": "ValueError: Byte-count type",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest wrong length",
+      "diagnostic": "ValueError: Byte count mismatch: APPROACH_LOG.md",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest wrong length",
+      "diagnostic": "ValueError: Byte count mismatch: APPROACH_LOG.md",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest uppercase digest",
+      "diagnostic": "ValueError: Hash syntax",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest uppercase digest",
+      "diagnostic": "ValueError: Hash syntax",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest extra key",
+      "diagnostic": "ValueError: Manifest keys",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest extra key",
+      "diagnostic": "ValueError: Manifest keys",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest record extra key",
+      "diagnostic": "ValueError: Manifest records",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest record extra key",
+      "diagnostic": "ValueError: Manifest records",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest duplicate key",
+      "diagnostic": "ValueError: Duplicate JSON key",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest duplicate key",
+      "diagnostic": "ValueError: Duplicate JSON key",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest nested duplicate key",
+      "diagnostic": "ValueError: Duplicate JSON key",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest nested duplicate key",
+      "diagnostic": "ValueError: Duplicate JSON key",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest invalid JSON",
+      "diagnostic": "json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest invalid JSON",
+      "diagnostic": "json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest invalid UTF8",
+      "diagnostic": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "manifest invalid UTF8",
+      "diagnostic": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed wrong result",
+      "diagnostic": "ValueError: Exact-output replay mismatch",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed wrong result",
+      "diagnostic": "ValueError: Exact-output replay mismatch",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed nonregular quotient",
+      "diagnostic": "ValueError: Closed simplex has identified vertices",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed nonregular quotient",
+      "diagnostic": "ValueError: Closed simplex has identified vertices",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed incorrect product",
+      "diagnostic": "ValueError: Product gap",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed incorrect product",
+      "diagnostic": "ValueError: Product gap",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed overclaim",
+      "diagnostic": "ValueError: Claim scope mismatch",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed overclaim",
+      "diagnostic": "ValueError: Claim scope mismatch",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed false status",
+      "diagnostic": "ValueError: Claim scope mismatch",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed false status",
+      "diagnostic": "ValueError: Claim scope mismatch",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed certificate stderr",
+      "diagnostic": "ValueError: Certificate stderr",
+      "optimized": false,
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "case": "rehashed certificate stderr",
+      "diagnostic": "ValueError: Certificate stderr",
+      "optimized": true,
+      "returncode": 1
+    },
+    {
+      "accepted": true,
+      "case": "untrusted replacement manifest permits changed prose",
+      "diagnostic": "verified",
+      "optimized": false,
+      "returncode": 0
+    },
+    {
+      "accepted": true,
+      "case": "untrusted replacement manifest permits changed prose",
+      "diagnostic": "verified",
+      "optimized": true,
+      "returncode": 0
+    }
+  ],
+  "executions": 78,
+  "expected_negative": 72,
+  "expected_positive": 6,
+  "payload_files": 7,
+  "status": "PASS_WITH_DOCUMENTED_TRUST_BOUNDARY"
+}
