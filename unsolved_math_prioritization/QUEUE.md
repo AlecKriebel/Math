@@ -92,7 +92,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 81 | 2725 / KP-1.66 | Kirby Problem 1.66 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 82 | 2772 / KP-2.24 | Kirby Problem 2.24 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 83 | 2853 / KP-3.55 | Kirby Problem 3.55 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 84 | 2861 / KP-3.63 | Kirby Problem 3.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 84 | 2861 / KP-3.63 | Kirby Problem 3.63 | 0.2400 | 5.5 | 3 | unknown | already_solved | 0/5 |  | 2026-09-30: Credited Lin-Lipnowski2025 spin trace formula supplies the literal general closed-hyperbolic-manifold eta computation method and nonzero examples. Separate source/normalization audit verified kernel allowance and geometric limit;99author and1487independent controls. Uniform certified tolerance algorithm and independent Weeks-decimal certification are outside scope; no campaign discovery. Draft PR: https://github.com/AlecKriebel/Math/pull/71. |  |
 | 85 | 2869 / KP-3.71 | Kirby Problem 3.71 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 86 | 2919 / KP-4.43 | Kirby Problem 4.43 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 87 | 2935 / KP-4.59 | Kirby Problem 4.59 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
