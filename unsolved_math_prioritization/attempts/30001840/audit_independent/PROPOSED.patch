@@ -1,0 +1,87 @@
+--- a/PROOF.md
++++ b/PROOF.md
+@@ -48,15 +48,27 @@
+ 
+ Attempt: upgrade the credited prime-ideal images to the entire geometric ell-adic image, avoiding the invalid inference that two surjective projections must have product image.
+ 
+-Let ell>=7 be prime and R=O tensor Z_ell. The Tate module of the generic Jacobian is free of rank two over R. The principal polarization and Rosati-self-adjoint RM identify the geometric image H with a closed subgroup of SL_2(R). Here the trace pairing of the unramified algebra R is perfect, and the polarization can be written Tr(beta det(v,w)) with beta a unit; preservation is equivalent to determinant one. All identifications are up to a choice of R-basis.
++Let ell>=7 be prime and R=O tensor Z_ell. Here are the integral-module and polarization details. The rational Betti module is two-dimensional over K (Darmon--Mestre, Section 3, printed p. 308). Betti--etale comparison, compatible with the O-action, therefore identifies V_ell=T_ell(J_t) tensor Q_ell with a free rank-two module over K tensor Q_ell. Since ell is unramified in K, R is a product of discrete valuation rings. Each factor of T_ell is a finitely generated torsion-free module over the corresponding discrete valuation ring, of rank two after passage to its fraction field. Consequently T_ell is free of rank two over R. This argument does not assume that an arbitrary displayed two-generator matrix group has already been identified with the integral Jacobian lattice.
++
++The RM correspondence is Rosati-self-adjoint for the canonical principal polarization: the transpose of the correspondence induced by a fifth root zeta is the one induced by zeta inverse, and these coincide under the quotient involution used in its construction. Thus the perfect alternating Weil form E is R-balanced: E(av,w)=E(v,aw). In an R-basis e_1,e_2, set phi(c)=E(e_1,c e_2). Balancedness and alternation give E(ae_i,be_i)=0 and hence E(v,w)=phi(det(v,w)). The trace pairing of the finite unramified algebra R over Z_ell is perfect, so a unique beta in R satisfies phi(c)=Tr_{R/Z_ell}(beta c). Perfectness of E makes beta a unit in every factor. Therefore E(v,w)=Tr(beta det(v,w)), and an R-linear map preserves E precisely when its R-determinant is one. The geometric image H is consequently a closed subgroup of SL_2(R). All statements are relative to the specified RM action and polarization, up to an R-basis choice.
+ 
+ If ell is inert in K, Turn 2 already gives the full reduction SL_2(F_{ell^2}). If ell splits, the two reductions each equal SL_2(F_ell). To prove joint surjectivity, use Goursat's lemma and the following standard finite-group facts, with ell>=5: the only proper normal subgroups of SL_2(F_ell) are {1} and its scalar center; PSL_2(F_ell) is simple; every automorphism of PSL_2(F_ell) is induced by PGL_2(F_ell). The last statement has no field-automorphism factor because the field is prime.
+ 
+-A proper subdirect product would therefore identify the two projective representations through a PGL_2-conjugacy. Such an identification preserves the invariant trace(g)^2/det(g). A single common inertia element at infinity rules it out. In the two embeddings its traces are -w and -w', where w+w'=-1 and w-w'=sqrt(5). Thus w^2-(w')^2=-sqrt(5), nonzero modulo every prime above ell !=5. This contradicts equality of projective trace invariants. Hence reduction modulo ell is the full product.
++A proper subdirect product would therefore identify the two projective representations through a PGL_2-conjugacy. Indeed Goursat gives isomorphic nontrivial quotients of the two SL_2 factors. Their normal-subgroup classification leaves either an SL_2 graph or a PSL_2 graph, and both induce a graph after projectivization. There is no additional abelian common quotient, since SL_2(F_ell) is perfect. Such a projective identification preserves trace(g)^2/det(g).
+ 
+-For completeness the required lifting lemma has an elementary proof. Let R be a finite product of unramified extensions of Z_p, p>=5, and let H be closed in SL_2(R), surjecting modulo p. Write K_n for the kernel of reduction modulo p^n. Then K_n/K_{n+1}=sl_2(R/pR), additively. Select h in H lifting a unipotent I+E_12 in one residue-field factor and identity in the others. Its p-th power is I+pE_12 modulo p^2 in that factor and identity in the others. To check this for an arbitrary lift h=I+E_12+pA, expand modulo p^2. The correction sum is p times a polynomial sum of degree at most two in the conjugation index; sums of 1,j,j^2 vanish modulo p for p>=5. Since E_12^2=0, the asserted leading term follows.
++One common inertia element at infinity rules out both graph cases. Crucially, Darmon--Mestre's Section 3, printed p. 308, first fixes the identification of O on the rational Betti module and gives this single characteristic-zero monodromy transformation K-trace -w. Its two prime-ideal reductions are therefore reductions of the same transformation, not independently chosen inertia generators. The two embedded traces are -w and -w', with w+w'=-1 and w-w'=sqrt(5). Hence w^2-(w')^2=-sqrt(5), nonzero modulo ell!=5. This contradicts equality of the projective trace invariants. Reduction modulo ell is the full product.
+ 
+-The image of H intersect K_1 in K_1/K_2 is invariant under conjugation by SL_2(R/pR). The F_p-span of the conjugates of E_12 is all of sl_2(k) in each factor k: diagonal conjugation supplies square multiples of E_12; differences of squares span k; the Weyl matrix supplies E_21; and conjugating E_12 by [[1,0],[1,1]] supplies the diagonal direction. Thus the first layer is full, independently in each factor. Raising I+p^n X to the p-th power gives I+p^{n+1}X modulo p^{n+2}, for every n>=1, so every later layer is full. Induction gives surjectivity modulo p^n for every n. Closedness gives H=SL_2(R).
++For completeness the required lifting lemma has an elementary proof. Let R be a finite product of unramified extensions of Z_p, p>=5, and let H be closed in SL_2(R), surjecting modulo p. Write K_n for the kernel of reduction modulo p^n. The map I+p^n X -> X modulo p identifies K_n/K_{n+1} with sl_2(R/pR), additively. All traceless residue matrices occur, by lifting three entries and solving the determinant-one equation for the fourth.
++
++Choose a residue element equal to I+E_12 in just one factor and to I elsewhere, and take any lift h in H. In the selected factor write h=u+pA, with u=I+E_12. Expansion modulo p^2 gives
++
++h^p = u^p + p sum_{j=0}^{p-1} u^j A u^{p-1-j} (mod p^2).
++
++In the correction sum reduced modulo p, u^j=I+jE_12. Every coefficient is a polynomial of degree at most two in j. For p>=5 the sums of 1,j,j^2 over F_p are all zero, so the correction vanishes. Since u^p=I+pE_12, the selected factor of h^p is I+pE_12 modulo p^2. In any other factor h=I+pA, so h^p=I modulo p^2. Thus H intersect K_1 has a first-layer element supported in exactly the chosen factor. This is where full joint residual surjectivity, rather than separate projections, is required.
++
++That first-layer image is an F_p-subspace invariant under the full residue group. In a factor k, conjugating E_12 by diag(a,a^-1), a nonzero, gives a^2 E_12. Every c in k is a difference of two squares, namely ((c+1)/2)^2-((c-1)/2)^2; a zero square simply contributes zero. Hence the span contains k E_12. A Weyl conjugation gives k E_21. Conjugation by [[1,0],[1,1]] then supplies every scalar multiple of diag(1,-1). Therefore it contains all sl_2(k). Since the initial elements have separate factor supports, the first layer is the full direct product.
++
++For n>=1, (I+p^n X)^p=I+p^{n+1}X modulo p^{n+2}. This gives every later layer by induction from the preceding full layer. Starting from the full reduction modulo p, fullness of each kernel layer then gives surjectivity modulo every p^n. Finally compactness and closedness imply H=SL_2(R). The arbitrary-lift step is not valid at p=3: modulo 9, h=[[1,1],[3,4]] has determinant one and reduces to I+E_12, but h^3=[[1,6],[0,1]], rather than I+3E_12. No conclusion at 3 is obtained from this lemma.
+ 
+ Therefore, for the generic geometric representation, for every prime ell>=7,
+ 
+--- a/checks.py
++++ b/checks.py
+@@ -2,6 +2,11 @@
+ """Finite controls for stated formulas; no empirical output is an all-primes proof."""
+ import json
+ from collections import deque, Counter
++
++def require(condition, message):
++    """Checks remain active under python -O and -OO."""
++    if not condition:
++        raise RuntimeError(message)
+ 
+ def matrix_group(p):
+     # O/pO = F_p[w]/(w^2+w-1). Works as a finite ring also at p=5.
+@@ -31,11 +36,12 @@
+             if k%2:B=prod(B,A)
+             A=prod(A,A);k//=2
+         return B
+-    assert all(add(mul(a,d),neg(mul(b,c)))==1 for a,b,c,d in G)
++    require(all(add(mul(a,d),neg(mul(b,c)))==1 for a,b,c,d in G), ("non-unit determinant", p))
+     minusI=(neg(1),0,0,neg(1))
+-    assert powmat(prod(U,V),5)==minusI
++    require(powmat(prod(U,V),5)==minusI, ("incorrect fifth-power relation", p))
++    require(minusI in G, ("missing scalar center", p))
+     expected={2:10,3:120,5:15000,7:117600}[p]
+-    assert len(G)==expected,(p,len(G))
++    require(len(G)==expected, ("incorrect group order", p, len(G), expected))
+     result={'p':p,'ring_order':n,'generated_order':len(G),'minus_I_present':minusI in G,'projective_order':len(G)//(1 if p==2 else 2)}
+     if p==3:
+         # All element orders provide a supplementary binary-icosahedral fingerprint.
+@@ -46,7 +52,7 @@
+                 B=prod(B,A)
+                 if B==I:orders[k]+=1;break
+         result['element_order_counts']=dict(sorted(orders.items()))
+-        assert result['element_order_counts']=={1:1,2:1,3:20,4:30,5:24,6:20,10:24}
++        require(result['element_order_counts']=={1:1,2:1,3:20,4:30,5:24,6:20,10:24}, ("incorrect order distribution", result['element_order_counts']))
+     return result
+ 
+ def scalar_controls():
+@@ -58,11 +64,11 @@
+     for a in range(-20,21):
+         if a==0:continue
+         u=Fraction(a,3)
+-        assert D(u+1/u)==u**5+u**-5;count+=1
++        require(D(u+1/u)==u**5+u**-5, ("Chebyshev identity failed", u));count+=1
+     # Affine F_5 action on five roots and its even-slope dihedral subgroup.
+     G={tuple((a*i+b)%5 for i in range(5)) for a in range(1,5) for b in range(5)}
+     H={tuple((a*i+b)%5 for i in range(5)) for a in [1,4] for b in range(5)}
+-    assert len(G)==20 and len(H)==10
++    require(len(G)==20 and len(H)==10, ("incorrect permutation orders", len(G), len(H)))
+     return {'rational_identity_controls':count,'affine_group_order':len(G),'dihedral_group_order':len(H)}
+ 
+ if __name__=='__main__':
