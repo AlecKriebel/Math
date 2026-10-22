@@ -675,7 +675,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 664 | 30003322 / OWR-15181-014 | Set-Sized Models of Initial Surreal Substructures | 0.1051 | 6.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 665 | 30001132 / OWR-3384-004 | Admissible Gelfand–Zetlin Faces Representing Smooth Schubert Cycles | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 666 | 30001138 / OWR-3385-009 | Linked Skeletons of Convex Four-Polytopes | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 667 | 30001155 / OWR-3389-006 | Area-Refined Spectral Gap Bounds for Convex Domains | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 667 | 30001155 / OWR-3389-006 | Area-Refined Spectral Gap Bounds for Convex Domains | 0.1050 | 5.5 | 3 | 2009 | unsolved | 5/5 |  |  |  |
 | 668 | 30001222 / OWR-3400-006 | Rigidity Under Stable Equivalence of Quantum Complete Intersections | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 669 | 30001397 / OWR-4137-017 | Hausdorff Gauges for Conformal Measures of Elliptic Maps | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 670 | 10300062 / AMR-102-0062 | Immersed objects — Question 14.2 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
