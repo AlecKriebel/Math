@@ -498,7 +498,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 487 | 2305057 / AMR-022-5057 | Research Problems in Function Theory — Problem 5.57 | 0.1260 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 488 | 30005507 / OWR-13750328-012 | Frobenius–Schur Indicators in Real Nilpotent Blocks | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 489 | 30005508 / OWR-13750328-013 | Projective Characters and Square Roots in Real Blocks | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 490 | 30005717 / OWR-14298007-012 | Even-Dimensional Stress-Space Reconstruction | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 490 | 30005717 / OWR-14298007-012 | Even-Dimensional Stress-Space Reconstruction | 0.1254 | 6.0 | 3 | 2023 | unsolved | 5/5 |  |  |  |
 | 491 | 30005723 / OWR-14298009-001 | Modular Generators for Massive Double Cones | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 492 | 30005528 / OWR-13750333-009 | Periodic Minimizers in Compact Linear Domino Games | 0.1254 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 493 | 6000016 / AMR-059-0016 | Stability of Hessian Metrics | 0.1248 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
