@@ -1,0 +1,11 @@
+# Limits of the result
+
+1. **Not a solution.** No absolute bound is proved, and no weakly ab-maximal family of unbounded derived length is constructed.
+2. **No novelty claim.** The cyclic-holomorph family and basic closure properties are known. Other elementary reductions and no-go arguments are provided with proofs but without a claim of priority.
+3. **External structural input.** Nilpotency/Sylow reduction uses Lisi–Sabatini's published theorem. The source and its relevant proof were inspected, but its imported foundations were not independently reproved.
+4. **Finite checks are finite.** The checker is exhaustive for the subgroup lattices of nine explicitly constructed groups only. Two additional wreath cases have exact witnesses. It is not a scan of all p-groups up to any order, and it is not a Lean or other proof-assistant formalization.
+5. **Counterexample scope.** The wreath theorem concerns regular wreath products of nontrivial finite p-groups; it does not classify all semidirect products. The matrix obstruction concerns full UT_n(F_q). The central-product result has explicit derived-center hypotheses.
+6. **Literature cutoff.** Searches and the editor's October 2026 update were checked on 5 October 2026. A problem still listed as open does not certify that no unpublished or unindexed result exists.
+7. **Source availability.** The requested numeric UnsolvedMath page failed in the web reader. Identity was recovered from the complete public dataset whose hash and byte count matched the pinned repository manifest, then checked against the primary Notebook page. The Notebook PDF was already available from the same editor-hosted October source; its bytes were rehashed and the relevant page visually inspected.
+8. **Prior-work search is bounded.** The pinned queue, attempts-directory listing, identifier/terminology code search, PR search, and supplied research corpus were checked. Two recursive-tree reads failed at transport level, so a full repository tree was not obtained. This is disclosed rather than converted into a claim of exhaustive historical absence.
+9. **Release state.** This is an author freeze. Independent review must finish before any publication. No remote branch, commit, PR, comment, or queue update was made by this investigation.
