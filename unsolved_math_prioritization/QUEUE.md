@@ -1791,7 +1791,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1780 | 30006230 / OWR-14299093-005 | Converse Bessel-Pair Criterion for Grushin Operators | 0.0552 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 1781 | 30000043 / OWR-720-011 | Wavelet Structure of Canonical Tight Frames | 0.0545 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 1782 | 30000215 / OWR-822-007 | Theoretical Certification of Crossing-Number Optimality | 0.0545 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 1783 | 30000386 / OWR-1183-006 | The Two-Dimensional Time-Bomb Conjecture | 0.0544 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
+| 1783 | 30000386 / OWR-1183-006 | The Two-Dimensional Time-Bomb Conjecture | 0.0544 | 5.0 | 3 | 2006 | unsolved | 5/5 |  | UNSOLVED after five passes. Partial results: infinite online safety for maximum lead 16; lead-16 tracking with reference speed <= 1/100 and error < 80; restricted short/distant mixtures; four arbitrary known allowed detonation times. [Reviewed partial-results reader](attempts/30000386/public/README.md). Missing: for every finite H, an empty-containing complete-state family closed under a safe Angel move and every legal Devil reply, or an empty-rooted Devil forcing strategy. No unrestricted solution or novelty claim. |  |
 | 1784 | 30001101 / OWR-2489-006 | Alcuin Numbers and Recognition of Small Boat Graphs | 0.0542 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 1785 | 10000037 / AMR-099-0037 | Uniqueness of percolation on graphs roughly isometric to lattices | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1786 | 10400007 / AMR-103-0007 | Problem 1.7 — (J. | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
