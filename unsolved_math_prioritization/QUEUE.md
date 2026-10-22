@@ -729,7 +729,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 718 | 30004222 / OWR-17135-015 | Combinatorial Explanation of the Clasp Conjecture | 0.1041 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 719 | 30004279 / OWR-17292-002 | Equivalent Bicommutant Categories from Nonisomorphic Conformal Nets | 0.1041 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 720 | 30002692 / OWR-13347-011 | Hyperbolic Conformal Boundaries of Poincaré–Einstein Manifolds | 0.1040 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
-| 721 | 30002468 / OWR-12861-019 | Biclique Partition Numbers of Random Graphs | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 721 | 30002468 / OWR-12861-019 | Biclique Partition Numbers of Random Graphs | 0.1040 | 5.5 | 3 | 2014 | already_solved | 1/5 |  | Prior negative: Alon-Bohman-Huang, JGT 2017, Thm. 1.1 (https://doi.org/10.1002/jgt.22010), plus the induced-biclique first-moment bound gives bp(G(n,1/2)) < n-beta+1 w.h.p., refuting the exact revised OWR conjecture. Credited prior result; no novelty claim. [Proof and independent audit](attempts/30002468/README.md). |  |
 | 722 | 30002507 / OWR-12866-017 | A Dirichlet Series with Exactly One Zero | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 723 | 30002533 / OWR-12870-003 | New Rational Lyapunov Exponents on Hilbert Modular Surfaces | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 724 | 30002653 / OWR-13109-004 | Indeterminacy Locus of the Perfect Cone Prym Map | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
