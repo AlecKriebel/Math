@@ -1,0 +1,9 @@
+# Independent source checks
+
+- [OWR 13/2017](https://ems.press/content/serial-article-files/46678), Gerhold with Gülüm, printed pp. 696–698, especially p. 697. The exact open-problem paragraph and finite-probability-space hypothesis were read and visually checked. The requested necessary-and-sufficient characterization has no formal complexity requirement.
+- [Gerhold–Gülüm arXiv v2](https://arxiv.org/pdf/1608.05585v2), Definitions 2.1, 2.2, 2.4 and nearby qualifications, compared with the [full final publisher XML](https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7155110/fullTextXML). The final XML confirms strict-positive stock bid, arbitrary adapted reference, separate shadow martingale, initial spread bound, and positive-date reference lower bound. The strike-above-epsilon assumption belongs to particular explicit results, not the definition itself. The XML was read locally; no successful publisher-PDF retrieval is claimed.
+- [Beiglböck–Nutz, Theorem 5.1](https://www.math.columbia.edu/~mnutz/docs/martingaleIneqs.pdf), pp. 18–19 in the pinned version, gives the classical martingale Tchakaloff bound. Its path-observable formulation is not directly substituted for an arbitrary adapted reference; the reviewed proof correctly carries original filtration labels.
+- [Basu, Theorem 2.1 and Section 2.1](https://arxiv.org/pdf/1409.1534) states real quantifier elimination and its effectiveness. This is the classical algorithmic input, not a newly implemented solver.
+- [Lee, arXiv:2607.27649v1](https://arxiv.org/pdf/2607.27649v1) was inspected as recent source context. Its two-date execution/CVB claims are not premises of this proof, and this review does not certify them. No conclusion about new historical priority follows from this limited source check.
+
+All six source hashes match the frozen author source manifest. Full PDFs/XML, extracted text and images remain reading copies outside the portable review package.
