@@ -1,0 +1,891 @@
+{
+  "schema": "word-representation-final-test-receipt-v1",
+  "problem_id": 1430,
+  "tested_utc_date": "2026-10-08",
+  "uid": 1000,
+  "euid": 1000,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pins": {
+    "schema": "word-representation-external-pins-v1",
+    "problem_id": 1430,
+    "manifest_sha256": "99334bcdf91ac3c90ff672c1b062949966faf35060b75991d319baa73ff678e0",
+    "bootstrap_sha256": "81068f050593335e6f76198edc2947c28a716450590fd0e4897bfa6e03c8b5d9",
+    "diagnostics_sha256": "0c2ead36c407f5e658058b046b21eb87482f7f3f44b9caa7d72e076fb5d8528e",
+    "payload_files": 11,
+    "payload_bytes": 85229
+  },
+  "read_only_probes_denied": [
+    "packet/denied_probe",
+    "packet/README.md",
+    "freeze/denied_probe"
+  ],
+  "original_snapshot_unchanged": true,
+  "mutation_copies_only": true,
+  "total_runs": 78,
+  "positive_runs": 9,
+  "mutant_variants": 18,
+  "mutant_mode_runs": 54,
+  "direct_malformed_variants": 5,
+  "direct_malformed_mode_runs": 15,
+  "results": [
+    {
+      "case": "original_nonroot_readonly",
+      "mode": [],
+      "result": {
+        "exit": 0,
+        "stdout_sha256": "8bc3727890e86f95b806904506cf127585244fb2b4d9933aa5e7488951c8eb77",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "original_nonroot_readonly",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 0,
+        "stdout_sha256": "8bc3727890e86f95b806904506cf127585244fb2b4d9933aa5e7488951c8eb77",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "original_nonroot_readonly",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 0,
+        "stdout_sha256": "8bc3727890e86f95b806904506cf127585244fb2b4d9933aa5e7488951c8eb77",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "relocated_nonroot_readonly",
+      "mode": [],
+      "result": {
+        "exit": 0,
+        "stdout_sha256": "8bc3727890e86f95b806904506cf127585244fb2b4d9933aa5e7488951c8eb77",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "relocated_nonroot_readonly",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 0,
+        "stdout_sha256": "8bc3727890e86f95b806904506cf127585244fb2b4d9933aa5e7488951c8eb77",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "relocated_nonroot_readonly",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 0,
+        "stdout_sha256": "8bc3727890e86f95b806904506cf127585244fb2b4d9933aa5e7488951c8eb77",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "payload_byte",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: payload size mismatch"
+      }
+    },
+    {
+      "case": "payload_byte",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: payload size mismatch"
+      }
+    },
+    {
+      "case": "payload_byte",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: payload size mismatch"
+      }
+    },
+    {
+      "case": "missing_file",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: [Errno 2] No such file or directory: '<disposable-test-root>/missing_file/packet/README.md'"
+      }
+    },
+    {
+      "case": "missing_file",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: [Errno 2] No such file or directory: '<disposable-test-root>/missing_file/packet/README.md'"
+      }
+    },
+    {
+      "case": "missing_file",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: [Errno 2] No such file or directory: '<disposable-test-root>/missing_file/packet/README.md'"
+      }
+    },
+    {
+      "case": "extra_file",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: extra or missing payload inventory"
+      }
+    },
+    {
+      "case": "extra_file",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: extra or missing payload inventory"
+      }
+    },
+    {
+      "case": "extra_file",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: extra or missing payload inventory"
+      }
+    },
+    {
+      "case": "extra_directory",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: extra or missing payload inventory"
+      }
+    },
+    {
+      "case": "extra_directory",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: extra or missing payload inventory"
+      }
+    },
+    {
+      "case": "extra_directory",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: extra or missing payload inventory"
+      }
+    },
+    {
+      "case": "payload_symlink",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: symlink or nonregular file"
+      }
+    },
+    {
+      "case": "payload_symlink",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: symlink or nonregular file"
+      }
+    },
+    {
+      "case": "payload_symlink",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: symlink or nonregular file"
+      }
+    },
+    {
+      "case": "root_symlink",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: payload root"
+      }
+    },
+    {
+      "case": "root_symlink",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: payload root"
+      }
+    },
+    {
+      "case": "root_symlink",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: payload root"
+      }
+    },
+    {
+      "case": "fifo",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: symlink or nonregular file"
+      }
+    },
+    {
+      "case": "fifo",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: symlink or nonregular file"
+      }
+    },
+    {
+      "case": "fifo",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: symlink or nonregular file"
+      }
+    },
+    {
+      "case": "writable_mode",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: unexpected file mode"
+      }
+    },
+    {
+      "case": "writable_mode",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: unexpected file mode"
+      }
+    },
+    {
+      "case": "writable_mode",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: unexpected file mode"
+      }
+    },
+    {
+      "case": "manifest_byte",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_byte",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_byte",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_duplicate_key",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_duplicate_key",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_duplicate_key",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_unsafe_path",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_unsafe_path",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_unsafe_path",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_duplicate_path",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_duplicate_path",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_duplicate_path",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_bool_size",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_bool_size",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_bool_size",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_nonfinite",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_nonfinite",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_nonfinite",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_schema",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_schema",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "manifest_schema",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "changed_payload_resealed_manifest",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "changed_payload_resealed_manifest",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "changed_payload_resealed_manifest",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "hostile_verifier_resealed_manifest",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "hostile_verifier_resealed_manifest",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "hostile_verifier_resealed_manifest",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "REJECT: manifest trust-anchor mismatch"
+      }
+    },
+    {
+      "case": "changed_bootstrap",
+      "mode": [],
+      "result": {
+        "exit": null,
+        "rejected_at": "external bootstrap digest"
+      }
+    },
+    {
+      "case": "changed_bootstrap",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": null,
+        "rejected_at": "external bootstrap digest"
+      }
+    },
+    {
+      "case": "changed_bootstrap",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": null,
+        "rejected_at": "external bootstrap digest"
+      }
+    },
+    {
+      "case": "direct_missing_mask",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: small witness mask inventory"
+      }
+    },
+    {
+      "case": "direct_missing_mask",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: small witness mask inventory"
+      }
+    },
+    {
+      "case": "direct_missing_mask",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: small witness mask inventory"
+      }
+    },
+    {
+      "case": "direct_bad_bool_letter",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: bad letter"
+      }
+    },
+    {
+      "case": "direct_bad_bool_letter",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: bad letter"
+      }
+    },
+    {
+      "case": "direct_bad_bool_letter",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: bad letter"
+      }
+    },
+    {
+      "case": "direct_nonuniform_word",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: nonuniform word"
+      }
+    },
+    {
+      "case": "direct_nonuniform_word",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: nonuniform word"
+      }
+    },
+    {
+      "case": "direct_nonuniform_word",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: nonuniform word"
+      }
+    },
+    {
+      "case": "direct_duplicate_json_key",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: duplicate JSON key"
+      }
+    },
+    {
+      "case": "direct_duplicate_json_key",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: duplicate JSON key"
+      }
+    },
+    {
+      "case": "direct_duplicate_json_key",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: duplicate JSON key"
+      }
+    },
+    {
+      "case": "direct_nonfinite_json",
+      "mode": [],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: nonfinite number"
+      }
+    },
+    {
+      "case": "direct_nonfinite_json",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: nonfinite number"
+      }
+    },
+    {
+      "case": "direct_nonfinite_json",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 1,
+        "stderr": "REJECT: nonfinite number"
+      }
+    },
+    {
+      "case": "original_direct_verifier",
+      "mode": [],
+      "result": {
+        "exit": 0,
+        "stdout_sha256": "0c2ead36c407f5e658058b046b21eb87482f7f3f44b9caa7d72e076fb5d8528e"
+      }
+    },
+    {
+      "case": "original_direct_verifier",
+      "mode": [
+        "-O"
+      ],
+      "result": {
+        "exit": 0,
+        "stdout_sha256": "0c2ead36c407f5e658058b046b21eb87482f7f3f44b9caa7d72e076fb5d8528e"
+      }
+    },
+    {
+      "case": "original_direct_verifier",
+      "mode": [
+        "-OO"
+      ],
+      "result": {
+        "exit": 0,
+        "stdout_sha256": "0c2ead36c407f5e658058b046b21eb87482f7f3f44b9caa7d72e076fb5d8528e"
+      }
+    }
+  ],
+  "original_snapshot": {
+    "packet/ATTEMPT_LEDGER.json": {
+      "sha256": "7bb8978c25e2e12b8f756d38dd8c0653e47e8d16f1acad0778bd7f7bfd425553",
+      "bytes": 1458,
+      "mode": 292
+    },
+    "packet/CORPUS_VERIFICATION.json": {
+      "sha256": "0094d3dcaa140e768dee76392467a1f0587dbf833e275af7ec4d9d7bb08fa4a5",
+      "bytes": 1469,
+      "mode": 292
+    },
+    "packet/DIAGNOSTICS.json": {
+      "sha256": "0c2ead36c407f5e658058b046b21eb87482f7f3f44b9caa7d72e076fb5d8528e",
+      "bytes": 377,
+      "mode": 292
+    },
+    "packet/FIVE_APPROACHES.md": {
+      "sha256": "53a8fbea89d49fb1290eb3ee8b6e14357ca895a94ea830d537be2aee21d0060a",
+      "bytes": 5954,
+      "mode": 292
+    },
+    "packet/LITERATURE_AND_GATE.md": {
+      "sha256": "c1f77578369a51523c9049599ccfea49390cf08ee2349bd1d1ec0fc7bb82eac2",
+      "bytes": 7632,
+      "mode": 292
+    },
+    "packet/PROOFS.md": {
+      "sha256": "1e0ddc44beaf8247e91b9c1afbc6c58e06478926fb57e4e098460b5aee12ca24",
+      "bytes": 15524,
+      "mode": 292
+    },
+    "packet/README.md": {
+      "sha256": "df983224f3971a8b34af69638adcc3c8cf5754c01a6192ec6bea5b07eb94d421",
+      "bytes": 2328,
+      "mode": 292
+    },
+    "packet/SMALL_WITNESSES.json": {
+      "sha256": "a743dd13e245a194e096d96c07c780d8e94ed3fba18f9e368024e42439c6f148",
+      "bytes": 30262,
+      "mode": 292
+    },
+    "packet/SOURCE_METADATA.json": {
+      "sha256": "182ad7be2203946b9ae60a66da10f726a416f1bdcd494d362b50984f66a3c4f5",
+      "bytes": 7113,
+      "mode": 292
+    },
+    "packet/STATEMENT_AND_STATUS.md": {
+      "sha256": "b5e0c0016b28b8d9826e8227c30ccfdd0b638ad489f12de137fb6b35c5ba93e0",
+      "bytes": 3915,
+      "mode": 292
+    },
+    "packet/verify.py": {
+      "sha256": "0fb741e971d667fe5ecc1bb1c4e6dd64ccb333906a654d0ddb7baa21f14c9f4e",
+      "bytes": 9197,
+      "mode": 292
+    },
+    "freeze/AUTHOR_MANIFEST.json": {
+      "sha256": "99334bcdf91ac3c90ff672c1b062949966faf35060b75991d319baa73ff678e0",
+      "bytes": 1819,
+      "mode": 292
+    },
+    "freeze/bootstrap.py": {
+      "sha256": "81068f050593335e6f76198edc2947c28a716450590fd0e4897bfa6e03c8b5d9",
+      "bytes": 4514,
+      "mode": 292
+    }
+  },
+  "limits": [
+    "Bounded computational diagnostics, not a formal proof certificate.",
+    "Hash failures reject malformed/resealed manifests before parsing or execution; direct JSON controls separately exercise parser rejection.",
+    "No concurrent-filesystem-adversary claim.",
+    "No external Lean or certificate reproduction."
+  ],
+  "sanitization": "Disposable temporary path removed from the top-level field and every rejection diagnostic; verification results retained."
+}
