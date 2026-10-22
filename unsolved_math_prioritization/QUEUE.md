@@ -868,7 +868,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 857 | 2307042 / AMR-022-7042 | Research Problems in Function Theory — Problem 7.42 | 0.0975 | 6.0 | 3 | unknown | claimed_solved | 1/5 |  | Published verified explicit smooth-annulus Martin-kernel counterexample: K<H_a throughout a punctured neighborhood of base, excluding every initial equality curve/Green line. Remote isolated contact outside scope. Classical punctured-disc consequence credited; no first-resolution/current-openness claim. Unrefereed, extensive OpenAI use; two clear fresh package reviews. DOI 10.5281/zenodo.23332261; paper/support in attempts/2307042/publication_20261012/preprint/. | https://doi.org/10.5281/zenodo.23332261 |
 | 858 | 2780 / KP-2.32 | Kirby Problem 2.32 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 859 | 2781 / KP-2.33 | Kirby Problem 2.33 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 860 | 2844 / KP-3.46 | Kirby Problem 3.46 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 860 | 2844 / KP-3.46 | Kirby Problem 3.46 | 0.0975 | 6.0 | 3 | unknown | unsolved | 4/5 |  |  |  |
 | 861 | 2997 / KP-4.121 | Kirby Problem 4.121 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 862 | 3015 / KP-5.8 | Kirby Problem 5.8 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 863 | 30002888 / OWR-13682-010 | Forgetful Functors for Mixed Perverse Sheaves | 0.0973 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
