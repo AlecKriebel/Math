@@ -1,0 +1,57 @@
+# Independent audit: common-two-color theorem, Round Four
+
+Audit date: 12 October 2026 UTC. The complete reviewed mathematical text is distributed as [THEOREM.md](THEOREM.md). Its distributed identity and this audit's distributed identity are recorded in [ACCEPTANCE.json](ACCEPTANCE.json).
+
+## Mathematical verdict
+
+The complete symbolic proof is accepted. This judgment preceded the corroborative enumeration. The accepted theorem is:
+
+> Let G be a finite simple graph of maximum degree at most three, not properly three-edge-colorable, for which deleting any edge leaves a properly three-edge-colorable graph. Every nonconstant assignment of lists of exactly three colors with global intersection of size at least two has a proper list edge coloring.
+
+The number of edges, distinct lists, or edges differing from a selected list is unrestricted. This does not prove the unrestricted nonconstant-three-list conjecture. No historical novelty is established by this audit.
+
+## Proof review
+
+1. **Local matching recoloring.** In a proper ordinary coloring of G−e, a single ordinary color class is a matching. If label t does not occur on any exceptional neighbor of the deleted exceptional edge e, adjoining e to the exceptional edges of label t preserves the matching property. Each edge of that matching can receive its own exterior color: equality of exterior colors is harmless on a matching. Mapping t to the common omitted color guarantees that every exceptional edge left ordinarily colored avoids that omitted color. Exterior colors are outside the entire ordinary palette, so there are no cross-boundary conflicts. This works for arbitrarily many exceptional edges.
+2. **Dominating-nonneighbor alternative.** An exceptional nonneighbor f incident with every exceptional neighbor of e is present in the deletion coloring. Properness makes its ordinary label absent from all those neighbors. This alternative is sufficient but is not needed by the main theorem.
+3. **Only one edge-containing component.** A component not three-edge-colorable must exist. Deleting an edge from a different component would leave that obstruction untouched, contrary to the hypothesis. Hence all edges lie in one connected component; isolated vertices cause no issue.
+4. **Mixed vertex and minority class.** In a connected edge-containing component, two nonempty edge classes necessarily meet at a vertex. Degree at most three forces at least one class to occur exactly once there. The unique edge in that class has no same-class neighbor at that endpoint and at most two at its other endpoint. This works both when P is the minority class and when Q is the minority class. At a degree-two mixed vertex both choices are legitimate.
+5. **Collapse to two proxy palettes.** Writing each exact three-list as S plus its unique third color is justified because S has two elements. Nonconstancy supplies at least two third colors and hence two nonempty edge groups. A fresh marker exists because the graph and lists are finite. Relative to either proxy palette, the other group has a single common omission and a single exterior color. Thus the local lemma applies to the minority group and its chosen edge, using any proper ordinary deletion coloring.
+6. **Restoration.** Only Q edges can be marker-colored in a valid proxy coloring. They form a matching. Their restored original third colors lie outside S and differ from c₀, whereas every unchanged edge uses S or c₀. This rules out restored–unchanged conflicts; the matching property rules out restored–restored conflicts even when restored colors coincide. Restoration also preserves every list constraint.
+7. **Constant and all-edge cases.** A constant exact three-list assignment is uncolorable because it is equivalent to ordinary three-edge-colorability. In the common-omission corollary, replacing every edge by one identical new palette remains constant and is excluded. Replacing every edge while using at least two resulting third colors is nonconstant and is covered. The resulting “uncolorable iff constant” equivalence is correct only within the global-common-two-color family.
+
+## Six-edge support classification
+
+For a simple graph, the number of support neighbors of uv is exactly d_X(u)+d_X(v)−2. Requiring this to be at least three excludes support degree one and excludes degree-two–degree-two edges. Thus every nonisolated vertex has degree two or three, the degree-two vertices are independent, and 2n₂+3n₃=12. The only nonnegative solutions are (6,0), (3,2), (0,4). The first is impossible, the second forces K₂,₃, and the third forces K₄. The argument does not assume connected support, so it also excludes disconnected alternatives.
+
+A K₄ support saturates its vertices in the ambient subcubic graph and is a whole component. The single-edge-component conclusion would make it the only such component, but K₄ is three-edge-colorable. It therefore cannot occur in the theorem's graph. In K₂,₃ every support edge has exactly three support neighbors, and neither exceptional nonneighbor meets all three. This defeats the two purely support-based sufficient conditions, not list colorability or all deletion/coloring choices.
+
+## Explicit critical fixture and method separation
+
+The candidate's nine-vertex graph has thirteen edges and maximum degree three. A matching has at most four edges, so thirteen edges cannot be partitioned into three matchings. The seven displayed deletion certificates partition the other twelve indices into three matchings. The two displayed vertex permutations are genuine graph automorphisms; their edge orbits are exactly {0}, {1,2}, {3}, {4,7}, {5,6,8,9}, {10}, {11,12}. Each orbit has one representative certificate, proving every deletion is colorable.
+
+For the displayed deletion of e5, the ordinary labels on its three exceptional neighbors e4,e6,e8 are 0,1,2. Consequently every proposed ordinary label creates an edge adjacent to e5 in the recoloring set. This is a failure only of that fixed deletion-coloring choice. Reversing the reference palette, deleting e10, and using the displayed representative certificate makes label 1 absent from its Y-neighbors. The recoloring set is exactly {e1,e10,e12}; its exterior color is 2 and the ordinary-label map is (0,1,2)→(0,3,1). The resulting vector is exactly the candidate's valid list coloring.
+
+## Finite corroboration and privacy boundary
+
+The independently authored standard-library verifier reads the candidate and fixtures but does not import the author's implementation. It validates every displayed representative, all thirteen raw deletion certificates, the two automorphisms, complete edge-orbit coverage, the fixed-choice obstruction, and the exact reversed-palette output. It independently solves ordinary edge-coloring feasibility for the fixtures and enumerates all labeled six-edge support candidates on at most six nonisolated vertices, which is complete under minimum support degree two.
+
+Construction tests enumerate all nonconstant third-color assignments with three available third colors on a seven-edge subdivided-K₄ critical graph and binary third-color assignments on a ten-edge triangle expansion and the thirteen-edge fixture. They exercise every selected third-color class, every mixed vertex, both eligible minority groups, every associated deletion, all six permutations of one independently found ordinary deletion coloring, and every absent label for that coloring. They do not claim to enumerate every ordinary deletion coloring. Negative controls cover constant lists, identical replacements on all edges, a noncritical disconnected graph, malformed deletion certificates, forbidden list colors, and all three failed fixed-choice labels.
+
+Exact mathematical counts are retained in [AGGREGATE_CHECKS.json](AGGREGATE_CHECKS.json). The implementations, raw fixtures and completed-run records are excluded from this prose edition. The full symbolic proof, substantive audit arguments and explicit mathematical examples are distributed; reproducing the finite suites requires independently implementing the described checks and generating their inputs.
+
+## Primary-source context check
+
+The [Open Problem Garden statement](https://www.openproblemgarden.org/op/list_colorings_of_edge_critical_graphs) defines the intended edge-critical hypothesis and presents nonconstant lists as the conjecturally colorable case. [Mohar's July 2001 page](https://www.sfu.ca/~mohar/Problems/P7ListEdgeCriticalGraphs.html) currently prints the opposite equivalence; that wording conflicts directly with ordinary noncolorability for constant lists. [Kaul–Mudrock, arXiv:1805.02147v2, Conjecture 6](https://arxiv.org/pdf/1805.02147v2) restates the intended conjecture using strong chromatic-choosability of the line graph. These pages were independently reopened on 12 October 2026. This supports the candidate's contextual citation and wording warning; it is not a comprehensive novelty search or a claim that the unrestricted conjecture has now been resolved.
+
+The auditor independently verified the integrity of the complete author packet. Private original-input identities, hashes, byte counts and operational records are excluded from this prose edition. MANIFEST.json identifies only actual distributed files.
+
+## Completed verification results
+
+The independent verifier completed successfully on 11,396 nonconstant assignments, 24,598 selected third-color-class choices, and 149,280 mixed-vertex/minority-group witnesses. It checked 1,838,448 complete constructions (299,376 on the seven-edge fixture; 138,240 on the ten-edge fixture; 1,400,832 on the thirteen-edge fixture). Both minority groups occurred: 77,556 P witnesses and 71,724 Q witnesses. Mixed vertices had degree two in 24,264 witnesses and degree three in 125,016. All ten negative controls behaved as required. These witness/construction totals count the explicitly described choices and are not claims of distinct final colorings or every ordinary deletion coloring.
+
+Independent six-edge enumeration examined all 5,216 candidates and found exactly one labeled K₄ and ten labeled K₂,₃ supports. The explicit fixture passed all seven displayed representative certificates, all thirteen raw deletion certificates, exact criticality solving, both automorphisms, complete edge-orbit coverage, the three-label fixed-choice obstruction, and exact reconstruction of the successful reversed-palette vector.
+
+After direct source review, the author's C++ suite was separately rebuilt with both `-O3 -Wall -Wextra -pedantic` and `-O1 -fsanitize=undefined -fno-sanitize-recover=all`. Both executions reproduced the frozen output byte-for-byte: 2,127,942 nonconstant assignments, 6,346,596 class-choice restoration constructions, 5,522,496 binary all-boundary/all-deletion-coloring/all-absent-label/palette-permutation constructions, and 32 all-distinct-third constructions. The author's frontier checker was independently rerun in normal, `-O`, and `-OO` Python modes; all reproduced the frozen output byte-for-byte. No sanitizer failure occurred.
+
+**Final disposition:** accepted as a complete symbolic theorem for the stated common-two-color family, together with the six-edge local-method frontier and explicit critical method-separation fixture. No repair was required. The unrestricted nonconstant-list conjecture, arbitrary varying-omission supports, and historical novelty remain outside the accepted conclusion.
