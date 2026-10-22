@@ -1,0 +1,29 @@
+{
+  "test": "Independent benign sentinel substitution, no source code imported before external pin verification. Original bootstrap copied unchanged into temporary directory.",
+  "results": [
+    {
+      "case": "intact_baseline",
+      "optimized": false,
+      "returncode": 0
+    },
+    {
+      "case": "intact_baseline",
+      "optimized": true,
+      "returncode": 0
+    },
+    {
+      "case": "stale_pinned_manifest_modified_archive_checker",
+      "optimized": false,
+      "returncode": 1,
+      "sentinel_executed": false
+    },
+    {
+      "case": "stale_pinned_manifest_modified_archive_checker",
+      "optimized": true,
+      "returncode": 0,
+      "sentinel_executed": true
+    }
+  ],
+  "finding": "Optimized author bootstrap accepts and executes a modified checker under stale external pins.",
+  "mathematical_effect": "No change to authored mathematical conclusions."
+}

@@ -1,0 +1,194 @@
+{
+  "schema": "fresh-independent-acceptance-v1",
+  "problem_id": 30003521,
+  "problem_number": "OWR-15437-003",
+  "rank": 867,
+  "audit_date_utc": "2026-10-06",
+  "mathematical_decision": "Accepted as bounded partial, not a solution.",
+  "original_integrity_decision": "Rejected as optimization-safe; benign substituted checker executed under -O with stale external pins.",
+  "corrected_derivative_decision": "Accepted after actual fail-closed patch and 46 expected normal/optimized controls.",
+  "full_solution_claimed": false,
+  "no_new_problem_solving_approaches": true,
+  "original_inputs": {
+    "GRAPH_NLS_30003521_AUTHOR_SAFE_FREEZE.zip": {
+      "bytes": 11449,
+      "sha256": "439c6e19b62f6e75843b3c84955600842488aa8e49b8f4c5b91eed52ee64542a",
+      "unchanged": true
+    },
+    "GRAPH_NLS_30003521_AUTHOR_EXTERNAL_MANIFEST.json": {
+      "bytes": 1165,
+      "sha256": "7761f7a28c02e251d926f37ddfc5d51e3bfb326a3d1eb89e4544eee507b10f66",
+      "unchanged": true
+    },
+    "GRAPH_NLS_30003521_AUTHOR_BOOTSTRAP.py": {
+      "bytes": 2500,
+      "sha256": "c18de7407e4e097a48b1c2369cd16df5ad93bc2378342eace2d54e5b30da7dcb",
+      "unchanged": true
+    },
+    "GRAPH_NLS_30003521_AUTHOR_VALIDATION_RECEIPT.json": {
+      "bytes": 1289,
+      "sha256": "badce2b18ee0a6d818788c786ce0fe30c824382ed9286b436356c0b29963826e",
+      "unchanged": true
+    }
+  },
+  "corrected_inputs": {
+    "GRAPH_NLS_30003521_CORRECTED_SAFE.zip": {
+      "bytes": 11483,
+      "sha256": "dbf1da376f6f7cb0a0df9dee55c43986b6a6911905b65fe30518c8cfa6d51a67"
+    },
+    "GRAPH_NLS_30003521_CORRECTED_EXTERNAL_MANIFEST.json": {
+      "bytes": 1449,
+      "sha256": "05386fd90e97e008c580fe90fc1fbffe7cf037a20bde7541085eedadbc6fabfc"
+    },
+    "GRAPH_NLS_30003521_CORRECTED_BOOTSTRAP.py": {
+      "bytes": 3574,
+      "sha256": "3ec6ce36e3e69d6aefb9221cea0f801c57520ccd8f8bbfe810f1b304cf880706"
+    }
+  },
+  "audit_inputs": {
+    "GRAPH_NLS_30003521_INDEPENDENT_AUDIT_BOOTSTRAP.py": {
+      "bytes": 3359,
+      "sha256": "a16995c590fcb6dfa58dce84159328d160d76a49f857147b4c41c8eacc2c8258"
+    },
+    "GRAPH_NLS_30003521_INDEPENDENT_AUDIT_EXTERNAL_MANIFEST.json": {
+      "bytes": 3454,
+      "sha256": "dc130874db62fa94985c753ca4739703fa61372352c3b243ce147484f442acd4"
+    },
+    "GRAPH_NLS_30003521_INDEPENDENT_AUDIT_SAFE.zip": {
+      "bytes": 45825,
+      "sha256": "c4916ec80e30e94df4db3a1fbb6098e8b34d97edb23d195f047ce25adc9c8a85"
+    }
+  },
+  "proof_sha256_unchanged": "fdb8b5e806929452e089388e932593d3b26a3ab9a93b10105191f1d14ee07ed5",
+  "inner_control_count": 46,
+  "inner_all_expected_results": true,
+  "outer_bootstrap_checks": [
+    {
+      "case": "relocated_hostile_environment",
+      "optimized": false,
+      "exit_code": 0,
+      "expected_behavior_observed": true,
+      "rejection": null
+    },
+    {
+      "case": "relocated_hostile_environment",
+      "optimized": true,
+      "exit_code": 0,
+      "expected_behavior_observed": true,
+      "rejection": null
+    },
+    {
+      "case": "manifest_whitespace_mutation",
+      "optimized": false,
+      "exit_code": 1,
+      "expected_behavior_observed": true,
+      "rejection": "manifest_sha256"
+    },
+    {
+      "case": "manifest_whitespace_mutation",
+      "optimized": true,
+      "exit_code": 1,
+      "expected_behavior_observed": true,
+      "rejection": "manifest_sha256"
+    },
+    {
+      "case": "archive_append_mutation",
+      "optimized": false,
+      "exit_code": 1,
+      "expected_behavior_observed": true,
+      "rejection": "archive_bytes"
+    },
+    {
+      "case": "archive_append_mutation",
+      "optimized": true,
+      "exit_code": 1,
+      "expected_behavior_observed": true,
+      "rejection": "archive_bytes"
+    },
+    {
+      "case": "archive_same_size_mutation",
+      "optimized": false,
+      "exit_code": 1,
+      "expected_behavior_observed": true,
+      "rejection": "archive_sha256"
+    },
+    {
+      "case": "archive_same_size_mutation",
+      "optimized": true,
+      "exit_code": 1,
+      "expected_behavior_observed": true,
+      "rejection": "archive_sha256"
+    }
+  ],
+  "outer_normal_replay": {
+    "all_expected_control_results": true,
+    "archive_sha256": "c4916ec80e30e94df4db3a1fbb6098e8b34d97edb23d195f047ce25adc9c8a85",
+    "control_count": 46,
+    "corrected_release_accepted": true,
+    "integrity_before_payload_execution": true,
+    "manifest_sha256": "dc130874db62fa94985c753ca4739703fa61372352c3b243ce147484f442acd4",
+    "original_optimization_failure_confirmed": true,
+    "scope": "Pinned finite integrity replay only; the independent mathematical report accepts bounded partial results, not the open theorem.",
+    "stderr": "",
+    "verified_member_count": 15
+  },
+  "outer_optimized_replay": {
+    "all_expected_control_results": true,
+    "archive_sha256": "c4916ec80e30e94df4db3a1fbb6098e8b34d97edb23d195f047ce25adc9c8a85",
+    "control_count": 46,
+    "corrected_release_accepted": true,
+    "integrity_before_payload_execution": true,
+    "manifest_sha256": "dc130874db62fa94985c753ca4739703fa61372352c3b243ce147484f442acd4",
+    "original_optimization_failure_confirmed": true,
+    "scope": "Pinned finite integrity replay only; the independent mathematical report accepts bounded partial results, not the open theorem.",
+    "stderr": "",
+    "verified_member_count": 15
+  },
+  "payload_members": 15,
+  "copied_sources_datasets_private_material_included": false,
+  "publication_performed": false,
+  "limits": [
+    "Finite identity checks are supplementary, not a PDE proof.",
+    "No NLS approximation theorem or localized-wave-packet failure result is proved.",
+    "The exact resonance is on the specified rescaled graph, not the fixed pi-length graph.",
+    "Literature and repository searches are bounded, not exhaustive."
+  ],
+  "direct_isolated_checker_baselines": [
+    {
+      "target": "original",
+      "optimized": false,
+      "isolated": true,
+      "exit_code": 0,
+      "identity_count": 11,
+      "all_passed": true,
+      "stderr": ""
+    },
+    {
+      "target": "original",
+      "optimized": true,
+      "isolated": true,
+      "exit_code": 0,
+      "identity_count": 11,
+      "all_passed": true,
+      "stderr": ""
+    },
+    {
+      "target": "corrected",
+      "optimized": false,
+      "isolated": true,
+      "exit_code": 0,
+      "identity_count": 11,
+      "all_passed": true,
+      "stderr": ""
+    },
+    {
+      "target": "corrected",
+      "optimized": true,
+      "isolated": true,
+      "exit_code": 0,
+      "identity_count": 11,
+      "all_passed": true,
+      "stderr": ""
+    }
+  ]
+}
