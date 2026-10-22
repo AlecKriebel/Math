@@ -648,7 +648,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 637 | 10400173 / AMR-103-0173 | Problem 9.9 — (N. | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 638 | 1200023 / AMR-011-0023 | Some Questions — Question 23 | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 639 | 20000185 / AIM-ALGEBRAIC_GEOMETRY-0185 | Compatibility via the epipolar fiber product and a gcd component law | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 640 | 20000190 / AIM-ALGEBRAIC_GEOMETRY-0190 | A root-free focal-positivity certificate for a seven-point pencil | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 640 | 20000190 / AIM-ALGEBRAIC_GEOMETRY-0190 | A root-free focal-positivity certificate for a seven-point pencil | 0.1080 | 5.0 | 3 | unknown | unsolved | 5/5 |  | Exact equal-determinant/opposite focal-sign control; zero-quartic positive continuum. Broad AIM question unresolved; no novelty claim. [Audited partial](attempts/20000190/SCOPE_ADDENDUM.md). |  |
 | 641 | 20002720 / AIM-PROBABILITY-0162 | Units, central splitting, and filtration for multivariable boxed convolution | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 642 | 2639 / KOU-21.130 | Kourovka Notebook Problem 21.130 | 0.1080 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 643 | 4200010 / AMR-041-0010 | The good, the bad, and the ugly | 0.1079 | 6.0 | 3 | 2000 | queued | 0/5 |  |  |  |
