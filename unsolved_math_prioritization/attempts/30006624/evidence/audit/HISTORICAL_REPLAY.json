@@ -1,0 +1,484 @@
+{
+  "schema": 1,
+  "target_id": 30006624,
+  "status": "HISTORICAL_METADATA_PUBLIC_DERIVATIVE",
+  "uid": 1000,
+  "euid": 1000,
+  "mathematical_positive_runs": 3,
+  "mathematical_negative_runs": 18,
+  "external_input_positive_runs": 3,
+  "external_input_negative_runs": 3,
+  "original_complete_bundle_receipt": "NOT_DISTRIBUTED_OR_REPLAYED",
+  "historical_traceback_bytes": "NOT_RETAINED; only exact final RuntimeError is available for negative mathematical comparisons",
+  "records": [
+    {
+      "script": "verify_math.py",
+      "optimization": 0,
+      "arguments": [],
+      "exit_code": 0,
+      "expected_pass": true,
+      "stdout_sha256": "251d4837de9be88a036533dd8ac5dbf8dd379a218c858ec719d23761a85ae4a9",
+      "output": {
+        "controls": [
+          "l1_grid",
+          "C4_vertices",
+          "C6_empty_median",
+          "constant_weight",
+          "nonclosed_ball",
+          "nonunique_geodesics",
+          "diagonal_metric",
+          "shrinking_circle_arithmetic",
+          "slit_plane_arithmetic",
+          "K23_modular_nonmedian",
+          "summable_descent"
+        ],
+        "descent_cases": 840,
+        "l1_grid_triples": 3654,
+        "optimization": 0,
+        "scope": "Exact finite arithmetic only; no globalization claim",
+        "status": "PASS",
+        "uid": 1000,
+        "weighted_interval_cases": 129
+      }
+    },
+    {
+      "script": "verify_inputs.py",
+      "optimization": 0,
+      "arguments": [],
+      "exit_code": 0,
+      "expected_pass": true,
+      "stdout_sha256": "db613fbd8937b4afe8744584e9f54615d80e9302c7d38e0f78d51ff1359a756c",
+      "output": {
+        "corpus": {
+          "problems.json": {
+            "bytes": 68931837,
+            "sha256": "04128381e42a5e312326d74adb0947ee02062ade70229e02d3060ac4ef9942cf"
+          },
+          "research_results.json": {
+            "bytes": 80334822,
+            "sha256": "8da848d31c20eb4eecaa07702eced4724aa4a89f877c2a0774d9f3138389aa6b"
+          }
+        },
+        "join_absent": [
+          "OWR-14299911-024",
+          "OWR-14299911-025",
+          "OWR-14299911-026"
+        ],
+        "pdfs": {
+          "Brian H. Bowditch, A Cartan-Hadamard theorem for median metric spaces": {
+            "bytes": 352312,
+            "sha256": "793781328629f4dac99ba53751f6330ad9ee567f982259f09bb873fa110cc557"
+          },
+          "Brian H. Bowditch, Some properties of median metric spaces": {
+            "bytes": 345193,
+            "sha256": "417affc2e8476d97ae06a899bc88d910e5ef8d6095350baa7fe4554719d7ae8c"
+          },
+          "Median Geometry and Applications, Oberwolfach Report 8/2026": {
+            "bytes": 479340,
+            "sha256": "d74635e06993557b5dfcde6e49425a8a5686875443475acadea4aa60f1fad24f"
+          }
+        },
+        "record_ids": [
+          30006622,
+          30006623,
+          30006624
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 0,
+      "arguments": [
+        "--mutation",
+        "accept_circle"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: continuous-circle surrogate is not median"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 0,
+      "arguments": [
+        "--mutation",
+        "flatten_weight"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: nonzero conformal interval defect missing"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 0,
+      "arguments": [
+        "--mutation",
+        "ball_closed"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: metric balls need not be median-closed"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 0,
+      "arguments": [
+        "--mutation",
+        "unique_geodesic"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: unique median does not imply unique geodesic"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 0,
+      "arguments": [
+        "--mutation",
+        "overclaim_uniqueness"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: modularity alone does not imply uniqueness"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 0,
+      "arguments": [
+        "--mutation",
+        "wrong_descent_constant"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: unproved stronger descent constant"
+    },
+    {
+      "script": "verify_inputs.py",
+      "optimization": 0,
+      "arguments": [],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: Source fingerprint mismatch: bowditch.pdf"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 1,
+      "arguments": [],
+      "exit_code": 0,
+      "expected_pass": true,
+      "stdout_sha256": "e02e8a0161cfd41fa9db7b4fec62494f666bdd167509fcdd65fd743050a3e55f",
+      "output": {
+        "controls": [
+          "l1_grid",
+          "C4_vertices",
+          "C6_empty_median",
+          "constant_weight",
+          "nonclosed_ball",
+          "nonunique_geodesics",
+          "diagonal_metric",
+          "shrinking_circle_arithmetic",
+          "slit_plane_arithmetic",
+          "K23_modular_nonmedian",
+          "summable_descent"
+        ],
+        "descent_cases": 840,
+        "l1_grid_triples": 3654,
+        "optimization": 1,
+        "scope": "Exact finite arithmetic only; no globalization claim",
+        "status": "PASS",
+        "uid": 1000,
+        "weighted_interval_cases": 129
+      }
+    },
+    {
+      "script": "verify_inputs.py",
+      "optimization": 1,
+      "arguments": [],
+      "exit_code": 0,
+      "expected_pass": true,
+      "stdout_sha256": "db613fbd8937b4afe8744584e9f54615d80e9302c7d38e0f78d51ff1359a756c",
+      "output": {
+        "corpus": {
+          "problems.json": {
+            "bytes": 68931837,
+            "sha256": "04128381e42a5e312326d74adb0947ee02062ade70229e02d3060ac4ef9942cf"
+          },
+          "research_results.json": {
+            "bytes": 80334822,
+            "sha256": "8da848d31c20eb4eecaa07702eced4724aa4a89f877c2a0774d9f3138389aa6b"
+          }
+        },
+        "join_absent": [
+          "OWR-14299911-024",
+          "OWR-14299911-025",
+          "OWR-14299911-026"
+        ],
+        "pdfs": {
+          "Brian H. Bowditch, A Cartan-Hadamard theorem for median metric spaces": {
+            "bytes": 352312,
+            "sha256": "793781328629f4dac99ba53751f6330ad9ee567f982259f09bb873fa110cc557"
+          },
+          "Brian H. Bowditch, Some properties of median metric spaces": {
+            "bytes": 345193,
+            "sha256": "417affc2e8476d97ae06a899bc88d910e5ef8d6095350baa7fe4554719d7ae8c"
+          },
+          "Median Geometry and Applications, Oberwolfach Report 8/2026": {
+            "bytes": 479340,
+            "sha256": "d74635e06993557b5dfcde6e49425a8a5686875443475acadea4aa60f1fad24f"
+          }
+        },
+        "record_ids": [
+          30006622,
+          30006623,
+          30006624
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 1,
+      "arguments": [
+        "--mutation",
+        "accept_circle"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: continuous-circle surrogate is not median"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 1,
+      "arguments": [
+        "--mutation",
+        "flatten_weight"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: nonzero conformal interval defect missing"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 1,
+      "arguments": [
+        "--mutation",
+        "ball_closed"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: metric balls need not be median-closed"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 1,
+      "arguments": [
+        "--mutation",
+        "unique_geodesic"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: unique median does not imply unique geodesic"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 1,
+      "arguments": [
+        "--mutation",
+        "overclaim_uniqueness"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: modularity alone does not imply uniqueness"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 1,
+      "arguments": [
+        "--mutation",
+        "wrong_descent_constant"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: unproved stronger descent constant"
+    },
+    {
+      "script": "verify_inputs.py",
+      "optimization": 1,
+      "arguments": [],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: Source fingerprint mismatch: bowditch.pdf"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 2,
+      "arguments": [],
+      "exit_code": 0,
+      "expected_pass": true,
+      "stdout_sha256": "0f2c66a07e1c1c28d15e710202cdd6c7b8dc368e281123257db2dd28dead5546",
+      "output": {
+        "controls": [
+          "l1_grid",
+          "C4_vertices",
+          "C6_empty_median",
+          "constant_weight",
+          "nonclosed_ball",
+          "nonunique_geodesics",
+          "diagonal_metric",
+          "shrinking_circle_arithmetic",
+          "slit_plane_arithmetic",
+          "K23_modular_nonmedian",
+          "summable_descent"
+        ],
+        "descent_cases": 840,
+        "l1_grid_triples": 3654,
+        "optimization": 2,
+        "scope": "Exact finite arithmetic only; no globalization claim",
+        "status": "PASS",
+        "uid": 1000,
+        "weighted_interval_cases": 129
+      }
+    },
+    {
+      "script": "verify_inputs.py",
+      "optimization": 2,
+      "arguments": [],
+      "exit_code": 0,
+      "expected_pass": true,
+      "stdout_sha256": "db613fbd8937b4afe8744584e9f54615d80e9302c7d38e0f78d51ff1359a756c",
+      "output": {
+        "corpus": {
+          "problems.json": {
+            "bytes": 68931837,
+            "sha256": "04128381e42a5e312326d74adb0947ee02062ade70229e02d3060ac4ef9942cf"
+          },
+          "research_results.json": {
+            "bytes": 80334822,
+            "sha256": "8da848d31c20eb4eecaa07702eced4724aa4a89f877c2a0774d9f3138389aa6b"
+          }
+        },
+        "join_absent": [
+          "OWR-14299911-024",
+          "OWR-14299911-025",
+          "OWR-14299911-026"
+        ],
+        "pdfs": {
+          "Brian H. Bowditch, A Cartan-Hadamard theorem for median metric spaces": {
+            "bytes": 352312,
+            "sha256": "793781328629f4dac99ba53751f6330ad9ee567f982259f09bb873fa110cc557"
+          },
+          "Brian H. Bowditch, Some properties of median metric spaces": {
+            "bytes": 345193,
+            "sha256": "417affc2e8476d97ae06a899bc88d910e5ef8d6095350baa7fe4554719d7ae8c"
+          },
+          "Median Geometry and Applications, Oberwolfach Report 8/2026": {
+            "bytes": 479340,
+            "sha256": "d74635e06993557b5dfcde6e49425a8a5686875443475acadea4aa60f1fad24f"
+          }
+        },
+        "record_ids": [
+          30006622,
+          30006623,
+          30006624
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 2,
+      "arguments": [
+        "--mutation",
+        "accept_circle"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: continuous-circle surrogate is not median"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 2,
+      "arguments": [
+        "--mutation",
+        "flatten_weight"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: nonzero conformal interval defect missing"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 2,
+      "arguments": [
+        "--mutation",
+        "ball_closed"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: metric balls need not be median-closed"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 2,
+      "arguments": [
+        "--mutation",
+        "unique_geodesic"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: unique median does not imply unique geodesic"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 2,
+      "arguments": [
+        "--mutation",
+        "overclaim_uniqueness"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: modularity alone does not imply uniqueness"
+    },
+    {
+      "script": "verify_math.py",
+      "optimization": 2,
+      "arguments": [
+        "--mutation",
+        "wrong_descent_constant"
+      ],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: CONTROL REJECTED: unproved stronger descent constant"
+    },
+    {
+      "script": "verify_inputs.py",
+      "optimization": 2,
+      "arguments": [],
+      "exit_code": 1,
+      "expected_pass": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rejection": "RuntimeError: Source fingerprint mismatch: bowditch.pdf"
+    }
+  ],
+  "scope": "Retained authorized mathematical and public-source verification metadata. Fresh external input checks remain NOT_RUN without those inputs."
+}
