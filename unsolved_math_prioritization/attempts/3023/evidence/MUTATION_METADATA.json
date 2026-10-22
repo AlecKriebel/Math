@@ -1,0 +1,255 @@
+[
+  {
+    "after": "sgn=1",
+    "before": "sgn=(-1)**swaps",
+    "mutated_code_sha256": "91983476e793b82c9ba5c672ae16ebe904bb8e146900d470bb50747cc8b64d51",
+    "name": "remove_koszul_sign",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "odd sign",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "odd sign",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "odd sign",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "if False:continue",
+    "before": "if self.exterior and any(d%2 and k[i]>1 for i,d in enumerate(self.degrees)):continue",
+    "mutated_code_sha256": "ed00e3ace1e7d420a90084ad2efaec2c895498176fdcf4b707857930f4a85192",
+    "name": "remove_odd_square_relation",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "nilpotent correction primitive",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "nilpotent correction primitive",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "nilpotent correction primitive",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "term=self.c(c)",
+    "before": "term=self.c(c*(-1 if before%2 else 1))",
+    "mutated_code_sha256": "326151852d5f331a0082997602c6795d4d0da6bb076a9cf83ab256aa0dfde532",
+    "name": "remove_leibniz_sign",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "Koszul boundary ideal relation",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "Koszul boundary ideal relation",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "Koszul boundary ideal relation",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "need(True,'differential degree')",
+    "before": "need(self.homogeneous(p,self.degrees[i]-1),'differential degree')",
+    "mutated_code_sha256": "352ea5bccfb42ca94ac93f2356b26dfbed58ddd2674a57b6d0d90915000dfade",
+    "name": "remove_degree_guard",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "invalid differentials not rejected",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "invalid differentials not rejected",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "invalid differentials not rejected",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "need(True,'d squared')",
+    "before": "need(not self.differential(p,ds),'d squared')",
+    "mutated_code_sha256": "9674f489d83b1ca9d189d852b847f1026f27e20c04c6e8f66615074132659652",
+    "name": "remove_d_squared_guard",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "invalid differentials not rejected",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "invalid differentials not rejected",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "invalid differentials not rejected",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "h=A.mul(a,A.add(A.c(1),A.mul(b,c)))",
+    "before": "h=A.mul(a,A.sub(A.c(1),A.mul(b,c)))",
+    "mutated_code_sha256": "0af1fa7fa94b22915b7e4538ad72fec681935228024c72c33371d91e73e1597b",
+    "name": "wrong_nilpotent_correction",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "nilpotent correction primitive",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "nilpotent correction primitive",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "nilpotent correction primitive",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "rp=N.add(r,N.mul(ap,f))",
+    "before": "rp=N.sub(r,N.mul(ap,f))",
+    "mutated_code_sha256": "07d9665dc4ece4715491943f2074ea08c420b1397b1bce4c034a553db8f1e77c",
+    "name": "wrong_tensor_coordinate_sign",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "normal form differential",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "normal form differential",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "normal form differential",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "z=K.add(K.mul(y,e1),K.mul(x,e2))",
+    "before": "z=K.sub(K.mul(y,e1),K.mul(x,e2))",
+    "mutated_code_sha256": "8f0c31d8b3028bf23f15b6dfd45576bb3e318965d8002ecc33f0ac6fccfbf5e2",
+    "name": "wrong_koszul_syzygy",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "Koszul syzygy closed",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "Koszul syzygy closed",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "Koszul syzygy closed",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "massey=M.sub(M.mul(y,z),M.mul(z,y))",
+    "before": "massey=M.add(M.mul(y,z),M.mul(z,y))",
+    "mutated_code_sha256": "375090f28e61735cca5327b152be5ff7814ef0f5ade9a35f6d48923800b39647",
+    "name": "wrong_massey_sign",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "Massey sign",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "Massey sign",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "Massey sign",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "j-1)),y),1)",
+    "before": "j-1)),y),j)",
+    "mutated_code_sha256": "7a7269b2f63b98ecc50229f84018440fbbfc7f2804b35f733fd0d4bc18cfef91",
+    "name": "wrong_derivative_factor",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "mixed derivative formula",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "mixed derivative formula",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "mixed derivative formula",
+        "mode": "double_optimized"
+      }
+    ]
+  },
+  {
+    "after": "for aa,ab,ba,bb,lam in product(range(2),repeat=5):",
+    "before": "for aa,ab,ba,bb,lam in product(range(3),repeat=5):",
+    "mutated_code_sha256": "fc9844d56419081d0922d72c27203f8057e3a601b822ed4191bc929d4c5c1cd3",
+    "name": "omit_field_parameter",
+    "runs": [
+      {
+        "exit": 1,
+        "guard": "map enumeration completeness",
+        "mode": "normal"
+      },
+      {
+        "exit": 1,
+        "guard": "map enumeration completeness",
+        "mode": "optimized"
+      },
+      {
+        "exit": 1,
+        "guard": "map enumeration completeness",
+        "mode": "double_optimized"
+      }
+    ]
+  }
+]
