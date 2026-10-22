@@ -738,7 +738,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 727 | 30002829 / OWR-13500-010 | Rationality of Ueno-Type Varieties | 0.1038 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 728 | 30002830 / OWR-13500-011 | Birational Modifications Proving Rationality of a Ueno Variety | 0.1038 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 729 | 30003070 / OWR-14221-006 | Birational Sequences for Plabic Newton–Okounkov Bodies | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 730 | 30003114 / OWR-14603-013 | Exponential Small-Value Bounds for Littlewood Polynomials | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 730 | 30003114 / OWR-14603-013 | Exponential Small-Value Bounds for Littlewood Polynomials | 0.1035 | 5.5 | 3 | 2016 | unsolved | 5/5 |  |  |  |
 | 731 | 30003229 / OWR-14754-016 | Stringy Euler Numbers under Mori Flips | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 732 | 30003230 / OWR-14754-017 | Stringy Euler Numbers under Divisorial Contractions | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 733 | 30003264 / OWR-15173-001 | Third Homology and Pre-Bloch Groups of $S$-Arithmetic $\operatorname{SL}_2$ | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
