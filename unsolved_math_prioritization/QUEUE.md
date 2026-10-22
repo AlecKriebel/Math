@@ -265,7 +265,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 254 | 30001626 / OWR-4533-004 | Centralizer Realization of Cartan Subalgebras in $L^*$-Algebras | 0.1835 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 255 | 30002291 / OWR-12337-002 | Variation Limits for Pure-Jump Semimartingales | 0.1824 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 256 | 30003084 / OWR-14222-012 | Wiseman–Wilson Theorem for Complex Conics | 0.1811 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 257 | 30003216 / OWR-14750-001 | Convergence of Adaptive Hybrid Finite Element Methods | 0.1811 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 257 | 30003216 / OWR-14750-001 | Convergence of Adaptive Hybrid Finite Element Methods | 0.1811 | 5.0 | 3 | 2016 | unsolved | 5/5 |  | [Two scoped convergent variants and flux estimator; original rule unresolved](attempts/30003216/RESULT.md) |  |
 | 258 | 30003403 / OWR-15216-007 | Strong Surjectivity of Countryman Derived Orders Under PFA | 0.1806 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 259 | 30003427 / OWR-15218-003 | Multiple-Maturity Consistency Under Bid–Ask Spreads | 0.1806 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 260 | 10300019 / AMR-102-0019 | Branched surfaces and triangulations — Question 7.4 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
