@@ -1,0 +1,31 @@
+--- a/verify.py
++++ b/verify.py
+@@ -262,12 +262,25 @@
+     dt = add(tensor(d, ident(5)), tensor(ident(5), d))
+     jt = add(tensor(j, j), tensor(mul(phi, j), mul(j, phi)))
+     gt = [(a+c, b+e) for a, b in grades for c, e in grades]
++    check_grades(dt, gt, differential=True)
++    check_grades(jt, gt, skew=True)
++    # A tensor involution must satisfy the horizontal square axiom itself.
++    # Merely finding maps for an arbitrary matrix does not establish this.
++    tensor_phi = hat(deriv(dt, 0))
++    tensor_psi = mul(mul(jt, tensor_phi), jt)
++    need(mul(jt, jt) == add(ident(25), mul(tensor_phi, tensor_psi)),
++         'tensor horizontal square axiom')
++    need(mul(tensor_phi, tensor_psi) == mul(tensor_psi, tensor_phi),
++         'tensor horizontal derivative commutation')
+     maps = local_constant_maps(dt, jt, gt, 24)
+     need(all(m is not None for m in maps), 'tensor-square local maps missing')
++    # Verify the report's literal certificates, not whichever supports a
++    # solver finds. The indices are ad, bc, cb, da, xx in the stated basis.
++    g = [3, 7, 11, 15, 24]
++    f = [3, 7, 11, 15, 24]
+     if corrupt == 'tensor_map':
+-        maps[0] = [24]
+-    g, f = maps
+-    # Independently check the displayed lists against polynomial matrices.
++        g = [24]
++    # Check these fixed displayed lists against polynomial matrices.
+     gv = [ONE if i in g else ZERO for i in range(25)]
+     fv = [ONE if i in f else ZERO for i in range(25)]
+     for i in range(25):
