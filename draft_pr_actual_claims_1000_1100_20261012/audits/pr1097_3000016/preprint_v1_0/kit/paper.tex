@@ -1,0 +1,378 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\reach}{\textsc{Reachable}}
+\newcommand{\nh}{\textsc{Nonhalting}}
+\title{CoNP-completeness of binary directed chip-firing reachability}
+\author{Alec Kriebel\\Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{15 October 2026, version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+Ordinary legal chip-firing reachability is coNP-complete under deterministic
+polynomial-time many-one reductions for finite loopless strongly connected
+directed multigraphs, with binary adjacency entries and nonnegative binary
+initial and target configurations. We give an explicit reduction from the
+complement of the halting problem of Farrell and Levine. A finite-state
+cutoff controls an exact simulation, a gate supplies a cleanup reserve, and
+a marker forces that gate to have fired in every target-reaching word.
+Together with the prior coNP-membership theorem of Hujter, Kiss and
+T\'othm\'er\'esz, this answers the historical general-digraph hardness
+question in the stated model. We credit earlier period, recurrence and
+reserve-simulation arguments. Exact-result, gadget and method priority,
+independence of discovery, and present-day openness remain unknown after a
+bounded source audit. This extensively AI-assisted note is unrefereed.
+\end{abstract}
+
+\section{The language, result and attribution}
+A finite directed multigraph has adjacency entries $a_{uv}\in\N$, counting
+arcs from $u$ to $v$, and outgoing degrees $d_v=\sum_w a_{vw}$. A
+configuration is $x\in\N^V$. A legal firing at $v$ requires $x_v\geq d_v$;
+it subtracts $d_v$ chips there and sends $a_{vw}$ chips to each $w$.
+Firings are sequential. A legal word may stop at any configuration,
+whether or not more firings are available. The empty word is allowed.
+With column-vector convention, its firing matrix is
+\[
+ L_{wv}=a_{vw}-d_v\mathbf1_{w=v}.
+\]
+Thus a word of firing count $f$ has endpoint $x+Lf$. Loops cancel from
+$L$ but remain in the firing threshold. All graph and configuration
+integers are written in binary; multiplicities are never expanded into
+lists of arcs.
+
+Let $\reach$ consist of well-formed triples $(G,x,y)$ with $G$ nonempty,
+loopless and strongly connected, and $x,y\in\N^V$, for which a legal word
+from $x$ reaches $y$. Invalid encodings are rejected. Strong connectivity
+and all these validity conditions are polynomial-time testable. The
+one-vertex loopless case is included and has reachability exactly when
+$x=y$. The number of vertices is part of the input.
+
+\begin{theorem}\label{thm:main}
+$\reach$ is coNP-complete under deterministic polynomial-time many-one
+reductions.
+\end{theorem}
+The hardness construction uses parallel arcs, large degrees and large
+chip counts. It establishes no corresponding classification for simple
+graphs, unary encodings, bounded degrees or bounded total chip counts.
+The membership assertion is for nonnegative configurations; it is not an
+extension to every signed formulation.
+
+The source NP-completeness theorem is Farrell--Levine
+\cite[Corollary 3.2]{FL}, including its total-Laplacian hardness interface.
+Hujter--Kiss--T\'othm\'er\'esz \cite[Theorem 12]{HKT} already proved the
+coNP membership used here. We explain that certificate with attribution
+in Section~\ref{sec:membership}; period deletion and reduced firing
+counts go back to Bj\"orner--Lov\'asz \cite{BL}. The general-digraph
+hardness question appears in \cite[Problem 19, arXiv v4]{HKT} and in the
+Egres problem list \cite{Egres}. Its survey separates simple digraphs
+from multigraphs. Hardness on our nonnegative subclass answers its
+general multigraph question, including when that survey permits signed
+configurations. Historical open labels do not establish openness in 2026.
+
+There are close prior proof mechanisms. T\'othm\'er\'esz
+\cite[Claim 2.4]{T} gives a deterministic recurrence-to-reachability
+conversion: after one chosen legal firing from $x$, return to $x$ is
+equivalent to recurrence of $x$. Proposition 2.8 there instead uses the
+\emph{existence} of a recurrent representative of a nonhalting class;
+it does not deterministically construct that representative as a Karp
+output. The resulting Theorem 2.3 is an earlier polynomial-hierarchy
+barrier. HKT's recurrent-target theorem \cite[Theorem 14]{HKT} likewise
+retains a material recurrence premise. Kiss--T\'othm\'er\'esz
+\cite[Section 4]{KT} already use large reserves for finite-horizon
+simulation in a distance-to-nontermination/divisor-rank reduction.
+Scaling and bounded-drift reserves in general are not claimed as new.
+Here the specified-target argument is the gate/marker equivalence below.
+These comparisons establish neither priority for that argument nor the
+absence of equivalent earlier proofs.
+
+\section{Source conventions and preprocessing}\label{sec:source}
+The credited source problem asks whether a nonnegative configuration on
+a strongly connected binary-adjacency directed multigraph halts
+\cite{FL}. Loops are allowed. The standard halting dichotomy states that
+either every maximal legal game terminates at a common stable
+configuration, or every maximal game is infinite
+\cite[Theorem 1]{HKT}. We use $\nh$ for valid instances in the latter
+case. It is coNP-hard. To be precise about strings, a reduction to
+HALTING can replace any invalid output by a fixed valid nonhalting
+instance without changing its HALTING answer; complementing then gives
+valid nonhalting outputs for the coNP source. Equivalently one can use
+the literal complement of HALTING, including invalid strings, and send
+those strings to a fixed YES reachability instance.
+
+For valid-instance $\nh$ with invalid strings rejected, our map sends
+invalid strings to the two-cycle with $X=(0,0)$ and $Y=(1,0)$, a NO
+instance by conservation. For the literal-complement convention it
+sends them to the same graph with $X=Y=(0,0)$, a YES instance. These
+conventions are alternative total extensions, not conflicting promises.
+
+\begin{lemma}\label{lem:preprocess}
+The source can be restricted to loopless strongly connected graphs on
+at least two vertices, with nonnegative configurations. Signed
+intermediate configurations can also be normalized in polynomial time
+without changing legal words before loop removal.
+\end{lemma}
+\begin{proof}
+If a signed intermediate vector is used, set $k_v=\max(0,-x_v)$ and
+add $k_v$ loops and $k_v$ chips at each $v$. The net firing matrix is
+unchanged. After any word, its current coordinate and its threshold
+both differ from their old values by $k_v$. Induction therefore gives
+equivalent legality at every step, not merely equality of Laplacians.
+Stability and infinite play correspond, and the new vector is
+nonnegative. This supplies an explicit bridge for signed lattice
+representatives in the source hardness interface.
+
+For each vertex having $\ell_v>0$ loops, replace them by $\ell_v$ arcs
+$v\to r_v$ and $\ell_v$ arcs $r_v\to v$, with a fresh relay $r_v$
+initially empty. Keep other arcs and old initial counts. The old degree
+is unchanged. An old word lifts by returning each relay packet
+immediately after its parent fires. Conversely, in any expanded legal
+word let $t_v,s_v$ be the parent and relay counts. The relay holds
+$\ell_v(t_v-s_v)\geq0$, hence $s_v\leq t_v$. At each old vertex the
+projected original state exceeds the expanded state by exactly that
+pending return. Every projected old move is legal. An infinite
+expanded word has infinitely many old moves, since relay counts are
+bounded by parent counts. Thus existence of infinite play is preserved
+in both directions, and the dichotomy gives the halting equivalence.
+Strong connectivity survives, at most one relay is added per vertex,
+and all integers retain polynomial bit length.
+
+A singleton with $\ell$ loops never changes its count and is
+nonhalting exactly when $x\geq\ell$, including $\ell=0$. Classify it
+by one binary comparison and replace it by the two-cycle at $(1,0)$
+for nonhalting or $(0,0)$ for halting. Thereafter $n\geq2$ and all
+degrees are positive. All steps are polynomial-time.
+\end{proof}
+
+\section{The gate and marker reduction}
+Let the preprocessed source have $n\geq2$ vertices, initial $x\geq0$,
+total $C=\sum_v x_v$, maximum outgoing degree $D$, and incoming degrees
+$i_v=\sum_u a_{uv}$. Define
+\begin{equation}\label{eq:parameters}
+ N=(C+1)^n,\qquad M=N+1,\qquad B=N(MD+1).
+\end{equation}
+The integer $N$ is a finite-state cutoff, not a polynomial running-time
+bound.
+\begin{lemma}\label{lem:cutoff}
+The source is nonhalting if and only if it has a legal word of length $N$.
+\end{lemma}
+\begin{proof}
+Conservation and nonnegativity put every legal source state in
+$\{0,\ldots,C\}^n$, a set of at most $N$ states. A word of length $N$
+visits $N+1$ states and repeats one. The intervening nonempty legal
+closed word repeats forever. By the dichotomy no terminating game is
+then possible. Conversely a nonhalting game supplies a length-$N$
+prefix. The case $C=0$, $N=1$ is included: positive source degrees
+make every vertex initially illegal.
+\end{proof}
+
+Construct $H$ with the old vertices and a gate $g$ and marker $m$:
+scale every old multiplicity by $M$; add one arc $v\to g$ and $B$
+arcs $g\to v$ for each old $v$; add one arc in each direction between
+$g$ and $m$. The thresholds are
+\[
+ d^H_v=Md_v+1,\qquad d^H_g=nB+1,\qquad d^H_m=1.
+\]
+There are no loops, and the gate connects every old vertex and marker
+in both directions. Thus $H$ is strongly connected. Put
+\begin{align}
+ X_v&=Mx_v+N,& X_g&=nB+1-N,& X_m&=0,\label{eq:X}\\
+ Y_v&=Mx_v+MN(i_v-d_v)+B,& Y_g&=(n-1)N,&Y_m&=1.\label{eq:Y}
+\end{align}
+These are valid nonnegative vectors. Indeed $X_g\geq1$ and
+$Y_v\geq B-MND=N$. Both totals are
+$MC+(n-1)N+nB+1$, and $X\ne Y$.
+
+\begin{lemma}\label{lem:simulation}
+Before the first gate firing, the first $N$ old moves simulate the
+source exactly, in every possible order. The gate cannot fire before
+$N$ old moves and becomes legal after exactly $N$ such moves.
+\end{lemma}
+\begin{proof}
+The marker remains empty before the first gate and cannot fire. After
+$t$ old moves with individual counts $t_v$, let $z$ denote the source
+state obtained by projecting those moves, inductively while they are
+source-legal. Direct comparison of updates gives
+\begin{equation}\label{eq:invariant}
+ h_v=Mz_v+N-t_v,\qquad h_g=nB+1-N+t,\qquad h_m=0.
+\end{equation}
+Just before any of the first $N$ old moves, $t<N$ and
+$0\leq t_v\leq N-1$. If $z_v\geq d_v$, then
+$h_v\geq Md_v+1$; if $z_v\leq d_v-1$, then
+\[
+ h_v\leq M(d_v-1)+N=Md_v-1<Md_v+1.
+\]
+This proves legality equivalence inductively for each chosen move.
+The gate formula proves the claimed threshold timing, including the
+boundary just before move $N$.
+\end{proof}
+
+\begin{proposition}\label{prop:equivalence}
+$(G,x)\in\nh$ if and only if $(H,X,Y)\in\reach$.
+\end{proposition}
+\begin{proof}
+If the source is nonhalting, lift a legal word of exactly $N$ old
+moves by Lemmas~\ref{lem:cutoff} and~\ref{lem:simulation}, and fire
+$g$ once. Every old vertex had at least zero chips before that firing
+and now has at least $B$. If its old count was $t_v\leq N$, complete
+it to $N$, firing neither gate nor marker again. Every ordering of
+these remaining moves is legal: ignoring all future incoming chips,
+each vertex needs at most $N$ payments of $Md_v+1$, and
+\[
+ B=N(MD+1)\geq N(Md_v+1).
+\]
+Before each requested payment fewer than that vertex's allotted
+payments have occurred. The final count is $f_v=N$ at old vertices,
+$f_g=1$, $f_m=0$. Multiplication by $L_H$ gives exactly
+\eqref{eq:Y}. This is reachability, so other available moves need not
+be taken.
+
+Conversely take \emph{any} legal word from $X$ to $Y$, with actual
+counts $k$, not assumed equal to $f$. The marker balance gives
+$k_g-k_m=1$, hence $k_g\geq1$. Before its first gate firing there was
+no marker firing, and the gate must have received at least $N$ chips
+from old moves. Therefore at least $N$ old moves preceded that first
+gate. Their first $N$ moves project legally by
+Lemma~\ref{lem:simulation}. Lemma~\ref{lem:cutoff} gives source
+nonhalting. Delayed first gates, extra subsequent gate/marker firings
+and added period vectors do not affect this argument.
+\end{proof}
+
+\begin{proof}[Polynomial-time bound]
+For binary input length $s$, $n\leq s$ and the bit lengths of $C+1$
+and $D$ are polynomial in $s$. The bit length of $N$ is at most
+$1+n\log_2(C+1)$, with the constant retained when $C=0$; those of
+$M$ and $B$ are also polynomial. Preprocessing uses at most linearly
+many new vertices. The $n+2$ dimensional output is formed by
+polynomially many operations on polynomial-bit integers. Integer
+exponentiation in \eqref{eq:parameters} takes polynomial bit time.
+The reduction writes neither a length-$N$ firing word nor unary
+copies of parallel arcs. Lemma~\ref{lem:preprocess} and the total
+encoding conventions complete the deterministic Karp map. Credited
+source NP-completeness therefore proves coNP-hardness.
+\end{proof}
+
+\section{The credited coNP certificate}\label{sec:membership}
+For completeness we give the strongly connected case of the prior
+membership argument \cite[Theorem 12]{HKT}, using the period deletion
+of \cite{BL}. This is an exposition of prior membership machinery.
+Assume $n\geq2$. The integer kernel of $L$ is generated by a positive
+primitive vector $p$. Directed spanning-tree cofactors compute $p$
+up to their gcd; each has polynomial bit length. Integer-image
+membership for $y-x$ and an integer solution $h$ of $Lh=y-x$ are
+computable in polynomial time by integer linear algebra. If no such
+solution exists, the pair is not reachable. Otherwise define
+\[
+ g=h-\left(\min_v\left\lfloor h_v/p_v\right\rfloor\right)p.
+\]
+Then $g\geq0$, $Lg=y-x$, and $g_w<p_w$ for some $w$. Every
+nonnegative solution is $g+kp$ with integer $k\geq0$, so $g$ is the
+unique reduced solution.
+
+These counts need not be numerically small, but have polynomial bit
+length. One can see this without a trajectory bound: fix such $w$,
+delete row and column $w$ from $L$, and use its nonsingular minor
+$L_w$ to write
+\[
+ g_{-w}=L_w^{-1}\big((y-x)_{-w}-g_wL_{-w,w}\big).
+\]
+The bound $g_w<p_w$ and cofactor/determinant bounds bound all
+numerators in this expression polynomially in bit length; the
+nonzero integer denominator has absolute value at least one.
+
+If a legal word has count $f\geq p$, delete its first $p_v$
+occurrences of each $v$. At a retained firing of $v$, deletions there
+are complete and at other $u$ total $r_u\leq p_u$. Thus
+\[
+ (Lr)_v=-d_vp_v+\sum_u a_{uv}r_u\leq(Lp)_v=0.
+\]
+The retained word has at least as many chips at its firing coordinate
+and remains legal. Its endpoint is unchanged. Iterating shows that
+a reachable target has a legal realization with exactly count $g$.
+
+A negative certificate, once $g$ exists, is an integer vector $u$
+satisfying
+\begin{equation}\label{eq:certificate}
+ 0\leq u\leq g,\qquad u\ne g,\qquad
+ (x+Lu)_v<d_v\quad\text{whenever }u_v<g_v.
+\end{equation}
+It is not necessary that $u$ itself be legally realizable. In a
+hypothetical legal word of count $g$, take the first firing exceeding
+$u$. Its own preceding count is $u_v$ and the other counts are at
+most their $u$ coordinates, so its available chips are at most
+$(x+Lu)_v<d_v$, a contradiction. Conversely a maximal legal word
+bounded by $g$ supplies such a proper $u$ if $g$ cannot be realized.
+Its existence does not require the verifier to run that potentially
+long word. The vector has polynomial bit length and all inequalities
+are checked in polynomial time. Integer-image nonmembership and
+invalid encodings are themselves polynomial-time decidable branches
+of the complement verifier. The singleton case is decided by $x=y$.
+This proves the credited coNP membership and completes
+Theorem~\ref{thm:main}.
+
+\section{Verification, source limits and disclosure}
+The accompanying standard-library verification kit supplies fresh
+exact finite controls for the cutoff, all-order prefix simulation,
+cleanup budgets, arbitrary target counts, loop/signed interfaces,
+binary sizes and the reduced-count certificate, with deliberate
+faults. Checks stay active under optimized Python. They supplement
+the written proof and are not universal or formal certificates.
+The original proof edition distributed no executable: this package
+does not claim to replay its omitted historical programs or aggregate
+counts. Exact source editions, hashes, reading scopes, selected
+authored audit records and individual custody exclusions are supplied;
+third-party source bodies are not redistributed.
+
+As of preparation on 15 October 2026, a bounded priority audit read
+specified relevant scopes in 22 primary/related bodies, with 60
+recorded queries. It established no earlier full antecedent among
+those interfaces, which is not an exhaustive absence result.
+Unavailable older Petri-net originals and every uninspected passage
+remain unknown. Exact-result, exact-gadget and broader method priority,
+independence of discovery and current worldwide openness are unknown.
+The theorem is presented as a complete attributed proof answering the
+historical mathematical question, without a first-discovery claim.
+
+AI tools were used extensively in solving, checking, source comparison,
+programming and writing. This note is unrefereed. Internal AI reviews
+do not constitute external human peer review, journal acceptance or
+proof-assistant certification. Preparation is not a publication claim.
+The paper and original verification materials are licensed CC BY 4.0.
+
+\begin{thebibliography}{9}
+\bibitem{BL} A. Bj\"orner and L. Lov\'asz, Chip-firing games on directed
+graphs, \emph{J. Algebraic Combin.} \textbf{1} (1992), 305--328.
+Author manuscript, revised July 1992,
+\url{https://www.cs.elte.hu/~lovasz/morepapers/abacus.pdf}.
+\bibitem{FL} M. Farrell and L. Levine, CoEulerian graphs,
+\emph{Proc. Amer. Math. Soc.} \textbf{144} (2016), 2847--2860.
+Inspected arXiv v3: \url{https://arxiv.org/abs/1502.04690v3}.
+\bibitem{HKT} B. Hujter, V. Kiss and L. T\'othm\'er\'esz, On the
+complexity of the chip-firing reachability problem,
+\emph{Proc. Amer. Math. Soc.} \textbf{145} (2017), 3343--3356.
+\url{https://doi.org/10.1090/proc/13498}.
+Numbering refers to arXiv v4: \url{https://arxiv.org/abs/1507.03209v4}.
+\bibitem{KT} V. Kiss and L. T\'othm\'er\'esz, Chip-firing games on
+Eulerian digraphs and NP-hardness of computing the rank of a divisor on
+a graph, \emph{Discrete Appl. Math.} \textbf{193} (2015), 48--56.
+Inspected arXiv v3: \url{https://arxiv.org/abs/1407.6958v3}.
+\bibitem{T} L. T\'othm\'er\'esz, Rotor-routing reachability is easy,
+chip-firing reachability is hard, \emph{European J. Combin.}
+\textbf{101} (2022), 103466.
+\url{https://doi.org/10.1016/j.ejc.2021.103466}.
+Numbering refers to arXiv v2: \url{https://arxiv.org/abs/2102.11970v2}.
+\bibitem{Egres} Egres Open, Complexity of the chip-firing reachability
+problem for general digraphs; and Chip-firing (survey).
+\url{https://lemon.cs.elte.hu/egres/open/Chip-firing}.
+Historical returned page revisions were inspected in the source audit;
+their open labels do not certify current status.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,11 @@
+# Target/approach seal (candidate unopened)
+
+UTC: 2026-10-18T00:57:05.963868+00:00
+
+Primary reconstruction: OWR60/2016 printed3356/PDF44 Question1 and Ehrlich–Kaplan II author version §9/Q9.1 printed15 ask whether every discrete initial subgroup of No is isomorphic to an initial subgroup of Oz. In context these are ordered additive groups, not rings, with the image initial as a subtree of No. The author convention §1/p2 is NBG with global choice; class includes sets and proper classes. The nontrivial hypothesis means least positive element; zero should be handled separately. No simplicity preservation is asked for the isomorphism. The motivating example D+Z/omega maps onto omega D+Z.
+
+Independent intended falsification: (1) derive a least exponent and coefficient from a least positive group element using truncation/cross-section; (2) normalize the last coefficient group (which must be 2^-n Z) without inadvertently scaling all higher coefficients; (3) embed the actual exponent tree with its lower endpoint at zero by a sign-tree rotation, checking transfinite/empty/limit sign sequences and right-predecessor relations; (4) transport only supports actually occurring in G, not replace G by a full Hahn group; (5) prove resulting image initial using a valid sufficient criterion, independently interrogating the prior proof's generator-limit and class-recursion assumptions; (6) show image consists of omnific integers and map is bijective ordered additive onto image.
+
+Possible traps: coefficients on right predecessors must contain all dyadics; least exponent could be ordinal-limit negative; arbitrary ordered exponent translation need not preserve initiality; a set-supported series can have exponents unbounded in a chosen class enumeration, so stagewise union arguments need explicit control; limit-support generators need not admit arbitrary scalar division. Finite sign checks cannot establish any transfinite assertion.
+
+Read scope before seal: AGENTS.md; PDF skill; PACKAGE_RECEIPT.json filenames/hashes only (the source-member catalog exposed names but no verdict bodies); OWR page44 all; EKII extracted fulltext read p1–2, theorem5.1 statement/first proof portion p7–8, §5.1 proposition5.2, §9 and beginning references. No candidate main.tex, FINAL_PROOF, root/family/old verdict body read.

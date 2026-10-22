@@ -1,0 +1,91 @@
+--- frozen_canonical/ops_binding.py
++++ proposed/ops_binding.py
+@@ -296,6 +296,78 @@
+     return _PERCENT.sub(replace,text)
+ 
+ 
++_SHORT_CODE=re.compile(r'(?<![a-z0-9.])10/')
++_OWR_CONTEXT=re.compile(r'(?<![a-z0-9_])owr[ \t]+(?P<token>10/(?P<year>[0-9]{4}))')
++_OWR_SOURCE_HINT=re.compile(r'(?<![a-z0-9.])10\.4171/owr(?:/|$)')
++_OWR_SOURCE=re.compile(r'10\.4171/owr/(?P<year>[0-9]{4})/(?P<report>[1-9][0-9]*)')
++_BARE_SHORT_RESOLVER=re.compile(r'(?<![a-z0-9._@/-])(?:www\.)?shortdoi\.org\.*(?=[:/]|$)[^\s<>"\']*',re.I|re.ASCII)
++
++
++def _unresolved_short_resolver(value):
++    """Known resolver hosts with unknown aliases stay review-only.
++
++    This deliberately makes no claim about route reachability or a valid code
++    alphabet. Full numeric DOI-prefix paths remain with the DOI recognizer.
++    """
++    if re.search(r'(?<![a-z0-9+.-])[a-z][a-z0-9+.-]*:/(?!/)(?:www\.)?(?:shortdoi|doi)\.org(?=[:./\\%\]]|$)',ascii_lower(value)):
++        return True
++    candidates=[m.group(0) for m in _URL_CANDIDATE.finditer(value)]
++    candidates+=['https://'+m.group(0) for m in _BARE_SHORT_RESOLVER.finditer(value)]
++    for token in candidates:
++        try:parsed=urlsplit(token.rstrip(_URL_TRAILING));host=ascii_lower(parsed.hostname or '').rstrip('.')
++        except ValueError:
++            if re.search(r'[/@\[](?:www\.)?(?:shortdoi|doi)\.org',ascii_lower(token)):
++                return True
++            continue
++        if ('\\' in parsed.netloc or '%' in parsed.netloc) and re.search(r'(?:^|[@\[])(?:www\.)?(?:shortdoi|doi)\.org(?=[:./\\%\]]|$)',ascii_lower(parsed.netloc)):
++            return True
++        if host in {'shortdoi.org','www.shortdoi.org'}:return True
++        if host in {'doi.org','dx.doi.org'}:
++            path=_decode(parsed.path,True)
++            parts=[]
++            for part in path.split('/'):
++                if part in {'','.'}:continue
++                if part=='..':
++                    if not parts:return True
++                    parts.pop()
++                else:parts.append(part)
++            if len(parts)<2 or not re.fullmatch(r'10\.[0-9]+',parts[0]):return True
++    return False
++
++
++def _unresolved_short_code(value):
++    """Mask one qualified *literal* report token, then detect all other codes.
++
++    This does not infer a shortDOI alphabet, resolve an alias, or exempt any
++    target DOI/record identity. Duplicate contexts/source hints fail closed.
++    """
++    literal=ascii_lower(value)
++    contexts=[m for m in _OWR_CONTEXT.finditer(literal)
++              if _bounded_token(literal,m.start('token'),m.end('token'))]
++    sources=[m for m in _OWR_SOURCE.finditer(literal)
++             if _bounded_token(literal,m.start(),m.end())]
++    hints=list(_OWR_SOURCE_HINT.finditer(literal))
++    decoded_sources=literal
++    for unused in range(8):
++        decoded=_decode(decoded_sources,False)
++        if decoded==decoded_sources:break
++        decoded_sources=decoded
++    decoded_hints=list(_OWR_SOURCE_HINT.finditer(ascii_lower(decoded_sources)))
++    candidate=value
++    if (len(contexts)==len(sources)==len(hints)==len(decoded_hints)==1
++            and contexts[0].group('year')==sources[0].group('year')
++            and sources[0].group('report')=='10'):
++        first,last=contexts[0].span('token')
++        candidate=value[:first]+(' '*(last-first))+value[last:]
++    # Do not let literal contextual recognition exempt an encoded, nested or
++    # additional short code anywhere else in this same cell.
++    for unused in range(8):
++        decoded=_decode(candidate,False)
++        if decoded==candidate:break
++        candidate=decoded
++    return bool(_SHORT_CODE.search(ascii_lower(candidate)))
++
++
+ def inspect_identity(value):
+     if not isinstance(value,str):
+         raise RuntimeError('DOI identity input must be text')
+@@ -322,7 +394,8 @@
+                 malformed=True
+     return {'canonical_names':frozenset(canonical),'review_names':frozenset(review-canonical),
+             'ambiguous_encoding':depth_limited or malformed or bool(
+-                re.search(r'(?<![a-z0-9.])10/[a-z0-9]+(?:$|[\s?#.,;)])',ascii_lower(current))
++                _unresolved_short_code(value)
++                or _unresolved_short_resolver(current)
+                 or re.search(r'https?://(?:www\.)?shortdoi\.org(?:/|$)',ascii_lower(current))
+                 or re.search(r'https?://(?:dx\.)?doi\.org/[a-z][a-z0-9]*(?:$|[\s?#.,;)])',ascii_lower(current))),
+             'scope':'Lexical identity/dedup leads only; reserved/nested encodings are not certified URI equivalence.'}

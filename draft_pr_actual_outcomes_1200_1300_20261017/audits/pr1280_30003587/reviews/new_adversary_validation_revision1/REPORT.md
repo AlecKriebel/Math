@@ -1,0 +1,7 @@
+# Detached root diagnostic durability correction
+
+Both fresh mathematical adversaries supplied valid written analytic reviews and recorded normal-mode finite checks. Their initial programs used assert predicates and implicit writes beside the source. Those initial files and their seals remain verbatim historical evidence. This root-authored revision retains every original predicate as an explicit RuntimeError check and removes implicit file writes. Each program has an always-active false-validator self-test and an explicit --false-sentinel negative mode.
+
+Actual executions in normal, -O and -OO produce identical deterministic output and match every mathematical field of the corresponding original normal-mode results. All deliberately false runs fail with the intended sentinel and no positive output. Actual times are recorded separately in RUNS.json. The original result key all_assertions_passed is retained for exact semantic comparison; in the new program those formerly asserted predicates are explicit checks. This does not retroactively certify optimized runs of the old programs.
+
+The revision is informed root tooling work, not new independent mathematics. Original mathematical exposure claims retain their original scope. No original report, source, result, manifest or seal was edited; input receipt paths never define authored membership. These finite computations do not certify operator-algebra limits.

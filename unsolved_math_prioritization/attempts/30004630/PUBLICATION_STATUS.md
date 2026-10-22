@@ -1,0 +1,11 @@
+# Publication status — 30004630
+
+**Claimed solved, 1/5 original substantive author turns**, as a negative answer to the unchanged ordinary-cone strict-positivity implication to strong control-L2 quadratic growth when beta2=0. The genuine unique global optimizer, zero cone/vacuity, positive Hilbert cap, critical quintic wave, fixed finite optional velocity weight and both source localizations are explicit. The target-instability theorem concerns the positive radial terminal-target ray; weaker arbitrary-target upper estimates survive.
+
+Published six-page unrefereed preprint and portable verification package: https://doi.org/10.5281/zenodo.23358014. Exact metadata and both uploaded files were read back against the frozen deposit. The requested Google Workspace tracker entry was appended once and read back at 'Math Puzzles'!A87:D87.
+
+Independent mathematical and source families, extensive bounded priority families and three sequential NEW full manuscript reviewers passed; the final editorial revision also received a separate independent payload addendum. All mandatory issues are absent. Seven portable full scientific receipts match 5,603 exact assertions plus five noncertified diagnostics; finite controls do not certify the nonlinear PDE or unknown analytic constants. The analytic proofs do that work.
+
+Established wave estimates, group-sparse thresholds and concentration/noncoercivity are credited. No covering predecessor was authenticated in the bounded accessible corpus, with access/version gaps explicitly preserved. No worldwide-firstness, source-author acceptance or external human peer-review claim is made. AI tools were used extensively; no proof-assistant formalization is claimed. Broader replacement theory, pairwise selections and sharp rates remain outside this result.
+
+All19 original submission bytes and the original reviews are preserved at native original head e9c5d10978764db2cf25fa7d49cf4bd14a82d604 and in the archive. Their pending labels and old SHA references are historical. Current manifests below bind the updated presentation. Native exact20-file source and five-candidate readback passed, as did every included owned-file Git tree identity. PR248 merged at 71f66bdb845c6032d60569dcd4d0777e0a39aa3e from reviewed head 1bc0e06f098d1b5e055736bce3bd6870eed95c17.

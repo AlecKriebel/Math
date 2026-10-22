@@ -1,0 +1,7 @@
+# Independent review: PR1294 / 10400226
+
+Read REPORT.md for the complete original-scope verdict, universal matrix/number-theory proof, precise prior credit and remaining limits. The known full affirmative answer is credited to Alper Ferudun's existing unrefereed AI-assisted preprint, version DOI10.5281/zenodo.23111900, actual concept DOI10.5281/zenodo.23111899. This packet makes no new theorem, novelty, earliest-priority, human-review or publication-approval claim.
+
+The new standard-library checker runs with `python3 verify_independent.py`, `python3 -O verify_independent.py`, or `python3 -OO verify_independent.py`. The three outputs preserve exact parameters for506 bounded cases and selected explicit Seifert matrices. Finite checks supplement the universal written proof, which explicitly imports Seifert realization, CRT, Dirichlet, quadratic reciprocity and Sylvester. No downloaded author program was run.
+
+proposed_row.json and proposed_row.tsv contain one local four-literal-string existing-publication proposal, B exactly blank. No service was written. Raw source documents, copied PR files and ledger bodies stay under ignored private/. PUBLIC_MANIFEST.json covers authored distributable files; private/SOURCE_CAPTURE_MANIFEST.json inventories retained source captures. CLOSED_DIRECTORY_SEAL.json covers every retained file and all nested manifests, excluding only itself. Earlier sealed reviews remain unchanged. Parent overall80%; this assigned audit100%.

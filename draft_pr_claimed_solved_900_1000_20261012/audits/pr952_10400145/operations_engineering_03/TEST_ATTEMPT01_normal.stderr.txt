@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_03/test_native_recovery.py", line 118, in <module>
+    setup();call();receipt=json.loads((workflow/'NATIVE_PUBLICATION_RECEIPT.json').read_bytes())
+            ~~~~^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_03/test_native_recovery.py", line 101, in call
+    def call():return n['native_write'](None,{'synthetic_boundary':True})
+                      ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 1274, in native_write
+    completed=sorted([*state['completed_results'],record],key=lambda x:x['pr'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 1181, in native_prepared_pair
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 1198, in native_prepared_commit_proof
+    ids={m[1] for name in paths if (m:=re.fullmatch(r'unsolved_math_prioritization/attempts/([0-9]+)/.+',name))}
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 52, in need
+    raise RuntimeError('PR952 guard: ' + label)
+RuntimeError: PR952 guard: native prepared full replacement pins differ

@@ -14,7 +14,7 @@ def safe_path(name):
 
 
 def seal_entries(data):
-    records = data.get("files", data.get("authored_files"))
+    records = data.get("files", data.get("authored_files", data.get("authored_outputs")))
     if isinstance(records, dict):
         return [
             dict(path=name, sha256=value)

@@ -1,0 +1,42 @@
+# Independent whole-theorem adversarial analysis
+
+The target is existential in M and a, universal in finite N, and keeps the same embedded positive all-leaf circle. The proof fixes its surface, representation, a, monodromy representative, mapping torus and metric before choosing N. This order is essential and is respected.
+
+## Global mechanisms and attempted falsifications
+
+1. Arbitrary foliated-three-manifold GV surjectivity would not suffice for a relative product block. The actual Tsuboi1981 printed pp1–3 diagram supplies the compact-support H2-to-H3 map and its compatibility with geometric circle suspension. The relevant oriented normal-line convention has contractible structure group, and the barred Haefliger convention does not introduce an additional obstruction here. Smoothness infinity avoids exceptional finite-regularity group-theoretic issues. Printed p6 supplies integral surface representability. Choosing a positive component may change the numerical a, which is harmless because a is existential; adding trivial handles preserves the represented class. A disconnected representative or genus below two therefore does not break the route.
+
+2. The finite support argument is uniform over words, not over a parameter family of representations. Outside the union of finitely many generator supports each generator and inverse fixes each point. Every composite consequently fixes that same complement. Conjugation into an interval and identity extension are smooth because identity neighborhoods are actual open collars. A germ-only construction would fail this step; it is not used.
+
+3. Increasing local fiber charts can be chosen to agree with the common collar coordinate. Their partition-weighted average has positive derivative on every positive vertical vector and endpoint values0,1. It is bijective on each compact interval fiber; the inverse is smooth by the inverse function theorem, including collars where it is the identity. This yields a relative smooth trivialization of the underlying bundle. It does not imply trivial horizontal holonomy. Since the foliation is cooriented and transverse to V, normalization by alpha(V)=1 is globally smooth and valid.
+
+4. Contracting alpha wedge d alpha=0 gives d alpha=alpha wedge i_Vd alpha. With eta=i_Vd alpha, the common collars have alpha=ds and eta=0. Completing the interval by an actual product circle arc supplies global forms for the compactified suspension, with zero integrand on that extra arc. This proves the relative integral from an actual closed invariant; it is not an unsupported boundary-invariance assertion.
+
+5. Fathi's printed467–468 theorem gives the pseudo-Anosov isotopy class of a filling positive/negative twist product. Smooth thin twist annuli leave a complementary disk fixed. The class is pseudo-Anosov while that smooth representative need not be a pseudo-Anosov normal form. Hyperbolization depends on the class and follows from Thurston Theorem0.1, Proposition2.6 and section5. The fixed disk's boundary is inessential, so its preservation introduces no essential reducing curve. The optional archived all-genus cover construction also checks out: the degree3 punctured-torus cover has one degree3 end and caps to genus2; lifts of powers preserve the pulled-back six-prong foliations; unbranched degree(g−1) covers yield genus g. This is supplementary and is not needed to repair a gap in the cited twist mechanism.
+
+6. The leaf through u in a full interval-action suspension is the universal surface cover modulo its stabilizer. Its projection covers the entire connected surface. Hence every leaf meets any chosen vertical fiber. Endpoint and gap leaves are closed copies of the base surface. Complete product collar leaves are barriers: a different leaf cannot cross them. The slab-interior and product/seam cases exhaust all global leaves. The vertical circle through p closes smoothly as an embedded circle since the monodromy fixes a neighborhood of p; alpha_N(partial_t)=1 proves its positive transversality. A merely Reebless criterion or a different transversal for each leaf would be insufficient, but neither is substituted.
+
+7. Insertions are in interior slabs with exact product collars, so no representation extension/intertwining by monodromy is needed. The mapping-torus seam retains dt,0. The diffeomorphism defining the ambient quotient and its fixed metric never depend on N. No surgery, changed covering manifold, ball plug or torus filling occurs. Compact leaves are higher-genus fibers, compatible with hyperbolicity and the literal tautness definition.
+
+8. For each finite N choose disjoint positive-length intervals with positive gaps. Pullback with alpha_j=ell_j h_j*alpha and eta_j=h_j*eta preserves the defining equation and positive normalization. Exact equality on open collars guarantees equality of all derivatives at interfaces. Eta vanishes away from the interiors, so no interface term or interaction between copies contributes. Each positive oriented change of variables gives exactly a, whence ordinary GV=Na. A=0 or negative scaling would invalidate this argument, but is excluded. A smooth limit as N tends to infinity, or a uniform derivative estimate, is neither asserted nor required. For any finite bound B at the fixed positive volume choose N>B/a.
+
+## Independent local and gauge derivations
+
+For alpha=dz+p dx+q dy and eta=p_z dx+q_z dy,
+
+    alpha wedge d alpha=(q_x−p_y+q p_z−p q_z) dx wedge dy wedge dz,
+    eta wedge d eta=(q_z p_zz−p_z q_zz) dx wedge dy wedge dz.
+
+These signs follow by arranging each wedge in dx,dy,dz order. Under u=(t−b)/ell, alpha_new=dt+ell p(x,y,u)dx+ell q(x,y,u)dy and eta_new=p_z(x,y,u)dx+q_z(x,y,u)dy. Its top-form coefficient has the reciprocal positive ell Jacobian. This is the factor targeted in the fresh negative tests.
+
+For f>0, replacing alpha by f alpha and eta by eta−d log f changes eta wedge d eta by −d(log f d eta). For a fixed defining alpha, replacing eta by eta+h alpha changes the GV form by d(h alpha wedge eta): differentiating the defining equation gives alpha wedge d eta=0. Thus closed integrals are invariant. For the stated relative representatives the collar terms vanish. No arbitrary relative boundary primitive is being declared invariant.
+
+The polynomial checker's current make(seed) has constant coefficient3seed−2, so its 120 first entries make(2k) already have distinct constants6k−2. The 120 pairs are therefore distinct. Three different positive compression parameters per pair give360 distinct pair/parameter cases; the50 product potentials also have distinct constants. The advertised2660 is a check-call count, not2660 independent foliations. Symbolic counts add to1640; Taylor-jet counts add to58. The local normalized-exact form can have nonzero local GV density despite giving no nonzero closed invariant. The343-point grid counterexample invalidates extrapolated sampled positivity and does not falsify the theorem. All these limits are stated correctly in the active paper, README and metadata.
+
+## Source target and claim boundaries
+
+The directly read2002v1 Q10.6 imposes no minimality. Definition1.1 requires one transverse circle meeting every leaf; the construction meets it directly. Q13.1 explicitly imposes minimality for a different claim. The common-normal-triangulation remark alone yields no numerical bound on the transverse derivatives controlling ordinary GV. Calegari2000v1 pp5–6 gives a foliated Gromov-norm bound; identifying that with a universal ordinary-GV bound requires an additional unsupported estimate. Each top-degree GV class on one hyperbolic M may have finite bounded-cohomology norm while those norms vary without a family-wide bound. Special projective, homogeneous, representation-volume, harmonic-normal or pair-tautness results retain extra hypotheses and do not contradict this construction after those hypotheses are dropped.
+
+The ordinary fiber foliation on this same mapping torus has alpha=dt and GV=0, so the imported positive-volume lower bound is independently false. That diagnostic is distinct from the unbounded upper-bound family. No all-hyperbolic-manifolds, minimal, analytic, numerical-holonomy, certified-metric, firstness or guaranteed-novelty conclusion is established.
+
+Verdict: no mathematical repair identified for the exact current theorem, with the cited classical theorems as theorem inputs. Historical priority remains unresolved; accepting classical theorems is not a proof of originality or a recursive recertification of all their proofs.

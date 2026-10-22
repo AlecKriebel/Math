@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/test_finalization_recovery.py", line 151, in <module>
+    try:call()
+        ~~~~^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/test_finalization_recovery.py", line 77, in call
+    with contextlib.redirect_stdout(io.StringIO()):return n['finalize'](None,{'synthetic_authority':True})
+                                                          ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/PROPOSED_accept_pr952.py", line 1520, in finalize
+    state,local_receipt=reconcile_local_finalization(accepted,freeze,record,context)
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/PROPOSED_accept_pr952.py", line 1496, in reconcile_local_finalization
+    state_changed=local_atomic_json(P/'CURRENT_STATE.json',desired_state,before['state']) if not exact(desired_state,state) else False
+                  ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/test_finalization_recovery.py", line 72, in atomic
+    check('before_call');result=actual(path,value,pin);check('after_call');return result
+                                ~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/PROPOSED_accept_pr952.py", line 1438, in local_atomic_json
+    need(fingerprint(read_regular(path,pin=expected_pin))==expected_pin,'local input changed before atomic write')
+                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/PROPOSED_accept_pr952.py", line 113, in read_regular
+    need(stat.S_ISREG(info.st_mode) and info.st_size <= cap,
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         'nonregular or oversized file: ' + name)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/PROPOSED_accept_pr952.py", line 52, in need
+    raise RuntimeError('PR952 guard: ' + label)
+RuntimeError: PR952 guard: nonregular or oversized file: operations/CURRENT_STATE.json
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/test_finalization_recovery.py", line 152, in <module>
+    except RuntimeError as e:need('fingerprint' in str(e) or 'changed' in str(e),'changed-input guard not reached')
+                             ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_04/test_finalization_recovery.py", line 14, in need
+    if not ok:raise RuntimeError(m)
+              ^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: changed-input guard not reached

@@ -1,0 +1,11 @@
+# Operational audit research log
+
+- 2026-10-17T00:12:49.897521+00:00: Independent requirements and falsifiable controls fixed; references verified; completion estimate 15%. Helper/preparer results unread. No service calls, local Git, outreach, shared-view writes, or actual receipts.
+
+- 2026-10-17T00:13:55.911528+00:00: 25 independently authored core controls passed or rejected as required in ordinary Python. In-memory native fixture includes foreign empty tree, executable, symlink, gitlink and exact QUEUE blob; no network/Git/shared writes. Completion estimate 25%. Root clarified that merge95 may adopt submitted HEAD claimed_solved1/5 only over the exact current 123-byte submitted BASE queued0/5 own row (SHA256 3f0adcd50022e57df962becd3fb600e0d1e59dc6ebeb2ddb5627ea7ea299a4d1); other own-row status preimages remain reject targets. Implementation still unread awaiting frozen pins.
+
+- 2026-10-17T00:19:24.095186+00:00: Independent baseline expanded to 36 controls. Forged foreign tuple changes reject, and actual owned-miniature stable-lock tests verify missing/mutable/wrong-payload/concurrent/replaced-inode refusal. Only pinned historical source copies imported. Completion estimate 30%; new helper unread awaiting frozen pins.
+
+- 2026-10-17T00:23:16.190934+00:00: Full frozen V1 operational code and all 11 source pins verified. Independent fake-native controls confirmed QUEUE omission candidate acceptance (medium) and Boolean receipt-byte alias (low); both required repairs sent to Root/preparer. Completion estimate 55%; awaiting frozen repair. No preparer test/result read, actual action, shared write or network call.
+
+- 2026-10-17T00:29:36.263275+00:00: Frozen V2 exact two repairs verified; all 11 public pins and docs/test source inspected after independent controls. Final independent suites: baseline36, integration69, packet9 all pass/reject as required. Frozen science45/310204B and archive20/61131B remain byteexact; finalized26filepacket has12 documentary native changes/10 unchanged code-run-source-history files. Conditional operational review CLEAN with no unresolved required repairs. Actual operational manifest/CAS/native acceptance/local current sync remain Root work. Audit completion estimate100%; goal remains false. No network, local Git, shared writes, actual events or external communications.

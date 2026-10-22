@@ -1,0 +1,103 @@
+--- v1_dated35
++++ v2_findings45
+@@ -1,4 +1,4 @@
+-"""PR207 findings35 audit checkpoint. Import has no service or filesystem mutation.
++"""PR207 findings45 audit checkpoint. Import has no service or filesystem mutation.
+ Root alone runs candidate creation, external expected-SHA CAS, and later local sync.
+ No ref update route exists here. dry is offline; plan/verify are GET-only.
+ """
+@@ -14,6 +14,7 @@
+ ANCHOR='1c4540b748e73711d720672791ccba9d5452a5eb'
+ CORE_PIN={'bytes':22049,'sha256':'8a61aee886e7a19bba6c7369944d778614b4099cbe1a060cf7e8acf2f52ec4d5'}
+ ASSESSMENT_PIN={'bytes':6452,'sha256':'752164d3a66b7d5843afaa46af699c4f681858dc046aa68c08d48dd4065dc05e'}
++PRIORITY_PIN={'bytes': 5138, 'sha256': 'b80f892435459a81327a8d85291f3d24f6b36241e4b972c2b579eaf601dbfa38'}
+ PROOF_PIN={'bytes':2205,'sha256':'da1c7ee5b0eb0d1004956abd36f3ec13cc5f8d3d8ef23a5667cc453918d62e5a'}
+ ARCHIVE_PIN={'bytes':2270,'sha256':'cd395a1c9d92ae2ab05e93f918e8fc84356e1e7508b5c8129ff5124bfcb39245'}
+ LOCK_BYTES=b'PR publication program: stable Root cooperating global-five writer lock v1\nNever unlink or replace this inode; every existing-view writer must flock it.\n'
+@@ -32,8 +33,8 @@
+  return module
+ 
+ def inputs(wanted):
+- c=core();raw=sealed(BASE/'CHECKPOINT_INPUTS.json',wanted);m=c.decode(raw)
+- need(m.get('schema')=='pr207-findings35-checkpoint-inputs-v1' and m.get('assessment_pin')==ASSESSMENT_PIN,'Exact PR207 checkpoint manifest')
++ c=core();raw=sealed(BASE/'CHECKPOINT_INPUTS_45.json',wanted);m=c.decode(raw)
++ need(m.get('schema')=='pr207-findings45-checkpoint-inputs-v1' and m.get('assessment_pin')==ASSESSMENT_PIN and m.get('priority_assessment_pin')==PRIORITY_PIN,'Exact PR207 checkpoint manifest')
+  rows=m['files'];need(type(rows) is list and 0<len(rows)<=199,'Bounded curated allowlist')
+  overlay={}
+  for row in rows:
+@@ -43,8 +44,9 @@
+   body=sealed(local,{k:row[k] for k in ('bytes','sha256')});need(c.native('blob',body)==row['git_blob'] and b'\0' not in body and body.decode('utf-8').encode('utf-8')==body,'Inline selected body identity')
+   overlay[target]=body
+  need(m['total_files']==len(rows) and m['total_bytes']==sum(len(x) for x in overlay.values()),'Selected totals')
+- need(overlay.get(PREFIX+'checkpoint207.py')==sealed(Path(__file__)) and overlay.get(PREFIX+'archive206_verified_reference.py')==sealed(BASE/'archive206_verified_reference.py',CORE_PIN),'Exact helper and verified core are archived')
++ need(overlay.get(PREFIX+'checkpoint207_v2_findings45.py')==sealed(Path(__file__)) and overlay.get(PREFIX+'archive206_verified_reference.py')==sealed(BASE/'archive206_verified_reference.py',CORE_PIN),'Exact helper and verified core are archived')
+  assessment=c.decode(overlay[CASE+'ROOT_SCOPED_MATHEMATICAL_ASSESSMENT_01.json']);need(pin(overlay[CASE+'ROOT_SCOPED_MATHEMATICAL_ASSESSMENT_01.json'])==ASSESSMENT_PIN and assessment['accepted_scoped_mathematics'] is True and assessment['publication_ready'] is False and assessment['priority_audit_complete'] is False,'Pinned scoped mathematics only')
++ priority_raw=overlay[CASE+'ROOT_PRIORITY_AND_EDITORIAL_ASSESSMENT_01.json'];priority=c.decode(priority_raw);need(pin(priority_raw)==PRIORITY_PIN and priority['bounded_priority_audit_complete'] is True and priority['case_workflow_estimate_percent']==45 and priority['publication_ready'] is False and priority['theorem_novelty_cleared'] is False and priority['proof_method_novelty_cleared'] is False,'Separate actual bounded priority/editorial gate')
+  proof=c.decode(overlay[P+'audits/pr206_5100062/ROOT_ACTUAL_COMPLETION_VERIFICATION_01.json']);archive=c.decode(overlay[P+'audits/pr206_5100062/ROOT_LATE_OPERATIONS_ARCHIVE_ACCEPTANCE_01.json'])
+  need(pin(overlay[P+'audits/pr206_5100062/ROOT_ACTUAL_COMPLETION_VERIFICATION_01.json'])==PROOF_PIN and proof['completed'] is True and proof['fully_completed_count']==49 and proof['published_count']==33,'Actual49/33 predecessor proof')
+  need(pin(overlay[P+'audits/pr206_5100062/ROOT_LATE_OPERATIONS_ARCHIVE_ACCEPTANCE_01.json'])==ARCHIVE_PIN and archive['accepted'] is True and archive['full_scope_verified'] is True and archive['actual_MAIN_observed']==archive['candidate']==ANCHOR,'Actual accepted archive anchor')
+@@ -55,11 +57,11 @@
+    snap=overlay[row['snapshot_path']];need(pin(snap)=={k:row[k] for k in ('bytes','sha256')} and c.native('blob',snap)==row['git_blob'],'Exact historical preimage archive')
+  status=c.decode(overlay[VIEWS[0]]);progress=c.decode(overlay[VIEWS[2]])
+  for obj in (status,progress):
+-  for k,v in {'active_PR':207,'case_workflow_estimate_percent':35,'fully_completed_count':49,'published_count':33,'last_completed_PR':206,'next_numeric_intake_cursor':207,'advance_to_next_PR_authorized_now':False,'goal_complete':False,'publication_ready':False,'priority_audit_complete':False,'accepted_scoped_mathematics':True}.items():need(type(obj.get(k)) is type(v) and obj[k]==v,'Current facts mismatch: '+k)
++  for k,v in {'active_PR':207,'case_workflow_estimate_percent':45,'fully_completed_count':49,'published_count':33,'last_completed_PR':206,'next_numeric_intake_cursor':207,'advance_to_next_PR_authorized_now':False,'goal_complete':False,'publication_ready':False,'priority_audit_complete':True,'bounded_priority_audit_complete':True,'accepted_scoped_mathematics':True}.items():need(type(obj.get(k)) is type(v) and obj[k]==v,'Current facts mismatch: '+k)
+   need(obj['positive_theorem']==assessment['positive_theorem'] and obj['alternative_reading_resolution']==assessment['alternative_reading_resolution'] and obj['preserved_QUEUE_status']=='claimed_solved' and obj['preserved_QUEUE_effort_cell']=='1/5','Explicit scoped theorem/boundary and submitted status')
+  historical=c.decode(overlay[next(x['snapshot_path'] for x in pre if x['path']==VIEWS[2])])
+  need(progress['dated_eligible_total']==99 and len(progress['published_PRs'])==len(set(progress['published_PRs']))==33 and progress['published_PRs']==historical['published_PRs'] and len(progress['fully_completed_eligible_PRs'])==49 and progress['fully_completed_eligible_PRs']==historical['fully_completed_eligible_PRs'],'Preserved33 published/49 completed lists and dated denominator')
+- overlay[PREFIX+'CHECKPOINT_INPUTS.json']=raw
++ overlay[PREFIX+'CHECKPOINT_INPUTS_45.json']=raw
+  return c,m,overlay
+ 
+ def local_state(path):
+@@ -130,7 +132,7 @@
+  for path,raw in overlay.items():
+   oid=c.native('blob',raw);need(trees.lookup(s['wanted'],path)==('100644','blob',oid),'Selected candidate tuple');c.blob_matches(api,oid,raw);selected[path]={**pin(raw),'git_blob':oid}
+  if require_lease:need(api('GET','git/ref/heads/main')['object']['sha']==s['parent'],'MAIN lease lost during candidate verification')
+- return {'schema':'pr207-findings35-native-candidate-verification-v1','parent':s['parent'],'candidate':candidate,'tree':s['wanted'],'selected_files':selected,'changed_leaves':sorted(leaves),'new_directories':sorted(dirs),'all_selected_bodies_verified':True,'full_scope_verified':True,'foreign_tuples_and_QUEUE_preserved':True,'MAIN_moved_by_helper':False}
++ return {'schema':'pr207-findings45-native-candidate-verification-v1','parent':s['parent'],'candidate':candidate,'tree':s['wanted'],'selected_files':selected,'changed_leaves':sorted(leaves),'new_directories':sorted(dirs),'all_selected_bodies_verified':True,'full_scope_verified':True,'foreign_tuples_and_QUEUE_preserved':True,'MAIN_moved_by_helper':False}
+ def candidate(c,m,overlay,api,journal,wanted):
+  local_preimages(m,overlay);s=state(c,m,overlay,api);need(bool(s['changed']),'No empty candidate checkpoint')
+  c.put(journal,'TREE_INFLIGHT.json',{'parent':s['parent'],'tree':s['wanted'],'manifest_pin':wanted,'semantics':'One tree attempt; uncertainty must be inspected read-only, never retried automatically.'})
+@@ -138,7 +140,7 @@
+  result=api('POST','git/trees',{'base_tree':s['parent_tree'],'tree':[{'path':path,'mode':'100644','type':'blob','content':raw.decode('utf-8')} for path,raw in sorted(overlay.items())]});need(result.get('sha')==s['wanted'],'Tree result differs from exact computed root')
+  c.put(journal,'TREE_RESULT.json',{'parent':s['parent'],'tree':s['wanted']})
+  need(api('GET','git/ref/heads/main')['object']['sha']==s['parent'],'Lease lost before commit POST');c.put(journal,'COMMIT_INFLIGHT.json',{'parent':s['parent'],'tree':s['wanted'],'manifest_pin':wanted,'semantics':'One single-parent commit attempt; no ref action.'})
+- result=api('POST','git/commits',{'message':'Checkpoint PR207 scoped mathematics and period boundary; priority in progress','tree':s['wanted'],'parents':[s['parent']]});oid=result.get('sha');need(c.hexid(oid),'Commit result SHA');c.put(journal,'COMMIT_RESULT.json',{'parent':s['parent'],'candidate':oid,'tree':s['wanted']})
++ result=api('POST','git/commits',{'message':'Checkpoint PR207 scoped mathematics and period boundary; bounded priority complete','tree':s['wanted'],'parents':[s['parent']]});oid=result.get('sha');need(c.hexid(oid),'Commit result SHA');c.put(journal,'COMMIT_RESULT.json',{'parent':s['parent'],'candidate':oid,'tree':s['wanted']})
+  result=verify_candidate(c,m,overlay,api,s,oid);c.put(journal,'CANDIDATE_VERIFIED.json',result);return result
+ 
+ class WriterLock:
+@@ -158,8 +160,8 @@
+ 
+ def sync(c,m,overlay,api,journal,wanted,accept_path,accept_pin):
+  raw=sealed(accept_path,accept_pin);a=c.decode(raw);need(a.get('schema')=='pr207-root-findings-checkpoint-acceptance-v1' and a.get('evidence_scope')=='ACTUAL_ROOT_RECEIPT' and type(a.get('PR')) is int and a['PR']==207 and a.get('accepted') is True and a.get('full_scope_verified') is True,'Actual Root acceptance required')
+- need(a.get('checkpoint_manifest_pin')==wanted and a.get('helper_pin')==pin(sealed(Path(__file__))) and a.get('assessment_pin')==ASSESSMENT_PIN,'Actual acceptance source/manifest/assessment binding')
+- for k,v in {'fully_completed_count':49,'published_count':33,'last_completed_PR':206,'next_numeric_intake_cursor':207,'case_workflow_estimate_percent':35,'advance_to_next_PR_authorized_now':False,'goal_complete':False}.items():need(type(a.get(k)) is type(v) and a[k]==v,'Actual acceptance facts')
++ need(a.get('checkpoint_manifest_pin')==wanted and a.get('helper_pin')==pin(sealed(Path(__file__))) and a.get('assessment_pin')==ASSESSMENT_PIN and a.get('priority_assessment_pin')==PRIORITY_PIN,'Actual acceptance source/manifest/assessment/priority binding')
++ for k,v in {'fully_completed_count':49,'published_count':33,'last_completed_PR':206,'next_numeric_intake_cursor':207,'case_workflow_estimate_percent':45,'advance_to_next_PR_authorized_now':False,'goal_complete':False}.items():need(type(a.get(k)) is type(v) and a[k]==v,'Actual acceptance facts')
+  ref=a['Root_ref_update'];need(ref['expected_sha']==a['parent'] and ref['sha']==a['candidate'] and ref['force'] is False and ref['success_confirmed_by_actual_native_readback'] is True,'Actual Root expected-parent CAS readback')
+  need(a['actual_MAIN_observed']==a['candidate'] and api('GET','git/ref/heads/main')['object']['sha']==a['candidate'],'Actual MAIN is accepted candidate')
+  s=state(c,m,overlay,api,parent=a['parent'],require_lease=False);verified=verify_candidate(c,m,overlay,api,s,a['candidate'],require_lease=False);need(verified['tree']==a['tree'],'Accepted actual tree mismatch')
+@@ -183,8 +185,8 @@
+    need(local_state(path)==wanted_body,'Local installed postimage mismatch');c.put(journal,'LOCAL_VIEW_'+str(index)+'.json',{'path':row['path'],'postimage':wanted_body})
+   lock.check();need(api('GET','git/ref/heads/main')['object']['sha']==a['candidate'],'MAIN changed before local actual receipt')
+   need(all(local_state(REPO/path)==pin(overlay[path]) for path in VIEWS),'All five exact postimages required')
+-  receipt={'schema':'pr207-findings35-local-five-sync-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT','PR':207,'UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'candidate':a['candidate'],'tree':a['tree'],'acceptance_path':str(accept_path),'acceptance_pin':accept_pin,'manifest_pin':wanted,'all_five_local_files_match_actual_checkpoint':True,'files':[{ 'path':path,'postimage':pin(overlay[path])} for path in VIEWS]}
+-  c.put(journal,'LOCAL_GLOBAL_FIVE_SYNC.json',receipt);sync_pin=pin(c.enc(receipt));lock.check();c.put(BASE.parent,pointer.name,{'schema':'pr207-actual-findings-checkpoint-pointer-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT','PR':207,'candidate':a['candidate'],'tree':a['tree'],'case_workflow_estimate_percent':35,'fully_completed_count':49,'published_count':33,'last_completed_PR':206,'next_numeric_intake_cursor':207,'advance_to_next_PR_authorized_now':False,'goal_complete':False,'acceptance_path':str(accept_path),'acceptance_pin':accept_pin,'sync_path':str(journal/'LOCAL_GLOBAL_FIVE_SYNC.json'),'sync_pin':sync_pin})
++  receipt={'schema':'pr207-findings45-local-five-sync-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT','PR':207,'UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'candidate':a['candidate'],'tree':a['tree'],'acceptance_path':str(accept_path),'acceptance_pin':accept_pin,'manifest_pin':wanted,'all_five_local_files_match_actual_checkpoint':True,'files':[{ 'path':path,'postimage':pin(overlay[path])} for path in VIEWS]}
++  c.put(journal,'LOCAL_GLOBAL_FIVE_SYNC.json',receipt);sync_pin=pin(c.enc(receipt));lock.check();c.put(BASE.parent,pointer.name,{'schema':'pr207-actual-findings-checkpoint-pointer-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT','PR':207,'candidate':a['candidate'],'tree':a['tree'],'case_workflow_estimate_percent':45,'fully_completed_count':49,'published_count':33,'last_completed_PR':206,'next_numeric_intake_cursor':207,'advance_to_next_PR_authorized_now':False,'goal_complete':False,'acceptance_path':str(accept_path),'acceptance_pin':accept_pin,'sync_path':str(journal/'LOCAL_GLOBAL_FIVE_SYNC.json'),'sync_pin':sync_pin})
+  return receipt
+ 
+ def main():
+@@ -192,6 +194,10 @@
+  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('action',choices=('dry','plan','candidate','verify','sync'));ap.add_argument('--manifest-bytes',type=int,required=True);ap.add_argument('--manifest-sha256',required=True);ap.add_argument('--journal');ap.add_argument('--parent');ap.add_argument('--candidate');ap.add_argument('--acceptance',type=Path);ap.add_argument('--acceptance-bytes',type=int);ap.add_argument('--acceptance-sha256');args=ap.parse_args();wanted={'bytes':args.manifest_bytes,'sha256':args.manifest_sha256};c,m,overlay=inputs(wanted)
+  if args.action=='dry':local_preimages(m,overlay);print(json.dumps({'status':'DRY_PREPARED_ONLY','selected_files':len(overlay),'selected_bytes':sum(map(len,overlay.values())),'five_views':list(VIEWS),'MAIN_moved':False},sort_keys=True));return
+  need(args.journal is not None and Path(args.journal).name==args.journal,'Fresh owned journal basename required');journal=BASE/args.journal;need(not journal.exists() and not journal.is_symlink(),'No journal replay');journal.mkdir(mode=0o700)
++ for directory in (journal,journal.parent):
++  fd=os.open(directory,os.O_RDONLY)
++  try:os.fsync(fd)
++  finally:os.close(fd)
+  api=API(c,journal,mutate=args.action=='candidate')
+  if args.action=='plan':local_preimages(m,overlay);s=state(c,m,overlay,api);result={'status':'GET_ONLY_PLAN','parent':s['parent'],'parent_tree':s['parent_tree'],'expected_tree':s['wanted'],'changed_leaves':sorted(s['changed']),'new_directories':sorted(s['dirs']),'MAIN_moved':False};c.put(journal,'PLAN.json',result)
+  elif args.action=='candidate':result=candidate(c,m,overlay,api,journal,wanted)

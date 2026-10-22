@@ -8,14 +8,17 @@ import argparse
 import datetime
 import hashlib
 import json
-import os
 from pathlib import Path
 import subprocess
-import tempfile
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
 QUEUE = 'unsolved_math_prioritization/QUEUE.md'
+from importlib.util import spec_from_file_location, module_from_spec
+_tree_spec = spec_from_file_location('scoped_git_tree', ROOT / 'scoped_git_tree.py')
+_tree_module = module_from_spec(_tree_spec)
+_tree_spec.loader.exec_module(_tree_module)
+patch_tree = _tree_module.patch_tree
 
 
 def git(*args, env=None, input=None):
@@ -41,6 +44,8 @@ def main():
     args = parser.parse_args()
     mapping = json.loads(Path(args.mapping).read_text())
     pid, pr = mapping['problem_id'], mapping['pr']
+    if type(pid) is not int or type(pr) is not int or pid <= 0:
+        raise RuntimeError('PR and problem ID must be positive integer keys')
     if not 800 <= pr <= 900 or mapping['final_review_status'] != 'CLEAR':
         raise RuntimeError('Out of scope or missing final acceptance')
     publication = mapping['published_record']
@@ -54,7 +59,10 @@ def main():
         '--json', 'state,mergeCommit'], text=True))
     if merged['state'] != 'MERGED':
         raise RuntimeError('PR is not merged')
-    prefix = 'unsolved_math_prioritization/attempts/' + str(pid) + '/'
+    # Keep PR872's verified legacy root; other targets retain the default scope.
+    # This literal exception never permits arbitrary caller-selected prefixes.
+    prefix = ('random_property_t_30006628/' if (pr, pid) == (872, 30006628)
+              else 'unsolved_math_prioritization/attempts/' + str(pid) + '/')
     seen = set()
     for entry in mapping['files']:
         name, local = entry['repo_path'], Path(entry['local_path'])
@@ -91,20 +99,19 @@ def main():
         updated = current.replace(before, after, 1)
         if updated.replace(after, before, 1) != current:
             raise RuntimeError('Queue changed outside target row')
-        with tempfile.TemporaryDirectory(dir=work) as tmp:
-            env = dict(os.environ, GIT_INDEX_FILE=str(Path(tmp) / 'index'))
-            git('read-tree', base, env=env)
-            for entry in mapping['files']:
-                blob = git('hash-object', '-w', entry['local_path'])
-                git('update-index', '--add', '--cacheinfo', '100644', blob,
-                    entry['repo_path'], env=env)
-            blob = git('hash-object', '-w', '--stdin', input=updated)
-            git('update-index', '--add', '--cacheinfo', '100644', blob, QUEUE, env=env)
-            changed = git('diff', '--cached', '--name-only', base, env=env).splitlines()
-            if any(p != QUEUE and p not in seen for p in changed):
-                raise RuntimeError('Unexpected diff path')
-            commit = git('commit-tree', git('write-tree', env=env), '-p', base,
-                         input=mapping['commit_message'] + '\n') if changed else base
+        entries = mapping['files']
+        blobs = git('hash-object', '-w', '--no-filters', '--',
+                    *(entry['local_path'] for entry in entries)).splitlines() if entries else []
+        if len(blobs) != len(entries):
+            raise RuntimeError('Batch blob inventory mismatch')
+        updates = {entry['repo_path']: blob for blob, entry in zip(blobs, entries)}
+        updates[QUEUE] = git('hash-object', '-w', '--stdin', input=updated)
+        tree = patch_tree(REPO, base, updates)
+        changed = git('diff-tree', '-r', '--no-commit-id', '--name-only', base, tree).splitlines()
+        if any(p != QUEUE and p not in seen for p in changed):
+            raise RuntimeError('Unexpected diff path')
+        commit = git('commit-tree', tree, '-p', base,
+                     input=mapping['commit_message'] + '\n') if changed else base
         receipt = {'timestamp_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                    'pr': pr, 'problem_id': pid, 'main_base': base, 'commit': commit,
                    'doi_url': doi, 'changed_paths': changed, 'pushed': False,
@@ -113,15 +120,21 @@ def main():
             Path(mapping['receipt_path']).write_text(json.dumps(receipt, indent=2) + '\n')
             print(json.dumps(receipt))
             return
+        receipt.update(push_outcome='pending', attempts=history)
+        Path(mapping['receipt_path']).write_text(json.dumps(receipt, indent=2) + '\n')
         pushed = subprocess.run(['git', 'push', 'origin', commit + ':refs/heads/main'],
                                 cwd=REPO, capture_output=True, text=True)
         history.append({'base': base, 'commit': commit, 'push_exit': pushed.returncode})
         if pushed.returncode == 0:
-            receipt.update(pushed=True, attempts=history)
+            receipt.update(pushed=True, push_outcome='confirmed', attempts=history)
             Path(mapping['receipt_path']).write_text(json.dumps(receipt, indent=2) + '\n')
             print(json.dumps(receipt))
             return
-        if not any(s in pushed.stderr for s in ('non-fast-forward', 'fetch first', 'failed to update ref')):
+        concurrent_ref_rejection=("cannot lock ref 'refs/heads/main'" in pushed.stderr
+                                  and 'is at ' in pushed.stderr and 'but expected ' in pushed.stderr)
+        receipt.update(push_outcome='failed_or_unknown; reconcile before any non-rejection retry', attempts=history)
+        Path(mapping['receipt_path']).write_text(json.dumps(receipt, indent=2) + '\n')
+        if not concurrent_ref_rejection and not any(s in pushed.stderr for s in ('non-fast-forward', 'fetch first', 'failed to update ref')):
             raise RuntimeError(pushed.stderr)
     raise RuntimeError('Five main advances prevented publication-receipt push; commits retained')
 

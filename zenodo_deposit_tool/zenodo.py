@@ -340,14 +340,22 @@ def verify(deposit: dict, metadata: dict, files: list[dict]) -> list[dict]:
                           and actual == {**wanted, "affiliation": None}))
                     for wanted, actual in zip(value, remote_value))
         )
+        # The legacy API omits an explicitly empty related-identifiers list.
+        # Accept absence only, never null, lost nonempty links, or other fields.
+        empty_related_identifiers_omitted = (
+            key == "related_identifiers" and type(value) is list and not value
+            and key not in remote_metadata
+        )
         if remote_value != value and not (escaped_plain_text or paragraph_apostrophes
-                                         or creator_null_affiliation):
+                                         or creator_null_affiliation
+                                         or empty_related_identifiers_omitted):
             raise DepositError(f"Remote metadata differs at '{key}'; inspect the draft")
         if remote_value != value:
             normalizations.append({"field": key, "kind": (
                 "plain_text_html_entities" if escaped_plain_text
                 else "paragraph_apostrophes_u2019_to_ascii" if paragraph_apostrophes
-                else "omitted_creator_affiliation_to_null")})
+                else "omitted_creator_affiliation_to_null" if creator_null_affiliation
+                else "empty_related_identifiers_omitted")})
     remote_files = server_files(deposit)
     expected = {f["name"] for f in files}
     if set(remote_files) != expected:

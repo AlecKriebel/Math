@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-16T04:03:17.100897+00:00",
+  "records": [
+    {
+      "case": "package_transport_selftests",
+      "count": 10,
+      "pass": true
+    },
+    {
+      "case": "historical_strict_float_wrapper",
+      "returncode": 1,
+      "expected_failure": true,
+      "reason": "REJECTED: Fresh replay differs from frozen result: public/verify_math.py"
+    },
+    {
+      "case": "historical_corruptproof_auditA_normal",
+      "returncode": 1,
+      "false_PASS": false
+    },
+    {
+      "case": "historical_corruptproof_auditA_O",
+      "returncode": 0,
+      "false_PASS": true
+    },
+    {
+      "case": "historical_corruptproof_auditA_OO",
+      "returncode": 0,
+      "false_PASS": true
+    },
+    {
+      "case": "v1_FIFO",
+      "timeout": true,
+      "historical_defect_preserved": true
+    },
+    {
+      "case": "v2_FIFO",
+      "returncode": 1,
+      "prompt_rejection": true
+    },
+    {
+      "case": "typed_exact12_policy",
+      "negative_controls": 88,
+      "all_rejected": true,
+      "bounded_drift_positive_controls": 4,
+      "versions_only_nonmathematical_exception": [
+        "python",
+        "sympy",
+        "numpy"
+      ],
+      "not_roundoff_certificate": true
+    }
+  ],
+  "typed_float_policy_verified": true,
+  "historical_strict_failure_preserved": true,
+  "external_mutations": 0,
+  "canonical_changes": 0
+}

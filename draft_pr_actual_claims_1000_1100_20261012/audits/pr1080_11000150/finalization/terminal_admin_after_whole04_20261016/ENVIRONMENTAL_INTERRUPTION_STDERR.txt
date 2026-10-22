@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1080_11000150/finalization/terminal_admin_after_whole04_20261016/package.py", line 16, in <module>
+    i=zipfile.ZipInfo('verification_kit/'+n,(2026,10,14,0,0,0));i.create_system=3;i.external_attr=0o100644<<16;i.compress_type=0;z.writestr(i,(K/n).read_bytes())
+                                                                                                                                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/zipfile/__init__.py", line 2038, in writestr
+    with self.open(zinfo, mode='w') as dest:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/zipfile/__init__.py", line 1380, in close
+    self._fileobj.seek(self._zinfo.header_offset)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/zipfile/__init__.py", line 2096, in close
+    self._write_end_record()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/zipfile/__init__.py", line 2196, in _write_end_record
+    self.fp.flush()
+    ~~~~~~~~~~~~~^^
+OSError: [Errno 28] No space left on device
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1080_11000150/finalization/terminal_admin_after_whole04_20261016/package.py", line 14, in <module>
+    with zipfile.ZipFile(temp,'w',compression=0) as z:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/zipfile/__init__.py", line 1523, in __exit__
+    self.close()
+    ~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/zipfile/__init__.py", line 2100, in close
+    self._fpclose(fp)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/zipfile/__init__.py", line 2202, in _fpclose
+    fp.close()
+    ~~~~~~~~^^
+OSError: [Errno 28] No space left on device

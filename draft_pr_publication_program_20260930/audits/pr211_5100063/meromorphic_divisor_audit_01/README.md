@@ -1,0 +1,13 @@
+# Meromorphic/divisor scientific audit packet
+
+The independently reconstructed universal proof has no mathematical blocker in the frozen scope: signed straight-edge product after unit inversion of **outer consecutive-tangent vertices about the original billiard foci**, for all primitive odd periods and coprime stars with strict nested nondegenerate confocal elliptical caustics. This finding is for Root review and confers no manuscript, archive, priority, publication, or release acceptance.
+
+Read [FINDINGS.md](FINDINGS.md) for the concise adversarial ledger and [DERIVATION.md](DERIVATION.md) for the complete analytic reconstruction. [CLAIM_FREEZE.json](CLAIM_FREEZE.json) records the first frozen domain/mechanism and falsification plan. [PRIMARY_READINGS.md](PRIMARY_READINGS.md) gives actual primary-source reads, hashes, pages, version distinctions, and limits. [INPUT_BINDING.json](INPUT_BINDING.json) binds the precise source bodies and Root's bounded initial custody acceptance.
+
+All finite computations were newly authored in [audit_math.py](audit_math.py). [RUN_RECEIPT.json](RUN_RECEIPT.json), [SYMBOLIC_RESULTS.json](SYMBOLIC_RESULTS.json), [LATTICE_RESULTS.json](LATTICE_RESULTS.json), and [NUMERIC_RESULTS.json](NUMERIC_RESULTS.json) record the exact run. There is no historical checker replay. Noninterval mpmath evidence is explicitly finite and does not certify the universal proof.
+
+For reproducibility while preserving this frozen packet, copy only `audit_math.py` to a fresh scratch folder and run `/opt/homebrew/bin/python3.11` on the copy. The script writes its result JSON files beside itself. It uses the preinstalled Python 3.11 site packages specified in the script; no network, Git, package installation, or source-body write occurs. Its symbolic results should all be true. Run timestamps will differ, so those result bytes are not expected to reproduce identically.
+
+`AUTHORED_MANIFEST.json` lists the finite authored selection and excludes `private_primary/`. `EXTERNAL_SEAL.json`, outside that manifest's selection, binds its exact bytes. Run `python3 verify_seal.py` for read-only authored seal verification, or `python3 verify_seal.py --private` to additionally verify all retained private primary files. Third-party PDF/text/render bytes are not selected for publication; the private inventory lists hashes only. No external publication or other provider mutation was performed.
+
+[FINAL_AUDIT_RECEIPT.json](FINAL_AUDIT_RECEIPT.json) states this family's terminal scope and exact unresolved non-scientific gates. [RESEARCH_LOG.md](RESEARCH_LOG.md) records UTC checkpoints and completion estimates for this audit only. Root controls the overall case estimate and final acceptance.

@@ -1,0 +1,21 @@
+# Root priority extension: exact earlier logarithmic witness
+
+This independently conducted extension began after the mathematical PASS gate. The two new priority families had not supplied reports or search findings when these root queries and source readings were performed. The query ledger records 28 literal searches in seven multiquery batches, with pooled discovered URLs and explicit limits. Irrelevant Beurling factorization, generalized-prime and Hardy-space results are not mathematical evidence for this target. The original source retrieval and mathematical review preceded this priority extension and are separately recorded.
+
+## Positive authenticated precedent
+
+Adam Osękowski, *Logarithmic inequalities for Fourier multipliers*, Mathematische Zeitschrift274 (2013),515–530, DOI10.1007/s00209-012-1083-z, was published online3November2012. I retrieved its open-access final publisher PDF,235499bytes, SHA2567d1eb655147d1c8430164dcc162558eaa2c0f288070b0406137702e5d6eecd25. I read its introductory scope and complete Section4, including all of the proof of Theorem4.3 and the relevant references. I visually inspected complete PDF pages1 and15 (printed515 and529). The displayed primitive, bounded angular input and logarithmic output in that proof are exactly those in the submitted PR. The online date, journal date and received date are distinct; the received date is not treated as public disclosure.
+
+The paper's Theorem4.3 concerns localized logarithmic inequalities. It does not explicitly identify Hayman–Lingham7.72 or define this annihilator. Combining its identical displayed example with the elementary angular annihilation calculation gives the negative full-annihilator membership conclusion. That connection is a deduction in this audit; it is not backdated as the earlier paper's printed statement of this particular problem. The nonpolynomial witness and its transform must nevertheless be credited explicitly to this earlier published source. There is no basis to call that formula newly discovered in this project.
+
+The inspected passage does not supply the specific norm-one polynomial family or its exact harmonic-number norm. Absence from that passage does not establish their novelty, priority, or absence elsewhere. The separate priority families must continue the search. A paper may present the complete elementary negative answer and polynomial approximation as an attributed exposition without claiming firstness, a new witness, or current worldwide openness.
+
+## Other leads and access limits
+
+Discovery results also suggest the conjugate logarithmic primitive in the Astala–Iwaniec–Martin book. The publisher's freely available nine-page file is a contents sample, not Chapter4 or the indicated formula page. Ordinary access to the De Gruyter contents endpoint returned an empty202body; its search representation is not an inspected chapter. A normal authorized Google Books preview request returned HTML, but the desired mathematical page has not been visually inspected. The unofficial mirror's search excerpt is retained only as a lead and is not adopted as primary evidence. No exact-book-formula claim is cleared by those accesses.
+
+The Strzelecki2017 journal PDF was freshly retrieved and its introduction and bibliographic pointers inspected for angular Hardy-operator and radial-subspace precedents. Its finite-p norms, angular sign conventions and adjoint issues must be distinguished from the literal endpoint annihilator question. Retrieval is not a claim to have audited every theorem in that21-page paper. Further reverse checking remains pending. The old submitted Volberg attribution has not been newly primary-verified by this root extension.
+
+## Present decision and limits
+
+The original mathematics remains valid. Publication must credit Osękowski's identical nonpolynomial witness and separate that positive source evidence from unresolved firstness for the exact polynomial family and full problem attribution. Initial independent priority reports, reverse adversarial source challenges and a final root adjudication are still required. This report is not a completed priority clearance. All downloaded source bodies, extracts, preview HTML and renderings are private inspection inputs and are omitted from the authored portable evidence. No outreach occurred.

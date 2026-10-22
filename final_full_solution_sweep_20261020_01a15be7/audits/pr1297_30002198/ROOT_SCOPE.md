@@ -1,0 +1,5 @@
+# Root scope hold: PR1297 /30002198
+
+Entire PR proof and acceptance report expressly distinguish a complete negative to the isolated universal sentence from the intended absolutely-simple group-type setting. Root freshly retrieved official OWR46419 and inspected printed2901–2902 via extracted lines1007–1053: labelled conjecture assumes absolutely irreducible module/support-generated group; concluding sentence does not repeat that restriction. Vendramin2014 is a further narrow-reading source lead. No hypothesis is silently added to the corpus or removed from the historical context.
+
+The standard diagonal CartanA3 at fifth root gives Hilbert series(5)_t^3(5)_(t2)^2(5)_(t3), root heights1,1,1,2,2,3; Phi15 withoutPhi3 obstructs all degree1/2 products. Its group realization is explicitly decomposable. No intended absolutely-simple resolution, novelty, or current status claim follows. Independent scope/prior adjudication is pending to protect against an unexamined literal full-solution omission. No publication readiness or row action.

@@ -1,0 +1,112 @@
+{
+  "schema": "pr204-native02-preparation-validation-summary-v1",
+  "evidence_scope": "PREPARATION_ONLY_NOT_ROOT_ADOPTION",
+  "UTC": "2026-10-16T15:07:49Z",
+  "bounded_preparation_percent": 100,
+  "actual_Root_adoption": false,
+  "actual_constructor_payload_constructed": false,
+  "actual_API_or_external_action": false,
+  "constructor": {
+    "path": "native_publication_preparation_02/make_native.py",
+    "bytes": 44120,
+    "sha256": "47e01e759f67e96db7151fe738bf18e21a1dc25dcaf624e5628abea59d49d1e9"
+  },
+  "pins": {
+    "make_native.py": {
+      "bytes": 44120,
+      "sha256": "47e01e759f67e96db7151fe738bf18e21a1dc25dcaf624e5628abea59d49d1e9"
+    },
+    "CONTRACT.md": {
+      "bytes": 6907,
+      "sha256": "6d201d36a4beb04d4f8e4d7479249304999f871455715fce09891ee454bd690c"
+    },
+    "test_offline.py": {
+      "bytes": 24601,
+      "sha256": "d536bbde1af2cac74f5d7230b720507a9fb2a52d212791a4ba2b13966779604c"
+    },
+    "preflight_actual_inputs.py": {
+      "bytes": 4128,
+      "sha256": "d22a57f84a47d2896ff81e8a6c04062d51c49115d2ed3d01e1b012bea699bb8a"
+    },
+    "OFFLINE_TEST_RECEIPT_NORMAL.json": {
+      "bytes": 12512,
+      "sha256": "4916f39a2d407bc8e84b4a3501944c71aa985216a5194b90bd32691a9d62d159"
+    },
+    "OFFLINE_TEST_RECEIPT_OPTIMIZED.json": {
+      "bytes": 12512,
+      "sha256": "461ac7e02ff3dbb50b08f3dbe3f6f6b07736f555aa04201ca2d5acc4a2a936ab"
+    },
+    "ACTUAL_PREFLIGHT_NORMAL.json": {
+      "bytes": 1441,
+      "sha256": "288e78f9eaea294f84294d30fccb841775c46a69bec143c1a068c68db7e3616c"
+    },
+    "ACTUAL_PREFLIGHT_OPTIMIZED.json": {
+      "bytes": 1441,
+      "sha256": "d11812b210e6a0d3076d0dff0454f8fba3434cdda8feab72178a109c6f445796"
+    },
+    "ACTUAL_ORIGINAL20_IMMUTABILITY.json": {
+      "bytes": 10788,
+      "sha256": "2d69777ffb17bce288d8d0caf6e74eaa4f86a185938aa24b3da02c7e5cb486fa"
+    },
+    "SYNTHETIC_POSTIMAGE_BEFORE_AFTER.json": {
+      "bytes": 30803,
+      "sha256": "e3fde6eb43272ef147798d065aaa79c5a991e320f5a844e12e64f5027262fdde"
+    },
+    "PROTECTED_INPUT_BASELINE.json": {
+      "bytes": 112843,
+      "sha256": "75d14e9e55132379a7429a2ea3c2c460ea2d8ad0aacc636ce11aaecb12a38a31"
+    },
+    "SCOPE_CORRECTION_RECOVERY.json": {
+      "bytes": 1846,
+      "sha256": "02d01a0861d669dce2cd999005f58d46c38b7b5dc010421690287c551c046eec"
+    },
+    "history_before_recovery_20261016T1502/PREIMAGE_MANIFEST.json": {
+      "bytes": 3587,
+      "sha256": "245da6ccb3ec6d1898f64c56fc42249d51243413ee8d691b195cbd9579d7b917"
+    }
+  },
+  "fresh_physical_offline_controls": {
+    "ordinary": {
+      "test_count": 72,
+      "python_optimization": 0,
+      "status": "PASS",
+      "receipt": "OFFLINE_TEST_RECEIPT_NORMAL.json"
+    },
+    "optimized": {
+      "test_count": 72,
+      "python_optimization": 1,
+      "status": "PASS",
+      "receipt": "OFFLINE_TEST_RECEIPT_OPTIMIZED.json"
+    }
+  },
+  "actual_input_preflight": {
+    "ordinary": "PASS",
+    "optimized": "PASS",
+    "original20_unchanged": true,
+    "package_files": 181,
+    "other_safe_paths": 88,
+    "Root_whole_review_events": 2,
+    "preparation_receipts": 4,
+    "protected_files": 388,
+    "protected_bytes_mtime_ctime_modes_unchanged": true,
+    "sealed_native01_unchanged": true
+  },
+  "earlier_history": {
+    "directory": "history_before_recovery_20261016T1502",
+    "preimages": 12,
+    "ordinary71": "Historical preserved, superseded",
+    "optimized67": "Historical preserved, superseded",
+    "optimized71": "Failed ENOSPC; never a PASS",
+    "first_recovery_create_20261016T1201": "ENOSPC before any write",
+    "new_storage_recovery": "Root reported15GiB before this recovery; no ENOSPC during this recovery"
+  },
+  "source_diff": "Only event.get('whole_scope') -> event.get('whole_package_scope') from44112/f750b7... to44120/47e01e...",
+  "all3_former_RAM_pins_recovered_exactly": true,
+  "fixture_custody_already_exact_no_restore": true,
+  "bare_assert_AST_counts": {
+    "make_native.py": 0,
+    "test_offline.py": 0,
+    "preflight_actual_inputs.py": 0
+  },
+  "remaining_authority": "Root must read/adopt exact constructor and this hash seal, then independently validate actual lifecycle facts. No publication/merge authority is conferred by this preparation."
+}

@@ -1,0 +1,117 @@
+{
+  "schema": "pr948-computation-audit-v1",
+  "target": "PR948/problem30004549",
+  "immutable_head": "be4313efafa1af5962394e07d8a4debff2e94d92",
+  "status": "pass_finite_reproduction_with_explicit_profile_findings",
+  "author_turns_added": 0,
+  "audit_completion_percent": 100,
+  "original24_authenticated_before_math": true,
+  "final_original24_reauthentication_utc": "2026-10-16T06:59:31.428747+00:00",
+  "private_record_sha256": "5df3868e802d9da72bced3f4606c3ccd9b6610208bcc2a086bf25e082239b34f",
+  "nested_statement_sha256": "a5ce90b9c2087f20cd09cb33d9d92ca40039c19a08de3b1c098d10bf75b9179b",
+  "initial_assignment_hash_label_error_resolved": true,
+  "proof_sha256": "50a267656e6a5412a2e14208ada5aec203df4c5385be63b831029188cb1cf39e",
+  "public_manifest_external_sha256": "18b022a9f45f4b8194629cae8143f6be4884dbba51b7616cc64c1b7ab2cf7117",
+  "wrapper_external_sha256": "994408c8bfb602939d03a8ed674f0aa06eed1e80477a473c17ddc8566e49aea5",
+  "independent_local_checks": 21,
+  "independent_modes_byte_equal": true,
+  "wrapper_modes": [
+    "normal",
+    "optimized",
+    "isolated"
+  ],
+  "self_tests_per_wrapper_run": 17,
+  "checker_replays_per_wrapper_run": 9,
+  "wrapper_all_modes_match_frozen_verification_results": true,
+  "wrapper_stdout_sha256": "ddf1aeb2d60ddc798cd16c2637e6f38057f1ca287e3a5d3ef1c15f297a413e57",
+  "direct_original_checker_mode_runs": 9,
+  "harness_events": 55,
+  "supplemental_events": 8,
+  "archive_members": 7,
+  "archive_mirrors_exact": true,
+  "findings": [
+    {
+      "id": "R948-COMP-01",
+      "title": "Direct optimized review scripts lose their assertions",
+      "evidence": "Both audit A and audit B accept deliberately false wedge-square assertions when executed directly with -O; normal and forced optimize=0 execution reject. The historical wrapper passes its assertion guard and compiles checker sources with optimize=0.",
+      "historical_package_blocker": false,
+      "publication_action": "Preserve the historical caveat; new entry point must continue forced optimize=0."
+    },
+    {
+      "id": "R948-COMP-02",
+      "title": "Finite regular-file inventory is not a filesystem safety profile",
+      "evidence": "An unlisted FIFO is accepted. A listed README FIFO blocks until the audit child is killed after 2 seconds. No pre-read regular-file or size bound exists in the old wrapper.",
+      "historical_package_blocker": false,
+      "publication_action": "A strict new entry point must reject all nonregular objects before reads and enforce a closed bounded inventory."
+    },
+    {
+      "id": "R948-COMP-03",
+      "title": "Checker replay inherits ambient Python import environment",
+      "evidence": "An owned PYTHONPATH sympy.py poison causes direct normal checker failure; -I direct checker ignores it. Even outer-wrapper -I fails its normal checker child under that environment.",
+      "historical_package_blocker": false,
+      "publication_action": "Use cold isolated children, sanitized environment, and forced optimize=0; do not claim an OS sandbox."
+    },
+    {
+      "id": "R948-COMP-04",
+      "title": "Filesystem and declared Git modes are not enforced",
+      "evidence": "Changing README mode to 0755 or inserting ignored git_mode=120000 metadata leaves old verify() passing. Independent original authentication separately confirms all 24 Git modes 100644 and disk modes 0644.",
+      "historical_package_blocker": false,
+      "publication_action": "Enforce coherent expected regular modes in a new strict profile, or keep claims limited to authenticated bytes."
+    },
+    {
+      "id": "R948-COMP-05",
+      "title": "Manifest scalar schema accepts numerically equal floats",
+      "evidence": "Integral float payload size and float problem_id=30004549.0 are accepted. Malformed JSON, array root, missing schema, null entry, and boolean size were rejected, sometimes by uncaught structural exceptions.",
+      "historical_package_blocker": false,
+      "publication_action": "Validate exact scalar types excluding bool and float, required keys, and coherent metadata in a new strict entry point."
+    },
+    {
+      "id": "R948-COMP-06",
+      "title": "ZIP helper does not enforce member modes or decompression caps",
+      "evidence": "Direct check_archive() accepts a symlink external attribute with original member bytes and a bounded 262144-byte highly compressed fixture. It never extracts files. Full verify() protects the historical seven-member archive using frozen archive SHA256.",
+      "historical_package_blocker": false,
+      "publication_action": "A strict new entry point should bound archive/member sizes, check member modes and names, and avoid extraction; no zip bomb was executed."
+    },
+    {
+      "id": "R948-COMP-07",
+      "title": "Manifest envelope needs an independent trust anchor",
+      "evidence": "Coherently changing README plus manifest and sidecar passes the old driver while changing PUBLIC_MANIFEST SHA256. The documented independent manifest pin rejects that rebind; this audit authenticated that pin and wrapper pin before execution.",
+      "historical_package_blocker": false,
+      "publication_action": "Retain an externally supplied expected manifest/entry-point hash or immutable Git binding; sidecars are not signatures."
+    }
+  ],
+  "required_for_new_strict_profile": [
+    "R948-COMP-02",
+    "R948-COMP-03",
+    "R948-COMP-04",
+    "R948-COMP-05",
+    "R948-COMP-06"
+  ],
+  "required_scope_disclosures": [
+    "R948-COMP-01",
+    "R948-COMP-07"
+  ],
+  "historical_package_mathematical_or_reproduction_blockers": [],
+  "remaining_gaps": [
+    "Global compactification, cohomological independence, and smooth global geometry are assigned to separate mathematical families.",
+    "Primary-source scope, priority, novelty, and native author-turn history are not certified by this family.",
+    "A new strict publication entry point, if created, requires its own fresh audit; the historical wrapper is not relabeled as repaired.",
+    "Only supplied CPython 3.14.6/SymPy 1.14.0 on this host was executed; README's full Python 3.10+ portability range was not tested."
+  ],
+  "preserved_failures": [
+    "AUTHENTICATION_FAILURE_INITIAL.json: supplied nested-statement hash initially treated as full-record hash; resolved by parent metadata correction.",
+    "HARNESS_INITIAL_FAILURE.json: own runtime-path parent error before target execution.",
+    "HARNESS_IMPORT_CACHE_FAILURE.json: import-cache contamination in owned clone caused old wrapper rejection; rerun with bytecode writes disabled."
+  ],
+  "scope": "Finite authenticated byte/package reproduction and independent local symbolic checks; no OS sandbox, formal proof, human peer review, novelty certification, or priority claim.",
+  "public_allowlist": "PUBLIC_ALLOWLIST.json",
+  "seal_manifest": "MANIFEST.json",
+  "seal_sidecar": "MANIFEST.sha256",
+  "controller_receipt_consistency_check": {
+    "file": "CONTROLLER_RECEIPT_CHECK.json",
+    "checked_utc": "2026-10-16T07:02:11.295826+00:00",
+    "receipt_sha256": "949cc2aeb77576625bb2f5cbf3b0f799cb09aef02368f8b75d66fe22191b8ba4",
+    "live_API_replayed_by_this_family": false
+  },
+  "public_files_count_including_envelopes": 24
+}

@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "outer_optimization": 2,
+  "scope": "Actual immutable verifier manifest_check and inventory functions, tested against an in-memory filesystem adapter. Nine corruptions rejected under -O and PYTHONOPTIMIZE=2; this is not a physical relocated-package replay or analytic proof.",
+  "checks": [
+    {
+      "case": "unmodified_RAM_baseline",
+      "expected_rejection": false,
+      "rejected": false,
+      "diagnostic": null,
+      "baseline_payload_files": 38
+    },
+    {
+      "case": "duplicate_manifest",
+      "expected_rejection": true,
+      "rejected": true,
+      "diagnostic": "duplicate manifest entry",
+      "baseline_payload_files": null
+    },
+    {
+      "case": "unsafe_parent_path",
+      "expected_rejection": true,
+      "rejected": true,
+      "diagnostic": "unsafe manifest path",
+      "baseline_payload_files": null
+    },
+    {
+      "case": "unsafe_absolute_path",
+      "expected_rejection": true,
+      "rejected": true,
+      "diagnostic": "unsafe manifest path",
+      "baseline_payload_files": null
+    },
+    {
+      "case": "changed_proof",
+      "expected_rejection": true,
+      "rejected": true,
+      "diagnostic": "size mismatch: author/PROOF.md",
+      "baseline_payload_files": null
+    },
+    {
+      "case": "changed_archive",
+      "expected_rejection": true,
+      "rejected": true,
+      "diagnostic": "size mismatch: archives/QUASICONICAL_30005613_AUTHOR_SAFE_FREEZE.zip",
+      "baseline_payload_files": null
+    },
+    {
+      "case": "extra_file",
+      "expected_rejection": true,
+      "rejected": true,
+      "diagnostic": "recursive file inventory mismatch",
+      "baseline_payload_files": null
+    },
+    {
+      "case": "missing_file",
+      "expected_rejection": true,
+      "rejected": true,
+      "diagnostic": "recursive file inventory mismatch",
+      "baseline_payload_files": null
+    },
+    {
+      "case": "symlink",
+      "expected_rejection": true,
+      "rejected": true,
+      "diagnostic": "symlinks forbidden",
+      "baseline_payload_files": null
+    },
+    {
+      "case": "nonregular_object",
+      "expected_rejection": true,
+      "rejected": true,
+      "diagnostic": "nonregular object",
+      "baseline_payload_files": null
+    }
+  ],
+  "original_files_not_written": true
+}

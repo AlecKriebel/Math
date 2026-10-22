@@ -1,0 +1,84 @@
+--- preparation01/verification/exact_checks.py
++++ preparation02/verification/exact_checks.py
+@@ -12,8 +12,13 @@
+     if not ok:
+         raise RuntimeError(message)
+ 
+-def relations(n, omit=None):
+-    mons = list(itertools.combinations_with_replacement(range(2*n), 2))
++def relations(n, omit=None, degree=2):
++    need(degree in (1,2), 'unsupported degree')
++    mons = list(itertools.combinations_with_replacement(range(2*n), degree))
++    # The same homogeneous presentation has only quadratic/cubic generators,
++    # hence no relations in degree one. Keep its actual monomial coordinates.
++    if degree == 1:
++        return mons, []
+     index = {m:i for i,m in enumerate(mons)}
+     rows = []
+     def add(terms):
+@@ -31,8 +36,11 @@
+             add([(i,n+j,1),(i,n+k,1 if omit == 'sums' else -1)])
+     return mons, rows
+ 
+-def quotient(n, omit=None):
+-    mons, rows = relations(n,omit)
++def quotient(n, omit=None, degree=2, extra_rows=()):
++    mons, rows = relations(n,omit,degree)
++    for row in extra_rows:
++        need(len(row)==len(mons), 'extra relation width')
++        rows.append(list(row))
+     pivots = []; k = 0
+     for col in range(len(mons)):
+         possible = [i for i in range(k,len(rows)) if rows[i][col]]
+@@ -61,6 +69,32 @@
+     coords,d,_ = q
+     return [[sum(coeff[i]*coords[tuple(sorted((i,j)))][r]
+                  for i in range(2*n)) for j in range(2*n)] for r in range(d)]
++
++def sum_y_witness(n,p,q2,q1=None):
++    """Interrogate constructed degree-one coordinates and every raw product.
++
++    Return None on a defective linear layer/product, allowing a deliberate
++    zero-sum regression to test this diagnostic rather than a constant list.
++    """
++    if q1 is None: q1=quotient(n,degree=1)
++    linear,d,_=q1
++    z=[sum(linear[(j,)][r] for j in range(n,2*n))%p for r in range(d)]
++    if not any(z) or d!=2*n: return None
++    # In this relation-free degree-one presentation, the surviving monomials
++    # are the raw variables; multiply the derived coordinates in q2.
++    products=matrix(n,q2,z)
++    quadratic,_,_=q2
++    for i in range(n):
++        vi=quadratic[tuple(sorted((i,n+(i+1)%n)))]
++        actual=[row[i]%p for row in products]
++        if actual!=[((n-1)*v)%p for v in vi]: return None
++        if any(actual)!=((n-1)%p!=0): return None
++        if any(row[n+i]%p for row in products): return None
++    return {'n':n,'p':p,'p_divides_n':n%p==0,
++            'p_divides_n_minus_one':(n-1)%p==0,
++            'degree_one_coordinates':z,
++            'products_by_raw_generators':[[row[j]%p for row in products]
++                                          for j in range(2*n)]}
+ 
+ def det_integer(a):
+     a = [r[:] for r in a]; sign=1; prev=1; n=len(a)
+@@ -175,9 +209,16 @@
+     reject('all_widths_are_bad_in_char_two',rank_mod(matrix(4,qs[4],[1]*4+[0]*4),2)<8)
+     reject('zero_x_coefficient_can_be_good',rank_mod(matrix(4,qs[4],[0,1,1,1,2,1,0,1]),5)==8)
+     reject('char_two_square_of_sum_x_is_zero',not any(sum(row[j] for j in range(4))%2 for row in matrix(4,qs[4],[1]*4+[0]*4)))
+-    reject('sum_y_is_zero_when_p_divides_n',not any([1]*4))
++    sum_y=[sum_y_witness(n,2,qs[n]) for n in (3,4)]
++    need(all(w is not None for w in sum_y),'quotient-derived sum-y diagnostic')
++    reject('sum_y_is_zero_when_p_divides_n',not any(sum_y[1]['degree_one_coordinates']))
++    # Add the false linear relation sum(y)=0 to the degree-one quotient.
++    # The diagnostic must reject this corrupted layer before trusting products.
++    corrupted=quotient(4,degree=1,extra_rows=[[0]*4+[1]*4])
++    reject('zero_sum_quotient_regression_is_undetected',
++           sum_y_witness(4,2,qs[4],corrupted) is not None)
+     reject('bad_width_is_n_zero_mod_p',rank_mod(matrix(3,qs[3],[1]*3+[0]*3),3)<6)
+     reject('y_only_form_suffices_at_good_width',rank_mod(matrix(4,qs[4],[0]*4+[1]*4),2)==8)
+-    print(json.dumps({'status':'PASS','integral_quotient_widths':list(qs),'integer_general_form_cases':determinant_cases,'exhaustive_finite_field_forms':exhaustive,'injections_checked':check_orbits(),'width_three_generation_through':6,'negative_controls':controls,'limits':'Finite exact checks only; universal written proof is primary. No priority certificate.'},sort_keys=True,indent=2))
++    print(json.dumps({'status':'PASS','integral_quotient_widths':list(qs),'integer_general_form_cases':determinant_cases,'exhaustive_finite_field_forms':exhaustive,'injections_checked':check_orbits(),'width_three_generation_through':6,'negative_controls':controls,'sum_y_witnesses':sum_y,'limits':'Finite exact checks only; universal written proof is primary. No priority certificate.'},sort_keys=True,indent=2))
+ 
+ if __name__=='__main__':main()

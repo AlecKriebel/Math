@@ -1,0 +1,5 @@
+# PR #1220 eligibility
+
+The AIM item asks for higher unnormalized size power sums for arbitrary positive coprime moduli. This PR claims a normalization/prior-status audit, with established finite-order formulas, already-known all-order lattice sums/polynomiality and an elementary modulus-two special case. It explicitly declines a new arbitrary-order answer and supplies no independently declared completed criterion for the open-ended original request. The exact mean sign and third-central-moment normalization corrections do not resolve that request. No extra compactness criterion is imposed as an original hypothesis, and no literature-wide absence of formulas is asserted.
+
+Root read complete ACCEPTANCE.json, PROOF.md and body after actual-head availability. An initial concurrent read occurred before the separate pinned-scope fetch completed; it failed without any classification. The subsequent exact immutable reads succeeded, and all eight paths are bound. Fresh GWS06:29:32UTC191rows had no relevant lead. This is an eligibility exclusion, not independent recertification of all earlier moment formulas. Completion estimate79%.

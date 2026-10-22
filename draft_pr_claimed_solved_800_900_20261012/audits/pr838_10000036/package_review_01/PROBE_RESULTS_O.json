@@ -1,0 +1,270 @@
+{
+  "timestamp_utc": "2026-10-15T06:56:35.455791+00:00",
+  "optimization_level": 1,
+  "test_count": 37,
+  "all_passed": true,
+  "tests": [
+    {
+      "test": "portable_full_baseline",
+      "expected": "accept",
+      "returncode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": ""
+    },
+    {
+      "test": "outer_full_baseline",
+      "expected": "accept",
+      "returncode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": ""
+    },
+    {
+      "test": "deterministic_rebuild",
+      "expected": "accept",
+      "returncode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": ""
+    },
+    {
+      "test": "rebuild_byte_identity_verification.zip",
+      "passed": true
+    },
+    {
+      "test": "rebuild_byte_identity_package_index.json",
+      "passed": true
+    },
+    {
+      "test": "changed_payload",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": " \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/changed_payload/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/changed_payload/verify_package.py\", line 71, in bind\n    require(type(row['bytes']) is int and row['bytes'] >= 0 and len(raw) == row['bytes'],\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'byte count: ' + row['path'])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/changed_payload/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: byte count: note.tex\n"
+    },
+    {
+      "test": "extra_file",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "file/verify_package.py\", line 120, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/extra_file/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/extra_file/verify_package.py\", line 68, in bind\n    require(files == set(names) | {'package_index.json'} and dirs == expected_dirs, 'closed inventory')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/extra_file/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: closed inventory\n"
+    },
+    {
+      "test": "extra_empty_directory",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": ", in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/extra_empty_directory/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/extra_empty_directory/verify_package.py\", line 68, in bind\n    require(files == set(names) | {'package_index.json'} and dirs == expected_dirs, 'closed inventory')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/extra_empty_directory/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: closed inventory\n"
+    },
+    {
+      "test": "missing_file",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "erify_package.py\", line 120, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/missing_file/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/missing_file/verify_package.py\", line 68, in bind\n    require(files == set(names) | {'package_index.json'} and dirs == expected_dirs, 'closed inventory')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/missing_file/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: closed inventory\n"
+    },
+    {
+      "test": "symlink_payload",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/symlink_payload/verify_package.py\", line 120, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/symlink_payload/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/symlink_payload/verify_package.py\", line 67, in bind\n    raise RuntimeError('nonregular member: ' + name)\nRuntimeError: nonregular member: note.tex\n"
+    },
+    {
+      "test": "fifo_payload_rejected_without_hang",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/fifo_payload_rejected_without_hang/verify_package.py\", line 120, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/fifo_payload_rejected_without_hang/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/fifo_payload_rejected_without_hang/verify_package.py\", line 67, in bind\n    raise RuntimeError('nonregular member: ' + name)\nRuntimeError: nonregular member: note.tex\n"
+    },
+    {
+      "test": "symlink_index",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/symlink_index/verify_package.py\", line 46, in bind\n    raw_index = regular_read(manifest)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/symlink_index/verify_package.py\", line 34, in regular_read\n    require(stat.S_ISREG(path.lstat().st_mode), 'regular file required: ' + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/symlink_index/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: regular file required: /Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/symlink_index/package_index.json\n"
+    },
+    {
+      "test": "fifo_index_rejected_without_hang",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/fifo_index_rejected_without_hang/verify_package.py\", line 46, in bind\n    raw_index = regular_read(manifest)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/fifo_index_rejected_without_hang/verify_package.py\", line 34, in regular_read\n    require(stat.S_ISREG(path.lstat().st_mode), 'regular file required: ' + str(path))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/fifo_index_rejected_without_hang/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: regular file required: /Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/fifo_index_rejected_without_hang/package_index.json\n"
+    },
+    {
+      "test": "index_duplicate_json_key",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "loads\n    return cls(**kw).decode(s)\n           ~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/index_duplicate_json_key/verify_package.py\", line 22, in unique\n    require(key not in result, 'duplicate JSON key')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/index_duplicate_json_key/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: duplicate JSON key\n"
+    },
+    {
+      "test": "index_nonfinite",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "y\", line 30, in decode\n    return json.loads(raw, object_pairs_hook=unique, parse_constant=nonfinite)\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 365, in loads\n    return cls(**kw).decode(s)\n           ~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/index_nonfinite/verify_package.py\", line 29, in nonfinite\n    raise RuntimeError('nonfinite JSON constant: ' + value)\nRuntimeError: nonfinite JSON constant: NaN\n"
+    },
+    {
+      "test": "path_parent",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": " 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_parent/verify_package.py\", line 53, in bind\n    require(all(type(n) is str and n == str(PurePosixPath(n)) and n not in ('', '.', 'package_index.json')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and not n.startswith('/') and '..' not in PurePosixPath(n).parts\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and '\\\\' not in n and ':' not in n for n in names), 'safe paths')\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_parent/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: safe paths\n"
+    },
+    {
+      "test": "path_absolute",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "gular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_absolute/verify_package.py\", line 53, in bind\n    require(all(type(n) is str and n == str(PurePosixPath(n)) and n not in ('', '.', 'package_index.json')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and not n.startswith('/') and '..' not in PurePosixPath(n).parts\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and '\\\\' not in n and ':' not in n for n in names), 'safe paths')\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_absolute/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: safe paths\n"
+    },
+    {
+      "test": "path_backslash",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "lar_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_backslash/verify_package.py\", line 53, in bind\n    require(all(type(n) is str and n == str(PurePosixPath(n)) and n not in ('', '.', 'package_index.json')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and not n.startswith('/') and '..' not in PurePosixPath(n).parts\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and '\\\\' not in n and ':' not in n for n in names), 'safe paths')\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_backslash/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: safe paths\n"
+    },
+    {
+      "test": "path_noncanonical",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "les': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_noncanonical/verify_package.py\", line 53, in bind\n    require(all(type(n) is str and n == str(PurePosixPath(n)) and n not in ('', '.', 'package_index.json')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and not n.startswith('/') and '..' not in PurePosixPath(n).parts\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and '\\\\' not in n and ':' not in n for n in names), 'safe paths')\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_noncanonical/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: safe paths\n"
+    },
+    {
+      "test": "path_colon",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_colon/verify_package.py\", line 53, in bind\n    require(all(type(n) is str and n == str(PurePosixPath(n)) and n not in ('', '.', 'package_index.json')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and not n.startswith('/') and '..' not in PurePosixPath(n).parts\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                and '\\\\' not in n and ':' not in n for n in names), 'safe paths')\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/path_colon/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: safe paths\n"
+    },
+    {
+      "test": "duplicate_inventory",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "dent review probes with spaces gib6m778/duplicate_inventory/verify_package.py\", line 120, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/duplicate_inventory/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/duplicate_inventory/verify_package.py\", line 56, in bind\n    require(len(names) == len(set(names)), 'unique inventory')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/duplicate_inventory/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: unique inventory\n"
+    },
+    {
+      "test": "boolean_byte_count",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "nts/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/boolean_byte_count/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/boolean_byte_count/verify_package.py\", line 71, in bind\n    require(type(row['bytes']) is int and row['bytes'] >= 0 and len(raw) == row['bytes'],\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'byte count: ' + row['path'])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/boolean_byte_count/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: byte count: CURRENT_PRIORITY.md\n"
+    },
+    {
+      "test": "negative_byte_count",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/negative_byte_count/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/negative_byte_count/verify_package.py\", line 71, in bind\n    require(type(row['bytes']) is int and row['bytes'] >= 0 and len(raw) == row['bytes'],\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'byte count: ' + row['path'])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/negative_byte_count/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: byte count: CURRENT_PRIORITY.md\n"
+    },
+    {
+      "test": "outer_changed_payload",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "ate/replays/independent review probes with spaces gib6m778/outer_changed_payload/verify_publication.py\", line 126, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/outer_changed_payload/verify_publication.py\", line 77, in main\n    count = bind(root, args.trusted_outer_sha256)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/outer_changed_payload/verify_publication.py\", line 64, in bind\n    require(type(row['bytes']) is int and len(content) == row['bytes'], 'byte count: ' + row['path'])\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/outer_changed_payload/verify_publication.py\", line 15, in require\n    raise RuntimeError(message)\nRuntimeError: byte count: README.md\n"
+    },
+    {
+      "test": "outer_extra_empty_directory",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": " with spaces gib6m778/outer_extra_empty_directory/verify_publication.py\", line 126, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/outer_extra_empty_directory/verify_publication.py\", line 77, in main\n    count = bind(root, args.trusted_outer_sha256)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/outer_extra_empty_directory/verify_publication.py\", line 61, in bind\n    require(files == set(names) | {'PUBLICATION_MANIFEST.json'} and dirs == expected_dirs, 'closed inventory')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/outer_extra_empty_directory/verify_publication.py\", line 15, in require\n    raise RuntimeError(message)\nRuntimeError: closed inventory\n"
+    },
+    {
+      "test": "outer_fifo_payload_rejected_without_hang",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/outer_fifo_payload_rejected_without_hang/verify_publication.py\", line 126, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/outer_fifo_payload_rejected_without_hang/verify_publication.py\", line 77, in main\n    count = bind(root, args.trusted_outer_sha256)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/package_review_01/private/replays/independent review probes with spaces gib6m778/outer_fifo_payload_rejected_without_hang/verify_publication.py\", line 60, in bind\n    raise RuntimeError('nonregular member: ' + name)\nRuntimeError: nonregular member: README.md\n"
+    },
+    {
+      "test": "wrong_external_pin",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/work/pr838_revision_r2/publication_20261015/verification_package/verify_package.py\", line 120, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/work/pr838_revision_r2/publication_20261015/verification_package/verify_package.py\", line 110, in main\n    result = {'status': 'PASS', 'regular_files': bind(root, args.trusted_index_sha256),\n                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/work/pr838_revision_r2/publication_20261015/verification_package/verify_package.py\", line 47, in bind\n    require(hashlib.sha256(raw_index).hexdigest() == pin, 'external index pin')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/work/pr838_revision_r2/publication_20261015/verification_package/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: external index pin\n"
+    },
+    {
+      "test": "missing_isolated_flags",
+      "expected": "reject",
+      "returncode": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/work/pr838_revision_r2/publication_20261015/verification_package/verify_package.py\", line 120, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/work/pr838_revision_r2/publication_20261015/verification_package/verify_package.py\", line 107, in main\n    require(sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'run with python -I -S -B')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/work/pr838_revision_r2/publication_20261015/verification_package/verify_package.py\", line 16, in require\n    raise RuntimeError(message)\nRuntimeError: run with python -I -S -B\n"
+    },
+    {
+      "test": "zip_symlink",
+      "passed": true,
+      "rejection": "ValueError: Nonregular/executable ZIP member"
+    },
+    {
+      "test": "zip_executable",
+      "passed": true,
+      "rejection": "ValueError: Nonregular/executable ZIP member"
+    },
+    {
+      "test": "zip_fifo_mode",
+      "passed": true,
+      "rejection": "ValueError: Nonregular/executable ZIP member"
+    },
+    {
+      "test": "zip_duplicate",
+      "passed": true,
+      "rejection": "ValueError: Duplicate ZIP member"
+    },
+    {
+      "test": "zip_parent_path",
+      "passed": true,
+      "rejection": "ValueError: Unsafe member path"
+    },
+    {
+      "test": "zip_nondata",
+      "passed": true,
+      "rejection": "ValueError: Non-data archive member"
+    },
+    {
+      "test": "zip_invalid_utf8",
+      "passed": true,
+      "rejection": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+    },
+    {
+      "test": "zip_duplicate_json",
+      "passed": true,
+      "rejection": "ValueError: Duplicate JSON key"
+    },
+    {
+      "test": "zip_large_member",
+      "passed": true,
+      "rejection": "ValueError: Unexpectedly large data member"
+    }
+  ],
+  "scope": "Integrity, closed inventory, startup controls and crafted malformed data only; no mathematical theorem certification."
+}

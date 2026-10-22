@@ -1,0 +1,52 @@
+# First fresh entire-package adversarial review
+
+Reviewer /root/pr948_full_package_01; PR948/problem30004549; candidate1.
+Freeze65add90a6ac3a539cacdc41152cea5828c95cad95608a95e2dad054341a37c02.
+
+The stated mathematical theorem is verified, with no mathematical gap found. This entire candidate is NOT clean for preprint acceptance because of one required operational recovery defect. No additional actionable optional issue was found.
+
+## R948-FULL01-R01: honest unfinished/failed histories cannot recover
+
+Pinned accept_pr948.py SHA1f538840a9e3d0ec26270d977960699cfd6155e8706ffa7de3c82854042be563, result_schema lines486–491, requires true completion flags for every result. review_check lines494–551 applies this to every historical round, then demands PASS authentication and four successful cold modes for every old round. The charter also requires all adverse/unfinished rounds retained. Thus an honest unfinished/failed round permanently blocks the chain, even after repair and two new complete clean reviews. Rewriting an old result or inventing successful completion is unacceptable.
+
+UNFINISHED_REVIEW_WITNESS.json uses the actual current result_schema/review_check and the sealed root-fix tiny in-memory fixture. Its package-profile stub is explicit; old inventory/source pins are genuine; no service calls occur. Complete adverse old review plus two clean current reviews PASSES. Change only the old completion flags to false and coherently repin RESULT/manifest: REJECT, fresh ENTIRE-package target/reproducer. Restore true flags but honestly set old cold statusFAIL/returncode1, repin: REJECT, independent cold full-package replay binding. The later two clean records are unchanged in both negative cases.
+
+Repair historical validation to preserve honest incomplete/failed records without counting them toward acceptance. Keep all full successful authentication/replay/identity/entire-review/inherited-disposition requirements for the two latest consecutive clean current rounds. Preserve real timestamps, limitations, all earlier findings, explicit manifests and archived candidate/evidence identity. Update contract/instructions and add both recovery regressions. The existing completed-adverse route must continue to pass. This is not a theorem rejection.
+
+PF01-R04 and the broad historical-recovery obligation of R948-WORKFLOW-ROOT-01 are marked not fully verified in RESULT.json, while their completed-round/archival subproperties passed. Every one of the50 inherited IDs has a concrete independent disposition. Disclosed unavailable bodies/history are not declared recovered.
+
+## Independent mathematics and source scope
+
+I read the complete new source and saved INITIAL_ATTACK.md before reading earlier mathematical verdicts. Six simple finite branch points, two smooth unbranched infinity points and nonsquare polynomial give a connected genus2 compact curve. Exact branch/infinity expansions extend eta0,eta1; their variable ratio z proves independence. Wedge with the elliptic differential gives the holomorphic top forms. For H=(a-ib)Omega0+cOmega1, Re(H)^2=H wedge conjugate(H)/2 is nonnegative and positive on an open set unless H=0; exactness contradicts Stokes. This proves independence of real de Rham classes.
+
+The simultaneous xi=w/y(z),zeta=z chart has nonzero Jacobian; extra dz terms cancel. All signs in alpha,beta,gamma=u alpha-v beta agree. d(Rv dv)=v d(R dv) for arbitrary full cutoff. Compactly supported primitives extend smoothly by zero and preserve the three fixed classes. No cutoff derivative is dropped.
+
+The complete Gram determinant D=1-Rx-Rt^2/4 is at least1/2 on a common small parameter interval: for f=rho*x^2/2 take epsilon0 no larger than min(1/(4 max(1,sup|fx|)),1/max(1,sup|ft|)). The normalized Psi has square0 and conjugate product4vol. Its rank2 kernel and conjugate are complementary, selecting a real smooth J with correct sign. A genuine zero collar glues it to J0. All fixed derivatives converge uniformly, giving a jointly smooth family and C-infinity convergence. Zeros outside the ball never enter a denominator.
+
+On the core, k=1-epsilon*x>0; Psi=(du+i sqrt(k)dv)(dx+i/sqrt(k)dt), and dphi1 wedge phi1 wedge phi2=-epsilon/(2k)vol. This is nonzero at the origin for either nonzero sign, even where the value of J equals J0. The matching Nijenhuis component is -epsilon/(2k) partial_u. At epsilon=0 all corrections and the obstruction vanish. D=0/large parameters are excluded. Three global classes in a pointwise rank2 plane, nonclosed normalized B, the no-common-product-compatible-metric check, topology and unique-continuation concerns are all consistent. No exact h-minus, fixed symplectic compatibility or real analyticity is inferred.
+
+I read all nine family full reports, original candidate, both old acceptance reports, cover/README, all historical checker/driver sources, and material priority comparison/coverage records. All110 curated family payloads were directly authenticated. I rehashed43 retained primary bodies; this is NOT reading43 papers. Direct selected-page reading included DLZ definitions/conjecture pp3–5; MFO printed1687/PDF31; TWZZv3 Theorem1.1 p2; DLZ2008 Q3.27 p20; final HTv3 pp12–14; CZ I accepted PDF23–27; CZ II accepted PDF23–24; Bande–Kotschick pp4–6; Donaldson pp1–3. Cached-body rehash timing is explicit: the first three cached excerpts preceded that later raw-PDF rehash receipt, after authenticated map intake. Candidate/frozen evidence bytes authenticated before ANY math reading.
+
+DLZ/OWR state unrestricted compact real4D h-minus>=3 implies integrability. Smooth definitions and OWR's displayed sign formula resolve its prose eigenbundle typo. The example meets both forms and class formulations. TWZZ all-smooth-J C-infinity generic vanishing is distinct prior work, credited to all four authors.
+
+Any earlier closed real4D nonintegrable h-minus>=3 qualifies for priority regardless of support or closeness. HT final compact4D result is exactly2; its larger examples are noncompact or real6D. CZ same-topology models compute plurigenera; II distinguishes H-minus and leaves its computation interesting. No pure-form/index/dimension-reduction bridge was assumed. The two withdrawn claims are not theorems. Fresh official arXiv/EMS metadata reads confirmed version/withdrawal and report2020/publication14September2021 distinctions. A suspected Li–Zhang end-page discrepancy was checked against the publisher first page/institutional record: candidate651–683 is supported, so no issue.
+
+The audit proves no firstness, novelty, current openness or exhaustive absence. Geiges1996 remains unread; selected2012 survey access is not a full publisher/version read; HT/HPT/ST-KS journal-final and complete citation gaps remain. Paper, README, metadata and template preserve those limits. Native historical turns/total remain UNKNOWN;4/5 is the PR declaration. My readonly cached-local-main SQLite/source/native check is NOT fresh remote-main evidence; current zero target events do not mean historical zero turns. Audit adds0 author proof responses.
+
+I personally rendered/viewed all five pinned manuscript pages at100dpi. Equations/symbols/order/bibliography are legible, without clipping or overlap. VISUAL_QA.json retains hashes, recipe and actual assessment. Only my completed previews were deleted. AI/unrefereed/no-human-referee/no-formal-proof disclosures, ORCID/author and license agree.
+
+Primary metadata: [HT](https://arxiv.org/abs/1908.03016v3), [LU withdrawal](https://arxiv.org/abs/1507.00282), [withdrawn constancy](https://arxiv.org/abs/1307.1513), [EMS](https://ems.press/journals/owr/articles/2654829), [CZ I](https://wrap.warwick.ac.uk/id/eprint/164863/).
+
+## Package and operations
+
+Before math intake I authenticated all262 frozen files,82 evidence files, seven operational sources and24 original Git/blob/disk files. The544033-byte outerZIP hash,228 exact member names, modes, bounds and combined file/directory/implied-ancestor namespace passed BEFORE decompression. Own safe extraction produced228 regular0644 files,1348559 uncompressed bytes. No raw private source body appears in the public package.
+
+Normal/O/OO/env2 cold replays observed optimization0/1/2/0, returncode0 and the exact FULL canonical receipts, no normalization or ignored fields. All three historical checkers and the false-assertion guard actually ran. Current85 profile events passed with0skips; the former76-event known namespace bug is separately preserved. The historical vulnerable wrapper was read but not executed as a trusted entry point. The strict profile's bounds/types/modes/external anchor, isolated children/forced assertions and explicit trusted-system-site/host/no-OS-sandbox limits agree with actual behavior.
+
+I personally reran97 fake workflow tests and18 focused root-fix tests, relocating only outputs/own fixtures. The focused suite's printed original receipt path is inherited text; actual write is my ROOT_FIXES_REPLAY.json. All six helper and unchanged-kit sources were inspected. Launcher bodies are identical except their final action selector.
+
+Actions require current exact head/main/source, accepted entire-review chain and immediate current candidate revalidation. Only fresh MERGEABLE permits ready/merge. Exclusive intents stop blind retries after uncertainty. The unchanged kit local check, separate stage/publish, exact-ID GET, one publish POST, narrow notes representation exception, independent unauthenticated public bytes/set/DOI readback, GWS exact tab/gid/header/RAW/duplicate/readback gates, byte-preserving native publication event and status-only next-target selector were checked. The three root corrections passed exact archived-evidence/missing/tampered/live-drift, changed-head complete filename identity/pagination/race, and explicit-null-versus-absent controls.
+
+Extra inert probes show injected ENOSPC at remote-main fetch propagates before mutation; injected merged/source gate failure stops Zenodo stage before runtime copying/intents/service action. No production operational CLI was invoked. No merge, publish, tracker append, metadata edit, external individual contact, shared runtime/Git/index/HEAD change or candidate repair occurred.
+
+This is a completed adverse ENTIRE review with a completed reproducer. The strongest theorem has no mathematical gap; operational acceptance needs R948-FULL01-R01 repaired and at least two new clean entire reviews. This is neither human peer review nor a security guarantee.

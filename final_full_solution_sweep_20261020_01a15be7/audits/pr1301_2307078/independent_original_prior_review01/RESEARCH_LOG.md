@@ -1,0 +1,7 @@
+# PR1301 independent original/mathematical/priority audit
+
+2026-10-22T13:57:22.630034+00:00 — Started. Assigned audit5%; overall80%. FIRST fresh read-only GWS all43-column numeric-gid duplicate check. No service, Git/index/ref, STATE, ledger or unrelated-agent write. Dedicated storage cap6MiB/reserve150MiB.
+
+2026-10-22T14:02:48.994945+00:00 — Assigned audit80%; overall80%. Full elementary universal proof independently reconstructed and boundary attacks answered. Fresh PDFs match claimed pins; exact1993unit-charge paragraph and2018original/update visually checked. DOI identity independently agrees across Crossref, publisher metadata and paper; direct resolver reaches Wiley but access403 recorded. Both fresh43-column ledger reads have no same-result/DOI match; semantic false positives read and rejected. Preparing four literal qualified existing-publication cells only.
+
+2026-10-22T14:06:22.535924+00:00 — Assigned audit100%; overall80%. PASS_EXACT_PRIOR_RESOLUTION. No mathematical repair or new publication required. Four literal existing-publication cells prepared, B blank/C1993 full-target DOI. Actual primary source/update/body, DOI identity, original quantifiers and all analytic boundary attacks checked. Final GWS full43columns has no matching result/DOI. Direct Wiley access403 transparently retained, full body available at author-hosted primary. Root inputs unchanged; no service/Git/STATE/ledger writes. Closing this dedicated packet within6MiB and150MiBreserve.

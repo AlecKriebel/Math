@@ -1,0 +1,7 @@
+# Independent review packet: PR1279 / 3223
+
+`REPORT.md` gives the complete original-scope verdict, essential primary-source provenance, universal path proof and remaining access limits. `verify_independent.py` is a new standard-library exact checker. Its three retained results include the explicit graph edge lists and all 54 newly generated criticality-flow witnesses. Run `python3 verify_independent.py`, `python3 -O verify_independent.py`, or `python3 -OO verify_independent.py`; no dependency installation, author program or external service is needed.
+
+`proposed_row.json` and `.tsv` are one qualified four-literal-cell existing-publication accounting proposal, with B exactly blank. They have not been written to a service. Source texts, copied PR bodies, figures and raw ledger data stay under ignored `private/`. The authored public manifest inventories public files; `private/SOURCE_CAPTURE_MANIFEST.json` inventories private source captures; the full `CLOSED_DIRECTORY_SEAL.json` covers both and all nested manifests, excluding only itself.
+
+The verdict is known full affirmative coverage credited to Robert Šámal, with actual essential proof inspection in arXiv v1 and publication identity authenticated under DOI10.1002/jgt.22047. The journal mathematical body and earlier 2013 proceedings body remain uninspected. This AI-only review has no external human or formal certification, novelty finding or publication approval. No release, merge, DOI action, Git mutation, service write or contact was performed.

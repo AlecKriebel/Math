@@ -1,0 +1,5 @@
+# Independent probability audit log
+
+- 2026-10-17T20:58:46.002253+00:00 — 10%: Read the actual candidate and original local policy. Treat acceptance as unproved. Pin all input files. Begin independent source inspection and exact full-law reproduction.
+- 2026-10-17T21:00:09.447398+00:00 — 85%: Fresh source matches target. Independent modular-band geometry directly computes all eight inclusion masks at 279 rational thresholds, 98 unequal-threshold pair tests, and universal symbolic moment identities. All 3859 explicit requirements pass identically normally and optimized; deliberate failing guards reject in both modes. Preparing full analytic report and frozen artifact inventory.
+- 2026-10-17T21:00:50.208029+00:00 — 100%: Full independent analytic probability review completed. Original-target PASS, no mathematical repairs. Verified exact continuous measure, all quantifiers, null boundaries, full q and count law, fourth moment gap, iid formula, tail alternative, second moments, and minimality. Final authored artifacts frozen below; global priority is outside this assignment.

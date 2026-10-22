@@ -1,0 +1,243 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={Negative answers to the printed totally mixed face questions},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\dimn}{\operatorname{dim}}
+\title{Negative answers to the printed\\totally mixed face questions}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID:
+\href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{October 17, 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+For two polytopes, retain the faces of their Minkowski sum whose two
+canonical summands have positive dimensions and whose dimension is the
+sum of those dimensions. This is the definition in Payne's printed
+Oberwolfach question. Let $D$ be the standard four-simplex and $I=[0,1]$.
+For the full-dimensional lattice polytopes $D\times I$ and $(-D)\times I$
+in $\R^5$, the qualifying-face order complex is a disjoint union of two
+connected pure graphs, each with $50$ vertices and $60$ edges. Its
+rational Betti numbers are $(2,22,0,\ldots)$. Thus both printed
+assertions, shellability and the homology of a wedge of three-spheres,
+fail. The shared interval factor deliberately produces a nongeneric
+example. The argument concerns the printed additive-dimension
+definition; it does not settle shellability for the different mixed
+faces used in stable tropical intersections.
+\end{abstract}
+
+\section{The exact question and the example}
+Payne's question \cite[p.~2464, Problem~3]{P} concerns polytopes
+$P_1,P_2\subset\R^n$ and those faces $F=F_1+F_2$ satisfying
+\begin{equation}\label{filter}
+ \dimn F_i>0\quad(i=1,2),\qquad
+ \dimn F=\dimn F_1+\dimn F_2 .
+\end{equation}
+It asks whether their inclusion poset is shellable and whether its
+realization has the rational homology of a wedge of $(n-2)$-spheres.
+There is no stated general-position assumption. We use the standard
+order complex: vertices are qualifying faces and simplices are
+nonempty strict chains. No artificial extrema are added.
+
+For a face exposed by a functional $u$, its canonical summands are the
+faces $P_i^u$ exposed by the same $u$. The standard uniqueness theorem
+for Minkowski-sum faces appears, for example, in
+\cite[Lemma~4 of the cited arXiv version]{FW}. It also removes an existential ambiguity in
+\eqref{filter}: if nonempty summand faces $G_i$ have
+$G_1+G_2=P_1^u+P_2^u$, exposure first forces $G_i\subseteq P_i^u$.
+For every other functional, the two nonnegative deficits between
+their support functions sum to zero. Each deficit is therefore zero,
+so $G_i=P_i^u$.
+
+\begin{theorem}\label{main}
+Let $D=\conv(0,e_1,e_2,e_3,e_4)\subset\R^4$ and $I=[0,1]$.
+For $P_1=D\times I$ and $P_2=(-D)\times I$, let $T$ be the
+inclusion poset selected by \eqref{filter}. Its order complex is a
+disjoint union $K\sqcup K$, where $K$ is a connected pure graph with
+$50$ vertices and $60$ edges. In particular,
+\[
+ H_0(|T|;\Q)=\Q^2,\qquad H_1(|T|;\Q)=\Q^{22},\qquad
+ H_j(|T|;\Q)=0\quad(j\ge2).
+\]
+The poset is not shellable, under either pure or standard nonpure
+shellability, and its realization does not have the rational homology
+asked for in the printed question.
+\end{theorem}
+
+Both summands are full-dimensional lattice polytopes in $\R^5$.
+The proof uses neither empty realizations nor low-dimensional sphere
+conventions. The simplex-difference geometry is classical
+\cite{FW,ST}; the observation used here is the effect of a common
+interval factor on the exact filter \eqref{filter}.
+
+\section{Complete face calculation}
+Write $v_0=0$, $v_i=e_i$, and $E=\{0,1,2,3,4\}$.
+Every nonempty proper face of $D-D$ is uniquely of the form
+\[
+ F(A,B)=\conv\{v_i:i\in A\}+\conv\{-v_j:j\in B\},
+ \qquad \varnothing\ne A,B\subset E,\quad A\cap B=\varnothing .
+\]
+Indeed, for a nonzero functional $u$, take $A$ and $B$ to be its
+maximum and minimum index sets. They are disjoint because the vertices
+affinely span $\R^4$. Conversely, assign values $1,-1,0$ on $A,B$ and
+the remainder, and subtract the value at $v_0$ to obtain a linear
+functional with exactly these extrema.
+
+The two summand direction spaces intersect only at zero: a vector
+in their intersection gives an affine dependence on the disjoint
+vertex sets, with coefficient sum zero on each set. Affine
+independence makes every coefficient zero. Consequently,
+\begin{equation}\label{dim}
+ \dimn F(A,B)=|A|+|B|-2,\qquad
+ \dimn D^u=|A|-1,\quad \dimn(-D)^u=|B|-1 .
+\end{equation}
+Moreover,
+\begin{equation}\label{order}
+ F(A,B)\subseteq F(C,L)\quad\Longleftrightarrow\quad
+ A\subseteq C,\ B\subseteq L .
+\end{equation}
+For the nontrivial direction, evaluate every $v_i-v_j$,
+$i\in A,j\in B$, against a functional exposing $F(C,L)$.
+Attaining the maximum difference forces $i\in C,j\in L$.
+The reverse direction follows directly from convex hulls.
+
+Thus the base qualifiers have sizes $(|A|,|B|)=(2,2),(2,3),(3,2)$.
+There are $\binom52\binom32=30$ minimal elements of type $(2,2)$
+and $2\binom52=20$ maximal elements. Each maximum has three lower
+minima, and each minimum has two upper maxima, obtained by placing
+its one unused index on either side. There are no three-element
+strict chains. The base order complex $K$ is therefore a pure graph
+on $50$ vertices with $60$ edges.
+
+To check connectedness, suppress the degree-two minimal vertices.
+The resulting graph has signed two-subsets $A^+,A^-$ of $E$ as
+vertices, with $A^+$ adjacent to $B^-$ exactly when $A\cap B$ is empty.
+Two distinct intersecting same-sign subsets have the opposite-sign
+complement of their union as a common neighbor. If two same-sign
+subsets are disjoint, a two-subset containing one element of each
+intersects both; apply the preceding path twice. All vertices of a
+fixed sign therefore connect, and every vertex has a neighbor of
+the other sign. The graph, and hence its subdivision $K$, is connected.
+Contracting a spanning tree shows that $K$ is homotopy equivalent
+to a wedge of $60-50+1=11$ circles.
+
+Now $P_1+P_2=(D-D)\times[0,2]$. A functional $(u,t)$ with $t>0$
+or $t<0$ exposes an upper or lower endpoint face; its summand
+dimensions and qualification are exactly the base ones.
+If $t=0$, write $a,b$ for the base summand dimensions and $c$ for
+the base sum dimension. The two summands then contain the interval
+factor, so their dimensions sum to $a+b+2$, while their sum has
+dimension $c+1\le a+b+1$. No such face passes \eqref{filter}.
+If $u=0,t\ne0$, the additional horizontal end face has dimension
+$4$ but both summands have dimension $4$, so it also fails.
+The whole sum has dimensions $(5,5,5)$ and fails; the empty face
+fails positivity.
+
+These cases exhaust all faces. The qualifying poset is precisely
+two endpoint copies of the base poset, with no cross-comparisons.
+This proves the asserted decomposition and homology.
+
+In any proposed shelling, the first edge from the component different
+from the initial edge has empty intersection with the preceding
+facets. That intersection has dimension $-1$, whereas a new edge
+requires a pure zero-dimensional intersection
+\cite[Definition~2.1]{BW}. This rules out both shellability conventions.
+Finally, a wedge of three-spheres, including the zero-fold point,
+is connected and has no first homology. The same obstruction would
+persist if one replaced the printed sphere dimension by $n-3$.
+
+\section{Related results, scope, and verification}
+For comparison, $D_3$ and $-D_3$ in $\R^3$ yield just six incomparable
+qualifying faces: the index pairs partition four vertices into two
+pairs. Their order complex is six points. This refutes the printed
+wedge-of-circles homology assertion but is shellable in dimension zero.
+Scaled opposite tetrahedra and their six-ray geometry already occur
+in Sturmfels--Tevelev \cite[Examples~1.3 and 4.10]{ST}; this lower-dimensional control is not presented as new.
+The five-dimensional example is needed here for nonshellability.
+
+The term mixed has several different definitions. In the published
+Adiprasito et al.\ paper \cite[Section~1.2]{AB}, totally mixed faces
+require facets of the summands. That counting theorem is not used.
+The public 2020 manuscript underlying Adiprasito's 2024 article
+\cite[p.~2, Corollary~1.3 of the public manuscript]{A} instead selects
+faces satisfying
+\[
+ \dimn\Bigl(\sum_{i\in J}F_i\Bigr)\ge |J|
+ \quad\text{for every nonempty index subset }J.
+\]
+For two summands this is broader than \eqref{filter}.
+For instance, a proper vertical face $F(A,B)\times[0,2]$ with
+$|A|=|B|=2$ has summand dimensions $2,2$ and sum dimension $3$.
+It meets that lower-bound criterion but fails additivity. Such
+vertical faces are absent from our poset. The counterexample therefore
+does not contradict the different stable-intersection theorem, or
+resolve its shellability question.
+Related tropical link obstructions occur in Hiatt--Simpson--Wang--Wu's
+revised 2026 construction \cite[Section~8]{HSWW}. Its Sch\"on variety
+in $(\mathbb C^*)^8$ is a different object; no identification with
+this two-summand exact face poset is supplied or assumed here.
+
+The supplement records a bounded primary-source priority audit,
+including current versions and related tropical results. No earlier counterexample or theorem settling nonshellability for
+this exact poset was identified. Such a result, together with the
+classical homology antecedent, would already settle both assertions. This is not an exhaustive
+literature or first-ever priority certificate. The 2024 journal
+metadata for \cite{A} was verified, but its paywalled final body was
+not inspected; the definition comparison above is explicitly with
+the public 2020 manuscript.
+
+Two independently authored standard-library programs accompany the
+analytic proof. One reconstructs facets and their intersection lattice
+from integer coordinates, all $543$ nonempty sum faces, and all $8649$
+summand-face pairs. The other independently constructs the order complex
+and its signed rational boundaries, obtaining boundary rank $98$.
+Both run with explicit exceptions in ordinary and optimized Python;
+positive and adverse controls are included. These computations are
+supplementary, and the proof above requires no program.
+
+\textbf{AI and review disclosure.} AI tools were used extensively in
+developing, verifying, researching, and writing this result and its
+supporting materials. This preprint is unrefereed. Independent
+adversarial AI reviews do not constitute external human peer review,
+journal acceptance, or formal proof-assistant certification.
+
+\clearpage
+\begin{thebibliography}{9}
+\bibitem{P} S.~Payne, \emph{The complex of totally mixed faces},
+Problem~3 in J.~Doolittle (collector), Open Problems, Oberwolfach
+Report~39/2019, p.~2464.
+\href{https://doi.org/10.4171/OWR/2019/39}{doi:10.4171/OWR/2019/39}.
+\bibitem{FW} K.~Fukuda and C.~Weibel, \emph{On $f$-vectors of Minkowski
+additions of convex polytopes}, Discrete Comput. Geom.\
+\textbf{37} (2007), 503--516.
+\href{https://arxiv.org/abs/math/0510470v4}{arXiv:math/0510470v4}.
+\bibitem{ST} B.~Sturmfels and J.~Tevelev, \emph{Elimination theory for
+tropical varieties}, Math. Res. Lett.\ \textbf{15} (2008), 543--562.
+\href{https://arxiv.org/abs/0704.3471}{arXiv:0704.3471}.
+\bibitem{BW} A.~Bj\"orner and M.~L.~Wachs, \emph{Shellable nonpure
+complexes and posets. I}, Trans. Amer. Math. Soc.\
+\textbf{348} (1996), 1299--1327.
+\href{https://doi.org/10.1090/S0002-9947-96-01534-6}{doi:10.1090/S0002-9947-96-01534-6}.
+\bibitem{AB} K.~Adiprasito, P.~Brinkmann, A.~Padrol, P.~Pat\'ak,
+Z.~Pat\'akov\'a, and R.~Sanyal, \emph{Colorful simplicial depth,
+Minkowski sums, and generalized Gale transforms}, Int. Math. Res.
+Not.\ \textbf{2019}(6), 1894--1919 (online 2017).
+\href{https://doi.org/10.1093/imrn/rnx184}{doi:10.1093/imrn/rnx184}.
+\bibitem{A} K.~Adiprasito, \emph{A note on the topology of Minkowski
+sums and complete intersections}, Pure Appl. Math. Q.\
+\textbf{20}(1) (2024), 17--28.
+\href{https://doi.org/10.4310/PAMQ.2024.v20.n1.a2}{doi:10.4310/PAMQ.2024.v20.n1.a2}.
+Inspected public manuscript: \emph{A note on the topology of polyhedral
+hypersurfaces and complete intersections}, July~27, 2020,
+\href{https://webusers.imj-prg.fr/~karim.adiprasito/cint.pdf}{author PDF}.
+\bibitem{HSWW} S.~Hiatt, C.~Simpson, B.~Wang, and C.~Wu,
+\emph{Topology and Euler characteristics of tropical varieties},
+arXiv:2606.10817v2, July~24, 2026.
+\href{https://arxiv.org/abs/2606.10817v2}{arXiv:2606.10817v2}.
+\end{thebibliography}
+\end{document}

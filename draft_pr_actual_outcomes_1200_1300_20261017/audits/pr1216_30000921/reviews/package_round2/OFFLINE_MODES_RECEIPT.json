@@ -1,0 +1,1163 @@
+{
+  "at_utc": "2026-10-17T18:53:20.482987+00:00",
+  "runs": [
+    {
+      "flags": [],
+      "records": {
+        "offline_guards.py": {
+          "at_utc": "2026-10-17T18:53:16.327087+00:00",
+          "results": [
+            {
+              "case": "valid_saved",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": false,
+              "unexpected": false
+            },
+            {
+              "case": "stale_intent_doi",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved PR intent/receipt differs from current reviewed package at doi",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "missing_intent",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Receipt/intent disagree",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_parent",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved publication commit has unexpected parent",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tree_paths",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved publication commit paths differ",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tree_bytes",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved commit bytes differ from reviewed package at unsolved_math_prioritization/attempts/30000921/ACCEPTANCE.json",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_public_record_id",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Full public metadata verification required",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_public_record_doi",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Full public metadata verification required",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "missing_public_receipt",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1216_30000921/reviews/package_round2/_local/controls/missing_public_receipt/publication/PUBLIC_DOWNLOAD_VERIFICATION.json'",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_source_snapshot",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Submitted snapshot differs from reviewed archive",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_current_source",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Current edition differs from reviewed archive",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "workflow_drift",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Reviewed workflow drift append_tracker.py",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tracker_doi",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Tracker row does not bind this publication",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tracker_notes_resealed",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": true,
+              "unexpected": true
+            },
+            {
+              "case": "mismatched_doi_record_urls_resealed",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": true,
+              "unexpected": true
+            },
+            {
+              "case": "missing_workflow_gate_resealed",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": true,
+              "unexpected": true
+            },
+            {
+              "case": "successful_retry_original_body",
+              "outcome": "accepted",
+              "pushes": 1,
+              "error": null,
+              "expected_rejection": false,
+              "unexpected": false
+            }
+          ],
+          "limits": "All Git/gh mocked; no external action. Fixtures use exact reviewed package artifacts and current source bytes. Resealed probes isolate omissions in main validation rather than testing resistance to arbitrary forged trusted receipts."
+        },
+        "offline_services.py": {
+          "at_utc": "2026-10-17T18:53:16.455872+00:00",
+          "all_passed": true,
+          "results": [
+            {
+              "case": "tracker_normal",
+              "pass": true,
+              "appends": 1,
+              "errors": []
+            },
+            {
+              "case": "tracker_lost",
+              "pass": true,
+              "appends": 1,
+              "errors": [
+                "simulated lost response after accepted append"
+              ]
+            },
+            {
+              "case": "tracker_prior_intent",
+              "pass": true,
+              "appends": 0,
+              "errors": [
+                "Earlier append intent has no exact matching row; reconcile before retrying"
+              ]
+            },
+            {
+              "case": "tracker_headers",
+              "pass": true,
+              "appends": 0,
+              "errors": [
+                "Unexpected tracker headers"
+              ]
+            },
+            {
+              "case": "tracker_duplicate",
+              "pass": true,
+              "appends": 1,
+              "errors": [
+                "Existing problem/DOI row needs reconciliation; no append made"
+              ]
+            },
+            {
+              "case": "tracker_conflict",
+              "pass": true,
+              "appends": 0,
+              "errors": [
+                "Existing problem/DOI row needs reconciliation; no append made"
+              ]
+            },
+            {
+              "case": "tracker_readback",
+              "pass": true,
+              "appends": 1,
+              "errors": [
+                "Tracker readback differs"
+              ]
+            },
+            {
+              "case": "public_valid",
+              "pass": true,
+              "outcome": "accepted",
+              "error": null,
+              "fetches": 3
+            },
+            {
+              "case": "public_field_title",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at title",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_upload_type",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at upload_type",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_publication_type",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at publication_type",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_description",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at description",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_creators",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at creators",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_access_right",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at access_right",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_license",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at license",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_version",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at version",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_publication_date",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at publication_date",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_keywords",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at keywords",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_related_identifiers",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at related_identifiers",
+              "fetches": 1
+            },
+            {
+              "case": "public_wrong_id",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public record identity mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_wrong_doi",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public record identity mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_wrong_metadata_doi",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public record identity mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_missing_file",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public file inventory mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_duplicate_file",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public file inventory mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_corrupt_pdf",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public artifact mismatch",
+              "fetches": 2
+            },
+            {
+              "case": "public_corrupt_zip",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public artifact mismatch",
+              "fetches": 3
+            }
+          ],
+          "scope": "Main entry points with fully mocked GWS and Zenodo calls; no external mutation."
+        },
+        "independent_checks.py": {
+          "at_utc": "2026-10-17T18:53:17.476101+00:00",
+          "all_actual_nested_bindings_match": true,
+          "nested_bindings_checked": 134,
+          "manifest_files_checked": [
+            "MANIFEST.json",
+            "original_submitted/MANIFEST.json",
+            "current_edition/MANIFEST.json",
+            "reviews/source_question_family/freeze_20261017T182054Z/MANIFEST.json",
+            "priority/independent/cross_freeze_20261017T183513Z/MANIFEST.json",
+            "priority/independent/freeze_20261017T183121Z/MANIFEST.json"
+          ],
+          "exact_original_recursion_cases": 36,
+          "independent_global_product_identities": 288,
+          "corrected_branches": 36,
+          "kept_branches": 252,
+          "ordinary_corruptions": [
+            {
+              "kind": "byte",
+              "rejected": true,
+              "last_error": "ValueError: size /Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1216_30000921/reviews/package_round2/_local/controls/archive_byte/current_edition/PROOF.md"
+            },
+            {
+              "kind": "extra",
+              "rejected": true,
+              "last_error": "ValueError: unlisted/missing archive member"
+            },
+            {
+              "kind": "missing",
+              "rejected": true,
+              "last_error": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1216_30000921/reviews/package_round2/_local/controls/archive_missing/original_submitted/README.md'"
+            },
+            {
+              "kind": "duplicate_manifest_entry",
+              "rejected": true,
+              "last_error": "ValueError: duplicate path"
+            }
+          ],
+          "stale_cross_nested_manifest_accepted_with_exact_replay_stub": true,
+          "stale_pdf_missing_compile_and_layout_receipts_build_accepted_with_prepare_verify_stubs": true,
+          "control_limits": "Cross control stubs only costly exact replays; all archive/binding code runs. Build control stubs preparation and exact replay to isolate missing compile/layout gate; it does not claim those stubbed operations were independently executed."
+        }
+      }
+    },
+    {
+      "flags": [
+        "-O"
+      ],
+      "records": {
+        "offline_guards.py": {
+          "at_utc": "2026-10-17T18:53:17.850282+00:00",
+          "results": [
+            {
+              "case": "valid_saved",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": false,
+              "unexpected": false
+            },
+            {
+              "case": "stale_intent_doi",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved PR intent/receipt differs from current reviewed package at doi",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "missing_intent",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Receipt/intent disagree",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_parent",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved publication commit has unexpected parent",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tree_paths",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved publication commit paths differ",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tree_bytes",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved commit bytes differ from reviewed package at unsolved_math_prioritization/attempts/30000921/ACCEPTANCE.json",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_public_record_id",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Full public metadata verification required",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_public_record_doi",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Full public metadata verification required",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "missing_public_receipt",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1216_30000921/reviews/package_round2/_local/controls/missing_public_receipt/publication/PUBLIC_DOWNLOAD_VERIFICATION.json'",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_source_snapshot",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Submitted snapshot differs from reviewed archive",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_current_source",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Current edition differs from reviewed archive",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "workflow_drift",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Reviewed workflow drift append_tracker.py",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tracker_doi",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Tracker row does not bind this publication",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tracker_notes_resealed",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": true,
+              "unexpected": true
+            },
+            {
+              "case": "mismatched_doi_record_urls_resealed",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": true,
+              "unexpected": true
+            },
+            {
+              "case": "missing_workflow_gate_resealed",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": true,
+              "unexpected": true
+            },
+            {
+              "case": "successful_retry_original_body",
+              "outcome": "accepted",
+              "pushes": 1,
+              "error": null,
+              "expected_rejection": false,
+              "unexpected": false
+            }
+          ],
+          "limits": "All Git/gh mocked; no external action. Fixtures use exact reviewed package artifacts and current source bytes. Resealed probes isolate omissions in main validation rather than testing resistance to arbitrary forged trusted receipts."
+        },
+        "offline_services.py": {
+          "at_utc": "2026-10-17T18:53:17.988806+00:00",
+          "all_passed": true,
+          "results": [
+            {
+              "case": "tracker_normal",
+              "pass": true,
+              "appends": 1,
+              "errors": []
+            },
+            {
+              "case": "tracker_lost",
+              "pass": true,
+              "appends": 1,
+              "errors": [
+                "simulated lost response after accepted append"
+              ]
+            },
+            {
+              "case": "tracker_prior_intent",
+              "pass": true,
+              "appends": 0,
+              "errors": [
+                "Earlier append intent has no exact matching row; reconcile before retrying"
+              ]
+            },
+            {
+              "case": "tracker_headers",
+              "pass": true,
+              "appends": 0,
+              "errors": [
+                "Unexpected tracker headers"
+              ]
+            },
+            {
+              "case": "tracker_duplicate",
+              "pass": true,
+              "appends": 1,
+              "errors": [
+                "Existing problem/DOI row needs reconciliation; no append made"
+              ]
+            },
+            {
+              "case": "tracker_conflict",
+              "pass": true,
+              "appends": 0,
+              "errors": [
+                "Existing problem/DOI row needs reconciliation; no append made"
+              ]
+            },
+            {
+              "case": "tracker_readback",
+              "pass": true,
+              "appends": 1,
+              "errors": [
+                "Tracker readback differs"
+              ]
+            },
+            {
+              "case": "public_valid",
+              "pass": true,
+              "outcome": "accepted",
+              "error": null,
+              "fetches": 3
+            },
+            {
+              "case": "public_field_title",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at title",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_upload_type",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at upload_type",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_publication_type",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at publication_type",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_description",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at description",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_creators",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at creators",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_access_right",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at access_right",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_license",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at license",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_version",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at version",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_publication_date",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at publication_date",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_keywords",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at keywords",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_related_identifiers",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at related_identifiers",
+              "fetches": 1
+            },
+            {
+              "case": "public_wrong_id",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public record identity mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_wrong_doi",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public record identity mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_wrong_metadata_doi",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public record identity mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_missing_file",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public file inventory mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_duplicate_file",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public file inventory mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_corrupt_pdf",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public artifact mismatch",
+              "fetches": 2
+            },
+            {
+              "case": "public_corrupt_zip",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public artifact mismatch",
+              "fetches": 3
+            }
+          ],
+          "scope": "Main entry points with fully mocked GWS and Zenodo calls; no external mutation."
+        },
+        "independent_checks.py": {
+          "at_utc": "2026-10-17T18:53:18.975297+00:00",
+          "all_actual_nested_bindings_match": true,
+          "nested_bindings_checked": 134,
+          "manifest_files_checked": [
+            "MANIFEST.json",
+            "original_submitted/MANIFEST.json",
+            "current_edition/MANIFEST.json",
+            "reviews/source_question_family/freeze_20261017T182054Z/MANIFEST.json",
+            "priority/independent/cross_freeze_20261017T183513Z/MANIFEST.json",
+            "priority/independent/freeze_20261017T183121Z/MANIFEST.json"
+          ],
+          "exact_original_recursion_cases": 36,
+          "independent_global_product_identities": 288,
+          "corrected_branches": 36,
+          "kept_branches": 252,
+          "ordinary_corruptions": [
+            {
+              "kind": "byte",
+              "rejected": true,
+              "last_error": "ValueError: size /Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1216_30000921/reviews/package_round2/_local/controls/archive_byte/current_edition/PROOF.md"
+            },
+            {
+              "kind": "extra",
+              "rejected": true,
+              "last_error": "ValueError: unlisted/missing archive member"
+            },
+            {
+              "kind": "missing",
+              "rejected": true,
+              "last_error": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1216_30000921/reviews/package_round2/_local/controls/archive_missing/original_submitted/README.md'"
+            },
+            {
+              "kind": "duplicate_manifest_entry",
+              "rejected": true,
+              "last_error": "ValueError: duplicate path"
+            }
+          ],
+          "stale_cross_nested_manifest_accepted_with_exact_replay_stub": true,
+          "stale_pdf_missing_compile_and_layout_receipts_build_accepted_with_prepare_verify_stubs": true,
+          "control_limits": "Cross control stubs only costly exact replays; all archive/binding code runs. Build control stubs preparation and exact replay to isolate missing compile/layout gate; it does not claim those stubbed operations were independently executed."
+        }
+      }
+    },
+    {
+      "flags": [
+        "-OO"
+      ],
+      "records": {
+        "offline_guards.py": {
+          "at_utc": "2026-10-17T18:53:19.322630+00:00",
+          "results": [
+            {
+              "case": "valid_saved",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": false,
+              "unexpected": false
+            },
+            {
+              "case": "stale_intent_doi",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved PR intent/receipt differs from current reviewed package at doi",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "missing_intent",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Receipt/intent disagree",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_parent",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved publication commit has unexpected parent",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tree_paths",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved publication commit paths differ",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tree_bytes",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Saved commit bytes differ from reviewed package at unsolved_math_prioritization/attempts/30000921/ACCEPTANCE.json",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_public_record_id",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Full public metadata verification required",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_public_record_doi",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Full public metadata verification required",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "missing_public_receipt",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1216_30000921/reviews/package_round2/_local/controls/missing_public_receipt/publication/PUBLIC_DOWNLOAD_VERIFICATION.json'",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_source_snapshot",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Submitted snapshot differs from reviewed archive",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_current_source",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Current edition differs from reviewed archive",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "workflow_drift",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Reviewed workflow drift append_tracker.py",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tracker_doi",
+              "outcome": "rejected",
+              "pushes": 0,
+              "error": "RuntimeError: Tracker row does not bind this publication",
+              "expected_rejection": true,
+              "unexpected": false
+            },
+            {
+              "case": "bad_tracker_notes_resealed",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": true,
+              "unexpected": true
+            },
+            {
+              "case": "mismatched_doi_record_urls_resealed",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": true,
+              "unexpected": true
+            },
+            {
+              "case": "missing_workflow_gate_resealed",
+              "outcome": "accepted",
+              "pushes": 0,
+              "error": null,
+              "expected_rejection": true,
+              "unexpected": true
+            },
+            {
+              "case": "successful_retry_original_body",
+              "outcome": "accepted",
+              "pushes": 1,
+              "error": null,
+              "expected_rejection": false,
+              "unexpected": false
+            }
+          ],
+          "limits": "All Git/gh mocked; no external action. Fixtures use exact reviewed package artifacts and current source bytes. Resealed probes isolate omissions in main validation rather than testing resistance to arbitrary forged trusted receipts."
+        },
+        "offline_services.py": {
+          "at_utc": "2026-10-17T18:53:19.512281+00:00",
+          "all_passed": true,
+          "results": [
+            {
+              "case": "tracker_normal",
+              "pass": true,
+              "appends": 1,
+              "errors": []
+            },
+            {
+              "case": "tracker_lost",
+              "pass": true,
+              "appends": 1,
+              "errors": [
+                "simulated lost response after accepted append"
+              ]
+            },
+            {
+              "case": "tracker_prior_intent",
+              "pass": true,
+              "appends": 0,
+              "errors": [
+                "Earlier append intent has no exact matching row; reconcile before retrying"
+              ]
+            },
+            {
+              "case": "tracker_headers",
+              "pass": true,
+              "appends": 0,
+              "errors": [
+                "Unexpected tracker headers"
+              ]
+            },
+            {
+              "case": "tracker_duplicate",
+              "pass": true,
+              "appends": 1,
+              "errors": [
+                "Existing problem/DOI row needs reconciliation; no append made"
+              ]
+            },
+            {
+              "case": "tracker_conflict",
+              "pass": true,
+              "appends": 0,
+              "errors": [
+                "Existing problem/DOI row needs reconciliation; no append made"
+              ]
+            },
+            {
+              "case": "tracker_readback",
+              "pass": true,
+              "appends": 1,
+              "errors": [
+                "Tracker readback differs"
+              ]
+            },
+            {
+              "case": "public_valid",
+              "pass": true,
+              "outcome": "accepted",
+              "error": null,
+              "fetches": 3
+            },
+            {
+              "case": "public_field_title",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at title",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_upload_type",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at upload_type",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_publication_type",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at publication_type",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_description",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at description",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_creators",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at creators",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_access_right",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at access_right",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_license",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at license",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_version",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at version",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_publication_date",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at publication_date",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_keywords",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at keywords",
+              "fetches": 1
+            },
+            {
+              "case": "public_field_related_identifiers",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public supplied metadata differs at related_identifiers",
+              "fetches": 1
+            },
+            {
+              "case": "public_wrong_id",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public record identity mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_wrong_doi",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public record identity mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_wrong_metadata_doi",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public record identity mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_missing_file",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public file inventory mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_duplicate_file",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public file inventory mismatch",
+              "fetches": 1
+            },
+            {
+              "case": "public_corrupt_pdf",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public artifact mismatch",
+              "fetches": 2
+            },
+            {
+              "case": "public_corrupt_zip",
+              "pass": true,
+              "outcome": "rejected",
+              "error": "Public artifact mismatch",
+              "fetches": 3
+            }
+          ],
+          "scope": "Main entry points with fully mocked GWS and Zenodo calls; no external mutation."
+        },
+        "independent_checks.py": {
+          "at_utc": "2026-10-17T18:53:20.474850+00:00",
+          "all_actual_nested_bindings_match": true,
+          "nested_bindings_checked": 134,
+          "manifest_files_checked": [
+            "MANIFEST.json",
+            "original_submitted/MANIFEST.json",
+            "current_edition/MANIFEST.json",
+            "reviews/source_question_family/freeze_20261017T182054Z/MANIFEST.json",
+            "priority/independent/cross_freeze_20261017T183513Z/MANIFEST.json",
+            "priority/independent/freeze_20261017T183121Z/MANIFEST.json"
+          ],
+          "exact_original_recursion_cases": 36,
+          "independent_global_product_identities": 288,
+          "corrected_branches": 36,
+          "kept_branches": 252,
+          "ordinary_corruptions": [
+            {
+              "kind": "byte",
+              "rejected": true,
+              "last_error": "ValueError: size /Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1216_30000921/reviews/package_round2/_local/controls/archive_byte/current_edition/PROOF.md"
+            },
+            {
+              "kind": "extra",
+              "rejected": true,
+              "last_error": "ValueError: unlisted/missing archive member"
+            },
+            {
+              "kind": "missing",
+              "rejected": true,
+              "last_error": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1216_30000921/reviews/package_round2/_local/controls/archive_missing/original_submitted/README.md'"
+            },
+            {
+              "kind": "duplicate_manifest_entry",
+              "rejected": true,
+              "last_error": "ValueError: duplicate path"
+            }
+          ],
+          "stale_cross_nested_manifest_accepted_with_exact_replay_stub": true,
+          "stale_pdf_missing_compile_and_layout_receipts_build_accepted_with_prepare_verify_stubs": true,
+          "control_limits": "Cross control stubs only costly exact replays; all archive/binding code runs. Build control stubs preparation and exact replay to isolate missing compile/layout gate; it does not claim those stubbed operations were independently executed."
+        }
+      }
+    }
+  ],
+  "reviewer_programs": {
+    "offline_guards.py": "99c1274b9e5e8e62d62a79f4202b5c8f42f70d6d9b208d2cf643e510019f8cbe",
+    "offline_services.py": "73aed4a7c46ef860921ab3d99adbc7bf06ba9da83f174dd78f10d7cdd7f4f6fd",
+    "independent_checks.py": "749c73cf32ab11aadf7d20ac6a4dea5e43bb4a10e58e57b2e7e058cc2019f775"
+  }
+}

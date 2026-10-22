@@ -1,0 +1,11 @@
+# Research log
+
+- 2026-10-16 18:34 UTC: Frozen source-blind adversarial plan before any package/source exposure. Completion estimate: 3%. Awaiting final byte pins.
+
+- 2026-10-16 18:36:28 UTC: All five explicit Root byte pins and unique manifest pin authenticated; exact package inventory 17 regular files and source ZIP 14 regular members. Completion estimate: 15%.
+- 2026-10-16 18:38:27 UTC: Independent primary scientific assessment frozen before favorable narratives/support/source comparison. The manually typed header time was corrected in a separate file; freeze JSON is authoritative. Universal proof reconstructed with no strict-regime mathematical defect found. Completion estimate: 35%.
+- 2026-10-16 18:39 UTC: All six paper pages rendered and individually inspected; no clipping, collision, unreadable equation, missing glyph or wrong reference found. Primary-source exact comparisons started only after initial assessment freeze. Completion estimate: 55%.
+- 2026-10-16 18:43 UTC: Normal/optimized positive receipts and all 26 negative-harness attempts reproduce byte for byte. Own 43 CLI runs, guarded API rejection/basis tests, and full seal/manifest/ZIP byte comparisons pass. Completion estimate: 80%.
+- 2026-10-16 18:45:33 UTC: Cached-only untrusted TeX rebuild has identical text and all six page PNGs; direct source reads confirm exact Ferudun overlap and historical definitions. Independent direct diamond/rectangle inversion derivations give the required 1/10 and 169/1600 products. Remaining work: final source-date readback, end authentication, report and safe seal. Completion estimate: 92%.
+- 2026-10-16 18:46:56 UTC: Native preserved commit fields and their custody-index SHA verify the exact author/committer timestamp. Final package reauthentication finds every byte and all ZIP member metadata unchanged. Root's permission-only archival lock is observed at 0444 for all 17 files. Completion estimate: 97%.
+- Final report/seal checkpoint: all assigned scientific, source, executable, archive, metadata and six-page visual checks are complete; no mandatory package defect identified. Audit completion estimate: 100%. This is completion of this adversarial review only, not canonical acceptance, publication readiness, human peer review, formal proof certification or an exhaustive priority conclusion. Actual UTC is recorded in AUDIT_SEAL.json.

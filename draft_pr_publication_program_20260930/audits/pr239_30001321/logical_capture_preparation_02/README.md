@@ -1,0 +1,34 @@
+# Inactive PR239 logical capture and conditional finalization
+
+This helper is source preparation only. It has not performed a native GET, captured actual data, instantiated Seed/Runtime/API, held the project lock, staged a real packet, or issued any native/provider/PR/current-five action.
+
+The existing19-file PR239 operational engine remains frozen and is loaded by exact model/primitives/core/source-manifest pins. The descriptor reader, module loader, prefix merge and bounded receipt-aware GET wrapper are inherited by exact AST from accepted PR218 capture02. The new code adds only the OPEN/new-publication phases, complete four-commit original custody, own-row transition and explicit dependency order.
+
+There is a genuine ordering dependency: a Root native-identity receipt binds fresh capture facts; case-ready binds that receipt; the strict logical packet must positively archive both. The helper therefore exposes two explicit modes:
+
+1. capture: only future Root-authorized GET/local reads plus new private factual/proposed output. It accepts the finite current selection and explicitly named deferred public targets. It does not create accepted Root receipts or a valid logical manifest. Root can inspect raw provenance, raw canonical commits, authenticated trees, all32 submitted identities, native/local preimages, whole QUEUE, opaque nodes and proposed five.
+2. finalize: offline only, after Root authors actual native-identity/carry/case-ready receipts and supplies an exact final finite selection. It stages the strict manifest field structure, source body copies and local preimage copies under a fresh private engine child. It never creates a logical acceptance or claims that the future Seed/load_inputs acceptance has run.
+
+Both modes require an exact separate Root source/config/selection acceptance; this bundle contains no such gate. CONFIG_CONTRACT.json extracts strict keys and Root gate expressions. CONTRACT.md gives the executable order and invocation shape.
+
+The capture authenticates signed commits with gpgsig.split(b'\n'), preserving the identity-bearing final empty continuation line. Unsigned reconstruction is accepted only when exact native SHA1 matches; unsupported encoding refuses. The base and four ordered submitted commits are authenticated in raw bytes; full33-path scope and all32 original body associations are independent of the final H/parent eight-leaf review patch. Whole submitted base→H foreign QUEUE bytes must be identical. The current ready PR presentation is bracketed without executing submitted code or reading scientific meaning.
+
+Capture preserves native and separate local five byte/absence/identity states, requiring common-prefix logs. At95 it proposes conservative55/39 and no advance,32 exact attempt additions,32 original archive copies and one exact Root-provided own claimed3/5 row. Every foreign Main QUEUE byte remains identical. At100 it leaves whole QUEUE and attempt science unchanged from actual C1 and proposes56/40 only conditionally. The old owned audit is preserved at its actual fresh-parent opaque tuple; it is not assumed equal to historical H or C1. Later model/admission checks independently repeat source/Root/native/local guards.
+
+Source selection is exact positive(source,target) rows with readonly mode292, byte/SHA256/nativeOID pins, finite roles/bases, no generated views/QUEUE, no binary/private/journal inputs. Required24 natural carry rows and32 original archive rows are mandatory;95 additionally requires32 exact current attempt rows. Deferred targets are exact named public paths, never folder permission. All nonview/nonQUEUE writes are add-or-exact-noop in the captured native tree; conflicts stop for a Root scope decision.
+
+GET bounds remain250 wrapper invocations,64MB retained actual wire stdout,32MB unique decoded native bodies and300s overall capture deadline. Actual old transports remain individually bounded and never retry. Successful same-invocation immutable cache hits are checked against retained real receipts/raw envelopes and counted once for wire bytes. No mutable response caching or cross-run body cache is added. Offline tree replay uses the captured authenticated immediate tuples and recomputes canonical native tree SHA1; it is explicitly a dated immutable replay, not a new GET or current Main lease.
+
+Only fresh private capture/stage output is written on a later authorized run. Real current five and original lock remain untouched. Any actual packet gate, parent admission, candidate, CAS, sync and separate terminal are later Root actions. Only an actual Root terminal may authorize240.
+
+Pure controls exercise inherited AST, strict selection, queues, two-phase prefixes/counters, exact signed trailingLF handling, canonical offline tree replay and foreign non-descent. They do not run capture/finalize/Output/source_guard or any transport/lock. An earlier allocation failure blocked draft persistence. The prior67-control execution ran from the exact in-memory final draft without filesystem writes. High-level capture/finalize and live transport remain unexecuted; this limitation remains in the recorded results.
+
+## Revision02 required repairs
+
+Revision01 remains immutable and is not approved for execution. The independent source audit identified F01 (empty overlay traversed the opaque attempt tree) and F02 (preliminary old-case selection could exceed actual accepted carry). Revision02 changes only projected_attempt, adds final_target_admissibility, and replaces finalize's subset-only carry check with that guard before stage creation.
+
+For no own overlay, projected_attempt now returns the exact authenticated existing node, including absence, without reading its child envelope. Completion100 already requires an existing attempt. A fresh observer with deliberately unavailable own envelope confirms unchanged tuple/cache and no child replay access.
+
+Final admissibility uses exactly the strict model target alternatives: five views, current-case public paths, members of the actual Root-accepted carry inventory, individually listed phase95 science, or phase95 QUEUE. Bodies must match actual carry/science pins; completion100 forbids science rows. Safe-looking prior-case paths omitted from actual carry are refused before Output creation. The same exact prior target is accepted when actually carry-listed.
+
+80 pure controls passed. No high-level capture/finalize/source_guard/Output, actual GET/API/Seed/Runtime/original lock or operational effect ran. The source-origin content boundary L01 remains an explicit Root exact positive selection review obligation: a safe destination does not itself classify a source body's privacy. Every origin/target/pin/role/basis must be inspected by Root, excluding private/raw provider exports. No generic private-origin export permission is added.

@@ -24,6 +24,8 @@ def run(args, *, env=None, data=None):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--message', required=True)
+    parser.add_argument('--force-authored', action='append', default=[], metavar='PATH',
+                        help='Explicit reviewed authored evidence otherwise ignored by Git; must also be selected below')
     parser.add_argument('paths', nargs='+')
     args = parser.parse_args()
     paths = []
@@ -32,6 +34,13 @@ def main():
         if not p.is_relative_to(ROOT) or not p.exists():
             raise ValueError(f'Only existing files in this effort may be selected: {name}')
         paths.append(str(p.relative_to(REPO)))
+    forced = []
+    for name in args.force_authored:
+        p = (REPO / name).resolve()
+        rel = str(p.relative_to(REPO))
+        if not p.is_relative_to(ROOT) or not p.is_file() or rel not in paths:
+            raise ValueError('Forced authored evidence must be an explicitly selected effort file: ' + name)
+        forced.append(rel)
     if run(['git', 'branch', '--show-current']) != 'main':
         raise RuntimeError('Shared checkout is not on main; no action taken')
     scratch = ROOT / 'tmp'
@@ -42,7 +51,11 @@ def main():
         with tempfile.TemporaryDirectory(dir=scratch) as d:
             env = dict(os.environ, GIT_INDEX_FILE=str(Path(d) / 'index'))
             run(['git', 'read-tree', parent], env=env)
-            run(['git', 'add', '--', *paths], env=env)
+            ordinary = [name for name in paths if name not in forced]
+            if ordinary:
+                run(['git', 'add', '--', *ordinary], env=env)
+            if forced:
+                run(['git', 'add', '-f', '--', *forced], env=env)
             tree = run(['git', 'write-tree'], env=env)
             if tree == run(['git', 'rev-parse', f'{parent}^{{tree}}']):
                 print(json.dumps({'status': 'already_present', 'commit': parent}))

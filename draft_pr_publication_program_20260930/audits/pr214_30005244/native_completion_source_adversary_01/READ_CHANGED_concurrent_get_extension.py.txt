@@ -1,0 +1,126 @@
+1: """Inactive PR214 GET transport extension; no ref/PR writer or new effect authority."""
+
+2: import argparse,base64,concurrent.futures,hashlib,json,os,re,stat,sys,threading,time,types
+
+3: from pathlib import Path
+
+4: BASE=Path(__file__).absolute().parent
+
+5: CASE=BASE.parent
+
+6: PROGRAM=CASE.parents[1]
+
+7: CHECKOUT=PROGRAM.parent
+
+8: DRIVER=BASE
+
+9: PROTOCOL_PIN={'bytes': 44492, 'sha256': '06e80d77ad6b001a2853e6e0fcc167296d051e61d6889e29de25eddd8390f9e7'}
+
+10: MAX_BLOBS=664
+
+11: MAX_DECODED=32_000_000
+
+12: MAX_CANONICAL=48_000_000
+
+13: PREFETCH_SECONDS=120
+
+14: OPERATIONS={'verify','candidate','hold-CAS','sync','terminal'}
+
+72: def wanted_blobs(rt,aux):
+73:     h=rt.h
+74:     need(type(aux) is dict and set(aux)=={'schema','PR','files'}
+75:          and aux['schema']=='pr214-concurrent-GET-auxiliary-blob-pins-v1'
+76:          and type(aux['PR']) is int and aux['PR']==214,'Exact auxiliary native body pin descriptor')
+77:     rows=aux['files']
+78:     need(type(rows) is list and len(rows)<=32 and all(type(r) is dict and set(r)=={'oid','bytes','sha256'} for r in rows)
+79:          and len({r['oid'] for r in rows})==len(rows),'Finite exact auxiliary body pins')
+80:     wanted={}
+81:     for raw in rt.overlay.values():
+82:         oid=h.native('blob',raw);p=pin(raw)
+83:         need(oid not in wanted or h.exact(wanted[oid],p),'Duplicate OID with inconsistent body pin')
+84:         wanted[oid]=p
+85:     for row in rt.m['protected_bodies']:
+86:         p={k:row[k] for k in ('bytes','sha256')}
+87:         need(row['sha'] not in wanted or h.exact(wanted[row['sha']],p),'Protected/selected object pin disagreement')
+88:         wanted[row['sha']]=p
+89:     required={rt.m['protected_queue']['sha'],h.CURRENT_QUEUE}
+90:     for path in (h.VIEWS[2],h.VIEWS[1],h.VIEWS[4]):
+91:         item=rt.pre[path]
+92:         if item is not None:required.add(item[2])
+93:     extras={}
+94:     for row in rows:
+95:         need(h.hexid(row['oid']),'Exact auxiliary blob OID')
+96:         p=h.bytepin({k:row[k] for k in ('bytes','sha256')})
+97:         need(row['oid'] in required,'Unexpected auxiliary object')
+98:         extras[row['oid']]=p
+99:     need(required.issubset(set(wanted)|set(extras)),'Missing current/parent QUEUE, baseline or native-log auxiliary pin')
+100:     for oid,p in extras.items():
+101:         need(oid not in wanted or h.exact(wanted[oid],p),'Auxiliary and selected pin disagreement')
+102:         wanted[oid]=p
+103:     need(len(wanted)<=MAX_BLOBS and sum(p['bytes'] for p in wanted.values())<=MAX_DECODED,
+104:          'Exact unique current-invocation native body bounds')
+105:     return wanted
+
+107: class GuardedRuntime:
+108:     """Delegates old Runtime; every refresh additionally authenticates this extension."""
+109:     def __init__(self,driver,runtime,acceptance_ref,operation):
+110:         need(type(driver) is types.ModuleType and type(runtime) is driver.Runtime,'Exact approved Runtime instance required')
+111:         need(Path(driver.__file__).absolute()==DRIVER/'completion_checkpoint.py','Fixed approved driver path')
+112:         need(operation in OPERATIONS,'Named reviewed operation required')
+113:         self.driver,self.base,self.acceptance_ref,self.operation=driver,runtime,acceptance_ref,operation
+114:         self.source=read_regular(Path(__file__).absolute())[0];self.source_pin=pin(self.source)
+115:         self.manifest_raw=read_regular(BASE/'SOURCE_MANIFEST.json')[0];self.source_manifest_pin=pin(self.manifest_raw)
+116:         self.acceptance_raw=driver.ref(runtime.h,runtime.seed.s,acceptance_ref)
+117:         self.acceptance_pin={k:acceptance_ref[k] for k in ('bytes','sha256')}
+118:         self.refresh()
+119:     def __getattr__(self,name):return getattr(self.base,name)
+120:     def check_sources(self):
+121:         h=self.base.h
+122:         need(read_regular(Path(__file__).absolute())[0]==self.source
+123:              and read_regular(BASE/'SOURCE_MANIFEST.json')[0]==self.manifest_raw,'Extension source closure changed')
+124:         need(pin(read_regular(DRIVER/'completion_checkpoint.py')[0])==PROTOCOL_PIN
+125:              and read_regular(DRIVER/'SOURCE_MANIFEST.json')[0]==self.manifest_raw,'Approved old source identity changed')
+126:         manifest=h.decode(self.manifest_raw)
+127:         h.matches(manifest,{'schema':'pr214-completion-source-manifest-v1','source_only':True,'self_excluded':True},
+128:                   'Positive extension source closure')
+129:         rows=manifest.get('files')
+130:         need(type(rows) is list and 3<=len(rows)<=20 and len({r.get('path') for r in rows})==len(rows)
+131:              and all(type(r) is dict and set(r)=={'path','bytes','sha256'} for r in rows),'Finite source closure rows')
+132:         need({'path':Path(__file__).name,**self.source_pin} in rows,'Extension source missing')
+133:         for row in rows:
+134:             name=h.rel(row['path']);need(Path(name).name==name,'No nested working source discovery')
+135:             need(h.exact(pin(read_regular(BASE/name)[0]),h.bytepin({k:row[k] for k in ('bytes','sha256')})),
+136:                  'Frozen extension source/document changed')
+137:         gate=self.driver.ref(h,self.base.seed.s,self.acceptance_ref)
+138:         need(h.exact(gate,self.acceptance_raw),'Exact extension acceptance changed')
+139:         h.matches(gate,{'schema':'pr214-root-concurrent-GET-extension-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+140:             'PR':214,'accepted':True,'extension_pin':self.source_pin,'extension_source_manifest_pin':self.source_manifest_pin,
+141:             'protocol_pin':PROTOCOL_PIN,'protocol_source_manifest_pin':self.source_manifest_pin,
+142:             'logical_manifest_pin':self.base.seed.manifest_pin,'logical_gate_pin':self.base.seed.logical_gate_pin,
+143:             'admission_pin':self.base.admission_pin,'admission_gate_pin':self.base.gate_pin,
+144:             'Root_full_source_read':True,'independent_source_adversarial_review_accepted':True,
+145:             'fresh_actual_parameter_bindings_accepted':True,'old_logical_packet_and_source_identity_unchanged':True,
+146:             'actual_native_GET_transport_extension_explicitly_accepted':True,
+147:             'only_existing_inherited_per_admission_effect_authority':True,
+148:             'no_ref_PR_or_global_five_authority_added':True,'original_driver_CLI_execution_claimed':False,
+149:             'old_sync_and_hold_CAS_invoked_unchanged':True},'Exact separate Root transport-extension acceptance required')
+150:         ops=gate.get('allowed_operations')
+151:         need(type(ops) is list and ops==sorted(set(ops)) and all(type(x) is str and x in OPERATIONS for x in ops)
+152:              and self.operation in ops,'Operation not explicitly accepted')
+153:         if self.operation=='candidate':
+154:             h.matches(gate,{'candidate_two_POST_orchestration_delta_reviewed':True},'Candidate reader-only delta must be separately reviewed')
+155:         workers=gate.get('workers')
+156:         need(type(workers) is int and 1<=workers<=8,'At most eight isolated old API workers')
+157:         aux=self.driver.ref(h,self.base.seed.s,gate.get('auxiliary_blob_pins'))
+158:         specs=wanted_blobs(self.base,aux)
+159:         if 'worker_count' not in self.__dict__:
+160:             self.worker_count,self.specs=workers,specs
+161:         else:need(self.worker_count==workers and h.exact(self.specs,specs),'Extension worker/spec binding changed')
+162:         return self
+163:     def refresh(self):
+164:         self.base.refresh();self.check_sources()
+165:         need(self.base.h.exact(self.base.seed.source_pin,PROTOCOL_PIN)
+166:              and self.base.h.exact(self.base.seed.source_manifest_pin,self.source_manifest_pin),'Loaded old protocol association differs')
+167:         return self
+
+396: if __name__=='__main__':main()

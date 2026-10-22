@@ -1,0 +1,181 @@
+{
+  "at_utc": "2026-10-18T04:02:58.656769+00:00",
+  "status": "PASS",
+  "families": [
+    {
+      "manifest": "reviews/blind_source_reconstruction/MANIFEST.json",
+      "manifest_sha256": "cfde3d99a4443c04a056271f3d6c944c04ec0ccdb6f279b6c091721036624159",
+      "members": 5,
+      "schema_keys": [
+        "files",
+        "relative_path",
+        "bytes"
+      ]
+    },
+    {
+      "manifest": "reviews/candidate_adversary/MANIFEST.json",
+      "manifest_sha256": "2e10ed89e6d361520b37fdd25e51aacb8b4a4ef45a062c0f6003700502fb539b",
+      "members": 10,
+      "schema_keys": [
+        "files",
+        "relative_path",
+        "bytes"
+      ]
+    }
+  ],
+  "original_files": 8,
+  "original_bytes": 43768,
+  "source_manifest_schema": [
+    "files",
+    "file",
+    "bytes"
+  ],
+  "runs": [
+    {
+      "program": "reviews/blind_source_reconstruction/checks.py",
+      "result": "ROOT_BLIND_DETERMINISTIC_STDOUT.txt",
+      "isolated": true,
+      "flags": [],
+      "stdout": {
+        "bytes": 897,
+        "sha256": "45eaca6d12d0ef63b276dcb5dda44a6277a60aabadd77080459388406a955bf6"
+      },
+      "injections": []
+    },
+    {
+      "program": "reviews/blind_source_reconstruction/checks.py",
+      "result": "ROOT_BLIND_DETERMINISTIC_STDOUT.txt",
+      "isolated": true,
+      "flags": [
+        "-O"
+      ],
+      "stdout": {
+        "bytes": 897,
+        "sha256": "45eaca6d12d0ef63b276dcb5dda44a6277a60aabadd77080459388406a955bf6"
+      },
+      "injections": []
+    },
+    {
+      "program": "reviews/blind_source_reconstruction/checks.py",
+      "result": "ROOT_BLIND_DETERMINISTIC_STDOUT.txt",
+      "isolated": true,
+      "flags": [
+        "-OO"
+      ],
+      "stdout": {
+        "bytes": 897,
+        "sha256": "45eaca6d12d0ef63b276dcb5dda44a6277a60aabadd77080459388406a955bf6"
+      },
+      "injections": []
+    },
+    {
+      "program": "reviews/candidate_adversary/verify_algebra.py",
+      "result": "reviews/candidate_adversary/CHECK_RESULTS.json",
+      "isolated": true,
+      "flags": [],
+      "stdout": {
+        "bytes": 1496,
+        "sha256": "e2f4f5720ee4bd1edb021191d24cfd8bdfb268736051e2e87a85b3a33ed0b5cf"
+      },
+      "injections": [
+        {
+          "case": "wrong-second-branch",
+          "returncode": 2,
+          "rejected": true
+        },
+        {
+          "case": "reverse-order",
+          "returncode": 2,
+          "rejected": true
+        }
+      ]
+    },
+    {
+      "program": "reviews/candidate_adversary/verify_algebra.py",
+      "result": "reviews/candidate_adversary/CHECK_RESULTS.json",
+      "isolated": true,
+      "flags": [
+        "-O"
+      ],
+      "stdout": {
+        "bytes": 1496,
+        "sha256": "e2f4f5720ee4bd1edb021191d24cfd8bdfb268736051e2e87a85b3a33ed0b5cf"
+      },
+      "injections": [
+        {
+          "case": "wrong-second-branch",
+          "returncode": 2,
+          "rejected": true
+        },
+        {
+          "case": "reverse-order",
+          "returncode": 2,
+          "rejected": true
+        }
+      ]
+    },
+    {
+      "program": "reviews/candidate_adversary/verify_algebra.py",
+      "result": "reviews/candidate_adversary/CHECK_RESULTS.json",
+      "isolated": true,
+      "flags": [
+        "-OO"
+      ],
+      "stdout": {
+        "bytes": 1496,
+        "sha256": "e2f4f5720ee4bd1edb021191d24cfd8bdfb268736051e2e87a85b3a33ed0b5cf"
+      },
+      "injections": [
+        {
+          "case": "wrong-second-branch",
+          "returncode": 2,
+          "rejected": true
+        },
+        {
+          "case": "reverse-order",
+          "returncode": 2,
+          "rejected": true
+        }
+      ]
+    },
+    {
+      "program": "reviews/candidate_adversary/verify_inputs.py",
+      "result": "reviews/candidate_adversary/BYTE_AUDIT.json",
+      "isolated": false,
+      "flags": [],
+      "stdout": {
+        "bytes": 361,
+        "sha256": "222c76ee0abf8328225e57d192c81c987e929aa4bd807ba80688dd8cc9ced581"
+      },
+      "injections": []
+    },
+    {
+      "program": "reviews/candidate_adversary/verify_inputs.py",
+      "result": "reviews/candidate_adversary/BYTE_AUDIT.json",
+      "isolated": false,
+      "flags": [
+        "-O"
+      ],
+      "stdout": {
+        "bytes": 361,
+        "sha256": "222c76ee0abf8328225e57d192c81c987e929aa4bd807ba80688dd8cc9ced581"
+      },
+      "injections": []
+    },
+    {
+      "program": "reviews/candidate_adversary/verify_inputs.py",
+      "result": "reviews/candidate_adversary/BYTE_AUDIT.json",
+      "isolated": false,
+      "flags": [
+        "-OO"
+      ],
+      "stdout": {
+        "bytes": 361,
+        "sha256": "222c76ee0abf8328225e57d192c81c987e929aa4bd807ba80688dd8cc9ced581"
+      },
+      "injections": []
+    }
+  ],
+  "history_boundary": "Only the captured eight original Git bodies and available public-side preservation-ledger slices are authenticated. Absent earlier6872/10375byte bodies, old aggregate code/results and old independent-exposure claims are not newly certified.",
+  "scope": "Root read both complete reports/proofs and primary pages, authenticated every declared authored member, independently replayed actual validators normal/-O/-OO without overwriting sealed outputs. Input-receipt validator is local-source evidence, not a portable replay target. Further blind-reconstruction adversary and priority remain pending."
+}

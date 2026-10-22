@@ -1,0 +1,1487 @@
+{
+  "status": "PASS",
+  "at_utc": "2026-10-16T09:00:20.883034+00:00",
+  "physical_source_negatives": 24,
+  "physical_output_negatives": 48,
+  "relocation_positives": 4,
+  "same_six_rebuilds": 4,
+  "closed_input_and_pdf_unchanged": true,
+  "checks": [
+    {
+      "case": "relocation_changed_mtimes",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-7mfl7zps/relocated closed source with spaces/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "1502df5ccfd9d99f8f5e74a64c4a4c4076be4a622e6b7e3ff2c809fa30c3cb1a",
+      "stderr": ""
+    },
+    {
+      "case": "same_six_rebuild",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "six": {
+        "paper.tex": {
+          "bytes": 11905,
+          "sha256": "07a8c69dfc336279667381c59b41000858f9cc9f9b9c144dbd45e30a9f533f9d"
+        },
+        "output/pdf/paper.pdf": {
+          "bytes": 53566,
+          "sha256": "d72a15dde892aee9df77e5206fcf91fc3a1558ef143dac17ae3df8cb28118d47"
+        },
+        "source-and-verification.zip": {
+          "bytes": 235019,
+          "sha256": "4f5f741d72fd6455e20bca0278ae34a3539764377dc26a7d232061ea2ab51c5b"
+        },
+        "zenodo-deposit.json": {
+          "bytes": 4443,
+          "sha256": "0872e34d45b7c27b97cc8bc7ebcf5fc15dfab6baba863309a7e4789cdcd9107b"
+        },
+        "zenodo-metadata.json": {
+          "bytes": 4247,
+          "sha256": "0af7b945eb38d21a2ec92e48ccf40ca184eccf5e974abc548aa46ce87ee94714"
+        },
+        "zenodo-upload-kit.zip": {
+          "bytes": 276652,
+          "sha256": "a6c0f4d11a943aefc7e0d13e0ab448502df8772e26dcd7e5d52c31b2a70c6f5f"
+        }
+      },
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-7mfl7zps/relocated closed source with spaces/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-7mfl7zps/rebuilt"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "26105901b113675b17940e32f24b406040658a7be56559c3857dd8d778a61556",
+      "stderr": ""
+    },
+    {
+      "case": "source_hidden_extra",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-9h67mxwf/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-9h67mxwf/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-9h67mxwf/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-9h67mxwf/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-9h67mxwf/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-9h67mxwf/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n"
+    },
+    {
+      "case": "source_missing",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-2fndkfs7/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-2fndkfs7/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-2fndkfs7/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-2fndkfs7/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-2fndkfs7/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-2fndkfs7/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n"
+    },
+    {
+      "case": "source_altered",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-924a___f/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-924a___f/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-924a___f/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-924a___f/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-924a___f/source/verify_bundle.py\", line 40, in validate_closed_map\n    require(identity(actual[name])==record, 'Source content mismatch: '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-924a___f/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Source content mismatch: paper.tex\n"
+    },
+    {
+      "case": "source_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-yo0ofzii/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-yo0ofzii/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-yo0ofzii/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-yo0ofzii/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-yo0ofzii/source/build_package.py\", line 114, in inventory\n    require(not p.is_symlink(), 'Symlink in source: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-yo0ofzii/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Symlink in source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-yo0ofzii/source/paper.tex\n"
+    },
+    {
+      "case": "source_fifo",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-sijt33yb/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-sijt33yb/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-sijt33yb/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-sijt33yb/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-sijt33yb/source/build_package.py\", line 119, in inventory\n    result[name] = regular(p)\n                   ~~~~~~~^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-sijt33yb/source/build_package.py\", line 106, in regular\n    require(not path.is_symlink() and path.is_file() and\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            stat.S_ISREG(path.stat().st_mode), 'Nonregular source: ' + str(path))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-sijt33yb/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Nonregular source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-sijt33yb/source/unexpected.fifo\n"
+    },
+    {
+      "case": "source_empty_directory",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-94vt2zho/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-94vt2zho/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-94vt2zho/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-94vt2zho/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-94vt2zho/source/build_package.py\", line 122, in inventory\n    require(dirs == expected_dirs, 'Unexpected empty directory: ' + str(root))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-94vt2zho/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Unexpected empty directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-94vt2zho/source\n"
+    },
+    {
+      "case": "output_inside_source",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_57djp_7/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_57djp_7/source/inside"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_57djp_7/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_57djp_7/source/build_package.py\", line 270, in main\n    require(args.output_dir is not None and out != ROOT and ROOT not in out.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'Portable rebuild output must be outside closed input tree')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_57djp_7/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Portable rebuild output must be outside closed input tree\n"
+    },
+    {
+      "case": "output_ancestor_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hf4sot3a/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hf4sot3a/linked/child"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hf4sot3a/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hf4sot3a/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hf4sot3a/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hf4sot3a/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hf4sot3a/linked\n"
+    },
+    {
+      "case": "output_nested_ancestor_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g3onnxi7/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g3onnxi7/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g3onnxi7/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g3onnxi7/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g3onnxi7/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g3onnxi7/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g3onnxi7/out/output\n"
+    },
+    {
+      "case": "output_tex_destination_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-8uy27rlc/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-8uy27rlc/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-8uy27rlc/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-8uy27rlc/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-8uy27rlc/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-8uy27rlc/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-8uy27rlc/out/paper.tex\n"
+    },
+    {
+      "case": "output_pdf_destination_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9jk4q1p0/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9jk4q1p0/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9jk4q1p0/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9jk4q1p0/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9jk4q1p0/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9jk4q1p0/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9jk4q1p0/out/output/pdf/paper.pdf\n"
+    },
+    {
+      "case": "output_inventory_destination_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ze5_y0c8/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ze5_y0c8/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ze5_y0c8/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ze5_y0c8/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ze5_y0c8/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ze5_y0c8/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ze5_y0c8/out/PACKAGE_INVENTORY.json\n"
+    },
+    {
+      "case": "output_fifo_destination",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_l97p0kb/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_l97p0kb/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_l97p0kb/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_l97p0kb/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_l97p0kb/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_l97p0kb/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n"
+    },
+    {
+      "case": "output_directory_destination",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-jyzgoyxb/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-jyzgoyxb/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-jyzgoyxb/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-jyzgoyxb/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-jyzgoyxb/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-jyzgoyxb/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n"
+    },
+    {
+      "case": "output_pdf_hardlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vq8potxt/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vq8potxt/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vq8potxt/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vq8potxt/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vq8potxt/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vq8potxt/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_source_hardlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-j4b4afc0/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-j4b4afc0/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-j4b4afc0/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-j4b4afc0/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-j4b4afc0/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-j4b4afc0/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_ordinary_output_hardlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-74s76on1/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-74s76on1/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-74s76on1/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-74s76on1/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-74s76on1/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-74s76on1/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_source_zip_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-m42f2wa0/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-m42f2wa0/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-m42f2wa0/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-m42f2wa0/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-m42f2wa0/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-m42f2wa0/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-m42f2wa0/out/source-and-verification.zip\n"
+    },
+    {
+      "case": "relocation_changed_mtimes",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-wr3o9mp2/relocated closed source with spaces/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "29cff6ba84b52a43e20ab35a61b226ba3fcf01cb1f4572f605503ffc4f650231",
+      "stderr": ""
+    },
+    {
+      "case": "same_six_rebuild",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "six": {
+        "paper.tex": {
+          "bytes": 11905,
+          "sha256": "07a8c69dfc336279667381c59b41000858f9cc9f9b9c144dbd45e30a9f533f9d"
+        },
+        "output/pdf/paper.pdf": {
+          "bytes": 53566,
+          "sha256": "d72a15dde892aee9df77e5206fcf91fc3a1558ef143dac17ae3df8cb28118d47"
+        },
+        "source-and-verification.zip": {
+          "bytes": 235019,
+          "sha256": "4f5f741d72fd6455e20bca0278ae34a3539764377dc26a7d232061ea2ab51c5b"
+        },
+        "zenodo-deposit.json": {
+          "bytes": 4443,
+          "sha256": "0872e34d45b7c27b97cc8bc7ebcf5fc15dfab6baba863309a7e4789cdcd9107b"
+        },
+        "zenodo-metadata.json": {
+          "bytes": 4247,
+          "sha256": "0af7b945eb38d21a2ec92e48ccf40ca184eccf5e974abc548aa46ce87ee94714"
+        },
+        "zenodo-upload-kit.zip": {
+          "bytes": 276652,
+          "sha256": "a6c0f4d11a943aefc7e0d13e0ab448502df8772e26dcd7e5d52c31b2a70c6f5f"
+        }
+      },
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-wr3o9mp2/relocated closed source with spaces/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-wr3o9mp2/rebuilt"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "ce8439de3a1a66f8efb769eb184bdca99854aff94aff280b0b3866ede9b791c1",
+      "stderr": ""
+    },
+    {
+      "case": "source_hidden_extra",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-gtbq8fb0/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-gtbq8fb0/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-gtbq8fb0/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-gtbq8fb0/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-gtbq8fb0/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-gtbq8fb0/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n"
+    },
+    {
+      "case": "source_missing",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-j85dzhw_/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-j85dzhw_/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-j85dzhw_/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-j85dzhw_/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-j85dzhw_/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-j85dzhw_/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n"
+    },
+    {
+      "case": "source_altered",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-_zgwwn1_/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-_zgwwn1_/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-_zgwwn1_/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-_zgwwn1_/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-_zgwwn1_/source/verify_bundle.py\", line 40, in validate_closed_map\n    require(identity(actual[name])==record, 'Source content mismatch: '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-_zgwwn1_/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Source content mismatch: paper.tex\n"
+    },
+    {
+      "case": "source_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-hnijfq77/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-hnijfq77/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-hnijfq77/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-hnijfq77/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-hnijfq77/source/build_package.py\", line 114, in inventory\n    require(not p.is_symlink(), 'Symlink in source: ' + str(p))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-hnijfq77/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Symlink in source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-hnijfq77/source/paper.tex\n"
+    },
+    {
+      "case": "source_fifo",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-felkbf11/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-felkbf11/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-felkbf11/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-felkbf11/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-felkbf11/source/build_package.py\", line 119, in inventory\n    result[name] = regular(p)\n                   ~~~~~~~^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-felkbf11/source/build_package.py\", line 106, in regular\n    require(not path.is_symlink() and path.is_file() and\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            stat.S_ISREG(path.stat().st_mode), 'Nonregular source: ' + str(path))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-felkbf11/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Nonregular source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-felkbf11/source/unexpected.fifo\n"
+    },
+    {
+      "case": "source_empty_directory",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-0suwpz9n/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-0suwpz9n/source/verify_bundle.py\", line 150, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-0suwpz9n/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-0suwpz9n/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-0suwpz9n/source/build_package.py\", line 122, in inventory\n    require(dirs == expected_dirs, 'Unexpected empty directory: ' + str(root))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-0suwpz9n/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Unexpected empty directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-0suwpz9n/source\n"
+    },
+    {
+      "case": "output_inside_source",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fuxhlbg_/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fuxhlbg_/source/inside"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fuxhlbg_/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fuxhlbg_/source/build_package.py\", line 270, in main\n    require(args.output_dir is not None and out != ROOT and ROOT not in out.parents,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'Portable rebuild output must be outside closed input tree')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fuxhlbg_/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Portable rebuild output must be outside closed input tree\n"
+    },
+    {
+      "case": "output_ancestor_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-33_in_uj/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-33_in_uj/linked/child"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-33_in_uj/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-33_in_uj/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-33_in_uj/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-33_in_uj/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-33_in_uj/linked\n"
+    },
+    {
+      "case": "output_nested_ancestor_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-esrjxv3n/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-esrjxv3n/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-esrjxv3n/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-esrjxv3n/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-esrjxv3n/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-esrjxv3n/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-esrjxv3n/out/output\n"
+    },
+    {
+      "case": "output_tex_destination_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lf62uxb3/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lf62uxb3/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lf62uxb3/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lf62uxb3/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lf62uxb3/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lf62uxb3/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lf62uxb3/out/paper.tex\n"
+    },
+    {
+      "case": "output_pdf_destination_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-nz9jixas/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-nz9jixas/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-nz9jixas/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-nz9jixas/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-nz9jixas/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-nz9jixas/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-nz9jixas/out/output/pdf/paper.pdf\n"
+    },
+    {
+      "case": "output_inventory_destination_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-huue5lm5/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-huue5lm5/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-huue5lm5/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-huue5lm5/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-huue5lm5/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-huue5lm5/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-huue5lm5/out/PACKAGE_INVENTORY.json\n"
+    },
+    {
+      "case": "output_fifo_destination",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_kniim55/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_kniim55/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_kniim55/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_kniim55/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_kniim55/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-_kniim55/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n"
+    },
+    {
+      "case": "output_directory_destination",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-38srgym2/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-38srgym2/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-38srgym2/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-38srgym2/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-38srgym2/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-38srgym2/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n"
+    },
+    {
+      "case": "output_pdf_hardlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-667njvoq/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-667njvoq/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-667njvoq/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-667njvoq/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-667njvoq/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-667njvoq/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_source_hardlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-5oz0bc1q/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-5oz0bc1q/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-5oz0bc1q/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-5oz0bc1q/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-5oz0bc1q/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-5oz0bc1q/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_ordinary_output_hardlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-z4by1rnn/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-z4by1rnn/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-z4by1rnn/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-z4by1rnn/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-z4by1rnn/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-z4by1rnn/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_source_zip_symlink",
+      "runtime": "/opt/homebrew/bin/python3",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-bj9z6o6x/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-bj9z6o6x/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-bj9z6o6x/source/build_package.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-bj9z6o6x/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n                           ROOT if portable else None, protect_pdf)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-bj9z6o6x/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-bj9z6o6x/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-bj9z6o6x/out/source-and-verification.zip\n"
+    },
+    {
+      "case": "relocation_changed_mtimes",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-4nf6fnkp/relocated closed source with spaces/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "1502df5ccfd9d99f8f5e74a64c4a4c4076be4a622e6b7e3ff2c809fa30c3cb1a",
+      "stderr": ""
+    },
+    {
+      "case": "same_six_rebuild",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "six": {
+        "paper.tex": {
+          "bytes": 11905,
+          "sha256": "07a8c69dfc336279667381c59b41000858f9cc9f9b9c144dbd45e30a9f533f9d"
+        },
+        "output/pdf/paper.pdf": {
+          "bytes": 53566,
+          "sha256": "d72a15dde892aee9df77e5206fcf91fc3a1558ef143dac17ae3df8cb28118d47"
+        },
+        "source-and-verification.zip": {
+          "bytes": 235019,
+          "sha256": "4f5f741d72fd6455e20bca0278ae34a3539764377dc26a7d232061ea2ab51c5b"
+        },
+        "zenodo-deposit.json": {
+          "bytes": 4443,
+          "sha256": "0872e34d45b7c27b97cc8bc7ebcf5fc15dfab6baba863309a7e4789cdcd9107b"
+        },
+        "zenodo-metadata.json": {
+          "bytes": 4247,
+          "sha256": "0af7b945eb38d21a2ec92e48ccf40ca184eccf5e974abc548aa46ce87ee94714"
+        },
+        "zenodo-upload-kit.zip": {
+          "bytes": 276652,
+          "sha256": "a6c0f4d11a943aefc7e0d13e0ab448502df8772e26dcd7e5d52c31b2a70c6f5f"
+        }
+      },
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-4nf6fnkp/relocated closed source with spaces/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-4nf6fnkp/rebuilt"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "f43af114b467b3421d5a872a4da8b454648b2b26e3cc83674917efd23ab22fcb",
+      "stderr": ""
+    },
+    {
+      "case": "source_hidden_extra",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-06hr5g2u/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-06hr5g2u/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-06hr5g2u/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-06hr5g2u/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-06hr5g2u/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-06hr5g2u/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n"
+    },
+    {
+      "case": "source_missing",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-n4iynbxx/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-n4iynbxx/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-n4iynbxx/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-n4iynbxx/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-n4iynbxx/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-n4iynbxx/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n"
+    },
+    {
+      "case": "source_altered",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-822rnhnb/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-822rnhnb/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-822rnhnb/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-822rnhnb/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-822rnhnb/source/verify_bundle.py\", line 40, in validate_closed_map\n    require(identity(actual[name])==record, 'Source content mismatch: '+name)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-822rnhnb/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Source content mismatch: paper.tex\n"
+    },
+    {
+      "case": "source_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-h766usrb/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-h766usrb/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-h766usrb/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-h766usrb/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-h766usrb/source/build_package.py\", line 114, in inventory\n    require(not p.is_symlink(), 'Symlink in source: ' + str(p))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-h766usrb/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Symlink in source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-h766usrb/source/paper.tex\n"
+    },
+    {
+      "case": "source_fifo",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rn73bh7f/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rn73bh7f/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rn73bh7f/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rn73bh7f/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rn73bh7f/source/build_package.py\", line 119, in inventory\n    result[name] = regular(p)\n                   ^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rn73bh7f/source/build_package.py\", line 106, in regular\n    require(not path.is_symlink() and path.is_file() and\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rn73bh7f/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Nonregular source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rn73bh7f/source/unexpected.fifo\n"
+    },
+    {
+      "case": "source_empty_directory",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-11mgxkfk/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-11mgxkfk/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-11mgxkfk/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-11mgxkfk/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-11mgxkfk/source/build_package.py\", line 122, in inventory\n    require(dirs == expected_dirs, 'Unexpected empty directory: ' + str(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-11mgxkfk/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Unexpected empty directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-11mgxkfk/source\n"
+    },
+    {
+      "case": "output_inside_source",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vayj3j02/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vayj3j02/source/inside"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vayj3j02/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vayj3j02/source/build_package.py\", line 270, in main\n    require(args.output_dir is not None and out != ROOT and ROOT not in out.parents,\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-vayj3j02/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Portable rebuild output must be outside closed input tree\n"
+    },
+    {
+      "case": "output_ancestor_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-rfzhjeyy/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-rfzhjeyy/linked/child"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-rfzhjeyy/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-rfzhjeyy/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-rfzhjeyy/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-rfzhjeyy/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-rfzhjeyy/linked\n"
+    },
+    {
+      "case": "output_nested_ancestor_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e8ggihoh/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e8ggihoh/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e8ggihoh/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e8ggihoh/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e8ggihoh/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e8ggihoh/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e8ggihoh/out/output\n"
+    },
+    {
+      "case": "output_tex_destination_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4dst5s44/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4dst5s44/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4dst5s44/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4dst5s44/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4dst5s44/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4dst5s44/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4dst5s44/out/paper.tex\n"
+    },
+    {
+      "case": "output_pdf_destination_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-xrnhrvx4/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-xrnhrvx4/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-xrnhrvx4/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-xrnhrvx4/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-xrnhrvx4/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-xrnhrvx4/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-xrnhrvx4/out/output/pdf/paper.pdf\n"
+    },
+    {
+      "case": "output_inventory_destination_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-newxiv45/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-newxiv45/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-newxiv45/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-newxiv45/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-newxiv45/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-newxiv45/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-newxiv45/out/PACKAGE_INVENTORY.json\n"
+    },
+    {
+      "case": "output_fifo_destination",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e6y7hapc/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e6y7hapc/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e6y7hapc/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e6y7hapc/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e6y7hapc/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-e6y7hapc/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n"
+    },
+    {
+      "case": "output_directory_destination",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fztfewib/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fztfewib/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fztfewib/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fztfewib/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fztfewib/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-fztfewib/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n"
+    },
+    {
+      "case": "output_pdf_hardlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-o8ejaq8i/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-o8ejaq8i/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-o8ejaq8i/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-o8ejaq8i/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-o8ejaq8i/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-o8ejaq8i/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_source_hardlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-qwrbpcx9/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-qwrbpcx9/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-qwrbpcx9/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-qwrbpcx9/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-qwrbpcx9/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-qwrbpcx9/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_ordinary_output_hardlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-6l8cdskn/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-6l8cdskn/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-6l8cdskn/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-6l8cdskn/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-6l8cdskn/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-6l8cdskn/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_source_zip_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": false,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9gcd6oik/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9gcd6oik/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9gcd6oik/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9gcd6oik/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9gcd6oik/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9gcd6oik/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-9gcd6oik/out/source-and-verification.zip\n"
+    },
+    {
+      "case": "relocation_changed_mtimes",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-i71eef71/relocated closed source with spaces/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "29cff6ba84b52a43e20ab35a61b226ba3fcf01cb1f4572f605503ffc4f650231",
+      "stderr": ""
+    },
+    {
+      "case": "same_six_rebuild",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "six": {
+        "paper.tex": {
+          "bytes": 11905,
+          "sha256": "07a8c69dfc336279667381c59b41000858f9cc9f9b9c144dbd45e30a9f533f9d"
+        },
+        "output/pdf/paper.pdf": {
+          "bytes": 53566,
+          "sha256": "d72a15dde892aee9df77e5206fcf91fc3a1558ef143dac17ae3df8cb28118d47"
+        },
+        "source-and-verification.zip": {
+          "bytes": 235019,
+          "sha256": "4f5f741d72fd6455e20bca0278ae34a3539764377dc26a7d232061ea2ab51c5b"
+        },
+        "zenodo-deposit.json": {
+          "bytes": 4443,
+          "sha256": "0872e34d45b7c27b97cc8bc7ebcf5fc15dfab6baba863309a7e4789cdcd9107b"
+        },
+        "zenodo-metadata.json": {
+          "bytes": 4247,
+          "sha256": "0af7b945eb38d21a2ec92e48ccf40ca184eccf5e974abc548aa46ce87ee94714"
+        },
+        "zenodo-upload-kit.zip": {
+          "bytes": 276652,
+          "sha256": "a6c0f4d11a943aefc7e0d13e0ab448502df8772e26dcd7e5d52c31b2a70c6f5f"
+        }
+      },
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-i71eef71/relocated closed source with spaces/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-relocation-i71eef71/rebuilt"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "237e3b67b056122f4da933609de13ce4ee01178b2bb65296711afd3446275250",
+      "stderr": ""
+    },
+    {
+      "case": "source_hidden_extra",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-q4c2kzxa/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-q4c2kzxa/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-q4c2kzxa/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-q4c2kzxa/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-q4c2kzxa/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-q4c2kzxa/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n"
+    },
+    {
+      "case": "source_missing",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rdpov4gc/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rdpov4gc/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rdpov4gc/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rdpov4gc/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rdpov4gc/source/verify_bundle.py\", line 38, in validate_closed_map\n    require(set(actual)==set(listed)|{'MANIFEST.json'}, 'Missing/extra source file')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-rdpov4gc/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Missing/extra source file\n"
+    },
+    {
+      "case": "source_altered",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-mw97iuwr/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-mw97iuwr/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-mw97iuwr/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-mw97iuwr/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-mw97iuwr/source/verify_bundle.py\", line 40, in validate_closed_map\n    require(identity(actual[name])==record, 'Source content mismatch: '+name)\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-mw97iuwr/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Source content mismatch: paper.tex\n"
+    },
+    {
+      "case": "source_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-bg0fqkau/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-bg0fqkau/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-bg0fqkau/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-bg0fqkau/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-bg0fqkau/source/build_package.py\", line 114, in inventory\n    require(not p.is_symlink(), 'Symlink in source: ' + str(p))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-bg0fqkau/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Symlink in source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-bg0fqkau/source/paper.tex\n"
+    },
+    {
+      "case": "source_fifo",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-5klhxyzt/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-5klhxyzt/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-5klhxyzt/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-5klhxyzt/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-5klhxyzt/source/build_package.py\", line 119, in inventory\n    result[name] = regular(p)\n                   ^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-5klhxyzt/source/build_package.py\", line 106, in regular\n    require(not path.is_symlink() and path.is_file() and\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-5klhxyzt/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Nonregular source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-5klhxyzt/source/unexpected.fifo\n"
+    },
+    {
+      "case": "source_empty_directory",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-lreic8z2/source/verify_bundle.py",
+        "--integrity-only",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-lreic8z2/source/verify_bundle.py\", line 150, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-lreic8z2/source/verify_bundle.py\", line 119, in main\n    before=read_closed(ROOT)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-lreic8z2/source/verify_bundle.py\", line 44, in read_closed\n    return validate_closed_map(inventory(root))\n                               ^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-lreic8z2/source/build_package.py\", line 122, in inventory\n    require(dirs == expected_dirs, 'Unexpected empty directory: ' + str(root))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-lreic8z2/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Unexpected empty directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-source-negative-lreic8z2/source\n"
+    },
+    {
+      "case": "output_inside_source",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-64yttc1_/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-64yttc1_/source/inside"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-64yttc1_/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-64yttc1_/source/build_package.py\", line 270, in main\n    require(args.output_dir is not None and out != ROOT and ROOT not in out.parents,\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-64yttc1_/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Portable rebuild output must be outside closed input tree\n"
+    },
+    {
+      "case": "output_ancestor_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-sagg_wae/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-sagg_wae/linked/child"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-sagg_wae/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-sagg_wae/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-sagg_wae/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-sagg_wae/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-sagg_wae/linked\n"
+    },
+    {
+      "case": "output_nested_ancestor_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-tedlz_rh/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-tedlz_rh/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-tedlz_rh/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-tedlz_rh/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-tedlz_rh/source/build_package.py\", line 217, in validate_outputs\n    require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-tedlz_rh/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output ancestor symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-tedlz_rh/out/output\n"
+    },
+    {
+      "case": "output_tex_destination_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-v_py97bs/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-v_py97bs/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-v_py97bs/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-v_py97bs/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-v_py97bs/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-v_py97bs/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-v_py97bs/out/paper.tex\n"
+    },
+    {
+      "case": "output_pdf_destination_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-309b4bc_/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-309b4bc_/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-309b4bc_/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-309b4bc_/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-309b4bc_/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-309b4bc_/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-309b4bc_/out/output/pdf/paper.pdf\n"
+    },
+    {
+      "case": "output_inventory_destination_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-wewijvce/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-wewijvce/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-wewijvce/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-wewijvce/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-wewijvce/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-wewijvce/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-wewijvce/out/PACKAGE_INVENTORY.json\n"
+    },
+    {
+      "case": "output_fifo_destination",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-2z1aayam/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-2z1aayam/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-2z1aayam/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-2z1aayam/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-2z1aayam/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-2z1aayam/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n"
+    },
+    {
+      "case": "output_directory_destination",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hiewo4dm/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hiewo4dm/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hiewo4dm/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hiewo4dm/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hiewo4dm/source/build_package.py\", line 242, in validate_outputs\n    require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-hiewo4dm/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination is not regular\n"
+    },
+    {
+      "case": "output_pdf_hardlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lrhnb557/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lrhnb557/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lrhnb557/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lrhnb557/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lrhnb557/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-lrhnb557/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_source_hardlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4s9u7sc1/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4s9u7sc1/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4s9u7sc1/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4s9u7sc1/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4s9u7sc1/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-4s9u7sc1/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_ordinary_output_hardlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ybnqmm8w/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ybnqmm8w/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ybnqmm8w/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ybnqmm8w/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ybnqmm8w/source/build_package.py\", line 243, in validate_outputs\n    require(s.st_nlink == 1, 'Output destination has multiple hardlinks')\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-ybnqmm8w/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination has multiple hardlinks\n"
+    },
+    {
+      "case": "output_source_zip_symlink",
+      "runtime": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "optimized": true,
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g0biqz7_/source/build_package.py",
+        "--pdf",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/paper.pdf",
+        "--output-dir",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g0biqz7_/out"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g0biqz7_/source/build_package.py\", line 329, in <module>\n    main()\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g0biqz7_/source/build_package.py\", line 315, in main\n    out = validate_outputs(output_arg, outputs,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g0biqz7_/source/build_package.py\", line 234, in validate_outputs\n    require(not target.is_symlink(), 'Output destination symlink: ' + str(target))\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g0biqz7_/source/build_package.py\", line 91, in require\n    raise ValueError(message)\nValueError: Output destination symlink: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr778_30001054/preprint/tmp/review02-work/fixtures/review02-output-negative-g0biqz7_/out/source-and-verification.zip\n"
+    }
+  ]
+}

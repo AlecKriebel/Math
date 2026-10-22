@@ -1,0 +1,81 @@
+{
+  "checker_sha256": "29a450b9b3940871b33b5ec12bbd850b231915c5c99253ba6603c25faf229d26",
+  "controls": [
+    {
+      "expected_success": true,
+      "name": "normal replay",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "{\"bound_local_inputs\": 6, \"diagnostics\": \"PASS\", \"files\": 8, \"status\": \"PASS\"}"
+    },
+    {
+      "expected_success": true,
+      "name": "optimized replay",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "{\"bound_local_inputs\": 6, \"diagnostics\": \"PASS\", \"files\": 8, \"status\": \"PASS\"}"
+    },
+    {
+      "expected_success": false,
+      "name": "mutated mathematical report rejected",
+      "returncode": 1,
+      "status": "PASS",
+      "stderr": "FAIL: packet digest mismatch: REPORT.md",
+      "stdout": ""
+    },
+    {
+      "expected_success": false,
+      "name": "missing diagnostic rejected",
+      "returncode": 1,
+      "status": "PASS",
+      "stderr": "FAIL: exact inventory mismatch",
+      "stdout": ""
+    },
+    {
+      "expected_success": false,
+      "name": "extra file rejected",
+      "returncode": 1,
+      "status": "PASS",
+      "stderr": "FAIL: exact inventory mismatch",
+      "stdout": ""
+    },
+    {
+      "expected_success": false,
+      "name": "changed diagnostic rejected before execution",
+      "returncode": 1,
+      "status": "PASS",
+      "stderr": "FAIL: packet digest mismatch: DIAGNOSTICS.py",
+      "stdout": ""
+    },
+    {
+      "expected_success": false,
+      "name": "untrusted manifest mutation rejected",
+      "returncode": 1,
+      "status": "PASS",
+      "stderr": "FAIL: caller manifest pin mismatch",
+      "stdout": ""
+    },
+    {
+      "expected_success": false,
+      "name": "wrong selected input rejected",
+      "returncode": 1,
+      "status": "PASS",
+      "stderr": "FAIL: input digest mismatch: SELECTED_PUBLIC_RECORD.json",
+      "stdout": ""
+    },
+    {
+      "expected_success": false,
+      "name": "wrong caller pin rejected",
+      "returncode": 1,
+      "status": "PASS",
+      "stderr": "FAIL: caller manifest pin mismatch",
+      "stdout": ""
+    }
+  ],
+  "diagnostic_sha256": "95cbb031bbe49ce3d1d35a4ccaa5268d26bae23917cad723287fd2f16d31581f",
+  "stage_manifest_sha256": "035a20f18d4c453974603844fbd6b8f0faeafee8b679968a3d6ac8f7e8280375",
+  "status": "PASS",
+  "utc": "2026-10-16T14:01:22.574200+00:00"
+}

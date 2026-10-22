@@ -1,0 +1,7 @@
+# Research log — fresh package round 2
+
+- 2026-10-17 16:47 UTC — 30% complete. Reconstructed exact claim, finite coefficient-envelope argument, shortened counit finish, op/cop, bosonization, and compact-proxy factorization. Saved INDEPENDENT_DERIVATION.md before reading package_round1. No finding.
+- 2026-10-17 16:49 UTC — 80% complete. Fresh primary downloads matched cached sources; actual kit/receipt/manifest integrity passed. Archived verifier matched expected results, refused optimized Python, and five formula mutations failed. Rebuilt source produced text- and render-identical four-page PDF. No finding.
+- 2026-10-17 16:51 UTC — 90% complete. Inspected actual published Greenlees HTML including Lemma 6.5 and Remark 6.6 formulas; confirmed restrained credit and novelty wording. No proof gap or metadata defect found. package_round1 remained unread.
+- 2026-10-17 16:52 UTC — Report-writing checkpoint encountered filesystem space exhaustion. Removed only this review's redundant downloaded primary PDFs, duplicate rebuilt PNGs, mutation copies, and extraction directory, keeping integrity/mutation/render/retrieval receipts and audit scripts. Final publication artifacts untouched. Parent freed its own disposable alternate indexes; reporting resumed.
+- 2026-10-17T16:53:54.231196+00:00 — 100% of assigned bounded review complete. PASS, no actionable issues or required repairs. Final frozen artifact identities rechecked unchanged. No publication, external communication, commit, push, branch change, or external-system mutation performed.

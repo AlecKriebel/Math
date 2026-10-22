@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-22T15:13:35.870859+00:00",
+  "decision": "HOLD",
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "material_concurrency_preservation",
+      "status": "UNRESOLVED",
+      "source": "providers.py:121-124; lifecycle.py:263-289; models.py:225-226",
+      "claim": "Fixed-row batchUpdateByDataFilter can overwrite an unrelated concurrent row after the final read; every current postcondition may still certify success.",
+      "mechanism": "One competing four-string row occupies index=len(before) at the native write delegate edge. The explicit fixed GridRange updates that existing row, leaving before+[ours]. The old-prefix and exactly-one-row tests therefore cannot detect the lost concurrent data.",
+      "independent_physical_result": {
+        "path": "INDEPENDENT_FIXED_RANGE_RACE_RESULT.json",
+        "pin": {
+          "bytes": 7079,
+          "sha256": "8f299dcd6777d2dd1aacba174f4d3deb3bbaede6ca8f05a05aa2e3ac1f4af89c"
+        }
+      },
+      "minimal_resolution": "Use a reviewed server-side atomic append operation with durable one-attempt and GET-only unknown-outcome policy, then reconcile concurrent append order without overwriting. Or exclude frozen05 ledger action and use a separately reviewed append path. Another client-side final read is insufficient."
+    },
+    {
+      "id": "F2",
+      "priority": "material_public_title_consistency",
+      "status": "UNRESOLVED",
+      "source": "native_policy.py:259-281 versus native_policy.py:69",
+      "claim": "The known public root title may contradict intended nested metadata.title while PUBLIC_VERIFIED and LEDGER_VERIFIED still pass.",
+      "mechanism": "Only the existing root title string changes to A different mathematical paper in the fake public GET. Canonical IDs, nested reviewed metadata, native facts, file bytes and DOI resolution remain correct. The public projection and shared metadata verifier ignore the duplicated root title.",
+      "independent_physical_result": {
+        "path": "INDEPENDENT_PUBLIC_TITLE_PHYSICAL_RESULTS.json",
+        "pin": {
+          "bytes": 7860,
+          "sha256": "82514e7428b97f1623863125522188daa69ae8725708366bd878e9b24042218c"
+        }
+      },
+      "minimal_resolution": "Require any supplied known public duplicated title to equal intended title, as legacy validation already does, and document bounded scope of unvalidated public root fields. No invented field is needed for this finding."
+    }
+  ],
+  "actual_service_calls": 0,
+  "no_real_provider_anomaly_demonstrated": true
+}

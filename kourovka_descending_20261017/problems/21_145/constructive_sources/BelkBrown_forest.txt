@@ -1,0 +1,1748 @@
+             Forest Diagrams for Elements of
+                  Thompson’s Group F
+                James M. Belk and Kenneth S. Brown
+                                 June 25, 2004
+
+
+                                     Abstract
+          We introduce forest diagrams to represent elements of Thompson’s
+      group F . These diagrams relate to a certain action of F on the real
+      line in the same way that tree diagrams relate to the standard action of
+      F on the unit interval. Using forest diagrams, we give a conceptually
+      simple length formula for elements of F with respect to the {x0 , x1 }
+      generating set, and we discuss the construction of minimum-length
+      words for positive elements. Finally, we use forest diagrams and the
+      length formula to examine the structure of the Cayley graph of F .
+
+
+1     Introduction
+Thompson’s group F is defined by the following infinite presentation:
+
+                F = hx0 , x1 , x2 , . . . | xn xk = xk xn+1 for n > ki
+
+It is isomorphic to the group PL2 (I) of all piecewise-linear, orientation-
+preserving homeomorphisms of the unit interval satisfying the following con-
+ditions:
+
+    1. All slopes are integral powers of 2, and
+
+    2. All breakpoints have dyadic rational coordinates.
+   The first author was partially supported by an NSF Graduate Research Fellowship.
+The second author was partially supported by NSF grant #0071428.
+
+
+                                          1
+The group F was first studied by Richard J. Thompson in the 1960s. The
+standard introduction to F is [CFP].
+   This paper is organized as follows:
+
+    • In Section 2, we give the necessary background regarding F . In par-
+      ticular, we review how elements of PL2 (I) can be described by tree
+      diagrams.
+
+    • In Section 3, we introduce a group PL2 (R) of piecewise-linear home-
+      omorphisms of the real line that is isomorphic with F . We then show
+      how to represent elements of PL(R) by forest diagrams.
+
+    • In Section 4, we use forest diagrams to examine the lengths of elements
+      of Thompson’s group with respect to the {x0 , x1 } generating set. We
+      begin by studying positive elements, where the situation is quite simple,
+      and then move on to the general length formula.
+
+    • In Section 5, we give some further applications of forest diagrams and
+      the length formula.
+
+Note. Throughout this paper, we will use the following convention for com-
+position of functions:
+                         (f ◦ g)(x) = f (g(x))
+This disagrees with Thompson’s original notation, but it agrees with the
+notation in [CFP].
+
+    We are grateful to the referee for reading the original version of this paper
+so carefully and making many helpful suggestions and comments.
+
+
+2     Background on F
+Most of the results in this section are stated without proof. Details can be
+found in [CFP].
+
+
+
+
+                                       2
+2.1    Tree Diagrams
+Suppose we take the interval [0, 1] and cut it in half, like this:
+
+                                                               
+                                               
+
+
+
+We then cut each of the resulting intervals in half:
+
+                                                             
+                                                       
+
+
+
+and then cut some of the new intervals in half:
+
+                                                            
+                                                       
+
+
+
+to get a certain subdivision of [0, 1]. Any subdivision of [0, 1] obtained in
+this manner (i.e. by repeatedly cutting intervals in half) is called a dyadic
+subdivision.
+    The intervals of a dyadic subdivision are all of the form:
+                          ·          ¸
+                            k k+1
+                              ,            k, n ∈ N
+                            2n 2n
+These are the standard dyadic intervals. We could alternatively define a
+dyadic subdivision as any partition of [0, 1] into standard dyadic intervals.
+   Each element of PL2 (I) can be described by a pair of dyadic subdivisions:
+Proposition 2.1.1. Let f ∈ PL2 (I). Then there exist dyadic subdivisions
+D, R of [0, 1] such that f maps each interval of D linearly onto an interval
+of R.
+Example 2.1.2. Consider the element f ∈ PL2 (I) with graph:
+                                 1
+
+                             3/4
+
+
+
+
+                             1/4
+
+                                 0
+                                     0   1/4       1/2       1
+
+
+
+                                               3
+Then f maps intervals of the subdivision:
+
+                                                   
+                                         
+
+
+
+linearly onto intervals of the subdivision:
+
+                                                   
+                                            
+
+
+
+
+   We can represent dyadic subdivisions of [0, 1] by finite binary trees. For
+example, the subdivision:
+
+                                                           
+                                                    
+
+
+
+corresponds to the binary tree:
+
+
+
+
+Each leaf of this tree represents an interval of the subdivision, and the root
+represents the interval [0, 1]. The other nodes represent standard dyadic
+intervals from intermediate stages of the dyadic subdivision.
+    Combining this observation with proposition 2.1.1, we see that any ele-
+ment f ∈ PL2 (I) can be described by a pair of binary trees. This is called a
+tree diagram for f .
+
+Example 2.1.3. Let f be the element of PL2 (I) from example 2.1.2. Then
+f has tree diagram:
+
+
+
+
+                                          4
+We have aligned the two trees vertically so that corresponding leaves match
+up. By convention, the domain tree appears on the bottom, and the range
+tree appears on the top.
+
+    The tree diagram for an element f ∈ PL2 (I) is not unique. For example,
+all of the following are tree diagrams for the identity:
+
+
+
+
+In general, a reduction of a tree diagram consists of removing an opposing
+pair of carets, like this:
+
+
+
+
+Performing a reduction does not change the element of PL2 (I) described by a
+tree diagram: it merely corresponds to removing an unnecessary “cut” from
+the subdivisions of the domain and range.
+
+Definition 2.1.4. A tree diagram is reduced if it has no opposing pairs of
+carets.
+
+Proposition 2.1.5. Every element of PL2 (I) has a unique reduced tree dia-
+gram.
+
+
+
+
+                                     5
+2.2      Positive Elements and Normal Form
+Recall that F has presentation:
+
+                     F = hx0 , x1 , x2 , . . . | xn xk = xk xn+1 for k < ni
+
+We have previously asserted that F is isomorphic with PL2 (I). One such
+isomorphism is defined as follows:
+
+
+
+
+                                                                              Ä
+
+
+                %
+                                       %
+                                                              %
+
+Note that the domain trees of the xi ’s all have the property that no caret
+has a left child. Such a tree is called a right vine:
+
+
+
+
+Definition 2.2.1. An element of F is positive if it lies in the submonoid
+generated by {x0 , x1 , x2 , . . .}.
+
+Proposition 2.2.2. An element of F is positive if and only if the bottom
+tree of its reduced tree diagram is a right vine.
+
+   It turns out that F is the group of fractions of its positive monoid, in the
+sense that any element of F can be written as pq −1 for some positive p and q.
+More precisely:
+
+Proposition 2.2.3 (Normal Form). Every element of F can be expressed
+uniquely in the form:
+                       xa00 · · · xann x−b
+                                        n
+                                           n
+                                             · · · x−b
+                                                    0
+                                                       0
+
+
+
+where a0 , . . . , an , b0 , . . . , bn ∈ N and:
+
+                                                   6
+    1. Either an > 0 or bn > 0, but not both.
+
+    2. If both ai > 0 and bi > 0, then either ai+1 > 0 or bi+1 > 0.
+    The first half of the normal form is called the positive part of an element,
+and the second half is called the negative part. These halves correspond to
+the two halves of the tree diagram:
+                             · ¸
+                              T+
+Proposition 2.2.4. Let             be the reduced tree diagram for an element
+                              T−
+f ∈ F , and· let ¸V be a right vine with the same number of leaves as · T+ ¸ and
+             T+                                                         V
+T− . Then          is a tree diagram for the positive part of f , and        is a
+              V                                                         T−
+tree diagram for the negative part of f.
+
+
+
+
+3      Forest Diagrams
+It is immediate from the presentation of F that:
+
+                               xn = x1−n
+                                     0   x1 xn−1
+                                             0
+
+for all n ≥ 1. Therefore, F is generated by the two elements {x0 , x1 }.
+    In this section, we describe a group PL2 (R) of self-homeomorphisms of
+the real line that is isomorphic to F , and develop forest diagrams in analogy
+with the development of tree diagrams in the previous section. These forest
+diagrams seem to interact particularly nicely with the {x0 , x1 }-generating
+set.
+    The existence of forest diagrams was noted by K. Brown in [Bro], but the
+pictures themselves have not previously appeared in the literature. They are
+similar to the “diagrams” of V. Guba and M. Sapir (see [GuSa] and [Guba]).
+
+
+
+3.1     The Group PL2 (R)
+Let PL2 (R) be the group of all piecewise-linear, orientation-preserving self-
+homeomorphisms f of R satisfying the following conditions:
+    1. Each linear segment of f has slope a power of 2.
+
+                                       7
+  2. f has only finitely many breakpoints, each of which has dyadic rational
+     coordinates.
+  3. The leftmost linear segment of f is of the form:
+                                   f (t) = t − m
+       and the rightmost segment is of the form:
+                                   f (t) = t − n
+       for some integers m, n.
+The following is well-known:
+Proposition 3.1.1. PL2 (R) is isomorphic with PL2 (I).
+Proof. Let ψ : R → (0, 1) be the piecewise-linear homeomorphism that maps
+the intervals:
+
+               c            c                                   
+
+
+linearly onto the intervals:
+
+
+            Ä                                                 Ä 
+                                                                 
+
+
+Then f 7→ ψ −1 f ψ is the desired isomorphism PL2 (I) → PL2 (R).
+Corollary 3.1.2. PL2 (R) is isomorphic with F . The generators {x0 , x1 } of
+F map to the functions:
+                              x0 (t) = t − 1
+and:
+
+
+                    
+                    t
+                      t≤0                                 1
+         x1 (t) = 21 t 0≤t≤2
+                 
+                  t−1 t≥2                                           2
+                 
+
+
+                                                               %
+
+
+                                      8
+3.2     Forest Diagrams for Elements of PL2 (R)
+We think of the real line as being pre-subdivided as follows:
+
+
+               c           c                                        
+
+
+A dyadic subdivision of R is a subdivision obtained by cutting finitely many
+of these intervals in half, and then cutting finitely many of the resulting
+intervals in half, etc.
+
+Proposition 3.2.1. Let f ∈ PL2 (R). Then there exist dyadic subdivisions
+D, R of R such that f maps each interval of D linearly onto an interval of
+R.
+
+  A binary forest is a sequence (. . . , T−1 , T0 , T1 , . . .) of finite binary trees.
+We depict such a forest as a line of binary trees together with a pointer at T0 :
+
+
+
+
+A binary forest is bounded if only finitely many of the trees Ti are nontrivial.
+   Every bounded binary forest corresponds to some dyadic subdivision of
+the real line. For example, the forest above corresponds to the subdivision:
+
+
+               c c c    c                                      
+                                                                 
+
+
+
+Each tree Ti represents an interval [i, i + 1], and each leaf represents an
+interval of the subdivision.
+    Combining this with proposition 3.2.1, we see that any f ∈ PL2 (R) can
+be represented by a pair of bounded binary forests, together with an order-
+preserving bijection of their leaves. This is called a forest diagram for f .
+
+Example 3.2.2. Let f be the element of PL2 (R) with graph:
+
+
+
+
+                                          9
+                                     2
+
+
+
+
+                             –2           1    2
+                                    –1
+
+
+                                    –2
+
+
+
+
+Then f has forest diagram:
+
+
+
+
+Again, we have aligned the two forests vertically so that corresponding leaves
+match up. By convention, the domain tree appears on the bottom, and the
+range tree appears on the top.
+
+Example 3.2.3. Here are the forest diagrams for x0 and x1 :
+
+
+                 x0 :
+
+
+
+
+                 x1 :
+
+
+
+
+   Of course, there are several forest diagrams for each element of PL2 (R).
+In particular, it is possible to delete an opposing pair of carets:
+
+
+
+
+                                     10
+without changing the resulting homeomorphism. This is called a reduction of
+a forest diagram. A forest diagram is reduced if it does not have any opposing
+pairs of carets.
+Proposition 3.2.4. Every element of PL2 (R) has a unique reduced forest
+diagram.
+Remark 3.2.5. From this point forward, we will only draw the support of
+the forest diagram (i.e. the minimum interval containing both pointers and
+all nontrivial trees), and we will omit the “· · · ” indicators.
+Remark 3.2.6. It is fairly easy to translate between tree diagrams and forest
+diagrams. Given a tree diagram:
+
+
+
+
+we simply remove the outer layer of each tree to get the corresponding forest
+diagram:
+
+
+
+
+                                     11
+The pointers of the forest diagram point to the first trees hanging to the
+right of the roots in the original tree diagram.
+
+
+
+3.3    The Action of {x0 , x1 }
+The action of {x0 , x1 } on forest diagrams is particularly nice:
+Proposition 3.3.1. Let f be a forest diagram for some f ∈ F . Then:
+  1. A forest diagram for x0 f can be obtained by moving the top pointer of
+     f one tree to the right.
+
+  2. A forest diagram for x1 f can be obtained by attaching a caret to the
+     roots of the 0-tree and 1-tree in the top forest of f. Afterwards, the top
+     pointer points to the new, combined tree.
+    If f is reduced, then the given forest diagram for x0 f will always be
+reduced. The forest diagram given for x1 f will not be reduced, however,
+if the caret that was created opposes a caret from the bottom tree. In this
+case, left-multiplication by x1 effectively “cancels” the bottom caret.
+Example 3.3.2. Let f ∈ F have forest diagram:
+
+
+
+
+Then x0 f has forest diagram:
+
+
+
+
+and x1 f has forest diagram:
+
+                                       12
+Example 3.3.3. Let f ∈ F have forest diagram:
+
+
+
+
+Then x0 f has forest diagram:
+
+
+
+
+and x1 f has forest diagram:
+
+
+
+
+                                 13
+Note that the forest diagrams for x0 f and x1 f both have larger support than
+the forest diagram for f .
+
+Example 3.3.4. Let f ∈ F have forest diagram:
+
+
+
+
+Then x1 f has forest diagram:
+
+
+
+
+Note that left-multiplication by x1 canceled the highlighted bottom caret.
+
+Proposition 3.3.5. Let f be a forest diagram for some f ∈ F . Then:
+
+  1. A forest diagram for x−10 f can be obtained by moving the top pointer of
+     f one tree to the left.
+
+  2. A forest diagram for x−1  1 f can be obtained by “dropping a negative
+     caret” at the current position of the top pointer. If the current tree is
+     nontrivial, the negative caret cancels with the top caret of the current
+     tree, and the pointer moves to the resulting left child. If the current
+     tree is trivial, the negative caret “falls through” to the bottom forest,
+     attaching to the specified leaf.
+
+Example 3.3.6.      Let f and g be the elements of F with forest diagrams:
+
+
+
+
+                                    and
+
+
+
+                                     14
+Then x−1       −1
+      1 f and x1 g have forest diagrams:
+
+
+
+
+                                   and
+
+
+
+
+In the first case, the x−1
+                        1 simply removed a caret from the top tree. In the
+second case, there was no caret on top to remove, so a new caret was attached
+to the leaf on the bottom. Note that this creates a new column immediately
+to the right of the pointer.
+
+
+
+3.4    Positive Elements and Normal Form
+There is a close relationship between the normal form of an element and its
+forest diagram. It hinges on the following proposition:
+
+Proposition 3.4.1. Let f be the forest diagram for some f ∈ F , and let
+n > 1. Then a forest diagram for xn f can be obtained by attaching a caret
+to the roots of Tn−1 and Tn in the top forest of f.
+
+Proof. For n > 1, xn = x1−n
+                        0   x1 xn−1
+                                0   .
+
+Corollary 3.4.2. Let f ∈ F , and let f be its reduced forest diagram. Then
+f is positive if and only if:
+
+  1. The entire bottom forest of f is trivial, and
+
+  2. The bottom pointer is at the left end of the support of f.
+
+    Using proposition 3.4.1, it is easy to construct the forest diagram for any
+positive element. It is also possible to find the normal form when given the
+forest diagram:
+
+Example 3.4.3. Suppose f ∈ F has forest diagram:
+
+
+
+
+                                        15
+Then:
+                               f = x20 x1 x23 x4 x38
+Since the top pointer of f is two trees from the left, the normal form of f has
+an x20 . The powers of the other generators are determined by the number of
+carets built upon the corresponding leaf. Note that the carets are constructed
+from right to left.
+    It is not much harder to deal with mixed (non-positive) elements:
+Example 3.4.4. The element:
+                           x30 x2 x25 x7 x−1 −1 −2 −1
+                                          6 x5 x1 x0
+
+has forest diagram:
+
+
+
+
+4     Lengths in F
+In this section, we derive a formula for the lengths of elements of F with
+respect to the {x0 , x1 }-generating set. This formula uses the forest diagrams
+introduced in section 3.
+    Lengths in F were first studied by S. B. Fordham in his 1995 thesis
+(recently published, see [Ford]). Fordham gave a formula for the length of an
+element of F based on its tree diagram. Our length formula can be viewed
+as a simplification of Fordham’s work.
+    V. Guba has recently obtained another length formula for F using the
+“diagrams” of Guba and Sapir. See [Guba] for details.
+
+
+                                        16
+4.1    Lengths of Strongly Positive Elements
+We shall begin by investigating the lengths of strongly positive elements.
+The goal is to develop some intuition for lengths before the statement of the
+general length formula in section 4.2.
+   An element f ∈ F is strongly positive if it lies in the submonoid gener-
+ated by {x1 , x2 , . . .}. Here is a forest diagram for a typical strongly positive
+element:
+
+
+
+
+Note that the entire bottom forest is trivial, and that both pointers are at
+the left end of the support of f .
+   Logically, the results of this section depend on the general length formula.
+In particular, we need the following lemma:
+
+Lemma 4.1.1. Let f ∈ F be strongly positive. Then there exists a minimum-
+length word for f with no appearances of x−1
+                                          1 .
+
+    This lemma is intuitively obvious: there should be no reason to ever create
+bottom carets, or to delete top carets, when constructing a strongly positive
+element. Unfortunately, it would be rather tricky to supply a proof of this
+fact. Instead we refer the reader to corollary 4.3.8, from which the lemma
+follows immediately.
+    From this lemma, we see that any strongly positive element f ∈ F has a
+minimum-length word of the form:
+
+                                xa0n x1 · · · xa01 x1 xa00
+
+where a0 , . . . , an ∈ Z. Since f is strongly positive, we have:
+
+                                a0 + · · · + a n = 0
+
+and
+                                a0 + · · · + a i ≥ 0         (for i = 0, . . . , n − 1)
+
+
+                                           17
+Such words can be represented by words in {x1 , x2 , . . .} via the identifications
+xn = x1−n
+      0   x1 xn−1
+              0   . For example, the word:
+                                           4           6
+                              x−5    −2          −3
+                               0 x1 x0 x1 x0 x1 x0 x1 x0
+
+can be represented by:
+                                          x6 x8 x4 x7
+More generally:
+
+Notation 4.1.2. We will use the word:
+
+                                         xin · · · xi2 xi1
+
+in {x1 , x2 , . . .} to represent the word:
+
+                          x01−in x1 · · · x0i3 −i2 x1 x0i2 −i1 x1 xi01 −1
+
+in {x0 , x1 }.
+
+    Note then that xin · · · xi2 xi1 represents a word with length:
+
+                 (|1 − in | + · · · + |i3 − i2 | + |i2 − i1 | + |i1 − 1|) + n
+
+We now proceed to some examples, from which we will derive a general
+theorem.
+
+Example 4.1.3. Let f ∈ F be the element with forest diagram:
+
+
+
+
+There are only two candidate minimum-length words for f : x3 x8 and x7 x3 .
+Their lengths are:
+
+                          (2 + 5 + 7) + 2 = 16                 for the word x3 x8
+             and          (6 + 4 + 2) + 2 = 14                 for the word x7 x3 .
+                                                                7
+Let’s see if we can explain this. The word x3 x8 = x−2    −5
+                                                    0 x1 x0 x1 x0 corresponds
+to the following construction of f :
+
+                                               18
+  1. Starting at the identity, move right seven times and construct the right
+     caret.
+
+  2. Next move left five times, and construct the left caret.
+
+  3. Finally, move left twice to position of the bottom pointer.
+
+This word makes a total of fourteen moves, crossing twice over each of seven
+spaces:
+
+
+                                                
+
+
+                                               4     2
+    On the other hand, the word x7 x3 = x−6
+                                         0 x1 x0 x1 x0 corresponds to the
+following construction:
+
+  1. Starting at the identity, move right twice and construct the left caret.
+
+  2. Next move right four more times, and construct the right caret.
+
+  3. Finally, move left six times to the position of the bottom pointer.
+
+This word makes only twelve moves:
+
+
+                                                 
+
+
+
+In particular, this word never moves across the space under the left caret. It
+avoids this by building the left caret early. Once the left caret is built, the
+word can simply pass over the space under the left caret without spending
+time to move across it.
+
+Terminology 4.1.4. We call a space in a forest interior if it lies under a tree
+(or over a tree, if the forest is upside-down) and exterior if it lies between
+two trees.
+
+Example 4.1.5. Let f ∈ F be the element with forest diagram:
+
+
+                                         19
+                                                   
+
+
+Clearly, each of the five exterior spaces in the support of f must be crossed
+twice during construction. Furthermore, it is possible to avoid crossing any
+of the interior spaces by constructing carets from left to right. In particular:
+                                      x36 x5 x22
+is a minimum-length word for f . Therefore, f has length:
+                           (5 + 1 + 3 + 1) + 6 = 16
+
+   It is not always possible to avoid crossing all the interior spaces:
+Example 4.1.6. Let f ∈ F be the element with forest diagram:
+
+
+
+                                                 ?
+
+
+
+Clearly, each of the two exterior spaces in the support of f must be crossed
+twice during construction. However, the space marked (?) must also be
+crossed twice, since we must create the caret immediately to its right before
+we can create the caret above it.
+   It turns out that these are the only spaces which must be crossed. For
+example, the word:
+                                  x3 x4 x3 x1
+crosses only these spaces. Therefore, f has length:
+                         (2 + 1 + 1 + 2 + 0) + 4 = 10
+
+   In this last example, we learned that it is not always possible to construct
+carets from left to right. However, if one always constructs the leftmost
+possible caret first, then it is never necessary to move more than one space to
+the left in the middle of the construction. This is the content of the following
+theorem:
+
+                                              20
+Theorem 4.1.7 (Anti-Normal Form). Let f ∈ F be strongly positive.
+Then f can be expressed uniquely in the form:
+
+                                     xin · · · xi2 xi1
+
+where ik+1 ≥ ik − 1 for all k.
+
+   We say that a word:
+                                     xin · · · xi2 xi1
+is in anti-normal form if ik+1 ≥ ik − 1 for each k. On the forest diagram,
+anti-normal form corresponds to constructing the leftmost possible caret at
+each stage.
+    In contrast, the normal form for an element satisfies ik+1 ≤ ik for each k,
+and corresponds to constructing the rightmost possible caret at each stage.
+This explains our terminology.
+    The anti-normal form for a strongly positive element of F is clearly
+minimum-length, since it crosses only those spaces in the forest diagram
+that must be crossed. We can give an explicit length formula by counting
+these spaces:
+
+Theorem 4.1.8. Let f ∈ F be strongly positive. Then the length of f is:
+
+                                     2 n(f ) + c(f )
+
+where n(f ) and c(f ) are defined as follows. Let f be the reduced forest diagram
+for f . Then:
+
+  1. n (f ) is the number of spaces in the support of f that are either exterior
+     or lie immediately to the left of some caret, and
+
+  2. c (f ) is the number of carets in f.
+
+Example 4.1.9.       Let f ∈ F be the element with forest diagram:
+
+
+
+
+                                                     
+
+
+
+
+                                           21
+Then c(f ) = 8 and n(f ) = 5, so f has length 18. The anti-normal form
+for f is:
+                             x4 x25 x4 x2 x3 x21
+Therefore, a minimum-length {x0 , x1 }-word for f is:
+                                    2        2           2 2
+                        x0−3 x1 x−1                −1
+                                 0 x1 x0 x1 x0 x1 x0 x1 x0 x1
+
+
+   Currently, our only algorithm to find the anti-normal form for a strongly
+positive element involves drawing the forest diagram. It is interesting to note
+that an entirely algebraic algorithm is available:
+Theorem 4.1.10. Let f ∈ F be strongly positive, and let w be an expression
+for f as a product of {x1 , x2 , . . .}. Suppose we repeatedly apply operations of
+the form:
+                                  xk xn 7−→ xn−1 xk     (k < n − 1)
+                                                                   µ       ¶
+                                                                     c (f )
+to w. Then we reach the anti-normal form for f after at most                 steps.
+                                                                       2
+Proof. Let C be the set of carets in the reduced forest diagram for f . Suppose
+that:
+                               w = xim · · · xi2 xi1
+Each generator xik appearing in w corresponds to the construction of some
+caret ck of the forest diagram for f . Let < denote the order in which these
+carets are created:
+                              c 1 < c2 < · · · < c m
+Now, the anti-normal form for f is just another word for f in the generators
+{x1 , x2 , . . .}. Let <AN denote the resulting order on C. Note that:
+                    ck <AN ck+1        ⇐⇒          ik − 1 ≤ ik+1
+Therefore, any operation of the form:
+                             xik+1 xik 7−→ xik −1 xik+1          (ik+1 < ik − 1)
+reduces the number:
+                         ¯                                   ¯
+                         ¯ {(c, c′ ) : c <AN c′ but c > c′ } ¯
+
+by exactly one. When this number reaches zero, f is in anti-normal
+                                                            µ ¶ form.
+                                                             |C|
+   Finally, note that the number in question is bounded by       .
+                                                              2
+
+                                          22
+Example 4.1.11. Let’s find the length of the element:
+                                x1 x33 x6 x7 x10
+We put the word into anti-normal form:
+                                x1 x33 x6 x7 x10
+                              = x4 x1 x33 x6 x7       (x10 moved left)
+                              = x4 x32 x5 x6 x1       (x1 moved right)
+                              = x4 x2 x3 x4 x22 x1    (x22 moved right)
+Hence, the length is:
+                    (3 + 2 + 1 + 1 + 2 + 1 + 0) + 7 = 17
+
+
+
+4.2    The Length Formula
+We now give the length formula for a general element of F . Afterwards, we
+will give several examples to illustrate intuitively why the formula works. We
+defer the proof to section 4.3.
+    Let f ∈ F , and let f be its reduced forest diagram. We label the spaces
+of each forest of f as follows:
+  1. Label a space L (for left) if it exterior and to the left of the pointer.
+  2. Label a space N (for necessary) if it lies immediately to the left of some
+     caret (and is not already labeled L).
+  3. Label a space R (for right) if it exterior and to the right of the pointer
+     (and not already labeled N).
+  4. Label a space I (for interior ) if it interior (and not already labeled N).
+We assign a weight to each space in the support of f according to its labels:
+                                 bottom label
+                                  L N R I
+                           top L 2 1 1 1
+                          label N 1 2 2 2
+                                R 1 2 2 0
+                                I 1 2 0 0
+
+                                      23
+Example 4.2.1. Here are the labels and weights for a typical forest diagram:
+
+
+             I   L   L    L    I    R    N     I    R     N   N   I   R
+            1    1   1    2    1    1    2     0    2     2   2   2   0
+            L    N   I    L    L    L     I    I    R     R   N   N   I
+
+
+
+
+Theorem 4.2.2 (The Length Formula). Let f ∈ F , and let f be its
+reduced forest diagram. Then the {x0 , x1 }-length of f is:
+
+                              ℓ(f ) = ℓ0 (f ) + ℓ1 (f )
+
+where:
+
+  1. ℓ0 (f ) is the sum of the weights of all spaces in the support of f, and
+
+  2. ℓ1 (f ) is the total number of carets in f.
+
+Remark 4.2.3. Intuitively, the weight of a space is just the number of times
+it must be crossed during the construction of f . Hence, there ought to exist
+a minimum-length word for f with ℓ0 (f ) appearances of x0 or x−1
+                                                                0 and ℓ1 (f )
+                       −1
+appearances of x1 or x1 . This will be established at the end of the next
+section.
+
+Example 4.2.4. Let f ∈ F be the element from example 4.1.9:
+
+
+
+                 I    I   N    N     I    R    N    I     N   I   I
+                 0    0   2    2    0     2    2    0     2   0   0
+                 R   R    R    R    R     R    R    R     R   R   R
+
+
+
+Then ℓ0 (f ) = 10 and ℓ1 (f ) = 8, so f has length 18.
+
+
+
+
+                                         24
+    In general, suppose f ∈ F is strongly positive,
+                                                  · and
+                                                     ¸ ·let¸f be ·its ¸reduced
+                                                   N     R          I
+forest diagram. Then every space of f is labeled      ,     , or        . Each
+· ¸                                · ¸    · ¸      R     R         R
+  I                                 N      R
+      space has weight 0, and each     or       space has weight 2, so that:
+ R                                  R      R
+
+                                    ℓ0 (f ) = 2 n(f )
+
+and hence:
+                          ℓ0 (f ) + ℓ1 (f ) = 2 n(f ) + c(f )
+Therefore, the length formula of theorem 4.2.2 reduces to theorem 4.1.8 for
+strongly positive elements.
+Example 4.2.5. Let f ∈ F be the element with forest diagram:
+
+
+                      I    R    R     N     I    I      I   N   I
+                      2    0    2     2    2     0      2   2   0
+                      N    I    R     R    N     I      N   I   R
+
+
+
+
+Then ℓ0 (f ) = 12 and ℓ1 (f ) = 10, so f has length 22. One minimum-length
+word for f is:
+                                        3 −1 −1 −1 −1     −1 3
+               x1 x−1 −1    −1 −3
+                   0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0
+
+
+
+   In general, an element f ∈ F is right-sided if it lies in the subgroup
+generated by {x1 , x2 , . . .}. Equivalently, f is right-sided if and only if both
+pointers in the forest diagram for f are at the left edge of the support. Note
+then that every space of a right-sided element is labeled either N, R, or I.
+The weight table for such spaces is:
+                                     bottom label
+                                        N R I
+                                top N 2 2 2
+                               label R 2 2 0
+                                     I 2 0 0
+
+                                           25
+Observe that a space has weight 2 if and only if:
+
+  1. It is exterior on both the top and the bottom, or
+
+  2. It lies immediately to the left of some caret, on either the top or the
+     bottom.
+
+This can be viewed as a generalization of the length formula for strongly
+positive elements. Specifically, if f is right-sided, then:
+
+                               ℓ(f ) = 2 n(f ) + c(f )
+
+where n(f ) is the number of spaces satisfying condition (1) or (2), and c(f )
+is the number of carets of f .
+    As with strongly positive elements, it is intuitively obvious that this is
+a lower bound for the length. Unfortunately, we have not been able to find
+an analogue of the “anti-normal form” argument to show that it is an upper
+bound.
+
+Example 4.2.6. Let f ∈ F be the element with forest diagram:
+
+
+                 I   N     I    L   L    I    I    L     N     I   L
+                1    1     1    2   2    1    1    2     1     1   2
+                L    L     L    L   L    L    L    L     L     L   L
+
+
+
+Then ℓ0 (f ) = 15 and ℓ1 (f ) = 7, so f has length 22.
+    It is interesting to note that every interior space of f has weight 1: for
+trees to the left of the pointer, one cannot avoid crossing interior spaces at
+least once. Specifically, each caret is created from its left leaf, and we must
+move to this leaf somehow.
+    One minimum-length word for f is
+
+                         x40 x21 x−2    −3 2 −3     −1    −2
+                                  0 x1 x0 x1 x0 x1 x0 x1 x0
+
+Note that this word creates carets right to left.
+
+Example 4.2.7. Let f ∈ F be the element with forest diagram:
+
+
+                                         26
+           L    I   N    I    L   N    I        L   L   I   R   N   N   I
+           1   0    1    1    2   2    1        1   1   0   2   2   2   0
+           I    I   L    L    L    I   L        R   R   R   R   N   I   I
+
+
+
+Then ℓ0 (f ) = 16 and ℓ1 (f ) = 13, so f has length 29. One minimum-length
+word for f is:
+                           −2 2     3 2
+          x−2     −1                         −2 −1    −2    −1       −1 −1
+            0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0
+                                    · ¸
+                                      L
+This is our first example with              pairs: note that they only need to be
+                                      R
+crossed once. Also note how it affects the length to· have  ¸ bottom trees to the
+                                                          N
+left of the pointer. In particular, observe that the          pair to the left of the
+                                                          I
+pointers must crossed twice.
+
+
+
+4.3     The Proof of the Length Formula
+We prove the length formula using the same technique as Fordham [Ford]:
+Theorem 4.3.1. Let G be a group with generating set S, and let ℓ : G → N
+be a function. Then ℓ is the length function for G with respect to S if and
+only if:
+   1. ℓ(e) = 0, where e is the identity of G.
+
+   2. |ℓ(sg) − ℓ(g)| ≤ 1 for all g ∈ G and s ∈ S.
+
+   3. If g ∈ G \ {e}, there exists an s ∈ S ∪ S −1 such that ℓ(sg) < ℓ(g).
+Proof. Conditions (1) and (2) show that ℓ is a lower bound for the length,
+and condition (3) shows that ℓ is an upper bound for the length.
+    Let ℓ denote the function defined on F specified by Theorem 4.2.2. Clearly
+ℓ satisfies condition (1). To show that ℓ satisfies conditions (2) and (3), we
+need only gather information about how left-multiplication by generators
+affects the function ℓ.
+
+                                           27
+Terminology 4.3.2. If f ∈ F , the current tree of f is the tree in forest
+diagram indicated by the top pointer. The right space of f is the space
+immediately to the right of the current tree, and the left space of f is the
+space immediately to the left of the current tree.
+   Note that, if the top pointer is at the right edge of the support of f , then
+the right space of f has no label. Similarly, if the top pointer is at the left
+edge of the support, then the left space of f has no label.
+Proposition 4.3.3. If f ∈ F , then ℓ(x0 f ) = ℓ(f ) ± 1. Specifically, ℓ(x0 f ) =
+ℓ(f ) − 1 unless one of the following conditions holds:
+  1. x0 f has larger support than f .
+  2. The right space of f has bottom label L, and left-multiplication by x0
+     does not remove this space from the support.
+                                     · ¸
+                                      R
+  3. The right space of f is labeled    .
+                                      I
+Proof. Clearly ℓ1 (x0 f ) = ℓ1 (f ). As for ℓ0 , note that the only space whose
+label changes is the right space of f .
+    Case 1 : Suppose x0 f has larger· ¸ support than f . Then the right space
+                                     L
+of f is unlabeled, and has label         in x0 f . Hence ℓ0 (x0 f ) = ℓ0 (f ) + 1.
+                                     R
+    Case 2 : Suppose
+               · ¸       x0 f has smaller support than f . Then the right space
+                R
+of f has label     , but becomes unlabeled in x0 f . Hence ℓ0 (x0 f ) = ℓ0 (f )−1.
+                L
+    Case 3 : Suppose x0 f has the same support as f . Then the right space
+of f has top label N or R, but top label L in x0 f . The relevant rows of the
+weight table are:
+                                    bottom label
+                                     L N R I
+                            top    L 2 1 1 1
+                           label   N 1 2 2 2
+                                   R 1 2 2 0
+Each entry of the N and R rows differs from the corresponding entry of the
+L row by exactly one. In particular, moving from an R or N row to ·an ¸L row
+                                                                    R
+only increases the weight when in the L column or when starting at      .
+                                                                    I
+
+                                        28
+Corollary 4.3.4. Let f ∈ F . Then ℓ(x−1
+                                     0 f ) < ℓ(f ) if and only if one of the
+following conditions holds:
+  1. x−1
+      0 f has smaller support than f .
+                                   · ¸
+                                    L
+  2. The left space of f has label    .
+                                    L
+                                   · ¸
+                                    L
+  3. The left space of f has label    , and the current tree is trivial.
+                                    I
+Proposition 4.3.5. Let f ∈ F . If left-multiplying f by x1 cancels a caret
+from the bottom forest, then ℓ(x1 f ) = ℓ(f ) − 1.
+Proof. Clearly ℓ1 (x1 f ) = ℓ1 (f )−1. We must show that ℓ0 remains unchanged.
+· ¸Note first that the right space of f is destroyed. This space has label
+  R
+     , and hence has weight 0. Therefore, its destruction does not affect ℓ0 .
+  I
+    The only other space affected is the left space of f . If this space is not in
+the support of f , it remains unlabeled throughout. Otherwise, observe that
+it must have top label L in both f and x1 f . The relevant row of the weight
+table is:
+                                     L N R I
+                                 L 2 1 1 1
+In particular, the only important property of the bottom label is whether or
+not it is an L. This property is unaffected by the deletion of the caret.
+Proposition 4.3.6. Let f ∈ F , and suppose that left-multiplying f by x1
+creates a caret in the top forest. Then ℓ(x1 f ) = ℓ(f ) ± 1.· Specifically,
+                                                                     ¸
+                                                                   R
+ℓ(x1 f ) = ℓ(f ) − 1 if and only if the right space of f has label    .
+                                                                   R
+Proof. Clearly ℓ1 (x1 f ) = ℓ1 (f ) + 1. As for ℓ0 , observe that the only space
+whose label could change is the right space of f .
+    Case 1 : Suppose x1 f has larger· ¸ support than f . Then the right space
+                                      I
+of f is unlabeled, but has label         in x1 f . This does not affect the value
+                                     R
+of ℓ0 .
+    Case 2 : Otherwise, note that the right space of f has top label N or
+R. If the top label is an N, it remains and N in x1 f . If it is an R, then it
+changes to an I. The relevant rows of the weight table are:
+
+                                       29
+                                   bottom label
+                                    L N R I
+                             top
+                            label R 1 2 2 0
+                                  I 1 2 0 0
+Observe that the weight decreases by two if the bottom label is an R, and
+stays the same otherwise.
+   We have now verified condition (2). Also, we have gathered enough in-
+formation to verify condition (3):
+Theorem 4.3.7. Let f ∈ F be a nonidentity element.
+   1. If current tree of f is nontrivial, then either ℓ(x−1
+                                                         1 f ) < ℓ(f ), or ℓ(x0 f ) < ℓ(f ).
+
+   2. If left-multiplication by x1 would remove a caret from the bottom tree,
+      then ℓ(x1 f ) < ℓ(f ).
+   3. Otherwise, either ℓ(x0 f ) < ℓ(f ) or ℓ(x−1
+                                               0 f ) < ℓ(f ).
+
+Proof.                                                                           · ¸
+                                                                                  R
+   Statement 1 :    If ℓ(x−1                                      −1
+                          1 f ) > ℓ(f ), then the right space of x1 f has type      .
+                                              ·          ¸                        R
+                                               R or N
+The right space of f therefore has type                   , so that ℓ(x0 f ) < ℓ(f ).
+                                               R or N
+    Statement 2 : See proposition 4.3.5.
+    Statement 3 : Suppose ℓ(x0 f ) > ℓ(f ). There are three cases:
+    Case 1 : The right· ¸space· ¸of f ·is not
+                                           ¸ in the support of f . Then the left
+                        L      L         L
+space of f has label       ,      , or      . In all three cases, ℓ(x−1
+                                                                      0 f ) < ℓ(f ).
+                       R       L         I
+    Case 2 : The right space of f has bottom label L, and right-multiplication
+by x0 does not remove
+                 · ¸ this · ¸space from the support. Then the left space of f
+                   L        L
+must have label        or      , and hence ℓ(x−1 0 f ) < ℓ(f ).
+                   L         I                   · ¸
+                                                   R
+    Case 3 : The right space of f has label            . Then the tree immediately
+                                                   I
+to the right of the top pointer is trivial, and the bottom leaf under it is a
+right leaf. If the bottom leaf under the top pointer were a left leaf, then
+left-multiplying f by x1 would ·cancel ¸ a caret. Hence, it is also a right leaf,
+                                     L
+so the left space of f has label        . We conclude that ℓ(x−1  0 f ) < ℓ(f ).
+                                     I
+
+                                         30
+Corollary 4.3.8. Let f ∈ F , and let f be the reduced forest diagram for
+f . Then there exists a minimum-length word w for f with the following
+properties:
+  1. Each instance of x1 in w creates a top caret of f.
+
+  2. Each instance of x−1
+                       1 in w creates a bottom caret of f.
+
+In particular, w has ℓ1 (f ) instances of x1 or x−1
+                                                 1 , and ℓ0 (f ) instances of
+x0 or x−1
+       0  .
+Proof. By the previous theorem, it is always possible to travel from f to the
+identity in such a way that each left-multiplication by x1 deletes a bottom
+caret and each left-multiplication by x−1
+                                       1 deletes a top caret.
+
+    Of course, not every minimum-length word for f is of the given form. We
+will discuss this phenomenon in the next section.
+
+
+
+4.4    Minimum-Length Words
+In principle, the results from the last section specify an algorithm for finding
+minimum-length words. (Given an element, find a generator which shortens
+it. Repeat.) In practice, though, no algorithm is necessary: one can usually
+guess a minimum-length word by staring at the forest diagram. Our goal in
+this section is to convey this intuition.
+Example 4.4.1. Let f be the element of F with forest diagram:
+
+
+
+
+Then there is exactly one minimum-length word for f , namely:
+
+                                x−3
+                                 0 ux0 ux0 ux0
+
+where u = x21 x−1
+                0 x1 x0 . Note that the trees of f are constructed from left to
+right.
+    Similarly, f −1 has forest diagram:
+
+                                      31
+and the only minimum-length word for f −1 is:
+                               −1 −1 −1 −1 −1 3
+                           x−1
+                            0 u x0 u x0 u x0
+
+Note that the trees of f −1 are constructed from right to left.
+
+Example 4.4.2.       Let f be the element of F with forest diagram:
+
+
+
+
+There are precisely four minimum-length words for f :
+
+                              x−3
+                               0 v x0 v x0 v x0
+                                                2
+                              x0 v x−2
+                               −1
+                                    0 v x0 v x0
+                                           2
+                              x−2   −1
+                               0 v x0 v x0 v x0
+                                                  3
+                              x−1   −1     −1
+                               0 v x0 v x0 v x0
+
+
+where v = x21 x−1 −1    −1
+               0 x1 x0 x1 . In particular, each of the first two components
+can be constructed either when the pointer is moving right, or later when
+the pointer is moving back left.
+
+Example 4.4.3. Let f be the element of F with forest diagram:
+
+
+
+
+                                       32
+There are precisely two minimum-length words for f :
+
+                         x−2
+                          0 u   x0 x1 x0 v x20 u x0
+                              −1 −2
+
+                                               3
+                         x−2
+                          0 u
+                              −1 −1
+                                x0 v x−1
+                                      0 x1 x0 u x 0
+
+
+where u = x21 x−1               2 −1 −1     −1
+               0 x1 x0 and v = x1 x0 x1 x0 x1 . Note that the first component
+must always be constructed on the journey right, and the second component
+must always be constructed on the journey left. The only choice lies with the
+construction of the third component: should it be constructed when moving
+right, or should it be constructed while moving back left?
+
+   In general, certain components act like “top trees” while others act like
+“bottom trees”, while still others are “balanced”. For example, the forest
+diagram:
+
+
+
+                                                        
+
+
+
+
+must be constructed from left to right (so all the components act like “top
+trees”). The reason is that the three marked spaces each have weight 0,
+so that each of the three highlighted carets must be constructed before the
+pointer can move farther to the right. Essentially, the highlighted carets are
+acting like bridges over these spaces.
+    The idea of the “bridge” explains two phenomena we have already ob-
+served. First, consider the following contrapositive of proposition 4.3.6:
+
+Proposition 4.4.4. Let f ∈ F¡, and¢suppose that the top pointer of f points
+                               −1
+                    ¸ Then ℓ x1 f < ℓ(f ) unless the resulting uncovered
+at a nontrivial ·tree.
+                 R
+space has type       .
+                 R
+   This proposition states conditions under which the destruction of a top
+caret decreases the length of an element. Essentially, the content of the
+proposition is that it makes sense to delete a top caret unless that caret is
+functioning as a bridge. (Note that the deletion of any of the bridges in the
+
+
+                                        33
+                                     · ¸
+                                      R
+example above would result in an           space.) It makes no sense to delete a
+                                      R
+bridge, since the bridge is helping you access material further to the right.
+     Next, recall the statement of corollary 4.3.8: every f ∈ F has a minimum-
+length word with ℓ1 (f ) instances of x1 or x−1 1 and ℓ0 (f ) instances of x0 or
+  −1
+x0 . After the corollary, we mentioned that not every minimum-length word
+for f is necessarily of this form. The reason is that it sometimes makes sense
+to build bridges during the creation of an element:
+Example 4.4.5. Let f be the element of F with forest diagram:
+
+
+
+
+Then one minimum-length word for f is:
+
+                                 x20 x−1 −5    4
+                                      1 x0 x1 x0
+
+This word corresponds to the instructions “move right, create the top caret,
+move left, create the bottom caret, and then move back to the origin”. How-
+ever, here is another minimum-length word for f :
+
+                          x20 x−1  −1 −3 −1         3
+                               1 (x0 x1 x0 )x1 (x0 x1 )
+
+In this word, the “move right” is accomplished by building three temporary
+bridges:
+
+
+
+
+These bridges are torn down during the “move left”.
+   Finally, here is a third minimum-length word for f :
+                                2 −1 −2         3
+                            x−3
+                             1 x0 x1 x0 x1 (x0 x1 )
+
+In this word, bridges are again built during the “move right”, but they aren’t
+torn down until the very end of the construction.
+
+                                       34
+   We now turn our attention to a few examples with some more complicated
+behavior.
+Example 4.4.6.      Let f be the element of F with forest diagram:
+
+
+
+
+There are four different minimum-length words for f :
+                                  2           2           2
+                     x−3    −1          −1          −1
+                      0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0
+                                         2           2    2
+                     x−1    −3    −1          −1
+                      0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0
+                                         2    2           2
+                     x−2    −2    −1                −1
+                      0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0
+                                                2    2    2
+                     x−1    −2    −2     −1
+                      0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0
+
+Note that each of the first two components may be either partially or fully
+constructed during the move to the right. This occurs because the trees in
+this example do not end with bridges. (Compare with example 4.4.1.)
+Example 4.4.7.      Let f be the element of F with forest diagram:
+
+
+
+
+There is exactly one minimum-length word for f :
+                      x−1 −1 −3             −1    −1
+                       0 x1 x0 x1 x0 x1 x0 x1 x0 x1 x0
+
+Note that the highlighted caret must be constructed last, since the space it
+spans should not be crossed. However, we must begin by partially construct-
+ing the first component, because of the bridge on its right end.
+
+
+
+5    Applications
+This section contains various applications of forest diagrams and the length
+formula.
+
+                                      35
+5.1     Dead Ends and Deep Pockets
+In [ClTa1], S. Cleary and J. Taback prove that F has “dead ends” but no
+“deep pockets”. In this subsection, we show how forest diagrams can be used
+to understand these results.
+
+Definition© 5.1.1. A dead ªend is an element f ∈ F such that ℓ(xf ) < ℓ(f )
+for all x ∈ x0 , x1 , x−1   −1
+                       0 , x1  .
+
+Example 5.1.2. Consider the element f ∈ F with forest diagram:
+
+
+
+
+Left-multiplying
+·   ¸             by x−1
+                       0 decreases the length since the left space of f is of type
+  L
+     . Left-multiplying by x0 or x1 decreases the length since the right space
+  L              · ¸
+                   R
+of f is of type       . Finally, left-multiplying by x−1
+                                                       1   decreases the length
+                   R                                                       · ¸
+                                                      −1                     R
+since it deletes a top caret and the right space of x1 f is not of type         .
+                                                                             R
+   This example is typical:
+
+Proposition 5.1.3. Let f ∈ F . Then f is a dead end if and only if:
+
+  1. The current tree of f is nontrivial,
+                                   · ¸
+                                    L
+  2. The left space of f has label    ,
+                                    L
+                                    · ¸
+                                     R
+  3. The right space of f has label      , and
+                                     R
+                                                     · ¸
+                                                      R
+  4.   The right space of x−1
+                           1 f does not have label      .
+                                                      R
+Proof. The “if” direction is trivial. To prove the “only if” direction, assume
+that f is a dead end. Then:
+
+                                       36
+                                           ¡    ¢
+Condition (1) follows from the fact that ℓ x−1
+                                             1 f < ℓ(f ) (see proposition
+    4.3.5).
+                                              ¡    ¢
+Condition (2) now follows from the fact that ℓ x−1
+                                                0 f < ℓ(f ) (see corollary
+    4.3.4).
+Condition (3) now follows from the fact that ℓ(x1 f ) < ℓ(f ) (see proposi-
+    tion 4.3.6).
+                                              ¡     ¢
+Condition (4) now follows from the fact that ℓ x−1
+                                                1 f < ℓ(x1 f ) (see propo-
+    sition 4.3.6).
+
+
+    Note that there are·several
+                          ¸     ways to meet condition (4): the right space
+                                                                          · ¸of
+                        R                                                  R
+x−1
+ 1 f could be of type       (as in example 5.1.2), or it could be of type     :
+                        L                                                  I
+
+
+
+
+or it could just have an N on top:
+
+
+
+
+    Notice, also, that the proof of proposition 5.1.3 never used the fact that
+ℓ (x0 f ) < ℓ(f ). In particular, if the length of f increases when you left-
+multiply by x1 , x−1        −1
+                   1 , and x0 , then f must be a dead end.
+
+Definition 5.1.4. Let k ∈ N. A k-pocket of F is an element f ∈ F such
+that:
+                                      ℓ(s1 · · · sk f ) ≤ ℓ(f )
+                         ©                        ª
+for all s1 , . . . , sk ∈ x0 , x1 , x0 , x−1
+                                     −1
+                                          1 ,1 .
+
+
+                                      37
+   A 2-pocket in F is just a dead end. S. Cleary and J. Taback demonstrated
+that F has no k-pockets for k ≥ 3. We give an alternate proof:
+
+Proposition 5.1.5. F has no k-pockets for k ≥ 3.
+
+Proof.· Let
+         ¸ f ∈ F be a dead-end element. Then the right space of f has
+       R
+label      , so the tree to the right of the top pointer is trivial. Therefore,
+       R
+repeatedly left-multiplying x0 f by x−1
+                                      1 will create negative carets:
+
+
+
+
+In particular, x−1 −1
+                1 x1 x0 f has length ℓ(f ) + 1.
+
+
+
+
+5.2     Growth
+We can use forest diagrams to calculate the growth function of the positive
+monoid with respect to the {x0 , x1 }-generating set. Burillo [Bur] recently
+arrived at the same result using tree diagrams and Fordham’s length formula:
+
+Theorem 5.2.1. Let pn denote the number of positive elements of length n,
+and let:                           ∞
+                                  X
+                          p(x) =     p n xn
+                                       n=0
+
+Then:
+                                         1 − x2
+                          p(x) =
+                                    1 − 2x − x2 + x3
+In particular, pn satisfies the recurrence relation:
+
+                          pn = 2pn−1 + pn−2 − pn−3
+
+for all n ≥ 3.
+
+Proof. Let Pn be the set of all positive elements of length n. Define four
+subsets of Pn as follows:
+
+                                      38
+  1. An = {f ∈ Pn : the current tree of f is trivial and is not the leftmost
+     tree}
+
+  2. Bn = {f ∈ Pn : the current tree of f is nontrivial, but its right subtree
+     is trivial}
+
+  3. Cn = {f ∈ Pn : the current tree of f is trivial and is the leftmost tree.}
+
+  4. Dn = {f ∈ Pn : the current tree of f is nontrivial, and so is its right
+     subtree.}
+
+   Given an element of An , we can remove the current tree and move the
+pointer left, like this:
+
+
+
+
+This defines a bijection An → Pn−1 , so that:
+
+                                |An | = |Pn−1 |
+
+   Given an element of Bn , we can remove the top caret together with the
+resulting trivial tree, like this:
+
+
+
+
+This defines a bijection Bn → Pn−1 , so that:
+
+                                |Bn | = |Pn−1 |
+
+   Given an element of Cn , we can move both the top and bottom arrows
+one space to the right, like this:
+
+
+
+                                      39
+When n ≥ 2, this defines an injection ϕ : Cn → Pn−2 . The image of ϕ is all
+elements of Pn−2 whose current tree is the first tree.
+   Finally, given an element of Dn , we can remove the top caret and move
+the pointer to the right subtree, like this:
+
+
+
+
+This defines an injection ψ : Dn → Pn−2 . The image of ψ is all elements of
+Pn−2 whose current tree is nontrivial, and is not the first tree. In particular:
+
+                        (im ϕ) ∪ (im ψ) = Pn−2 − An−2
+
+so that:
+               |Cn | + |Dn | = |Pn−2 | − |An−2 | = |Pn−2 | − |Pn−3 |
+This proves that pn satisfies the given recurrence relation for n ≥ 3. It is not
+much more work to verify the given expression for p(x).
+
+5.3    The Isoperimetric Constant
+Let G be a group with finite generating set Σ, and let Γ denote the Cayley
+graph of G with respect to Σ. If S ⊂ G, define:
+
+                    δS = {edges in Γ between S and S c }
+
+The isoperimetric constant of G is defined as follows:
+                              ½                         ¾
+                                |δS|
+               ι (G, Σ) = inf        : S ⊂ G and |S| < ∞
+                                 |S|
+
+                                        40
+The group G is amenable if and only if ι (G, Σ) = 0.
+    Guba [Guba] recently proved that ι (F, {x0 , x1 }) ≤ 1. We have obtained
+a slightly better estimate:
+
+Proposition 5.3.1. ι (F, {x0 , x1 }) ≤ 1/2.
+
+Sketch of Proof. Define the height of a binary tree to be length of the longest
+descending path starting at the root and ending at a leaf. Define the width of
+a binary forest to be the number of spaces in its support. For each n, k ∈ N,
+let Sn,k denote all positive elements whose forest diagram has width at most n
+and all of whose trees have height at most k. One can show that:
+
+                                    |δSn,k |   1
+                             lim lim         =
+                            k→∞ n→∞ |Sn,k |    2
+
+
+
+
+5.4    Convexity
+A group G is convex (with respect to some generating set) if the n-ball B n (G)
+is a convex subset of the Cayley graph of G for each n. Very few groups are
+convex, but Cannon [Can] has introduced the following weaker property:
+
+Definition 5.4.1. A group G is almost convex (with respect to some gen-
+erating set) if there exists an integer L having the following property: given
+any x, y ∈ B n (G) a distance two apart, there exists a path from x to y in
+B n (G) of length at most L.
+
+   The convexity of F was first investigated by S. Cleary and J. Taback
+[ClTa2], who proved that F is not almost convex with respect to {x0 , x1 }.
+Recently, J. Belk and K. Bux [BeBu] have applied forest diagrams and the
+length formula to show that F is maximally nonconvex. Specifically:
+
+Theorem 5.4.2. For each n ∈ N, let ln be the element of F with forest
+diagram:
+
+
+
+
+                                       41
+                                  
+
+
+
+
+and let rn = x20 ln . Then ln and rn each have length 2n + 2, and the shortest
+path from ln to rn inside the (2n + 2)-ball has length 4n + 4.
+                                                         · ¸
+                                                          R
+Sketch of Proof. : Since the right space of ln has label     , x0 ln has greater
+                                                          I
+length than ln :
+
+
+           R    N   I               L       N      I        L   L    I
+           0    2   0                 1     2      0        1    1   0
+           I    R   R                 I     R      R        I   R    R
+
+                                        %                  
+
+In particular, the path:
+                                ln — x0 ln — rn
+does not remain within the (2n + 2)-ball.
+   Intuitively, if one wants to get from ln to rn while remaining inside the
+(2n + 2)-ball, one must begin by moving all the way to the left and removing
+the accessible bottom caret. Taking this idea further, we might guess that
+the following path of length 4n + 4 is minimal:
+  1. Move left n − 1 spaces, and delete the leftmost bottom caret.
+  2. Move right n spaces, and delete the top caret.
+  3. Move left n spaces, and re-create the leftmost bottom caret.
+  4. Move right n + 1 spaces, and re-create the top caret.
+This is in fact the case (see [BeBu]).
+
+
+
+                                          42
+References
+[BeBu] James Belk and Kai-Uwe Bux. “Thompson’s Group F is Maximally
+       Nonconvex”. Preprint (2003), arXiv:math.GR/0301141.
+
+[Bro]    Kenneth S. Brown. “Finiteness Properties of Groups”. J. Pure Appl.
+         Algebra 44 (1987), 45–75.
+
+[Bur]    José Burillo. “Growth of Positive Words in Thompson’s Group F ”.
+         Preprint (2003).
+
+[Can]    James W. Cannon. “Almost Convex Groups”. Geom. Dedicata 22
+         (1987), 197–210.
+
+[CFP]    J. W. Cannon, W. J. Floyd, and W. R. Parry. “Introductory Notes
+         to Richard Thompson’s Groups”. L’Enseignement Mathmatique 42
+         (1996), 215–256.
+
+[ClTa1] Sean Cleary and Jennifer Taback. “Combinatorial Properties of
+        Thompson’s Group F ”. Trans. Amer. Math. Soc. 356 (2004), 2825–
+        2849.
+
+[ClTa2] Sean Cleary and Jennifer Taback. “Thompson’s Group F is not Al-
+        most Convex”. J. Algebra 270 (2003), no. 1, 133–149.
+
+[Ford]   S. Blake Fordham. “Minimal Length Elements of Thompson’s Group
+         F ”. Geom. Dedicata 99 (2003), 179–220.
+
+[GuSa] Victor Guba and Mark Sapir. “Diagram Groups”. Mem. Amer. Math
+       Soc. 130 (1997), no. 620, 1–117.
+
+[Guba] Victor Guba. “On the Properties of the Cayley Graph of Richard
+       Thompson’s Group F ”. Preprint (2002), arXiv:math.GR/0211396.
+
+
+
+
+                                    43
+

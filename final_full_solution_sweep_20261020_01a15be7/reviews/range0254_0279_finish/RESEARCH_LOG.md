@@ -1,0 +1,11 @@
+# PR254–279 independent coverage review: final follow-up
+
+2026-10-21T03:20:47.961301+00:00 — 0% of this independent completion pass. The preceding 95% review is preserved as evidence, not assumed correct. Scope: classification, exact original-source/PR/DOI identity, deposited-package integrity and repair provenance; no new mathematical-correctness or priority certificate. All follow-up writes are restricted to this folder. No provider, Git, Sheet or Zenodo mutations are authorized.
+
+2026-10-21T03:20:47.961306+00:00 — 20%. Original checker read in full. It has one receipt write, so the replay redirects that output here and preserves its original input directory. Read-only Git queries disable optional locks; pdftotext writes to stdout. Its other controls are unchanged. Existing GWS helper syntax was read; missing shared skill will not be generated because generation is explicitly prohibited.
+
+2026-10-21T03:24:21.742325+00:00 — 90%. All 459 original controls pass; all 26 PRs and four public-record metadata/DOI readbacks are unchanged. Open-ended GWS A:AQ returns 173 populated rows with every value unchanged. Independent diff-row classification and unique identifier/alias/PR/DOI ledger leads agree. Five primary PDF pins and exact scoped theorem statements were reread; provenance addenda preserve historical receipt fields. Final report remains.
+
+2026-10-21T03:25:33.135963+00:00 — 90%. All 459 original controls pass; all 26 PRs and four public-record metadata/DOI readbacks are unchanged. Open-ended GWS A:AQ returns 173 populated rows with every value unchanged. Independent diff-row classification and unique identifier/alias/PR/DOI ledger leads agree. Five primary PDF pins and exact scoped theorem statements were reread; provenance addenda preserve historical receipt fields. Final report remains.
+
+2026-10-21T03:26:42.685892+00:00 — 100% of the assigned independent classification/publication-coverage review. Final report and original-source qualification comparison complete. Both independent receipts pass: 459 replayed controls plus 235 follow-up controls. No blocking issue; live keyword enrichment and preserved receipt-provenance caveats are explicit. All prior artifacts preserved; only this follow-up folder was written. Broader mathematical discovery progress is not assessed by this review.

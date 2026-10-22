@@ -1,0 +1,19 @@
+--- independent_pilot_shared_traceback_filename
++++ independent_final_own_source_filename
+@@ -5,12 +5,13 @@
+ from pathlib import Path
+ 
+ HERE=Path(__file__).resolve().parent
+-SOURCE=HERE.parents[1]/'resweep_draft_statuses_900_1000.py'
++SOURCE=HERE/'resweep_draft_statuses_900_1000.py'
++SHARED_SOURCE=HERE.parents[1]/SOURCE.name
+ PIN='fc8ef5d6493c0088d94441e3a1876b9dc99bbaef84a98320647b84d15d5d048e'
++if hashlib.sha256(SHARED_SOURCE.read_bytes()).hexdigest()!=PIN:
++ raise RuntimeError('Unconditional external whole-source pin mismatch BEFORE compile')
+ raw=SOURCE.read_bytes()
+ if hashlib.sha256(raw).hexdigest()!=PIN:
+- raise RuntimeError('Unconditional external whole-source pin mismatch BEFORE compile')
+-if hashlib.sha256((HERE/SOURCE.name).read_bytes()).hexdigest()!=PIN:
+  raise RuntimeError('Unconditional local backing-copy pin mismatch BEFORE compile')
+ ap=argparse.ArgumentParser();ap.add_argument('--output',required=True);args=ap.parse_args()
+ OUT=HERE/args.output

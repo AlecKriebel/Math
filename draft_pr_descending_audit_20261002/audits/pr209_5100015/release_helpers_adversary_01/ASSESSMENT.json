@@ -1,0 +1,289 @@
+{
+  "schema": "pr209-release-helper-assessment-v1",
+  "reviewer": "release_helpers_adversary_01",
+  "completed_utc": "2026-10-16T05:54:47.427295+00:00",
+  "verdict": "REPAIRS_REQUIRED",
+  "scope": {
+    "operative_sources": [
+      "append_verified_tracker.py",
+      "integrate_reviewed_pr.py",
+      "publish_preprint.py",
+      "release_binding.py",
+      "verify_and_merge.py",
+      "verify_published_readonly.py"
+    ],
+    "candidate_directory": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/publication",
+    "reviewed_snapshot_directory": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr209_5100015/release_helpers_adversary_01",
+    "review_kind": "independent source plus exact-caller isolated synthetic adversarial controls",
+    "scientific_whole_package_clearance": false,
+    "no_live_release_actions": true,
+    "release_authority_granted": false
+  },
+  "case_completion_percent": 45,
+  "helper_audit_completion_percent": 100,
+  "frozen_sources": [
+    {
+      "path": "append_verified_tracker.py",
+      "bytes": 6075,
+      "sha256": "f7425b615ca762a0a580d1aa94774e067e7aea03add406c25cca7b6d2e127802"
+    },
+    {
+      "path": "integrate_reviewed_pr.py",
+      "bytes": 15791,
+      "sha256": "b5225c370524579a0b37b27117c71eb09ecb6219cc43bc9c89ec5fcf1e9552b7"
+    },
+    {
+      "path": "publish_preprint.py",
+      "bytes": 5335,
+      "sha256": "f8f4f354d3eb9e7d3428c8c40a9de9fd5244cba0c3db65e747fdea98849b5e34"
+    },
+    {
+      "path": "release_binding.py",
+      "bytes": 10449,
+      "sha256": "98eb34be6f3fe3ff3d56386d0faa77f0a21d52ba0daef1ef0a33c591def14b2d"
+    },
+    {
+      "path": "verify_and_merge.py",
+      "bytes": 8635,
+      "sha256": "5bc6a7dbf3c031e5a2de11d399496b91a11a4184cbece71a9c039e851b1c5aa4"
+    },
+    {
+      "path": "verify_published_readonly.py",
+      "bytes": 4367,
+      "sha256": "05b5e494de791a03fa876da2b777e8891cf145ff67fc78aac9fb9221ec774a8b"
+    }
+  ],
+  "frozen_adaptation_provenance": {
+    "bytes": 2161,
+    "sha256": "9424781a4fc7605223786cdd8b65a38dde173f155e352c8ed9e6dada705dcd47"
+  },
+  "mandatory_findings": [
+    {
+      "id": "RH209-M01",
+      "classification": "mandatory",
+      "status": "open",
+      "title": "Review counters do not authenticate new sequential whole-package reviews",
+      "source": "release_binding.py",
+      "source_lines": [
+        46,
+        71
+      ],
+      "probe_labels": [
+        "counter_only_clearance"
+      ],
+      "required_fix": "Require sealed, ordered, exact-package whole-review evidence and finding dispositions, then obtain new source review.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    },
+    {
+      "id": "RH209-M02",
+      "classification": "mandatory",
+      "status": "open",
+      "title": "Stored publication/tracker receipts omit required once-intent lineage and tracker identity fields",
+      "source": "release_binding.py",
+      "source_lines": [
+        88,
+        131
+      ],
+      "probe_labels": [
+        "tracker_unbound_intent",
+        "missing_publication_lineage"
+      ],
+      "required_fix": "Validate durable attempt/receipt chains, IDs, exact payloads, row/tab/range, invocation counts and reconciliation mode.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    },
+    {
+      "id": "RH209-M03",
+      "classification": "mandatory",
+      "status": "open",
+      "title": "Tracker duplicates appearing during append are promoted as verified",
+      "source": "append_verified_tracker.py",
+      "source_lines": [
+        44,
+        79
+      ],
+      "probe_labels": [
+        "duplicate_race"
+      ],
+      "required_fix": "Re-read the complete tracker after target-cell readback; require exactly one problem/DOI row at the exact target.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    },
+    {
+      "id": "RH209-M04",
+      "classification": "mandatory",
+      "status": "open",
+      "title": "Native payload selection publishes unsealed additions and private-looking files",
+      "source": "integrate_reviewed_pr.py",
+      "source_lines": [
+        23,
+        114
+      ],
+      "probe_labels": [
+        "unreviewed_payload"
+      ],
+      "required_fix": "Use exact cleared public manifest allowlists and reject every extra payload before remote object writes.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    },
+    {
+      "id": "RH209-M05",
+      "classification": "mandatory",
+      "status": "open",
+      "title": "Mutable prepared receipt supplies its own native source and changed-scope authority",
+      "source": "verify_and_merge.py",
+      "source_lines": [
+        21,
+        128
+      ],
+      "probe_labels": [
+        "forged_prepared_no_science"
+      ],
+      "required_fix": "Require preparation lineage and independently derive exact complete science/archive/path pins from cleared inputs.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    },
+    {
+      "id": "RH209-M06",
+      "classification": "mandatory",
+      "status": "open",
+      "title": "Stale or failed PR title/body updates do not block merge",
+      "source": "integrate_reviewed_pr.py",
+      "source_lines": [
+        119,
+        122
+      ],
+      "probe_labels": [
+        "stale_body",
+        "body_patch_unknown"
+      ],
+      "required_fix": "Bind and read back exact PR metadata before marking preparation complete and revalidate before ready/merge.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    },
+    {
+      "id": "RH209-M07",
+      "classification": "mandatory",
+      "status": "open",
+      "title": "Current main and the resulting merged tree/queue/counts are not verified",
+      "source": "verify_and_merge.py",
+      "source_lines": [
+        125,
+        173
+      ],
+      "probe_labels": [
+        "current_main_race"
+      ],
+      "required_fix": "Verify current-main boundaries and actual merged native tree/queue/foreign preservation/counts before completion.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    }
+  ],
+  "optional_findings": [
+    {
+      "id": "RH209-O01",
+      "classification": "optional_actionable",
+      "status": "open",
+      "title": "Single-response 300-file rejection limits larger valid updates",
+      "source": "verify_and_merge.py",
+      "source_lines": [
+        125,
+        128
+      ],
+      "probe_labels": [
+        "compare_limit"
+      ],
+      "required_fix": "Use complete native tree comparison; current remote package blockage is not established.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    },
+    {
+      "id": "RH209-O02",
+      "classification": "optional_actionable",
+      "status": "open",
+      "title": "Remote Git object mutations precede durable native preparation intent",
+      "source": "integrate_reviewed_pr.py",
+      "source_lines": [
+        108,
+        118
+      ],
+      "probe_labels": [
+        "unreviewed_payload"
+      ],
+      "required_fix": "Durably record exact object-preparation intent before first remote blob/tree/commit mutation.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    },
+    {
+      "id": "RH209-O03",
+      "classification": "optional_actionable",
+      "status": "open",
+      "title": "Tracker version/date literals can disagree with newly cleared metadata",
+      "source": "append_verified_tracker.py",
+      "source_lines": [
+        41,
+        41
+      ],
+      "probe_labels": [
+        "version_drift"
+      ],
+      "required_fix": "Derive version/date from cleared metadata or assert their exact fixed reviewed values before append.",
+      "scope": "exact frozen PR209 proposed helper workflow"
+    }
+  ],
+  "verification": {
+    "expected_probe_outcomes": 29,
+    "all_expected_outcomes_reproduced": true,
+    "actual_source_compilation": true,
+    "source_text_or_AST_rewrites": false,
+    "subprocess_and_public_downloads_stubbed": true,
+    "optimized_python_all_six_rejected": true,
+    "initial_failed_probes_preserved": true,
+    "current_candidate_comparison": [
+      {
+        "path": "append_verified_tracker.py",
+        "reviewed_sha256": "f7425b615ca762a0a580d1aa94774e067e7aea03add406c25cca7b6d2e127802",
+        "candidate_sha256_at_completion": "f7425b615ca762a0a580d1aa94774e067e7aea03add406c25cca7b6d2e127802",
+        "candidate_matches_frozen_at_completion": true
+      },
+      {
+        "path": "integrate_reviewed_pr.py",
+        "reviewed_sha256": "b5225c370524579a0b37b27117c71eb09ecb6219cc43bc9c89ec5fcf1e9552b7",
+        "candidate_sha256_at_completion": "b5225c370524579a0b37b27117c71eb09ecb6219cc43bc9c89ec5fcf1e9552b7",
+        "candidate_matches_frozen_at_completion": true
+      },
+      {
+        "path": "publish_preprint.py",
+        "reviewed_sha256": "f8f4f354d3eb9e7d3428c8c40a9de9fd5244cba0c3db65e747fdea98849b5e34",
+        "candidate_sha256_at_completion": "f8f4f354d3eb9e7d3428c8c40a9de9fd5244cba0c3db65e747fdea98849b5e34",
+        "candidate_matches_frozen_at_completion": true
+      },
+      {
+        "path": "release_binding.py",
+        "reviewed_sha256": "98eb34be6f3fe3ff3d56386d0faa77f0a21d52ba0daef1ef0a33c591def14b2d",
+        "candidate_sha256_at_completion": "98eb34be6f3fe3ff3d56386d0faa77f0a21d52ba0daef1ef0a33c591def14b2d",
+        "candidate_matches_frozen_at_completion": true
+      },
+      {
+        "path": "verify_and_merge.py",
+        "reviewed_sha256": "5bc6a7dbf3c031e5a2de11d399496b91a11a4184cbece71a9c039e851b1c5aa4",
+        "candidate_sha256_at_completion": "5bc6a7dbf3c031e5a2de11d399496b91a11a4184cbece71a9c039e851b1c5aa4",
+        "candidate_matches_frozen_at_completion": true
+      },
+      {
+        "path": "verify_published_readonly.py",
+        "reviewed_sha256": "05b5e494de791a03fa876da2b777e8891cf145ff67fc78aac9fb9221ec774a8b",
+        "candidate_sha256_at_completion": "05b5e494de791a03fa876da2b777e8891cf145ff67fc78aac9fb9221ec774a8b",
+        "candidate_matches_frozen_at_completion": true
+      }
+    ]
+  },
+  "corrections": [
+    {
+      "topic": "Selected payload paths versus actual remote changed scope",
+      "correction": "470 selected paths do not establish a remote delta above300; stale local main cannot establish present-package blockage.",
+      "remote_checkpoint_reported_by_parent": "d03508747f8fefc94f18793909372c16c3cd4ba8",
+      "checkpoint_receipt_sha256": "bf2b7dc77275ef98f71fe5c3c40d6c68e6b6fc91c21484c24f6a893aeffb2770",
+      "actual_remote_topology_independently_queried": false
+    },
+    {
+      "topic": "First harness lock lifetime",
+      "correction": "Explicit process-exit lock cleanup fixed spurious in-process stage-lock failures; all final29 expected outcomes reproduced."
+    }
+  ],
+  "required_next_step": "Repair every mandatory and optional actionable finding; obtain a NEW independent source reviewer against new exact helper bytes before any release.",
+  "report": "REPORT.md",
+  "reproduction": "REPRODUCE.py"
+}

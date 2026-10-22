@@ -1,0 +1,27 @@
+# Independent existing-publication ledger review05
+
+**Do not adopt v5 for a live append yet. One material conservative alias-guard defect remains.** The full helper and plan were read before prior review artifacts, and the supplied SHA-256 pins match. The prior harness was inspected and adapted only afterward; fresh controls and judgment are independent.
+
+## L05-1 — trailing-dot DOI resolver references escape the alias gate
+
+At `reconcile_external_ledger_v5.py:97`, the new resolver host regex requires the recognized domain to be followed by end-of-text or one of `/ : ? # @ \`. A hostname dot is absent from that boundary. Consequently `//shortdoi.org./abc`, `https://doi.org./abc`, `doi.org./abc`, `https://www.shortdoi.org./abc`, and `//dx.doi.org.:443/abc` are skipped. The imported names reader also does not flag these short resolver references. Percent-encoding the reference does not close the gap.
+
+The minimal reproduction adds `//shortdoi.org./abc` to the second cell of an otherwise unrelated four-cell ledger row. The exact full v5 source is compiled with the fixture's canonical `__file__` and `__name__='__main__'`; its main entry reaches one simulated GWS append, runs read-back, and saves a verified receipt. The same result occurs with each tested reference in each of the four columns and in owned-account metadata. This is a failure to stop on a conservative unresolved resolver lead. It is **not** evidence that any fabricated suffix actually resolves, identifies this theorem, or duplicates a real ledger record.
+
+Recognize resolver authorities with a trailing dot and stop for root identity review, rather than silently skipping them. Preserve the intentional allowance for a resolver homepage with no identifier and lexical proper long DOI names. Rerun independent whole-helper controls after correction. No live execution is authorized by this report.
+
+## Checkable outcome
+
+Each of normal Python, `-O`, and `-OO` ran **238 whole-helper cases**: **212 expected results and 26 unexpected verified simulated appends**, all in the single defect family above. Outcomes agree across modes. Every one of the **156 inherited guard regression cases** passed, and **56 of 82** new independent cases passed. The eight newly adopted-fixture plan changes fail at the actual destination, attribution/DOI, and PR/problem guards, beyond the earlier immutable-plan hash gate. The helper has no `assert` nodes, and optimization does not remove its checks.
+
+The new v5 guard successfully blocks the four originally reported v4 variants (`//shortdoi.org/abc`, `//doi.org/abc`, bare `shortdoi.org/abc`, and bare `doi.org/abc`), including all four ledger columns and owned-account metadata. Additional undotted scheme, port, www, encoded, non-short-circuit, and harmless long-DOI/home/foreign-host controls behave as expected.
+
+The full passing regression covers externally pinned root acceptance; exact six-module byte snapshots compiled directly, ignoring shadow modules and pyc; one plan read/hash snapshot; complete owned-account pagination and known-record23408971; raw owned IDs/parents/pids/metadata/files, semantic and encoded aliases, and all known MD5s; fresh immutable PR head/base/body and all immediate state flags; 180-second boundary and clock reversal; published record family and metadata, exact three-file inventory and all payload bytes, and DOI destination; live sheet ID/title/gid, four headers and every cell, full ROWS read range; durable exclusive intent with file and directory fsync, races and failures; lost/unknown outcome without blind retry and exact-row recovery; immediate ledger equality; exact nested append response, four cells, spreadsheet/range/ROWS; unique exact final row, matching response range, and preexisting prefix preservation.
+
+## Custody, scope, and reproduction
+
+No actual helper was executed against live services. The complete helper ran only on short-lived private fixture trees. The harness supplies deterministic account/public/GitHub/GWS/Git responses, rejects unforeseen process boundaries, and installs an audit hook denying actual network and process operations. All modes report zero actual service/process attempts and unchanged original input pins. No Git index/ref operations or external writes were performed. Fixture trees were removed; only results and source reconstructing their captured inputs remain. The real `ROOT_LEDGER_REVIEW05_ACCEPTANCE.json` is absent and was never created; acceptance files existed only under the private temporary trees.
+
+The plan has four cells, credits Alper Ferudun, keeps the chat cell empty, uses existing DOI10.5281/zenodo.23350364, records separate Question2 with singular/attainment and direct same-rank coverage, and keeps Question1's general pointwise gap open. It claims no new publication, Alec Kriebel authorship, or chronological firstness. Those mathematical/source conclusions are the root's separately audited premise; this operational review does not replace their proof or certify human/global priority.
+
+Run `offline_whole_helper.py --output <result-name>.json` under normal Python, `-O`, and `-OO`, with bytecode writes disabled. Exit1 is expected for this reviewed v5 because the counterexamples intentionally expose its remaining defect. `SOURCE_PINS.json`, the per-mode results, `IMPORT_CLOSURE.json`, `MINIMAL_COUNTEREXAMPLE.json`, and `BOUNDARY_RECHECK.json` provide the evidence. `MANIFEST.json` binds every retained review payload and excludes only itself and its separate SHA seal.

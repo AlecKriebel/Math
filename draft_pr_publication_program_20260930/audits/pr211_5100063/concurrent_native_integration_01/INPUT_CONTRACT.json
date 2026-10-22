@@ -1,0 +1,220 @@
+{
+  "acknowledgment": "one JSON file_reference line on stdin, <=4096 including LF, <=180s, no queued excess; later bytes outside observation; timeout outcome unknown",
+  "actual_CAS_acceptance": {
+    "bindings": [
+      "PR=211",
+      "accepted=True",
+      "hostname=github.com",
+      "repository_full_name=AlecKriebel/Math",
+      "protocol_pin",
+      "source_manifest_pin",
+      "admission_pin",
+      "logical_manifest_pin",
+      "logical_gate_pin",
+      "cache_manifest_pin",
+      "cache_acceptance_pin",
+      "facts",
+      "parent",
+      "candidate",
+      "tree",
+      "actual_MAIN_after_CAS"
+    ],
+    "readback": "refs/heads/main, object.type=commit, nativeSHA40; GET git/ref/heads/main exit0 receipt with stdout_pin; exact candidate or authenticated descendant",
+    "request": {
+      "expected_sha": "admission.parent",
+      "force": false,
+      "owner": "AlecKriebel",
+      "ref": "heads/main",
+      "repo": "Math",
+      "sha": "admission.candidate",
+      "tool": "NativeMCP.github_update_ref"
+    },
+    "required_false": [
+      "unknown_outcome"
+    ],
+    "required_references": [
+      "preCAS_acceptance",
+      "actual_lock_guard_ready",
+      "actual_tool_request",
+      "actual_tool_response",
+      "actual_readback_response",
+      "actual_readback_receipt",
+      "post_CAS_same_live_guard_confirmation"
+    ],
+    "required_true": [
+      "actual_Root_MCP_CAS_performed",
+      "actual_tool_success_and_readback_accepted",
+      "original_lock_held_across_actual_Root_CAS"
+    ],
+    "response": {
+      "isError": false,
+      "structuredContent": {
+        "success": true
+      }
+    },
+    "schema": "pr211-root-concurrent-actual-CAS-acceptance-v1",
+    "scope": "ACTUAL_ROOT_RECEIPT"
+  },
+  "admission": {
+    "evidence_scope": "FACTUAL_PARENT_ADMISSION_REQUIRES_ROOT_ACCEPTANCE",
+    "exact_keys": [
+      "schema",
+      "PR",
+      "evidence_scope",
+      "protocol_pin",
+      "source_manifest_pin",
+      "logical_manifest_pin",
+      "logical_gate_pin",
+      "cache_manifest_pin",
+      "cache_acceptance_pin",
+      "facts",
+      "parent",
+      "parent_tree",
+      "created_UTC",
+      "commit_author",
+      "commit_committer",
+      "commit_message",
+      "parents",
+      "tree",
+      "candidate",
+      "candidate_journal"
+    ],
+    "fixed": "Every other field bound exactly to frozen sources/m6/cache",
+    "journal": "ROOT_CONCURRENT_CANDIDATE_[A-Za-z0-9_-]{1,50}; total <=80; exclusive both journal and canonical candidateOID reservation",
+    "schema": "pr211-concurrent-parent-admission-v1",
+    "variable_fields": [
+      "parent",
+      "parent_tree",
+      "created_UTC",
+      "commit_author.date",
+      "commit_committer.date",
+      "parents=[parent]",
+      "tree (derived)",
+      "candidate (canonical derived)",
+      "candidate_journal"
+    ]
+  },
+  "admission_acceptance": {
+    "binding_fields": [
+      "PR=211",
+      "accepted=True",
+      "protocol_pin",
+      "source_manifest_pin",
+      "admission_pin",
+      "logical_manifest_pin",
+      "logical_gate_pin",
+      "cache_manifest_pin",
+      "cache_acceptance_pin",
+      "facts",
+      "protocol_review=file_reference"
+    ],
+    "required_true": [
+      "parent_only_parameterization_reviewed",
+      "one_use_two_immutable_POSTs_authorized",
+      "supersedes_legacy_exactMain_bridge_for_this_admission",
+      "no_ref_writer_authority",
+      "prior04_and06_retired_no_redispatch"
+    ],
+    "schema": "pr211-root-concurrent-admission-acceptance-v1",
+    "scope": "ACTUAL_ROOT_RECEIPT"
+  },
+  "document_kind": "SOURCE_ONLY_SCHEMA_GUIDE_NOT_ADMISSION_GATE_RECEIPT_OR_AUTHORITY",
+  "file_reference": {
+    "bytes": "strict nonnegative int; bool/float refused",
+    "exact_keys": [
+      "path",
+      "bytes",
+      "sha256"
+    ],
+    "path": "absolute canonical readonly regular under A211; nofollow all ancestors",
+    "sha256": "64 lowercase hex"
+  },
+  "fixed_logical": {
+    "conditional_terminal_facts": "exact frozen logical m6 facts;53/37,last211,cursor212,goalFalse",
+    "critical_paths": 10,
+    "gate": {
+      "bytes": 6438,
+      "sha256": "c659f743dfbd7357e5d6b396d9a73184524937bdb8545352c30624a50e1f7f71"
+    },
+    "manifest": {
+      "bytes": 107835,
+      "sha256": "b5a34d2ec2720ec968dce694a694389381b1a473fadc7f7a9e0622f73b09d3e2"
+    },
+    "scope": {
+      "changed_leaves": 192,
+      "deletions": 0,
+      "new_directories": 25
+    },
+    "selected_bytes": 2219715,
+    "selected_paths": 192
+  },
+  "no_current_authority": "No object in this schema document is an actual Root gate/receipt. Root acceptance and future execution are separate.",
+  "outputs": {
+    "immutable": "pr211-concurrent-immutable-candidate-verification-v1; IMMUTABLE_CANDIDATE_ONLY_NOT_MAIN_LEASE_CAS_OR_COMPLETION",
+    "pointer": "pr211-concurrent-actual-five-pointer-v1; ACTUAL_SYNC_NOT_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE",
+    "ready": "pr211-concurrent-locked-CAS-ready-v1; HELD_LOCK_AND_DATED_FRESH_LEASE_NOT_CAS_SUCCESS",
+    "sync": "pr211-concurrent-actual-five-sync-v1; ACTUAL_SYNC_REQUIRES_EXTERNAL_ROOT_TERMINAL_ACCEPTANCE",
+    "terminal": "read-only dated observation; never an actual Root completion receipt"
+  },
+  "preCAS_acceptance": {
+    "bindings": [
+      "PR=211",
+      "accepted=True",
+      "protocol_pin",
+      "admission_pin",
+      "logical_manifest_pin",
+      "logical_gate_pin",
+      "candidate",
+      "tree",
+      "cache_manifest_pin",
+      "cache_acceptance_pin"
+    ],
+    "required_true": [
+      "immutable_candidate_verification_accepted",
+      "independent_GET_candidate_verification_accepted"
+    ],
+    "schema": "pr211-root-concurrent-preCAS-acceptance-v1",
+    "scope": "ACTUAL_ROOT_RECEIPT",
+    "verification_reports": "exactly2 distinct file_reference paths; both full immutable192/25/202 candidate proofs with exact admission/source/cache binding"
+  },
+  "protocol_review": {
+    "binding_fields": [
+      "PR=211",
+      "accepted=True",
+      "protocol_pin",
+      "source_manifest_pin",
+      "logical_manifest_pin",
+      "logical_gate_pin",
+      "cache_manifest_pin",
+      "cache_acceptance_pin"
+    ],
+    "required_true": [
+      "Root_full_source_read",
+      "independent_adversarial_review_accepted",
+      "all_original_verifications_retained",
+      "parent_only_admissions_without_new_peer_review_approved"
+    ],
+    "schema": "pr211-root-concurrent-protocol-review-acceptance-v1",
+    "scope": "ACTUAL_ROOT_RECEIPT"
+  },
+  "same_live_confirmation": {
+    "actual_same_session_poll_response": "file_reference to actual Root poll response: positive integer session_id, string output, absent/null exit_code. Root trusted assertion binds same process. Ready alone insufficient.",
+    "bindings": [
+      "accepted=True",
+      "protocol_pin",
+      "admission_pin",
+      "guard_pid=ready.guard_pid positive int",
+      "session_id=actual poll.session_id positive int",
+      "actual_lock_guard_ready_pin",
+      "actual_tool_response_pin",
+      "actual_readback_response_pin"
+    ],
+    "required_true": [
+      "same_session_live_poll_after_actual_MCP_and_readback_before_acceptance_and_ack",
+      "original_lock_continuity_from_linear_held_source_and_same_live_session"
+    ],
+    "schema": "pr211-root-postCAS-same-live-guard-confirmation-v1",
+    "scope": "ACTUAL_ROOT_RECEIPT"
+  },
+  "schema": "pr211-concurrent-native-input-contract-description-v1"
+}

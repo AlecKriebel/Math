@@ -1,0 +1,34 @@
+## Full negative answer at the original index n = 1
+
+Problem 30003045, Question 2 in Ahmed Laghribi's contribution (joint with Roberto Aravire and Manuel O'Ryan) to [Oberwolfach Report 5/2016](https://ems.press/content/serial-article-files/46609), asks whether a mixed Kato kernel is always the sum of three individual kernels. This edition gives a full counterexample under the original arbitrary finite purely inseparable hypothesis, at the allowed index n = 1. The original n = 0 equality is proved separately to hold. No failure at every index or every field is claimed.
+
+The base is F_2(b,z,s,t), with beta^4=b, theta^2+theta=s^(-1), and bilinear Pfister form <1,t>_b. The inseparable extension has degree four and exponent two. The form is binary and anisotropic after that extension. The original projective quasilinear-quadric convention includes its zero-dimensional quadric, with function field F(sqrt(t)).
+
+The class represented by s^(-4) b z^2/(1+b z^2) dlog z dies over LK. Restricting a proposed three-summand expression to M=L F(B) kills both the inseparable and Pfister summands. The remaining fixed-slot cyclic algebra would imply a norm. Completion at s forces an impossible residue square-class descent for every possible parameter from F*. The full extra Pfister summand is explicitly included in this exclusion. Choosing the Pfister slot z instead would absorb the class; the independent slot t is essential.
+
+The prior mixed-generator mechanism is credited to Aravire, Laghribi and O'Ryan, [Cohomological kernels of mixed extensions in characteristic 2](https://doi.org/10.1016/j.jalgebra.2019.09.012), Journal of Algebra 542 (2020), 249–276. The inspected author manuscript is dated 15 August 2019. The proof does not infer three-summand nonmembership merely from two-field nonsplitting. The exponent-one predecessor is not contradicted. No novelty or priority is claimed.
+
+The complete 12,061-byte accepted counterexample and the complete 9,966-byte independent audit are preserved byte for byte. The independent source and verification reports are also unchanged. Only obsolete author-review-status wording is updated, alongside new reading-guide, acceptance, manifest and permitted public source-metadata framing. All substantive mathematics, the binary convention, norm/residue exclusion and source inspection limits remain intact.
+
+This is AI-assisted authored mathematical work and an independent internal AI mathematical/source audit. These documents are unrefereed. Acceptance is not external human peer review, journal acceptance of these documents, or formal proof-assistant certification. The author's 13 algebra diagnostics and independent 25 checks passed under normal Python, -O and -OO; deliberate bad expectations fail. Finite diagnostics and artifact integrity are distinct from mathematical acceptance.
+
+Four source PDFs were freshly downloaded during the independent audit and matched the supplied bytes. Milne's relative Brauer theorem was inspected through web-accessible PDF text only; a local download returned HTTP 406 and no local hash or visual inspection is claimed. Voight's characteristic-two norm criterion was inspected in publisher HTML. No comparison against the mixed-kernel paper's published typeset PDF, full-book audit, exhaustive later-literature survey, or additional source inspection during edition preparation is claimed.
+
+This addition-only draft contains eleven authored mathematical prose, audit, acceptance and public citation/verification files. It excludes copied third-party source documents or text, dataset contents, programs, certificates, raw outputs, private sources, personal data and private coordination. QUEUE.md and every unrelated path remain unchanged. No release or DOI is created.
+
+## Exact public-file identities
+
+- `ACCEPTANCE.json`: 2,895 bytes; SHA-256 `7896e43663657b4d6cab0cfdd9a8797ffb7674a38afd644ff00eef960ba6f2fa`.
+- `ACCEPTANCE.md`: 4,244 bytes; SHA-256 `78fa00f4cd35ace8bd28f6aef7ea56d39ae80a2f6d8db9e31f9d3d1249a9a180`.
+- `AUDIT_REPORT.md`: 9,966 bytes; SHA-256 `d5605b526c17cf212cb297cde9678302df456d8faa983ba7f7703c75cd4a0211`.
+- `COUNTEREXAMPLE.md`: 12,061 bytes; SHA-256 `b1533a032e031d82a0d124cdb410e86e5ee59af477dd711d2157a5d72f36e2ca`.
+- `MANIFEST.json`: 2,024 bytes; SHA-256 `811e7fddcc74cf93ef8117b1e4a50aa0c35061544fe3b5f3427aa7179c1567a6`.
+- `README.md`: 3,540 bytes; SHA-256 `dcc567eb84e044ae666434fca801dc031d210026829d33e251adb66180374bdf`.
+- `SOURCES.md`: 4,258 bytes; SHA-256 `8681a65eb443655049ada5d9437131d06fd3d7bedfc84d6637ea0f3017e09d0f`.
+- `SOURCE_AUDIT.md`: 6,766 bytes; SHA-256 `afadacdb1a12b2b969a1894bd1cc7c86e64f9ed9d469b4ae799d21ec58bf152d`.
+- `SOURCE_METADATA.json`: 4,344 bytes; SHA-256 `1d05cb08912d0c85ded211a46be63aea33f2f7f259515c4a3006428893da1d36`.
+- `VERIFICATION.md`: 1,468 bytes; SHA-256 `89d4520d443624b65ca78f31eb950981211b668b8dd1fd36a918c36446797d54`.
+- `VERIFICATION_SUMMARY.md`: 3,105 bytes; SHA-256 `89f23ac1a7b77822f14a1ccd271beda3b9b0ad0a6a5c4b88913a1e3d3ac36dd8`.
+
+MANIFEST.json lists all eleven members and hashes the other ten. Its separate identity above avoids self-reference.
+

@@ -1,0 +1,19 @@
+# Independent PR1351 /11000165 research log
+
+2026-10-22T13:18:30.698783+00:00 — 5% review complete; overall80%. Root scope/input receipts read; own fresh numeric-gid GWS started before substantive mathematics. Own8MiB cap, maintain150MB reserve; previous closed packets immutable.
+
+## 2026-10-22T13:28:09.505514+00:00 — source/proof checkpoint (45%; overall80%)
+
+FreshGWS191 response rows: two broad-term hits, Wajnryb ArtinA5 and Johnson-dilatation multiplicities, both native records distinct. All55 head blobs and full body bound. Read whole constructive/g2/closed-transfer/outer-obstruction arguments; no algebraic gap identified provisionally. Recovered original actual current book: Problem2.8 is printed150/PDF157, not the earlier locator for the I2=K2 discussion. Visual original and Omori figures checked. Omori main proof, Hensel full-preimage/surjectivity, Putman kernel proof stages and Wajnryb generation proof inspected. Morita and Luft sources are scanned: native text extraction is nearly empty, so no false text-read claim; source images/OCR being inspected. Wajnryb has known presentation/abelianization corrections; isolate generation premise from incorrect unrelated relations. No adoption of Holden conditional results as unconditional input. Remaining: actual Luft/Morita model resolution, independent checks, bounded priority and sealed verdict.
+
+## 2026-10-22T13:37:42.372652+00:00 — constructive-checkpoint (75%; overall80%)
+
+All three central generation arguments pass on explicit published topology imports. Closed transfer and primitive integral quotient reconstructed independently; source Morita basis translated using the proof's null-homotopic beta span. Actual Luft article proof and genus-two natural outer/homology comparison read in full with OCR aid, not merely restatement. Wajnryb whole argument read; documented presentation corrections checked in primary Ishida-Sato paper, which explicitly retains the five-generator result. Own exact checker passes normal/O/OO after correcting one own negative-control fixture (failure preserved). Original cache bleeds into Problem2.9 transition, separated by actual visual layout. No new finite-generation or source DOI-as-full-solution claim. Remaining: bounded priority disposition, final reports and complete mode/nsmtime seal.
+
+## 2026-10-22T13:52:14.762634+00:00 — decisive review checkpoint (95%; overall80%)
+
+Qualified PASS for both full closed unmarked intersections in all g>=2. No central unsupported orbit, lattice, ordinary-generation, capping, or section step found. The target family does not use a target-membership oracle: only ambient attainable matrix lifts are searched. This is an explicit classical Schreier synthesis, not a novelty claim. Authenticated primary proof reading and known source corrections documented. Two additional pinned Holden leads checked for exact scope; neither is a full all-genus generator publication. Decline a full-solution publication row because no such exact existing publication was authenticated; do not miscredit a dependency DOI or the unpublished PR. Remaining: closure verification/seal only. No additional mathematical control expansion.
+
+## 2026-10-22T13:54:58.736195+00:00 — closed review checkpoint (100%; overall80%)
+
+Both full generating-family branches pass on named established topology imports; literal original scope passes. No proof gap or circular target oracle found. No exact existing full-answer publication authenticated; no proposed row or novelty inference. Three own exact checker modes pass; closure verifier rejects11 mutations in all three modes. Sixteen earlier closed packets/1047 members rechecked unchanged. All source bodies and ledger remain private; all own artifacts now sealed with bytes, SHA256, full mode and nsmtime, including nested manifests. No external/provider/Git/shared-state mutation.

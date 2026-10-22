@@ -1,0 +1,18 @@
+--- operations_engineering_03/test_operations_installed.py
++++ operations_engineering_04/test_operations_proposal.py
+@@ -4,13 +4,13 @@
+ if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):raise SystemExit('Use -I -S -B')
+ import argparse,copy,hashlib,json,os,tempfile
+ from pathlib import Path
+-OWN=Path(__file__).resolve().parent;P=OWN.parents[2];CORE=P/'accept_pr952.py'
++OWN=Path(__file__).resolve().parent;P=OWN.parents[2];CORE=OWN/'PROPOSED_accept_pr952.py'
+ def sha(b):return hashlib.sha256(b).hexdigest()
+ def enc(x):return (json.dumps(x,indent=2,sort_keys=True)+'\n').encode()
+ p=argparse.ArgumentParser();p.add_argument('--core-sha256',required=True);a=p.parse_args()
+ raw=CORE.read_bytes()
+ if sha(raw)!=a.core_sha256:raise SystemExit('External core SHA mismatch')
+-n={'__name__':'_synthetic_inert_tests_','__file__':str(CORE)};exec(compile(raw,str(CORE),'exec',dont_inherit=True,optimize=0),n)
++n={'__name__':'_synthetic_inert_tests_','__file__':str(CORE)};exec(compile(raw,str(CORE),'exec',dont_inherit=True,optimize=sys.flags.optimize),n)
+ REAL_REMOTE_MAIN=n['remote_main'];EVENTS=[]
+ def yes(name,fn):
+  v=fn();EVENTS.append({'test':name,'status':'PASS'});return v

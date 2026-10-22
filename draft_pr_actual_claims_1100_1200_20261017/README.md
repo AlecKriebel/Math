@@ -1,0 +1,42 @@
+# Actual-outcome review and publication program, PRs #1100–#1200
+
+The user corrected the previous queue-only eligibility gate on 17 October 2026. QUEUE.md may be stale. This program inspects each PR's actual recorded outcome and proceeds in ascending order. Only an explicit full-resolution claim is eligible for the original mathematical, priority, package, publication, tracker, and merge workflow. Partial/unsolved outcomes and already-published source-credit outcomes are skipped after outcome identification. Ambiguous wording requires consulting the referenced outcome record before a decision; a title or stale queue cell is insufficient.
+
+The prior program remains historical evidence, not a completed actual-outcome pass. All new program artifacts belong in this folder, with one subfolder per eligible problem. The shared branch stays main, other agents' work is preserved, and no individuals or other shard workers are contacted. Internal adversarial subagents perform independent verification.
+
+For each eligible claim, reproduce and adversarially audit the exact full mathematical target, then audit priority. Reasonably repair concrete issues; do not replace an unfinished original target with a special case. Close irreparable eligible claims with a factual explanatory comment only after the repair assessment. Sound eligible results require a submission-ready preprint, verification materials, extensive AI-use and actual peer-review disclosures, successive fresh independent adversarial review/fix cycles, the repository Zenodo upload kit, a Google Workspace CLI DOI tracker row, and merger.
+
+Logs include timestamps and best-guess completion percentages for this program; these are not mathematical confidence scores. Meaningful checkpoints are committed and pushed to main without including other workers' changes.
+
+## Progress
+
+The independently checked initial inventory has 101 PRs: 14 explicit full-target claims, 68 partial/unsolved outcomes, and 19 expressly credited prior resolutions. The latter 87 are excluded after outcome identification.
+
+| PR | Current disposition | Public result |
+| --- | --- | --- |
+| [1102](https://github.com/AlecKriebel/Math/pull/1102) | Mathematically accepted; two fresh reviews passed; published, tracker row 149 verified, exact reviewed head merged | [10.5281/zenodo.23439582](https://doi.org/10.5281/zenodo.23439582) |
+| [1108](https://github.com/AlecKriebel/Math/pull/1108) | Mathematically accepted; two fresh reviews passed; published, tracker row 151 verified, exact reviewed head merged | [10.5281/zenodo.23440119](https://doi.org/10.5281/zenodo.23440119) |
+| [1114](https://github.com/AlecKriebel/Math/pull/1114) | Skipped after priority: full target follows from earlier work; PR untouched | No publication |
+| [1118](https://github.com/AlecKriebel/Math/pull/1118) | Complete printed negative answer accepted; first-review version omission repaired, two new clean fresh reviews passed; published, tracker row153 verified, exact head merged | [10.5281/zenodo.23440943](https://doi.org/10.5281/zenodo.23440943) |
+| [1119](https://github.com/AlecKriebel/Math/pull/1119) | Full negative answer accepted; two fresh clean reviews; published, tracker row155 verified, exact head merged | [10.5281/zenodo.23441523](https://doi.org/10.5281/zenodo.23441523) |
+| [1121](https://github.com/AlecKriebel/Math/pull/1121) | Full negative answer accepted; two fresh clean reviews; published, tracker row158 verified, exact head merged | [10.5281/zenodo.23441906](https://doi.org/10.5281/zenodo.23441906) |
+| [1129](https://github.com/AlecKriebel/Math/pull/1129) | Skipped after two independent priority reviews: complete result follows from an earlier preprint criterion and credited published theorem; PR untouched | No publication |
+| [1135](https://github.com/AlecKriebel/Math/pull/1135) | Full negative answer accepted; two successive fresh clean reviews; later overlap credited; published, tracker row160 verified, exact head merged | [10.5281/zenodo.23442649](https://doi.org/10.5281/zenodo.23442649) |
+| [1136](https://github.com/AlecKriebel/Math/pull/1136) | Full affirmative deduction accepted; two successive fresh clean reviews; explicit historical priority limits; published, tracker row162 verified, exact head merged | [10.5281/zenodo.23443039](https://doi.org/10.5281/zenodo.23443039) |
+| [1141](https://github.com/AlecKriebel/Math/pull/1141) | Full affirmative deduction accepted; two successive fresh clean reviews; prior tools credited and priority limits disclosed; published, tracker row163 verified, exact head merged | [10.5281/zenodo.23443301](https://doi.org/10.5281/zenodo.23443301) |
+| [1142](https://github.com/AlecKriebel/Math/pull/1142) | Skipped after root and three independent priority reviews: Pétiard2019 explicitly covers the full target in all dimensions; PR untouched | No publication |
+| [1150](https://github.com/AlecKriebel/Math/pull/1150) | Full negative answer accepted; auxiliary shortcut repaired, exact earlier mixed generator credited; two successive new clean reviews; published, tracker row165 verified, exact head merged | [10.5281/zenodo.23444050](https://doi.org/10.5281/zenodo.23444050) |
+| [1151](https://github.com/AlecKriebel/Math/pull/1151) | Full affirmative group solution; detailed dependency proof repaired; two successive new clean package reviews; published, row167 verified, exact head merged | [10.5281/zenodo.23444606](https://doi.org/10.5281/zenodo.23444606) |
+| [1155](https://github.com/AlecKriebel/Math/pull/1155) | Full negative sphere-decomposition answer; three math and three priority approaches; two successive fresh clean whole-package reviews; published, row169 verified, exact head merged | [10.5281/zenodo.23444839](https://doi.org/10.5281/zenodo.23444839) |
+
+Completed on17October2026(local;18OctoberUTC). All101 PRs from1100 through1200 were checked against their actual recorded outcomes. Fourteen explicit full-target claims received final dispositions: eleven published/tracked/merged, and three untouched prior-full skips. The other87 partial/unsolved or expressly prior-resolved outcomes were skipped untouched. Final live checking confirmed all11 exact accepted merge commits, all90 untouched PRs, no changed draft needing reclassification, and no discussion addenda. All11 frozen release receipts still match their current files. The persistent goal is complete.
+
+See COMPLETION.json, FINAL_ACTUAL_OUTCOME_RECHECK.json, FINAL_DISCUSSION_SCOPE.json, PROGRAM_STATE.json and RESEARCH_LOG.md for exact evidence. The DOI table above links every accepted preprint.
+
+## Completed research process
+
+Each accepted result was checked against its original problem and went through mathematical reproduction, fresh adversarial reviews, bounded primary-source priority work, a complete paper/verification package, successive fresh package-review/fix gates, repository-tool Zenodo publication, an exact Google Workspace tracker readback, and merger of its accepted source head. Papers disclose extensive AI use and are unrefereed; internal AI reviews are not external human peer review or formal proof verification. Earlier machinery and each search's material access/version gaps are explicitly credited. No firstness or continued-global-openness certificate is claimed.
+
+PR1155's final upload connection timeout was reconciled read-only against its existing saved draft: both reviewed files and metadata were already complete. That same record was published and no duplicate or repeated staging was created. The final101check's first read-only attempt encountered the older merge-receipt field schema; the corrected complete check verifies both source heads and exact merge commits and has no pending entries.
+
+Two earlier accidental checkpoint source incidents (PR1142 and PR1151) were corrected on current main; earlier Git history retains copies, as disclosed in their distribution repair records. A Workspace CLI apparent-help request also regenerated shared local skill scaffolding; earlier local bytes were unavailable and shared generated paths were excluded from this program's pushes.

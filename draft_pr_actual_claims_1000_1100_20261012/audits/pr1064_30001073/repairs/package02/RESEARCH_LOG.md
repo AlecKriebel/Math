@@ -1,0 +1,7 @@
+# PR1064 bounded archive repair02
+
+2026-10-14T05:20:17.735260+00:00 — Checkpoint1 (15%): full whole02 report/verdict/root adoption read; froze 402 inputs and preserved 25 exact old package files. Scope is archive-output aliases to every immutable current input, including excluded descriptor/admin. Current stage and all prior seals will remain dated unchanged. Hold1032; no publication/Git/service/outreach.
+
+2026-10-14T05:26:42.599691+00:00 — Checkpoint2 (85%): protected-input archive guard and separate whole03 status implemented. Appended31 exact whole02/root/output/distinctseal copies preserving91old records. Prior103/124/125 stage pins and37repair01 outputs resolve. All-file alias falsification runs preserved receipts incrementally; final custody/seals remain.
+
+2026-10-14T05:29:26.510470+00:00 — Checkpoint3 (100% of bounded repair):411 commands passed;314 hardlink rejections across all157 protected inputs normal/-O; lexical/symlink/ancestry aliases and4 writer probes reject before writes, deliberate guard deletion exposes exit-zero descriptor corruption in both modes.392 protected immediate inputs unchanged;10 authorized changes with exact25before files;103/124/125/37 priorstage checks,91oldcopies and122currentcopies preserved.149-member CLOSED ZIP identical; four actual stdlib README commands plus fake-compiler unchanged PDF CLI; no actual paper compile/render/candidate marker. Current157/all158 pins issued; fresh whole03 still required, flags false,hold1032.

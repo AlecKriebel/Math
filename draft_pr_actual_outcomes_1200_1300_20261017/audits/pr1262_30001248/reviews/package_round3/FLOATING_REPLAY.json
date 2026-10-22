@@ -1,0 +1,75 @@
+{
+  "at_utc": "2026-10-17T23:00:02.447385+00:00",
+  "status": "PASS",
+  "runs": [
+    {
+      "program": "reviews/source_question_family/finite_checks.py",
+      "sha256": "aa70978cddf5d4229d5934ef3f1b595c6836af7aad66e5712067aa340e31968e",
+      "normal_only": true,
+      "PYTHONOPTIMIZE_unset": true,
+      "result": {
+        "status": "all assertions passed",
+        "graphs": 33864,
+        "parameter_cases": 12,
+        "max_DFT_error": 2.0485145264534705e-15,
+        "output": "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1262_30001248/reviews/package_round3/_local/floating/source_question_family/finite_checks.json"
+      }
+    },
+    {
+      "program": "reviews/reconstruction_adversary/independent_checks.py",
+      "sha256": "26a496a25a3ef9c7fd4e61d543aab6ad2a86394fe47e1f4114a900e3d55dd87b",
+      "normal_only": true,
+      "PYTHONOPTIMIZE_unset": true,
+      "result": {
+        "status": "PASS",
+        "graphs": 33864,
+        "cases": 12,
+        "max_poisson_error": 1.0487610779819079e-11,
+        "negative_controls": [
+          "missing_covariance_factor",
+          "labeled_embedding_modulus_2",
+          "halved_wedge_pair_coefficient"
+        ],
+        "output": "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1262_30001248/reviews/package_round3/_local/floating/reconstruction_adversary/independent_checks.json"
+      }
+    },
+    {
+      "program": "reviews/fourier_adversary/verify_fourier.py",
+      "sha256": "de3cb08a7bc85e672411611f748bc5e5aef72ad387c993420242951e90a2f7dd",
+      "normal_only": true,
+      "PYTHONOPTIMIZE_unset": true,
+      "result": {
+        "enumerated_graph_states": 67728,
+        "exact_rational_mean_variance_cases": 8,
+        "limitations": "Finite checks test identities and normalization only; the analytic envelope is imported, not computationally certified.",
+        "max_numeric_errors": {
+          "centered_reduction": 3.885780586188048e-16,
+          "coefficient_lower_bound": 2.7755575615628914e-17,
+          "envelope_pairing": 0.0,
+          "filter": 7.948583827274432e-15,
+          "pair_count": 0.0
+        },
+        "modular_cases": 320,
+        "n": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "numeric_tolerance": 1e-10,
+        "p": [
+          "1/2",
+          "2/5"
+        ],
+        "q_range": [
+          1,
+          40
+        ],
+        "residue_cases": 6560,
+        "status": "PASS",
+        "wrong_centered_periodicity_control_gap": 0.39941996102881405
+      }
+    }
+  ],
+  "limits": "Only copied audit-authored checkers. Their own assertions/tolerances remain active; no optimized run or bitwise floating comparison. No source-author code or asymptotic proof is executed."
+}

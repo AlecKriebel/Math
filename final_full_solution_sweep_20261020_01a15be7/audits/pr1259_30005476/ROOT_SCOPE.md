@@ -1,0 +1,7 @@
+# PR1259: full spectrality alternative proof with prior announcement
+
+Root read body, entire ACCEPTANCE.json and entire PROOF.md in explicit portions (first8500characters then remaining lines164–end). Exact positive finite width ordinary Spec all-prime-points with finite-support symmetric action, topological orbit quotient followed by Kolmogorov quotient is claimed spectral. Original uncountable algebraically closed ground field is covered, proof extends to any algebraically closed field. No invariant-ring quotient/rational-points-only substitution. Countable reduced G-prime prime-core construction, scalar extension intersections/domain, descent and all spectral axioms constitute complete argument, using specialized Hillar–Sullivant equivariant Noetherianity input.
+
+It expressly credits Schnieper2024 thesis proof announced in Kummer–Riener2025 pp42,46 DOI10.1016/j.jalgebra.2024.11.016; thesis not retrieved. Thus genuine complete claim retained, no automatic novelty merely because proof differs. Independent primary original statement/complete proof+dependency scope/prior announcement and thesis/publication accounting review pending. Paper announcing somebody else's proof must not be represented as itself containing that complete proof if absent. Standard specialized import is not automatically unsupported; inspect essential theorem hypotheses/mechanism.
+
+Fresh GWS08:47:57UTC191rows no target lead. Eight actualheadblobs and liveheadbound. No publication/merge/tracker mutation. Overall80%.

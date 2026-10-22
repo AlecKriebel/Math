@@ -1,0 +1,70 @@
+{
+  "status": "CHANGES_REQUIRED",
+  "material_findings": [
+    {
+      "id": "F1",
+      "priority": 2,
+      "title": "PR-description title drift permits a body PATCH before rejection",
+      "file": "integrate_remote.py",
+      "line": 131,
+      "control": "counterexample_description_title_changed_during_gate_still_PATCHes",
+      "strongest_result": "1 body PATCH after full-gate title change; later readback fails, no verified receipt or subsequent merge/publication.",
+      "repair": "Recheck original title adjacent to the description PATCH.",
+      "scope_limit": "Limited prewrite-guard violation; changed title is preserved and bad description is not accepted as verified.",
+      "all_modes_reproduced": true,
+      "target_file_sha256": "db8dfe56f3259374fc3e940139ed9e1174d29e271fa21988abffc943a8384f48"
+    },
+    {
+      "id": "F2",
+      "priority": 1,
+      "title": "Nested protocol-relative DOI resolver reference bypasses duplicate review",
+      "file": "collect_live.py",
+      "line": 22,
+      "control": "counterexample_nested_protocol_relative_resolver_full_gate",
+      "strongest_result": "4 explicit embedded or encoded query/fragment short-resolver references pass complete actual197-account/ledger gate with no lead.",
+      "repair": "Inspect bounded explicit nested URI references in query/fragment values; retain unrelated plain path substrings as unrelated.",
+      "scope_limit": "No claim that the unrelated outer URI is a DOI or that a particular short alias resolves to the target.",
+      "all_modes_reproduced": true,
+      "target_file_sha256": "681f91579d5520e5a86b3a3766e59129012f0eae6d0747d91c5ed16adf898f79"
+    },
+    {
+      "id": "F3",
+      "priority": 1,
+      "title": "Ledger target is bound to a title but not intended numeric tab ID",
+      "file": "ops_common.py",
+      "line": 157,
+      "control": "counterexample_full_ledger_tab_gid_and_response_identity",
+      "strongest_result": "Complete workflow reports exact verified append on title Math Puzzles at model gid999999999 instead of intendedgid1254632077.",
+      "repair": "Bind numeric sheetId throughout gate, intent, destination and readback; manage any remaining title race.",
+      "assumption_source": "Parent root explicitly supplied intended tabgid1254632077 during this independent review.",
+      "scope_limit": "Conditional wrong-tab model; no claim that the actual live tab changed.",
+      "all_modes_reproduced": true,
+      "target_file_sha256": "64d4e1df6cc17079b18c669f68f22f7322c8c8fd3057d6be928eee97afaae0bf"
+    },
+    {
+      "id": "F4",
+      "priority": 2,
+      "title": "Contradictory legacy concept DOI survives final publish target check",
+      "file": "native_policy.py",
+      "line": 106,
+      "control": "counterexample_full_final_gate_legacy_conceptdoi_drift",
+      "strongest_result": "After final full publish gate, legacy.conceptdoi changes778→999 while native parent/conceptrecid stay778. Exactly1 POST and ZENODO_PUBLISH_VERIFIED; later public gate rejects,0 ledger appends.",
+      "repair": "When supplied, bind legacy conceptdoi to the already verified concept ID during each observation.",
+      "scope_limit": "Native record/primary DOI/parent remain correct; only contradictory supplied legacy concept field is demonstrated.",
+      "all_modes_reproduced": true,
+      "target_file_sha256": "6d14e30ac7b4ba4855e509787dcc84a6b920b65c7255c1e69a6cdebe921c110a"
+    }
+  ],
+  "diagnostic_observations": [
+    {
+      "id": "D1",
+      "priority": 3,
+      "file": "publish_and_ledger.py",
+      "line": 156,
+      "title": "Contradictory append response IDs/majorDimension/nestedrange accepted",
+      "control": "counterexample_full_ledger_tab_gid_and_response_identity",
+      "scope": "Correct destination and exact independent readback still hold in response-only fault. Evidence incompleteness, not separately demonstrated misdirected append."
+    }
+  ],
+  "publication_ready": false
+}

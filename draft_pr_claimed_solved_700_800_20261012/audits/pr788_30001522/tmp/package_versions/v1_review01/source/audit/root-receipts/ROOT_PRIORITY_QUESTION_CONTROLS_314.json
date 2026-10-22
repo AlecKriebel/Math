@@ -1,0 +1,319 @@
+{
+  "utc": "2026-10-16T14:18:22.766718+00:00",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "result": "PASS",
+  "negative_cases_per_mode": 12,
+  "rows": [
+    {
+      "case": "positive_full_body_baseline",
+      "optimization": 0,
+      "expected_accept": true,
+      "passed": true,
+      "result": {
+        "exit_code": 0,
+        "stdout": "{\"bound_intake_files\": 51, \"bound_original_files\": 48, \"checker_sha256\": \"c67eb9c3e4bbd518ae0737c5f32db7ed4d974223e84b14429d46e01ddf29b487\", \"external_body_files_replayed\": 33, \"external_body_replay\": true, \"manifest_sha256\": \"bb312addd8615d21b2043764f194884232ed08b85a55bda688e5648dc89cc913\", \"optimization\": 0, \"packet_files\": 19, \"pr\": 788, \"primary_sources\": 16, \"priority_certified\": false, \"problem\": \"30001522\", \"result\": \"PASS\"}",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "wrong_manifest_pin",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: manifest pin mismatch"
+      }
+    },
+    {
+      "case": "wrong_checker_pin",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: checker pin mismatch"
+      }
+    },
+    {
+      "case": "changed_report",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: payload mismatch: REPORT.md"
+      }
+    },
+    {
+      "case": "unexpected_member",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: packet membership mismatch"
+      }
+    },
+    {
+      "case": "fifo_manifest",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: not a regular file: MANIFEST.json"
+      }
+    },
+    {
+      "case": "fifo_helper",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: not a regular file: verify_packet.py"
+      }
+    },
+    {
+      "case": "symlink_payload",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: [Errno 62] Too many levels of symbolic links: 'REPORT.md'"
+      }
+    },
+    {
+      "case": "root_ancestor_symlink",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: [Errno 20] Not a directory: 'alias'"
+      }
+    },
+    {
+      "case": "input_fifo",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: not a regular file: SELECTED_PUBLIC_RECORD.json"
+      }
+    },
+    {
+      "case": "missing_original",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: [Errno 2] No such file or directory: 'PUBLICATION_CONTROL_TESTS.py'"
+      }
+    },
+    {
+      "case": "external_pdf_fifo",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: not a regular file: owr2010.pdf"
+      }
+    },
+    {
+      "case": "resealed_priority_inflation",
+      "optimization": 0,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: scope inflation: source ledger"
+      }
+    },
+    {
+      "case": "post_control_core_baseline",
+      "optimization": 0,
+      "expected_accept": true,
+      "passed": true,
+      "result": {
+        "exit_code": 0,
+        "stdout": "{\"bound_intake_files\": 51, \"bound_original_files\": 48, \"checker_sha256\": \"c67eb9c3e4bbd518ae0737c5f32db7ed4d974223e84b14429d46e01ddf29b487\", \"external_body_files_replayed\": 0, \"external_body_replay\": false, \"manifest_sha256\": \"bb312addd8615d21b2043764f194884232ed08b85a55bda688e5648dc89cc913\", \"optimization\": 0, \"packet_files\": 19, \"pr\": 788, \"primary_sources\": 16, \"priority_certified\": false, \"problem\": \"30001522\", \"result\": \"PASS\"}",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "positive_full_body_baseline",
+      "optimization": 1,
+      "expected_accept": true,
+      "passed": true,
+      "result": {
+        "exit_code": 0,
+        "stdout": "{\"bound_intake_files\": 51, \"bound_original_files\": 48, \"checker_sha256\": \"c67eb9c3e4bbd518ae0737c5f32db7ed4d974223e84b14429d46e01ddf29b487\", \"external_body_files_replayed\": 33, \"external_body_replay\": true, \"manifest_sha256\": \"bb312addd8615d21b2043764f194884232ed08b85a55bda688e5648dc89cc913\", \"optimization\": 1, \"packet_files\": 19, \"pr\": 788, \"primary_sources\": 16, \"priority_certified\": false, \"problem\": \"30001522\", \"result\": \"PASS\"}",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "wrong_manifest_pin",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: manifest pin mismatch"
+      }
+    },
+    {
+      "case": "wrong_checker_pin",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: checker pin mismatch"
+      }
+    },
+    {
+      "case": "changed_report",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: payload mismatch: REPORT.md"
+      }
+    },
+    {
+      "case": "unexpected_member",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: packet membership mismatch"
+      }
+    },
+    {
+      "case": "fifo_manifest",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: not a regular file: MANIFEST.json"
+      }
+    },
+    {
+      "case": "fifo_helper",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: not a regular file: verify_packet.py"
+      }
+    },
+    {
+      "case": "symlink_payload",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: [Errno 62] Too many levels of symbolic links: 'REPORT.md'"
+      }
+    },
+    {
+      "case": "root_ancestor_symlink",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: [Errno 20] Not a directory: 'alias'"
+      }
+    },
+    {
+      "case": "input_fifo",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: not a regular file: SELECTED_PUBLIC_RECORD.json"
+      }
+    },
+    {
+      "case": "missing_original",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: [Errno 2] No such file or directory: 'PUBLICATION_CONTROL_TESTS.py'"
+      }
+    },
+    {
+      "case": "external_pdf_fifo",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: not a regular file: owr2010.pdf"
+      }
+    },
+    {
+      "case": "resealed_priority_inflation",
+      "optimization": 1,
+      "expected_accept": false,
+      "passed": true,
+      "result": {
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "FAIL: scope inflation: source ledger"
+      }
+    },
+    {
+      "case": "post_control_core_baseline",
+      "optimization": 1,
+      "expected_accept": true,
+      "passed": true,
+      "result": {
+        "exit_code": 0,
+        "stdout": "{\"bound_intake_files\": 51, \"bound_original_files\": 48, \"checker_sha256\": \"c67eb9c3e4bbd518ae0737c5f32db7ed4d974223e84b14429d46e01ddf29b487\", \"external_body_files_replayed\": 0, \"external_body_replay\": false, \"manifest_sha256\": \"bb312addd8615d21b2043764f194884232ed08b85a55bda688e5648dc89cc913\", \"optimization\": 1, \"packet_files\": 19, \"pr\": 788, \"primary_sources\": 16, \"priority_certified\": false, \"problem\": \"30001522\", \"result\": \"PASS\"}",
+        "stderr": ""
+      }
+    }
+  ],
+  "tested_manifest_sha256": "bb312addd8615d21b2043764f194884232ed08b85a55bda688e5648dc89cc913",
+  "tested_checker_sha256": "c67eb9c3e4bbd518ae0737c5f32db7ed4d974223e84b14429d46e01ddf29b487",
+  "scope": "Provisional sealed baseline plus bounded local negatives. No external API calls, no original/other worker mutations. This output is added before final reseal; final baseline receipt remains outside self-bound packet."
+}

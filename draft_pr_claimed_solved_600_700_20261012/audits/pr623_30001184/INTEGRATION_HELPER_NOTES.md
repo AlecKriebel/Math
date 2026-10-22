@@ -36,6 +36,18 @@ their archived counterparts byte-for-byte. The expected publication files are
 `publication/CURRENT_PRIORITY_AND_STATUS.md`; `--source-audit` may select an
 identical archived notice elsewhere.
 
+The repaired `publication_inputs` interface returns three values: captured
+publication-file bytes, captured archive-validated source-notice bytes, and their
+validation record. Each publication, notice and compact receipt path is read
+exactly once. Receipt parsing, validation and returned SHA values all use the
+same captured immutable bytes. Preparation passes the returned notice bytes
+directly into `build_current_files`; it does not reopen the notice. The tracker
+consumes the same snapshot contract and validation record. A later change to a
+path cannot substitute new bytes into the current preparation or attest an
+unvalidated receipt; a fresh validation of the changed input still rejects it.
+Inventory schema must satisfy `type(schema) is int` and `schema == 1`, rejecting
+JSON Boolean or decimal lookalikes as well as unsupported integer versions.
+
 Current wrapper prose credits **Burgarth–Facchi–Hillier** and the established
 clock/evaluation/translated-unitary mechanism, framing this result as an explicit
 formulation-specific corollary. It disclaims exhaustive first priority,
@@ -75,5 +87,12 @@ package. Parent approval of the final mathematical/source/publication package
 and clean sequential reviews remains the gate before operational execution.
 
 Operational implementation completion estimate: 100%; live execution completion:
-0%; final parent/whole-package review is pending. The discovery/publication
-program's broader percentage is maintained by the parent research log.
+0%. Round2 identified mandatory F1 immutable-byte binding and F2 schema-type
+repairs; `reviews/operations_02/check_repairs.py` exercises these repairs plus
+all 14 earlier operational controls, under normal and optimized Python. Old
+round2 evidence and native29 remain untouched. The parent is rebuilding the
+paper/ZIP after its portable-verifier/source-locator repairs; predecessor
+publication hashes are not final readiness evidence. Rebinding those rebuilt
+artifacts and a new independent whole-package round3 remain required before
+publication or integration. The discovery/publication program's broader
+percentage is maintained by the parent research log.

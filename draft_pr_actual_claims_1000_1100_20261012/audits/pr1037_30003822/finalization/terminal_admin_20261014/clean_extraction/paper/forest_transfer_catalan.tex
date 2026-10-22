@@ -1,0 +1,389 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{lmodern,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{xurl}
+\setlength{\parskip}{0.35em}
+\setlength{\emergencystretch}{2em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\textquotesingle}{'}
+\hypersetup{pdftitle={A Grassmann proof of the Catalan divisor in the Teufl-Wagner forest transfer determinant},pdfauthor={Alec Kriebel},pdfsubject={Credited proof exposition of an all-n integral divisor; same conclusion in Ferudun Theorem 1.2; priority unknown},pdfkeywords={forest transfer matrix, Grassmann algebra, Catalan number, polynomial divisibility, proof exposition}}
+\title{A Grassmann proof of the Catalan divisor in the Teufl--Wagner forest transfer determinant}
+\author{Alec Kriebel\\Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{13 October 2026\quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a generic $n\times n$ matrix $A$, the Teufl--Wagner forest transfer matrix $T$ is indexed by all set partitions. Each transition uses one fixed unweighted tree per input block and counts each admissible interlayer edge subset once. We give a self-contained exposition of the divisor $(\det A)^{C_n}\mid\det T$ in $\mathbb Z[a_{ij}]$ for every $n\geq1$, where $C_n$ is the Catalan number. The proof applies established paired Grassmann forest algebra, constructs its constant $C_n$-dimensional invariant image, and computes the induced transfer determinant through ordered degree-triangular Gaussian factors. Alper Ferudun's presently public Theorem 1.2 states the exact same conclusion (DOI \href{https://doi.org/10.5281/zenodo.23298482}{10.5281/zenodo.23298482}). The candidate repository PR is dated 9 October 2026, and that DOI was registered 11 October; historical public visibility, independent discovery and intellectual or worldwide priority are unestablished. This is a credited proof exposition, with no claim of a new theorem or method, exact multiplicity or complete factorization.
+\end{abstract}
+\begin{center}\small
+Unrefereed preprint. Extensive AI assistance was used in solving, verification, source comparison and writing. The recorded AI audits are neither human refereeing, journal acceptance nor formal proof certification. Authored text and code are licensed CC BY 4.0.
+\end{center}
+
+\section*{Introduction and comparison}
+Elmar Teufl and Stephan Wagner posed the Catalan determinant-factor question in \cite[Problem 1, pp.~1457--1458]{TW}. The state space is the full Bell set of partitions, even though the useful quotient has Catalan dimension. The present exposition explains the exact coefficient-extraction convention and the constant-kernel argument needed to pass from that quotient to an integral polynomial divisor of the full matrix.
+
+The forest Grassmann representation belongs to Caracciolo, Jacobsen, Saleur, Sokal and Sportiello \cite{CJSSS}; forest multiplication, exponential expansion and partial elimination are developed by Caracciolo, Sokal and Sportiello \cite{CSS}. Sportiello's Chapter 10 \cite{Sportiello} proves the Catalan basis statement that \cite{CSS} announces with a deferred proof. Kenyon and Wilson \cite{KW} give the equivalent partition projection and tree pairing. These inherited ingredients retain their attribution when they are rederived below.
+
+Ferudun \cite[Theorem 1.2(a)--(c)]{Ferudun} gives the same all-$n$ integral divisor for exactly this full-Bell normalization, rather than a planar specialization or a merely related grove identity. Its Sections 2--5 use forest intertwining, a constant Catalan image, an inverse Gaussian identity and integral block factorization; Section 6 gives a tree-pairing and bordered matrix-tree proof. The accompanying 13 October source review checked those core arguments and their normalization and found no gap affecting the divisor. Its additional computer-assisted exactness assertions were not reproduced or validated. Here the quotient determinant is calculated instead with an ordered lowering--substitution--raising factorization and a determinant character. This is an explicit alternative calculation within established forest algebra, without a novelty claim for the assembly.
+
+GitHub records \href{https://github.com/AlecKriebel/Math/pull/1037}{PR 1037} creation at 2026-10-09 22:16:52 UTC and its original head commit at 22:16:22 UTC. The \href{https://api.datacite.org/dois/10.5281/zenodo.23298482}{DataCite record} registers Ferudun's DOI at 2026-10-11 13:01:38 UTC. The repository was public when inspected on 13 October; its historical visibility on 9 October was not independently archived. These observations establish located record dates, not discovery, independence, copying or intellectual or worldwide priority. No inference of copying is made.
+
+\section*{Precise statement}
+Let $n\geq1$, let $A=(a_{ij})_{1\leq i,j\leq n}$ have independent commuting entries, and set
+\[
+R_{\mathbb Z}=\mathbb Z[a_{ij}:1\leq i,j\leq n],\qquad C_n=\frac1{n+1}\binom{2n}{n}.
+\]
+Let $X=\{x_1,\ldots,x_n\}$ and $Y=\{y_1,\ldots,y_n\}$ be disjoint labelled copies of $[n]$. Index both rows and columns by every set partition, in the same order after identifying either layer with $[n]$. For each input partition $P$, choose one fixed unweighted tree on each block, with the empty tree on singletons, and let $F_P$ be their union. An interlayer subset
+\[
+E\subseteq\{x_i y_j:1\leq i,j\leq n\},\qquad a_E=\prod_{x_i y_j\in E}a_{ij}
+\]
+is admissible for $(P,Q)$ precisely when $F_P\cup E$ is a forest on $X\sqcup Y$, every component meets $Y$, and the nonempty intersections of its components with $Y$ are exactly the blocks of $Q$. Define
+\[
+T(P,Q)=\sum_{E\text{ admissible for }(P,Q)}a_E.\tag{1}
+\]
+Each subset is counted once. There is no sum over choices of input-block trees; isolated $Y$ vertices give singleton output blocks.
+
+\noindent\textbf{Theorem (Catalan divisor; same conclusion as Ferudun \cite[Theorem 1.2]{Ferudun}).}
+For the full Bell matrix $T$ defined by (1),
+\[
+(\det A)^{C_n}\mid\det T\quad\text{in }R_{\mathbb Z}.\tag{2}
+\]
+The trees are arbitrary fixed representatives. No symmetry, positivity, planarity or numerical row-sum assumption is required. The theorem asserts a divisor, with no assertion of exact multiplicity, quotient irreducibility or full factorization.
+
+The proof constructs a constant quotient $W$ and proves $\det(G_A|W)=(\det A)^{C_n}$ with normalization $+1$. A constant rational splitting then yields polynomial divisibility, and primitivity yields the integral conclusion.
+
+\section{Exterior algebra and forest products}\label{exterior-algebra-and-forest-products}
+
+The paired forest representation is established work of Caracciolo, Jacobsen, Saleur, Sokal and Sportiello \cite{CJSSS}; the identities below are the graph case of Caracciolo, Sokal and Sportiello \cite[Section 4]{CSS}. Work first over a characteristic-zero field. For every vertex \(v\), introduce two odd generators \(\xi_v,\bar\xi_v\). Thus any two generators anticommute, and their squares vanish. For an unordered edge \(uv\), put \[
+q_{uv}=(\xi_u-\xi_v)(\bar\xi_u-\bar\xi_v).
+\tag{3}
+\] Reversing the edge orientation changes both factors' signs and leaves \(q_{uv}\) unchanged. The elements \(q_{uv}\) have even degree, commute with each other, and satisfy \(q_{uv}^2=0\).
+
+For a finite graph \(H\), write \(q_H=\prod_{e\in E(H)}q_e\); the edge ordering is immaterial.
+
+\textbf{Lemma 1.} If \(H\) contains a cycle, then \(q_H=0\). If \(H\) is a forest, \(q_H\) depends only on its partition into connected components.
+
+\textbf{Proof.} Orient the edges and let \(u_e\) be the coefficient vector of the corresponding difference of vertex variables. If there are \(s\) edges, moving all barred factors to the right gives \[
+q_H=(-1)^{s(s-1)/2}
+ \left(\bigwedge_e\xi(u_e)\right)
+ \left(\bigwedge_e\bar\xi(u_e)\right).
+\tag{4}
+\] Along a cycle the oriented edge vectors are linearly dependent, so the first wedge vanishes.
+
+For a tree on a vertex set \(B\), its oriented edge vectors are a \(\mathbb Z\)-basis of the lattice \[
+U_{B,\mathbb Z}=
+\left\{(c_v)_{v\in B}\in\mathbb Z^B:\sum_{v\in B}c_v=0\right\}.
+\] Indeed, relative to any root \(b\in B\), each vector \(e_v-e_b\) is an integral sum of oriented edge vectors along the unique path from \(b\) to \(v\). The tree has exactly \(|B|-1\) edges, so its edge vectors form an integral basis. Two such bases differ by a matrix of determinant \(+1\) or \(-1\). The same basis change occurs in the two wedges in (4), multiplying their product by the square of that determinant, which is \(1\). This proves tree independence on a block. Taking the product over the blocks proves the forest assertion. Singleton blocks contribute \(1\). \(\square\)
+
+For a set partition \(P\) of a finite vertex set, write \(f_P\) for this common block-forest product. In particular, \(f_P=q_{F_P}\) for the fixed forest in (1).
+
+\section{Integration gives exactly the stated transfer matrix}\label{integration-gives-exactly-the-stated-transfer-matrix}
+
+Order the odd generators with all \(X\) pairs first and then all \(Y\) pairs, and within \(X\) use \[
+\Omega_X=\xi_{x_1}\bar\xi_{x_1}\cdots\xi_{x_n}\bar\xi_{x_n}.
+\] Define \(\mathcal I_X\) to extract the coefficient of \(\Omega_X\), placing this factor to the left of the remaining \(Y\) generators. This is algebraic coefficient extraction; no analytic integral is involved. Define \[
+G_A f=\mathcal I_X\left[
+ \exp\left(\sum_{i,j}a_{ij}q_{x_i y_j}\right)f
+\right].
+\tag{5}
+\] All exponential series in this proof terminate because their arguments have positive exterior degree.
+
+\textbf{Lemma 2.} For every partition \(P\) of \(X\), \[
+G_Af_P=\sum_Q T(P,Q)f_Q.
+\tag{6}
+\]
+
+\textbf{Proof.} Since the \(q_{x_i y_j}\) commute and square to zero, \[
+\exp\left(\sum_{i,j}a_{ij}q_{x_i y_j}\right)
+=\prod_{i,j}(1+a_{ij}q_{x_i y_j})
+=\sum_E a_Eq_E.
+\tag{7}
+\] There is one summand for each edge subset \(E\), with coefficient exactly \(a_E\). Multiplication by \(f_P\) gives the edge product of \(F_P\cup E\).
+
+If this graph contains a cycle, the product is zero by Lemma 1. If it is a forest with a component consisting of \(k\) vertices of \(X\) and no vertex of \(Y\), that component's factor has degree \(2(k-1)\). It cannot supply all \(2k\) odd generators on those vertices, so its contribution to \(\mathcal I_X\) is zero.
+
+In every remaining case, choose one \(Y\) root in each component. By Lemma 1, replace the component's tree product by that of the star at this root, without changing the exterior element. Every \(X\) vertex is now a leaf. For an \(X\) leaf \(x\) with root \(y\), the coefficient of \(\xi_x\bar\xi_x\) in \[
+q_{xy}=\xi_x\bar\xi_x-\xi_x\bar\xi_y
+       -\xi_y\bar\xi_x+\xi_y\bar\xi_y
+\] is \(+1\). No other factor contains either generator at \(x\), so both must be taken from this first term. The pairs have even degree and commute, giving coefficient \(+1\) for all \(X\) pairs in the prescribed order. The remaining factors are the stars on the component intersections with \(Y\), whose product is \(f_Q\). Precisely the edge sets in (1) therefore survive, each with weight \(a_E\) and with no additional multiplicity or sign. \(\square\)
+
+Only the fixed internal trees stipulated in (1) were used in this expansion. The temporary replacement by stars is an identity of exterior elements for an already selected graph; it does not introduce additional summands.
+
+\section{A constant invariant quotient of the partition space}\label{a-constant-invariant-quotient-of-the-partition-space}
+
+Let \[
+U=\left\{u=(u_1,\ldots,u_n)\in\mathbb Q^n:
+                  \sum_i u_i=0\right\},\qquad m=n-1,
+\] and regard its elements as row coefficient vectors. On one layer set \[
+\xi(u)=\sum_i u_i\xi_i,\qquad
+\bar\xi(u)=\sum_i u_i\bar\xi_i.
+\] Let \(V=\mathbb Q^2\) be the standard representation of \(\mathrm{SL}_2\). The difference algebra on the layer is \[
+\mathcal E=\Lambda(U\otimes V),
+\] where the two generators associated with \(u\) are \(\xi(u)\) and \(\bar\xi(u)\). Put \[
+W=\mathcal E^{\mathrm{SL}_2}.
+\tag{8}
+\] The group acts simultaneously on all these pairs. Each \(q_{ij}\), and hence each \(f_P\), is invariant.
+
+The Catalan forest-state structure is established in Sportiello\textquotesingle s thesis \cite[Chapter 10]{Sportiello} and has an equivalent partition projection in Kenyon and Wilson \cite[Section 1.2 and Sections 2.1--2.3]{KW}. We give a direct spanning and dimension argument here, so no external basis theorem is a premise.
+
+\subsection{A weight-space calculation}\label{a-weight-space-calculation}
+
+Consider a tensor power of the standard complex representation, or an exterior power of a direct sum of copies of it. With the natural Hermitian inner product, let \(E,F,H\) be the usual infinitesimal operators, normalized by \[
+[E,F]=H,\qquad E^*=F,
+\] with weights \(+1\) and \(-1\) on the two standard basis vectors. The identities extend to tensor and exterior powers by the induced derivation actions. Write \(M_k\) for the weight-\(k\) subspace of any such module.
+
+\textbf{Lemma 3.} Its invariant dimension is \[
+\dim M^{\mathrm{SL}_2}=\dim M_0-\dim M_2.
+\tag{9}
+\]
+
+\textbf{Proof.} If \(v\in M_0\) and \(Ev=0\), then \[
+\|Fv\|^2=\langle v,EFv\rangle
+=\langle v,(FE+H)v\rangle=0.
+\] Thus \(v\) is killed by \(E,F,H\). Being killed by \(E\) and \(F\) is equivalent to being fixed by their exponentials, the upper and lower unipotent one-parameter subgroups; those subgroups generate \(\mathrm{SL}_2\). Conversely, an invariant vector has weight zero and is killed by \(E\). Hence the invariant subspace is \(\ker(E:M_0\to M_2)\).
+
+This map is surjective. A vector \(w\in M_2\) orthogonal to its image has \(Fw=0\), and hence \[
+2\|w\|^2=\langle w,[E,F]w\rangle
+=\|Fw\|^2-\|Ew\|^2=-\|Ew\|^2.
+\] It follows that \(w=0\). Rank-nullity proves (9). The operators defining the kernels have rational matrices, so the dimensions are unchanged over \(\mathbb Q\). \(\square\)
+
+\subsection{Generation by quadratic invariants}\label{generation-by-quadratic-invariants}
+
+For \(u,v\in U\), put \[
+b(u,v)=\xi(u)\bar\xi(v)+\xi(v)\bar\xi(u).
+\tag{10}
+\] This is the exterior image of the alternating invariant tensor in \(V\otimes V\), and is therefore invariant.
+
+\textbf{Lemma 4.} The algebra \(W\) is generated by the elements (10).
+
+\textbf{Proof.} First consider \(V^{\otimes2r}\). By (9), its invariant dimension is \[
+\binom{2r}{r}-\binom{2r}{r+1}
+=\frac1{r+1}\binom{2r}{r}=C_r.
+\tag{11}
+\] For every noncrossing perfect matching of the ordered positions \(1,\ldots,2r\), put a copy of \[
+\varepsilon=e_+\otimes e_- - e_-\otimes e_+
+\] in the two positions of each pair. The resulting tensor is invariant. There are \(C_r\) such matchings: record a plus sign at each left endpoint and a minus sign at each right endpoint. This gives a Dyck word, from which the unique noncrossing matching is recovered by the stack rule. The reflection of a word at its first prefix with more minus than plus signs counts the excluded words as \(\binom{2r}{r+1}\), proving the count.
+
+Order tensor words lexicographically with \(e_+>e_-\). The leading word of a matching tensor has \(e_+\) at all left endpoints and \(e_-\) at all right endpoints, with coefficient \(1\). Every other term reverses at least one pair, and at the first changed position replaces \(e_+\) by \(e_-\), making it smaller. Distinct noncrossing matchings have distinct Dyck leading words. In an alleged nonzero linear relation, choose the largest leading word among the tensors with nonzero coefficient. Every term in every tensor with smaller leading word is smaller, so it cannot cancel that coefficient. These tensors are therefore linearly independent. By (11), they form a basis of the invariant tensors. Thus all invariant tensors are spanned by paired copies of \(\varepsilon\). In odd degree there are no invariants because the central element \(-I\) acts as \(-1\).
+
+Now take an invariant element of \(\Lambda^{2r}(U\otimes V)\). For \(k=2r\), normalized antisymmetrization is the explicit map \[
+\iota(z_1\wedge\cdots\wedge z_k)=\frac1{k!}\sum_{\sigma\in S_k}\operatorname{sgn}(\sigma)z_{\sigma(1)}\otimes\cdots\otimes z_{\sigma(k)}.
+\] It embeds the exterior power equivariantly into \((U\otimes V)^{\otimes2r}\), with exterior projection as a left inverse. Rearranging ordinary tensor factors identifies the invariant tensor space with \[
+U^{\otimes2r}\otimes(V^{\otimes2r})^{\mathrm{SL}_2}.
+\] It is spanned by tensors paired in the \(V\) slots. Exterior projection of each is, up to the sign from rearranging slots, a product of expressions \[
+\xi(u)\bar\xi(v)-\bar\xi(u)\xi(v)=b(u,v).
+\] These products therefore span the exterior invariants. \(\square\)
+
+For \(n\geq2\), take the basis \(u_i=e_i-e_n\), \(1\leq i\leq m\), of \(U\). Expansion gives \[
+b(u_i,u_i)=2q_{in},\qquad
+b(u_i,u_j)=q_{in}+q_{jn}-q_{ij}\quad(i\ne j).
+\tag{12}
+\] Since \(b\) is bilinear, the \(q_{ij}\) generate \(W\). A monomial in them is zero if an edge is repeated, is zero if the distinct edges contain a cycle, and otherwise is \(f_P\) for the component partition of its forest, by Lemma 1. Hence the elements \(f_P\), for all set partitions \(P\), span \(W\).
+
+Let \(\mathcal P_n\) be the set of partitions of \([n]\), and let \(V_n\) be the rational vector space with basis \(\{e_P:P\in\mathcal P_n\}\). We have proved that \[
+\Phi:V_n\longrightarrow W,\qquad e_P\longmapsto f_P
+\tag{13}
+\] is a surjection. This map is defined over \(\mathbb Q\) and does not depend on \(A\). Its constancy is important when taking determinants over a polynomial ring.
+
+\subsection{The Catalan dimension}\label{the-catalan-dimension}
+
+The central element \(-I\) shows that \(W\) has only even degrees. Write \[
+W=\bigoplus_{r=0}^m W_{2r},\qquad d_r=\dim W_{2r}.
+\] In \(\Lambda^{2r}(U\otimes V)\), a weight-zero monomial uses \(r\) unbarred and \(r\) barred generators, while a weight-two monomial uses \(r+1\) unbarred and \(r-1\) barred generators. Lemma 3 gives \[
+d_r=\binom mr^2-\binom m{r-1}\binom m{r+1},
+\tag{14}
+\] where an out-of-range binomial coefficient is zero. Vandermonde's identity gives \[
+\begin{aligned}
+d:=\dim W
+&=\sum_{r=0}^m\left(\binom mr^2-\binom m{r-1}\binom m{r+1}\right)\\
+&=\binom{2m}{m}-\binom{2m}{m-2}\\
+&=\frac1{m+2}\binom{2m+2}{m+1}=C_n.
+\end{aligned}
+\tag{15}
+\] Also \(d_r=d_{m-r}\), so \[
+\sum_{r=0}^m 2r\,d_r=m d.
+\tag{16}
+\]
+
+\subsection{The determinant character}\label{the-determinant-character}
+
+Each \(g\in\mathrm{GL}(U)\) acts by substitution on both copies of \(U\), commuting with \(\mathrm{SL}_2\), and hence acts on \(W\). Denote the action by \(\rho(g)\).
+
+\textbf{Lemma 5.} For \(m>0\), \[
+\det\rho(g)=(\det g)^d.
+\tag{17}
+\]
+
+\textbf{Proof.} On \(g=\operatorname{diag}(t_1,\ldots,t_m)\), the determinant of the action on \(W\) is a monomial \(\prod_i t_i^{\alpha_i}\). Indeed, the exterior algebra has a monomial weight basis, and the invariant subspace is stable under the diagonal torus and is the direct sum of its weight spaces. Conjugation by permutation matrices shows that all exponents are equal, say to \(\alpha\).
+
+The scalar \(tI\) acts on \(W_{2r}\) as \(t^{2r}\), so (16) makes its determinant \(t^{md}\). The diagonal formula gives \(t^{m\alpha}\). Thus \(\alpha=d\), since \(m>0\). Equation (17) holds on diagonal matrices and hence on diagonalizable matrices. Over \(\mathbb C\), invertible matrices with distinct eigenvalues are Zariski dense. Both sides are polynomial functions of the entries of \(g\), so the identity holds on all of \(\mathrm{GL}(U)\), over \(\mathbb Q\) and every characteristic-zero extension. \(\square\)
+
+\section{The determinant of the induced Gaussian transfer}\label{the-determinant-of-the-induced-gaussian-transfer}
+
+The elimination framework is established in \cite[Section 5]{CSS}. The calculation here fixes the ordered lowering, substitution and raising factors and their determinant normalizations. Set \[
+R=\mathbb Q[a_{ij}],\qquad K=\mathbb Q(a_{ij}).
+\] Equation (6) and the constant surjection (13) show that \(G_A\) maps \(W_X\otimes R\) into \(W_Y\otimes R\). Identify these two spaces by their common labels. Thus \(G_A\) is a polynomial matrix on the constant \(d\)-dimensional space \(W\), although we will compute its determinant over \(K\).
+
+Write the \(X\) generators as column vectors \(\xi,\bar\xi\) and the \(Y\) generators as \(\eta,\bar\eta\). Define \[
+r_i=\sum_j a_{ij},\quad c_j=\sum_i a_{ij},\quad
+D=\operatorname{diag}(r_1,\ldots,r_n),\quad
+E=\operatorname{diag}(c_1,\ldots,c_n),
+\] and \[
+B=D^{-1}A,\qquad S=E-A^{\mathsf T}D^{-1}A.
+\tag{18}
+\] The elements \(r_i\) and \(\det A\) are nonzero in \(K\), so \(D\) and \(B\) are invertible there. For the all-ones column \(\mathbf1\), \[
+B\mathbf1=\mathbf1,\qquad S^{\mathsf T}=S,\qquad S\mathbf1=0.
+\tag{19}
+\] The last identity follows from \(A\mathbf1=D\mathbf1\) and \(A^{\mathsf T}\mathbf1=E\mathbf1\). Symmetry gives zero column sums too.
+
+The exponent in (5) has the exact completion \[
+\begin{aligned}
+\sum_{i,j}a_{ij}q_{x_i y_j}
+&=\xi^{\mathsf T}D\bar\xi-\xi^{\mathsf T}A\bar\eta
+  -\eta^{\mathsf T}A^{\mathsf T}\bar\xi+\eta^{\mathsf T}E\bar\eta\\
+&=(\xi-B\eta)^{\mathsf T}D(\bar\xi-B\bar\eta)
+  +\eta^{\mathsf T}S\bar\eta.
+\end{aligned}
+\tag{20}
+\] No odd factors were interchanged in this expansion, so no implicit sign adjustment is present.
+
+\subsection{The lowering operator}\label{the-lowering-operator}
+
+Introduce \(n\) new pairs \(z_i,\bar z_i\), ordered before the remaining variables for coefficient extraction. Define \[
+H_D f(\xi,\bar\xi)
+=\frac1{\det D}\mathcal I_z\left[
+ \exp(z^{\mathsf T}D\bar z)\,
+ f(z+\xi,\bar z+\bar\xi)\right].
+\tag{21}
+\]
+
+\textbf{Lemma 6.} The operator \(H_D\) preserves \(W\otimes K\), and its determinant on that space is \(1\).
+
+\textbf{Proof.} In the difference algebra all arguments of \(f\) can be written as differences. After substitution they become \[
+(z_i-z_j)+(\xi_i-\xi_j),\qquad
+(\bar z_i-\bar z_j)+(\bar\xi_i-\bar\xi_j).
+\] Extracting a \(z\) coefficient therefore leaves a polynomial in differences of the remaining variables. Thus the difference algebra is preserved.
+
+Simultaneous \(\mathrm{SL}_2\) substitution on the \(z\) and \(\xi\) pairs preserves every \(z_i\bar z_i\), the exponential, and the top form \(\prod_i z_i\bar z_i\). The substitution \(z+\xi\) is equivariant. Coefficient extraction is equivariant too, as the projection onto that invariant top \(z\)-degree. Hence \(H_D\) preserves invariants.
+
+The term of \(f(z+\xi,\bar z+\bar\xi)\) using no \(z\) variable is \(f(\xi,\bar\xi)\), and \[
+\mathcal I_z\exp(z^{\mathsf T}D\bar z)
+=\mathcal I_z\prod_i(1+r_i z_i\bar z_i)
+=\prod_i r_i=\det D.
+\tag{22}
+\] Thus the degree-preserving part of (21) is the identity. Every other surviving term uses a positive even number of \(z\) generators from \(f\): the exponential contributes either both \(z_i,\bar z_i\) or neither, so \(f\) must supply both missing generators. Such a term strictly lowers the degree in the remaining variables. The resulting matrix is triangular by degree, with diagonal entries \(1\), proving the determinant claim. \(\square\)
+
+\subsection{The raising operator}\label{the-raising-operator}
+
+Define \[
+M_Sh=\exp(\eta^{\mathsf T}S\bar\eta)h.
+\tag{23}
+\]
+
+\textbf{Lemma 7.} The operator \(M_S\) preserves \(W\otimes K\), and its determinant on that space is \(1\).
+
+\textbf{Proof.} The zero row and column sums give \[
+\eta^{\mathsf T}S\bar\eta
+=\sum_{i,j<n}S_{ij}(\eta_i-\eta_n)(\bar\eta_j-\bar\eta_n).
+\tag{24}
+\] Because \(S\) is symmetric, this is a linear combination of the invariants (10): a diagonal term uses \(\tfrac12b(u,u)\), and each sum of terms at two distinct indices uses \(b(u,v)\). It lies in \(W_2\otimes K\). Multiplication by its exponential preserves \(W\). The exponential is \(1\) plus positive-degree terms, so \(M_S\) is triangular by degree, with diagonal entries \(1\). \(\square\)
+
+\subsection{The middle substitution and exact factorization}\label{the-middle-substitution-and-exact-factorization}
+
+For row coefficient vectors, substitution \(\xi=B\eta\) acts as \(u\mapsto uB\). By \(B\mathbf1=\mathbf1\), this preserves \(U\). Call its restriction \(g_B\). On the one-dimensional quotient by \(U\), the induced map is the identity, since \[
+(uB)\mathbf1=u\mathbf1.
+\] Taking determinants with respect to this invariant hyperplane gives \[
+\det g_B=\det B=\frac{\det A}{\det D}.
+\tag{25}
+\]
+
+Top coefficient extraction is invariant under the odd translation \(\xi=z+B\eta,\ \bar\xi=\bar z+B\bar\eta\). Indeed, translating a monomial cannot increase its degree in the integrated variables. Its full top-degree coefficient can come only from the full product of the original integrated generators, and this contributes the new full product with coefficient \(1\).
+
+Use this change of variables in (20). All exponential arguments are even, so their exponentials commute. For \(f\in W\otimes K\), (5) becomes \[
+\begin{aligned}
+G_Af(\eta,\bar\eta)
+&=\exp(\eta^{\mathsf T}S\bar\eta)\,
+ \mathcal I_z\left[\exp(z^{\mathsf T}D\bar z)
+ f(z+B\eta,\bar z+B\bar\eta)\right]\\
+&=(\det D)\,M_S\,\rho(g_B)\,H_D f.
+\end{aligned}
+\tag{26}
+\] This is an equality of operators in the displayed order. In particular, \(H_D\) is formed before substitution by \(B\); no commutation of these two operators is asserted or needed.
+
+For \(n\geq2\), taking determinants and using Lemmas 5--7 gives \[
+\begin{aligned}
+\det(G_A|W)
+&=(\det D)^d\det M_S\det\rho(g_B)\det H_D\\
+&=(\det D)^d\left(\frac{\det A}{\det D}\right)^d\\
+&=(\det A)^d=(\det A)^{C_n}.
+\end{aligned}
+\tag{27}
+\] There is no undetermined sign or constant: (22), the translation coefficient \(1\), and the unit diagonals of \(H_D,M_S\) fix all of them. This equality over \(K\) is a polynomial identity in \(R\), because \(G_A\) already had polynomial entries before the temporary inversion of the row sums. No numerical row-sum restriction remains.
+
+\section{Lifting the quotient determinant to the full matrix}\label{lifting-the-quotient-determinant-to-the-full-matrix}
+
+Extend (13) to \(R\), and define the endomorphism \(L_A\) of \(V_n\otimes R\) by \[
+L_Ae_P=\sum_QT(P,Q)e_Q.
+\tag{28}
+\] With column-vector conventions its matrix is \(T^{\mathsf T}\), so \(\det L_A=\det T\). Equation (6) says \[
+\Phi L_A=G_A\Phi.
+\tag{29}
+\] Let \(N=\ker(\Phi:V_n\to W)\). Since \(\Phi\) is a constant rational surjection, its kernel after extension of scalars is exactly \(N\otimes R\). By (29), this submodule is \(L_A\)-invariant.
+
+Choose a rational basis of \(N\), a rational basis of \(W\), and arbitrary rational lifts to \(V_n\) of that second basis. Together these form a constant basis of \(V_n\), in which \[
+L_A\sim\begin{pmatrix}
+K_A&*\\
+0&G_A
+\end{pmatrix}
+\tag{30}
+\] with \(K_A\) a matrix over \(R\). The change of basis is independent of \(A\), so its denominators are rational constants and introduce no variable denominators. Consequently \[
+\det T=(\det K_A)(\det A)^{C_n}
+\quad\text{in }\mathbb Q[a_{ij}].
+\tag{31}
+\] The determinant of an empty kernel block is understood as \(1\).
+
+By (1), \(\det T\in\mathbb Z[a_{ij}]\). The polynomial \(\det A\) is primitive over \(\mathbb Z\), since its nonzero coefficients are \(+1\) or \(-1\); hence its power is primitive by Gauss's lemma. Multivariate Gauss's lemma upgrades (31) to divisibility over \(\mathbb Z\). Explicitly, write any nonzero rational quotient as \((a/b)h\), where \(h\) is an integral primitive polynomial and \(\gcd(a,b)=1\). The product \((\det A)^{C_n}h\) is primitive, so integrality of \((a/b)(\det A)^{C_n}h\) forces \(b=1\). A zero quotient is already integral.
+
+For \(n=1\), there is one partition and the only admissible interlayer edge set is \(\{x_1y_1\}\). Thus \(T=(a_{11})\), \(\det A=a_{11}\), and \(C_1=1\), proving the remaining case and completing the proof. \(\square\)
+
+\section{Source attribution and the dated current addendum}
+The definitions and proof above are self-contained. Their principal source interfaces are precise: \cite{CSS}, equation (4.3c) and Corollaries 4.3--4.5, pp.~13 and 15--17 of arXiv v2, provide the normalized paired forest algebra and coefficient-one expansion; Lemma 5.1 and Corollary 5.2, pp.~18--19, provide elimination. Page 17 announces a noncrossing/Catalan basis and defers proof to reference 39, marked ``in preparation'' on p.~49. That historical entry is not itself a completed proof or a claim about the reference's present standalone publication status.
+
+Sportiello \cite{Sportiello}, Chapter 10, gives the completed basis theorem: Theorem 10.3 on printed p.~207 and Lemmas 10.4--10.7 on pp.~208--213. The normalized forest polynomial in equation (10.3), pp.~196--197, is polynomial at $\lambda=0$; the selected triangular coefficients on pp.~211--213 are $\lambda$-independent units. Thus the zero-parameter structure is not obtained by substituting into an unnormalized scalar product. The nonplanar transfer setting is explicit on p.~195. The official SNS catalogue item records 2010; the cover's academic years 2000--2003 are not substituted for a publication date. An ordering-direction reversal between the thesis statement and dipole proof leaves the unit triangular minor unchanged; the argument here does not depend on that ordering.
+
+Kenyon and Wilson \cite{KW}, Section 1.2, Theorem 1.2 and Sections 2.1--2.3, Theorem 2.6, give the partition projection, tree pairing and integral reduction from arbitrary partitions to a noncrossing quotient. The associated meander nonsingularity is due to Di Francesco, Golinelli and Guitter \cite{DFGG}, rather than to the present exposition. The proof above uses its own invariant argument and does not invoke that nonsingularity. Noncrossing matching tensors in Lemma 4 are a basis device within the invariant calculation; they do not restrict the partitions or forests in (1).
+
+\subsection*{13 October 2026 addendum to the frozen 9 October edition}
+The original ten-file theoretical edition is preserved with its exact hashes. Its bounded 9 October no-match search is a dated historical record. It is superseded as a description of current evidence by the exact Ferudun match \cite{Ferudun} and the qualified chronology in the introduction. It is not silently rewritten as though a source registered on 11 October had been reviewed on 9 October.
+
+The fresh source review closes the former unread-body lead for the author-hosted 15 April 2009 Teufl--Wagner Laplace preprint \cite{TWLaplace}, including Theorems 1, 2 and 10 and their proofs, and for the critical proof/application sections of their FPSAC 2009 paper \cite{TWFPSAC}. Those sources concern Laplacian minor identities and electrical replacement; the inspected bodies did not yield the exact full-Bell transfer determinant theorem. This does not certify every later journal variation. The official SNS thesis item was freshly accessible. Kogan's entire 17-page preprint \cite{Kogan} was compared: its symplectic/Pfaffian and double-grove claims, including permitted nonplanar coloring tensors, do not state the exact transfer determinant. Planarity alone would not have justified exclusion.
+
+Several historical coverage gaps remain. Li and Yan \cite{LiYan} were inspected only through the publisher abstract and bibliography; full-body overlap is unknown after access failure. The 31 July 2016 preprint of the CSS 2017 sigma-model work \cite{CSS2017} was inspected at its introduction, main reduction statements and proof portions, forest/series-parallel applications and references; no exhaustive all-version exclusion is asserted. Teufl--Wagner self-similar followups and forward citation chains received bounded or partial inspection. No complete worldwide archive, unpublished-manuscript or discovery-history census was performed. These limitations preclude a first-solution, new-method, new-basis, present-open-status or worldwide-priority claim; they do not add a hypothesis to the algebraic theorem.
+
+\section{Evidence, reconstruction and review status}
+This paper re-exposes the 25,072-byte proof submitted at head \url{e87236a97c4b87818d2768cd5789043c7c3f4e39}; it does not claim byte identity with that Markdown file. The historical filename \url{RECONSTRUCTED_PROOF.md} in its audit maps exactly to the frozen \url{PROOF.md} bytes. The original edition supplied no executable checker, fixtures or execution logs, so its historical finite-check descriptions were not replayed.
+
+The supportkit preserves freshly authored 13 October transfer and invariant code, derivations, outputs and receipts. The transfer family tests exact graph/exterior agreement, generic symbolic determinants through $n=3$, the $n=4$ operator factorization and internal-tree choices, and exceptional signed/singular/zero-row-sum inputs. The invariant family tests exact dimensions and all Bell images through $n=7$, matching tensors, antisymmetrization, determinant characters and deliberately wrong variants. These are finite stage-specific evidence and convention checks. The all-$n$ conclusion is the proof in Sections 1--5, not an extrapolation from those checks or an inherited PASS label.
+
+Extensive AI assistance contributed to solving, checking, source comparison and writing. Alec Kriebel is the sole listed author; prior authors are credited sources, not implied coauthors. The recorded mathematical and priority audits are AI audits, not human peer review, journal acceptance or formal proof-assistant certification. Version 1.0 is an unrefereed exposition. The supportkit records dated preparation checks and stage-specific AI reviews, each identified by its scope and frozen input identities in \url{REVIEW_HISTORY.json} and \url{EVIDENCE_INDEX.json}; those records are not human refereeing or submission or publication records.
+
+\begin{thebibliography}{99}
+\bibitem{TW} E. Teufl and S. Wagner, A determinant related to set partitions, in \emph{Enumerative Combinatorics}, \emph{Oberwolfach Reports} 23/2018, 1457--1458. \href{https://doi.org/10.4171/OWR/2018/23}{doi:10.4171/OWR/2018/23}; \href{https://ems.press/content/serial-article-files/46745}{report PDF}.
+\bibitem{Ferudun} A. Ferudun, \emph{On a Determinant of Teufl and Wagner Related to Set Partitions: Divisibility by the Catalan Power of det A}, version 1.0, 2026. Theorem 1.2, Sections 2--6. \href{https://eulersolve.org/papers/owr-16164-020/}{author-hosted preprint}; \href{https://doi.org/10.5281/zenodo.23298482}{doi:10.5281/zenodo.23298482}.
+\bibitem{CJSSS} S. Caracciolo, J. L. Jacobsen, H. Saleur, A. D. Sokal and A. Sportiello, Fermionic field theory for trees and forests, \emph{Phys. Rev. Lett.} 93 (2004), 080601. \href{https://arxiv.org/abs/cond-mat/0403271}{arXiv:cond-mat/0403271}; \href{https://doi.org/10.1103/PhysRevLett.93.080601}{doi:10.1103/PhysRevLett.93.080601}.
+\bibitem{CSS} S. Caracciolo, A. D. Sokal and A. Sportiello, Grassmann Integral Representation for Spanning Hyperforests, \emph{J. Phys. A} 40 (2007), 13799--13835. \href{https://doi.org/10.1088/1751-8113/40/46/001}{doi:10.1088/1751-8113/40/46/001}; \href{https://arxiv.org/pdf/0706.1509v2}{arXiv:0706.1509v2}.
+\bibitem{Sportiello} A. Sportiello, \emph{Combinatorial methods in Statistical Field Theory: Trees, loops, dimers and orientations vs. Potts and non-linear $\sigma$-models}, Tesi di Perfezionamento, Scuola Normale Superiore, official catalogue year 2010, Chapter 10. \href{https://pcteserver.mi.infn.it/~caraccio/PhD/Sportiello.pdf}{thesis PDF}; \href{https://ricerca.sns.it/handle/11384/85875}{official SNS item}.
+\bibitem{KW} R. W. Kenyon and D. B. Wilson, Boundary partitions in trees and dimers, \emph{Trans. Amer. Math. Soc.} 363 (2011), 1325--1364. \href{https://arxiv.org/pdf/math/0608422v4}{arXiv:math/0608422v4}, revised 19 January 2009.
+\bibitem{DFGG} P. Di Francesco, O. Golinelli and E. Guitter, Meanders and the Temperley--Lieb algebra, \emph{Commun. Math. Phys.} 186 (1997), 1--59. \href{https://arxiv.org/abs/hep-th/9602025}{arXiv:hep-th/9602025}.
+\bibitem{TWLaplace} E. Teufl and S. Wagner, Determinant identities for Laplace matrices, \emph{Linear Algebra Appl.} 432 (2010), 441--457; inspected author preprint dated 15 April 2009. \href{https://math.sun.ac.za/swagner/determinant.pdf}{author PDF}.
+\bibitem{TWFPSAC} E. Teufl and S. Wagner, \emph{Spanning forests, electrical networks, and a determinant identity}, \emph{DMTCS proc. AK} (2009), printed pp.~847--858; inspected source for the rooted-minor and electrical-replacement comparison. \href{https://dmtcs.episciences.org/2699/pdf}{primary proceedings PDF}.
+\bibitem{LiYan} D. Li and W. Yan, A Variant of the Teufl--Wagner Formula and Applications, \emph{J. Graph Theory} 109(1) (2025), 68--75, first published 6 January 2025. \href{https://doi.org/10.1002/jgt.23220}{doi:10.1002/jgt.23220}. Full body not inspected.
+\bibitem{Kogan} D. Kogan, Electrical Networks and Symplectic Invariants, \href{https://arxiv.org/pdf/2610.07539v1}{arXiv:2610.07539v1}, 6 October 2026.
+\bibitem{CSS2017} S. Caracciolo, A. D. Sokal and A. Sportiello, \emph{Spanning forests and OSP$(N|2M)$-invariant $\sigma$-models}, inspected preprint dated 31 July 2016 of the 2017 work. \href{https://discovery.ucl.ac.uk/10025167/1/forests_ON_v3gA.pdf}{primary preprint PDF}. Inspection scope is partial as specified above.
+\end{thebibliography}
+\vfill\noindent\small\copyright\ 2026 Alec Kriebel. Authored exposition and code: \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International}. Third-party sources retain their own rights and are not redistributed in the supportkit.
+\end{document}

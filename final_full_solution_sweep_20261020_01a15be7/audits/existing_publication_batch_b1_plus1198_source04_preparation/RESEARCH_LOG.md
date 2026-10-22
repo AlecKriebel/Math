@@ -1,0 +1,5 @@
+# Source04 local-state semantic preparation
+
+2026-10-22T13:42:57.750005+00:00 — Overall goal 80%; own preparation 10%. Recomputed all eight root-adopted local path/raw-SHA/alias associations from complete preserved values and verified complete-value/target-row hashes. Root source03/capture/adoption inputs pinned read-only. New folder only; no actual STATE access, credentials, network, provider writes, Git, CASE or readiness. Enforce 150 MiB actual-free reserve and 12 MiB new allocation cap.
+
+2026-10-22T13:57:27.776323+00:00 — Overall80%; own preparation 100% upon final readback. All six focused actual-parser controls PASS; one simulated append, five prewrite HOLDs, zero real external attempts/writes. Full lossless six-case custody; complete negative restore bytes/modes/nsmtimes verified. Source04 exact manifest c1612000bd824b870dcf7376efaa7135c0c41ae688840fdb2a722fe34a5b45c8; five helpers/science/old closure unchanged. Root action accepted=false; publication_ready=false; NEW whole independent review and root adoption remain.

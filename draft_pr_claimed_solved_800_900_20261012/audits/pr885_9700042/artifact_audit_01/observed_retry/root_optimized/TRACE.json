@@ -1,0 +1,1592 @@
+{
+  "child_flag_note": "Requested child flags are captured from actual commands. Root isolation/no-site/bytecode flags do not propagate unless explicitly included. Child bootstrap always compiles the frozen checker AST with optimize=0.",
+  "count_corrupt_positive": 20,
+  "counts": {
+    "negative": 20,
+    "patch": 4,
+    "positive": 40
+  },
+  "events": [
+    {
+      "command_role_normalized": [
+        "patch",
+        "--batch",
+        "--fuzz=0",
+        "<audit-run>/scratch/oriented-flow-patch-c8986140/TURN_C1_MARKED_DEFECT_BOUND.md"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-patch-c8986140",
+      "id": "001",
+      "kind": "patch",
+      "python_requested_flags": [],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdin_actual_bytes": 3982,
+      "stdin_actual_sha256": "fe53f21526eae2a0095cce631bfa0890783724d56257fbc3aab3249389539577",
+      "stdout_actual_bytes": 221,
+      "stdout_actual_sha256": "cfd11f92f8bdccec481e89d8e4a0c879ccb00bea90f61fde847bbe02d979cfa6",
+      "stdout_text_normalized": "patching file '<audit-run>/scratch/oriented-flow-patch-c8986140/TURN_C1_MARKED_DEFECT_BOUND.md'\n"
+    },
+    {
+      "command_role_normalized": [
+        "patch",
+        "--batch",
+        "--fuzz=0",
+        "<audit-run>/scratch/oriented-flow-patch-c8986140/TURN_C1_MARKED_DEFECT_BOUND.md"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-patch-c8986140",
+      "id": "002",
+      "kind": "patch",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdin_actual_bytes": 3982,
+      "stdin_actual_sha256": "fe53f21526eae2a0095cce631bfa0890783724d56257fbc3aab3249389539577",
+      "stdout_actual_bytes": 475,
+      "stdout_actual_sha256": "5b011fef653a66c7af40cb337aa2d74dbbb626d4803f4abb1d42cea38fce2284",
+      "stdout_text_normalized": "patching file '<audit-run>/scratch/oriented-flow-patch-c8986140/TURN_C1_MARKED_DEFECT_BOUND.md'\n1 out of 2 hunks failed--saving rejects to '<audit-run>/scratch/oriented-flow-patch-c8986140/TURN_C1_MARKED_DEFECT_BOUND.md.rej'\n"
+    },
+    {
+      "command_role_normalized": [
+        "patch",
+        "--batch",
+        "--fuzz=0",
+        "<audit-run>/scratch/oriented-flow-patch-c45arsy5/TURN_C4_BK_POISSON_CANDIDATE.md"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-patch-c45arsy5",
+      "id": "003",
+      "kind": "patch",
+      "python_requested_flags": [],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdin_actual_bytes": 3331,
+      "stdin_actual_sha256": "2429a7e365743dddff4785839b667f5b1f83a5e0be2f915d6840813a29dccfb3",
+      "stdout_actual_bytes": 222,
+      "stdout_actual_sha256": "11bb0ce556fad4504dee8a2c35000989afb248b3eada8b89e6a53d31f7f00043",
+      "stdout_text_normalized": "patching file '<audit-run>/scratch/oriented-flow-patch-c45arsy5/TURN_C4_BK_POISSON_CANDIDATE.md'\n"
+    },
+    {
+      "command_role_normalized": [
+        "patch",
+        "--batch",
+        "--fuzz=0",
+        "<audit-run>/scratch/oriented-flow-patch-c45arsy5/TURN_C4_BK_POISSON_CANDIDATE.md"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-patch-c45arsy5",
+      "id": "004",
+      "kind": "patch",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdin_actual_bytes": 3331,
+      "stdin_actual_sha256": "2429a7e365743dddff4785839b667f5b1f83a5e0be2f915d6840813a29dccfb3",
+      "stdout_actual_bytes": 477,
+      "stdout_actual_sha256": "173b8ff5269cee86c20994e95ca9b49e32703162232fa2ec9467e53e0316f740",
+      "stdout_text_normalized": "patching file '<audit-run>/scratch/oriented-flow-patch-c45arsy5/TURN_C4_BK_POISSON_CANDIDATE.md'\n1 out of 4 hunks failed--saving rejects to '<audit-run>/scratch/oriented-flow-patch-c45arsy5/TURN_C4_BK_POISSON_CANDIDATE.md.rej'\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-qqa7lk48/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-qqa7lk48",
+      "id": "005",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 1253,
+      "stdout_actual_sha256": "28676c0051f922b388d2d0f56287c964917ae5c99814f203c6644aa133f56f41",
+      "stdout_text_normalized": "{\n  \"schema\": \"oriented-flow-new-continuation-checks-v1\",\n  \"exhaustive\": [\n    {\n      \"n\": 2,\n      \"relevant_edges\": 2,\n      \"exhaustive_configurations\": 4,\n      \"primal_dual_matches\": 4\n    },\n    {\n      \"n\": 3,\n      \"relevant_edges\": 6,\n      \"exhaustive_configurations\": 64,\n      \"primal_dual_matches\": 64\n    },\n    {\n      \"n\": 4,\n      \"relevant_edges\": 14,\n      \"exhaustive_configurations\": 16384,\n      \"primal_dual_matches\": 16384\n    }\n  ],\n  \"seeded\": [\n    {\n      \"n\": 5,\n      \"trials\": 120,\n      \"matches\": 120\n    },\n    {\n      \"n\": 6,\n      \"trials\": 30,\n      \"matches\": 30\n    }\n  ],\n  \"recovered_monotone_obstruction\": {\n    \"n\": 4,\n    \"closed_edges\": [\n      [\n        [\n          1,\n          1\n        ],\n        [\n          2,\n          1\n        ]\n      ],\n      [\n        [\n          2,\n          0\n        ],\n        [\n          2,\n          1\n        ]\n      ],\n      [\n        [\n          2,\n          2\n        ],\n        [\n          2,\n          3\n        ]\n      ],\n      [\n        [\n          2,\n          2\n        ],\n        [\n          3,\n          2\n        ]\n      ]\n    ],\n    \"flow\": 3,\n    \"monotone_cut\": 4\n  },\n  \"limits\": \"Finite tests are not a proof of the limiting inequality or conjecture.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-qqa7lk48/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-qqa7lk48",
+      "id": "006",
+      "kind": "negative",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 478,
+      "stderr_actual_sha256": "2987a77c14aba09cd88bb78eba309d4b38af5fdae666f8ccd307ac5cc2a0bb17",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-qqa7lk48/verify_resume_turn1.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-qqa7lk48/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-qqa7lk48",
+      "id": "007",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-4bt9omwe/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-4bt9omwe",
+      "id": "008",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 1253,
+      "stdout_actual_sha256": "28676c0051f922b388d2d0f56287c964917ae5c99814f203c6644aa133f56f41",
+      "stdout_text_normalized": "{\n  \"schema\": \"oriented-flow-new-continuation-checks-v1\",\n  \"exhaustive\": [\n    {\n      \"n\": 2,\n      \"relevant_edges\": 2,\n      \"exhaustive_configurations\": 4,\n      \"primal_dual_matches\": 4\n    },\n    {\n      \"n\": 3,\n      \"relevant_edges\": 6,\n      \"exhaustive_configurations\": 64,\n      \"primal_dual_matches\": 64\n    },\n    {\n      \"n\": 4,\n      \"relevant_edges\": 14,\n      \"exhaustive_configurations\": 16384,\n      \"primal_dual_matches\": 16384\n    }\n  ],\n  \"seeded\": [\n    {\n      \"n\": 5,\n      \"trials\": 120,\n      \"matches\": 120\n    },\n    {\n      \"n\": 6,\n      \"trials\": 30,\n      \"matches\": 30\n    }\n  ],\n  \"recovered_monotone_obstruction\": {\n    \"n\": 4,\n    \"closed_edges\": [\n      [\n        [\n          1,\n          1\n        ],\n        [\n          2,\n          1\n        ]\n      ],\n      [\n        [\n          2,\n          0\n        ],\n        [\n          2,\n          1\n        ]\n      ],\n      [\n        [\n          2,\n          2\n        ],\n        [\n          2,\n          3\n        ]\n      ],\n      [\n        [\n          2,\n          2\n        ],\n        [\n          3,\n          2\n        ]\n      ]\n    ],\n    \"flow\": 3,\n    \"monotone_cut\": 4\n  },\n  \"limits\": \"Finite tests are not a proof of the limiting inequality or conjecture.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-4bt9omwe/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-4bt9omwe",
+      "id": "009",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 478,
+      "stderr_actual_sha256": "112defa6bf35a37d2aa5592b70ab70951a09d18b8c963644988638519b32bd44",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-4bt9omwe/verify_resume_turn1.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-4bt9omwe/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-4bt9omwe",
+      "id": "010",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-87j0uxnp/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-87j0uxnp",
+      "id": "011",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 1253,
+      "stdout_actual_sha256": "28676c0051f922b388d2d0f56287c964917ae5c99814f203c6644aa133f56f41",
+      "stdout_text_normalized": "{\n  \"schema\": \"oriented-flow-new-continuation-checks-v1\",\n  \"exhaustive\": [\n    {\n      \"n\": 2,\n      \"relevant_edges\": 2,\n      \"exhaustive_configurations\": 4,\n      \"primal_dual_matches\": 4\n    },\n    {\n      \"n\": 3,\n      \"relevant_edges\": 6,\n      \"exhaustive_configurations\": 64,\n      \"primal_dual_matches\": 64\n    },\n    {\n      \"n\": 4,\n      \"relevant_edges\": 14,\n      \"exhaustive_configurations\": 16384,\n      \"primal_dual_matches\": 16384\n    }\n  ],\n  \"seeded\": [\n    {\n      \"n\": 5,\n      \"trials\": 120,\n      \"matches\": 120\n    },\n    {\n      \"n\": 6,\n      \"trials\": 30,\n      \"matches\": 30\n    }\n  ],\n  \"recovered_monotone_obstruction\": {\n    \"n\": 4,\n    \"closed_edges\": [\n      [\n        [\n          1,\n          1\n        ],\n        [\n          2,\n          1\n        ]\n      ],\n      [\n        [\n          2,\n          0\n        ],\n        [\n          2,\n          1\n        ]\n      ],\n      [\n        [\n          2,\n          2\n        ],\n        [\n          2,\n          3\n        ]\n      ],\n      [\n        [\n          2,\n          2\n        ],\n        [\n          3,\n          2\n        ]\n      ]\n    ],\n    \"flow\": 3,\n    \"monotone_cut\": 4\n  },\n  \"limits\": \"Finite tests are not a proof of the limiting inequality or conjecture.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-87j0uxnp/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-87j0uxnp",
+      "id": "012",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 478,
+      "stderr_actual_sha256": "64e04fccaa2b6f65f5b088bd2d925d5d3ddee8cb4875dc72e22c5ee1adcdc55e",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-87j0uxnp/verify_resume_turn1.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-87j0uxnp/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-87j0uxnp",
+      "id": "013",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-6bqrh86b/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-6bqrh86b",
+      "id": "014",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 1253,
+      "stdout_actual_sha256": "28676c0051f922b388d2d0f56287c964917ae5c99814f203c6644aa133f56f41",
+      "stdout_text_normalized": "{\n  \"schema\": \"oriented-flow-new-continuation-checks-v1\",\n  \"exhaustive\": [\n    {\n      \"n\": 2,\n      \"relevant_edges\": 2,\n      \"exhaustive_configurations\": 4,\n      \"primal_dual_matches\": 4\n    },\n    {\n      \"n\": 3,\n      \"relevant_edges\": 6,\n      \"exhaustive_configurations\": 64,\n      \"primal_dual_matches\": 64\n    },\n    {\n      \"n\": 4,\n      \"relevant_edges\": 14,\n      \"exhaustive_configurations\": 16384,\n      \"primal_dual_matches\": 16384\n    }\n  ],\n  \"seeded\": [\n    {\n      \"n\": 5,\n      \"trials\": 120,\n      \"matches\": 120\n    },\n    {\n      \"n\": 6,\n      \"trials\": 30,\n      \"matches\": 30\n    }\n  ],\n  \"recovered_monotone_obstruction\": {\n    \"n\": 4,\n    \"closed_edges\": [\n      [\n        [\n          1,\n          1\n        ],\n        [\n          2,\n          1\n        ]\n      ],\n      [\n        [\n          2,\n          0\n        ],\n        [\n          2,\n          1\n        ]\n      ],\n      [\n        [\n          2,\n          2\n        ],\n        [\n          2,\n          3\n        ]\n      ],\n      [\n        [\n          2,\n          2\n        ],\n        [\n          3,\n          2\n        ]\n      ]\n    ],\n    \"flow\": 3,\n    \"monotone_cut\": 4\n  },\n  \"limits\": \"Finite tests are not a proof of the limiting inequality or conjecture.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-6bqrh86b/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-6bqrh86b",
+      "id": "015",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 478,
+      "stderr_actual_sha256": "f6a14c2c1c65602f254f05d5cd76ac16226c5223f43ef80fd08164575f025c76",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-6bqrh86b/verify_resume_turn1.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-6bqrh86b/verify_resume_turn1.py",
+        "83706824102f00baca75122ae87c9d45723c4ffa18f58df9eb77e0321c37c736",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-6bqrh86b",
+      "id": "016",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-c7esuq9j/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-c7esuq9j",
+      "id": "017",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 628,
+      "stdout_actual_sha256": "c6665c65efbab00cbda08a0b4151be5d076bdf89d6a453dc6a3997174c88c57f",
+      "stdout_text_normalized": "{\n  \"schema\": \"oriented-flow-c4-deterministic-checks-v1\",\n  \"seed\": 970004205,\n  \"skeleton_path_cases\": 541,\n  \"segments_and_disjoint_witnesses_checked\": 2712,\n  \"positive_backtracking_path_cases\": 172,\n  \"sparse_stability_cases\": 189,\n  \"small_skeleton_count_cases\": 72,\n  \"tail_constants\": {\n    \"small_k_base_upper\": 0.16438665454469126,\n    \"large_k_base_upper_at_q_1e_6\": 0.008512192625968109,\n    \"required_upper\": 0.25\n  },\n  \"all_checks_passed\": true,\n  \"limits\": \"These checks do not establish BK, the Poisson theorem, or the infinite-volume asymptotic. The proof candidate requires independent mathematical review.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-c7esuq9j/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-c7esuq9j",
+      "id": "018",
+      "kind": "negative",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 478,
+      "stderr_actual_sha256": "31876d4aa31517d9110f128c6e839d13079a5944360036e9e910bf35f5859276",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-c7esuq9j/verify_resume_turn4.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-c7esuq9j/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-c7esuq9j",
+      "id": "019",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-wg9x6_cm/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-wg9x6_cm",
+      "id": "020",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 628,
+      "stdout_actual_sha256": "c6665c65efbab00cbda08a0b4151be5d076bdf89d6a453dc6a3997174c88c57f",
+      "stdout_text_normalized": "{\n  \"schema\": \"oriented-flow-c4-deterministic-checks-v1\",\n  \"seed\": 970004205,\n  \"skeleton_path_cases\": 541,\n  \"segments_and_disjoint_witnesses_checked\": 2712,\n  \"positive_backtracking_path_cases\": 172,\n  \"sparse_stability_cases\": 189,\n  \"small_skeleton_count_cases\": 72,\n  \"tail_constants\": {\n    \"small_k_base_upper\": 0.16438665454469126,\n    \"large_k_base_upper_at_q_1e_6\": 0.008512192625968109,\n    \"required_upper\": 0.25\n  },\n  \"all_checks_passed\": true,\n  \"limits\": \"These checks do not establish BK, the Poisson theorem, or the infinite-volume asymptotic. The proof candidate requires independent mathematical review.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-wg9x6_cm/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-wg9x6_cm",
+      "id": "021",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 478,
+      "stderr_actual_sha256": "d8c07f9de0e86ab21f4869e191d75657a62ca0c0f7577ecefa65cb83f4424397",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-wg9x6_cm/verify_resume_turn4.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-wg9x6_cm/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-wg9x6_cm",
+      "id": "022",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-25il6vm3/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-25il6vm3",
+      "id": "023",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 628,
+      "stdout_actual_sha256": "c6665c65efbab00cbda08a0b4151be5d076bdf89d6a453dc6a3997174c88c57f",
+      "stdout_text_normalized": "{\n  \"schema\": \"oriented-flow-c4-deterministic-checks-v1\",\n  \"seed\": 970004205,\n  \"skeleton_path_cases\": 541,\n  \"segments_and_disjoint_witnesses_checked\": 2712,\n  \"positive_backtracking_path_cases\": 172,\n  \"sparse_stability_cases\": 189,\n  \"small_skeleton_count_cases\": 72,\n  \"tail_constants\": {\n    \"small_k_base_upper\": 0.16438665454469126,\n    \"large_k_base_upper_at_q_1e_6\": 0.008512192625968109,\n    \"required_upper\": 0.25\n  },\n  \"all_checks_passed\": true,\n  \"limits\": \"These checks do not establish BK, the Poisson theorem, or the infinite-volume asymptotic. The proof candidate requires independent mathematical review.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-25il6vm3/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-25il6vm3",
+      "id": "024",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 478,
+      "stderr_actual_sha256": "b858a23aafa907d01c55e86bea03a31b8ced34e5c50d69523206b9074fffd12b",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-25il6vm3/verify_resume_turn4.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-25il6vm3/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-25il6vm3",
+      "id": "025",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-4f59ysuh/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-4f59ysuh",
+      "id": "026",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 628,
+      "stdout_actual_sha256": "c6665c65efbab00cbda08a0b4151be5d076bdf89d6a453dc6a3997174c88c57f",
+      "stdout_text_normalized": "{\n  \"schema\": \"oriented-flow-c4-deterministic-checks-v1\",\n  \"seed\": 970004205,\n  \"skeleton_path_cases\": 541,\n  \"segments_and_disjoint_witnesses_checked\": 2712,\n  \"positive_backtracking_path_cases\": 172,\n  \"sparse_stability_cases\": 189,\n  \"small_skeleton_count_cases\": 72,\n  \"tail_constants\": {\n    \"small_k_base_upper\": 0.16438665454469126,\n    \"large_k_base_upper_at_q_1e_6\": 0.008512192625968109,\n    \"required_upper\": 0.25\n  },\n  \"all_checks_passed\": true,\n  \"limits\": \"These checks do not establish BK, the Poisson theorem, or the infinite-volume asymptotic. The proof candidate requires independent mathematical review.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-4f59ysuh/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-4f59ysuh",
+      "id": "027",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 478,
+      "stderr_actual_sha256": "7b401183b12d146d4dfdf3b7ac5ad452294124d5bb70c8b052e18f649cfa4ee7",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-4f59ysuh/verify_resume_turn4.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-4f59ysuh/verify_resume_turn4.py",
+        "48c6d164d839440e20a2a1f2bc6c70fd59cf7c084180e03fb2eea648aa7b5720",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-4f59ysuh",
+      "id": "028",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-ggrd4x31/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-ggrd4x31",
+      "id": "029",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 4291,
+      "stdout_actual_sha256": "52202ecc5149d7086787457d3d5f9832ec9123a58f4e1798438b70ba78b8dbc0",
+      "stdout_text_normalized": "{\n  \"diagnostic_only\": true,\n  \"seed\": 9379700042,\n  \"full_primal_exhaustive\": [\n    {\n      \"n\": 2,\n      \"all_primal_edges\": 4,\n      \"configurations\": 16\n    },\n    {\n      \"n\": 3,\n      \"all_primal_edges\": 12,\n      \"configurations\": 4096\n    }\n  ],\n  \"independent_flow_tests\": [\n    {\n      \"n\": 4,\n      \"trials\": 300,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 5,\n      \"trials\": 300,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 8,\n      \"trials\": 200,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 15,\n      \"trials\": 100,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 30,\n      \"trials\": 50,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    }\n  ],\n  \"coordinate_dynamic_program\": {\n    \"cases\": 216,\n    \"N\": [\n      1,\n      12\n    ],\n    \"k\": [\n      1,\n      18\n    ],\n    \"all_passed\": true\n  },\n  \"nonmonotone_witness\": {\n    \"closed_edges\": [\n      [\n        [\n          0,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ],\n      [\n        [\n          1,\n          0\n        ],\n        [\n          1,\n          1\n        ]\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          2,\n          2\n        ]\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          1,\n          3\n        ]\n      ]\n    ],\n    \"flow\": 3,\n    \"monotone_flow\": 4,\n    \"unreflected_dual_path\": [\n      [\n        [\n          0,\n          2\n        ],\n        [\n          1,\n          2\n        ],\n        [\n          [\n            1,\n            2\n          ],\n          [\n            1,\n            3\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          1,\n          1\n        ],\n        [\n          [\n            1,\n            2\n          ],\n          [\n            2,\n            2\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          1\n        ],\n        [\n          0,\n          1\n        ],\n        [\n          [\n            1,\n            1\n          ],\n          [\n            1,\n            2\n          ]\n        ],\n        false\n      ],\n      [\n        [\n          0,\n          1\n        ],\n        [\n          0,\n          0\n        ],\n        [\n          [\n            0,\n            1\n          ],\n          [\n            1,\n            1\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          0,\n          0\n        ],\n        [\n          1,\n          0\n        ],\n        [\n          [\n            1,\n            0\n          ],\n          [\n            1,\n            1\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          0\n        ],\n        [\n          2,\n          0\n        ],\n        [\n          [\n            2,\n            0\n          ],\n          [\n            2,\n            1\n          ]\n        ],\n        true\n      ]\n    ]\n  },\n  \"finite_probability_checks\": [\n    {\n      \"q\": \"1/1000\",\n      \"d\": 1,\n      \"actual\": 0.011934219505791077,\n      \"finite_list_bound\": 0.08291744374744925\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 2,\n      \"actual\": 2.9888145063524736e-05,\n      \"finite_list_bound\": 0.010917443747449254\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 3,\n      \"actual\": 2.396197207004782e-08,\n      \"finite_list_bound\": 0.0017014437474492537\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 4,\n      \"actual\": 6.003987988018004e-12,\n      \"finite_list_bound\": 0.0002902437474492537\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 1,\n      \"actual\": 1.199993400022e-05,\n      \"finite_list_bound\": 7.200921741143782e-05\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 2,\n      \"actual\": 2.9999888000145e-11,\n      \"finite_list_bound\": 9.217411437819035e-09\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 3,\n      \"actual\": 2.3999961999972e-17,\n      \"finite_list_bound\": 1.4114378190353158e-12\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 4,\n      \"actual\": 6.000003999988e-24,\n      \"finite_list_bound\": 2.378190353158604e-16\n    }\n  ],\n  \"two_range_inequality_samples\": 58,\n  \"all_assertions_passed\": true\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-ggrd4x31/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-ggrd4x31",
+      "id": "030",
+      "kind": "negative",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 476,
+      "stderr_actual_sha256": "a11926caeb712a7898c72be84b4df902524a3f188ca6b29d79770070a88c9e89",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-ggrd4x31/check_independent.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-ggrd4x31/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-ggrd4x31",
+      "id": "031",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-gylzwvkf/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-gylzwvkf",
+      "id": "032",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 4291,
+      "stdout_actual_sha256": "52202ecc5149d7086787457d3d5f9832ec9123a58f4e1798438b70ba78b8dbc0",
+      "stdout_text_normalized": "{\n  \"diagnostic_only\": true,\n  \"seed\": 9379700042,\n  \"full_primal_exhaustive\": [\n    {\n      \"n\": 2,\n      \"all_primal_edges\": 4,\n      \"configurations\": 16\n    },\n    {\n      \"n\": 3,\n      \"all_primal_edges\": 12,\n      \"configurations\": 4096\n    }\n  ],\n  \"independent_flow_tests\": [\n    {\n      \"n\": 4,\n      \"trials\": 300,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 5,\n      \"trials\": 300,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 8,\n      \"trials\": 200,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 15,\n      \"trials\": 100,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 30,\n      \"trials\": 50,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    }\n  ],\n  \"coordinate_dynamic_program\": {\n    \"cases\": 216,\n    \"N\": [\n      1,\n      12\n    ],\n    \"k\": [\n      1,\n      18\n    ],\n    \"all_passed\": true\n  },\n  \"nonmonotone_witness\": {\n    \"closed_edges\": [\n      [\n        [\n          0,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ],\n      [\n        [\n          1,\n          0\n        ],\n        [\n          1,\n          1\n        ]\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          2,\n          2\n        ]\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          1,\n          3\n        ]\n      ]\n    ],\n    \"flow\": 3,\n    \"monotone_flow\": 4,\n    \"unreflected_dual_path\": [\n      [\n        [\n          0,\n          2\n        ],\n        [\n          1,\n          2\n        ],\n        [\n          [\n            1,\n            2\n          ],\n          [\n            1,\n            3\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          1,\n          1\n        ],\n        [\n          [\n            1,\n            2\n          ],\n          [\n            2,\n            2\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          1\n        ],\n        [\n          0,\n          1\n        ],\n        [\n          [\n            1,\n            1\n          ],\n          [\n            1,\n            2\n          ]\n        ],\n        false\n      ],\n      [\n        [\n          0,\n          1\n        ],\n        [\n          0,\n          0\n        ],\n        [\n          [\n            0,\n            1\n          ],\n          [\n            1,\n            1\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          0,\n          0\n        ],\n        [\n          1,\n          0\n        ],\n        [\n          [\n            1,\n            0\n          ],\n          [\n            1,\n            1\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          0\n        ],\n        [\n          2,\n          0\n        ],\n        [\n          [\n            2,\n            0\n          ],\n          [\n            2,\n            1\n          ]\n        ],\n        true\n      ]\n    ]\n  },\n  \"finite_probability_checks\": [\n    {\n      \"q\": \"1/1000\",\n      \"d\": 1,\n      \"actual\": 0.011934219505791077,\n      \"finite_list_bound\": 0.08291744374744925\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 2,\n      \"actual\": 2.9888145063524736e-05,\n      \"finite_list_bound\": 0.010917443747449254\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 3,\n      \"actual\": 2.396197207004782e-08,\n      \"finite_list_bound\": 0.0017014437474492537\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 4,\n      \"actual\": 6.003987988018004e-12,\n      \"finite_list_bound\": 0.0002902437474492537\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 1,\n      \"actual\": 1.199993400022e-05,\n      \"finite_list_bound\": 7.200921741143782e-05\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 2,\n      \"actual\": 2.9999888000145e-11,\n      \"finite_list_bound\": 9.217411437819035e-09\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 3,\n      \"actual\": 2.3999961999972e-17,\n      \"finite_list_bound\": 1.4114378190353158e-12\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 4,\n      \"actual\": 6.000003999988e-24,\n      \"finite_list_bound\": 2.378190353158604e-16\n    }\n  ],\n  \"two_range_inequality_samples\": 58,\n  \"all_assertions_passed\": true\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-gylzwvkf/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-gylzwvkf",
+      "id": "033",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 476,
+      "stderr_actual_sha256": "36bfbc1079ec07431f8c31dabb716f9a3ff82c62d975a204093bc21bd78b713b",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-gylzwvkf/check_independent.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-gylzwvkf/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-gylzwvkf",
+      "id": "034",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-w_dkxcrz/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-w_dkxcrz",
+      "id": "035",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 4291,
+      "stdout_actual_sha256": "52202ecc5149d7086787457d3d5f9832ec9123a58f4e1798438b70ba78b8dbc0",
+      "stdout_text_normalized": "{\n  \"diagnostic_only\": true,\n  \"seed\": 9379700042,\n  \"full_primal_exhaustive\": [\n    {\n      \"n\": 2,\n      \"all_primal_edges\": 4,\n      \"configurations\": 16\n    },\n    {\n      \"n\": 3,\n      \"all_primal_edges\": 12,\n      \"configurations\": 4096\n    }\n  ],\n  \"independent_flow_tests\": [\n    {\n      \"n\": 4,\n      \"trials\": 300,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 5,\n      \"trials\": 300,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 8,\n      \"trials\": 200,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 15,\n      \"trials\": 100,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 30,\n      \"trials\": 50,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    }\n  ],\n  \"coordinate_dynamic_program\": {\n    \"cases\": 216,\n    \"N\": [\n      1,\n      12\n    ],\n    \"k\": [\n      1,\n      18\n    ],\n    \"all_passed\": true\n  },\n  \"nonmonotone_witness\": {\n    \"closed_edges\": [\n      [\n        [\n          0,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ],\n      [\n        [\n          1,\n          0\n        ],\n        [\n          1,\n          1\n        ]\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          2,\n          2\n        ]\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          1,\n          3\n        ]\n      ]\n    ],\n    \"flow\": 3,\n    \"monotone_flow\": 4,\n    \"unreflected_dual_path\": [\n      [\n        [\n          0,\n          2\n        ],\n        [\n          1,\n          2\n        ],\n        [\n          [\n            1,\n            2\n          ],\n          [\n            1,\n            3\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          1,\n          1\n        ],\n        [\n          [\n            1,\n            2\n          ],\n          [\n            2,\n            2\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          1\n        ],\n        [\n          0,\n          1\n        ],\n        [\n          [\n            1,\n            1\n          ],\n          [\n            1,\n            2\n          ]\n        ],\n        false\n      ],\n      [\n        [\n          0,\n          1\n        ],\n        [\n          0,\n          0\n        ],\n        [\n          [\n            0,\n            1\n          ],\n          [\n            1,\n            1\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          0,\n          0\n        ],\n        [\n          1,\n          0\n        ],\n        [\n          [\n            1,\n            0\n          ],\n          [\n            1,\n            1\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          0\n        ],\n        [\n          2,\n          0\n        ],\n        [\n          [\n            2,\n            0\n          ],\n          [\n            2,\n            1\n          ]\n        ],\n        true\n      ]\n    ]\n  },\n  \"finite_probability_checks\": [\n    {\n      \"q\": \"1/1000\",\n      \"d\": 1,\n      \"actual\": 0.011934219505791077,\n      \"finite_list_bound\": 0.08291744374744925\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 2,\n      \"actual\": 2.9888145063524736e-05,\n      \"finite_list_bound\": 0.010917443747449254\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 3,\n      \"actual\": 2.396197207004782e-08,\n      \"finite_list_bound\": 0.0017014437474492537\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 4,\n      \"actual\": 6.003987988018004e-12,\n      \"finite_list_bound\": 0.0002902437474492537\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 1,\n      \"actual\": 1.199993400022e-05,\n      \"finite_list_bound\": 7.200921741143782e-05\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 2,\n      \"actual\": 2.9999888000145e-11,\n      \"finite_list_bound\": 9.217411437819035e-09\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 3,\n      \"actual\": 2.3999961999972e-17,\n      \"finite_list_bound\": 1.4114378190353158e-12\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 4,\n      \"actual\": 6.000003999988e-24,\n      \"finite_list_bound\": 2.378190353158604e-16\n    }\n  ],\n  \"two_range_inequality_samples\": 58,\n  \"all_assertions_passed\": true\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-w_dkxcrz/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-w_dkxcrz",
+      "id": "036",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 476,
+      "stderr_actual_sha256": "f3f52909d15f9fcbaec60c8b7811457ad01948393fb6d78be7987cc02d287319",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-w_dkxcrz/check_independent.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-w_dkxcrz/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-w_dkxcrz",
+      "id": "037",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-ohee62s5/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-ohee62s5",
+      "id": "038",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 4291,
+      "stdout_actual_sha256": "52202ecc5149d7086787457d3d5f9832ec9123a58f4e1798438b70ba78b8dbc0",
+      "stdout_text_normalized": "{\n  \"diagnostic_only\": true,\n  \"seed\": 9379700042,\n  \"full_primal_exhaustive\": [\n    {\n      \"n\": 2,\n      \"all_primal_edges\": 4,\n      \"configurations\": 16\n    },\n    {\n      \"n\": 3,\n      \"all_primal_edges\": 12,\n      \"configurations\": 4096\n    }\n  ],\n  \"independent_flow_tests\": [\n    {\n      \"n\": 4,\n      \"trials\": 300,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 5,\n      \"trials\": 300,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 8,\n      \"trials\": 200,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 15,\n      \"trials\": 100,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    },\n    {\n      \"n\": 30,\n      \"trials\": 50,\n      \"capacities\": \"alternating Bernoulli and uniform integer 0..4\"\n    }\n  ],\n  \"coordinate_dynamic_program\": {\n    \"cases\": 216,\n    \"N\": [\n      1,\n      12\n    ],\n    \"k\": [\n      1,\n      18\n    ],\n    \"all_passed\": true\n  },\n  \"nonmonotone_witness\": {\n    \"closed_edges\": [\n      [\n        [\n          0,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ],\n      [\n        [\n          1,\n          0\n        ],\n        [\n          1,\n          1\n        ]\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          2,\n          2\n        ]\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          1,\n          3\n        ]\n      ]\n    ],\n    \"flow\": 3,\n    \"monotone_flow\": 4,\n    \"unreflected_dual_path\": [\n      [\n        [\n          0,\n          2\n        ],\n        [\n          1,\n          2\n        ],\n        [\n          [\n            1,\n            2\n          ],\n          [\n            1,\n            3\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          2\n        ],\n        [\n          1,\n          1\n        ],\n        [\n          [\n            1,\n            2\n          ],\n          [\n            2,\n            2\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          1\n        ],\n        [\n          0,\n          1\n        ],\n        [\n          [\n            1,\n            1\n          ],\n          [\n            1,\n            2\n          ]\n        ],\n        false\n      ],\n      [\n        [\n          0,\n          1\n        ],\n        [\n          0,\n          0\n        ],\n        [\n          [\n            0,\n            1\n          ],\n          [\n            1,\n            1\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          0,\n          0\n        ],\n        [\n          1,\n          0\n        ],\n        [\n          [\n            1,\n            0\n          ],\n          [\n            1,\n            1\n          ]\n        ],\n        true\n      ],\n      [\n        [\n          1,\n          0\n        ],\n        [\n          2,\n          0\n        ],\n        [\n          [\n            2,\n            0\n          ],\n          [\n            2,\n            1\n          ]\n        ],\n        true\n      ]\n    ]\n  },\n  \"finite_probability_checks\": [\n    {\n      \"q\": \"1/1000\",\n      \"d\": 1,\n      \"actual\": 0.011934219505791077,\n      \"finite_list_bound\": 0.08291744374744925\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 2,\n      \"actual\": 2.9888145063524736e-05,\n      \"finite_list_bound\": 0.010917443747449254\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 3,\n      \"actual\": 2.396197207004782e-08,\n      \"finite_list_bound\": 0.0017014437474492537\n    },\n    {\n      \"q\": \"1/1000\",\n      \"d\": 4,\n      \"actual\": 6.003987988018004e-12,\n      \"finite_list_bound\": 0.0002902437474492537\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 1,\n      \"actual\": 1.199993400022e-05,\n      \"finite_list_bound\": 7.200921741143782e-05\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 2,\n      \"actual\": 2.9999888000145e-11,\n      \"finite_list_bound\": 9.217411437819035e-09\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 3,\n      \"actual\": 2.3999961999972e-17,\n      \"finite_list_bound\": 1.4114378190353158e-12\n    },\n    {\n      \"q\": \"1/1000000\",\n      \"d\": 4,\n      \"actual\": 6.000003999988e-24,\n      \"finite_list_bound\": 2.378190353158604e-16\n    }\n  ],\n  \"two_range_inequality_samples\": 58,\n  \"all_assertions_passed\": true\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-ohee62s5/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-ohee62s5",
+      "id": "039",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 476,
+      "stderr_actual_sha256": "05dcf5cd69c59c89a240428aba2dcc25a7a2c358da9ccca53ffba41f94e56d59",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-ohee62s5/check_independent.py\", line 1, in <module>\n    #!/usr/bin/env python3\nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-ohee62s5/check_independent.py",
+        "ba4bf8d0e87aafbcd07401d66cef420eed66a41e730cadc29269980a49a60ba9",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-ohee62s5",
+      "id": "040",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-3h1994pz/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-3h1994pz",
+      "id": "041",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 472,
+      "stdout_actual_sha256": "d084520403d85d0c020cd5753ec34ca380da03f93cd72420850d83fbc02b8a0e",
+      "stdout_text_normalized": "{\n  \"all_checks_passed\": true,\n  \"counts\": {\n    \"simple_paths\": 198,\n    \"skeletons\": 1782,\n    \"rectangles\": 4260,\n    \"bad_rectangles\": 2206,\n    \"witness_tests\": 4260,\n    \"sparse_cases\": 900,\n    \"tail_samples\": 90\n  },\n  \"constants\": {\n    \"small_range_base\": 0.16438665454469126,\n    \"large_range_base_at_q_1e_6\": 0.008512192625968109\n  },\n  \"scope\": \"Finite diagnostics only. No author code imported. These checks do not prove asymptotics or external theorems.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-3h1994pz/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-3h1994pz",
+      "id": "042",
+      "kind": "negative",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 531,
+      "stderr_actual_sha256": "855e4eba9601a6f53a38da6df14711690041a91d66784c4b2d51fc440d90a139",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-3h1994pz/check_independent_c4.py\", line 1, in <module>\n    \"\"\"Independent finite diagnostics for C4. No author code imported.\"\"\"\n    \nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-3h1994pz/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-3h1994pz",
+      "id": "043",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-9zv8kj1l/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-9zv8kj1l",
+      "id": "044",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 472,
+      "stdout_actual_sha256": "d084520403d85d0c020cd5753ec34ca380da03f93cd72420850d83fbc02b8a0e",
+      "stdout_text_normalized": "{\n  \"all_checks_passed\": true,\n  \"counts\": {\n    \"simple_paths\": 198,\n    \"skeletons\": 1782,\n    \"rectangles\": 4260,\n    \"bad_rectangles\": 2206,\n    \"witness_tests\": 4260,\n    \"sparse_cases\": 900,\n    \"tail_samples\": 90\n  },\n  \"constants\": {\n    \"small_range_base\": 0.16438665454469126,\n    \"large_range_base_at_q_1e_6\": 0.008512192625968109\n  },\n  \"scope\": \"Finite diagnostics only. No author code imported. These checks do not prove asymptotics or external theorems.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-9zv8kj1l/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-9zv8kj1l",
+      "id": "045",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 531,
+      "stderr_actual_sha256": "cc341da4a8d54765e38001f40e581c4d349f3e126d5d6eee8a4ff12ae9e8d718",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-9zv8kj1l/check_independent_c4.py\", line 1, in <module>\n    \"\"\"Independent finite diagnostics for C4. No author code imported.\"\"\"\n    \nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-9zv8kj1l/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-9zv8kj1l",
+      "id": "046",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-wv8dsvpr/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-wv8dsvpr",
+      "id": "047",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 472,
+      "stdout_actual_sha256": "d084520403d85d0c020cd5753ec34ca380da03f93cd72420850d83fbc02b8a0e",
+      "stdout_text_normalized": "{\n  \"all_checks_passed\": true,\n  \"counts\": {\n    \"simple_paths\": 198,\n    \"skeletons\": 1782,\n    \"rectangles\": 4260,\n    \"bad_rectangles\": 2206,\n    \"witness_tests\": 4260,\n    \"sparse_cases\": 900,\n    \"tail_samples\": 90\n  },\n  \"constants\": {\n    \"small_range_base\": 0.16438665454469126,\n    \"large_range_base_at_q_1e_6\": 0.008512192625968109\n  },\n  \"scope\": \"Finite diagnostics only. No author code imported. These checks do not prove asymptotics or external theorems.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-wv8dsvpr/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-wv8dsvpr",
+      "id": "048",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 531,
+      "stderr_actual_sha256": "99be3a5d2e7d6f9f46d3bd8889f579cb46a2c785580762d2282c8723302f1d3b",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-wv8dsvpr/check_independent_c4.py\", line 1, in <module>\n    \"\"\"Independent finite diagnostics for C4. No author code imported.\"\"\"\n    \nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-wv8dsvpr/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-wv8dsvpr",
+      "id": "049",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-yoz62665/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-yoz62665",
+      "id": "050",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 472,
+      "stdout_actual_sha256": "d084520403d85d0c020cd5753ec34ca380da03f93cd72420850d83fbc02b8a0e",
+      "stdout_text_normalized": "{\n  \"all_checks_passed\": true,\n  \"counts\": {\n    \"simple_paths\": 198,\n    \"skeletons\": 1782,\n    \"rectangles\": 4260,\n    \"bad_rectangles\": 2206,\n    \"witness_tests\": 4260,\n    \"sparse_cases\": 900,\n    \"tail_samples\": 90\n  },\n  \"constants\": {\n    \"small_range_base\": 0.16438665454469126,\n    \"large_range_base_at_q_1e_6\": 0.008512192625968109\n  },\n  \"scope\": \"Finite diagnostics only. No author code imported. These checks do not prove asymptotics or external theorems.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-yoz62665/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-yoz62665",
+      "id": "051",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 531,
+      "stderr_actual_sha256": "8ff6a8ab2af46d7fa662f36fa6b5cf5ca0617a0bd24885db084e952a75f03bbe",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-yoz62665/check_independent_c4.py\", line 1, in <module>\n    \"\"\"Independent finite diagnostics for C4. No author code imported.\"\"\"\n    \nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-yoz62665/check_independent_c4.py",
+        "ab414ac8d12452a07e8444d1e600911dfbfad03b39241a2d74db9afc61ee2d1b",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-yoz62665",
+      "id": "052",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-quautjus/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-quautjus",
+      "id": "053",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 398,
+      "stdout_actual_sha256": "97f2e3a7c56da99144525b3b49784e5e89d9d2eab6c96b87a85c73e486e436a6",
+      "stdout_text_normalized": "{\n  \"all_passed\": true,\n  \"seed\": 773019,\n  \"primal_dual_cases\": 4352,\n  \"exhaustive_skeleton_path_parameter_cases\": 104520,\n  \"exhaustive_segments\": 285750,\n  \"marked_list_variation_cases\": 47744,\n  \"sparse_separated_cases\": 13,\n  \"constants\": {\n    \"small_k\": 0.16438665454469126,\n    \"large_k\": 0.008512192625968109\n  },\n  \"scope\": \"Supplemental finite checks only; not proof of asymptotics.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-quautjus/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-quautjus",
+      "id": "054",
+      "kind": "negative",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 540,
+      "stderr_actual_sha256": "0f16add18ffe1e059798299acf5e26209c5424312276ee4b53e1a982e8cb3e30",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-quautjus/independent_checks.py\", line 1, in <module>\n    \"\"\"Fresh exhaustive supplemental checks; no infinite-volume proof by testing.\"\"\"\n    \nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-quautjus/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-quautjus",
+      "id": "055",
+      "kind": "positive",
+      "python_requested_flags": [],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-9xt7ro8q/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-9xt7ro8q",
+      "id": "056",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 398,
+      "stdout_actual_sha256": "97f2e3a7c56da99144525b3b49784e5e89d9d2eab6c96b87a85c73e486e436a6",
+      "stdout_text_normalized": "{\n  \"all_passed\": true,\n  \"seed\": 773019,\n  \"primal_dual_cases\": 4352,\n  \"exhaustive_skeleton_path_parameter_cases\": 104520,\n  \"exhaustive_segments\": 285750,\n  \"marked_list_variation_cases\": 47744,\n  \"sparse_separated_cases\": 13,\n  \"constants\": {\n    \"small_k\": 0.16438665454469126,\n    \"large_k\": 0.008512192625968109\n  },\n  \"scope\": \"Supplemental finite checks only; not proof of asymptotics.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-9xt7ro8q/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-9xt7ro8q",
+      "id": "057",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 540,
+      "stderr_actual_sha256": "86373bb690036d95c724316b6790835ce6d54b0b3c2f1ceda581528800aedff3",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-9xt7ro8q/independent_checks.py\", line 1, in <module>\n    \"\"\"Fresh exhaustive supplemental checks; no infinite-volume proof by testing.\"\"\"\n    \nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-9xt7ro8q/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-9xt7ro8q",
+      "id": "058",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-ftvk8vv0/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-ftvk8vv0",
+      "id": "059",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 398,
+      "stdout_actual_sha256": "97f2e3a7c56da99144525b3b49784e5e89d9d2eab6c96b87a85c73e486e436a6",
+      "stdout_text_normalized": "{\n  \"all_passed\": true,\n  \"seed\": 773019,\n  \"primal_dual_cases\": 4352,\n  \"exhaustive_skeleton_path_parameter_cases\": 104520,\n  \"exhaustive_segments\": 285750,\n  \"marked_list_variation_cases\": 47744,\n  \"sparse_separated_cases\": 13,\n  \"constants\": {\n    \"small_k\": 0.16438665454469126,\n    \"large_k\": 0.008512192625968109\n  },\n  \"scope\": \"Supplemental finite checks only; not proof of asymptotics.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-ftvk8vv0/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-ftvk8vv0",
+      "id": "060",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 540,
+      "stderr_actual_sha256": "f4c3aa11eeddf51769a42cb0578b9227d26e1d315aeca1d0a72db04061deeef0",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-ftvk8vv0/independent_checks.py\", line 1, in <module>\n    \"\"\"Fresh exhaustive supplemental checks; no infinite-volume proof by testing.\"\"\"\n    \nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-ftvk8vv0/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-ftvk8vv0",
+      "id": "061",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-pdp1z1_j/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-pdp1z1_j",
+      "id": "062",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 0,
+      "stderr_actual_bytes": 0,
+      "stderr_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_text_normalized": "",
+      "stdout_actual_bytes": 398,
+      "stdout_actual_sha256": "97f2e3a7c56da99144525b3b49784e5e89d9d2eab6c96b87a85c73e486e436a6",
+      "stdout_text_normalized": "{\n  \"all_passed\": true,\n  \"seed\": 773019,\n  \"primal_dual_cases\": 4352,\n  \"exhaustive_skeleton_path_parameter_cases\": 104520,\n  \"exhaustive_segments\": 285750,\n  \"marked_list_variation_cases\": 47744,\n  \"sparse_separated_cases\": 13,\n  \"constants\": {\n    \"small_k\": 0.16438665454469126,\n    \"large_k\": 0.008512192625968109\n  },\n  \"scope\": \"Supplemental finite checks only; not proof of asymptotics.\"\n}\n"
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-pdp1z1_j/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "negative"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-pdp1z1_j",
+      "id": "063",
+      "kind": "negative",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 540,
+      "stderr_actual_sha256": "b51d2e14898dc7f883da80e71b5dbf3687ff7b478ed29e238da57eeae3aa8696",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    exec(compile(t, str(p), 'exec', optimize=0), ns)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<audit-run>/scratch/oriented-flow-check-pdp1z1_j/independent_checks.py\", line 1, in <module>\n    \"\"\"Fresh exhaustive supplemental checks; no infinite-volume proof by testing.\"\"\"\n    \nAssertionError: NEGATIVE_CONTROL_ASSERTION\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    },
+    {
+      "bootstrap_sha256": "6bdb182947471c685f3e525bee050140f2ec9c4588b32cc3225cbb7d97b08b95",
+      "command_role_normalized": [
+        "<python>",
+        "-I",
+        "-O",
+        "-c",
+        "\nimport ast, hashlib, pathlib, sys\np = pathlib.Path(sys.argv[1]); expected = sys.argv[2]; negative = sys.argv[3] == 'negative'\nb = p.read_bytes()\nif hashlib.sha256(b).hexdigest() != expected:\n    raise RuntimeError('Checker hash mismatch before execution')\nt = ast.parse(b, filename=str(p))\nif negative:\n    # A forced assertion exercises the assertion-preservation execution gate.\n    idx = 1 if t.body and isinstance(t.body[0], ast.Expr) and isinstance(t.body[0].value, ast.Constant) and isinstance(t.body[0].value.value, str) else 0\n    t.body.insert(idx, ast.Assert(test=ast.Constant(value=False), msg=ast.Constant(value='NEGATIVE_CONTROL_ASSERTION')))\n    ast.fix_missing_locations(t)\nns = {'__name__': '__main__', '__file__': str(p)}\nexec(compile(t, str(p), 'exec', optimize=0), ns)\n",
+        "<audit-run>/scratch/oriented-flow-check-pdp1z1_j/independent_checks.py",
+        "a502506adb7b953e6aa9ba969e201ff1d903c26eb2c2a60866c0e5f2127b9e01",
+        "positive"
+      ],
+      "cwd_role_normalized": "<audit-run>/scratch/oriented-flow-check-pdp1z1_j",
+      "id": "064",
+      "kind": "positive",
+      "python_requested_flags": [
+        "-I",
+        "-O"
+      ],
+      "returncode": 1,
+      "stderr_actual_bytes": 192,
+      "stderr_actual_sha256": "4fb828ad2511c152ad13c20394914384ec540dad8338f3cb9efb28ce855eb474",
+      "stderr_text_normalized": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    raise RuntimeError('Checker hash mismatch before execution')\nRuntimeError: Checker hash mismatch before execution\n",
+      "stdout_actual_bytes": 0,
+      "stdout_actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text_normalized": ""
+    }
+  ],
+  "python_executable_role": "same-system-python-as-launcher",
+  "python_version": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "root_compilation_optimize": 0,
+  "root_effective_flags": {
+    "dont_write_bytecode": 1,
+    "ignore_environment": 1,
+    "isolated": 1,
+    "no_site": 1,
+    "optimize": 1,
+    "safe_path": true
+  },
+  "root_sha256": "13233e679fd24dffcf87407d934dcce80af7eb23132fe490227ce6edb62d85b9"
+}

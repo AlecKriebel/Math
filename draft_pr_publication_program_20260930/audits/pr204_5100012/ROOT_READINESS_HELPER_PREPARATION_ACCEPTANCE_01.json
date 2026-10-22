@@ -1,0 +1,49 @@
+{
+  "PR": 204,
+  "Root_executed_runner_validate_sources_only_without_install_or_API": true,
+  "Root_guard_validation_code": "from pathlib import Path\nimport importlib.util,json,copy,hashlib,os,datetime\nA=Path(\"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr204_5100012\");D=A/'publication_checkpoint_01'\ndef need(t,m):\n if not t:raise RuntimeError(m)\ndef pin(b):return {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}\nspec=importlib.util.spec_from_file_location('pr204_ready_pure_guard_validation',D/'checkpoint_ready204.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)\nneed(pin((D/'SAFE_AUTHORED_MANIFEST.json').read_bytes())=={'bytes':910,'sha256':'138cf3f85f8788fb54cdeba07fd3de56423760ecb20853215face99b89740883'},'Final manifest identity')\nm.static_manifest()\nactual=json.loads((A/m.FIRST_REVIEW).read_bytes());first={**actual['review_event'],'review_number':1,'report_file':'FINAL_REPORT.md','Root_acceptance_file':m.FIRST_REVIEW,'Root_acceptance_pin':m.FIRST_REVIEW_PIN}\nneed(first['verdict']=='CLEANPASS','First event')\nmem={};original_frozen=m.frozen\ndef frozen(rel,x=None):\n if rel in mem:\n  b=mem[rel];need(x is None or pin(b)==x,'Synthetic pin changed');return b\n return original_frozen(rel,x)\nm.frozen=frozen\ndef fake(index,verdict='CLEANPASS',repair=False):\n directory='SYNTHETIC_MEMORY_ONLY_REVIEW_'+str(index);report=b'SYNTHETIC_MEMORY_ONLY No actual authority '+str(index).encode()\n mem[directory+'/REPORT.md']=report\n ae={'directory':directory,'verdict':verdict,'report_pin':pin(report),'safe_files':{'REPORT.md':pin(report)},'reviewed_package':'publication_package_v1','reviewed_package_seal':first['reviewed_package_seal']}\n af='SYNTHETIC_MEMORY_ONLY_ROOT_ACCEPTANCE_'+str(index)+'.json'\n ar={'PR':204,'original_head':m.HEAD,'review_accepted':True,'NEW_whole_package_reviews_completed':index,'review_cycle_repairs_required_now':repair,'review_event':ae}\n raw=json.dumps(ar,sort_keys=True).encode();mem[af]=raw\n return {**ae,'review_number':index,'report_file':'REPORT.md','Root_acceptance_file':af,'Root_acceptance_pin':pin(raw)}\ng={'package':'publication_package_v1','package_seal':first['reviewed_package_seal'],'whole_package_review_events':[first,fake(2)]}\npassed=[]\ndef check(label,g,refused=False):\n try:r=m.accepted_events(g,{})\n except (RuntimeError,KeyError,ValueError):\n  need(refused,'Unexpected refusal '+label)\n else:\n  need(not refused,'Accepted false evidence '+label);need(len(r)==len(g['whole_package_review_events']),'Count')\n passed.append(label)\ncheck('actual_first25_plus_synthetic_second_valid',g)\nj=copy.deepcopy(g);j['whole_package_review_events']=j['whole_package_review_events'][:1];check('one_review_refused',j,True)\nj=copy.deepcopy(g);j['package_seal']={'bytes':1,'sha256':'0'*64};check('wrong_final_seal_refused',j,True)\nj=copy.deepcopy(g);j['whole_package_review_events'][1]['Root_acceptance_file']=m.FIRST_REVIEW;j['whole_package_review_events'][1]['Root_acceptance_pin']=m.FIRST_REVIEW_PIN;check('reused_acceptance_refused',j,True)\nj=copy.deepcopy(g);j['whole_package_review_events'][1]['review_number']=3;check('skipped_counter_refused',j,True)\nj=copy.deepcopy(g);j['whole_package_review_events'][1]['verdict']='CHANGES_REQUESTED';check('rewritten_Root_event_refused',j,True)\nhistory={'package':g['package'],'package_seal':g['package_seal'],'whole_package_review_events':[first,fake(2,'CHANGES_REQUESTED',True),fake(3)]}\ncheck('undocumented_repair_history_refused',history,True);history['fresh_final_review_after_documented_editorial_repairs']=True;check('documented_repair_then_new_final_clean_accepted',history)\nneed(not (A/m.GATE).exists(),'Unexpected actual finalgate')\ntry:m.gate_inputs({'bytes':1,'sha256':'0'*64})\nexcept RuntimeError as e:need('Future final Root publication gate absent' in str(e),'Wrong absent gate refusal');passed.append('missing_actual_gate_refused_before_native_load')\nelse:raise RuntimeError('Absent actualgate accepted')\nb={'Root_publication_gate_pin':{'bytes':1,'sha256':'0'*64},'package':'SYNTHETIC_MEMORY_ONLY','package_seal':{'bytes':1,'sha256':'0'*64},'whole_package_reviews_completed':3}\nfacts=m.facts(b)\nfor key in ('source_contract_clearance','priority_clearance','qualified_attributed_note_editorially_cleared'):need(facts[key] is True,'Actual operations alias missing')\nneed(facts['historical_firstness_independence_established'] is False and facts['priority_clearance_scope']=='bounded_priority_audit_and_qualified_attributed_note_only','Priority qualification')\nneed((facts['fully_completed_count'],facts['published_count'],facts['last_completed_PR'],facts['next_numeric_intake_cursor'],facts['advance_to_next_PR_authorized_now'])==(46,30,203,204,False),'Premature completion')\npassed.append('canonical_ops_aliases_and_actual60_counters_qualified')\nm.static_manifest()\nprint(json.dumps({'status':'PASS_PREPARATION_ONLY','checks':passed,'check_count':len(passed),'first_actual25_pins_unchanged':True,'native_runtime_API_bind_prepare_cache_or_actualgate_actions':False,'synthetic_cases_memory_only':True}))\n",
+  "Root_independent_memory_only_guard_controls": {
+    "check_count": 10,
+    "checks": [
+      "actual_first25_plus_synthetic_second_valid",
+      "one_review_refused",
+      "wrong_final_seal_refused",
+      "reused_acceptance_refused",
+      "skipped_counter_refused",
+      "rewritten_Root_event_refused",
+      "undocumented_repair_history_refused",
+      "documented_repair_then_new_final_clean_accepted",
+      "missing_actual_gate_refused_before_native_load",
+      "canonical_ops_aliases_and_actual60_counters_qualified"
+    ],
+    "first_actual25_pins_unchanged": true,
+    "native_runtime_API_bind_prepare_cache_or_actualgate_actions": false,
+    "status": "PASS_PREPARATION_ONLY",
+    "synthetic_cases_memory_only": true
+  },
+  "Root_read_entire_helper_runner_and_final_contract": true,
+  "Root_verified_final_source_manifest_and_all_reviewed_transport_source_pins": true,
+  "UTC": "2026-10-16T11:36:21Z",
+  "accepted_preparation_only": true,
+  "actual_publication_or_tracker_or_merge": false,
+  "baseline": "Actual accepted priority60_02 only; unaccepted package75 is historical preparation.",
+  "goal_complete": false,
+  "helper": {
+    "bytes": 26960,
+    "path": "publication_checkpoint_01/checkpoint_ready204.py",
+    "sha256": "7efc8b47d0d829008e4a5e880997a6c22208412b7a27cf8d0c64be4bcc61b076"
+  },
+  "manifest": {
+    "bytes": 910,
+    "path": "publication_checkpoint_01/SAFE_AUTHORED_MANIFEST.json",
+    "sha256": "138cf3f85f8788fb54cdeba07fd3de56423760ecb20853215face99b89740883"
+  },
+  "original_head": "551a524e2db65fec90684485ef676d0b4179378d",
+  "runner": {
+    "bytes": 3317,
+    "path": "publication_checkpoint_01/run_ready_with_tree_cache.py",
+    "sha256": "4a1d3d42d57e48491e7b464ce477af416df4e01eda857099c2633f142c48ec66"
+  },
+  "schema": "pr204-root-readiness-helper-preparation-acceptance-v1",
+  "scope": "Future final Root gate required. No binding, remote object preparation, actual ready90 acceptance, cache installation or publication operation performed by this Root validation."
+}

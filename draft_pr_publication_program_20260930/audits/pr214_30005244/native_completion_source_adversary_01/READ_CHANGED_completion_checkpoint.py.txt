@@ -1,0 +1,175 @@
+1: """Inactive PR214 completion native checkpoint; no ref or PR writer.
+2: All inputs, gates, admissions and actual receipts are separately Root-bound.
+3: Adoption54/38 is conditional until separate actual Root terminal; no new publication.
+4: """
+
+5: import argparse,datetime,hashlib,json,os,re,selectors,signal,stat,sys,time,types
+
+6: from pathlib import Path
+
+7: BASE=Path(__file__).absolute().parent
+
+8: CASE=BASE.parent
+
+9: NATIVE=BASE
+
+10: PROGRAM=CASE.parents[1]
+
+11: CHECKOUT=PROGRAM.parent
+
+12: MODEL_PIN={'bytes': 38884, 'sha256': '246515859ef75d3349d30ac360af6422125378703905ad4ef7c9be7d8bbafa88'}
+
+13: PRIMITIVE_PIN={'bytes': 16405, 'sha256': 'f64ecc9301a2870526ee27582246a5b7c6c013e64a45881bc3f2df423ad71a13'}
+
+14: RETIRED=set()
+
+15: IMMUTABLE_SCOPE='IMMUTABLE_CANDIDATE_ONLY_NOT_MAIN_LEASE_CAS_OR_COMPLETION'
+
+118: def checked_admission(seed,a):
+119:     h=seed.h
+120:     need(type(a) is dict and set(a)=={'schema','PR','evidence_scope','protocol_pin','source_manifest_pin',
+121:         'logical_manifest_pin','logical_gate_pin','facts','body_proof_policy','QUEUE_policy','parent','parent_tree',
+122:         'created_UTC','commit_author','commit_committer','commit_message','parents','tree','candidate','candidate_journal'},
+123:         'Exact typed completion admission')
+124:     h.matches(a,{'schema':'pr214-completion-parent-admission-v1','PR':214,
+125:         'evidence_scope':'FACTUAL_PARENT_ADMISSION_REQUIRES_ROOT_ACCEPTANCE','protocol_pin':seed.source_pin,
+126:         'source_manifest_pin':seed.source_manifest_pin,'logical_manifest_pin':seed.manifest_pin,
+127:         'logical_gate_pin':seed.logical_gate_pin,'facts':h.phase_facts(),'body_proof_policy':h.BODY_POLICY,
+128:         'QUEUE_policy':h.QUEUE_POLICY,'commit_message':seed.logical['commit_message']},'Admission fixed semantics')
+129:     need(all(h.hexid(a[k]) for k in ('parent','parent_tree','tree','candidate'))
+130:          and h.exact(a['parents'],[a['parent']]) and a['parent'] not in (h.ORIGINAL,h.CURRENT,h.MERGED) and a['candidate'] not in RETIRED
+131:          and a['candidate'] not in seed.logical['retired_candidates'],'Only canonical one-parent archive; retired candidates forbidden')
+132:     need(type(a['candidate_journal']) is str and len(a['candidate_journal'])<=80
+133:          and re.fullmatch('ROOT_COMPLETE214_CANDIDATE_[A-Za-z0-9_-]{1,50}',a['candidate_journal']) is not None,'Fresh exact one-use candidate journal')
+134:     for key in ('commit_author','commit_committer'):
+135:         need(type(a[key]) is dict and set(a[key])=={'name','email','date'},'Fixed commit identity fields')
+136:         for k in ('name','email'):need(h.exact(a[key][k],seed.logical[key][k]),'Identity substitution refused')
+137:         need(h.exact(a[key]['date'],a['created_UTC']),'Single explicit UTC-seconds date')
+138:     m={**seed.logical,'expected_parent':a['parent'],'expected_parent_tree':a['parent_tree'],
+139:        'commit_author':a['commit_author'],'commit_committer':a['commit_committer'],'candidate_journal':a['candidate_journal']}
+140:     request,oid=h.commit_request(m,a['tree'],[a['parent']])
+141:     need(oid==a['candidate'],'Canonical candidate identity differs')
+142:     return m
+
+144: class Runtime:
+145:     def __init__(self,seed,admission_ref,gate_ref):
+146:         self.seed,self.e,self.h,self.c=seed,seed.e,seed.h,seed.c
+147:         self.admission_ref,self.gate_ref=admission_ref,gate_ref
+148:         self.pool=self.h.NativeBodyProofs()
+149:         self.refresh()
+150:     def refresh(self):
+151:         self.seed.refresh();h=self.h
+152:         self.admission=ref(h,self.seed.s,self.admission_ref)
+153:         self.m=checked_admission(self.seed,self.admission)
+154:         self.admission_pin={k:self.admission_ref[k] for k in ('bytes','sha256')}
+155:         self.gate=ref(h,self.seed.s,self.gate_ref)
+156:         self.gate_pin={k:self.gate_ref[k] for k in ('bytes','sha256')}
+157:         h.matches(self.gate,{'schema':'pr214-root-completion-admission-acceptance-v1','evidence_scope':'ACTUAL_ROOT_RECEIPT',
+158:             'PR':214,'accepted':True,'protocol_pin':self.seed.source_pin,'source_manifest_pin':self.seed.source_manifest_pin,
+159:             'admission_pin':self.admission_pin,'logical_manifest_pin':self.seed.manifest_pin,'logical_gate_pin':self.seed.logical_gate_pin,
+160:             'facts':h.phase_facts(),'body_proof_policy':h.BODY_POLICY,'QUEUE_policy':h.QUEUE_POLICY,
+161:             'parent_only_parameterization_reviewed':True,'one_use_two_immutable_POSTs_authorized':True,
+162:             'no_ref_writer_or_PR_action_authority':True,'exact_baseline_plus214_memberships':True,
+163:             'Root_full_source_read':True,'independent_source_review_accepted':True,
+164:             'parent_only_admissions_without_new_peer_review_approved':True},'Separate exact Root completion admission acceptance')
+165:         self.overlay,self.pre=self.seed.overlay,self.seed.pre
+166:         return self
+
+168: def protected(rt,trees,root,post):
+169:     h=rt.h
+170:     for path,expected in rt.m['protected_nodes'].items():
+171:         need(trees.lookup(root,path)==h.preserved_tuple(expected,tree_only=True),'Fresh opaque attempt/audit state changed')
+172:     for row in rt.m['protected_bodies']:
+173:         need(trees.lookup(root,row['path'])==(row['mode'],row['type'],row['sha']),
+174:              'Protected existing science native body association changed')
+175:     for path,body in rt.overlay.items():
+176:         expected=('100644','blob',h.native('blob',body)) if post else rt.pre[path]
+177:         need(trees.lookup(root,path)==expected,'Selected native pre/postimage differs: '+path)
+
+179: def parent_state(rt,observer):
+180:     """Immutable fixed-parent truth, never a mutable Main observation."""
+181:     h,c,m=rt.h,rt.c,rt.m;api=h.GetOnly(observer);parent=m['expected_parent'];root=m['expected_parent_tree']
+182:     need(parent not in (h.ORIGINAL,h.CURRENT,h.MERGED),'A PR214 snapshot can never be the archival commit parent')
+183:     value=api('GET','git/commits/'+parent)
+184:     need(value.get('sha')==parent and value['tree']['sha']==root,'Admission parent/root differs')
+185:     if parent!=h.ANCHOR:
+186:         comp=api('GET','compare/'+h.ANCHOR+'...'+parent)
+187:         need(comp.get('status')=='ahead' and comp['merge_base_commit']['sha']==h.ANCHOR,'Fresh Main must preserve actual212 administrative terminal ancestry')
+188:     comp=api('GET','compare/'+h.MERGED+'...'+parent)
+189:     need((parent==h.MERGED and comp.get('status')=='identical') or
+190:          (comp.get('status')=='ahead' and comp['merge_base_commit']['sha']==h.MERGED),
+191:          'Fresh parent must preserve actual already-merged PR214 ancestry')
+192:     h.pr_identity(observer,m,rt.pool)
+193:     trees=c.NativeTrees(api);protected(rt,trees,root,False)
+194:     queue=h.queue_observation(observer,trees,root,m,rt.pool,False)
+195:     wanted,changed,dirs=h.expected(c,trees,root,rt.overlay,rt.pre)
+196:     need(changed==set(m['expected_changed_paths']) and dirs==set(m['expected_new_directories']),'Full exact bound selected scope')
+197:     need(rt.pre[h.VIEWS[2]] is not None,'Native progress baseline required')
+198:     progress=h.decode(rt.pool.get(observer,rt.pre[h.VIEWS[2]][2]))
+199:     h.matches(progress,h.baseline_facts(),'Intervening ascending checkpoint refused')
+200:     for key,value in h.source_baseline().items():need(h.exact(progress.get(key),value),'Exact53/37 memberships changed')
+201:     need(type(progress.get('dated_eligible_total')) is int and progress['dated_eligible_total']==99,'Dated99 baseline changed')
+202:     for path in (h.VIEWS[1],h.VIEWS[4]):
+203:         if rt.pre[path] is not None:need(rt.overlay[path].startswith(rt.pool.get(observer,rt.pre[path][2])),'Native log prefix changed')
+204:     return wanted,changed,dirs
+
+206: def body_associations(rt,observer,trees,root,allow_foreign_rows=False):
+207:     h=rt.h;protected(rt,trees,root,True)
+208:     queue=h.queue_observation(observer,trees,root,rt.m,rt.pool,allow_foreign_rows)
+209:     for row in rt.m['protected_bodies']:
+210:         rt.pool.get(observer,row['sha'],{k:row[k] for k in ('bytes','sha256')})
+211:     selected={}
+212:     for path,expected in rt.overlay.items():
+213:         oid=h.native('blob',expected)
+214:         body=rt.pool.get(observer,oid,pin(expected))
+215:         need(body==expected,'Actual selected native bytes differ')
+216:         selected[path]={**pin(body),'mode':'100644','type':'blob','git_blob':oid,
+217:             'actual_native_GET_origin':rt.pool.origin(observer,oid)}
+218:     return selected,queue
+
+220: def verify_immutable(rt,observer):
+221:     h,c,a=rt.h,rt.c,rt.admission;api=h.GetOnly(observer)
+222:     wanted,expected_leaves,expected_dirs=parent_state(rt,observer)
+223:     need(wanted==a['tree'],'Reconstructed archive tree differs')
+224:     request,oid=h.commit_request(rt.m,wanted,[a['parent']])
+225:     need(oid==a['candidate'] and oid not in RETIRED and oid not in rt.m['retired_candidates'],'Canonical candidate differs/retired')
+226:     commit=api('GET','git/commits/'+oid)
+227:     need(commit.get('sha')==oid and commit['tree']['sha']==wanted
+228:          and [r['sha'] for r in commit['parents']]==[a['parent']],'Exact one-parent archive metadata')
+229:     h.matches(commit.get('author'),rt.m['commit_author'],'Canonical author')
+230:     h.matches(commit.get('committer'),rt.m['commit_committer'],'Canonical committer')
+231:     message=h.commit_message_readback(rt.m['commit_message'],commit.get('message'))
+232:     trees=c.NativeTrees(api);leaves,dirs,deleted=trees.changes(a['parent_tree'],wanted)
+233:     need(leaves==expected_leaves and dirs==expected_dirs and not deleted,'Full native scope/foreign preservation differs')
+234:     selected,queue=body_associations(rt,observer,trees,wanted)
+235:     return {'schema':'pr214-completion-immutable-candidate-verification-v1','evidence_scope':IMMUTABLE_SCOPE,
+236:         'PR':214,'protocol_pin':rt.seed.source_pin,'source_manifest_pin':rt.seed.source_manifest_pin,
+237:         'logical_manifest_pin':rt.seed.manifest_pin,'logical_gate_pin':rt.seed.logical_gate_pin,'admission_pin':rt.admission_pin,
+238:         'parent':a['parent'],'parent_tree':a['parent_tree'],'candidate':oid,'tree':wanted,'parents':[a['parent']],
+239:         'selected_files':selected,'selected_count':len(selected),'protected_body_paths_verified':len(rt.m['protected_bodies']),'changed_leaves':sorted(leaves),'new_directories':sorted(dirs),'deleted_directories':[],
+240:         'Main_QUEUE_observation':queue,'body_proof_policy':h.BODY_POLICY,'QUEUE_policy':h.QUEUE_POLICY,
+241:         'full_scope_verified':True,'all_selected_native_bodies_verified':True,'foreign_native_tuples_preserved':True,
+242:         'deterministic_canonical_commit_oid_verified':True,'fixed_author_and_committer_metadata_verified':True,
+243:         'commit_message_readback':message,'mutable_Main_observed_or_spoofed':False,
+244:         'actual_CAS_or_completion_inferred':False,'this_action_native_POSTs':0,'earlier_attempt_effects_not_characterized':True}
+
+268: def main_closure(rt,observer):
+269:     h,c=rt.h,rt.c;api=h.GetOnly(observer)
+270:     observed=api('GET','git/ref/heads/main')['object']['sha'];need(h.hexid(observed),'Fresh native R')
+271:     commit=api('GET','git/commits/'+observed)
+272:     need(commit.get('sha')==observed and h.hexid(commit['tree']['sha']),'Actual R/root differs')
+273:     if observed!=rt.admission['candidate']:
+274:         comp=api('GET','compare/'+rt.admission['candidate']+'...'+observed)
+275:         need(comp.get('status')=='ahead' and comp['merge_base_commit']['sha']==rt.admission['candidate'],'R must equal or actually descend from C')
+276:     root=commit['tree']['sha'];trees=c.NativeTrees(api)
+277:     selected,queue=body_associations(rt,observer,trees,root,True)
+278:     pr=h.pr_identity(observer,rt.m,rt.pool)
+279:     need(api('GET','git/ref/heads/main')['object']['sha']==observed,'R changed during coherent owned-state proof; explicit readonly reconciliation needed')
+280:     return {'actual_MAIN_observed':observed,'actual_MAIN_tree':root,'CAS_target':rt.admission['candidate'],
+281:         'CAS_target_tree':rt.admission['tree'],'selected_postimage_paths_verified':len(selected),
+282:         'protected_opaque_attempt_audit_verified':True,'Main_QUEUE_observation':queue,
+283:         'fresh_merged_PR_status_observation':pr,'protected_body_paths_verified':len(rt.m['protected_bodies']),'native_final_ref_UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+284:         'coherent_before_after_ref':True,'CAS_or_completion_inferred_from_ancestry':False,
+285:         'perpetual_or_write_time_Main_equality_claimed':False}
+
+648: if __name__=='__main__':main()

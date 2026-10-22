@@ -1,0 +1,215 @@
+{
+  "utc": "2026-10-14T04:25:11.029746+00:00",
+  "pr": 1034,
+  "status": "PASS_ADMIN_ONLY_PARENT_ADOPTION_PENDING",
+  "original_input_files_rehashed": 1064,
+  "finalizer_output_files_rehashed": 12,
+  "final_audit_payload_files_rehashed": 1109,
+  "archive": {
+    "path": "publication/source_audit_kit.zip",
+    "bytes": 1899507,
+    "sha256": "55448cdcfb582cf2869f8b421f2141ed1d03d30a528e112df4935499280004d1"
+  },
+  "clean_builder_byte_exact": true,
+  "explicit_fault_controls": [
+    {
+      "control": "protected_paper",
+      "intended_gate": "protected reviewed",
+      "rejected": true,
+      "scratch_only": true,
+      "generic_input_pins_refreshed_to_force_specific_gate": true
+    },
+    {
+      "control": "pending_state",
+      "intended_gate": "terminal ready",
+      "rejected": true,
+      "scratch_only": true,
+      "generic_input_pins_refreshed_to_force_specific_gate": true
+    },
+    {
+      "control": "nonzero_terminal",
+      "intended_gate": "terminal review not zero",
+      "rejected": true,
+      "scratch_only": true,
+      "generic_input_pins_refreshed_to_force_specific_gate": true
+    },
+    {
+      "control": "wrong_root_report",
+      "intended_gate": "root accepted terminal record",
+      "rejected": true,
+      "scratch_only": true,
+      "generic_input_pins_refreshed_to_force_specific_gate": true
+    }
+  ],
+  "documented_finite_replays": [
+    {
+      "family": "degree_two",
+      "optimized": false,
+      "semantic_equal_to_packaged_output": true,
+      "volatile_keys": [
+        "utc"
+      ]
+    },
+    {
+      "family": "degree_two",
+      "optimized": true,
+      "semantic_equal_to_packaged_output": true,
+      "volatile_keys": [
+        "utc"
+      ]
+    },
+    {
+      "family": "degree_seven",
+      "optimized": false,
+      "semantic_equal_to_packaged_mathematical_output": true,
+      "historical_receipt_only_keys": [
+        "checked_utc",
+        "normal_and_optimized_outputs_identical"
+      ]
+    },
+    {
+      "family": "degree_seven",
+      "optimized": true,
+      "semantic_equal_to_packaged_mathematical_output": true,
+      "historical_receipt_only_keys": [
+        "checked_utc",
+        "normal_and_optimized_outputs_identical"
+      ]
+    }
+  ],
+  "process_receipts": [
+    {
+      "name": "CLEAN_BUILDER",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_package.py"
+      ],
+      "cwd": "clean_extraction/publication",
+      "exit_code": 0,
+      "elapsed_seconds": 0.07654258300317451,
+      "stdout_sha256": "d725cc0d25f2b3d87617e0dfd4a60b1df94b800bc91d65a237415eb74e7b34a1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "FAULT_protected_paper",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_package.py"
+      ],
+      "cwd": "faults/protected_paper/publication",
+      "exit_code": 1,
+      "elapsed_seconds": 0.0646375829965109,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "aa16833afa449696e357c857242e0ff98cdbea1115d713ca36496be88a518443",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_pending_state",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_package.py"
+      ],
+      "cwd": "faults/pending_state/publication",
+      "exit_code": 1,
+      "elapsed_seconds": 0.0631328340023174,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6ee09961a7998006aa00987e9acd1ee8642efe78230c21376b56d363915df90c",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_nonzero_terminal",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_package.py"
+      ],
+      "cwd": "faults/nonzero_terminal/publication",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06190970799798379,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "88756f9ed6a04bd4600137e41404934247023dbd3a5fd50eecbfe88ddc74fdfa",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_wrong_root_report",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_package.py"
+      ],
+      "cwd": "faults/wrong_root_report/publication",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06863358300324762,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a9118fb7d14952019fd5d200072b7e534c53ec987b235f9ed0f805380ebfbef9",
+      "expected": "rejection"
+    },
+    {
+      "name": "degree_two_normal",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "check_degree_two.py"
+      ],
+      "cwd": "replay/degree_two_normal",
+      "exit_code": 0,
+      "elapsed_seconds": 0.16021962500235531,
+      "stdout_sha256": "5f134a9e5ed2f60f4910cbc6cf618e36f8fe97c3874d9a124e27590146ba7376",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "degree_two_O",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "check_degree_two.py"
+      ],
+      "cwd": "replay/degree_two_O",
+      "exit_code": 0,
+      "elapsed_seconds": 0.23217933299747529,
+      "stdout_sha256": "491dbea1a2027fd8a5c55ffa9c73402be0ba13ead699c9264de62d840c765cd4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "degree_seven_normal",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "independent_wheel_check.py"
+      ],
+      "cwd": "replay/degree_seven_normal",
+      "exit_code": 0,
+      "elapsed_seconds": 0.054420000000391155,
+      "stdout_sha256": "6ec698fcd20109ae62ba2cc54e90506ba34dcb0b4158c9d28390ea22e13db9a5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "degree_seven_O",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "independent_wheel_check.py"
+      ],
+      "cwd": "replay/degree_seven_O",
+      "exit_code": 0,
+      "elapsed_seconds": 0.05543620800017379,
+      "stdout_sha256": "6ec698fcd20109ae62ba2cc54e90506ba34dcb0b4158c9d28390ea22e13db9a5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    }
+  ],
+  "unchanged_pdf_not_recompiled": true,
+  "historical_optimized_graph_comparator_replayed": false,
+  "PR1037_optimized_graph_comparator_unsupported": true,
+  "compiler_Git_index_branch_remote_services_outreach": false,
+  "no_original_source_checker_report_or_sealed_finalizer_change": true
+}

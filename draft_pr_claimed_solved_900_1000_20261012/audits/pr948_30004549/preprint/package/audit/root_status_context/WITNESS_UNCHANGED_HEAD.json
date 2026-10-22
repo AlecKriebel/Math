@@ -1,0 +1,109 @@
+{
+  "utc": "2026-10-16T10:03:59.334954+00:00",
+  "finding_id": "R948-WORKFLOW-ROOT-02",
+  "amendment": "BASE_REF_OID_BINDING_AFTER_FULL01",
+  "additional_case": "UNCHANGED_INITIAL_HEAD_WITH_STABLY_ADVANCED_BASE",
+  "synthetic_only": true,
+  "source_core_sha256": "1f538840a9e3d0ec26270d977960699cfd6155e8706ffa7de3c82854042be563",
+  "source_witness_script_sha256": "5c14bc6fd8e946b743f92f6c38ab4dc63926ef3d7d35fc871221f5bdea7f32d5",
+  "valid_dag": {
+    "O": {
+      "parents": [],
+      "tree": {
+        "A": 0,
+        "B": 0,
+        "misc": 0
+      }
+    },
+    "D": {
+      "parents": [
+        "O"
+      ],
+      "tree": {
+        "A": 0,
+        "B": 0,
+        "misc": 1
+      }
+    },
+    "C1": {
+      "parents": [
+        "O"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 0,
+        "misc": 0
+      }
+    },
+    "C2": {
+      "parents": [
+        "C1"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 1,
+        "misc": 0
+      }
+    },
+    "H": {
+      "parents": [
+        "C2"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 0,
+        "misc": 0
+      }
+    },
+    "M": {
+      "parents": [
+        "D",
+        "C2"
+      ],
+      "tree": {
+        "A": 1,
+        "B": 1,
+        "misc": 1
+      }
+    }
+  },
+  "initial_comparison_base": "D",
+  "current_before_and_after_comparison_base": "M",
+  "initial_and_current_PR_head": "H",
+  "initial_unique_target": "1000001",
+  "initial_target_status": "claimed_solved",
+  "current_unique_target": "1000002",
+  "current_target_status": "unsolved",
+  "inventory_has_baseRefOid": false,
+  "old_actual_selected": {
+    "number": 952,
+    "problem_id": "1000001",
+    "headRefOid": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "baseRefName": "main",
+    "status": "claimed_solved",
+    "queue_row_sha256": "44e5fb48885d076d324f0eda40d7b3211a21541acb074627181101aabbf8f96e",
+    "gate_utc": "2026-10-16T10:03:59.334728+00:00",
+    "math_source_read": false,
+    "snapshot_not_yet_created": true
+  },
+  "old_actual_calls": [
+    {
+      "request": "PR metadata",
+      "baseRefOid_requested": false,
+      "actual_base": "M"
+    },
+    {
+      "request": "immutable QUEUE status only",
+      "proof_source_read": false
+    },
+    {
+      "request": "PR metadata",
+      "baseRefOid_requested": false,
+      "actual_base": "M"
+    }
+  ],
+  "inference": "Head equality alone cannot authorize cached identity reuse after the base/merge-base advances. The initial inventory has no baseRefOid. Binding only new changed-head pages misses this stable-base case.",
+  "required_correction": "Reuse initial identity only when BOTH original head and an independently recorded well-formed initial baseRefOid equal fresh values. If initial base context is missing/different, derive complete current filenames even at the same head. This repository initial inventory lacks baseRefOid, so it needs fresh filenames. Bind baseRefOid on every page and final bracket.",
+  "actual_service_calls": 0,
+  "actual_math_or_other_problem_source_reads": 0
+}

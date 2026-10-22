@@ -1,0 +1,11 @@
+# Package round 1 research log
+
+- 2026-10-17T17:24:51Z — Began fresh adversarial audit of the frozen version 1.0.0 distribution. Completion estimate: 5%. Read the actual TeX and recorded source identities first; no prior dedicated mathematical audit report was opened. Reconstructed the geometry, self-concordance, ray reduction, PSD proof, and arbitrary-polynomial obstruction from the manuscript. Earlier source-role prose was seen only as declared scope, not treated as evidence.
+- 2026-10-17T17:26:23Z — Direct primary-source read confirms the original p.799 question is existential. The proof has a plausible complete analytic route; no unsupported claim has yet been identified. Completion estimate: 25%. Testing exact identities, archive bindings, corruption controls, and PDF rebuild remains.
+
+- 2026-10-17T17:27:23Z — Completion estimate: 60%. Frozen archive, manifest, metadata and verifier checks pass; six corrupted-checker executions reject. Distributed TeX successfully rebuilt with a scoped clone of the existing resource cache. Independent analytic reconstruction has not found a gap.
+- 2026-10-17T17:29:15Z — Completion estimate: 85%. Independent Taylor-jet/interpolation mechanism passes1295 exact checks. Rebuilt text matches exactly; all five rendered pages are pixel-identical at110dpi. All five pages were then visually inspected without layout defects.
+- 2026-10-17T17:30:02Z — Completion estimate: 95%. Independent source allowlist, frozen PR snapshot binding and archive byte-identical repacking pass. Fresh independent checker also passes under optimization. Earlier dedicated mathematical reports now read for distribution consistency after independent reconstruction/computation.
+- 2026-10-17T17:30:34Z — Completion estimate: 100% of this first package round. PASS at the exact stated theorem and frozen-distribution scope; no repair requested. Report preserves limits on blinding, priority, human peer review and generalization. Copied cache removed to conserve disk. Parent's later fresh package round remains outside this completed assignment.
+
+- 2026-10-17T17:32:17Z — Final report and reproducibility documentation complete. Completion estimate: 100%. Repacking promoted into the persistent104-check distribution script. No parent files changed.

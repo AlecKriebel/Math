@@ -1,0 +1,255 @@
+{
+  "timestamp_utc": "2026-10-14T04:43:25.057342+00:00",
+  "controls": [
+    {
+      "name": "normal_clean_absent",
+      "flags": [],
+      "args": [],
+      "expected_pass": true,
+      "returncode": 0,
+      "detected": true,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 97,\n  \"archive_checked\": false,\n  \"deposit_binding\": \"absent (permitted for clean extraction)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "normal_required_absent",
+      "flags": [],
+      "args": [
+        "--require-deposit-binding"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 81, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 64, in check_binding\n    require(not required,'required deposit binding absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: required deposit binding absent\n"
+    },
+    {
+      "name": "normal_external_valid",
+      "flags": [],
+      "args": [
+        "--archive",
+        "tmp/rebuilt.zip",
+        "--deposit-binding",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0/publication/DEPOSIT_BINDING.json",
+        "--require-deposit-binding"
+      ],
+      "expected_pass": true,
+      "returncode": 0,
+      "detected": true,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 97,\n  \"archive_checked\": true,\n  \"deposit_binding\": \"present and valid\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "normal_explicit_malformed",
+      "flags": [],
+      "args": [
+        "--archive",
+        "tmp/rebuilt.zip",
+        "--deposit-binding",
+        "tmp/bad_binding.json"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 81, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 72, in check_binding\n    data=file.read_bytes();require(r['bytes']==len(data) and r['sha256']==sha(data),'deposit binding mismatch '+key)\n                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: deposit binding mismatch paper_pdf\n"
+    },
+    {
+      "name": "normal_default_present_malformed",
+      "flags": [],
+      "args": [
+        "--archive",
+        "tmp/rebuilt.zip"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 81, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 72, in check_binding\n    data=file.read_bytes();require(r['bytes']==len(data) and r['sha256']==sha(data),'deposit binding mismatch '+key)\n                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: deposit binding mismatch paper_pdf\n"
+    },
+    {
+      "name": "normal_unmanifested",
+      "flags": [],
+      "args": [],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 77, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 35, in check\n    require(name in allow or name in excluded,'unmanifested file '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: unmanifested file unexpected.txt\n"
+    },
+    {
+      "name": "normal_member_corruption",
+      "flags": [],
+      "args": [],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 77, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 27, in check\n    data=p.read_bytes();require(len(data)==record['bytes'] and sha(data)==record['sha256'],'hash mismatch '+name)\n                        ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: hash mismatch paper.tex\n"
+    },
+    {
+      "name": "normal_traversal_archive",
+      "flags": [],
+      "args": [
+        "--archive",
+        "tmp/traversal.zip"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 79, in main\n    if archive is not None:check_archive(archive,allow)\n                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 54, in check_archive\n    infos=z.infolist();require([i.filename for i in infos]==allow,'archive exact member set/order failed')\n                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: archive exact member set/order failed\n"
+    },
+    {
+      "name": "normal_explicit_missing_archive",
+      "flags": [],
+      "args": [
+        "--archive",
+        "tmp/missing.zip"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 79, in main\n    if archive is not None:check_archive(archive,allow)\n                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 52, in check_archive\n    require(path.is_file(),'archive missing')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: archive missing\n"
+    },
+    {
+      "name": "optimized_clean_absent",
+      "flags": [
+        "-O"
+      ],
+      "args": [],
+      "expected_pass": true,
+      "returncode": 0,
+      "detected": true,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 97,\n  \"archive_checked\": false,\n  \"deposit_binding\": \"absent (permitted for clean extraction)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "optimized_required_absent",
+      "flags": [
+        "-O"
+      ],
+      "args": [
+        "--require-deposit-binding"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 81, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 64, in check_binding\n    require(not required,'required deposit binding absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: required deposit binding absent\n"
+    },
+    {
+      "name": "optimized_external_valid",
+      "flags": [
+        "-O"
+      ],
+      "args": [
+        "--archive",
+        "tmp/rebuilt.zip",
+        "--deposit-binding",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0/publication/DEPOSIT_BINDING.json",
+        "--require-deposit-binding"
+      ],
+      "expected_pass": true,
+      "returncode": 0,
+      "detected": true,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 97,\n  \"archive_checked\": true,\n  \"deposit_binding\": \"present and valid\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "optimized_explicit_malformed",
+      "flags": [
+        "-O"
+      ],
+      "args": [
+        "--archive",
+        "tmp/rebuilt.zip",
+        "--deposit-binding",
+        "tmp/bad_binding.json"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 81, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 72, in check_binding\n    data=file.read_bytes();require(r['bytes']==len(data) and r['sha256']==sha(data),'deposit binding mismatch '+key)\n                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: deposit binding mismatch paper_pdf\n"
+    },
+    {
+      "name": "optimized_default_present_malformed",
+      "flags": [
+        "-O"
+      ],
+      "args": [
+        "--archive",
+        "tmp/rebuilt.zip"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 81, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 72, in check_binding\n    data=file.read_bytes();require(r['bytes']==len(data) and r['sha256']==sha(data),'deposit binding mismatch '+key)\n                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: deposit binding mismatch paper_pdf\n"
+    },
+    {
+      "name": "optimized_unmanifested",
+      "flags": [
+        "-O"
+      ],
+      "args": [],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 77, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 35, in check\n    require(name in allow or name in excluded,'unmanifested file '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: unmanifested file unexpected.txt\n"
+    },
+    {
+      "name": "optimized_member_corruption",
+      "flags": [
+        "-O"
+      ],
+      "args": [],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 77, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 27, in check\n    data=p.read_bytes();require(len(data)==record['bytes'] and sha(data)==record['sha256'],'hash mismatch '+name)\n                        ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: hash mismatch paper.tex\n"
+    },
+    {
+      "name": "optimized_traversal_archive",
+      "flags": [
+        "-O"
+      ],
+      "args": [
+        "--archive",
+        "tmp/traversal.zip"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 79, in main\n    if archive is not None:check_archive(archive,allow)\n                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 54, in check_archive\n    infos=z.infolist();require([i.filename for i in infos]==allow,'archive exact member set/order failed')\n                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: archive exact member set/order failed\n"
+    },
+    {
+      "name": "optimized_explicit_missing_archive",
+      "flags": [
+        "-O"
+      ],
+      "args": [
+        "--archive",
+        "tmp/missing.zip"
+      ],
+      "expected_pass": false,
+      "returncode": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 83, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 79, in main\n    if archive is not None:check_archive(archive,allow)\n                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 52, in check_archive\n    require(path.is_file(),'archive missing')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: archive missing\n"
+    },
+    {
+      "name": "PDF_outdir_root_overwrite",
+      "expected": "reject or preserve canonical PDF if unconditional no-mutation claim",
+      "returncode": 0,
+      "canonical_sentinel_preserved": false,
+      "stdout": "note: Running TeX ...\nnote: Rerunning TeX because \"paper.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/pdf_output_probe/paper.pdf` (73.142578125 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/reviews/package_01/tmp/pdf_output_probe/paper.pdf\n",
+      "stderr": "warning: paper.tex:161: Underfull \\hbox (badness 1874) in paragraph at lines 160--161\nwarning: paper.tex:161: Underfull \\hbox (badness 1874) in paragraph at lines 160--161\nwarning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.\n"
+    }
+  ]
+}

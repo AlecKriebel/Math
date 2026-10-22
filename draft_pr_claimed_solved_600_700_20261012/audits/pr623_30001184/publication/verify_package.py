@@ -33,7 +33,8 @@ def read_json(path):
 
 def integrity():
     doc = read_json(ROOT / MANIFEST)
-    require(doc.get('schema') == 1 and isinstance(doc.get('files'), list),
+    require(type(doc.get('schema')) is int and doc['schema'] == 1 and
+            isinstance(doc.get('files'), list),
             'unsupported inventory schema')
     names, directories = set(), set()
     for entry in doc['files']:
