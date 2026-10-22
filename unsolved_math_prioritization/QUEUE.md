@@ -537,7 +537,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 526 | 2306017 / AMR-022-6017 | Research Problems in Function Theory — Problem 6.17 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 527 | 2306038 / AMR-022-6038 | Research Problems in Function Theory — Problem 6.38 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 528 | 2306052 / AMR-022-6052 | Research Problems in Function Theory — Problem 6.52 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 529 | 2306083 / AMR-022-6083 | Research Problems in Function Theory — Problem 6.83 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 529 | 2306083 / AMR-022-6083 | Research Problems in Function Theory — Problem 6.83 | 0.1200 | 6.0 | 3 | unknown | unsolved | 5/5 |  | Five attempts: credited Overholt Dirichlet necessity; weighted Blaschke sufficiency and finite-union fixed-Stolz criterion. General characterization unresolved; no novelty claimed. [Proof and gap](attempts/2306083/artifacts/PROOF.md); [independent audit](attempts/2306083/audit/AUDIT_REPORT.md). |  |
 | 530 | 2307054 / AMR-022-7054 | Research Problems in Function Theory — Problem 7.54 | 0.1200 | 4.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 531 | 2863 / KP-3.65 | Kirby Problem 3.65 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 532 | 2897 / KP-4.21 | Kirby Problem 4.21 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
