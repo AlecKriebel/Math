@@ -1,0 +1,19 @@
+# Fourth-pass exact-core partial results
+
+Problem 3251, ordered queue row 1753. Status: unsolved. This edition records the fourth confirmed substantive pass: at least four passes are confirmed, and the lifetime attempt count is unknown. The two companion investigations belong to this one fourth pass. No unrelated fifth-pass material is included; the narrow accepted correction to this fourth-pass edition is explicitly identified.
+
+The target asks whether every finite simple odd-hole-free graph with at least one edge has a two-coloring avoiding monochromatic maximum-cardinality cliques. Maximum means maximum cardinality, not inclusionwise maximal. The target is different from perfect divisibility. No full-solution, novelty or human-review claim is made.
+
+## Complete results
+
+- [Family proof](FAMILY_PROOFS.md) and [complete independent audit](FAMILY_AUDIT.md): for every k>=3 there is a connected chordal graph on 4k+1 vertices whose exact original high-incidence core induces K_k disjoint K_(k-1). Exactly two valid core divisions fail to extend. The graph itself is divisible. This disproves arbitrary core-division extension, even with a perfect core and equal core/whole clique number; it gives no target counterexample and no minimality claim.
+- [Exact-core proof](EXACT_CORE_PROOFS.md) and [complete independent audit](EXACT_CORE_AUDIT.md): for k>=3 and P containing every vertex in at least three original maximum cliques, a prescribed coloring extends exactly when exhaustive singleton propagation has no conflict. Failure is equivalent to a matching signed P-tree, with at most |V minus P|+1 clique nodes and at most |M| nodes. The resulting signed core constraints are exact; dividing the induced core alone omits necessary constraints.
+- The exact-core proof also gives necessary conditions for every odd-hole-free indivisible graph with k>=4: |X|>=3k-4, strengthened to 3k-3 if the core clique number is k-1. At k=4, the core has at least eight vertices and contains a K4, without an induced-minimality hypothesis. The K4 conclusion uses the source-checked external four-color theorem. These conditions do not assert that any such indivisible graph exists.
+
+The [complete accepted complexity correction](COMPLEXITY_CORRECTION.md) supersedes the proof and audit's former exponential-size estimate: every defined tree is an entire unmarked tree component, so there are at most 2|M| signed clauses and at most 2L literal occurrences. This changes the representation-size assessment only and does not solve satisfiability or the target.
+
+The propagation and tree statements require the explicit original maximum-clique family. Their linear-incidence implementation and O(2^|X|(n+L)) decision bound assume that family is supplied; maximum-clique enumeration from arbitrary graph input is not claimed polynomial. General division existence and unrestricted clique-cutset closure remain open within this work.
+
+The edition includes [dependencies](DEPENDENCIES.md), [source credit](SOURCES.md), [acceptance limits](ACCEPTANCE_AND_SCOPE.md), [exact finite coverage](VERIFICATION_SCOPE.md) and [small mathematical examples](SMALL_EXAMPLES.md). Intended predecessors are the [initial edition](../3251_divisibility_partials_20261012/README.md) and [third-pass edition](../3251_boundary_core_20261012/README.md). These sibling links describe an intended repository layout and do not assert remote publication.
+
+This is a prose-only publication candidate. It contains four complete authored proof/audit texts plus the complete narrow accepted complexity correction, source metadata, examples and an exact public inventory. Original programs, raw datasets, receipts, control files, source documents and private coordination are not distributed. Audited finite computations were run in their original frozen setting; this edition is not a standalone exhaustive replay package.

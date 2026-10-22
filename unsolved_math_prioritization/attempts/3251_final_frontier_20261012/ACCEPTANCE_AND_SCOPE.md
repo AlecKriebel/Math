@@ -1,0 +1,17 @@
+# Acceptance and scope
+
+The three complete mathematical audits are independent AI audits, not human peer review. Their acceptance covers the exact stated all-size proofs, the explicitly bounded computations, identified external dependencies and tested static-integrity controls. It is not a proof of the target conjecture or a guarantee of novelty.
+
+The projection audit accepts whole-component closure, the exact linear signed projection and the all-size bounded-degree-tree chordal realization. It expressly corrects the false earlier exponential-size sentence and qualifies the former “No mathematical correction is required” assessment. Both complete correction texts are distributed. The old exact propagation criterion, obstruction equivalence and certificate extraction are unaffected. Formula size and satisfiability remain distinct questions.
+
+The structural audit accepts its stated deductions relative to Gallai and CRST. The imported Bikov–Nenov bound is primary-source credited and its external computational enumeration remains unaudited here. The broader Xu–Shao assertion is prior credit only. Necessary equality forms are not existence or sharpness claims. A universal vertex of the core need not be universal in the entire graph. The unrestricted eight-core k=4 case remains unresolved.
+
+The repeated-leaf audit accepts a separate supplement for k>=4. It verifies the actual graph, including the two diamond diagonals which occur in no maximum clique. Bad prescribed colorings have one monochromatic (k-1)-clique and are not core divisions. At k=4 its core has nine vertices. The source-control history is retained explicitly: a preliminary single-diagonal deletion was still a valid odd-hole-free obstruction, so the final checker added exact intended-diamond identity and the final controls reject both single- and double-diagonal deletions. The intended construction and proof were unchanged.
+
+Every chordal realization and every repeated-leaf construction is divisible. No constructed odd-hole-free counterexample is claimed. A benchmark indivisible graph containing an odd hole is outside the target class. Finite tests cannot replace the all-size proofs, and vacuous finite implications are labeled in the coverage record.
+
+The complete source texts are preserved reversibly. Public edits replace operational identities, filenames, paths and replay directions only; mathematical statements and exact scopes are not abridged. Public identities are limited to actual distributed files and identified public scholarly PDFs. Original code, datasets, receipts, control artifacts and private coordination are omitted.
+
+The combined edition check requires a separately retained external seal, verifies exact public and private inventories, fixed source identities, complete forward/reverse preservation, content and scope obligations, public identity restrictions, and the authored examples. It uses explicit exceptions, not Python assertions. Normal Python, -O and -OO results must agree. Hostile controls use writable disposable copies even after originals are frozen and leave originals unchanged. The declared controls support a static snapshot, not security against concurrent hostile filesystem races, coordinated replacement of every trust anchor, or all malformed representations.
+
+Five recorded substantive passes are confirmed, the lifetime count is unknown, and the row proposal remains unsolved. This edition preparation changes no repository, queue or remote state.
