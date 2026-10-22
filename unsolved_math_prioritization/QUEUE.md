@@ -1782,7 +1782,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1771 | 30003992 / OWR-16633-009 | Fast Low-Rank Maximum-Weight Assignment | 0.0579 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1772 | 30004307 / OWR-17294-007 | Second-Cohomology Torsion of Finite Abelian Quandles | 0.0576 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1773 | 30004316 / OWR-17294-017 | Bijectivity of the Quantum Symmetrizer | 0.0576 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 1774 | 30004534 / OWR-2654827-016 | Eventual Lefschetz Dichotomies for Symmetric Ideal Chains | 0.0574 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 1774 | 30004534 / OWR-2654827-016 | Eventual Lefschetz Dichotomies for Symmetric Ideal Chains | 0.0574 | 5.0 | 3 | 2020 | claimed_solved | 1 new substantive pass; lifetime unknown |  | [Periodic counterexample and independent audit](attempts/30004534/public/README.md): both unrestricted-characteristic eventual WLP and SLP dichotomies are false. Fix K = F_p(t), c = 2; for n >= 2 both hold iff p does not divide n-1, and at n = 1 both hold. Characteristic-zero and c = 1 variants untouched; no novelty claim. |  |
 | 1775 | 30004611 / OWR-4990374-017 | Exact Sequences for Logarithmic Derivation Sheaves | 0.0571 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 1776 | 30005160 / OWR-11101912-009 | Strict Majorant Properties at Fixed Noneven Exponents | 0.0568 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1777 | 30005572 / OWR-13750341-006 | Eisenstein Maps from Bianchi Homology to K2 | 0.0564 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
