@@ -728,7 +728,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 717 | 30002180 / OWR-12015-001 | Jet Curvature and the First Chern Class | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 718 | 30004222 / OWR-17135-015 | Combinatorial Explanation of the Clasp Conjecture | 0.1041 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 719 | 30004279 / OWR-17292-002 | Equivalent Bicommutant Categories from Nonisomorphic Conformal Nets | 0.1041 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 720 | 30002692 / OWR-13347-011 | Hyperbolic Conformal Boundaries of Poincaré–Einstein Manifolds | 0.1040 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 720 | 30002692 / OWR-13347-011 | Hyperbolic Conformal Boundaries of Poincaré–Einstein Manifolds | 0.1040 | 5.0 | 3 | 2014 | already_solved | 1/5 |  | Known affirmative construction for the dimension-unrestricted printed primary statement (Woolgar 2014, p. 2550): Yin 2008, sec. 6, eq. (6.1), repeated by Skenderis-van Rees 2010, sec. 4.2, eqs. (44)-(46); complete orientable hyperbolic 3-manifold with one genus-two conformal boundary. Independently audited; no novelty claim. Live aggregator/raw-corpus statement equivalence unverified. |  |
 | 721 | 30002468 / OWR-12861-019 | Biclique Partition Numbers of Random Graphs | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 722 | 30002507 / OWR-12866-017 | A Dirichlet Series with Exactly One Zero | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 723 | 30002533 / OWR-12870-003 | New Rational Lyapunov Exponents on Hilbert Modular Surfaces | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
