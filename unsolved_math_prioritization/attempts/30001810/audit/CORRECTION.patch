@@ -1,0 +1,27 @@
+--- a/MATHEMATICAL_REPORT.md
++++ b/MATHEMATICAL_REPORT.md
+@@ -34,13 +34,13 @@
+ 
+ ## 2. Exact pseudomanifold reformulation
+ 
+-Allow finite oriented face-paired n-dimensional pseudomanifolds P, possibly disconnected, with self-identifications of faces and arbitrary singular lower-dimensional links. Each codimension-one face occurrence is paired with exactly one other occurrence by an orientation-reversing boundary identification. No smooth manifold structure on P or global immersion P→M is asserted.
++Allow finite oriented face-paired n-dimensional pseudomanifolds P, possibly disconnected, with self-identifications of faces and arbitrary singular lower-dimensional links. Each top-simplex occurrence has a chosen standard parametrization and an orientation sign. Each codimension-one face occurrence is paired with exactly one other occurrence by the affine identification that respects their induced standard face parametrizations; the induced boundary signs of paired occurrences must be opposite. Thus these are parameter-compatible face pairings, not arbitrary orientation-reversing vertex permutations. No smooth manifold structure on P or global immersion P→M is asserted.
+ 
+ **Proposition 2.** μ(M) is the infimum of N/d over such P with N oriented top-simplex occurrences and continuous maps F:P→M whose restriction to every parametrized top simplex is immersive, and for which the sum of oriented simplex images represents d[M], d>0. The analogous formula with unrestricted simplex maps equals ν(M).
+ 
+ **Proof.** Expand the integer coefficients of a cycle c in Proposition 1 as signed copies of its singular simplices. Because ∂c=0 in the free singular-chain group, every occurrence of every parametrized face with positive induced sign can be paired with an occurrence of that same face map with negative induced sign. Glue each such pair using the affine map that respects the face parametrizations. The source orientations match with opposite induced boundary orientations; all faces are paired. The simplex maps descend to a continuous F. There are exactly ||c||₁ top-simplex occurrences, and their pushforward is c.
+ 
+-Conversely the sum of the oriented top-simplex maps of any such P is a cycle. Its ℓ¹ norm is at most N, since equal singular simplex maps can cancel or combine. Dividing by d gives a real admissible fundamental cycle. These two constructions and Proposition 1 give equality of the infima. ∎
++Conversely, the parameter-compatible face pairings make paired faces identical as parametrized singular simplices, with opposite coefficients. Hence the sum of the oriented top-simplex maps of any such P is a cycle in the ordinary singular-chain group. Its ℓ¹ norm is at most N, since equal singular simplex maps can cancel or combine. Dividing by d gives a real admissible fundamental cycle. These two constructions and Proposition 1 give equality of the infima. ∎
+ 
+ This formulation exposes the remaining optimization problem: can ordinary degree-d pseudomanifold representatives be replaced by simplexwise-immersive ones with top-simplex count at most the original count plus o(d)? Asphericity alone does not provide that replacement.
+ 
+@@ -72,7 +72,7 @@
+ 
+ **Proof.** For top simplices σ and τ, form the usual shuffle chain σ×τ. A (p,q)-shuffle gives an affine map A:Δ^(p+q)→Δᵖ×Δᑫ whose vertices follow a staircase in the product vertex grid. The successive edge increments are the p independent M-coordinate increments and the q independent N-coordinate increments, in some order. Thus A is an affine isomorphism onto its full-dimensional image. If σ and τ extend as immersions to U and V, their product is an immersion on U×V. Its composite with A extends immersively to the inverse image under A of U×V, an open neighborhood of Δ^(p+q). Every term of σ×τ is therefore immersive.
+ 
+-For clarity, the signed shuffle chain uses one sign for each permutation of the p first-factor and q second-factor increments. Deleting an interior path vertex gives a face shared by the two orders of one adjacent mixed pair, with opposite induced orientations, so these faces cancel. The remaining faces are precisely the shuffle terms for factor faces. This proves the boundary identity
++For clarity, the signed shuffle chain uses one sign for each permutation of the p first-factor and q second-factor increments. Deleting an interior path vertex whose two neighboring increments lie in different factors gives a face shared by the two orders of that mixed pair, with opposite induced orientations, so these faces cancel. Deleting an interior vertex whose neighboring increments lie in the same factor, or deleting an endpoint, gives a factor-face shuffle term. These remaining faces have the signs in the displayed boundary identity. This proves the boundary identity
+ 
+     ∂(a×b) = (∂a)×b + (−1)^p a×(∂b).
+ 
