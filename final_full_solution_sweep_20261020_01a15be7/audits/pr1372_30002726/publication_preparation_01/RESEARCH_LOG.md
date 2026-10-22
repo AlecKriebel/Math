@@ -1,0 +1,5 @@
+# PR1372 publication preparation log
+
+2026-10-22T16:46Z — Preparation begun; overall sweep80%, own prep10%. Gate01 correctly checked209ledger rows/all43columns/typed dual values/full rawmetadata, but used wrong parent path for local states and found zero. This is not accepted local coverage. Corrected own unsealed script; entirely fresh gate02 repeats all spreadsheet checks and inventories actual245local states, with no target/semantic leads. No publication/ledger/Git write.
+
+2026-10-22T17:09:10.085231+00:00 — Assigned preparation100%; overall sweep80%. Six-page full proof, exact final references, all finite diagnostics and HTML controls passed; entire final source archive physically reconstructed and all six release products byte-identical. Last fresh gate04:209rows/all43typed columns/full metadata stable;245local states; no target leads. Predecessor all46payloads/5dirs exact. No service/Git/ledger/DOI effect. Two new complete-package reviews/root adoption remain mandatory. Final closed seal follows.
