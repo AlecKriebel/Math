@@ -1,0 +1,276 @@
+{
+  "archive_authentication": "pass",
+  "byte_identical_positive_outputs": true,
+  "diagnostic_checks_per_replay": 45810,
+  "limitations": "Read-before-execution and strict static inventory tests; no claim against a concurrent hostile filesystem writer, compromised interpreter, or malicious trusted bootstrap. Finite diagnostics are not topological proof.",
+  "negative_boundary_probes": 40,
+  "original_immutable_inputs_match": true,
+  "positive_replays": 4,
+  "problem_id": 10400215,
+  "schema": 1,
+  "status": "pass",
+  "tests": [
+    {
+      "case": "archive_extraction_hostile_environment",
+      "optimized": false,
+      "result": "pass",
+      "stdout_sha256": "56b4711e96a64c8170f67baeacf86e7cc66a8b639152b28944f65b53459bd4d7"
+    },
+    {
+      "case": "relocation_hostile_environment",
+      "optimized": false,
+      "result": "pass",
+      "stdout_sha256": "56b4711e96a64c8170f67baeacf86e7cc66a8b639152b28944f65b53459bd4d7"
+    },
+    {
+      "case": "extra_file",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "missing_file",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "proof_tamper",
+      "message": "REJECT: file authentication failed",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "code_tamper",
+      "message": "REJECT: file authentication failed",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "shadow_module",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "cache_directory",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "nested_directory",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "symlink_member",
+      "message": "REJECT: nonregular inventory entry",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "directory_member",
+      "message": "REJECT: nonregular inventory entry",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "fifo_member",
+      "message": "REJECT: nonregular inventory entry",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "root_symlink",
+      "message": "REJECT: root or ancestor symlink",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "ancestor_symlink",
+      "message": "REJECT: root or ancestor symlink",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "root_file",
+      "message": "REJECT: root is not a directory",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "absent_root",
+      "message": "REJECT: root is not a directory",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "entrypoint_override",
+      "message": "REJECT: entrypoint not authorized",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "resealed_manifest",
+      "message": "REJECT: manifest pin mismatch",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "manifest_symlink",
+      "message": "REJECT: manifest must be regular non-symlink",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "manifest_directory",
+      "message": "REJECT: manifest must be regular non-symlink",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "duplicate_key_manifest",
+      "message": "REJECT: manifest pin mismatch",
+      "optimized": false,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "archive_extraction_hostile_environment",
+      "optimized": true,
+      "result": "pass",
+      "stdout_sha256": "56b4711e96a64c8170f67baeacf86e7cc66a8b639152b28944f65b53459bd4d7"
+    },
+    {
+      "case": "relocation_hostile_environment",
+      "optimized": true,
+      "result": "pass",
+      "stdout_sha256": "56b4711e96a64c8170f67baeacf86e7cc66a8b639152b28944f65b53459bd4d7"
+    },
+    {
+      "case": "extra_file",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "missing_file",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "proof_tamper",
+      "message": "REJECT: file authentication failed",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "code_tamper",
+      "message": "REJECT: file authentication failed",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "shadow_module",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "cache_directory",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "nested_directory",
+      "message": "REJECT: strict inventory mismatch",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "symlink_member",
+      "message": "REJECT: nonregular inventory entry",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "directory_member",
+      "message": "REJECT: nonregular inventory entry",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "fifo_member",
+      "message": "REJECT: nonregular inventory entry",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "root_symlink",
+      "message": "REJECT: root or ancestor symlink",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "ancestor_symlink",
+      "message": "REJECT: root or ancestor symlink",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "root_file",
+      "message": "REJECT: root is not a directory",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "absent_root",
+      "message": "REJECT: root is not a directory",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "entrypoint_override",
+      "message": "REJECT: entrypoint not authorized",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "resealed_manifest",
+      "message": "REJECT: manifest pin mismatch",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "manifest_symlink",
+      "message": "REJECT: manifest must be regular non-symlink",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "manifest_directory",
+      "message": "REJECT: manifest must be regular non-symlink",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "duplicate_key_manifest",
+      "message": "REJECT: manifest pin mismatch",
+      "optimized": true,
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "missing_isolated",
+      "message": "REJECT: isolated no-site interpreter required",
+      "result": "rejected_before_packet_execution"
+    },
+    {
+      "case": "missing_no_site",
+      "message": "REJECT: isolated no-site interpreter required",
+      "result": "rejected_before_packet_execution"
+    }
+  ]
+}
