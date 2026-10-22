@@ -645,7 +645,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 634 | 5900029 / AMR-058-0029 | Finite Total Scalar Curvature and Planarity | 0.1085 | 6.0 | 3 | 1995 | queued | 0/5 |  |  |  |
 | 635 | 4700001 / AMR-046-0001 | Low degree rigid systems | 0.1085 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 636 | 4700012 / AMR-046-0012 | A class of Hamiltonian systems | 0.1085 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 637 | 10400173 / AMR-103-0173 | Problem 9.9 — (N. | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 637 | 10400173 / AMR-103-0173 | Problem 9.9 — (N. | 0.1080 | 5.0 | 3 | unknown | unsolved | 5/5 |  | 2026-10-04: Literal A6 lens-space separation verified (1,0); prior full-SU(2) separation verified in Sokolov 1997; broad optimal classification unresolved; no novelty claim. See [audited note](attempts/10400173/README.md). |  |
 | 638 | 1200023 / AMR-011-0023 | Some Questions — Question 23 | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 639 | 20000185 / AIM-ALGEBRAIC_GEOMETRY-0185 | Compatibility via the epipolar fiber product and a gcd component law | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 640 | 20000190 / AIM-ALGEBRAIC_GEOMETRY-0190 | A root-free focal-positivity certificate for a seven-point pencil | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
