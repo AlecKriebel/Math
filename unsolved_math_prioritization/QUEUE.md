@@ -1059,7 +1059,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1048 | 2956 / KP-4.80 | Kirby Problem 4.80 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1049 | 2960 / KP-4.84 | Kirby Problem 4.84 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1050 | 2970 / KP-4.94 | Kirby Problem 4.94 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1051 | 2974 / KP-4.98 | Kirby Problem 4.98 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1051 | 2974 / KP-4.98 | Kirby Problem 4.98 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Accepted scoped partials: finite equal-genus product-T4 families, exact kernel-image and intrinsic-index criteria, and characteristic-number obstructions; universal fixed-manifold problem unresolved. HH18 degree-one-factor exclusion clarified; classification consequences conditional. Irreducible Johnson quotient limit and odd-prime factor-two blind spot disclosed. [Acceptance](attempts/2974/ACCEPTANCE.md). |  |
 | 1052 | 2980 / KP-4.104 | Kirby Problem 4.104 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1053 | 2991 / KP-4.115 | Kirby Problem 4.115 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1054 | 30006624 / OWR-14299911-026 | Cartan-Hadamard Theorem without Uniform Local Medianity | 0.0900 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
