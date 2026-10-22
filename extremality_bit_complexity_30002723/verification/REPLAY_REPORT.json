@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "mode": "saved exact rational replay; no LP discovery",
+  "python_version": "3.12.14",
+  "dependencies": {
+    "sympy": "1.14.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "checks": [
+    {
+      "check": "counterexample",
+      "command": [
+        "python",
+        "checks/verify_counterexample.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\n  \"q\": 5,\n  \"f\": \"1/5\",\n  \"sparse_breakpoints\": [\n    \"0\",\n    \"1/5\",\n    \"2/5\",\n    \"4/5\",\n    \"1\"\n  ],\n  \"sparse_values\": [\n    \"0\",\n    \"1\",\n    \"1/3\",\n    \"2/3\",\n    \"0\"\n  ],\n  \"coarse_rank\": 5,\n  \"refined_N\": 15,\n  \"refined_rank\": 13,\n  \"epsilon\": \"5/18\",\n  \"h_grid\": [\n    \"0\",\n    \"0\",\n    \"0\",\n    \"0\",\n    \"0\",\n    \"0\",\n    \"0\",\n    \"0\",\n    \"-1\",\n    \"0\",\n    \"1\",\n    \"0\",\n    \"0\",\n    \"0\",\n    \"0\"\n  ],\n  \"all_checks\": \"PASS\"\n}\n",
+      "stderr": "",
+      "frozen_result": "checks/counterexample_verified.json",
+      "frozen_sha256": "046dc95b40e8cbb7be8e8641a728ba2c98f0f4f29080eca1e4b5708b776763de",
+      "replayed_sha256": "046dc95b40e8cbb7be8e8641a728ba2c98f0f4f29080eca1e4b5708b776763de",
+      "frozen_byte_match": true,
+      "elapsed_seconds": 0.677
+    },
+    {
+      "check": "sparse_discontinuous",
+      "command": [
+        "python",
+        "checks/verify_discontinuous_reduction.py",
+        "--saved"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"all_checks\": \"PASS\", \"saved_exact_case_count\": 35}\n",
+      "stderr": "",
+      "elapsed_seconds": 16.595
+    },
+    {
+      "check": "fourfold_refinements",
+      "command": [
+        "python",
+        "checks/verify_fourfold_refinements.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"name\": \"continuous_coarse_rigid_counterexample\", \"q\": 5, \"refined_N\": 20, \"variable_count\": 60, \"rank\": 57, \"structured_rank\": 57, \"joint_rank\": 57, \"nullity\": 3, \"two_sided_discontinuous_at_0\": false, \"stats\": {\"full_faces\": 4, \"actual_edges\": 23, \"limit_edges\": 18, \"zero_vertex_sector_rows\": 155}}\n{\"name\": \"two_sided_constant_half\", \"q\": 2, \"refined_N\": 8, \"variable_count\": 24, \"rank\": 14, \"structured_rank\": 14, \"joint_rank\": 14, \"nullity\": 10, \"two_sided_discontinuous_at_0\": true, \"stats\": {\"full_faces\": 0, \"actual_edges\": 10, \"limit_edges\": 0, \"zero_vertex_sector_rows\": 28}}\n{\"name\": \"sparse_LP_q5_trial0\", \"q\": 5, \"refined_N\": 20, \"variable_count\": 60, \"rank\": 60, \"structured_rank\": 60, \"joint_rank\": 60, \"nullity\": 0, \"two_sided_discontinuous_at_0\": false, \"stats\": {\"full_faces\": 4, \"actual_edges\": 23, \"limit_edges\": 12, \"zero_vertex_sector_rows\": 118}}\n{\"name\": \"sparse_LP_q9_trial1\", \"q\": 9, \"refined_N\": 36, \"variable_count\": 108, \"rank\": 108, \"structured_rank\": 108, \"joint_rank\": 108, \"nullity\": 0, \"two_sided_discontinuous_at_0\": true, \"stats\": {\"full_faces\": 14, \"actual_edges\": 28, \"limit_edges\": 0, \"zero_vertex_sector_rows\": 172}}\n{\"name\": \"sparse_LP_q9_trial2\", \"q\": 9, \"refined_N\": 36, \"variable_count\": 108, \"rank\": 106, \"structured_rank\": 106, \"joint_rank\": 106, \"nullity\": 2, \"two_sided_discontinuous_at_0\": true, \"stats\": {\"full_faces\": 2, \"actual_edges\": 21, \"limit_edges\": 10, \"zero_vertex_sector_rows\": 132}}\n",
+      "stderr": "",
+      "frozen_result": "checks/fourfold_refinement_results.json",
+      "frozen_sha256": "bf5254cc74f56ff4e7e6d6cc8bfd283e4be0d8989a1449e928873e506bbbc937",
+      "replayed_sha256": "bf5254cc74f56ff4e7e6d6cc8bfd283e4be0d8989a1449e928873e506bbbc937",
+      "frozen_byte_match": true,
+      "elapsed_seconds": 22.636
+    },
+    {
+      "check": "signed_orbit_pipeline",
+      "command": [
+        "python",
+        "checks/verify_orbit_pipeline.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"free_dimensions\": [2, 4, 4], \"D\": 10, \"K\": 120, \"residual_rank\": 10, \"nullity\": 0, \"pairing_counts\": [55, 23, 23], \"zero_range_counts\": [0, 36, 36], \"q\": 5, \"N\": 20, \"trial\": 0, \"dense_nullity\": 0}\n{\"free_dimensions\": [12, 16, 14], \"D\": 42, \"K\": 72, \"residual_rank\": 10, \"nullity\": 32, \"pairing_counts\": [22, 22, 22], \"zero_range_counts\": [0, 0, 0], \"q\": 6, \"N\": 24, \"trial\": 0, \"dense_nullity\": 32}\n{\"free_dimensions\": [1, 4, 4], \"D\": 9, \"K\": 174, \"residual_rank\": 9, \"nullity\": 0, \"pairing_counts\": [98, 28, 28], \"zero_range_counts\": [0, 42, 42], \"q\": 9, \"N\": 36, \"trial\": 1, \"dense_nullity\": 0}\n{\"free_dimensions\": [4, 4, 4], \"D\": 12, \"K\": 134, \"residual_rank\": 10, \"nullity\": 2, \"pairing_counts\": [41, 21, 21], \"zero_range_counts\": [0, 26, 26], \"q\": 9, \"N\": 36, \"trial\": 2, \"dense_nullity\": 2}\n",
+      "stderr": "",
+      "frozen_result": "checks/orbit_pipeline_results.json",
+      "frozen_sha256": "0adbd12d3fbf4e702a6f19f2c3f6b29015bdd82bfdfdaa4052e371f8bd706d8c",
+      "replayed_sha256": "0adbd12d3fbf4e702a6f19f2c3f6b29015bdd82bfdfdaa4052e371f8bd706d8c",
+      "frozen_byte_match": true,
+      "elapsed_seconds": 19.414
+    },
+    {
+      "check": "independent_signed_reconstruction",
+      "command": [
+        "python",
+        "checks/audit_signed_reconstruction.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "{'status': 'PASS', 'signed_graph_cases': 204, 'trace_reconstruction_cases': 230, 'largest_N': 23, 'scope': 'Dense independent lemma checks only; not an AHT implementation and not a proof of the full sparse reduction.'}\n",
+      "stderr": "",
+      "frozen_result": "checks/audit_signed_reconstruction.json",
+      "frozen_sha256": "f2a5c227d1fdd7670502aee80e32d974819ff92e27c7be4728cc8639ee7b58c1",
+      "replayed_sha256": "f2a5c227d1fdd7670502aee80e32d974819ff92e27c7be4728cc8639ee7b58c1",
+      "frozen_byte_match": true,
+      "elapsed_seconds": 0.745
+    },
+    {
+      "check": "covered_nonextreme",
+      "command": [
+        "python",
+        "checks/verify_covered_nonextreme.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"status\": \"PASS\", \"saved_exact_case_count\": 1, \"nullity\": 1}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.704
+    },
+    {
+      "check": "independent_local_factorization",
+      "command": [
+        "python",
+        "fresh_audit/test_local_factorization.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "completed N 4 113\ncompleted N 6 450\ncompleted N 8 739\n{\n  \"status\": \"PASS\",\n  \"sector_state_count\": 13,\n  \"local_comparisons\": 739,\n  \"discarded_empty_relative_triples\": 1296,\n  \"categories\": {\n    \"0d_coarse_0d_zero\": 53,\n    \"1d_coarse_1d_zero\": 100,\n    \"1d_coarse_0d_zero\": 200,\n    \"2d_coarse_1d_zero\": 168,\n    \"2d_coarse_0d_zero\": 168,\n    \"2d_coarse_2d_zero\": 50\n  },\n  \"grid_sizes\": [\n    4,\n    6,\n    8\n  ]\n}\n",
+      "stderr": "",
+      "frozen_result": "fresh_audit/test_local_factorization.json",
+      "frozen_sha256": "f07e333148951e2c5555064fbed4cee8a71de73c935c89a99f2f0b7272fa27b1",
+      "replayed_sha256": "f07e333148951e2c5555064fbed4cee8a71de73c935c89a99f2f0b7272fa27b1",
+      "frozen_byte_match": true,
+      "elapsed_seconds": 0.852
+    },
+    {
+      "check": "independent_compressed_decision",
+      "command": [
+        "python",
+        "fresh_audit/test_compressed_decision.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"case_count\": 20,\n  \"cutoff_exercised\": true,\n  \"cases\": [\n    {\n      \"q\": 5,\n      \"N\": 5,\n      \"signed_family_dimensions\": [\n        2,\n        4,\n        4\n      ],\n      \"K\": 120,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 5,\n      \"N\": 5,\n      \"signed_family_dimensions\": [\n        2,\n        4,\n        4\n      ],\n      \"K\": 183,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 6,\n      \"N\": 6,\n      \"signed_family_dimensions\": [\n        4,\n        6,\n        6\n      ],\n      \"K\": 72,\n      \"dense_nullity\": 6,\n      \"compressed_nullity\": 6,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 7,\n      \"N\": 7,\n      \"signed_family_dimensions\": [\n        2,\n        3,\n        3\n      ],\n      \"K\": 112,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 8,\n      \"N\": 8,\n      \"signed_family_dimensions\": [\n        1,\n        4,\n        4\n      ],\n      \"K\": 158,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 9,\n      \"N\": 9,\n      \"signed_family_dimensions\": [\n        4,\n        4,\n        4\n      ],\n      \"K\": 110,\n      \"dense_nullity\": 2,\n      \"compressed_nullity\": 2,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 9,\n      \"N\": 9,\n      \"signed_family_dimensions\": [\n        1,\n        4,\n        4\n      ],\n      \"K\": 174,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 9,\n      \"N\": 9,\n      \"signed_family_dimensions\": [\n        3,\n        4,\n        4\n      ],\n      \"K\": 134,\n      \"dense_nullity\": 1,\n      \"compressed_nullity\": 1,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 9,\n      \"N\": 9,\n      \"signed_family_dimensions\": [\n        2,\n        4,\n        4\n      ],\n      \"K\": 157,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 10,\n      \"N\": 10,\n      \"signed_family_dimensions\": [\n        2,\n        4,\n        4\n      ],\n      \"K\": 141,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 12,\n      \"N\": 12,\n      \"signed_family_dimensions\": [\n        6,\n        9,\n        9\n      ],\n      \"K\": 128,\n      \"dense_nullity\": 10,\n      \"compressed_nullity\": 10,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 12,\n      \"N\": 12,\n      \"signed_family_dimensions\": [\n        2,\n        5,\n        5\n      ],\n      \"K\": 306,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 5,\n      \"N\": 20,\n      \"signed_family_dimensions\": [\n        2,\n        4,\n        4\n      ],\n      \"K\": 120,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 9,\n      \"N\": 36,\n      \"signed_family_dimensions\": [\n        1,\n        4,\n        4\n      ],\n      \"K\": 174,\n      \"dense_nullity\": 0,\n      \"compressed_nullity\": 0,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 9,\n      \"N\": 36,\n      \"signed_family_dimensions\": [\n        4,\n        4,\n        4\n      ],\n      \"K\": 134,\n      \"dense_nullity\": 2,\n      \"compressed_nullity\": 2,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 2,\n      \"N\": 2,\n      \"signed_family_dimensions\": [\n        2,\n        2,\n        2\n      ],\n      \"K\": 30,\n      \"dense_nullity\": 2,\n      \"compressed_nullity\": 2,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 2,\n      \"N\": 4,\n      \"signed_family_dimensions\": [\n        2,\n        4,\n        2\n      ],\n      \"K\": 30,\n      \"dense_nullity\": 4,\n      \"compressed_nullity\": 4,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 2,\n      \"N\": 8,\n      \"signed_family_dimensions\": [\n        4,\n        6,\n        4\n      ],\n      \"K\": 30,\n      \"dense_nullity\": 10,\n      \"compressed_nullity\": 10,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 2,\n      \"N\": 16,\n      \"signed_family_dimensions\": [\n        8,\n        10,\n        8\n      ],\n      \"K\": 30,\n      \"dense_nullity\": 22,\n      \"compressed_nullity\": 22,\n      \"cutoff_triggered\": false\n    },\n    {\n      \"q\": 2,\n      \"N\": 32,\n      \"signed_family_dimensions\": [\n        16,\n        18,\n        16\n      ],\n      \"K\": 30,\n      \"dense_nullity\": 46,\n      \"compressed_nullity\": 46,\n      \"cutoff_triggered\": true\n    }\n  ]\n}\n",
+      "stderr": "",
+      "frozen_result": "fresh_audit/test_compressed_decision.json",
+      "frozen_sha256": "a2e3cd805c2f07998d4085331e225db217266014f8d5ab2abbc149f3ec322eee",
+      "replayed_sha256": "a2e3cd805c2f07998d4085331e225db217266014f8d5ab2abbc149f3ec322eee",
+      "frozen_byte_match": true,
+      "elapsed_seconds": 12.675
+    }
+  ],
+  "scope": "Dense finite validators and independent algebra checks, not a compressed AHT implementation or an asymptotic runtime benchmark. The legacy 70-case continuous LP discovery run is not replayed here because its individual rational input values were not stored."
+}
