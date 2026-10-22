@@ -1,0 +1,40 @@
+--- a/verify_public.py
++++ b/verify_public.py
+@@ -28,6 +28,9 @@
+     demand(manifest.is_file() and not manifest.is_symlink(),'manifest missing or symlink')
+     raw=manifest.read_bytes();demand(digest(raw)==pin,'external manifest pin mismatch')
+     m=json.loads(raw,object_pairs_hook=unique_object)
++    demand(isinstance(m,dict),'manifest must be a JSON object')
++    demand(set(m)=={'format','problem_id','exceptions','files'},'wrong manifest fields')
++    demand(type(m['problem_id']) is int and m['problem_id']==30003116,'wrong manifest target')
+     demand(m.get('format')=='rational-orbit-entropy-v1','wrong manifest format')
+     demand(m.get('exceptions')==['MANIFEST.json'],'wrong manifest exceptions')
+     entries=m.get('files');demand(isinstance(entries,dict) and bool(entries),'empty or invalid inventory')
+@@ -40,6 +43,10 @@
+         actual.add(p.name)
+     demand(actual==set(entries)|{'MANIFEST.json'},'exact inventory mismatch')
+     for n,e in entries.items():
++        demand(isinstance(e,dict) and set(e)=={'bytes','sha256','mode'},'invalid file record: '+n)
++        demand(type(e['bytes']) is int and e['bytes']>=0,'invalid byte count: '+n)
++        demand(isinstance(e['sha256'],str) and re.fullmatch('[0-9a-f]{64}',e['sha256']) is not None,'invalid file digest: '+n)
++        demand(isinstance(e['mode'],str) and re.fullmatch('0[0-7]{3}',e['mode']) is not None,'invalid file mode: '+n)
+         p=root/n;b=p.read_bytes()
+         demand(len(b)==e['bytes'],'byte count mismatch: '+n)
+         demand(digest(b)==e['sha256'],'hash mismatch: '+n)
+@@ -50,7 +57,8 @@
+     if integrity_only:
+         return {'status':'PASS_INTEGRITY_ONLY','manifest_sha256':pin,'files':len(entries)}
+     scope=json.loads((root/'source_scope.json').read_text(),object_pairs_hook=unique_object)
+-    demand(scope['problem_id']==30003116 and scope['rank']==993,'wrong target scope')
++    demand(isinstance(scope,dict),'source scope must be a JSON object')
++    demand(type(scope['problem_id']) is int and scope['problem_id']==30003116 and type(scope['rank']) is int and scope['rank']==993,'wrong target scope')
+     demand(scope['disposition']=='asymptotic_unresolved_5_of_5','wrong disposition')
+     module=runpy.run_path(str(root/'check_math.py'))
+     observed=module['run']()
+@@ -61,5 +69,5 @@
+ if __name__=='__main__':
+     p=argparse.ArgumentParser();p.add_argument('--expected-manifest',required=True);p.add_argument('--integrity-only',action='store_true');a=p.parse_args()
+     try:print(json.dumps(verify(Path(__file__).resolve().parent,a.expected_manifest,a.integrity_only),sort_keys=True))
+-    except (VerificationError,KeyError,ValueError,TypeError,OSError) as exc:
++    except (VerificationError,KeyError,ValueError,TypeError,OSError,SyntaxError) as exc:
+         print('REJECTED: '+str(exc));raise SystemExit(2)
