@@ -574,7 +574,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 563 | 20001587 / AIM-GEOMETRIC_GROUP_THEORY-0096 | A finite-gluing obstruction for amenable clopen restrictions | 0.1125 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 564 | 2301039 / AMR-022-1039 | Research Problems in Function Theory — Problem 1.39 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 565 | 2302004 / AMR-022-2004 | Research Problems in Function Theory — Problem 2.4 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 566 | 2302069 / AMR-022-2069 | Research Problems in Function Theory — Problem 2.69 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 566 | 2302069 / AMR-022-2069 | Research Problems in Function Theory — Problem 2.69 | 0.1125 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 567 | 2302073 / AMR-022-2073 | Research Problems in Function Theory — Problem 2.73 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 568 | 2303003 / AMR-022-3003 | Research Problems in Function Theory — Problem 3.3 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 569 | 2303012 / AMR-022-3012 | Research Problems in Function Theory — Problem 3.12 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
