@@ -356,7 +356,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 345 | 30006211 / OWR-14299088-013 | Real Components of Two Multi-Affine Polynomial Zero Sets | 0.1564 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 346 | 30006345 / OWR-14299292-007 | Modular Isomorphism for Class-Two Exponent-p Groups | 0.1564 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 347 | 30002323 / OWR-12481-012 | Hierarchical Refinement of Symmetric-Group Coset Partitions | 0.1564 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
-| 348 | 30002545 / OWR-12872-015 | Combinatorial Proof of the Two-Thirds Leaf Limit | 0.1560 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 348 | 30002545 / OWR-12872-015 | Combinatorial Proof of the Two-Thirds Leaf Limit | 0.1560 | 5.0 | 3 | 2014 | already_solved | 1/5 |  |  |  |
 | 349 | 10400230 / AMR-103-0230 | Problem 12.25 — (A. | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 350 | 159 / GREEN-071 | Uniform Random Variables with Uniform Sum | 0.1560 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 351 | 20000207 / AIM-ALGEBRAIC_GEOMETRY-0207 | Extended-Kruppa constraints, realized conic ambiguity, and invariant eliminants for algebraic silhouettes | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
