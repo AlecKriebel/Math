@@ -2,6 +2,8 @@
 """EXTERNAL MUTATIONS: exact remote tree overlay; no local refs/index/checkouts/fetches.
 Do not execute until root has independently reviewed and SHA-pinned operational clearance.
 """
+if not globals().get('_PR1131_SOURCE_VERIFIED',False):
+    raise RuntimeError('Use the externally SHA-verified source bootstrap; direct helper imports are forbidden')
 import argparse
 import base64
 from urllib.parse import quote
@@ -77,8 +79,10 @@ def remote_write(args,endpoint,method,body,phase,head,gate=None,expected_main=No
     c=require_action(args,'integrate' if phase=='before_integration' else 'merge')
     g=gate
     if g is None:g,_,_=collect(phase,head,cleared=c)
-    validate_pr(gh('pulls/1131'),head,False);fresh(g['at_start'])
     if expected_main is not None:need(g['main']==expected_main and gh('git/ref/heads/main')['object']['sha']==expected_main,'Main advanced before write')
+    immediate=gh('pulls/1131');validate_pr(immediate,head,False)
+    if phase=='before_merge':validate_description(immediate,head);need(immediate['draft'] is False,'PR became draft before merge')
+    fresh(g['at_start'])
     return command(['gh','api','--hostname','github.com','repos/'+REPOSITORY+'/'+endpoint,'--method',method,'--input','-'],body)
 
 def integrate(args):
@@ -106,7 +110,7 @@ def integrate(args):
     return {'head':new,'main':main,'unselected_preservation':True}
 
 def test_merge(args):
-    c=require_action(args,'merge');pr=gh('pulls/1131');validate_pr(pr,args.expected_pr_head,False)
+    c=require_action(args,'merge');pr=gh('pulls/1131');validate_pr(pr,args.expected_pr_head,False);validate_description(pr,args.expected_pr_head)
     receipt=strict_json((RUNTIME/'INTEGRATION_VERIFIED.json').read_bytes());need(receipt['head']==args.expected_pr_head,'Head lacks verified integration receipt')
     main=gh('git/ref/heads/main')['object']['sha']
     need(pr.get('mergeable') is True and pr.get('merge_commit_sha'),'No clean fresh test merge')
@@ -138,10 +142,10 @@ def mark_ready(args):
     need(pr['body']==(OPS/'PROPOSED_PR_BODY.md').read_text().replace('{INTEGRATED_HEAD}',args.expected_pr_head),'Current PR body has not been reconciled to reviewed result')
     need(pr['draft'] is True,'Already ready; reconcile without mutation')
     durable(RUNTIME/'READY_INTENT.json',{'at':stamp(),'head':args.expected_pr_head,'gate':g['private_capture']})
-    require_action(args,'ready');validate_pr(gh('pulls/1131'),args.expected_pr_head,False);fresh(g['at_start'])
+    require_action(args,'ready');immediate=gh('pulls/1131');validate_pr(immediate,args.expected_pr_head,False);validate_description(immediate,args.expected_pr_head);need(immediate['draft'] is True,'PR draft state changed before ready');fresh(g['at_start'])
     result=command(['gh','api','--hostname','github.com','graphql','--input','-'],{'query':'mutation($id:ID!){markPullRequestReadyForReview(input:{pullRequestId:$id}){pullRequest{id isDraft}}}','variables':{'id':pr['node_id']}})
     need(not result.get('errors'),'Ready mutation outcome uncertain')
-    current=gh('pulls/1131');validate_pr(current,args.expected_pr_head,False);need(current['draft'] is False,'Ready outcome unconfirmed')
+    current=gh('pulls/1131');validate_pr(current,args.expected_pr_head,False);validate_description(current,args.expected_pr_head);need(current['draft'] is False,'Ready outcome unconfirmed')
     durable(RUNTIME/'READY_VERIFIED.json',{'at':stamp(),'head':args.expected_pr_head,'draft':False});return {'draft':False}
 
 def merge(args):
@@ -154,7 +158,7 @@ def merge(args):
     durable(RUNTIME/'MERGE_RESPONSE.json',result);need(result.get('merged') is True,'Merge not confirmed; reconcile')
     actual=gh('git/commits/'+result['sha'])
     need([p['sha'] for p in actual['parents']]==[checked['main'],args.expected_pr_head] and actual['tree']['sha']==checked['tree'],'Actual merge parents/tree changed; stop publication')
-    accepted=verify(checked['main'],actual['sha']);validate_pr(gh('pulls/1131'),args.expected_pr_head,True)
+    accepted=verify(checked['main'],actual['sha']);current=gh('pulls/1131');validate_pr(current,args.expected_pr_head,True);validate_description(current,args.expected_pr_head)
     durable(RUNTIME/'MERGE_VERIFIED.json',{'at':stamp(),**accepted,'head':args.expected_pr_head,'parents':[checked['main'],args.expected_pr_head],'tree':checked['tree'],'merged':True})
     return {'merged':True,'commit':actual['sha']}
 

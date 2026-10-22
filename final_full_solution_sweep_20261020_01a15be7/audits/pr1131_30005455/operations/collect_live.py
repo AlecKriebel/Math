@@ -1,10 +1,42 @@
 #!/usr/bin/env python3
 """Read-only actual-GWS + complete owned-deposition pagination, including empty terminal."""
+if not globals().get('_PR1131_SOURCE_VERIFIED',False):
+    raise RuntimeError('Use the externally SHA-verified source bootstrap; direct helper imports are forbidden')
 import argparse
 import http.client
 from urllib.parse import unquote, urlsplit, urlencode
 import uuid
 from ops_common import *
+
+def resolver_policy(text):
+    """Recognize resolver authorities, not path substrings of unrelated hosts.
+    Homepages carry no DOI identity. Nonhome short aliases and dotted/malformed
+    resolver authorities require review; a long DOI is only a lexical lead.
+    """
+    hosts=re.compile(r'(?:(?:www|dx)\.)*(?:doi|shortdoi)\.org\.*',re.I)
+    for token in re.findall(r'[^\s<>\[\]{}()\"\x27]+',text):
+        token=token.rstrip('.,;:!?')
+        candidates=[token]
+        # Handles typed prefixes such as DOI:https:// without confusing a
+        # doi.org substring inside an unrelated HTTP authority/path.
+        candidates += [token[m.start():] for m in re.finditer(r'[A-Za-z][A-Za-z0-9+.-]*://',token)]
+        for candidate in candidates:
+            malformed=False
+            if candidate.startswith('//'):parsed=urlsplit(candidate)
+            elif re.match(r'[A-Za-z][A-Za-z0-9+.-]*://',candidate):parsed=urlsplit(candidate)
+            elif re.match(r'[A-Za-z][A-Za-z0-9+.-]*:',candidate):
+                rest=candidate.split(':',1)[1];parsed=urlsplit('//'+rest.lstrip('/'));malformed=True
+            else:parsed=urlsplit('//'+candidate)
+            host=parsed.hostname
+            if isinstance(parsed.username,str) and hosts.fullmatch(parsed.username) is not None and (not isinstance(host,str) or hosts.fullmatch(host) is None):
+                raise RuntimeError('Official-looking DOI resolver userinfo requires root review')
+            if not isinstance(host,str) or hosts.fullmatch(host) is None:continue
+            home=parsed.path in {'','/'} and not parsed.query and not parsed.fragment
+            if home:continue
+            need(not malformed and parsed.scheme in {'','http','https'} and parsed.username is None and parsed.password is None,'Malformed/non-HTTP DOI resolver reference requires root review')
+            need(not host.endswith('.') and parsed.port in {None,80,443},'Terminal-dot/ported DOI resolver reference requires root review')
+            need(host in {'doi.org','www.doi.org','dx.doi.org','www.dx.doi.org'},'Short DOI resolver alias requires root review')
+            need(re.fullmatch(r'/10\.[0-9]{4,9}/[^\s]+',parsed.path) is not None,'DOI resolver short alias requires root review')
 
 def identities(text):
     """Conservative leads only. Unfamiliar official routes/short aliases fail closed."""
@@ -15,7 +47,7 @@ def identities(text):
         if nxt==current:break
         current=nxt
     else:need(unquote(current)==current,'Deep encoded DOI alias requires root review')
-    need(not re.search(r'(?:shortdoi\.org|doi\.org/[A-Za-z][A-Za-z0-9]*(?:[\s/?#]|$))',current,re.I),'Short DOI alias requires root review')
+    resolver_policy(current)
     # A typed OWR report10/year citation with pages and matching source DOI
     # is bibliography, not a bare short DOI. Mask only that exact report span.
     masked=list(current)

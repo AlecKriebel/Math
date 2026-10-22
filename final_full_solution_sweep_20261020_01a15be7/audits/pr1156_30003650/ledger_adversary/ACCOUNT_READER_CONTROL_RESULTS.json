@@ -1,0 +1,88 @@
+{
+  "source_sha256": "dd8d1c0f8a09f3524d56809459ff30801a74817b1b7e4bac994751e946f7fdfe",
+  "controls": [
+    {
+      "name": "empty_account_terminal",
+      "expected": "accepted",
+      "observed": "accepted",
+      "expectation_met": true,
+      "calls": 1,
+      "total": 0,
+      "pages": 1
+    },
+    {
+      "name": "exact_page_count_empty_terminal",
+      "expected": "accepted",
+      "observed": "accepted",
+      "expectation_met": true,
+      "calls": 2,
+      "total": 25,
+      "pages": 2
+    },
+    {
+      "name": "dict_total_exact",
+      "expected": "accepted",
+      "observed": "accepted",
+      "expectation_met": true,
+      "calls": 1,
+      "total": 1,
+      "pages": 1
+    },
+    {
+      "name": "truncated_terminal",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "calls": 1,
+      "reason": "Incomplete authenticated account enumeration"
+    },
+    {
+      "name": "total_changed",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "calls": 2,
+      "reason": "Account total absent/changed"
+    },
+    {
+      "name": "repeated_id",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "calls": 1,
+      "reason": "Invalid or repeated account record"
+    },
+    {
+      "name": "foreign_next",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "calls": 1,
+      "reason": "Account pagination loop or unexpected destination"
+    },
+    {
+      "name": "loop_next",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "calls": 1,
+      "reason": "Account pagination loop or unexpected destination"
+    },
+    {
+      "name": "inexact_total",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "calls": 1,
+      "reason": "Inexact account total"
+    },
+    {
+      "name": "draft_missing_files",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "calls": 1,
+      "reason": "Unexpected account metadata/full files schema"
+    }
+  ]
+}

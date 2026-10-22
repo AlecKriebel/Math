@@ -2,11 +2,14 @@
 """EXTERNAL MUTATIONS: separately guarded stage, publish, then exactly-once ledger append.
 This file was prepared only. No mutation action was executed by its preparer.
 """
+if not globals().get('_PR1131_SOURCE_VERIFIED',False):
+    raise RuntimeError('Use the externally SHA-verified source bootstrap; direct helper imports are forbidden')
 import argparse
 from urllib.parse import quote
 from urllib.request import Request,urlopen
 from ops_common import *
 from collect_live import collect,draft_row,row_ids
+from native_policy import observe as observe_target,public_projection
 
 MANIFEST=OPS/'proposed/preprint/zenodo-deposit.json'
 
@@ -14,33 +17,74 @@ def require_action(args,action):
     c=clearance(args.clearance_sha256,args.operations_sha256);need(action in c['allowed_actions'],'Action not cleared')
     r=strict_json((RUNTIME/'MERGE_VERIFIED.json').read_bytes())
     need(r['merged'] is True and r['head']==args.expected_pr_head and r['unselected_siblings_and_queue_preserved'] is True and r['preprint_files']==5 and r['original_files']==8 and r['framing_replacements']==3,'Exact merge preservation receipt absent')
-    pr=gh('pulls/1131');validate_pr(pr,args.expected_pr_head,True);need(pr['merge_commit_sha']==r['commit'],'Actual PR merge commit changed')
+    pr=gh('pulls/1131');validate_pr(pr,args.expected_pr_head,True);validate_description(pr,args.expected_pr_head);need(pr['merge_commit_sha']==r['commit'],'Actual PR merge commit changed')
     commit=gh('git/commits/'+r['commit'])
     need([p['sha'] for p in commit['parents']]==r['parents'] and commit['tree']['sha']==r['tree'],'Recorded actual merge parents/tree drifted')
     return c
 
 class GuardedClient:
-    def __init__(self,args,action,identifier):
+    def __init__(self,args,action,identifier,delegate=None):
         self.args,self.action,self.identifier=args,action,identifier
-        self.delegate=zenodo.ZenodoClient('production',zenodo.token_for('production'))
-    def before(self,identifier):
+        self.delegate=delegate if delegate is not None else zenodo.ZenodoClient('production',zenodo.token_for('production'))
+        self.metadata,self.uploads=zenodo.load_manifest(MANIFEST)
+        self.snapshot=None
+    def accept(self,snapshot,added=None):
+        if self.snapshot is not None:
+            prior=self.snapshot
+            for key in ['record','concept','owner','doi','native_metadata']:
+                need(prior[key]==snapshot[key],'Native target infrastructure/metadata changed across operation')
+            need(prior['published'] is False or snapshot['published'] is True,'Published target reverted to draft')
+            if not snapshot['published']:need(prior['bucket']==snapshot['bucket'],'Target upload bucket changed')
+            expected=set(prior['files'])|({added} if added is not None else set())
+            need(set(snapshot['files'])==expected,'Native file inventory changed outside one intended upload')
+            need(all(snapshot['files'][n]==f for n,f in prior['files'].items()),'Native content/version/bucket identifier changed')
+        self.snapshot=snapshot
+    def observation(self,published,required_names=None,added=None):
+        legacy,snapshot=observe_target(self.delegate,self.identifier,published,self.metadata,self.uploads,required_names)
+        self.accept(snapshot,added);return legacy,snapshot
+    def before(self,identifier,required_names=None):
         need(identifier==self.identifier,'Lifecycle ID changed')
         c=require_action(self.args,self.action)
-        g,_,_=collect('before_'+self.action,self.args.expected_pr_head,identifier,cleared=c)
-        require_action(self.args,self.action);fresh(g['at_start'])
+        gate,_,_=collect('before_'+self.action,self.args.expected_pr_head,identifier,cleared=c)
+        require_action(self.args,self.action)
+        snapshot=None
+        if identifier is not None:
+            # These exact legacy/native/finalized-file GETs occur AFTER the last
+            # long account/GWS gate and immediately beside the delegated write.
+            _,snapshot=self.observation(False,required_names)
+            fresh(snapshot['observed_at'],seconds=30)
+        fresh(gate['at_start']);return snapshot
     def get(self,identifier):
-        need(identifier==self.identifier,'Unexpected lifecycle read ID');return self.delegate.get(identifier)
+        need(identifier==self.identifier,'Unexpected lifecycle read ID')
+        first=self.delegate.get(identifier);zenodo.validate_record(first,identifier)
+        names={v['name'] for v in self.uploads} if self.action=='publish' or first['submitted'] else None
+        legacy,_=self.observation(first['submitted'],names);return legacy
     def create(self,metadata):
         need(self.action=='stage' and self.identifier is None,'No second draft allocation')
-        self.before(None);r=self.delegate.create(metadata)
-        need(type(r.get('id')) is int and r['id']>0,'Unknown create outcome; reconcile full owned account, never restage')
-        self.identifier=r['id'];return r
+        need(metadata==self.metadata,'Create supplied unreviewed metadata')
+        self.before(None);result=self.delegate.create(metadata)
+        need(type(result.get('id')) is int and result['id']>0,'Unknown create outcome; reconcile full owned account, never restage')
+        self.identifier=result['id'];self.observation(False,set());return result
     def upload(self,bucket,entry):
-        need(self.action=='stage' and self.identifier is not None,'Upload outside stage');self.before(self.identifier);return self.delegate.upload(bucket,entry)
+        need(self.action=='stage' and self.identifier is not None,'Upload outside stage')
+        intended={v['name']:v for v in self.uploads};need(entry.get('name') in intended and entry==intended[entry['name']],'Upload argument differs from sealed intended bytes/path')
+        snapshot=self.before(self.identifier)
+        need(bucket==snapshot['bucket'] and entry['name'] not in snapshot['files'],'Upload bucket/file already changed')
+        result=self.delegate.upload(bucket,entry)
+        self.observation(False,set(snapshot['files'])|{entry['name']},added=entry['name']);return result
     def update(self,identifier,metadata):
-        need(self.action=='stage','Publish may not update metadata');self.before(identifier);return self.delegate.update(identifier,metadata)
+        need(self.action=='stage' and metadata==self.metadata,'Unreviewed metadata update or wrong phase')
+        names={v['name'] for v in self.uploads};self.before(identifier,names)
+        result=self.delegate.update(identifier,metadata);self.observation(False,names);return result
     def publish(self,identifier):
-        need(self.action=='publish','Stage may not publish');self.before(identifier);return self.delegate.publish(identifier)
+        need(self.action=='publish','Stage may not publish')
+        names={v['name'] for v in self.uploads};self.before(identifier,names)
+        # No provider read, root gate or unrelated work intervenes after the
+        # final target observation. Provider APIs still offer no atomic lock.
+        result=self.delegate.publish(identifier)
+        try:self.observation(True,names)
+        except RuntimeError as exc:raise zenodo.DepositError('Post-publication native/legacy verification failed; retain ID and never create a replacement') from exc
+        return result
 
 def lifecycle(args):
     action=args.action;c=require_action(args,action);identifier=args.deposit_id
@@ -62,19 +106,15 @@ def verify_public(args):
     require_action(args,'ledger');identifier=args.deposit_id
     need(type(identifier) is int and identifier>0,'Exact published record ID required')
     metadata,uploads=zenodo.load_manifest(MANIFEST)
-    record=zenodo.ZenodoClient('production',zenodo.token_for('production')).get(identifier)
-    zenodo.validate_record(record,identifier);need(record['submitted'] is True,'Record not published');zenodo.verify(record,metadata,uploads)
+    client=zenodo.ZenodoClient('production',zenodo.token_for('production'))
+    record,native_verified=observe_target(client,identifier,True,metadata,uploads,{v['name'] for v in uploads})
     doi='10.5281/zenodo.'+str(identifier);need(record.get('doi')==doi,'Unexpected exact DOI')
     import uuid
     raw=PRIVATE/('public_'+uuid.uuid4().hex);raw.mkdir(mode=0o700)
     data,status,url=fetch('https://zenodo.org/api/records/'+str(identifier),16*1024*1024)
     public=strict_json(data);durable(raw/'record.json',public)
     need(status==200 and int(public['id'])==identifier and public['doi']==doi,'Public record identity mismatch')
-    # Only these observed public structural serializations are normalized.
-    projected=dict(public['metadata']);resource=projected.pop('resource_type',None)
-    need(resource=={'type':'publication','subtype':'preprint','title':'Preprint'} and projected.get('license')=={'id':'cc-by-4.0'} and 'upload_type' not in projected and 'publication_type' not in projected,'Unreviewed public metadata representation')
-    projected.update(upload_type='publication',publication_type='preprint',license='cc-by-4.0')
-    zenodo.verify({**public,'metadata':projected},metadata,uploads)
+    zenodo.verify(public_projection(public,metadata,native_verified),metadata,uploads)
     checked=[]
     for entry in uploads:
         body,code,destination=fetch('https://zenodo.org/records/'+str(identifier)+'/files/'+quote(entry['name'],safe='')+'?download=1',entry['size']+1)
@@ -83,7 +123,7 @@ def verify_public(args):
     # Full response is not saved; final status and exact destination are evidence.
     _,code,destination=fetch('https://doi.org/'+doi,16*1024*1024)
     need(code==200 and destination=='https://zenodo.org/records/'+str(identifier),'DOI does not resolve with HTTP200 to exact intended record')
-    receipt={'at':stamp(),'record':identifier,'doi':doi,'files':checked,'metadata_verified':True,'doi_status':code,'doi_destination':destination,'private_capture':str(raw)}
+    receipt={'at':stamp(),'record':identifier,'doi':doi,'files':checked,'metadata_verified':True,'native_target_verified':native_verified,'doi_status':code,'doi_destination':destination,'private_capture':str(raw)}
     durable(raw/'verification.json',receipt);return receipt
 
 def append_ledger(args):

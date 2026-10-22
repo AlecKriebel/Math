@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """PR1131 fixed identities, read-only custody, private durable receipts; no service writes."""
+if not globals().get('_PR1131_SOURCE_VERIFIED',False):
+    raise RuntimeError('Use the externally SHA-verified source bootstrap; direct helper imports are forbidden')
 import datetime as dt
 import hashlib
 import io
@@ -31,7 +33,6 @@ SOURCE_SHA='e3db5fb166e0823ebacb4048f8330c398e80c0c237bfc02c897f0891026508ba'
 ORIGINALS={'ACCEPTANCE.json','MANIFEST.json','MATHEMATICAL_AUDIT.md','PROOF.md','README.md','SOURCE_METADATA.json','SOURCE_REVIEW.md','STATUS.json'}
 FLAT={'finite-warm-thresholds.pdf','finite-warm-thresholds-source-and-verification.zip','README.md','zenodo-metadata.json','zenodo-deposit.json'}
 PATTERN=re.compile(r'30005455|12697708|/pull/1131\b|\bPR\s*#?1131\b|warm|whisker|reinforced.{0,10}graph|forest.{0,12}(?:bound|threshold)',re.I)
-sys.path.insert(0,str(REPO/'zenodo_deposit_tool'))
 import zenodo
 
 def need(condition,message):
@@ -131,6 +132,7 @@ def proposal():
 
 def clearance(clearance_sha,operations_sha):
     """Caller supplies both external SHA anchors; this code cannot author clearance."""
+    need(operations_sha==_PR1131_EXECUTION['operations_sha256'],'Caller operation anchor differs from loaded source bundle')
     need(re.fullmatch('[a-f0-9]{64}',clearance_sha or '') and re.fullmatch('[a-f0-9]{64}',operations_sha or ''),'Root SHA anchors required')
     manifest=(OPS/'OPERATIONS_MANIFEST.json').read_bytes();need(sha(manifest)==operations_sha,'Operations seal changed')
     m=strict_json(manifest)
@@ -140,7 +142,7 @@ def clearance(clearance_sha,operations_sha):
     for n,p in m['files'].items():read_pinned(safe(OPS,n),p)
     cpath=RUNTIME/'ROOT_OPERATIONAL_CLEARANCE.json';raw=cpath.read_bytes();need(sha(raw)==clearance_sha,'Root operational clearance changed')
     c=strict_json(raw)
-    need(c['pr']==1131 and c['original_head']==ORIGINAL and c['operations_manifest_sha256']==operations_sha and c['scientific_clearance_sha256']==SCIENCE_SHA and c['freeze_sha256']==FREEZE_SHA and c['publication_ready'] is True and c['unresolved_operational_findings']==[] and c['root_complete_reports_read_and_all_seals_verified'] is True,'Root final operational clearance incomplete')
+    need(c['pr']==1131 and c['original_head']==ORIGINAL and c['operations_manifest_sha256']==operations_sha and c['bootstrap_sha256']==_PR1131_EXECUTION['bootstrap_sha256'] and c['scientific_clearance_sha256']==SCIENCE_SHA and c['freeze_sha256']==FREEZE_SHA and c['publication_ready'] is True and c['unresolved_operational_findings']==[] and c['root_complete_reports_read_and_all_seals_verified'] is True,'Root final operational clearance incomplete')
     need(c['integration_proposal_sha256']==sha((OPS/'INTEGRATION_PROPOSAL.json').read_bytes()),'Proposal not cleared')
     need(set(c['allowed_actions'])<={'integrate','pr-description','ready','merge','stage','publish','ledger'},'Unknown allowed action')
     package();proposal();return c
@@ -161,3 +163,12 @@ def gws_read():
 def validate_pr(pr,head,merged):
     need(re.fullmatch('[a-f0-9]{40}',head or '') and pr['number']==1131 and pr['head']['sha']==head and pr['head']['ref']==BRANCH and pr['head']['repo']['full_name']==REPOSITORY and pr['base']['repo']['full_name']==REPOSITORY and pr['base']['ref']=='main','PR identity/head/base changed')
     need(pr['merged'] is merged and pr['state']==('closed' if merged else 'open'),'Wrong PR merge state')
+
+def reviewed_description(head):
+    need(re.fullmatch('[a-f0-9]{40}',head or ''),'Exact reviewed head required')
+    observed=strict_json((OPS/'READ_ONLY_OBSERVATIONS.json').read_bytes())
+    return observed['original_pr_title'],(OPS/'PROPOSED_PR_BODY.md').read_text().replace('{INTEGRATED_HEAD}',head)
+
+def validate_description(pr,head):
+    title,body=reviewed_description(head)
+    need(pr.get('title')==title and pr.get('body')==body,'Current PR title/body differs from sealed reviewed description')
