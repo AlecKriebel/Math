@@ -210,7 +210,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 199 | 11000213 / AMR-109-0213 | Problem 6 — (Purely cyclic). | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 200 | 20002560 / AIM-PROBABILITY-0002 | Exact parity projection and a certified bracket for RBM(3,1) | 0.1920 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 201 | 30006576 / OWR-14299907-001 | Mesh Structures Behind Even-Odd Superconvergence | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
-| 202 | 30006587 / OWR-14299909-002 | Derivative Formula for Multiple Eisenstein Series | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
+| 202 | 30006587 / OWR-14299909-002 | Derivative Formula for Multiple Eisenstein Series | 0.1920 | 5.0 | 3 | 2026 | unsolved | 1/5 |  | 2026-09-30: Exact external July2026 v2 MainTheoremD(ii) claims the source derivative formula; separate source/algebra audit passed the normalization and telescoping cancellation. Campaign status is a validation hold on the imported all-depth analytic realization/regularization proof, not an assertion that v2 is wrong or the problem remains open. 1111 author and1946 independent controls; submitted-preprint status and separate all-relations conjecture explicit, zero discovery routes. Draft PR: https://github.com/AlecKriebel/Math/pull/187. |  |
 | 203 | 30001704 / OWR-4798-031 | Finiteness from Face-Number Bounds for Manifolds with Boundary | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 204 | 30001779 / OWR-5152-002 | Covariance Estimation Without Logarithmic Oversampling | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 205 | 30002105 / OWR-11793-003 | Density and Geometry Recovery from Nearest-Neighbor Graphs | 0.1915 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
