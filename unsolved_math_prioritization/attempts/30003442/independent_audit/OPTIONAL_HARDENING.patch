@@ -1,0 +1,13 @@
+--- a/audit_manifest.py
++++ b/audit_manifest.py
+@@ -16,7 +16,9 @@
+ 
+ def check(root):
+     root=Path(root)
+-    manifest=json.loads((root/'MANIFEST.json').read_text())
++    manifest_path=root/'MANIFEST.json'
++    require(manifest_path.is_file() and not manifest_path.is_symlink(),'regular manifest file required')
++    manifest=json.loads(manifest_path.read_text())
+     require(manifest['problem_id']=='30003442','problem ID')
+     require(manifest['status']=='partial; unrestricted target unresolved','scope')
+     entries=manifest['files'];require(set(entries)==ALLOWED,'manifest allowlist')

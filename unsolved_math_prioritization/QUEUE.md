@@ -744,7 +744,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 733 | 30003264 / OWR-15173-001 | Third Homology and Pre-Bloch Groups of $S$-Arithmetic $\operatorname{SL}_2$ | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 734 | 6600014 / AMR-065-0014 | A. Navas: A Conjecture on Delone Sets BL to Lattices (after P. Alestalo, D.A. Trotsenko and J. V\"ais\"al\"a). — Problem | 0.1035 | 5.5 | 4 | 2016 | queued | 0/5 |  |  |  |
 | 735 | 30003417 / OWR-15216-023 | Meager Ideal Equalities at Uncountable Regular Cardinals | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 736 | 30003442 / OWR-15219-012 | Largest Roots of Doubly Stochastic Stable Polynomials | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 736 | 30003442 / OWR-15219-012 | Largest Roots of Doubly Stochastic Stable Polynomials | 0.1032 | 5.5 | 3 | 2017 | unsolved | 5/5 |  |  |  |
 | 737 | 30003649 / OWR-15957-002 | Rational and Integral Completely Positive Factorizations | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 738 | 30003676 / OWR-15962-002 | Sharp Virulence Thresholds for Stationary SIS Infection | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 739 | 30003759 / OWR-16157-001 | Uniform Minimal Control Time for Advection–Diffusion | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
