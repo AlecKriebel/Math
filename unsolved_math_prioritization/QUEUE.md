@@ -686,7 +686,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 675 | 2302042 / AMR-022-2042 | Research Problems in Function Theory — Problem 2.42 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 676 | 2303014 / AMR-022-3014 | Research Problems in Function Theory — Problem 3.14 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 677 | 2303023 / AMR-022-3023 | Research Problems in Function Theory — Problem 3.23 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 678 | 2304029 / AMR-022-4029 | Research Problems in Function Theory — Problem 4.29 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 678 | 2304029 / AMR-022-4029 | Research Problems in Function Theory — Problem 4.29 | 0.1050 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Prior-resolution attribution: Roitman (1983) counterexample; exact target match verified, full proof/construction replay not completed. |  |
 | 679 | 2305020 / AMR-022-5020 | Research Problems in Function Theory — Problem 5.20 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 680 | 2305033 / AMR-022-5033 | Research Problems in Function Theory — Problem 5.33 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 681 | 2305044 / AMR-022-5044 | Research Problems in Function Theory — Problem 5.44 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |

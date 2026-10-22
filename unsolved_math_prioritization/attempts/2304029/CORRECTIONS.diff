@@ -1,0 +1,163 @@
+--- pre_edit/FILE_MANIFEST.json
++++ final/FILE_MANIFEST.json
+@@ -2,19 +2,39 @@
+   "target_id": "2304029",
+   "files": [
+     {
++      "path": "INDEPENDENT_AUDIT.json",
++      "bytes": 4129,
++      "sha256": "2e157e29bfcebf672ea2bd059786b8bc29bc5ce051f2aec3d1abed4523622450"
++    },
++    {
++      "path": "INDEPENDENT_AUDIT.md",
++      "bytes": 5066,
++      "sha256": "06331c6ec93804b98edee96e9f2854d194836c6a37c5b2122985df558978290c"
++    },
++    {
++      "path": "INDEPENDENT_TEST_RESULT.json",
++      "bytes": 370,
++      "sha256": "93025c0e6dc542658109e126f8ab3b2d82abde6bc4f21c2dd2c0f41ace4b6dc0"
++    },
++    {
++      "path": "ORIGINAL_PACKET_MANIFEST.json",
++      "bytes": 1120,
++      "sha256": "69423e1c76f714e900e26bc8a52c3d6420a7d82ba0af19df9fae9586c68c0666"
++    },
++    {
+       "path": "SOURCE_AUDIT.json",
+-      "bytes": 4753,
+-      "sha256": "a6296322ae68432cb564e0799aaec4dbda7c4c23613104bc1c0e32a99aea2b09"
++      "bytes": 5091,
++      "sha256": "7ef7fb7c5a3c8d5c97a44e5e496da3782c3c6d209a57756d99d958bd5cb681de"
+     },
+     {
+       "path": "STATUS.md",
+-      "bytes": 4524,
+-      "sha256": "8ce0ffbf5f67d7f6872a0fada1bba0fa4bf06d0a863756b272ae120efdc631ef"
++      "bytes": 4993,
++      "sha256": "992422ade652cf3dd69515abd7b91a5565c1d5a92d8f5839284020b7f0f14b1a"
+     },
+     {
+       "path": "VERIFIER_PROOF.md",
+-      "bytes": 1962,
+-      "sha256": "6dfd59cbe4442b11428ecbfac2095af8dbcc1d9a8e7e754f71f3b91f6632f324"
++      "bytes": 2919,
++      "sha256": "29d0309902254d4315bc5716f9898d8ec1b99f8960ca5dd883a119e705b770e0"
+     },
+     {
+       "path": "VERIFIER_TEST_RESULT.json",
+@@ -22,9 +42,14 @@
+       "sha256": "daaaf469e3d12b830c6de34fdb425ef7bcc8a8c671381bd4c42e043ec30179be"
+     },
+     {
++      "path": "test_factored_witness_independent.py",
++      "bytes": 5422,
++      "sha256": "104a419753ec4d96921f566f76a9f6f31dfa496b1d6507af793603730604588e"
++    },
++    {
+       "path": "verify_factored_witness.py",
+-      "bytes": 4101,
+-      "sha256": "40aa2a14331b560adcdcb1173e9ea6174f4c1f09aeb82e32bce5e7178632328d"
++      "bytes": 4828,
++      "sha256": "7e417b898cd001e114a2875430fcc36827e39d2a66029d711c0d5c56f67d6ba7"
+     }
+   ]
+ }
+--- pre_edit/SOURCE_AUDIT.json
++++ final/SOURCE_AUDIT.json
+@@ -93,5 +93,14 @@
+     "counterexample_certificate_bundled": false,
+     "numerical_reconstruction": "No exact witness certified. An approximate feasible result failed exact rational consistency and was rejected."
+   },
+-  "publication_boundary": "No source PDFs, source text, dataset contents, or private coordination files are included in the public packet."
++  "publication_boundary": "No source PDFs, source text, dataset contents, or private coordination files are included in the public packet.",
++  "independent_audit": {
++    "report": "INDEPENDENT_AUDIT.json",
++    "disposition": "already_solved",
++    "basis": "prior_resolution_attribution_only",
++    "exact_input_guard_added": true,
++    "independent_controls": "INDEPENDENT_TEST_RESULT.json",
++    "complete_source_proof_verified": false,
++    "explicit_witness_verified": false
++  }
+ }
+--- pre_edit/STATUS.md
++++ final/STATUS.md
+@@ -37,3 +37,7 @@
+ Record the target as **prior-resolved: counterexample by Roitman (1983)**, with **exact target match verified; full proof/construction replay not completed**. Do not describe this packet as a new proof, a reproduced explicit witness, or a complete source-proof audit. The selected catalog record was checked against the primary target statement; no complete upstream-corpus match is claimed.
+ 
+ This is a fresh reconstruction, not recovery of the lost earlier audit. The source audit gives the bytes actually inspected in this pass. Only authored analysis, verification code, and public metadata are in this public directory.
++
++## Independent audit follow-up
++
++`INDEPENDENT_AUDIT.md` and `INDEPENDENT_AUDIT.json` record the fresh source, binding, and verifier review. The prior-resolution attribution is accepted as `already_solved`, with no full proof or explicit witness certification. An approximate-coefficient input-control gap was corrected; independent controls passed on 406 expansion cases, 21 invalid inputs, and one large-exponent case. Original bytes were frozen before these changes.
+--- pre_edit/VERIFIER_PROOF.md
++++ final/VERIFIER_PROOF.md
+@@ -23,3 +23,9 @@
+ Finally, P^m=Q^n for positive integers m,n holds exactly when m a_i=n b_i for every i. Necessity follows by comparing the multiplicity of any complex root of f_i; sufficiency follows from the factorizations. Positive integer vectors are proportional over Q exactly when a_1 b_i=b_1 a_i for every i. This is the code's proportionality test. No numerical root calculation or approximate equality is used.
+ 
+ The code thus certifies a counterexample precisely when the derivative zero sets agree and these exponent vectors are not proportional, assuming its explicitly checked factor input conditions. Its included tests check ordinary cases and invalid inputs. Since no counterexample factor list has been certified in this reconstruction, the test result deliberately records `known_counterexample_verified: false`.
++
++## Exact-input boundary
++
++The independent audit found that converting directly to SymPy's QQ domain can rationalize approximate Float coefficients. The revised input guard first checks that every supplied polynomial coefficient is an exact SymPy Rational (integers included), then converts to QQ. Thus decimal Float inputs are rejected rather than silently changed. Callers should use explicit exact rational values. If a caller has already converted an approximation to a rational before passing it to the verifier, this verifier cannot recover that history; it certifies only the exact input it receives.
++
++Independent controls compare the returned derivative radicals to expanded derivatives reduced by a gcd, and compare power equality to normalized irreducible-factor multiplicities. Both implementations use SymPy, so this is algorithmic cross-checking rather than a second computer-algebra system. A successful counterexample fixture is still absent.
+--- pre_edit/verify_factored_witness.py
++++ final/verify_factored_witness.py
+@@ -4,6 +4,7 @@
+ No counterexample is bundled. This verifier avoids expanding large powers.
+ Requires SymPy. A user may call verify(factors, p_exponents, q_exponents).
+ Each factor must be monic, nonconstant, squarefree and pairwise coprime in Q[z].
++Supply exact rational coefficients, for example s.Rational(1, 10), not floats.
+ """
+ import json
+ import sympy as s
+@@ -11,15 +12,28 @@
+ z = s.Symbol("z")
+ 
+ 
++def exact_polynomial(expr):
++    """Reject approximate/non-rational input before conversion to Q[z].
++
++    SymPy's explicit QQ conversion can silently rationalize Float coefficients,
++    even turning 1.000000000000001 into 1. Such a conversion is not a certificate
++    for the polynomial supplied by the caller.
++    """
++    p = s.Poly(expr, z)
++    if any(c.is_Rational is not True for c in p.all_coeffs()):
++        raise ValueError("Coefficients must be exact rationals; floats are not allowed.")
++    return s.Poly(p, z, domain=s.QQ)
++
++
+ def monic_radical(expr):
+-    p = s.Poly(expr, z, domain=s.QQ)
++    p = exact_polynomial(expr)
+     if p.is_zero:
+         raise ValueError("Zero polynomial has no finite squarefree radical.")
+     return p.sqf_part().monic()
+ 
+ 
+ def verify(factors, p_exponents, q_exponents):
+-    fs = [s.Poly(f, z, domain=s.QQ) for f in factors]
++    fs = [exact_polynomial(f) for f in factors]
+     if not fs or not (len(fs) == len(p_exponents) == len(q_exponents)):
+         raise ValueError("Provide matching nonempty factor and exponent lists.")
+     for exponents in [p_exponents, q_exponents]:
+@@ -81,12 +95,14 @@
+             monic_radical(s.diff(P, z)) == monic_radical(s.diff(Q, z)))
+     rejected = 0
+     for fs, ps, qs in [([2*z], [1], [1]), ([z*z], [1], [1]),
+-                        ([z, z], [1,1], [1,1]), ([z], [0], [1])]:
++                        ([z, z], [1,1], [1,1]), ([z], [0], [1]),
++                        ([z-s.Float("1.000000000000001")], [1], [1]),
++                        ([s.Poly(z-0.1, z)], [1], [1])]:
+         try:
+             verify(fs, ps, qs)
+         except ValueError:
+             rejected += 1
+-    assert rejected == 4
++    assert rejected == 6
+     print(json.dumps({"self_tests": "passed", "known_counterexample_verified": False,
+                       "symbolic_engine": "SymPy " + s.__version__}, indent=2))
+ 
