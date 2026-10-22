@@ -354,7 +354,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 343 | 4600032 / AMR-045-0032 | Embedding under a preimage bound | 0.1578 | 5.5 | 4 | 2008 | queued | 0/5 |  |  |  |
 | 344 | 30001199 / OWR-3394-009 | Circular Assume–Guarantee Reasoning for General Systems | 0.1575 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 345 | 30006211 / OWR-14299088-013 | Real Components of Two Multi-Affine Polynomial Zero Sets | 0.1564 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 346 | 30006345 / OWR-14299292-007 | Modular Isomorphism for Class-Two Exponent-p Groups | 0.1564 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 346 | 30006345 / OWR-14299292-007 | Modular Isomorphism for Class-Two Exponent-p Groups | 0.1564 | 7.0 | 3 | 2025 | unsolved | 5/5 |  | Reviewed all-field partials and descent obstructions; full problem unresolved; [packet](../problems/30006345_modular_isomorphism/REVIEWED_RESULT.md) |  |
 | 347 | 30002323 / OWR-12481-012 | Hierarchical Refinement of Symmetric-Group Coset Partitions | 0.1564 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 348 | 30002545 / OWR-12872-015 | Combinatorial Proof of the Two-Thirds Leaf Limit | 0.1560 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 349 | 10400230 / AMR-103-0230 | Problem 12.25 — (A. | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
