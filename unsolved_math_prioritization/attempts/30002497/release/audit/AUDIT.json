@@ -1,0 +1,87 @@
+{
+  "problem_id": 30002497,
+  "code": "OWR-12866-004",
+  "audit_date": "2026-10-04",
+  "verdict": "partial_mathematics_passes_with_required_export_correction",
+  "full_target_status": "unsolved",
+  "full_resolution": false,
+  "novelty_established": false,
+  "input_binding": "AUDITED_INPUTS.json",
+  "input_files_verified": 9,
+  "strongest_verified_result": "Every positive irrational local maximum, including a non-strict one, is a stationary Wilton point. The families r_m=(sqrt(m^2+4)-m)/2 and 1/r_m, for every integer m>=1, are excluded.",
+  "remaining_gap": "Construct a stationary Wilton point with a strict two-sided local maximum, or exclude every such point. No adequate two-sided bound for the stationary increment residual is supplied.",
+  "findings": [
+    {
+      "id": "C1",
+      "severity": "certification_correction",
+      "status": "corrected_in_separate_variant",
+      "finding": "mpmath 1.3.0 str(iv.mpf) uses nearest-rounded endpoint display, contrary to the outward-safe serialization claim.",
+      "scope": "Saved decimal certificate endpoints; original in-memory interval sign tests remain valid.",
+      "remedy": "Exact-rational outward decimal serialization supplied in verify_controls_outward.py."
+    },
+    {
+      "id": "C2",
+      "severity": "optional_clarity",
+      "status": "no_change_required",
+      "finding": "One adjacent odd/even partial-sum inequality suffices for the parity squeeze; the second inequality is harmless."
+    }
+  ],
+  "checks": {
+    "primary_target_definition_and_quantifiers": true,
+    "BM_secant_construction_without_divergence": true,
+    "parity_direction_render_verified": true,
+    "non_strict_maximum_quantifier": true,
+    "greater_than_one_reparameterization": true,
+    "derivative_identity_14": true,
+    "oriented_stationary_increment_identity_11": true,
+    "finite_event_partition_and_tail": true,
+    "reciprocal_finite_cases": 11,
+    "author_original_replay_byte_matches": 2,
+    "corrected_author_runs": [
+      [
+        2048,
+        40
+      ],
+      [
+        4096,
+        60
+      ]
+    ],
+    "corrected_high_intervals_nested": 11,
+    "independent_backend": "Python standard-library exact integer directed intervals",
+    "independent_cutoff": 256,
+    "independent_fixed_decimal_scale": 50,
+    "independent_log_terms": 70,
+    "independent_exact_corner_and_sqrt_tests": 579,
+    "serializer_exact_tests": 24,
+    "independent_replay_exact_match": true,
+    "all_independent_derivative_signs_match": true,
+    "independent_large_family_bound": "A(1) direct integration and zeta(2)/6 < 1/3"
+  },
+  "derivative_signs": {
+    "reciprocals_m_1_through_9": "positive",
+    "reciprocals_m_at_least_10": "negative",
+    "roots_m_at_least_1": "positive"
+  },
+  "originals_preserved": true,
+  "remote_writes_performed": false,
+  "source_texts_or_private_inventories_in_package": false,
+  "limitations": [
+    "No proof-assistant formalization.",
+    "No exhaustive subsequent-literature or novelty certification.",
+    "No solution of the stationary two-sided increment gap."
+  ],
+  "portable_deliverables": [
+    "AUDIT.md",
+    "CORRECTIONS.md",
+    "independent_controls.py",
+    "independent_results.json",
+    "verify_controls_outward.py",
+    "corrected_controls_2048_40.json",
+    "corrected_controls_4096_60.json",
+    "verify_audit.py",
+    "verification_results.json",
+    "replay_results.json",
+    "AUDITED_INPUTS.json"
+  ]
+}
