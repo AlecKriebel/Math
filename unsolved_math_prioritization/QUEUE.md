@@ -476,7 +476,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 465 | 2566 / KOU-21.57 | Kourovka Notebook Problem 21.57 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 466 | 2569 / KOU-21.60 | Kourovka Notebook Problem 21.60 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 467 | 2580 / KOU-21.71 | Kourovka Notebook Problem 21.71 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
-| 468 | 2607 / KOU-21.98 | Kourovka Notebook Problem 21.98 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 468 | 2607 / KOU-21.98 | Kourovka Notebook Problem 21.98 | 0.1275 | 6.0 | 2 | 2026 | unsolved | 5/5 |  |  |  |
 | 469 | 2609 / KOU-21.100 | Kourovka Notebook Problem 21.100 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 470 | 2611 / KOU-21.102 | Kourovka Notebook Problem 21.102 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 471 | 2622 / KOU-21.113 | Kourovka Notebook Problem 21.113 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
