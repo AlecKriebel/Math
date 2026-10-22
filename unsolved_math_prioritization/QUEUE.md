@@ -891,7 +891,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 880 | 1392 / GRAPH-005 | Graph Coloring Game Monotonicity | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 881 | 1500006 / AMR-014-0006 | Algebraic Stories — The $k$-rank of monomials | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 882 | 1500024 / AMR-014-0024 | Algebraic Stories — Exterior algebras | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 883 | 1917 / EP-81 | Erdős Problem #81 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 883 | 1917 / EP-81 | Erdős Problem #81 | 0.0960 | 5.5 | 1 | unknown | already_solved | 0/5 |  | 2026-10-06: Credited prior resolution: Okechukwu, arXiv:2609.20871v1 (2026-09-15), Theorem 1.1 / Corollary 1.2, independently audited by AI for the uniform chordal cp(G) <= floor(n(n+1)/6)+K_0 bound and eventual exactness. Resolves EP-81 n^2/6+O(n); stronger all-order exact conjecture remains outside the accepted result. Preprint; journal/human-referee/formal verification not established. No new solution or fresh proof approaches; [audit and acceptance](attempts/1917/README.md). |  |
 | 884 | 20000280 / AIM-ALGEBRAIC_GEOMETRY-0280 | An extremal bracket, a Segre correction, and a cubic-scroll family | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 885 | 20000363 / AIM-ALGEBRAIC_NUMBER_THEORY-0015 | Density degrees under finite extension | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 886 | 20000451 / AIM-ALGEBRAIC_NUMBER_THEORY-0103 | Rational descent obstructions for geometric elliptic powers in hyperelliptic Jacobians | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
