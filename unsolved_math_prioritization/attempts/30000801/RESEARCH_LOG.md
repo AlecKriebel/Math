@@ -1,0 +1,11 @@
+# Publication checkpoint: problem 30000801
+
+2026-10-06 07:15 UTC. Complete independent acceptance and mathematical audits were read. The original target remains unsolved after five bounded approaches. The accepted result is conditional only, with no mandatory correction. Scoped publication preparation completion estimate: 100%; full-target resolution estimate: 0%. These are work-scope estimates, not proof probabilities.
+
+Fresh main and bounded exact-ID, code, topic, branch and commit checks found no prior actual target artifact. Main attempts, history, assessment history, state and related-target groups had no target entry. Exact base and search scope appear in VERDICT.json. These checks are separate from historical author checks and do not establish exhaustive historical absence or novelty.
+
+Both original ZIPs and every member were verified against their independently retained external identities. The correct squared exponential, linear prefactor, Navier data, fixed-radius primitive-mass hypothesis, finite positive weights and both weighted exhaustion assumptions remain explicit. No stronger result follows from finite tests, integer quantization, center separation, radial monotonicity or ordinary no-neck energy.
+
+The bounded draft-publication instruction governs this patch; applicable repository guidance was read. Only target Status/Turns change, with every other queue byte retained. Publication adds no proof-search approach. Fresh normal, optimized, relocated and adversarial checks are recorded separately from frozen historical outputs. No merge, release, DOI or outside contact is included.
+
+2026-10-06 13:34 UTC. The publication base was refreshed to current main c40562362d60cce52a3128fa17313ad729f0d835. Main contains no target attempt, and fresh identifier/code/topic PR checks, identifier branch/commit checks, and history/state/related-group reads found no target work. The queue patch was rebuilt from the new exact base bytes, again changing only Status and Turns. Both frozen archives and every frozen member retain their original identities. Full-input verification is rerun on this final package before publication and on the retrieved remote commit afterward. Full-target resolution remains 0%; scoped preparation remains 100%, conditional on successful final delivery checks. These are work-scope estimates.
