@@ -1,0 +1,214 @@
+{
+  "approaches": 5,
+  "archive": {
+    "bytes": 17107,
+    "filename": "HODGE_EXTREMALITY_30001913_AUTHOR_SAFE_FREEZE.zip",
+    "members": 8,
+    "sha256": "3ac226f14b1e8b9912358006e11fd0130f688d5de20eccb1dea58a8da4f6fb36"
+  },
+  "author_status": "unsolved",
+  "bootstrap_launcher": "import hashlib,pathlib,sys\nr=pathlib.Path(sys.argv[1]); m=pathlib.Path(sys.argv[2]); d=m.read_bytes()\nif hashlib.sha256(d).hexdigest()!=sys.argv[3]: raise SystemExit('REJECT: external manifest anchor')\nb=r/'bootstrap.py'\nif b.is_symlink() or not b.is_file(): raise SystemExit('REJECT: bootstrap type')\nc=b.read_bytes()\nif hashlib.sha256(c).hexdigest()!=sys.argv[4]: raise SystemExit('REJECT: bootstrap anchor')\nsys.argv=[str(b),str(r),str(m)]\nexec(compile(c,str(b),'exec'),{'__name__':'__main__','__file__':str(b)})\n",
+  "bootstrap_sha256": "beb54b54f1ed72b242b184cf8d880849295d27f5fccf9e64f768c5f2dca366be",
+  "date": "2026-10-06",
+  "external_manifest": {
+    "bytes": 1145,
+    "filename": "HODGE_EXTREMALITY_30001913_AUTHOR_EXTERNAL_MANIFEST.json",
+    "sha256": "b2679cde75abcc86b8f4f19302d284d5c36c367d403abdc2ef5ca9f557573bea"
+  },
+  "finite_controls": 1932,
+  "independent_audit": "pending",
+  "launcher_arguments": [
+    "ROOT",
+    "EXTERNAL_MANIFEST",
+    "b2679cde75abcc86b8f4f19302d284d5c36c367d403abdc2ef5ca9f557573bea",
+    "beb54b54f1ed72b242b184cf8d880849295d27f5fccf9e64f768c5f2dca366be"
+  ],
+  "notes": [
+    "The external manifest and bootstrap digests are trust anchors. A modified external trust anchor is not a valid replay.",
+    "All tests passed in normal and optimized isolated modes, including relocation, shadowing, and pre-execution rejection.",
+    "Archive contains only authored proof/status/code and bounded public source verification metadata.",
+    "Read-only mode and SHA-256 pins freeze the author artifact; no filesystem immutability guarantee is claimed.",
+    "Finite arithmetic does not formally verify geometry or solve the source conjecture."
+  ],
+  "optimized_repeat_adds": [
+    "-O"
+  ],
+  "problem_id": 30001913,
+  "required_python_flags": [
+    "-I",
+    "-S"
+  ],
+  "schema": "hodge-extremality-author-freeze-receipt-v1",
+  "verification": [
+    {
+      "case": "normal author tree",
+      "optimized": false,
+      "outcome": "passed_exact_output"
+    },
+    {
+      "case": "relocated author tree",
+      "optimized": false,
+      "outcome": "passed_exact_output"
+    },
+    {
+      "case": "hostile working directory and PYTHONPATH",
+      "optimized": false,
+      "outcome": "passed_exact_output"
+    },
+    {
+      "case": "tampered_proof",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "extra_file",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "empty_directory",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "nested_manifest",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "symlink",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "missing_file",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "tampered_expected",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "package_json_shadow",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "package_sitecustomize",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "payload_marker",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "bootstrap_marker",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "selfconsistent_status",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "external_manifest_tamper",
+      "optimized": false,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "explicitly replacement manifest status guard",
+      "optimized": false,
+      "outcome": "rejected_by_status_contract"
+    },
+    {
+      "case": "normal author tree",
+      "optimized": true,
+      "outcome": "passed_exact_output"
+    },
+    {
+      "case": "relocated author tree",
+      "optimized": true,
+      "outcome": "passed_exact_output"
+    },
+    {
+      "case": "hostile working directory and PYTHONPATH",
+      "optimized": true,
+      "outcome": "passed_exact_output"
+    },
+    {
+      "case": "tampered_proof",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "extra_file",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "empty_directory",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "nested_manifest",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "symlink",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "missing_file",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "tampered_expected",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "package_json_shadow",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "package_sitecustomize",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "payload_marker",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "bootstrap_marker",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "selfconsistent_status",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "external_manifest_tamper",
+      "optimized": true,
+      "outcome": "rejected_before_payload"
+    },
+    {
+      "case": "explicitly replacement manifest status guard",
+      "optimized": true,
+      "outcome": "rejected_by_status_contract"
+    }
+  ]
+}
