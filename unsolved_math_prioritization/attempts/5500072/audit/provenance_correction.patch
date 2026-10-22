@@ -1,0 +1,104 @@
+--- a/EXACT_ACCEPTANCE.json
++++ b/EXACT_ACCEPTANCE.json
+@@ -19,7 +19,8 @@
+   },
+   "approach_limit": 5,
+   "approaches_used": 3,
+-  "correction_required": false,
++  "audit_provenance_correction_applied": true,
++  "author_mathematical_correction_required": false,
+   "decision": "accepted_original_unchanged_as_bounded_partial",
+   "full_resolution": false,
+   "mandatory_scope": "Finite closed edge-to-edge spherical cellulation; isometric planar convex regular-pentagon faces; local embedding at every abstract point; distinct faces noncoincident. No equivalence with broader conventions or global decomposition asserted.",
+@@ -28,9 +29,14 @@
+   "outcome": "stalled_partial",
+   "problem_id": 5500072,
+   "problem_number": "AMR-054-0072",
+-  "proof_review": "Complete human mathematical review supplemented by separately authored exact arithmetic and adversarial artifact checks.",
++  "proof_review": "Independent AI mathematical review supplemented by separately authored exact arithmetic and adversarial artifact checks. This is not human peer review or formal verification.",
+   "publication_performed": false,
+   "queue_status_equivalent": "unsolved",
+   "rank": 929,
++  "review_provenance": {
++    "formal_verification": false,
++    "human_peer_review": false,
++    "reviewer_type": "independent AI assistant"
++  },
+   "source_checks": "All five freshly retrieved public files match author pins. Three decisive PDF pages textually and visually reinspected."
+ }
+--- a/INDEPENDENT_AUDIT.md
++++ b/INDEPENDENT_AUDIT.md
+@@ -4,9 +4,13 @@
+ 
+ ## Decision
+ 
+-**Accept the original frozen packet unchanged as a bounded partial investigation.** Proposed disposition remains `stalled_partial`, equivalent to an unresolved/unsolved queue entry, with 3 of 5 approaches used. No proof or counterexample to the original global question has been supplied. No novelty claim is accepted or requested. No correction patch is necessary. The independent acceptance in this packet supersedes the original packet's historical “audit pending” label without editing any original byte.
++**Accept the original frozen packet unchanged as a bounded partial investigation.** Proposed disposition remains `stalled_partial`, equivalent to an unresolved/unsolved queue entry, with 3 of 5 approaches used. No proof or counterexample to the original global question has been supplied. No novelty claim is accepted or requested. No mathematical correction to the author packet is necessary. A provenance-only correction to this audit is documented in `PROVENANCE_CORRECTION.md` and its actual patch. The independent acceptance in this packet supersedes the original packet's historical “audit pending” label without editing any original byte.
+ 
+ The accepted local theorem is correct: in the stated flat-face, edge-to-edge model, a four-valent vertex cannot have two cyclically adjacent incident edges whose other endpoints are trivalent. Its stated graph corollary, incidence identities, trivalent rigidity calculation, and flexible local-star construction also pass review. These findings do not establish a dodecahedral decomposition.
++
++## Review provenance
++
++This is an independent AI mathematical, source, and artifact review, supplemented by separately authored executable checks. It is not human peer review or formal verification. Earlier audit metadata incorrectly called this human review; that label has been corrected without changing the mathematical findings or any author artifact.
+ 
+ ## 1. Exact target and provenance
+ 
+@@ -16,7 +20,7 @@
+ 
+ The complete catalog, problem, and report corpora were independently hashed and parsed, not replaced with selected-record extracts. Their sizes are respectively 21,735,099; 68,931,837; and 80,334,822 bytes, with 15,458; 15,458; and 6,701 records. Their hashes match the author's supplied pins; full details are in `audit_replay_results.json`. Unique target records agree on rank, ID, problem number, and title.
+ 
+-The two-element whole problem/report list, serialized with `json.dumps(..., sort_keys=True)` and otherwise default options, is 3,943 bytes and hashes to `8b339393cebf5ccaee4df9fcd5290875ff54c34aa811cee58f9041e9d54df4c5`. The statement hash and whole inherited-report hash also match independently. A change to a nonstatement record field changes the pair digest. The inherited report was manually read in full: it contains literature/status triage, not a substantive proof attempt. Its unsubstantiated aside about an “icosahedron-type” classification is not adopted as a theorem or used in this audit.
++The two-element whole problem/report list, serialized with `json.dumps(..., sort_keys=True)` and otherwise default options, is 3,943 bytes and hashes to `8b339393cebf5ccaee4df9fcd5290875ff54c34aa811cee58f9041e9d54df4c5`. The statement hash and whole inherited-report hash also match independently. A change to a nonstatement record field changes the pair digest. The inherited report was independently read in full by an AI reviewer: it contains literature/status triage, not a substantive proof attempt. Its unsubstantiated aside about an “icosahedron-type” classification is not adopted as a theorem or used in this audit.
+ 
+ This audit does not refresh GitHub repository search or certify a later queue state. The queue blob and searches in the author packet remain historical observations. No repository, queue, or external document was modified.
+ 
+--- a/README.md
++++ b/README.md
+@@ -1,6 +1,8 @@
+ # Independent audit: regular-pentagon surfaces
+ 
+-Decision: original author packet accepted unchanged as a bounded partial, unresolved 3/5. No correction was required and no global resolution or novelty claim is made.
++Decision: original author packet accepted unchanged as a bounded partial, unresolved 3/5. No author mathematical correction was required and no global resolution or novelty claim is made. This updated packet corrects the previous audit's false human-review label; see `PROVENANCE_CORRECTION.md` and `provenance_correction.patch`.
++
++Review provenance: independent AI review with executable checks. No human peer review or formal verification has been performed.
+ 
+ Start with `INDEPENDENT_AUDIT.md` for the complete mathematical/source/artifact review and `EXACT_ACCEPTANCE.json` for the exact accepted object and scope.
+ 
+--- a/audit_replay.py
++++ b/audit_replay.py
+@@ -50,7 +50,7 @@
+   rh=hashlib.sha256(json.dumps(rr,sort_keys=True).encode()).hexdigest();ok('inherited_whole_report_hash',rh=='d9242514a6fd82934ead5264a76d719aa2d12cb852076f7b922022d671bab893')
+   altered=copy.deepcopy(r);altered['view_count']=int(altered['view_count'])+1
+   ok('nonstatement_field_mutation_detected',hashlib.sha256(json.dumps([altered,rr],sort_keys=True).encode()).hexdigest()!=ph)
+-  corpus_report={'verified':True,'corpora':cr,'pair_bytes':len(pair),'pair_sha256':ph,'statement_sha256':sh,'report_sha256':rh,'prior_work_gate':'Manually inspected inherited report: literature triage only; no proof attempt.'}
++  corpus_report={'verified':True,'corpora':cr,'pair_bytes':len(pair),'pair_sha256':ph,'statement_sha256':sh,'report_sha256':rh,'prior_work_gate':'Independent AI inspection of inherited report: literature triage only; no proof attempt.'}
+  if args.source_dir is not None:forwarded+=['--source-dir',str(args.source_dir.resolve())]
+  outputs=[];bootstrap_outputs=[]
+  with tempfile.TemporaryDirectory(prefix='pentagon independent unrelated ') as root:
+@@ -101,6 +101,6 @@
+   bad=raw.replace(b'F(1,8),F(1,8)',b'F(1,7),F(1,8)');require(bad!=raw,'independent mutation target');dest.write_bytes(bad)
+   for flags,label in [(['-I'],'normal'),(['-I','-O'],'optimized')]:
+    x=subprocess.run([sys.executable]+flags+[str(dest)],cwd=unrelated,capture_output=True,text=True,timeout=120);ok('independent_wrong_determinant_rejected_'+label,x.returncode!=0)
+- out={'problem_id':5500072,'accepted_original_unchanged':True,'outcome':'stalled_partial','approaches_used':3,'full_resolution':False,'tests_passed':len(tests),'tests':tests,'independent_corpus_verification':corpus_report,'author_diagnostic_result_sha256':hashlib.sha256((json.dumps(outputs[0],indent=2,sort_keys=True)+'\n').encode()).hexdigest(),'source_bytes_verified':bool(args.source_dir),'scope':'Algebra and artifact tests supplement the human mathematical/source audit; not a global solver or formal geometry proof.'}
++ out={'problem_id':5500072,'accepted_original_unchanged':True,'outcome':'stalled_partial','approaches_used':3,'full_resolution':False,'tests_passed':len(tests),'tests':tests,'independent_corpus_verification':corpus_report,'author_diagnostic_result_sha256':hashlib.sha256((json.dumps(outputs[0],indent=2,sort_keys=True)+'\n').encode()).hexdigest(),'source_bytes_verified':bool(args.source_dir),'scope':'Algebra and artifact tests supplement independent AI mathematical/source review; not human peer review, formal verification, or a global solver.'}
+  print(json.dumps(out,indent=2,sort_keys=True))
+ if __name__=='__main__':main()
+--- a/audit_replay_results.json
++++ b/audit_replay_results.json
+@@ -23,14 +23,14 @@
+     },
+     "pair_bytes": 3943,
+     "pair_sha256": "8b339393cebf5ccaee4df9fcd5290875ff54c34aa811cee58f9041e9d54df4c5",
+-    "prior_work_gate": "Manually inspected inherited report: literature triage only; no proof attempt.",
++    "prior_work_gate": "Independent AI inspection of inherited report: literature triage only; no proof attempt.",
+     "report_sha256": "d9242514a6fd82934ead5264a76d719aa2d12cb852076f7b922022d671bab893",
+     "statement_sha256": "ec51f78f7a8e69659f97579b1a600cd42a60fbb069718357dbc2bf46f808f045",
+     "verified": true
+   },
+   "outcome": "stalled_partial",
+   "problem_id": 5500072,
+-  "scope": "Algebra and artifact tests supplement the human mathematical/source audit; not a global solver or formal geometry proof.",
++  "scope": "Algebra and artifact tests supplement independent AI mathematical/source review; not human peer review, formal verification, or a global solver.",
+   "source_bytes_verified": true,
+   "tests": [
+     {
