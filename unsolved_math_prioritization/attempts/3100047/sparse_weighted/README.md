@@ -1,0 +1,34 @@
+# Pressing balance endpoint sparse family and weighted context partials
+
+This separate packet for problem 3100047 / AMR-030-0047 (row 1747) combines two complete authored partial-result reports and their two complete, separate independent mathematical audits. Both original packets passed their final sealed audits. The general pressing 1/3–2/3 conjecture remains open.
+
+## Results and exact limits
+
+- The endpoint-exchange normal form gives a necessary-and-sufficient test for a specified final column. Under isolated-root consecutive-entry constraints, it also gives the exact condition for existence of some extension column and the exact affine solution count. The columns vary the matrix; these are not word counts or instructional-class weights in one fixed matrix. Distances one and two are excluded, and distance three always has an extension.
+- For every m at least two, an explicit nonsingular symmetric binary matrix of order 2m has exactly m successful words, m singleton instructional classes and connected variable-order graph K_(2,2m−2). Its pair probabilities are r/m and its largest minority probability is floor(m/2)/m. This is an infinite balanced subclass, not a counterexample. It rules out bounded-singleton-class and fixed-order-factor explanations for this particular connected family. The moving-block criterion requires the whole uniformly sampled language.
+- The four-letter theorem classifies a residual with the stated three successes and two failures into exactly two possible four-word languages, each with two instructional classes of size two. In arbitrary ambient dimension, one fixed ordered quadruple has exact local-word weight F(S)G(S union Q) in every qualifying prefix-set context. These contexts are disjoint. With W their summed weight, the covered family has 4W words and every fixed cross-pair has 2W occurrences in each direction. Coverage at least two thirds is sufficient for balance; no universal coverage bound or necessity claim is made.
+- The five-vertex threshold example has six complete successful words, W=1, coverage exactly 2/3 and one pair probability exactly 1/3. The four-word abstract language on five labels is complete for singleton-addition chains and has no balanced pair, but the local classification proves that no pressing matrix realizes that exact language, even with common fixed prefix/suffix padding. It has four complete singleton-addition chains and seven arbitrary maximal inclusion-poset chains; these are different notions.
+
+## Complete mathematical reports
+
+Read the full [endpoint and sparse-family proof](ENDPOINT_NORMAL_FORM_AND_SPARSE_FAMILY.md) and its [separate full audit](SPARSE_FAMILY_AUDIT.md), then the full [four-letter weighted proof](FOUR_LETTER_WEIGHTED_IDENTITY.md) and its [separate full audit](WEIGHTED_CONTEXT_AUDIT.md). The summaries in this README do not replace any proof or audit. Every mathematical argument, explicit small matrix, exact counterexample, boundary case, independent derivation and substantive audit finding is retained.
+
+The weighted input is the corrected final edition accepted after replacing unqualified maximal-inclusion-chain terminology by complete singleton-addition-chain terminology. The historical initial report is not the accepted input. The sparse report needed no correction. This public edition introduces no mathematical edits; it only clarifies distribution and provenance locators. [EDITORIAL_MAP.json](EDITORIAL_MAP.json) records each exact changed byte range and both texts, and the separately sealed preparation verifies complete reconstruction in both directions. [ORIGINAL_INPUT_PINS.json](ORIGINAL_INPUT_PINS.json) gives the accepted input identities, both independent audit identities and evidence hashes.
+
+## Verification and source context
+
+The two full audits contain the finite-check methods, exact scope, independent derivations, zero-count boundary examples, normal/-O/-OO replay results and controls. [VERIFICATION.json](VERIFICATION.json) preserves aggregate counts and match results. The sparse audit includes 46,154 endpoint-column checks, 10,650 endpoint intervals in 1,098 arbitrary roots, and 32,956 affine-dimension controls; the weighted audit includes all 1,024 symmetric four-vertex matrices plus 90 authored and 30 additional ambient examples. These finite computations corroborate the proofs; they do not prove the unrestricted conjecture.
+
+Both new mathematical reports are self-contained for their claimed results. The direct probability-question source is Joshua Cooper's [Combinatorial Problems I Like](https://people.math.sc.edu/cooper/combprob.html). Historical terminology context includes Cooper, Gartland and Whitlatch's [A New Characterization of V-Posets](https://people.math.sc.edu/cooper/VPosets.pdf), and the [official arXiv entry](https://arxiv.org/abs/1810.07276). [SOURCE_METADATA.json](SOURCE_METADATA.json) carries the separately accepted base edition's public source identities and inspection history, clearly distinguished from any new retrieval or source audit. No external source document or source-text extract is distributed.
+
+## Acceptance and review meaning
+
+[ACCEPTANCE.json](ACCEPTANCE.json) records both final independent original-packet acceptances, their exact report and audit pins, and their limitations. Original audit acceptance is not a claim that this separate public editorial edition has already passed an additional independent edition review. That review remains a separate gate. The historical audit statements about no repository changes refer to the audits, not to a future authorized publication.
+
+This is AI-assisted, unrefereed work. Independent internal AI mathematical review does not mean external human peer review, journal acceptance, formal proof certification or priority clearance. No novelty or complete literature survey is claimed. The remaining problem is to control actual fixed-matrix instructional-class mixtures or the successful words outside the weighted contexts; neither new partial result supplies that general control.
+
+## Closed contents
+
+[MANIFEST.json](MANIFEST.json) is the closed public inventory and pins every other public file; an external preparation seal pins that manifest. Only these public prose and metadata files belong to this packet. Programs, raw per-case matrix datasets or representative collections, raw results and certificates, copied source documents, private sources, personal information and coordination records are excluded. Small explicit matrices and packed-row examples that state or verify the authored theorems and boundary cases remain proof content. No executable replay package accompanies this edition.
+
+This directory is separate from the base pressing-balance packet and the earlier mixture/exchange supplement. Preparing it changes neither those frozen editions nor the repository or queue.

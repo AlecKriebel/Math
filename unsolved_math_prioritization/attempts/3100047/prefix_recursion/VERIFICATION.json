@@ -1,0 +1,169 @@
+{
+  "schema": "prefix-recursion-aggregate-verification-v1",
+  "date_utc": "2026-10-12",
+  "scope": "Aggregate historical audit coverage and fresh replay matches; no per-case result collection or executable replay package.",
+  "independent_method": "Closed-form family construction, rank-by-rank singleton-addition propagation and direct rank-one binary pressing; no producer code imports. All checks use explicit exceptions.",
+  "construction_range": {
+    "T_min": 3,
+    "T_max": 48,
+    "cases": 46,
+    "n_min": 3,
+    "n_max": 93,
+    "checks": [
+      "exact language equality",
+      "cardinality",
+      "state and edge counts",
+      "pair counts",
+      "inversion disjointness",
+      "identity membership",
+      "recurrence",
+      "every cross-type prefix edge"
+    ]
+  },
+  "full_permutation_scans": [
+    {
+      "n": 3,
+      "permutations_scanned": 6
+    },
+    {
+      "n": 5,
+      "permutations_scanned": 120
+    },
+    {
+      "n": 7,
+      "permutations_scanned": 5040
+    },
+    {
+      "n": 9,
+      "permutations_scanned": 362880
+    }
+  ],
+  "seed_family_census": [
+    {
+      "all_identity_containing_disjoint_families": 9,
+      "closed_seed_families_checked": 5,
+      "largest_seed_cardinality": 3,
+      "n": 3
+    },
+    {
+      "all_identity_containing_disjoint_families": 92,
+      "closed_seed_families_checked": 20,
+      "largest_seed_cardinality": 3,
+      "n": 4
+    }
+  ],
+  "identity_containing_subfamily_checks": {
+    "T_min": 3,
+    "T_max": 10,
+    "families_total": 1020
+  },
+  "matrix_checks": {
+    "five_label_exact_target_realizations": 0,
+    "five_label_fixed_suffix_forcing_cases": 32,
+    "five_label_identity_successful": 1024,
+    "five_label_symmetric_matrices": 32768,
+    "four_label_symmetric_matrices": 1024,
+    "support_hypothesis_matrices": 6
+  },
+  "exact_four_letter_classifications": 2,
+  "negative_controls": {
+    "n2_extension_has_extra_word": true,
+    "identity_deleted_family_can_fail_closure": true,
+    "intentional_explicit_validation_failure_detected": true
+  },
+  "original_independent_output": {
+    "bytes": 10129,
+    "sha256": "3bbb6244902ea477f59258301b21dbe71efb8d039b6e207ba967f0279162108d"
+  },
+  "fresh_independent_replay": {
+    "normal": {
+      "match": "BYTE_IDENTICAL",
+      "output": {
+        "bytes": 10129,
+        "sha256": "3bbb6244902ea477f59258301b21dbe71efb8d039b6e207ba967f0279162108d"
+      }
+    },
+    "O": {
+      "match": "BYTE_IDENTICAL",
+      "output": {
+        "bytes": 10129,
+        "sha256": "3bbb6244902ea477f59258301b21dbe71efb8d039b6e207ba967f0279162108d"
+      }
+    },
+    "OO": {
+      "match": "BYTE_IDENTICAL",
+      "output": {
+        "bytes": 10129,
+        "sha256": "3bbb6244902ea477f59258301b21dbe71efb8d039b6e207ba967f0279162108d"
+      }
+    }
+  },
+  "original_audit_seal_fresh_replay": {
+    "normal": {
+      "audit_files_verified": 24,
+      "independent_results_sha256": "3bbb6244902ea477f59258301b21dbe71efb8d039b6e207ba967f0279162108d",
+      "input_files_verified": 17,
+      "producer_files_verified": 14,
+      "verdict": "PASS"
+    },
+    "O": {
+      "audit_files_verified": 24,
+      "independent_results_sha256": "3bbb6244902ea477f59258301b21dbe71efb8d039b6e207ba967f0279162108d",
+      "input_files_verified": 17,
+      "producer_files_verified": 14,
+      "verdict": "PASS"
+    },
+    "OO": {
+      "audit_files_verified": 24,
+      "independent_results_sha256": "3bbb6244902ea477f59258301b21dbe71efb8d039b6e207ba967f0279162108d",
+      "input_files_verified": 17,
+      "producer_files_verified": 14,
+      "verdict": "PASS"
+    }
+  },
+  "historical_copy_only_mutation_controls": {
+    "changed_manifest": {
+      "O": "REJECTED",
+      "OO": "REJECTED",
+      "normal": "REJECTED"
+    },
+    "changed_proof": {
+      "O": "REJECTED",
+      "OO": "REJECTED",
+      "normal": "REJECTED"
+    },
+    "changed_result": {
+      "O": "REJECTED",
+      "OO": "REJECTED",
+      "normal": "REJECTED"
+    },
+    "missing_input": {
+      "O": "REJECTED",
+      "OO": "REJECTED",
+      "normal": "REJECTED"
+    },
+    "unmanifested_file": {
+      "O": "REJECTED",
+      "OO": "REJECTED",
+      "normal": "REJECTED"
+    }
+  },
+  "producer_verification": {
+    "recursive_cases_m_min": 1,
+    "recursive_cases_m_max": 32,
+    "direct_permutation_dimensions": [
+      7,
+      9
+    ],
+    "optimization_caveat": "Producer verifiers use assertions. Equal optimized producer outputs alone do not prove those assertions executed. Acceptance rests on the written proof and independent optimization-safe checks."
+  },
+  "discovery_search": {
+    "dimension": 7,
+    "search_bound_seconds": 100,
+    "process_cap_seconds": 115,
+    "stopped_at_first_candidate": true,
+    "recursion_nodes": 6,
+    "exhaustive_family_census": false
+  },
+  "proof_dependency": "Finite checks corroborate the complete arbitrary-cardinality proof and do not replace it."
+}
