@@ -1,0 +1,101 @@
+--- a/FILES_SHA256.json
++++ b/FILES_SHA256.json
+@@ -1,15 +1,15 @@
+ {
+   "PROOF.md": {
+-    "bytes": 5349,
+-    "sha256": "e20102a5e5cd18be6f3d8b20923bdbd2c558fee45be31fd9100a46ae9c2a134f"
++    "bytes": 5940,
++    "sha256": "da4e62c400798c1e49be63644420c240bcc2c845af864a694aed2dc8272307bd"
+   },
+   "README.md": {
+-    "bytes": 1133,
+-    "sha256": "70e67daabdb82dd082420459c41f49c81cd58eb316f810246412e140a980ac31"
++    "bytes": 1273,
++    "sha256": "e34c3566627eeae3c15376e3ce56bc7faeff255c874a9d00cefd30ccc1149f53"
+   },
+   "REPORT.md": {
+-    "bytes": 4366,
+-    "sha256": "69dc0f1ad9aae93649eea9894ad7a3c822e8051bfc4e12b8e37751a5ed1e70cb"
++    "bytes": 4977,
++    "sha256": "df9ec161c4c7f0508ca777152914b9940d8012e5a80c9f529297a4655d434141"
+   },
+   "research_log.json": {
+     "bytes": 2946,
+@@ -20,8 +20,8 @@
+     "sha256": "fe80c63efcba5705e0ec0ec518d3006ef08e1fbaccf111fc16b14fa394368721"
+   },
+   "status.json": {
+-    "bytes": 638,
+-    "sha256": "b2e77dec5911080dd4b453294ee933cd545e3154d27483c44f02263ca79a591e"
++    "bytes": 672,
++    "sha256": "0a08521fb94e052ec3c0896a1e97b022ab8680b9d3b3008d4784ecfae25a4049"
+   },
+   "verification_metadata.json": {
+     "bytes": 1219,
+--- a/PROOF.md
++++ b/PROOF.md
+@@ -2,7 +2,7 @@
+ 
+ ## Scope and imported facts
+ 
+-The target concerns closed orientable topological four-manifolds with good fundamental group. The two given manifolds are simple-homotopy equivalent and become homeomorphic after connected sums with copies of S² × S². The requested map is existential: some simple equivalence from the second manifold to the first must belong to the Wall orbit of the identity. K3, Problem 4.52, is the source of this formulation [K3]. Orientations below are chosen so that the equivalences under discussion have degree one.
++The target concerns closed orientable topological four-manifolds with good fundamental group. The two given manifolds are simple-homotopy equivalent and become homeomorphic after connected sums with copies of S² × S². The requested map is existential: some simple equivalence from the second manifold to the first must belong to the Wall orbit of the identity. K3, Problem 4.52, is the source of this formulation [K3]. Fix an orientation on M. For the literal orientable formulation, each candidate map N → M induces the orientation on its domain, so both choices on the underlying N are allowed. If orientations on both manifolds are prescribed instead, the degree-one formulation is a separate, explicitly restricted version.
+ 
+ Write Sˢ_TOP(M) for the simple topological structure set, η for its normal-invariant map, and 0 for the invariant of the identity. The good-group topological surgery sequence gives
+ 
+@@ -12,11 +12,13 @@
+ 
+ ## Proposition 1 Exact orbit criterion
+ 
+-Fix a simple equivalence f: N → M. Let Autˢ₊(M) be the orientation-preserving simple self-equivalences of M, taken up to homotopy. Then the target conclusion for this pair is equivalent to
++Fix a simple equivalence f: N → M. Let Autˢ(M) be all simple self-equivalences of M, taken up to homotopy. Use the simple structure set of maps to M, with domain orientations transported by their maps. Then the target conclusion for this pair is equivalent to
+ 
+-0 ∈ {η(h ∘ f): h ∈ Autˢ₊(M)}.
++0 ∈ {η(h ∘ f): h ∈ Autˢ(M)}.
+ 
+-Proof. Every h ∘ f is a simple equivalence. Conversely, given another degree-one simple equivalence g: N → M, choose a homotopy inverse j of f. Its Whitehead torsion is zero by the inverse formula. The composite h = g ∘ j is consequently simple, degree one, and satisfies h ∘ f ≃ g. Thus the displayed set is exactly the set of normal invariants of all allowable equivalences N → M. Apply surgery exactness. ∎
++Proof. Every h ∘ f is a simple equivalence. Conversely, given any other simple equivalence g: N → M, choose a homotopy inverse j of f. Its Whitehead torsion is zero by the inverse formula. The composite h = g ∘ j is consequently simple and satisfies h ∘ f ≃ g. Thus the displayed set is exactly the set of normal invariants of all allowable equivalences N → M. Apply surgery exactness. ∎
++
++For a fixed-oriented version in which f and every allowable g have degree one, the same proof uses precisely the orientation-preserving subgroup Autˢ₊(M). Restricting to this subgroup without fixing the oriented version would silently omit the other orientation branch. No claim that the two branches coincide is needed.
+ 
+ This criterion deliberately avoids treating η as an untwisted additive homomorphism on self-equivalences. In particular, η(f) ≠ 0 for one chosen f cannot refute the question.
+ 
+--- a/README.md
++++ b/README.md
+@@ -10,4 +10,4 @@
+ - `verification_metadata.json`: hashes, sizes, and identity checks; no source contents
+ - `verify_packet.py`: fail-closed integrity and scope checker, not a mathematical proof verifier
+ 
+-Run `python -B verify_packet.py` from this directory. The same checks work under `python -O -B`. An external manifest and frozen archive separately bind the release bytes. Independent mathematical review is still required.
++Run `python -B verify_packet.py` from this directory. The same checks work under `python -O -B`. An external manifest and frozen archive separately bind the release bytes. The accompanying independent audit accepts this orientation-clarified derivative only as an unsolved partial result. This is an AI audit, not human peer review or a formal proof certificate.
+--- a/REPORT.md
++++ b/REPORT.md
+@@ -12,7 +12,7 @@
+ 
+ ## Approaches and the stopping point
+ 
+-1. **Surgery exactness and map quantifiers.** The exact criterion is proved in Proposition 1. Replacing “some map” by “the initial map” is invalid. Producing a single nonzero invariant is consequently insufficient for a counterexample.
++1. **Surgery exactness and map quantifiers.** The exact criterion is proved in Proposition 1. The corrected formulation uses all simple self-equivalences for the literal orientable problem; the orientation-preserving subgroup applies to the separately specified fixed-oriented variant. Replacing “some map” by “the initial map” is invalid. Producing a single nonzero invariant is consequently insufficient for a counterexample.
+ 2. **Spherical normal-invariant cancellation.** Proposition 2 proves a restricted consequence with Wh = 0 and a w₂-trivial spherical invariant. The assembly-injective almost-spin case and the cited torsion-free three-manifold-group result supply prior positive cases. The required extra hypotheses do not cover the target's generality.
+ 3. **Descent from stable classification.** Even in the orientation-compatible setting of normal-type bordism, forgetting to the stable classification does not supply a bordism over the unstabilized target M. A stable homeomorphism need not represent the stabilization of the selected f, or of a selected h ∘ f. Neither the needed realization by a simple self-equivalence nor a suitable cancellation theorem was obtained. This is the exact gap, not a proof of impossibility.
+ 
+@@ -32,3 +32,7 @@
+ ## Verification and publication boundary
+ 
+ The portable checker verifies packet integrity and conservative status fields. It does not certify the imported surgery theorems, completeness of literature searches, or the mathematical truth of the prose. No dataset contents, source PDFs, extracted source text, or private coordination material belong in this packet. Public source hashes and inspection metadata are supplied separately from those source materials.
++
++## Independent-audit clarification
++
++The frozen author packet is preserved separately. This derivative clarifies orientation quantifiers in Proposition 1 and makes the good-group restriction explicit in the suggested summary. The original proof covered the fixed-oriented branch; no example disproving that branch or the source problem is asserted. The three-approach accounting and unsolved disposition are unchanged.
+--- a/status.json
++++ b/status.json
+@@ -10,6 +10,6 @@
+   "turns_used": 3,
+   "turn_limit": 5,
+   "stop_reason": "stalled_at_unstabilized_simple_self_equivalence_normal_invariant_realization",
+-  "audit_status": "author_packet_awaiting_independent_audit",
+-  "suggested_queue_findings": "Exact Wall-orbit/normal-invariant reduction; prior positive torsion-free 3-manifold-group cases; general simple-self-equivalence cancellation gap remains. No new solution."
++  "audit_status": "independent_audit_accepted_as_partial_after_orientation_clarification",
++  "suggested_queue_findings": "Exact Wall-orbit/normal-invariant reduction; prior positive good torsion-free 3-manifold-group cases; general simple-self-equivalence cancellation gap remains. No new solution."
+ }
