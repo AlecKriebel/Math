@@ -1,0 +1,13 @@
+# Existing publication accounting proposal01
+
+## 2026-10-22T08:22:49.287216+00:00 — proposal preparation10%; overall79%
+
+Scope is proposal-only accounting for24 explicitly authorized unique result rows:10 batchC,3 batchF,repaired1049 and10 follow-on PRs. Root corrected its initial25 arithmetic;1210 remains one combined D/F row. Exclude630, superseded1049hold, and unadopted1230. Preserve exact adopted literal arrays, blank columnB, existing DOI and every scope/attribution/source-access qualification. No runner, full accounting matrix, action freeze, CASE, service call/write, new publication, reuse of1131 clearance or source-archive copy. B1+1198 separate16-row work is untouched. Eventual action requires a fresh full numeric43-column ledger after any16-row append and root adoption of all semantic leads.
+
+## 2026-10-22T08:33:48.215462+00:00 — proposal preparation85%; overall79%
+
+Read all selected root acceptances/final dispositions and exact literal sources. Root corrected24-count arithmetic, then separately adopted1230 as genuine25th row. Root authorized new1049 Notes draft only, retainingA/B/C and requiring literal adoption; all other24 rows are selected literal copies. Root revision02 repaired1207/1222 Unicode without modifying originals. Exact root-seal/original-leaf pin checks passed for every row; only local data/provenance checks, no mathematical/operational matrix, service calls or action freeze. Historical resolver/source-access qualifications and stale1210/1217 disposition metadata explicitly preserved. Final readback/source immutability checks remain.
+
+## 2026-10-22T08:38:09.471344+00:00 — proposal preparation100%; overall79%
+
+Twenty-five unique four-string rows read back, everyB empty, every principalDOI checked against an explicit adopted identity map. Twenty-four complete arrays equal selected root-adopted literal sources;1049 preservesA/B/C with newly draftedD requiring root wording adoption. All25 sealed-original leaf bindings and63 referenced metadata/proposal/root file pins reverified; both1131 preservation pins unchanged. Root revision02 Unicode repairs used verbatim;24-count correction/new1230 authorization chronology explicit. Source-access, domain/scope/attribution limitations and stale1210/1217 metadata preserved without old-file edits. No code/runner/full accounting matrix/action freeze/source archive/ledger body, service calls, CASE or provider writes. Future action requires new whole review, fresh all43-column ledger after any16-rowB1+1198append and explicit root semantic-lead adoption. This family is complete as a reviewable proposal only, not readiness.

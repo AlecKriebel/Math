@@ -1,0 +1,9 @@
+# PR #1239 exact undirected-Laplacian recognition candidate
+
+Root read entire pinned PROOF.md15651 and ACCEPTANCE.json2008 and body. All eight blobs and no-QUEUE comparison match, and fresh live head/body were checked before this entry. Fresh GWS07:46:17UTC191-row check has no target lead.
+
+Fresh original workshop recorder234256 bytes SHA256d50a703dcc3e77f7f2d34d80fb5fe5cbcf3581e819982231ea4ed45f3359d7bd returned200 at07:58:04UTC; root read actual pages8–9. Problem38 asks when row operations on a nonsingular integer matrix can yield an undirected graph Laplacian. It does not specify efficiency or a separate stronger structural invariant. The fixed embedded row lattice, integral undirected weighted multigraph, sink convention and unimodular LEFT operations must be checked against the standard directed-realization convention.
+
+The PR claims an exact all-rank necessary/sufficient finite recognition algorithm: every nonloop parallel class has multiplicity at most D=abs(detM) by spanning-tree exchange. Enumerate all n(n+1)/2 multiplicities in0..D and test equality of the fixed lattice using adjugate membership and equal determinant. Loops cancel. It also proves a rank-two arithmetic criterion and index-four embedded obstructions; Smith group alone is insufficient. This is a full recognition criterion under the literal decidability interpretation, with no efficiency, universal conceptual-classification quality or novelty accepted. The PR expressly withholds an unqualified qualitative-workshop-resolution claim; that caveat is preserved, not used to invent an unstated quantitative requirement. Independent original-convention/scope, complete proof and broad priority audits are required before any promotion. No publication/merge/ledger mutation.
+
+Primary recovery receipt remains private under private/pr1239_original_root_retry01; no third-party full text is selected for publication. Overall sweep79%.

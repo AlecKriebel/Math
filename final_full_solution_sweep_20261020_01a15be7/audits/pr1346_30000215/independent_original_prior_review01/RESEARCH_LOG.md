@@ -1,0 +1,9 @@
+# Research log
+
+2026-10-22T12:21:33.396223+00:00 — Fresh read-only43-column numeric-gid duplicate check completed before substantive mathematics. Broad crossing leads distinct; no exact alias. Audit5%; overall80%.
+
+2026-10-22T12:23:29.901608+00:00 — Actual PR base recovered (an initial current-checkout merge-base comparison was correctly rejected), all28 immutable blobs and body pinned. Original OWR983/physical59 and actual Székely2008 full criterion read; theorem explicitly equivalent to independent-odd optimality, with adjacent/repeated crossings allowed for comparator normal drawings. PSS2006 manuscript directly credits prior K5/K33 values; 2010 theorem distinguishes iocr<=2 from ocr<=3. Audit45%; overall80%.
+
+2026-10-22T12:29:05.037178+00:00 — Family proof independently reconstructed with full simultaneous incidence-variable parity, exact restriction multiplicity and explicit no-triple geometry. Exact diagnostics passed normal/-O/-OO identically; thirteen earlier plus1337 packets preserved. Prior published criterion and known K33/K5 values authenticate bare existence coverage, while full-family publication priority remains unestablished. Audit80%; overall80%.
+
+2026-10-22T12:36:02.158649+00:00 — Source-proof falsification found a D/D-prime optimality-label slip on actual AMC printed35, visually confirmed. Exact two-disjoint-edge diagnostic and direct bit comparison repair the reading without changing Theorem1; no author-issued erratum asserted. Full submitted family accepted. Only the previously resolved bare-existence scope receives a qualified prior-paper row proposal with joint credit; full-family publication/priority remains unestablished, and no new-family/source-only row is proposed. Fourteen earlier packets/834 members preserved. Audit100%; overall80%. Complete physical seal, including every nested manifest and private source, follows; footprint below5MiB.

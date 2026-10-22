@@ -1,0 +1,11 @@
+# Independent final package adversary 03
+
+- 2026-10-21T06:49:36.429587+00:00 — 0% complete. Bound exact five release artifacts before prior opinions; independent proof/scope reconstruction begins. Target claim treated as a hypothesis. No canonical or account mutations authorized.
+
+- 2026-10-21T06:51:31.659978+00:00 — 25% complete. Independently reconstructed every proof step before previous opinions; found no analytic gap. Explicit binary-k Hall counterexample rejects the row/column-only shortcut. Exact source request and type-0.7 index recovered. Priority/body, full artifact and operational verification remain.
+
+- 2026-10-21T06:57:21.836852+00:00 — 65% complete. Exact extracted replay,171 guards, optional independent outputs, eight nested manifests and actual Git custody verified. All five pages visually clean. Primary HZ theorem pages, KMN report directed hypotheses and Aldous2005 realism slide independently fetched/rendered/read; final1993 journal PDF access returns403. Earlier complete reports/seals read only after the independent derivation. Full operational adversarial simulations and final source/metadata checks remain.
+
+- 2026-10-21T07:06:08.736144+00:00 — 88% complete.42 operational controls and16 independent integration-preservation controls passed;276 fresh unapproved replay scalar mutations rejected. Actual historical exemption metadata+complete-file hashes rechecked against original authenticated snapshot without emitting metadata. Twelve fresh targeted searches plus actual primary bodies support only the bounded comparison. Official Tectonic rebuild matches text/all5 page PNGs. No material finding established; public-byte verifier tests, final metadata/source rehash and sealing remain. Parent capacity interruption is operational only and does not constitute completion; continuing from preserved evidence.
+
+- 2026-10-21T07:11:55.429316+00:00 — 100% complete. Finished whole-package adversary03. Nineteen public verifier controls passed; no unresolved substantive concern in exact five artifacts/pinned helpers. Final canonical/extracted hashes unchanged. Full report and machine verdict finalized; sealing all retained evidence. No lifecycle authority/live outcomes, worldwide novelty, canonical resolution, universal runtime portability or human review certified.

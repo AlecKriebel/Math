@@ -1,0 +1,380 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\C}{\mathbb C}
+\newcommand{\ord}{\operatorname{ord}_t}
+\newcommand{\Nash}{\overline N}
+\newcommand{\Cont}{\overline{\operatorname{Cont}}}
+\newcommand{\A}{\mathcal A}
+\renewcommand{\labelitemi}{\(\bullet\)}
+\title{A free-chain counterexample to a Nash-intersection conjecture}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{22 October 2026\\\small Version 1.0.0 --- unrefereed preprint}
+\begin{document}
+\maketitle
+\begin{abstract}
+We compute the intersection of the closed Nash sets of the complete family
+of prime divisors obtained by \(n\) successive free point blowups over
+\((\C^2,0)\), after fixing a prefix of \(k\) centers, where \(2\leq k<n\).
+In suitable coordinates the intersection is
+\(\{\ord x\geq\lceil n/k\rceil,\ \ord y\geq n\}\).
+For five blowups, fixing two or three centers gives the thresholds
+\((3,5)\) or \((2,5)\). Neither is \(q(1,j)\) for positive integers \(q,j\).
+These examples disprove the specified-reference-multiple assertion in
+Conjecture~1 of Fern\'andez de Bobadilla, Pe Pereira and Popescu-Pampu,
+under each contact and indexing convention explicitly treated here.
+The source's bare equivalence symbol is undefined and its indexing is
+inconsistent; no unique author-intended correction is asserted.
+The intersections are themselves maximal divisorial sets for other
+toric divisors. Thus the result does not disprove an assertion allowing
+an arbitrary divisor, or solve the generalized Nash problem.
+\end{abstract}
+
+\section{The question and the precise negative answer}
+
+For a prime exceptional divisor \(E\) over \((\C^2,0)\), let \(\Nash_E\)
+be the Zariski closure of the nonconstant arcs whose lifts to its minimal
+point-blowup model meet \(E\). We work throughout with closed sets of arcs,
+equivalently reduced supports, in the centered arc space
+\[
+ \A=\{(x(t),y(t)):x,y\in t\C[[t]]\},\qquad \ord 0=+\infty.
+\]
+All cylinders below are defined by finitely many coefficient equations.
+For \(q\geq1\), write \(\Cont^q(E)\) for the closure of arcs whose lifts
+meet \(E\) with exact intersection multiplicity \(q\). We will also check
+the convention using multiplicity at least \(q\).
+
+Conjecture~1 in \cite[p.~31]{original}, and in the workshop account
+\cite[p.~2679]{workshop}, proposes that an intersection of Nash sets
+of divisors of the same combinatorial type with a prescribed common
+prefix equals \(\Cont^q(E_p)\), where \(p\) is a chosen free point and
+\(E_p\) is the divisor created by blowing it up. The surrounding
+definition in \cite[p.~30]{original} defines \(E'\equiv_{\geq i}E\) by
+equal combinatorial type and at least \(i\) common blown-up centers.
+The conjecture itself prints a bare \(\equiv_{i_0}\), without defining
+that symbol there. Remark~4.14 indexes the first-exceptional case in a
+way that does not agree with a mechanical zero-based indexing of all
+created centers. These are real limits on interpretation.
+
+To avoid building a conclusion on an invented correction, we index
+centers \(c_1=0,c_2,\ldots,c_n\), and let \(D_j\) be created at \(c_j\).
+Continue the zero reference chain if \(D_j\) with \(j>n\) is mentioned.
+A prefix of length \(k\) includes \(c_k\). The examples below treat
+both fixing or not fixing the selected free \(c_3\), both common-prefix
+and conditional exact-contact families, and every reference \(D_j\).
+They are counterexamples to all the expressly listed readings, not
+an assertion about an unspecified replacement of the printed conjecture.
+The repository catalogue's union symbol is a transcription discrepancy:
+both inspected primary formulations use an intersection.
+
+\begin{theorem}\label{thm:main}
+Let \(D_1,\ldots,D_n\) be the free chain following \(y=0\), with
+\(n\geq3\), and let \(2\leq k<n\). Let \(\mathcal F_{n,k}\) be the
+complete family of final prime divisors with this all-free combinatorial
+type and with the first \(k\) centers fixed. Then
+\[
+ I_{n,k}:=\bigcap_{E'\in\mathcal F_{n,k}}\Nash_{E'}
+   =\{(x,y)\in\A:\ord x\geq\lceil n/k\rceil,\ \ord y\geq n\}.
+ \tag{1}\label{eq:intersection}
+\]
+The same intersection results if one restricts to divisors with exactly
+\(k\) common centers with the zero reference chain.
+For every \(j,q\geq1\),
+\[
+ \Cont^q(D_j)=\{\ord x\geq q,\ \ord y\geq jq\}.                 \tag{2}
+ \label{eq:reference}
+\]
+This remains true for the closure of the at-least-\(q\) contact locus.
+Consequently, for \(n=5\), neither \(I_{5,2}\) nor \(I_{5,3}\)
+equals \(\Cont^q(D_j)\) for any positive integers \(q,j\).
+\end{theorem}
+
+The decisive assertion is the last conclusion: the required reference
+divisor cannot be repaired by merely shifting its index. The general
+formula also supplies positive boundary checks. In particular
+\(I_{n,k}=\Cont^q(D_k)\) holds exactly when \(k\mid n\), with \(q=n/k\).
+
+\section{The entire free family}
+
+The source explicitly allows free as well as satellite prime divisors;
+the free/satellite sequence with proximity data encodes combinatorial
+type \cite[pp.~5--7]{original}. A point is free if it lies on the smooth
+locus of the exceptional divisor. No restriction to final divisors of
+minimal embedded resolutions of singular branches is imposed. Smooth
+curvettas and the extra free blowups after resolving them are included.
+
+\begin{lemma}\label{lem:family}
+Every member of \(\mathcal F_{n,k}\), and no additional divisor, is
+described by
+\[
+ P(x)=a_kx^k+\cdots+a_{n-1}x^{n-1},\qquad
+ y=P(x)+x^n w,\qquad (a_k,\ldots,a_{n-1})\in\C^{n-k}.       \tag{3}
+ \label{eq:family}
+\]
+Thus this is the full family, not a selected subfamily.
+\end{lemma}
+
+\begin{proof}
+After \(j\) blowups along \(y=0\), the finite chart is \(y=x^j u_j\).
+For \(j\geq2\), the newest exceptional divisor has equation \(x=0\);
+its sole intersection with older exceptional components is the point
+\(u_j=\infty\). Blowing up a finite point \(u_j=a\) gives the two charts
+\[
+ u_j=a+xu_{j+1},\qquad
+ x=vh,\quad u_j=a+h.                                      \tag{4}
+\]
+In the second chart the new component is \(h=0\), the old component is
+\(v=0\), and on the overlap \(u_{j+1}=1/v\).
+The one point omitted from the first chart is therefore precisely the
+satellite intersection, not an omitted free choice.
+
+Starting with the fixed prefix, repeated substitution of the first
+formula in (4) gives exactly (3). Conversely every finite coefficient
+tuple chooses only free points. Different tuples first differing in
+one coefficient choose a different center before creation of the final
+divisor, and hence a different final divisor.
+
+For completeness, the minimal sequence for one final prime divisor
+is its chain of predecessors. A center on an older component away from
+the newest component would make the intervening blowup extraneous,
+so cannot occur in that minimal sequence. A satellite choice changes
+the proximity data, and therefore the specified all-free type. This
+excludes other apparent completions. Its weighted graph is the chain
+with \(n-1\) weights \(-2\) and final weight \(-1\).
+The initial fixed tangent allows \(x\) to be the parameter of every
+smooth curvetta under discussion.
+\end{proof}
+
+For a nonzero prefix jet one first makes the polynomial coordinate
+change subtracting that jet from \(y\); this gives the same statement
+in regular coordinates. The counterexample needs only the displayed
+zero reference. In the conditional exact-contact reading, exactly
+\(k\) common centers means \(a_k\ne0\) in (3).
+
+\section{Closures, including satellite limits}
+
+\begin{lemma}\label{lem:cylinder}
+For the divisor \(E_P\) in (3), put \(z=y-P(x)\). Then
+\[
+ \Nash_{E_P}=S_P:=\{\ord x\geq1,\ \ord z\geq n\}.           \tag{5}
+\]
+This includes limiting arcs with \(x=0\), the constant arc, and
+lifts meeting a satellite point.
+\end{lemma}
+
+\begin{proof}
+The coordinate change \((x,y)\mapsto(x,z)\) is polynomial and invertible.
+The equations of \(S_P\) are just the vanishing of the first \(n-1\)
+coefficients of \(z\). Its coefficient ring is a polynomial ring in the
+remaining variables, so \(S_P\) is a reduced irreducible cylinder.
+The nonempty open subset \(\ord x=1\) is dense. Every arc there has
+\(w=z/x^n\in\C[[t]]\), so lifts in (3), meeting the newest component
+transversely away from its older intersection. Hence \(S_P\) is contained
+in the closure of the transverse locus.
+
+For the reverse inclusion, the two charts covering the final component
+have maps
+\[
+ (x,w)\longmapsto(x,z=x^n w),\qquad
+ (v,h)\longmapsto(x=vh,\ z=v^{n-1}h^n).                    \tag{6}
+\]
+An arc centered on the new component has respectively \(\ord x\geq1\),
+or \(\ord h\geq1\); in either case \(\ord x\geq1,\ord z\geq n\).
+This proves containment even at its satellite intersection and hence (5).
+
+One can check density directly without omitting degenerate arcs.
+For any \((x_0,y_0)\in S_P\), set
+\[
+ x_\epsilon=x_0+\epsilon t,\qquad
+ y_\epsilon=P(x_\epsilon)+y_0-P(x_0).
+\]
+The coefficients are polynomial in \(\epsilon\); the arc at zero is the
+given one, and away from at most one value of \(\epsilon\) it lies in the
+transverse locus. This handles \(x_0=0\) as well. A separate specialization
+for each \(P\) suffices for membership in each closure.
+\end{proof}
+
+\begin{proof}[Proof of (2)]
+For \(D_j\) the charts are (6) with \(P=0\) and \(n=j\).
+The contact order in the first chart is \(\ord x\); in the second it is
+\(\ord h\). Exact contact \(q\), or contact at least \(q\), therefore
+implies \(\ord x\geq q,\ord y\geq jq\).
+Conversely the cylinder with those two inequalities is irreducible, and
+its nonempty dense open subset \(\ord x=q\) lifts in the first chart
+with exact contact \(q\). Thus the closures for both conventions are
+that cylinder. This argument works also for \(j=1\), whose two charts
+are the usual first-blowup charts.
+\end{proof}
+
+\section{Intersections and uniform separation}
+
+\begin{proof}[Proof of (1) and the exact-contact variant]
+The members \(P=0\) and \(P=x^k\) force
+\(\ord y\geq n\) and \(\ord x^k\geq n\). Since orders of nonzero
+formal series are integers, the latter is
+\(\ord x\geq\lceil n/k\rceil\).
+Conversely, these inequalities imply \(\ord P(x)\geq n\) for every
+polynomial in (3), because all its exponents are at least \(k\).
+This proves (1) for the entire family.
+
+For the exact-contact family, \(a_k\ne0\). Its two members \(P=x^k\)
+and \(P=2x^k\) force \(\ord x^k\geq n\) by subtraction, and then
+\(\ord y\geq n\). The converse is unchanged. This calculation treats
+a possible reading; it does not assert that the source defined its bare
+relation that way.
+\end{proof}
+
+Order cylinders with finite independent thresholds \((a,b)\) and
+\((a',b')\) are equal only if \(a=a'\) and \(b=b'\).
+For example, give one coordinate exactly its lower threshold and the
+other arbitrarily high order, and interchange their roles.
+Taking \(n=5\) gives
+\[
+ I_{5,2}=\{\ord x\geq3,\ord y\geq5\},\qquad
+ I_{5,3}=\{\ord x\geq2,\ord y\geq5\}.                     \tag{7}
+\]
+Equality with (2) would require \((q,jq)=(3,5)\) or \((2,5)\).
+Neither \(3j=5\) nor \(2j=5\) has an integer solution. This proves
+the remaining conclusion of Theorem~\ref{thm:main} for every \(q,j\),
+without a bounded search.
+
+Here are explicit convergent polynomial separating arcs, also fixing
+the direction of failure. Put \(r=3\) or \(2\).
+If \(q<r\), the arc
+\((t^q,t^{\max(5,jq)})\) lies in (2) and outside (7).
+If \(q>r\), \((t^r,t^5)\) lies in (7) and outside (2).
+If \(q=r\), use the latter arc when \(jr>5\), and use
+\((t^r,t^{jr})\) when \(jr<5\). The remaining case \(jr=5\)
+does not occur.
+
+\begin{center}
+\small
+\begin{tabular}{p{.48\textwidth}
+                p{.18\textwidth}
+                p{.22\textwidth}}
+Explicit normalization & Intersection & Reference tested\\ \hline
+Last-shared-divisor convention, prefix \(c_1,c_2\)
+ & \(I_{5,2}\) & \(D_2\)\\
+Zero-based \(p_0=c_1,p_2=c_3\), contact at least \(2\)
+ & \(I_{5,2}\) & \(D_3\)\\
+Fix the selected free \(c_3\) as well
+ & \(I_{5,3}\) & \(D_3\)\\
+One-based \(p_3=c_3\), contact at least \(3\)
+ & \(I_{5,3}\) & \(D_3\)\\
+Conditional exact contact \(2\) or \(3\)
+ & \(I_{5,2}\) or \(I_{5,3}\) & Every \(D_j\)
+\end{tabular}
+\end{center}
+In particular \(c_3\) is genuinely free, and fixing it still leaves the
+two parameters for \(c_4,c_5\). A three-blowup example can become a
+singleton after fixing its final center; the five-blowup example avoids
+that boundary issue. The raw transverse loci are not substituted for
+their closures.
+
+\section{Scope, prior framework and reproducibility}
+
+The result concerns the \emph{specified reference multiple}. The
+cylinders in (7) are themselves maximal divisorial sets for the primitive
+toric valuations with weights \((3,5)\) and \((2,5)\). This follows from
+the established toric description \cite[Example~2.10]{ishii}; adjacent
+unimodular charts are respectively
+\[
+ (x,y)=(u^3v,u^5v^2),\qquad (x,y)=(u^2v,u^5v^3).
+\]
+Their exponent matrices have determinant \(1\). The inverse monomials are
+\[
+ (u,v)=(x^2/y,y^3/x^5),\qquad (u,v)=(x^3/y,y^2/x^5).
+\]
+The dense exact-order loci have \(\ord u=1\) and \(v\) a unit.
+Thus allowing a different arbitrary prime divisor removes this
+particular obstruction. No negative solution of the generalized Nash
+problem, no statement about Conjecture~2, and no new general theory of
+maximal divisorial sets is claimed.
+
+We also distinguish closed sets from nonreduced intersections. For
+\(n=5,k=2\), the two-member coefficient ideal after eliminating the first
+four coefficients of \(y\) is
+\[
+ (x_1^2,\ 2x_1x_2,\ x_2^2+2x_1x_3),
+\]
+whose radical is \((x_1,x_2)\), although \(x_1\) is not in that ideal.
+For \(k=3\) the corresponding ideal is
+\((x_1^3,3x_1^2x_2)\), with radical \((x_1)\).
+Equation (7) states the reduced supports, not equality of these
+nonreduced schemes. Divisible cases \(n=6,k=2,3\) satisfy the reference
+equality, and fixing the final center gives the singleton \(D_n\).
+Varying all tangents for an all-free length-\(n\) type gives
+\(\{\ord x,\ord y\geq n\}=\Cont^n(D_1)\), consistent with the
+first-exceptional specialization rather than refuting it.
+
+The standard maximal-divisorial/contact framework is due to prior work,
+including \cite{ishii}; combinatorial invariance and finite cylindrical
+intersections are proved in \cite{original}. The contribution here is
+the explicit complete free-family calculation and its reference-ray
+obstruction. The source's authors still discuss their two conjectures
+as conjectures in \cite[Section~8]{survey}. An extensive but bounded
+primary-source investigation is documented in the accompanying
+\texttt{SOURCE\_AUDIT.md}. It located no authenticated earlier
+publication of this exact negative calculation. This is not a certificate
+of worldwide firstness, continuous openness, or completeness of the
+literature search. The exact claim is tied to the inspected
+arXiv1501.06898v3 and workshop2016 bodies. The publisher-typeset full text
+was not accessed; the original paper's DOI is a reference, not this
+counterexample's publication DOI. No author-approved erratum, intended
+new hypothesis, or unique resolution of its notation is asserted.
+
+The source package includes an independently written standard-library
+checker, expected output, editable TeX, the reviewed PDF, source/provenance
+notes and reproduction instructions. Exact finite computations challenge
+coefficient substitutions, two-chart formulas, degeneracies, all listed
+finite witness cases, and boundary mutations. They supplement the
+universal proofs above; they do not certify arbitrary complex parameters,
+priority, or infinite-arc geometry. The package builder reproduces
+archives from the frozen PDF; it does not pretend to typeset that PDF.
+
+\paragraph{AI and review disclosure.}
+AI tools were extensively involved in mathematical research, proof
+development and reconstruction, symbolic and exact computation,
+literature/source investigation, manuscript preparation, editing and
+adversarial auditing. Alec Kriebel is the named human author.
+This manuscript is an unrefereed preprint and has not undergone formal
+independent human peer review or journal acceptance. Internal AI audits
+and exact supplementary computations do not provide those certifications
+or proof-assistant verification.
+
+\begin{thebibliography}{9}\small
+\bibitem{original}
+J. Fern\'andez de Bobadilla, M. Pe Pereira and P. Popescu-Pampu,
+\emph{On the generalized Nash problem for smooth germs and adjacencies
+of curve singularities}, Adv. Math. \textbf{320} (2017), 1269--1317,
+\href{https://doi.org/10.1016/j.aim.2017.09.035}{doi:10.1016/j.aim.2017.09.035}.
+Inspected author version: \href{https://arxiv.org/abs/1501.06898v3}
+{arXiv:1501.06898v3} (5 October 2017).
+\bibitem{workshop}
+M. Pe Pereira (joint work with J. Fern\'andez de Bobadilla and
+P. Popescu-Pampu), \emph{The arcspace of \(\C^2\) and adjacencies of
+plane curves}, in \emph{Singularities}, Oberwolfach Reports
+\textbf{46/2016}, contribution pp.~2678--2681, Conjecture~1 on p.~2679.
+Primary report:
+\url{https://ems.press/content/serial-article-files/46651}.
+\bibitem{ishii}
+S. Ishii, \emph{Maximal divisorial sets in arc spaces}, in
+\emph{Algebraic Geometry in East Asia---Hanoi 2005}, Adv. Stud. Pure
+Math. \textbf{50} (2008), 237--249,
+\href{https://doi.org/10.2969/aspm/05010237}{doi:10.2969/aspm/05010237}.
+Inspected author version: \href{https://arxiv.org/abs/math/0612185}
+{arXiv:math/0612185}.
+\bibitem{survey}
+J. Fern\'andez de Bobadilla and M. Pe Pereira,
+\emph{The Nash problem from a geometric and topological perspective},
+\href{https://arxiv.org/abs/1805.01418}{arXiv:1805.01418} (2018),
+Section~8, pp.~16--17; cited body is this arXiv edition.
+\end{thebibliography}
+\end{document}

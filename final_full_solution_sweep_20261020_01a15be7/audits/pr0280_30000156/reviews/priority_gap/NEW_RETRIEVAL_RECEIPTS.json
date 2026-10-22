@@ -1,0 +1,81 @@
+{
+  "date_utc": "2026-10-21",
+  "all_actions_read_only": true,
+  "request_times": "Exact per-request timestamps were not captured; receipts occurred during02:39–03:00UTC audit window.",
+  "first_batch_output_handling": "One initial parallel HTTP batch was launched without preserving its exec session ID; its unreturned outcomes were not used. The batch was repeated once with a preserved ID; only returned outcomes above are evidence.",
+  "retrievals": [
+    {
+      "mechanism": "complete HAL public surname metadata retrieval",
+      "url": "https://api.archives-ouvertes.fr/search/?q=authLastName_s%3AViallet&rows=1000&fl=title_s%2CauthFullName_s%2Curi_s%2CproducedDate_s%2CdocType_s%2CfileMain_s%2ChalId_s&wt=json",
+      "status": 200,
+      "bytes": 197864,
+      "sha256": "646de8f0452c8838c2cb0300e3ea867321b32ec8e3dc3fa348c40ea53047961b",
+      "numFound": 413,
+      "finding": "No four-author collaboration record/body identified; surname output includes other Viallets. Metadata only, not absence proof."
+    },
+    {
+      "mechanism": "current Viallet primary selected bibliography",
+      "url": "https://www.lpthe.jussieu.fr/~viallet/",
+      "status": 200,
+      "finding": "Whole55-line indexed body read; no2011 manuscript entry. Explicitly a selection."
+    },
+    {
+      "mechanism": "current Vivaldi primary recent work and talks lists",
+      "url": "https://webspace.maths.qmul.ac.uk/f.vivaldi/research/recentwork.html",
+      "status": 200,
+      "finding": "Whole71-line indexed body and15-line talks list read. Current list includes2026 item; no four-author manuscript. Not a complete-publication-history certificate."
+    },
+    {
+      "mechanism": "Baake current group/preprint list",
+      "url": "https://www.math.uni-bielefeld.de/baake/preprints.html",
+      "status": 200,
+      "bytes": 44427,
+      "sha256": "7dc181bcb14502aba92586035e08ad7955edf0dc1911f21f312942962d7e261b",
+      "finding": "List/link screen found no new four-author body; group page lists Neumärker as former member without personal link."
+    },
+    {
+      "mechanism": "actual2012 Baake homepage capture",
+      "url": "https://web.archive.org/web/20120305133921id_/http://www.math.uni-bielefeld.de/baake/",
+      "status": 200,
+      "bytes": 8685,
+      "sha256": "212410b82b2a695c3776d1083d32decff3d8e074533872994f69939b0b3b6507",
+      "finding": "Neumärker membership/email entry and preprints link only; no manuscript link. No communication initiated."
+    },
+    {
+      "mechanism": "Viallet historical archive prefix",
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.lpthe.jussieu.fr%2F~viallet%2F&matchType=prefix&output=json&filter=statuscode%3A200&collapse=urlkey&fl=timestamp%2Coriginal%2Cmimetype&from=2009&to=2016",
+      "status": 503,
+      "finding": "No archive inventory obtained; cannot exclude captures."
+    },
+    {
+      "mechanism": "Bielefeld official alternate representation",
+      "url": "https://pub.uni-bielefeld.de/record/2508475.json",
+      "status": 200,
+      "bytes": 7753,
+      "sha256": "b10d26cdd4bf692544227daae7c97acae3626cef766877ad1c36902c33bf4711",
+      "finding": "HTML anti-bot challenge, not JSON or a publication body. No bypass attempted."
+    },
+    {
+      "mechanism": "bounded unlinked-origin basename probes derived from adjacent author filename pattern",
+      "urls": [
+        "https://web.maths.unsw.edu.au/~jagr/NRVV11.pdf",
+        "https://web.maths.unsw.edu.au/~jagr/NRVV12.pdf",
+        "https://web.maths.unsw.edu.au/~jagr/NRVV.pdf",
+        "https://web.maths.unsw.edu.au/~jagr/VJRV.pdf"
+      ],
+      "statuses": [
+        404,
+        404,
+        404,
+        404
+      ],
+      "finding": "Guesses explicitly recorded as guesses; failure proves nothing about other filenames or release history."
+    },
+    {
+      "mechanism": "possible old public author homepage from actual username",
+      "url": "https://www.math.uni-bielefeld.de/~naneumae/",
+      "status": 404,
+      "finding": "No current page recovered; no historical absence conclusion."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Source reconciliation review: PASS with aggregate hold
+
+Problem30003688 / OWR-15986-003. This is a source-only0/5 checkpoint, not exhaustion or a complete resolution of the ambiguous aggregate record. Leave the queued0/5 row unchanged and retain all five substantive turns for a later well-defined unresolved target.
+
+The primary OWR printed19 was visually inspected. Its relevant paragraph uses finite-level Ershov Sigma-minus-one, not arithmetical Sigma-zero. Its wording about two elements, a distinguished Friedberg numbering, the principal-filter alternative, a finite family and a further existence question is genuinely compressed. The record correctly does not infer an authoritative intended repair.
+
+The2002 reference definition page was visually inspected: a numbering is a surjection from omega, and Friedberg means injective. The elementary finite-family contradiction therefore holds literally. The2009 predecessor's abstract, definitions and Main Theorem were read: two inequivalent Friedberg minimal degrees and the principal-filter alternative do not assert an entire two-element semilattice. Their join cannot equal either distinct minimal element. Its infinite-injury proof is not re-certified here.
+
+Ng's live primary publication page independently confirms the2025 paper and expressly states that every finite family at a finite Ershov level has a one-element or countably infinite Rogers semilattice. This supports the credited negative cardinality subquestion. A fresh publisher fetch returned403, and the full2025 proof was not recovered; the review does not certify that proof or independently inspect its omitted steps. The packet's theorem number is attributed to the author's retrieved publisher excerpt. Neither arithmetical-hierarchy nor unrestricted infinite-family statements follow from this source match.
+
+All six manifest-bound packet files and five local source hashes verify. No mandatory correction is required. A draft source-comparison record may credit the resolved coherent finite-Ershov cardinality subquestion while holding the malformed aggregate without solved-count promotion. Preserve frozen bytes, label zero proof turns and the access limits, and do not invent a repaired theorem or reset neighboring prior work.

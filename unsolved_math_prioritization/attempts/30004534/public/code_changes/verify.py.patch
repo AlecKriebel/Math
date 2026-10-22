@@ -1,0 +1,33 @@
+--- original/verify.py
++++ portable/verify.py
+@@ -3,6 +3,7 @@
+ from itertools import combinations_with_replacement, product
+ import json
+ from pathlib import Path
++import argparse
+ 
+ 
+ def require(condition,message):
+@@ -57,6 +58,9 @@
+ 
+ 
+ def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--output", type=Path, help="Also create a new JSON result file; existing files are never overwritten.")
++    args = parser.parse_args()
+     tests=[]
+     for p in [2,3,5,7]:
+         for n in range(2,13):
+@@ -76,6 +80,11 @@
+             total+=1; good+=rank==2*n
+         exhaustive.append(dict(p=p,n=n,forms_checked=total,weak_and_strong_lefschetz_forms=good))
+     result=dict(description='Exact modular ranks from the raw quadratic-generator quotient; no floating arithmetic.',grid=tests,exhaustive=exhaustive)
+-    Path(__file__).with_name('results.json').write_text(json.dumps(result,indent=2)+'\n')
++    encoded = json.dumps(result,indent=2)+'\n'
++    historical = Path(__file__).with_name('results.json')
++    require(encoded.encode('utf-8') == historical.read_bytes(), 'Computed results differ from historical results.json')
++    if args.output is not None:
++        with args.output.open('x', encoding='utf-8', newline='') as stream:
++            stream.write(encoded)
+     print(json.dumps(dict(grid_tests=len(tests),exhaustive=exhaustive,status='PASS'),indent=2))
+ if __name__=='__main__':main()

@@ -1,0 +1,93 @@
+{
+  "schema": "pr1160-scope-verifier-tests-v1",
+  "positive_checks": [
+    {
+      "mode": "normal",
+      "result": {
+        "authored_members": 18,
+        "immutable_git_members_checked": 10,
+        "private_source_files_checked": 12,
+        "status": "PASS"
+      }
+    },
+    {
+      "mode": "-O",
+      "result": {
+        "authored_members": 18,
+        "immutable_git_members_checked": 10,
+        "private_source_files_checked": 12,
+        "status": "PASS"
+      }
+    },
+    {
+      "mode": "-OO",
+      "result": {
+        "authored_members": 18,
+        "immutable_git_members_checked": 10,
+        "private_source_files_checked": 12,
+        "status": "PASS"
+      }
+    }
+  ],
+  "outputs_byte_identical_across_modes": true,
+  "negative_controls": [
+    {
+      "control": "changed_bytes",
+      "rejected_modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ]
+    },
+    {
+      "control": "missing_member",
+      "rejected_modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ]
+    },
+    {
+      "control": "unexpected_file",
+      "rejected_modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ]
+    },
+    {
+      "control": "unexpected_directory",
+      "rejected_modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ]
+    },
+    {
+      "control": "duplicate_member",
+      "rejected_modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ]
+    },
+    {
+      "control": "path_traversal",
+      "rejected_modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ]
+    },
+    {
+      "control": "symlink",
+      "rejected_modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ]
+    }
+  ],
+  "negative_control_count": 7,
+  "claim": "Hash/membership/provenance checks only; no mathematical proof checker."
+}

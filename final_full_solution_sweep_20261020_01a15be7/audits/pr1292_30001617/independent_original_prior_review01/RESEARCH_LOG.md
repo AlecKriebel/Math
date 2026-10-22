@@ -1,0 +1,7 @@
+# Independent PR1292 original/prior audit
+
+2026-10-22T10:25:29.519941+00:00 — Started separate12MiB-capped read-only audit; all precedingclosedpackets preserved. Freshledgerrequired before mathematicalwork. Overall80%; boundedreview2%. Noactions/Gitmutations.
+
+2026-10-22T10:38:42.320129+00:00 — Full original question and complete thesis §3.3 inspected; all-positive reconstruction withstands falsification of predictability/random starts/deterministic error control/terminal-average identity. Prior unrestricted counterexample authenticated, no thesis DOI authenticated in KSU identifiers or bounded registry queries; actual Handle must not be recast as DOI. Exact finite2048-path model passes62,068 checks each normal/O/OO with actual invalid-mechanism witnesses. No infinite parameter computation claimed. Overall80%; bounded review85%.
+
+2026-10-22T10:44:24.576813+00:00 — Closed bounded original/prior audit: correct complete counterexample, prior2011/2012 full theorem, no novelty/new Zenodo record. Fresh second ledger191rows/43columns/both views/zero leads; qualified4literal row B/Cblank includes exact PR URL/source roles/access limits, no fabricated DOI. Actual2025DOI resolves only1page, unread14 qualified; thesis literal .9 comparability coefficient explicitly repaired at phenomenon level. All62068 finite checks agree in normal/O/OO; infinite proof remains written evidence. Packet prepared for root review only. Bounded review100%; overall80%. No service/Git/root-state mutations or outreach.

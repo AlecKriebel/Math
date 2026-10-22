@@ -1,0 +1,150 @@
+{
+  "reviewed_at": "2026-10-21T02:18:03.996902+00:00",
+  "finalized_at": "2026-10-21T02:19:02.053693+00:00",
+  "focused_review_completion_percent": 100,
+  "wrapper_sha256": "2c3b2838c413474db2ca5c3e602e7926cbc0f7ae4698a9bb1a746924d2512179",
+  "publication_check_sha256": "cf059e2838a075881c4b421effed26ed9e2fe9a57a7ea0a89619fbadf8eb6a33",
+  "test_script_sha256": "b991c76bdc5afcaca1df1c3c12171136f15384f845c4a4c8c6cd2e7fe43884f5",
+  "detailed_receipt": "WRAPPER_RECHECK.json",
+  "detailed_receipt_sha256": "7566da315c22a600061f05444138824189306a30bd1b32611d1dde5f7f92eb06",
+  "synthetic_wrapper_cases": 21,
+  "wrapper_assertions_passed": true,
+  "normalizer_positive_cases": 7,
+  "normalizer_negative_cases": 5,
+  "pending_originals_preserved": true,
+  "recovered_originals_preserved": true,
+  "remaining_substantive_concerns_in_reviewed_mechanisms": [],
+  "scope": "Synthetic wrapper/identity/ledger/output-preservation review only; no live writes, downloads, Git actions, mathematics or priority clearance.",
+  "residual_limits": [
+    "Sheets cannot atomically bind D replacement to other identity cells; tested guard/readback/conditional rollback handle observed races, while further concurrent edits can require manual reconciliation.",
+    "An uncertain network or local-save failure can require re-entry/manual reconciliation; a verified printed receipt is not proof that its local save succeeded."
+  ],
+  "cases": [
+    {
+      "case": "ordinary_existing_row_repair",
+      "expected_abort": false,
+      "receipt_status": "verified",
+      "external_write_attempts_in_fixture": 1
+    },
+    {
+      "case": "wrong_doi_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "wrong_numeric_id_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "stale_evidence_head_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "duplicate_exact_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "duplicate_http_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "duplicate_dx_uppercase_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "duplicate_record_url_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "duplicate_beyond_fixed_range_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "formula_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "concurrent_notes_preserved",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 1
+    },
+    {
+      "case": "prewrite_identity_change_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "identity_race_append_rolled_back",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 2
+    },
+    {
+      "case": "identity_race_concurrent_notes_not_rolled_back",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 2
+    },
+    {
+      "case": "recover_prior_applied_value",
+      "expected_abort": false,
+      "receipt_status": "verified",
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "prior_concurrent_notes_preserved",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "prior_same_old_snapshot_retention",
+      "expected_abort": false,
+      "receipt_status": "verified",
+      "external_write_attempts_in_fixture": 1
+    },
+    {
+      "case": "prior_identity_change_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "prior_append_change_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "orphan_before_snapshot_rejected",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 0
+    },
+    {
+      "case": "postmutation_persistence_failures",
+      "expected_abort": true,
+      "receipt_status": null,
+      "external_write_attempts_in_fixture": 1
+    }
+  ]
+}

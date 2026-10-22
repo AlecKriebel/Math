@@ -1,0 +1,202 @@
+{
+  "helper_sha256": "956b60eb7b24ef756c6610a46b917763930d3f2217168dd3b198249392eb388d",
+  "controls": [
+    {
+      "name": "nominal",
+      "expected": "accepted",
+      "observed": "accepted",
+      "expectation_met": true,
+      "append_calls": 1,
+      "attempts": [
+        {
+          "status": "accepted"
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "exact_already_present",
+      "expected": "accepted",
+      "observed": "accepted",
+      "expectation_met": true,
+      "append_calls": 0,
+      "attempts": [
+        {
+          "status": "accepted"
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "existing_mismatch",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "append_calls": 0,
+      "attempts": [
+        {
+          "status": "blocked",
+          "reason": "Concurrent/preexisting row needs manual scope review; no append."
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "duplicate_exact",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "append_calls": 0,
+      "attempts": [
+        {
+          "status": "blocked",
+          "reason": "Concurrent/preexisting row needs manual scope review; no append."
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "prior_intent_absent_row",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "append_calls": 0,
+      "attempts": [
+        {
+          "status": "blocked",
+          "reason": "Prior append intent has unknown outcome; never retry blindly."
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "concurrent_change",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "append_calls": 0,
+      "attempts": [
+        {
+          "status": "blocked",
+          "reason": "Concurrent ledger change; stop without append."
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "pr_change_before_append",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "append_calls": 0,
+      "attempts": [
+        {
+          "status": "blocked",
+          "reason": "PR advanced before append."
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "account_alias_lead",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "append_calls": 0,
+      "attempts": [
+        {
+          "status": "blocked",
+          "reason": "New own-account result/draft lead requires reconciliation."
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "unknown_before_commit",
+      "expected": "blocked",
+      "observed": "blocked",
+      "expectation_met": true,
+      "append_calls": 1,
+      "attempts": [
+        {
+          "status": "blocked",
+          "reason": "OFFLINE unknown append outcome"
+        },
+        {
+          "status": "blocked",
+          "reason": "Prior append intent has unknown outcome; never retry blindly."
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "unknown_after_commit",
+      "expected": "accepted",
+      "observed": "accepted",
+      "expectation_met": true,
+      "append_calls": 1,
+      "attempts": [
+        {
+          "status": "blocked",
+          "reason": "OFFLINE response lost after commit"
+        },
+        {
+          "status": "accepted"
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "concept_doi_existing",
+      "expected": "blocked",
+      "observed": "accepted",
+      "expectation_met": false,
+      "append_calls": 1,
+      "attempts": [
+        {
+          "status": "accepted"
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "encoded_doi_existing",
+      "expected": "blocked",
+      "observed": "accepted",
+      "expectation_met": false,
+      "append_calls": 1,
+      "attempts": [
+        {
+          "status": "accepted"
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "wide_schema_row",
+      "expected": "blocked",
+      "observed": "accepted",
+      "expectation_met": false,
+      "append_calls": 1,
+      "attempts": [
+        {
+          "status": "accepted"
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    },
+    {
+      "name": "account_content_hash_lead",
+      "expected": "blocked",
+      "observed": "accepted",
+      "expectation_met": false,
+      "append_calls": 1,
+      "attempts": [
+        {
+          "status": "accepted"
+        }
+      ],
+      "scope": "Exact helper copy, mocked services; no real mutation"
+    }
+  ]
+}

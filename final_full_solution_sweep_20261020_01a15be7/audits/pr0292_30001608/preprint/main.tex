@@ -1,0 +1,417 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\N}{\mathbb N_0}
+\newcommand{\LL}{\mathcal L}
+\newcommand{\E}{\mathbb E}
+\title{All-load stability of a deterministic-first-chunk file-sharing chain}
+\author{Alec Kriebel\\Independent researcher\\
+\small\url{https://orcid.org/0009-0001-9320-500X}}
+\date{20 October 2026\\\small Unrefereed preprint draft}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove positive recurrence at every fixed positive arrival rate for the
+four-population deterministic-first-chunk chain described by Norros, Reittu
+and Eirola. This answers the stability conjecture in Norros's 2010
+Oberwolfach contribution and the retained 2011 author proof, for the exact
+six-rate model with a permanent seed and invisible empty waiting rooms.
+A single coercive Foster function combines remaining workload, rounded
+cohort imbalance, and two bounded finite birth--death Poisson correctors.
+Monotone ratio cutoffs make every first-download interface error
+nonpositive. The other interface errors are controlled pointwise.
+The proof requires no stationary averaging, moment assumption, or
+uniformity in the arrival rate. Exact finite controls supplement the
+analytic proof. The contribution is the all-load extension of the stated historical
+conjecture; classical methods and source-version limits are explicit.
+\end{abstract}
+
+\section{The model and the question}
+
+An arriving peer chooses, independently and uniformly, which of two
+chunks to download first. Let $a,b$ count empty peers assigned to the two
+choices, and let $x,y$ count peers possessing just the respective chunks.
+A completed peer departs immediately. There is one permanent seed.
+The empty waiting rooms are invisible to the sampling denominator.
+Precisely, for $\lambda>0$ and $D=x+y+1$, the chain on $\N^4$ has transitions
+\[
+\begin{array}{c|c}
+\text{increment in }(a,b,x,y)&\text{rate}\\ \hline
+(1,0,0,0)&\lambda/2\\
+(0,1,0,0)&\lambda/2\\
+(-1,0,1,0)&a(x+1)/D\\
+(0,-1,0,1)&b(y+1)/D\\
+(0,0,-1,0)&x(y+1)/D\\
+(0,0,0,-1)&y(x+1)/D .
+\end{array}                                                    \tag{1}
+\]
+A decrement at a zero coordinate has rate zero. These are the rates of
+Figure 2 in \cite{NRE09} and the checked 2011 author proof of
+\cite{NRE11}; the seed produces the $+1$ terms.
+
+Norros \cite[pp.~2782--2783]{OWR} conjectured stochastic stability despite
+instability of the corresponding large-system differential equations.
+The retained January 5, 2011 author proof states the stability conjecture
+in Section 3.2 as Conjecture 3.6. The earlier 2009 preprint
+\cite[Conjecture 3.4]{NRE09} conjectured high-load instability instead.
+These editions must be distinguished. Stability here means
+irreducibility and positive recurrence in continuous time, as in those
+sources.
+
+\begin{theorem}\label{thm:main}
+For every fixed real $\lambda>0$, the chain \textup{(1)} is nonexplosive,
+irreducible and positive recurrent. It therefore has a unique stationary
+probability distribution.
+\end{theorem}
+
+The exact rates are part of the theorem. In particular, no bound on the
+seed's aggregate upload rate is imposed beyond \textup{(1)}. We assert no
+uniform bound in $\lambda$, finite stationary population moment,
+geometric ergodicity, or conclusion for other chunk-selection protocols.
+The classical Foster method is background \cite{MT}. The work below is
+the all-load pointwise certificate for this chain.
+
+Write $\mathsf n=a+b+x+y$. A short observation already handles small
+loads. For the workload $W=2a+2b+x+y$, direct calculation gives
+\[
+ \LL W
+ =2\lambda-\frac{a(x+1)+b(y+1)+2xy+x+y}{D}
+ \le 2\lambda-\frac{\mathsf n}{\mathsf n+1}.
+                                                               \tag{2}
+\]
+Thus the classical drift criterion gives stability when
+$0<\lambda<1/2$. The existence of some stable parameter values, even
+with an unstable large-system limit, does not require our all-load
+argument. Our aim is the extension to every positive load.
+
+\section{Workload, imbalance, and a finite corrector}
+
+For the rest of the proof fix $\lambda>0$ and put
+\[
+ Z=a+x-b-y,\quad
+ u=\frac{a(x+1)+b(y+1)}D,\qquad
+ d=\frac{2xy+x+y}D.
+\]
+First downloads leave $Z$ unchanged. Its other jumps have size one and
+total rate $\lambda+d$. Hence
+\[
+ \LL W=2\lambda-u-d,\qquad \LL Z=\frac{y-x}D.                    \tag{3}
+\]
+For $m>0$ define the rounded absolute value
+\[
+ h_m(z)=
+ \begin{cases}
+ z^2/(2m)+m/2,&|z|\le m,\\
+ |z|,&|z|\ge m.
+ \end{cases}
+\]
+Its derivative is $z/m$ clipped to $[-1,1]$, and is globally
+$1/m$-Lipschitz. Therefore, also across the rounding boundaries,
+\[
+ h_m(z+v)-h_m(z)\le h'_m(z)v+\frac{v^2}{2m}.
+\]
+Set
+\[
+ \beta=\frac{17\lambda}{8},\quad q=\frac78,\quad
+ c=2(\beta+4),\quad m=4c,\quad \theta=\beta+c+4.
+\]
+Equations (3) give
+\[
+ \LL(W+ch_m(Z))
+ \le \beta-u-qd+c h'_m(Z)\frac{y-x}D.                           \tag{4}
+\]
+The last term has absolute value at most $c$. If $Z\ge m$ and
+$x\ge3(y+1)$, it is at most $-c/2$.
+
+Put
+\[
+ \gamma=\frac{\theta+1}{\theta+2},\qquad
+ \eta=\frac{1+\gamma}{2},\qquad \ell=\frac1{\eta-\gamma}.
+\]
+Consider on $\{0,\ldots,R\}$ the reflected birth--death generator $Q_R$
+with births $\gamma(k+1)$ for $k<R$ and deaths $k$ for $k>0$.
+Its stationary weights are $\gamma^k$ and its mean is
+\[
+ \mu_R=\frac{\sum_{k=0}^R k\gamma^k}{\sum_{k=0}^R\gamma^k}.
+\]
+The means increase to $\gamma/(1-\gamma)=\theta+1$. We can therefore
+choose a finite integer $R\ge1$ such that
+\[
+ \mu:=\mu_R>\theta,\qquad q(R+1)>\beta+c+2.                     \tag{5}
+\]
+For $0\le k<R$ put
+\[
+ t_k=\frac{\sum_{j=0}^k\gamma^j(j-\mu)}
+                  {\gamma^{k+1}(k+1)},\qquad
+ g(k)=-\sum_{j=k}^{R-1}t_j,
+\]
+and let $g(k)=0$ for all integers $k\ge R$.
+
+\begin{lemma}\label{lem:poisson}
+The function $g$ is nonnegative and decreasing. With $G=g(0)>0$,
+\[
+ Q_Rg(k)=k-\mu\quad(0\le k\le R).
+\]
+For the actual chain,
+\[
+ \LL g(y)\le y-\mu
+ \quad\text{if }0\le y\le R,\quad b/D\ge\gamma.                 \tag{6}
+\]
+For $y>R$ all increments of $g(y)$ vanish. The same assertions hold
+with $(b,y)$ replaced by $(a,x)$.
+\end{lemma}
+\begin{proof}
+The mean restricted to the prefix $\{0,\ldots,k\}$ is strictly below
+$\mu$, so $t_k<0$. This proves monotonicity and nonnegativity.
+Since $g(k+1)-g(k)=t_k$, subtracting successive prefix sums gives the
+Poisson equation for $k<R$. The full mean-zero sum gives the terminal
+equation
+\[
+ Rg(R-1)=R-\mu.
+\]
+In the actual chain the birth rate of $y$ is $(b/D)(y+1)$ and its death
+rate is $y(x+1)/D\le y$. Increasing a birth rate multiplies a nonpositive
+increment of $g$; decreasing a death rate multiplies a nonnegative
+increment. This proves (6), including $y=R$, whose upward increment
+is zero. At $y=R+1$ the downward successor is $R$, where $g$ is also zero;
+this proves the last assertion.
+\end{proof}
+
+\section{A single cutoff function and its interfaces}
+
+Let $f$ be zero on $[0,\gamma]$, linear with slope $\ell$ on
+$[\gamma,\eta]$, and one on $[\eta,\infty)$. Define
+\[
+ J_X=f(b/D)g(y),\quad J_Y=f(a/D)g(x),\quad J=J_X+J_Y,
+ \qquad V=W+ch_m(Z)+J.                                       \tag{7}
+\]
+Thus $0\le J\le2G$ and $V\ge W\ge\mathsf n$.
+
+\begin{lemma}\label{lem:interface}
+At every state,
+\begin{align}
+ \LL J&\le f(b/D)\LL g(y)+f(a/D)\LL g(x)
+                  +\frac{\ell G(\lambda+4d)}D,               \tag{8}\\
+ \LL J&\le G(\lambda+2d).                                    \tag{9}
+\end{align}
+\end{lemma}
+\begin{proof}
+For a transition $s\to s'$ the exact product identity is
+\[
+ \Delta J_X=f(b/D)\,[g(y')-g(y)]
+              +g(y')\,[f(b'/D')-f(b/D)].                      \tag{10}
+\]
+There is an identical expression for $J_Y$.
+A first download increases $D$ and does not increase either waiting-room
+numerator. Both cutoff increments are nonpositive, so their interface
+contributions in (10) are nonpositive, regardless of $a,b$.
+An arrival changes only one cutoff, by at most $\ell/D$.
+
+A departure has $D\ge2$ and decreases $D$ by one. For either numerator
+$w$,
+\[
+ 0\le f\!\left(\frac w{D-1}\right)-f\!\left(\frac wD\right)
+       \le \frac{2\ell}D.                                    \tag{11}
+\]
+Indeed the difference is zero if $w/D\ge\eta$; otherwise
+$w<\eta D$ and the Lipschitz bound is
+$\ell w/[D(D-1)]\le \ell\eta/(D-1)\le2\ell/D$.
+There are two cutoff terms, and the post-jump $g$ values are at most
+$G$. Summing their interface bounds over the rates gives (8).
+There are no departures at $D=1$.
+
+For (9), a first download makes each whole product in (7)
+nonincreasing: its cutoff decreases and its affected $g$ value also
+decreases. An arrival increases $J$ by at most $G$, and a departure
+increases it by at most $2G$. Sum over their total rates $\lambda,d$.
+\end{proof}
+
+\section{Negative drift in all states outside a finite set}
+
+Choose a finite integer $N$ satisfying
+\begin{align*}
+ N&\ge R+2,\qquad N\ge3(R+1),\\
+ (1-\eta)N-(1+\eta)R-\eta&\ge m,\\
+ N&\ge\ell G[\lambda+4(2R+1)].
+\end{align*}
+All constants are finite and $1-\eta>0$.
+
+If $\min(x,y)\ge R+1$, both corrections and every one-step successor
+correction vanish. Also $d\ge\min(x,y)$: for $x\ge y$,
+$D(d-y)=y(x-y)+x\ge0$. Equations (4)--(5) imply
+\[
+ \LL V\le\beta+c-q(R+1)<-2.                                  \tag{12}
+\]
+
+Next suppose $y\le R$ and $x\ge N$.
+The correction involving $g(x)$ and all its successors vanish.
+We have
+\[
+ d\le2R+1,\qquad \frac{x-y}D\ge\frac12,\qquad qd\ge y.          \tag{13}
+\]
+For the last inequality, $x\ge3(y+1)$ gives $x/D\ge3/4$, so
+$qd\ge(21/32)(2y+1)\ge y$.
+The remainder in (8) is at most one by the choice of $N$.
+Lemma \ref{lem:poisson}, including the case $f=0$, gives
+\[
+ f(b/D)\LL g(y)\le f(b/D)(y-\mu).
+\]
+If $b/D\ge\eta$, the cutoff is one and
+\[
+ \LL V\le\beta-u-qd+c+y-\mu+1
+             \le\beta+c-\mu+1<-3.                            \tag{14}
+\]
+If $b/D<\eta$, then
+\[
+ Z=a+x-b-y\ge(1-\eta)x-(1+\eta)y-\eta\ge m.
+\]
+The last term in (4) is therefore at most $-c/2$.
+Since $f(b/D)(y-\mu)\le y$ and $qd\ge y$,
+\[
+ \LL V\le\beta-u-c/2+1=-3-u\le-3.                             \tag{15}
+\]
+This includes the entire cutoff ramp. Interchanging the two types
+handles the opposite corner.
+
+In every remaining state $x+y\le N+R$. Since $d\le x+y$, (4) and (9)
+give
+\[
+ \LL V\le\beta+c+G[\lambda+2(N+R)]-u,\qquad
+ u\ge\frac{a+b}{N+R+1}.
+\]
+With
+\[
+ B=(N+R+1)\{\beta+c+G[\lambda+2(N+R)]+1\},
+\]
+we conclude
+\[
+ \LL V\le-1\quad\text{outside}\quad
+ F=\{x+y\le N+R,\ a+b\le B\}.                                \tag{16}
+\]
+The set $F$ is finite. This is one globally defined certificate,
+rather than a choice between unaccounted local drift functions.
+
+\section{The continuous-time recurrence conclusion}
+
+We give the recurrence step to make its clock and integrability
+requirements explicit. Arrivals form a rate-$\lambda$ Poisson process.
+Every internal event decreases $W$ by one and every arrival increases
+it by two. Thus the total number of jumps up to time $t$ is at most
+$W(0)+3P_\lambda(t)$, proving nonexplosion. Every state has a
+positive-rate finite path to zero, because the seed makes all required
+downloads and departures possible. Conversely, arrivals followed by
+prescribed first downloads build any finite state, proving
+irreducibility.
+
+Since $|Z|\le W$ and $h_m(z)\le |z|+m/2$, we have
+\[
+ W\le V\le (1+c)W+cm/2+2G.                                   \tag{17}
+\]
+Every jump of $V$ is bounded in absolute value by a finite constant
+depending on $\lambda$. Localize Dynkin's identity at the first hit
+$\tau_F$ of $F$, time $t$, and the first exit from a finite population
+set. Equation (16) and $V\ge0$ bound the expected stopped time by
+$V(s)$. Nonexplosion and Fatou remove the population cutoff; monotone
+convergence as $t\to\infty$ yields
+\[
+                  \E_s\tau_F\le V(s),\qquad s\notin F.        \tag{18}
+\]
+No invariant law or stationary moment was used.
+
+For completeness, select from every state of finite $F$ a finite
+positive-rate path to zero. These finitely many paths have a common
+time horizon $T$ and a positive lower success probability.
+Starting in $F$, the bound
+$W(T)\le W(0)+2P_\lambda(T)$ and (17) give a uniform finite bound on
+$\E V(S_T)$. Equation (18) therefore bounds uniformly the expected
+duration of a trial of length $T$ followed by return to $F$.
+The strong Markov property and the uniform positive success probability
+give finite expected hitting time of zero by repeated trials.
+The mean holding time at zero is $1/\lambda$; each of its two exit
+neighbors has finite expected hitting time back to zero.
+The resulting regeneration cycle has finite mean. Its normalized
+occupation measure is stationary, and irreducibility gives uniqueness.
+This proves Theorem \ref{thm:main}.
+
+\section{Credit, verification, and disclosure}
+
+The model, its conjecture, the distinction between stochastic and
+large-system stability, and the standard Foster principle are prior
+work \cite{OWR,NRE09,NRE11,MT}. The finite geometric birth--death
+Poisson equation and Lipschitz rounding estimate are standard tools.
+The certificate above combines them with cutoffs whose first-download
+interface terms have a useful sign.
+
+Oguz, Anantharam and Norros \cite{OAN12} prove stability of their
+Common Chunk protocol using samples of three from the entire
+population and a rule protecting departure of rare chunks.
+That protocol is different from (1). For example, with just the seed
+and one peer possessing chunk one, its departure probability per
+unit contact time is $7/8$, whereas (1) has departure rate $1/2$.
+A fixed arrival rate also prevents identifying the chains by a
+state-dependent clock change. Their final remaining rare-chunk
+conjecture concerns a different algorithm and is not evidence that
+the deterministic-first-chunk conjecture remained open.
+
+An extensive bounded priority review identified no earlier exact all-load
+recurrence theorem in the sources inspected. The complete 2012 Allerton
+body was compared with this generator, including its operative proof.
+The final 2011 publisher body, the final 2015 journal extension of the
+2012 paper, and some later bodies remain uninspected. Their absence
+from the checked evidence is not proof that they contain no relevant
+result. The supplement records actual reading and access limits. No
+worldwide-firstness or continuing-openness certificate is asserted.
+The source target is the stated 2010 conjecture and the checked 2011
+author-proof model.
+
+The supporting materials preserve the original proof and exact
+rational control programs, fresh independent boundary and
+counterexample controls, expected outputs, source-version notes and
+file hashes. They check finite states and identities; the all-state,
+all-real-load theorem is proved analytically above. These controls
+are not a proof-assistant certificate. No stationary moment or
+performance bound is inferred from them.
+
+AI tools were used extensively in the research, proof development,
+literature comparison, computational reproduction, manuscript
+preparation and adversarial auditing. This is an unrefereed preprint
+draft and has not undergone formal independent human peer review.
+Internal AI reviews do not constitute such human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{OWR}
+I.~Norros, On the stability of population processes
+(joint work with H.~Reittu), in \emph{Mathematical Challenges in
+Stochastic Networks}, Oberwolfach Reports 48/2010, pp.~2782--2783.
+\href{https://doi.org/10.4171/OWR/2010/48}{doi:10.4171/OWR/2010/48}.
+\bibitem{NRE09}
+I.~Norros, H.~Reittu and T.~Eirola,
+\emph{On the stability of two-chunk file-sharing systems},
+arXiv:0910.5577v1 (2009).
+\url{https://arxiv.org/abs/0910.5577v1}.
+\bibitem{NRE11}
+I.~Norros, H.~Reittu and T.~Eirola,
+On the stability of two-chunk file-sharing systems,
+\emph{Queueing Systems} \textbf{67} (2011), 183--206.
+\href{https://doi.org/10.1007/s11134-011-9209-2}
+{doi:10.1007/s11134-011-9209-2}.
+Model and conjecture checked in the January 5, 2011 author proof,
+\url{https://hal.science/hal-00781341}.
+\bibitem{MT}
+S.~P.~Meyn and R.~L.~Tweedie,
+Stability of Markovian processes III: Foster--Lyapunov criteria for
+continuous-time processes,
+\emph{Advances in Applied Probability} \textbf{25} (1993), 518--548.
+\href{https://doi.org/10.2307/1427522}{doi:10.2307/1427522}.
+\bibitem{OAN12}
+B.~Oguz, V.~Anantharam and I.~Norros,
+Stable, distributed P2P protocols based on random peer sampling,
+in \emph{50th Annual Allerton Conference on Communication, Control,
+and Computing} (2012), pp.~915--919.
+\end{thebibliography}
+\end{document}
