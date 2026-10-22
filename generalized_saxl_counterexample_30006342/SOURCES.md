@@ -1,0 +1,10 @@
+# Sources and exact scope
+
+1. Original target: Saul D. Freedman's report contribution, joint with Hong Yi Huang, Melissa Lee and Kamilla Rekvényi, in [Computational Group Theory, Oberwolfach Report 27/2025](https://publications.mfo.de/bitstream/handle/mfo/4340/OWR_2025_27.pdf?isAllowed=y&sequence=1), printed p.1406, Conjecture 1; DOI [10.4171/OWR/2025/27](https://doi.org/10.4171/OWR/2025/27).
+2. Published definition and conjecture: Freedman, Huang, Lee and Rekvényi, [On the generalised Saxl graphs of permutation groups](https://alco.centre-mersenne.org/articles/10.5802/alco.493/), Algebraic Combinatorics 9 (2026), 611–648, Definition 1.1 and Conjecture 1.2.
+3. Credited counterexample: Aluna Rizzoli and Adam R. Thomas, [Common neighbour conjectures for Saxl graphs fail at every base size](https://arxiv.org/abs/2609.01367v1), September 1, 2026 preprint. The verified finite example is Section 7, Table 2, first row. This package does not independently certify other parts of the paper.
+4. Exact generator data: [degree_19683.g](https://github.com/alunik/common-neighbour-conjecture/blob/b2c0a8f95aa4dca76a034a0e769a8c8249f38ae2/counterexamples/degree_19683.g), pinned authors' repository commit b2c0a8f95aa4dca76a034a0e769a8c8249f38ae2. SHA256 b53c4253db629fb22e00b6acf4ee79a8c005c85c53d7f5f0ba8e2d4a2f8278d0. The data and authors' GAP verifier are retained with their MIT license, but neither local Python check executes the GAP code.
+
+The conjecture requires a finite primitive action with minimum base size b>=2, with graph edges the distinct pairs extendible to a base of that exact minimum size. Its common-neighbor requirement quantifies over all pairs; the exhibited pair is distinct and nonadjacent. The adjacent-pair issue at b=2, regular-action exclusions and degree-one/two edge cases are handled explicitly in the certificate.
+
+The imported record's August 22, 2026 literature assessment preceded this September result. Its snapshot was validated against the repository-published full corpus hashes before extracting the target. That historical triage does not supersede the primary sources or the exact finite verification.
