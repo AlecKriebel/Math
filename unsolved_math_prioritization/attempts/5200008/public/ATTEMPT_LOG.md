@@ -1,0 +1,17 @@
+# Five substantive attempts and their outcomes
+
+Problem 5200008 / AMR-051-0008. Date: 2026-10-03 UTC. These entries summarize five mathematical approaches and the explicit gap left by each; they are not claims that five separate external sessions or five formal proof-assistant runs occurred. The complete retained proofs are in PROOF.md.
+
+1. **Remove inverses using the geometry of reflection.** Derived the global oriented-line inverse and its reversal identity. Reflection at a fixed tangent plane is involutive, but the billiard map is not: subsequent reflections use different endpoints. Orientation reversal is anti-symplectic and cannot itself be a C^1 limit of positive reflection words. A rational circle witness checks the noninvolution. Outcome: the elementary inverse cancellation is invalid; no density result follows. Retained: Proposition 1 and Section 2.
+
+2. **Recover inverse maps by recurrence of the base billiard.** Derived the exact circle shear and tested the proposed positive-power construction on a full momentum interval rather than on individual trajectories. Proved that all sufficiently large powers have maximum possible uniform angular error pi from the identity; bounded powers also cannot converge to it. Outcome: even the circle defeats the recurrence shortcut in C^0. This does not exclude words using different mirrors. Retained: Proposition 2.
+
+3. **Use a commuting family of small radial deformations.** Computed every positive word of concentric circles exactly. A lift-continuity argument gives a word-length-independent C^0 separation from the inverse, and an explicit C^1 derivative gap. A cutoff makes the test target compactly supported without changing the obstruction. Outcome: this entire integrable subfamily is insufficient; arbitrary nonsymmetric mirrors are still allowed by the actual problem. Retained: Proposition 3.
+
+4. **Bootstrap from a single missing inverse instead of inverting every mirror.** Proved that approximability of the base inverse allows both signs of every thin-film vector field, brackets, sums, and arbitrary Hamiltonian isotopies. The ODE approximation, finite-composition, domain and diagonal steps are included. Only the published thin-film Lie-algebra density theorem is imported with attribution. For a round circle, base-inverse approximability is also necessary. Outcome: a precise equivalent subproblem in the circle case and a sufficient criterion generally, with the criterion still unproved. Retained: Proposition 4 and Corollary 4.1.
+
+5. **Extend the shear obstruction to nonsymmetric deformations.** Proved a uniform C^1 obstruction for words of any preassigned bounded length when the C^2 deformation neighborhood is sufficiently small. Then tested the unrestricted semigroup inference against an exact symplectic matrix family: arbitrarily small perturbations of a positive shear admit long positive powers equal to their inverses. Outcome: bounded-word control cannot close the fixed-neighborhood, unbounded-word problem, and shear positivity alone is not invariant. The matrix family is not represented as an optical construction. Retained: Propositions 5 and 6.
+
+## Disposition
+
+The original problem is unresolved after these five attempts. Neither the conditional hypothesis nor an invariant covering all allowed deformations has been established. The count records the five approaches above; the intended problem status is `unsolved`, with `5/5` attempts. No full resolution, new discovery, historical priority, or human peer-review claim is made.
