@@ -1851,7 +1851,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1840 | 30005111 / OWR-10252930-021 | Elementary Proof of the Closed Walk Stacking Criterion | 0.0521 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1841 | 30003131 / OWR-14604-008 | Quadratic-Length Universal Random Permutations | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 1842 | 30003172 / OWR-14741-004 | Simultaneously Adaptive Universal Source Coding | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 1843 | 30005478 / OWR-12697711-014 | Algorithms for Amoeba Dimensions from Tropical Fans | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 1843 | 30005478 / OWR-12697711-014 | Algorithms for Amoeba Dimensions from Tropical Fans | 0.0517 | 5.0 | 3 | 2023 | unsolved | 5/5 |  | 2026-10-21: five avenues completed; UNSOLVED. Accepted partial results for arbitrary finite rational fans: effective finite oracle equivalence with projective rational-point feasibility over Q, and an explicit nonpure simplicial example with real minimum 6 and rational minimum 7. No terminating algorithm, undecidability theorem, polynomial-time bound, or pure/balanced/tropical-realizable extension established. Authored proofs, independent audits, and exact verification: rational_fan_minimization_30005478/. |  |
 | 1844 | 30005529 / OWR-13750333-010 | Compatible Geodesic and Horocycle Symbolic Codings | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1845 | 30005732 / OWR-14298011-003 | Well-Defined Trajectories in Controlled Set Motions | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1846 | 30005740 / OWR-14298013-004 | BV Structures with Nonsemisimple Nakayama Automorphisms | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
