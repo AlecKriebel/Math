@@ -1,0 +1,43 @@
+--- a/PROOF_SCOPE.md
++++ b/PROOF_SCOPE.md
+@@ -2,17 +2,17 @@
+ 
+ ## Target and conventions
+ 
+-The supplied ID 2193 / EP-584 asks for two subgraphs of an n-vertex graph of density delta=e(G)/n^2: an H1 of size Omega(delta^3 n^2) with pairwise cycles of length at most 6 and adjacent-pair 4-cycles, and an H2 of size Omega(delta^2 n^2) with pairwise cycles of length at most 8. Here a cycle is simple, pairs contain distinct edges, and the implicit positive constants are uniform in n and delta. No sparsity qualifier occurs in that supplied statement. Distinct H1 and H2 are allowed; a failure of H2 suffices to refute their joint existence claim.
++The supplied ID 2193 / EP-584 asks for two subgraphs of an n-vertex graph of density delta=e(G)/n^2: an H1 of size Omega(delta^3 n^2) with pairwise cycles of length at most 6 and adjacent-pair 4-cycles, and an H2 of size Omega(delta^2 n^2) with pairwise cycles of length at most 8. Here a cycle is simple, pairs contain distinct edges, and the implicit positive constants are uniform in n and delta. No sparsity qualifier occurs in the supplied statement field. The complete inherited background nevertheless explicitly distinguishes fixed positive density from a polynomially sparse regime and records the Fox--Sudakov restriction; that context must not be discarded when identifying the intended research question. Distinct H1 and H2 are allowed; a failure of H2 suffices to refute their joint existence claim.
+ 
+ ## Credited prior counterexample
+ 
+-Lazebnik, Ustimenko and Woldar, Proposition 2.1(i),(iii), supplies, for each prime q, the simple bipartite graph D(5,q), with n=2q^5 vertices, degree q, and girth at least 10. Consequently m=q^6, delta=1/(4q^4), and delta^2 n^2=q^2/4. If H2 has two edges, its required cycle would be a cycle of length at most 8 in G, impossible. Thus e(H2)<=1, even when witness cycles may leave H2. For any proposed uniform constant c>0, choose a prime q>2/sqrt(c); then c delta^2 n^2>1. This contradicts the required lower bound. Primes are unbounded, so these are arbitrarily large graphs. The mathematical dependency is [LUW], not a finite experiment.
++Lazebnik, Ustimenko and Woldar, Proposition 2.1(i),(iii), supplies, for each prime q, the simple bipartite graph D(5,q), with n=2q^5 vertices, degree q, and girth at least 10. Consequently m=q^6, delta=1/(4q^4), and delta^2 n^2=q^2/4. If H2 has two edges, its required cycle would be a cycle of length at most 8 in G, impossible. Thus e(H2)<=1, even when witness cycles may leave H2. For any proposed uniform constant c>0, choose a prime q>2/sqrt(c); then c delta^2 n^2>1. This contradicts the required lower bound. Primes are unbounded, so these are arbitrarily large graphs. The mathematical dependency is [LUW], not a finite experiment. No congruence restriction on q is needed for the lower bound on girth in Proposition 2.1(iii); the congruence in part (iv) is only for equality. Adjacent and disjoint pairs are both excluded, since G itself has no qualifying cycle. This family does not refute the H1 assertion on its own: delta^3 n^2=1/(16q^2) tends to zero. The accepted negative conclusion is the unrestricted H2 assertion and hence the joint unrestricted existence assertion.
+ 
+ The same high-girth obstruction is already given in Theorem 1 and Corollary 2 of the April 21, 2026 note [ULAM]. We do not claim discovery. This verification uses the full D family, avoiding any need to determine its connected components. The note's separate Proposition 4 is not used or certified.
+ 
+ ## Why this does not settle the intended research question
+ 
+-[FS], Problem 1.1, asks for some positive beta_0 with a conclusion for small beta in m=n^(2-beta). Its Theorem 1.2 proves the H2 bound, with a stronger adjacent-edge condition, for fixed 0<beta<1/5 and sufficiently large n. Our obstruction has delta=2^(-6/5)n^(-4/5), outside that range. The paper's concluding remarks retain the internal strong-C6 density-power question. We do not infer a solution to it from the malformed unrestricted version.
++[FS], Problem 1.1, asks for some positive beta_0 with a conclusion for small beta in m=n^(2-beta). Its Theorem 1.2 proves the H2 bound, with a stronger adjacent-edge condition, for fixed 0<beta<1/5 and sufficiently large n. Our obstruction has delta=2^(-6/5)n^(-4/5), outside that range. The paper's concluding remarks retain the internal strong-C6 density-power question. We do not infer a solution to it from the unqualified statement-field version. The accepted refutation requires a positive lower-bound constant uniform in n and delta, and does not refute a fixed-density assertion whose threshold for n may depend on delta.
+ 
+ [Duke--Erdős 1982], Corollary 1, concerns a fixed positive density and sufficiently large n, and places the witness cycles inside the selected subgraph. Its final discussion already recognizes high-girth obstructions to unrestricted short-cycle conclusions. Fixed-density quantifiers cannot be silently replaced by all density sequences.
+ 
+--- a/README.md
++++ b/README.md
+@@ -4,6 +4,6 @@
+ 
+ Read PROOF_SCOPE.md for the precise mathematical reduction and limits, SOURCE_VERIFICATION.json for public bibliographic and retrieval metadata, and STATUS.json for the terminal disposition. This packet contains authored analysis and public verification metadata only. It contains no copied PDFs, source extracts, images, dataset records, or private coordination files.
+ 
+-The exact database ID and the complete inherited record/report identity were verified before research. No substantive inherited authored proof or computation was present. The live database page could not be read because of HTTP 403; its present contents and present status were not verified. The analysis is explicitly tied to the hash-pinned supplied statement.
++The exact database ID and the complete inherited record/report identity were verified before research. No substantive inherited authored proof or computation was present. The EP-584 report key was absent; the required lookup therefore supplied the empty object. The inherited background was read in full and retained its fixed-density and sparse-range qualifications. The live database page could not be read because of HTTP 403; its present contents and present status were not verified. The analysis is explicitly tied to the hash-pinned supplied statement.
+ 
+ No repository, queue, pull request, or external publication was changed. No originality, exhaustive literature coverage, human peer review, or proof-assistant certification is claimed. The classical high-girth theorem is an explicit external mathematical dependency.
+--- a/VERIFICATION_LOG.md
++++ b/VERIFICATION_LOG.md
+@@ -1,6 +1,6 @@
+ # Verification log
+ 
+-1. Matched byte counts and SHA-256 values of all three supplied inherited corpus files; matched the complete target statement and record/report pair. Read the entire exact-ID record, including its background, and the keyed research report. The report was empty; the background contained literature triage rather than a substantive authored proof/computation. The gate therefore cleared.
++1. Matched byte counts and SHA-256 values of all three supplied inherited corpus files; matched the complete target statement and record/report pair. Read the entire exact-ID record, including its background, and the keyed research report. The EP-584 report key was absent and the stipulated lookup returned {}; the background contained literature triage and sparse-range qualifications rather than a substantive authored proof/computation. The gate therefore cleared.
+ 2. Searched bounded repository history: default-branch code searches for 2193 and EP-584, all-state pull-request searches for those identifiers, commit searches for those identifiers, and one broader cycle-connected pull-request search. No exact-target substantive prior work was returned. The broader results concerned other problems. This is not exhaustive history and absence is not evidence of novelty.
+ 3. Attempted both exact public problem URLs using read tools and the cloud browser. These remained inaccessible. The statement scope is therefore pinned to the supplied record, without claiming a fresh live-page match.
+ 4. Inspected primary mathematical sources. Verified the known high-girth obstruction, original small-exponent quantifier, and the existence and explicitly different conventions of the June 2026 manuscript.

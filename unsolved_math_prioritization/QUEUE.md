@@ -906,7 +906,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 895 | 20002573 / AIM-PROBABILITY-0015 | Exact dropout decomposition for RBM likelihoods and an ordinary-RBM no-go example | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 896 | 20002585 / AIM-PROBABILITY-0027 | Finite-N boundary and routing-miss Stein comparisons for JSQ approximations | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 897 | 20002597 / AIM-PROBABILITY-0039 | Dyck random transpositions and a sharp edgewise comparison obstruction | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 898 | 2193 / EP-584 | Erdős Problem #584 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 898 | 2193 / EP-584 | Erdős Problem #584 | 0.0960 | 5.5 | 1 | unknown | unsolved | 0/5 |  | Literal unrestricted H2 refuted by the prior high-girth obstruction (LUW; ULAM note, 2026-04-21); joint unrestricted claim fails. Intended sparsity-qualified internal strong-C6 remains unresolved; no H1-only or fixed-density refutation; no novelty claim. |  |
 | 899 | 2200007 / AMR-021-0007 | Problems Around Polynomials — Conjecture 4 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 900 | 2228 / EP-642 | Erdős Problem #642 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 901 | 2303033 / AMR-022-3033 | Research Problems in Function Theory — Problem 3.33 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
