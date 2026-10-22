@@ -551,7 +551,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 540 | 9700001 / AMR-096-0001 | Martingale for practical purposes | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 541 | 30004773 / OWR-8415341-012 | Character Degrees of Graph-Defined Exponent-$p$ Groups | 0.1191 | 6.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 542 | 5200008 / AMR-051-0008 | Open Problems on Billiards and Geometric Optics | 0.1191 | 6.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 543 | 30005558 / OWR-13750339-002 | Hodge Integrals over Genus-One Admissible Covers | 0.1176 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 543 | 30005558 / OWR-13750339-002 | Hodge Integrals over Genus-One Admissible Covers | 0.1176 | 6.0 | 3 | 2023 | already_solved | 1/5 |  | 2026-10-03: Source-based resolution from Iribar López–Pandharipande–Tseng (2025), with independently verified connected-cover extraction. I(d,n) = abs(B_2n)(sigma_(2n+1)(d)-sigma_1(d))/(48n). 248 author and 123 independent exact checks pass. No novelty claim. [Proof and sources](attempts/30005558/public/PROOF.md); [full audit](attempts/30005558/audit/AUDIT.md). |  |
 | 544 | 30005598 / OWR-14297736-004 | de Gennes Bound for Magnetic Neumann Eigenvalues | 0.1176 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 545 | 5300049 / AMR-052-0049 | Accessibility of positive-exponent boundary points | 0.1171 | 6.0 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 546 | 6000015 / AMR-059-0015 | Stein Tangent Bundles of Complete Hessian Manifolds | 0.1165 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
