@@ -1,0 +1,16 @@
+# Limits of the investigation
+
+- No solution of KP-4.66, no new closed exotic pair, no novel-theorem claim, and no exhaustive certificate that the question remains open in every source.
+- The investigated invariant is the ordinary rational gl_2 Khovanov skein lasagna module. Integral coefficients, other N, Bar-Natan/deformed theories, and one-dimensional-input theories are not identified with it.
+- Smooth compact connected oriented 4-manifolds are the working category. The actual target is closed. Relative link/boundary data and exotic surface embeddings do not by themselves answer it. Simple connectivity is an extra hypothesis only in the positive-b_2^+ criterion.
+- CPbar^2 and CP^2 are different oriented inputs. The current dataset background loses an overbar. The primary PDF was visually checked. The primary reference's theorem number predates Ren–Willis v3: its positive-sphere result is Theorem 1.4 in that version.
+- The source for the positive-b_2^+ route is explicitly credited. Its premise is still missing. Orientation-free non-diffeomorphism in the adjusted conditional construction uses a nonzero-signature check.
+- A 4-handle preserves the module. Arbitrary caps need not, and 3-handle maps are only known here to be surjective. Kernel and homology-grading information cannot be discarded.
+- The Lee vector space is always nonzero for the empty link, but its integer filtration can be identically minus infinity. Its associated graded may vanish. The comparison with the ordinary module used here requires the 2-handlebody hypothesis.
+- Same-prefix direct systems and semisimple-module tensor models are algebraic countercontrols only. They are not realizability claims for skein lasagna modules or topology.
+- The checker contains no Khovanov chain complex, Kirby-calculus engine, manifold recognition procedure, source-proof formalization, or infinite-limit computation. Exact controls support elementary arithmetic/algebra only.
+- Ren–Willis arXiv v3, December 18, 2025, was the inspected body. The Annals page says revised June 18, 2026 and accepted June 24, 2026, to appear. The later accepted body was not retrieved or compared to v3.
+- Gluck-twist invariance is imported from an 88-page preprint. The statement, relevant setup, and proof of Theorem 7.1 were inspected, but the full auxiliary machinery, especially its foundational functoriality and foam results, was not independently audited. General twists have class-dependent grading shifts; only the null-homologous conclusion is used as unchanged graded invariance.
+- Repository searches cannot rule out every deleted branch, unpublished working tree, unindexed text, or separately named private attempt. The accessible exact-ID directory/branch/PR/commit/code checks found no prior attempt.
+- The live selected Hugging Face row is not immutably bound by its API response to the repository's pinned full-corpus revision. Full corpus files were not downloaded or independently rehashed. Declared corpus hashes are labeled as declarations.
+- Only authored mathematics, code, control results, and public verification metadata belong in the safe packet. No source PDF, extracted source text, raw dataset row, source corpus, or private coordination file is included.
