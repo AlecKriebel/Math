@@ -5,6 +5,7 @@ import datetime as dt
 import hashlib
 import html
 import json
+import re
 import subprocess
 import unicodedata
 import urllib.parse
@@ -12,7 +13,7 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[2]
 PLAN = ROOT / 'EXISTING_PUBLICATION_BATCH_A_PLUS1194_PROPOSAL.json'
-PLAN_SHA = 'c0b8cb0f95b2675a96548021b97d3f071ff8f590adf6480ec098b417c92a1e83'
+PLAN_SHA = '6aa80b6d6db0197d953d4b237c2477ec1421a79409321323aec94b749fe2ca8c'
 HELPER = ROOT / 'audits/pr1186_2274/reconcile_existing_row.py'
 HELPER_SHA = '0360bb97064000502aa04a38c7f8816229b298fcdcb2295f16acc7f2e53af1a5'
 CASE = ROOT / 'private/existing_publication_batch_a_plus1194_action01'
@@ -115,6 +116,10 @@ def main():
                 and row[2] == 'https://doi.org/' + item['doi'], 'Invalid four cells')
         require(item['aliases'] and all(type(x) is str and folded(x) for x in item['aliases']),
                 'Empty identity alias')
+        original_ids = list(dict.fromkeys(re.findall(r'\b(?:OWR|AMR)-\d+-\d+\b', row[0])))
+        require(item['original_problem_ids'] == original_ids and
+                all(x in item['aliases'] for x in original_ids),
+                'Known original problem identity missing')
         require(item['doi'] in item['aliases'] and
                 all(x in item['aliases'] for x in item['problem_ids']) and
                 'https://github.com/AlecKriebel/Math/pull/' + str(item['pr']) in item['aliases'],
