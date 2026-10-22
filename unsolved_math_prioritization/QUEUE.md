@@ -685,7 +685,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 674 | 2302019 / AMR-022-2019 | Research Problems in Function Theory — Problem 2.19 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 675 | 2302042 / AMR-022-2042 | Research Problems in Function Theory — Problem 2.42 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 676 | 2303014 / AMR-022-3014 | Research Problems in Function Theory — Problem 3.14 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 677 | 2303023 / AMR-022-3023 | Research Problems in Function Theory — Problem 3.23 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 677 | 2303023 / AMR-022-3023 | Research Problems in Function Theory — Problem 3.23 | 0.1050 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Prior affirmative: Hayman-Lingham draft Update 3.23, credited to Govorov via Eiderman Thm 4.2. [Conditional deduction and inverse-linear lower bounds](../problems/2303023_green_potential_covering/green_covering_2303023_public_safe_v2/README.md); external covering theorem premise. Source inspection not repeated; original theorem and corpus/exact record not independently verified. No novelty or optimal-coefficient claim. |  |
 | 678 | 2304029 / AMR-022-4029 | Research Problems in Function Theory — Problem 4.29 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 679 | 2305020 / AMR-022-5020 | Research Problems in Function Theory — Problem 5.20 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 680 | 2305033 / AMR-022-5033 | Research Problems in Function Theory — Problem 5.33 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
