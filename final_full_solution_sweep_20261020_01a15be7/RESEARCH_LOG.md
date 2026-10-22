@@ -947,3 +947,23 @@ PRIVATE_DUPLICATE_CUSTODY_N_SHA256=ef51a39c2269f1490de03e84a04c2b2928faaff50cf0a
 2026-10-22T06:35:05.773530+00:00 — PR #1222 claims full EP306 priorwritten theorem; no tracker record. Independent source/analytic/CRT audit assigned, Tang earlier formalprovenance retained without buildclaim. PR #1208 complete bounded priority dossier rootadopted314pins/3824checks; packagepreparation ongoing. Completion79%.
 
 2026-10-22T06:37:27.009957+00:00 — Checkpoint through PR #1222. Strongest newly verified results:1208 complete incidence-dependent original improvement request (bounded priority, packagepending),1049 full combined analytic/Jensen repair,1210 full credited FuchsD/F. Sixteenrow accounting action01 rejected by independent actual-gate arxivalias counterexample; separatefix/freshreviewrequired. No new publication or ledgerwrite since eight verifiedexistingrowappend. Completion estimate79%.
+
+2026-10-22T06:38:12.191596+00:00 — PR #1223 restricted bounded-Schur-ratio classifications and local tests are partial relative to arbitrary-pair/dimension target. Checkpoint468d95a savedthrough1222. Completion79%.
+
+2026-10-22T06:39:17.617687+00:00 — PR #1224 mixed result retained for independent audit: full credited asymptotic near-minimum clause may qualify despite separate rigidity gap; exact eventualoptimizer unresolved. No target DOI authenticated. Completion79%.
+
+2026-10-22T06:40:05.000871+00:00 — PR #1225 alreadycorrectlypublished/recordedrow156; both immutable publication payloads/sourcecoverage verified. Skipwithoutnewmath. Completion79%.
+
+2026-10-22T06:41:23.324860+00:00 — PR #1226 exact prior exponent characterization retained for independent eligibility review because original estimation criterion is open-ended. Neither automatically full nor automatically partial merely because exponent unevaluated. Completion79%.
+
+2026-10-22T06:42:54.706428+00:00 — PR #1227 remains a bounds-only partial result; lowerconstant1/2 normalizes n loglogn/logn, notn. Exact0.19 uppercertificate doesnotsettlelinear/sublinear. Completion79%.
+
+2026-10-22T06:44:11.013482+00:00 — PR #1228 retainedfullfirstEP983disproofclaimseparatefromgeneral-kpartial; correctedpriorproof/sourceidentity audit queued. LatestGraphQLmax1446checked06:43, not a cap; continueupward. Completion79%.
+
+2026-10-22T06:47:06.620613+00:00 — PR #1229 allZomega4APtarget remainsunresolved; positive-integerpriorresult and restrictedmethodobstructionsnotfullZsolution. Completion79%.
+
+2026-10-22T06:49:48.968738+00:00 — PR #1230 exactsimpleW-algebrapriorisomorphism retainedforindependentreview/existingjournalrecord. PR #1217rootadopted61pins/702059checkerpermode, rowpending. Completion79%.
+
+## 2026-10-22T07:09:26.421817+00:00 — through PR1232;79%
+
+The ordered journal covers9..1232 with no gaps; next1233. PR1217 Ford and1219 Chebyshev full existing-source results root-adopted after exact independent-checker replays; qualified rows pending. PR1231 full geodesic-cycle negative claim and1232 finite statistical ARE original-interpretation claim retained despite absent QUEUE status and assigned independent audits. PR1208 whole-publication review01 found two fixable prose/finite-coverage issues; root adopted HOLD, separately identified exactly one omitted nested review-manifest member and bound it independently. Separate publication02 repair underway, fresh whole reviewer required. PR1131 operations04 cross-view HOLD persists; operations05 storage-only preparation adopted104MiB conservative mode allowance with old strict reserves and same full guards, three complete fresh modes/fresh adversary still required. Sixteen-row action01 arXiv alias defect remains held; separate02 preparing. Existing8-row ledger batch184–191 remainsDONE, no retries. Private/runtime/source bodies and all active preparation folders excluded from checkpoint. No new publication, merge, row or external contact at this checkpoint.

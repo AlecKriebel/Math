@@ -1,0 +1,69 @@
+{
+  "description": "Returns one or more ranges of values that match the specified data filters. For more information, see [Read, write, and search metadata](https://developers.google.com/workspace/sheets/api/guides/metadata). The caller must specify the spreadsheet ID and one or more DataFilters. Ranges that match any of the data filters in the request will be returned.",
+  "httpMethod": "POST",
+  "parameterOrder": [
+    "spreadsheetId"
+  ],
+  "parameters": {
+    "spreadsheetId": {
+      "description": "The ID of the spreadsheet to retrieve data from.",
+      "location": "path",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "path": "v4/spreadsheets/{spreadsheetId}/values:batchGetByDataFilter",
+  "requestBody": {
+    "schema": {
+      "description": "The request for retrieving a range of values in a spreadsheet selected by a set of DataFilters.",
+      "properties": {
+        "dataFilters": {
+          "description": "The data filters used to match the ranges of values to retrieve. Ranges that match any of the specified data filters are included in the response.",
+          "items": {
+            "$ref": "DataFilter"
+          },
+          "type": "array"
+        },
+        "dateTimeRenderOption": {
+          "description": "How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
+          "type": "string"
+        },
+        "majorDimension": {
+          "description": "The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then a request that selects that range and sets `majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas a request that sets `majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.",
+          "type": "string"
+        },
+        "valueRenderOption": {
+          "description": "How values should be represented in the output. The default render option is FORMATTED_VALUE.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "schemaRef": "BatchGetValuesByDataFilterRequest"
+  },
+  "response": {
+    "schema": {
+      "description": "The response when retrieving more than one range of values in a spreadsheet selected by DataFilters.",
+      "properties": {
+        "spreadsheetId": {
+          "description": "The ID of the spreadsheet the data was retrieved from.",
+          "type": "string"
+        },
+        "valueRanges": {
+          "description": "The requested values with the list of data filters that matched them.",
+          "items": {
+            "$ref": "MatchedValueRange"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "schemaRef": "BatchGetValuesByDataFilterResponse"
+  },
+  "scopes": [
+    "https://www.googleapis.com/auth/drive",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/spreadsheets"
+  ]
+}

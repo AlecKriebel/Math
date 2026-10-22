@@ -1,0 +1,5 @@
+# PR #1230 full prior isomorphism, provisional
+
+The PR explicitly claims the exact original simple graded W-algebra isomorphism and credits AVM published2024 Theorem8.8(2), with Allegra earlierexample attribution. Root read entire proof/audit/acceptance: both simple quotients map from admissible affine sl2 at-4/3 under a conical/selfdual collapse criterion; orbitclosure, nonzero DScover, actual affine map and half-integral Dynkin data matter. This is a full prior target claim despite noQUEUEedit. Fresh191rowGWSno target/DOI-family/resultlead; independent original/published theorem/proof specialization and existing-record audit assigned. Universal W-algebras and new generalfamily are not claimed; unavailablethesis not a requiredproofpremise. No newupload/accounting action.
+
+Actual8paths/noQUEUE bound. Correct statement W_subscript simplequotients overC with standardDynkinconformalvectors and c=-6. Source imported VOA/representation/character results named; no root reproof or recursiveaudit accepted. Independent review pending. Completion79%.
