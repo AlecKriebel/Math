@@ -365,7 +365,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 354 | 3000058 / AMR-029-0058 | Opposite vertices of base polyhedra | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 355 | 3048 / OPG-37226 | Sequence defined on multisets | 0.1560 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 356 | 2800404 / AMR-027-0404 | 10 Lectures and 42 Open Problems — OSNAP | 0.1556 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 357 | 30002820 / OWR-13498-010 | Discrete-Conformal Metric Subdivision Schemes | 0.1556 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 357 | 30002820 / OWR-13498-010 | Discrete-Conformal Metric Subdivision Schemes | 0.1556 | 5.0 | 3 | 2015 | unsolved | 5/5 |  |  |  |
 | 358 | 30002865 / OWR-13678-006 | Complete-Intersection Kernels of Ideal Projectors | 0.1556 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 359 | 30002928 / OWR-13856-004 | Uniqueness of Condensation-Model Parameters | 0.1556 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 360 | 30002957 / OWR-13940-005 | Delaunay Simplices in Flag Complexes of Random Triangulations | 0.1556 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |

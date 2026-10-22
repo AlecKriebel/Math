@@ -1,0 +1,32 @@
+# Source/prior-attempt gate: 30002820 / OWR-13498-010
+
+2 October 2026. Rank 357. This gate consumes zero author proof turns. No prior campaign attempt was recovered; scoped mathematical work is eligible, with the source-formulation caveat below retained.
+
+## Exact source
+
+The complete problem is Ulrich Bauer's Problem 6, “Subdivision of discrete conformal structures”, in the open-problem session of *Discrete Differential Geometry*, OWR 13/2015, printed pp.721–722. Complete primary report: https://ems.press/content/serial-article-files/46561 ; publisher https://ems.press/journals/owr/articles/13498 ; DOI https://doi.org/10.4171/OWR/2015/13 . Citation: Oberwolfach Reports 12(2015),no.1,661–729. The publisher records submission 1 March 2015 and publication 4 December 2015. The full problem and reference were read and printed 722 visually checked.
+
+Rote's primary problem collection reproduces the same question and definition on its pp.3–4: https://page.mi.fu-berlin.de/rote/Kram/OWR-DDG15-problems.pdf . It does not add a metric-compatibility axiom or a solution. The requested UnsolvedMath page was attempted but unavailable; the full pinned imported record was read instead. Its August 2026 triage is credited background, not an attempted proof. No matching research-results entry exists.
+
+The input is a triangulated surface with two discrete metrics lambda,mu related by mu_ij=exp((u_i+u_j)/2)lambda_ij. The source asks for a metric subdivision scheme whose two outputs remain discretely conformally equivalent. Its stated subdivision definition preserves the underlying simplicial realization and puts each new simplex inside an old one. It calls a metric subdivision scheme a map to such a subdivision equipped with a new metric; barycentric subdivision is the example.
+
+## A genuine formulation limitation
+
+The printed definition does **not explicitly state** that the new metric must induce the old intrinsic metric, interpolate old lengths, be nontrivial, shrink mesh size, be local, be stationary, converge, or extend the old vertex scale factors. If read as an unrestricted map of metrics to metrics, an output metric independent of the input would trivially preserve equivalence; allowing the identity subdivision is another vacuous construction. Such observations do not resolve the meaningful refinement question and will not be counted as a claimed solution.
+
+We do not silently repair the source by attributing stronger axioms to it. The substantive work will state its exact additional hypotheses (for example, ordinary Euclidean midpoint refinement with the induced metric) and record results as scoped partials or obstructions. Failure of one fixed scheme is not nonexistence of every scheme. A construction satisfying only the weak formal wording must be labelled a formulation observation, not a new resolution of an intended nontrivial problem.
+
+## Credited primary context and distinctions
+
+- Feng Luo, *Combinatorial Yamabe flow on surfaces*, Commun. Contemp. Math. 6(5)(2004),765–780, DOI https://doi.org/10.1142/S0219199704001501 , primary author PDF https://sites.math.rutgers.edu/~fluo/mpapers/combinatorial%20Yamabe%20flow%20on%20surfaces.pdf . The introductory PL-metric/conformal-class definitions were read; this is the original problem's cited reference.
+- Bobenko–Pinkall–Springborn, *Discrete conformal maps and ideal hyperbolic polyhedra*, https://arxiv.org/abs/1005.2698 , downloaded v3 dated 1 September 2015. Sections 2.1–2.6 were inspected for definitions, cross-ratio equivalence, Möbius invariance and piecewise-projective interpolation. Discrete metrics are positive lengths satisfying triangle inequalities. All triangle shapes on one face are conformally equivalent. Proposition 2.3.2 identifies conformal equivalence via length cross ratios; Proposition 2.5.1 says a global Möbius map gives conformally equivalent chord metrics. The latter is only a sufficient source of conformal equivalences and cannot replace arbitrary vertex scaling.
+- Vaxman–Müller–Weber, *Canonical Möbius Subdivision*, ACM TOG 37(6),article227(2018), DOI https://doi.org/10.1145/3272127.3275007 . Primary author/university abstract and method description were checked: https://www.research.ed.ac.uk/en/publications/canonical-m%C3%B6bius-subdivision and https://www.geometrie.tuwien.ac.at/geom/ig/publications/moebiussubdivision/moebiussubdivision.pdf . It concerns extrinsic subdivision operators invariant under global Möbius transformations. That equivariance alone does not establish Bauer's arbitrary discrete vertex-scaling condition or isometric intrinsic subdivision. The complete PDF was retrieved; its abstract, Section 4.1 and conclusion were read. The conclusion explicitly leaves subdivision preserving conformal equivalence of two meshes as future work. No full-paper proof verification is claimed at this gate.
+- Mark Gillespie's primary hyperbolic-geometry notes, https://markjgillespie.com/Misc/HyperbolicNotes/Flips/index.html , explain circumcircle-preserving projective interpolation and Ptolemy flips commuting with vertex scaling. A flip changes an edge between existing vertices; that fact alone is not a subdivision scheme adding vertices with the requested metric properties.
+
+Targeted exact-title/code/source-phrase and current-topic searches found no primary resolution of the nontrivial intended target or authoritative clarification of the missing metric-compatibility conditions. This is a bounded search, not global certification. Other meanings of conformal subdivision (circle-packing tilings, Cannon-style subdivision rules, or subdivision of data in a metric space) must not be substituted.
+
+## Campaign history
+
+A fresh fetch and artifact-path scan of 361 recovered remote heads found no exact ID/code, discrete-conformal or metric-subdivision target artifacts. Four live all-state PR searches returned zero. Recovered all-ref commit-message searches for the same aliases returned no hits. The previously recovered related-target-groups list has no group containing this target. Source rows and imported triage are not author attempts. These checks do not exclude possible uncommitted or unindexed work.
+
+Raw source PDFs, extracted text/images, imported records and retrieval logs are local-only. Public proof packets may include mathematical statements, source links, access limits and hashes. The exact original target remains unresolved at this gate, with source-formulation uncertainty explicitly preserved.
