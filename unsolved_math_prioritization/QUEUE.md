@@ -538,7 +538,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 527 | 2306038 / AMR-022-6038 | Research Problems in Function Theory — Problem 6.38 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 528 | 2306052 / AMR-022-6052 | Research Problems in Function Theory — Problem 6.52 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 529 | 2306083 / AMR-022-6083 | Research Problems in Function Theory — Problem 6.83 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 530 | 2307054 / AMR-022-7054 | Research Problems in Function Theory — Problem 7.54 | 0.1200 | 4.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 530 | 2307054 / AMR-022-7054 | Research Problems in Function Theory — Problem 7.54 | 0.1200 | 4.5 | 3 | unknown | unsolved | 5/5 |  | 2026-10-03: unresolved after five substantive attempts. Proven: all k≤200 for every n; all offsets 0≤k−n≤100 for every n; all degrees for n≤4. Remaining: n≥5, k≥201, k−n≥101. [Proof and exact verification](attempts/2307054/public/README.md); [independent audit](attempts/2307054/audit/AUDIT.md). No novelty claim. |  |
 | 531 | 2863 / KP-3.65 | Kirby Problem 3.65 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 532 | 2897 / KP-4.21 | Kirby Problem 4.21 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 533 | 2902 / KP-4.26 | Kirby Problem 4.26 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
