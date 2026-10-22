@@ -1,0 +1,26 @@
+--- a/test_negative_controls.py
++++ b/test_negative_controls.py
+@@ -75,6 +75,10 @@
+             for name in integrity:
+                 target=temp/('packet_'+mode_name.replace('-','')+'_'+name)
+                 shutil.copytree(root,target)
++                # Only disposable mutation fixtures become writable.
++                target.chmod(0o700)
++                for fixture_file in target.iterdir():
++                    fixture_file.chmod(0o600)
+                 if name=='change_report':
+                     with (target/'REPORT.md').open('a') as f:f.write('\nMUTATION\n')
+                 elif name=='remove_report':
+--- a/MANIFEST.json
++++ b/MANIFEST.json
+@@ -34,8 +34,8 @@
+     },
+     {
+       "name": "test_negative_controls.py",
+-      "bytes": 5162,
+-      "sha256": "0f03f13e950da9d7891b242150b37844774457473eb1628229ba37f8dbec380e"
++      "bytes": 5367,
++      "sha256": "dbb91a0bda85cb3b3fdeb62da30150fa3267dadd20e7e33cff8f7a573af7e8a6"
+     },
+     {
+       "name": "verify_math.py",
