@@ -797,7 +797,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 786 | 30005012 / OWR-9790358-010 | Nonsingularity of Bernstein-Basis Collocation Matrices | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 787 | 30005024 / OWR-9790359-005 | Finite-Mean Coding Radius for Finitely Dependent Processes | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 788 | 30005026 / OWR-9790359-007 | Simultaneous Spatial and Informational Coding Efficiency | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 789 | 30005078 / OWR-10252925-002 | Algorithms for Multigraded Castelnuovo–Mumford Regularity | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 789 | 30005078 / OWR-10252925-002 | Algorithms for Multigraded Castelnuovo–Mumford Regularity | 0.1010 | 5.5 | 3 | 2022 | unsolved | 5/5 |  |  |  |
 | 790 | 30005114 / OWR-10252930-024 | Spread Bounds for the Random Triangle-Removal Process | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 791 | 30005140 / OWR-10252936-003 | Gaussian-Free-Field Maxima on Percolation Clusters | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 792 | 30006031 / OWR-14298590-001 | Little Three-Disks Actions on Operadic Homotopy Centers | 0.1010 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
