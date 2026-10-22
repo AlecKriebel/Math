@@ -793,7 +793,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 782 | 30004620 / OWR-4990375-013 | Effective Surface Cone of Principally Polarized Abelian Threefolds | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 783 | 30004730 / OWR-8415335-002 | Consistent Conical Bicombings in Metric Spaces | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 784 | 30004831 / OWR-8415347-009 | Monoidal Invariance of Hopf-Algebra Cohomological Dimension | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 785 | 30004953 / OWR-8415364-011 | Optimal Great-Subsphere Concentration for the Negative-$p$ Aleksandrov Problem | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 785 | 30004953 / OWR-8415364-011 | Optimal Great-Subsphere Concentration for the Negative-$p$ Aleksandrov Problem | 0.1016 | 5.5 | 3 | 2021 | unsolved | 5/5 |  |  |  |
 | 786 | 30005012 / OWR-9790358-010 | Nonsingularity of Bernstein-Basis Collocation Matrices | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 787 | 30005024 / OWR-9790359-005 | Finite-Mean Coding Radius for Finitely Dependent Processes | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 788 | 30005026 / OWR-9790359-007 | Simultaneous Spatial and Informational Coding Efficiency | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
