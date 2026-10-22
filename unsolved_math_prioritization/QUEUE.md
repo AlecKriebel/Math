@@ -448,7 +448,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 437 | 30002637 / OWR-13106-010 | Instability of Nontrivial Compact Ricci Solitons | 0.1300 | 6.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 438 | 30002659 / OWR-13110-001 | Shortest Billiard Trajectories in Constant Width Bodies | 0.1300 | 6.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 439 | 30003813 / OWR-16164-005 | Combinatorics of Signed Adjacency Polytopes | 0.1286 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 440 | 30003786 / OWR-16160-016 | Embedding Independence of Congruence Subgroups | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 440 | 30003786 / OWR-16160-016 | Embedding Independence of Congruence Subgroups | 0.1286 | 6.0 | 3 | 2018 | already_solved | 1/5 |  |  |  |
 | 441 | 30003840 / OWR-16167-010 | Conjugacy in Braided Thompson Groups | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 442 | 6800004 / AMR-067-0004 | Biorthogonal curvature | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 443 | 6800009 / AMR-067-0009 | Bi-invariant metrics and multiplicity of conjugate points | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
