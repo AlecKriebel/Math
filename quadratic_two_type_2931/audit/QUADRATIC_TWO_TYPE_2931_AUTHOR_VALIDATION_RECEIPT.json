@@ -1,0 +1,72 @@
+{
+  "problem_id": 2931,
+  "bundle_sha256": "a7feb177dbc27c56674e4333675303fa91cfbf2bfb61905273361934b8cca368",
+  "manifest_sha256": "30bd1af52d976b711cc52a6c30abca55f0832ef9e767702232dc38b6e9051a20",
+  "tests": [
+    {
+      "test": "directory_normal",
+      "exit_code": 0,
+      "stdout": "INTEGRITY_AND_SCHEMA_PASS: 8 exact members; stalled_partial; no mathematical validation claimed.",
+      "stderr": "",
+      "expected_exit": 0
+    },
+    {
+      "test": "zip_normal",
+      "exit_code": 0,
+      "stdout": "INTEGRITY_AND_SCHEMA_PASS: 8 exact members; stalled_partial; no mathematical validation claimed.",
+      "stderr": "",
+      "expected_exit": 0
+    },
+    {
+      "test": "optimized_explicit_rejection",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Optimized Python execution is unsupported; run without -O or -OO.",
+      "expected_exit": 2
+    },
+    {
+      "test": "doubly_optimized_explicit_rejection",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Optimized Python execution is unsupported; run without -O or -OO.",
+      "expected_exit": 2
+    },
+    {
+      "test": "tampered_member",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Byte count mismatch: PROOF.md",
+      "expected_exit": 2
+    },
+    {
+      "test": "unexpected_member",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Unexpected directory contents",
+      "expected_exit": 2
+    },
+    {
+      "test": "wrong_problem",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Wrong problem",
+      "expected_exit": 2
+    },
+    {
+      "test": "duplicate_json_key",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Duplicate JSON key: problem_id",
+      "expected_exit": 2
+    },
+    {
+      "test": "tampered_zip",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: ZIP fingerprint mismatch",
+      "expected_exit": 2
+    }
+  ],
+  "all_passed": true,
+  "mathematical_validation": false
+}

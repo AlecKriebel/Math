@@ -1,0 +1,383 @@
+{
+  "problem_id": 2931,
+  "tests": [
+    {
+      "packet": "author",
+      "test": "directory_normal",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "INTEGRITY_AND_SCHEMA_PASS: 8 exact members; stalled_partial; no mathematical validation claimed.",
+      "stderr": ""
+    },
+    {
+      "packet": "author",
+      "test": "zip_normal",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "INTEGRITY_AND_SCHEMA_PASS: 8 exact members; stalled_partial; no mathematical validation claimed.",
+      "stderr": ""
+    },
+    {
+      "packet": "author",
+      "test": "optimized_explicit_rejection",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Optimized Python execution is unsupported; run without -O or -OO."
+    },
+    {
+      "packet": "author",
+      "test": "doubly_optimized_explicit_rejection",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Optimized Python execution is unsupported; run without -O or -OO."
+    },
+    {
+      "packet": "author",
+      "test": "tampered_member",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Byte count mismatch: PROOF.md"
+    },
+    {
+      "packet": "author",
+      "test": "unexpected_member",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Unexpected directory contents"
+    },
+    {
+      "packet": "author",
+      "test": "wrong_problem",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Wrong problem"
+    },
+    {
+      "packet": "author",
+      "test": "duplicate_json_key",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Duplicate JSON key: problem_id"
+    },
+    {
+      "packet": "author",
+      "test": "tampered_zip",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: ZIP fingerprint mismatch"
+    },
+    {
+      "packet": "author",
+      "test": "relocated_zip_and_manifest",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "INTEGRITY_AND_SCHEMA_PASS: 8 exact members; stalled_partial; no mathematical validation claimed.",
+      "stderr": ""
+    },
+    {
+      "packet": "author",
+      "test": "same_size_member_mutation",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Digest mismatch: PROOF.md"
+    },
+    {
+      "packet": "author",
+      "test": "missing_member",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Unexpected directory contents"
+    },
+    {
+      "packet": "author",
+      "test": "symlink_target",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Target must not be a symlink"
+    },
+    {
+      "packet": "author",
+      "test": "symlink_manifest",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Manifest must not be a symlink"
+    },
+    {
+      "packet": "author",
+      "test": "symlink_member",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Nonregular packet member"
+    },
+    {
+      "packet": "author",
+      "test": "nonfinite_manifest",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Nonfinite JSON constant"
+    },
+    {
+      "packet": "author",
+      "test": "boolean_byte_count",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Byte count mismatch: PROOF.md"
+    },
+    {
+      "packet": "author",
+      "test": "wrong_member_digest",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Digest mismatch: PROOF.md"
+    },
+    {
+      "packet": "corrected",
+      "test": "directory_normal",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "INTEGRITY_AND_SCHEMA_PASS: 8 exact members; stalled_partial; no mathematical validation claimed.",
+      "stderr": ""
+    },
+    {
+      "packet": "corrected",
+      "test": "zip_normal",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "INTEGRITY_AND_SCHEMA_PASS: 8 exact members; stalled_partial; no mathematical validation claimed.",
+      "stderr": ""
+    },
+    {
+      "packet": "corrected",
+      "test": "optimized_explicit_rejection",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Optimized Python execution is unsupported; run without -O or -OO."
+    },
+    {
+      "packet": "corrected",
+      "test": "doubly_optimized_explicit_rejection",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Optimized Python execution is unsupported; run without -O or -OO."
+    },
+    {
+      "packet": "corrected",
+      "test": "tampered_member",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Byte count mismatch: PROOF.md"
+    },
+    {
+      "packet": "corrected",
+      "test": "unexpected_member",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Unexpected directory contents"
+    },
+    {
+      "packet": "corrected",
+      "test": "wrong_problem",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Wrong problem"
+    },
+    {
+      "packet": "corrected",
+      "test": "duplicate_json_key",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Duplicate JSON key: problem_id"
+    },
+    {
+      "packet": "corrected",
+      "test": "tampered_zip",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: ZIP fingerprint mismatch"
+    },
+    {
+      "packet": "corrected",
+      "test": "relocated_zip_and_manifest",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "INTEGRITY_AND_SCHEMA_PASS: 8 exact members; stalled_partial; no mathematical validation claimed.",
+      "stderr": ""
+    },
+    {
+      "packet": "corrected",
+      "test": "same_size_member_mutation",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Digest mismatch: PROOF.md"
+    },
+    {
+      "packet": "corrected",
+      "test": "missing_member",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Unexpected directory contents"
+    },
+    {
+      "packet": "corrected",
+      "test": "symlink_target",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Target must not be a symlink"
+    },
+    {
+      "packet": "corrected",
+      "test": "symlink_manifest",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Manifest must not be a symlink"
+    },
+    {
+      "packet": "corrected",
+      "test": "symlink_member",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Nonregular packet member"
+    },
+    {
+      "packet": "corrected",
+      "test": "nonfinite_manifest",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Nonfinite JSON constant"
+    },
+    {
+      "packet": "corrected",
+      "test": "boolean_byte_count",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Byte count mismatch: PROOF.md"
+    },
+    {
+      "packet": "corrected",
+      "test": "wrong_member_digest",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "REJECTED: Digest mismatch: PROOF.md"
+    }
+  ],
+  "test_count": 36,
+  "all_expected_outcomes": true,
+  "member_checks": {
+    "author": [
+      {
+        "path": "PROOF.md",
+        "bytes": 5752,
+        "sha256": "dfefe0037d561961c08f3bd6a9d3fc58d0f8f725606569197bf8c354c59257d5"
+      },
+      {
+        "path": "README.md",
+        "bytes": 1519,
+        "sha256": "1e6537bc0c2390a67e0d9048cf7ee3bf61f81fcf66b85f360d2bfc955313eb06"
+      },
+      {
+        "path": "REPORT.md",
+        "bytes": 7716,
+        "sha256": "770d5662491c77600ff6c4cd36246446f7ce1d83d0aabe64b7e752e002947bef"
+      },
+      {
+        "path": "research_log.json",
+        "bytes": 1328,
+        "sha256": "fe95f66d11adb198864c49a50c051fa015be7606d9530b639897276a9a4263c8"
+      },
+      {
+        "path": "sources.json",
+        "bytes": 5690,
+        "sha256": "7dd5bd791288cb944d5eb32ab02016249dc093d7e64f0718f216470b9082f831"
+      },
+      {
+        "path": "status.json",
+        "bytes": 573,
+        "sha256": "680a06e3936e569f4d0781dc68cc32268cce9ff095d3e9a25e21caf33529d84f"
+      },
+      {
+        "path": "verification_metadata.json",
+        "bytes": 1894,
+        "sha256": "4b92a2ed5a68d60776161758f3537250da5812c8f79a5596972b7fdf154a7c80"
+      },
+      {
+        "path": "verify_packet.py",
+        "bytes": 7374,
+        "sha256": "164c87d0c718be437c34d12a2ae574a827218d2dab53e4dbe97ee49a0006e2b9"
+      }
+    ],
+    "corrected": [
+      {
+        "path": "PROOF.md",
+        "bytes": 5830,
+        "sha256": "d14b17bf89f6162d592d43d0197e254ef5812d33c29622d2bd24cf58b5847770"
+      },
+      {
+        "path": "README.md",
+        "bytes": 1646,
+        "sha256": "92e672e05c78ff6f858aa34a73bbeafb527916752307364e765c4cbee25179df"
+      },
+      {
+        "path": "REPORT.md",
+        "bytes": 7969,
+        "sha256": "693c0403d3f45e151115ddfb1b114480ae66b2f0f4c74570ac454177b5df6fc0"
+      },
+      {
+        "path": "research_log.json",
+        "bytes": 1328,
+        "sha256": "fe95f66d11adb198864c49a50c051fa015be7606d9530b639897276a9a4263c8"
+      },
+      {
+        "path": "sources.json",
+        "bytes": 5717,
+        "sha256": "434d17fa987fc9bcd4510b70ef291ecdb2f79956365cbf7ea25588ede3b42208"
+      },
+      {
+        "path": "status.json",
+        "bytes": 603,
+        "sha256": "0a1eb625027f4cfdaf3aa5b17d26ffe1c4a97a7d4c2c7b9076609f73866ca25e"
+      },
+      {
+        "path": "verification_metadata.json",
+        "bytes": 1894,
+        "sha256": "4b92a2ed5a68d60776161758f3537250da5812c8f79a5596972b7fdf154a7c80"
+      },
+      {
+        "path": "verify_packet.py",
+        "bytes": 7374,
+        "sha256": "164c87d0c718be437c34d12a2ae574a827218d2dab53e4dbe97ee49a0006e2b9"
+      }
+    ]
+  },
+  "mathematical_validation": false,
+  "optimization_note": "-O and -OO are intentionally rejected with exit 2; these are rejection tests, never mathematical passes."
+}
