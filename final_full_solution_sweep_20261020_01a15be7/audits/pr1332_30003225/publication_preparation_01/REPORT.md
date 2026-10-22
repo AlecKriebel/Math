@@ -1,0 +1,62 @@
+# PR1332 / 30003225 publication preparation
+
+**Preparation complete; two genuinely new independent whole-package reviews, root adoption and fresh action gates remain required.** No merge, publication, DOI, upload or spreadsheet action is authorized by this report. Assigned preparation100%; overall parent sweep remains80%.
+
+The five-page manuscript is *A free-chain counterexample to a Nash-intersection conjecture*, Alec Kriebel, ORCID0009-0001-9320-500X, v1.0.0,22October2026. The full editable source and verification package is in `science/`; the six intended publication products are in `release/`. The source ZIP has21 exact regular members; the convenience upload kit has5 members and embeds that exact source ZIP. The two intended scientific attachments are the PDF and source/verification ZIP. Nothing was uploaded.
+
+## Exact mathematical contribution and remaining interpretation limits
+
+The manuscript independently reconstructs the complete free-family argument, rather than merely repackaging earlier PASS labels. For n successive free blowups and2<=k<n fixed centers, the entire family is parametrized by P(x)=a_k x^k+...+a_(n-1)x^(n-1), with chart y=P(x)+x^n w. Finite charts exhaust every free point; the missing point is precisely the satellite intersection. Older-component choices cannot occur in the same minimal predecessor chain, and satellites change the proximity type.
+
+Each closed Nash set equals the irreducible cylinder ord x>=1,ord(y-P(x))>=n. Both charts prove containment; the dense transverse locus and an explicit coefficient-polynomial specialization prove equality, including satellite limits, x=0 and constant arcs. Reference contact cylinders have thresholds(q,jq), for exact-q and at-least-q closures. Intersecting the complete family gives(ceil(n/k),n); exact-contact subfamilies give the same answer using coefficients1and2.
+
+Five blowups give(3,5)and(2,5). Neither is q(1,j) for ANY positive integersq,j. The uniform case-split supplies explicit nonconstant convergent polynomial separating arcs. Fixing genuinely free c3 leaves c4,c5 variable, so the endpoint-singleton loophole is removed. Every explicitly listed source-index/contact reading is treated; merely shifting the reference divisor cannot repair it. Divisible positive cases and the first-exceptional/tangent-varying specialization are checked separately.
+
+This is a full negative for the **specified reference multiple under the exact readings displayed in the manuscript**. The original arXivv3/workshop Conjecture1 uses an intersection, whereas the catalogue union is a transcription discrepancy. The bare relation is undefined and global indexing inconsistent. No author-intended correction, unique source intention or unspecified replacement statement is invented. The intersections ARE maximal divisorial sets of other toric divisors with primitive weights(3,5),(2,5). There is no arbitrary-divisor negative, nonreduced-scheme equality, Conjecture2 claim or broader/generalized Nash solution. Those limits appear in the abstract, proof, notes, metadata and README.
+
+The source paper's original conjecture/background DOI10.1016/j.aim.2017.09.035 is a reference, never this negative solution's DOI. The standard toric/contact/divisorial framework and the original combinatorial/cylindrical results are credited. The contribution is the explicit complete family calculation and reference-ray obstruction, not a new general arc-space mechanism.
+
+## Independent exact evidence and actual reproduction
+
+New standard-library `exact_checks.py` imports no claimant or prior-reviewer program. Its2205-byte complete output is identical in normal,-O,-OO modes, SHA256 **a1c74e98944a932176dd6e41487a6f09eae84d53f33a6c641eb0edabbbcc2908**. It checks3072 memberships over complete binary four-jet families,625 quinary exact-contact pairs, exact symbolic four-jet coefficient/ideal identities,108 recursive chart compositions,1008 density-specialization values,3780 satellite-chart order cases,8192 separating polynomial arcs,50 rational toric-inverse cases and1711 rounding/divisibility pairs. Twelve explicit false boundary controls reject. These are supplementary finite diagnostics; the universal complex-family, density and all-integer claims are proved in the manuscript.
+
+`run_mutations.py` actively alters the actual checker source in memory: floor instead of ceiling, only the zero completion, and a wrong toric matrix. All three raise RuntimeError in each interpreter mode; its1028-byte output is identical across modes, SHAd4035d6c9eb29275c019c40a13c60674ffc2b557a69d53e2e4d31caa2b9b4c85. Interpreter repetitions are not counted as distinct mathematical cases. All actual eight original PR blobs were newly authenticated through Git object identities; all seven non-QUEUE reader/JSON files were fully read after independent proof development. QUEUE was bound whole but only its relevant row read mathematically. Older certificate claims about18/44 checks and restoration were not promoted to new executions: no executable claimant verifier is among those eight paths.
+
+Every scientific source/kit/nested member was CRC-read and checked for exact safe unique names, modes100644, timestamps, no encryption and complete byte equality. A physically extracted source runs all6 program/mode combinations with exact complete outputs, then rebuilds all6 release files byte-for-byte. Eight malformed/content-changing archive controls reject. The metadata parses as exactly4 attribute-free paragraphs; every decoded intended character and canonical escaping match. Eight active HTML controls reject altered operators, malformed/foreign markup, lost selected-point qualifications and missing AI/unrefereed disclosures.
+
+A hash-consistent false EXPECTED value8192→8193 was installed only in a physical copy, with its manifest updated. The integrity-only builder correctly still packages that copy; the actual complete diagnostic replay rejects it. The exact21-member copy was restored. This explicitly distinguishes integrity packaging from mathematical checking. `PACKAGE_REPLAY_AND_CONTROLS.json`, `PHYSICAL_REPRODUCE.json` and `ALL_SCIENTIFIC_MEMBER_COVERAGE.json` give the full evidence. These tests are not proof-assistant verification.
+
+## Typesetting and presentation
+
+The final exact TeX successfully compiles in the built-in editor. A pinned cached Tectonic, with network denied and writes outside this preparation denied, exported the final5-page PDF without warnings. All5 final pages were individually rendered/displayed/read, including all formulas, table, author/ORCID/date, four references and extensive AI/unrefereed disclosures. No clipping, overlap, missing glyph or isolated reference page remains.
+
+Separate fresh typesetting from the physically extracted ZIP's main.tex produced the exact same final PDF bytes. `FRESH_EXTRACTED_TYPESETTING.json` records that fact. It is distinct from archive rebuilding, which simply copies the frozen PDF. The deterministic SOURCE_DATE_EPOCH=1792627200 is a build convention, not a research-timestamp claim. The first10pt and optional-array cached exports failed honestly; a later overfull paragraph and provisional isolated reference page were repaired. Every provisional source, log and produced PDF remains private. No packages were downloaded or installed and no shared cache was written.
+
+## Priority and duplicate investigation
+
+Before substantive work, the requested Google Workspace CLI read numericgid1254632077/all43 columns/all allocated1178 rows, full raw typed VALUE and FORMULA responses, and stable complete metadata. It found210 populated rows and246 complete local values. Actual row25/139 and the full native23153134 local aliases were read: Krener observation Gramian/Nash embedding and rank-one game Nash equilibria are mathematically distinct from surface arc/divisor intersections. Five fully paginated public Zenodo queries returned0 each.
+
+Twenty fresh literature queries and seven actual primary bodies were investigated. All four earlier primary PDFs were newly fetched in full and byte-matched; original definitions/question, Ishii's exact standard framework and the2018 author survey were read at their declared scopes. New2026 toric formal-neighborhood and arc-fiber theorems and2025 linear-deformation/Milnor-jump results were read and directly distinguished. No authenticated exact earlier full negative calculation was found. This is bounded priority evidence, not worldwide firstness, continuous openness or a statement inferred merely from a missing search hit. `science/SOURCE_AUDIT.md` and `SOURCE_PROVENANCE.json` state exact editions and read scopes. The publisher-typeset original body again returned403 and remains unread; the claim stays tied to authenticated arXivv3/workshop bodies. No inaccessible body is relabeled as read.
+
+The final requested CLI gate at18:12:16–18:12:24UTC found211rows/247states, same two mathematical sheet leads and same local lead, and public0/0/0/0/0. The sole added row211 and state are PR1348's percolation paper23573603; their complete row/state/metadata manifest were read and are unrelated. All original210 rows, unknown raw43-column fields and full metadata are preserved by the exact one-append comparison; all previous local values and all semantic lead values are unchanged. No current target duplicate was observed. This preparation never loaded a private owned-account inventory or credential client and cannot certify absence of invisible drafts or future concurrent publications. Root must supply its current complete owned/public/local/sheet/action gates before any service mutation.
+
+Live PR1332 was read at closing: still open/draft/unmerged at original head **300ad33db51517aba03ce04aa7f257de3d7757c1**. No branch, main, index, ref, QUEUE, STATE, CASE, PR, DOI, publication or sheet was changed. Top-level Zenodo infrastructure was used only for offline `load_manifest`; the exact prepared metadata and two attachment identities validate. No token/client/state operation occurred.
+
+## Final scientific product identities
+
+| File | Bytes | SHA256 |
+|---|---:|---|
+| free-chain-nash-intersections.pdf |75750|e2cfa82ecb815d037ebcb9df98bb0593b5ff16a0f0ded17ad21a2e5d5146984b|
+| free-chain-nash-intersections-source-and-verification.zip |112466|f567cecdeb79a06e848e811f81007e878d1b869535b0c3278c31783de358ab76|
+| free-chain-nash-intersections-upload-kit.zip |189846|33c52395b4c2f30df8db98cced1a06de314d2a5ecd427b335a7b39f02025f6ae|
+| zenodo-metadata.json |5466|10a3aa62812b20af66a5264435ee3b48ac3cf1d9eef9e0f991117225e1153caf|
+| zenodo-deposit.json |5913|a72b780be147ca63cdd45217427fd3a704bb407f835aa0b0126568e3e5cbe61c|
+| UPLOAD_README.txt |1006|7f4dcef5f95008d92044c4eb2dc4bb67b8108febd5f15171377318848f21480e|
+
+Final main.tex SHA256 **a0a7fbcd4cad20cd81ff6cbdf81f677afac7ed099a35a64379b9da2747365981**. All private raw captures and third-party PDFs remain outside scientific archives. Prose is CC BY4.0, authored code MIT. The named human author and extensive AI involvement are explicit. Internal AI audits are not formal independent human peer review, journal acceptance or formal certification.
+
+## Closure and handoff
+
+`INPUT_PRESERVATION_FINAL.json` verifies all29 opening original/root input records, including the exact independent review namespace and the three named root files: complete membership, bytes, modes, nanosecond mtimes and nlinks unchanged. All writes stayed in this own preparation directory. No other person or unrelated agent was contacted, no child spawned. Only the authorized parent received handoff messages. Own sampled allocation remained below16MiB with more than150MiB free; exact closing figures are recorded, not a continuous global resource guarantee. Progress-message decimal allocation shorthand is superseded by exact byte receipts.
+
+The caller-pinned `CLOSED_DIRECTORY_SEAL.json` closes every output payload file/directory with bytes, hashes, modes, nsmtimes and nlinks; it excludes exactly itself. Its path is reserved before the directory snapshot to avoid self-creation link-count races. `verify_preparation.py --manifest-sha256 EXACT_HASH` rechecks closure and original input preservation without writes, network or replay. Parent must fully read/adopt the report, proof, source audit and evidence, then commission two new independent whole-package adversarial reviews. Readiness and service-action authority remain false.
