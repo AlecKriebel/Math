@@ -630,7 +630,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 619 | 30001672 / OWR-4791-032 | High Influence Small Sets in Boolean Functions | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 620 | 30001687 / OWR-4793-001 | Spectral Thickness of Fibonacci Hamiltonians | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 621 | 30001721 / OWR-4800-012 | Tree Modules for Roots of Acyclic Quivers | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 622 | 30002048 / OWR-11784-007 | Exceptional-Unit Bounds by Algebraic Degree | 0.1110 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 622 | 30002048 / OWR-11784-007 | Exceptional-Unit Bounds by Algebraic Degree | 0.1110 | 5.5 | 3 | 2012 | unsolved | 5/5 |  | [Audited scoped results](attempts/30002048/release/author/PROOF.md): e(7)=5, e(8)=7, e(9)=6 and roots-of-unity branch verified; non-roots of unity in degrees >=10 unresolved. Known witnesses: Stewart; novelty unverified. |  |
 | 623 | 30002497 / OWR-12866-004 | Irrational Local Maxima of the Fractional-Part Autocorrelation | 0.1105 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 624 | 30002508 / OWR-12866-018 | Continuity and Strict Monotonicity of Nyman–Beurling Distances | 0.1105 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 625 | 30002526 / OWR-12869-003 | Eliminating Whitney Umbrellas in Projective Group Realization | 0.1105 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
