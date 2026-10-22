@@ -1,0 +1,155 @@
+{
+  "scope": "Pinned bytes, isolated execution, finite sanity checks, adversarial integrity controls; not a formal mathematical proof",
+  "author_archive_sha256": "2c62215d1fb82098c2c3777d67f90545b9fa10cf83d4a0d5c91313f84a5a33c5",
+  "author_external_manifest_sha256": "227a90bcc9104cf0a9ce5ea45146aee4624b91a0b3e2f3198b5c43d8a5f99297",
+  "members_verified": 9,
+  "checks": [
+    {
+      "name": "author_archive_corruption",
+      "outcome": "EXPECTED_REJECTION",
+      "detail": "Author archive pin mismatch",
+      "author_code_executed": false
+    },
+    {
+      "name": "external_manifest_corruption",
+      "outcome": "EXPECTED_REJECTION",
+      "detail": "Author external manifest pin mismatch",
+      "author_code_executed": false
+    },
+    {
+      "name": "relocated_isolated_normal_replay",
+      "outcome": "PASS",
+      "detail": {
+        "returncode": 0,
+        "stdout": "{\n  \"result\": \"PASS_EXACT_SANITY_CHECKS\",\n  \"counts\": {\n    \"unit_circle_checks\": 20,\n    \"kernel_identity_checks\": 380,\n    \"denominator_bound_checks\": 380,\n    \"geometric_remainder_checks\": 1140,\n    \"gram_identity_checks\": 24,\n    \"convention_controls\": 4,\n    \"total_exact_checks\": 1948\n  },\n  \"scope\": \"Finite algebraic checks support the formulas; no numerical experiment or automated proof of the full theorem is claimed.\",\n  \"integrity\": \"PASS_EXACT_INVENTORY_AND_ALL_SHA256\",\n  \"payload_members_verified\": 8\n}",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "isolated_math_only",
+      "outcome": "PASS"
+    },
+    {
+      "name": "optimized_-O",
+      "outcome": "EXPECTED_REJECTION",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Optimized execution is refused: checks require assertions."
+      }
+    },
+    {
+      "name": "optimized_-O--math-only",
+      "outcome": "EXPECTED_REJECTION",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Optimized execution is refused: checks require assertions."
+      }
+    },
+    {
+      "name": "optimized_-OO",
+      "outcome": "EXPECTED_REJECTION",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Optimized execution is refused: checks require assertions."
+      }
+    },
+    {
+      "name": "optimized_-OO--math-only",
+      "outcome": "EXPECTED_REJECTION",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Optimized execution is refused: checks require assertions."
+      }
+    },
+    {
+      "name": "same_size_proof_corruption",
+      "outcome": "EXPECTED_REJECTION",
+      "external_reason": "Extracted member pin mismatch: author/PROOF.md",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<isolated-temporary-root>/same_size_proof_corruption/author/verify.py\", line 101, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"<isolated-temporary-root>/same_size_proof_corruption/author/verify.py\", line 95, in main\n    assert len(b)==item['bytes'] and hashlib.sha256(b).hexdigest()==item['sha256'],item['path']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: PROOF.md"
+      }
+    },
+    {
+      "name": "missing_member",
+      "outcome": "EXPECTED_REJECTION",
+      "external_reason": "Extracted tree inventory mismatch",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<isolated-temporary-root>/missing_member/author/verify.py\", line 101, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"<isolated-temporary-root>/missing_member/author/verify.py\", line 90, in main\n    assert actual==expected|{'MANIFEST.json'},'Unexpected/missing packet members'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Unexpected/missing packet members"
+      }
+    },
+    {
+      "name": "unexpected_member",
+      "outcome": "EXPECTED_REJECTION",
+      "external_reason": "Extracted tree inventory mismatch",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<isolated-temporary-root>/unexpected_member/author/verify.py\", line 101, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"<isolated-temporary-root>/unexpected_member/author/verify.py\", line 90, in main\n    assert actual==expected|{'MANIFEST.json'},'Unexpected/missing packet members'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Unexpected/missing packet members"
+      }
+    },
+    {
+      "name": "manifest_corruption",
+      "outcome": "EXPECTED_REJECTION",
+      "external_reason": "Extracted member pin mismatch: author/MANIFEST.json",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<isolated-temporary-root>/manifest_corruption/author/verify.py\", line 101, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"<isolated-temporary-root>/manifest_corruption/author/verify.py\", line 87, in main\n    expected={item['path'] for item in manifest['files']}\n                                       ~~~~~~~~^^^^^^^^^\nKeyError: 'files'"
+      }
+    },
+    {
+      "name": "verification_results_corruption",
+      "outcome": "EXPECTED_REJECTION",
+      "external_reason": "Extracted member pin mismatch: author/verification_results.json",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<isolated-temporary-root>/verification_results_corruption/author/verify.py\", line 101, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"<isolated-temporary-root>/verification_results_corruption/author/verify.py\", line 95, in main\n    assert len(b)==item['bytes'] and hashlib.sha256(b).hexdigest()==item['sha256'],item['path']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: verification_results.json"
+      }
+    },
+    {
+      "name": "unexpected_bytecode_cache",
+      "outcome": "EXPECTED_REJECTION",
+      "external_reason": "Extracted tree inventory mismatch",
+      "detail": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<isolated-temporary-root>/unexpected_bytecode_cache/author/verify.py\", line 101, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"<isolated-temporary-root>/unexpected_bytecode_cache/author/verify.py\", line 90, in main\n    assert actual==expected|{'MANIFEST.json'},'Unexpected/missing packet members'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Unexpected/missing packet members"
+      }
+    },
+    {
+      "name": "forged_checker_pre_execution",
+      "outcome": "EXPECTED_REJECTION",
+      "external_reason": "Extracted member pin mismatch: author/verify.py",
+      "forged_code_executed": false
+    },
+    {
+      "name": "symlink_substitution_pre_execution",
+      "outcome": "EXPECTED_REJECTION",
+      "external_reason": "Extracted member is not a regular file: author/PROOF.md"
+    },
+    {
+      "name": "hostile_cwd_and_pythonpath_shadow",
+      "outcome": "PASS_ISOLATION",
+      "detail": "Five raising shadow modules were ignored under -I; -B produced no bytecode cache; packet rehashed unchanged."
+    }
+  ],
+  "exact_sanity_check_counts": {
+    "unit_circle_checks": 20,
+    "kernel_identity_checks": 380,
+    "denominator_bound_checks": 380,
+    "geometric_remainder_checks": 1140,
+    "gram_identity_checks": 24,
+    "convention_controls": 4,
+    "total_exact_checks": 1948
+  },
+  "result": "PASS_PINNED_AUTHOR_REPLAY_AND_EXPECTED_NEGATIVE_CONTROLS"
+}
