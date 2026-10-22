@@ -603,7 +603,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 592 | 2746 / KP-1.87 | Kirby Problem 1.87 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 593 | 2807 / KP-3.9 | Kirby Problem 3.9 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 594 | 2831 / KP-3.33 | Kirby Problem 3.33 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 595 | 2887 / KP-4.11 | Kirby Problem 4.11 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 595 | 2887 / KP-4.11 | Kirby Problem 4.11 | 0.1125 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 596 | 2927 / KP-4.51 | Kirby Problem 4.51 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 597 | 2995 / KP-4.119 | Kirby Problem 4.119 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 598 | 30006605 / OWR-14299911-007 | Weighted Centers on Bounded-Dimensional Median Graphs | 0.1125 | 6.0 | 3 | 2026 | preprint_published | 1/5 |  | Audited complete candidate: deterministic O(n log^5(2n)) weighted centers on finite adjacency-list graphs promised median, with nonnegative vertex weights and exact comparisons. BDH additive oracle and Ducoffe decision-to-optimization credited; encoding-dependent bit costs, no fast-oracle implementation/benchmark or novelty claim.; 2026-10-15: Accepted v1.0 unrefereed preprint and verification package: finite promised unit-edge median graphs, all centers/radius in O(n log^5(2n)) exact operations; prior algorithms credited and BDHv1 proof estimates repaired. Three sequential full-package adversaries with global fixes; final review zero issues. Bounded historical priority; extensive AI use, no human peer review. | [10.5281/zenodo.23385145](https://doi.org/10.5281/zenodo.23385145) |
