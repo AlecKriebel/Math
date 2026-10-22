@@ -1826,7 +1826,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1815 | 30006626 / OWR-14299911-028 | Characterization of Graphical Apiculate and Generalized Median Algebras | 0.0540 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1816 | 3039 / OPG-478 | Rainbow AP(4) in an almost equinumerous coloring | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1817 | 3100003 / AMR-030-0003 | For every non-equilateral triangle T, show that it is possible to color the plane with three colors so that there is no | 0.0540 | 5.5 | 2 | unknown | queued | 0/5 |  |  |  |
-| 1818 | 3227 / OPG-401 | Circular coloring triangle-free subcubic planar graphs | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1818 | 3227 / OPG-401 | Circular coloring triangle-free subcubic planar graphs | 0.0540 | 5.0 | 1 | unknown | unsolved | 5/5 |  | Audited partial results only: path/tripod reductions, mad<12/5 and fully subdivided cores, local face-extension obstructions, exact verification of the known dodecahedral value 20/7 with checkable SAT/UNSAT certificates, and minimum real narrow-band phase width nine on that benchmark. The universal triangle-free planar subcubic 20/7 bound remains unproved. No novelty claim. |  |
 | 1819 | 3264 / OPG-46432 | Ádám's Conjecture | 0.0540 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1820 | 3700006 / AMR-036-0006 | Completely invariant Fatou components | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1821 | 8700065 / AMR-086-0065 | Question 5.2 — Bugeaud | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
