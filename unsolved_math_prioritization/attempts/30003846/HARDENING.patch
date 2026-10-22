@@ -1,0 +1,641 @@
+CORRECTION PATCH: HISTORICAL LINES ARE NOT THE CURRENT ACCEPTANCE
+
+Removed lines and context lines reproduce the superseded historical version and
+may include rejected or no-longer-accepted assumptions. They are retained only
+so the correction can be reviewed; they are not a current standalone proof,
+checker, or certification of the original question's full scope. The delivered
+current code and current ACCEPTANCE.md / ACCEPTANCE.json are authoritative.
+
+In this patch, the original assertion guards disappear under -O/-OO and the
+original JSON sidecar writes fail on read-only inputs. The hardened derivatives
+replace guards with explicit conditional raises and remove those writes.
+
+--- original/check_combinatorics.py
++++ hardened/check_combinatorics.py
+@@ -1,121 +1,171 @@
+-#!/usr/bin/env python3
++# Hardened derivative: explicit guards survive -O/-OO; stdout only.
+ """Finite checks of Golan (2026), Section 3 and elementary Section 5 claims.
+ These are falsification tests, not an all-n proof or a diagram-group oracle.
+ Only Python standard library; deterministic enumeration of perfect matchings.
+ """
+-import json,time,hashlib,pathlib
++import json, time, hashlib, pathlib
+ 
+ def diagrams(n):
+-    def rec(free,pairs):
++
++    def rec(free, pairs):
+         if not free:
+-            ordered=sorted(pairs,key=lambda p:p[1])
+-            out=[None]*(2*n)
+-            for j,(l,r) in enumerate(ordered):out[l]=(j,0);out[r]=(j,1)
+-            yield tuple(out);return
+-        l=free[0]
+-        for p in range(1,len(free)):
+-            yield from rec(free[1:p]+free[p+1:],pairs+[(l,free[p])])
+-    yield from rec(tuple(range(2*n)),[])
++            ordered = sorted(pairs, key=lambda p: p[1])
++            out = [None] * (2 * n)
++            for j, (l, r) in enumerate(ordered):
++                out[l] = (j, 0)
++                out[r] = (j, 1)
++            yield tuple(out)
++            return
++        l = free[0]
++        for p in range(1, len(free)):
++            yield from rec(free[1:p] + free[p + 1:], pairs + [(l, free[p])])
++    yield from rec(tuple(range(2 * n)), [])
+ 
+ def pos(d):
+-    ids=sorted({a for a,b in d})
+-    return {a:(d.index((a,0)),d.index((a,1))) for a in ids}
++    ids = sorted({a for a, b in d})
++    return {a: (d.index((a, 0)), d.index((a, 1))) for a in ids}
+ 
+ def edges(d):
+-    p=pos(d);ids=list(p)
+-    return {tuple(sorted((a,b))) for ia,a in enumerate(ids) for b in ids[ia+1:]
+-            if p[a][0]<p[b][0]<p[a][1]<p[b][1] or p[b][0]<p[a][0]<p[b][1]<p[a][1]}
++    p = pos(d)
++    ids = list(p)
++    return {tuple(sorted((a, b))) for ia, a in enumerate(ids) for b in ids[ia + 1:] if p[a][0] < p[b][0] < p[a][1] < p[b][1] or p[b][0] < p[a][0] < p[b][1] < p[a][1]}
+ 
+ def components(d):
+-    left=set(pos(d));es=edges(d);res=[]
++    left = set(pos(d))
++    es = edges(d)
++    res = []
+     while left:
+-        reach={min(left)}
++        reach = {min(left)}
+         while True:
+-            new=reach|{b for a,b in es if a in reach}|{a for a,b in es if b in reach}
+-            if new==reach:break
+-            reach=new
+-        res.append(reach);left-=reach
++            new = reach | {b for a, b in es if a in reach} | {a for a, b in es if b in reach}
++            if new == reach:
++                break
++            reach = new
++        res.append(reach)
++        left -= reach
+     return res
+ 
+-def connected(d):return len(components(d))==1
++def connected(d):
++    return len(components(d)) == 1
+ 
+-def perform(d,b,cut):
+-    l,r=pos(d)[b];gap=d[l+1:r];x,y=gap[:cut],gap[cut:]
+-    assert not ({a for a,_ in x}&{a for a,_ in y})
+-    result=d[:l+1]+y+x+d[r:]
+-    assert all(l<r for l,r in pos(result).values())
++def perform(d, b, cut):
++    l, r = pos(d)[b]
++    gap = d[l + 1:r]
++    x, y = (gap[:cut], gap[cut:])
++    if not not {a for a, _ in x} & {a for a, _ in y}:
++        raise AssertionError()
++    result = d[:l + 1] + y + x + d[r:]
++    if not all((l < r for l, r in pos(result).values())):
++        raise AssertionError()
+     return result
+ 
+ def peel(d):
+     """Apply the paper's merge, recursive peel, and free-lifting procedure."""
+-    if len(d)<=4:return d,[]
+-    last=d[-1][0];small=tuple(f for f in d if f[0]!=last);cs=components(small);moves=[]
+-    if len(cs)>1:
+-        p=pos(d);cross=[a for a in p if p[a][0]<p[last][0]<p[a][1]]
+-        # Innermost component has smallest reach among the linearly nested crossers.
+-        inner=min(cs,key=lambda s:max(p[a][1] for a in s)-min(p[a][0] for a in s))
+-        gap=d[p[last][0]+1:p[last][1]];x=tuple(f for f in gap if f[0] in inner)
+-        assert x and gap[:len(x)]==x
+-        old_edges=edges(d);d=perform(d,last,len(x));moves.append((last,len(x)))
+-        assert old_edges<=edges(d)
+-        small=tuple(f for f in d if f[0]!=last)
+-        assert connected(small) and connected(d)
+-    target,smoves=peel(small)
+-    for b,cut in smoves:
+-        l,r=pos(d)[b];gap=d[l+1:r]
+-        count=0;fullcut=0
+-        # Put any inserted last-left foot on the right of the lifted cut.
+-        while fullcut<len(gap) and count<cut:
+-            if gap[fullcut][0]!=last:count+=1
+-            fullcut+=1
+-        d=perform(d,b,fullcut);moves.append((b,fullcut))
+-    assert tuple(f for f in d if f[0]!=last)==target
+-    assert d[-1][0]==last and connected(d)
+-    return d,moves
++    if len(d) <= 4:
++        return (d, [])
++    last = d[-1][0]
++    small = tuple((f for f in d if f[0] != last))
++    cs = components(small)
++    moves = []
++    if len(cs) > 1:
++        p = pos(d)
++        cross = [a for a in p if p[a][0] < p[last][0] < p[a][1]]
++        inner = min(cs, key=lambda s: max((p[a][1] for a in s)) - min((p[a][0] for a in s)))
++        gap = d[p[last][0] + 1:p[last][1]]
++        x = tuple((f for f in gap if f[0] in inner))
++        if not (x and gap[:len(x)] == x):
++            raise AssertionError()
++        old_edges = edges(d)
++        d = perform(d, last, len(x))
++        moves.append((last, len(x)))
++        if not old_edges <= edges(d):
++            raise AssertionError()
++        small = tuple((f for f in d if f[0] != last))
++        if not (connected(small) and connected(d)):
++            raise AssertionError()
++    target, smoves = peel(small)
++    for b, cut in smoves:
++        l, r = pos(d)[b]
++        gap = d[l + 1:r]
++        count = 0
++        fullcut = 0
++        while fullcut < len(gap) and count < cut:
++            if gap[fullcut][0] != last:
++                count += 1
++            fullcut += 1
++        d = perform(d, b, fullcut)
++        moves.append((b, fullcut))
++    if not tuple((f for f in d if f[0] != last)) == target:
++        raise AssertionError()
++    if not (d[-1][0] == last and connected(d)):
++        raise AssertionError()
++    return (d, moves)
+ 
+ def is_peelable(d):
+-    ids=[a for a,s in d if s==1]
+-    return all(connected(tuple(f for f in d if f[0] in ids[:k])) for k in range(2,len(ids)+1))
++    ids = [a for a, s in d if s == 1]
++    return all((connected(tuple((f for f in d if f[0] in ids[:k]))) for k in range(2, len(ids) + 1)))
+ 
+-def vertex_checks(d,dummies):
++def vertex_checks(d, dummies):
+     """Each gap receives dummies indexed separately, including multiple edges."""
+-    seq=[]
+-    for i,f in enumerate(d):
++    seq = []
++    for i, f in enumerate(d):
+         seq.append(f)
+-        if i<len(d)-1:
+-            seq.extend(('dummy',i,j) for j in range(dummies[i]))
+-    n=len(d)//2;N=len(seq);p=list(range(N+1))
++        if i < len(d) - 1:
++            seq.extend((('dummy', i, j) for j in range(dummies[i])))
++    n = len(d) // 2
++    N = len(seq)
++    p = list(range(N + 1))
++
+     def root(x):
+-        while p[x]!=x:x=p[x]
++        while p[x] != x:
++            x = p[x]
+         return x
+-    def join(a,b):p[root(b)]=root(a)
+-    positions={f:i for i,f in enumerate(seq)}
+-    for b in range(n):join(positions[(b,0)]+1,positions[(b,1)])
+-    verts={root(i) for i in range(N+1)};assert len(verts)==n+sum(dummies)+1
+-    inner=verts-{root(0),root(N)};assert len(inner)==n+sum(dummies)-1
+-    es=[(root(i),root(i+1)) for i in range(N)]
+-    assert all(b!=root(0) and a!=root(N) for a,b in es)
++
++    def join(a, b):
++        p[root(b)] = root(a)
++    positions = {f: i for i, f in enumerate(seq)}
++    for b in range(n):
++        join(positions[b, 0] + 1, positions[b, 1])
++    verts = {root(i) for i in range(N + 1)}
++    if not len(verts) == n + sum(dummies) + 1:
++        raise AssertionError()
++    inner = verts - {root(0), root(N)}
++    if not len(inner) == n + sum(dummies) - 1:
++        raise AssertionError()
++    es = [(root(i), root(i + 1)) for i in range(N)]
++    if not all((b != root(0) and a != root(N) for a, b in es)):
++        raise AssertionError()
+     for start in inner:
+-        reach={start}
++        reach = {start}
+         while True:
+-            new=reach|{b for a,b in es if a in reach and b in inner}
+-            if reach==new:break
+-            reach=new
+-        assert reach==inner
++            new = reach | {b for a, b in es if a in reach and b in inner}
++            if reach == new:
++                break
++            reach = new
++        if not reach == inner:
++            raise AssertionError()
+ 
+ def main():
+-    begin=time.time();rows=[]
+-    for n in range(2,8):
+-        total=irreducible=already=max_swaps=vertex_cases=0
++    begin = time.time()
++    rows = []
++    for n in range(2, 8):
++        total = irreducible = already = max_swaps = vertex_cases = 0
+         for d in diagrams(n):
+-            total+=1
+-            if not connected(d):continue
+-            irreducible+=1;already+=is_peelable(d)
+-            target,moves=peel(d);assert is_peelable(target);max_swaps=max(max_swaps,len(moves))
+-            if n<=6:
+-                for amounts in ([0]*(2*n-1),[1]*(2*n-1),[(i%3) for i in range(2*n-1)]):
+-                    vertex_checks(d,amounts);vertex_cases+=1
+-        rows.append(dict(n=n,all_unlabelled_matchings=total,irreducible=irreducible,already_peelable=already,max_swaps=max_swaps,vertex_partition_cases=vertex_cases))
+-    result=dict(status='PASS',rows=rows,elapsed_seconds=round(time.time()-begin,3),limitations='Finite matching enumeration and vertex incidence only; no continuous dynamics, diagram-group isomorphism, or all-n theorem is certified by this computation.')
+-    print(json.dumps(result,indent=2));pathlib.Path(__file__).with_name('combinatorics_results.json').write_text(json.dumps(result,indent=2)+'\n')
+-if __name__=='__main__':main()
++            total += 1
++            if not connected(d):
++                continue
++            irreducible += 1
++            already += is_peelable(d)
++            target, moves = peel(d)
++            if not is_peelable(target):
++                raise AssertionError()
++            max_swaps = max(max_swaps, len(moves))
++            if n <= 6:
++                for amounts in ([0] * (2 * n - 1), [1] * (2 * n - 1), [i % 3 for i in range(2 * n - 1)]):
++                    vertex_checks(d, amounts)
++                    vertex_cases += 1
++        rows.append(dict(n=n, all_unlabelled_matchings=total, irreducible=irreducible, already_peelable=already, max_swaps=max_swaps, vertex_partition_cases=vertex_cases))
++    result = dict(status='PASS', rows=rows, elapsed_seconds=round(time.time() - begin, 3), limitations='Finite matching enumeration and vertex incidence only; no continuous dynamics, diagram-group isomorphism, or all-n theorem is certified by this computation.')
++    print(json.dumps(result, indent=2))
++if __name__ == '__main__':
++    main()
+--- original/check_reduction.py
++++ hardened/check_reduction.py
+@@ -1,137 +1,251 @@
+-#!/usr/bin/env python3
++# Hardened derivative: explicit guards survive -O/-OO; stdout only.
+ """Exact finite replay of the published GS reduction, with local move guards.
+ No floating point arithmetic, group-isomorphism oracle, or copied source text.
+ """
+-from check_combinatorics import diagrams,connected,is_peelable,peel
+-import json,pathlib,time,itertools
++from check_combinatorics import diagrams, connected, is_peelable, peel
++import json, pathlib, time, itertools
+ 
+ class Complex:
+-    def __init__(self,word,bumps):
+-        self.word=tuple(word);N=len(word);par=list(range(N+1))
++
++    def __init__(self, word, bumps):
++        self.word = tuple(word)
++        N = len(word)
++        par = list(range(N + 1))
++
+         def root(i):
+-            while par[i]!=i:i=par[i]
++            while par[i] != i:
++                i = par[i]
+             return i
+-        for l,r in bumps:
+-            i,j=word.index(l),word.index(r);assert j>i+1
+-            par[root(j)]=root(i+1)
+-        self.vertices={root(i) for i in range(N+1)}
+-        self.edges={e:(root(i),root(i+1)) for i,e in enumerate(word)}
+-        self.cells={}
+-        for l,r in bumps:
+-            i,j=word.index(l),word.index(r);gap=tuple(word[i+1:j])
+-            self.cells[l]=[(l,),(l,)+gap];self.cells[r]=[(r,),gap+(r,)]
+-        self.moves=[];self.mapping={e:(e,) for e in word}
+-        self.validate()
+-    def endpoints(self,w):
+-        assert w
+-        es=[self.edges[e] for e in w]
+-        assert all(a[1]==b[0] for a,b in zip(es,es[1:])),('notpath',w,es)
+-        return es[0][0],es[-1][1]
++        for l, r in bumps:
++            i, j = (word.index(l), word.index(r))
++            if not j > i + 1:
++                raise AssertionError()
++            par[root(j)] = root(i + 1)
++        self.vertices = {root(i) for i in range(N + 1)}
++        self.edges = {e: (root(i), root(i + 1)) for i, e in enumerate(word)}
++        self.cells = {}
++        for l, r in bumps:
++            i, j = (word.index(l), word.index(r))
++            gap = tuple(word[i + 1:j])
++            self.cells[l] = [(l,), (l,) + gap]
++            self.cells[r] = [(r,), gap + (r,)]
++        self.moves = []
++        self.mapping = {e: (e,) for e in word}
++        self.validate()
++
++    def endpoints(self, w):
++        if not w:
++            raise AssertionError()
++        es = [self.edges[e] for e in w]
++        if not all((a[1] == b[0] for a, b in zip(es, es[1:]))):
++            raise AssertionError(('notpath', w, es))
++        return (es[0][0], es[-1][1])
++
+     def validate(self):
+-        for u,v in self.cells.values():assert self.endpoints(u)==self.endpoints(v)
+-    def add(self,e,w):
+-        w=tuple(w);assert e not in self.edges
+-        self.edges[e]=self.endpoints(w);self.cells[e]=[(e,),w];self.moves.append(('add',e,w));self.validate()
+-    def rewrite(self,target,side,witness,rev=False,at=None):
+-        assert target!=witness
+-        old,new=self.cells[witness][::-1] if rev else self.cells[witness]
+-        w=self.cells[target][side]
+-        if at is None:at=next(i for i in range(len(w)-len(old)+1) if w[i:i+len(old)]==old)
+-        assert w[at:at+len(old)]==old
+-        self.cells[target][side]=w[:at]+new+w[at+len(old):]
+-        self.moves.append(('rw',target,side,witness,rev,at));self.validate()
+-    def substitute_all(self,e):
+-        assert self.cells[e][0]==(e,) and e not in self.cells[e][1]
++        for u, v in self.cells.values():
++            if not self.endpoints(u) == self.endpoints(v):
++                raise AssertionError()
++
++    def add(self, e, w):
++        w = tuple(w)
++        if not e not in self.edges:
++            raise AssertionError()
++        self.edges[e] = self.endpoints(w)
++        self.cells[e] = [(e,), w]
++        self.moves.append(('add', e, w))
++        self.validate()
++
++    def rewrite(self, target, side, witness, rev=False, at=None):
++        if not target != witness:
++            raise AssertionError()
++        old, new = self.cells[witness][::-1] if rev else self.cells[witness]
++        w = self.cells[target][side]
++        if at is None:
++            at = next((i for i in range(len(w) - len(old) + 1) if w[i:i + len(old)] == old))
++        if not w[at:at + len(old)] == old:
++            raise AssertionError()
++        self.cells[target][side] = w[:at] + new + w[at + len(old):]
++        self.moves.append(('rw', target, side, witness, rev, at))
++        self.validate()
++
++    def substitute_all(self, e):
++        if not (self.cells[e][0] == (e,) and e not in self.cells[e][1]):
++            raise AssertionError()
+         for c in list(self.cells):
+-            if c==e:continue
++            if c == e:
++                continue
+             for side in range(2):
+-                while e in self.cells[c][side]:self.rewrite(c,side,e)
+-    def delete(self,e):
+-        top,bot=self.cells[e];assert top==(e,) and e not in bot
+-        assert all(e not in u+v for c,(u,v) in self.cells.items() if c!=e)
+-        del self.cells[e];del self.edges[e]
+-        for x,w in self.mapping.items():self.mapping[x]=tuple(y for a in w for y in (bot if a==e else (a,)))
+-        self.moves.append(('del',e));self.validate()
+-    def replay_lift(self,moves):
++                while e in self.cells[c][side]:
++                    self.rewrite(c, side, e)
++
++    def delete(self, e):
++        top, bot = self.cells[e]
++        if not (top == (e,) and e not in bot):
++            raise AssertionError()
++        if not all((e not in u + v for c, (u, v) in self.cells.items() if c != e)):
++            raise AssertionError()
++        del self.cells[e]
++        del self.edges[e]
++        for x, w in self.mapping.items():
++            self.mapping[x] = tuple((y for a in w for y in (bot if a == e else (a,))))
++        self.moves.append(('del', e))
++        self.validate()
++
++    def replay_lift(self, moves):
+         for m in moves:
+-            if m[0]=='add':self.add(*m[1:])
+-            elif m[0]=='rw':self.rewrite(*m[1:])
+-            else:self.substitute_all(m[1]);self.delete(m[1])
+-    def check_core(self,n,word,bumps):
+-        left,right=word[0],word[-1];source=self.edges[left][0];sink=self.edges[right][1]
+-        dummy=set(word)-{e for pair in bumps for e in pair}
+-        assert dummy<=self.edges.keys()
+-        assert set(self.cells)==set(self.edges)-dummy
+-        assert len(self.cells)==n+1
+-        inner=set(self.edges)-{left,right};V=self.vertices-{source,sink}
+-        assert len(inner)==len(V)==n+len(dummy)-1
+-        succ={}
++            if m[0] == 'add':
++                self.add(*m[1:])
++            elif m[0] == 'rw':
++                self.rewrite(*m[1:])
++            else:
++                self.substitute_all(m[1])
++                self.delete(m[1])
++
++    def check_core(self, n, word, bumps):
++        left, right = (word[0], word[-1])
++        source = self.edges[left][0]
++        sink = self.edges[right][1]
++        dummy = set(word) - {e for pair in bumps for e in pair}
++        if not dummy <= self.edges.keys():
++            raise AssertionError()
++        if not set(self.cells) == set(self.edges) - dummy:
++            raise AssertionError()
++        if not len(self.cells) == n + 1:
++            raise AssertionError()
++        inner = set(self.edges) - {left, right}
++        V = self.vertices - {source, sink}
++        if not len(inner) == len(V) == n + len(dummy) - 1:
++            raise AssertionError()
++        succ = {}
+         for e in inner:
+-            a,b=self.edges[e];assert a in V and b in V and a not in succ;succ[a]=e
+-        assert set(succ)==V and {self.edges[e][1] for e in inner}==V
++            a, b = self.edges[e]
++            if not (a in V and b in V and (a not in succ)):
++                raise AssertionError()
++            succ[a] = e
++        if not (set(succ) == V and {self.edges[e][1] for e in inner} == V):
++            raise AssertionError()
++
+         def cycle(v):
+-            out=[];start=v
++            out = []
++            start = v
+             while True:
+-                e=succ[v];out.append(e);v=self.edges[e][1]
+-                if v==start:break
+-                assert len(out)<=len(inner)
+-            assert set(out)==inner
++                e = succ[v]
++                out.append(e)
++                v = self.edges[e][1]
++                if v == start:
++                    break
++                if not len(out) <= len(inner):
++                    raise AssertionError()
++            if not set(out) == inner:
++                raise AssertionError()
+             return tuple(out)
+-        for e,(top,bot) in self.cells.items():
+-            assert top==(e,)
+-            expected=cycle(self.edges[e][0])+(e,) if e==right else (e,)+cycle(self.edges[e][1])
+-            assert bot==expected,(e,bot,expected)
+-        base=tuple(y for e in word for y in self.mapping[e]);assert self.endpoints(base)==(source,sink)
++        for e, (top, bot) in self.cells.items():
++            if not top == (e,):
++                raise AssertionError()
++            expected = cycle(self.edges[e][0]) + (e,) if e == right else (e,) + cycle(self.edges[e][1])
++            if not bot == expected:
++                raise AssertionError((e, bot, expected))
++        base = tuple((y for e in word for y in self.mapping[e]))
++        if not self.endpoints(base) == (source, sink):
++            raise AssertionError()
+         return len(self.moves)
+ 
+-def reduce(word,bumps):
+-    word=list(word);bumps=sorted(bumps,key=lambda pair:word.index(pair[1]));n=len(bumps);K=Complex(word,bumps)
+-    if n==2:
+-        (a,c),(b,d)=bumps;assert word.index(a)<word.index(b)<word.index(c)<word.index(d)
+-        i,j=word.index(b),word.index(c);s='new_2';K.add(s,word[i:j+1])
+-        K.rewrite(c,1,s,True);K.rewrite(b,1,s,True)
+-        K.substitute_all(b);K.delete(b);K.substitute_all(c);K.delete(c)
++def reduce(word, bumps):
++    word = list(word)
++    bumps = sorted(bumps, key=lambda pair: word.index(pair[1]))
++    n = len(bumps)
++    K = Complex(word, bumps)
++    if n == 2:
++        (a, c), (b, d) = bumps
++        if not word.index(a) < word.index(b) < word.index(c) < word.index(d):
++            raise AssertionError()
++        i, j = (word.index(b), word.index(c))
++        s = 'new_2'
++        K.add(s, word[i:j + 1])
++        K.rewrite(c, 1, s, True)
++        K.rewrite(b, 1, s, True)
++        K.substitute_all(b)
++        K.delete(b)
++        K.substitute_all(c)
++        K.delete(c)
+     else:
+-        l,r=bumps[-1];oldr=bumps[-2][1];ir=word.index(oldr);il=word.index(l)
+-        assert il<ir
+-        smallword=word[:ir+1];old,moves,_=reduce(smallword,bumps[:-1]);K.replay_lift(moves)
+-        cycle=old.cells[oldr][1][:-1];q=cycle.index(l);X=cycle[:q];Y=cycle[q+1:];D=tuple(word[ir+1:-1])
+-        P=tuple(word[il+1:ir]);image=tuple(y for e in P for y in old.mapping[e]);assert image[:len(Y)]==Y
+-        rest=image[len(Y):];assert len(rest)%len(cycle)==0
+-        s=len(rest)//len(cycle);assert rest==cycle*s
+-        # Remove full laps adjacent to oldr in the two newly active cells.
+-        for _ in range(s):K.rewrite(l,1,oldr,True);K.rewrite(r,1,oldr,True)
+-        assert K.cells[l][1]==(l,)+Y+(oldr,)+D
+-        assert K.cells[r][1]==Y+(oldr,)+D+(r,)
+-        p='new_'+str(n);K.add(p,(l,)+Y+(oldr,))
+-        K.rewrite(l,1,p,True);K.rewrite(oldr,1,p,True)
+-        assert K.cells[l][1]==(p,)+D and K.cells[oldr][1]==X+(p,)
+-        K.substitute_all(l);K.delete(l);K.substitute_all(oldr);K.delete(oldr)
+-    K.check_core(n,word,bumps)
+-    return K,K.moves,K.mapping
+-
+-def decorate(d,amounts):
+-    word=[]
+-    for i,(a,s) in enumerate(d):
+-        word.append(('R' if s else 'L')+str(a))
+-        if i<len(d)-1:word.extend('d_%d_%d'%(i,j) for j in range(amounts[i]))
+-    bumps=[('L'+str(a),'R'+str(a)) for a in range(len(d)//2)]
+-    return word,bumps
++        l, r = bumps[-1]
++        oldr = bumps[-2][1]
++        ir = word.index(oldr)
++        il = word.index(l)
++        if not il < ir:
++            raise AssertionError()
++        smallword = word[:ir + 1]
++        old, moves, _ = reduce(smallword, bumps[:-1])
++        K.replay_lift(moves)
++        cycle = old.cells[oldr][1][:-1]
++        q = cycle.index(l)
++        X = cycle[:q]
++        Y = cycle[q + 1:]
++        D = tuple(word[ir + 1:-1])
++        P = tuple(word[il + 1:ir])
++        image = tuple((y for e in P for y in old.mapping[e]))
++        if not image[:len(Y)] == Y:
++            raise AssertionError()
++        rest = image[len(Y):]
++        if not len(rest) % len(cycle) == 0:
++            raise AssertionError()
++        s = len(rest) // len(cycle)
++        if not rest == cycle * s:
++            raise AssertionError()
++        for _ in range(s):
++            K.rewrite(l, 1, oldr, True)
++            K.rewrite(r, 1, oldr, True)
++        if not K.cells[l][1] == (l,) + Y + (oldr,) + D:
++            raise AssertionError()
++        if not K.cells[r][1] == Y + (oldr,) + D + (r,):
++            raise AssertionError()
++        p = 'new_' + str(n)
++        K.add(p, (l,) + Y + (oldr,))
++        K.rewrite(l, 1, p, True)
++        K.rewrite(oldr, 1, p, True)
++        if not (K.cells[l][1] == (p,) + D and K.cells[oldr][1] == X + (p,)):
++            raise AssertionError()
++        K.substitute_all(l)
++        K.delete(l)
++        K.substitute_all(oldr)
++        K.delete(oldr)
++    K.check_core(n, word, bumps)
++    return (K, K.moves, K.mapping)
++
++def decorate(d, amounts):
++    word = []
++    for i, (a, s) in enumerate(d):
++        word.append(('R' if s else 'L') + str(a))
++        if i < len(d) - 1:
++            word.extend(('d_%d_%d' % (i, j) for j in range(amounts[i])))
++    bumps = [('L' + str(a), 'R' + str(a)) for a in range(len(d) // 2)]
++    return (word, bumps)
+ 
+ def main():
+-    start=time.time();rows=[];maxmoves=0
+-    for n in range(2,7):
+-        count=0;seen=set()
++    start = time.time()
++    rows = []
++    maxmoves = 0
++    for n in range(2, 7):
++        count = 0
++        seen = set()
+         for d in diagrams(n):
+-            if not connected(d):continue
+-            d,_=peel(d)
+-            if d in seen:continue
++            if not connected(d):
++                continue
++            d, _ = peel(d)
++            if d in seen:
++                continue
+             seen.add(d)
+-            variants=[[0]*(2*n-1),[1]*(2*n-1),[i%3 for i in range(2*n-1)]]
+-            if n==2:variants=list(itertools.product(range(4),repeat=3))
++            variants = [[0] * (2 * n - 1), [1] * (2 * n - 1), [i % 3 for i in range(2 * n - 1)]]
++            if n == 2:
++                variants = list(itertools.product(range(4), repeat=3))
+             for amounts in variants:
+-                w,b=decorate(d,amounts);K,m,_=reduce(w,b);count+=1;maxmoves=max(maxmoves,len(m))
+-        rows.append(dict(n=n,distinct_labelled_peeling_outputs=len(seen),partition_instances=count))
+-    result=dict(status='PASS',rows=rows,max_GS_moves=maxmoves,elapsed_seconds=round(time.time()-start,3),limitations='Only finite instances of the stated GS algorithm. Each recorded move is checked for nonempty paths, matching endpoints, distinct witness and target cells, valid rewriting occurrence, and legal edge deletion. This does not certify the external diagram-group theorems or the all-n mathematical induction.')
+-    pathlib.Path(__file__).with_name('reduction_results.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
+-if __name__=='__main__':main()
++                w, b = decorate(d, amounts)
++                K, m, _ = reduce(w, b)
++                count += 1
++                maxmoves = max(maxmoves, len(m))
++        rows.append(dict(n=n, distinct_labelled_peeling_outputs=len(seen), partition_instances=count))
++    result = dict(status='PASS', rows=rows, max_GS_moves=maxmoves, elapsed_seconds=round(time.time() - start, 3), limitations='Only finite instances of the stated GS algorithm. Each recorded move is checked for nonempty paths, matching endpoints, distinct witness and target cells, valid rewriting occurrence, and legal edge deletion. This does not certify the external diagram-group theorems or the all-n mathematical induction.')
++    print(json.dumps(result, indent=2))
++if __name__ == '__main__':
++    main()
