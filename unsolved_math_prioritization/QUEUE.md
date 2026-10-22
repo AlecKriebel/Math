@@ -934,7 +934,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 923 | 2999 / KP-4.123 | Kirby Problem 4.123 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 924 | 30006628 / OWR-14299911-031 | Property T for Random Free-Product Quotients above One-Third Density | 0.0960 | 5.5 | 3 | 2026 | claimed_solved | 1/5 |  | Published seven-page property(T) proof for fixed n>=3, fixed syllable alphabets, 1/3<d<1 and all integer lengths. Strong ESI/Ashcroft/Drutu-Mackay antecedent credit, bounded priority/no firstness certificate. Two fresh CLEAR package reviews; exact files and unique tracker readback verified; extensively AI-assisted and unrefereed. | https://doi.org/10.5281/zenodo.23390181 |
 | 925 | 3075 / OPG-605 | Average diameter of a bounded cell of a simple arrangement | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
-| 926 | 3081 / OPG-2435 | Monochromatic empty triangles | 0.0960 | 5.5 | 2 | unknown | queued | 0/5 |  |  |  |
+| 926 | 3081 / OPG-2435 | Monochromatic empty triangles | 0.0960 | 5.5 | 2 | unknown | unsolved | 2/5 |  |  |  |
 | 927 | 3800003 / AMR-037-0003 | Degenerate facets of polytopes | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 928 | 3900015 / AMR-038-0015 | Packing reciprocal rectangles in a square | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 929 | 5500072 / AMR-054-0072 | Polyhedron with Regular Pentagon Faces | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
