@@ -726,7 +726,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 715 | 30002167 / OWR-12012-009 | Short Hamiltonian Cycles and Matchings in Convex Bodies | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 716 | 30002178 / OWR-12014-013 | Lower Bounds for Sums of Roots of Unity | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 717 | 30002180 / OWR-12015-001 | Jet Curvature and the First Chern Class | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 718 | 30004222 / OWR-17135-015 | Combinatorial Explanation of the Clasp Conjecture | 0.1041 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
+| 718 | 30004222 / OWR-17135-015 | Combinatorial Explanation of the Clasp Conjecture | 0.1041 | 6.0 | 3 | 2019 | unsolved | 1/5 |  | Published all-rank type-A formula verified via corrected normalization reconstruction; purely combinatorial explanation not certified |  |
 | 719 | 30004279 / OWR-17292-002 | Equivalent Bicommutant Categories from Nonisomorphic Conformal Nets | 0.1041 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 720 | 30002692 / OWR-13347-011 | Hyperbolic Conformal Boundaries of Poincaré–Einstein Manifolds | 0.1040 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 721 | 30002468 / OWR-12861-019 | Biclique Partition Numbers of Random Graphs | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |

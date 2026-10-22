@@ -1,0 +1,9 @@
+# Publication checkpoint: 2026-10-05 UTC
+
+The strongest accepted result is a corrected, dependency-aware reconstruction of the published all-rank type-A formula. The qualitative purely combinatorial target is not certified. This is one substantive author turn out of five; correction, independent audits and packaging add no proof-attempt turns. Estimated completion toward verification of the qualified prior-formula dossier: 100%; completion toward an independently certified purely combinatorial explanation is not established. No novel theorem is claimed.
+
+Read-only all-state problem-specific PR and branch searches found no match before preparation. Fresh main was c5bbb350b24a4a612b1dc64e30f51100c4de2eb0. The target row was queued 0/5 with blank Findings, Chat and DOI. These bounded searches do not establish exhaustive historical absence. Repository research and verification instructions were read.
+
+The first independent audit rejected the original reciprocal normalization claim and supplied an explicit replacement. The separately frozen corrected candidate incorporated it; the independent delta audit then accepted those exact bytes with qualifications. All original, first-audit, corrected, correction-binding and delta-audit bytes are preserved. The original REVISE_REQUIRED verdict remains in force for its original tree. The current reconstruction uses kappa=(N')^(-2)=B=K, the actual norm equation, terminal rather than undivided all-j normalization, both Eq. (2.15) fixes and explicit 01 roots.
+
+The release wrapper and explanatory routing are the only new packaging artifacts. The publication manifest binds all public files. Remote commit/PR existence, byte readback, portable replay and exact-change verification are reported separately after they occur; this preparation checkpoint does not claim an upload already happened. No source payloads or private coordination records are included.
