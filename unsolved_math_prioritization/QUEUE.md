@@ -1040,7 +1040,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1029 | 20003105 / AIM-TOPOLOGY-0193 | The forced length-spectrum max norm and a compatible-geodesic criterion | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1030 | 2200009 / AMR-021-0009 | Problems Around Polynomials — Conjecture 5 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1031 | 2200013 / AMR-021-0013 | Problems Around Polynomials — Conjecture 8 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1032 | 2304003 / AMR-022-4003 | Research Problems in Function Theory — Problem 4.3 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1032 | 2304003 / AMR-022-4003 | Research Problems in Function Theory — Problem 4.3 | 0.0900 | 6.0 | 3 | unknown | unsolved | 5/5 |  | Accepted unchanged five-approach partials and independent audit: arbitrary increasing-exponent C_N remains between log(N)/pi-O(1) and (1+sqrt(N))/2; dense A(d,k)=log(min(k,d-k))/pi+O(1) uniformly, A(3,2)=2/sqrt(3); arbitrary-subset U_N has square-root order but is not a natural prefix. Technau (2026) credited for published degree-bounded results; Newman (1978/1979 erratum) bibliographic only, original full texts not inspected. No general exact formula, novelty, or complete solution claim. [Source-free audited packet](attempts/2304003/README.md). |  |
 | 1033 | 2304028 / AMR-022-4028 | Research Problems in Function Theory — Problem 4.28 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1034 | 2305005 / AMR-022-5005 | Research Problems in Function Theory — Problem 5.5 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1035 | 2305029 / AMR-022-5029 | Research Problems in Function Theory — Problem 5.29 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
