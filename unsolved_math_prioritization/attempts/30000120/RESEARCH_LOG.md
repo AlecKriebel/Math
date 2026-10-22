@@ -1,0 +1,9 @@
+# Publication checkpoint: problem 30000120
+
+2026-10-05 23:34 UTC. The complete independent audit and clarifications were read. PASS_SCOPED_PARTIAL; no mandatory mathematical correction. Bounded five-approach investigation and audit completion estimate: 100%. Full-target resolution estimate: 0%, because the arbitrary adjoint symmetric equivariant-bundle construction is unresolved. These are work-scope estimates, not proof probabilities.
+
+Fresh main c06213be18bd297908e6b4f137adcabff176d885 and its 63-entry attempts directory were checked, together with exact identifier/code/topic PR searches, target/wonderful branch searches, target commit search, and related-target groups. No prior actual target artifact was established. These bounded searches do not prove exhaustive historical absence or novelty.
+
+Both safe ZIPs and each frozen member were checked against the supplied pins and local safe files. The author freeze remains unchanged. Its historical pending-audit language is qualified by the adjacent independent audit and current wrapper. The accepted scope is rational complete conics and products with P2, actual invariant-boundary equivariant bundles, and the tangent/logarithmic degree-two obstruction. No P3 or arbitrary-irreducible extension is asserted. General later GKM ring descriptions are acknowledged without conflating them with the requested explicit global bundles.
+
+The explicit draft-publication instruction governs this checkpoint. Only target queue Status and Turns change; all other queue bytes and the preexisting header are preserved. Applicable repository instructions were read; global queue synchronization is outside this specifically bounded patch. Normal, optimized, relocated and negative-control replays must pass before completion. No new proof-search turn, merge, release, DOI or outreach is included.
