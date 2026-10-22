@@ -272,7 +272,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 261 | 10300057 / AMR-102-0057 | Numerical invariants — Question 13.4 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 262 | 10400105 / AMR-103-0105 | Problem 5.9 — Let the notation be as above. | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 263 | 2665 / KP-1.6 | Kirby Problem 1.6 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 264 | 2676 / KP-1.17 | Kirby Problem 1.17 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 264 | 2676 / KP-1.17 | Kirby Problem 1.17 | 0.1800 | 5.0 | 3 | unknown | unsolved | 5/5 | [PR #251](https://github.com/AlecKriebel/Math/pull/251) | [Reviewed partials](attempts/2676/RESULT.md): all-links reductions and two-trefoil family rigidity; arbitrary common-cover question unresolved |  |
 | 265 | 3413 / OPG-37131 | Realisation problem for the space of knots in the 3-sphere | 0.1800 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 266 | 3900010 / AMR-038-0010 | Odd rep-tiling by a 14-omino | 0.1800 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 267 | 9700040 / AMR-096-0040 | Stationary law of a drift-jump particle process | 0.1800 | 5.0 | 3 | unknown | already_solved | 1/5 |  | 2026-10-15: Mathematics PASS; complete earlier stationary-law coverage (AD constructions; LRW2001 finite determinant; BO2004/Nica2014-2015 explicit joint laws). Credited correction from eligible claimed_solved intake, then scope skip; no new preprint/merge. Earlier expressly named2018resolution/proposer endorsement not established. [Priority audit](../draft_pr_descending_audit_20261002/audits/pr246_9700040/initial_review_20261014/corrected_packet/PRIORITY_AUDIT.md). |  |
