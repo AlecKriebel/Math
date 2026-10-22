@@ -1025,7 +1025,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1014 | 11300004 / AMR-112-0004 | Quadrisecants of wild knots | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1015 | 1430 / GRAPH-043 | Word-Representable Graphs: Letter Copies Bound | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1016 | 1900002 / AMR-018-0002 | Geometry of Continued Fractions — Integer trigonometry and IKEA problem | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1017 | 1919 / EP-84 | Erdős Problem #84 | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1017 | 1919 / EP-84 | Erdős Problem #84 | 0.0900 | 5.5 | 1 | unknown | unsolved | 5/5 |  | Five corrected restricted approaches independently audited: cactus/theta subexponential bounds, distance-set concentration and explicit decoder collisions. Complete simple-cycle-length sets; upper f(n)=o(2^n) credited to Verstraete/Nenadov. Lower f(n)/2^(n/2) divergence and exponential-growth limit unresolved. Baseline m>=2 and exact-integer ledger corrections accepted. [Audit](attempts/1919/README.md). |  |
 | 1018 | 20000081 / AIM-ALGEBRAIC_GEOMETRY-0081 | Adjacent-power compression and gap states for nested full twists | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1019 | 20000093 / AIM-ALGEBRAIC_GEOMETRY-0093 | A complete rank-two central reconstruction and a higher-rank extension obstruction | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1020 | 20000316 / AIM-ALGEBRAIC_GEOMETRY-0316 | Frobenius contraction and a log-canonical non-F-pure stress test for the symbolic cube | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |

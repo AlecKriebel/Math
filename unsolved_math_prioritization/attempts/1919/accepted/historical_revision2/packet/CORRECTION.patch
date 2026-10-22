@@ -1,0 +1,57 @@
+--- revision1/REPORT.md
++++ revision2/REPORT.md
+@@ -36,7 +36,7 @@
+ 
+ Indeed every cycle uses x, since the remaining graph is a tree. Removing x from a simple cycle leaves the unique path between two distinct neighbors a,b, whose length is |a-b|. Conversely every such pair produces a simple cycle. This is the distance-set construction credited above, not a newly claimed reduction.
+ 
+-For a direct baseline on n=2m vertices, take the path 1,...,2m and edges {1,a} for a in B subset {m+1,...,2m}. The apex formulation, with vertex 1 removed from the path, shows that cycles have lengths a or b-a+2 (a<b in B, allowing path-neighbor 2). Among the selected-selected differences, the only possible value exceeding m is m+1, and attaining it requires m+1 already to belong to B. Thus lengths exceeding m recover B exactly. Thus f(2m) >= 2^m, the Faudree family reviewed by Nenadov.
++For a direct baseline on n=2m vertices with m>=2, take the path 1,...,2m and edges {1,a} for a in B subset {m+1,...,2m}. The apex formulation, with vertex 1 removed from the path, shows that cycles have lengths a or b-a+2 (a<b in B, allowing path-neighbor 2). Among the selected-selected differences, the only possible value exceeding m is m+1, and attaining it requires m+1 already to belong to B. Thus lengths exceeding m recover B exactly. Thus f(2m) >= 2^m, the Faudree family reviewed by Nenadov. The restriction m>=2 is essential: for m=1 the proposed edge {1,2} is already the path edge, no simple 2-cycle arises, and f(2)=1.
+ 
+ ### Attempt to gain an unbounded factor
+ 
+--- revision1/proof_checks.py
++++ revision2/proof_checks.py
+@@ -48,6 +48,12 @@
+     if B is None:return N+1,E
+     B=valid_set(B,N)
+     return N+2,E+[(N+1,b) for b in B]
++
++def faudree(m,B):
++    require(type(m) is int and 2<=m<=30,'Faudree family requires m>=2')
++    B=valid_set(B,2*m+1)
++    require(all(m+1<=b<=2*m for b in B),'invalid Faudree neighbor')
++    return apex_graph(2*m-1,(0,)+tuple(b-2 for b in B))
+ 
+ def cycle_lengths(n,edges):
+     """Independent DFS, smallest vertex fixed to remove rotation duplicates."""
+@@ -143,7 +149,7 @@
+         images=set()
+         for B in subsets(range(m+1,2*m+1)):
+             # Relabel vertex 1 as apex; path 2,...,2m becomes 0,...,2m-2.
+-            C=cycle_lengths(*apex_graph(2*m-1,(0,)+tuple(b-2 for b in B)))
++            C=cycle_lengths(*faudree(m,B))
+             check({x for x in C if x>m}==set(B),'Faudree high-band recovery')
+             images.add(C)
+         check(len(images)==1<<m,'Faudree image count')
+@@ -219,8 +225,9 @@
+     check(twohub_counts==[3,6,19,46,127,310,721],'two-hub exact family counts')
+     small_f=[finite_f(n) for n in range(7)]
+     check(small_f==[1,1,1,2,4,6,11],'small graph spectrum counts')
++    check(cycle_lengths(2,[(0,1)])==set() and small_f[2]==1,'degenerate m=1 has no 2-cycle and f(2)=1')
+     # Explicit malformed-input controls, surviving -O and -OO.
+-    bad=[lambda:apex_graph(3,(True,)),lambda:apex_graph(3,(0,0)),lambda:apex_graph(3,(-1,)),lambda:apex_graph(3,(3,)),lambda:apex_graph(-1,()),lambda:apex_graph(3,'12'),lambda:cycle_lengths(3,[(0,0)]),lambda:cycle_lengths(3,[(0,1),(1,0)]),lambda:cycle_lengths(3,[(0,3)]),lambda:cycle_lengths(True,[]),lambda:theta((1,1)),lambda:theta((0,2)),lambda:bouquet((2,)),lambda:bouquet((3,3)),lambda:delta_mask(-1,4),lambda:delta_mask(True,4)]
++    bad=[lambda:faudree(1,(2,)),lambda:apex_graph(3,(True,)),lambda:apex_graph(3,(0,0)),lambda:apex_graph(3,(-1,)),lambda:apex_graph(3,(3,)),lambda:apex_graph(-1,()),lambda:apex_graph(3,'12'),lambda:cycle_lengths(3,[(0,0)]),lambda:cycle_lengths(3,[(0,1),(1,0)]),lambda:cycle_lengths(3,[(0,3)]),lambda:cycle_lengths(True,[]),lambda:theta((1,1)),lambda:theta((0,2)),lambda:bouquet((2,)),lambda:bouquet((3,3)),lambda:delta_mask(-1,4),lambda:delta_mask(True,4)]
+     for test in bad:
+         rejected=False
+         try:test()
+--- revision1/verify.py
++++ revision2/verify.py
+@@ -10,7 +10,7 @@
+ import subprocess
+ import sys
+ 
+-EXPECTED={'REPORT.md','STATUS.json','SOURCES.json','LEDGER.json','README.md','proof_checks.py','verify.py'}
++EXPECTED={'REPORT.md','STATUS.json','SOURCES.json','LEDGER.json','README.md','proof_checks.py','verify.py','CORRECTION.patch','CORRECTIONS.md'}
+ MAX_FILE=2_000_000
+ 
+ def require(test,message):
