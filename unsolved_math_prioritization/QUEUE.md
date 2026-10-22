@@ -843,7 +843,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 832 | 30001669 / OWR-4791-028 | Short Cycles in Highly Dominating Digraphs | 0.0981 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 833 | 30001702 / OWR-4798-027 | Minimal Facets in Triangulated Tori | 0.0981 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 834 | 30001707 / OWR-4799-003 | Multiplicity-Free Quantization and Orbit Counts | 0.0981 | 6.0 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 835 | 30001737 / OWR-4804-005 | The Converse Unitary Distinction Criterion | 0.0981 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 835 | 30001737 / OWR-4804-005 | The Converse Unitary Distinction Criterion | 0.0981 | 5.5 | 3 | 2011 | unsolved | 3/5 |  |  |  |
 | 836 | 30001913 / OWR-11139-006 | Extremality of Hodge–Tate Laurent Polynomials | 0.0981 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 837 | 30002042 / OWR-11783-009 | Degrees and Finiteness of Stringy $E$-Polynomials | 0.0979 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 838 | 30002054 / OWR-11786-002 | Additivity of Triangulation Complexity under Connected Sum | 0.0979 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
