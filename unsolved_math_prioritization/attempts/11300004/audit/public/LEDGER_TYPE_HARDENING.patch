@@ -1,0 +1,14 @@
+--- packet/verify.py
++++ packet/verify.py
+@@ -70,7 +70,10 @@
+     ledger=parse(regular(root/'LEDGER.json',100_000))
+     require(type(ledger) is dict and ledger.get('schema')=='wild-quadrisecants-ledger-v1','invalid ledger')
+     require(type(ledger.get('approaches')) is list and len(ledger['approaches'])==5,'ledger approach count')
+-    require([r.get('turn') if type(r) is dict else None for r in ledger['approaches']]==list(range(1,6)),'ledger turn order')
++    require(type(ledger.get('turns_used')) is int and ledger['turns_used']==5,'ledger turns used')
++    require(type(ledger.get('turn_budget')) is int and ledger['turn_budget']==5,'ledger turn budget')
++    require(all(type(r) is dict and type(r.get('turn')) is int for r in ledger['approaches']),'ledger turn type')
++    require([r['turn'] for r in ledger['approaches']]==list(range(1,6)),'ledger turn order')
+     sources=parse(regular(root/'SOURCES.json',100_000))
+     require(type(sources) is dict and sources.get('source_documents_included') is False,'source redistribution scope')
+     flags=['-I','-B']+(['-OO'] if sys.flags.optimize==2 else ['-O'] if sys.flags.optimize==1 else [])

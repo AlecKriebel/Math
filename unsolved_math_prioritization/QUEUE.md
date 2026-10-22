@@ -1022,7 +1022,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1011 | 10800003 / AMR-107-0003 | Problem 1C — Are there more refined restrictions to the collision of critical values? | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1012 | 11000112 / AMR-109-0112 | Problem 2.7 — Suppose that ta1ta2··· tan = 1 in Modg, where n≥ 1. | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1013 | 11000156 / AMR-109-0156 | Question 2.5 — Given two factorizations of the boundary twist δ as a product of positive Dehn twists along nonseparating curves in M… | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1014 | 11300004 / AMR-112-0004 | Quadrisecants of wild knots | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
+| 1014 | 11300004 / AMR-112-0004 | Quadrisecants of wild knots | 0.0900 | 5.5 | 4 | unknown | unsolved | 5/5 |  | 2026-10-08: five approaches; independently audited corrected partials. Seven auxiliary lemmas and a tame infinite-curvature/no-trisecant countercontrol; marked configurations versus distinct supporting lines and 1994 knot versus 2002 arc scopes separated. Universal wild-knot line-infinitude unresolved; no wild counterexample, novelty or formal-certification claim. |  |
 | 1015 | 1430 / GRAPH-043 | Word-Representable Graphs: Letter Copies Bound | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1016 | 1900002 / AMR-018-0002 | Geometry of Continued Fractions — Integer trigonometry and IKEA problem | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1017 | 1919 / EP-84 | Erdős Problem #84 | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
