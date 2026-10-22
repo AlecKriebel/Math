@@ -1,0 +1,62 @@
+[
+  {
+    "name": "wrong_discriminant_sign",
+    "old": "discriminant = c*c-alpha*integral",
+    "new": "discriminant = c*c+alpha*integral"
+  },
+  {
+    "name": "wrong_quadratic_root",
+    "old": "return integral/(c+rational_sqrt(discriminant))",
+    "new": "return integral/(c-rational_sqrt(discriminant))"
+  },
+  {
+    "name": "area_half_factor",
+    "old": "return integral/(c+rational_sqrt(discriminant))",
+    "new": "return integral/(2*(c+rational_sqrt(discriminant)))"
+  },
+  {
+    "name": "radius_product_multiply",
+    "old": "product = s/q",
+    "new": "product = s*q"
+  },
+  {
+    "name": "radius_root_wrong_factor",
+    "old": "return ((s-root)/2, (s+root)/2)",
+    "new": "return ((s-root)/4, (s+root)/4)"
+  },
+  {
+    "name": "unscaled_degree_one_subtraction",
+    "old": "return (scaled_g-scale*g)/(alpha*scale*(scale-1))",
+    "new": "return (scaled_g-g)/(alpha*scale*(scale-1))"
+  },
+  {
+    "name": "wrong_scale_determinant",
+    "old": "return (scaled_g-scale*g)/(alpha*scale*(scale-1))",
+    "new": "return (scaled_g-scale*g)/(alpha*scale*(scale+1))"
+  },
+  {
+    "name": "mixed_area_missing_half",
+    "old": "-area(a)-area(b))/2",
+    "new": "-area(a)-area(b))"
+  },
+  {
+    "name": "boolean_admitted",
+    "old": "if isinstance(value, bool) or not isinstance(value, (int, Fraction)):",
+    "new": "if not isinstance(value, (int, Fraction)):"
+  },
+  {
+    "name": "negative_alpha_admitted",
+    "old": "if c <= 0 or integral <= 0 or alpha < 0:",
+    "new": "if c <= 0 or integral <= 0:"
+  },
+  {
+    "name": "negative_scale_admitted",
+    "old": "if scale <= 0 or scale == 1 or alpha <= 0:",
+    "new": "if scale == 0 or scale == 1 or alpha <= 0:"
+  },
+  {
+    "name": "disk_lens_missing_two",
+    "old": "lens_perimeter=4*radius*acos",
+    "new": "lens_perimeter=2*radius*acos"
+  }
+]
