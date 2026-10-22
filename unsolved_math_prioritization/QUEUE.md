@@ -91,7 +91,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 80 | 2722 / KP-1.63 | Kirby Problem 1.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 81 | 2725 / KP-1.66 | Kirby Problem 1.66 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 82 | 2772 / KP-2.24 | Kirby Problem 2.24 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 83 | 2853 / KP-3.55 | Kirby Problem 3.55 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 83 | 2853 / KP-3.55 | Kirby Problem 3.55 | 0.2400 | 5.5 | 3 | unknown | unsolved | 3/5 |  | 2026-09-30: Separate review passed exact U-module multiplicity and duality diagnostics with credited geometric-route limitations. Both original Floer summand questions remain unresolved; abstract torsion modules are not realized counterexamples and rational hat-group results do not imply F2 minus-module conclusions.101620author and2876independent assertions; three bounded routes. Draft PR: https://github.com/AlecKriebel/Math/pull/67. |  |
 | 84 | 2861 / KP-3.63 | Kirby Problem 3.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 85 | 2869 / KP-3.71 | Kirby Problem 3.71 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 86 | 2919 / KP-4.43 | Kirby Problem 4.43 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
