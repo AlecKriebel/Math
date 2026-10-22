@@ -1,0 +1,61 @@
+--- original/REPORT.md
++++ corrected/REPORT.md
+@@ -153,11 +153,21 @@
+ 
+ Then U is uniquely determined by U_0 within that face class, and for almost every t>0
+ 
+ D_x a(t,.)<=1/(2t) dx,    D_x b(t,.)<=1/(2t) dx.        (7)
+ 
+-These are actual microscopic invariant faces: F0 corresponds to no0 spins, F+ to no−1 spins, and F− to no+1 spins. Pure exchanges never create an absent spin value. In particular, if a microscopic initial law gives probability1 to configurations omitting that spin value, every subsequent empirical profile lies in the same affine face. Every strong local L1 subsequential limit lies there as well. Thus Theorem4 applies to those source limits once their weak Cauchy equation and interior entropy inequalities are supplied. The assertion is global absence of one microscopic species, not merely pointwise initial membership in a union of different faces.
++These are actual microscopic invariant faces for normalized empirical averages: F0 corresponds to no0 spins, F+ to no−1 spins, and F− to no+1 spins. Pure exchanges never create an absent spin value. Thus if the microscopic initial law gives probability1 to configurations omitting that spin value, every subsequent average with nonnegative weights summing exactly to1 lies in the corresponding face.
++
++The unnormalized smooth empirical profiles used in the saved OWR note and Fritz–Toth v2 require a normalization correction at finite scale. Write K for their kernel, so K>=0, K has compact support, K is at least C1 (v2 assumes C2), and integral K=1. With weights w_k(x)=ell^(-1) K((x/epsilon−k)/ell), let W_epsilon(x)=sum_k w_k(x). Then absence of0 gives rho_hat=0, absence of−1 gives rho_hat=W_epsilon+u_hat, and absence of+1 gives rho_hat=W_epsilon−u_hat. These are exact identities; W_epsilon need not equal1.
++
++Here is the uniform correction. The sampling nodes have spacing h=1/ell. Partition the real line into length-h intervals centered at these nodes. On each interval, the fundamental theorem of calculus bounds the difference between h times the midpoint value of K and its integral by h times the integral of |K'| on that interval. Summing gives
++
++sup_x |W_epsilon(x)−1| <= ell^(-1) integral |K'| ->0.
++
++This estimate is uniform in the node shift, and also applies to the periodized sums on the torus. The stated block scales imply ell->infinity and epsilon ell->0. For all sufficiently small epsilon, W_epsilon>0. Dividing both empirical components by W_epsilon gives an exactly normalized face-valued profile. Since each microscopic component has absolute value at most1, the difference in each component between the raw and normalized profiles is at most |W_epsilon−1|, uniformly in configurations and time. Hence every strong local L1 subsequential limit of either profile lies in the same closed physical face.
++
++This normalization argument only establishes face membership. Theorem4 still requires the prescribed weak Cauchy equation and interior entropy inequalities; it does not repair the separate initial-trace issue in the full system. The assertion is global absence of one microscopic species, not merely pointwise initial membership in a union of different faces.
+ 
+ ### Proof of the entropy reduction
+ 
+ The second equation becomes u_t+(u²+beta u+gamma)_x=0, with(beta,gamma) respectively(0,0),(1,1),(−1,1). The first equation is redundant on each face. Every scalar Kruzhkov entropy is obtained by restricting the known system family |S_c|:
+ 
+@@ -173,11 +183,13 @@
+ 
+ H(t,x)=inf_y [H_0(y)+(x−y)²/(2t)].
+ 
+ The minimum exists since the quadratic dominates the at-most-linear growth of H_0. At points where H_x exists, choose a minimizer y_x; then z(t,x)=(x−y_x)/t. If x<x', optimality of the two minimizers and addition of the two cost inequalities give y_x<=y_{x'}. It follows that z(t,x')−z(t,x)<=(x'−x)/t, hence u(t,x')−u(t,x)<=(x'−x)/(2t), with the distributional interpretation at shocks.
+ 
+-On F+, a=u+1 and b=−1. On F−, a=1 and b=u−1. On F0, a=max(u,0) and b=min(u,0). Both maximum and minimum maps here are nondecreasing and1-Lipschitz; if u(y)>=u(x), their increments are at most u(y)−u(x), while otherwise their increments are nonpositive. Thus both preserve this one-sided upper bound, proving(7), including at u=0 on F0. QED.
++On F+, a=u+1 and b=−1. On F−, a=1 and b=u−1. On F0, a=max(u,0) and b=min(u,0). Both maximum and minimum maps here are nondecreasing and1-Lipschitz; if u(y)>=u(x), their increments are at most u(y)−u(x), while otherwise their increments are nonpositive. Thus both preserve this one-sided upper bound, proving(7), including at u=0 on F0.
++
++The common constant1/2 is sharp: for any allowed scalar Riemann data u_L<u_R, the rarefaction fan has u(t,x)=(x/t−beta)/2 between speeds2u_L+beta and2u_R+beta. Thus u_x=1/(2t) there. Choose u_L=−3/4,u_R=−1/4 on F+, u_L=1/4,u_R=3/4 on F−, and u_L=−1/2,u_R=1/2 on F0. The nonconstant invariant on either sloping face, and each invariant on its corresponding nonzero-sign part of the F0 fan, attain this slope. The constant invariant on each sloping face has the stronger bound0. QED.
+ 
+ ### Scope of this success
+ 
+ This is a boundary specialization by familiar scalar theory, not a reduction of the general model to Burgers. It proves no estimate for configurations genuinely containing all three species. An initial macroscopic profile that lies on a face without a justified microscopic or entropy invariant-face statement is not automatically covered. No unknown three-state uniqueness theorem has been used.
+ 
+--- original/README.md
++++ corrected/README.md
+@@ -12,5 +12,18 @@
+ - verify_algebra.py: read-only exact symbolic and finite-witness checks
+ - VERIFICATION.json: normal, -O, -OO and three mutation-control runs per mode
+ - MANIFEST.json: final authored-file byte counts and SHA256 hashes
+ 
+ Verification covers algebra and finite witnesses only. The scalar face theorem explicitly assumes a weak Cauchy equation with the prescribed initial value and interior entropy inequalities. It invokes the inspected Chen–Rascle scalar trace theorem. No private source bodies or coordination files are included.
++
++## Independent audit and correction
++
++The independent audit accepts the conditional partial results after correcting the finite-scale face-membership claim for the source smoothers. REPORT.md now proves the uniform discrete-normalization bridge. The full target remains unresolved at5/5; this is a correction audit, not a sixth route.
++
++- INDEPENDENT_AUDIT.md: full mathematical and source-hypothesis audit
++- ACCEPTANCE.json: precise acceptance scope and exclusions
++- CORRECTION.patch: contextual changes to the original authored report and README
++- ORIGINAL_MANIFEST.json: preserved original manifest
++- audit_checks.py: independent exact checks, including the kernel counterexample
++- run_audit.py and AUDIT_EVIDENCE.json: reproducible normal/optimized/mutation runs and actual nonroot read-only probes
++- SOURCE_INSPECTION.json: source and inspection metadata without source bodies
++- MANIFEST.json: frozen corrected packet hashes
