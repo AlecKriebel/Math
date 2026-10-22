@@ -1,0 +1,46 @@
+{
+  "decision": "ACCEPT_SYMBOLIC_THEOREM_WITH_EXPLICIT_SCOPE",
+  "review_type": "AI-assisted independent mathematical audit; unrefereed; no external human peer review or formal proof-assistant certification",
+  "proof": {
+    "file": "UNBOUNDED_PATH_PROJECTION.md",
+    "bytes": 9321,
+    "sha256": "4a087676e6eda5680af3b19ed6d54543fa1ba277c77bdde26ad9c49d3e24f6a8",
+    "original_bytes_preserved": true
+  },
+  "hypotheses": [
+    "Every integer rank r>=2",
+    "V=F_2^r with standard dot product and ordered orthonormal basis e_0,...,e_(r-1)",
+    "Original labelled configuration x_0=e_0 and x_i=e_(i-1)+e_i for 1<=i<=r-1",
+    "One new labelled norm-one coordinate y=e_(r-1), with label r"
+  ],
+  "normalization": {
+    "successful_word_edge": "Distinct length-r successful words U,W with LCS(U,W)>=r-4",
+    "maximum_deletions": 4,
+    "maximum_insertions": 4,
+    "maximum_total_insertion_deletion_edits": 8,
+    "trajectory_quotient_edge": "Distinct full-matrix trajectories with at least one adjacent pair of successful-word representatives"
+  },
+  "accepted": [
+    "The original path has the unique successful word S=(0,...,r-1)",
+    "The rank-r augmented path has r+1 vertices, both endpoints black, 2^r successful words, and 2^(r-1) exact full-matrix trajectories, each with a complete two-word fiber",
+    "The designated reverse full fiber has greatest LCS 1 against the original successful-word set",
+    "The minimum augmented word-graph distance from the WHOLE designated reverse fiber to the original word set is exactly ceil((r-1)/4)",
+    "The exact distance in the FULL augmented trajectory quotient from the reverse trajectory to the old-realized trajectory is ceil((r-1)/4), allowing free changes among every representative in each fiber",
+    "The augmented successful-word graph remains connected even with adjacency LCS>=r-1",
+    "Consequently no rank-independent bounded-radius recovery theorem can take every augmented word or trajectory back to the old-coordinate realized part, even after adjoining a single norm-one vector"
+  ],
+  "old_word_and_fiber_distinction": {
+    "old_word_set": "{(0,...,r-1)}",
+    "old_trajectory_full_augmented_fiber": "{(0,...,r-1),(0,...,r-2,r)}",
+    "quotient_target": "The trajectory of the old word on the full augmented matrix, with both representatives included"
+  },
+  "excluded": [
+    "A counterexample to, or resolution of, the original general Bixby-Flint-Miklos connectivity conjecture",
+    "Exact distance for every individual reverse-fiber representative, rather than the asserted minimum from the whole fiber",
+    "Failure of unrestricted nonlocal retractions, component preservation, or path rerouting",
+    "General lower bounds for arbitrary augmented configurations",
+    "A proof of the separately formulated residual component-equivalence statement",
+    "Earlier finite rank-eight or rank-ten witness certificates or supplements",
+    "Novelty, priority, comprehensive literature review, or executable reproducibility certification"
+  ]
+}
