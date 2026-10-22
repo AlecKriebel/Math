@@ -536,7 +536,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 525 | 2305050 / AMR-022-5050 | Research Problems in Function Theory — Problem 5.50 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 526 | 2306017 / AMR-022-6017 | Research Problems in Function Theory — Problem 6.17 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 527 | 2306038 / AMR-022-6038 | Research Problems in Function Theory — Problem 6.38 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 528 | 2306052 / AMR-022-6052 | Research Problems in Function Theory — Problem 6.52 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 528 | 2306052 / AMR-022-6052 | Research Problems in Function Theory — Problem 6.52 | 0.1200 | 6.0 | 3 | unknown | unsolved | 5/5 |  | 2026-10-03: Reviewed partial results: exact affine classification for f0(z)=2z(1+z)/(1-z)^2; f0+az is onto iff (2 Re(a)-1)^3<27 Im(a)^2, otherwise omits -conj(a). Every bounded holomorphic perturbation of norm <3/64 preserves this f0. General existential Rubel question unresolved after five approaches; no novelty claim. [Proof and exact checks](attempts/2306052/artifacts/PROOF.md); [independent audit](attempts/2306052/audit/AUDIT.md). |  |
 | 529 | 2306083 / AMR-022-6083 | Research Problems in Function Theory — Problem 6.83 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 530 | 2307054 / AMR-022-7054 | Research Problems in Function Theory — Problem 7.54 | 0.1200 | 4.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 531 | 2863 / KP-3.65 | Kirby Problem 3.65 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
