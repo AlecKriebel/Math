@@ -1,0 +1,233 @@
+[
+  {
+    "control": "profile_identity",
+    "script": "checks.py",
+    "old": "I * c",
+    "new": "2 * I * c",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/checks.py\", line 9, in <module>\n    raise RuntimeError('Exact check failed at original line 8')\nRuntimeError: Exact check failed at original line 8\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/checks.py\", line 9, in <module>\n    raise RuntimeError('Exact check failed at original line 8')\nRuntimeError: Exact check failed at original line 8\n"
+      }
+    ]
+  },
+  {
+    "control": "witness_projection",
+    "script": "check_witness.py",
+    "old": "J / 3",
+    "new": "J / 2",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/check_witness.py\", line 9, in <module>\n    raise RuntimeError('Exact check failed at original line 7')\nRuntimeError: Exact check failed at original line 7\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/check_witness.py\", line 9, in <module>\n    raise RuntimeError('Exact check failed at original line 7')\nRuntimeError: Exact check failed at original line 7\n"
+      }
+    ]
+  },
+  {
+    "control": "symbolic_profile",
+    "script": "exact_checks.py",
+    "old": "-s.I * z",
+    "new": "-2 * s.I * z",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/exact_checks.py\", line 8, in <module>\n    raise RuntimeError('Exact check failed at original line 7')\nRuntimeError: Exact check failed at original line 7\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/exact_checks.py\", line 8, in <module>\n    raise RuntimeError('Exact check failed at original line 7')\nRuntimeError: Exact check failed at original line 7\n"
+      }
+    ]
+  },
+  {
+    "control": "strict_witness",
+    "script": "strict_checks.py",
+    "old": "J / 3",
+    "new": "J / 2",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/strict_checks.py\", line 10, in <module>\n    raise RuntimeError('Exact check failed at original line 8')\nRuntimeError: Exact check failed at original line 8\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/strict_checks.py\", line 10, in <module>\n    raise RuntimeError('Exact check failed at original line 8')\nRuntimeError: Exact check failed at original line 8\n"
+      }
+    ]
+  },
+  {
+    "control": "fractional_coupling",
+    "script": "theorem_checks.py",
+    "old": "s.sqrt(t*(1-t))",
+    "new": "s.sqrt(t*(1-t))/2",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 18, in <module>\n    require(C*C==C,'fractional coupling projection')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: fractional coupling projection\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 18, in <module>\n    require(C*C==C,'fractional coupling projection')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: fractional coupling projection\n"
+      }
+    ]
+  },
+  {
+    "control": "fractional_rank",
+    "script": "theorem_checks.py",
+    "old": "s.ceiling(a)==2",
+    "new": "s.ceiling(a)==1",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 25, in <module>\n    require(Q[:2,:2].rank()==s.ceiling(a)==1,'minimum fractional compression rank')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: minimum fractional compression rank\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 25, in <module>\n    require(Q[:2,:2].rank()==s.ceiling(a)==1,'minimum fractional compression rank')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: minimum fractional compression rank\n"
+      }
+    ]
+  },
+  {
+    "control": "complement_rank",
+    "script": "theorem_checks.py",
+    "old": "Q[2:,2:].rank()==1",
+    "new": "Q[2:,2:].rank()==2",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 26, in <module>\n    require(Q[2:,2:].rank()==2,'complement fractional rank')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: complement fractional rank\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 26, in <module>\n    require(Q[2:,2:].rank()==2,'complement fractional rank')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: complement fractional rank\n"
+      }
+    ]
+  },
+  {
+    "control": "integer_rank",
+    "script": "theorem_checks.py",
+    "old": "(s.diag(1,0,1,0),2,1)",
+    "new": "(s.diag(1,0,1,0),2,2)",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 31, in <module>\n    require(Q[:k,:k].rank()==rank==s.ceiling(sum(Q[i,i] for i in range(k))),'integer minimum rank')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: integer minimum rank\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 31, in <module>\n    require(Q[:k,:k].rank()==rank==s.ceiling(sum(Q[i,i] for i in range(k))),'integer minimum rank')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: integer minimum rank\n"
+      }
+    ]
+  },
+  {
+    "control": "necessity_strict_boundary",
+    "script": "theorem_checks.py",
+    "old": " < (r-1)*k+1",
+    "new": " <= (r-1)*k+1",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 35, in <module>\n    require(not prefix(d,2),'equality prefix must fail')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: equality prefix must fail\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 35, in <module>\n    require(not prefix(d,2),'equality prefix must fail')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: equality prefix must fail\n"
+      }
+    ]
+  },
+  {
+    "control": "matroid_obstruction",
+    "script": "theorem_checks.py",
+    "old": "3>2*Q[:3,:3].rank()",
+    "new": "3<2*Q[:3,:3].rank()",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 38, in <module>\n    require(3<2*Q[:3,:3].rank(),'matroid obstruction')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: matroid obstruction\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 38, in <module>\n    require(3<2*Q[:3,:3].rank(),'matroid obstruction')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: matroid obstruction\n"
+      }
+    ]
+  },
+  {
+    "control": "necessity_witness_rank",
+    "script": "theorem_checks.py",
+    "old": "Q[:3,:3].rank()==1",
+    "new": "Q[:3,:3].rank()==2",
+    "detected": true,
+    "runs": [
+      {
+        "optimized": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 37, in <module>\n    require(Q[:3,:3].rank()==2,'obstruction compression rank')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: obstruction compression rank\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<temporary-directory>/theorem_checks.py\", line 37, in <module>\n    require(Q[:3,:3].rank()==2,'obstruction compression rank')\n  File \"<temporary-directory>/theorem_checks.py\", line 8, in require\n    raise RuntimeError(label)\nRuntimeError: obstruction compression rank\n"
+      }
+    ]
+  }
+]
