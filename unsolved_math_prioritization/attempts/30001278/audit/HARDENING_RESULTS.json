@@ -1,0 +1,45 @@
+{
+  "result": "PASS_OPTIONAL_CLI_HARDENING",
+  "patch_sha256": "e7d42dd32042c6913eb78d295ac77307c19015b21f3260fa5e5c678d28606cb9",
+  "original_manifest_sha256": "e6f747996c9dcf7fd9d525cc34f347577538f169e620b4dd3a98269f27b31e29",
+  "patched_manifest_sha256": "3fd0911eb41ac797bc393d822e65eeda04bf3afc3f10df1b21620acb4a427e8c",
+  "patch_scope": "One root-path construction line in verify.py and its manifest entry. No mathematical prose, formulas, or expected mathematical counts change. This rejects a direct symlink-root CLI alias, not every possible symlink in ancestor paths. Negative-controls helper path aliases and deliberate --math-only integrity bypass are outside this patch.",
+  "execution": [
+    {
+      "test": "verify.py",
+      "optimized": false,
+      "exit_code": 0,
+      "stdout_sha256": "ca8f0d408dd1d8a3d87edca21b4617bbf99db1442b872ae6e1688e9c8f22b5e9"
+    },
+    {
+      "test": "negative_controls.py",
+      "optimized": false,
+      "exit_code": 0,
+      "stdout_sha256": "e858c3ede7df93779447c92500fecae54ab5410f1b750f7ca09260d998420d17"
+    },
+    {
+      "test": "verify.py direct_symlink_root_rejected",
+      "optimized": false,
+      "exit_code": 1,
+      "reason": "packet root must not be a symlink"
+    },
+    {
+      "test": "verify.py",
+      "optimized": true,
+      "exit_code": 0,
+      "stdout_sha256": "ca8f0d408dd1d8a3d87edca21b4617bbf99db1442b872ae6e1688e9c8f22b5e9"
+    },
+    {
+      "test": "negative_controls.py",
+      "optimized": true,
+      "exit_code": 0,
+      "stdout_sha256": "e858c3ede7df93779447c92500fecae54ab5410f1b750f7ca09260d998420d17"
+    },
+    {
+      "test": "verify.py direct_symlink_root_rejected",
+      "optimized": true,
+      "exit_code": 1,
+      "reason": "packet root must not be a symlink"
+    }
+  ]
+}
