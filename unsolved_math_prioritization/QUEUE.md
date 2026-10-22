@@ -1877,7 +1877,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1866 | 2218 / EP-624 | Erdős Problem #624 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1867 | 2225 / EP-635 | Erdős Problem #635 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1868 | 2285 / EP-734 | Erdős Problem #734 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1869 | 2299 / EP-776 | Erdős Problem #776 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1869 | 2299 / EP-776 | Erdős Problem #776 | 0.0495 | 5.0 | 1 | unknown | ALREADY_SOLVED | 1/5 |  | Prior Thiim threshold argument accepted with explicit isolated-run shadow-index correction (b_j-L to u_j-L); no novelty. No local Lean compilation; external CI metadata only, axiom output uninspected. [Audit package](attempts/2299/README.md). |  |
 | 1870 | 2401 / EP-949 | Erdős Problem #949 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1871 | 3000040 / AMR-029-0040 | Gonality and edge subdivisions | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1872 | 3000062 / AMR-029-0062 | Orientation-compatible w-vertex cover | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |

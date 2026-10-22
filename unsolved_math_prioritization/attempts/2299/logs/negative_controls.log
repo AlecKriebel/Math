@@ -1,0 +1,64 @@
+CASE: altered file
+STDOUT:
+STDERR:
+FAIL: Frozen inventory mismatch
+EXIT: 1
+PASS rejected altered file
+CASE: missing file
+STDOUT:
+STDERR:
+FAIL: Frozen inventory mismatch
+EXIT: 1
+PASS rejected missing file
+CASE: unexpected file
+STDOUT:
+STDERR:
+FAIL: Frozen inventory mismatch
+EXIT: 1
+PASS rejected unexpected file
+CASE: empty unexpected directory
+STDOUT:
+STDERR:
+FAIL: Frozen inventory mismatch
+EXIT: 1
+PASS rejected empty unexpected directory
+CASE: nested directory symlink
+STDOUT:
+STDERR:
+FAIL: Rejected symlink or special file: audit/link
+EXIT: 1
+PASS rejected nested directory symlink
+CASE: file symlink
+STDOUT:
+STDERR:
+FAIL: Rejected symlink or special file: audit/link
+EXIT: 1
+PASS rejected file symlink
+CASE: FIFO
+STDOUT:
+STDERR:
+FAIL: Rejected symlink or special file: audit/pipe
+EXIT: 1
+PASS rejected FIFO
+CASE: root symlink
+STDOUT:
+STDERR:
+FAIL: root must be a real directory
+EXIT: 1
+PASS rejected root symlink
+CASE: forced arithmetic invariant under -O
+STDOUT:
+STDERR:
+Traceback (most recent call last):
+  File "/tmp/erdos776-check-k_vvw3il/forced_failure.py", line 41, in <module>
+    bad = chain(r, n - 2)
+          ^^^^^^^^^^^^^^^
+  File "/tmp/erdos776-check-k_vvw3il/forced_failure.py", line 33, in chain
+    v[i] = r + shadow(v[i + 1], i + 1)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/erdos776-check-k_vvw3il/forced_failure.py", line 27, in shadow
+    raise RuntimeError('Arithmetic check failed: m == 0')
+RuntimeError: Arithmetic check failed: m == 0
+EXIT: 1
+PASS explicit arithmetic failures remain active under -O; no asserts in arithmetic
+PASS all nine negative controls
