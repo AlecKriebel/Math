@@ -1828,7 +1828,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1817 | 3100003 / AMR-030-0003 | For every non-equilateral triangle T, show that it is possible to color the plane with three colors so that there is no | 0.0540 | 5.5 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1818 | 3227 / OPG-401 | Circular coloring triangle-free subcubic planar graphs | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1819 | 3264 / OPG-46432 | Ádám's Conjecture | 0.0540 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
-| 1820 | 3700006 / AMR-036-0006 | Completely invariant Fatou components | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1820 | 3700006 / AMR-036-0006 | Completely invariant Fatou components | 0.0540 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Audited analytic partials only: exclusion of two completely invariant components for z+P(exp(lambda*z)) with nonconstant Laurent polynomial P and nonzero lambda; necessary inner-map and critical-value conditions; full individual attracting disk consistency model using distinct source/target coordinates. Known common-boundary topology credited. The unrestricted transcendental-entire conjecture remains unresolved; no Baker gap, dynamical counterexample or novelty claim. |  |
 | 1821 | 8700065 / AMR-086-0065 | Question 5.2 — Bugeaud | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1822 | 8800068 / AMR-087-0068 | Worst cases for LLL on ideal lattices | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1823 | 98 / GREEN-006 | Sum-Free Subsets of [N]^d | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
