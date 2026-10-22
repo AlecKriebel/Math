@@ -682,7 +682,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 671 | 10400081 / AMR-103-0081 | Conjecture 4.3 — If every closed incompressible surface in M is parallel to ∂M, then S2,∞(M ) is torsion free. | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 672 | 10900010 / AMR-108-0010 | 3.2 (Agol) — A minimal-Thurston-norm surface from a tree action | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 673 | 20001730 / AIM-GEOMETRY-0068 | Compatibility of Gibbs leaf cocycles for commuting Anosov maps | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 674 | 2302019 / AMR-022-2019 | Research Problems in Function Theory — Problem 2.19 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 674 | 2302019 / AMR-022-2019 | Research Problems in Function Theory — Problem 2.19 | 0.1050 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 675 | 2302042 / AMR-022-2042 | Research Problems in Function Theory — Problem 2.42 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 676 | 2303014 / AMR-022-3014 | Research Problems in Function Theory — Problem 3.14 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 677 | 2303023 / AMR-022-3023 | Research Problems in Function Theory — Problem 3.23 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
