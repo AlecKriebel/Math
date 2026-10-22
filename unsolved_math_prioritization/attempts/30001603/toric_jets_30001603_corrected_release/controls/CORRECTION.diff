@@ -1,0 +1,191 @@
+--- original/APPROACH_LOG.md
++++ corrected/APPROACH_LOG.md
+@@ -6,7 +6,7 @@
+ 
+ Completed one substantive author route. The two-page original contribution was read in full. Its τ is the minimum invariant-curve splitting degree, and it conjectures τ(E)≥k ⇒ k-jet spanning for k≥1. No global-generation assumption appears. Modern primary literature gives an applicable counterexample in DJS Examples 4.2/5.3. Its data were checked in both the arXiv v3 and published PDFs.
+ 
+-The verification reconstructs the vector bundle by explicit rational frames and regular invertible transition matrices. Restricting these matrices to all three invariant curves proves τ=1. An explicit torus-degeneration proof gives nefness. The global section formula shows a missing fiber direction; the complete twelve-section calculation gives first-jet rank seven at that point. Exact positive and negative controls are included. The published polygon sign error is identified and corrected from the primary filtration data, without changing the example.
++The verification reconstructs the vector bundle by explicit rational frames and regular invertible transition matrices. Restricting these matrices to all three invariant curves proves τ=1. An explicit torus-degeneration proof gives nefness. The global section formula shows a missing fiber direction; the complete twelve-section calculation gives first-jet rank seven at that point. Exact positive and negative controls are included. The polygon coordinates were checked against the primary filtration data and both inspected source versions; a synthetic sign flip is rejected by the verifier.
+ 
+ Outcome: the exact primary universal implication is already false in the allowed subcase P²_C, k=1. The example is credited to its original authors. No novel mathematical discovery is asserted.
+ 
+--- original/MANIFEST.json
++++ corrected/MANIFEST.json
+@@ -1,9 +1,9 @@
+ {
+   "files": [
+     {
+-      "bytes": 2259,
++      "bytes": 2294,
+       "path": "APPROACH_LOG.md",
+-      "sha256": "f8676234c75c35a1312c663d13c1872b9a01949fd9a141dde43a866066f11f5f"
++      "sha256": "224f817cb1abb61c3f38a899e3ae41b13f8c6cc607b94d1741bfc4cb9f78d71d"
+     },
+     {
+       "bytes": 3044,
+@@ -11,39 +11,39 @@
+       "sha256": "603e61e3891f8f3f670798ed813688983c405010a5d0b5a95ae723ed395e387b"
+     },
+     {
+-      "bytes": 13414,
++      "bytes": 13394,
+       "path": "PROOF.md",
+-      "sha256": "76d197a8fc07f7e3796d67a24308531aa315b0aa03a69f3a2122c3bdf7f77b68"
++      "sha256": "1ae5a43cbf52ba23c3b39a99a4d5c4c376305edb375a0b343da935e8328210ed"
+     },
+     {
+-      "bytes": 2116,
++      "bytes": 2106,
+       "path": "README.md",
+-      "sha256": "b1ff7138f7a2ab663cb7d954aae515e66be22dc54ce67ebf4cc5be041027ae1e"
++      "sha256": "df7d8fdb9876b29e2b83213d32fc01e883b7450671cb14dea4dcbda5c617a059"
+     },
+     {
+-      "bytes": 1076,
++      "bytes": 1110,
+       "path": "RESULTS.json",
+-      "sha256": "a4050315d697d36a4c1a0ec192a53f784e4bd29f37bcfddad4ebd75610f82e71"
++      "sha256": "4df2795544b0150d8d8802e624684c4395ec1d6e885160b72158e1745fa762b9"
+     },
+     {
+-      "bytes": 3669,
++      "bytes": 3712,
+       "path": "SOURCES.json",
+-      "sha256": "d612648107977f4b60a89b4b8a310fc7a4675644d78faf4551fe7d61f37e047d"
++      "sha256": "4e4c21ffe45e56b6cd5388e5499b85877d9ef128adec9c6c89cb6122aa060003"
+     },
+     {
+-      "bytes": 6078,
++      "bytes": 6131,
+       "path": "SOURCE_GATE.md",
+-      "sha256": "8d1fbd45e4eeef338c77f32827e05b71a1eaf7418398cd9058f6a299a1eb4d72"
++      "sha256": "acd1bca0ca0892fa3c84419f3640fa0d52d8b8685e1da749306907edd1761dfc"
+     },
+     {
+-      "bytes": 1772,
++      "bytes": 1782,
+       "path": "STATUS.json",
+-      "sha256": "fbfad88296a80b12fbf01e8684bb00a480e96c35be43af3d5f0e7a372a5bb24d"
++      "sha256": "f29b5cb022236e2734af5ef94ec0050b57009edaf06db4339795f5fe9f89e9db"
+     },
+     {
+-      "bytes": 10338,
++      "bytes": 10405,
+       "path": "VERIFY.py",
+-      "sha256": "410894c1c06fbc9fb4d51cfacab38e18f5c08c67a8595f9a7000bc58d0edfc3e"
++      "sha256": "fbdc19e7813e22ae2bb238e52a8f8292273819619bf9f7d1293eae509ac40ea6"
+     }
+   ],
+   "frozen_utc_date": "2026-10-05",
+--- original/PROOF.md
++++ corrected/PROOF.md
+@@ -1,6 +1,6 @@
+ # A prior counterexample to jet spanning from invariant-curve positivity
+ 
+-Problem 30001603 / OWR-4527-007. This is an attributed verification of a published counterexample, not a new discovery. The bundle is due to Sandra Di Rocco, Kelly Jabbusch and Gregory G. Smith, *Toric vector bundles and parliaments of polytopes*, Examples 4.2 and 5.3, Trans. Amer. Math. Soc. 370 (2018), 7715–7741, DOI [10.1090/tran/7201](https://doi.org/10.1090/tran/7201). The explicit argument below reconstructs its chart gluing, curve restrictions and missing jets. The journal PDF and [arXiv v3](https://arxiv.org/abs/1409.3109v3) were inspected; see SOURCE_GATE.md for a local printed sign error and all reading limits.
++Problem 30001603 / OWR-4527-007. This is an attributed verification of a published counterexample, not a new discovery. The bundle is due to Sandra Di Rocco, Kelly Jabbusch and Gregory G. Smith, *Toric vector bundles and parliaments of polytopes*, Examples 4.2 and 5.3, Trans. Amer. Math. Soc. 370 (2018), 7715–7741, DOI [10.1090/tran/7201](https://doi.org/10.1090/tran/7201). The explicit argument below reconstructs its chart gluing, curve restrictions and missing jets. The journal PDF and [arXiv v3](https://arxiv.org/abs/1409.3109v3) were inspected; their polygon coordinates agree. See SOURCE_GATE.md for all reading limits.
+ 
+ ## 1. The precise implication being refuted
+ 
+@@ -114,10 +114,10 @@
+ 
+ On U₃ the e₁-frame and e₃-frame directions each have their value, x term and y term. The global section (e₂−e₃)x has jet x times the e₂-frame, since its e₃-frame coefficient has order three in y. The remaining e₁−e₂ sections contribute no e₂ terms of degree ≤1; the other e₂−e₃ sections contribute only terms of degree ≥2 there. Thus the first-jet image is exactly the span of these seven distinct frame monomials. The missing rows are the e₂ value and its y derivative. This proves first-jet ranks (9,9,7) and value ranks (3,3,2) at the three fixed points.
+ 
+-VERIFY.py reconstructs the Laurent transition identities, invariant-curve restrictions, complete section spaces and jet matrices using exact rational arithmetic. It also checks a deliberately incompatible local weight, the false section produced by omitting the third ray, O³, O(1)³, O(-1)³ and the published polygon typo. Finite checks corroborate these explicit proofs; they are not a substitute for nefness or an inference about arbitrary bundles.
++VERIFY.py reconstructs the Laurent transition identities, invariant-curve restrictions, complete section spaces and jet matrices using exact rational arithmetic. It also checks a deliberately incompatible local weight, the false section produced by omitting the third ray, O³, O(1)³, O(-1)³ and a synthetic polygon-coordinate sign error. Finite checks corroborate these explicit proofs; they are not a substitute for nefness or an inference about arbitrary bundles.
+ 
+-## 6. Source typo and attribution boundary
++## 6. Source agreement and attribution boundary
+ 
+-The journal's printed p.7728 gives (-1,2) as one vertex of the polygon indexed by e₁−e₂. The second-ray filtration for that vector has upper height -2, so any permissible vertex must have b≤−2. The correct vertex is (-1,-2), as already printed in arXiv v3 p.13 and as independently forced by the above frames. The other vertices are (0,-3),(0,-2). The published filtrations and the curve splitting types agree with the reconstruction; the erroneous polygon coordinate is not used.
++The journal's printed p.7728 and arXiv v3 p.13 both give (-1,-2) as a vertex of the polygon indexed by e1-e2. Its second-ray upper height is -2, so every permissible vertex has b <= -2. The remaining bounds give the other vertices (0,-3) and (0,-2). These coordinates agree with the explicit frames. Replacing (-1,-2) by (-1,2) is used only as a deliberate synthetic negative control; no printed sign discrepancy was found in the inspected sources.
+ 
+ The contribution of this record is an auditable verification and connection to the older jet conjecture. The counterexample itself and its positivity properties are prior work of Di Rocco–Jabbusch–Smith; the toric nefness criterion is Hering–Mustaţă–Payne. No claim of novelty, formal proof-assistant certification, exhaustive historical priority, or conventional human peer review is made.
+--- original/README.md
++++ corrected/README.md
+@@ -13,6 +13,6 @@
+ 
+ Run `python3 CHECK_PACKET.py` from this directory. It checks every frozen file, exact output reproduction, and three destructive-change controls in temporary copies. Run `python3 VERIFY.py` separately to see the mathematical check result. No network is used by either script, and the frozen directory is never modified.
+ 
+-The journal PDF has a local polygon-coordinate sign typo; the proof derives the correction from the unchanged filtration data, agrees with arXiv v3, and does not rely on the erroneous coordinate.
++The journal and arXiv v3 polygon coordinates agree with the filtration-derived construction. The verifier rejects a deliberately sign-flipped coordinate as a synthetic negative control.
+ 
+ No downloaded source PDFs, full text extracts, source images, full catalogue, raw selected records, or private coordination materials are included. The packet contains original verification prose, exact arithmetic code and public verification metadata only. No repository, branch, PR, queue, merge or release was changed during its preparation.
+--- original/RESULTS.json
++++ corrected/RESULTS.json
+@@ -18,7 +18,6 @@
+     "line-bundle sign reversal destroys global sections"
+   ],
+   "positive_control": "O(1)^3 has first-jet rank 9 at all three fixed points",
+-  "publication_typo_control": "(-1,2) rejected; (-1,-2) satisfies the e1-e2 second-ray bound",
+   "result": "PASS",
+   "schema": "toric-jets-exact-checks-v1",
+   "scope": "Finite exact certificate. Geometric nefness and the full source implication are proved in PROOF.md, not inferred from finite tests.",
+@@ -39,6 +38,7 @@
+       1
+     ]
+   ],
++  "synthetic_polygon_sign_control": "Synthetic (-1,2) rejected; source-consistent (-1,-2) satisfies the e1-e2 second-ray bound",
+   "tau": 1,
+   "value_ranks": [
+     3,
+--- original/SOURCES.json
++++ corrected/SOURCES.json
+@@ -24,7 +24,7 @@
+     },
+     {
+       "bytes": 365988,
+-      "inspection": "Bibliography and Examples4.2/5.3 inspected in text; printed pages7728 and7732 image-inspected. Printed polygon sign typo recorded.",
++      "inspection": "Bibliography and Examples4.2/5.3 inspected in text; printed pages7728 and7732 image-inspected. The e1-e2 vertex (-1,-2) agrees with arXiv v3 and the filtration-derived data.",
+       "redistributed": false,
+       "retrieval_url": "https://ggsmith.ca/Papers/diRoccoJabbuschSmith.pdf",
+       "retrieved_utc_date": "2026-10-05",
+--- original/SOURCE_GATE.md
++++ corrected/SOURCE_GATE.md
+@@ -18,9 +18,9 @@
+ 
+ The standard toric atlas for P², gluing of locally free modules, monomial regularity, projectivization of a bundle and projective effective-cycle degeneration are the geometric foundations. Explicit local matrices remove dependence on an unchecked Klyachko existence assertion. No computer proof-assistant validation is claimed.
+ 
+-## Published coordinate discrepancy
++## Source coordinate agreement
+ 
+-The published p.7728 displays (-1,2) as a vertex of the e₁−e₂ polygon. ArXiv v3 p.13 has (-1,-2). The published filtration itself forces b≤-2 for this vector, so the former coordinate fails its own defining inequality. The direct bundle construction and the invariant-curve restrictions agree in both versions. The proof derives the correct coordinate; it does not silently reproduce the typo, alter any hypothesis, or need the figure as evidence of positivity.
++The journal's printed p.7728 and arXiv v3 p.13 both give (-1,-2) as a vertex of the polygon indexed by e1-e2. The second-ray filtration requires b <= -2, and the full filtration-derived polygon agrees with both sources. Replacing (-1,-2) by (-1,2) is only a deliberate synthetic negative control. The original frozen verification packet incorrectly alleged a journal typo; this revision corrects that packet's description, not the scholarly source. The direct bundle construction and invariant-curve restrictions are unchanged.
+ 
+ ## Repository and earlier-attempt coverage
+ 
+--- original/STATUS.json
++++ corrected/STATUS.json
+@@ -21,7 +21,7 @@
+   "limits": [
+     "Primary-source identity is established via current descriptor metadata, not a full-statement hash match.",
+     "Standard projective cycle-degeneration foundations are credited and not rebuilt from axioms.",
+-    "The published polygon sign typo is corrected explicitly using its own filtration and the arXiv v3.",
++    "The inspected journal and arXiv v3 coordinate agree; a synthetic sign-flip test is not a source discrepancy.",
+     "No positive-characteristic generalization, exhaustive literature survey, novelty or human peer review is claimed."
+   ],
+   "mathematical_residual": "none for refuting the inspected primary universal conjecture at k=1",
+--- original/VERIFY.py
++++ corrected/VERIFY.py
+@@ -220,9 +220,9 @@
+     # Direct filtration constraints at zero: first two permit e2, third rejects it.
+     check(kernel([[0,0,1],[1,0,0]]) == [[Q(0),Q(1),Q(0)]], 'two-ray false positive control')
+     check(kernel([[0,0,1],[1,0,0],[1,1,1]]) == [],'third ray eliminates false section')
+-    # Published polygon sign: e1-e2 heights are (0,-2,3), forcing b<=-2.
+-    check(dot((-1,-2),V[1]) <= -2,'correct vertex respects second ray')
+-    check(not (dot((-1,2),V[1]) <= -2),'published sign typo violates filtration')
++    # Source-consistent polygon vertex and deliberate synthetic sign flip: heights (0,-2,3) force b <= -2.
++    check(dot((-1,-2),V[1]) <= -2,'source vertex respects second ray')
++    check(not (dot((-1,2),V[1]) <= -2),'synthetic sign flip violates filtration')
+     negatives = []
+     bad = [[tuple(u) for u in row] for row in U]
+     bad[0][2] = (-2,4)
+@@ -264,7 +264,7 @@
+         'bad_point_missing_rows':['e2 value','e2 y derivative'],
+         'positive_control':'O(1)^3 has first-jet rank 9 at all three fixed points',
+         'negative_controls':negatives,
+-        'publication_typo_control':'(-1,2) rejected; (-1,-2) satisfies the e1-e2 second-ray bound',
++        'synthetic_polygon_sign_control':'Synthetic (-1,2) rejected; source-consistent (-1,-2) satisfies the e1-e2 second-ray bound',
+         'scope':'Finite exact certificate. Geometric nefness and the full source implication are proved in PROOF.md, not inferred from finite tests.',
+         'result':'PASS'
+     },indent=2,sort_keys=True))

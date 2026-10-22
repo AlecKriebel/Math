@@ -706,7 +706,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 695 | 2998 / KP-4.122 | Kirby Problem 4.122 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 696 | 30001408 / OWR-4199-001 | Invariant Homogeneous Valuations on Convex Bodies | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 697 | 30001599 / OWR-4527-003 | Alpha Bounds for Uniform Fat-Point Schemes | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 698 | 30001603 / OWR-4527-007 | Jet Spanning by Nef Toric Vector Bundles | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 698 | 30001603 / OWR-4527-007 | Jet Spanning by Nef Toric Vector Bundles | 0.1048 | 5.5 | 3 | 2010 | already_solved | 1/5 |  | 2026-10-05: Prior negative resolution by Di Rocco-Jabbusch-Smith (2018), Examples 4.2/5.3, https://doi.org/10.1090/tran/7201. Rank-3 ample/nef toric bundle on P2_C has tau=1 and fails first-jet spanning; corrected proof and exact-bound independent acceptance in attempts/30001603/. No new counterexample claimed. |  |
 | 699 | 30001631 / OWR-4535-006 | Curvature Negativity of the Takhtajan–Zograf Metric | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 700 | 4400001 / AMR-043-0001 | Pingree open problems — Hochman problem 1 | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 701 | 4400008 / AMR-043-0008 | Pingree open problems — Boyle problem 2 | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
