@@ -1,0 +1,11 @@
+# Source and status audit
+
+The private catalogue record and inherited research report were each uniquely bound to problem 10300043 / AMR-102-0043 using complete corpus hashes and canonical selected-record hashes. Both identify Calegari Question 10.5. The primary arXiv v1 PDF was read at printed p.24 and visually checked. The inherited report omits the final homotopy question in its short problem field; the new proof explicitly restores it as a separate target. Its broad historical open-status wording is not treated as a current literature certificate.
+
+Bounded public-source searches covered the exact question number with foliations, short geodesics with taut foliations, homotopic/transverse/tangential loops, branching, Otal unknotting, Breslin, and Kano. The resulting primary inputs are listed and hashed in SOURCE_PINS.json. No full resolution of the unrestricted question was verified. This bounded negative finding is not an exhaustive current open-problem claim.
+
+Calegari's transverse length in the Gromov-norm paper counts necessary transversal subdivisions and is not hyperbolic length. Two-sided branching supplies a bad homotopy class, not an arbitrarily short geodesic. Kano Proposition 6.1 explicitly does not require leafwise hyperbolicity and supplies the exact loop/action test. Its ambient coorientation hypotheses are retained.
+
+Breslin's Theorem 1 states Otal's short-geodesic unlinking theorem for a fixed fiber genus. His Theorem 4 concerns strongly irreducible Heegaard surfaces. Neither theorem has been used as a foliation-uniform isotopy theorem. The original Otal chapter's publisher page was inspected, including its abstract and definition, but not its full proof; that access limit is retained. The packet does not independently certify all proofs in the cited papers.
+
+The retained Calegari problem PDF was rehashed and inspected; it was not freshly downloaded. Kano, Breslin, and the Gromov-norm PDF were downloaded from their public arXiv locations during this investigation, converted with pdftotext, and inspected at the stated passages. Exact fetched versions and byte hashes, rather than a floating arXiv latest-version claim, are pinned. All copied source bytes and extractions remain outside the source-free freeze.
