@@ -1,0 +1,450 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[T1]{fontenc}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\negp}[1]{(#1)_{-}}
+\hypersetup{
+ pdftitle={Near-one oriented-percolation flow from Bernoulli first-passage estimates},
+ pdfauthor={Alec Kriebel},
+ pdfsubject={An attributed corollary of BGT's 2021 estimates for the Aldous-Lenderman flow asymptotic},
+ pdfkeywords={oriented percolation, maximum flow, Bernoulli first-passage percolation, strict chains}
+}
+\title{Near-one oriented-percolation flow\\from Bernoulli first-passage estimates}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{16 October 2026 \quad (version 1.0.0)}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For the square-lattice oriented Bernoulli edge-flow density, we derive
+$1-v(p)\sim\sqrt{2(1-p)}$ as $p\uparrow1$, the asymptotic posed by
+Aldous and Lenderman. The argument is an explicit corollary of
+Basdevant--Gou\'er\'e--Th\'eret's 2021 strict-chain scaling and
+weighted-list estimate. The directed cut dual has zero-cost backward
+steps, so their ordinary first-passage theorem cannot be substituted
+directly. Grouping the two outgoing rare-edge marks into independent
+site marks gives the required event inclusion into their already
+evaluated counting sum. We supply this comparison, the finite
+directed-cut reduction and the order of limits. The asymptotic is
+presented as an attributed application of older estimates; no claim of
+novelty, historical firstness or present-day openness is made.
+\end{abstract}
+
+\section{The question and the precise model}
+
+Aldous's problem page \cite{Aldous} describes the conjecture, formulated
+with Jason Lenderman in 2004, and the difficulty of justifying its
+Poisson--Hammersley heuristic. We consider exactly that edge-flow model.
+The vertices are $\{0,\ldots,n-1\}^2$, $n\ge2$, with edges pointing north
+or east. Independently, each edge has capacity one with probability $p$
+and capacity zero otherwise. The source vertices are the left and
+bottom boundary vertices except $(0,n-1)$ and $(n-1,0)$; the sinks are
+the top and right boundaries. Let $V_n$ be the maximum flow between
+these sets. Integrality identifies it with the maximum number of
+edge-disjoint open directed paths; shared vertices are permitted.
+
+The source states the deterministic $L^1$ limit
+$V_n/(2n)\longrightarrow v(p)$. We use this stated existence result
+with its normalization. In fact the expectation limit used below also
+follows directly from diagonal superadditivity after the finite
+reduction. No heuristic identity from the problem page is an input.
+
+\begin{theorem}\label{main}
+In this model,
+\[
+ \lim_{q\downarrow0}\frac{1-v(1-q)}{\sqrt{2q}}=1.
+\]
+Here the finite-volume limit defining $v$ is taken at each fixed $q>0$
+before $q$ tends to zero.
+\end{theorem}
+
+The substantial older input is the numerical weighted-list bound
+inside the proof of Basdevant--Gou\'er\'e--Th\'eret (BGT)
+\cite[\S3.3, equation (33)]{BGT}, together with their strict-site score
+scaling. All equation numbers for that input refer to their public
+2021 arXiv v1; publication metadata identifies a 2022 journal version.
+We do not assert a line-by-line identity of the two editions.
+
+\section{The finite directed-cut reduction}
+
+Put $N=n-2$ and
+\[
+ e_L=((0,n-2),(0,n-1)),\qquad
+ e_B=((n-2,0),(n-1,0)).
+\]
+Write $c_L,c_B$ for their capacities. Reflect the vertical coordinate
+of the bounded-face dual, obtaining $Q_N=\{0,\ldots,N\}^2$. A dual
+east or north traversal costs the capacity of the primal edge it
+crosses; a reverse traversal costs zero. For example, a dual east
+edge starting at $(x,y)$ crosses
+$((x+1,N-y),(x+1,N+1-y))$, and a dual north edge crosses
+$((x,N-y),(x+1,N-y))$. The correspondence is injective on unoriented
+dual edges. Let $T_N$ be the minimum dual cost from $(0,0)$ to
+$(N,N)$, with $T_0=0$.
+
+\begin{lemma}\label{dual}
+For every nonnegative primal capacity assignment,
+\begin{equation}\label{identity}
+ V_n=c_L+c_B+T_N.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Consider any cut whose source side contains all prescribed sources
+and no sink. Draw the crossing of every primal edge with differently
+labelled endpoints, orienting the interface with the source side to
+its right in the physical embedding. Include exterior endpoints at
+$e_L,e_B$. At each bounded face the numbers of incoming and outgoing
+crossings agree: the two types of binary-label transitions alternate
+around its four corners. This includes a checkerboard face with two
+incoming and two outgoing crossings. The endpoint at $e_L$ has one
+outgoing crossing, that at $e_B$ one incoming crossing, and no other
+boundary edge changes labels.
+
+There is a directed interface route between these endpoints.
+Otherwise the set reachable from the first endpoint has no outgoing
+arc, contradicting its total outdegree-minus-indegree balance.
+Extract a path and erase loops. Forward dual crossings represent
+outward primal cut edges and reverse crossings inward edges; only the
+former contribute to the directed cut. Nonnegativity therefore gives
+cut cost at least $c_L+c_B+T_N$.
+
+Conversely, a vertex-simple dual corner path, extended through
+$e_L,e_B$, is a simple crosscut of the primal square meeting no
+primal vertex. Planar separation gives a feasible primal cut on the
+side containing the source boundary arc. Its outward crossings are
+exactly the forward dual crossings and the two forced edges.
+Thus its cost is the cost in \eqref{identity}. A minimizing dual walk
+can be made simple by deleting nonnegative-cost cycles. Apply
+max-flow/min-cut. For $n=2$ there is no internal dual step and the same
+argument gives $V_2=c_L+c_B$.
+\end{proof}
+
+Set $q=1-p$ and call a forward dual edge \emph{marked} when its cost
+is zero. These marks are independent Bernoulli$(q)$. For a simple
+corner path let $k$ count marked forward steps and $b$ backward
+steps. Its forward count is $2N+b$, so its cost is $2N+b-k$.
+Consequently
+\begin{equation}\label{defect}
+ D_N:=2N-T_N=\max_P(k(P)-b(P)),\qquad 0\le D_N\le2N.
+\end{equation}
+The maximum can be restricted to simple paths. Equivalently every
+cycle has nonpositive reward, since it has equally many forward and
+backward steps.
+Writing $g(q)=1-v(1-q)$, bounded boundary terms in \eqref{identity}
+give
+\begin{equation}\label{density}
+ g(q)=\lim_{N\to\infty}\frac{\E D_N}{2N}.
+\end{equation}
+The limit of these expectations exists even without the source's
+$L^1$ premise: concatenating optimal paths in consecutive diagonal
+squares makes $\E D_N$ superadditive, bounded above by $2N$.
+The elementary superadditive limit lemma applies.
+
+\section{The older strict-chain and list estimates}
+
+Extend the forward marks independently outside $Q_N$. Declare a site
+$x$ open when at least one of its two outgoing forward edges is marked.
+Different sites use disjoint pairs of edge coordinates. Thus
+these site indicators are independent with parameter
+\begin{equation}\label{r}
+ r=1-(1-q)^2=2q-q^2.
+\end{equation}
+Let $A_r(M)$ be the maximum length of a coordinatewise strictly
+increasing open-site chain in $[0,M)^2\cap\Z^2$, allowing an open
+origin. This is BGT's site score $S_r^D((M,M))$ in dimensions
+$d_1=2,d_2=0$. Their Lemmas 5, 10 and 13, with the planar
+Poisson-chain constant identified in their \S3.4, give
+\begin{equation}\label{chain}
+ \sigma_r=\lim_{M\to\infty}\frac{\E A_r(M)}{M},
+ \qquad \lim_{r\downarrow0}\frac{\sigma_r}{\sqrt r}=2.
+\end{equation}
+
+We state precisely the other consequence of their counting
+calculation that will be used. This concerns an integer list
+$w_0=0,w_1,\ldots,w_p,w_{p+1}=(M,M)$, with the real intermediate
+sites distinct, not equal to zero, and strictly below $(M,M)$ in
+each coordinate. Starting with index zero, repeatedly select the
+first subsequent site strictly larger in both coordinates. The
+artificial terminal guarantees termination. Write $a$ for the number
+of selected gaps and $\ell_j$ for the number of unselected sites in
+gap $j$, $0\le j<a$. Thus
+\[
+ L=\sum_j\ell_j,\qquad p=a-1+L.
+\]
+Let $c(j,0),\ldots,c(j,\ell_j)$ be the selected starting anchor and
+the intervening sites, and let $c(j+1,0)$ denote the next anchor.
+Set
+\[
+ h(j)=c(j+1,0)-c(j,0),\qquad
+ u(j,i)=c(j,i)-c(j,i-1).
+\]
+If $\ell_j>0$, choose a coordinate $d_j$ in which
+$c(j,\ell_j)_{d_j}\le c(j,0)_{d_j}$; such a coordinate exists by
+the first-subsequent selection rule. For an empty gap choose either
+coordinate. Let $d'_j$ be the other coordinate and define
+\begin{equation}\label{X}
+ X=\sum_j\sum_{i=1}^{\ell_j}|u(j,i)_{d_j}|
+   +\sum_j\sum_{i=1}^{\ell_j}\negp{u(j,i)_{d'_j}}.
+\end{equation}
+Here $t_-=\max(-t,0)$. The second term is the \emph{sum of individual
+negative parts}, as in BGT's (19) and Lemma 19; it is not the
+negative part of the net displacement.
+
+\begin{lemma}[BGT weighted-list consequence]\label{list}
+Fix $\tau>0$. For all sufficiently small $r>0$, the sum of the
+weights $r^p$ over such lists satisfying
+\begin{align}
+ c(j,\ell_j)_{d'_j}-c(j+1,0)_{d'_j}
+       &\le2(\ell_j+1) \quad(0\le j<a),\label{item4}\\
+ 0&\le-X+1+2L-\tau M\sqrt r\label{item5}
+\end{align}
+is at most
+\[
+ \frac{C_\tau}{r}\exp(-M\sqrt r),
+\]
+for a finite constant $C_\tau$ independent of $M\ge2$.
+\end{lemma}
+
+\begin{proof}[Identification of the published estimate]
+Use the $m=0$ numerical terms of BGT's (33), with
+$d_1=2,d_2=0$. Their Items 1 and 3 hold by the telescoping positive
+anchor increments and the choice of $d_j$; Item 2 has no coordinates.
+Their remaining two predicates are \eqref{item4}--\eqref{item5}.
+The weight is exactly $r^{a-1+L}=r^p$. This is a numerical sum over
+encodings; it does not require a geodesic in the model originally
+used to derive it.
+
+For clarity, the specialization of their displayed $W$ bound has
+the following factors. Put $K(t)=(1+e^{-t})/(1-e^{-t})$, choose
+$\beta=2\gamma$, and set
+\begin{align*}
+ B_0(r)&=r e^2 e^{2\gamma\sqrt r}
+                   K(\beta\sqrt r)K(\gamma\sqrt r),\\
+ B_1(r)&=r e^{2\gamma\sqrt r+2\alpha} e^2 K(\alpha)
+                   [K(\gamma\sqrt r)+K(\alpha-\gamma\sqrt r)].
+\end{align*}
+For fixed $a$, $(\ell_j)$ and $(d_j)$, their coordinate summation is
+bounded by
+\[
+ r^{-1}e^{2+\alpha}
+ e^{(2\beta-\alpha\tau)M\sqrt r}
+ B_0(r)^a B_1(r)^L.
+\]
+We have written the gap as $\tau M\sqrt r$ in the numerical
+predicate, thereby fixing its site-parameter normalization. No
+identification of a bond-FPP event with a site event is used.
+
+Since $K(t)\sim2/t$ as $t\downarrow0$,
+$B_0(r)\to4e^2/(\beta\gamma)$ and $B_1(r)\to0$.
+First choose $\gamma$ large, then $\alpha$ with
+$\alpha\tau>2\beta+1$, then $r$ small so that
+$\alpha-\gamma\sqrt r>0$ and
+$2B_0(r)/(1-B_1(r))\le1/2$.
+Summing the $2^a$ coordinate choices and the nonnegative
+$\ell$-vectors gives the geometric series
+\[
+ \sum_{a\ge1}\left(\frac{2B_0(r)}{1-B_1(r)}\right)^a\le1.
+ \]
+ This gives the bound, for example with $C_\tau=e^{2+\alpha}$.
+These are the already evaluated positive numerical terms of BGT's
+calculation; enlarging the set of encodings only increases the
+majorant.
+\end{proof}
+
+The meaning of $m=0$ is important. It prescribes no doubly-open
+sites in that numerical weight. It does \emph{not} assert that the
+actual path visits no site with two marked outgoing edges. For any
+fixed list of distinct sites, requesting that its $p$ sites be open
+has probability $r^p$, irrespective of which have two marked edges.
+
+\section{The comparison for the asymmetric dual}
+
+First, every strict open-site chain counted by $A_r(N)$ can be
+visited by a monotone path in $Q_N$ that takes a marked outgoing
+edge at each chain site. Both coordinates increase by at least one
+between successive sites, so either outgoing edge fits before the
+next site. Each chosen edge stays inside $Q_N$, including the final
+connection. Thus, pathwise,
+\begin{equation}\label{lower}
+ D_N\ge A_r(N).
+\end{equation}
+
+\begin{lemma}\label{upper}
+For every $\delta>0$, all sufficiently small fixed $q>0$ satisfy
+\begin{equation}\label{tail}
+ \Prob\{D_N>A_r(N+1)+\delta(N+1)\sqrt r\}
+ \le \frac{C_{2\delta}}{r}\exp(-(N+1)\sqrt r),
+ \qquad N\ge1.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Choose a simple minimizing dual path $P$ in $Q_N$ and set $M=N+1$.
+Every vertex of $P$ is strictly below the auxiliary terminal
+$(M,M)$. List all open vertices visited by $P$, excluding its actual
+terminal $(N,N)$ and treating the origin separately. Append the
+auxiliary terminal and apply the extraction of Section 3. Let
+$I_0$ indicate that the origin is open.
+
+Every marked forward traversal has a distinct visited starting
+vertex, because $P$ is simple. At most one such traversal leaves
+each visited vertex, even if both outgoing edges are marked.
+Therefore
+\[
+ k\le p+I_0,\qquad A_r(M)\ge a-1+I_0.
+\]
+Together with $D_N=k-b$ and $p=a-1+L$, this yields
+\begin{equation}\label{cancellation}
+ D_N-A_r(M)\le L-b.
+\end{equation}
+The origin indicator cancels exactly.
+
+Consider a nonlast gap between two real selected anchors $s\prec t$.
+Its actual subpath is a minimum-cost path between those anchors:
+a cheaper replacement would give a cheaper global walk, and
+nonnegative costs permit subsequent loop removal. A monotone
+competitor can take a marked first edge if $s$ is open, since
+both coordinate displacements to $t$ are at least one. Its cost is
+at most $\|t-s\|_1-I_s$. The actual segment's cost is
+$\|t-s\|_1+b_j-k_j$, with $k_j\le\ell_j+I_s$. Hence
+\[
+ b_j\le\ell_j.
+\]
+Any overshoot of the last intervening site beyond $t$ in the other
+coordinate requires that many backward steps to return. This proves
+\eqref{item4}, even with $\ell_j$ in place of $2(\ell_j+1)$.
+For the last gap, all real sites are strictly below the auxiliary
+terminal, so \eqref{item4} follows directly. No comparison path
+outside $Q_N$ is needed. Artificially open boundary tails caused by
+the independent extension only enlarge the upper chain score.
+
+For a gap's distinguished coordinate, the prefix through its last
+intervening site has nonpositive net displacement. Thus the sum of
+absolute marked-site increments in this coordinate is at most twice
+its actual backward variation. In the other coordinate the sum of
+individual negative increments is at most the corresponding actual
+backward variation. These prefixes are disjoint in path time across
+gaps. Consequently the exact quantity \eqref{X} satisfies
+\begin{equation}\label{variation}
+ X\le2b.
+\end{equation}
+This factor two is retained, rather than identifying backward costs
+in two different models.
+
+On the event in \eqref{tail}, \eqref{cancellation}--\eqref{variation}
+give
+\[
+ -X+2L>2\delta M\sqrt r.
+\]
+In particular \eqref{item5} holds with $\tau=2\delta$, including
+its harmless additional $1$. The path therefore supplies a list of
+distinct open sites meeting all predicates of Lemma \ref{list}.
+For each fixed list its open-site probability is $r^p$; we may
+ignore the origin's state. The union bound and that lemma prove
+\eqref{tail}. There is no conditioning on a chosen geodesic and no
+independence assumption between different lists.
+\end{proof}
+
+To finish Theorem \ref{main}, use $0\le D_N\le2N$ and $A_r\ge0$:
+\[
+ \E D_N\le\E A_r(N+1)+\delta(N+1)\sqrt r+
+                 2N\,\Prob\{\text{event in \eqref{tail}}\}.
+\]
+First let $N\to\infty$ at a fixed sufficiently small $q$. Equations
+\eqref{density}, \eqref{chain} and \eqref{lower} yield
+\[
+ \frac{\sigma_r}{2}\le g(q)
+     \le\frac{\sigma_r}{2}+\frac{\delta\sqrt r}{2}.
+\]
+Next let $q\downarrow0$, using
+$\sigma_r/\sqrt r\to2$ and $r/(2q)\to1$. Finally let $\delta\downarrow0$.
+This proves the stated asymptotic with the required order of limits.
+
+\section{Priority, scope and verification}
+
+The entire asymptotic above is a corollary of BGT's older
+strict-chain and weighted-list estimates after the explicit
+directed-model event comparison. It is not a new central
+rare-defect estimate. Our bounded priority checks did not locate
+an earlier explicit statement of this particular flow corollary;
+that fact neither proves first recognition nor establishes that the
+historical question remained open. This note records the deduction
+and its attribution without making either assertion.
+
+The ordinary undirected FPP theorem alone is insufficient. In a
+common box a path's ordinary deficit is $k_f+k_b-2b$, whereas the
+present deficit is $k_f-b$. The present deficit minus the ordinary
+deficit is $b-k_b\ge0$, unhelpful for the needed upper bound. The larger numerical
+list estimate, rather than equality of the two models, closes the
+comparison.
+
+The supporting archive also preserves the original, longer
+directed-cut counting and BK--Poisson proof and its audits. The
+Poisson-chain input and upper tail are classical \cite{DZ}; so is
+product-space disjoint occurrence \cite{BK}. Overlapping-region
+decomposition by disjoint witnesses and endpoint skeletons also
+predates this work, including Verges \cite[Lemma 2.5 and \S5.2]{Verges}.
+No originality claim for those general mechanisms is made.
+The present statement concerns the prescribed edge-capacity model;
+it makes no assertion for vertex-disjoint paths, alternative
+boundary conventions or other graph families.
+
+Finite computations test directed duality, cut geometry, sequence
+constraints and replay of the archived diagnostics. They supplement
+the analytic proof and the cited estimates, and do not establish
+the infinite-volume conclusion or novelty. The archive gives exact
+source fingerprints and bounded-search limitations; third-party
+publications and raw source corpora are not redistributed.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in mathematical development, source
+review, writing, computation and adversarial checking. The recorded
+adversarial reviews were performed by AI agents. This is an
+unrefereed preprint; no completed independent human peer review or
+formal proof-assistant verification is claimed. The author is
+responsible for the claims.
+
+\begin{thebibliography}{9}
+\bibitem{Aldous}
+D.~Aldous, \emph{A discrete Hammersley process as an extreme case of
+oriented percolation flows}, problem page, conjecture formulated
+with J.~Lenderman in 2004.
+\url{https://www.stat.berkeley.edu/~aldous/Research/OP/hammersley_flow.html}.
+
+\bibitem{BGT}
+A.-L.~Basdevant, J.-B.~Gou\'er\'e and M.~Th\'eret,
+First-order behavior of the time constant in Bernoulli first-passage
+percolation, \emph{Ann. Appl. Probab.} \textbf{32} (2022), 4535--4567.
+\href{https://doi.org/10.1214/22-AAP1795}{doi:10.1214/22-AAP1795}.
+Operative primary version:
+\href{https://arxiv.org/abs/2106.12266v1}{arXiv:2106.12266v1},
+23 June 2021, especially \S\S2.2--2.5 and 3.3.
+
+\bibitem{DZ}
+J.-D.~Deuschel and O.~Zeitouni,
+On increasing subsequences of i.i.d.\ samples,
+\emph{Combin. Probab. Comput.} \textbf{8} (1999), 247--263.
+\url{https://www.wisdom.weizmann.ac.il/~zeitouni/pdf/ccp.pdf}.
+
+\bibitem{BK}
+J.~van den Berg and H.~Kesten, Inequalities with applications to
+percolation and reliability, \emph{J. Appl. Probab.}
+\textbf{22} (1985), 556--569.
+\href{https://doi.org/10.2307/3213860}{doi:10.2307/3213860}.
+
+\bibitem{Verges}
+J.~Verges, \emph{Concentration inequalities and large deviations for
+continuous greedy animals and paths},
+\href{https://arxiv.org/abs/2503.01484v1}{arXiv:2503.01484v1},
+3 March 2025.
+\end{thebibliography}
+\end{document}

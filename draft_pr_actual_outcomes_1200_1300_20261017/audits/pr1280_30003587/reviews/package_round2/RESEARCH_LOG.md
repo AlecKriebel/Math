@@ -1,0 +1,9 @@
+# Fresh whole-package review research log
+
+- 2026-10-18T03:36:11Z — Started independent round 2. Authenticated all 586 stable audit records and 186 external read-only records, with exact spelling and hashes. Frozen input SHA 7520928e1b97250902a17474992bb84a298c5db257a0527f463158bc9ec69960. Review completion estimate: 5%. No mutations outside assigned folder authorized or performed.
+
+- 2026-10-18T03:38:50.872768+00:00 — All five PDF pages independently rendered/inspected; exact artifact inspection PASS (245 ZIP members, 19 registries, 217 portable records, 9+9 editions). Verified 15 changed byte spans and all 18 surrounding unchanged gaps, nested historical acceptance/map equality, original Git blobs. Normal full operative workflow worker PASS, 900 identity cases, 350 postmerge cases, 88 ready negatives, 5 ready positives, 17 coordinator cases. Optimized workers run serially. Review completion estimate: 55%.
+
+- 2026-10-18T03:45:54.101619+00:00 — Independent normal/-O/-OO actual workflow results identical. Outside-anchored actual ZIP all three modes PASS (54 successful six-program diagnostic executions), 18 injected false predicates rejected, and per-mode own 26 archive/schema negatives, 112 identity probes and 11 metadata negatives PASS. Supplemental actual put/tree/validate_saved in-memory fixture PASS in all modes. End authentication confirms all772 frozen records unchanged. No unresolved finding. Completion estimate: 100% of this fresh whole-package review, with no live integration or novelty certification. All heavy workers serial; no resource failure.
+
+- 2026-10-18T03:46:19.206586+00:00 — Final seal checkpoint: repeated end authentication PASS for all586stable+186external records, exact case and bytes unchanged. Verdict CLEAN, no required repairs. Review completion100%.

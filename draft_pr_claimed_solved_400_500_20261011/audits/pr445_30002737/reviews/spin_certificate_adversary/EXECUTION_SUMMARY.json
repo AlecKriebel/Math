@@ -1,0 +1,43 @@
+{
+  "utc": "2026-10-12T21:21:23.383285+00:00",
+  "original_hash": "027dc38ea76f1a4e69d8976a4845caefc4429e48b551afa7c327dc243b3dac20",
+  "normal_optimized_and_producer_stable_fields_match": true,
+  "fresh_N13_strict_integer_margin": "11969853181466710380769305597695012",
+  "fresh_N13_upper_display": "0.68206396004451",
+  "fault_controls": [
+    {
+      "label": "wrong_modular_root",
+      "actual_exit": 1,
+      "guard_message": "NTT generator checks failed",
+      "arithmetic_rejected": true
+    },
+    {
+      "label": "wrong_fft_root",
+      "actual_exit": 1,
+      "guard_message": "FFT imaginary enclosure failure",
+      "arithmetic_rejected": true
+    },
+    {
+      "label": "suppressed_fft_error",
+      "actual_exit": 1,
+      "guard_message": "FFT imaginary enclosure failure",
+      "arithmetic_rejected": true
+    },
+    {
+      "label": "sampling_replaces_cell_means",
+      "actual_exit": 0,
+      "guard_message": null,
+      "arithmetic_rejected": false
+    }
+  ],
+  "sampling_mutant": {
+    "actual_status": "CERTIFIED",
+    "display": "0.6818863642003226",
+    "independent_analytic_rejection": true,
+    "counterexample": "N=2, S(x)=8\u22124cos(4\u03c0x). On the cell centered at 0, exact mean=8\u22124sinc(2\u03c0/M)>4=S(0); a sample is not an upper cell mean.",
+    "interpretation": "Runtime guards alone do not establish Jensen premises; immutable code plus analytic derivation is essential. This is a deliberately invalid altered program, not a failure of the sealed program."
+  },
+  "unexpected_child_failures": 0,
+  "intentional_guard_rejections": 3,
+  "deliberately_invalid_analytic_route_that_passed_internal_guards": 1
+}

@@ -1,0 +1,13 @@
+# Offline verification
+
+Run `python3 -B verification/verify_all.py` from this publication directory, or give that script its absolute path from any working directory. The source ZIP unpacks to an arbitrary path, including paths with spaces. Only Python standard-library modules are required for the default runner. It performs no writes and does not contact any service.
+
+The runner authenticates every member of the frozen `AUDIT_MEMBERS.json` allowlist, the PDF and source pins in `ROOT_PDF_QA.json`, and the exact source inventory when extracted from an archive. It executes the finite diagnostic normally and under `-O`, comparing all 745 stdout bytes, then executes three actual construction corruptions in both modes. Every complete process output is included in the deterministic replay result. Root freezes that output as `REPLAY_RECEIPT.json`; the builder reruns it and requires byte identity.
+
+The three wrong constructions change zero incidence to nonzero incidence, replace one torus triangle, and change edge multiplicity in the energy count. Actual point-degree, edge-link, and cocycle identities must reject those constructions. These checks are finite evidence. They neither enumerate K nor prove the lattice theorem or universal mathematical claim in `main.tex`.
+
+`python3 -B verification/self_test.py` runs small synthetic package fixtures. The synthetic PDF is format-only packaging evidence. The real PDF requires the separate recorded page-by-page QA. Each negative fixture runs normally and with `-O`, is checked for no writes, and is deleted. The self-test performs no real release build.
+
+`python3 -B verification/optional_matrix_diagnostics.py` separately replays the historical local matrix and incidence construction and needs NumPy. It runs in normal mode only and rejects `-O` because its substantive checks use assertions. Default behavior prints only. Optional `--output /path/outside/publication/new-file.json` writes a new file exclusively, never overwrites a sealed file, and refuses a destination inside the publication directory. Floating eigenvalues remain diagnostics. This optional program is not a dependency of the default runner and does not enumerate K.
+
+The source archive is assembled from explicit fixed publication members and the frozen authored allowlist, never from a live filesystem glob. Third-party bodies and extracts, renders, raw process returns, research logs, final-review files, and private fixtures are excluded. These local guards reject symlinks and nonregular inputs/outputs, unsafe member paths, duplicate JSON keys, case collisions, invalid pins, and incomplete inventories. They are not a sandbox against a concurrent filesystem attacker.

@@ -1,0 +1,17 @@
+# PR1032 / problem30001739 support kit, v1.0
+
+The complete note is paper.pdf; its standalone source is paper.tex. The exact field is F=Q3 and E/F unramified quadratic. The five-segment GL15 Langlands quotient is tau invariant, is not an entire proper parabolic induction, and has Hom(U(V),pi,C)=0 for each Hermitian class, conditional on the explicitly cited established theorems. The standard module is not the quotient.
+
+Historical priority, exact parameter/mechanism overlap, and any period consequences in Luo-Zha DOI10.1007/s11464-025-0256-0 are UNKNOWN. Their complete body was not inspected. Their documented prior kernel-generation claim is credited. No firstness, worldwide novelty/current-open claim, or separate kernel-generation disproof is made. The human has instructed that the inaccessible comparison remain unknown and preparation proceed. No further source retrieval or outreach was attempted.
+
+Run `python3 scripts/verify_kit.py` with Python3.10+ standard library only. Add `--archive PATH` to verify the deterministic archive against the unpacked kit. It checks exact members and hashes, then five finite programs in normal/-O/-OO (15 runs), including the actual manuscript Hall table. No network or third-party Python packages. Do not add files inside this exact allowlist tree. Extract archive members into a fresh empty folder. Expected outputs are deterministic and optimization-safe; original checker imports can be avoided with `-B` when invoking manually. The verifier itself passes -I -B in subprocesses.
+
+Finite scalar/order/parity, Hall/injection, positive-calibration and hostile-definition checks corroborate the proof. They do not compute Hom spaces, prove published dependency theorems, validate a universal matching algorithm, or certify priority. scripts/compare_parameters.py checks only six explicitly listed earlier parameter families and preserves multiplicities. Luo-Zha remains unknown.
+
+scripts/build_archive.py TARGET reconstructs the stored canonical uncompressed ZIP from ALLOWLIST.json into a new target (refuses replacement); no timestamp or filesystem-order variation is introduced. The supplied PDF is pinned, but recompilation via `tectonic paper.tex` or another suitable TeX engine may change PDF bytes. The source requires amsmath/amssymb/amsthm, geometry, booktabs/array, lmodern, xurl and hyperref. No TeX runtime is bundled.
+
+COPY_MAP.json identifies every historical copy. Historical report acceptances certify their assigned old scope, not this newly assembled paper/package. Their pending-priority policy remains byte-exact dated history and is superseded only in workflow by the latest human instruction; priority findings remain UNKNOWN. SOURCE_CREDITS.json records the bounded source theorem/comparison scope. OMISSIONS.json explicitly denies recursive archival closure. No third-party source bodies/images/API responses or runtime fixtures are included.
+
+The authored text/code are CC BY4.0; Alec Kriebel, ORCID0009-0001-9320-500X. AI tools were used extensively for construction, source comparison, adversarial checks, code and writing. This is unrefereed, without external human peer review, journal acceptance or proof-assistant certification. Publication readiness is FALSE pending root adoption and at least TWO fresh independent COMPLETE whole-paper/package adversarial reviews. This package is preparation, not one of those reviews. No service action or deposit occurred. No DOI is assigned here.
+
+Altered byte control.

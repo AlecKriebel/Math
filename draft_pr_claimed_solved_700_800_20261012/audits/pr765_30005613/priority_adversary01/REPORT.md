@@ -1,0 +1,39 @@
+# Adversarial priority audit: PR765 / problem30005613
+
+Closed 2026-10-16T05:11:15.109945+00:00, after challenging the independently closed `priority_audit`. This report does not certify the whole future preprint.
+
+## Independent position and exact task
+
+INITIAL_POSITION.md was saved before reading either the evolving priority audit or the root priority position. CHECKED_INPUTS.json identifies the eligible frozen proof and mathematical gate. No new proof attempt was made. The exact target is the existential form-defined Dirichlet Laplacian construction in each d>=2, with both expanding cube widths and positive shrinking zero-thickness windows selected. The novelty-sensitive conclusion is a complete orthonormal eigenbasis, not merely a dense eigenvalue set. All-essential spectrum [0,infinity), no zero eigenfunction and vanishing AC/SC spectral subspaces are retained. All stronger geometric/operator claims excluded by MATH_GATE remain excluded.
+
+## Result of attempted falsification
+
+No full same-target predecessor or current independent resolution was located in this bounded audit. That finding supports proceeding with the narrowly stated contribution subject to proper credit and caveats. It does not support first, sole, exhaustive, or current-worldwide-open language.
+
+KL24 is the immediate predecessor and must receive substantive credit for the geometry, freedom of future cube widths, finite-window norm-resolvent convergence, original perturbative construction, embedded eigenvalues and removal of AC spectrum. Its Section5 explicitly identifies the remaining SC question and finite-eigenvalue extension. OWR23 pp2077–2078 asks to remove both continuous types. K26 OpenProblem1 repeats the question as of its23Sep2026 version. Both displayed point-spectrum formulas on survey PDFp16 have closure bars; the withdrawn criticism is not reopened.
+
+The potentially new result is the successful geometric construction with an exhaustive growing family of protected finite spectral clusters and a completeness argument. Standard finite-cluster perturbation, spectral-family treatment of multiplicities, and diagonalization on finite-dimensional reducing spaces must not be marketed as individually new. In particular the original HSS91 Proposition1.4, printedp458, already uses spectral families to avoid degeneracy difficulties. I located its primary PDF through Simon's actual bibliography link after the initial independent position was saved; the previous metadata-only limitation has therefore been reduced for the relevant body comparisons.
+
+COMPARISON.md separates same geometry/operator from weaker analogues. HSS91 and BK22 concern bounded Neumann rooms/passages and essential spectral sets; their trace-class transfer removes AC only in the relevant argument. BK22's abstract self-adjoint-extension family does not force ordinary Dirichlet face windows. AM17's Weyl–von Neumann equivalence is abstract unitary equivalence modulo compact perturbations. Any attempt to turn that into anticipation needs a theorem realizing the selected perturbation by this domain geometry; no such theorem was found. This is an exact geometric-realization gap, not evidence that all related abstract ideas are novel.
+
+The recent AD26 full body proves generic pure point type for bounded-potential discrete Schroedinger operators on ell2(Z); its generic essential set is Cantor and carries zero spectral weight. Our target has essential set [0,infinity) with every eigenvalue embedded. Its transfer-matrix mechanism contains no Dirichlet domain realization. KK26, a2026 item on Krejcirik's KL citing list, concerns resonances in fixed-width2D/3D cavity waveguides. FM26 uses the Maxwell curl-curl operator and identifies essential spectral sets. CK23 uses mixed conditions on finite small resonators and prescribes finitely many discrete eigenvalues below a waveguide threshold. None supplies the target completeness result.
+
+## Search coverage and limits
+
+SEARCH_RECEIPTS.json records44 exact independent web queries, result leads and limitations. PRIMARY_SOURCE_LOCATORS.json records inspected versions and theorem/section/page locations, distinguishing body reads from metadata screens. ZENODO_RECEIPTS.json records10 direct unauthenticated public API queries at page size25, all returned hits and totals, and timestamps. All totals are smaller than25, so no result page was omitted for those queries. No claim is made that this searches full text of every uploaded PDF.
+
+The current KL arXiv history still shows v2 (20May2024), and survey history v1 (23Sep2026). Krejcirik's current primary publication list and its one-item KL citing list were screened. The citing list was last modified4Sep2026 and is not exhaustive. Lotoreichik's institutional publication iframe host failed DNS; the all-archive arXiv author query returned78 entries and was used to screen current abstracts and relevant topic entries. After the peer audit closed, its correct current author-list host at aamp.fjfi.cvut.cz was freshly opened and current2024–2026 entries and the KL abstract were screened, resolving that author-list access gap. Author-name indexing can miss non-arXiv papers and metadata variants. Several broad Zenodo hits were screened by public descriptions/file metadata only, including different Riemannian or discrete spectral-transform constructions. No blanket full-body certification of those deposits is claimed.
+
+Unindexed, non-English, unpublished, private, newly posted, or differently named work remains outside this bounded negative finding. The original HSS paper's inspected relevant sections eliminate its stated theorem as full anticipation; every unread remark in its36 pages is not represented as independently verified. No remote correspondence or outreach was prepared or initiated. No source PDFs, copied article bodies, screenshots or extracted source text are retained.
+
+## Recommended publication framing
+
+A suitable statement is: We give an existential construction answering the pure-point question formulated by Lotoreichik in OWR36/2023, using the expanding-cube/window geometry and finite-window continuity of Krejcirik–Lotoreichik. Both cube widths and apertures are selected inductively. The additional step protects an increasing exhaustive family of finite spectral subspaces, proving a complete eigenbasis and eliminating singular-continuous spectrum. Bounded literature searches found no earlier full result; historical priority is not certified.
+
+Extensive AI use and unrefereed status should remain prominent. No human-review or formal-proof claim is supported. This priority review cannot replace two fresh successive adversarial reviews of the completed future preprint, references, abstract, claims, and package.
+
+## Cross-audit challenge and final disposition
+
+CROSS_AUDIT_CHALLENGE.md records a post-closure challenge of every authored file in the frozen priority audit, whose manifest hash is db4985fc0a260a7d0f212d8f8d12e96d00e898c5ce5fb402d5a43629dcc8921e. CROSS_AUDIT_VERIFICATION.json records independent hash/set and81-distinct-record pagination checks. The prior audit explicitly credits the older cluster machinery, avoids firstness and current-openness claims, separates spectral set from type, and retains unavailable-source limits. Fresh public metadata inspection confirms its restricted summable-defect lead states fixed finite dimension only. No blocking priority/framing defect was found.
+
+This bounded adversarial priority-audit workflow is complete (100%). Historical first priority and worldwide current openness remain uncertified. The strongest supported result is a complete, narrowly credited construction beyond the endpoints in the inspected KL/HSS primary results. Future preprint authoring and two fresh successive whole-preprint adversarial reviews are not completed or replaced by this audit.

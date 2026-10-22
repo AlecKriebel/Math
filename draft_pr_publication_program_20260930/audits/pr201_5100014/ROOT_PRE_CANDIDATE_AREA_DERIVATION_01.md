@@ -1,0 +1,11 @@
+# Root pedal-area derivation before candidate comparison
+
+2026-10-16T05:44:25.866092+00:00
+
+Source-only contract established from unchanged arxiv2004.12497v11 text. Root has not yet read candidate proof/scripts/reviews. The geometry family already messaged that central pairing makes the quadratic coefficient isotropic; the following is Root verification of that hint, not a fourth independent family. No candidate mathematics used.
+
+Write outward unit tangent normal n_i=exp(i theta_i), support h_i, fixed point m complex. Orthogonal projection onto n_i dot X=h_i gives q_i=m/2+h_i n_i-(conjugate(m)/2)n_i^2. Translation invariance of signed shoelace area permits deletion of m/2. Expanding the complex cross products, the quadratic term is |m|^2/8 times sum_i sin(2(theta_(i+1)-theta_i)). The remaining linear terms cancel in opposite pairs if the orbit has proved antipodal pairing n_(i+N/2)=-n_i and h_(i+N/2)=h_i; the constant term is the origin-pedal area. Thus for a centrally symmetric tangent polygon the arbitrary-M assertion reduces to phase constancy of TWO scalars: outer_area times origin_pedal_area, and outer_area times sum_i sin(2Delta theta_i). This is a reduction only, not proof of either scalar constancy for elliptic billiards or of the required antipodal property. The latter must be proved for primitive even-period billiards rather than assumed for arbitrary polygons.
+
+In eccentric-angle coordinates p_i=(a cos t_i,b sin t_i), outer tangents are (cos t_i/a,sin t_i/b) dot X=1. Their oriented polygon area is ab sum_i tan((t_(i+1)-t_i)/2) when the angle increments and finite intersections are interpreted consistently, as follows by affine transformation from the unit-circle tangential polygon. Need verify winding conventions and exclude antipodal consecutive contacts before using this formula. These formulas give an independent direct-coordinate falsification harness, and locate the all-period difficulty in two precise orbit sums. No central difficulty is claimed solved by the reduction.
+
+Remaining challenges: literal source least-period convention, repeated trajectories, stars, signed versus unsigned interpretation, arbitrary M, circular and degenerate limits, and all-period proof. Workflow estimate15percent; mathematical clearance absent.

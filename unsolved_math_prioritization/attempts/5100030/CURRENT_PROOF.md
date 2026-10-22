@@ -1,0 +1,7 @@
+# Current attributed verification note
+
+Ordinary outer-focus distances to complete original supporting lines in proper nested confocal ellipses: the product of the two focal distance sums is constant on each admitted odd primitive family, including all coprime stars and reversal; odd repetitions multiply the product by r squared.
+
+The full all-odd analytic lemma is a corollary of Khare-Sukhatme generalized Landen Eqs68-70; Khare-Lakshminarayan-Sukhatme cyclic identities, Bialy-Tabachnikov Lemma4.2 focal-support geometry, Stachel Theorem4.3 canonical billiard grid, Reznik-Garcia-Koiller k601 observation and published elliptic-trace methods are credited. This is an attributed verification, with no theorem, formula or method novelty, firstness, certified independent discovery or simultaneity claim. Exact earlier explicit geometric k601 publication was not established by the bounded audit.
+
+Exact reviewed publication proof: draft_pr_publication_program_20260930/audits/pr205_5100030/publication_package_v2/odd_period_focal_pedal.tex and .pdf. DOI: https://doi.org/10.5281/zenodo.23423290. Original CANDIDATE_PROOF.md remains byte-exact historical input; CURRENT_STATUS and the Root mathematical/source gate record current scope, independently assessed universal arguments and finite-family limitations. The published note uses corrected Jacobi conventions and ordinary complete-line distances.

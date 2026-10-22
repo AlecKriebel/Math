@@ -1,0 +1,58 @@
+# PR210 supporting release-helper adversary 03
+
+**Disposition: CLEAN on the exact six helper versions below. Mandatory findings: none. Optional findings: none.** The supporting source audit is 100% complete. All nine review01 findings and both review02 findings are resolved in their stated scope. This is the third fresh independent supporting helper review, not a whole-manuscript review and not final publication clearance.
+
+No real provider, network, action CLI, Git/index/ref/Queue/SQL operation, external communication, credential/environment inspection, installation, cache creation or release-helper edit was performed. Action-bearing helpers ran only as byte-identical copies inside disposable synthetic fixtures, with subprocess execution and network effects trapped. Only the pure release-binding module was imported outside those action executions. All authored files and temporary fixtures stayed in this review directory; all temporary fixtures were removed.
+
+## Exact scope and independent reconstruction
+
+`INPUTS.json` and `INDEPENDENT_CONTROL_RECONSTRUCTION.md` were frozen after reading all six sources in full and before reading either prior report, root repair or earlier harness. The target claim is that ordinary release transitions consume the exact currently cleared files, metadata, helper versions, DOI version, receipt chain and native branch/head, and that durable once-only intents stop uncertain repetition. Success requires both a normal complete mocked workflow and refusals of stale/wrong evidence, with read-only recovery after confirmed publication. It does not prove manuscript mathematics or historical priority.
+
+| Helper relative to publication/ | Bytes | SHA-256 |
+|---|---:|---|
+| append_verified_tracker.py | 6439 | `9eedf40db79d0949b1bf98a80b78decc71e94201b7030c7cf42af93f915c0ebb` |
+| integrate_reviewed_pr.py | 17571 | `95a80b4dc81572d36821dd176537a450247fb8e86c6059d91805444427b62b9b` |
+| publish_preprint.py | 5335 | `67287d9f4e45779040502d7226391a36839716e40cc42f9507a13ae10fd569a5` |
+| release_binding.py | 10448 | `afc858a311137fa99e9a33207848d2ccc913a12f07862aa663b610b262bdb8ce` |
+| verify_and_merge.py | 8638 | `e56e3f6eb7a7b183f8fe4a3e977f267783188c12faf2766cf456f98910d5eabe` |
+| verify_published_readonly.py | 4367 | `05b5e494de791a03fa876da2b777e8891cf145ff67fc78aac9fb9221ec774a8b` |
+
+After the independent map was sealed, I read source02's report, findings, complete current probe/results and the complete initial-to-current probe diff, which reconstructs the preserved initial harness and its lock-handle cleanup error. I verified all 12 sealed source02 payloads against manifest `ecef37ef2b6416f7ed9c3c4b973eeec8f05409433878befc951294483c0a19a9`; report hash is `e1416c806b59e5f8ade49a39e5f4dd3dce1c894513a7c55252d342da603add58`. I also read source01's complete nine-finding report, current root repair/tests/resolution, and the kit's actual stage/inspect/publish and metadata/MD5/size verification protocol. No kit command ran.
+
+All six source02 frozen helper copies match their original pins. `REPAIR_DIFF.txt` independently preserves the complete version delta: durable mkdir adoption, file-then-parent syncing, same-byte prepared JSON/hash, fresh ready-time PR/context/exact receipt checks, exact premerge receipt checks, and required source03 seal inclusion. No unrelated change appears. The historical root31 result restored locally has the exact supplied hash `82070d9ee991479f3c0a89a99c77728e685a3b9e376578d4618bde9e771e4d54` and the source02 helper pins. The current root31 sidecar has hash `b3df40ab8a6b27f48012e66f1ae26df0095d4702a8279c87f11cadad12c89dc5`, matching these six helpers; I inspected it as separate root evidence and did not claim its 31 tests as my own execution. Current resolution hash is `9d3539d738e6a5961660c89c38f95940fa91e80e73e7d7f298e9ed587d22e2b9`.
+
+## Review02 repairs independently checked
+
+**R2-F1 resolved.** Immediately after full native reads, the helper now GETs actual PR210, validates expected head, exact `dot/math-5100033`, both `AlecKriebel/Math` identities, base `main`, open/unmerged state, and revalidates context plus exact initially accepted publication/tracker/prepared receipts before any new ready intent/POST. Prepared JSON and its accepted SHA come from the same bytes. The two original counterexamples (revoked clearance and changed head) now produce zero ready POSTs and zero merge PUTs. Independent late changes to branch, repositories, base, closed/merged state and all three receipt identities likewise produce zero ready and merge mutations. A harmless added publication field, even with a repaired current tracker chain, still fails exact initial-receipt equality. Receipt changes after ready but before merge cause zero merge PUTs. A freshly observed already-ready state omits the POST and continues only after the expected-head checks. GitHub ready has no expected-head CAS; this fresh preflight narrows the race and does not promise remote atomicity.
+
+**R2-O1 resolved.** The real local descriptor trace is regular-file fsync followed by containing-directory fsync. Each new ancestor linkage is directory-synced; an existing retry anchor's parent is synced again. An injected failure after a new ancestor becomes visible stops before creating its child, and retry resyncs the uncertain visible anchor before continuing. Initial directory-sync failure causes zero provider calls across all five action entries. For each of stage, publish, tracker append, native ref, ready and merge intents, independent file-sync and parent-sync failures preserve the exclusive intent and block the associated provider mutation. Earlier reads or Git object construction for native ref preparation are not miscounted as the blocked branch update. A failed parent-sync intent remains exclusive on reentry. These are actual local ordering and injected-error checks using the supported OS semantics; no power crash or hardware durability guarantee is claimed.
+
+## Review01 fixes remain intact
+
+| Prior finding | Current evidence and disposition |
+|---|---|
+| F1 exact cleared/upload pair | Exact ordered paths/names, sizes/SHA256, metadata/package/deposit and six helpers are bound by context; kit output set matches before mutations. Changed helper and PDF symlink refuse. Resolved. |
+| F2 stale cross-stage receipts | Publication uses the same binding and exact public pair/metadata; tracker pins publication receipt; prepared receipt pins both; merge binds all accepted receipts and actual head. Entry and late-stage mutations refuse. Resolved. |
+| F3 public SHA/DOI promotion | Pending DOI and bad public bytes retain provider/pending evidence without usable verified receipt. Read-only inspect/download recovery verifies the same deposit without restaging/republishing. Resolved. |
+| F4 uncertain merge/ready reentry | Prior merge intent refuses before CLI. Existing ready intent with draft still true prevents another POST; confirmed ready state needs no repeated POST. Resolved. |
+| F5 DOI-only duplicate check | Conflicting same-problem/different-DOI row refuses before append. One exact prior attempted row reconciles without a second append and requires matching binding/payload. Resolved. |
+| F6 optimized Python | All six copied sources compiled with optimize=1 refuse before action; all five copied normal entries refuse false clearance before provider calls. Resolved. |
+| O1 concurrent once-only marker | Shared nonblocking flock, alias-path lock check, exclusive durable intents and uncertain-stage refusal survive. Resolved. |
+| O2 trusting receipt tree | Actual expected-head commit tree and exact parents are checked; bad tree/main-parent refuse. Full included native blob pins, scientific/archive/PDF/ZIP bodies and Queue readbacks run before ready. Resolved. |
+| O3 branch/repository identity | Original and fresh checks require exact authorized PR/branch/repositories/base/head. Late identity changes refuse before ready. Resolved. |
+
+## Checkable probes and integrity
+
+`regression_workflow_probes.py` reuses source02's fully read harness only after the independent map, adds the required synthetic source03 family, and changes the two old defect expectations to zero ready/merge. Helper bytes and gates are unchanged. **42/42 controls pass**, including complete mocked publication → single append/all four cells → two-parent native integration → exact native readback → ready → expected-SHA merge → actual merged/closed readback. The fixture uses real reviewed artifact/native-template bytes, while every clearance/review seal/provider/DOI/API fact is explicitly synthetic. Native construction starts from fresh MAIN with parents `[OLD,fresh_MAIN]`, preserves a foreign Queue row, keeps source2020/author1/5/claimed_solved, and writes completion counts `[44,21,21,0]` only after merged/closed confirmation. No local Git mutation runs.
+
+`independent_transition_probes.py` adds **42/42 new passing controls** for the ready/premerge/same-byte/durability boundaries above, plus native proof-body corruption, foreign changed path and missing source03 seal. `INDEPENDENT_TRANSITION_RESULTS.json` and `MOCKED_WORKFLOW_RESULTS.json` contain exact refusal reasons and effect counts. Together the two suites provide 84 passing controls, separate from root31. `HARNESS_ADAPTATION.json` documents reuse. The initial new corruption probe accidentally selected the first suffix-matching collateral PROOF.md rather than the exact native proof body. Its initial source is retained; `HARNESS_CORRECTION.json` records both initial executions and correction to the exact native path. No helper guard or acceptance tolerance changed.
+
+`local_integrity_probes.py` (unchanged reuse of the earlier read-only byte checker) independently rechecks all current helper pins and five package pins. The ZIP remains 604537 bytes / 181 unique safe entries, SHA256 `ae127ebe4d8962c1fe8894db16da72a6e215ddb51a6699804b26c6ace0143290`; PDF remains 90186 bytes, SHA256 `efa4617d9b3ce2091afe472eb35b5144ec30f3117ffac22dc201498f95a0b731`. All42 native-template files equal the ZIP subtree by path and bytes. All20 original Intake pins match in all three local copies, 60/60 comparisons. These are integrity checks, not a manuscript review. The source01 seal and archived original helper versions also verify.
+
+Replay each program with Python bytecode writing disabled (`python3 -B`). Programs write only their named result files here and remove their temporary fixtures. Replaying changes result timestamps and requires resealing this authored manifest. The manifest includes every retained public payload and excludes itself.
+
+## Version-bound acceptance and remaining external facts
+
+There are no unresolved mandatory or optional findings in this supporting review. Its acceptance applies only to the six pinned helper versions and the described workflow. The final genuine clearance must still be assembled from actual three whole-manuscript seals and this final clean source acceptance, binding exact helper/package/deposit/metadata hashes and both submission files. This source review cannot supply those manuscript facts. Actual FINAL_CLEARANCE and usable publication receipt are absent at sealing; synthetic fixture records grant no authority.
+
+Real provider availability/permissions, public SHA/DOI propagation, native mergeability and actual transition outcomes remain future observations. The helpers must enforce their current readbacks and once-only barriers during authorized execution. Actual deposit/public verification, tracker append, branch update, ready and merge were not performed by this audit. No additional source repair or speculative feature/hardware investigation is required by the checked evidence.

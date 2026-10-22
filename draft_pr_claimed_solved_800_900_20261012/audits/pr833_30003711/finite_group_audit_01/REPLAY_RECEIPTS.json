@@ -1,0 +1,163 @@
+{
+  "timestamp_utc": "2026-10-15T05:46:44.098154+00:00",
+  "all_expected_outcomes": true,
+  "normal_optimized_artifacts_identical": true,
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "runs": [
+    {
+      "case": "normal",
+      "started_utc": "2026-10-15T05:46:35.449004+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "exact_hessian_audit.py",
+        "--output",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr833_30003711/finite_group_audit_01/replays/normal_data"
+      ],
+      "returncode": 0,
+      "expected_rejection": false,
+      "stdout_sha256": "02760a0a05827ecabdbb2d7ef52bc582dc196062a5ea1f627c5ad1504ecd4fd1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "last_error_line": null
+    },
+    {
+      "case": "normal-group_order",
+      "started_utc": "2026-10-15T05:46:37.022500+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "exact_hessian_audit.py",
+        "--negative-control",
+        "group_order"
+      ],
+      "returncode": 1,
+      "expected_rejection": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ded23aa4f8ba3fe852180120d83965026c20b8efc7a3d24e1d46262f842a464b",
+      "last_error_line": "RuntimeError: CHECK FAILED: projective group has expected order 215"
+    },
+    {
+      "case": "normal-gl_commutes",
+      "started_utc": "2026-10-15T05:46:37.385232+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "exact_hessian_audit.py",
+        "--negative-control",
+        "gl_commutes"
+      ],
+      "returncode": 1,
+      "expected_rejection": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "99343b3540d6fba10932d30fe58d36b087f076f2cc4ced32b6c487788e9f8bc1",
+      "last_error_line": "RuntimeError: CHECK FAILED: NEGATIVE CONTROL: false GL commutation"
+    },
+    {
+      "case": "normal-c_fixes_all",
+      "started_utc": "2026-10-15T05:46:37.446103+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "exact_hessian_audit.py",
+        "--negative-control",
+        "c_fixes_all"
+      ],
+      "returncode": 1,
+      "expected_rejection": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f5680fca5bfd919154e71b52d3ac57611723ace5307f6f77a513e6ada1396165",
+      "last_error_line": "RuntimeError: CHECK FAILED: NEGATIVE CONTROL: false full-nine-sheet trivialization"
+    },
+    {
+      "case": "normal-one_unipotent_class",
+      "started_utc": "2026-10-15T05:46:38.621032+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "exact_hessian_audit.py",
+        "--negative-control",
+        "one_unipotent_class"
+      ],
+      "returncode": 1,
+      "expected_rejection": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8d4901c750d464912549e5be4198697d48d56c6e61e39ccb61c0564857dbbf14",
+      "last_error_line": "RuntimeError: CHECK FAILED: nontrivial unipotents have expected number of SL2 classes 1"
+    },
+    {
+      "case": "optimized",
+      "started_utc": "2026-10-15T05:46:39.791075+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "exact_hessian_audit.py",
+        "--output",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_800_900_20261012/audits/pr833_30003711/finite_group_audit_01/replays/optimized_data"
+      ],
+      "returncode": 0,
+      "expected_rejection": false,
+      "stdout_sha256": "02760a0a05827ecabdbb2d7ef52bc582dc196062a5ea1f627c5ad1504ecd4fd1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "last_error_line": null
+    },
+    {
+      "case": "optimized-group_order",
+      "started_utc": "2026-10-15T05:46:41.260957+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "exact_hessian_audit.py",
+        "--negative-control",
+        "group_order"
+      ],
+      "returncode": 1,
+      "expected_rejection": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ded23aa4f8ba3fe852180120d83965026c20b8efc7a3d24e1d46262f842a464b",
+      "last_error_line": "RuntimeError: CHECK FAILED: projective group has expected order 215"
+    },
+    {
+      "case": "optimized-gl_commutes",
+      "started_utc": "2026-10-15T05:46:41.608628+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "exact_hessian_audit.py",
+        "--negative-control",
+        "gl_commutes"
+      ],
+      "returncode": 1,
+      "expected_rejection": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "99343b3540d6fba10932d30fe58d36b087f076f2cc4ced32b6c487788e9f8bc1",
+      "last_error_line": "RuntimeError: CHECK FAILED: NEGATIVE CONTROL: false GL commutation"
+    },
+    {
+      "case": "optimized-c_fixes_all",
+      "started_utc": "2026-10-15T05:46:41.664013+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "exact_hessian_audit.py",
+        "--negative-control",
+        "c_fixes_all"
+      ],
+      "returncode": 1,
+      "expected_rejection": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f5680fca5bfd919154e71b52d3ac57611723ace5307f6f77a513e6ada1396165",
+      "last_error_line": "RuntimeError: CHECK FAILED: NEGATIVE CONTROL: false full-nine-sheet trivialization"
+    },
+    {
+      "case": "optimized-one_unipotent_class",
+      "started_utc": "2026-10-15T05:46:42.843445+00:00",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "exact_hessian_audit.py",
+        "--negative-control",
+        "one_unipotent_class"
+      ],
+      "returncode": 1,
+      "expected_rejection": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8d4901c750d464912549e5be4198697d48d56c6e61e39ccb61c0564857dbbf14",
+      "last_error_line": "RuntimeError: CHECK FAILED: nontrivial unipotents have expected number of SL2 classes 1"
+    }
+  ]
+}

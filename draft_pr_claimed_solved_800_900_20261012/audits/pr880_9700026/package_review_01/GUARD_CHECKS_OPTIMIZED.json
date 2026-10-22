@@ -1,0 +1,220 @@
+{
+  "controls": [
+    {
+      "expected": "REJECT",
+      "label": "duplicate_key",
+      "observed": "REJECT",
+      "reason": "duplicate JSON key: x"
+    },
+    {
+      "expected": "REJECT",
+      "label": "nan",
+      "observed": "REJECT",
+      "reason": "nonfinite JSON constant: NaN"
+    },
+    {
+      "expected": "REJECT",
+      "label": "overflow_float",
+      "observed": "REJECT",
+      "reason": "nonfinite JSON number"
+    },
+    {
+      "expected": "REJECT",
+      "label": "unsafe_name_'../escape'",
+      "observed": "REJECT",
+      "reason": "unsafe relative path: ../escape"
+    },
+    {
+      "expected": "REJECT",
+      "label": "unsafe_name_'/absolute'",
+      "observed": "REJECT",
+      "reason": "unsafe relative path: /absolute"
+    },
+    {
+      "expected": "REJECT",
+      "label": "unsafe_name_'a\\\\b'",
+      "observed": "REJECT",
+      "reason": "unsafe relative path"
+    },
+    {
+      "expected": "REJECT",
+      "label": "unsafe_name_'a\\nb'",
+      "observed": "REJECT",
+      "reason": "unsafe relative path"
+    },
+    {
+      "expected": "REJECT",
+      "label": "unsafe_name_'a//b'",
+      "observed": "REJECT",
+      "reason": "unsafe relative path: a//b"
+    },
+    {
+      "expected": "REJECT",
+      "label": "unsafe_name_'a/./b'",
+      "observed": "REJECT",
+      "reason": "unsafe relative path: a/./b"
+    },
+    {
+      "expected": "REJECT",
+      "label": "unsafe_name_'C:bad'",
+      "observed": "REJECT",
+      "reason": "unsafe relative path: C:bad"
+    },
+    {
+      "expected": "REJECT",
+      "label": "boolean_inventory_size",
+      "observed": "REJECT",
+      "reason": "invalid pinned byte count"
+    },
+    {
+      "expected": "REJECT",
+      "label": "duplicate_inventory_path",
+      "observed": "REJECT",
+      "reason": "duplicate inventory path"
+    },
+    {
+      "expected": "REJECT",
+      "label": "file_directory_collision",
+      "observed": "REJECT",
+      "reason": "file/directory inventory collision"
+    },
+    {
+      "expected": "ACCEPT",
+      "label": "legitimate_space_path",
+      "observed": "ACCEPT"
+    },
+    {
+      "expected": "ACCEPT",
+      "label": "finite_json",
+      "observed": "ACCEPT"
+    },
+    {
+      "expected": "REJECT",
+      "label": "leaf_symlink",
+      "observed": "REJECT",
+      "reason": "nonregular input: alias"
+    },
+    {
+      "expected": "REJECT",
+      "label": "fifo_nonblocking_rejection",
+      "observed": "REJECT",
+      "reason": "nonregular input: pipe"
+    },
+    {
+      "expected": "REJECT",
+      "label": "wrong_size",
+      "observed": "REJECT",
+      "reason": "byte count mismatch: ordinary"
+    },
+    {
+      "expected": "ACCEPT",
+      "label": "regular_exact_read",
+      "observed": "ACCEPT"
+    },
+    {
+      "expected": "REJECT",
+      "label": "unlisted_file",
+      "observed": "REJECT",
+      "reason": "unlisted file: ordinary"
+    },
+    {
+      "expected": "REJECT",
+      "label": "unlisted_empty_directory",
+      "observed": "REJECT",
+      "reason": "unlisted directory: empty_extra"
+    },
+    {
+      "expected": "REJECT",
+      "label": "interior_directory_alias",
+      "observed": "REJECT",
+      "reason": "nonregular input directory: sub"
+    },
+    {
+      "expected": "REJECT",
+      "label": "external_index_wrong_digest",
+      "observed": "REJECT",
+      "reason": "external index pin mismatch"
+    },
+    {
+      "expected": "REJECT",
+      "label": "complete_input_leaf_alias",
+      "observed": "REJECT",
+      "reason": "input type/size mismatch: catalog.json"
+    },
+    {
+      "expected": "ACCEPT",
+      "label": "valid_archive_boundary_and_payload",
+      "observed": "ACCEPT"
+    },
+    {
+      "expected": "REJECT",
+      "label": "zip_prepended_byte",
+      "observed": "REJECT",
+      "reason": "verification ZIP central/end boundary mismatch"
+    },
+    {
+      "expected": "REJECT",
+      "label": "zip_appended_byte",
+      "observed": "REJECT",
+      "reason": "verification ZIP prefix/trailer or end metadata"
+    },
+    {
+      "expected": "REJECT",
+      "label": "zip_truncated_end_record",
+      "observed": "REJECT",
+      "reason": "verification ZIP prefix/trailer or end metadata"
+    },
+    {
+      "expected": "REJECT",
+      "label": "zip_huge_declared_member_size",
+      "observed": "REJECT",
+      "reason": "verification ZIP declared size mismatch: CURRENT_PRIORITY.md"
+    },
+    {
+      "expected": "ACCEPT",
+      "label": "valid_current_metadata_and_copies",
+      "observed": "ACCEPT"
+    },
+    {
+      "expected": "REJECT",
+      "label": "preprint_inner_note_divergence",
+      "observed": "REJECT",
+      "reason": "preprint/portable copy mismatch: note.tex"
+    },
+    {
+      "expected": "REJECT",
+      "label": "canonical_metadata_divergence",
+      "observed": "REJECT",
+      "reason": "current metadata copies differ"
+    },
+    {
+      "expected": "REJECT",
+      "label": "deposit_filename_divergence",
+      "observed": "REJECT",
+      "reason": "deposit upload file binding"
+    },
+    {
+      "expected": "REJECT",
+      "label": "partial_source_options",
+      "observed": "REJECT",
+      "reason": "supply all four source locations or none"
+    },
+    {
+      "expected": "REJECT",
+      "label": "source_without_full",
+      "observed": "REJECT",
+      "reason": "source replay requires --full"
+    },
+    {
+      "expected": "REJECT",
+      "label": "pdf_override_alone",
+      "observed": "REJECT",
+      "reason": "--pdf-2012 requires all four source locations"
+    }
+  ],
+  "limits": "Helper checks plus actual CLI option controls; not a hostile concurrent-filesystem sandbox or analytic proof.",
+  "mode": "OPTIMIZED",
+  "negative_count": 31,
+  "positive_count": 5,
+  "status": "PASS"
+}

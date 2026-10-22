@@ -213,6 +213,60 @@ class DepositFlowTests(unittest.TestCase):
                     self.call("publish", 123)
                 self.assertEqual(self.client.publishes, 0)
 
+    def test_empty_related_identifiers_omission_preserves_manifest_and_one_publish(self):
+        self.metadata["related_identifiers"] = []
+        self.write_manifest()
+        original = self.manifest.read_bytes()
+        original_get = self.client.get
+
+        def server_omits_empty_list(deposit_id):
+            record = original_get(deposit_id)
+            if record["metadata"].get("related_identifiers") == []:
+                record["metadata"].pop("related_identifiers")
+            return record
+
+        expected = [{"field": "related_identifiers",
+                     "kind": "empty_related_identifiers_omitted"}]
+        with patch.object(self.client, "get", side_effect=server_omits_empty_list):
+            self.assertEqual(self.call("stage")["metadata_normalizations"], expected)
+            self.assertEqual(self.call("inspect")["metadata_normalizations"], expected)
+            self.assertEqual(self.call("publish", 123)["metadata_normalizations"], expected)
+            self.call("publish", 123)
+        self.assertEqual((self.client.creates, self.client.uploads,
+                          self.client.publishes), (1, 1, 1))
+        self.assertEqual(self.manifest.read_bytes(), original)
+
+    def test_empty_related_omission_exception_rejects_loss_null_and_other_types(self):
+        cases = [
+            ([], None), ([], ""), ([], {}), ([], False), ([], 0),
+            ([], [{"identifier": "https://example.org/code", "relation": "cites"}]),
+        ]
+        for wanted, actual in cases:
+            with self.subTest(wanted=wanted, actual=actual):
+                with self.assertRaises(zenodo.DepositError):
+                    zenodo.verify({"metadata": {"related_identifiers": actual},
+                                   "files": []},
+                                  {"related_identifiers": wanted}, [])
+        for wanted in (None, "", {}, False, 0, (),
+                       [{"identifier": "https://example.org/code", "relation": "cites"}]):
+            with self.subTest(missing_for=wanted):
+                if wanted is None:
+                    # Exact None equality is preexisting behavior, not this exception.
+                    continue
+                with self.assertRaises(zenodo.DepositError):
+                    zenodo.verify({"metadata": {}, "files": []},
+                                  {"related_identifiers": wanted}, [])
+
+    def test_empty_related_exception_keeps_other_metadata_and_assets_strict(self):
+        for key in ("keywords", "references", "creators", "title", "description"):
+            with self.subTest(missing_other_field=key):
+                with self.assertRaises(zenodo.DepositError):
+                    zenodo.verify({"metadata": {}, "files": []}, {key: []}, [])
+        with self.assertRaisesRegex(zenodo.DepositError, "file list"):
+            zenodo.verify({"metadata": {}, "files": []},
+                          {"related_identifiers": []},
+                          [{"name": "paper.pdf", "size": 1, "md5": "a" * 32}])
+
     def test_published_retry_is_read_only_but_still_checks_id_and_manifest(self):
         self.call("stage")
         first = self.call("publish", 123)

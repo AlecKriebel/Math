@@ -1,0 +1,285 @@
+ Exact semideﬁnite complexity of the symmetric traveling-salesman
+                            polytope
+                                               Alec Kriebel
+                                      ORCID: 0009-0001-9320-500X
+
+                                              October 6, 2026
+
+
+                                                 Abstract
+          The exponential real PSD-rank theorem for shifted perfect-matching matrices in the OpenAI
+      Math Release implies that the symmetric traveling-salesman polytope on N cities has exact real
+      semideﬁnite extension complexity 2Θ(N ) , measured by PSD matrix order. We give explicit data
+      for Yannakakis’s 3n-city face projection, a 2n-city contraction variant, a padding projection
+      covering every suﬃciently large city count, and a subset-state ﬂow upper bound. The exponential
+      lower-bound method and its central estimate belong to the cited matching theorem; this note
+      supplies an explicit consequence and veriﬁcation package, not a new lower-bound method. The
+      exponential input has been independently examined in mathematical audits; the accompanying
+      Lean statements cover only superpolynomial bounds. No conventional human peer review has
+      been completed.
+
+
+1    Scope, convention and attribution
+                               N
+For N ≥ 3, let PTSP (N ) ⊆ R( 2 ) be the convex hull of incidence vectors of undirected Hamiltonian
+cycles in KN , counting each unordered edge once. For even n ≥ 2, let PPM (n) denote the analogous
+convex hull of perfect matchings in Kn . For a nonempty polytope P , deﬁne xcpsd,R (P ) to be the
+least positive integer r for which
+                                           P = π(L ∩ Sr+ ),                                      (1)
+where L is an aﬃne subspace of the real symmetric r-by-r matrices and π is aﬃne. The size is
+r, the matrix order. Aﬃne equations are unrestricted. Multiple PSD blocks are counted by their
+total order, through a block-diagonal embedding. Counting only the largest block gives a diﬀerent
+notion: scalar nonnegativity blocks alone would then have size one.
+    This convention also covers an LMI with unrestricted auxiliary real variables, of order r, when
+its exact image is a bounded nonempty polytope. Write the aﬃne matrix map as T (z) and the
+aﬃne output as U (z). Any direction in the kernel of the linear part of T preserves feasibility for
+every real multiple. Boundedness forces the linear part of U to vanish on that kernel. Thus U
+factors aﬃnely through T on its aﬃne image, and extends to an aﬃne map on symmetric matrices,
+yielding (1).
+
+Theorem 1. There exist constants c > 0 and N0 such that for every N ≥ N0 ,
+
+                    2cN ≤ xcpsd,R (PTSP (N )) ≤ 2(N − 1) + (N − 1)(N − 2)2N −3 .
+
+Consequently xcpsd,R (PTSP (N )) = 2Θ(N ) .
+
+
+                                                    1
+    The lower bound uses the external exponential matching theorem [1]. The face reduction is
+established machinery: Yannakakis’s Theorem 2 proof [2, p. 454] uses 3n cities, and Rothvoß
+records its consequence near Corollary 2 [3]. We make its equations, exponent loss and padding
+explicit and check a contraction using 2n cities. We do not claim priority for this elementary
+contraction or for transferring PSD complexity under faces and images.
+                                                                                                  1/13
+    Lee–Raghavendra–Steurer [5, Corollary 1.2] proved an unrestricted TSP lower bound 2Ω(N ) .
+Lee–Prakash–de Wolf–Yuen [6, Section 1.3.1 and footnote 3] corrected an LRS computational es-
+                   e(N 1/11 )
+timate and give 2Ω            for TSP. The tilde suppresses logarithmic factors. Our literature audit
+found no intervening primary statement of this unrestricted linear-exponent TSP consequence; a
+search is not a proof of priority. The new conclusion here is the explicit sharp exponential-order con-
+sequence of the newly available matching theorem. It does not independently resolve the matching
+problem.
+
+
+2    The matching input and the exact-lift bridge
+For odd U ⊆ [n] and a perfect matching M , put
+
+                                  An (ρ)U,M = |M ∩ δ(U )| − 1 + ρ.
+
+The real PSD rank of a nonnegative matrix A is the least r ≥ 1 allowing Au,v = tr(Fu Gv ) with real
+PSD factors of order r.
+
+Theorem 2 (External input: OpenAI, family 126). There exists γ > 0 such that for each ﬁxed
+0 < ρ < 1 there is n0 (ρ) for which rankpsd,R An (ρ) ≥ 2γn for every even n ≥ n0 (ρ).
+
+   This is Theorem 1.1 of the pinned October 5 manuscript [1]. Its exponential assertion is a cited
+mathematical dependency, not a formalized theorem of this note.
+   If An (0) has factors FU , GM of order r, then
+
+                             FeU = diag(FU , ρ),       e M = diag(GM , 1)
+                                                       G
+
+reproduce An (ρ) exactly. Hence
+
+                    rankpsd,R An (0) ≥ rankpsd,R An (1/2) − 1 ≥ 2γn − 1 ≥ 2γn/2                      (2)
+
+for suﬃciently large even n.
+    We use a ﬁnite-dimensional exact slack calculation, consistent with the general cone-
+factorization framework [4].
+
+Lemma 3 (Tight slacks from an aﬃne PSD lift). Let P = π(L ∩ Sr+ ) be a polytope, choose a lift
+Bv ∈ L ∩ Sr+ of each vertex v, and let f be a valid nonnegative aﬃne slack on P , tight at some
+vertex v0 . Then there is A ∈ Sr+ with f (v) = tr(ABv ) for every vertex.
+                                                                                  P
+Proof. Compress all Bv to their common support W = range(J), where J =              v Bv .   On W , J is
+positive deﬁnite. The cone
+                                   C = {(tr(ABv ))v : A ⪰ 0}
+is closed: for a convergent sequence of evaluations, their nonnegative coordinate sum bounds tr(AJ),
+which bounds tr A on W . A subsequence of the representing PSD matrices therefore converges. If
+W = {0}, the only possible vertices coincide, the tight slack is zero, and the conclusion is immediate.
+
+
+                                                   2
+                                                                                            P
+   Suppose c = (cv ) belongs to the dual cone C ∗ . Self-duality of the PSD cone says Z =    v cv Bv ⪰
+          P
+0. Put s = v cv , t = |s| + 1, and q = s + t > 0. Then
+
+                                       X = q −1 (Z + tBv0 ) ⪰ 0
+
+lies in L, because the coeﬃcients of this aﬃne combination sum to one. Aﬃneness, exactness of
+the lift, and f (v0 ) = 0 give                     X
+                                   0 ≤ qf (π(X)) =   cv f (v).
+                                                         v
+
+Thus (f (v))v ∈ C ∗∗ = C by closed-cone separation. Extend the representing PSD matrix by zero
+on W ⊥ to restore order r.
+
+    Each odd-cut slack is valid and tight at a perfect matching: select one crossing edge, then match
+within its two even remainders. Applying Lemma 3 to every odd-cut row yields a factorization of
+An (0) of order at most any given lift order. Together with (2), this proves that for some a > 0 and
+even threshold n1 ,
+                           xcpsd,R (PPM (n)) ≥ 2an for every even n ≥ n1 .                         (3)
+This independently checks the exact-lift bridge in Corollary 1.2 of [1]; the shift is never transferred
+without (2). The ﬁnite-evaluation proof also appears in the release’s aﬃne-certiﬁcate development,
+inspected here as a mathematical argument. No strict-feasibility hypothesis  
+                                                                                     is needed for this
+bridge. The endpoint ρ = 1 has an edge-diagonal factorization of order n2 and is excluded.
+
+
+3    Faces, images and the explicit reductions
+Lemma 4. If F is a nonempty face of P and T is aﬃne, then xcpsd,R (T (F )) ≤ xcpsd,R (F ) ≤
+xcpsd,R (P ).
+
+Proof. Given (1), express F as {x ∈ P : h(x) = b} for a supporting aﬃne functional. Add the
+aﬃne equality h(π(X)) = b to L. The image of the resulting PSD section is exactly F . Compose
+π with T for the ﬁrst inequality. No PSD row or column is added. Several supporting equalities
+work in the same way; their nonnegative slacks can be summed to expose their intersection. This
+argument requires neither strict feasibility nor boundedness of the lifted section.
+
+The printed 3n-city construction. Let n ≥ 2 be even. Form three layers L = {ℓi }, D = {di },
+R = {ri } indexed by [n]. Let Gn have cliques on L, R and the 2n edges ℓi di , di ri , with no others.
+In PTSP (3n) impose
+
+                        xe = 0   (e ∈
+                                    / E(Gn )),        (φ(x))ij = xℓi ℓj   (i < j).                 (4)
+                                                                          P
+The zero equations deﬁne a face: they are equivalent to equality in e /∈E(Gn ) xe ≥ 0. Nonnegativity
+implies that this face is exactly the convex hull of tours in Gn . Each di has only two available
+neighbors, so its two edges are forced. Each layer vertex then has one residual edge in its own
+clique, producing perfect matchings A on L and B on R. Contracting the forced paths gives the
+label multigraph A∪B, with the two edge colors distinguished; a tour is equivalent to connectedness
+of this degree-two multigraph.
+    Every perfect matching A occurs. Order its k = n/2 pairs as {aj , bj }, and choose
+                                 
+                            B = {bj , aj+1 } : 1 ≤ j ≤ k ,        ak+1 = a1 .                      (5)
+
+
+                                                  3
+This is a perfect matching, and its union with A has the alternating cyclic walk a1 , b1 , . . . , ak , bk , a1 .
+For k = 1, the two colored edges are parallel in the contracted graph, giving a genuine six-city cycle
+before contraction. Expanding the forced paths gives the required tour. Thus φ(Fn ) = PPM (n).
+Projection onto A is surjective, generally not injective.
+
+A 2n-city contraction. Retain just layers L, R, with diagonal edges V = {ℓi ri } and other cross
+edges Z = {ℓi rj : i ̸= j}. Deﬁne
+
+                        Fn′ = {x ∈ PTSP (2n) : xe = 1 (e ∈ V ), xe = 0 (e ∈ Z)}.                              (6)
+                                 P             P
+It is the maximizing face of e∈V xe − e∈Z xe ≤ n; equality forces all the displayed equations
+because 0 ≤ xe ≤ 1. The completion (5) proves nonemptiness. Each layer again has exactly one
+residual edge at each vertex, and contraction of V gives the same connected colored union A ∪ B.
+Hence the coordinate projection in (4) satisﬁes
+
+                      φ(Fn′ ) = PPM (n),       xcpsd,R (PTSP (2n)) ≥ xcpsd,R (PPM (n)).                       (7)
+
+For n = 2 this is the ordinary four-city cycle ℓ1 , ℓ2 , r2 , r1 , ℓ1 . The one equations in (6) are essential.
+For n = 4, the cycle ℓ1 , ℓ2 , ℓ3 , ℓ4 , r4 , r3 , r2 , r1 , ℓ1 avoids every non-diagonal cross edge but projects
+onto a path, not a perfect matching.
+
+
+4    Padding and the exponent for all city counts
+Proposition 5. For N ≥ m ≥ 3, PTSP (m) is a linear image of a face of PTSP (N ), and therefore
+xcpsd,R (PTSP (N )) ≥ xcpsd,R (PTSP (m)).
+
+Proof. The case N = m is the identity. Otherwise write the old cities as {v} ∪ W and new cities
+as z1 , . . . , zt , t = N − m. Force the path edges H = {vz1 , z1 z2 , . . . , zt−1 zt } by equality in the valid
+                 P
+inequality e∈H xe ≤ t. This face is nonempty: expand any old tour’s edge vw to v, z1 , . . . , zt , w.
+Deﬁne
+                              yij = xij (i, j ∈ W ),  yvj = xvj + xzt j (j ∈ W ).
+Every internal path vertex already has degree two. Contracting this forced path in a face tour
+therefore gives a tour on the old cities. The two remaining endpoint neighbors in W are distinct:
+otherwise their common neighbor and the path would form an entire cycle omitting other old
+vertices, since m ≥ 3. Thus the projected vector is an ordinary tour incidence vector. Expansion
+gives every old tour, and linearity gives equality of the convex hulls. Apply Lemma 4.
+
+   For any suﬃciently large N , choose n = 2⌊N/4⌋, so n is even and 2n ≤ N . Equations (3)–(7)
+and Proposition 5 give the precise bound
+
+                             xcpsd,R (PTSP (N )) ≥ 22a⌊N/4⌋ ,       2⌊N/4⌋ ≥ n1 .                             (8)
+
+Since n > N/2−2, every ﬁxed exponent c < a/2 works eventually. Concretely, n ≥ N/3 for N ≥ 12,
+so c = a/3 works for N ≥ max{12, 2n1 + 4}. Using only the original 3n construction gives 22a⌊N/6⌋
+and any eventual c < a/3. Both reductions lose only a constant factor in the exponent.
+
+
+
+
+                                                        4
+5    The exact upper bound and ﬁnite checks
+Fix city 1, put Q = {2, . . . , N } and q = N − 1 ≥ 2. Create a directed acyclic graph with source s,
+sink t, and states (S, i) for nonempty S ⊆ Q, i ∈ S. Its arcs are
+                    s → ({i}, i),   (S, i) → (S ∪ {j}, j) (j ∈ Q \ S),   (Q, i) → t.
+Label these arcs by edges {1, i}, {i, j}, {i, 1}, respectively. There are 2 + q2q−1 vertices and
+                                       mN = 2q + q(q − 1)2q−2
+arcs, counting the middle arcs by ordered i ̸= j and the 2q−2 choices of S containing i but excluding
+j. A source-to-sink path lists a permutation of Q; its labels form a tour, and every tour has two
+such orientations. Nonnegative unit ﬂows are precisely convex combinations of these paths: follow
+positive arcs, use conservation to reach t, subtract the path’s minimum positive ﬂow, and repeat.
+Each step removes an arc from positive support. A residual circulation is impossible in an acyclic
+graph, and the extracted coeﬃcients sum to one. The edge-label sum projection therefore gives
+exactly PTSP (N ). Embed the arc variables as the diagonal of X ∈ Sm      N
+                                                                        + , imposing zero oﬀ-diagonal
+entries and the ﬂow conservation equations. PSD is equivalent to nonnegativity of the diagonal
+variables, proving the upper bound in Theorem 1. This is the standard subset-state dynamic-
+programming formulation, often associated with Held–Karp [7]; the explicit count and projection
+above do not depend on a complexity-theoretic assumption.
+    The accompanying exact graph checks enumerate matching pairs for n = 2, 4, 6, 8 and verify
+both gadgets, tour connectedness, every matching’s preimage, and the small ambient faces. Padding
+checks enumerate old tours and path-face tours, including m = 3. Independent checks verify
+subset-state paths and the upper-bound arc count. The number of connected ordered matching
+pairs is 1, 6, 120, 5040, respectively. Negative controls reject disconnected subtours and the missing
+diagonal-one constraints. These ﬁnite checks catch implementation and construction errors; they
+do not prove an asymptotic lower bound.
+
+Validation and limitations. The pinned source is adc7f1241b42e322a6451854ab7e4b4c
+146bf78a. Mathematical audits examined its local trace contraction, invariant eigenspace mul-
+tiplicity, orthogonal splitting, product Fourier smoothing, parity functional, normalization, and
+truncation argument. Supplemental checks use exact rational local-channel identities and ﬁnite
+matrix experiments; they are not formal proofs. The release’s lean/docs/126.md and actual
+MatchingPSD/Main.lean, AffineLift.lean state superpolynomial growth, not the exponential
+input; their full Lean builds were not reproduced for this note. Neither this theorem nor the expo-
+nential input is claimed to be Lean-veriﬁed. The source manuscript date is October 5; the inspected
+repository records indicate public release on October 6, 2026. Priority and correction searches are
+recorded separately in the package.
+    The theorem concerns exact real lifts. It makes no assertion about approximate relaxations, a
+particular SDP hierarchy, coeﬃcient bit complexity, arbitrary TSP algorithms, or P versus NP. No
+complex-cone or stable-set extension is asserted here.
+
+Research disclosure and rights. AI tools were used extensively in research, drafting, compu-
+tation and adversarial veriﬁcation. Automated reviews are not conventional human peer review;
+this preprint has not undergone conventional human refereeing at publication. The external model-
+produced matching work is attributed to OpenAI according to its manuscript citation. Newly
+authored prose and documentation are licensed CC BY 4.0, and veriﬁcation code is MIT licensed.
+No aﬃliations or additional authors are claimed.
+
+                                                   5
+References
+[1] OpenAI. Exponential PSD rank of positively shifted matching matrices. OpenAI Math Release
+    preprint, manuscript dated October 5, 2026. Pinned manuscript and source.
+
+[2] M. Yannakakis. Expressing combinatorial optimization problems by linear programs. J. Comput.
+    System Sci. 43(3) (1991), 441–466. doi:10.1016/0022-0000(91)90024-Y.
+
+[3] T. Rothvoß. The matching polytope has exponential extension complexity. J. ACM 64(6) (2017),
+    Article 41. arXiv:1311.2369v4.
+
+[4] J. Gouveia, P. A. Parrilo and R. R. Thomas. Lifts of convex sets and cone factorizations. Math.
+    Oper. Res. 38(2) (2013), 248–264. arXiv:1111.3164.
+
+[5] J. R. Lee, P. Raghavendra and D. Steurer. Lower bounds on the size of semideﬁnite programming
+    relaxations. STOC 2015, 567–576. arXiv:1411.6317.
+
+[6] T. Lee, A. Prakash, R. de Wolf and H. Yuen. On the sum-of-squares degree of symmet-
+    ric quadratic functions. CCC 2016, LIPIcs 50, Article 17. doi:10.4230/LIPIcs.CCC.2016.17;
+    arXiv:1601.02311.
+
+[7] M. Held and R. M. Karp. A dynamic programming approach to sequencing problems. J. Soc.
+    Indust. Appl. Math. 10(1) (1962), 196–210. doi:10.1137/0110015.
+
+
+
+
+                                                6
+

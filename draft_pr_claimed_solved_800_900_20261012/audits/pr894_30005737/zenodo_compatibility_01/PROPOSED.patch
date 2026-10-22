@@ -1,0 +1,101 @@
+--- a/zenodo_deposit_tool/zenodo.py
++++ b/zenodo_deposit_tool/zenodo.py
+@@ -340,14 +340,22 @@
+                           and actual == {**wanted, "affiliation": None}))
+                     for wanted, actual in zip(value, remote_value))
+         )
++        # The legacy API omits an explicitly empty related-identifiers list.
++        # Accept absence only, never null, lost nonempty links, or other fields.
++        empty_related_identifiers_omitted = (
++            key == "related_identifiers" and type(value) is list and not value
++            and key not in remote_metadata
++        )
+         if remote_value != value and not (escaped_plain_text or paragraph_apostrophes
+-                                         or creator_null_affiliation):
++                                         or creator_null_affiliation
++                                         or empty_related_identifiers_omitted):
+             raise DepositError(f"Remote metadata differs at '{key}'; inspect the draft")
+         if remote_value != value:
+             normalizations.append({"field": key, "kind": (
+                 "plain_text_html_entities" if escaped_plain_text
+                 else "paragraph_apostrophes_u2019_to_ascii" if paragraph_apostrophes
+-                else "omitted_creator_affiliation_to_null")})
++                else "omitted_creator_affiliation_to_null" if creator_null_affiliation
++                else "empty_related_identifiers_omitted")})
+     remote_files = server_files(deposit)
+     expected = {f["name"] for f in files}
+     if set(remote_files) != expected:
+--- a/zenodo_deposit_tool/test_zenodo.py
++++ b/zenodo_deposit_tool/test_zenodo.py
+@@ -212,6 +212,60 @@
+                 with self.assertRaisesRegex(zenodo.DepositError, "metadata differs"):
+                     self.call("publish", 123)
+                 self.assertEqual(self.client.publishes, 0)
++
++    def test_empty_related_identifiers_omission_preserves_manifest_and_one_publish(self):
++        self.metadata["related_identifiers"] = []
++        self.write_manifest()
++        original = self.manifest.read_bytes()
++        original_get = self.client.get
++
++        def server_omits_empty_list(deposit_id):
++            record = original_get(deposit_id)
++            if record["metadata"].get("related_identifiers") == []:
++                record["metadata"].pop("related_identifiers")
++            return record
++
++        expected = [{"field": "related_identifiers",
++                     "kind": "empty_related_identifiers_omitted"}]
++        with patch.object(self.client, "get", side_effect=server_omits_empty_list):
++            self.assertEqual(self.call("stage")["metadata_normalizations"], expected)
++            self.assertEqual(self.call("inspect")["metadata_normalizations"], expected)
++            self.assertEqual(self.call("publish", 123)["metadata_normalizations"], expected)
++            self.call("publish", 123)
++        self.assertEqual((self.client.creates, self.client.uploads,
++                          self.client.publishes), (1, 1, 1))
++        self.assertEqual(self.manifest.read_bytes(), original)
++
++    def test_empty_related_omission_exception_rejects_loss_null_and_other_types(self):
++        cases = [
++            ([], None), ([], ""), ([], {}), ([], False), ([], 0),
++            ([], [{"identifier": "https://example.org/code", "relation": "cites"}]),
++        ]
++        for wanted, actual in cases:
++            with self.subTest(wanted=wanted, actual=actual):
++                with self.assertRaises(zenodo.DepositError):
++                    zenodo.verify({"metadata": {"related_identifiers": actual},
++                                   "files": []},
++                                  {"related_identifiers": wanted}, [])
++        for wanted in (None, "", {}, False, 0, (),
++                       [{"identifier": "https://example.org/code", "relation": "cites"}]):
++            with self.subTest(missing_for=wanted):
++                if wanted is None:
++                    # Exact None equality is preexisting behavior, not this exception.
++                    continue
++                with self.assertRaises(zenodo.DepositError):
++                    zenodo.verify({"metadata": {}, "files": []},
++                                  {"related_identifiers": wanted}, [])
++
++    def test_empty_related_exception_keeps_other_metadata_and_assets_strict(self):
++        for key in ("keywords", "references", "creators", "title", "description"):
++            with self.subTest(missing_other_field=key):
++                with self.assertRaises(zenodo.DepositError):
++                    zenodo.verify({"metadata": {}, "files": []}, {key: []}, [])
++        with self.assertRaisesRegex(zenodo.DepositError, "file list"):
++            zenodo.verify({"metadata": {}, "files": []},
++                          {"related_identifiers": []},
++                          [{"name": "paper.pdf", "size": 1, "md5": "a" * 32}])
+ 
+     def test_published_retry_is_read_only_but_still_checks_id_and_manifest(self):
+         self.call("stage")
+--- a/zenodo_deposit_tool/README.md
++++ b/zenodo_deposit_tool/README.md
+@@ -34,7 +34,7 @@
+ 
+ After a publication request, the tool fetches the deposition again and checks its ID, submitted state, metadata and files before reporting success. It saves a publication receipt in the existing ignored state file before checking the DOI resolver. Output includes `doi`, `doi_url`, `record_url`, and a separate `doi_resolution.status`: `resolved`, `not_resolved` (HTTP 404), `unavailable` (other lookup failures), `not_assigned`, or `not_checked`. A DOI lookup failure does not undo or invalidate confirmed publication. `inspect --check-doi` is a read-only way to recheck it later; plain `inspect` skips the resolver.
+ 
+-Metadata fields must match exactly, with narrow representation exceptions. For plain text without HTML markup or existing character references, Zenodo may encode `&`, `<`, and `>` as HTML entities. For a description consisting solely of plain `<p>...</p>` paragraphs, Zenodo may change every U+2019 curly apostrophe to its ASCII counterpart. In the creators list, the deposition API may add `affiliation: null` when that optional field was omitted; only this exact addition is accepted, preserving all supplied author fields and list order. The verifier reports accepted transformations in `metadata_normalizations`. It rejects substantive text changes, changed author details, extra creator fields, empty-string affiliations, reordered authors, stripped tags, altered attributes, double-encoded entities and other punctuation or field changes. The local manifest and supplied metadata remain unchanged.
++Metadata fields must match exactly, with narrow representation exceptions. For plain text without HTML markup or existing character references, Zenodo may encode `&`, `<`, and `>` as HTML entities. For a description consisting solely of plain `<p>...</p>` paragraphs, Zenodo may change every U+2019 curly apostrophe to its ASCII counterpart. In the creators list, the deposition API may add `affiliation: null` when that optional field was omitted; only this exact addition is accepted, preserving all supplied author fields and list order. The verifier reports accepted transformations in `metadata_normalizations`. It rejects substantive text changes, changed author details, extra creator fields, empty-string affiliations, reordered authors, stripped tags, altered attributes, double-encoded entities and other punctuation or field changes. The legacy API may also omit a supplied empty related_identifiers list. Only actual absence of that field is accepted for an intended JSON empty list; explicit null, lost nonempty links, and omissions of other fields remain errors. This storage equivalence is reported as empty_related_identifiers_omitted. The local manifest and supplied metadata remain unchanged.
+ 
+ If the publication response is lost, the tool attempts one read-back, never an automatic second publication request. If it confirms publication, it returns the verified receipt. Otherwise it reports the outcome as unconfirmed and directs you to `inspect`. Repeating `publish` with the same confirmation ID returns an already-published record without another POST, provided its metadata and files still match. If local receipt writing fails, output still reports confirmed publication with `receipt_saved: false` and a recovery warning; retain that output and use `inspect` after fixing local storage.
+ 

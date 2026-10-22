@@ -1,0 +1,262 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\meet}{\wedge}
+\newcommand{\dotop}{\mathbin{\cdot}}
+\title{Semibrace existence on meet-semilattices:\\
+an attributed classification}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{17 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give a self-contained verification of the two existence questions in
+Dietzel's Problem~3, under the axioms printed in Oberwolfach Report~9/2023.
+Every nonempty meet-semilattice admits the printed semibrace structure.
+A simultaneous semibrace and \(L\)-algebra structure exists exactly when the
+semilattice has a greatest element; in every such structure the two orders
+coincide. The operation used for sufficiency is exactly the operation of
+Castiglioni and San Mart\'in, arXiv:1611.09589v1 (2016), Example~3.5(4).
+This note records an attributed verification and deduction of the full
+historical existence answer, without a claim of a new solution, operation,
+proof mechanism, or priority. We distinguish a separate convention requiring
+the distinguished element to be a meet identity.
+\end{abstract}
+
+\section{The printed questions and their conventions}
+
+Let \((X,\meet)\) be a meet-semilattice: \(\meet\) is associative,
+commutative, and idempotent. Write \(x\leq y\) when \(x\meet y=x\).
+We allow the empty carrier solely to state the boundary case explicitly.
+Dietzel's Definition~2 and Problem~3 \cite[p.~545]{Dietzel} ask for a
+point \(e\in X\) and a binary operation \(\dotop\) satisfying, for all
+\(x,y,z\in X\),
+\begin{align}
+x\dotop(y\meet z)&=(x\dotop y)\meet(x\dotop z), \tag{S1}\label{S1}\\
+e\dotop x&=x, \tag{S2}\label{S2}\\
+(x\meet y)\dotop z&=(x\dotop y)\dotop(x\dotop z), \tag{S3}\label{S3}\\
+x\dotop e&=e. \tag{S4}\label{S4}
+\end{align}
+The semilattice footnote on the preceding page specifies the three meet
+laws above; no meet identity is included in Definition~2.
+The second question requires the same structure also to be an
+\(L\)-algebra. In addition to \eqref{S2} and \eqref{S4}, Definition~1
+\cite[p.~544]{Dietzel} requires
+\begin{align}
+x\dotop x&=e, \tag{L1}\label{L1}\\
+(x\dotop y)\dotop(x\dotop z)&=(y\dotop x)\dotop(y\dotop z), \tag{L2}\label{L2}\\
+x\dotop y=e=y\dotop x&\quad\Longleftrightarrow\quad x=y. \tag{L3}\label{L3}
+\end{align}
+Equation~\eqref{L2} is the cycloid identity.
+
+There is a relevant difference of source conventions. Definition~3.1 in
+Dietzel, Mench\'on, and Vendramin \cite{Enumeration} first requires
+\((X,\meet,e)\) to be a commutative monoid and then imposes the same four
+equations. On a meet-semilattice this adds \(x\meet e=x\), equivalently that
+\(e\) is greatest. We keep these printed definitions separate. This
+comparison does not assert which additional axioms an author may have
+intended.
+
+\begin{theorem}\label{main}
+For the workshop definition \eqref{S1}--\eqref{S4}:
+\begin{enumerate}
+\item A meet-semilattice admits a semibrace structure if and only if it is
+nonempty. Every prescribed point \(e\in X\) is allowed.
+\item A meet-semilattice admits a simultaneous semibrace and \(L\)-algebra
+structure if and only if it has a greatest element. For a prescribed point
+\(e\), this is possible exactly when \(e\) is that greatest element. In
+every simultaneous structure,
+\[
+x\meet y=x\quad\Longleftrightarrow\quad x\dotop y=e.
+\]
+\end{enumerate}
+\end{theorem}
+
+The sufficient operation for the second assertion is the historical formula
+\begin{equation}\label{construction}
+x\dotop y=
+\begin{cases}
+e,&x\leq y,\\
+x\meet y,&x\not\leq y.
+\end{cases}
+\end{equation}
+It appears, with \(1\) in place of \(e\), in Castiglioni and San Mart\'in
+\cite[p.~7, Example~3.5(4)]{CastiglioniPreprint}. Their term
+\emph{bounded semilattice} means one with a greatest element
+\cite[p.~2]{CastiglioniPreprint}. The following verification uses that
+inspected 2016 text for the attribution of the operation. The later,
+retitled publication is listed separately in \cite{CastiglioniPublished};
+its publication metadata are distinct from the versioned text inspected
+here.
+
+\section{Proof of the existence classification}
+
+For the first assertion, on a nonempty \(X\) with any point \(e\), set
+\(x\dotop y=y\). Both sides of \eqref{S1} are \(y\meet z\), and both sides of
+\eqref{S3} are \(z\); \eqref{S2} and \eqref{S4} are immediate. An empty set
+has no point \(e\). This projection is an \(L\)-algebra only on a singleton,
+since its diagonal is \(x\dotop x=x\).
+
+\medskip
+\noindent\emph{Necessity for the simultaneous structure.}
+Suppose all the displayed axioms hold. Fix \(x\) and put \(a=x\meet e\).
+Twice applying \eqref{S3} gives
+\[
+a\dotop x=(x\dotop e)\dotop(x\dotop x)=e\dotop e=e,
+\qquad
+a\dotop a=(x\dotop e)\dotop(x\dotop a)=x\dotop a.
+\]
+By \eqref{L1}, \(a\dotop a=e\), so \(x\dotop a=e=a\dotop x\).
+Separation \eqref{L3} yields \(a=x\). Thus \(x\meet e=x\) for every \(x\);
+\(e\) is greatest.
+
+The order equality follows by equally local substitutions. If \(x\meet y=x\),
+then \eqref{S3} with \(z=y\), followed by \eqref{L1}, gives
+\[
+x\dotop y=(x\dotop y)\dotop(x\dotop y)=e.
+\]
+Conversely, suppose \(x\dotop y=e\) and put \(a=x\meet y\). Now
+\[
+a\dotop x=(x\dotop y)\dotop(x\dotop x)=e,
+\qquad
+a\dotop a=(x\dotop y)\dotop(x\dotop a)=x\dotop a.
+\]
+The diagonal and separation again imply \(a=x\). No injectivity of an
+individual left translation is used.
+
+\medskip
+\noindent\emph{Sufficiency.}
+Let \(e\) be greatest and define \(\dotop\) by \eqref{construction}.
+Since \(x\leq x,e\), the diagonal and \eqref{S4} hold.
+If \(y=e\), then \(e\dotop y=e=y\); otherwise \(e\not\leq y\) and
+\(e\dotop y=e\meet y=y\). This proves \eqref{S2}.
+In the second branch of \eqref{construction}, \(x\meet y=e\) would force
+\(x=y=e\), contrary to \(x\not\leq y\). Hence
+\[
+x\dotop y=e\quad\Longleftrightarrow\quad x\leq y.
+\]
+Antisymmetry of the meet order proves \eqref{L3}.
+
+To prove meet preservation \eqref{S1}, use
+\(x\leq y\meet z\) if and only if \(x\leq y\) and \(x\leq z\).
+The four exhaustive cases give the following common values for its two
+sides:
+\[
+\begin{array}{c|c|c}
+x\leq y&x\leq z&\text{common value}\\ \hline
+\text{yes}&\text{yes}&e\\
+\text{yes}&\text{no}&x\meet z\\
+\text{no}&\text{yes}&x\meet y\\
+\text{no}&\text{no}&x\meet y\meet z
+\end{array}
+\]
+For example, in the second row the left side is
+\(x\meet y\meet z=x\meet z\), while the right side is
+\(e\meet(x\meet z)=x\meet z\). The third row is its symmetric counterpart;
+the first and fourth follow directly from the formula and the meet laws.
+
+For \eqref{S3}, if \(x\leq y\), its right side is
+\(e\dotop(x\dotop z)=x\dotop z=(x\meet y)\dotop z\).
+Otherwise put \(a=x\meet y\); then \(x\dotop y=a\).
+If \(x\leq z\), both \(a\dotop z\) and \(a\dotop(x\dotop z)=a\dotop e\)
+are \(e\). If \(x\not\leq z\), put \(b=x\meet z\), so \(x\dotop z=b\).
+Because \(a\leq x\), we have
+\[
+a\leq b\quad\Longleftrightarrow\quad a\leq z.
+\]
+When these conditions hold, \(a\dotop b=a\dotop z=e\).
+When they fail, \(a\dotop b=a\meet b=a\meet z=a\dotop z\).
+Thus \eqref{S3} holds in every branch. Finally, commutativity of meet gives
+\[
+(x\dotop y)\dotop(x\dotop z)
+=(x\meet y)\dotop z
+=(y\meet x)\dotop z
+=(y\dotop x)\dotop(y\dotop z),
+\]
+which is \eqref{L2}. This proves Theorem~\ref{main}.
+
+\begin{corollary}
+If the semibrace definition additionally requires \(e\) to be a meet
+identity, both existence questions have exactly the meet-semilattices with
+a greatest element as their answer.
+\end{corollary}
+\begin{proof}
+A meet identity is a greatest element. When it exists, projection proves
+the first existence assertion and \eqref{construction} proves the second.
+\end{proof}
+
+\section{Boundary cases, scope, and status}
+
+The singleton satisfies both questions, with its unique point and operation.
+The empty carrier satisfies neither pointed existence question.
+No finiteness, least element, joins, completeness, or distributivity is
+assumed. For example, \(\mathbb Z_{\leq0}\) with meet given by minimum has
+greatest element \(0\) and no least element, and \eqref{construction}
+applies. It also applies to the nondistributive five-element diamond
+\(M_3\). The proof uses only binary meets, their elementary order laws, and
+the greatest element.
+
+The formula with \(y\), rather than \(x\meet y\), in its second branch is
+a different operation, displayed in Dietzel's Problem~10
+\cite[p.~546]{Dietzel}. It must not be substituted for
+\eqref{construction}: in the Boolean square with distinct atoms \(a,b\),
+it gives \(a\dotop(a\meet b)=0\), but
+\((a\dotop a)\meet(a\dotop b)=e\meet b=b\).
+This concerns meet preservation and does not dispute the separate
+\(L\)-algebra assertion made there.
+
+Theorem~\ref{main} classifies the semilattices admitting at least one
+multiplication; it does not classify all compatible multiplications.
+It makes no assertion of self-similarity or of a structure involving a
+group operation. It answers the historical existence questions under the
+explicit printed axioms. No assertion is made about current worldwide
+openness, independent discovery, a first combined statement, or historical
+priority for the deduction or its proof.
+
+\paragraph{Preparation and verification disclosure.}
+AI tools were used extensively in solving, reconstructing, checking,
+prose and code preparation, and literature work leading to this note.
+The manuscript is unrefereed. No external human review or formal
+certification is claimed. The mathematical argument is the explicit
+proof above, rather than a finite computation or a review label.
+
+\begin{thebibliography}{9}
+\bibitem{Dietzel}
+C.~Dietzel, \emph{Some problems on \(L\)-algebras}, in
+\emph{Mini-Workshop: Skew Braces and the Yang--Baxter Equation},
+Oberwolfach Report 9/2023, pp.~544--547.
+\href{https://ems.press/content/serial-article-files/47003}{Official EMS report};
+\href{https://doi.org/10.4171/OWR/2023/9}{doi:10.4171/OWR/2023/9}.
+
+\bibitem{Enumeration}
+C.~Dietzel, P.~Mench\'on, and L.~Vendramin,
+\emph{On the enumeration of finite \(L\)-algebras},
+\href{https://arxiv.org/abs/2206.04955v4}{arXiv:2206.04955v4},
+2 July 2023, Definition~3.1, p.~5.
+
+\bibitem{CastiglioniPreprint}
+J.~L.~Castiglioni and H.~J.~San Mart\'in,
+\emph{On a symmetrization of hemiimplicative semilattices},
+\href{https://arxiv.org/abs/1611.09589v1}{arXiv:1611.09589v1},
+29 November 2016, pp.~2 and~7, Example~3.5(4).
+
+\bibitem{CastiglioniPublished}
+J.~L.~Castiglioni and H.~J.~San Mart\'in,
+\emph{\(\ell\)-Hemi-Implicative Semilattices},
+Studia Logica \textbf{106} (2018), 675--690.
+\href{https://doi.org/10.1007/s11225-017-9759-3}{doi:10.1007/s11225-017-9759-3}.
+Published online 3 October 2017. Retitled publication of the preceding
+preprint; only the versioned preprint body is used for the formula
+attribution in this note.
+\end{thebibliography}
+\end{document}

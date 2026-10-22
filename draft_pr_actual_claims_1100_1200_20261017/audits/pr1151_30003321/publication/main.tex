@@ -1,0 +1,463 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Initial omnific models of discrete initial surreal groups},pdfauthor={Alec Kriebel},pdfsubject={An answer to the discrete initial group question of Kaplan and Ehrlich},pdfkeywords={surreal numbers, initial subgroup, omnific integers, Hahn series}}
+\newcommand{\No}{\mathbf{No}}
+\newcommand{\Oz}{\mathbf{Oz}}
+\newcommand{\D}{\mathbb{Z}[1/2]}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Initial omnific models of discrete initial surreal groups}
+\author{Alec Kriebel\\\small Independent researcher\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{17 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Every discrete initial ordered additive subgroup of the surreal numbers is
+order-group-isomorphic to a subgroup of the omnific integers that is initial
+in the surreal numbers. This holds for sets and proper classes in NBG with
+global choice and answers the discrete-group question posed by Kaplan and
+Ehrlich. An explicit operation on ordinal-length sign sequences moves the
+least exponent to zero without creating a right-simplicity-predecessor
+obligation. Relabeling the actual normal-form supports and normalizing
+only the bottom coefficient group then gives the required image.
+An appendix supplies a detailed sufficiency proof of the initial-group
+characterization used in the argument, addressing support exhaustion and
+the legality of limit-cut options.
+\end{abstract}
+
+\section{Question, conventions and established inputs}
+An \emph{initial} subclass of $\No$ contains every proper sign-sequence
+prefix of each of its members. This is closure under simplicity, not
+numerical convexity. We write $u\prec_s v$ for a proper prefix,
+$u\preceq_s v$ when equality is also allowed,
+$P(v)=\{u:u\prec_s v\}$, and
+$R_s(v)=\{u\in P(v):u>v\}$. All orders and group operations are inherited
+from $\No$. A nontrivial ordered group is \emph{discrete} if it has a least
+positive element; the zero group is treated separately.
+
+The following is the full additive-group question, with no multiplicative
+closure hypothesis.
+\begin{theorem}\label{main}
+Let $G\subseteq\No$ be a discrete initial ordered additive subgroup.
+There is an order-group isomorphism $T:G\longrightarrow H$, where
+$H\subseteq\Oz$ is initial in $\No$. The assertion holds when $G$ is a set
+and when it is a proper class. The zero group also has the stated property.
+\end{theorem}
+The target occurs in Kaplan's April 2015 honors thesis
+\cite[\S7.1, Question 1, p.~47]{thesis}, in his joint-work contribution
+with Ehrlich \cite[Question 1, p.~3356]{owr}, and in Ehrlich--Kaplan
+\cite[Question 9.1 in the author version]{ek}.
+The numbering in arXiv:1512.04001v1 is Question 2.
+The isomorphism in Theorem~\ref{main} is not required to preserve simplicity.
+
+We work in NBG with global choice, as in \cite{ek}. Every surreal has a
+unique normal form
+\[
+ x=\sum_{\mu<\lambda}r_\mu\omega^{y_\mu},
+ \qquad r_\mu\in\R\setminus\{0\},\quad y_\mu\text{ strictly decreasing},
+\]
+with set ordinal $\lambda$; zero has empty support. Addition is
+coefficientwise and order is determined by the leading nonzero coefficient.
+All coefficient products below are real scalings of monomials.
+We identify groups with their \emph{canonical} normal-form images,
+not with an arbitrarily chosen abstract Hahn representation.
+We use these established results of \cite{ek}:
+\begin{enumerate}
+\item The canonical normal-form correspondence is an ordered-group
+isomorphism (Proposition 3.3).
+\item A nonzero initial subgroup of $\R$ is either $2^{-n}\Z$ for
+$n\in\mathbb{N}_0$, or contains $\D$ (Lemma 5.1).
+\item A nonzero additive subgroup $A$ of normal forms is initial precisely
+when it is truncation closed and cross sectional over an initial exponent
+class $\Gamma$, its pure coefficient groups
+\[
+ R_y=\{r\in\R:r\omega^y\in A\}
+\]
+are initial in $\R$, and $\D\subseteq R_y$ whenever
+$x,y\in\Gamma$ and $y\in R_s(x)$ (Theorem 5.1).
+Here cross sectional means $\omega^y\in A$ for every $y\in\Gamma$.
+\item A normal form lies in $\Oz$ precisely when its exponents are
+nonnegative and its coefficient at zero, if present, is integral
+(\S6.2).
+\end{enumerate}
+For truncation-closed groups, every coefficient occurring in an actual
+series belongs to its pure coefficient group: subtract its two adjacent
+truncations, using the full series as the later truncation at a last term.
+The exponent class is therefore exactly the class of occurring exponents
+when the group is also cross sectional.
+The appendix checks the sufficiency direction in item 3 without
+a bounded-support assumption or fractional options outside the group.
+The underlying standard normal-form and monomial-cut facts remain
+explicit inputs.
+
+\section{An exponent map with the required prefix control}
+\begin{lemma}\label{bottom}
+If $G$ is nontrivial, discrete and initial, its exponent class $\Gamma$
+has minimum $m=-\alpha$ for a set ordinal $\alpha$, and
+$R_m=2^{-n}\Z$ for some $n\in\mathbb{N}_0$.
+Its least positive element is $2^{-n}\omega^m$.
+\end{lemma}
+\begin{proof}
+Let $g>0$ be least, with leading term $r\omega^m$, $r>0$.
+Truncation closure puts this term and the residual tail in $G$.
+A nonzero tail has absolute value strictly between zero and $g$,
+a contradiction. Thus $g=r\omega^m$.
+The group $R_m$ has least positive element $r$, so item 2 gives
+$R_m=2^{-n}\Z$ and $r=2^{-n}$.
+If $y\in\Gamma$ were below $m$, cross sectionality would give
+$0<\omega^y<g$. Hence $m=\min\Gamma$.
+A plus sign in $m$ would make the prefix before that sign a member of
+$\Gamma$ strictly below $m$. Thus $m$ is the all-minus sequence
+$(-)^\alpha$, namely $-\alpha$.
+\end{proof}
+The least-positive-element form is already present in
+\cite[Proposition 5.2]{ek}; the negative-ordinal minimum observation
+also appears in \cite[Lemma 3.2]{adh}. The proof records their
+precise role here.
+
+Concatenation of sign sequences is denoted by juxtaposition, and $e$
+is the empty sequence. Concatenation is the ordered sum of blocks;
+no cancellation of ordinal lengths is intended.
+\begin{lemma}\label{rotation}
+Let $\Gamma$ be initial with minimum $a=(-)^\alpha$.
+There is a strictly increasing map $f:\Gamma\to\No$ such that
+$\Delta=f[\Gamma]$ is initial, $\min\Delta=0$, and
+\begin{equation}\label{right}
+ f(y)\in R_s(f(x))\quad\Longrightarrow\quad y\in R_s(x).
+\end{equation}
+\end{lemma}
+\begin{proof}
+In fact the formula is defined on the full ray $s\ge a$:
+\begin{equation}\label{formula}
+ f(s)=
+ \begin{cases}
+ e,&s=a,\\
+ (+)s,&s>a\text{ and }a\text{ is not a prefix of }s,\\
+ (+)at,&s=a(+)t.
+ \end{cases}
+\end{equation}
+The cases exhaust the ray because an extension of $a$ above $a$ has
+a plus as its next sign. Call the second case A and the third B.
+
+Within each case, replacement of a common prefix preserves and reflects
+order and proper-prefix relations. For a case-A sequence $s$ and a
+case-B sequence $u$, either $s=(-)^\beta$ with $\beta<\alpha$, or
+$s$ first deviates from $a$ by a plus at a position $\beta<\alpha$.
+In the former case $s>u$ and $s\prec_s u$; its image is likewise a
+proper prefix above $f(u)$, whose next sign is minus. In the latter
+case $s>u$, with no prefix comparability, and the same first-deviation
+comparison holds after the common prepended plus. These alternatives
+also rule out collisions between the two cases.
+Thus $f$ is strictly increasing and, away from $a$, preserves and reflects
+proper prefixes. Its value at $a$ is zero and all other images are positive.
+
+For every $s>a$ we have the exact identity
+\begin{equation}\label{prefix}
+ P(f(s))=\{e\}\ \cup\ \{f(v):v\in P(s),\ v\ne a\}.
+\end{equation}
+For case A, strip the initial plus. For case B, the proper prefixes of
+$(+)at$ are exactly $e$, the sequences $(+)(-)^\beta$ with
+$\beta<\alpha$, and $(+)av$ with $v$ a proper prefix of $t$.
+They are respectively $f(a)$, $f((-)^\beta)$, and $f(a(+)v)$.
+When $t=e$, the last family is empty: $(+)a$ is the complete image,
+not an additional proper prefix.
+Equation~\eqref{prefix} and initiality of $\Gamma$ give initiality of
+$\Delta$. Finally, a right predecessor in $\Delta$ cannot be zero,
+since zero is its minimum. Prefix reflection away from $a$ and
+strict monotonicity give \eqref{right}.
+\end{proof}
+The argument treats arbitrary ordinal lengths. For instance
+$1+\alpha=\alpha$ can hold at a limit, but the ordered-block prefix
+partition in the proof is unchanged. The full-ray inverse is explicit:
+$h(e)=a$, and, for $z=(+)v$, set $h(z)=a(+)t$ if $v=at$,
+and $h(z)=v$ otherwise. The two compositions are the identity.
+For $\alpha=0$, \eqref{formula} is the identity on nonnegative surreals.
+No completion of $\Gamma$ or transfinite class recursion is used.
+
+\section{Transport of the actual subgroup}
+\begin{proof}[Proof of Theorem~\ref{main}]
+The zero group uses the identity. For a nonzero group take $m,n,f$ from
+Lemmas~\ref{bottom} and~\ref{rotation}. Set $c_m=2^n$ and $c_y=1$ for $y\ne m$.
+Define
+\begin{equation}\label{transport}
+ T\left(\sum_{\mu<\lambda}r_\mu\omega^{y_\mu}\right)
+    =\sum_{\mu<\lambda}c_{y_\mu}r_\mu\omega^{f(y_\mu)}.
+\end{equation}
+The support on the right is a set, with the same reverse well-order type
+as the original. Thus it is a normal form of a surreal.
+Positive fixed scalings and injective increasing exponent relabeling make
+$T$ additive, injective and order preserving. Set $H=T[G]$.
+This is exactly the image of the actual group; no full Hahn group is added.
+
+Its exponent class is $\Delta$, and truncation closure follows because
+corresponding truncations commute with $T$.
+For $y\ne m$, $T(\omega^y)=\omega^{f(y)}$; at the bottom,
+$T(2^{-n}\omega^m)=1$. Hence $H$ is cross sectional.
+A one-term image has a one-term preimage, so its pure coefficient groups
+are exactly
+\begin{equation}\label{coeff}
+ R'_0=\Z,\qquad R'_{f(y)}=R_y\quad(y\ne m).
+\end{equation}
+They are initial. If $f(y)\in R_s(f(x))$, then $y\in R_s(x)$ by
+\eqref{right}, and $y\ne m$. Thus $\D\subseteq R_y=R'_{f(y)}$.
+Every hypothesis of the initial-group characterization holds, and $H$
+is initial in $\No$. Its exponents are nonnegative. By truncation
+closure, every occurring zero coefficient belongs to $R'_0=\Z$.
+The omnific criterion therefore gives $H\subseteq\Oz$.
+
+For a proper class $G$, the parameters $\alpha,n$ are still sets.
+The explicit formula \eqref{formula} defines a class function, and
+class replacement sends each individual support to a set.
+Equation~\eqref{transport} defines $T$ and its image class by elementary
+comprehension. Every group calculation uses finitely many set supports.
+The characterization applies to classes as justified in the appendix.
+There is no proper-class support, class-sized sum, or stronger
+class-recursion assumption.
+\end{proof}
+
+\section{Attribution, verification and limits}
+Exponent relabeling and positive coefficient scaling are established
+Hahn-group mechanisms; an explicit later account is
+\cite[Proposition 3.9 and Construction 3.10]{kks}.
+General order/simplicity substructures and partition constructions
+\cite{bvh} do not by themselves guarantee the additive compatibility and
+initial-image property needed here. The specific bridge proved above is
+the sign operation \eqref{formula}, its right-prefix control, and its use
+in the actual subgroup. No claim of first discovery of the general
+transport machinery is made.
+
+The source package records extensive bounded primary-source priority
+searches by the author and three internal AI review approaches.
+No earlier explicitly recorded full solution was located in the inspected
+accessible material. This is not a certificate of novelty, firstness,
+causal independence or continued global openness.
+Some publisher versions were not authenticated against the author/arXiv
+versions. Material unread fulltext leads include Ehrlich's 2024 handbook
+chapter \cite{handbook}, the full 2001 predecessor and other access-limited
+works specified in the priority ledger. Only the 2024 chapter's primary
+abstract and references were read; no absence claim is made about its
+unread contents.
+
+The portable verification program checks finite sign trees, prefix
+identities, right-predecessor implications, rational finite-support
+additivity and bottom normalization. Ordinary and optimized runs compare
+the full expected output. Four altered constructions fail computed
+properties in each mode. These finite diagnostics do not establish
+the ordinal-length or proper-class theorem, which is proved above.
+Historical reports mention unavailable earlier programs; those are not
+represented as reproduced by this package.
+
+AI tools were used extensively in developing, writing, researching,
+reproducing and adversarially checking this work. Three initial full
+mathematical approaches and a further focused dependency reconstruction
+were internally reviewed; exact exposure histories and source-reading
+limits are recorded in the package. This preprint is unrefereed.
+Internal AI reviews are not external human peer review, journal
+acceptance or formal proof-assistant certification.
+
+\appendix
+\section{A detailed proof of the initial-group sufficiency criterion}
+\label{appendix}
+This appendix proves the sufficiency assertion used above. The
+characterization is credited to \cite[Theorem 5.1]{ek}, not claimed as new.
+In the inspected author proof two literal steps require care:
+the union of bounded exponent stages need not exhaust cofinal supports,
+and dyadic perturbations of a series need not belong to the given
+coefficient groups. The proof below avoids both steps. This concerns
+proof presentation, not a counterexample to the theorem.
+
+\begin{proposition}\label{suff}
+Let $A$ be a truncation-closed, cross-sectional additive subgroup
+of normal forms over an initial exponent class $\Gamma$.
+Suppose every $R_y$ is initial in $\R$ and
+$\D\subseteq R_y$ for $y\in R_s(x)$, $x,y\in\Gamma$.
+Then the corresponding subgroup of $\No$ is initial.
+\end{proposition}
+We use standard recursive addition and negation, the simplicity theorem,
+normal-form uniqueness and comparison, the monomial cut
+\begin{equation}\label{leadercut}
+ \omega^y=\{\,0,\ k\omega^{y^L}\mid 2^{-k}\omega^{y^R}\,\},
+\end{equation}
+where $k=1,2,\ldots$, $y^L\in P(y)$ with $y^L<y$, and $y^R\in R_s(y)$,
+the pure-multiple cuts of \cite[Lemma 3.1(ii)--(iii)]{ek}, and the usual
+infinite limit-series cut of \cite[Proposition 3.2(iii)]{ek}.
+These normal-form facts, and the real-coefficient classification, are
+imports; this appendix does not rederive all foundational surreal theory.
+
+\subsection{Initial sums and adjoining a cut}
+If $q=\{L\mid R\}$ and $z\prec_s q$, then $z$ is a prefix of or equal to
+an option on its side. Indeed, if $z<q$ and every $l\in L$ were below
+$z$, then $L<z<R$, contrary to simplicity of $q$. Thus
+$z\le l<q$ for some $l\in L$. A sign sequence lying between a sequence
+and one of its extensions must extend the shorter sequence, by the
+first differing sign comparison. Consequently $z\preceq_s l$.
+For $z>q$ use a member $r\in R$ with $q<r\le z$.
+In particular, if all options belong to an initial set $M$, all proper
+prefixes of $q$ belong to $M$.
+
+If $S,U$ are initial sets, then $S+U$ is initial. For each pair $(s,u)$,
+induct on the natural (Hessenberg) sum of their ordinal birthdays.
+Every recursive addition option $s^L+u$, $s+u^L$, $s^R+u$ or $s+u^R$
+has a smaller operand measure. It belongs to $S+U$ and, by induction,
+so do all its prefixes. The preceding option-covering argument for the
+defining cut of $s+u$ now puts all prefixes of $s+u$ in $S+U$.
+The induction is on operand birthdays, not on the birthday of the sum.
+
+Negation reverses all signs and preserves prefixes. Hence the additive
+subgroup generated by any initial set containing zero is initial:
+take finite sums of its union with its negative, and then their union.
+It follows that, for an initial set-sized subgroup $M$ and a surreal
+$b$ simplest between sets of options from $M$, the group $M+\Z b$
+is initial. This directly supplies the additive adjunction needed here;
+no general module-adjunction theorem is assumed.
+If desired, when $b\notin M$, its small options extend to the partition
+$M_{<b},M_{>b}$: $b$ realizes it, and any realization of the full partition
+realizes the small cut, so $b$ is still simplest.
+
+\subsection{Finite-support elements first}
+First suppose $\Gamma=E$ is a set. Then $A$ is a set, since all its series
+are encoded in the set of real-coefficient functions on subsets of $E$.
+Well order $E$ by nondecreasing exponent birthday, breaking ties by choice.
+All proper prefixes of an exponent precede it.
+Starting with $\{0\}$, build initial subgroups by adjoining actual pure terms.
+
+At exponent $y$, first adjoin $\omega^y$ if necessary.
+All options in \eqref{leadercut} are in the previously generated group:
+earlier exponent monomials give the left options, and
+$\D\subseteq R_{y^R}$ gives the right ones.
+The additive adjunction proves initiality and supplies all integer
+multiples. Next adjoin the noninteger $r\omega^y$, $r\in R_y$,
+in nondecreasing real birthday. Initiality of $R_y$ puts its real
+predecessors in $R_y$; their multiples have already appeared
+(integer multiples are already present).
+For nondyadic $r$, or noninteger dyadic $r$ with no left prefix of $y$,
+the pure cut uses just $r^L\omega^y$ and $r^R\omega^y$.
+In the other noninteger dyadic case its options are
+\[
+ r^L\omega^y+k\omega^{y^L},\qquad
+ r^R\omega^y-k\omega^{y^L},
+\]
+with $k\in\mathbb N_0$ and $y^L$ a left prefix of $y$.
+They too are in the preceding group.
+The pure-multiple cut and adjunction apply in every case.
+At limits take unions. The resulting initial subgroup $F$ is exactly
+the additive subgroup generated by all pure terms of $A$.
+It contains every finite-support member of $A$, and only elements of $A$.
+
+\subsection{Legal cuts for all actual limit-length supports}
+Let $x=\sum_{\mu<\lambda}r_\mu\omega^{y_\mu}\in A$, with $\lambda$ an
+infinite limit ordinal, and set
+$s_\eta=\sum_{\mu<\eta}r_\mu\omega^{y_\mu}$.
+For $\mu<\lambda$ put
+\begin{equation}\label{unitcuts}
+ l_\mu=s_{\mu+1}-\omega^{y_\mu},\qquad
+ u_\mu=s_{\mu+1}+\omega^{y_\mu}.
+\end{equation}
+These are in $A$, by truncation closure and cross sectionality, and
+$l_\mu<x<u_\mu$ by leading-coefficient comparison.
+They use integer, not dyadic, perturbations.
+
+They define $x$ as their simplest separator. Indeed, for any $\mu<\lambda$
+and $k\ge1$, choose $\nu$ with $\mu<\nu<\lambda$. Normal-form comparison
+gives
+\begin{equation}\label{cofinal}
+ s_{\mu+1}-2^{-k}\omega^{y_\mu}
+ <l_\nu<x<u_\nu<
+ s_{\mu+1}+2^{-k}\omega^{y_\mu}.
+\end{equation}
+Thus any separator of all the unit options is a separator of the standard
+limit-series cut, whose simplest element is $x$.
+As $x$ itself separates the unit options, it is their simplest separator.
+We do not assert that every option is itself a prefix of $x$.
+
+Well order all actual members of $A$ of infinite limit support length,
+first by that length and then arbitrarily within each length.
+Start from $F$ and adjoin them successively. At the stage for $x$ of
+length $\lambda$, every member of $A$ of smaller support length is already
+present. To see this, every ordinal $\rho$ is uniquely $\delta+j$,
+where $j<\omega$ and $\delta$ is zero or a limit ordinal.
+A series of length $\rho$ is its $\delta$-prefix, if nonempty, plus
+$j$ pure terms. Its infinite-limit prefix was adjoined at a smaller
+length, or it is already finite. Each option in \eqref{unitcuts} has
+length at most $\mu+1<\lambda$, so belongs to the previous subgroup.
+Adjunction applies. At limit stages take unions.
+The same $\delta+j$ decomposition proves that the resulting initial
+group is all of $A$. This includes supports cofinal in the entire
+exponent enumeration; no bounded-stage union is used.
+
+\subsection{Class exponents via actual set restrictions}
+For an arbitrary exponent class and $x\in A$, its support $S$ is a set.
+Let
+\[
+ E=\bigcup_{y\in S}\bigl(\{y\}\cup P(y)\bigr),
+ \qquad A_E=\{b\in A:\supp(b)\subseteq E\}.
+\]
+For $x=0$, one may take $E=\varnothing$.
+Replacement and union make $E$ a set, and initiality of $\Gamma$ makes
+$E$ initial and contained in $\Gamma$. The group $A_E$ is a set, as
+a subclass of the set of all real-coefficient series over $E$.
+It inherits truncation closure, cross sectionality, the \emph{same}
+pure coefficient groups at each $y\in E$, and the right-prefix condition.
+The set proof makes $A_E$ initial. Since $x\in A_E$, every prefix of $x$
+is in $A_E\subseteq A$. This proves Proposition~\ref{suff} for classes.
+There is no class-sized cut or class enumeration.
+
+For completeness, necessity uses the normal-form predecessor properties
+of \cite[Proposition 3.2(i)--(ii), Lemma 3.1(i),(iv)]{ek}:
+initiality gives truncation closure and initiality of the occurring
+exponent class; subtraction of adjacent truncations isolates pure terms,
+whose simpler leaders are present. It makes each $R_y$ initial and puts
+$2^{-k}\omega^y$ in the group whenever $y\in R_s(x)$ and $\omega^x$ is
+present. Additive closure gives $\D\subseteq R_y$.
+These are the same explicit foundational imports as above.
+
+\begin{thebibliography}{9}
+\bibitem{thesis}
+E.~Kaplan, \emph{Initial Embeddings in the Surreal Number Tree},
+B.Sc.\ honors thesis, Ohio University, April 2015, \S7.1, p.~47.
+\href{https://etd.ohiolink.edu/acprod/odb_etd/ws/send_file/send?accession=ouhonors1429615758&disposition=inline}{OhioLINK institutional full text}.
+\bibitem{owr}
+E.~Kaplan (joint work with P.~Ehrlich), Number systems with simplicity
+hierarchies, in \emph{Surreal Numbers, Surreal Analysis, Hahn Fields and
+Derivations}, Oberwolfach Reports 60/2016, Question 1, p.~3356
+in the inspected EMS PDF (PDF p.~44).
+\href{https://doi.org/10.4171/OWR/2016/60}{doi:10.4171/OWR/2016/60}.
+\bibitem{ek}
+P.~Ehrlich and E.~Kaplan, Number systems with simplicity hierarchies:
+a generalization of Conway's theory of surreal numbers II,
+\emph{J. Symbolic Logic} \textbf{83} (2018), 617--633.
+\href{https://doi.org/10.1017/jsl.2017.9}{doi:10.1017/jsl.2017.9}.
+Numbered statements here refer to the
+\href{https://elliotakaplan.github.io/Number_systems_with_simplicity_hierarchies_II.pdf}{inspected 16-page author PDF};
+the publisher body was not authenticated.
+\href{https://arxiv.org/abs/1512.04001v1}{arXiv:1512.04001v1} is an earlier version.
+\bibitem{adh}
+M.~Aschenbrenner, L.~van den Dries and J.~van der Hoeven,
+The surreal numbers as a universal $H$-field,
+\emph{J. Eur. Math. Soc.} \textbf{21} (2019), 1179--1199.
+Inspected \href{https://arxiv.org/abs/1512.02267v3}{arXiv:1512.02267v3}
+(2016), Lemma 3.2, p.~11.
+\bibitem{kks}
+E.~Kaplan, L.~S.~Krapp and M.~Serra,
+Decomposing the automorphism group of the surreal numbers,
+\href{https://arxiv.org/abs/2509.22374v3}{arXiv:2509.22374v3}
+(2026; first version 2025), Proposition 3.9 and Construction 3.10.
+\bibitem{bvh}
+V.~Bagayoko and J.~van der Hoeven, Surreal substructures,
+\href{https://arxiv.org/abs/2305.02001}{arXiv:2305.02001} (2023).
+Also inspected the author PDF dated 16 April 2022;
+Theorem 6.7 and Proposition 7.1 are nearby general constructions.
+\bibitem{handbook}
+P.~Ehrlich, The absolute arithmetic continuum and its geometric
+counterpart, in \emph{Handbook of the History and Philosophy of
+Mathematical Practice} (2024), 1677--1718.
+\href{https://doi.org/10.1007/978-3-031-40846-5_54}{doi:10.1007/978-3-031-40846-5\_54}.
+Primary abstract and references only; full chapter unread.
+\end{thebibliography}
+\end{document}

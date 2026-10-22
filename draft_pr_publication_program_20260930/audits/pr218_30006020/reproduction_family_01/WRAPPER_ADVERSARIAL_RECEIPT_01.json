@@ -1,0 +1,77 @@
+{
+  "utc": "2026-10-18T01:16:53.114257+00:00",
+  "tests": [
+    {
+      "name": "python39",
+      "command": [
+        "/Users/alec/Documents/Math/.venv/bin/python",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr218_30006020/reproduction_family_01/exact_public_zip_01/verification/run_checks.py"
+      ],
+      "returncode": 0,
+      "assertions": 7100,
+      "environment_delta": {}
+    },
+    {
+      "name": "optimize_environment",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr218_30006020/reproduction_family_01/exact_public_zip_01/verification/run_checks.py"
+      ],
+      "returncode": 0,
+      "assertions": 7100,
+      "environment_delta": {
+        "PYTHONOPTIMIZE": "2"
+      }
+    },
+    {
+      "name": "altered_control",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr218_30006020/reproduction_family_01/wrapper_adversarial_01/altered_control/run_checks.py"
+      ],
+      "returncode": 1,
+      "stderr": "FAIL: Size mismatch: controls/author_exact.py",
+      "rejected_as_expected": true
+    },
+    {
+      "name": "altered_expected",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr218_30006020/reproduction_family_01/wrapper_adversarial_01/altered_expected/run_checks.py"
+      ],
+      "returncode": 1,
+      "stderr": "FAIL: Size mismatch: expected/author_exact.json",
+      "rejected_as_expected": true
+    },
+    {
+      "name": "manifest_traversal",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr218_30006020/reproduction_family_01/wrapper_adversarial_01/manifest_traversal/run_checks.py"
+      ],
+      "returncode": 1,
+      "stderr": "FAIL: Path outside package: ../out_of_package",
+      "rejected_as_expected": true
+    },
+    {
+      "name": "manifest_duplicate",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr218_30006020/reproduction_family_01/wrapper_adversarial_01/manifest_duplicate/run_checks.py"
+      ],
+      "returncode": 1,
+      "stderr": "FAIL: Duplicate manifest entry: CLAIM_AND_EVIDENCE_MAP.md",
+      "rejected_as_expected": true
+    }
+  ]
+}

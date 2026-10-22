@@ -1,0 +1,350 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{1em}
+\hypersetup{pdftitle={Three anti-invariant classes on a nonintegrable four-manifold},
+ pdfauthor={Alec Kriebel},pdfsubject={A counterexample to the anti-invariant integrability conjecture}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\title{Three anti-invariant classes on a\\ nonintegrable four-manifold}
+\author{Alec Kriebel\\
+ \small Independent researcher\\
+ \small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 16, 2026 \quad Version 1.0}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We construct smooth nonintegrable almost complex structures on the product
+of a genus-two curve and an elliptic curve with at least three independent
+real anti-invariant de Rham classes. The structures converge smoothly to the
+product complex structure and equal it outside one coordinate ball.
+The construction gives a negative answer to the unrestricted integrability
+conjecture of Draghici--Li--Zhang. The separate generic-vanishing statement is
+a prior theorem of Tan--Wang--Zhang--Zhu.
+\end{abstract}
+
+\section{Statement and context}
+For an almost complex structure $J$ on a closed smooth four-manifold $M$, set
+\[
+ H_J^-=\{[\alpha]\in H^2_{\mathrm{dR}}(M;\R):
+          \dd\alpha=0,\ \alpha(JX,JY)=-\alpha(X,Y)\},\qquad
+ h_J^-=\dim_\R H_J^- .
+\]
+These groups and their cohomological setting are due to Li--Zhang and
+Draghici--Li--Zhang \cite{LZ,DLZ08,DLZ}.
+An early exact existence question appears in \cite[Question 3.27]{DLZ08}.
+Conjecture 2.5 of \cite{DLZ} asserts that $h_J^-\geq3$ forces integrability.
+It is repeated in Tomassini's contribution to Report 33/2020
+\cite[p.~1687]{OWR}; the report's bibliographic year is 2020 and its EMS
+publication date is September 14, 2021.
+
+\begin{theorem}\label{thm}
+Let $\Sigma$ be the smooth compact completion of $y^2=z^6-1$, let
+$E=\C/(\Z+i\Z)$, and let $J_0$ be the product complex structure on
+$M=\Sigma\times E$. There exist $\varepsilon_0>0$ and a smooth family
+$J_\varepsilon$, $|\varepsilon|<\varepsilon_0$, such that
+\begin{enumerate}
+\item $J_\varepsilon=J_0$ outside a fixed coordinate ball and
+      $J_\varepsilon\longrightarrow J_0$ in $C^\infty$;
+\item three fixed linearly independent classes in $H^2_{\mathrm{dR}}(M;\R)$
+      have closed $J_\varepsilon$-anti-invariant representatives;
+\item $J_\varepsilon$ is nonintegrable whenever $\varepsilon\ne0$.
+\end{enumerate}
+In particular, $h_{J_\varepsilon}^-\geq3$ for $\varepsilon\ne0$.
+\end{theorem}
+
+The other conjecture in the source concerns generic vanishing. Tan, Wang,
+Zhang and Zhu proved that $h_J^-=0$ is open and dense in the $C^\infty$
+topology on all smooth almost complex structures on a closed four-manifold
+\cite[Theorem 1.1]{TWZZ}. The special family above does not contradict
+that theorem. We compute a lower bound, not the exact value of $h_J^-$.
+
+\section{Construction and proof}
+The polynomial $z^6-1$ has six simple roots. Its compact double cover of
+$\mathbb{CP}^1$ is connected and has genus two by Riemann--Hurwitz.
+The differentials
+\[
+ \eta_0=\frac{\dd z}{y},\qquad \eta_1=\frac{z\,\dd z}{y}
+\]
+extend holomorphically and are linearly independent. At a finite branch
+point, $y$ is a coordinate and $\dd z/y=\dd y/(3z^5)$ has no pole.
+At either point over infinity put $s=1/z$, $q=y/z^3$; then
+$q^2=1-s^6$ and
+\[
+ \eta_0=-\frac{s\,\dd s}{q},\qquad \eta_1=-\frac{\dd s}{q}.
+\]
+Let $\dd w$ denote the global holomorphic one-form on $E$, and define
+\[
+ \Omega_j=\eta_j\wedge\dd w,\qquad
+ \alpha=\Rea\Omega_0,\quad \beta=\Ima\Omega_0,\quad
+ \gamma=\Rea\Omega_1 .
+\]
+These are closed and $J_0$-anti-invariant.
+
+Their real cohomology classes are independent. Indeed, for real $a,b,c$,
+put $H=(a-ib)\Omega_0+c\Omega_1$ and $F=\Rea H$.
+Then $F=a\alpha+b\beta+c\gamma$ and
+$F^2=\tfrac12 H\wedge\overline H$ is nonnegative in the complex orientation,
+and positive wherever $H\ne0$. If $F$ were exact, Stokes' theorem would give
+$\int_M F^2=0$, so $H=0$. Independence of $\eta_0,\eta_1$ gives $a=b=c=0$.
+
+\paragraph{The simultaneous local model.}
+Near $(z,y,w)=(0,i,0)$ choose the holomorphic branch $y=y(z)$ and a local
+lift of $w$. The coordinates
+\[
+ \zeta=z,\qquad \xi=\frac{w}{y(z)}
+\]
+have nonzero Jacobian and satisfy
+$\Omega_0=\dd\zeta\wedge\dd\xi$ and $\Omega_1=\zeta\Omega_0$.
+Writing $\zeta=u+iv$ and $\xi=x+it$, we obtain
+\begin{equation}\label{normal}
+ \alpha=\dd u\wedge\dd x-\dd v\wedge\dd t,\qquad
+ \beta=\dd u\wedge\dd t+\dd v\wedge\dd x,\qquad
+ \gamma=u\alpha-v\beta .
+\end{equation}
+Here $t$ is a coordinate, and $\varepsilon$ is the deformation parameter.
+Choose a relatively compact coordinate ball $B$ about the origin and a
+smooth real cutoff $\rho\in C_c^\infty(B)$ equal to one near the origin.
+Set
+\[
+ R=\frac{\varepsilon}{2}\rho x^2.
+\]
+The one-forms $R\,\dd v$ and $Rv\,\dd v$ extend smoothly by zero to $M$.
+Define global closed forms
+\begin{equation}\label{perturb}
+ \alpha_\varepsilon=\alpha,\qquad
+ \beta_\varepsilon=\beta+\dd(R\,\dd v),\qquad
+ \gamma_\varepsilon=\gamma-\dd(Rv\,\dd v).
+\end{equation}
+Their cohomology classes are the three original independent classes.
+The identity $\dd(Rv\,\dd v)=v\,\dd(R\,\dd v)$ holds for the full cutoff,
+not only where $\rho=1$. Consequently,
+\begin{equation}\label{third}
+ \gamma_\varepsilon=u\alpha-v\beta_\varepsilon\quad\hbox{on }B .
+\end{equation}
+This simultaneous retention of the third closed class is the key relation.
+
+\paragraph{Realizing the anti-invariant plane.}
+Put $\vol=\dd u\wedge\dd v\wedge\dd x\wedge\dd t$. Subscripts on $R$
+denote partial derivatives. Direct expansion gives
+\[
+ \beta_\varepsilon
+ =\dd u\wedge\dd t+(1-R_x)\dd v\wedge\dd x
+     -R_t\dd v\wedge\dd t+R_u\dd u\wedge\dd v,
+\]
+and hence
+\begin{equation}\label{gram}
+ \alpha^2=2\vol,\qquad
+ \alpha\wedge\beta_\varepsilon=R_t\vol,\qquad
+ \beta_\varepsilon^2=2(1-R_x)\vol .
+\end{equation}
+For sufficiently small $|\varepsilon|$ we have uniformly
+$|R_x|\leq1/4$, $|R_t|\leq1$; these bounds follow because $\rho$ is fixed
+and compactly supported. Thus
+\[
+ s=\frac{R_t}{2},\qquad D=1-R_x-\frac{R_t^2}{4}\geq\frac12 .
+\]
+Define on $B$
+\[
+ B_\varepsilon=\frac{\beta_\varepsilon-s\alpha}{\sqrt D},\qquad
+ \Psi_\varepsilon=\alpha+iB_\varepsilon .
+\]
+Equation \eqref{gram} implies
+\begin{equation}\label{volume}
+ \Psi_\varepsilon^2=0,\qquad
+ \Psi_\varepsilon\wedge\overline{\Psi_\varepsilon}=4\vol .
+\end{equation}
+In a complex vector space of dimension four a nonzero two-form with square
+zero has rank two and is decomposable. Its contraction kernel therefore
+has complex dimension two. The second identity in \eqref{volume} says that
+this kernel and its conjugate are complementary. Declaring
+\[
+ T^{0,1}_{J_\varepsilon}
+  =\{Z\in TM\otimes\C:\iota_Z\Psi_\varepsilon=0\}
+\]
+therefore defines a smooth real almost complex structure on $B$.
+It agrees with $J_0$ at $\varepsilon=0$. This is the usual positive
+two-plane description of an almost complex structure in dimension four
+\cite{Donaldson}; the preceding kernel argument supplies the needed
+realization directly.
+
+On a collar of $\partial B$, all jets of $R$ vanish, so that
+$s=0$, $D=1$, $\Psi_\varepsilon=\Omega_0$ and $J_\varepsilon=J_0$.
+Extend $J_\varepsilon$ by $J_0$ outside $B$. The extension is smooth.
+The fixed compact support and the uniform positive denominator imply
+$J_\varepsilon\to J_0$ in every finite smooth norm, hence in $C^\infty$.
+Zeros of $\Omega_0$ elsewhere on $M$ cause no difficulty: the kernel
+construction is used only on $B$, where $\Omega_0$ is nonzero.
+
+On $B$, $\alpha$ and $\beta_\varepsilon$ are real combinations of the real
+and imaginary parts of $\Psi_\varepsilon$, so they are $J_\varepsilon$-anti-invariant.
+Equation \eqref{third} gives the same conclusion for $\gamma_\varepsilon$.
+Outside $B$ they are the original $J_0$-anti-invariant forms.
+Equation \eqref{perturb} now proves the claimed three independent classes.
+
+\paragraph{Nonintegrability.}
+Where $\rho=1$ put $k=1-\varepsilon x>0$ and $k'=\partial_x k=-\varepsilon$.
+There
+\[
+ \Psi_\varepsilon
+  =(\dd u+i\sqrt{k}\,\dd v)\wedge
+       (\dd x+i k^{-1/2}\dd t)=\phi_1\wedge\phi_2 .
+\]
+Thus $(\phi_1,\phi_2)$ is a $(1,0)$ coframe, and
+\begin{equation}\label{nonint}
+ \dd\phi_1=\frac{i k'}{2\sqrt{k}}\,\dd x\wedge\dd v,\qquad
+ \dd\phi_1\wedge\phi_1\wedge\phi_2=\frac{k'}{2k}\vol .
+\end{equation}
+The last expression is nonzero for $\varepsilon\ne0$. For an integrable
+structure, the differential of a $(1,0)$ form has no $(0,2)$ component, so
+its wedge with a $(2,0)$ form vanishes in complex dimension two.
+Equation \eqref{nonint} proves nonintegrability and completes the proof
+of Theorem \ref{thm}.
+
+\section{Comparison and limits}
+The two-plane realization and closed-pair framework are established
+ingredients \cite{Donaldson,BK}; the third-class identity \eqref{third}
+is the specific step used here. Three independent cohomology classes do
+not mean three pointwise independent two-forms: on $B$ their representatives
+span a real plane, with the variable coefficients in \eqref{third}.
+
+Two distinctions explain why familiar integrability criteria do not obstruct
+this construction. First, on the core of $B$,
+\[
+ B_\varepsilon=k^{-1/2}\dd u\wedge\dd t+\sqrt{k}\,\dd v\wedge\dd x,\qquad
+ \dd B_\varepsilon=-\frac{k'}{2k^{3/2}}\dd x\wedge\dd u\wedge\dd t\ne0 .
+\]
+A closed real pair need not remain closed after variable normalization.
+In particular, $\Psi_\varepsilon$ is not a closed complex symplectic form;
+the closed normalized-pair criterion \cite[Theorem 6]{BK} is inapplicable.
+Second, on this core $J_0\partial_u=\partial_v$ whereas
+$J_\varepsilon\partial_u=k^{-1/2}\partial_v$. A positive metric compatible
+with both would give $g_{uu}=g_{vv}=k^{-1}g_{vv}$, impossible where
+$k\ne1$. Thus no common compatible metric with this product $J_0$ exists.
+No compatibility with a fixed symplectic form, spatial analyticity or exact
+value of $h_{J_\varepsilon}^-$ is asserted.
+
+Earlier compact four-dimensional nonintegrable examples attain $h_J^-=2$
+\cite{DLZ,HT}. Hind--Tomassini's final arXiv version
+\cite[Proposition 4.2]{HT} distinguishes this compact case from its
+noncompact and real-six-dimensional larger examples; localized deformation
+alone is consequently not a new ingredient.
+Chen--Zhang's accepted manuscripts, I, \S6.3 \cite{CZI}, and II, \S5.1
+\cite{CZII}, give closely related nonintegrable products $T^2\times S$. Their computed
+plurigenera are different from the real closed anti-invariant cohomology
+used here, and II explicitly leaves the latter calculation for those models
+as an interesting question. We do not claim that no further argument about
+those older models could supply such classes.
+
+A bounded literature audit through October 16, 2026 found no verified earlier
+qualifying counterexample. It does not establish firstness, novelty, present
+openness or exhaustive absence. The supplementary audit records actual
+reading and access limits: some journal-final comparisons were unavailable;
+Chen--Zhang accepted versions were read; only selected author-uploaded
+passages of the 2012 DLZ survey were accessible; and Geiges's 1996 paper
+remained a bibliographic lead. Withdrawn claims \cite{LU,TWold} are not
+used as theorems. These historical limits do not enter the explicit proof.
+
+\paragraph{Verification and disclosures.}
+AI tools were used extensively in the construction, drafting, literature
+search, symbolic computations and adversarial checking. This research note
+is unrefereed; no independent human peer review or formal verification is
+claimed. The accompanying source and verification package preserves the
+submitted proof and checks, independent audit reports and reproducible finite
+algebra. Its integrity and computation checks do not replace the global
+argument or certify historical priority. The author is responsible for the
+content. This note is released under
+\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.
+
+\begin{thebibliography}{99}\small
+\bibitem{LZ}
+T.-J. Li and W. Zhang, Comparing tamed and compatible symplectic cones and
+cohomological properties of almost complex manifolds,
+\emph{Comm. Anal. Geom.} 17 (2009), 651--683.
+\href{https://arxiv.org/abs/0708.2520}{arXiv:0708.2520}.
+
+\bibitem{DLZ08}
+T. Draghici, T.-J. Li and W. Zhang, Symplectic forms and cohomology
+decomposition of almost complex 4-manifolds,
+\href{https://arxiv.org/abs/0812.3680v1}{arXiv:0812.3680v1} (2008),
+Question 3.27. A shortened version appeared in
+\emph{Int. Math. Res. Not.} 2010, 1--17,
+\href{https://doi.org/10.1093/imrn/rnp113}{doi:10.1093/imrn/rnp113};
+the question number refers to v1.
+
+\bibitem{DLZ}
+T. Draghici, T.-J. Li and W. Zhang, On the $J$-anti-invariant cohomology of
+almost complex 4-manifolds, \emph{Quart. J. Math.} 64 (2013), 83--111,
+\href{https://doi.org/10.1093/qmath/har034}{doi:10.1093/qmath/har034}.
+Also \href{https://arxiv.org/abs/1104.2511v1}{arXiv:1104.2511v1}.
+
+\bibitem{OWR}
+A. Tomassini (joint work with R.~K. Hind), On the cohomology of almost complex
+manifolds, in \emph{Mini-Workshop: Almost Complex Geometry},
+Report 33/2020, \emph{Oberwolfach Rep.} 17 (2020), 1686--1689;
+published September 14, 2021,
+\href{https://doi.org/10.4171/OWR/2020/33}{doi:10.4171/OWR/2020/33}.
+
+\bibitem{TWZZ}
+Q. Tan, H. Wang, Y. Zhang and P. Zhu, On cohomology of almost complex
+4-manifolds, \emph{J. Geom. Anal.} 25 (2015), 1431--1443,
+\href{https://doi.org/10.1007/s12220-014-9477-2}{doi:10.1007/s12220-014-9477-2}.
+Also \href{https://arxiv.org/abs/1112.0768v3}{arXiv:1112.0768v3}.
+
+\bibitem{Donaldson}
+S.~K. Donaldson, Two-forms on four-manifolds and elliptic equations, in
+\emph{Inspired by S.~S. Chern}, Nankai Tracts Math. 11 (2006), 153--172.
+\href{https://arxiv.org/abs/math/0607083v1}{arXiv:math/0607083v1}.
+
+\bibitem{BK}
+G. Bande and D. Kotschick, The geometry of recursion operators,
+\emph{Comm. Math. Phys.} 280 (2008), 737--749,
+\href{https://doi.org/10.1007/s00220-008-0477-6}{doi:10.1007/s00220-008-0477-6}.
+Also \href{https://arxiv.org/abs/math/0703348v2}{arXiv:math/0703348v2}.
+
+\bibitem{HT}
+R. Hind and A. Tomassini, On the anti-invariant cohomology of almost complex
+manifolds, \emph{J. Geom. Anal.} 31 (2021), 4906--4922,
+\href{https://doi.org/10.1007/s12220-020-00461-8}{doi:10.1007/s12220-020-00461-8}.
+Numbering and comparisons here use
+\href{https://arxiv.org/abs/1908.03016v3}{arXiv:1908.03016v3} (2020).
+
+\bibitem{CZI}
+H. Chen and W. Zhang, Kodaira dimensions of almost complex manifolds I,
+\emph{Amer. J. Math.} 145 (2023), 477--514,
+\href{https://doi.org/10.1353/ajm.2023.0011}{doi:10.1353/ajm.2023.0011}.
+Comparisons use the
+\href{https://wrap.warwick.ac.uk/id/eprint/164863/1/WRAP-Kodaira-dimensions-almost-complex-manifolds-I-Zhang-2022.pdf}{accepted manuscript},
+\S6.3; see also
+\href{https://arxiv.org/abs/1808.00885v2}{arXiv:1808.00885v2}.
+
+\bibitem{CZII}
+H. Chen and W. Zhang, Kodaira dimensions of almost complex manifolds II,
+\emph{Comm. Anal. Geom.} 32 (2024), 751--790,
+\href{https://doi.org/10.4310/CAG.241015030334}{doi:10.4310/CAG.241015030334}.
+Comparisons use the
+\href{https://wrap.warwick.ac.uk/id/eprint/163848/1/WRAP-Kodaira-dimensions-almost-complex-manifolds-II-Zhang-2022.pdf}{accepted manuscript},
+\S5.1; see also
+\href{https://arxiv.org/abs/2004.12825v1}{arXiv:2004.12825v1}.
+
+\bibitem{LU}
+M. Lejmi and M. Upmeier, An integrability theorem for almost-K\"ahler
+structures using $J$-anti-invariant two-forms on four-manifolds,
+\href{https://arxiv.org/abs/1507.00282}{arXiv:1507.00282},
+withdrawn version 2 (September 3, 2015); not used.
+
+\bibitem{TWold}
+Q. Tan, H. Wang, Y. Zhang and P. Zhu,
+Symplectic cohomology and the stability of $J$-anti-invariant cohomology,
+\href{https://arxiv.org/abs/1307.1513}{arXiv:1307.1513},
+withdrawn version 2 (November 13, 2014); not used.
+\end{thebibliography}
+\end{document}

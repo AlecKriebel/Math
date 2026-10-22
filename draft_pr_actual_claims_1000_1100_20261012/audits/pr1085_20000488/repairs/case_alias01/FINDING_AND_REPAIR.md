@@ -1,0 +1,7 @@
+# PR1085 static physical-case output-location repair
+
+The new P3 finding CASE-1085 reproduced fresh archive insertion below a physically identical uppercase kit-directory alias in ordinary and optimized Python. Canonical-spelling controls rejected the same location. Existing protected-input overwrite and mathematical error were not observed. The root scope adoption and subsequent terminal hold are exact authored evidence copies here.
+
+The repaired shared guard preserves its lexical, symlink, resolved-input and existing-hardlink checks. It additionally compares device/inode identity for each existing output ancestor against the kit root, including the existing ancestor above absent intermediate directories. This uses actual filesystem identity without assuming a lowercase normalization rule, and covers either script-root spelling direction. All four current writers call the guard before directory creation, output writes or compiler invocation. The scope remains static local files, without hostile concurrent-race promises.
+
+The paper, mathematics, credits, exact native metadata and historical accounting/seals remain unchanged. Two completed whole reviews are historical evidence. This new repair requires external root adoption and a NEW complete whole03 review before any clearance. All current readiness/publication flags remain false; services remain held after PR1032. No new paper compilation, render or authoring marker is asserted.

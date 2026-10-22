@@ -1,0 +1,102 @@
+# Independent mathematical audit: problem 30001478
+
+## Verdict
+
+**Accepted as a complete counterexample to both assertions as literally stated.** For the six-relation algebra, the homogeneous two-sided ideal
+
+\[
+I=(x_3-x_1,x_4-x_2)
+\]
+
+is nonzero, completely prime, and strictly smaller than the augmentation ideal. Its quotient is
+
+\[
+R/I\cong k\langle X,Y\rangle/(\beta X^2-XY+YX-\beta Y^2)
+\cong B(\mathbb P^1,\mathcal O(1),\sigma),
+\quad
+\sigma([s:t])=[s+\beta t:\beta s+t].
+\]
+
+This holds over any field, for arbitrary alpha and beta satisfying beta² != 1. In particular it applies to the algebraically independent parameters in the problem, in characteristic 2 as well. The resulting map is graded, unital, surjective, and has infinite-dimensional image of GK-dimension 2.
+
+No proof correction is required. The accompanying scope addendum explicitly separates the characteristic-free presentation result from the published article's fractional parameter change. The original author freeze is preserved byte-for-byte in `author/`; the addendum is separate.
+
+## 1. Independent source and hypothesis check
+
+The official 2010 report and the actual 2012 publisher PDF were freshly retrieved and inspected as rendered pages and text. Both six-relation displays agree with the frozen certificate, including generator indices and signs. The report's assertion concerns its generic presented algebra; the journal repeats the two conjectural claims after discussing generic R(tau). The surrounding discussion distinguishes the established obstruction to a common graded quotient ring from the stronger conjectures. Neither conjectural assertion states a minimum image GK-dimension, a surface-dimensional image, an injective map, or a birational map requirement.
+
+Sources and precise page locators:
+
+- S. J. Sierra, joint with D. Rogalski, *Birationally commutative projective surfaces of GK-dimension 4*, in Oberwolfach Report 22/2010, presentation p.1361 and conjectures p.1362. [Official report](https://ems.press/content/serial-article-files/46279).
+- D. Rogalski and S. J. Sierra, *Some projective surfaces of GK-dimension 4*, Compositio Mathematica 148 (2012), 1195–1237, conjectures p.1198 and presentation Theorem 3.5(2), p.1202. [Published article](https://doi.org/10.1112/S0010437X12000188).
+
+Hashes, byte counts, and inspection locations are recorded separately. A bounded search did not verify a published correction or resolution. This is not a claim of novelty, priority, or an exhaustive literature review.
+
+## 2. Quotient presentation and exact kernel
+
+Start in the free algebra on four generators. Quotienting by x3-x1 and x4-x2 identifies it with the free algebra on X,Y. The images of f1,...,f6 are exactly
+
+\[
+0,0,0,0,Q,Q,\qquad Q=\beta X^2-XY+YX-\beta Y^2.
+\]
+
+The quotient is therefore exactly A=k<X,Y>/(Q), rather than an algebra merely surjecting onto A. This elementary presentation operation does not require R to be a domain or noetherian, and does not specialize either parameter.
+
+## 3. Domain and normal forms: a second proof
+
+Use U=X-Y and V=Y, an invertible substitution in every characteristic. Direct expansion gives
+
+\[
+Q=\beta U^2+(\beta-1)UV+(\beta+1)VU.
+\]
+
+Because beta != -1, the relation can be written
+
+\[
+VU=qUV+rU^2,
+\quad q=(1-\beta)/(1+\beta),\quad r=-\beta/(1+\beta).
+\]
+
+Here q is nonzero because beta != 1. The rewriting rule decreases degree-lexicographic word order with V>U. Its leading word VU has no self-overlap: its proper nonempty prefix V differs from its suffix U. There are no inclusion ambiguities. Disjoint replacements commute by distributivity. Thus reduction is confluent and the irreducible words U^i V^j give a basis. Equivalently this is the Ore extension k[U][V;sigma0,delta], where sigma0(U)=qU and delta(U)=rU². For completeness the sigma0-derivation satisfies
+
+\[
+\delta(U^n)=r(1+q+\cdots+q^{n-1})U^{n+1}.
+\]
+
+The basis also proves the domain property directly. Write two nonzero elements as sums of p_j(U)V^j and h_j(U)V^j. If their greatest V-degrees are m,n, the product's coefficient of V^(m+n) is p_m(U) sigma0^m(h_n(U)), which is nonzero in k[U], since sigma0 is invertible. Lower V-degree terms cannot cancel it.
+
+In characteristic 2 the formula becomes VU=UV+[beta/(1+beta)]U². It is still valid; no division by 2 or diagonalization is used. This independently rules out a characteristic-2 PBW or domain defect.
+
+## 4. Verification of the geometric target
+
+Let S=k[s,t] and let theta(s)=s+beta*t, theta(t)=beta*s+t. Its determinant is 1-beta², so it is an automorphism. Give the graded vector space S the multiplication
+
+\[
+f\star g=f\theta^{\deg f}(g)
+\]
+
+on homogeneous elements and extend bilinearly. Associativity follows by expanding each bracketing as f theta^m(g) theta^(m+n)(h). The identity is 1. Highest-degree components show this algebra B is a domain, because S is a domain and theta is injective.
+
+The target is generated by s,t: the products of degree n elements with the two generators span S_n theta^n(S_1)=S_(n+1). The matrix displayed for sigma acts on points by the stated linear substitution, and its pullback on the coordinate forms is theta. There is no inverse substitution in the chosen convention. With the lift of sigma to O(1) supplied by that matrix, the ordinary section spaces H^0(P1,O(n)) carry precisely the displayed twisted product. Hence B is B(P1,O(1),sigma); O(1) is sigma-ample, since the tensor products of its successive pullbacks are O(n).
+
+Substitution into Q gives zero in B. Thus A maps surjectively onto B. Both degree-n pieces have dimension n+1, so this map is an isomorphism. The original proof's weaker normal-form spanning argument already suffices: it gives dim A_n <= n+1, and the surjection gives the reverse inequality. No unproved confluence assumption is hidden in that argument.
+
+The quotient has Hilbert series (1-z)^(-2). For its degree-one generating space with 1 adjoined, the dimension through degree n is (n+1)(n+2)/2. Therefore its GK-dimension is exactly 2.
+
+## 5. Prime ideal and nontriviality
+
+The defining ideal of R is generated in degree 2. Its degree-one component is zero, so x1,x2,x3,x4 are linearly independent in R_1. In particular x3-x1 is a nonzero element of I. The ideal is homogeneous and two-sided by construction.
+
+The quotient is a nonzero domain, so I is completely prime, which is stronger than being prime among homogeneous two-sided ideals. It lies in R_+, and x1 does not lie in I because its image is s != 0. Hence 0 != I is strictly contained in R_+. The quotient map also cannot be dismissed as an augmentation, a point target, or a finite-dimensional image: its target has projective dimension one, degree-n section dimension n+1, and nonzero positive-degree elements in every degree.
+
+This refutes both printed assertions. It says nothing about an embedding of R, equality of graded quotient rings, or classification of all primes.
+
+## 6. Computational audit and limitations
+
+The fresh extraction reproduces all 47 named author controls. Normal, optimized, and relocated runs agree. The author's negative controls include rehashed semantic mutations, six-relation signs, generator images, the twisting matrix, word order, and strict inventory violations.
+
+An independently written verifier imports no author code. It reconstructs the source relation tensors, performs exact computations over Z[alpha,beta] in a free algebra, verifies the twisting substitution and the characteristic-free change of variables, and tests the inverse-lift and untwisted-target mistakes. It also verifies the singular beta=±1 factorizations, confirming that the excluded boundary genuinely matters.
+
+As a separate finite check, it computes relation-ideal ranks and twisted-image ranks in every degree 0–8, including both admissible non-prime-field choices of beta in GF(4), and cases over GF(5) and GF(7). Every quotient and target dimension is n+1; all generated relation consequences vanish. These finite checks support the audit. The universal conclusions rest on the mathematical arguments above, not extrapolation from tests.
+
+The entire author archive and corpus file hashes were independently recomputed. The full default-serialized review pair has 5,124 bytes and matches its expected SHA-256. No dataset contents, third-party PDFs or extracts, or private coordination material are included in this package.

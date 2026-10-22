@@ -1,0 +1,13 @@
+# Algebra falsifier review log
+
+2026-10-16T16:13:13.887148+00:00 — Authenticated all 33 original files against SHA256, bytes, git blob, tree mode, and disk mode. No candidate or previous review content read. Source record copied into private 0700 directory, file 0600. Route review 10%; mathematical goal remains unadjudicated.
+
+2026-10-16T16:14:23.356230+00:00 — Saved and reread independent initial attack before candidate intake. Mechanism: first Taylor jets of rank evaluations must be affine; conditional cubic Casimir/Casson obstruction requires primary normalization verification. Route review 25%; algebraic obstruction development 70%.
+
+2026-10-16T16:16:00.314756+00:00 — Candidate proof read after independent attack saved/reread. Primary PDFs fetched privately; seven relevant pages rendered, and the controlling first-coefficient formula, original conjecture, and Taylor bridge visually inspected. Source formula confirms c1=n(n^2-1) lambda_C for integral homology spheres. The source example has c1(sl2)=-6, hence c1(sl3)=-24. No algebraic gap found so far. Route review 65%; literal-disproof verification 85%.
+
+2026-10-16T16:20:50.117023+00:00 — Independent exact controls passed: 15,625 first jets, 560 higher jets, 50 Casimir basis identities, 200 monic divisions over a zero-divisor ring, nine Poincare summands and boundary controls. Added higher-jet theorem and a separate matrix-unit derivation of the theta-weight ratio four. No old reviews or author code used. Route review 95%; literal disproof verification 100% relative to cited topology inputs.
+
+2026-10-16T16:20:50.117029+00:00 — Retrieval probe preserved: the web tool first rejected the old Gatech author alias, while direct HTTPS followed its canonical redirect; the canonical URL worked. No checker harness attempt failed. A mechanical attempt to reproduce the supplied prior-review identity from ordinary JSON reserializations found no match; only the provided review_hash identity field is asserted, and no prior-report contents were semantically read. The exact statement hash and entire private source-record hash are independently recorded.
+
+2026-10-16T16:20:50.117033+00:00 — Final reauthentication again passed every original-file byte/hash/blob/mode check; read-only branch check is main, source record is unchanged, private permissions verified. Required mathematical issues: none. Optional exposition additions documented. Assigned route review 100%; literal disproof verification 100% relative to cited published topology inputs; full publication program unassessed. No Git/index/ref/config mutation or publication helper was used. Public artifact allowlist sealed in MANIFEST.json after this checkpoint.

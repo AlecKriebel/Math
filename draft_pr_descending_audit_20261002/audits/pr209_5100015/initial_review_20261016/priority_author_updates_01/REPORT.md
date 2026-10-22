@@ -1,0 +1,88 @@
+# PR209 / 5100015: independent original-author and contemporary-source priority audit
+
+Completed 2026-10-16 UTC. Assigned audit completion estimate: **100%**. This is a priority-source comparison, not release, publication, merge, queue or tracker authority. Candidate head: `fd09a95b479f376234835a4494693bb1316c85ec`; frozen PROOF SHA256: `4f2eac23212f3fdf1c0c17ba79081e6dc9790907d1725c7359e9461052eabfc2`. The root mathematical/source PASS was read as a scoped input and supplies no novelty conclusion.
+
+## Strongest verified finding
+
+Alper Ferudun's *Outer-Pedal Area Products in Elliptic Billiards*, **version 1.1**, [version DOI 10.5281/zenodo.23088516](https://doi.org/10.5281/zenodo.23088516), contains a complete explicit proof of the exact strict-ellipse k303,b target. Its Theorem 2 is on printed p.2; the centered proof occupies Section 6 on p.6, with its fully checked geometric and complex-pole dependencies on pp.2-5. It includes odd primitive periods, primitive periods congruent to two modulo four, all admitted coprime star windings, induced signed traversal order, and every repeated closed traversal whose listed length is not divisible by four. No missing mathematical bridge was located in this full overlap.
+
+This is **exact contemporary theorem coverage**, not a bibliographic keyword match or merely shared ingredients. The manuscript is an AI-assisted, self-audited, unrefereed preprint; this audit's actual proof reading, rather than that status label or its verification report, supports the coverage finding. The candidate and Ferudun use different proof organizations with substantial classical ingredients in common. Mathematical difference of presentation does not certify independent historical provenance or novelty of a method.
+
+The provider-listed predecessor, **v1.0**, [DOI 10.5281/zenodo.23087221](https://doi.org/10.5281/zenodo.23087221), proves the primitive N=2 modulo 4 arbitrary-point theorem (and hence its centered subset). It does **not** state or write the odd-period centered theorem or the complete repetition extension. Its proof explicitly uses even central pairing. Full k303,b coverage must not be retrodated to this earlier version on the basis that the adaptation later proved easy.
+
+No earlier full exact anticipation was located in this family's original-author/contemporary-source search. This is bounded negative evidence. Absolute first public ordering between the candidate and all possible earlier website postings, and independent non-derivation, remain uncertified. This family therefore does **not** certify that the theorem remained open at the candidate date, that either proof was first, or that the submitted trace reduction is new.
+
+## Exact target and coverage
+
+The comparison fixes a>b>0 and 0<lambda<b^2, with caustic squared semiaxes a^2-lambda and b^2-lambda. Outer vertices are successive intersections of tangents to the boundary ellipse at the orbit vertices. The center-pedal vertices are actual orthogonal feet on those boundary tangents. Areas are signed cyclic determinant sums, retaining star traversal indexing. The claim covers all listed lengths not divisible by four. The circle is a separate rotation argument; neither the competing strict-ellipse theorem nor this audit asserts a hyperbolic/focal/degenerate extension.
+
+| Actual primary source | Odd primitive N | Primitive N=2 mod4 | Primitive stars | Repetitions with listed length not0mod4 | Geometric/domain match | Audit classification |
+|---|---|---|---|---|---|---|
+| Ferudun note0014 v1.1, Thm.2 p.2, §6 p.6 | proved | proved, also follows from Thm.1 | explicitly all admitted coprime windings | explicitly proved by r-squared area-product scaling | exact signed boundary-tangent center-foot product; strict interior confocal ellipse | full exact theorem |
+| Ferudun v1.0, Thm.1 and §§2-5 | absent | proved for every fixed M, including O | explicit | no full listed-length theorem; repeated primitive odd orbit is outside stated hypothesis | exact centered geometry in its even subset | partial exact overlap, stronger arbitrary-M result in that subset |
+| Reznik-Garcia-Koiller arXiv v1-v11 and 2021 journal table | conjectured | conjectured | no full target proof | not separately established there | same source objects and center/parity | original claim, not a resolution |
+| Chavez-Caliz, Thm.6, published p.104 | no | original/outer area product | oriented Poncelet setup | not the target conclusion | second area is original orbit area, with general-position hypothesis | related result/method only |
+| Bialy-Tabachnikov v2, Thm.4.1 pp.6-7 | centroid/squared-distance result | same | unnecessary for noncoverage distinction | unnecessary for distinction | same actual boundary feet, different observables | no cyclic area-product theorem |
+| Roitman-Garcia-Reznik bicentric v1-v3/published, Thms.1-2 | angle/perimeter results | angle/perimeter results | other Poncelet objects | no exact target result | limiting-point pedals and focal inversions | shared elliptic method, missing target-area bridge |
+| Garcia-Reznik self-intersected v1-v3 | selected low-N results | selected low-N results | studied | no general target theorem | includes other quantities and hyperbolic examples | low-period related evidence only |
+| Garcia-Reznik-Stachel pedal-like curves v3 | no discrete period theorem | no discrete period theorem | continuous locus | not applicable | continuous curve area, not sampled cyclic polygon product | ingredients only |
+| Harmonic polygon v1-v3; July 2026 affine preprint v1 | other area/quadratic invariants | no exact conclusion | stars in different families | no exact conclusion | harmonic/homothetic/circle domains and other objects | no supplied confocal metric-pedal bridge |
+
+The machine-readable `COVERAGE_TABLE.json` records the exact gap for each neighboring source. An attempt to replace the target theorem solely with the known original/outer product, tangent-foot centroid, continuous-area or homothetic averaging theorem is unsupported until the missing geometry/area bridge is proved; this audit does not reopen such a route merely by changing notation.
+
+## Proof audit of the exact competing result
+
+The independent reconstruction is in `COMPARISON_DERIVATION.md`. It checks the following necessary bridges rather than assuming that a theorem declaration settles scope:
+
+1. Ferudun's modulus is the caustic eccentricity and its half-step is the candidate's v. The explicit outer point satisfies both endpoint tangent equations. Its area is a fixed diagonal scale of a half-step-shifted orbit area. The foot formula is actual perpendicular projection; its denominator is positive on real phases.
+2. The complete complex singularity analysis includes both Jacobi poles and all zeros of W=a^2-(a^2-b^2)sn^2. At Jacobi poles the center foot has a removable zero. W's two roots per smaller lattice are simple and exhausted. At adjacent foot poles the principal parts are parallel, so a pointwise simple pole does not silently become a double area pole. The only extra adjacent collision forces excluded primitive N=4.
+3. The outer and pedal cyclic pole sets differ by K. Their collision criterion is 4tau j=N(2ell+1), impossible both for odd N and N=2 modulo 4 with every coprime winding. This supplies the all-star parity step.
+4. Reversal j -> 1-j at an outer pole makes the finite center-foot area zero; for odd N its fixed foot is the removable zero, not an undefined omitted vertex. Reversal j -> -j at a pedal pole makes the shifted orbit area zero. Thus every possible product pole is removable, and compact-torus holomorphy supplies all-phase constancy. No finite numerical sampling replaces this step.
+5. Repetition multiplies both signed areas by r. If 4 does not divide the listed length, it cannot divide the least period. Orientation reversal preserves the product. No division by polygon area occurs, so zero signed areas do not create a hidden exception. The four-period counterexample is outside both exact claims.
+
+`check_comparison.py` actually ran using the assigned existing scientific interpreter with `-B`. Its output `COMPARISON_CHECK_RESULTS.json` records **7 true symbolic/algebraic assertions**, **6,115 exact primitive arithmetic cases through N=200** (5,078 in the admitted parity classes, 1,037 excluded 4-divisible cases), odd self-pair checks and 16 repetition controls. The results corroborate the written universal deductions; they do not certify the theorem by a finite bound, numerical geometry, historical provenance or downloaded-author code execution. No downloaded scientific code was run.
+
+The candidate instead gives a pointwise shifted-edge reduction of the center pedal followed by an odd-order cyclic dn-trace product lemma. Ferudun makes the actual outer and pedal traces complementary directly. Both rely on credited Jacobi parametrization, classical shifts, reversal and compact-torus constancy. An exact alternative proof remains scientifically useful even when it does not introduce a new theorem; whether the submitted reduction is a novel contribution is a separate question for the other priority families and root synthesis.
+
+## Original authors' updates and neighboring work
+
+All **eleven actual original arXiv versions** were checked at the target passage. The earliest is [v1, 2020-04-26 23:01:52 UTC](https://arxiv.org/abs/2004.12497v1), with Table 3 on p.4; the current record remains [v11, 2020-10-29 11:37:49 UTC](https://arxiv.org/abs/2004.12497v11), Table 4 on p.6. Each still marks k303,b unproved there. The published [*Fifty New Invariants*, DOI 10.1007/s40598-021-00174-y](https://doi.org/10.1007/s40598-021-00174-y), first online February 18, 2021, has the same row in Table 4 p.346. No current correction relationship is exposed in the checked Crossref metadata. These facts locate the original claim; they do not establish present openness.
+
+Primary arXiv author indexes for Reznik, Garcia and Koiller, the original-author project/media page, and public repository listings were screened for updates. The closest followups were read at their actual theorem/definition passages: self-intersected N-periodics v1-v3, inversive triangles v1-v2, bicentric polygons v1-v3 plus the published edition, harmonic polygons v1-v3, continuous pedal-like curves v3, average invariants and propellers. Their precise objects and conclusions account for the noncoverage classifications above; no proof was ruled in from a title, and no unread theorem is claimed to have been exhaustively ruled out.
+
+Recent 2024-2026 original-author abstract/version records were also inspected. They address triangle loci, incircle families, inversive circumcenters or circle power. These are explicitly **abstract screens**, not complete full-text audits. The July 2026 Murad papers were read on the primary preprint provider: the affine theorem proves a power-circle sum for homothetic odd polygons; the symmetric Reduction Principle is a circle-inscribed triangle parametrization retaining a separate constancy test. Neither supplies the exact target. A newly found 2026 pedal-quadrilateral article concerns varying the pedal point for a fixed quadrilateral. Hsu et al.'s *Topics on Pedal Polygons*, Theorem 2.8 p.3, has an outer/inner **sum** for a different rotating-line construction; its terminology is not the present outer tangent/center-foot **product**.
+
+Search limits and all query strings are in `SEARCH_LEDGER.md`. Earlier minor versions of every adjacent paper were not all read; all original conjecture versions and all provider-listed versions of the exact competing manuscript were. The assigned family is extensive and bounded, not an assertion of exhaustive global literature coverage.
+
+## Chronology and priority limit
+
+The unauthenticated Zenodo versions endpoint and separate all-version title query each return exactly **two** versions. DataCite independently confirms version-specific DOI registration. The concept DOI is **10.5281/zenodo.23087220**, not 23088516.
+
+| Provider observation | v1.0, centered even subset | v1.1, complete centered target |
+|---|---|---|
+| Zenodo creation | 2026-10-01T16:56:14.316216+00:00 | 2026-10-01T18:12:36.529602+00:00 |
+| Zenodo modification | 2026-10-01T16:56:14.807727+00:00 | 2026-10-01T18:12:36.893358+00:00 |
+| DataCite registered | 2026-10-01T16:56:15.000Z | 2026-10-01T18:12:37.000Z |
+| Author-issued date | 2026-10-01 | 2026-10-01 |
+| Exact PDF SHA256 | 3c6791ae0099a49b9215844c506970806148f0ab568a5be2bd798616b0f1d0c9 | 5ff816c279e39f478e96ae5454779cc3b5280bc9eed1084429578540b3d352b6 |
+
+These are real provider fields and hash-matched public archive files, not inferred commit dates. Both records are currently open/published and both DOIs findable. The publisher website's October 1 first-online date is author-controlled and has day precision. Its stale `doi_archived_file_version: 1.0` field conflicts with its correct current v1.1 file hashes and should not be used to misclassify the archived bytes. An Internet Archive CDX query returned no capture; no independently timestamped earlier website version was located. A ZIP filename containing “arxiv” is not evidence of an arXiv posting; the direct arXiv title query returned none.
+
+Root separately supplied GitHub server events earlier on October 1, after this family froze its independent mechanism. Their original receipts and the historical-visibility assessment remain root's work, not reauthenticated evidence of this family. The candidate's claimed preparation/commit times alone cannot establish first public availability. Current public visibility alone cannot certify historical public visibility. Conversely, a later full exact proof does not anticipate a proof that was in fact publicly available earlier. The remaining first-public question must be stated at that granularity, not answered by comparing manuscript cover dates.
+
+**Priority classification:** exact full contemporary resolution located and independently checked; no earlier exact full anticipation found in this family; absolute first-public order, independent non-derivation and novelty of the submitted method remain unproved. Do not convert this result into either an unconditional first-proof claim or an unconditional historical-priority defeat.
+
+## Required claim/metadata corrections for downstream use
+
+1. **Add the exact competing theorem citation and full scope.** Cite Ferudun v1.1, DOI 10.5281/zenodo.23088516, Theorem 2/Section 6; distinguish v1.0's even centered subset and use concept DOI 23087220 only as the version family identifier. Calling this merely an adjacent k303,a result would be materially incomplete.
+2. **Update current openness/novelty wording.** The pinned upstream OPEN-TRIAGE summary and any unqualified present-tense claim that no full proof exists are outdated as current literature statements. The submitted October 1 bounded search can remain as a dated author-history fact, with this October 16 update appended. No “first”, “novel theorem”, “still open until us” or exhaustive nonexistence claim is licensed by this family.
+3. **Preserve edition and date distinctions.** The arXiv *Eighty* source is a 2020 preprint, the journal *Fifty* is 2021, and the conjecture already appears in April 2020. Early Table 3 became Table 4. This is bibliographic precision; a 2021 proposed-year field reflecting the journal edition is not automatically a factual error.
+4. **Preserve the accepted strict domain and signed traversal conventions.** This audit requests no new mathematical correction to the frozen accepted theorem. It does not authorize hyperbolic/degenerate extensions, least-period narrowing of the centered listed-length theorem, or replacing the actual tangent feet with another polygon.
+
+The publisher's stale external metadata field is disclosed; this audit has no authority to alter that author's record or prepare outreach. No contact was made or drafted.
+
+## Checkable package and procedural disclosure
+
+`SOURCE_ACCESS_RECEIPTS.json` contains 63 actual unauthenticated HTTP attempts with UTC times, URLs/redirects, status and byte hashes. `SOURCE_BYTE_INVENTORY.json` checks all successful retained bytes, 15 existing primary PDF aliases, all original arXiv versions, and every member of the two Ferudun source archives. Full third-party PDFs/text/renderings and partial web snapshots are private reading aids and are excluded from the authored public manifest. `VERSION_CHRONOLOGY.md` gives complete original and competing version locations and exact timestamp categories. `AUTHORED_MANIFEST.json` records every public authored payload's bytes/SHA256, self-excluded.
+
+Failures are preserved: web Zenodo access and oversized author-page failures; unauthenticated Zenodo size=100 rejection followed by the valid size=25 query; Preprints.org direct 403s followed by primary-provider web reading; the corrected unrelated arXiv lookup; empty archive capture results; and the first failed small-file patch. No scientific evidence was deleted/compacted. All authored writes stayed within this assigned folder. No Git/index/ref mutation, package/environment installation, target/QUEUE/database/tracker mutation, downloaded code execution, external communication, publication, deposit or release occurred. All scientific Python calls used `-B`; absence of all possible library cache side effects is not independently certified. The only dependency on another audit's findings is the expressly scoped root mathematical acceptance and the clearly segregated root chronology message; no inherited priority opinions or other active shard outputs were used.

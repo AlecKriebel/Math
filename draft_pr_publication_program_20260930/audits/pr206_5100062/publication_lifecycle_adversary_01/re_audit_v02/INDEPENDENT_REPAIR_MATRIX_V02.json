@@ -1,0 +1,39 @@
+{
+  "schema": "pr206-independent-v02-repair-matrix-v1",
+  "UTC": "2026-10-16T19:28:33.433593+00:00",
+  "source_family": "publication_lifecycle_preparation_02",
+  "mandatory_findings_open": 0,
+  "v01_findings": [
+    {
+      "finding": "Receipt/pointer target overwrite",
+      "status": "FIXED within controlled parent namespace",
+      "mechanism": "os.link no-replace; actual dual source-writer barrier race, canonical pointer collision and retained evidence verified",
+      "raw": "REPAIR_ATTACKS_NORMAL_V02.json / REPAIR_ATTACKS_OPTIMIZED_V02.json"
+    },
+    {
+      "finding": "Existing-view final-window race",
+      "status": "CONTRACT REPAIRED with tested cooperating-writer serialization",
+      "mechanism": "Stable shared program flock, PID and inode checks, full-five session and pointer ownership; arbitrary noncooperating same-UID content CAS explicitly excluded",
+      "known_limitation_probe": "KNOWN_LIMITATION_NON_PASS in both repair raw results: deliberately ignored lock loses transient bytes; not safety PASS"
+    },
+    {
+      "finding": "Unpinned original metadata",
+      "status": "FIXED",
+      "mechanism": "Exact18017/SHA198a22a7e5b536d6b96f65597446e3b7d2d5e7648d2ad23390106dc49d48800a before JSON/current PR read; changed local/live pair rejected"
+    },
+    {
+      "finding": "Late native DAG expansion budget",
+      "status": "FIXED",
+      "mechanism": "Global pre-descent expanded-row/visits and pre-insertion leaves plus parent SHA/depth/name/path guards",
+      "raw_peak_leaves": 29500,
+      "limit": 30000,
+      "fake_GETs": 2
+    }
+  ],
+  "passing_controls": {
+    "normal": 335,
+    "optimized": 336
+  },
+  "actual_phase_or_source_adoption": false,
+  "external_dispatcher_review": "Separate pending scope"
+}

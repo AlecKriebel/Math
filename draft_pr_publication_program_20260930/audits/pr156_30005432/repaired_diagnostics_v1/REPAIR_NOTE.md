@@ -1,0 +1,1 @@
+The submitted written proof is retained unchanged. Original verify.py used assert; optimization removes these checks while leaving an apparent PASS count. The repaired checker raises RuntimeError on failed checks in both modes. These controls supplement the universal integer and infinite-coset proof; they do not establish novelty or infer infinite index from finite quotients.

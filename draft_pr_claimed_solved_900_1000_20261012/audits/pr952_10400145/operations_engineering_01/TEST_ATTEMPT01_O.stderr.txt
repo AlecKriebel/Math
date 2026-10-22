@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 90, in read_regular
+    name = path.relative_to(ROOT).as_posix()
+           ~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 490, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/preprint/FINDING_DISPOSITIONS.json' is not in the subpath of '/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_01/private_tmp/adapter-tests-1unh81ly'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_01/test_operations.py", line 106, in <module>
+    yes('history_adverse_then_two_current_clean',check)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_01/test_operations.py", line 16, in yes
+    v=fn();EVENTS.append({'test':name,'status':'PASS'});return v
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr952_10400145/operations_engineering_01/test_operations.py", line 104, in check
+    def check():return n['review_check'](seals(),f,freeze_pin,{})
+                       ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 668, in review_check
+    originals=original_check();inherited=inherited_findings(freeze)
+                                         ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 562, in inherited_findings
+    mapping=strict_json(read_regular(base/'FINDING_DISPOSITIONS.json',pin=freeze['files']['FINDING_DISPOSITIONS.json']))
+                        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py", line 92, in read_regular
+    raise RuntimeError('File outside trusted repository root') from error
+RuntimeError: File outside trusted repository root

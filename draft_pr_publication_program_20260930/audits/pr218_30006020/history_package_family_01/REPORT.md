@@ -1,0 +1,78 @@
+# PR218 independent publication package and recorded-history audit
+
+Audit date: 2026-10-18 UTC. Assigned family: `history_package_family_01`.
+
+**Disposition: no mandatory package/history finding. One nonblocking editorial observation, E1, concerns the antecedent of “its law” in the current candidate; the deposited note is explicit. The existing package is consistent with adoption as the already published, qualified consequence note, conditional on the parent's separate fresh mathematical/source/priority assessment.** This family does not accept the theorems, certify novelty, or complete the overall case.
+
+All input work was read-only. Outputs, extracted duplicates, page renders and isolated replay copies are confined to this family directory. No external contact, provider/tracker action, Git/branch/index/ref mutation, commit, push, release or PR action occurred.
+
+## Exact scope and custody
+
+For compact paths below, `S` means `../authenticated_sources_01/`, `P` means `S/existing_publication_audit/preprint/`, and `I` means `S/existing_publication_audit/initial_review_20261015/`. The top-level source materialization is the primary boundary, rather than any originally embedded absolute pathname.
+
+I recomputed the provided 7,054-byte root custody acceptance SHA-256 `4b4deaed33b198a3e9814a46536108eed5c49cc26ff81975afd760b464d9e663`, and the 276,014-byte source materialization manifest SHA-256 `16abd824d189596e2bb54101af72c2c1046a1f0d17a70ba130a019495226965d`. I then checked every one of its 391 materialized file records against actual size, SHA-256, and native Git blob ID calculated from `blob <size>\0<body>`. This authenticates the files used here to the given manifest/native blob associations. I did not independently repeat the parent's full raw-tree/API custody capture.
+
+`PACKAGE_HISTORY_CHECKS.json` records **1,411 passing checks, zero failures**. The executable checker is `check_package_history.py`; it mutates only this family's directory. `HISTORICAL_CONTROL_REPLAY.json` additionally records exact isolated replay of the two historical fresh-review controls.
+
+| Final submission object | Bytes | SHA-256 |
+|---|---:|---|
+| `P/cylinder_areas.tex` | 22201 | `7da26974ef1e8b15922bff398424954874177d20580cf5b0526cd998e34de6b8` |
+| `P/output/pdf/cylinder_areas.pdf` | 96674 | `ad3a7dcbbcdb9a7c53bd1e63085644434132a556c9a09e8a1c16121073949f02` |
+| `P/output/cylinder_areas_verification.zip` | 275698 | `cfe1d84ff7f50cdfcc2682eab618aab495838de549bb4a2e24c26abcbe798810` |
+| `P/metadata.json` | 2744 | `d3416dfb3aaf3f66bd377bdfe42010b0df76e1545c658f68de9c7e77fd74a5c0` |
+| `P/deposit.json` | 2958 | `53024a697ad5424dadc24d71282a416d9788a45b1ac9128aec70ce8037a5b376` |
+
+`P/FROZEN_INPUTS.json` hashes to `f331f25e71e32621da5c8e0be214acd3b07d8b2de6a03187f1f06dab3259a6a8`. These are the exact five final objects named by fresh review 02, its root acceptance, final clearance, current source acceptance and release receipts. The paper/PDF/ZIP are unchanged final objects, not substitutions sharing old filenames.
+
+## Reconstruction of the sequential reviews and global repair
+
+The record supports the following sequence; timestamps are the contents of authenticated historical artifacts, not an independent observation of the old sessions or a trusted-time certificate.
+
+1. Fresh review 01 checked the earlier frozen object. Its report SHA-256 is `fbc490f6cf7bb635eb306961c1e802675af4146221d6c6ca12339723e3bb6c83`. I verified all **14** safe-authored seal entries. Its old manuscript/PDF/ZIP pins are respectively `db6d1ab043cf6bff42c1162534716586555b6688684ba9e5f8fb4f87e5f3e245`, `4090da8217ae8cd051c9b2b5f3e4e8429b14dd91fa34f6bcd7e4250739ad8f20`, and `94b5815e1826d4a8907a51a7aad2d77d075230462e13002177d99f5c7271d966`. All five earlier submission objects and all **136** payload records plus the self-excluding manifest remain correct in `P/history/before_review01_M1_fix_20261015/`. The old freeze hash is `f5548e23722414bec355e53f1eab40817eed94ecfc4fbcdcf339738f031db330`.
+2. Review 01's report lines 15–23 and findings JSON retain M1: an unindexed independent Poisson sequence must not literally be conditioned on its infinite weighted total being finite. The first verdict remains `REPAIR_REQUIRED_PRECISION`; `ROOT_REVIEW01_ACCEPTANCE.json` still says `clean_review=false` and `release_cleared=false`. This first review is not a clean review of final bytes.
+3. The preserved old manuscript and final manuscript differ in exactly one paragraph, line 65. The current paragraph explicitly defines `Z_1,...,Z_n`, conditions on `sum_(j=1)^n jZ_j=n`, gives positive probability `exp(-sum_(j=1)^n a_j)h_n`, and pads counts by zero for `j>n`. Metadata and deposit files did not change. The PDF now displays that repair on page 3.
+4. The finite convention also appears in current/native and prepared `CANDIDATE.md:25`, disposition `:5`, README `:3`, `I/ROOT_ASSEMBLY_PRIMARY_COMPARISON.md:9`, and `P/verification/CLAIM_AND_EVIDENCE_MAP.md:21`. The ZIP contains the same revised prepared current source, revised root comparison, evidence map and `PROVENANCE_CLARIFICATIONS.md`. The archive payload increased from 136 to 137 records, with fresh pins. The clarification explicitly preserves the failed first verdict and historical source bytes rather than retroactively resealing them. `ROOT_M1_GLOBAL_REPAIR_ACCEPTANCE.json` requires a new second review and retains `release_cleared=false`.
+5. Fresh review 02 binds the final five pins above and final freeze hash. Its report SHA-256 is `4c63559985c8508c99cb6d2936e020f770807ce8867111aa92b61bd018a12c34`. All **15** safe-authored seal entries verify. Its 297 recorded custody checks and 165 recorded prior-repair checks are all passing; I separately recomputed the relevant package/history properties instead of treating these booleans as proof. Its findings contain no mandatory or optional historical finding. The root report pin matches and `FINAL_CLEARANCE.json:12–15` accurately says two fresh reviews, with only **one clean review of final frozen bytes**.
+6. Isolated replays of the exact sealed programs reproduce review 01's **114** assertions and review 02's **4,466** assertions, with complete parsed JSON equality excluding the second program's fresh UTC. These controls remain finite algebra evidence.
+
+The older mathematical/priority acceptances do not silently become fresh manuscript reviews. The credited DGZZ model, DL/DGZZ geometry, Aggarwal foundation, AT factorial identity, ABT unmarked theorem, earlier announcements, narrow ensemble and unavailable-manuscript qualification were added to the current presentation. Current CANDIDATE sections 3–9 remain byte-identical to the original proof core. All 22 original submission files, including their old manifests and reviews, remain byte-identical in each current/prepared history tree.
+
+## Historical independence: strongest support and exact limit
+
+The two fresh reviews are different sealed authored sets, with different derivations and finite controls, and their recorded chronology places review 02 after the repaired freeze. Review 01 reports reading its primary inputs before earlier acceptance verdicts. Review 02's reconstruction/log/report say the current proof and primary mechanism were reconstructed before opening the first manuscript report and repair acceptance.
+
+The record also expressly discloses that review 02's task brief already named M1, that it incidentally saw the package clarification, and that two short source-proof endings were completed/rechecked after the old-verdict comparison. The mechanisms were reported as already present in its reconstruction. `fresh_review_02/REPORT.md:5`, `PRIMARY_READ_RECEIPT.json` and root acceptance retain these limits. Thus this is a recorded fresh adversarial review with disclosed prior knowledge; it is not a blind-review certificate. I did not observe the old work sessions or access their agent process histories, so I cannot independently certify mental independence, identity, model effort, or actual reading order beyond these authenticated records. No claim of external human peer review is supported or made.
+
+## Package completeness, reproducibility and status separation
+
+The final ZIP has exactly **138** unique, safe member names: 137 frozen payloads plus `PACKAGE_FILES.json`, which explicitly excludes itself. CRC, byte counts, SHA-256 values and self-manifest contents all agree. There are no absolute paths or traversal names. The ZIP's manuscript and metadata equal the final native files. Every prepared-current ZIP member equals `P/pr_update/30006020/`; selected root audit members equal the authenticated current root documents. The nine selected authored review families follow the builder's explicit allowlist. The inventory contains no full third-party PDF, extracted source text, HTML or rendered source page.
+
+The archive includes source, readme, credited current candidate/disposition, full original history, four portable controls, expected receipts, runner, static manifest, source-hash references, provenance and selected bounded audits. Fresh manuscript review records stay separately in the repository, with an explicit explanation in `PROVENANCE_CLARIFICATIONS.md:9` avoiding self-referential archive hashes. The PDF is the separate other deposited file. No expected computational dependency or document is missing for the advertised portable entry point.
+
+I extracted the exact final ZIP into this family's directory and ran its actual standard-library entry point unchanged. The new receipt records **7,100 exact assertions, 46,233 labelled permutations, 123 separate DVV composition cases, and 16 sealed verification payloads**, all passing. Floating diagnostics remain explicitly excluded from exact certification. Finite reproduction supplies no asymptotic or imported-geometry proof certificate.
+
+The deposited `current_source/` is the honestly dated preparation snapshot. Its repaired candidate is identical to the post-publication native candidate from `## 1.` onward, and its SOURCE_AUDIT is entirely identical. The native candidate changes only the publication preamble. Native README/disposition/log add release status and receipts; the current manifest pins the final preprint. `S/current_attempt`, `S/Main_attempt`, and publication's `native_current_source` contain the same 30 files. The archive therefore is not a pre-repair stale scientific snapshot. Pending-review sentences in its preparation records are dated and explicitly defer to later clearance; they do not negate the later receipt.
+
+## Scope, credit, author and observed public administration
+
+I directly read the complete LaTeX, current candidate and source/disposition documents, metadata/deposit, readmes, provenance clarification, historical fresh-review reports and current administrative receipts. Their common positive claim is principal holomorphic quadratic `Q(1^(4g-4))`, maximal horizontal cylinders counted once, unbounded heights, whole-surface area normalization, the fixed-genus square-count limit before genus, every `s_g -> 0` with `g s_g -> infinity`, and joint compact-window count moments. The original window and `Poisson(log(2)/2)` mean/variance are consistent. Broader-stratum, diagonal, simultaneous-directional and endpoint-scale conclusions are excluded. This comparison concerns what the documents claim; separate families assess whether the proof and primary inputs establish it.
+
+The paper gives exact attribution at `cylinder_areas.tex:47–53,154,164,217–224`; current candidate `:54–61` and public descriptions follow it. Announced small-components work, the thesis and primitive slides receive credit; negative searches are bounded and unavailable manuscript contents remain a specific priority uncertainty. There is no universal-firstness certificate or claim to have invented the weighted permutation model, enumeration or classical assembly theory. The `4g-4` versus `6g-6` microscopic reservation remains explicit. Historical exploratory/original documents are segregated and correctly bound to their own old hashes.
+
+Alec Kriebel's name and ORCID `0009-0001-9320-500X` are correct across the paper and metadata. Extensive AI use, unrefereed status, no external human peer review, no proof-assistant formalization, and no cited-researcher participation/endorsement are explicit at paper lines 17–23 and 213–214, README line 17, candidate line 276 and metadata description. Internal AI checking is expressly distinguished from human review.
+
+`root_external_metadata_observation_02/ACTUAL_ZENODO_METADATA_STDOUT.json` is a supplied actual production observation, not a network request made by this family. It reports record 23387774, `state=done`, `submitted=true`, DOI `10.5281/zenodo.23387774`. Every requested metadata field equals `P/metadata.json`; the deposit metadata object is identical too. Its actual PDF and ZIP sizes and MD5 values match the final local bytes. The historical release receipt's SHA-256 values agree with the final frozen pins. I did not independently redownload the live files.
+
+The actual tracker raw readout contains exactly one row mentioning that DOI, row 99, and all four cells equal the native publication receipt. The source DOI, blank second cell, preprint DOI, credited scope, retained uncertainty, AI disclosure and unrefereed/no-human-review qualification are consistent. The current QUEUE has exactly one 30006020 row, `claimed_solved`, `1/5`, and this same DOI. This corroborates the existing administrative state; it does not call for another DOI, append, merge or release.
+
+I rendered and actually inspected all seven final PDF pages. The title/author/ORCID and disclosures are visible; the repaired finite-conditioning paragraph is legible on page 3; theorem/proof continuations and bibliography are readable. No clipping, overlap, missing glyph, black-square artifact or broken reference was observed. Render/text duplicates remain local to this audit and are excluded from its safe manifest.
+
+## E1: nonblocking candidate wording observation
+
+**Location:** `S/current_attempt/CANDIDATE.md:25–27` (SHA-256 `d1c722522f89ea44fa7af0aa8192c1c58cbc51a04eb9ab7130ea7a09b895f7d5`), and the same statement in prepared/ZIP `current_source/CANDIDATE.md`. M1 inserts the finite *count-vector* paragraph between the normalized-area multiset definition in (2) and “Let μ_n be its law.” The immediate antecedent of “its” is now less explicit and can be misread as the count vector rather than the normalized-area multiset.
+
+This is an optional wording clarification, not a counterexample or a remaining infinite-conditioning error. The title, theorem context and subsequent common Dirichlet kernel support the intended area law, and the controlling deposited manuscript explicitly defines μ_n as the law of the unordered multiset at `cylinder_areas.tex:67`. A future editable candidate can say “Let μ_n be the law of the normalized-area multiset in (2).” No frozen input was changed here, and this observation does not require replacing the already consistent deposited note.
+
+## Completion and remaining boundary
+
+**100% of this assigned package/recorded-history audit.** Mandatory findings: none. Nonblocking editorial observations: E1. No package/history obstacle to adoption of the existing qualified publication was found. The strongest independently checked result here is exact byte/inventory/repair/status consistency plus finite reproduction. Fresh mathematical/source/priority acceptance and any overall case decision remain with the parent and its other families. Universal priority, unavailable manuscript contents, and historical mental independence are not certified.

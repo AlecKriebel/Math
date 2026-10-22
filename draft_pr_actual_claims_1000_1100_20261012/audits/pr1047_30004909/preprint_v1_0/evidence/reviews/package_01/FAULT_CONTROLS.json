@@ -1,0 +1,144 @@
+{
+  "utc": "2026-10-14T03:56:35.547635+00:00",
+  "explicit_exceptions_used": true,
+  "controls": [
+    {
+      "name": "tamper mathematics source",
+      "target": "verify_package.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_4hi5n13i/scripts/verify_package.py\", line 29, in <module>\n    check(row['path'], row['bytes'], row['sha256'])\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_4hi5n13i/scripts/verify_package.py\", line 21, in check\n    require(len(data) == size and hashlib.sha256(data).hexdigest() == digest, 'hash mismatch: ' + name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_4hi5n13i/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: hash mismatch: paper/matroid_rank_obstruction.tex\n"
+    },
+    {
+      "name": "remove one of nine originals",
+      "target": "verify_package.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault__beazezw/scripts/verify_package.py\", line 29, in <module>\n    check(row['path'], row['bytes'], row['sha256'])\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault__beazezw/scripts/verify_package.py\", line 20, in check\n    data = get(name)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault__beazezw/scripts/verify_package.py\", line 16, in get\n    require(p.is_file() and not p.is_symlink() and stat.S_ISREG(p.stat().st_mode), 'not regular: ' + name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault__beazezw/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: not regular: evidence/submitted/REPORT.md\n"
+    },
+    {
+      "name": "metadata mismatch after updating ordinary manifest hash",
+      "target": "verify_package.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_iye_frq0/scripts/verify_package.py\", line 40, in <module>\n    require(metadata['metadata'] == json.loads(get('.zenodo.json')), 'metadata mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_iye_frq0/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: metadata mismatch\n"
+    },
+    {
+      "name": "false publication-ready state after updating ordinary manifest hash",
+      "target": "verify_package.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_34r7063j/scripts/verify_package.py\", line 43, in <module>\n    require(state['publication_ready'] is False and state['all_issues_resolved'] is False, 'preparation-stage operational hold')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_34r7063j/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: preparation-stage operational hold\n"
+    },
+    {
+      "name": "weaken adaptation identity after manifest rehash",
+      "target": "verify_package.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_7x07kzj9/scripts/verify_package.py\", line 49, in <module>\n    require(original.decode().count(adapt['before']) == 1 and original.decode().replace(adapt['before'], adapt['after']) == portable.decode(), 'checker adaptation scope')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_7x07kzj9/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: checker adaptation scope\n"
+    },
+    {
+      "name": "incorrect evidence-copy hash after manifest rehash",
+      "target": "verify_package.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_ud_512f0/scripts/verify_package.py\", line 33, in <module>\n    check(row['package_path'], row['bytes'], row['sha256'])\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_ud_512f0/scripts/verify_package.py\", line 21, in check\n    require(len(data) == size and hashlib.sha256(data).hexdigest() == digest, 'hash mismatch: ' + name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_ud_512f0/scripts/verify_package.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: hash mismatch: evidence/LIVE_PR_CAPTURE.json\n"
+    },
+    {
+      "name": "builder traversal path rejected",
+      "target": "build_supportkit.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_djsnzmn1/scripts/build_supportkit.py\", line 27, in <module>\n    raise ValueError('Invalid explicit allowlist or circular member')\nValueError: Invalid explicit allowlist or circular member\n"
+    },
+    {
+      "name": "builder duplicate allowlist rejected",
+      "target": "build_supportkit.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_hsvie37m/scripts/build_supportkit.py\", line 27, in <module>\n    raise ValueError('Invalid explicit allowlist or circular member')\nValueError: Invalid explicit allowlist or circular member\n"
+    },
+    {
+      "name": "builder symlink file rejected",
+      "target": "build_supportkit.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_yjs6huvk/scripts/build_supportkit.py\", line 30, in <module>\n    data = safe_file(name).read_bytes()\n           ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_yjs6huvk/scripts/build_supportkit.py\", line 18, in safe_file\n    raise ValueError('Symlink member or ancestor: ' + name)\nValueError: Symlink member or ancestor: README.md\n"
+    },
+    {
+      "name": "builder directory-as-member rejected",
+      "target": "build_supportkit.py",
+      "optimized_python": true,
+      "expected_success": false,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_chbtko2y/scripts/build_supportkit.py\", line 30, in <module>\n    data = safe_file(name).read_bytes()\n           ~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1047_30004909/reviews/package_01/fault_chbtko2y/scripts/build_supportkit.py\", line 20, in safe_file\n    raise ValueError('Nonregular member: ' + name)\nValueError: Nonregular member: README.md\n"
+    },
+    {
+      "name": "extra local reproduction output intentionally accepted",
+      "target": "verify_package.py",
+      "optimized_python": true,
+      "expected_success": true,
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"manifest_entries\": 142, \"evidence_copies\": 97, \"exact_originals\": 9, \"metadata_equivalence\": true, \"portable_adaptation\": true, \"historical_labels_are_stage_scoped\": true}\n",
+      "stderr": ""
+    },
+    {
+      "name": "empty rank corruption",
+      "actual_checker_function": "validate_rank_axioms",
+      "detected": true,
+      "error": "rank(empty) failure"
+    },
+    {
+      "name": "upper rank bound corruption",
+      "actual_checker_function": "validate_rank_axioms",
+      "detected": true,
+      "error": "rank bounds failure"
+    },
+    {
+      "name": "monotonicity corruption",
+      "actual_checker_function": "validate_rank_axioms",
+      "detected": true,
+      "error": "rank monotonicity failure"
+    },
+    {
+      "name": "submodularity corruption",
+      "actual_checker_function": "validate_rank_axioms",
+      "detected": true,
+      "error": "rank submodularity failure"
+    },
+    {
+      "name": "actual checker basis-exchange and loop controls",
+      "invalid_basis_family_rejected": true,
+      "valid_nonuniform_basis_family_accepted": true,
+      "both_loop_factors_return_none": true,
+      "explicit_exceptions_survive_O": true
+    },
+    {
+      "name": "fresh copy-domain and coefficient arithmetic",
+      "rational_m_range": "1..50",
+      "copy_block_size_cases": 42975,
+      "concave_decomposition_n_range": "1..60",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

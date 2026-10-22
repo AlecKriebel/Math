@@ -1,0 +1,45 @@
+{
+  "utc": "2026-10-12T15:07:02.280071+00:00",
+  "runs": [
+    {
+      "tag": "normal_positive",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "finite_comparison_checks.py"
+      ],
+      "returncode": 0,
+      "expected_behavior": "PASS exact finite diagnostics"
+    },
+    {
+      "tag": "normal_negative",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "finite_comparison_checks.py",
+        "--negative-control"
+      ],
+      "returncode": 1,
+      "expected_behavior": "Explicit ValueError rejects wrong mark normalization"
+    },
+    {
+      "tag": "optimized_positive",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "finite_comparison_checks.py"
+      ],
+      "returncode": 0,
+      "expected_behavior": "PASS exact finite diagnostics"
+    },
+    {
+      "tag": "optimized_negative",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "finite_comparison_checks.py",
+        "--negative-control"
+      ],
+      "returncode": 1,
+      "expected_behavior": "Explicit ValueError rejects wrong mark normalization"
+    }
+  ]
+}

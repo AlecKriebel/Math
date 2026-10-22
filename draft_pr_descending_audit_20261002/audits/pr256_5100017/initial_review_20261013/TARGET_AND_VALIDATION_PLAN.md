@@ -1,0 +1,11 @@
+# PR256: exact target and validation plan
+
+The hypothesis is that invariant k307 has a complete proof on the natural domain of the signed area centroid. Fix a noncircular ellipse with axes a>b>0 and a strict confocal elliptical caustic, 0<lambda<b², admitting an even least-period Poncelet family. Project a fixed arbitrary point M onto the tangent lines at the orbit vertices, retaining trajectory order. The target is phase independence of its signed shoelace area centroid wherever the area is nonzero, together with a complete description of the undefined locus. The vertex centroid theorem does not settle this target.
+
+Success requires a written all-period deduction, independently checked algebra and geometry, reproducible computations, and a completed priority audit before a new-result preprint. Finite numerical constancy alone is insufficient. The current PR-head Queue row is claimed_solved; mathematical correctness, completeness and novelty remain hypotheses.
+
+Boundary checks include least period4, coprime star windings, orientation reversal, repeated traversals of even least-period orbits, prohibition of padded odd-period inference, zero-area pedal points, caustic endpoint limits, near d=0, dimensional scaling, and the limit toward a circular ellipse. Degenerate and hyperbolic caustics are excluded. No unsigned-region or vertex-average interpretation is substituted for the source's signed moments.
+
+Distinct independent families are exact Laurent/support-moment algebra and direct billiard geometry/reflection/domain counterexample search. Each preserves initial falsifiers and checkable artifacts. Primary target pages and known symmetry/vertex-centroid inputs are checked separately. The submitted author packet remains immutable. Findings and reasonable repairs are recorded as revisions with their provenance.
+
+The user now prohibits communication with other audit shards. Own mathematical adversarial subagents are required by the research policy and original review process. No outside individual or other audit chat will be contacted. Main may change; later publication must preserve unrelated changes without claiming a continuous snapshot or an atomic expected-old update.

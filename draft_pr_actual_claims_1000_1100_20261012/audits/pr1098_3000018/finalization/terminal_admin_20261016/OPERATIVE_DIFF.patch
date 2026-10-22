@@ -1,0 +1,1768 @@
+--- before/preprint_v1_0/README.md
++++ current/preprint_v1_0/README.md
+@@ -28,6 +28,28 @@
+ AI tools were used extensively in solving, verifying, adversarial review,
+ source comparison, programming and writing. The paper is unrefereed, without
+ external human peer review, journal acceptance or proof-assistant certification.
++
++## Current terminal state — 16 October 2026 UTC
++
++TERMINAL_STATUS.json is the current workflow record. Two new complete
++whole-package reviews have completed, meeting the minimum of two. The
++latest, whole02, found zero actionable P0/P1/P2/P3 issues and was adopted
++by ROOT. No further complete whole review is currently required. These
++reviews apply to the unchanged paper and the preterminal support archive
++identified in that record. This administrative payload update still
++requires an external ROOT final integrity review, which is **unadopted**.
++Publication readiness, issues-resolved and published remain **false**;
++all ordered external actions remain held after PR #1032.
++
++Selected exact authored review reports, independent derivations, verdicts,
++seals, pinfiles and ROOT adoptions are in terminal/evidence/. They are
++dated evidence, not new human peer review or priority certification. The
++first reviewer accurately qualified its fixture ORIGINAL redirection;
++whole02 separately ran 116 actual unchanged external commands with
++ROOT and ORIGINAL unmodified. Both actual PDFs matched the canonical
++seven-page paper, and all seven pages were viewed. No new PDF build or
++render was needed for this unchanged source. The semantic verifier checks
++the current status against both dated verdict/seal/pin/adoption chains.
+ 
+ ## Downloads and a clean reproduction
+ 
+@@ -109,9 +131,24 @@
+ priority credits had been incorporated into these materials. Zero **new
+ complete whole-package** reviews had been completed, at least two were
+ required, readiness and publication were false, and external actions were
+-held behind PR #1032. STATUS.json records that past checkpoint. It does not
++held behind PR #1032. STATUS.json, the preparation seal/report/pins and the metadata notes
++record that past checkpoint. TERMINAL_STATUS.json supersedes their
++workflow count for current use without rewriting them. That history does not
+ forecast or relabel a future review, DOI, merge or publication. All original
+ PR bytes remain unchanged. No person was contacted.
+ 
++terminal/before/ retains the exact preterminal authored README, verifier,
++manifest and deposit binding as historical interfaces. Its old manifest
++and binding describe the old archive, not the current download. The old
++ZIP remains durably local to the research audit and is deliberately not
++redistributed. terminal/PREPARATION_PIN_RESOLUTION.json resolves every
++one of the 123 old preparation pins individually to unchanged portable bytes,
++an exact before interface, or an explicitly omitted local preparation output
++or old ZIP identity. The 18 undistributed preparation helpers, reports and
++validation records remain exact at their original local audit paths.
++terminal/REVIEW_STAGE_SELECTION.json likewise states each selected or
++omitted review output; pinfiles do not imply omitted programs or raw
++streams are present or replayed. Source bodies and pixels remain omitted.
++
+ Author: Alec Kriebel, ORCID https://orcid.org/0009-0001-9320-500X.
+ Version 1.0, 16 October 2026. Authored materials: CC BY 4.0.
+--- before/preprint_v1_0/code/verify_kit.py
++++ current/preprint_v1_0/code/verify_kit.py
+@@ -4,6 +4,162 @@
+ import json
+ from common import ROOT, archive_bytes, digest, load, member, regular, require
+ from metadata_constants import EXPECTED_METADATA
++
++def identity(path):
++    raw = regular(path).read_bytes()
++    return {'bytes':len(raw), 'sha256':digest(raw)}
++
++def terminal_state():
++    """Check current administration against exact dated review interfaces."""
++    current = load(ROOT/'TERMINAL_STATUS.json')
++    expected = {
++        'schema_version':1, 'checkpoint_date_utc':'2026-10-16',
++        'stage':'TERMINAL_ADMIN_COMPLETE_PENDING_ROOT_FINAL_INTEGRITY',
++        'new_complete_whole_reviews_completed':2,
++        'minimum_new_complete_whole_reviews_required':2,
++        'latest_whole_review':'NEW_INDEPENDENT_COMPLETE_WHOLE_PACKAGE_02',
++        'latest_review_complete':True,
++        'latest_review_actionable_findings':{'P0':0,'P1':0,'P2':0,'P3':0},
++        'latest_whole_review_ROOT_adopted':True,
++        'further_whole_package_review_currently_required':False,
++        'terminal_administrative_reconciliation_complete':True,
++        'ROOT_final_terminal_integrity':'REQUIRED_UNADOPTED',
++        'ROOT_final_terminal_integrity_adopted':False,
++        'publication_ready':False, 'issues_resolved':False, 'published':False,
++        'services_held_after_pr':1032,
++        'full_result_physical_simple_oriented_realization_remaining_method_priority_worldwide_openness':'UNKNOWN',
++        'exact_scope_math_adopted':True, 'evidence_root':'terminal/evidence',
++        'historical_preparation_status':'STATUS.json'}
++    for key, value in expected.items():
++        require(type(current.get(key)) is type(value) and current[key] == value,
++                'terminal current field: '+key)
++    require(current['unchanged_paper'] == identity(ROOT/'paper.pdf'),
++            'terminal unchanged paper identity')
++    zero = {'P0':0,'P1':0,'P2':0,'P3':0}
++    adoptions = []
++    staged = load(ROOT/'terminal/REVIEW_STAGE_SELECTION.json')['entries']
++    require(len(staged) == 55
++            and len({(r['review'],r['path']) for r in staged}) == 55,
++            '55 individual review-stage decisions')
++    for number in (1,2):
++        tag = str(number).zfill(2)
++        prefix = ROOT/('terminal/evidence/package_'+tag)
++        verdict = load(prefix/'VERDICT.json')
++        seal = load(prefix/'OUTPUT_SEAL.json')
++        pins = load(prefix/'OUTPUT_PINS.json')
++        root = load(ROOT/('terminal/evidence/ROOT_WHOLE_PACKAGE_REVIEW_'+tag+'.json'))
++        require(verdict['review'] == 'NEW_INDEPENDENT_COMPLETE_WHOLE_PACKAGE_'+tag,
++                'whole-review identity '+tag)
++        require(verdict['finding_counts'] == zero and verdict['findings'] == []
++                and verdict['delegated_completion_percent'] == 100
++                and verdict['new_complete_whole_reviews_contributed'] == 1
++                and verdict['minimum_new_complete_whole_reviews_required'] == 2,
++                'complete zero-actionable whole review '+tag)
++        for obj in (verdict, seal, root):
++            require(obj['publication_ready'] is False and obj['services_held_after_pr'] == 1032,
++                    'dated review service hold '+tag)
++        require(verdict['published'] is False and root['published'] is False
++                and root['issues_resolved'] is False, 'dated review publication state '+tag)
++        require(seal['findings'] == zero and seal['verdict'] == identity(prefix/'VERDICT.json'),
++                'review seal verdict identity '+tag)
++        require(seal['output_pins'] == identity(prefix/'OUTPUT_PINS.json')
++                and root['output_pins_sha256'] == seal['output_pins']['sha256'],
++                'ROOT adoption pin identity '+tag)
++        require(root['whole_reviews_completed'] == number, 'ROOT adopted count '+tag)
++        selected = ['VERDICT.json','REPORT.md'] + [
++            'INDEPENDENT_DERIVATION_FROZEN.md' if number == 1 else 'INDEPENDENT_DERIVATION.md']
++        require(seal['report'] == identity(prefix/'REPORT.md')
++                and seal['independent_derivation'] == identity(prefix/selected[2]),
++                'review seal authored interfaces '+tag)
++        rows = pins['entries']
++        require(len(rows) == (22 if number == 1 else 33), 'review output count '+tag)
++        require(len({r['path'] for r in rows}) == len(rows), 'review unique output paths '+tag)
++        for name in selected:
++            matching = [r for r in rows if r['path'] == name]
++            require(len(matching) == 1 and {k:matching[0][k] for k in ('bytes','sha256')}
++                    == identity(prefix/name), 'review selected output pin '+tag+'/'+name)
++        stage_rows = [r for r in staged if r['review'] == 'package_'+tag]
++        require(len(stage_rows) == len(rows), 'complete review-stage partition '+tag)
++        for row in rows:
++            choices = [r for r in stage_rows if r['path'] == row['path']]
++            require(len(choices) == 1 and all(choices[0][k] == row[k]
++                    for k in ('bytes','sha256')), 'review-stage original identity '+tag)
++            choice = choices[0]
++            if row['path'] in selected:
++                require(choice['disposition'] == 'EXACT_AUTHORED_COPY'
++                        and choice['destination'] == 'terminal/evidence/package_'+tag+'/'+row['path']
++                        and identity(member(choice['destination'])) == {k:row[k] for k in ('bytes','sha256')},
++                        'review-stage selected copy '+tag)
++            else:
++                require(choice['disposition'] == 'OMITTED' and bool(choice['reason']),
++                        'review-stage individual omission '+tag)
++        adoptions.append(root)
++    first, latest = adoptions
++    require(first['status'] == 'ADOPT_COMPLETE_WHOLE01_ZERO_ACTIONABLE_SECOND_NEW_COMPLETE_WHOLE_REVIEW_REQUIRED'
++            and first['minimum_new_complete_whole_reviews'] == 2
++            and first['ROOT_full_REPORT_frozen_derivation_source_ledger_and_new_independent_code_read'] is True,
++            'first dated ROOT adoption')
++    require(latest['status'] == 'ADOPT_COMPLETE_WHOLE02_ZERO_ACTIONABLE_PENDING_TERMINAL_ADMIN'
++            and latest['minimum_whole_reviews'] == 2 and latest['actionable_P0_P1_P2_P3'] == 0
++            and latest['ROOT_full_REPORT_frozen_derivation_source_ledger_new_independent_controls_custody_checker_and_period_deletion_addendum_read'] is True
++            and latest['terminal_administrative_reconciliation_and_root_final_integrity_required'] is True,
++            'latest complete ROOT adoption')
++    require(latest['complete_custody_closed_ZIP_and_metadata']['independent_closed_archive']['bytes']
++            == current['reviewed_preterminal_support_archive']['bytes']
++            and latest['complete_custody_closed_ZIP_and_metadata']['independent_closed_archive']['sha256']
++            == current['reviewed_preterminal_support_archive']['sha256'], 'reviewed preterminal archive identity')
++    require(latest['complete_custody_closed_ZIP_and_metadata']['paper'] == current['unchanged_paper'],
++            'adopted unchanged paper identity')
++    require(latest['review_actual_unmodified_external_commands'] == 116
++            and latest['review_runtime_ROOT_or_ORIGINAL_modified'] is False,
++            'latest actual execution scope')
++    old = load(ROOT/'STATUS.json')
++    require(old['new_complete_whole_reviews_completed'] == 0
++            and old['minimum_new_complete_whole_reviews_required'] == 2
++            and old['stage'] == 'PREPARATION_PENDING_TWO_NEW_COMPLETE_WHOLE_REVIEWS',
++            'dated preparation checkpoint preserved')
++    resolution = load(ROOT/'terminal/PREPARATION_PIN_RESOLUTION.json')['entries']
++    require(len(resolution) == 123 and len({r['path'] for r in resolution}) == 123,
++            '123 preparation pin resolutions')
++    prep_pins = load(ROOT/'terminal/before/OUTPUT_PINS.json')
++    prep_seal = load(ROOT/'terminal/before/PREPARATION_SEAL.json')
++    require(len(prep_pins['entries']) == 123
++            and prep_seal['output_pins_sha256'] == identity(ROOT/'terminal/before/OUTPUT_PINS.json')['sha256'],
++            'dated preparation pin/seal identity')
++    require([{k:r[k] for k in ('path','bytes','sha256')} for r in resolution]
++            == prep_pins['entries'], 'preparation resolution exact original identities')
++    old_manifest = load(ROOT/'terminal/before/MANIFEST.json')
++    old_binding = load(ROOT/'terminal/before/DEPOSIT_BINDING.json')
++    require(old_binding['artifacts']['pr1098_support_v1_0.zip'] == current['reviewed_preterminal_support_archive'],
++            'before binding reviewed archive')
++    omitted = []
++    local_omissions = []
++    old_portable = {r['path'] for r in old_manifest['entries']}
++    for row in resolution:
++        if row['disposition'] == 'KNOWN_OLD_ZIP_OMITTED':
++            require(row['path'] == 'pr1098_support_v1_0.zip' and bool(row['reason'])
++                    and {k:row[k] for k in ('bytes','sha256')}
++                    == current['reviewed_preterminal_support_archive'], 'known omitted old ZIP identity')
++            omitted.append(row['path'])
++        elif row['disposition'] == 'UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED':
++            require(row['path'] not in old_portable
++                    and row['path'] not in ('paper.pdf','pr1098_support_v1_0.zip','MANIFEST.json','DEPOSIT_BINDING.json')
++                    and bool(row['reason']) and 'resolved_path' not in row,
++                    'individual local preparation omission')
++            local_omissions.append(row['path'])
++        else:
++            require(row['disposition'] in ('EXACT_BEFORE_INTERFACE','UNCHANGED_CURRENT_BYTES'),
++                    'preparation resolution disposition')
++            require(identity(member(row['resolved_path'])) == {k:row[k] for k in ('bytes','sha256')},
++                    'preparation before/current pin: '+row['path'])
++    require(omitted == ['pr1098_support_v1_0.zip'], 'only obsolete archive omitted')
++    require(len(local_omissions) == 18, '18 unchanged local preparation outputs omitted')
++    require(old_manifest['schema_version'] == 1, 'dated before manifest schema')
++    return {'whole_reviews_completed':2, 'minimum_whole_reviews':2,
++            'latest_zero_actionable_ROOT_adopted':True,
++            'ROOT_final_terminal_integrity':'REQUIRED_UNADOPTED',
++            'publication_ready':False, 'issues_resolved':False, 'published':False,
++            'services_held_after_pr':1032}
+ 
+ def verify():
+     for path in ('metadata.json', 'zenodo-api.json', 'publication/zenodo-deposit.json'):
+@@ -28,9 +184,11 @@
+     require(archive == regular(ROOT/'pr1098_support_v1_0.zip').read_bytes(),
+             'current archive does not equal closed deterministic reconstruction')
+     require(regular(ROOT/'paper.pdf').read_bytes().startswith(b'%PDF-'), 'PDF header')
++    current = terminal_state()
+     return {'status':'PASS','payload_members':len(manifest['entries']),
+             'strict_present_required_bindings':True,'metadata_objects_exact':True,
+-            'archive_bytes':len(archive),'archive_sha256':digest(archive)}
++            'archive_bytes':len(archive),'archive_sha256':digest(archive),
++            'terminal_workflow':current}
+ 
+ if __name__ == '__main__':
+     require(not sys.argv[1:], 'stdout verifier accepts no output argument')
+--- before/preprint_v1_0/MANIFEST.json
++++ current/preprint_v1_0/MANIFEST.json
+@@ -31,9 +31,9 @@
+       "sha256": "2f40cb81c850b5287fb0b83ba37e18755e938dcb7c1648f7c3ac7cf776b42f49"
+     },
+     {
+-      "bytes": 7095,
++      "bytes": 9451,
+       "path": "README.md",
+-      "sha256": "3bd12480802380ec03e5a668a600da08d43246e2413a11d453d34d7659edf452"
++      "sha256": "109c4254992a66c0983003f12d7dee16220b43142e41554344e03b61d6d95b88"
+     },
+     {
+       "bytes": 25547,
+@@ -51,6 +51,11 @@
+       "sha256": "c0d3f342e8bf6618a3b789e7635901999c0c9683f84a4ed73609c3ada403385f"
+     },
+     {
++      "bytes": 1648,
++      "path": "TERMINAL_STATUS.json",
++      "sha256": "db1a09bbe5cb700595f55b8f97d4ce2de18c2785f8584b45b875d8ac174c8370"
++    },
++    {
+       "bytes": 1758,
+       "path": "code/build_pdf.py",
+       "sha256": "8f9a1c431e4076b83eed65f0a8f5c25387f9b461943ecac47b418e00c7b890a2"
+@@ -81,9 +86,9 @@
+       "sha256": "149a60309ee3e9ea6547220efbbb137d779886ed75c96f807a336c4d0d8f0194"
+     },
+     {
+-      "bytes": 2082,
++      "bytes": 12371,
+       "path": "code/verify_kit.py",
+-      "sha256": "ff93e4de5df2844e466f541bc30113091533e6b8bd38bc2d50de6c17caac905b"
++      "sha256": "d03d0b6b85edfcd84698f5683a28039a6ef534bc7d6a8988a10c7c03b7559f06"
+     },
+     {
+       "bytes": 5581,
+@@ -499,6 +504,111 @@
+       "bytes": 4891,
+       "path": "publication/zenodo-deposit.json",
+       "sha256": "d55bea884379504d424b6dfa0a9b913bdd879717030c90db8ff513e5bee72281"
++    },
++    {
++      "bytes": 40850,
++      "path": "terminal/PREPARATION_PIN_RESOLUTION.json",
++      "sha256": "8b1f9418e4af4a2986ae4f16773064c079ed841b27e8dd3291e2b7652795d27e"
++    },
++    {
++      "bytes": 826,
++      "path": "terminal/README.md",
++      "sha256": "0c236b8cc07d29dd9b4a5f4cf221fcc38a88e415d1344560a27759380115a44d"
++    },
++    {
++      "bytes": 24262,
++      "path": "terminal/REVIEW_STAGE_SELECTION.json",
++      "sha256": "1f33d6559b187e3166111990809a5821d458ee89f24e74164bbe4bb00fcad182"
++    },
++    {
++      "bytes": 690,
++      "path": "terminal/before/DEPOSIT_BINDING.json",
++      "sha256": "6b2ec5c38932518ab8408ece8fa65c307cddf1108924682cd7e56457ae69db00"
++    },
++    {
++      "bytes": 18521,
++      "path": "terminal/before/MANIFEST.json",
++      "sha256": "d1aa3d968c2fdc7c9a2faa62db83c86d26497195f25808402cdc35bf271d5de5"
++    },
++    {
++      "bytes": 21927,
++      "path": "terminal/before/OUTPUT_PINS.json",
++      "sha256": "3c1333d2917d2056137ad253292e95cd4018c3b65967b3a2c3547792bf1968b5"
++    },
++    {
++      "bytes": 848,
++      "path": "terminal/before/PREPARATION_SEAL.json",
++      "sha256": "fb63f3d56b48add9a9bd5d3230405040b368d4dedca60fdc00f861ce133ab36d"
++    },
++    {
++      "bytes": 7095,
++      "path": "terminal/before/README.md",
++      "sha256": "3bd12480802380ec03e5a668a600da08d43246e2413a11d453d34d7659edf452"
++    },
++    {
++      "bytes": 2082,
++      "path": "terminal/before/code/verify_kit.py",
++      "sha256": "ff93e4de5df2844e466f541bc30113091533e6b8bd38bc2d50de6c17caac905b"
++    },
++    {
++      "bytes": 4207,
++      "path": "terminal/evidence/ROOT_WHOLE_PACKAGE_REVIEW_01.json",
++      "sha256": "59f45430368a252f60bc9418ff798db41512bfd8d8d7220e4219e82ca1bc6c94"
++    },
++    {
++      "bytes": 7274,
++      "path": "terminal/evidence/ROOT_WHOLE_PACKAGE_REVIEW_02.json",
++      "sha256": "31d3b55849dc17bf46101033fc3d20a035507c3b2c090ebd98e196a748d74b1b"
++    },
++    {
++      "bytes": 5791,
++      "path": "terminal/evidence/package_01/INDEPENDENT_DERIVATION_FROZEN.md",
++      "sha256": "686a5ac3151c94327e676bc44c69d2f87f2a6c19d3cccbaee967598a1b411c93"
++    },
++    {
++      "bytes": 3744,
++      "path": "terminal/evidence/package_01/OUTPUT_PINS.json",
++      "sha256": "fe3654c529e72d97ab854474fc605383d7399c360096d90d3620bc3b96b177f3"
++    },
++    {
++      "bytes": 1129,
++      "path": "terminal/evidence/package_01/OUTPUT_SEAL.json",
++      "sha256": "df0fa57b37cc5621ceddd014755dc7309905db3dfc9519e3b7b08ff2b046786b"
++    },
++    {
++      "bytes": 17265,
++      "path": "terminal/evidence/package_01/REPORT.md",
++      "sha256": "60fb2e888904e19bb59656481da87b3ad7f8e2e24dac6b7c2207207cff116b83"
++    },
++    {
++      "bytes": 1486,
++      "path": "terminal/evidence/package_01/VERDICT.json",
++      "sha256": "94ed899a544e8f1940599c841c05e98ab9260c50e982b0208f9aa91d7f74149e"
++    },
++    {
++      "bytes": 5597,
++      "path": "terminal/evidence/package_02/INDEPENDENT_DERIVATION.md",
++      "sha256": "ee76c8b81d60ddd5f8475a6902593767de02e287d622a3cf8fc81d34cc9bb51f"
++    },
++    {
++      "bytes": 5231,
++      "path": "terminal/evidence/package_02/OUTPUT_PINS.json",
++      "sha256": "9bd8a89d76039717d5c1ad98dd2558db8f438ddee3122d89c79bd0eecb1b0197"
++    },
++    {
++      "bytes": 1370,
++      "path": "terminal/evidence/package_02/OUTPUT_SEAL.json",
++      "sha256": "3acd4102a91f6314fad0ffdb66dab029972a32bbe836971b891866de10d0c6f1"
++    },
++    {
++      "bytes": 17255,
++      "path": "terminal/evidence/package_02/REPORT.md",
++      "sha256": "5bda854929beed1e45878a36171477a4a256c729fcd66132934f0b1dbaf78c0b"
++    },
++    {
++      "bytes": 1252,
++      "path": "terminal/evidence/package_02/VERDICT.json",
++      "sha256": "dc8d811c1c51684d97c4e47d36aab22a4ac8307425aaa05fe6d68f39d77aae71"
+     },
+     {
+       "bytes": 4708,
+--- before/preprint_v1_0/DEPOSIT_BINDING.json
++++ current/preprint_v1_0/DEPOSIT_BINDING.json
+@@ -5,8 +5,8 @@
+       "sha256": "52d4355533f5095be83c8799bd148e9927e5c4bef8c2f6a00d534303f0b7ee5c"
+     },
+     "pr1098_support_v1_0.zip": {
+-      "bytes": 588772,
+-      "sha256": "c3f69bd2b0327eff8c5029bcb21a457026fe829334ad5246b54d5479091172c3"
++      "bytes": 798999,
++      "sha256": "a9606c07600ca9ac60f36f5165c8c09ff3e0c0b42e83e50d006df6f1ee2723fe"
+     },
+     "publication/zenodo-deposit.json": {
+       "bytes": 4891,
+--- /dev/null
++++ current/preprint_v1_0/TERMINAL_STATUS.json
+@@ -0,0 +1,37 @@
++{
++  "ROOT_final_terminal_integrity": "REQUIRED_UNADOPTED",
++  "ROOT_final_terminal_integrity_adopted": false,
++  "checkpoint_date_utc": "2026-10-16",
++  "evidence_root": "terminal/evidence",
++  "exact_scope_math_adopted": true,
++  "full_result_physical_simple_oriented_realization_remaining_method_priority_worldwide_openness": "UNKNOWN",
++  "further_whole_package_review_currently_required": false,
++  "historical_preparation_status": "STATUS.json",
++  "issues_resolved": false,
++  "latest_review_actionable_findings": {
++    "P0": 0,
++    "P1": 0,
++    "P2": 0,
++    "P3": 0
++  },
++  "latest_review_complete": true,
++  "latest_whole_review": "NEW_INDEPENDENT_COMPLETE_WHOLE_PACKAGE_02",
++  "latest_whole_review_ROOT_adopted": true,
++  "minimum_new_complete_whole_reviews_required": 2,
++  "new_complete_whole_reviews_completed": 2,
++  "publication_ready": false,
++  "published": false,
++  "reviewed_preterminal_support_archive": {
++    "bytes": 588772,
++    "sha256": "c3f69bd2b0327eff8c5029bcb21a457026fe829334ad5246b54d5479091172c3"
++  },
++  "schema_version": 1,
++  "scope": "Current administrative state. The two whole reviews adopted the unchanged paper and preterminal payload. This administrative payload update requires external ROOT final integrity, presently unadopted. Earlier statuses, seals, pins, reports and metadata checkpoint notes retain their exact dated meaning.",
++  "services_held_after_pr": 1032,
++  "stage": "TERMINAL_ADMIN_COMPLETE_PENDING_ROOT_FINAL_INTEGRITY",
++  "terminal_administrative_reconciliation_complete": true,
++  "unchanged_paper": {
++    "bytes": 83409,
++    "sha256": "52d4355533f5095be83c8799bd148e9927e5c4bef8c2f6a00d534303f0b7ee5c"
++  }
++}
+--- /dev/null
++++ current/preprint_v1_0/terminal/README.md
+@@ -0,0 +1,10 @@
++# Dated terminal evidence
++
++TERMINAL_STATUS.json at the kit root is current; earlier records are exact dated history.
++evidence/ contains only selected authored interfaces, including full reports and independent derivations.
++Their seals and pinfiles also identify outputs deliberately omitted under REVIEW_STAGE_SELECTION.json.
++before/ preserves the exact preterminal authored operative interfaces, not current commands or upload bindings.
++The old ZIP is durably local to the audit and absent from this payload. No third-party body, source text,
++rendered page, compiler/runtime cache, raw execution/compiler stream or old ZIP is newly redistributed.
++Whole01 and whole02 required ROOT adoption at their dated checkpoints; both were later adopted.
++The present administrative update still requires ROOT final integrity, unadopted.
+--- /dev/null
++++ current/preprint_v1_0/terminal/PREPARATION_PIN_RESOLUTION.json
+@@ -0,0 +1,866 @@
++{
++  "entries": [
++    {
++      "bytes": 126,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "ARTIFACT_BINDINGS.json",
++      "resolved_path": "ARTIFACT_BINDINGS.json",
++      "sha256": "dbc04559864eb676e19325f4f9ef402cf84faf09e9de84bb711dc2849cf7d7db"
++    },
++    {
++      "bytes": 271,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "CITATION.txt",
++      "resolved_path": "CITATION.txt",
++      "sha256": "bbb57a6894b379215e77c2ef3b9eb2c1d34d02ee5f7ee3ff968ae78a46b474aa"
++    },
++    {
++      "bytes": 1334,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "CLAIM_SCOPE.json",
++      "resolved_path": "CLAIM_SCOPE.json",
++      "sha256": "83d1b0b972b7cd7bafe524047aa4eaebb37db02882516f7cfdeb0430bd0f51da"
++    },
++    {
++      "bytes": 55385,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "CUSTODY_SELECTION.json",
++      "resolved_path": "CUSTODY_SELECTION.json",
++      "sha256": "52b49e9f1001c4dfa1e1aa664c25dcee3ed4e90050a81908f11efa50e5b4cfa5"
++    },
++    {
++      "bytes": 690,
++      "disposition": "EXACT_BEFORE_INTERFACE",
++      "path": "DEPOSIT_BINDING.json",
++      "resolved_path": "terminal/before/DEPOSIT_BINDING.json",
++      "sha256": "6b2ec5c38932518ab8408ece8fa65c307cddf1108924682cd7e56457ae69db00"
++    },
++    {
++      "bytes": 31842,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "INPUT_FREEZE.json",
++      "resolved_path": "INPUT_FREEZE.json",
++      "sha256": "815584c29dc925f1927e24014d0daacac58c58f55b2f96046bbaa4ccfc66f528"
++    },
++    {
++      "bytes": 288,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "LICENSE.txt",
++      "resolved_path": "LICENSE.txt",
++      "sha256": "2f40cb81c850b5287fb0b83ba37e18755e938dcb7c1648f7c3ac7cf776b42f49"
++    },
++    {
++      "bytes": 18521,
++      "disposition": "EXACT_BEFORE_INTERFACE",
++      "path": "MANIFEST.json",
++      "resolved_path": "terminal/before/MANIFEST.json",
++      "sha256": "d1aa3d968c2fdc7c9a2faa62db83c86d26497195f25808402cdc35bf271d5de5"
++    },
++    {
++      "bytes": 7442,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "PREPARATION_REPORT.md",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "223cbfc7b5e099576cb78aa4baa09dd1e2a178f210275228b7e3ae476aee11c0"
++    },
++    {
++      "bytes": 7095,
++      "disposition": "EXACT_BEFORE_INTERFACE",
++      "path": "README.md",
++      "resolved_path": "terminal/before/README.md",
++      "sha256": "3bd12480802380ec03e5a668a600da08d43246e2413a11d453d34d7659edf452"
++    },
++    {
++      "bytes": 3233,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "RESEARCH_LOG.md",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "27f8b96bad81ad0917aa1a503af6a4fb50949e2733f685827371c04e8e577ed4"
++    },
++    {
++      "bytes": 25547,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "SOURCE_LEDGER.json",
++      "resolved_path": "SOURCE_LEDGER.json",
++      "sha256": "c610e7df0e41b628457bceb5f5d59cf0893831a3a919cf663f5f7950913e6f3a"
++    },
++    {
++      "bytes": 4047,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "SOURCE_NOTES.md",
++      "resolved_path": "SOURCE_NOTES.md",
++      "sha256": "51cb99928f0cd19e91eaf50e805ba4151ed7fb75c343b6730df7eb2b8eeb2c3a"
++    },
++    {
++      "bytes": 530,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "STATUS.json",
++      "resolved_path": "STATUS.json",
++      "sha256": "c0d3f342e8bf6618a3b789e7635901999c0c9683f84a4ed73609c3ada403385f"
++    },
++    {
++      "bytes": 1758,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "code/build_pdf.py",
++      "resolved_path": "code/build_pdf.py",
++      "sha256": "8f9a1c431e4076b83eed65f0a8f5c25387f9b461943ecac47b418e00c7b890a2"
++    },
++    {
++      "bytes": 14291,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "code/checks.py",
++      "resolved_path": "code/checks.py",
++      "sha256": "b85f74fa76856559a17d6088d1cfa0e6e1ab40b3874b44ef52e5443cb5a24637"
++    },
++    {
++      "bytes": 3494,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "code/common.py",
++      "resolved_path": "code/common.py",
++      "sha256": "e0e0fd41d45f935e1ee7b2688204e20045a5f16f1e1e4e02a1c847308e427521"
++    },
++    {
++      "bytes": 4497,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "code/metadata_constants.py",
++      "resolved_path": "code/metadata_constants.py",
++      "sha256": "6443fd4b6e830499836c8f343712402dd4f2cba7ade54d6126e859fb3c85355d"
++    },
++    {
++      "bytes": 493,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "code/rebuild_archive.py",
++      "resolved_path": "code/rebuild_archive.py",
++      "sha256": "9175ea6730944dac52b93a7a23aa8f5865e486175b5526a29bed868cdb5c35c1"
++    },
++    {
++      "bytes": 446,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "code/run_checks.py",
++      "resolved_path": "code/run_checks.py",
++      "sha256": "149a60309ee3e9ea6547220efbbb137d779886ed75c96f807a336c4d0d8f0194"
++    },
++    {
++      "bytes": 2082,
++      "disposition": "EXACT_BEFORE_INTERFACE",
++      "path": "code/verify_kit.py",
++      "resolved_path": "terminal/before/code/verify_kit.py",
++      "sha256": "ff93e4de5df2844e466f541bc30113091533e6b8bd38bc2d50de6c17caac905b"
++    },
++    {
++      "bytes": 5581,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/LIVE_PR_CAPTURE.json",
++      "resolved_path": "history/LIVE_PR_CAPTURE.json",
++      "sha256": "91fd00839d0caecf4f63c31733534c991f0b02831b978c57f97d3981a97795b7"
++    },
++    {
++      "bytes": 367,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/RESEARCH_LOG.md",
++      "resolved_path": "history/RESEARCH_LOG.md",
++      "sha256": "a3f0bbb83a4c629df17c2b0872f6a92898118e2b2661e3784149b7134d1038d5"
++    },
++    {
++      "bytes": 787,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/ROOT_MATH_ACCEPTANCE.json",
++      "resolved_path": "history/ROOT_MATH_ACCEPTANCE.json",
++      "sha256": "c52ea80c81301a3902ed85518b9a3b99104328863331268c0367912dc2d63843"
++    },
++    {
++      "bytes": 6219,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/ROOT_MATH_AUDIT.md",
++      "resolved_path": "history/ROOT_MATH_AUDIT.md",
++      "sha256": "3b7763c048512a0e0fd6afecf0dc8b039d749f1d468068d4b754a3357d3a1391"
++    },
++    {
++      "bytes": 4137,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/ROOT_MATH_REPRODUCTION.json",
++      "resolved_path": "history/ROOT_MATH_REPRODUCTION.json",
++      "sha256": "044a1491c5be388e1a811dccfa23037e9fa348bfed354693bd02be079c51fad9"
++    },
++    {
++      "bytes": 4984,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/ROOT_PRIORITY_ADOPTION.json",
++      "resolved_path": "history/ROOT_PRIORITY_ADOPTION.json",
++      "sha256": "be22afd26fa67ddf24e6157ddfc7460ac7074587ede64e91610405e8f29da614"
++    },
++    {
++      "bytes": 2528,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/SUBMITTED_PINS.json",
++      "resolved_path": "history/SUBMITTED_PINS.json",
++      "sha256": "a47707310ffc871af35eb945b032b651a0a592f08d2ca92e108ffec3ace2403c"
++    },
++    {
++      "bytes": 2979,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/CHECK_RESULTS_NORMAL.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/CHECK_RESULTS_NORMAL.json",
++      "sha256": "4675d106c32b8f5b1e1d5bca25a57178aa167428b24f0fc3c354373a7f12e071"
++    },
++    {
++      "bytes": 2979,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/CHECK_RESULTS_NORMAL_RESUMED.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/CHECK_RESULTS_NORMAL_RESUMED.json",
++      "sha256": "4675d106c32b8f5b1e1d5bca25a57178aa167428b24f0fc3c354373a7f12e071"
++    },
++    {
++      "bytes": 2979,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/CHECK_RESULTS_OPTIMIZED_RESUMED.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/CHECK_RESULTS_OPTIMIZED_RESUMED.json",
++      "sha256": "4675d106c32b8f5b1e1d5bca25a57178aa167428b24f0fc3c354373a7f12e071"
++    },
++    {
++      "bytes": 250,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/DERIVATION_FREEZE_RECEIPT.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/DERIVATION_FREEZE_RECEIPT.json",
++      "sha256": "d07ab3bf6772e68b8900b1c0a6fb106f5a08f0cc7f9791ecfaba6e4bf539050a"
++    },
++    {
++      "bytes": 2253,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/FINAL_INPUT_RECHECK.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/FINAL_INPUT_RECHECK.json",
++      "sha256": "52e1896bdf17b331bdfa0155d5fcd27abb6c6c042f50b9bb01478c1db07b7634"
++    },
++    {
++      "bytes": 1054,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/FINAL_SEAL.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/FINAL_SEAL.json",
++      "sha256": "59162d8749051dfe5266c00e45f7c9ba87c67db07738a2939525419550af55e5"
++    },
++    {
++      "bytes": 7722,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/INDEPENDENT_DERIVATION_FROZEN.md",
++      "resolved_path": "history/reviews/dynamics_membership_01/INDEPENDENT_DERIVATION_FROZEN.md",
++      "sha256": "05322bf8d38dd2e22c3498f71b1d2d977989ae97a9d390f3e24aa450029b8626"
++    },
++    {
++      "bytes": 481,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/INITIAL_RUNTIME_LIMITATION.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/INITIAL_RUNTIME_LIMITATION.json",
++      "sha256": "8cce599f56610325eb39812817002f34e6b910f4ef1a19164e347867d98df29d"
++    },
++    {
++      "bytes": 2849,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/INPUT_CUSTODY.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/INPUT_CUSTODY.json",
++      "sha256": "d514e6458f9fa8c733740e9b8394d4ba367b014b91fd70a882ff4fbcb47b0326"
++    },
++    {
++      "bytes": 3993,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/OUTPUT_PINS.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/OUTPUT_PINS.json",
++      "sha256": "e57a6fb7c8e5133103d192eaae7e5b04f094eee807f631de0e1631bccea42ea4"
++    },
++    {
++      "bytes": 15751,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/REPORT.md",
++      "resolved_path": "history/reviews/dynamics_membership_01/REPORT.md",
++      "sha256": "19423d9ed006d5753d97af159d0f05e39012b989c1caeba4c1ec2133171dc74a"
++    },
++    {
++      "bytes": 9042,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/REPRODUCTION_RECEIPT.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/REPRODUCTION_RECEIPT.json",
++      "sha256": "bc8ddd906ce46153ac84b847cea30d11a7a7da96acf9aa1abc4f8cd80c217013"
++    },
++    {
++      "bytes": 2138,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/RESEARCH_LOG.md",
++      "resolved_path": "history/reviews/dynamics_membership_01/RESEARCH_LOG.md",
++      "sha256": "31dcfa1fbbae880f058373b0b3c20d4a6afdf9e92bd7b0ce8c3ca1f750b4cea9"
++    },
++    {
++      "bytes": 1136,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/SEMANTIC_ADDENDUM_NORMAL.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/SEMANTIC_ADDENDUM_NORMAL.json",
++      "sha256": "4568b5e650ef067226422af0f3863396706515906a0f8564ba4724aef990b135"
++    },
++    {
++      "bytes": 1136,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/SEMANTIC_ADDENDUM_NORMAL_RESUMED.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/SEMANTIC_ADDENDUM_NORMAL_RESUMED.json",
++      "sha256": "4568b5e650ef067226422af0f3863396706515906a0f8564ba4724aef990b135"
++    },
++    {
++      "bytes": 1136,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/SEMANTIC_ADDENDUM_OPTIMIZED_RESUMED.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/SEMANTIC_ADDENDUM_OPTIMIZED_RESUMED.json",
++      "sha256": "4568b5e650ef067226422af0f3863396706515906a0f8564ba4724aef990b135"
++    },
++    {
++      "bytes": 676,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/SOURCE_ACQUISITION.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/SOURCE_ACQUISITION.json",
++      "sha256": "e98d5e487cc6adfb18f9dddb13ac6e57712b1632ead1e214f4287172251c52f8"
++    },
++    {
++      "bytes": 6004,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/SOURCE_INTERFACE_DERIVATION.md",
++      "resolved_path": "history/reviews/dynamics_membership_01/SOURCE_INTERFACE_DERIVATION.md",
++      "sha256": "43c805e9f488cff038aa7914cd6592ed3c1289db95bb37b74907b07c39727b5f"
++    },
++    {
++      "bytes": 2234,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/SOURCE_READ_LEDGER.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/SOURCE_READ_LEDGER.json",
++      "sha256": "349a4552cf4062c7c90e46efb190f226825b28ea3483821fab41f6363f9b95e9"
++    },
++    {
++      "bytes": 1917,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/SOURCE_VISUAL_RECEIPTS.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/SOURCE_VISUAL_RECEIPTS.json",
++      "sha256": "acaf7b4bbdc528022115a39dceffdad0fcc2a0782f5dd2def41cbb358cc2b240"
++    },
++    {
++      "bytes": 1298,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/dynamics_membership_01/VERDICT.json",
++      "resolved_path": "history/reviews/dynamics_membership_01/VERDICT.json",
++      "sha256": "3b823817d7f979d3c29aa3ec14931b84ab075d374b838953092cd1172398e313"
++    },
++    {
++      "bytes": 2413,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/FINAL_INPUT_UNCHANGED.json",
++      "resolved_path": "history/reviews/modular_encoding_01/FINAL_INPUT_UNCHANGED.json",
++      "sha256": "3f0b7cc46550fb5e7c598bbfdaff180383020521af3ff6805d5381450800db68"
++    },
++    {
++      "bytes": 1434,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/FRESH_CHECKS_NORMAL.json",
++      "resolved_path": "history/reviews/modular_encoding_01/FRESH_CHECKS_NORMAL.json",
++      "sha256": "2470b002d55c5ec64ecc3dc24209c2b6b7a81e16c1a7701be700e90e233ea8d9"
++    },
++    {
++      "bytes": 1434,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/FRESH_CHECKS_OPTIMIZED.json",
++      "resolved_path": "history/reviews/modular_encoding_01/FRESH_CHECKS_OPTIMIZED.json",
++      "sha256": "2470b002d55c5ec64ecc3dc24209c2b6b7a81e16c1a7701be700e90e233ea8d9"
++    },
++    {
++      "bytes": 3375,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/INDEPENDENT_DERIVATION.md",
++      "resolved_path": "history/reviews/modular_encoding_01/INDEPENDENT_DERIVATION.md",
++      "sha256": "f0220016a11f53bc3a7d792b1d0af29910495fa996804792771c2261a4234bbb"
++    },
++    {
++      "bytes": 4007,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/INPUT_CUSTODY.json",
++      "resolved_path": "history/reviews/modular_encoding_01/INPUT_CUSTODY.json",
++      "sha256": "b7c3be027360de2652fb20d554db9ee6da2a17f6e70dba129f4f89f653d4a4a4"
++    },
++    {
++      "bytes": 3369,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/OUTPUT_PINS.json",
++      "resolved_path": "history/reviews/modular_encoding_01/OUTPUT_PINS.json",
++      "sha256": "85a82d11ba00e5367a1287b52d1b199ee4d6f3fb1a193c64a717a5c810ff2989"
++    },
++    {
++      "bytes": 273,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/OUTPUT_SEAL.json",
++      "resolved_path": "history/reviews/modular_encoding_01/OUTPUT_SEAL.json",
++      "sha256": "8a65526e103babdfcaf6380e6ea3c96d7fde408494b5b710ab9c5a5280108db5"
++    },
++    {
++      "bytes": 1688,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/READ_SCOPE_AND_INDEPENDENCE.json",
++      "resolved_path": "history/reviews/modular_encoding_01/READ_SCOPE_AND_INDEPENDENCE.json",
++      "sha256": "e1fbc8de19f731f5e0a7afced3eba505b24d436fbc3b05f149988958c724db07"
++    },
++    {
++      "bytes": 883,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/REPRODUCTION_RECEIPT.json",
++      "resolved_path": "history/reviews/modular_encoding_01/REPRODUCTION_RECEIPT.json",
++      "sha256": "f23e543d23fc047a56a25d8636c229a0ebbd628699ac4a5a69f6231453d7a220"
++    },
++    {
++      "bytes": 1812,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/RESEARCH_LOG.md",
++      "resolved_path": "history/reviews/modular_encoding_01/RESEARCH_LOG.md",
++      "sha256": "c3d7ea1e28f0318b4811aedc32b614860fe9e92f33464383e5f07daae0e943ee"
++    },
++    {
++      "bytes": 15698,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/REVIEW_REPORT.md",
++      "resolved_path": "history/reviews/modular_encoding_01/REVIEW_REPORT.md",
++      "sha256": "7b0a108e546fab55acc426fb5f0c5dab42e5db8d15fe3dae24a197117c90ff0e"
++    },
++    {
++      "bytes": 2612,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/SOURCE_REVIEW.md",
++      "resolved_path": "history/reviews/modular_encoding_01/SOURCE_REVIEW.md",
++      "sha256": "8c69d3741af77389f4ee1303b33bf1ac3fedd6279ec3c52aec81c6dc0b84bcfd"
++    },
++    {
++      "bytes": 2928,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/modular_encoding_01/VERDICT.json",
++      "resolved_path": "history/reviews/modular_encoding_01/VERDICT.json",
++      "sha256": "bb8582c81f082a391b974b711a29151106fb329a2418bff6e098babd783deb14"
++    },
++    {
++      "bytes": 590,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/CLASSICAL_UNION_CONTROLS_NORMAL.json",
++      "resolved_path": "history/reviews/priority_01/CLASSICAL_UNION_CONTROLS_NORMAL.json",
++      "sha256": "9028c5ac011496d4f7801b25e3d14b6f3d19ddce228faf3cba60d9e130990788"
++    },
++    {
++      "bytes": 590,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/CLASSICAL_UNION_CONTROLS_OPTIMIZED.json",
++      "resolved_path": "history/reviews/priority_01/CLASSICAL_UNION_CONTROLS_OPTIMIZED.json",
++      "sha256": "9028c5ac011496d4f7801b25e3d14b6f3d19ddce228faf3cba60d9e130990788"
++    },
++    {
++      "bytes": 1847,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/EXACT_CONTROLS_NORMAL.json",
++      "resolved_path": "history/reviews/priority_01/EXACT_CONTROLS_NORMAL.json",
++      "sha256": "8caacbe6a3a768317d76ea72e43d7a93014c04a938d28276b22317fc846af418"
++    },
++    {
++      "bytes": 1847,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/EXACT_CONTROLS_NORMAL_RESUMED.json",
++      "resolved_path": "history/reviews/priority_01/EXACT_CONTROLS_NORMAL_RESUMED.json",
++      "sha256": "8caacbe6a3a768317d76ea72e43d7a93014c04a938d28276b22317fc846af418"
++    },
++    {
++      "bytes": 1847,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/EXACT_CONTROLS_OPTIMIZED.json",
++      "resolved_path": "history/reviews/priority_01/EXACT_CONTROLS_OPTIMIZED.json",
++      "sha256": "8caacbe6a3a768317d76ea72e43d7a93014c04a938d28276b22317fc846af418"
++    },
++    {
++      "bytes": 1847,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/EXACT_CONTROLS_OPTIMIZED_RESUMED.json",
++      "resolved_path": "history/reviews/priority_01/EXACT_CONTROLS_OPTIMIZED_RESUMED.json",
++      "sha256": "8caacbe6a3a768317d76ea72e43d7a93014c04a938d28276b22317fc846af418"
++    },
++    {
++      "bytes": 1741,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/FINAL_INPUT_RECHECK.json",
++      "resolved_path": "history/reviews/priority_01/FINAL_INPUT_RECHECK.json",
++      "sha256": "de3b9c1b19dda47ce3b1ab02ff70cfc43fbdc47ea2b28559c1e81b77c2b1d61a"
++    },
++    {
++      "bytes": 10914,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/FINAL_INPUT_RECHECK_RESUMED.json",
++      "resolved_path": "history/reviews/priority_01/FINAL_INPUT_RECHECK_RESUMED.json",
++      "sha256": "bfcb0399eb8a8cac5998eb8b8675061c99d0831bf797f64c3f92a9c4f1554e5e"
++    },
++    {
++      "bytes": 1903,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/FINAL_SEAL.json",
++      "resolved_path": "history/reviews/priority_01/FINAL_SEAL.json",
++      "sha256": "38fdfe5e656a2c76a89b6a4cb2f90167915f70471d1dd877d0161f46e16ff0a2"
++    },
++    {
++      "bytes": 11447,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/INPUT_PINS.json",
++      "resolved_path": "history/reviews/priority_01/INPUT_PINS.json",
++      "sha256": "dde01ccd7e2f3789d1b9591d979c8ecf73a77e250804c8304968c7bff86c0974"
++    },
++    {
++      "bytes": 4703,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/OUTPUT_PINS.json",
++      "resolved_path": "history/reviews/priority_01/OUTPUT_PINS.json",
++      "sha256": "ab5e9d8d6f78a1192eb1023e4b30cac93c7b3e95eb9ea1ab12e5b82cbf60315a"
++    },
++    {
++      "bytes": 15720,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/PRIOR_COMPARISON_DERIVATIONS.md",
++      "resolved_path": "history/reviews/priority_01/PRIOR_COMPARISON_DERIVATIONS.md",
++      "sha256": "3ecd636cc9618bd076d50ac4113e7f191a6bea500ad34bcba72946af5dda9067"
++    },
++    {
++      "bytes": 5864,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/PRIOR_COMPARISON_DERIVATIONS_RESUMPTION_ADDENDUM.md",
++      "resolved_path": "history/reviews/priority_01/PRIOR_COMPARISON_DERIVATIONS_RESUMPTION_ADDENDUM.md",
++      "sha256": "3f4d768f2e87e468cc61d993b38c899d2dbd518af4c881f5f54016a90ecef21c"
++    },
++    {
++      "bytes": 13729,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/QUERY_LEDGER.json",
++      "resolved_path": "history/reviews/priority_01/QUERY_LEDGER.json",
++      "sha256": "b577ec21f218848561aa33dc0e9712b87c4ec716cf1e266ba6a7de918124a8ac"
++    },
++    {
++      "bytes": 1849,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/QUERY_LEDGER_RESUMPTION_APPENDIX.json",
++      "resolved_path": "history/reviews/priority_01/QUERY_LEDGER_RESUMPTION_APPENDIX.json",
++      "sha256": "5d47fccf7591640da66267de44a173d9db9d7fdb20f1c570e58b2b9ae9e87b26"
++    },
++    {
++      "bytes": 14161,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/REPORT.md",
++      "resolved_path": "history/reviews/priority_01/REPORT.md",
++      "sha256": "658cfa5063777e8ea2e69461ca5fb2939cb687683fca2234d23df779bbd24001"
++    },
++    {
++      "bytes": 888,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/REPRODUCTION_RECEIPT.json",
++      "resolved_path": "history/reviews/priority_01/REPRODUCTION_RECEIPT.json",
++      "sha256": "af2480cee0b1b2b5707e0df4826cc8603d285a0c0fd00fe6ac0d4d9de39855d6"
++    },
++    {
++      "bytes": 3909,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/REPRODUCTION_RESUMED.json",
++      "resolved_path": "history/reviews/priority_01/REPRODUCTION_RESUMED.json",
++      "sha256": "11b0fb2664b194502de53c32ddc1559fe08bb123029e166961c5e8990a08f9dd"
++    },
++    {
++      "bytes": 1935,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/RESEARCH_LOG.md",
++      "resolved_path": "history/reviews/priority_01/RESEARCH_LOG.md",
++      "sha256": "f06060cdebcbe95fd20ede05cff2d4498496a276caca71812b666d834c49db83"
++    },
++    {
++      "bytes": 18120,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/SOURCE_ACQUISITION.json",
++      "resolved_path": "history/reviews/priority_01/SOURCE_ACQUISITION.json",
++      "sha256": "d8dcc89c404f2268611d38caa7748ab0ca33f38a326143e909a8358eeb33d40c"
++    },
++    {
++      "bytes": 30677,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/SOURCE_READ_LEDGER.json",
++      "resolved_path": "history/reviews/priority_01/SOURCE_READ_LEDGER.json",
++      "sha256": "a76cee8399afa80b5aa1cf4dfa1898bbf51caee065f1e47fd6553fd779e7b09d"
++    },
++    {
++      "bytes": 5999,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/SOURCE_VISUAL_RECEIPTS.json",
++      "resolved_path": "history/reviews/priority_01/SOURCE_VISUAL_RECEIPTS.json",
++      "sha256": "5f712f65a9f2610d2610d30c5eaa131792b28291b5822ce82a6fdf34487abeee"
++    },
++    {
++      "bytes": 5536,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/VERDICT.json",
++      "resolved_path": "history/reviews/priority_01/VERDICT.json",
++      "sha256": "81381e2c477618956e567e03e14f99a4737a9f2fcf64909f9e2234a776dd8c0e"
++    },
++    {
++      "bytes": 1546,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/reviews/priority_01/VERSIONED_SOURCE_RECHECK.json",
++      "resolved_path": "history/reviews/priority_01/VERSIONED_SOURCE_RECHECK.json",
++      "sha256": "ad56b77e62a8f5b530876e76a3bfa522490689c7ccb0c1bcffc57d26e210cf0e"
++    },
++    {
++      "bytes": 2979,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/root_reproduction/check_dynamics_membership.py-O.json",
++      "resolved_path": "history/root_reproduction/check_dynamics_membership.py-O.json",
++      "sha256": "4675d106c32b8f5b1e1d5bca25a57178aa167428b24f0fc3c354373a7f12e071"
++    },
++    {
++      "bytes": 2979,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/root_reproduction/check_dynamics_membership.py.json",
++      "resolved_path": "history/root_reproduction/check_dynamics_membership.py.json",
++      "sha256": "4675d106c32b8f5b1e1d5bca25a57178aa167428b24f0fc3c354373a7f12e071"
++    },
++    {
++      "bytes": 1434,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/root_reproduction/check_modular_encoding.py-O.json",
++      "resolved_path": "history/root_reproduction/check_modular_encoding.py-O.json",
++      "sha256": "2470b002d55c5ec64ecc3dc24209c2b6b7a81e16c1a7701be700e90e233ea8d9"
++    },
++    {
++      "bytes": 1434,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/root_reproduction/check_modular_encoding.py.json",
++      "resolved_path": "history/root_reproduction/check_modular_encoding.py.json",
++      "sha256": "2470b002d55c5ec64ecc3dc24209c2b6b7a81e16c1a7701be700e90e233ea8d9"
++    },
++    {
++      "bytes": 1136,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/root_reproduction/check_semantic_addendum.py-O.json",
++      "resolved_path": "history/root_reproduction/check_semantic_addendum.py-O.json",
++      "sha256": "4568b5e650ef067226422af0f3863396706515906a0f8564ba4724aef990b135"
++    },
++    {
++      "bytes": 1136,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/root_reproduction/check_semantic_addendum.py.json",
++      "resolved_path": "history/root_reproduction/check_semantic_addendum.py.json",
++      "sha256": "4568b5e650ef067226422af0f3863396706515906a0f8564ba4724aef990b135"
++    },
++    {
++      "bytes": 3457,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/submitted/ACCEPTANCE.json",
++      "resolved_path": "history/submitted/ACCEPTANCE.json",
++      "sha256": "ab41c82fd3dec23912bba4c3669483b454434583d05be825857d720617fd7b89"
++    },
++    {
++      "bytes": 1846,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/submitted/MANIFEST.json",
++      "resolved_path": "history/submitted/MANIFEST.json",
++      "sha256": "3fe3ecb307b8ef632594269043750d4535eadac6af77096f5555b8029e7fce82"
++    },
++    {
++      "bytes": 17171,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/submitted/MATHEMATICAL_AUDIT.md",
++      "resolved_path": "history/submitted/MATHEMATICAL_AUDIT.md",
++      "sha256": "6028ff452fa6e49a1cc85a9a01106494dc82c771c4679666e1e602680aa89802"
++    },
++    {
++      "bytes": 13502,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/submitted/MATHEMATICAL_REPORT.md",
++      "resolved_path": "history/submitted/MATHEMATICAL_REPORT.md",
++      "sha256": "ca97098b22a3841876d3a9f6d66460312b5820cea1f0cacd381e3d16e6abe4c7"
++    },
++    {
++      "bytes": 2692,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/submitted/ORIENTED_APPENDIX.md",
++      "resolved_path": "history/submitted/ORIENTED_APPENDIX.md",
++      "sha256": "4550676ad4a0af003ba6ce068c2c63f1c4dabba4840af48b2087adbac6921a73"
++    },
++    {
++      "bytes": 4559,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/submitted/README.md",
++      "resolved_path": "history/submitted/README.md",
++      "sha256": "142cba90aaea10baabcba543cbace622940f14b4dd27c490d3982cfc5a7f0892"
++    },
++    {
++      "bytes": 5211,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/submitted/SOURCE_METADATA.json",
++      "resolved_path": "history/submitted/SOURCE_METADATA.json",
++      "sha256": "e3b621919293bca1b78f20f1ec378345814bae0cef70bba54732d33f88353ca0"
++    },
++    {
++      "bytes": 4720,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/submitted/SOURCE_REVIEW.md",
++      "resolved_path": "history/submitted/SOURCE_REVIEW.md",
++      "sha256": "3260858a28a5196690283ea9f00dd0136c1b3137ff58ba14b419e947c88cea44"
++    },
++    {
++      "bytes": 2311,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "history/submitted/STATUS.json",
++      "resolved_path": "history/submitted/STATUS.json",
++      "sha256": "e236b9fe7da5364c06d5e5dc73123d1327eac4f2eb3ae0c1694023453614ec20"
++    },
++    {
++      "bytes": 4594,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "metadata.json",
++      "resolved_path": "metadata.json",
++      "sha256": "4e03f3f489f21a38ce9ad8c7cf53c399467343c963fea6df502219ae172b326c"
++    },
++    {
++      "bytes": 83409,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "paper.pdf",
++      "resolved_path": "paper.pdf",
++      "sha256": "52d4355533f5095be83c8799bd148e9927e5c4bef8c2f6a00d534303f0b7ee5c"
++    },
++    {
++      "bytes": 23218,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "paper.tex",
++      "resolved_path": "paper.tex",
++      "sha256": "84e3bae71b6cd88437dfb2d11d16fe4d3d8f6b8b5043136d7ab2b2474877707f"
++    },
++    {
++      "bytes": 588772,
++      "disposition": "KNOWN_OLD_ZIP_OMITTED",
++      "path": "pr1098_support_v1_0.zip",
++      "reason": "Exact old ZIP retained durably in the local audit before/ folder; omitted from this public payload to avoid recursively redistributing an obsolete archive.",
++      "sha256": "c3f69bd2b0327eff8c5029bcb21a457026fe829334ad5246b54d5479091172c3"
++    },
++    {
++      "bytes": 11023,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "prepare_assets.py",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "15b0e3410808aa82d3a78bef369db30bf411db4d69df14a0358455d71c073636"
++    },
++    {
++      "bytes": 4891,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "publication/zenodo-deposit.json",
++      "resolved_path": "publication/zenodo-deposit.json",
++      "sha256": "d55bea884379504d424b6dfa0a9b913bdd879717030c90db8ff513e5bee72281"
++    },
++    {
++      "bytes": 1833,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "seal_payload.py",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "9e85f5a1c6decf06c7aca165facc177fdc195a30aad1c50a16d745d4834913ea"
++    },
++    {
++      "bytes": 10676,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validate_preparation.py",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "68db66d3d3455c899c3668a98710e4d1d721c4118e13b98414d20ad2c657ff19"
++    },
++    {
++      "bytes": 1404,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/ACTUAL_VISUAL_INSPECTION.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "01b8c38437b9fea563a9757a64329eaf8c5cede0c95e0f4a0505d2e32b259897"
++    },
++    {
++      "bytes": 424,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/BUILTIN_COMPILER.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "fb7a548ca4e5be5d459ae80da158e32c61d7f01ea1a78797438e46ceca6b674b"
++    },
++    {
++      "bytes": 655,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/CLEAN_CHECKS_normal.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "573b7408d243b8e714346ee98d1c7bd8a6ea61171fd3a620debe66838b7f679e"
++    },
++    {
++      "bytes": 655,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/CLEAN_CHECKS_optimized.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "573b7408d243b8e714346ee98d1c7bd8a6ea61171fd3a620debe66838b7f679e"
++    },
++    {
++      "bytes": 45944,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/CLEAN_REPRODUCTION.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "8fd5f5287ca9608a909d9aa578e20c6512a6a2e8ebf94f39f5869e59688a5e57"
++    },
++    {
++      "bytes": 1202,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/INITIAL_COMPILER_SCRATCH_CLEANUP.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "4e6af93bfb8f5391c706d1db9f80c5338a62c415840f15b0583093220aefe0f6"
++    },
++    {
++      "bytes": 655,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/NEW_CONTROLS_normal.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "573b7408d243b8e714346ee98d1c7bd8a6ea61171fd3a620debe66838b7f679e"
++    },
++    {
++      "bytes": 655,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/NEW_CONTROLS_optimized.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "573b7408d243b8e714346ee98d1c7bd8a6ea61171fd3a620debe66838b7f679e"
++    },
++    {
++      "bytes": 1797,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/ORIGINAL_INPUT_RECHECK.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "7d9ad3d9142f3bba57c673b4d91483e569c23fa0af4b0da6c723218d94872675"
++    },
++    {
++      "bytes": 21823,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/OWN_SCRATCH_CLEANUP.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "a3d6920343760e559ae11a97db49a04ae823aa391ce4ebb19d097518aaf5d3ae"
++    },
++    {
++      "bytes": 18490,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/REAL_PDF_BUILD_normal.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "8ac89bc89802da97de9ce36b165166698c2d6e4dd8c23126c8cfd39fb7c9f910"
++    },
++    {
++      "bytes": 18490,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/REAL_PDF_BUILD_optimized.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "8ac89bc89802da97de9ce36b165166698c2d6e4dd8c23126c8cfd39fb7c9f910"
++    },
++    {
++      "bytes": 580,
++      "disposition": "UNCHANGED_LOCAL_PREPARATION_OUTPUT_OMITTED",
++      "path": "validation/REPOSITORY_NATIVE_LOCAL_CHECK.json",
++      "reason": "Exact dated preparation output retained unchanged at its original local audit path; deliberately outside the portable manifest. No helper, raw command/compiler stream, validation image or duplicate prior control payload is imported or claimed replayed.",
++      "sha256": "353d0c55b2acad53ab6d41ee8da56e311ff499f503c305138775d9e8b9929302"
++    },
++    {
++      "bytes": 4708,
++      "disposition": "UNCHANGED_CURRENT_BYTES",
++      "path": "zenodo-api.json",
++      "resolved_path": "zenodo-api.json",
++      "sha256": "a604a137ca89bda5305226f375c75bbedcae64444bacf0f5e0b9b100efb375be"
++    }
++  ],
++  "scope": "All 123 preparation output identities remain exact dated evidence. This is resolution, never a rewrite of the original pinfile."
++}
+--- /dev/null
++++ current/preprint_v1_0/terminal/REVIEW_STAGE_SELECTION.json
+@@ -0,0 +1,445 @@
++{
++  "entries": [
++    {
++      "bytes": 18528,
++      "disposition": "OMITTED",
++      "path": "ACTUAL_PDF_NORMAL.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "95228672ba557fd4c028dd3bb35b7fc023054df5494a410c564ae10361bc61d9"
++    },
++    {
++      "bytes": 18528,
++      "disposition": "OMITTED",
++      "path": "ACTUAL_PDF_OPTIMIZED.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "95228672ba557fd4c028dd3bb35b7fc023054df5494a410c564ae10361bc61d9"
++    },
++    {
++      "bytes": 344997,
++      "disposition": "OMITTED",
++      "path": "ACTUAL_REPRODUCTION.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "f0cf942294f7d3840a7086365213e4c7f1c85bcbde0253c22d391b853a13d14f"
++    },
++    {
++      "bytes": 9926,
++      "disposition": "OMITTED",
++      "path": "ADDITIONAL_CONTROLS.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "38aa22988b37e3367ab3998c7d1d8e231333e03d9c30b2e6ced8c8a01c880963"
++    },
++    {
++      "bytes": 655,
++      "disposition": "OMITTED",
++      "path": "CANDIDATE_CONTROLS_NORMAL.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "573b7408d243b8e714346ee98d1c7bd8a6ea61171fd3a620debe66838b7f679e"
++    },
++    {
++      "bytes": 655,
++      "disposition": "OMITTED",
++      "path": "CANDIDATE_CONTROLS_OPTIMIZED.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "573b7408d243b8e714346ee98d1c7bd8a6ea61171fd3a620debe66838b7f679e"
++    },
++    {
++      "bytes": 15832,
++      "disposition": "OMITTED",
++      "path": "CLOSED_ARCHIVE_REVIEW.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "c6e8cf4d3cdc9ceece303f37c13b02a7c668681b31ecfdb91ea4629554050594"
++    },
++    {
++      "bytes": 45461,
++      "disposition": "OMITTED",
++      "path": "CUSTODY_REVIEW.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "5e0c0fbcdeec8447b5847def3097a3d0b7e05f00823db17d4e69862fc9b65110"
++    },
++    {
++      "bytes": 433,
++      "disposition": "OMITTED",
++      "path": "DERIVATION_FREEZE_RECEIPT.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "2f7e3d850fe41d76ed78c04ec739df006658e4dbed46f5f6043478d983e5a7d9"
++    },
++    {
++      "bytes": 822,
++      "disposition": "OMITTED",
++      "path": "FINAL_INPUT_RECHECK.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "321c1889e130fac93bb9a5e03b482bde2ec744b7a8513165f0fc4e86fe86f2e4"
++    },
++    {
++      "bytes": 5791,
++      "destination": "terminal/evidence/package_01/INDEPENDENT_DERIVATION_FROZEN.md",
++      "disposition": "EXACT_AUTHORED_COPY",
++      "path": "INDEPENDENT_DERIVATION_FROZEN.md",
++      "review": "package_01",
++      "sha256": "686a5ac3151c94327e676bc44c69d2f87f2a6c19d3cccbaee967598a1b411c93"
++    },
++    {
++      "bytes": 1835,
++      "disposition": "OMITTED",
++      "path": "INDEPENDENT_NORMAL.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "e08561b2bdf142140a79bacb5d747ffae6b81e6bb90c57c79214dc32290efce1"
++    },
++    {
++      "bytes": 1835,
++      "disposition": "OMITTED",
++      "path": "INDEPENDENT_OPTIMIZED.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "e08561b2bdf142140a79bacb5d747ffae6b81e6bb90c57c79214dc32290efce1"
++    },
++    {
++      "bytes": 23978,
++      "disposition": "OMITTED",
++      "path": "OWN_SCRATCH_CLEANUP.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "de890bf3bbe1a05c24ea9d0e37c69dc5d34349a7991d1b4d84cf7d41e09113aa"
++    },
++    {
++      "bytes": 55543,
++      "disposition": "OMITTED",
++      "path": "PRIOR_AUDIT_FREEZE.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "6a4380e8a2420a9885d70cd5ef2a1d4e9234024173120cfb4501335036962250"
++    },
++    {
++      "bytes": 17265,
++      "destination": "terminal/evidence/package_01/REPORT.md",
++      "disposition": "EXACT_AUTHORED_COPY",
++      "path": "REPORT.md",
++      "review": "package_01",
++      "sha256": "60fb2e888904e19bb59656481da87b3ad7f8e2e24dac6b7c2207207cff116b83"
++    },
++    {
++      "bytes": 2220,
++      "disposition": "OMITTED",
++      "path": "RESEARCH_LOG.md",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "f20066614b3c9033eca9f587aa0a80b5d8614cfe5969906e8704ec26e2e8d5cf"
++    },
++    {
++      "bytes": 22526,
++      "disposition": "OMITTED",
++      "path": "SOURCE_READ_LEDGER.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "a082130eccf36b9661e0873f3a0587b11944b0c60d2caea840c0bcff706cab3d"
++    },
++    {
++      "bytes": 1486,
++      "destination": "terminal/evidence/package_01/VERDICT.json",
++      "disposition": "EXACT_AUTHORED_COPY",
++      "path": "VERDICT.json",
++      "review": "package_01",
++      "sha256": "94ed899a544e8f1940599c841c05e98ab9260c50e982b0208f9aa91d7f74149e"
++    },
++    {
++      "bytes": 2953,
++      "disposition": "OMITTED",
++      "path": "finish_controls.py",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "7c0ddd52e72543b11bf5bc733ca13a4ceeafa3fc8325a6f7b15df5029b709df1"
++    },
++    {
++      "bytes": 9269,
++      "disposition": "OMITTED",
++      "path": "independent_checks.py",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "e2dbb524dd8fcac09b9cf63548ea5e191ec40c8fd8c2b1271022b7ac212efc0b"
++    },
++    {
++      "bytes": 13445,
++      "disposition": "OMITTED",
++      "path": "package_checks.py",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_01",
++      "sha256": "9ada156be63a6cc627e9b036ab27beaf714c4cdf12af2e746cf5bec2c863d87f"
++    },
++    {
++      "bytes": 9,
++      "disposition": "OMITTED",
++      "path": ".gitignore",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "48a5d69ced95acba3b51635040c664e84e79d6ec7f91d7c02927065fc3dc9e2a"
++    },
++    {
++      "bytes": 36930,
++      "disposition": "OMITTED",
++      "path": "ACTUAL_BUILDS.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "42a556701c4e41f6f19579ed691def3d4ed8a6269a6d892d823a5f43567b9292"
++    },
++    {
++      "bytes": 112406,
++      "disposition": "OMITTED",
++      "path": "ACTUAL_COMMANDS.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "be5b67c62220d2b4aeeb43bd7f3272f8ebb50fe424598f9f20864daae6ceb828"
++    },
++    {
++      "bytes": 13149,
++      "disposition": "OMITTED",
++      "path": "ACTUAL_REPRODUCTION.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "941f5674b411933c4e4ccfedb8ae121a15b1615046e69c35a45f80ccfd0031db"
++    },
++    {
++      "bytes": 1915,
++      "disposition": "OMITTED",
++      "path": "ACTUAL_VISUAL_INSPECTION.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "7bcaa12553c5d0957e3d94f0e8f3e42743c0ab92baf376611538fcb2c2f0792d"
++    },
++    {
++      "bytes": 30696,
++      "disposition": "OMITTED",
++      "path": "ADDITIONAL_ACTUAL_PATHS.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "1d9f9f927d38808b56cb9275ddd7abac20bc30f35d2031aef2347699b11bd90b"
++    },
++    {
++      "bytes": 19282,
++      "disposition": "OMITTED",
++      "path": "ADDITIONAL_CLEANUP.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "343d5a540daacbc799698884776b1ae3b6751274d73e71771d3ea3988dd6b31a"
++    },
++    {
++      "bytes": 655,
++      "disposition": "OMITTED",
++      "path": "CANDIDATE_CHECKS_normal.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "573b7408d243b8e714346ee98d1c7bd8a6ea61171fd3a620debe66838b7f679e"
++    },
++    {
++      "bytes": 655,
++      "disposition": "OMITTED",
++      "path": "CANDIDATE_CHECKS_optimized.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "573b7408d243b8e714346ee98d1c7bd8a6ea61171fd3a620debe66838b7f679e"
++    },
++    {
++      "bytes": 267,
++      "disposition": "OMITTED",
++      "path": "CONTROL_DEVELOPMENT_RECEIPT.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "ae12bbec333ddd73631e73ff3a1362c3c10c3fcb776c8c2bdb762afbf90cbe2f"
++    },
++    {
++      "bytes": 2115,
++      "disposition": "OMITTED",
++      "path": "CUSTODY_RUNS.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "2a256e09ea3af00dce4266f407ec29293c4585205f1fa97add24ee36e5d3129f"
++    },
++    {
++      "bytes": 3066,
++      "disposition": "OMITTED",
++      "path": "CUSTODY_normal.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "53d0302dde4c3069f8c45d566c79ef15d24b9f1d8ef668e745042f0ba73fcc2d"
++    },
++    {
++      "bytes": 3066,
++      "disposition": "OMITTED",
++      "path": "CUSTODY_optimized.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "53d0302dde4c3069f8c45d566c79ef15d24b9f1d8ef668e745042f0ba73fcc2d"
++    },
++    {
++      "bytes": 423,
++      "disposition": "OMITTED",
++      "path": "DERIVATION_FREEZE_RECEIPT.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "5d6ba33b81ff485c0f6f521409d82855fcdbee097eade19e3c1ad009c93f0ddc"
++    },
++    {
++      "bytes": 24664,
++      "disposition": "OMITTED",
++      "path": "EXTERNAL_CLEANUP.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "e0c71ca09876a047bd555cb1dc997c88a0c3e8639e55c9108d3c47c0831df241"
++    },
++    {
++      "bytes": 238,
++      "disposition": "OMITTED",
++      "path": "FINAL_INPUT_RECHECK.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "2a2807c55b8f64165575ff4ec11d53dfc792e0b0bd36e6e67af922cedffb5d31"
++    },
++    {
++      "bytes": 60094,
++      "disposition": "OMITTED",
++      "path": "FREEZE.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "be2636feba13353202dde1c76604dc82207c1b1914032dfbd9977d74420484c2"
++    },
++    {
++      "bytes": 5597,
++      "destination": "terminal/evidence/package_02/INDEPENDENT_DERIVATION.md",
++      "disposition": "EXACT_AUTHORED_COPY",
++      "path": "INDEPENDENT_DERIVATION.md",
++      "review": "package_02",
++      "sha256": "ee76c8b81d60ddd5f8475a6902593767de02e287d622a3cf8fc81d34cc9bb51f"
++    },
++    {
++      "bytes": 982,
++      "disposition": "OMITTED",
++      "path": "NEW_CONTROLS_normal.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "e0c3aa495639c56dc4ded3d3ae6114f7c175fcfdb14728b4b42caec8fb718857"
++    },
++    {
++      "bytes": 982,
++      "disposition": "OMITTED",
++      "path": "NEW_CONTROLS_optimized.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "e0c3aa495639c56dc4ded3d3ae6114f7c175fcfdb14728b4b42caec8fb718857"
++    },
++    {
++      "bytes": 2356,
++      "disposition": "OMITTED",
++      "path": "NEW_CONTROL_RUNS.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "ce04ad1e60c4c8102ab80dce666e5983d135a6e871f473f0120462a5d5001c9c"
++    },
++    {
++      "bytes": 2740,
++      "disposition": "OMITTED",
++      "path": "OWN_SCRATCH_CLEANUP.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "683a09cc7053f27d0cfdc9c398ee9fb43a6d5d8cb6a5ad9fb75d3c8d93ac0dc2"
++    },
++    {
++      "bytes": 1226,
++      "disposition": "OMITTED",
++      "path": "PERIOD_DELETION_NOTE.md",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "a9b66b7dd25a8f69d64bf30ccda4fbc5a8e5a8bf7ad9d952a212de81c32e4a08"
++    },
++    {
++      "bytes": 17255,
++      "destination": "terminal/evidence/package_02/REPORT.md",
++      "disposition": "EXACT_AUTHORED_COPY",
++      "path": "REPORT.md",
++      "review": "package_02",
++      "sha256": "5bda854929beed1e45878a36171477a4a256c729fcd66132934f0b1dbaf78c0b"
++    },
++    {
++      "bytes": 1203,
++      "disposition": "OMITTED",
++      "path": "RESEARCH_LOG.md",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "284d20887e3249d22222393169ce89fbb10de114ddd53dee6e40f55875521991"
++    },
++    {
++      "bytes": 34007,
++      "disposition": "OMITTED",
++      "path": "SOURCE_READ_LEDGER.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "e7437f3db2d871d26b059cc1fc011bdcd0a2369d7f545a61667e75ed5b0ee81d"
++    },
++    {
++      "bytes": 3073,
++      "disposition": "OMITTED",
++      "path": "SOURCE_READ_LEDGER_STAGE1.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "4a4f4e160d4a16b027139b65df96af090d2f5087d19d6e2d01f072f792a2616b"
++    },
++    {
++      "bytes": 493,
++      "disposition": "OMITTED",
++      "path": "TERMINAL_CHECKS.json",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "643d8ce035ec89004362de1377431d7aacdf5f5ff980a04df5ad91e7915c162b"
++    },
++    {
++      "bytes": 1252,
++      "destination": "terminal/evidence/package_02/VERDICT.json",
++      "disposition": "EXACT_AUTHORED_COPY",
++      "path": "VERDICT.json",
++      "review": "package_02",
++      "sha256": "dc8d811c1c51684d97c4e47d36aab22a4ac8307425aaa05fe6d68f39d77aae71"
++    },
++    {
++      "bytes": 3156,
++      "disposition": "OMITTED",
++      "path": "additional_paths.py",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "479cf4840e41158f68c6d53f0178346bb8427fab37b49d70270dfccb8d770968"
++    },
++    {
++      "bytes": 6380,
++      "disposition": "OMITTED",
++      "path": "custody_check.py",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "59cd70efaec484636e6dbb7f30338fa141733314cc71a7ac13f089db91d17f11"
++    },
++    {
++      "bytes": 8165,
++      "disposition": "OMITTED",
++      "path": "new_controls.py",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "2c3439faa62f3d720ce03c62264a530e4b318cd91053a86e942edbce0acc205c"
++    },
++    {
++      "bytes": 6759,
++      "disposition": "OMITTED",
++      "path": "reproduce_package.py",
++      "reason": "Selected portable authored interfaces only; no raw execution/compiler streams, source bodies, pixels, runtime or duplicate historical control payload imported. Full original review stays exact in the research audit.",
++      "review": "package_02",
++      "sha256": "739db5467b481eafe4bfcccb83d0d3a6cce0448677588c32f7246e6598efaf5a"
++    }
++  ],
++  "scope": "Individual selection of every output pinned by each completed whole review; seal and pinfile are additional exact authored interfaces. Omission never claims replay."
++}

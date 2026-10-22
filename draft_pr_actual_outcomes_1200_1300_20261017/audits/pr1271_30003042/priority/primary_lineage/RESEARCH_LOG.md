@@ -1,0 +1,5 @@
+# Primary-lineage research log
+
+- 2026-10-18 00:54:24 UTC — 60%: completed primary body reading of the 2023 analytic argument and visual checks of its decisive Theorem 4.1/Corollary 4.4, the 2016 pointwise implication, original OWR target, and 2021-preprint/2023-journal index statements and normalization discrepancy. Followed adjacent 2019–2026 counterexample literature and 2024/2026 spin-index follow-ups. No direct printed conjunction of the full target has yet been located; this is a bounded search finding, not a priority certificate. Initial verdict is still under preparation. No other new priority-family outputs read; no outreach; no Git mutation.
+
+- 2026-10-18 00:59:13 UTC — 100% of the assigned initial primary-lineage audit: sealed REPORT, VERDICT, QUERY_LEDGER and SOURCE_LEDGER after52literalsearches in14batches,278returnedURL entries,50directretrieval attempts and4DOIforward-citation sweeps. Exact prior coverage established by composition; direct printed full conclusion/firstness remainUNESTABLISHED.15sourcepages visually inspected. This seal precedes reversecross-review and anyothernewpriorityfamily findings. No externaloutreach or Gitmutation.

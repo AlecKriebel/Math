@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-18T00:07:36.692229+00:00",
+  "network_guard": "import socket\ndef denied(*a,**k):\n raise RuntimeError(\"OFFLINE AUDIT: network disabled\")\nsocket.socket.connect=denied\nsocket.socket.connect_ex=denied\nsocket.create_connection=denied\nsocket.getaddrinfo=denied\n",
+  "runs": [
+    {
+      "mode": "normal",
+      "exit": 0,
+      "stdout_matches_saved_replay": true,
+      "network_block_inherited_by_children": true
+    },
+    {
+      "mode": "optimized",
+      "exit": 0,
+      "stdout_matches_saved_replay": true,
+      "network_block_inherited_by_children": true
+    }
+  ]
+}

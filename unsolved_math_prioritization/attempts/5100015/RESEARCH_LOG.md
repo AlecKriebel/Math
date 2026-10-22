@@ -1,0 +1,14 @@
+# 5100015 research log
+
+All times UTC,2026-10-01. Five substantive author turns if unresolved; each capped at two active hours. Stop earlier only with complete candidate followed by separate review. Source, packaging and review do not count as fresh proof attempts.
+
+-05:04:10 Assigned rank222/k303,b. Dedicated sparse worktree based on e8bcfd04ed176c9260c2be67d27359c077654686; root/subdirectory rules, README, queue and related groups read. Prior PR198 publication completed and not repeated. Completion0%.
+-05:05:55 Source checkpoint: full pinned record/report read and joint hash matched. Exact target is outer tangent-polygon area times center-pedal area, all primitive N not divisible by4. Both editions agree. No exact prior campaign/Alec attempt located beyond third-party triage. Completion10%.
+-05:06:00 Substantive author turn1 begins: direct canonical-coordinate falsification and formula analysis, with odd periods and2mod4 separately tested. Maximum active duration2h; reserved k203,a independent review time excluded from this author's research clock.
+-05:11 UTC Turn1 paused after approximately5 active minutes to audit frozen5100011/k203,a as assigned. Saved independent full candidate mechanism in TURN1_DERIVATION_CHECKPOINT.md before reading either neighboring proof packet. Remaining work is primary Jacobi pole/identity verification and certificate packaging; completion estimate80%, not a proof acceptance.
+-05:22 UTC Separate k203,a review finished and remotely checkpointed; it does not consume k303,b proof turns. Resume author turn1 with approximately5 prior active minutes. The independent derivation checkpoint predates reading the k203,a packet; now disclose any common standard dn-area identity or analytic method overlap when freezing the k303,b proof.
+-2026-10-01T05:33:26+00:00 Full turn1 candidate frozen. All5660 exact checks and4512 separately labeled90-digit diagnostics PASS across60 primitive families, including42 odd-period and36 star families. The canonical projection/edge identity, dn-pole list and complete reflected-zero cancellation were verified. queue.py recorded candidate_result1/5. Approximately16 active minutes in the single author turn, excluding05:11–05:22 review pause, far below2h. Author-deliverable completion100%; independent review pending.
+
+2026-10-16T05:28:16.414237+00:00 — case45%: dated credited manuscript/current presentation prepared, all23 originals preserved byte-exact in history; 3math/source and2priority audits accepted, whole-package reviews/publication pending. No new author proof turn or historical firstness claim.
+
+2026-10-16T15:10:12.929407+00:00 — case 95%: exact reviewed preprint published; four-cell tracker verified. Native readback and merge pending; author 1/5 and 23 originals retained.

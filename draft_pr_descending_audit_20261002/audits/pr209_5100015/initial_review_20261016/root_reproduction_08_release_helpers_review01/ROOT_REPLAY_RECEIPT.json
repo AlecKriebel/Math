@@ -1,0 +1,74 @@
+{
+  "utc": "2026-10-16T06:13:17.152187+00:00",
+  "synthetic_only": true,
+  "expected_outcomes": 29,
+  "live_provider_calls": 0,
+  "source_modules_changed": false,
+  "child_execution": {
+    "execution": [
+      {
+        "script": "probes.py",
+        "returncode": 0
+      },
+      {
+        "script": "additional_probes.py",
+        "returncode": 0
+      },
+      {
+        "script": "final_probes.py",
+        "returncode": 0
+      }
+    ],
+    "check_count": 29,
+    "all_expected_outcomes_reproduced": true,
+    "providers": "in-memory stubs only",
+    "fixture_archive": "PROBE_FIXTURES_FINAL.zip"
+  },
+  "comparisons": [
+    {
+      "path": "PROBE_RESULTS.json",
+      "checks": 12,
+      "all_observations_exact_after_only_owned_root_path_normalization": true,
+      "raw_bytes_identical": true
+    },
+    {
+      "path": "ADDITIONAL_PROBE_RESULTS.json",
+      "checks": 9,
+      "all_observations_exact_after_only_owned_root_path_normalization": true,
+      "raw_bytes_identical": false
+    },
+    {
+      "path": "FINAL_PROBE_RESULTS.json",
+      "checks": 8,
+      "all_observations_exact_after_only_owned_root_path_normalization": true,
+      "raw_bytes_identical": true
+    }
+  ],
+  "fixture_archive": {
+    "bytes": 2765092,
+    "sha256": "5eb7021ded331c6764c5cd8e8387b3756725e0582f41318feaff03a5adb396a9",
+    "members": 3531
+  },
+  "all_fixture_bytes_roundtrip_verified_before_owned_fixture_cleanup": true,
+  "roundtrip_enforcement_source": "root_replay.py",
+  "comparison_limitation": "Only the exact original/fresh owned directory prefixes were normalized; no statuses, error types, counts, operations, receipt booleans or other details were ignored.",
+  "initial_comparator_failure_preserved": "ROOT_INITIAL_COMPARISON_FAILURE.json",
+  "source_manifest": {
+    "original_manifest_sha256": "fa61531c7f79e69b0d8f1253e9e3fae030f8a50fbdd75943f0a44c112a47a0f0",
+    "original_payloads_verified": 34,
+    "copied_exact_files": [
+      "append_verified_tracker.py",
+      "integrate_reviewed_pr.py",
+      "publish_preprint.py",
+      "release_binding.py",
+      "verify_and_merge.py",
+      "verify_published_readonly.py",
+      "FROZEN_SOURCES.json",
+      "probes.py",
+      "additional_probes.py",
+      "final_probes.py",
+      "REPRODUCE.py"
+    ],
+    "synthetic_only": true
+  }
+}

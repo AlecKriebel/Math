@@ -1,0 +1,47 @@
+{
+  "utc": "2026-10-21T04:19:09.289160+00:00",
+  "results": [
+    {
+      "kind": "valid",
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS_INTEGRITY_ONLY\", \"hashed_files\": 91}\n",
+      "stderr": "",
+      "expected": "pass"
+    },
+    {
+      "kind": "source_tamper",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/source_tamper/reproduce.py\", line 138, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/source_tamper/reproduce.py\", line 78, in main\n    count = verify(root)\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/source_tamper/reproduce.py\", line 38, in verify\n    require(len(content) == row[\"bytes\"], f\"Size mismatch: {rel}\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/source_tamper/reproduce.py\", line 17, in require\n    raise RuntimeError(message)\nRuntimeError: Size mismatch: main.tex\n",
+      "expected": "reject"
+    },
+    {
+      "kind": "extra_file",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/extra_file/reproduce.py\", line 138, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/extra_file/reproduce.py\", line 78, in main\n    count = verify(root)\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/extra_file/reproduce.py\", line 33, in verify\n    require(actual == expected | {\"MANIFEST.json\"}, \"Missing or unlisted package files\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/extra_file/reproduce.py\", line 17, in require\n    raise RuntimeError(message)\nRuntimeError: Missing or unlisted package files\n",
+      "expected": "reject"
+    },
+    {
+      "kind": "missing_file",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/missing_file/reproduce.py\", line 138, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/missing_file/reproduce.py\", line 78, in main\n    count = verify(root)\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/missing_file/reproduce.py\", line 33, in verify\n    require(actual == expected | {\"MANIFEST.json\"}, \"Missing or unlisted package files\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/missing_file/reproduce.py\", line 17, in require\n    raise RuntimeError(message)\nRuntimeError: Missing or unlisted package files\n",
+      "expected": "reject"
+    },
+    {
+      "kind": "symlink",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/symlink/reproduce.py\", line 138, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/symlink/reproduce.py\", line 78, in main\n    count = verify(root)\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/symlink/reproduce.py\", line 30, in verify\n    require(not path.is_symlink(), f\"Symlink in package: {path}\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/symlink/reproduce.py\", line 17, in require\n    raise RuntimeError(message)\nRuntimeError: Symlink in package: /Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/symlink/unlisted-link\n",
+      "expected": "reject"
+    },
+    {
+      "kind": "optimized",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/optimized/reproduce.py\", line 138, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/optimized/reproduce.py\", line 73, in main\n    require(not sys.flags.optimize, \"Run without -O: historical controls use assert\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/audits/pr0292_30001608/reviews/package_adversary_02/wrapper_mutation_fixtures/optimized/reproduce.py\", line 17, in require\n    raise RuntimeError(message)\nRuntimeError: Run without -O: historical controls use assert\n",
+      "expected": "reject"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# Eight-PR final reconciliation — prepared, awaiting authorization
+
+This new folder preserves final_reconciliation_01 unchanged. No external readbacks have been collected here. PR #681 was still under final whole-package review when these sources were prepared. No outcome, accepted head, merge commit, DOI, publication title, file hash or tracker row is invented for that PR.
+
+The exact eligible shard is #615, #618, #623, #628, #630, #662, #672 and #681. Every skipped PR and every mathematical reaudit is outside this workflow. The immutable PR #681 original head is e92320ea5979c812089780a982fbd88136a26522. Its original attempt and sibling publication layout are handled like PR #662.
+
+expected_state.py performs a purely local, fail-closed preflight. It reads the actual PROGRAM_STATE.json and requires all eight entries in completed, without duplicates or other completed entries. It then reads and binds the exact applicable final/original receipts. For #681 it requires actual consistent FINAL_DISPOSITION.json, GH_MERGE_RECEIPT.json, INTEGRATION_PUSHED_RECEIPT.json, ZENODO_PUBLICATION_RECEIPT.json, TRACKER_RECEIPT.json, source snapshot and accepted-publication gates. It verifies agreement of original/accepted heads, final merge, production DOI/record, exact tracker row/range, metadata title, accepted local PDF/ZIP hashes and accepted publication pins. Four actual publication outcomes must exist; an unexpected disposition or schema fails explicitly for review. No external request is dispatched before the complete preflight succeeds.
+
+Only after the parent explicitly authorizes collection following #681 completion:
+
+1. Run `python3 -B collect_readbacks.py --preflight`. READY_OFFLINE is required. NOT_READY performs no external operation.
+2. Run `python3 -B collect_readbacks.py --collect`. This takes one fresh completed-eight snapshot and performs only read-only GitHub, production Zenodo/DOI and Google Workspace GET/view requests. It refuses to overwrite an existing snapshot. It derives all new #681 values from actual final receipts. A complete snapshot schedules 50 readbacks.
+3. Run `python3 -B analyze_readbacks.py`. This makes no new cloud calls. Keep PROGRAM_STATE.json and accepted receipts stable between collection and analysis; source binding changes fail the analysis.
+4. If every check passes, run `python3 -B finalize_snapshot.py`. This performs a publication privacy scan, creates the actual FINDINGS.md, appends the local UTC research log and writes FINAL_FREEZE.json. It refuses to manufacture a final result before the actual eight-PR analysis passes.
+
+All spreadsheet responses are first saved only under ignored tmp/, including full-column values, all-tab metadata and all four exact-row requests. The public replacements allowlist our exact matching rows, expected tab/header identities, match counts/row indices and private-cache hashes. Unexpected or mismatched row/header contents remain private. No unrelated row contents or tab properties are emitted. The collector preserves the raw responses for private replay; the analyzer checks the hashes, regenerates each filtered result and verifies that all raw spreadsheet paths are ignored. Public PDF/ZIP downloads and DOI HTML are also cached in ignored tmp/.
+
+Collector/analyzer/helper source hashes, actual completed decisions, local original/final receipts, accepted file pins and private raw-response hashes are bound in the new input manifest once collection is authorized. Public own-PR GitHub and Zenodo metadata remain checkable. No CLI authentication output, token, credential, email or chat data is needed. Never run `gws generate-skills`, including its help variant. No command in this workflow changes cloud state, program state, shared Git checkout/index or the persistent goal status.
+
+PREPARATION_VALIDATION.json and PREPARATION_GATE_CHECK.json describe only local preparation checks. PREPARATION_FREEZE.json freezes the prepared sources and documents; it is not a successful final reconciliation or a publication acceptance certificate. The eventual actual outcome is recorded only after authorized collection and offline analysis.

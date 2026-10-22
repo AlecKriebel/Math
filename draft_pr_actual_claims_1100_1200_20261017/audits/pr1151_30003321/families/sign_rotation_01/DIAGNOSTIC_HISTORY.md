@@ -1,0 +1,3 @@
+# Diagnostic history
+
+2026-10-18T00:34:31.414092+00:00 — An initial diagnostic deliberately tested a stronger relation than the candidate claims: equivalence of the right-predecessor relation on all pairs. It failed at alpha=1, source y=empty, x=minus, with images plus and empty. Source 0 is a right predecessor of −1, while image + is not a predecessor of image 0. This is an expected deletion of a right predecessor of the old minimum. It is not a counterexample to the candidate's required implication (no new right predecessors). The test was corrected to the stated implication for every pair, plus equivalence when the child is not the minimum. The failed overstatement is recorded here rather than discarded as evidence of a candidate flaw.

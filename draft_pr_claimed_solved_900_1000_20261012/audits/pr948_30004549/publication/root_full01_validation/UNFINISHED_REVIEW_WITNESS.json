@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-16T09:39:00.815378+00:00",
+  "finding_id": "R948-FULL01-R01",
+  "candidate_source_sha256": "1f538840a9e3d0ec26270d977960699cfd6155e8706ffa7de3c82854042be563",
+  "actual_functions": [
+    "result_schema",
+    "review_check"
+  ],
+  "fixture": "Sealed root-fix tiny in-memory old-candidate adverse plus two-current-clean chain. Only old round completion flags changed to false; RESULT and review manifest pins coherently updated. All other auth/cold data left intact to isolate unconditional completion check.",
+  "witnesses": [
+    {
+      "case": "complete_adverse_plus_two_clean",
+      "accepted": true
+    },
+    {
+      "case": "honest_unfinished_old_round_plus_two_clean",
+      "accepted": false,
+      "error": "PR948 guard: fresh ENTIRE-package target/reproducer"
+    },
+    {
+      "case": "failed_old_replay_plus_two_clean",
+      "accepted": false,
+      "error": "PR948 guard: independent cold full-package replay binding"
+    }
+  ]
+}

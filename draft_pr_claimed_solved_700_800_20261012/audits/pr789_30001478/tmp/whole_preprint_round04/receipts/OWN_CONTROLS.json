@@ -1,0 +1,191 @@
+{
+  "result": "PASS",
+  "utc": "2026-10-16T18:17:29.871682+00:00",
+  "positive_controls": 2,
+  "negative_controls": 24,
+  "controls": [
+    {
+      "name": "normal",
+      "expected": "PASS",
+      "returncode": 0,
+      "stdout": "{\"distribution_files\": 6, \"original_files\": 58, \"own_files\": 35, \"own_math_replayed\": true, \"priority\": \"UNRESOLVED\", \"result\": \"PASS\", \"scope\": \"Pinned custody and optional reviewer diagnostics; no universal-proof or historical-firstness automation.\", \"source_files\": 151}",
+      "stderr": ""
+    },
+    {
+      "name": "optimized",
+      "expected": "PASS",
+      "returncode": 0,
+      "stdout": "{\"distribution_files\": 6, \"original_files\": 58, \"own_files\": 35, \"own_math_replayed\": true, \"priority\": \"UNRESOLVED\", \"result\": \"PASS\", \"scope\": \"Pinned custody and optional reviewer diagnostics; no universal-proof or historical-firstness automation.\", \"source_files\": 151}",
+      "stderr": ""
+    },
+    {
+      "name": "wrong_manifest_pin",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"external manifest mismatch\"}",
+      "stderr": ""
+    },
+    {
+      "name": "wrong_checker_pin",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"external checker mismatch\"}",
+      "stderr": ""
+    },
+    {
+      "name": "changed_report",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"bound bytes mismatch\"}",
+      "stderr": ""
+    },
+    {
+      "name": "extra_file",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"closed inventory mismatch\"}",
+      "stderr": ""
+    },
+    {
+      "name": "empty_directory",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"unexpected empty directory\"}",
+      "stderr": ""
+    },
+    {
+      "name": "missing_report",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"bound bytes mismatch\"}",
+      "stderr": ""
+    },
+    {
+      "name": "report_symlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"not single-link regular file\"}",
+      "stderr": ""
+    },
+    {
+      "name": "report_hardlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"not single-link regular file\"}",
+      "stderr": ""
+    },
+    {
+      "name": "report_fifo",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"not single-link regular file\"}",
+      "stderr": ""
+    },
+    {
+      "name": "self_symlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"not single-link regular file\"}",
+      "stderr": ""
+    },
+    {
+      "name": "root_symlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"unsafe directory ancestry\"}",
+      "stderr": ""
+    },
+    {
+      "name": "ancestor_symlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"unsafe directory ancestry\"}",
+      "stderr": ""
+    },
+    {
+      "name": "duplicate_JSON_key",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"duplicate JSON key\"}",
+      "stderr": ""
+    },
+    {
+      "name": "nonfinite_JSON",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"nonfinite JSON\"}",
+      "stderr": ""
+    },
+    {
+      "name": "unsafe_path",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"unsafe relative path\"}",
+      "stderr": ""
+    },
+    {
+      "name": "duplicate_row",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"duplicate/self row\"}",
+      "stderr": ""
+    },
+    {
+      "name": "rehashed_firstness",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"review scope\"}",
+      "stderr": ""
+    },
+    {
+      "name": "rehashed_head",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"review scope\"}",
+      "stderr": ""
+    },
+    {
+      "name": "rehashed_result",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"review scope\"}",
+      "stderr": ""
+    },
+    {
+      "name": "rehashed_high_severity",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"review scope\"}",
+      "stderr": ""
+    },
+    {
+      "name": "source_extra",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"closed inventory mismatch\"}",
+      "stderr": ""
+    },
+    {
+      "name": "source_tamper",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"bound bytes mismatch\"}",
+      "stderr": ""
+    },
+    {
+      "name": "source_ancestor_symlink",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"unsafe directory ancestry\"}",
+      "stderr": ""
+    },
+    {
+      "name": "wrong_bound_PDF",
+      "expected": "REJECT",
+      "returncode": 1,
+      "stdout": "{\"result\": \"FAIL\", \"error\": \"distribution identity: output/pdf/paper.pdf\"}",
+      "stderr": ""
+    }
+  ],
+  "expensive_candidate_core_repeated": false
+}

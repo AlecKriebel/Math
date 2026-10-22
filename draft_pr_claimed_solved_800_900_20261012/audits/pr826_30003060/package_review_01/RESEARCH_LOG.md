@@ -1,0 +1,11 @@
+# Research log: fresh package review 01
+
+- 2026-10-15T04:42:33.195622+00:00 — Began independent review. Read the sealed note and complete cached target before prior audit verdicts. Branch is main; no reviewed input will be modified. Completion estimate toward this independent package review: 5%.
+
+- 2026-10-15T04:43:23.031157+00:00 — Independent reconstruction completed before reading prior verdicts. All ten core hashes match the seal; complete assembly has 217 regular files and no symlinks. All three included PDF pages rendered and visually inspected: text/equations/references/disclosures legible with no clipping or overlaps. Inspected all executable children and archive-code bindings before execution. Review completion estimate: 25%.
+
+- 2026-10-15T04:48:13.706179+00:00 — All documented full outer/portable normal and optimized replays passed; rebuilt ZIP/index match byte for byte. Independent Git inspection read all 65 original and 217 prepared blobs, checked the target row and exact metadata, and checked all four archives/55 members plus 140 portable members. Root integrity controls pass 34 cases; fresh additional controls pass 36 cases (including 34 expected rejections and two complete hostile-startup relocated archive acceptances). Original scholarly anchors were read and visually checked; all 14 recent-lane primary PDF byte pins rehash successfully. No mandatory defect found. Review completion estimate: 80%.
+
+- 2026-10-15T04:49:57.744258+00:00 — Completed assertion-by-assertion source/PDF checklist and primary-literature boundary review. Complete original provenance replay passes all three full corpora and seven PDF pins; all21 primary-ledger rehash rows match. No new mechanism or priority credit is inferred from the bounded search. Mandatory findings remain empty. Review completion estimate: 90%.
+
+- 2026-10-15T04:52:03.755616+00:00 — Final independent disposition CLEAR for the exact R1 seal; no mandatory repair. Completed full proof/source/PDF/metadata/archive/repository/execution review. Final pre/post check confirms ten canonical cores,217 prepared assembly files and65 original source files unchanged, with branch main. Required work for this independent review is complete:100%. No novelty, historical/current-openness, human or formal certificate is issued. No publication or repository mutation performed.

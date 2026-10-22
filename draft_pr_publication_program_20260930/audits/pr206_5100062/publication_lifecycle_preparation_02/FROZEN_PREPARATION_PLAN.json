@@ -1,0 +1,33 @@
+{
+  "UTC": "2026-10-16T19:09:05.974336+00:00",
+  "accepted_finding": "Sealed v01 atomic check-then-replace loses a competing receipt and an existing view preimage in exact forced interleaving. This is a mandatory source defect.",
+  "independent_witness": {
+    "RACE_NORMAL_01.json": {
+      "bytes": 1117,
+      "sha256": "87423edc300688afe5e53d3983e629d9fd4052decff35ba8688cbf7defe5a110"
+    },
+    "RACE_OPTIMIZED_01.json": {
+      "bytes": 1116,
+      "sha256": "8f21d29e43b59a42258670427c0f08be246293c24037176337a7f97904557862"
+    },
+    "race_reproduction_01.py": {
+      "bytes": 2560,
+      "sha256": "ca1261e697a421e2c0c563ef244b08145d66c2a0d9498258a701928d8b97859a"
+    }
+  },
+  "no_blanket_uncooperative_same_UID_CAS_claim": true,
+  "old_v01_sources_manifests_reports_preserved_unchanged": true,
+  "preparation_completion_estimate_percent": 0,
+  "repair": [
+    "Every expected=None receipt/pointer uses fsynced owned staged regular file plus atomic os.link(no replace); an existing target is preserved unconditionally.",
+    "Existing view updates require a stable program-level lock file ROOT_GLOBAL_FIVE_WRITER.lock under program root, shared across all cases/families. Root must install the fixed readonly regular lock carrier separately; this preparation never creates the actual program lock. All cooperating writers hold flock on that stable inode and never replace/unlink it.",
+    "Verify opened descriptor/path identity after acquisition and before release. Existing atomic view writes require current-process ownership plus an active all-five session. Hold lock through all-five prechecks/replacements/readbacks/sync-success creation, and through pointer checks/no-replace installation.",
+    "Preserve staged/postimage/preimage/observed-conflict evidence under owned generation paths. Latch detected content/identity/type conflicts durably; prohibit later successful sync/pointer for that generation. Preserve partial failures without pretending five-file transaction atomicity.",
+    "Do not claim filesystem content compare-and-swap against arbitrary same-UID writers ignoring advisory lock. Portable standard library has no atomic compare-content-and-rename primitive. Stronger platform swap still does not implement arbitrary-writer content CAS.",
+    "Carry unchanged custody4416, original21/native31, all science/source/priority qualification and copied receipt facts, complete accepted/prepared maps, native ancestry and protected QUEUE continuity, phase90/95/98/100 discipline, exact schemas/ops context and future exact Root authority/gate.",
+    "Update all family constants/contracts/source-manifest/interface bindings coherently to02. Add ordinary/-O real two-process and forced-interleaving bounded synthetic regressions; retain exact original independent witness bytes.",
+    "Seal full new sources/contracts/controls for fresh independent re-audit; no actual adoption or phase."
+  ],
+  "schema": "pr206-lifecycle-race-repair-frozen-plan-v2",
+  "scope": "Source preparation only; no real phase/backend/API/cache/ref/PR/MAIN/global-five/service/Git action."
+}

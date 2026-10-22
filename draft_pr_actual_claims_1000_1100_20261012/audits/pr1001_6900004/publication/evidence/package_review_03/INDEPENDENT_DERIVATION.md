@@ -1,0 +1,21 @@
+# Independent mathematical derivation — package review 03
+
+2026-10-13 04:20 UTC. Written after reading only research_note.tex, before earlier review reports, verdicts or test outputs.
+
+## Claim and assumptions
+
+G is simple on a fixed vertex set [n], d >= 1, n >= 1. X = (R^d)^n contains all collisions and affine degeneracies. Fibres use one coordinate per unordered edge, with symmetric scalar stress. Fibre equivalence is existence of a homeomorphism preserving each coordinate's sign, including zero. Strata are connected components in the subspace topology of equivalence classes. The claim is that Delta_ij is saturated by strata exactly for edges, and consequently equality of full fixed-label partitions implies equal graphs.
+
+## Derivation and falsification attempts
+
+For an edge ij, the vector with w_ij = 1 and all other stresses zero is in the fibre iff p_i = p_j. A sign-preserving fibre homeomorphism preserves existence of a vector with this exact sign pattern in both directions (the inverse also preserves signs). It cannot carry a colliding edge placement to a separated edge placement. Each equivalence class, thus each component, is contained in or disjoint from the diagonal.
+
+For a nonedge ij, set p_i = t a, p_j = 0, p_k = (k+1)a for every other vertex, with a != 0 and t in [-1/2,1/2]. Every edge length along a remains nonzero with unchanged sign, since the only colliding pair is ij. If B has +1 at initial endpoints and -1 at final endpoints, and D_t has oriented scalar differences, the equilibrium system is B D_t w = 0: every vector force equation is the corresponding scalar equation times nonzero a. T_t = D_t^-1 D_0 is invertible, diagonal, and positive. It identifies the kernels and all coordinate signs. An orientation reversal changes both B column and D entry and cancels in the transport ratio. The map t -> P(t) is continuous and its image is connected, and all its points belong to one equivalence class. A connected subset of a space is contained in one connected component, without needing the class to be path connected, closed, locally connected, or a manifold. The stratum contains both P(0) and P(1/4), proving failure of diagonal saturation. This is a universal symbolic argument, not finite evidence.
+
+For an edgeless graph, the fibre is the singleton zero space R^0, so X is one class and one connected stratum; every pair diagonal for n >= 2 is a proper nonempty subset. For n = 1, there is no pair and only the empty simple graph. d = 1 already supports the construction; d > 1 uses an embedded line. Disconnected graphs, isolated vertices, graphs with cycles, total collisions elsewhere in X, and deficient spans do not affect the argument. The proof does not apply to d = 0, loops, parallel edges, generic-only bases, unlabelled abstract partitions, or homeomorphic partitions; these are outside the stated scope.
+
+For forests, recursively delete a leaf. At its incident edge, the vector equation forces w = 0 if the edge is noncollapsed and gives no constraint when collapsed. In the latter case its contribution to the neighbour is also zero. Thus W is exactly the coordinate subspace spanned by collapsed edges, independently and globally. Exact coordinate sign support identifies the collapsed-edge subset and no further fibre equivalence distinctions. The proposed path/star map has q_2-q_1 = p_2-p_1, q_3-q_1 = p_3-p_2, q_4-q_1 = p_4-p_3, and inverse p_1=q_1, p_2=q_2, p_3=q_3+q_2-q_1, p_4=q_4+q_3+q_2-2q_1. It is an ambient linear homeomorphism for every d >= 1, maps collapsed subsets and full equivalence classes exactly, and maps their connected components even in d = 1 (where classes may split by edge sign/order). Path and star degree multisets (2,2,1,1) and (3,1,1,1) differ. This counterexample defeats an inference from abstract/ambient equivalence to isomorphism but does not defeat the stated fixed-label theorem.
+
+## Initial mathematical conclusion
+
+No mathematical counterexample or unsupported central step found. The manuscript's substantive universal claim follows from a complete elementary argument. Remaining review: independent source interpretation, credit/priority bounds, package reproduction and mutation controls, source provenance, metadata, PDF layout, archive and historical byte integrity. No earlier PASS label has been used.

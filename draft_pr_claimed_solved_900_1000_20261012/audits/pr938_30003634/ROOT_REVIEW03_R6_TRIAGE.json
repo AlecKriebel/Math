@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-15T10:15:58.726931+00:00",
+  "pr": 938,
+  "review_round": "03 ongoing, not final or clean",
+  "finding": "R6",
+  "root_triage": "Accepted required operational finding; do not promote candidate03",
+  "mechanism": "Same accepted head/body but altered baseRefName can pass the old merge preflight because view neither requests nor checks baseRefName. Later main/native safeguards are too late after merge/deposit/Sheet.",
+  "repair_plan": [
+    "Request and require exact baseRefName main in merge preflight before first save/ready/merge and in postaction/already-MERGED interpretation.",
+    "Carry exact destination into merge receipt and downstream stage/publish, tracker, native ledger and final verification checks, with actual destination readback.",
+    "Independently challenge changed/missing base before any mutation and reject non-main merged receipts.",
+    "Keep candidate03 and settled historical reviews immutable; after final seal implement all reviewer findings globally, rebuild candidate04, and assign NEW complete clean-context review."
+  ],
+  "all_current_candidate03_frozen_files_unchanged": true,
+  "new_proof_search_responses": 0,
+  "external_actions_performed": false
+}

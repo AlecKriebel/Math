@@ -1,0 +1,9 @@
+# Bounded priority conclusion
+
+The exact imported unrestricted bare-A0/global signed-rule conjunction is false for every n>=5. The explicitly segment-parity-selected K_PS theorem is proved for every n>=3, all actual admissible angles and evenell for evenn, with first-vertex existence. Diagonal counterexamples are outside/on the boundary of the source preceding open fundamental sectors. No source-author-authenticated erratum or uniquely forced raw-disjunction reading is asserted.
+
+Ferudun,9October2026, v1.0 DOI10.5281/zenodo.23267641, Definition1.1/Remark1.2/TheoremB, already gives the same nontrivial result, convention repair and existence, with closely overlapping angular/reflection and direct-descent mechanisms. Veech1989 supplies the exact odd/even double surfaces and shears; Boissy–Lanneau2010 supplies full affine centrality; older pentagon finite-length descent is also credited. This is a qualified credited verification/rederivation, with no theorem, type repair, full-group formulation or descent advertised as new.
+
+Original PR191 fixed content already contains the common-germ argument. Server PR creation1October and current related deposit creation9October2026 are distinct bounded chronology facts, not proof of past exact-byte visibility, firstness, awareness, copying or independent simultaneous discovery. The present corrected proof is not backdated. AI tools were used extensively; this work is unrefereed and has not had conventional human peer review.
+
+The two completed independent source/priority ledgers list actual primary bodies and pages read, versions, exact current overlap and remaining historical gaps. Ward1998 journal body and some publisher-version comparisons were not completed; the original Veech bodies and relevant geometric sections were read. Missing coverage is not evidence of novelty.

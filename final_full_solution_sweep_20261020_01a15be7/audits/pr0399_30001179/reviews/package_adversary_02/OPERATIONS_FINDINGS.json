@@ -1,0 +1,39 @@
+{
+  "timestamp_utc": "2026-10-21T13:27:14.425284+00:00",
+  "findings": [
+    {
+      "id": "P399-02-OPS-01",
+      "priority": 1,
+      "status": "repair_required",
+      "title": "Equivalent DOI spellings evade current-target recognition and permit duplicate append falsely reported unique",
+      "locations": [
+        "prepublication_check.py:78",
+        "publication_live_gates.py:109",
+        "record_publication_ledger.py:81",
+        "record_publication_ledger.py:118"
+      ],
+      "tests": "operations_controls.py; OPERATIONS_CONTROLS.normal.json; OPERATIONS_CONTROLS.optimized.json",
+      "variant_cases_per_mode": 8,
+      "false_unique_duplicate_cases_per_mode": 5,
+      "external_boundaries": "Offline fixtures only. Missing root clearance deliberately bypassed only to challenge downstream append; actual collector and reconcile active.",
+      "required_repair": "Shared bounded DOI identity recognition with ASCII case equivalence and appropriate URL decoding; scan all columns; current target precedes every non-target exemption; retain exact canonical row; use same logic in collector, reconciliation, append and readback."
+    },
+    {
+      "id": "P399-02-OPS-02",
+      "priority": 2,
+      "status": "repair_required",
+      "title": "Full integrated-tree verifier accepts an unlisted empty selected subtree",
+      "locations": [
+        "repository_integration.py:65",
+        "repository_integration.py:134"
+      ],
+      "tests": "Full actual verify_integrated_tree in operations_controls.py, both modes",
+      "unexpected_tree": "unsolved_math_prioritization/attempts/30001179/hidden_empty",
+      "unexpected_tree_mode": "040000",
+      "unexpected_tree_sha": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      "scope_limit": "Synthetic read-only API boundaries, actual original11 and frozen publication5. Root/outside selected sibling SHA checks remain effective. No live crafted-tree API call, file-byte corruption or Git mutation tested.",
+      "required_repair": "Check selected directory/tree-entry topology as well as leaves; allow only approved new parent directories, preserve pre-existing unselected empty trees, reject added/removed/renamed/nested empty trees."
+    }
+  ],
+  "canonical_repairs_performed_by_reviewer": false
+}

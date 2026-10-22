@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-21T03:20:47.960971+00:00",
+  "original_checker_sha256": "941acd66cf05e42b2c6ee004cade0697a196d8a8516f6a104e4044ea531533f8",
+  "replay_checker_sha256": "3cf5cac4cc16c41599f43e266fadfccf7d02b81566cf69950c21e6898a6f7ad8",
+  "review": "Original code reads local JSON, git diff/rev-parse/rev-list/cat-file under GIT_OPTIONAL_LOCKS=0, ZIPs and first-page pdftotext; no provider calls or mutations. Its sole explicit filesystem write is CHECK_RECEIPT.json. Replay changes only input-directory resolution and receipt output path; original preserved.",
+  "adaptations": [
+    "Q remains the old review input directory by explicit sibling reference",
+    "OUT is the new finish directory",
+    "CHECK_RECEIPT.json output is renamed REPLAY_CHECK_RECEIPT.json under OUT"
+  ],
+  "no_other_code_changes": true
+}

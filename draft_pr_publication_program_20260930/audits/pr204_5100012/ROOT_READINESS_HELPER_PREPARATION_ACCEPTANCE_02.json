@@ -1,0 +1,113 @@
+{
+  "PR": 204,
+  "UTC": "2026-10-16T15:02:48.924488+00:00",
+  "accepted_preparation_only": true,
+  "actual_baseline": "priority60_02",
+  "actual_publication_tracker_merge_or_next_intake": false,
+  "actual_ready90": false,
+  "actual_runner_source_validation": "PASS_ALL14_TRANSPORT_PLUS10_NATIVE_SOURCE_PINS_NO_INSTALL",
+  "advance_to_next_PR_authorized_now": false,
+  "evidence_scope": "CHECKED_OPERATIONAL_PREPARATION_ONLY",
+  "exact_derivation": {
+    "global_path_replace": [
+      "publication_checkpoint_01",
+      "publication_checkpoint_02"
+    ],
+    "replacements": [
+      [
+        "case.update(UTC=stamp,status=STATUS,case_percent=90,",
+        "case.update(UTC=stamp,status=STATUS,case_percent=90,priority_clearance=True,priority_clearance_scope='bounded_priority_audit_and_qualified_attributed_note_only',priority_novelty_clearance=False,qualified_attributed_note_editorially_cleared=True,"
+      ],
+      [
+        "progress.update(UTC=stamp,updated_UTC=stamp,current_status=STATUS,current_PR_workflow_percent=90,",
+        "progress.update(UTC=stamp,updated_UTC=stamp,current_status=STATUS,current_PR_workflow_percent=90,current_priority_clearance=True,current_priority_clearance_scope='bounded_priority_audit_and_qualified_attributed_note_only',current_priority_novelty_clearance=False,current_qualified_attributed_note_editorially_cleared=True,"
+      ]
+    ],
+    "scientific_package_or_actual_files_changed": false,
+    "source_file": "publication_checkpoint_01/checkpoint_ready204.py",
+    "source_sha256": "7efc8b47d0d829008e4a5e880997a6c22208412b7a27cf8d0c64be4bcc61b076"
+  },
+  "final_scientific_gate": {
+    "bytes": 68666,
+    "sha256": "e9f94fee3fa66b47f44fee38c7c30701790d4a477de330146a11279f1b4d628b"
+  },
+  "fully_completed_count": 46,
+  "goal_complete": false,
+  "guard_validation": {
+    "check_count": 10,
+    "checks": [
+      "actual_first25_plus_synthetic_second_valid",
+      "one_review_refused",
+      "wrong_final_seal_refused",
+      "reused_acceptance_refused",
+      "skipped_counter_refused",
+      "rewritten_Root_event_refused",
+      "undocumented_repair_history_refused",
+      "documented_repair_then_new_final_clean_accepted",
+      "missing_actual_gate_refused_before_native_load",
+      "canonical_ops_aliases_and_actual60_counters_qualified"
+    ],
+    "first_actual25_pins_unchanged": true,
+    "native_runtime_API_bind_prepare_cache_or_actualgate_actions": false,
+    "status": "PASS_PREPARATION_ONLY",
+    "synthetic_cases_memory_only": true
+  },
+  "guard_validation_code": "from pathlib import Path\nimport importlib.util,json,copy,hashlib,os,datetime\nA=Path(\"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr204_5100012\");D=A/'publication_checkpoint_02'\ndef need(t,m):\n if not t:raise RuntimeError(m)\ndef pin(b):return {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}\nspec=importlib.util.spec_from_file_location('pr204_ready_pure_guard_validation',D/'checkpoint_ready204.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)\nneed(pin((D/'SAFE_AUTHORED_MANIFEST.json').read_bytes())=={'bytes':914,'sha256':'4d2f2726537eb02549bd72f534536aa5f02f337127d391c354df86800f7b2970'},'Final manifest identity')\nm.static_manifest()\nactual=json.loads((A/m.FIRST_REVIEW).read_bytes());first={**actual['review_event'],'review_number':1,'report_file':'FINAL_REPORT.md','Root_acceptance_file':m.FIRST_REVIEW,'Root_acceptance_pin':m.FIRST_REVIEW_PIN}\nneed(first['verdict']=='CLEANPASS','First event')\nmem={};original_frozen=m.frozen\ndef frozen(rel,x=None):\n if rel in mem:\n  b=mem[rel];need(x is None or pin(b)==x,'Synthetic pin changed');return b\n return original_frozen(rel,x)\nm.frozen=frozen\ndef fake(index,verdict='CLEANPASS',repair=False):\n directory='SYNTHETIC_MEMORY_ONLY_REVIEW_'+str(index);report=b'SYNTHETIC_MEMORY_ONLY No actual authority '+str(index).encode()\n mem[directory+'/REPORT.md']=report\n ae={'directory':directory,'verdict':verdict,'report_pin':pin(report),'safe_files':{'REPORT.md':pin(report)},'reviewed_package':'publication_package_v1','reviewed_package_seal':first['reviewed_package_seal']}\n af='SYNTHETIC_MEMORY_ONLY_ROOT_ACCEPTANCE_'+str(index)+'.json'\n ar={'PR':204,'original_head':m.HEAD,'review_accepted':True,'NEW_whole_package_reviews_completed':index,'review_cycle_repairs_required_now':repair,'review_event':ae}\n raw=json.dumps(ar,sort_keys=True).encode();mem[af]=raw\n return {**ae,'review_number':index,'report_file':'REPORT.md','Root_acceptance_file':af,'Root_acceptance_pin':pin(raw)}\ng={'package':'publication_package_v1','package_seal':first['reviewed_package_seal'],'whole_package_review_events':[first,fake(2)]}\npassed=[]\ndef check(label,g,refused=False):\n try:r=m.accepted_events(g,{})\n except (RuntimeError,KeyError,ValueError):\n  need(refused,'Unexpected refusal '+label)\n else:\n  need(not refused,'Accepted false evidence '+label);need(len(r)==len(g['whole_package_review_events']),'Count')\n passed.append(label)\ncheck('actual_first25_plus_synthetic_second_valid',g)\nj=copy.deepcopy(g);j['whole_package_review_events']=j['whole_package_review_events'][:1];check('one_review_refused',j,True)\nj=copy.deepcopy(g);j['package_seal']={'bytes':1,'sha256':'0'*64};check('wrong_final_seal_refused',j,True)\nj=copy.deepcopy(g);j['whole_package_review_events'][1]['Root_acceptance_file']=m.FIRST_REVIEW;j['whole_package_review_events'][1]['Root_acceptance_pin']=m.FIRST_REVIEW_PIN;check('reused_acceptance_refused',j,True)\nj=copy.deepcopy(g);j['whole_package_review_events'][1]['review_number']=3;check('skipped_counter_refused',j,True)\nj=copy.deepcopy(g);j['whole_package_review_events'][1]['verdict']='CHANGES_REQUESTED';check('rewritten_Root_event_refused',j,True)\nhistory={'package':g['package'],'package_seal':g['package_seal'],'whole_package_review_events':[first,fake(2,'CHANGES_REQUESTED',True),fake(3)]}\ncheck('undocumented_repair_history_refused',history,True);history['fresh_final_review_after_documented_editorial_repairs']=True;check('documented_repair_then_new_final_clean_accepted',history)\noriginal_is_file=Path.is_file\nPath.is_file=lambda self: False if self==A/m.GATE else original_is_file(self)\ntry:m.gate_inputs({'bytes':1,'sha256':'0'*64})\nexcept RuntimeError as e:need('Future final Root publication gate absent' in str(e),'Wrong absent gate refusal');passed.append('missing_actual_gate_refused_before_native_load')\nelse:raise RuntimeError('Absent actualgate accepted')\nfinally:Path.is_file=original_is_file\nb={'Root_publication_gate_pin':{'bytes':1,'sha256':'0'*64},'package':'SYNTHETIC_MEMORY_ONLY','package_seal':{'bytes':1,'sha256':'0'*64},'whole_package_reviews_completed':3}\nfacts=m.facts(b)\nfor key in ('source_contract_clearance','priority_clearance','qualified_attributed_note_editorially_cleared'):need(facts[key] is True,'Actual operations alias missing')\nneed(facts['historical_firstness_independence_established'] is False and facts['priority_clearance_scope']=='bounded_priority_audit_and_qualified_attributed_note_only','Priority qualification')\nneed((facts['fully_completed_count'],facts['published_count'],facts['last_completed_PR'],facts['next_numeric_intake_cursor'],facts['advance_to_next_PR_authorized_now'])==(46,30,203,204,False),'Premature completion')\npassed.append('canonical_ops_aliases_and_actual60_counters_qualified')\nm.static_manifest()\nprint(json.dumps({'status':'PASS_PREPARATION_ONLY','checks':passed,'check_count':len(passed),'first_actual25_pins_unchanged':True,'native_runtime_API_bind_prepare_cache_or_actualgate_actions':False,'synthetic_cases_memory_only':True}))\n",
+  "independent_review": {
+    "actual_files_or_API_actions": false,
+    "all_other_guards_and_fields_preserved": true,
+    "evidence": "Independently reconstructed from sealed01; unique two update anchors; exact4 path-version substitutions; reverse transformation reproduces01 bytes; AST equality after removing only8 added qualified priority keywords and reversing paths.",
+    "new_runner_bytes": 3317,
+    "new_runner_sha256": "4a1d3d42d57e48491e7b464ce477af416df4e01eda857099c2633f142c48ec66",
+    "reviewer": "/root/pr204_custody_checkpoint_adversary_01",
+    "scientific_publication_review_events_contributed": 0,
+    "source_bytes": 27378,
+    "source_sha256": "20ffe7dac7218df8a098fd4715ae118973f1e8f80a780ae6183bbb0b2b616bdd",
+    "verdict": "PASS_EXACT_MEMORY_CANDIDATE_PREPARATION_ONLY"
+  },
+  "last_completed_PR": 203,
+  "limitations": "Pure guard and proposed overlay validation uses one memory-only future binding and current actual fiveviews. No actual parent, native runtime/API/cache installation/checkpoint acceptance. Source accepted for later explicit phases only.",
+  "next_numeric_intake_cursor": 204,
+  "original_head": "551a524e2db65fec90684485ef676d0b4179378d",
+  "physical_source_overlay_validation": {
+    "all5_actual_view_bytes_times_modes_unchanged": true,
+    "no_native_QUEUE_edits": true,
+    "novelty_flags_false": true,
+    "oldflags_preserved_as_history": true,
+    "own5physical_files_exact": true,
+    "proposed_overlay_files": 328,
+    "real_gate_inputs": 317,
+    "scoped_priority_consistent": true,
+    "status": "PASS"
+  },
+  "published_count": 30,
+  "schema": "pr204-root-readiness-helper-preparation-acceptance-v2",
+  "snapshot_pin": {
+    "bytes": 26295,
+    "sha256": "cb71c0d3f2df2395434d2bc66dad7a27c7f877288eb6010af0efe5f241befa53"
+  },
+  "source_directory": "publication_checkpoint_02",
+  "source_pins": {
+    "CHECKPOINT_CONTRACT.md": {
+      "bytes": 11864,
+      "sha256": "e7471f0b2c75ead08f7fbc8f678182d4e417cdcecb5a5a929f6b8e52df5289cd"
+    },
+    "RESEARCH_LOG.md": {
+      "bytes": 913,
+      "sha256": "b725bb30cf0517d4c8ddb83429a1985bfb3bef40a2785caed6ba8a1ab2199c99"
+    },
+    "SAFE_AUTHORED_MANIFEST.json": {
+      "bytes": 914,
+      "sha256": "4d2f2726537eb02549bd72f534536aa5f02f337127d391c354df86800f7b2970"
+    },
+    "checkpoint_ready204.py": {
+      "bytes": 27378,
+      "sha256": "20ffe7dac7218df8a098fd4715ae118973f1e8f80a780ae6183bbb0b2b616bdd"
+    },
+    "run_ready_with_tree_cache.py": {
+      "bytes": 3317,
+      "sha256": "4a1d3d42d57e48491e7b464ce477af416df4e01eda857099c2633f142c48ec66"
+    }
+  },
+  "workflow_estimate_percent": 90
+}

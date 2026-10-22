@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);import common;common.KIT=Path(sys.argv[2]);common.inventory()
+                                                                                                                  ~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/common.py", line 95, in inventory
+    manifest = read_json(KIT / "MANIFEST.json")
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/common.py", line 39, in read_json
+    p = no_links(path)
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/common.py", line 31, in no_links
+    require(not stat.S_ISLNK(s.st_mode), "symlink component: " + str(q))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pr1097-package02-n30he1uw/GuardKit/scripts/common.py", line 15, in require
+    raise ValueError(message)
+ValueError: symlink component: /private/tmp/pr1097-package02-n30he1uw/LinkedAncestor

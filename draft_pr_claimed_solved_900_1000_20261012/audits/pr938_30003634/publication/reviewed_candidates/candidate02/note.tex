@@ -1,0 +1,273 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathcal F}
+\DeclareMathOperator{\sig}{sign}
+\title{Deep derived pure braids need not be 1-solvable}
+\author{Alec Kriebel\\Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 15, 2026\quad (version 1.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+For every $m\geq3$ and every finite $k\geq1$, the $k$th ordinary
+derived subgroup of the pure braid group contains a braid whose standard
+closure is not integrally smoothly $1$-solvable. Consequently
+$P_m^{(n+2)}\not\subset\F_n^m$ for every integer $n\geq1$,
+answering negatively the derived-series containment question in the
+Harvey--Park--Ray Oberwolfach contribution.
+The proof combines established signature-quasimorphism results with
+amenable-quotient rigidity and a pointwise signature obstruction to
+$1$-solvability. The general quasimorphism ingredients are prior results.
+An accompanying exact verification package also preserves an explicit
+104-crossing example in $P_3^{(3)}$.
+\end{abstract}
+
+\section{Statement and conventions}
+Write $G^{(0)}=G$ and $G^{(j+1)}=[G^{(j)},G^{(j)}]$, with
+$[x,y]=xyx^{-1}y^{-1}$. Let $P_m\subset B_m$ be the classical disk pure
+braid group. Interpret a pure braid as an ordered smooth string link and
+write $\F_n^m$ for the integral smooth solvable filtration defined by
+standard closures, as in Otto \cite[Definition 2.3]{Otto}.
+Containment here concerns the string-link concordance classes represented
+by these braids. Harvey's contribution, joint with Park and Ray,
+asks whether $P_m^{(n+2)}\subset\F_n^m$ for $n\geq1$
+\cite[Question 3, p.3021]{HPR}.
+The series is the ordinary derived series, rather than a power subgroup.
+
+\begin{theorem}\label{thm:main}
+For every $m\geq3$ and every finite integer $k\geq1$,
+\[
+ P_m^{(k)}\not\subset\F_1^m.
+\]
+In particular, $P_m^{(n+2)}\not\subset\F_n^m$ for every $m\geq3$
+and integer $n\geq1$.
+\end{theorem}
+
+The witnesses may depend on $k$. No single braid in the intersection of
+all derived subgroups is asserted. For $m=1,2$ the positive derived
+subgroups are trivial, since $P_1$ is trivial and $P_2\cong\Z$.
+The proof below is existential at arbitrary depth. The separate explicit
+example in Section~\ref{sec:explicit} addresses $k=3$ only.
+
+\section{Two signature inputs}
+Let $s(\beta)=\sigma(\widehat\beta)$ be the ordinary signature of the
+standard oriented braid closure, with positive trefoil signature $-2$.
+This is a link signature, without a knot restriction.
+Gambaudo--Ghys \cite[Theorem A and Remark 1]{GG} show that $s$ has bounded
+defect on $B_3$. Its homogenization
+\[
+ q(\beta)=\lim_{r\to\infty}\frac{s(\beta^r)}r
+\]
+is a homogeneous quasimorphism; their discussion on p.575 also gives
+$|q-s|\leq6$ on $B_3$. A homogeneous quasimorphism satisfies
+$q(g^r)=rq(g)$ for integers $r$, and has finite defect
+$D(q)=\sup_{g,h}|q(gh)-q(g)-q(h)|$.
+
+\begin{lemma}\label{lem:pure}
+The restriction $q|_{P_3}$ is not a homomorphism.
+\end{lemma}
+\begin{proof}
+Put $x=\sigma_1$, $y=\sigma_2$, and
+\[
+ a=x^2,\qquad b=y^2,\qquad h=yx^2y^{-1},\qquad
+ z=(xy)^3=\Delta_3^2.
+\]
+These four braids are pure. The Artin relation $xyx=yxy$ gives
+\[
+ ahb=x^2yx^2y=x(xyx)xy=x(yxy)xy=(xy)^3=z.
+\]
+By \cite[Remark 3, p.545]{GG}, the two-strand closure of $x^\ell$
+has signature $1-\ell$ for $\ell\geq1$. Adding a split trivial strand
+preserves signature. Conjugate braid closures are isotopic, and $x,y$
+are conjugate, so
+$q(a)=q(b)=q(h)=-2$.
+The three-strand specialization of \cite[Lemma 4.1, pp.568--569]{GG}
+is $s(\alpha\Delta_3^4)=s(\alpha)-8$.
+Thus $s(z^{2r})=-8r$ for all positive $r$, whence $q(z)=-4$.
+A homomorphism on $P_3$ would instead give $q(z)=-6$.
+\end{proof}
+
+The next input is stated with its hypotheses because we use the
+\emph{pointwise} signature at $-1$, including at Alexander roots.
+It is a standard signature obstruction; we supply the local-coefficient
+argument and cite the precise surgery formula.
+
+\begin{lemma}\label{lem:topology}
+If an algebraically split oriented link $L$ admits an integral smooth
+$1$-solution in the sense of \cite[Definition 2.3]{Otto}, then
+$\sigma_L(-1)=0$.
+\end{lemma}
+\begin{proof}
+Let $M_L=\partial W$ be zero surgery and let
+$\{L_i,D_i\}_{i=1}^r$ be the framed embedded hyperbolic basis of
+$H_2(W;\Z)$ supplied by the solution. Both sets of surface groups lie
+in $\pi_1(W)^{(1)}$, and inclusion induces
+$H_1(M_L;\Z)\cong H_1(W;\Z)\cong\Z^m$.
+The character taking every meridian to $-1$ therefore extends over $W$;
+denote its rank-one rational local system by $\Q_\alpha$.
+
+In a finite cellular structure, each twisted boundary matrix has integral
+entries obtained by evaluating group elements at $\pm1$. Modulo $2$ it
+is the ordinary cellular boundary matrix. A minor nonzero over
+$\mathbb F_2$ has odd determinant, so
+$\operatorname{rank}_{\Q}d_j^\alpha\geq
+\operatorname{rank}_{\mathbb F_2}d_j$ for each $j$. The chain dimensions
+are equal, and hence
+\[
+ \dim_{\Q}H_2(W;\Q_\alpha)
+ \leq\dim_{\mathbb F_2}H_2(W;\mathbb F_2)=2r.
+\]
+The final equality follows from integral universal coefficients:
+$H_2(W;\Z)$ is free of rank $2r$ and $H_1(W;\Z)$ has no $2$-torsion.
+
+The local system restricts trivially to each basis surface because its
+character kills the commutator subgroup. Each surface therefore has a
+local-coefficient fundamental class after a choice of trivialization.
+Their twisted pairings are zero except for the prescribed dual pairs,
+whose single intersections have coefficients $+1$ or $-1$.
+Framings make the self-pairings zero. Rescaling one class in each pair
+gives $r$ hyperbolic blocks. These $2r$ classes are independent; the
+dimension bound makes them a full basis. Thus the twisted form, including
+any possible ambient radical, has signature zero. The ordinary form is
+also hyperbolic and has signature zero. Extension to real or complex
+coefficients preserves these signatures.
+
+Toffoli's bounding formula \cite[(1.1)]{Toffoli} gives
+$\rho_\alpha(M_L)=\sig(W)-\sig_\alpha(W)=0$.
+His single-colour surgery formula \cite[Remark 4.25, (4.21)]{Toffoli}
+gives $\rho_\alpha(M_L)=-\sigma_L(-1)$: the entire framed linking
+matrix is zero for this algebraically split, zero-framed surgery, so
+all correction terms vanish. This pointwise formula applies at every
+unit value other than $1$; no Alexander-root exclusion or average of
+signatures is used. Therefore $\sigma_L(-1)=0$.
+\end{proof}
+
+\section{Persistence through the derived series}
+We recall a consequence of established quasimorphism theory, giving a
+proof to make the application self-contained apart from amenable rigidity.
+Kawasaki--Kimura--Maruyama--Matsushita--Mimura
+\cite[Lemma 7.12, p.1207]{KKMMM} prove the stronger identity
+$D_G(f)=D_N(f|_N)$ whenever $G/N$ is solvable.
+In particular, the following group-theoretic fact is not claimed new.
+
+\begin{lemma}\label{lem:derived}
+If a homogeneous real quasimorphism $f$ on $G$ is not a homomorphism,
+then $f|_{G^{(k)}}$ is nonzero for every finite $k\geq1$.
+\end{lemma}
+\begin{proof}
+Suppose $f$ vanishes on $N=G^{(k)}$. This subgroup is normal.
+For $g\in G$, $u\in N$ and positive $r$, normality gives
+$(gu)^r=g^r u_r$ with $u_r\in N$. Applying the defect bound once yields
+\[
+ |r f(gu)-r f(g)|\leq D(f).
+\]
+After division by $r$ and passage to infinity, $f(gu)=f(g)$.
+Thus $f$ descends to a homogeneous quasimorphism on $G/N$.
+This quotient is solvable, hence amenable. A homogeneous real
+quasimorphism on an amenable group is a homomorphism
+\cite[Proposition 2.65, p.33; p.27]{Calegari}.
+Pulling it back contradicts the hypothesis.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Fix finite $k\geq1$. Lemmas~\ref{lem:pure} and~\ref{lem:derived}
+give $v\in P_3^{(k)}$ with $q(v)\ne0$.
+Choose a positive $r$ with $r|q(v)|>6$. Since
+$q(v^r)=rq(v)$ and $|q-s|\leq6$, the braid $\gamma=v^r$ satisfies
+$s(\gamma)\ne0$. Taking a power is essential: nonzero $q(v)$ alone
+does not assert nonzero $s(v)$ for that particular braid.
+
+The braid $\gamma$ remains in $P_3^{(k)}$. Pairwise linking numbers
+are homomorphisms on $P_3$, so they vanish on $P_3^{(1)}$ and every
+positive derived subgroup. Its closure is algebraically split.
+Lemma~\ref{lem:topology} proves $\gamma\notin\F_1^3$.
+For $m>3$, add split vertical strands. This braid homomorphism preserves
+derived membership, and its closure adds split unknots, preserving
+ordinary signature. The same obstruction applies with $m$ meridians.
+Finally $\F_n^m\subset\F_1^m$ for $n\geq1$
+\cite[Section 2]{Otto}; set $k=n+2$.
+\end{proof}
+
+\section{An explicit example and verification scope}\label{sec:explicit}
+With $a=\sigma_1^2$ and $b=\sigma_2^2$, put
+\[
+ c=[a,b],\quad d=a^{-1}ca,\quad e=b^{-1}cb,\quad
+ u=[c,d],\quad v=[d,e],\quad \beta=[u,v].
+\]
+Normality of derived subgroups gives $c,d,e\in P_3^{(1)}$,
+$u,v\in P_3^{(2)}$ and $\beta\in P_3^{(3)}$.
+Its freely reduced Artin word has length $104$.
+The accompanying package records a checkerboard calculation with a
+$48\times48$ Goeritz matrix of inertia $(23,25,0)$ and zero correction,
+and an independent Burau--Meyer calculation of signature $-2$.
+The determinant of that Goeritz matrix is $-7154819319988224$.
+These exact computations give a concrete $n=1$ witness; the all-depth
+proof above does not depend on them.
+
+The package preserves the original 44-file candidate, both independent
+signature reconstructions, source locators and priority-search records.
+The current release verifier authenticates its closed inventory and
+replays specified finite checks; those checks supplement, rather than
+prove, the universal topological and group-theoretic arguments.
+Historical source-indexing and transport limitations are documented
+alongside the corresponding corrections without rewriting the originals.
+
+\paragraph{Attribution and historical scope.}
+The signature quasimorphism and its values, amenable rigidity,
+solvable-quotient defect restriction and signature obstruction are credited
+inputs. The contribution here is their explicit connection to the
+derived-pure-braid containment question, with an independently checked
+finite witness. The source is the 2017 workshop report, published in
+2018. Bounded primary-source searches through October 15, 2026 did not
+establish an earlier complete answer to this precise question. This is
+not a certificate of first priority or of continued openness.
+
+\paragraph{AI assistance and review status.}
+AI tools were used extensively in research, proof development, source
+checking, computation, writing and adversarial verification. This note is
+unrefereed. AI-assisted reviews do not constitute independent human or
+journal peer review; no such review or formal proof-assistant
+certification is claimed. The preserved initial candidate records one of five allowed proof
+responses; the stronger argument is separately recorded as the second
+response. Verification adds no further proof-search response.
+
+\begin{thebibliography}{9}
+\bibitem{Calegari} D.~Calegari, \emph{scl}, MSJ Memoirs \textbf{20},
+Mathematical Society of Japan, 2009.
+\href{https://doi.org/10.2969/msjmemoirs/020010000}{doi:10.2969/msjmemoirs/020010000}.
+
+\bibitem{GG} J.-M.~Gambaudo and \'E.~Ghys, Braids and signatures,
+\emph{Bull. Soc. Math. France} \textbf{133} (2005), 541--579.
+\href{https://doi.org/10.24033/bsmf.2496}{doi:10.24033/bsmf.2496}.
+
+\bibitem{HPR} S.~Harvey (joint work with J.~H.~Park and A.~Ray),
+Pure braids, Whitney towers, and $0$-solvability, in
+\emph{Knot Theory}, Oberwolfach Reports \textbf{14} (2017),
+report 50, pp.3020--3021, Question~3; published 2018.
+\href{https://doi.org/10.4171/OWR/2017/50}{doi:10.4171/OWR/2017/50}.
+
+\bibitem{KKMMM} M.~Kawasaki, M.~Kimura, S.~Maruyama,
+T.~Matsushita and M.~Mimura, The space of nonextendable quasimorphisms,
+\emph{Algebr. Geom. Topol.} \textbf{25} (2025), 1169--1226.
+\href{https://doi.org/10.2140/agt.2025.25.1169}{doi:10.2140/agt.2025.25.1169}.
+
+\bibitem{Otto} C.~Otto, The $(n)$-solvable filtration of link concordance
+and Milnor's invariants, \emph{Algebr. Geom. Topol.} \textbf{14}
+(2014), 2627--2654.
+\href{https://doi.org/10.2140/agt.2014.14.2627}{doi:10.2140/agt.2014.14.2627}.
+
+\bibitem{Toffoli} E.~Toffoli, The Atiyah--Patodi--Singer rho invariant
+and signatures of links, \emph{Proc. Edinb. Math. Soc.} \textbf{65}
+(2022), 404--440.
+\href{https://doi.org/10.1017/S0013091522000153}{doi:10.1017/S0013091522000153}.
+\end{thebibliography}
+\end{document}

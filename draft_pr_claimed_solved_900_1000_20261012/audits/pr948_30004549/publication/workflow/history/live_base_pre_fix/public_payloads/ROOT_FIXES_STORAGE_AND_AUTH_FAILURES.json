@@ -1,0 +1,34 @@
+{
+  "schema": "pr948-workflow-root-fixes-storage-and-auth-failures-v1",
+  "recorded_utc": "2026-10-16T09:07:45.382246+00:00",
+  "events": [
+    {
+      "stage": "initial focused-test save",
+      "result": "ENOSPC prevented creation of script and small receipt; no test executed; later recovered and saved truthful failure history"
+    },
+    {
+      "stage": "after saved97PASS and18PASS, final source auth",
+      "observed_remote_main": "4b72864f7c8b4a1cdd6cfb25979b17fad4433339",
+      "operation": [
+        "git",
+        "fetch",
+        "--no-write-fetch-head",
+        "origin",
+        "4b72864f7c8b4a1cdd6cfb25979b17fad4433339"
+      ],
+      "returncode": 128,
+      "source_object_fetch_attempted": true,
+      "cache_write_completion": "Unknown; failed fetch may have attempted temporary/object writes. No successful fetch is claimed.",
+      "failure_receipt_save": "ENOSPC; no receipt existed then. This record is written after recovery."
+    },
+    {
+      "stage": "development-only immutable raw GET fallback",
+      "first_guard_result": "Rejected large catalog metadata because GraphQL isBinary wasnull, notfalse; no content accepted by that failed guard.",
+      "correction": "Treat isBinarynull as unknown for this development transport while still requiring exact authenticated Git blob oid, exact size, bounded bytes and actual strict JSON/source/native guards. No production workflow source changed.",
+      "final_result": "Fresh complete before/after input bracket PASSED09:02:25.383292UTC; actual receipt saved later after recovery."
+    }
+  ],
+  "external_mutations": 0,
+  "source_fetch_will_not_be_repeated_in_development": true,
+  "pre_fix27_snapshot_unchanged": true
+}

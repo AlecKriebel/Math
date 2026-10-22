@@ -1,0 +1,68 @@
+--- frozen/check_exact.py
++++ hardened/check_exact.py
+@@ -8,6 +8,11 @@
+ import json
+ import math
+ from collections import Counter
++
++
++def require(condition, message):
++    if not condition:
++        raise RuntimeError("Finite control failed: " + str(message))
+ 
+ 
+ def faces_from_facets(facets):
+@@ -29,18 +34,18 @@
+             facets.append(f)
+     s = faces_from_facets(facets)
+     tt = tuple(sorted(t))
+-    assert tt not in s
+-    assert all(tt[:i]+tt[i+1:] in s for i in range(d+1))
++    require((tt not in s), 'original line 32: tt not in s')
++    require((all(tt[:i]+tt[i+1:] in s for i in range(d+1))), 'original line 33: all(tt[:i]+tt[i+1:] in s for i in range(d+1))')
+     k = {f for f in s if len(f) <= d+1}
+     l = k | {tt}
+     n = 2*d+3
+     complete = {c for j in range(d+2) for c in it.combinations(range(n),j)}
+-    assert l == complete
++    require((l == complete), 'original line 38: l == complete')
+     f = [sum(len(a)==j for a in s) for j in range(2*d+2)]
+     r = 2*d+1
+     h = [sum((-1)**(i-j)*math.comb(r-j,i-j)*f[j]
+              for j in range(i+1)) for i in range(r+1)]
+-    assert h == h[::-1]
++    require((h == h[::-1]), 'original line 43: h == h[::-1]')
+     return s,k,l,dict(d=d,vertices=n,faces_including_empty=f,h=h,
+                      missing_face=list(tt),augmented_is_full_flores_skeleton=True)
+ 
+@@ -104,8 +109,8 @@
+             # on the moment curve in R^(2d): their vertices alternate.
+             if tuple(union[::2])==a or tuple(union[::2])==b:
+                 crossings+=1
+-    assert not any(boundary.values())
+-    assert crossings==2*d+3 and crossings%2==1
++    require((not any(boundary.values())), 'original line 107: not any(boundary.values())')
++    require((crossings==2*d+3 and crossings%2==1), 'original line 108: crossings==2*d+3 and crossings%2==1')
+     return dict(d=d,deleted_product_cells=cells,boundary_nonzero_cells=0,
+                 moment_curve_crossings=crossings,evaluation_mod_2=1)
+ 
+@@ -117,7 +122,7 @@
+     for a,b,c in it.combinations(vertices,3):
+         if all(x<=y or y<=x for x,y in [(a,b),(a,c),(b,c)]):
+             order=sorted([a,b,c],key=len)
+-            assert order[0]<order[1]<order[2]
++            require((order[0]<order[1]<order[2]), 'original line 120: order[0]<order[1]<order[2]')
+             cliques+=1
+     return dict(barycentric_vertices=len(vertices),triangle_cliques=cliques,
+                 missing_triangles=0)
+@@ -136,8 +141,8 @@
+             su=quotient_dimension(s,n,r,d+1)
+             ld=quotient_dimension(l,n,r,d)
+             lu=quotient_dimension(l,n,r,d+1)
+-            assert sd['dimension']==su['dimension']==ld['dimension']==record['h'][d]
+-            assert lu['dimension']==ld['dimension']+1
++            require((sd['dimension']==su['dimension']==ld['dimension']==record['h'][d]), "original line 139: sd['dimension']==su['dimension']==ld['dimension']==record['h'][d]")
++            require((lu['dimension']==ld['dimension']+1), "original line 140: lu['dimension']==ld['dimension']+1")
+             out['quotient_controls'].append(dict(d=d,field_prime=101,
+                source_degree_d=sd,source_degree_d_plus_one=su,
+                augmented_degree_d=ld,augmented_degree_d_plus_one=lu))

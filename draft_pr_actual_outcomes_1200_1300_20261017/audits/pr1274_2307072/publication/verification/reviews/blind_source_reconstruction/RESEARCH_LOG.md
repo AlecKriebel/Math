@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-18 01:43:38 UTC - Started source-only reconstruction. Read project instructions and designated original statement/triage JSON. Candidate and sibling work remain unexposed. Completion estimate: 5% toward an independently verified answer to both literal questions.
+- 2026-10-18 01:44:02 UTC - Fresh primary PDF page 184 rendered and visually inspected; confirmed bilinear analytic pairing, negative kernel sign, polynomial subclass, and original update. Derived angular mode v=z/bar z and logarithmic transform from a Cauchy potential. Completion estimate: 65%.
+- 2026-10-18 01:44:26 UTC - Opened the exact primary PDF URL through the web tool. No searches or other source pages. Derived polynomial v_n=z^2 sum_{j=0}^{n-1}(1-|z|^2)^j with exact input norm 1 and output norm H_n. Completion estimate: 85%.
+- 2026-10-18 01:45:02 UTC - Mathematical derivation complete before candidate exposure. Checked all analytic area-L1 tests by Fubini, origin and boundary issues, essential norms, and the distinct individual-boundedness and uniform-bound quantifiers for polynomials. Writing report and independent finite checks. Completion estimate: 92%.
+- 2026-10-18 01:46:20 UTC - First finite-check run passed: 40 exact rational cases plus seven direct principal-value quadratures. No mathematical discrepancy identified. Completion estimate: 96%.
+- 2026-10-18 01:46:31 UTC - Repeated checks passed in normal Python, -O, and -OO. Saved raw check outputs in own _local/ directory. Proof/report is complete; preparing immutable-by-hash source-only seal and exact authored-member manifest. Completion estimate: 98%.
+- 2026-10-18 01:47:02 UTC - Final report and check hashes recorded, all saved optimization-mode results verified equal, and source-only derivation sealed before any candidate exposure. Creating the exact manifest of authored members only. No remaining mathematical gap identified for the literal source statement. Completion estimate: 100%.

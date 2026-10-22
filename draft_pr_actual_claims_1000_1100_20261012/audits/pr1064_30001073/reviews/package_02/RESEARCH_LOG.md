@@ -1,0 +1,7 @@
+# Independent whole-package review of PR #1064
+
+2026-10-14T05:06:54.809902+00:00 — 5% complete. Read root instructions and current full paper. Frozen current candidate and original nine submission files before prior verdicts. Target is the complete row-stochastic permanent theorem, credited source implications, paper, and distribution integrity.
+
+2026-10-14T05:12:48.636668+00:00 — 75% complete. Full analytic and primary-interface derivation frozen before old labels; all five paper pages and seven primary interface pages actually viewed. All nine actual Git blobs match snapshots. Independent finite diagnostics pass normally and optimized, with 12 faulty variants rejected. Current124/all125, historical103, all170 preparation inputs,37 repair outputs,17 prior whole outputs,91 source-equal copies and117 archive members verified. A new P3 archive output hardlink can overwrite inputs before failure; candidate untouched. Completing clean documented command and guard controls.
+
+2026-10-14T05:16:51.242191+00:00 — 100% complete for this new whole02 adversarial review. Mathematics, source implications, current five-page PDF, exact metadata/archive/history and actual clean commands pass. Both prior repairs hold. One new P3 archive-output hardlink defect can overwrite source/PDF before failure or external descriptor while exiting zero. All current/original inputs unchanged; only owned scratch removed. Preserve pending flags and hold, repair aliases, then obtain a new whole reviewer.

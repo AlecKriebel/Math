@@ -1,0 +1,714 @@
+                 Approximating Submodular Functions Everywhere
+                                Michel X. Goemans∗               Nicholas J. A. Harvey†
+                                         Satoru Iwata‡           Vahab Mirrokni§
+
+Abstract                                                         S = Y ∪ {x} and T = Z; the reverse implication also
+Submodular functions are a key concept in combina-               holds [28, §44.1]. We assume a value oracle access to the
+torial optimization. Algorithms that involve submod-             submodular function; i.e., for a given set S, an algorithm
+ular functions usually assume that they are given by             can query an oracle to find its value f (S).
+a (value) oracle. Many interesting problems involving            Background. Submodular functions are a key con-
+submodular functions can be solved using only polyno-            cept in operations research and combinatorial optimiza-
+mially many queries to the oracle, e.g., exact minimiza-         tion, see for example the books [10, 28, 26]; the term
+tion or approximate maximization.                                ‘submodular’ has over 500 occurrences in Schrijver’s 3-
+     In this paper, we consider the problem of approxi-          volume book on combinatorial optimization [28]. Sub-
+mating a non-negative, monotone, submodular function             modular functions are often considered as a discrete
+f on a ground set of size n everywhere, after only poly(n)       analogue to convex functions; see [23]. Many combina-
+oracle queries. Our main result is a deterministic algo-         torial optimization problems can be formulated in terms
+rithm that makes poly(n) oracle queries and derives a            of submodular functions.
+function fˆ such that, for every set S, fˆ(S) approxi-
+                                                   √                  Both minimizing and maximizing submodular func-
+mates f (S) within a factor α(n), where α(n) =   √ n+1           tions, possibly under some extra constraints, have been
+for rank functions of matroids and α(n) = O( n log n)            considered extensively in the literature. Minimizing
+for general monotone submodular functions. Our result            submodular functions can be performed efficiently with
+is based on approximately finding a maximum volume               polynomially many oracle calls, either by the ellip-
+inscribed ellipsoid in a symmetrized polymatroid, and            soid algorithm (see [12]) or through combinatorial al-
+the analysis involves various properties of submodular           gorithms that have been obtained in the last decade
+functions and polymatroids.                                      [29, 14, 15]. Unlike submodular function minimization,
+     Our algorithm is tight up to logarithmic factors.           the problem of maximizing submodular functions is an
+Indeed, we show √ that no algorithm can achieve a factor         NP-hard problem since it generalizes many NP-hard
+better than Ω( n/ log n), even for rank functions of a           problems such as the maximum cut problem. In many
+matroid.                                                         settings, constant-factor approximation algorithms have
+                                                                 been developed for this problem. Let us only mention
+1 Introduction                                                   that a 25 -approximation has been developed for max-
+Let f : 2[n] → R+ be a function where [n] = {1, 2, · · · , n}.   imizing any non-negative, non-monotone submodular
+The function f is called submodular if                           function [9], and that a (1 − 1/e)-approximation al-
+                                                                 gorithm has been derived for maximizing a monotone
+          f (S) + f (T ) ≥ f (S ∪ T ) + f (S ∩ T ),              submodular function subject to a cardinality constraint
+                                                                 [27], or an arbitrary matroid constraint [34]. Approx-
+for all S, T ⊆ [n]. Additionally, f is called monotone
+                                                                 imation algorithms for submodular analogues of sev-
+if f (Y ) ≤ f (Z) whenever Y ⊆ Z. An equivalent
+                                                                 eral other well-known optimization problems have been
+definition of submodularity is the property of decreasing
+                                                                 studied, e.g., [35, 32].
+marginal values: For any Y ⊆ Z ⊆ [n] and x ∈ [n] \ Z,
+                                                                      Submodular functions have been of recent interest
+f (Z ∪ {x}) − f (Z) ≤ f (Y ∪ {x}) − f (Y ). This can
+                                                                 due to their applications in combinatorial auctions, par-
+be deduced from the first definition by substituting
+                                                                 ticularly the submodular welfare problem [21, 18, 6].
+   ∗ MIT Department of Mathematics. goemans@math.mit.edu.
+                                                                 This problem requires partitioning a set of items among
+Supported by NSF contracts CCF-0515221 and CCF-0829878 and
+                                                                 a set of players in order to maximize their total utility.
+by ONR grant N00014-05-1-0148.                                   In this context, it is natural to assume that the play-
+   † Microsoft Research New England Lab, Cambridge, MA.          ers’ utility functions are submodular, as this captures
+nharvey@microsoft.com.                                           a realistic notion of diminishing returns. Under this
+   ‡ RIMS,    Kyoto University,    Kyoto 606-8502,   Japan.      submodularity assumption, efficient approximation al-
+iwata@kurims.kyoto-u.ac.jp.      Supported by the Kayamori
+Foundation of Information Science Advancement.
+                                                                 gorithms have recently been developed for this problem
+   § Google Research, New York, NY. mirrokni@gmail.com.          [6, 34].
+Contributions. The extensive literature on submod-               value f (S) depends only on |S∩R| and |S∩ R̄|,√then they
+ular functions motivates us to investigate other fun-            can approximate f everywhere with g(n) = 2 n. Addi-
+damental questions concerning their structure. How               tionally, Svitkina and Fleischer adjusted the parameters
+much information is contained in a submodular func-              of p
+                                                                    our lower bound construction, yielding an improved
+tion? How much of that information can be obtained               Ω( n/ log n) lower bound for Problem 1. They also
+in just a few value oracle queries? Can an auctioneer            show that this construction yields nearly-optimal lower
+efficiently estimate a player’s utility function if it is sub-   bounds for several other problems that they consider.
+modular? To address these questions, we consider the                  Not only is our lower bound applicable to other sub-
+problem of approximating a submodular function f ev-             modular problems, but our algorithm
+                                                                                                 √       is too. For exam-
+erywhere while performing only a polynomial number               ple, it gives a deterministic O( n log n)-approximation
+of queries. More precisely, the problem we study is:             algorithm for the non-uniform submodular load balanc-
+                                                                 ing problem considered by Svitkina and Fleischer [32],
+     Problem 1. Can one make nO(1) queries to                    by reducing it to load balancing on unrelated machines.
+     f and construct a function fˆ (not necessarily              This
+     submodular) which is an approximation of f ,                   √ nearly matches the accuracy of their randomized
+                                                                 O( n log n)-approximation algorithm. As another ex-
+     in the sense that fˆ(S) ≤ f (S) ≤ g(n) · fˆ(S)              ample, we can reduce the submodular max-min fairness
+     for all S ⊆ [n]. For what functions g : N → R               problem [11, 19] to the Santa Claus max-min fair alloca-
+     is this possible?                                                                                 1    1         3
+                                                                 tion problem [2]. This yields an O(n 2 m 4 log n log 2 m)-
+     For some submodular functions this problem can be           approximation algorithm for the former problem where
+solved exactly (i.e., with g(n) = 1). As an example,             m is the number of buyers and n is the number of
+for graph cut functions, it is easy to see that one              items. The existing algorithms for this problem ob-
+can completely reconstruct the graph in O(n2 ) queries.          tain a (n − m + 1)-approximation [11] and a (2m − 1)-
+For more general submodular functions, we prove the              approximation [19]. These applications are discussed in
+following results.                                               Section 7.
+  • When f is a rank function of a matroid, we can               Techniques. Our approximation results are based
+     compute a function fˆ after a polynomial number             on ellipsoidal approximations to a centrally symmetric
+     of queries giving an approximation factor g(n) =            convex body K. An ellipsoid E constitutes a λ-
+     √                                                           ellipsoidal approximation of K if E ⊆ K ⊆ λE. John’s
+        n + 1. Moreover, fˆ is submodular   pP  and has a                                                             √
+     particularly simple form: fˆ(S) =                           theorem [16, p203] says that there always exists a n-
+                                                 i∈S ci for
+     some c ∈ Rn+ .                                              ellipsoidal approximation. We will elaborate on this fact
+                                                                 in the following section.
+  • When f is a general monotone submodular func-
+                                                                      One may also consider ellipsoidal approximations
+     tion, we can compute a submodular function fˆ after
+                                                                 with an algorithmic view. When the body K is given
+     a polynomial number of queries
+                                √      giving an approxi-
+     mation factor g(n) = O( n log n).                           p a separation oracle, it is known how to construct a
+                                                                 by
+                                                                    n(n + 1)-ellipsoidal approximation, using only a poly-
+  • On the other hand, we show that any algorithm per-           nomial number of separation oracle calls. Details are in
+     forming a polynomial
+                    √        number of queries must sat-         Grötschel, Lovász and Schrijver [12, p124]. Unfortu-
+     isfy g(n) = Ω( n/ log n), even if f is the rank func-       nately, this general result is too weak for our purposes.
+     tion of a matroid. If f is not necessarily
+                                             p monotone,              In our case, the convex body K is a symmetrized
+     we obtain the lower bound g(n) = Ω( n/ log n).              version of the polymatroid Pf associated with the mono-
+Related work. The lower bound mentioned above                    tone submodular function f , and we can exploit
+                                                                                                               √ symme-
+was previously described in an unpublished manuscript            tries of this convex body. We show that a ( n + 1/α)-
+by M. Goemans, N. Harvey, R. Kleinberg and V.                    ellipsoidal approximation is achievable for α ≤ 1, pro-
+Mirrokni. This manuscript also gave a non-adaptive               vided one can design a α2 -approximation algorithm
+algorithm that solves Problem 1 when f is monotone               for the problem of maximizing a convex, separable,
+with g(n) = n/(c log n) for any constant c; furthermore,         quadratic function over Pf . When f is the rank func-
+this is optimal (amongst non-adaptive algorithms).               tion of a matroid, this quadratic maximization problem
+     A subsequent paper of Svitkina and Fleischer [32]           can be solved easily and exactly in polynomial time
+                                                                                                                  √ (us-
+considers several new optimization problems on sub-              ing the greedy algorithm), and this gives our n + 1-
+modular functions, as well as Problem 1. They give               approximation for rank functions of matroids. For gen-
+a randomized algorithm for Problem 1 that applies to a           eral monotone submodular functions, the problem of
+restricted class of submodular functions. Specifically, if       maximizing (the square root of) a convex, separable,
+there exists R ⊆ [n] such that, for every S ⊆ [n], the
+quadratic function over a polymatroid Pf is equivalent       where the variables are the symmetric matrix A. Ob-
+to the Euclidean norm maximization problem (finding          serve that the constraints are linear in A: kxk2A =
+a vector of largest Euclidean norm) over a scaling of        xT Ax ≤ 1. One of the main reasons for taking the log
+the polymatroid Pf . To tackle this latter problem, we       of the volume of the ellipsoid in the objective function is
+proceed in two steps. We first show that a classical         that the determinant of a matrix is strictly log-concave
+greedy algorithm provides a (1 − 1/e)-approximation al-      over positive definite matrices.
+gorithm for the maximum Euclidean norm problem over
+a (unscaled) polymatroid Pg ; the analysis relies on the     Lemma 1. (Fan [8]1 ) Let A, B Â 0, A 6= B, and 0 <
+Nemhauser et al. [27] analysis of the greedy algorithm       λ < 1. Then
+for maximizing a submodular function over a cardinality             ¡           ¢
+constraint. We then show that any scaled polymatroid         log det λA+(1−λ)B > λ log det A + (1−λ) log det B.
+Q can be approximated by a polymatroid Pg at a loss
+of a factor O(log n) (modulo a reasonable condition on            The program (2.1) has therefore a strictly convex
+                 1
+the scaling): O(log                                          objective function (in A) and an infinite number of
+                    n) Pg ⊆ Q ⊆ Pg . This step involves
+properties of submodular functions (e.g., Lovász exten-     linear inequalities (in A), and is thus a “nice” convex
+sions) and polymatroids.   Putting these pieces together,    program. In particular, we can solve the program
+             √                                               efficiently provided we can separate over the constraints
+we get a O( n log n)-approximation for any monotone
+submodular function everywhere.                              kxk2A ≤ 1. If the convex body K is polyhedral then
+                                                             we only need to write the constraints kxk2A ≤ 1 for
+2   Ellipsoidal Approximations                               its vertices since the maximization of a convex function
+                                                             xT Ax (in x) over a polyhedral set K is always attained
+In this section, we state and review facts about ellip-      by a vertex. A case of particular interest is when K
+soids, we discuss approximations of convex bodies by         is defined as the convex hull of a given set of points
+inscribed and circumscribed ellipsoids, and we build an      [17, 20]; this case relates to optimal design problems in
+algorithmic framework that we need for our approxi-          statistics.
+mation result. We focus on centrally symmetric convex             The strict log-concavity of the determinant shows
+bodies; in this case, one can exploit polarity to easily     that the program (2.1) has a unique optimum solution,
+switch between inscribed and circumscribed ellipsoids.       since a strict convex combination of any two distinct
+    In this paper, all matrices that we discuss are n × n,   optimum solutions would give a strictly better solu-
+real and symmetric. If a matrix A is positive definite       tion. This shows that the minimum volume ellipsoid
+we write A Â 0, and if A is positive semi-definite we        is unique, a result which is attributed to Löwner, and
+write A < 0. Let A Â 0 and let A1/2 be its (unique)          also follows from John’s proof [16].
+symmetric, positive definite square root: A = A1/2 A1/2 .
+We define the ellipsoidal norm k·kA in Rn by kxkA =      Maximum volume inscribed ellipsoid. Using po-
+√                                                        larity, we can derive a similar formulation for the maxi-
+  xT Ax. Let Bn denote the (closed, Euclidean) unit ball
+{x ∈ Rn : kxk ≤ 1}, and let Vn denote its volume. Given  mum volume ellipsoid inscribed in K (contained within
+A Â 0, let E(A) denote the ellipsoid (centered at the    K). For a convex body K, its polar K ∗ is defined as
+origin)                                                  {c ∈ Rn : cT x ≤ 1 for all x ∈ K}. Observe that the po-
+                                                         lar of Bn is Bn itself, and, more generally, the polar of
+ E(A) = { x ∈ Rn : xT Ax ≤ 1 } = { x : kxkA ≤ 1 }. E(A) is E(A−1 ). Furthermore, for two convex bodies K
+                                                                                           ∗    ∗
+It is the image of the unit ball by a linear map: E(A) = and L, we have that L ⊆ K iff K ⊆ L . Thus, the max-
+A−1/2 (Bn ). The volume of E(A) is Vn / det(A1/2 ). imum volume ellipsoid E(A) inscribed in K corresponds
+Given c ∈ Rn , we have that                              to the minimum volume ellipsoid E(A−1 ) circumscrib-
+                                 √                       ing K ∗ . The maximum volume inscribed ellipsoid is of-
+     max{ cT x : x ∈ E(A) } = cT A−1 c = kckA−1 .        ten called the John ellipsoid, although this attribution
+Minimum volume circumscribed ellipsoid. Let is somewhat inaccurate since John [16] actually consid-
+K be a centrally symmetric (x ∈ K iff −x ∈ K) convex ers only circumscribed ellipsoids. However, as remarked
+body (compact convex set with non-empty interior) in above, circumscribed and inscribed ellipsoids are inter-
+Rn . The minimum volume ellipsoid circumscribing K changeable notions in the centrally symmetric case, so
+(i.e. containing K) is often referred to as the Löwner the inaccuracy is forgivable. The John ellipsoid E(A)
+ellipsoid and can be formulated as a semi-infinite pro- can be formulated by the following convex semi-infinite
+gram:
+        min{− log det(A) :    kxk2A ≤ 1    ∀x ∈ K               1 Fan does not actually state the strict inequality, although his
+(2.1)
+                              A Â 0                  }       proof does show that it holds.
+program polar to (2.1), which maximizes a concave func-       an expression for the minimum volume ellipsoid con-
+tion over a convex set.                                       taining (2.2), which is precisely B = L(A, z). This
+                                                              shows that E(L(A, z)) is indeed the John ellipsoid for
+   max{ log det(A−1 ) : kck2A−1 ≤ 1        ∀c ∈ K ∗
+                                                              conv{E(A), {z, −z}}.
+                        A−1 Â 0                       }
+
+Again, if K is polyhedral, we only need to write the          3 Algorithm for Axis-Aligned Convex Bodies
+constraint kck2A−1 ≤ 1 for c such that cT x ≤ 1 defines       In this section, we consider the question of constructing
+a facet of K.                                                 ellipsoidal approximations efficiently, we show how to
+                                                              exploit symmetries of the convex body, and we relate
+John’s theorem. John’s theorem, well-known in the
+                                                              ellipsoidal approximations to the problem of approxi-
+theory of Banach spaces, says that K is contained in
+√                                                             mating a submodular function everywhere.
+  n·E(A), where E(A) is the maximum√volume ellipsoid
+                                                                   We say that E(A) is a λ-ellipsoidal approximation
+inscribed in K; in other words, kxkA ≤ n for all x ∈ K.
+                                                              to K if E(A) ⊆ √ K and K ⊆ λE(A). The John ellipsoid
+In terms of Banach spaces, this says that the (Banach-
+                                                              is therefore a n-ellipsoidal
+                                                                                       √     approximation to a convex
+Mazur) distance between any n-dimensional Banach
+                                                              body K, and so is 1/ n times the Löwner ellipsoid.
+space (whose unit ball is √     K) and the n-dimensional
+                                                              These are existential results. Algorithmically, the sit-
+Hilbert space l2n is at most n.
+                                                              uation very much depends on how the convex body is
+     John’s      theorem
+                                                              given. If it is a polyhedral set given explicitly as the
+can be proved in sev-         z
+                                                              intersection of halfspaces then the convex program for
+eral ways.       See, for              E(A)                   the John’s ellipsoid given above has one constraint for
+example, Ball [4] or                                    −z
+                                                              each given inequality and can be solved approximately,
+Matoušek [24, §13.4].
+                                                              to within any desired accuracy. This gives an alter-
+We adopt a more algo-
+                                                              nate way to derive the result of Grötschel,
+                                                                                                      √      Lovász and
+rithmic argument.
+                √ Suppose there is an element z ∈ K           Schrijver giving in polynomial-time a n + 1-ellipsoidal
+with kzkA > n. Then the following lemma gives an
+                                                              approximation to a symmetric convex body K given ex-
+explicit construction of an ellipsoid of strictly larger
+                                                              plicitly by a system of linear inequalities. However, if K
+volume that is contained in the convex hull of E(A),
+                                                              is given by a separation oracle and comes with the as-
+z and −z, as illustrated in the figure. The resulting
+                                                              sumption of being well-bounded2 then the best (known)
+ellipsoid is larger since kn (l) > 1 for l > n. This proves
+                                                              algorithmic
+                                                                      p result is a polynomial-time algorithm giving
+John’s theorem.
+                                                              only a n(n + 1)-ellipsoidal approximation (Grötschel,
+Lemma 2. For A Â 0 and z ∈ Rn with l = kzk2A ≥ n,             Lovász, Schrijver [12], Theorem 4.6.3), and this will be
+let                                                           too weak for our purpose. In fact, as was pointed out
+                         µ          ¶                         to us by José Soto, no algorithm, even randomized, can
+              n l−1    n      l−1                             produce an approximation better than Õ(n) for general
+    L(A, z) =       A+ 2 1−           Azz T A.
+              l n−1    l      n−1                             centrally symmetric convex bodies.
+                                                                   The proof given above of John’s theorem can be
+Then L(A, z) is positive definite, the ellipsoid              made algorithmic if we have an α-approximation algo-
+E(L(A, z)) is contained in conv{E(A), {z, −z}},               rithm (α ≤ 1) for maximizing√kxkA over x ∈ K and
+and its volume vol(E(L(A, z)) equals kn (l) · vol(E(A))       we are willing to settle for a n + 1/α-ellipsoidal ap-
+where                sµ ¶ µ                                   proximation. In fact, we only need an α-approximate
+                           n        ¶n−1
+                       l      n−1                             decision procedure which, given A Â 0 with
+            kn (l) =                      .                                                             √ E(A) ⊆ K,
+                       n       l−1                            either returns an x ∈ K with kxkA > n +√        1 or guar-
+                                                              antees that every x ∈ K satisfies kxkA ≤ n + 1/α.
+    In this extended abstract, most proofs are deferred       Assume we are given an ellipsoid E0 ⊆ K such that
+to the full version. Actually, the lemma also follows         K ⊆ pE0 (p is for example R/r in the definition of well-
+from existing results by considering the polar statement,     boundedness, and for our application, we will be able
+which says there exists an ellipsoid E(B −1 ) containing      to use p = n). Iteratively, we find larger and larger
+                       ©                      ª               (multiplicatively in volume) ellipsoids guaranteed to be
+(2.2)     E(A−1 ) ∩ x : −1 ≤ z T x ≤ 1
+                                                              within K. Given an ellipsoid Ej = E(Aj ) at iteration j,
+                    −1             −1
+such that
+        √ vol(E(B )) < vol(E(A )), assuming
+kzkA > n. See, for example, Grötschel, Lovász     2 As part of the input of this centrally symmetric convex body,
+and Schrijver [12, p72], Bland, Goldfarb and Todd we get R ≥ r > 0 such that B(0, r) ⊆ K ⊆ B(0, R), and the
+[5, p1056], and Todd [33]. In fact, Todd derives running time can thus involve log(R/r) polynomially.
+suppose we run our α-approximate decision procedure           provides a λ-approximation to f (S) everywhere. In
+for maximizing kxkA over K.  √ Either (i) it returns a vec-   summary, a λ-ellipsoidal approximation to S(Pf ) gives
+tor z ∈ K with kzkAj > n + 1 or (ii) it guarantees            a λ-approximation to f (·) everywhere.
+                                    √
+that no x ∈ K satisfies kxkAj > n + 1/α. In case of           Symmetry invariance. However, to be able to get
+                 √
+(ii), we have a n + 1/α-ellipsoidal approximation. In         a good ellipsoidal approximation, we need to exploit
+case of (i), we can use Lemma 2 to find a larger ellipsoid    the symmetries of S(Pf ). Observe that if a centrally
+Ej+1 = E(Aj+1 ) also contained within√ K, and we can          symmetric convex body K is invariant under a linear
+iterate. Our choice of the threshold n + 1 for the norm       transformation T (i.e. T (K) = K) then, by uniqueness,
+guarantees that vol(Ej+1 )/vol(Ej ) ≥ 1+ 4n1 2 −O(1/n3 ),     the maximum volume inscribed ellipsoid E should also
+as stated in the lemma below. This increase in vol-           be invariant under T . More generally, define the
+ume (and the fact that K ⊆ pE0 ) guarantees that              automorphism group of K by Aut(K) = {T (x) = Cx :
+the number of iterations of this algorithm is at most         T (K) = K}. Then the maximum volume ellipsoid E
+O(n2 log(pn )) = O(n3 log p). One can get a smaller num-      inscribed in K satisfies T (E) = E for all T ∈ Aut(K),
+ber of iterations with a higher threshold for the norm,       see for example [13]. In our case, Aut(S(Pf )) contains
+see the Lemma below.                                          all transformations T of the form T (x) = Cx where C is
+                                                              a diagonal ±1 matrix. We call such convex bodies axis
+Lemma 3. For the function kn (l) given in Lemma 2,
+                                                              aligned. This means that the maximum volume ellipsoid
+we have
+                                                              E(A) inscribed in S(Pf ) is also axis aligned, implying
+ • kn (n + 1) = 1 + 4n1 2 − O(1/n3 ),                         that A is a diagonal matrix.
+              √
+ • kn (2n) = 2e−1/4 − o(1) > 1.                            Algorithm for axis-aligned convex bodies. Un-
+Ellipsoidal approximations for symmetrized fortunately, the algorithmic version of John’s theorem
+polymatroids. Before we proceed, we describe the presented above does not maintain axis-aligned ellip-
+relationship between the problem of approximating a soids. Indeed, for a diagonal matrix A, Lemma 2
+submodular function everywhere and these ellipsoidal does not produce an axis-aligned ellipsoid E(L(A, z)).
+approximations of centrally symmetric convex bodies.       However, we can use the following proposition to
+     For a monotone, submodular function f : 2 → R map E(L(A, z)) to an ellipsoid of no smaller volume
+                                                   [n]
+
+with f (∅) = 0, its polymatroid Pf ⊆ Rn is defined by: (which shows that the maximum volume ellipsoid is axis
+                  (                               )        aligned). We need some notation. For a vector a ∈ Rn ,
+                      x(S) ≤ f (S), ∀S ⊆ [n]               let Diag(a) be the diagonal matrix with main diagonal
+        P (f ) =                                           a; for a matrix A ∈ Rn×n , let diag(A) ∈ Rn be its main
+                      x ≥ 0
+                                                           diagonal.
+               P
+where x(S) = i∈S xi . To make it centrally symmetric,
+let S(Q) = { x ∈ Rn : |x| ∈ Q }, where |x| denotes Proposition 3.1. Let K be an axis-aligned convex
+component-wise absolute value. It is easy to see that, if body, and let E(A) be an ellipsoid inscribed in K.
+f ({i}) > 0 for all i then S(Pf ) is a centrally symmetric Then the ellipsoid E(B)
+                                                                                 −1    −1
+                                                                                         defined by the diagonal matrix
+convex body. (If there exists an index i with f ({i}) =    B   =  (Diag(diag(A      )))    satisfies (i) E(B) ⊆ K and
+0, we can simply get rid of it as monotonicity and         (ii) vol(E(B))    ≥  vol(E(A)).
+submodularity imply that f (S) = f (S − i) for all S
+with i ∈ S.) Suppose now that E(A) is a λ-ellipsoidal           (ii) is a restatement of Hadamard’s inequality (ap-
+approximation to S(Pf ). This implies that, for any        plied  to A−1 ) whichQsays    that for a positive definite ma-
+                                                                                  n
+c ∈ Rn ,                                                   trix C,   det(C)  ≤    i=1 ii . To prove (i), one can show
+                                                                                       c
+                                                           that E(B) ⊆ conv{T (E(A)) : T ∈ Aut(K)}.
+    kckA−1 = max{cT x : x ∈ E(A)}                               Proposition 3.1 shows that, for an axis-aligned
+                                                           convex   body such as S(Pf ), we can maintain throughout
+            ≤ max{cT x : x ∈ S(Pf )}
+                                                           the algorithm axis-aligned ellipsoids. This has two
+            ≤ λ max{cT x : x ∈ E(A)} = λkckA−1 .           important consequences. First, this means that we only
+                                                           need an α-approximate decision procedure for the case
+In particular, taking c = 1S (the indicator vector for S)
+                                                           when A is diagonal. To emphasize this, we rename
+for any S ⊆ [n], we get that
+                                                           A by D. Recall that such a procedure, when given a
+             k1S kA−1 ≤ f (S) ≤ λk1S kA−1 ,                D Â 0 with E(D) ⊆ S(Pf√), either outputs a vector
+                                                           x ∈ S(Pf√) with kxkD > n + 1 or guarantees that
+where we have used the fact that max{1TS x : x ∈ Pf } = kxkD ≤ n + 1/α for all x ∈ S(Pf ). In section 4, we
+f (S). Thus the function fˆ defined by fˆ(S) = k1S kA−1 show that, for rank functions of matroids, max{kxkD :
+Algorithm Axis-Aligned-Ellipsoidal-Approx
+    . Let E0 = E(D0 ) be an axis-aligned ellipsoid inscribed in S(Pf ). One can choose D0 = Diag(v) where
+       vi = n/f ({i})2 for i ∈ [n].
+    . j ← 0.                                                   √
+    . While Max-Norm(D) returns a vector z with kzkDj > n + 1 do
+           . B ← L(Dj , z)
+           . Dj+1 ← (Diag(diag(B −1 )))−1
+           . j ← j+1                          pP
+    . Return the function fˆ given by fˆ(S) =                              −1
+                                                  i∈S pi where p = diag(Dj ).
+
+                                                                                √
+       Figure 1: The algorithm for constructing a function fˆ which is a            n + 1/α-approximation to f .
+
+
+x ∈ S(Pf )} can be solved exactly (thus α = 1) and               For a matroid rank function f , the problem
+efficiently (in polynomial time and with polynomially      max{kxkD : x ∈ Pf } can be solved exactly in
+many oracle calls), while in Section 5, we describe        polynomial-time and with a polynomial number of or-
+an efficient 1/O(log n)-decision procedure for general     acle calls, when D is a positive definite, diagonal ma-
+monotone submodular functions. Secondly, the function      trix. Indeed, maximizing ©kxk      P D is2 equivalentª to max-
+fˆ we construct based on an ellipsoidal approximation      imizing its square: max               i di xi : x ∈ Pf , where
+takes a particularly simple form when the ellipsoid        d = diag(D). This is the maximization of a convex
+E(D) is given by a diagonal matrix D. In this case,        function over a polyhedral set, and therefore the maxi-
+fˆ(S) = k1S kD−1 reduces to:                               mum is attained at one of the vertices. But any ver-
+                            sX                             tex x of Pf is a 0 − 1 vector [7] and thus satisfies
+                     ˆ
+                    f (S) =      pi ,                      x2i = xi . The problem  P is thus equivalent to maximizing
+                               i∈S
+                                                           the   linear function      i di xi over Pf which can be solved
+                                                           in polynomial-time by the greedy algorithm for find-
+where pi = 1/Dii for i ∈ [n]. Observe that this ing a maximum weight independent set in a matroid.
+approximation fˆ is actually submodular (while this was Therefore,
+                                                              √          Axis-Aligned-Ellipsoidal-Approx gives
+not necessarily the case for non axis-aligned ellipsoids). a     n  + 1-approximation       everywhere for rank functions
+     Summarizing,                                          of  matroids.
+                 √ Figure 1 gives our algorithm for              We should emphasize that the simple approach of
+constructing a n +   √ 1/α-ellipsoidal approximation of linearizing x2 by x would have failed if our ellipsoids
+S(Pf ) and thus a n + 1/α-approximation to f ev-                            i       i
+erywhere, given an α-approximate decision procedure were not axis aligned, i.e., if D were not diagonal. In
+Max-Norm(D) for maximizing kxkD over S(Pf ) (or fact, the quadratic spanning tree problem, defined as
+equivalently over Pf , by symmetry) for a positive defi- max{kxkD : x ∈ Pf } where Pf is a graphic matroid
+nite diagonal matrix D (i.e. dii > 0).                     polytope and D is a symmetric, non-diagonal matrix, is
+     One can easily check that the ellipsoid E0 = E(D0 )   NP-hard      as it includes the Hamiltonian path problem
+given in the algorithm is an n-ellipsoidal approximation:  as  a  special  case [3]. We remark that NP-hardness holds
+it satisfies E0 ⊆ S(Pf ) and S(Pf ) ⊆ nE0 .                even    if D is  positive definite.
+
+Theorem 4. If Max-Norm(D) is an α-approximate                5 General Monotone Submodular Functions
+decision procedure for max{kxkD : x ∈ Pf } then
+                                            √ Axis-          In this section, we present a 1/O(log n)-approximate
+Aligned-Ellipsoidal-Approx outputs a n + 1/α-                decision procedure for max{kxkD : x ∈ Pf } for a general
+approximation to f everywhere after at most O(n3 log n)      monotone submodular function f . Taking squares, we
+iterations.                                                  rewrite the problem as:
+                                                                               ( n                 )
+4 Matroid Rank Functions                                                          X
+                                                                                      2 2
+                                                             (5.3)         max       ci xi : x ∈ Pf ,
+Let M = ([n], I) be a matroid and I its family of                                    i=1
+independent sets. Let f (·) be its rank function: f (S) =
+max{|U | : U ⊆ S, U ∈ I} for S ⊆ [n]. f is monotone          where we let c = diag(D1/2 ). Assuming that the
+and submodular and the corresponding polymatroid Pf          ellipsoid E(D) is inscribed
+                                                                                    Pn in S(Pf ), we will either find
+is precisely the convex hull of characteristic vectors of    an x ∈ Pf for which i=1 c2i x2i > n + 1 or guarantee
+independent sets (Edmonds [7]).                              that no x ∈ Pf gives a value greater than (n + 1)/α2 ,
+where α = 1/O(log n).                                             To reduce to the case with ci = 1 for all i, consider
+    We first consider the case in which all ci = 1, and      the linear transformation T : Rn →             n
+                                                                                                       PR 2 :2 x → y =
+derive a (1 − 1/e)2 -approximation algorithm for (5.3).      (c1 x1 , · · · , cn xn ). The
+                                                                                         Pproblem max{ i ci xi : x ∈ Pf }
+Consider the following greedy algorithm. Let T0 = ∅,         is equivalent to max{ i yi2 : y ∈ T (Pf )}. Unfortunately,
+and for every k = 1, · · · , n, let                          T (Pf ) is not a polymatroid, but it is contained in the
+                                                             polymatroid Pg defined by:
+             Tk =        arg max          f (S),                                           (                    )
+                    S=Tk−1 ∪{j}, j /
+                                  ∈Tk−1                                                      X
+                                                                            g(S) = max         yi : y ∈ T (Pf )
+that is, we repeatedly add the element which gives the                                   i∈S
+largest increase in the submodular function value. Let                               (                          )
+                                                                                         X
+x̂ ∈ Pf be the vector defined by x̂(Tk ) = f (Tk ) for                       = max             ci xi : x ∈ Pf       .
+1 ≤ k ≤ n; the fact that x̂ is in Pf is a fundamental                                    i∈S
+property of polymatroids. We claim that x̂ provides a
+(1 − 1/e)2 -approximation for (5.3) when all ci ’s are 1.    The fact that g is submodular can be derived either
+                                                             from first principles (exploiting the correctness of the
+Lemma 5. For the solution x̂ constructed above, we greedy algorithm) or as follows. The Lovász extension
+have                                                         fˆ of f is defined as f : Rn → R : w → max{wT x :
+      n          µ       ¶2       ( n                 )      x ∈ Pf } (see Lovász [23] or [10]). It is L-convex, see
+     X                 1            X
+           2
+         x̂i ≥ 1 −          max           2
+                                        xi : x ∈ Pf .        Murota [25, Prop. 7.25], meaning that, for w1 , w2 ∈ Rn ,
+     i=1
+                       e            i=1                      fˆ(w1 ) + fˆ(w2 ) ≥ fˆ(w1 ∨ w2 ) + fˆ(w1 ∧ w2 ), where ∨
+                                                             (resp. ∧) denotes component-wise max (resp. min). The
+Proof. Nemhauser, Wolsey and Fisher [27] show that, submodularity of g now follows from the L-convexity of
+for every k ∈ [n], we have                                   fˆ by taking vectors w obtained from c by zeroing out
+                         µ        ¶                          some coordinates.
+                                1
+              f (Tk ) ≥ 1 −          max f (S).                   We can approximately     (within a factor (1 − 1/e)2 )
+                                e S:|S|=k                                     P 2
+                                                             compute max{ P 2i y2i : y ∈ Pg−1 }, or equivalently approx-
+Let h(k) = f (Tk ) for k ∈ [n]; because of our greedy choice imate max{ i ci xi : x ∈ T (Pg )}. The question is
+                                                                                       −1
+and submodularity of f , h(·) is concave. Define the how much “bigger” is T (Pg ) compared to Pf ? To an-
+monotone submodular function ` by `(S) = e−1 h(|S|). swer this question, we perform another polymatroidal
+                                                    e
+                                                                                              −1
+The fact that ` is submodular comes from the concavity approximation, this time of T (Pg ) and define the sub-
+of h. Observe that, for every S, f (S) ≤ `(S), and           modular   function h  by:
+therefore, Pf ⊆ P` and                                                              (                          )
+                                                                                       X
+      ( n                  )          ( n               )                                              −1
+                                                                      h(S) = max           xi : x ∈ T (Pg )
+        X                               X
+              2                               2                                        i∈S
+ max         xi : x ∈ Pf ≤ max               xi : x ∈ P` .                          (                     )
+        i=1                              i=1                                           X 1
+                                                                            = max             yi : y ∈ Pg .
+By convexity of the objective function, the maximum                                        ci
+                                                                                      i∈S
+over P` is attained at a vertex. But all vertices of
+                                            e                Again, h(·) is submodular and we can easily obtain
+P` are permutations of the coordinates of e−1  x̂ (or are
+                                                             a closed form expression for it, see Lemma 8. We
+dominated by such vertices), and thus
+                                                             have thus sandwiched T −1 (Pg ) between Pf and Ph :
+       ( n               )     µ      ¶2 ÃX         !
+         X                        e
+                                             n               Pf ⊆ T −1 (Pg ) ⊆ Ph . To show that all these polytopes
+              2                                   2
+   max       xi : x ∈ Pf ≤                      x̂i .        are close to each other, we show the following theorem
+                                 e−1
+         i=1                               i=1               whose proof is deferred to the full version:
+                                                        ¤    Theorem 6. Suppose       that for all i ∈ [n], we have
+                                                                               √
+    We now deal with the case when the ci ’s are             1
+                                                             ¡ ≤ c i f ({i})
+                                                                           ¢ ≤   n + 1. Then, for all S ⊆ [n], h(S) ≤
+arbitrary. First our guarantee that the ellipsoid E(D)        2 + 32 ln(n) f (S).
+is within S(Pf ) means that f ({i})ei (where ei is the ith    Our algorithm is now the following. Using the
+unit vector) is not in the interior of E(D), i.e. we must (1 − 1/e)2 -approximation algorithm applied to Pg , we
+have ci f ({i}) ≥√1 for all i ∈ [n]. We can also assume find a vector x̂ ∈ T −1 (Pg ) such that
+that ci f ({i}) ≤ nP + 1. If not, x = f ({i})ei constitutes           µ      ¶2      (                        )
+a vector in Pf with j c2j x2j > n+1. Thus, for all i ∈ [n], X 2 2          1           X
+                                                                                           2 2         −1
+                                        √                     ci x̂i ≥ 1 −      max       ci xi : x ∈ T (Pg ) .
+we can assume that 1 ≤ ci f ({i}) ≤ n + 1.                  i
+                                                                           e            i
+Now, by Theorem 6, we know that x̃ = x̂/O(log n) is in            This matroid can be viewed as a partition matroid,
+Pf . Therefore, we have that                                      truncated to rank α. One can check that its rank
+   X                             X                                function is
+                       1
+       c2i x̃2i =        2            c2i x̂2i                                          ©                    ª
+     i
+                   O(log   (n))   i
+                                                                           rMR (S) = min |S|, β + |S ∩ R̄|, α .
+                            ©P 2 2                       ª
+       ≥ O(log12 (n)) max       i i xi : x ∈ T
+                                 c               −1
+                                                    (Pg )             Now we consider when rU (S) 6= rMR (S). By the
+                              ©P 2 2                 ª
+         ≥ O(log12 (n)) max                                       equations above, it is clear that this holds iff
+                                    i ci xi : x ∈ Pf ,
+
+giving us the required approximation guarantee.                   (6.4)         β + |S ∩ R̄| < min {|S|, α} .
+      The lemmas below give a closed form expression
+for g(·) and h(·); their proofs are used in the proof of          Case 1: |S| ≤ α. Eq. (6.4) holds iff β + |S ∩ R̄| < |S|,
+Theorem 6. They follow from the fact that the greedy              which holds iff β < |S ∩ R|. That inequality together
+algorithm can be used to maximize a linear function               with |S| ≤ α implies that |S ∩ R̄| < α − β.
+over a polymatroid. Both lemmas apply to any set S                Case 2: |S| > α. Eq. (6.4) holds iff β + |S ∩ R̄| < α.
+after renumbering its indices. For any i and j, we define         That inequality implies that |S ∩R| > β +(|S|−α) > β.
+[i, j] = {k ∈ N : i ≤ k ≤ j} and f (i, j) = f ([i, j]). Observe       Our family of monotone functions is
+that f (i, j) = 0 for i > j.
+                                                                          F = { rMR : R ⊆ [n], |R| = α } ∪ {rU } .
+Lemma 7. For S = [k] with c1 ≤ c2 ≤ · · · ≤ ck , we
+            Pk
+have g(S) =  i=1 ci [f (i, k) − f (i + 1, k)] .                   Our family of non-monotone functions is
+
+Lemma 8. For S = [k] with c1 ≤ · · · ≤ ck , we have:               F 0 = { rMR + h : R ⊆ [n], |R| = α } ∪ {rU + h} ,
+          X     ci ³
+h(S) =             · f (i, j) − f (i + 1, j)                      where h is the function defined by h(S) = −|S|/2.
+                cj
+         i,j : 1≤i≤j≤k                                    Step 2 (Non-monotone case). Consider any algo-
+                                                             ´
+                                                          rithm which is given a function f ∈ F 0 , performs a se-
+                             −f (i, j − 1) + f (i + 1, j − 1)
+                                  µ             ¶         quence of queries f (S1 ), . . . , f (Sk ), and must distinguish
+               X                     1      1
+   =                 (cl − cl−1 )      −                  whether f = rU + h or f = rMR + h (for some R). For
+                                                   f (l, m).
+                                    cm    cm+1            the sake of distinguishing these possibilities, the added
+        l,m : 1≤l≤m≤k
+                                                          function h is clearly irrelevant; it only affects the ap-
+6 Lower Bound                                             proximation ratio. By our discussion above, the algo-
+                                                          rithm can distinguish rMR from rU only if one of the
+In this section, we show that approximating a submod-
+                                                          following two cases occurs.
+ular function
+           ¡√ everywhere
+                      ¢    requires an approximation ra-
+tio of Ω n/ log n , even when restricting f to be a Case 1: ∃i such that |Si | ≤ α and |Si ∩ R| > β.
+matroid rank function (and hence monotone). For non- Case 2: ∃i such that |Si | > α and β + |Si ∩ R̄| < α.
+monotone submodular functions,¡p we show   ¢ that the ap-      As argued above, if either of these cases hold then
+proximation ratio must be Ω n/ log n .                    we have both |Si ∩ R| > β and |Si ∩ R̄| < α − β. Thus
+     The argument has two steps:
+  • Step 1. Construct a family of submodular func- (6.5)                |Si ∩ R| − |Si ∩ R̄| > 2β − α.
+     tions parameterized by natural numbers α > β and
+     a set R ⊆ [n] which is unknown to the algorithm. Now consider the family of sets A = {S1 , . . . , Sk , [n]}. A
+                                                          standard result [1, Theorem 12.1.1] on the discrepancy
+  • Step 2. Use discrepancy arguments to determine
+                                                          of A shows that there exists an R such that
+     whether a sequence of queries can determine R.
+                                                                         ¯                         ¯
+     This analysis leads to a choice of α and β.          (6.6a)         ¯ |Si ∩ R| − |Si ∩ R̄| ¯ ≤ ² ∀i
+                                                                       ¯                           ¯
+Step 1. Let U be the uniform rank-α matroid on [n]; (6.6b)             ¯ |[n] ∩ R| − |[n] ∩ R̄| ¯ ≤ ²,
+its rank function is
+                                                                       p
+                                                          where ² = 2n ln(2k). Eq. (6.6b) implies that |R| =
+                   rU (S) = min {|S|, α} .
+                                                          n/2 + ²0 , where |²0 | ≤ ²/2. By definition, α = |R|. So if
+Now let R ⊆ [n] be arbitrary such that |R| = α. We we choose β = n/4 + ² then 2β − α > ². Thus Eq. (6.5)
+define a matroid MR by letting its independent sets be cannot hold, since it would contradict Eq. (6.6a). This
+                                                          shows that the algorithm cannot distinguish f = rMR +h
+    IMR = { I ⊆ [n] : |I| ≤ α and |I ∩ R| ≤ β } .         from f 0 = rU + h.
+      The approximation ratio of the algorithm is at most where the minimization is over partitions of [n] into
+f 0 (R)/f (R). We have f 0 (R) = |R| − |R|/2 = |R|/2 V1 , . . . , Vm .
+and f (R) = β − |R|/2 ≤ (n/4 + ²) − (n/2 − ²)/2 < 2².                    Suppose we construct the approximations
+This shows that no deterministic algorithm can achieve fˆ1 , . . . , fˆm such that
+approximation ratio better than
+                                            p                       fˆj (S) ≤ fj (S) ≤ g(n) · fˆj (S)          ∀j ∈ [m], S ⊆ [n].
+        f 0 (R)       |R|      n/2 − ²
+                 =          ≥          = Ω( n/ log k)
+        f (R)          4²        4²
+                                                                   Furthermore, suppose that each fˆj is of the form
+                 O(1)
+Since k = n            , this proves the claimed result.√       If                                    sX
+k = O(n) then the lower bound improves to Ω( n) via                                     fˆj (S) =           cj,i ,
+a result of Spencer [30].                                                                               i∈S
+      The construction of the set R in [1, Theorem 12.1.1]
+is probabilistic: choosing R uniformly at random works for some non-negative real values cj,i . Consider the
+with high probability, regardless of the algorithm’s problem of finding a partition V1 , . . . , Vm that minimizes
+queries S1 , . . . , Sk . This implies that the lower bound maxj fˆj (Vj ). By squaring, we would like to solve
+also applies to randomized algorithms.
+                                                                                                        X
+Step
+√      2 (Monotone case). In this case, we pick α ≈ (7.8)                                 min max            cj,i .
+                                                                                       V1 ,...,Vm    j
+   n and β = Ω(ln k). The argument is similar to the non-                                               i∈Vj
+monotone case except that we cannot apply standard
+discrepancy √   results since they do not construct R with This is precisely the problem of scheduling jobs without
+|R| = α ≈ n. Instead, we derive analogous results preemption on non-identical parallel machines, while
+using Chernoff bounds. We construct R by picking     √      each minimizing the makespan. In deterministic polyno-
+element independently with                                         mial time, one can compute a 2-approximate solution
+                                 √ probability 1/ n. With X , . . . , X to this problem [22], which also gives an
+high probability |R| = Θ( n). We must now bound                       1       m
+the probability that the algorithm succeeds.                       approximate solution to Eq. (7.7).
+                                                                         Formally, let W1 , . . . , Wm be an optimal solution to
+Case 1: Given |Si | ≤ α, what   √ is Pr [ |Si ∩ R| > β ]? We Eq. (7.8), let X1 , . . . , Xm be a solution computed using
+have E [ |R ∩ Si | ] = |Si |/ n = O(1). Chernoff bounds
+                                                                   the algorithm of [22], and let Y1 , . . . , Ym be an optimal
+show that Pr [ |R ∩ Si | > β ] ≤ exp(−β/2) = 1/k 2 .
+                                         £                     ¤ solution to the original problem in Eq. (7.7). Then we
+Case 2: Given |Si | > α, what is Pr β + |Si ∩ R̄| < α ? have 1 · max fˆ2 (X ) ≤ max fˆ2 (W ), and thus
+                                                                          2      j j      j            j j     j
+As observed above, this event is equivalent
+                                       £          ¤to |Si ∩ R|
+                                                             √>
+β + (|Si | − α) =: ξ. Let µ = E |Si ∩ R̄| = |Si |/ n.                             1
+Note that                                                                     √        · max fj (Xj ) ≤ max fj (Yj ).
+                                       ³           ´                            2g(n)        j                  j
+              ξ          log n     √          α
+                  =          √ + n· 1−              ,                                          √
+              µ        |Si |/ n              |Si |                 Thus, the Xj ’s give a ( 2 g(n))-approximate solution to
+which is Ω(log n) for any value of |Si |. A Chernoff bound Eq. (7.7). Applying the algorithm             √
+                                                                                                              of Section 5 to con-
+                                                                              ˆ
+then shows that Pr [ |Si ∩ R| > ξ ] < exp(−ξ/2) ≤ 1/k . struct the fj ’s, we obtain an O( n log n)-approximation
+                                                               2
+
+      A union bound shows that none of these events oc- to the non-uniform submodular load balancing problem.
+cur with high probability, and thus the algorithm fails
+to distinguish rMR from rU . The approximation ra- 7.2 Submodular Max-Min Fair Allocation
+tio√of the algorithm is at most f 0 (R)/f (R) = α/β = Consider m buyers and a ground set [n] of items. Let
+Ω( n/ log k). This lower bound also applies to ran- f1 , . . . , fm be monotone submodular functions on the
+domized algorithms, by the same reasoning as in the ground set [n], and let fj be the valuation function
+non-monotone case. Since k = nO(1) , this proves the of buyer j. The submodular max-min fair allocation
+desired result.                                                    problem is
+
+7 Applications                                                    (7.9)                 max min fj (Vj ),
+                                                                                      V1 ,...,Vm   j
+7.1 Submodular Load Balancing
+Let f1 , . . . , fm be monotone submodular functions on           where the maximization is over partitions of [n] into
+the ground set [n]. The non-uniform submodular load               V1 , . . . , Vm . This problem was studied by Golovin [11]
+balancing problem is                                              and Khot and Ponnuswami [19]. Those papers re-
+                                                                  spectively give algorithms achieving an (n − m + 1)-
+(7.7)                 min max fj (Vj ),                           approximation and a (2m − 1)-approximation. Here we
+                    V1 ,...,Vm   j
+            1   1            3
+give a O(n 2 m 4 log n log 2 m)-approximation algorithm             [11] D. Golovin, “Max-Min Fair Allocation of Indivisible
+for this problem.                                                        Goods”. Technical Report CMU-CS-05-144, 2005.
+                                                                    [12] M. Grötschel, L. Lovász, and A. Schrijver, “Geometric Algo-
+     The idea of the algorithm is similar to that of the                 rithms and Combinatorial Optimization”, Springer Verlag,
+load balancing problem. We construct the approxima-                      second edition, 1993.
+tions fˆ1 , . . . , fˆm                                             [13] O. Güler and F. Gürtina, “The extremal volume ellipsoids
+                                                                         of convex bodies, their symmetry properties, and their
+ fˆj (S) ≤ fj (S) ≤ g(n) · fˆj (S)             ∀j ∈ [m], S ⊆ [n],        determination in some special cases”, arXiv:0709.707v1.
+                                                                    [14] S. Iwata, L. Fleischer, and S. Fujishige, “A combinatorial,
+                                                                         strongly polynomial-time algorithm for minimizing submod-
+such that fˆj is of the form                                             ular functions”, Journal of the ACM, 48, 761–777, 2001.
+                                 sX                                 [15] S. Iwata and J. Orlin, “A Simple Combinatorial Algorithm
+                                                                         for Submodular Function Minimization”, SODA, 2009.
+                    fˆj (S) =               cj,i ,                  [16] F. John. “Extremum problems with inequalities as sub-
+                                     i∈S                                 sidiary conditions”, Studies and Essays, presented to R.
+                                                                         Courant on his 60th Birthday, January 8, 1948, Inter-
+for some non-negative real values cj,i . Consider the                    science, New York, 187–204, 1948.
+problem of finding a partition V1 , . . . , Vm that maxi-           [17] L. G. Khachiyan. “Rounding of polytopes in the real number
+                                                                         model of computation”, Math of OR, 21, 307–320, 1996.
+mizes minj fˆj (Vj ). By squaring, we would like to solve
+                                                                    [18] S. Khot, R. Lipton, E. Markakis and A. Mehta. “Inapprox-
+                                X                                        imability results for combinatorial auctions with submodu-
+                      max min       cj,i .                               lar utility functions”, WINE, 92–101, 2005.
+                    V1 ,...,Vm   j
+                                     i∈Vj                           [19] S. Khot and A. Ponnuswami. “Approximation Algo-
+                                                                         rithms for the Max-Min Allocation Problem”. APPROX-
+This problem is the Santa Claus max-min fair allocation                  RANDOM, 204–217, 2007.
+                                                                    [20] P. Kumar and E. A. Yıldırım, “Minimum-Volume Enclosing
+problem,
+     √       for which Asadpour and Saberi [2] give a                    Ellipsoids and Core Sets”, Journal of Optimization Theory
+O( m log3 m) approximation algorithm. Using this,                        and Applications, 126, 1–21, 2005.
+together with the algorithm of Section 5 to construct the           [21] B. Lehmann, D. J. Lehmann and N. Nisan. “Combinatorial
+                                         3
+fˆj ’s, we obtain an O(n 2 m 4 log n log 2 m)-approximation              auctions with decreasing marginal utilities”, Games and
+                         1   1
+
+                                                                         Economic Behavior, 55, 270–296, 2006.
+for the submodular max-min fair allocation problem.                 [22] J. K. Lenstra, D. B. Shmoys and E. Tardos. “Approxima-
+                                                                         tion algorithms for scheduling unrelated parallel machines”.
+Acknowledgements                                                         Mathematical Programming, 46, 259–271, 1990.
+                                                                    [23] L. Lovász, “Submodular Functions and Convexity”, in A.
+The authors thank Robert Kleinberg for helpful discus-                   Bachem et al., eds, Mathematical Programmming: The
+sions at a preliminary stage of this work, José Soto for                State of the Art, 235–257, 1983.
+discussions on inertial ellipsoids, and Uri Feige for his           [24] J.Matoušek, “Lectures on Discrete Geometry”. Springer,
+                                                                         2002.
+help with the analysis of Section 6.
+                                                                    [25] K. Murota, “Discrete Convex Analysis”, SIAM Monographs
+                                                                         on Discrete Mathematics and Applications, SIAM, 2003.
+References                                                          [26] H. Narayanan, “Submodular Functions and Electrical Net-
+                                                                         works”, Elsevier, 1997.
+ [1] N. Alon and J. Spencer. “The Probabilistic Method”. Wiley,     [27] G. L. Nemhauser, L. A. Wolsey and M. L. Fisher. “An
+     second edition, 2000.                                               analysis of approximations for maximizing submodular set
+ [2] A. Asadpour and A. Saberi. “An approximation algorithm              functions I”. Mathematical Programming, 14, 1978.
+     for max-min fair allocation of indivisible goods”. STOC,       [28] A. Schrijver, “Combinatorial Optimization: Polyhedra and
+     114–121, 2007.                                                      Efficiency”. Springer, 2004.
+ [3] A. Assad and W. Xu. “The Quadratic Minimum Spanning            [29] A. Schrijver, “A combinatorial algorithm minimizing sub-
+     Tree Problem”. Naval Research Logistics, 39, 1992.                  modular functions in strongly polynomial time”, Journal of
+ [4] K. Ball. “An Elementary Introduction to Modern Convex               Combinatorial Theory, Series B, 80, 346–355, 2000.
+     Geometry”. Flavors of Geometry, MSRI Publications, 1997.       [30] J. Spencer, “Six Standard Deviations Suffice”, Trans. Amer.
+ [5] R. G. Bland, D. Goldfarb and M. J. Todd. “The Ellipsoid             Math. Soc., 289, 679–706, 1985.
+     Method: A Survey”. Operations Research, 29, 1981.              [31] P. Sun and R. M. Freund. “Computation of Minimum
+ [6] S. Dobzinski and M. Schapira. “An improved approxima-               Volume Covering Ellipsoids”, Operations Research, 52,
+     tion algorithm for combinatorial auctions with submodular           690–706, 2004.
+     bidders”. SODA, 1064–1073, 2006.                               [32] Z. Svitkina and L. Fleischer. “Submodular Approximation:
+ [7] J. Edmonds, “Matroids and the Greedy Algorithm”, Math-              Sampling-Based Algorithms and Lower Bounds”. FOCS,
+     ematical Programming, 1, 127–136, 1971.                             2008.
+ [8] K. Fan, “On a theorem of Weyl concerning the eigenvalues       [33] M. J. Todd. “On Minimum Volume Ellipsoids Containing
+     of linear transformations, II”, Proc. Nat. Acad. Sci., 1950.        Part of a Given Ellipsoid”. Math of OR, 1982.
+ [9] U. Feige, V. Mirrokni and J. Vondrák, “Maximizing non-        [34] J. Vondrák. “Optimal Approximation for the Submodular
+     monotone submodular functions”, FOCS, 461–471, 2007.                Welfare Problem in the Value Oracle Model”. STOC, 2008.
+[10] S. Fujishige, “Submodular Functions and Optimization”,         [35] L. A. Wolsey. “An Analysis of the Greedy Algorithm for
+     volume 58 of Annals of Discrete Mathematics. Elsevier,              the Submodular Set Covering Problem”. Combinatorica, 2,
+     second edition, 2005.                                               385–393, 1982.
+

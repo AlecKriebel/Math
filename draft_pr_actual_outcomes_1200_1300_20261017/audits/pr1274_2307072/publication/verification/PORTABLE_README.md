@@ -1,0 +1,23 @@
+# Verification archive for explicit Beurling-transform counterexamples
+
+The note verifies both negative endpoint answers in the bilinear analytic annihilator of Hayman--Lingham Problem7.72. It is an exposition of classical formulas: Iwaniec1986 prints the exact logarithmic example and primitive; Gill2010 gives the positive-angular transform rule from which the polynomial construction and harmonic-number norm follow. The2019 book credits Volberg. The current audit records that attribution and its located-source limits. No new solution, first witness, first polynomial construction, first exact norm calculation or current-openness claim is made.
+
+Use Python3.9 or later and its standard library. Unpack into a new directory and run `python3 verify.py` with all three required options: `--expected-manifest-sha256`, `--expected-context-sha256` and `--expected-snapshot-sha256`. Obtain these values from the outside build/review receipt in the repository identified by the published artifact hash. Values taken only from the same untrusted archive do not supply an independent trust anchor. The checker uses temporary copies and has no network dependency.
+
+Three finite diagnostics replay in normal, `-O` and `-OO` modes:
+
+- `root_polynomial_check.py` checks exact coefficient, endpoint, monotonicity and integral identities for m=1 through128.
+- `reviews/candidate_adversary/check_independent.py` independently checks polynomial primitives, normalization, the bilinear-pairing distinction and finite L2 identities.
+- `reviews/pde_adversary/check_pde.py` checks exact weak-Stokes and analytic moments, integral identities, positive-area witnesses and logarithmic weak-derivative identities. Its optimization-mode label is excluded from result comparison.
+
+These diagnostics supplement the written all-m and analytic arguments; they do not prove principal-value convergence, annihilation against every analytic area-L1 function, boundary/origin distributional statements or historical priority. The separately retained blind reconstruction's `CHECKS.py` includes numerical quadrature checks. Those are optional empirical checks with chosen tolerances, not rigorously enclosed error estimates, and are not included in the automatic exact replay list. Finite numerical agreement does not replace proof.
+
+`original_submitted/` and `current_edition/` preserve the same six original files. Their older priority and source-access statements are historical. Current manuscript and gates report the subsequently authenticated Iwaniec1986, Gill2010 and2019 book evidence. Missing older editorial input bodies are not replay-certified. The initial purported source-only family inherited candidate history through its conversation fork and is retained only as informed verification with the explicit exposure correction; the replacement `blind_source_reconstruction` began without that history. Mathematical and source-reading scopes remain separate from byte integrity.
+
+The initial workflow seal is a historical source snapshot. The separate `workflow_identity_revision1` seal and detached resolution authenticate the current tracker-identity repair. The initial endpoint priority packet contains a subsequently corrected description of a forward2014 angular-factor display; the cross-review and current priority adjudication give the correction while retaining the initial seal unchanged. The target positive-angular theorem in Gill and the self-contained proof remain the applicable formulas. Root's extension finding a2013 repetition does not claim it precedes the subsequently located1986 source.
+
+Nested authored membership uses the current context's explicit relative schemas. Paths inside input or source receipts are locators, not extra archive members. Third-party source PDFs, extracted text, page images, provider responses, caches and raw inspection material are omitted. Authentication of source bytes does not enlarge the recorded reading depth. Cross-reviews intentionally read the independently sealed initial families, and their later exposure is recorded.
+
+The archive includes manuscript source, actual compile and all-page layout receipts, mathematical and priority evidence, scoped diagnostic results and sealed workflow source copies. Fresh complete-package reviews and eventual publication/integration receipts are retained separately in the repository to avoid self-referential artifact hashes. The current context binds the outside PDF, which is the other deposited file.
+
+AI tools were used extensively in research, solving, verification, literature review, drafting and internal adversarial review. This is an unrefereed preprint; no external human peer review, journal acceptance or formal proof-assistant certification is claimed.

@@ -1,0 +1,16 @@
+# Reused independently inspected full03 orchestration of full02 flow designs; fixture path only adapted to own04. Fresh launches.
+import pathlib,subprocess,sys,hashlib,json,datetime,os,shutil,difflib
+R=pathlib.Path(__file__).resolve().parent;A=R.parents[1];P=A.parents[1];F=A/'reviews/full_package_02';out=[];(R/'private/flows').mkdir();(R/'private/legacy_tmp').mkdir()
+def run(label,cmd,env=None):
+ start=datetime.datetime.now(datetime.timezone.utc).isoformat();p=subprocess.run(cmd,cwd=R/'private',env=env,capture_output=True);(R/(label+'.stdout.raw')).write_bytes(p.stdout);(R/(label+'.stderr.raw')).write_bytes(p.stderr);row={'start':start,'end':datetime.datetime.now(datetime.timezone.utc).isoformat(),'argv':cmd,'returncode':p.returncode};(R/(label+'.launch.json')).write_text(json.dumps(row,indent=2)+'\n');out.append(row);print(label,p.returncode,flush=True);return p
+adapt=[]
+for filename in ['independent_operations_probe.py','independent_boundaries_probe.py']:
+ before=(F/filename).read_text();after=before.replace("R=A/'reviews/full_package_02'","R=A/'reviews/full_package_04/private/flows'").replace('888a068e26e0adcc3f493817ef46c46b6bdd5a4f848a4d907e4f4af2b5f592a8','14ac4e7009a1f4973f81aed776d5c6afd344dea93ff369dd65175427e0492eec').replace('87e6753c48153e6bbc82ad77181339dd4d4fe64e0c855be507da6b47b7438424','ab027971f0245481783e2afa106292543c41f06a93c3c83a0cf8dcea4cff9d77').replace('86f04bba661b5036a0b3a2b958779569ed4b92543748071f7177ed6d60e6df97','9650f0baf87ac6d83a5a7eb934d212cc66ea67dea4c8758813bec47f5a24cc05');path=R/('REPLAYED_'+filename);path.write_text(after);adapt.append({'source':str(F/filename),'original_sha256':hashlib.sha256(before.encode()).hexdigest(),'adapted_sha256':hashlib.sha256(after.encode()).hexdigest(),'diff':''.join(difflib.unified_diff(before.splitlines(True),after.splitlines(True)))})
+ for mode,flag in [('normal',[]),('O',['-O']),('OO',['-OO'])]:run('FLOW_'+path.stem+'_'+mode,[sys.executable,'-I','-S','-B',*flag,str(path)])
+orig=R/'private/legacy_packet';shutil.copytree(A/'original/unsolved_math_prioritization/attempts/10400145',orig);env=os.environ.copy();env.update(TMPDIR=str(R/'private/legacy_tmp'),TMP=str(R/'private/legacy_tmp'),TEMP=str(R/'private/legacy_tmp'))
+for mode,flag in [('normal',[]),('O',['-O']),('OO',['-OO'])]:run('LEGACY_'+mode,[sys.executable,'-I','-S','-B',*flag,str(orig/'BOOTSTRAP.py'),str(orig)],env)
+run('ORIGINAL_MUTATIONS',[sys.executable,'-I','-S','-B',str(orig/'TEST_MUTATIONS.py'),str(orig)],env)
+run('ENGINEERING_FINAL_SEAL',[sys.executable,'-I','-S','-B',str(A/'operations_engineering_04/verify_final_seal.py'),'--seal-sha256','189cb158164672e1d6f88b67fecd6d8d6df68233378f00a2df750d3416e39853'])
+for family,script in [('algebra_falsifier_01','independent_controls.py'),('quantum_bridge_01','INDEPENDENT_CHECKS.py')]:
+ b=(A/'reviews'/family/script).read_bytes();p=R/('REPLAYED_FAMILY_'+script);p.write_bytes(b);run('FAMILY_'+family,[sys.executable,'-I','-S','-B',str(p)],env)
+(R/'ADDITIONAL_REPLAY.json').write_text(json.dumps({'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'launches':out,'source_adaptations':adapt,'replayed_prior_probe_is_not_a_new_independent_design':True,'real_external_mutations':0},indent=2)+'\n')

@@ -1,0 +1,44 @@
+--- frozen01/capture_logical_packet.py
++++ inactive02/capture_logical_packet.py
+@@ -411,6 +411,7 @@
+  """Reuse the frozen exact-preimage rebuild for the own subtree, no POST."""
+  node=trees.lookup(root,h.ATTEMPT);need(node is None or node[:2]==('040000','tree'),'Own attempt tree/absence')
+  own={p[len(h.ATTEMPT)+1:]:raw for p,raw in payload.items() if p.startswith(h.ATTEMPT+'/')}
++ if not own:return node
+  own_pre={p[len(h.ATTEMPT)+1:]:pre[p] for p in payload if p.startswith(h.ATTEMPT+'/')}
+  oid,unused,unused_dirs=h.expected(c,trees,None if node is None else node[2],own,own_pre)
+  return ('040000','tree',oid)
+@@ -424,6 +425,23 @@
+   values.sort(key=lambda row:row['path'].encode()+(b'/' if row['mode']=='040000' else b''))
+   return {'sha':oid,'truncated':False,'tree':values}
+  return c.NativeTrees(tree_get)
++def final_target_admissibility(h,payload,carry,science,phase):
++ """Match frozen load_inputs target policy using the actual accepted carry."""
++ h.phase_facts(phase)
++ need(type(payload) is dict and type(carry) is dict and set(carry).issubset(payload),'All accepted carry selected')
++ need(type(science) is list and len(science)<=200,'Finite actual science allowlist')
++ sc={}
++ for row in science:
++  need(type(row) is dict and set(row)=={'path','bytes','sha256'} and h.science_path(row['path'])
++       and row['path'] not in sc,'Exact unique own science target')
++  sc[row['path']]=h.bytepin({k:row[k] for k in ('bytes','sha256')})
++ need(phase=='merge95' or not sc,'Completion100 cannot select science')
++ for path,raw in payload.items():
++  h.rel(path)
++  need(path in h.VIEWS or h.public_path(path) or path in carry or path in sc
++       or (path==h.QUEUE and phase=='merge95'),'Target outside actual Root public/carry/science scope')
++  if path in carry:need(h.exact(pin(raw),h.bytepin(carry[path])),'Actual carry body differs')
++  if path in sc:need(h.exact(pin(raw),sc[path]),'Actual science body differs')
+ def finalize(config,plan,h,e,c,guard,bindings):
+  need(type(config) is dict and set(config)=={'schema','PR','snapshot','stage_name','native_identity','case_ready','carry_inventory'},'Exact offline finalize config')
+  h.matches(config,{'schema':'pr239-offline-logical-finalize-config-v1','PR':239},'Offline finalize')
+@@ -448,8 +466,7 @@
+  local={}
+  for p,r in snapshot['separate_local_view_references'].items():local[p]=None if r is None else file_ref(Path(r['path']),{k:r[k] for k in ('bytes','sha256')})[1]
+  carry=h.carry_inventory(config['carry_inventory'])
+- need(set(carry).issubset(selected),'All Root-accepted finite carry selected')
+- for p,wanted in carry.items():need(pin(selected[p])==wanted,'Actual carry body differs')
++ final_target_admissibility(h,payload,carry,snapshot['science_allowlist'],phase)
+  m={'phase':phase,'facts':h.phase_facts(phase),'native_identity_receipt':config['native_identity'],'evidence_references':evidence,
+   **{k:snapshot[k] for k in ('protected_nodes','post_attempt_tree','protected_bodies','protected_queue','queue_postimage','queue_pre_row_pin','protected_queue_row_pin','current_PR_opaque_body_pin','science_allowlist')}}
+  identity=h.native_identity(m);h.validate_ready_value(m,evidence,h.root_ref(config['case_ready']))

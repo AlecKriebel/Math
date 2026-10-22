@@ -1,0 +1,1 @@
+Historical independent review, preserved before the R3 diagnostic correction. Its numerical checks were run with normal Python, not optimized Python. Assertions in the original diagnostic disappear under -O. Use the corrected current math_review_01/reproduce_checks.py for new replays. The analytic derivation and proof verdict are unchanged.

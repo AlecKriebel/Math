@@ -1,0 +1,742 @@
+{
+  "at_utc": "2026-10-16T08:25:35.783254+00:00",
+  "manifest_sha256": "b8a089ae50e18847cc7aa5dea57729ee1f96578de4597c2c688619f82761a881",
+  "authored_files": 22,
+  "authored_bytes": 73502,
+  "report_sha256": "3796dbd4add737e525bf139d5d65fd101702835275a5d696c0b57eca6c317748",
+  "verdict_sha256": "76fa31e94cdffab708d1d1e05801dbe26f6bde38860453632a1237f2564fdce4",
+  "peer_challenge_sha256": "64d8e99f8a0c8c09d2a8d7007f69b83222b70deaae0c86631e55a06f5acc6884",
+  "root_full_reports_all_code_source_search_history_read": true,
+  "all_closed_hashes_verified": true,
+  "before_after_authored_files_and_manifest_unchanged": true,
+  "temporary_controls_note": "test_custody.py creates and removes only its declared tiny owned fixture inside the packet; this is not a claim of zero transient filesystem writes.",
+  "runs": [
+    {
+      "script": "verify_custody.py",
+      "mode": "normal",
+      "exit": 0,
+      "stdout": {
+        "bytes": 311,
+        "sha256": "5e9607115453f47ad96d5ee06bb105c524ea6a822f87c423ac15e736c5b55e22"
+      },
+      "result": {
+        "absolute_filesystem_or_preserved_mtime_required": false,
+        "excluded_only": "MANIFEST.json",
+        "files": 22,
+        "hidden_included": true,
+        "manifest_sha256": "b8a089ae50e18847cc7aa5dea57729ee1f96578de4597c2c688619f82761a881",
+        "no_empty_directories_symlinks_or_special_files": true,
+        "read_only": true,
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "check_current_inputs.py",
+      "mode": "normal",
+      "exit": 0,
+      "stdout": {
+        "bytes": 276,
+        "sha256": "8921195ae28e7588497484462fd19988983450f3050c8097df4c061a94ef5c6c"
+      },
+      "result": {
+        "checked": [
+          "private_sources/selected_record.json",
+          "original/unsolved_math_prioritization/attempts/30001054/README.md",
+          "original/unsolved_math_prioritization/attempts/30001054/audit/SCOPE_CORRECTION.md"
+        ],
+        "git_access": false,
+        "mtime_prerequisite": false,
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "check_event_mapping.py",
+      "mode": "normal",
+      "exit": 0,
+      "stdout": {
+        "bytes": 1415,
+        "sha256": "bc155fbf05822591dbeb6c71094f22da4c14862e805a4845102ec23cff05098a"
+      },
+      "result": {
+        "dghp_2005_once_per_ordered_type": false,
+        "full_period_mixed_count": 0,
+        "half_period_mixed_counts": [
+          0,
+          0
+        ],
+        "inference": "The accepted weak word is excluded by both proper definitions. This does not demonstrate prior publication of a literal counterexample.",
+        "novick_2012_two_mixed_per_half_period": false,
+        "post_counts": [
+          {
+            "count": 2,
+            "event": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "count": 2,
+            "event": [
+              "1'",
+              "2'"
+            ]
+          },
+          {
+            "count": 2,
+            "event": [
+              "2",
+              "1"
+            ]
+          },
+          {
+            "count": 2,
+            "event": [
+              "2'",
+              "1'"
+            ]
+          }
+        ],
+        "post_switch_events": [
+          [
+            "2'",
+            "1'"
+          ],
+          [
+            "1'",
+            "2'"
+          ],
+          [
+            "2'",
+            "1'"
+          ],
+          [
+            "2",
+            "1"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "2",
+            "1"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "1'",
+            "2'"
+          ]
+        ],
+        "pre_switch_events": [
+          [
+            "1'",
+            "2'"
+          ],
+          [
+            "2'",
+            "1'"
+          ],
+          [
+            "1'",
+            "2'"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "2",
+            "1"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "2",
+            "1"
+          ],
+          [
+            "2'",
+            "1'"
+          ]
+        ],
+        "scope": "independent event/convention check only; topology supplied by primary sources",
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "test_custody.py",
+      "mode": "normal",
+      "exit": 0,
+      "stdout": {
+        "bytes": 722,
+        "sha256": "89c5ec31c5af60b9c3c84add32aefdd7297f3bbd9534de6e43e640d4d49bda76"
+      },
+      "result": {
+        "controls": [
+          {
+            "case": "exact_hidden_inventory",
+            "result": "PASS"
+          },
+          {
+            "case": "wrong_external_pin",
+            "result": "REJECTED"
+          },
+          {
+            "case": "extra_hidden_file",
+            "result": "REJECTED"
+          },
+          {
+            "case": "missing_file",
+            "result": "REJECTED"
+          },
+          {
+            "case": "altered_bytes",
+            "result": "REJECTED"
+          },
+          {
+            "case": "rewritten_manifest",
+            "result": "REJECTED"
+          },
+          {
+            "case": "symlink",
+            "result": "REJECTED"
+          },
+          {
+            "case": "special_fifo",
+            "result": "REJECTED"
+          },
+          {
+            "case": "empty_directory",
+            "result": "REJECTED"
+          }
+        ],
+        "scratch_cleaned": true,
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "verify_custody.py",
+      "mode": "optimized",
+      "exit": 0,
+      "stdout": {
+        "bytes": 311,
+        "sha256": "5e9607115453f47ad96d5ee06bb105c524ea6a822f87c423ac15e736c5b55e22"
+      },
+      "result": {
+        "absolute_filesystem_or_preserved_mtime_required": false,
+        "excluded_only": "MANIFEST.json",
+        "files": 22,
+        "hidden_included": true,
+        "manifest_sha256": "b8a089ae50e18847cc7aa5dea57729ee1f96578de4597c2c688619f82761a881",
+        "no_empty_directories_symlinks_or_special_files": true,
+        "read_only": true,
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "check_current_inputs.py",
+      "mode": "optimized",
+      "exit": 0,
+      "stdout": {
+        "bytes": 276,
+        "sha256": "8921195ae28e7588497484462fd19988983450f3050c8097df4c061a94ef5c6c"
+      },
+      "result": {
+        "checked": [
+          "private_sources/selected_record.json",
+          "original/unsolved_math_prioritization/attempts/30001054/README.md",
+          "original/unsolved_math_prioritization/attempts/30001054/audit/SCOPE_CORRECTION.md"
+        ],
+        "git_access": false,
+        "mtime_prerequisite": false,
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "check_event_mapping.py",
+      "mode": "optimized",
+      "exit": 0,
+      "stdout": {
+        "bytes": 1415,
+        "sha256": "bc155fbf05822591dbeb6c71094f22da4c14862e805a4845102ec23cff05098a"
+      },
+      "result": {
+        "dghp_2005_once_per_ordered_type": false,
+        "full_period_mixed_count": 0,
+        "half_period_mixed_counts": [
+          0,
+          0
+        ],
+        "inference": "The accepted weak word is excluded by both proper definitions. This does not demonstrate prior publication of a literal counterexample.",
+        "novick_2012_two_mixed_per_half_period": false,
+        "post_counts": [
+          {
+            "count": 2,
+            "event": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "count": 2,
+            "event": [
+              "1'",
+              "2'"
+            ]
+          },
+          {
+            "count": 2,
+            "event": [
+              "2",
+              "1"
+            ]
+          },
+          {
+            "count": 2,
+            "event": [
+              "2'",
+              "1'"
+            ]
+          }
+        ],
+        "post_switch_events": [
+          [
+            "2'",
+            "1'"
+          ],
+          [
+            "1'",
+            "2'"
+          ],
+          [
+            "2'",
+            "1'"
+          ],
+          [
+            "2",
+            "1"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "2",
+            "1"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "1'",
+            "2'"
+          ]
+        ],
+        "pre_switch_events": [
+          [
+            "1'",
+            "2'"
+          ],
+          [
+            "2'",
+            "1'"
+          ],
+          [
+            "1'",
+            "2'"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "2",
+            "1"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "2",
+            "1"
+          ],
+          [
+            "2'",
+            "1'"
+          ]
+        ],
+        "scope": "independent event/convention check only; topology supplied by primary sources",
+        "status": "PASS"
+      }
+    },
+    {
+      "script": "test_custody.py",
+      "mode": "optimized",
+      "exit": 0,
+      "stdout": {
+        "bytes": 722,
+        "sha256": "89c5ec31c5af60b9c3c84add32aefdd7297f3bbd9534de6e43e640d4d49bda76"
+      },
+      "result": {
+        "controls": [
+          {
+            "case": "exact_hidden_inventory",
+            "result": "PASS"
+          },
+          {
+            "case": "wrong_external_pin",
+            "result": "REJECTED"
+          },
+          {
+            "case": "extra_hidden_file",
+            "result": "REJECTED"
+          },
+          {
+            "case": "missing_file",
+            "result": "REJECTED"
+          },
+          {
+            "case": "altered_bytes",
+            "result": "REJECTED"
+          },
+          {
+            "case": "rewritten_manifest",
+            "result": "REJECTED"
+          },
+          {
+            "case": "symlink",
+            "result": "REJECTED"
+          },
+          {
+            "case": "special_fifo",
+            "result": "REJECTED"
+          },
+          {
+            "case": "empty_directory",
+            "result": "REJECTED"
+          }
+        ],
+        "scratch_cleaned": true,
+        "status": "PASS"
+      }
+    }
+  ],
+  "additional_metadata_read": {
+    "AUTHORED_HISTORY.json": {
+      "identity": {
+        "bytes": 506,
+        "sha256": "6c06f4d9a26309d0f783b8784a63b9f8de5277b9ae8d106037abef122f1c7e14"
+      },
+      "contents": {
+        "early_files": {
+          "INDEPENDENT_FINDINGS.md": {
+            "bytes": 1926,
+            "sha256": "fdd71f86389d2fe1c486f75c836a738bbe78fd15ac169777eee60e9835de354b"
+          },
+          "INITIAL_POSITION.md": {
+            "bytes": 2380,
+            "sha256": "23238d368820a411103b4a345b17581b40b6884f13a141c3d7119542562c844d"
+          }
+        },
+        "limitation": "This is an observed current-byte checkpoint, not an external time attestation of the earlier failed-file-save position.",
+        "observed_at_utc": "2026-10-16T08:22:41.600594+00:00"
+      }
+    },
+    "CURRENT_INPUT_RESULTS.json": {
+      "identity": {
+        "bytes": 974,
+        "sha256": "8d06a025e5d7946f9045b1ad7f2a08c4e98f28997a5f35defdaae4a48c9b17f2"
+      },
+      "contents": {
+        "runs": [
+          {
+            "interpreter_flags": [
+              "-B"
+            ],
+            "result": {
+              "checked": [
+                "private_sources/selected_record.json",
+                "original/unsolved_math_prioritization/attempts/30001054/README.md",
+                "original/unsolved_math_prioritization/attempts/30001054/audit/SCOPE_CORRECTION.md"
+              ],
+              "git_access": false,
+              "mtime_prerequisite": false,
+              "status": "PASS"
+            },
+            "returncode": 0
+          },
+          {
+            "interpreter_flags": [
+              "-B",
+              "-O"
+            ],
+            "result": {
+              "checked": [
+                "private_sources/selected_record.json",
+                "original/unsolved_math_prioritization/attempts/30001054/README.md",
+                "original/unsolved_math_prioritization/attempts/30001054/audit/SCOPE_CORRECTION.md"
+              ],
+              "git_access": false,
+              "mtime_prerequisite": false,
+              "status": "PASS"
+            },
+            "returncode": 0
+          }
+        ],
+        "same_result": true
+      }
+    },
+    "EVENT_MAPPING_RESULTS.json": {
+      "identity": {
+        "bytes": 4400,
+        "sha256": "0fcea3902ad202e7103377a7885e690c8bc9c166c7cd65609e56f5b058171935"
+      },
+      "contents": {
+        "runs": [
+          {
+            "interpreter_flags": [
+              "-B"
+            ],
+            "result": {
+              "dghp_2005_once_per_ordered_type": false,
+              "full_period_mixed_count": 0,
+              "half_period_mixed_counts": [
+                0,
+                0
+              ],
+              "inference": "The accepted weak word is excluded by both proper definitions. This does not demonstrate prior publication of a literal counterexample.",
+              "novick_2012_two_mixed_per_half_period": false,
+              "post_counts": [
+                {
+                  "count": 2,
+                  "event": [
+                    "1",
+                    "2"
+                  ]
+                },
+                {
+                  "count": 2,
+                  "event": [
+                    "1'",
+                    "2'"
+                  ]
+                },
+                {
+                  "count": 2,
+                  "event": [
+                    "2",
+                    "1"
+                  ]
+                },
+                {
+                  "count": 2,
+                  "event": [
+                    "2'",
+                    "1'"
+                  ]
+                }
+              ],
+              "post_switch_events": [
+                [
+                  "2'",
+                  "1'"
+                ],
+                [
+                  "1'",
+                  "2'"
+                ],
+                [
+                  "2'",
+                  "1'"
+                ],
+                [
+                  "2",
+                  "1"
+                ],
+                [
+                  "1",
+                  "2"
+                ],
+                [
+                  "2",
+                  "1"
+                ],
+                [
+                  "1",
+                  "2"
+                ],
+                [
+                  "1'",
+                  "2'"
+                ]
+              ],
+              "pre_switch_events": [
+                [
+                  "1'",
+                  "2'"
+                ],
+                [
+                  "2'",
+                  "1'"
+                ],
+                [
+                  "1'",
+                  "2'"
+                ],
+                [
+                  "1",
+                  "2"
+                ],
+                [
+                  "2",
+                  "1"
+                ],
+                [
+                  "1",
+                  "2"
+                ],
+                [
+                  "2",
+                  "1"
+                ],
+                [
+                  "2'",
+                  "1'"
+                ]
+              ],
+              "scope": "independent event/convention check only; topology supplied by primary sources",
+              "status": "PASS"
+            },
+            "returncode": 0
+          },
+          {
+            "interpreter_flags": [
+              "-B",
+              "-O"
+            ],
+            "result": {
+              "dghp_2005_once_per_ordered_type": false,
+              "full_period_mixed_count": 0,
+              "half_period_mixed_counts": [
+                0,
+                0
+              ],
+              "inference": "The accepted weak word is excluded by both proper definitions. This does not demonstrate prior publication of a literal counterexample.",
+              "novick_2012_two_mixed_per_half_period": false,
+              "post_counts": [
+                {
+                  "count": 2,
+                  "event": [
+                    "1",
+                    "2"
+                  ]
+                },
+                {
+                  "count": 2,
+                  "event": [
+                    "1'",
+                    "2'"
+                  ]
+                },
+                {
+                  "count": 2,
+                  "event": [
+                    "2",
+                    "1"
+                  ]
+                },
+                {
+                  "count": 2,
+                  "event": [
+                    "2'",
+                    "1'"
+                  ]
+                }
+              ],
+              "post_switch_events": [
+                [
+                  "2'",
+                  "1'"
+                ],
+                [
+                  "1'",
+                  "2'"
+                ],
+                [
+                  "2'",
+                  "1'"
+                ],
+                [
+                  "2",
+                  "1"
+                ],
+                [
+                  "1",
+                  "2"
+                ],
+                [
+                  "2",
+                  "1"
+                ],
+                [
+                  "1",
+                  "2"
+                ],
+                [
+                  "1'",
+                  "2'"
+                ]
+              ],
+              "pre_switch_events": [
+                [
+                  "1'",
+                  "2'"
+                ],
+                [
+                  "2'",
+                  "1'"
+                ],
+                [
+                  "1'",
+                  "2'"
+                ],
+                [
+                  "1",
+                  "2"
+                ],
+                [
+                  "2",
+                  "1"
+                ],
+                [
+                  "1",
+                  "2"
+                ],
+                [
+                  "2",
+                  "1"
+                ],
+                [
+                  "2'",
+                  "1'"
+                ]
+              ],
+              "scope": "independent event/convention check only; topology supplied by primary sources",
+              "status": "PASS"
+            },
+            "returncode": 0
+          }
+        ],
+        "same_result": true
+      }
+    }
+  },
+  "root_scope_qualification_needed": "SOURCE_COMPARISON OWR paragraph calls p2551 a normalized-start request and says outside counterexample too broadly. Accept only explicit normalized-INPUT variant: original p2551 starts with arbitrary weak input then refers to D without proving it occurs. Root current assessment/paper retain that exact distinction; historical sealed packet preserved, superseding qualification required in current root priority assessment/README/metadata."
+}

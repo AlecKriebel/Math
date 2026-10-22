@@ -1,0 +1,9 @@
+# Whole-package review 1 research log
+
+2026-10-13T03:06:12.171040+00:00 — 5% complete. Fresh native GET confirms OPEN draft, expected exact head/ref, header-derived QUEUE status claimed_solved and Turns 2/5. Eligibility permits scientific reading. No shared Git mutations.
+
+2026-10-13T03:08:42.966080+00:00 — 25% complete. Early independent criteria and exact reconstruction sealed before peer/root reports or candidate code. Full-slice expansion, direct Koszul Ricci, non-solvsoliton obstruction, global comparison verified; endpoint-half counterexample confirms boundary. Remaining package/literature/code/PDF scope unreviewed.
+
+2026-10-13T03:20:38.235633+00:00 — 85% complete. Entire final TeX and all six rendered pages, current outer prose/body/12-field metadata, full authored mathematical proofs/audit/checkers, core helpers, historical v1/v2 reports, selected math/geometry/priority reports and source contexts reviewed. Six fresh clean normal/-O replays and 38 controls pass. All 99 payload modes/pins, 73 core files, 19 original native readbacks, 18 current manifest entries, 55 preserved v1 bindings and 13 historical primary-PDF custody pins check. One remaining LOW wording finding: PUBLICATION.md misnames 54 evaluations as predicates. Final custody/privacy and report sealing remain.
+
+2026-10-13T03:33:10.881501+00:00 — 100% of the bounded first whole-package review complete. Native verdict CHANGES_REQUIRED, exactly one remaining LOW factual count-label finding and zero identified mathematical repairs. All required six clean replays, 38 controls, individual guard counts, source contexts, PDF render/build, delivery/archive/private-boundary checks complete. Final live scope and frozen99 custody remained eligible/unchanged; immutable-body/native-publication preparation is future and separate. Report/positive allowlist/seal are being frozen; no future repaired packet accepted.

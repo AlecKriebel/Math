@@ -1,0 +1,39 @@
+# Root current bounded priority assessment: PR211 / AMR-050-0063
+
+Mathematics was accepted first, in ROOT_MATHEMATICAL_ACCEPTANCE_01.json (2683 bytes, SHA2568e57a1f173f257d3d082ab32671e3b7a16543bdbbd02540cc571d662751f459c). This assessment accepts a qualified, attributed current adoption account. It does not certify worldwide firstness, causal independence or simultaneous discovery.
+
+## Exact target and provenance
+
+The source is arXiv:2004.12497v11 Table10p12 k904,a, formerly v10 Table9p11 k808,a. Consecutive original billiard tangents define outer vertices; unit inversion is at the ORIGINAL foci; inverse vertices are joined by straight segments with signed shoelace area. The claim ranges over every admissible odd least N>=3 with coprime star turns and a strict nondegenerate confocal elliptical caustic. Similar constructions cannot be identified by catalogue labels alone. The preserved original submitted QUEUE status was separately authenticated as claimed_solved, effort1/5; that effort is not an established author-turn count.
+
+## Current exact overlap and chronology
+
+Ferudun's Five Focal Area Invariants of N-Periodics in the Elliptic Billiard, version1.0, DOI10.5281/zenodo.23404834, TheoremB, matches this exact target and explicitly credits Kriebel's DOI10.5281/zenodo.23394004. Its TheoremA presents the narrow original-to-outer inverse-area proportionality. Current claims that no such bridge or exact overlap has been located must therefore be superseded. Its assertions of independence and firstness remain attributed author statements. No entire foreign paper, omitted proof or worldwide priority claim is certified by this comparison.
+
+Root directly read selected primary F22 pages1–4,9,13–17,19–21, independently regenerated the text from its hash-verified PDF, and read the primary landing page. ROOT_DIRECT_LATER_OVERLAP_READING_01.json records the exact scope. The fresh author-family ledger records the precise bodies, selected neighboring author papers, sole-current-version inventories and reading limits. A finite independent Cartesian checker confirms definitions and both inverse-area ratios3/10 in two exact triangle phases; it is not an all-period theorem.
+
+Root also parsed the actual Zenodo and DataCite bodies, crosschecking exact DOI/title/version identifiers and event timestamps. Kriebel record creation was2026-10-15T11:39:15.137334Z and DOI registration11:39:16Z; the corresponding later F22 events were20:31:27.602400Z and20:31:29Z. PR211's authenticated merge occurred11:43:32Z. These events do not establish exact first-public-access times. Dated internal campaign publication assertions are not substituted for provider clocks.
+
+The older author original-vertex product (DOI10.5281/zenodo.23096994), the polar/dual/pedal/antipedal paper (DOI10.5281/zenodo.23404903) and the centered ellipse-inverse/midpoint paper (DOI10.5281/zenodo.23405556) are compared by actual definitions and read passages in the new source ledger. Original/outer vertices, original/outer-locus foci, central ellipse inversion and Euclidean unit focal inversion remain distinct. Reading a later exact overlapping theorem cannot by itself prove the target was already solved before this work.
+
+## Classical implications and their exact limits
+
+The general elliptic endgame is classical. Given the accepted target reduction, F is nonzero on the rectangular L-by-4iK' torus, has imaginary anti-period2iK', simple poles at R andR+2iK', and odd reflection aboutR. Choose kappa with K'(kappa)/K(kappa)=2K'/L, s=2K(kappa)/L, rho=Res_R F. The function rho*s*cs(s(u-R),kappa) has the same principal parts; compactness and the anti-period make the difference zero. The classical cs quarter-period identity then gives the product. This conditional implication is explicit in priority_classical_01/EXACT_TRANSFERS_AND_GAPS.md. Neither a new general elliptic principle nor numerical discovery of that principle is claimed.
+
+The substantive geometric work is the actual physical edge, full poles, triangular critical fiber and cancellation. A generic rational trace still lives on a quotient elliptic curve. Ordinary affine area ratios do not intertwine Euclidean focal inversions. Repeating an odd polygon does not acquire the central-opposite pairing used in an even-period untransformed area-product theorem. The new classical family supplies exact transfer formulas and two-phase counterexamples to those broad shortcuts; they do not defeat the accepted theorem or F22's narrower actual ratio theorem. Root inspected and ran its fresh Fraction checker in an isolated directory and obtained the entire5480-byte result byte-identically.
+
+The classical family read specified versions/passages of Stachel, Akopyan–Schwartz–Tabachnikov, Khare–Lakshminarayan–Sukhatme, Chavez-Caliz, Levi–Tabachnikov, RGR, Schwartz–Tabachnikov, Bialy–Tabachnikov and Glutsyuk. Its PRIMARY_SOURCES.json records hashes, pages and exact gaps. Negative statements are bounded to those passages. Its historical narrow-bridge gap is overridden in the current account by the newly read F22 TheoremA. No conclusion about every classification proof, appendix, cited paper or later version is inferred.
+
+## Additional original-author checks and access limits
+
+The full author version of The Talented Mr. Inversive Triangle in the Elliptic Billiard, arXiv:2012.03020v2 (15pages), was read, with its p6 proposition/conjecture visually checked. It concerns original-vertex inversions. The journal-final body, DOI10.1007/s40879-021-00489-2, was not obtained; a direct publisher attempt returned cookie-error HTML, and a publisher preview was only a first page. This does not prove a universal access barrier, final/preprint equality, or absence of any final-only theorem.
+
+The supplied garcia2022.pdf is instead Garcia–Koiller–Reznik, Estimating Elliptic Billiard Invariants with Spatial Integrals, DOI10.1007/s10883-022-09608-y. Root read all11 extracted pages and visually checked pp9–10. Its stated averages are compared carefully. Common aperiodic/spatial averages alone do not imply constancy of a rational finite trace: for g(x)=cos(2*pi*N*x), integral0 but the tau/N trace is N*cos(2*pi*N*x). Root's valid third control script proves the semantic CAS identity; two earlier expression-normalization attempts failed and are not represented as passing. This is an inference check, not an error alleged in that paper.
+
+Root additionally read the arXiv:2604.26035v2 abstract and HTML introduction/Sections2–3 through Proposition1 plus the index. The read result concerns an inverted triangle's circumcenter locus. No implication to the all-odd outer focal area-product theorem was verified there. Unread Section4/appendices and other versions are not excluded. This bounded additional read replaces the former wholly unread-lead description.
+
+## Decision
+
+Adopt the verified theorem with explicit attribution, the known later overlap and the access/search limits. Retain the existing dated version1.0 manuscript and source archive, DOI23394004 and unique tracker row109. The repository's current addendum supersedes old current no-overlap/bridge-unverified wording; it does not silently rewrite dated observations in immutable sources. No new Zenodo publication/version/metadata mutation, tracker append, PR merge or release is called for.
+
+The full package remains unrefereed. AI tools were used extensively in solving, drafting and auditing; automated adversaries are not conventional independent human peer review. The new initial mathematical families and these two priority families are not the required sequential whole-package reviews. Two new full-package adversaries, repairs and the safe native Main/all-five checkpoint remain. Overall case estimate60%; global actual52completed/36published-or-adopted,last210/cursor211; persistent goal active.
