@@ -7,6 +7,7 @@ import argparse
 import builtins
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 import sys
 import types
@@ -14,8 +15,8 @@ import types
 MODULE_FILES={'ops_common':'ops_common.py','collect_live':'collect_live.py',
               'integrate_remote':'integrate_remote.py','publish_and_ledger':'publish_and_ledger.py',
               'native_policy':'native_policy.py','check_package':'check_package.py',
-              'offline_controls':'offline_controls.py'}
-ENTRIES={'check_package','collect_live','integrate_remote','publish_and_ledger','offline_controls'}
+              'offline_controls':'offline_controls.py','full_controls':'full_controls.py','prepare_offline':'prepare_offline.py'}
+ENTRIES={'check_package','collect_live','integrate_remote','publish_and_ledger','offline_controls','full_controls','prepare_offline'}
 EXCLUDED=['OPERATIONS_MANIFEST.json','private/','runtime/','__pycache__/']
 
 def need(ok,message):
@@ -35,6 +36,22 @@ def safe(root,name):
     need(not root.is_symlink() and not any(root.joinpath(*p.parts[:i]).is_symlink() for i in range(1,len(p.parts)+1)),'Bootstrap symlink rejected')
     return root/name
 
+def public_files(root):
+    result=set()
+    for parent,dirs,names in os.walk(root,followlinks=False):
+        selected=[]
+        for name in dirs:
+            if name in {'private','runtime','__pycache__'}:continue
+            need(not (Path(parent)/name).is_symlink(),'Public closure directory symlink')
+            selected.append(name)
+        dirs[:]=selected
+        for name in names:
+            path=Path(parent)/name;relative=path.relative_to(root).as_posix()
+            if relative=='OPERATIONS_MANIFEST.json':continue
+            need(not path.is_symlink() and path.is_file(),'Public closure entry is not a regular file')
+            result.add(relative)
+    return result
+
 def load_verified(operations,operations_sha,bootstrap_sha):
     """No project code executes until the entire source/data closure verifies."""
     need(sys.flags.isolated and sys.flags.no_site,'Use an isolated -I -S interpreter')
@@ -44,7 +61,7 @@ def load_verified(operations,operations_sha,bootstrap_sha):
     manifestbytes=(operations/'OPERATIONS_MANIFEST.json').read_bytes();need(sha(manifestbytes)==operations_sha,'External operations anchor changed')
     manifest=strict(manifestbytes);need(manifest['excluded']==EXCLUDED,'Bootstrap exclusion policy changed')
     files=manifest['files'];need(isinstance(files,dict) and files,'Empty operation closure')
-    actual={p.relative_to(operations).as_posix() for p in operations.rglob('*') if p.is_file() and not any(c in {'private','runtime','__pycache__'} for c in p.relative_to(operations).parts) and p.relative_to(operations).as_posix()!='OPERATIONS_MANIFEST.json'}
+    actual=public_files(operations)
     need(actual==set(files),'Operations closure changed before code load')
     checked={}
     for name,pin in files.items():

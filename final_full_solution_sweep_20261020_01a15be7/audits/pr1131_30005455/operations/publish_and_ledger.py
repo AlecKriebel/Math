@@ -9,7 +9,7 @@ from urllib.parse import quote
 from urllib.request import Request,urlopen
 from ops_common import *
 from collect_live import collect,draft_row,row_ids
-from native_policy import observe as observe_target,public_projection
+from native_policy import observe as observe_target,public_projection,legacy_concept
 
 MANIFEST=OPS/'proposed/preprint/zenodo-deposit.json'
 
@@ -56,7 +56,7 @@ class GuardedClient:
         fresh(gate['at_start']);return snapshot
     def get(self,identifier):
         need(identifier==self.identifier,'Unexpected lifecycle read ID')
-        first=self.delegate.get(identifier);zenodo.validate_record(first,identifier)
+        first=self.delegate.get(identifier);zenodo.validate_record(first,identifier);legacy_concept(first)
         names={v['name'] for v in self.uploads} if self.action=='publish' or first['submitted'] else None
         legacy,_=self.observation(first['submitted'],names);return legacy
     def create(self,metadata):
@@ -64,7 +64,7 @@ class GuardedClient:
         need(metadata==self.metadata,'Create supplied unreviewed metadata')
         self.before(None);result=self.delegate.create(metadata)
         need(type(result.get('id')) is int and result['id']>0,'Unknown create outcome; reconcile full owned account, never restage')
-        self.identifier=result['id'];self.observation(False,set());return result
+        self.identifier=result['id'];legacy_concept(result);self.observation(False,set());return result
     def upload(self,bucket,entry):
         need(self.action=='stage' and self.identifier is not None,'Upload outside stage')
         intended={v['name']:v for v in self.uploads};need(entry.get('name') in intended and entry==intended[entry['name']],'Upload argument differs from sealed intended bytes/path')
@@ -75,13 +75,13 @@ class GuardedClient:
     def update(self,identifier,metadata):
         need(self.action=='stage' and metadata==self.metadata,'Unreviewed metadata update or wrong phase')
         names={v['name'] for v in self.uploads};self.before(identifier,names)
-        result=self.delegate.update(identifier,metadata);self.observation(False,names);return result
+        result=self.delegate.update(identifier,metadata);legacy_concept(result);self.observation(False,names);return result
     def publish(self,identifier):
         need(self.action=='publish','Stage may not publish')
         names={v['name'] for v in self.uploads};self.before(identifier,names)
         # No provider read, root gate or unrelated work intervenes after the
         # final target observation. Provider APIs still offer no atomic lock.
-        result=self.delegate.publish(identifier)
+        result=self.delegate.publish(identifier);legacy_concept(result)
         try:self.observation(True,names)
         except RuntimeError as exc:raise zenodo.DepositError('Post-publication native/legacy verification failed; retain ID and never create a replacement') from exc
         return result
@@ -136,30 +136,32 @@ def append_ledger(args):
     if existing:
         if intent.exists():
             prior=strict_json(intent.read_bytes())
-            need(prior['head']==args.expected_pr_head and prior['record']==identifier and prior['values']==row and prior['spreadsheet_id']==SHEET,'Prior append intent belongs to different identity')
+            need(prior['head']==args.expected_pr_head and prior['record']==identifier and prior['values']==row and prior['spreadsheet_id']==SHEET and prior['sheet_id']==SHEET_ID and prior['sheet_title']==SHEET_TITLE and prior['operation']=='spreadsheets.batchUpdate.appendCells','Prior append intent belongs to different identity')
             gatepath=Path(prior['gate'])
             need(PRIVATE in gatepath.parents and not gatepath.is_symlink(),'Prior ledger capture outside private folder')
             original=strict_json((gatepath/'ledger.json').read_bytes())['values']
             need(digest(original)==prior['before_sha256'] and len(original)==prior['before_rows'] and before==original+[row],'Lost-response readback does not preserve original rows plus one exact append; root reconciliation required')
         # A lost append response is reconciled by a read, never another append.
         _,after=gws_read();need(after==before,'Ledger changed during no-write reconciliation')
-        durable(RUNTIME/'LEDGER_VERIFIED.json',{'at':stamp(),'record':identifier,'row':existing[0][0],'values':row,'new_row':False,'read_back_exact':True,'unique_target_family':True,'gate':g['private_capture']})
-        return {'record':identifier,'row':existing[0][0],'new_row':False,'verified':True}
+        durable(RUNTIME/'LEDGER_VERIFIED.json',{'at':stamp(),'record':identifier,'spreadsheet_id':SHEET,'sheet_id':SHEET_ID,'sheet_title':SHEET_TITLE,'row':existing[0][0],'values':row,'new_row':False,'read_back_exact':True,'unique_target_family':True,'gate':g['private_capture']})
+        return {'record':identifier,'spreadsheet_id':SHEET,'sheet_id':SHEET_ID,'sheet_title':SHEET_TITLE,'row':existing[0][0],'new_row':False,'verified':True}
     need(not intent.exists(),'Prior append intent exists without visible exact row; root must reconcile, no retry')
     _,now=gws_read();need(now==before,'Ledger changed after full-account gate; recollect and reconcile')
     require_action(args,'ledger');fresh(g['at_start']);fresh(public['at'])
-    durable(intent,{'at':stamp(),'head':args.expected_pr_head,'record':identifier,'spreadsheet_id':SHEET,'range':"'Math Puzzles'!A:D",'values':row,'before_sha256':digest(before),'before_rows':len(before),'gate':g['private_capture'],'public_verification':public,'rule':'O_EXCL intent remains permanently. Unknown outcome: read full A:AQ and find exact unique row/DOI; never blindly append again.'})
-    params={'spreadsheetId':SHEET,'range':"'Math Puzzles'!A:D",'valueInputOption':'RAW','insertDataOption':'INSERT_ROWS','includeValuesInResponse':True}
-    result=command(['gws','sheets','spreadsheets','values','append','--params',json.dumps(params),'--json',json.dumps({'majorDimension':'ROWS','values':[row]},ensure_ascii=False)])
+    durable(intent,{'at':stamp(),'head':args.expected_pr_head,'record':identifier,'spreadsheet_id':SHEET,'sheet_id':SHEET_ID,'sheet_title':SHEET_TITLE,'operation':'spreadsheets.batchUpdate.appendCells','columns':'A:D','values':row,'before_sha256':digest(before),'before_rows':len(before),'gate':g['private_capture'],'public_verification':public,'rule':'O_EXCL intent remains permanently. Unknown outcome: read full A:AQ and find exact unique row/DOI; never blindly append again.'})
+    # The sole mutation targets the stable numeric ID, never an A1 title.
+    # appendCells appends after existing data and does not overwrite a planned
+    # row. Collaborators can still race; exact readback and retained intent
+    # detect drift but cannot roll back or lock a provider transaction.
+    request={'requests':[{'appendCells':{'sheetId':SHEET_ID,'rows':[{'values':[{'userEnteredValue':{'stringValue':cell}} for cell in row]}],'fields':'userEnteredValue'}}],'includeSpreadsheetInResponse':True,'responseIncludeGridData':False}
+    result=command(['gws','sheets','spreadsheets','batchUpdate','--params',json.dumps({'spreadsheetId':SHEET}),'--json',json.dumps(request,ensure_ascii=False)])
     durable(RUNTIME/'LEDGER_APPEND_RESPONSE.json',result)
-    updates=result.get('updates',{})
-    need(updates.get('updatedRows')==1 and updates.get('updatedColumns')==4 and updates.get('updatedCells')==4 and updates.get('updatedData',{}).get('values')==[row],'Unexpected append response; reconcile without retry')
+    validate_append_response(result)
     _,after=gws_read()
     found=[(i,r) for i,r in enumerate(after,1) if families&row_ids(r)]
     need(len(found)==1 and found[0][1]==row and len(after)==len(before)+1 and after[:-1]==before and after[-1]==row,'Readback/uniqueness/preservation mismatch; no retry')
-    need(re.fullmatch(r"(?:'Math Puzzles'|Math Puzzles)!A"+str(found[0][0])+r':D'+str(found[0][0]),updates.get('updatedRange','')) is not None,'Append landed outside exact expected four cells')
-    durable(RUNTIME/'LEDGER_VERIFIED.json',{'at':stamp(),'record':identifier,'row':found[0][0],'values':row,'new_row':True,'read_back_exact':True,'unique_target_family':True,'all_other_rows_preserved':True,'gate':g['private_capture']})
-    return {'record':identifier,'row':found[0][0],'new_row':True,'verified':True}
+    durable(RUNTIME/'LEDGER_VERIFIED.json',{'at':stamp(),'record':identifier,'spreadsheet_id':SHEET,'sheet_id':SHEET_ID,'sheet_title':SHEET_TITLE,'row':found[0][0],'values':row,'new_row':True,'read_back_exact':True,'unique_target_family':True,'all_other_rows_preserved':True,'numeric_readback_counts':{'rows':1,'columns':4,'cells':4},'numeric_readback_range':{'sheetId':SHEET_ID,'startRowIndex':found[0][0]-1,'endRowIndex':found[0][0],'startColumnIndex':0,'endColumnIndex':4},'response_counts_or_value_echo_available':False,'gate':g['private_capture']})
+    return {'record':identifier,'spreadsheet_id':SHEET,'sheet_id':SHEET_ID,'sheet_title':SHEET_TITLE,'row':found[0][0],'new_row':True,'verified':True}
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['stage','publish','verify-public','ledger']);p.add_argument('--expected-pr-head',required=True);p.add_argument('--deposit-id',type=int);p.add_argument('--clearance-sha256',required=True);p.add_argument('--operations-sha256',required=True)

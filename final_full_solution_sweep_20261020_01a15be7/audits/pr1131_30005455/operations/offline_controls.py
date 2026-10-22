@@ -219,7 +219,7 @@ def source_faults():
     reject(lambda:_PR1131_BOOTSTRAP(mirror,ops_sha,boot_sha));need(not marker.exists(),'Changed dependency executed before pin failure');dependency.write_bytes(old)
     source=mirror/'ops_common.py';original=source.read_bytes();source.write_bytes(original+b'\nfrom pathlib import Path\nPath('+repr(str(marker)).encode()+b').write_text("BAD")\n')
     reject(lambda:_PR1131_BOOTSTRAP(mirror,ops_sha,boot_sha));need(not marker.exists(),'Changed operation source executed');source.write_bytes(original)
-    paths=[mirror/'bootstrap.py',*[mirror/n for n in ['ops_common.py','collect_live.py','integrate_remote.py','publish_and_ledger.py','native_policy.py','check_package.py','offline_controls.py']],dependency]
+    paths=[mirror/n for n in manifest['files'] if n.endswith('.py')]+[dependency]
     for path in paths:
         stat=path.stat();cache=Path(importlib.util.cache_from_source(str(path),optimization='' if not sys.flags.optimize else str(sys.flags.optimize)));cache.parent.mkdir(exist_ok=True)
         poison=compile('from pathlib import Path\nPath('+repr(str(marker))+').write_text("BAD")\n',str(path),'exec',optimize=sys.flags.optimize)
@@ -241,7 +241,7 @@ def source_faults():
         exec(compile(source,str(mirror/'bootstrap.py'),'exec'),namespace);return namespace
     bootbytes=(mirror/'bootstrap.py').read_bytes();namespace=external_boot(bootbytes,boot_sha)
     load,_=namespace['load_verified'](mirror,ops_sha,boot_sha)
-    for name in ['ops_common','collect_live','integrate_remote','publish_and_ledger','native_policy','check_package','offline_controls']:load(name)
+    for name in ['ops_common','collect_live','integrate_remote','publish_and_ledger','native_policy','check_package','offline_controls','full_controls','prepare_offline']:load(name)
     load('ops_common').package()
     need(not marker.exists(),'A valid unsealed cache executed')
     # Direct helpers fail before importing project code; the public documented

@@ -25,6 +25,8 @@ PROBLEM='unsolved_math_prioritization/attempts/30005455'
 QUEUE='unsolved_math_prioritization/QUEUE.md'
 REPOSITORY='AlecKriebel/Math'
 SHEET='1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20'
+SHEET_ID=1254632077
+SHEET_TITLE='Math Puzzles'
 HEADERS=['Original Problem','Solution Chat URL','DOI','Notes']
 TITLE='A sharp forest bound and an improved whisker bound for finite WARM graphs'
 SCIENCE_SHA='8bc7d6ce77fe4457d87c653decbc16be735a657fcd1a0d54b9571919ec71a2dd'
@@ -130,6 +132,22 @@ def proposal():
     for n,b in pkg['flat'].items():need(result[PROBLEM+'/preprint/'+n]==b,'Proposed preprint differs from frozen kit')
     return data,result
 
+def public_files(root):
+    result=set()
+    for parent,dirs,names in os.walk(root,followlinks=False):
+        selected=[]
+        for name in dirs:
+            if name in {'private','runtime','__pycache__'}:continue
+            need(not (Path(parent)/name).is_symlink(),'Public closure directory symlink')
+            selected.append(name)
+        dirs[:]=selected
+        for name in names:
+            path=Path(parent)/name;relative=path.relative_to(root).as_posix()
+            if relative=='OPERATIONS_MANIFEST.json':continue
+            need(not path.is_symlink() and path.is_file(),'Public closure entry is not a regular file')
+            result.add(relative)
+    return result
+
 def clearance(clearance_sha,operations_sha):
     """Caller supplies both external SHA anchors; this code cannot author clearance."""
     need(operations_sha==_PR1131_EXECUTION['operations_sha256'],'Caller operation anchor differs from loaded source bundle')
@@ -137,12 +155,13 @@ def clearance(clearance_sha,operations_sha):
     manifest=(OPS/'OPERATIONS_MANIFEST.json').read_bytes();need(sha(manifest)==operations_sha,'Operations seal changed')
     m=strict_json(manifest)
     need(m['excluded']==['OPERATIONS_MANIFEST.json','private/','runtime/','__pycache__/'],'Unexpected manifest exclusion policy')
-    actual={p.relative_to(OPS).as_posix() for p in OPS.rglob('*') if p.is_file() and not any(x in {'private','runtime','__pycache__'} for x in p.relative_to(OPS).parts) and p.relative_to(OPS).as_posix()!='OPERATIONS_MANIFEST.json'}
+    actual=public_files(OPS)
     need(actual==set(m['files']),'Unsealed operations file or missing file')
     for n,p in m['files'].items():read_pinned(safe(OPS,n),p)
     cpath=RUNTIME/'ROOT_OPERATIONAL_CLEARANCE.json';raw=cpath.read_bytes();need(sha(raw)==clearance_sha,'Root operational clearance changed')
     c=strict_json(raw)
     need(c['pr']==1131 and c['original_head']==ORIGINAL and c['operations_manifest_sha256']==operations_sha and c['bootstrap_sha256']==_PR1131_EXECUTION['bootstrap_sha256'] and c['scientific_clearance_sha256']==SCIENCE_SHA and c['freeze_sha256']==FREEZE_SHA and c['publication_ready'] is True and c['unresolved_operational_findings']==[] and c['root_complete_reports_read_and_all_seals_verified'] is True,'Root final operational clearance incomplete')
+    need(c.get('spreadsheet_id')==SHEET and c.get('sheet_id')==SHEET_ID and c.get('sheet_title')==SHEET_TITLE,'Root clearance does not bind exact ledger workbook/numeric tab')
     need(c['integration_proposal_sha256']==sha((OPS/'INTEGRATION_PROPOSAL.json').read_bytes()),'Proposal not cleared')
     need(set(c['allowed_actions'])<={'integrate','pr-description','ready','merge','stage','publish','ledger'},'Unknown allowed action')
     package();proposal();return c
@@ -153,12 +172,49 @@ def command(argv,body=None):
     return strict_json(run.stdout)
 
 def gh(endpoint):return command(['gh','api','--hostname','github.com','repos/'+REPOSITORY+'/'+endpoint])
+def sheet_identity(book):
+    need(isinstance(book,dict) and book.get('spreadsheetId')==SHEET,'Spreadsheet response identity changed')
+    sheets=book.get('sheets');need(isinstance(sheets,list) and sheets,'Spreadsheet tabs absent')
+    props=[s.get('properties',{}) for s in sheets if isinstance(s,dict)]
+    need(len(props)==len(sheets) and all(type(p.get('sheetId')) is int and p['sheetId']>=0 and isinstance(p.get('title'),str) for p in props),'Unparsed sheet identities')
+    need(len({p['sheetId'] for p in props})==len(props) and len({p['title'] for p in props})==len(props),'Duplicate sheet ID/title')
+    selected=[p for p in props if p['sheetId']==SHEET_ID]
+    need(len(selected)==1 and selected[0]['title']==SHEET_TITLE,'Stable ledger sheet ID/title binding changed')
+    target=selected[0];grid=target.get('gridProperties',{})
+    need(target.get('sheetType')=='GRID' and type(grid.get('rowCount')) is int and grid['rowCount']>0 and type(grid.get('columnCount')) is int and grid['columnCount']>=43,'Ledger GRID dimensions invalid')
+    return {'spreadsheet_id':SHEET,'sheet_id':SHEET_ID,'sheet_title':SHEET_TITLE,'row_count':grid['rowCount'],'column_count':grid['columnCount']}
+
+def gws_metadata():
+    book=command(['gws','sheets','spreadsheets','get','--params',json.dumps({'spreadsheetId':SHEET,'includeGridData':False})])
+    return book,sheet_identity(book)
+
 def gws_read():
-    v=command(['gws','sheets','spreadsheets','values','get','--params',json.dumps({'spreadsheetId':SHEET,'range':"'Math Puzzles'!A:AQ",'valueRenderOption':'FORMATTED_VALUE'})])
-    need(v.get('majorDimension')=='ROWS' and re.fullmatch(r"'Math Puzzles'!A1:AQ[1-9][0-9]*",v.get('range','')) is not None,'Full A:AQ response schema/range changed')
+    # Numeric DataFilter reads never resolve the tab title to a destination.
+    # The surrounding metadata observations still require the reviewed title.
+    book,identity=gws_metadata()
+    grid={'sheetId':SHEET_ID,'startColumnIndex':0,'endColumnIndex':43}
+    body={'dataFilters':[{'gridRange':grid}],'majorDimension':'ROWS','valueRenderOption':'UNFORMATTED_VALUE'}
+    response=command(['gws','sheets','spreadsheets','values','batchGetByDataFilter','--params',json.dumps({'spreadsheetId':SHEET}),'--json',json.dumps(body)])
+    need(isinstance(response,dict) and response.get('spreadsheetId')==SHEET,'Numeric ledger read workbook identity changed')
+    ranges=response.get('valueRanges');need(isinstance(ranges,list) and len(ranges)==1 and isinstance(ranges[0],dict),'Numeric ledger read matched unexpected ranges')
+    matched=ranges[0];need(matched.get('dataFilters')==[{'gridRange':grid}],'Numeric ledger read did not echo exact sheet-ID data filter')
+    v=matched.get('valueRange');need(isinstance(v,dict) and v.get('majorDimension')=='ROWS' and v.get('range') in {"'Math Puzzles'!A1:AQ"+str(identity['row_count']),"Math Puzzles!A1:AQ"+str(identity['row_count'])},'Full numeric A:AQ response schema/range changed')
+    formula_body={**body,'valueRenderOption':'FORMULA'}
+    formulas=command(['gws','sheets','spreadsheets','values','batchGetByDataFilter','--params',json.dumps({'spreadsheetId':SHEET}),'--json',json.dumps(formula_body)])
+    need(formulas==response,'Formula/unformatted numeric ledger views differ; no literal-value certification')
     rows=v.get('values');need(isinstance(rows,list) and rows and rows[0]==HEADERS,'Ledger four-column header changed')
     need(all(isinstance(r,list) and len(r)<=4 and all(isinstance(x,str) for x in r) for r in rows),'Ledger outside exact four-cell schema')
-    return v,rows
+    need(len(rows)<=identity['row_count'],'Ledger values exceed numeric grid')
+    after,after_identity=gws_metadata();need(after_identity==identity,'Ledger numeric identity/title/grid changed during read')
+    return {**v,'identity':identity,'metadata_before':book,'metadata_after':after,'numeric_response':response,'numeric_formula_response':formulas},rows
+
+def validate_append_response(response):
+    # appendCells has no values.append counts/range/value echo. Reject a stale
+    # values.append-shaped response rather than treating it as equivalent.
+    need(isinstance(response,dict) and set(response)<={'spreadsheetId','replies','updatedSpreadsheet'} and response.get('spreadsheetId')==SHEET,'Numeric append response workbook/schema mismatch; reconcile without retry')
+    need(response.get('replies')==[{}],'Numeric append reply count/type differs; reconcile without retry')
+    identity=sheet_identity(response.get('updatedSpreadsheet'))
+    return identity
 
 def validate_pr(pr,head,merged):
     need(re.fullmatch('[a-f0-9]{40}',head or '') and pr['number']==1131 and pr['head']['sha']==head and pr['head']['ref']==BRANCH and pr['head']['repo']['full_name']==REPOSITORY and pr['base']['repo']['full_name']==REPOSITORY and pr['base']['ref']=='main','PR identity/head/base changed')

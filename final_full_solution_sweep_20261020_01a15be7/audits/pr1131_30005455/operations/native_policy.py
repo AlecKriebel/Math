@@ -86,6 +86,11 @@ def links(value,record,name,published):
     for key,url in value.items():
         if key in expected:need(url==expected[key],'Native IIIF link changed')
 
+def legacy_concept(legacy):
+    concept=identifier(legacy.get('conceptrecid'))
+    if 'conceptdoi' in legacy:need(legacy['conceptdoi']=='10.5281/zenodo.'+str(concept),'Supplied legacy concept DOI contradicts verified concept ID')
+    return concept
+
 def validate_target(legacy,native,file_collection,intended,uploads,record,published,required_names=None):
     """required_names=None permits a checked subset during initial staging only."""
     need(type(record) is int and record>0 and type(published) is bool,'Exact target identity/state required')
@@ -103,7 +108,7 @@ def validate_target(legacy,native,file_collection,intended,uploads,record,publis
     pids=native.get('pids');expected={'doi':{'identifier':doi,'provider':'datacite','client':'datacite'}}
     if published:expected['oai']={'identifier':'oai:zenodo.org:'+str(record),'provider':'oai'}
     need(pids==expected,'Native DOI provider/client/reservation/OAI changed')
-    parent=native['parent'];concept=identifier(legacy.get('conceptrecid'));need(identifier(parent['id'])==concept and concept!=record,'Native concept/version parent changed')
+    parent=native['parent'];concept=legacy_concept(legacy);need(identifier(parent['id'])==concept and concept!=record,'Native concept/version parent changed')
     need(parent.get('pids')=={'doi':{'identifier':'10.5281/zenodo.'+str(concept),'provider':'datacite','client':'datacite'}} and parent.get('communities')=={},'Native parent DOI/community override')
     owner=identifier(legacy.get('owner'));need(parent.get('access')=={'owned_by':{'user':str(owner)},'settings':{'allow_user_requests':False,'allow_guest_requests':False,'accept_conditions_text':None,'secret_link_expiration':0}},'Native owner/sharing settings changed')
     need(native.get('versions')=={'is_latest':True,'index':1},'Unreviewed version/reuse state')

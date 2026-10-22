@@ -3,9 +3,9 @@
   "thread_id": "01a15be7-5530-7ff0-8ec8-1e7f629349fb",
   "status": "ordered_sweep",
   "start_pr": 9,
-  "next_pr": 1192,
+  "next_pr": 1199,
   "highest_observed_pr": 1446,
-  "last_completely_processed_pr": 1191,
+  "last_completely_processed_pr": 1198,
   "completion_estimate_percent": 79,
   "spreadsheet_id": "1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20",
   "sheet_gid": 1254632077,
@@ -52,8 +52,8 @@
   "remaining_work": "Continue ordered sweep from STATE.next_pr through the refreshed live maximum; resolve eligible proof/priority/package gates, publication and ledger coverage, then reconcile every PR and live change.",
   "inventory_pr_count": 1438,
   "inventory_timestamp": "2026-10-21T23:07:05.148707+00:00",
-  "ledger_verified_at": "2026-10-22T02:23:12.100467+00:00",
-  "completed_pr_count": 1183,
+  "ledger_verified_at": "2026-10-22T05:11:34.109472+00:00",
+  "completed_pr_count": 1190,
   "active_candidate": null,
   "ledger_repairs": [
     "PR0248_LEDGER_REPAIR.json",
@@ -115,6 +115,16 @@
       "ledger_row": 182,
       "new_publication": false,
       "verification": "PR1156_PUBLICATION_VERIFICATION.json"
+    },
+    {
+      "pr": 1186,
+      "problem_id": "2274",
+      "doi": "10.5281/zenodo.18154085",
+      "record": 18154085,
+      "external_author": "Wouter van Doorn",
+      "ledger_row": 183,
+      "new_publication": false,
+      "verification": "PR1186_EXISTING_PUBLICATION_LEDGER_RECONCILIATION.json"
     }
   ],
   "reopened_candidates": [
@@ -124,7 +134,7 @@
       "head": "bacae693a1f2a33c89565b0bd716620885831289",
       "reason": "Fresh originalsource showsbothliteralimprovementrequests alreadyclaimed; priorpartiallabel/requiredsharpintervalreason insufficient",
       "evidence": "PR1131_SCOPE_REOPENING.json",
-      "status": "scientificaccepted_operations03_final10_matrix_in_progress",
+      "status": "scientificaccepted_operations03_final10passed_fresh_independentreview_active",
       "not_publication_ready": true,
       "package_freeze": "audits/pr1131_30005455/PACKAGE_FREEZE_01.json",
       "scientific_clearance": "audits/pr1131_30005455/ROOT_SCIENTIFIC_CLEARANCE.json",
@@ -147,7 +157,7 @@
     "observed_utc": "2026-10-21T15:18:08.707694+00:00",
     "current_audit_work_continues": true
   },
-  "ledger_row_count": 182,
+  "ledger_row_count": 183,
   "reopened_disposition_overrides": [
     {
       "pr": 280,
@@ -158,6 +168,11 @@
       "pr": 1180,
       "historical_disposition_sha256": "1d945b33bd058ea1fa524a0e42f4138370ad1ff66eb4e6d48d1321aa44ace0a7",
       "replacement_disposition": "PR1180_FINAL_PRIORITY_DISPOSITION.json"
+    },
+    {
+      "pr": 1186,
+      "historical_disposition_sha256": "ca6b1adeb838ad6d6699d6473db9cd61317395fc642dabd640f888d43e367118",
+      "replacement_disposition": "PR1186_FINAL_EXISTING_PUBLICATION_DISPOSITION.json"
     }
   ],
   "accounting_validation": {
@@ -165,7 +180,15 @@
     "acceptance": "ROOT_ACCOUNTING_REVIEW05_ACCEPTANCE.json",
     "scope": "Local structural fourpublication/effectiveoverrideconsistency; finalreconciliationstillfalse"
   },
-  "pending_independent_eligibility_reviews": [],
+  "pending_independent_eligibility_reviews": [
+    {
+      "first_pr": 1187,
+      "last_pr": 1196,
+      "status": "active",
+      "folder": "audits/range1187_1196",
+      "scope": "Bounded eligibility challenge;1194existingpublication accounting pending separately."
+    }
+  ],
   "disk_light_recording": {
     "mode": "local_materialization_verified",
     "local_predecessor_next_pr": 1171,
@@ -185,14 +208,31 @@
     "last_pr": 1186,
     "status": "accepted_bounded_with_required1186_accounting_correction_pending",
     "acceptance": "ROOT_RANGE1177_1186_REVIEW_ACCEPTANCE.json",
-    "completed_at": "2026-10-22T05:02:37.719188+00:00"
+    "completed_at": "2026-10-22T05:02:37.719188+00:00",
+    "required1186correction_completed": "PR1186_FINAL_EXISTING_PUBLICATION_DISPOSITION.json"
   },
   "required_existing_publication_reconciliations": [
     {
       "pr": 1186,
       "doi": "10.5281/zenodo.18154085",
-      "status": "verified_publication_exact_row_action_review_pending",
-      "proposal": "PR1186_EXISTING_PUBLICATION_LEDGER_PROPOSAL.json"
+      "status": "verified_existing_publication_and_row",
+      "proposal": "PR1186_EXISTING_PUBLICATION_LEDGER_PROPOSAL.json",
+      "row": 183,
+      "verification": "PR1186_EXISTING_PUBLICATION_LEDGER_RECONCILIATION.json"
+    },
+    {
+      "pr": 1194,
+      "doi": "10.1007/s00493-024-00127-x",
+      "status": "primary_identity_independent_review_pending",
+      "review": "audits/pr1194_3100034/independent_prior_review"
+    },
+    {
+      "pr": 1198,
+      "doi": "10.5281/zenodo.23165876",
+      "conceptdoi": "10.5281/zenodo.23127198",
+      "status": "published_record_DOI404_and_original_category_scope_pending",
+      "must_resolve_or_document_before_final_reconciliation": true,
+      "evidence": "audits/pr1198_2678/ROOT_INITIAL_PUBLICATION_CHECK.json"
     }
   ]
 }
